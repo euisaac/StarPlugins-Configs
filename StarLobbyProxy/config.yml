@@ -87,6 +87,21 @@ fila-vip-permissao: "starproxy.filavip"
 # remover automaticamente por falhas).
 fila-max-tentativas: 10
 
+# Linha no CONSOLE do proxy a cada vez que alguém troca de servidor (nada é
+# enviado ao jogador). Deixe em branco ("") para desligar.
+#
+# Placeholders:
+#   {jogador}  quem conectou
+#   {servidor} para onde foi
+#   {origem}   de onde veio; na primeira conexão da sessão o jogador não vem
+#              de servidor nenhum, e aí entra o texto de baixo
+#   {proxy}    o "server-name" configurado neste proxy
+mensagem-console-conexao: "{jogador} entrou no servidor {servidor} através do {origem}"
+
+# O que aparece em "{origem}" quando o jogador acabou de entrar no proxy
+# (não veio de outro servidor). Aceita "{proxy}".
+mensagem-console-origem-entrada: "Lobby {proxy}"
+
 # Comando /starlobbyproxy alertar <servidor|todos> <mensagem> — manda um
 # aviso formatado (várias linhas) pro chat de quem estiver num servidor
 # específico ou de todo mundo na rede ("todos"), com um som tocando pra

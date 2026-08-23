@@ -128,6 +128,21 @@ scoreboard:
   # "%animacao:nome%" mostra o quadro atual de uma animação de animacoes.yml
   # (funciona no título e em qualquer linha). Lembre do "delay-ticks" acima
   # para a animação não ficar travada.
+  #
+  # Em vez do "{servers}" (que gera uma linha por servidor, na ordem do
+  # servers.yml e sempre no mesmo formato), dá para montar a linha na mão,
+  # servidor por servidor, trocando "survival" pela chave do seu servers.yml
+  # ou lobbies.yml:
+  #
+  #   - '{survival_status_color}{survival_displayname} &7[{survival_players_raw}/{survival_max_players}]'
+  #
+  # Campos disponíveis por servidor:
+  #   {chave_displayname}         nome de exibição (sem cor)
+  #   {chave_status}              Online / Reiniciando / Manutenção...
+  #   {chave_status_color}        só o código de cor do status (&a, &c...)
+  #   {chave_players_raw}         quantos estão online agora
+  #   {chave_max_players}         limite de jogadores
+  #   {chave_players_formatted}   "12/100"
   lines:
     - ''
     - '&a⋄ &fCargo: %vault_prefix%'
@@ -171,6 +186,9 @@ tablist:
     &r
     &7starlobby.com.br
     &r
+  # Troque a seção inteira por "tags: false" para desligar o sistema de tags
+  # (nenhum prefixo/sufixo é aplicado na tablist), sem precisar apagar as
+  # tags cadastradas abaixo.
   tags:
     member:
       priority: 1
@@ -195,6 +213,13 @@ tablist:
 # lobby com menos jogadores). Dá pra usar os dois cliques do mesmo item,
 # misturar comandos e funções à vontade, ou deixar vazio pra não fazer nada
 # naquele clique.
+#
+# slot: -1 desliga o item — ele continua cadastrado aqui (com nome, lore e
+# comandos), mas não é entregue a ninguém. Útil para tirar um item do
+# lobby sem apagar a configuração dele.
+#
+# Mudou o "slot" de algum item? Um /starlobby reload já reposiciona no
+# inventário de quem está online, sem deixar o item antigo para trás.
 join-items:
   game-selector:
     material: 'COMPASS'
@@ -246,6 +271,10 @@ preferences:
   # Voo nunca é persistido nem tem "default": sempre começa desligado a cada
   # login, mesmo para quem tem a permissão abaixo.
   fly-permission: 'starlobby.fly'
+  # Avisado a quem estava voando e perdeu a permissão (troca de cargo, VIP
+  # que expirou...). O voo é desligado na hora, sem esperar o jogador
+  # relogar. Deixe em branco ("") para desligar em silêncio.
+  fly-removido: '&cSeu modo voo foi desativado: você não tem mais permissão.'
 
 # Sistema de chat integrado (item 20). As mensagens de tell/reply ficam nos
 # arquivos de lang (chat.tell-send/tell-receive/etc.), não aqui.
