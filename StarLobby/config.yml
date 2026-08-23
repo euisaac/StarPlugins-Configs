@@ -86,6 +86,22 @@ world:
   block-sand-fall: true
   block-item-spawn: true
   block-weather: true
+  # Impede que mobs hostis (zumbi, esqueleto, creeper...) nasçam sozinhos.
+  # Só o spawn natural é barrado: ovo, comando e plugin continuam
+  # funcionando, para dar pra colocar um mob de decoração de propósito.
+  block-natural-mobs: true
+  # O mesmo, para os passivos: animais, peixes/lulas e morcegos.
+  block-natural-animals: true
+
+# NPCs dos servidores (teleporter-entity do tipo NPC em servers.yml/lobbies.yml).
+npcs:
+  # false: o NPC fica olhando para a direção em que foi posicionado com o
+  #        /starlobby setnpc.
+  # true:  o NPC vira o rosto para o jogador mais próximo e volta à posição
+  #        original quando ninguém está por perto.
+  olhar-para-jogadores: false
+  # Distância, em blocos, para o NPC notar um jogador.
+  distancia-olhar: 8
 
 # Sistema de day-cycle: mantém o horário fixo no lobby.
 day-cycle:
@@ -95,13 +111,23 @@ day-cycle:
 # Sistema de scoreboard do lobby (item 6), com suporte a PlaceholderAPI.
 scoreboard:
   enabled: true
+  # De quantos em quantos SEGUNDOS a scoreboard se redesenha.
   delay: 3
+  # Só para animações (%animacao:nome% de animacoes.yml): redesenha de
+  # "delay-ticks" em ticks (20 ticks = 1 segundo), ignorando o "delay" acima.
+  # Sem isso, uma animação rápida fica travada, porque só aparece a cada
+  # 3 segundos. Deixe 0 para usar o "delay" normal.
+  delay-ticks: 0
   title: '&b&lStarLobby'
   # A linha "{servers}" é substituída por uma linha PRA CADA servidor de
   # servers.yml (formatada com "server-line-format" abaixo) — respeitando o
   # mesmo filtro de "proxy:" usado pela bússola/fila: um servidor com
   # "proxy:" definido só aparece pra quem entrou por aquele proxy
   # específico. Servidor sem "proxy:" aparece pra todo mundo.
+  #
+  # "%animacao:nome%" mostra o quadro atual de uma animação de animacoes.yml
+  # (funciona no título e em qualquer linha). Lembre do "delay-ticks" acima
+  # para a animação não ficar travada.
   lines:
     - ''
     - '&a⋄ &fCargo: %vault_prefix%'
@@ -132,7 +158,11 @@ scoreboard:
 # só uma letra usada para ordenar visualmente (a = primeiro, z = último).
 tablist:
   enabled: true
+  # De quantos em quantos SEGUNDOS o header/footer são reenviados.
   delay: 3
+  # Mesma ideia do "scoreboard.delay-ticks": use um valor > 0 (em ticks)
+  # quando o header/footer tiver animação (%animacao:nome%).
+  delay-ticks: 0
   header: |
     &r
     &b&lStarLobby
