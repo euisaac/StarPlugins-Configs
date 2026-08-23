@@ -1,0 +1,33 @@
+# Configuracao do loader StarPlugins.
+#
+# O jar dos produtos e a licenca sao resolvidos pelo painel em
+# https://starplugins.com.br - aqui ficam so as escolhas do servidor.
+
+# Ao ligar, o loader confere se saiu uma versao nova dele e ja deixa o jar novo
+# na pasta de plugins, valendo a partir do proximo restart. Nada e trocado com o
+# servidor em pe.
+#
+# Deixe em false para atualizar na mao com /starplugins atualizar loader.
+atualizar-sozinho: true
+
+# Um MySQL so para todos os plugins Star deste servidor.
+#
+# Com 'ativado: true', estes dados sao escritos na configuracao de cada produto
+# antes de ele ligar - nao precisa mais repetir host, usuario e senha em cada
+# plugin. O prefixo das tabelas de cada plugin NAO e alterado, e por isso que
+# todos podem dividir o mesmo banco sem se atrapalhar.
+#
+# O loader so preenche chave que o plugin ja tem no arquivo dele: quem nao usa
+# banco simplesmente e ignorado.
+database-global:
+  ativado: false
+  host: localhost
+  porta: 3306
+  banco: starplugins
+  usuario: root
+  senha: ''
+
+  # Plugins que devem ficar de fora e continuar com o banco proprio.
+  # Escreva um nome por linha, do jeito que aparece no /starplugins lista.
+  lista-negra:
+    - StarExemplo

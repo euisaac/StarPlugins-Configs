@@ -1,0 +1,139 @@
+# ================================
+#   StarProxy - Configuração
+#   Autor: EuIsaac
+# ================================
+
+# Nome deste proxy. É usado para identificar por qual proxy o jogador entrou
+# e para saber qual spawn (definido com /starproxy setspawn) deve ser usado.
+# Cada proxy da sua rede deve ter um nome diferente aqui.
+#
+# /starproxy setspawn <servidor> [mundo]
+#   servidor: para qual servidor (do velocity.toml) mandar quem entrar por
+#             este proxy.
+#   mundo (opcional): quando vários proxies compartilham o MESMO servidor
+#             (ex: um lobby só, com um mundo por proxy), informe aqui o
+#             nome do mundo daquele servidor. O StarProxySpigot (instalado
+#             só no servidor de destino) recebe esse nome e teleporta o
+#             jogador para o spawn daquele mundo (o mesmo spawn que
+#             /setworldspawn ou /mvsetspawn definem). Sem o companion
+#             instalado no destino, esse segundo parâmetro é ignorado.
+server-name: "padrao"
+
+# Banco de dados usado para persistir dados de jogador (auto-reconectar,
+# jogadores conhecidos, recorde de online) e as posições internas (spawns
+# por proxy, mundos do Multiverse). SQLITE por padrão (arquivo local
+# database.db, sem configuração extra) ou MYSQL (rede, compartilhável entre
+# múltiplos proxies via "prefix"). Na primeira vez que o proxy sobe com essa
+# versão, os dados dos arquivos .yml antigos (autoreconectar.yml, spawns.yml,
+# mundos.yml, dados.yml) são importados automaticamente para o banco, e os
+# arquivos antigos são renomeados para ".migrado" (mantidos como backup).
+database:
+  storage-type: SQLITE
+  data:
+    host: localhost
+    port: 3306
+    database: ''
+    username: ''
+    password: ''
+    # Prefixo aplicado às tabelas quando storage-type = MYSQL, útil para
+    # compartilhar o banco com outros proxies/plugins.
+    prefix: 'starlp_'
+
+# Servidores considerados "lobby", usados no sistema de fallback.
+# Quando um jogador cai de um servidor (ou o servidor reinicia), ele é
+# enviado para o primeiro servidor desta lista que estiver online.
+lobby-servers:
+  - "lobby"
+  - "lobby1"
+  - "lobby2"
+
+# Intervalo, em segundos, entre cada verificação de status dos servidores.
+# Esse intervalo também define a rapidez com que um jogador é reconectado
+# ao servidor de origem depois que ele volta de um reinício/queda.
+check-interval: 5
+
+# Servidores que o jogador pode escolher com /autoreconectar para
+# reconectar automaticamente sempre que cair (ou entrar pelo lobby).
+# Aparecem no menu (GUI, se o servidor atual tiver o StarProxySpigot) e
+# também podem ser usados diretamente: /autoreconectar <servidor>.
+#
+# A chave (ex: "survival") é o nome do servidor no velocity.toml e o que
+# você digita em /autoreconectar <chave>. "nome" e "lore" são só para
+# exibição no menu (opcionais — se não informar, usa a própria chave).
+autoreconectar-servidores:
+  survival:
+    nome: "&a&lSurvival"
+    lore:
+      - "&7O modo survival clássico."
+      - "&7PVP habilitado."
+  skyblock:
+    nome: "&b&lSkyBlock"
+    lore:
+      - "&7Ilhas flutuantes."
+
+# Intervalo, em segundos, entre cada tentativa de conectar o próximo
+# jogador da fila de auto-reconectar ao servidor de destino.
+fila-intervalo: 5
+
+# Permissão de fila-vip: jogadores com esta permissão furam a fila (sempre
+# processados antes de quem não tem), mesmo tendo entrado depois.
+fila-vip-permissao: "starproxy.filavip"
+
+# Quantas tentativas seguidas de conexão sem sucesso um jogador pode ter na
+# frente da fila antes de ser removido dela automaticamente. Sem isso, um
+# jogador que nunca consegue conectar por algum motivo (whitelist, banido,
+# etc. no servidor de destino) travaria a fila pra sempre, já que só o
+# primeiro da fila é tentado a cada ciclo. Use -1 para desativar (nunca
+# remover automaticamente por falhas).
+fila-max-tentativas: 10
+
+# Comando /starlobbyproxy alertar <servidor|todos> <mensagem> — manda um
+# aviso formatado (várias linhas) pro chat de quem estiver num servidor
+# específico ou de todo mundo na rede ("todos"), com um som tocando pra
+# quem recebe. "{mensagem}" nas linhas é substituído pelo texto passado
+# no comando.
+alertar:
+  linhas:
+    - ''
+    - '&c&l>> ALERTA <<'
+    - '&f{mensagem}'
+    - ''
+  som:
+    ativado: true
+    # Nome do som no formato do Minecraft (ex: entity.experience_orb.pickup,
+    # entity.player.levelup, ui.button.click, entity.ender_dragon.growl).
+    # Sem "namespace:" na frente, assume "minecraft:" automaticamente.
+    nome: 'entity.experience_orb.pickup'
+    volume: 1.0
+    pitch: 1.0
+
+# Ativa mensagens extras de depuração no console do proxy, mostrando
+# exatamente qual spawn foi encontrado para cada jogador e qual servidor
+# foi escolhido. Útil para diagnosticar problemas, mas gera bastante log.
+debug: false
+
+# UUIDs de jogadores que podem usar todos os comandos do StarProxy mesmo
+# sem ter as permissões (starproxy.admin / starproxy.stats) concedidas por
+# um plugin de permissões (LuckPerms, etc). Útil para o dono do servidor.
+admin-uuids:
+  - "ae7086c9-befe-460e-8932-882d4024ef76"
+
+# Mensagens do plugin. Códigos de cor com "&" são suportados.
+# Placeholder disponível em algumas mensagens: {servidor}
+mensagens:
+  spawn-definido: "&aSpawn deste proxy definido para &6{servidor}&a!"
+  spawn-nao-definido: "&cO spawn deste proxy ainda não foi definido! Use /starproxy setspawn <servidor>"
+  servidor-nao-encontrado: "&cServidor &6{servidor}&c não encontrado na configuração do Velocity."
+  servidor-caiu: "&eO servidor &6{servidor}&e está reiniciando! Você foi enviado para o lobby."
+  servidor-voltou: "&aO servidor &6{servidor}&a voltou! Reconectando..."
+  todos-lobbies-offline: "&cTodos os servidores de lobby estão offline no momento. Tente novamente mais tarde."
+  sem-permissao: "&cVocê não tem permissão para usar este comando."
+  comando-desconhecido: "&cComando desconhecido. Use /starproxy para ver a ajuda."
+  apenas-jogador: "&cApenas jogadores podem usar este comando."
+  config-recarregada: "&aConfiguração do StarProxy recarregada com sucesso!"
+  autoreconectar-sugestao: "&eDica: use &6/autoreconectar &epara escolher um servidor e reconectar automaticamente sempre que cair!"
+  autoreconectar-definido: "&aVocê vai reconectar automaticamente para &6{servidor}&a ao cair ou entrar pelo lobby!"
+  autoreconectar-desativado: "&eAuto-reconectar para &6{servidor}&e desativado."
+  autoreconectar-servidor-invalido: "&cServidor inválido. Use /autoreconectar para ver as opções disponíveis."
+  autoreconectar-sem-gui: "&cO servidor atual não tem suporte a menu visual. Use &6/autoreconectar <servidor>&c diretamente."
+  fila-falha-removido: "&cNão foi possível conectar você ao servidor &6{servidor}&c depois de várias tentativas. Você foi removido da fila."

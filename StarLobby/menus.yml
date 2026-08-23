@@ -1,0 +1,119 @@
+#
+#    /\/\   ___ _ __  _   _ ___
+#   /    \ / _ \ '_ \| | | / __|
+#  / /\/\ \  __/ | | | |_| \__ \
+#  \/    \/\___|_| |_|\__,_|___/
+#
+# StarLobby - menus.yml
+# Novas seções (colors, battle) chegam na fase F, junto dos sistemas que
+# elas abrem.
+
+menu-updater: true
+
+# Menu de seleção de servidores (item 12 — aberto pela bússola). Os itens
+# vêm de servers.yml (campo "icon" de cada entrada), não daqui.
+servers:
+  name: '&8Servidores'
+  size: 27
+
+# Menu de seleção de lobbies (item 11). Os itens vêm de lobbies.yml.
+lobbies:
+  name: '&8Lobbies'
+  size: 27
+
+preferences:
+  name: '&8Preferências'
+  size: 27
+  items:
+    visibility-slot: 10
+    chat-slot: 12
+    tell-slot: 14
+    fly-slot: 16
+    visibility-off:
+      material: 'INK_SACK:8'
+      name: '&aVisibilidade de Jogadores'
+      lore:
+        - '&fEstado: &cOFF'
+    visibility-on:
+      material: 'INK_SACK:10'
+      name: '&aVisibilidade de Jogadores'
+      lore:
+        - '&fEstado: &aON'
+    chat-off:
+      material: 'INK_SACK:8'
+      name: '&aChat'
+      lore:
+        - '&fEstado: &cOFF'
+    chat-on:
+      material: 'INK_SACK:10'
+      name: '&aChat'
+      lore:
+        - '&fEstado: &aON'
+    tell-off:
+      material: 'INK_SACK:8'
+      name: '&aMensagens Privadas'
+      lore:
+        - '&fEstado: &cOFF'
+    tell-on:
+      material: 'INK_SACK:10'
+      name: '&aMensagens Privadas'
+      lore:
+        - '&fEstado: &aON'
+    fly-off:
+      material: 'INK_SACK:8'
+      name: '&aModo de Voo'
+      lore:
+        - '&fEstado: &cOFF'
+    fly-on:
+      material: 'INK_SACK:10'
+      name: '&aModo de Voo'
+      lore:
+        - '&fEstado: &aON'
+    fly-sem-permissao:
+      material: 'INK_SACK:8'
+      name: '&7Modo de Voo'
+      lore:
+        - '&fEstado: &cIndisponível'
+        - '&7Você não tem permissão para voar.'
+
+# Menu de batalha (item 8/9/10 — aberto pelo item "battle" da hotbar ou
+# /battle menu). "queue" é quantos jogadores estão na fila de batalha
+# aleatória agora; "players" é quantos estão na arena FFA agora.
+battle:
+  name: '&8Batalha'
+  size: 27
+  items:
+    find:
+      slot: 11
+      material: 'ENDER_PEARL:0'
+      name: '&aProcurar uma batalha'
+      lore:
+        - ''
+        - ' &7Procure uma batalha com um'
+        - ' &7jogador aleatório e tente vencer.'
+        - ''
+        - ' &fJogadores na fila: &7{queue}'
+        - ''
+        - '&aClique para entrar/sair da fila'
+    ffa:
+      slot: 13
+      material: 'DIAMOND_SWORD:0'
+      name: '&aArena FFA'
+      lore:
+        - ''
+        - ' &7Lute contra vários jogadores ao'
+        - ' &7mesmo tempo na arena livre.'
+        - ''
+        - ' &fJogadores na arena: &7{players}'
+        - ''
+        - '&aClique para entrar/sair'
+    challenge:
+      slot: 15
+      material: 'BOW:0'
+      name: '&aDesafiar um jogador'
+      lore:
+        - ''
+        - ' &7Desafie um jogador do lobby'
+        - ' &7para uma batalha com você.'
+        - ''
+        - '&aUse &f/battle desafiar <jogador>'

@@ -1,0 +1,58 @@
+#   __
+#  / _\ ___ _ ____   _____ _ __ ___
+#  \ \ / _ \ '__\ \ / / _ \ '__/ __|
+#  _\ \  __/ |   \ V /  __/ |  \__ \
+#  \__/\___|_|    \_/ \___|_|  |___/
+#
+# StarLobby - servers.yml
+# Lista de servidores de jogo para conexão.
+
+servers:
+  exemplo:
+    display-name: '&cExemplo'
+    proxy-name: 'exemplo'
+    ip: '0.0.0.0'
+    port: 25566
+    max-players: 100
+    # Opcional: restringe este servidor a quem entrou por um proxy
+    # específico (o "server-name" configurado no config.yml DAQUELE
+    # proxy, no starlobby-proxy). Só quem entrou por esse proxy vê este
+    # servidor na bússola e consegue entrar na fila dele — quem entrou por
+    # outro proxy nem vê o item no menu. Deixe vazio (ou remova a linha)
+    # para não restringir: aparece/funciona pra qualquer proxy (padrão).
+    proxy: ''
+    options:
+      maintenance: false
+      deployment: false
+      beta-vip: false
+      beta-vip-permission: 'starlobby.betavip.exemplo'
+    # Ícone exibido no menu de seleção de servidores (item 12).
+    # Placeholders: {status}, {players_raw}, {max_players}, {players_formatted}
+    icon:
+      slot: 13
+      id: 'DIAMOND'
+      name: '&cExemplo'
+      lore:
+        - ''
+        - '&f Status: &7{status}'
+        - '&f Jogadores: &b{players_raw}/{max_players}'
+        - ''
+        - '&aClique para conectar-se'
+    # Entidade visual usada como "portal" para este servidor no mundo (item
+    # 3/4/5). Sem posição (world/x/y/z) definida, fica desativada — um
+    # comando de posicionamento chega numa fase futura.
+    teleporter-entity:
+      type: NPC
+      skin-or-material: 'Notch'
+      hologram:
+        offset: 2.3
+        # Placeholders: {status}, {players}/{players_raw}, {max_players},
+        # {players_formatted}. {abre_em} mostra uma estimativa de retorno
+        # (ex: "3m 20s"), calculada pela média das últimas quedas deste
+        # servidor — a linha inteira some sozinha enquanto não há uma
+        # estimativa ainda (nunca caiu) ou depois que o tempo médio passa.
+        lines:
+          - '&cExemplo'
+          - '{status}'
+          - '&eAbre em: &f{abre_em}'
+          - '&7Clique para se conectar'

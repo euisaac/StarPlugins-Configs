@@ -1,0 +1,368 @@
+# StarLobby - config.yml
+
+# Modo de depuração para correção de problemas no plugin.
+debug-mode: false
+
+# Idioma das mensagens do plugin. Arquivos disponíveis em lang/: BR, EN.
+idioma: BR
+
+# Banco de dados usado pelo sistema de preferências (item 19). Outros
+# sistemas (posições de batalha, status de servidor/lobby) continuam em
+# YAML de propósito — são configuração administrativa, não dado por
+# jogador.
+database:
+  # SQLITE (padrao, sem configuracao extra) ou MYSQL.
+  storage-type: SQLITE
+  data:
+    host: localhost
+    port: 3306
+    database: ''
+    username: ''
+    password: ''
+    # prefixo aplicado as tabelas quando storage-type = MYSQL, util para dividir o banco com
+    # outros plugins.
+    prefix: 'starlb_'
+
+# Chave deste servidor em servers.yml ou lobbies.yml (ex: 'lobby1'). Usada só
+# para o auto-check de login: se o status desta entrada estiver em
+# manutenção/dev/beta-vip, jogadores sem permissão de bypass são kickados ao
+# entrar NESTE servidor. Deixe em branco para desativar esse auto-check.
+server-name: ''
+
+# Aliases dos comandos do plugin, separados por "|". O primeiro nome é o
+# principal e os demais são apelidos. Novas entradas vão surgindo aqui
+# conforme cada sistema do StarLobby for implementado nas próximas fases.
+commands:
+  starlobby: 'starlobby|sl|slobby'
+  maintenance: 'manutencao|maintenance'
+  beta-vip: 'beta-vip|betavip'
+  deployment: 'desenvolvimento|dev|deployment'
+  preferences: 'preferencias|preferences'
+  tell: 'msg|tell|t'
+  reply: 'responder|r|reply'
+  battle: 'batalha|battle|batalhar'
+  autoreconectar: 'autoreconectar|ar'
+  fila: 'fila'
+
+# Sistema de modos do servidor (item 14). O modo "reiniciando" não tem
+# comando manual: é ativado programaticamente pelo sistema de fila de
+# reinício (Fase G), então não persiste em estado.yml.
+modes:
+  bypass-permission-manutencao: 'starlobby.bypass.manutencao'
+  bypass-permission-deployment: 'starlobby.bypass.deployment'
+  bypass-permission-betavip: 'starlobby.bypass.betavip'
+
+# Sistema de proteção do lobby (item 24): bloqueia construir/interagir sem
+# permissão, e desativa fome/dano/drop/pickup, como é padrão em lobbies.
+protection:
+  enabled: true
+  build-permission: 'starlobby.build'
+  interact-permission: 'starlobby.interact'
+  deny-hunger: true
+  deny-damage: true
+  deny-drop-item: true
+  deny-pickup-item: true
+
+# Sistema de bloqueio de comandos (item 23).
+command-manager:
+  bypass-permission: 'starlobby.comando.bypass'
+  blocked-commands:
+    - '/plugins'
+    - '/pl'
+
+# Sistema de anti-tab (item 22): esconde comandos do tab-complete, exceto os
+# da whitelist. Usa PlayerCommandSendEvent (API oficial a partir da 1.13);
+# em versões anteriores este recurso ainda não fica disponível.
+antitab:
+  enabled: true
+  bypass-permission: 'starlobby.antitab.bypass'
+  whitelist:
+    - 'help'
+
+# Toggles de mundo do lobby.
+world:
+  block-fire-spread: true
+  block-leaf-decay: true
+  block-sand-fall: true
+  block-item-spawn: true
+  block-weather: true
+
+# Sistema de day-cycle: mantém o horário fixo no lobby.
+day-cycle:
+  enabled: true
+  time: 6000
+
+# Sistema de scoreboard do lobby (item 6), com suporte a PlaceholderAPI.
+scoreboard:
+  enabled: true
+  delay: 3
+  title: '&b&lStarLobby'
+  # A linha "{servers}" é substituída por uma linha PRA CADA servidor de
+  # servers.yml (formatada com "server-line-format" abaixo) — respeitando o
+  # mesmo filtro de "proxy:" usado pela bússola/fila: um servidor com
+  # "proxy:" definido só aparece pra quem entrou por aquele proxy
+  # específico. Servidor sem "proxy:" aparece pra todo mundo.
+  lines:
+    - ''
+    - '&a⋄ &fCargo: %vault_prefix%'
+    - ''
+    - '{servers}'
+    - ''
+    - '&a⋄ &fLobby: &a{online_lobby1}'
+    - ''
+    - '&estarlobby.com.br'
+  # Formato de cada linha gerada pela "{servers}" acima. {status_color} vira
+  # só o código de cor do status (ex: &a se online, &c se offline/
+  # reiniciando/manutenção) — pra colorir o nome do servidor inteiro, em vez
+  # de mostrar a palavra "Online"/"Offline" por extenso. {display} é o
+  # display-name do servidor. Também aceita {status}, {players}, {players_raw},
+  # {max_players} e {players_formatted}, os mesmos placeholders já usados no
+  # ícone do menu de seleção e no holograma dos NPCs.
+  #
+  # Em qualquer linha (não só nas geradas por "{servers}"), "{online_<chave>}"
+  # mostra o total de jogadores online de UM servidor/lobby específico de
+  # servers.yml/lobbies.yml (pelo ping real, não só quem está nesta instância
+  # Bukkit) — "{online}" sozinho conta só quem está aqui; em multi-lobby, use
+  # "{online_<chave>}" pra mostrar o total do lobby inteiro pela rede.
+  server-line-format: '{status_color}{display} &7[{players_raw}/{max_players}]'
+
+# Sistema de tablist do lobby (item 7), com suporte a PlaceholderAPI. As tags
+# coloram o nome do jogador na tablist; "priority" decide quem vence quando o
+# jogador se qualifica para mais de uma (maior priority vence), e "order" é
+# só uma letra usada para ordenar visualmente (a = primeiro, z = último).
+tablist:
+  enabled: true
+  delay: 3
+  header: |
+    &r
+    &b&lStarLobby
+    &r
+  footer: |
+    &r
+    &7starlobby.com.br
+    &r
+  tags:
+    member:
+      priority: 1
+      permission: 'starlobby.tags.member'
+      prefix: '&7[Membro] &7'
+      suffix: ''
+      order: 'b'
+    staff:
+      priority: 2
+      permission: 'starlobby.tags.staff'
+      prefix: '&c[Staff] &7'
+      suffix: ''
+      order: 'a'
+
+# Sistema de itens de entrada (item 13): itens dados ao jogador ao entrar no
+# lobby, com comandos configuráveis executados ao clicar (esquerdo/direito).
+# {player} no comando é substituído pelo nome do jogador. left-command e
+# right-command aceitam QUALQUER comando do servidor, ou uma das funções
+# internas do próprio StarLobby (chamadas direto no código, sem passar por
+# comando de verdade): "seletorservidores" (abre o menu de servidores),
+# "seletorlobbies" (abre o menu de lobbies) e "lobbymenoscheio" (conecta ao
+# lobby com menos jogadores). Dá pra usar os dois cliques do mesmo item,
+# misturar comandos e funções à vontade, ou deixar vazio pra não fazer nada
+# naquele clique.
+join-items:
+  game-selector:
+    material: 'COMPASS'
+    slot: 4
+    name: '&aServidores'
+    lore:
+      - '&7Selecione um servidor para jogar.'
+    left-command: ''
+    right-command: 'seletorservidores'
+  lobby-selector:
+    material: 'NETHER_STAR'
+    slot: 8
+    name: '&aLobbies'
+    lore:
+      - '&7Selecione um lobby mais vazio.'
+    left-command: 'lobbymenoscheio'
+    right-command: 'seletorlobbies'
+  autoreconectar:
+    material: 'ENDER_PEARL'
+    slot: 2
+    name: '&aAuto-Reconectar'
+    lore:
+      - '&7Escolha um servidor para ser'
+      - '&7reconectado automaticamente ao voltar.'
+    left-command: ''
+    right-command: 'autoreconectar'
+  preferences:
+    material: 'REDSTONE_COMPARATOR'
+    slot: 7
+    name: '&aPreferências'
+    lore:
+      - '&7Altere suas preferências pessoais.'
+    left-command: ''
+    right-command: 'preferencias'
+  battle:
+    material: 'DIAMOND_SWORD'
+    slot: 0
+    name: '&cBatalha'
+    lore:
+      - '&7Desafie jogadores ou entre na arena livre.'
+    left-command: ''
+    right-command: 'batalha'
+
+# Sistema de preferências (item 19): toggles pessoais do jogador.
+preferences:
+  visibility-default: true
+  chat-default: true
+  tell-default: true
+  # Voo nunca é persistido nem tem "default": sempre começa desligado a cada
+  # login, mesmo para quem tem a permissão abaixo.
+  fly-permission: 'starlobby.fly'
+
+# Sistema de chat integrado (item 20). As mensagens de tell/reply ficam nos
+# arquivos de lang (chat.tell-send/tell-receive/etc.), não aqui.
+chat:
+  enabled: true
+  format: '&7[Chat] &f%vault_prefix% {player}&7: {msg}'
+  delay: 1
+
+# Textos de status usados no seletor de servidores/lobbies (item 11/12).
+# O status real de jogadores online por servidor (via ping) chega na Fase G,
+# junto da integração com o starlobby-proxy; por enquanto o status reflete
+# só as flags de manutenção/dev/beta-vip.
+status:
+  offline: '&cOffline'
+  maintenance: '&cManutenção'
+  deployment: '&7Desenvolvimento'
+  beta-vip: '&eBeta-VIP'
+  restarting: '&cReiniciando'
+  online: '&aOnline'
+
+# Sistema de jump pads (item 2).
+jump-pad:
+  enabled: true
+  block: 'SLIME_BLOCK'
+  multiply: 1.5
+  offset: 2.0
+  sound: 'FIREWORK_LAUNCH'
+
+# Sistema de double jump (extra do item 2): dá um segundo pulo no ar.
+# Requer allowFlight=true no jogador (padrão em lobbies).
+double-jump:
+  enabled: true
+  multiply: 1.5
+  offset: 2.0
+  sound: 'FIREWORK_LAUNCH'
+  permission: 'starlobby.doublejump'
+
+# Sistema de combate HubPvP (item de combate no inventário, inspirado no
+# HubPvPSword) + batalha/arena x1/arena ffa (itens 8, 9 e 10). Clicar no item
+# "combat.item" entra em combate livre no lobby; /batalha desafia outro
+# jogador para um x1 ou entra na arena livre — todos passam pelo mesmo
+# HubPvpManager (entrar/sair de combate), evitando duplicar a lógica de
+# guardar/restaurar inventário.
+combat:
+  reset: true
+  # Intervalo (segundos) entre cada lembrete na actionbar de como sair da
+  # arena FFA ("/batalha sair"), mostrado só pra quem está lá dentro.
+  ffa-actionbar-delay: 5
+  # Item de combate estilo HubPvPSword: segurar a espada por
+  # "activation-delay" segundos ativa o PvP; tirar a mão dela por
+  # "deactivation-delay" segundos desativa. Não troca inventário/armadura —
+  # é só uma permissão de dano entre dois jogadores com o PvP ativo. Isso é
+  # diferente da arena (x1/ffa), que troca o equipamento de verdade.
+  item:
+    material: 'IRON_SWORD'
+    slot: 1
+    name: '&cCombate'
+    lore:
+      - '&7Segure para ativar o PvP.'
+    enchants:
+      - 'DAMAGE_ALL:2'
+    activation-delay: 5
+    deactivation-delay: 5
+  # Arco (opcional) dado ao jogador só enquanto o PvP estiver ativo (some
+  # junto com o resto da hotbar quando desativa). Segurar o arco também
+  # conta como "segurando item de combate": não inicia a contagem de
+  # desativação, igual à espada de "combat.item".
+  bow:
+    enabled: false
+    material: 'BOW'
+    slot: 2
+    name: '&cArco'
+    lore:
+      - '&7Munição infinita durante o combate.'
+    enchants:
+      - 'ARROW_INFINITE:1'
+  arrow:
+    material: 'ARROW'
+    slot: 3
+    amount: 1
+  armor:
+    helmet: 'DIAMOND_HELMET'
+    chestplate: 'DIAMOND_CHESTPLATE'
+    leggings: 'DIAMOND_LEGGINGS'
+    boots: 'DIAMOND_BOOTS'
+  items:
+    espada:
+      material: 'DIAMOND_SWORD'
+      amount: 1
+      slot: 0
+    maca:
+      material: 'GOLDEN_APPLE'
+      amount: 16
+      slot: 1
+
+# Ponte com o starlobby-proxy (Velocity) — absorve o que era o
+# StarProxySpigot (spigot-bridge, agora descontinuado): recebe "mundo"
+# (teleporte ao entrar) e "abrir_menu" (GUI de auto-reconectar, itens
+# 16/18), manda "selecionou" de volta quando o jogador escolhe um servidor
+# no menu.
+proxy-bridge:
+  canal: 'starlobby:main'
+  teleportar-ao-morrer: true
+  # Puxar de volta pro spawn do mundo (mesmo destino do "spawn por proxy"
+  # acima) quem cair no void, em vez de deixar morrer de queda no vazio.
+  teleportar-ao-cair-no-void: true
+
+# Sistema de fila para se conectar a um servidor (itens 15/17), inteiramente
+# local ao StarLobby: usado pela bússola, pelo clique no NPC/holograma/item
+# gigante e pelo comando /fila. Continua funcionando normalmente depois de
+# um restart/atualização do plugin (a fila é só em memória).
+fila:
+  # Ativar ou desativar o sistema de fila.
+  enabled: true
+  # Tempo em segundos para que a fila ande (intervalo entre cada tentativa de
+  # conectar o próximo jogador ao servidor de destino).
+  delay: 1
+  # Sempre mostrar a posição na fila na actionbar
+  always-show: true
+  # Permissão de fila-vip (item 17): jogadores com esta permissão furam a
+  # fila, mesmo tendo entrado depois de quem não é VIP.
+  vip-permission: 'starlobby.filavip'
+  # Quantas tentativas seguidas o primeiro da fila pode ter antes de ser
+  # removido automaticamente. Sem isso, um jogador que nunca consegue
+  # conectar de verdade (recusado no destino por algum motivo) travaria a
+  # fila inteira pra sempre, já que só o primeiro é tentado a cada ciclo.
+  # Use -1 para desativar (nunca remover automaticamente por falhas).
+  max-tentativas: 10
+
+# Sistema de entrar no lobby
+join:
+  # Limpar o chat ao entrar no lobby
+  clear-chat: false
+  # Enviar anúncio que o player entrou (deixe vazio para não usar)
+  announce: '&b+ %luckperms_prefix% &b{player} &fentrou.'
+  # Esconder as mensagens padrão do Minecraft de entrada/saída
+  # ("Fulano entrou no jogo"/"Fulano saiu do jogo"). Independente do
+  # "announce": pode desativar as duas sem colocar um anúncio no lugar.
+  hide-join-quit-messages: false
+  # Mundos que não irá receber os Join-Items
+  join-item-world-blacklist: []
+
+# Sistema de mensagens automáticas (item 21).
+auto-message:
+  enabled: true
+  delay: 320
+  messages:
+    msg1:
+      chat: '&b&lStarPlugins&f Compre plugins exclusivos em &bhttps://starplugins.redestars.com/'
+      actionbar: '&b&lStarPlugins'
