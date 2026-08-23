@@ -13,6 +13,8 @@ servers:
     proxy-name: 'exemplo'
     ip: '0.0.0.0'
     port: 25566
+    # O numero que aparece no {max_players} do menu e da tablist. Escrito aqui,
+    # ele manda; apagado (ou 0), vale o que o proprio servidor responder no ping.
     max-players: 100
     # Opcional: restringe este servidor a quem entrou por um proxy
     # específico (o "server-name" configurado no config.yml DAQUELE
@@ -31,6 +33,12 @@ servers:
     icon:
       slot: 13
       id: 'DIAMOND'
+      # Para usar uma cabeca do minecraft-heads: ponha id: 'PLAYER_HEAD'
+      # (ou 'SKULL_ITEM' na 1.8) e cole aqui o "Value" do site. Vale tambem a
+      # URL da textura ou so o hash dela.
+      #textura: 'ewogICJ0ZXh0dXJlcyIgOiB7ICJTS0lOIiA6IHsgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8uLi4iIH0gfSB9'
+      # Ou a cabeca de um jogador, pelo nick:
+      #dono: 'Notch'
       name: '&cExemplo'
       lore:
         - ''

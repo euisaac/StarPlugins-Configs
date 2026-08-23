@@ -13,12 +13,20 @@ lobbies:
     proxy-name: 'lobby'
     ip: '0.0.0.0'
     port: 25565
+    # O numero que aparece no {max_players} do menu e da tablist. Escrito aqui,
+    # ele manda; apagado (ou 0), vale o que o proprio servidor responder no ping.
     max-players: 100
     options:
       maintenance: false
     icon:
       slot: 13
       id: 'NETHER_STAR'
+      # Para usar uma cabeca do minecraft-heads: ponha id: 'PLAYER_HEAD'
+      # (ou 'SKULL_ITEM' na 1.8) e cole aqui o "Value" do site. Vale tambem a
+      # URL da textura ou so o hash dela.
+      #textura: 'ewogICJ0ZXh0dXJlcyIgOiB7IC4uLiB9IH0='
+      # Ou a cabeca de um jogador, pelo nick:
+      #dono: 'Notch'
       name: '&aLobby'
       lore:
         - ''
