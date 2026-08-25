@@ -1,0 +1,111 @@
+# ==========================================================================
+#  StarSkins - skins personalizadas
+#
+#  E a lista que aparece no menu "Skins personalizadas" e no menu "Suas
+#  skins". A ordem daqui e a ordem do menu.
+#
+#  Cada skin pode vir de dois lugares:
+#
+#    Skin: <nick>        - o plugin busca a textura desse nick na Mojang uma
+#                          vez e guarda no banco (jeito mais simples).
+#
+#    Valor / Assinatura  - o par pronto, para skins feitas fora do jogo
+#                          (mineskin.org e sites parecidos). Use os dois: sem
+#                          assinatura, servidores em modo online podem recusar.
+#
+#  Quem pode usar cada skin:
+#
+#    Permissao: ''                  -> todo mundo ve e usa
+#    Permissao: 'algo.aqui'         -> so quem tem a permissao (acesso permanente)
+#    /starskins liberar <jogador> <id> [30m|2h|7d|perm]
+#                                   -> libera para um jogador so, com ou sem prazo
+#
+#  Pelo jogo tambem da para criar: /starskins adicionar <id> <nick>
+#
+#  ──────────────────────────── Beneficios ────────────────────────────
+#
+#  Cada skin pode dar coisas enquanto esta VESTIDA. Tudo sai junto quando o
+#  jogador troca de skin, usa /skin resetar, perde a liberacao ou desconecta.
+#
+#    Efeitos:     efeito de pocao, no formato NOME:NIVEL (nivel comeca em 1,
+#                 igual ao /effect). Ex.: SPEED:2, NIGHT_VISION, JUMP:3
+#    Particulas:  particulas que acompanham o jogador, NOME:QUANTIDADE.
+#                 Ex.: FLAME:3, HEART:1, ENCHANTMENT_TABLE:5
+#    Permissoes:  permissoes emprestadas enquanto a skin esta em uso -- e assim
+#                 que uma skin vira "habilidade": aponte para a permissao de
+#                 outro plugin (voo, kit, atalho...).
+#    Comandos ao usar / Comandos ao tirar:
+#                 rodam no console. Prefixe com "jogador:" para rodar na mao do
+#                 proprio jogador. {jogador} vira o nick dele.
+#
+#  Nome de efeito ou particula que nao existe na versao do servidor e apenas
+#  ignorado, com um aviso no console -- a skin continua funcionando.
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 2
+
+Skins:
+
+  # Exemplo simples: so a aparencia, para todo mundo.
+  heroi:
+    Nome: '&b&lHeroi'
+    Skin: 'Notch'
+    Permissao: ''
+    Lore:
+      - '&7Uma skin classica do servidor.'
+      - ''
+      - '&eClique para usar.'
+
+  # Exemplo de skin de vip, com efeitos e particulas enquanto vestida.
+  cavaleiro:
+    Nome: '&6&lCavaleiro'
+    Skin: 'jeb_'
+    Permissao: 'starskins.personalizada.cavaleiro'
+    Lore:
+      - '&7Exclusiva dos jogadores &6VIP&7.'
+      - ''
+      - '&7Enquanto usar:'
+      - '&8- &fVelocidade I'
+      - '&8- &fRastro de fogo'
+      - ''
+      - '&eClique para usar.'
+    Beneficios:
+      Efeitos:
+        - 'SPEED:1'
+      Particulas:
+        - 'FLAME:2'
+      Permissoes: []
+      Comandos ao usar: []
+      Comandos ao tirar: []
+
+  # Exemplo de skin de evento: dada por comando, com prazo, e que empresta uma
+  # permissao de outro plugin enquanto esta vestida.
+  #   /starskins liberar Eulsaac campeao 7d
+  campeao:
+    Nome: '&e&lCampeao'
+    Skin: 'Dinnerbone'
+    Permissao: 'starskins.personalizada.campeao'
+    Lore:
+      - '&7Skin do campeao do evento.'
+      - ''
+      - '&eClique para usar.'
+    Beneficios:
+      Efeitos:
+        - 'REGENERATION:1'
+      Particulas:
+        - 'VILLAGER_HAPPY:3'
+      Permissoes:
+        - 'essentials.fly'
+      Comandos ao usar:
+        - 'broadcast &e{jogador} &fvestiu a skin do campeao!'
+      Comandos ao tirar: []
+
+  # Exemplo com o par pronto: e so colar Valor e Assinatura no lugar do nick.
+  # exemplo_pronta:
+  #   Nome: '&d&lExclusiva'
+  #   Valor: 'ewogICJ0aW1lc3RhbXAiIDogMTY...'
+  #   Assinatura: 'Yy8bXQ0k...'
+  #   Permissao: ''
+  #   Lore:
+  #     - '&7Feita para o servidor.'

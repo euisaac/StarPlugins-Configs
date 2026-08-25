@@ -1,0 +1,193 @@
+# ==========================================================================
+#  StarSkins - configuracao
+#
+#  Aqui ficam o banco de dados, o jeito de aplicar a skin e as skins padrao.
+#  Os textos e os slots dos menus ficam em menus.yml
+#  As skins da staff ficam em personalizadas.yml
+#  As mensagens ficam em mensagens.yml
+#  Site: https://starplugins.com.br
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 4
+
+Geral:
+  # Mostra detalhes a mais no console.
+  Debug: false
+
+  # /skin sem nenhum argumento abre o menu. Deixe false para /skin sozinho
+  # mostrar a ajuda no chat.
+  Abrir o menu sem argumentos: true
+
+  # Segundos de espera entre uma troca de skin e a proxima.
+  # 0 desliga. Quem tem starskins.cooldown.ignorar nao espera.
+  Cooldown: 5
+
+  # Nicks que ninguem pode usar como skin (a staff com starskins.admin passa).
+  # Serve para bloquear a skin de donos, youtubers e afins.
+  Skins bloqueadas:
+    - 'Notch_exemplo'
+
+#
+# ─────────────────────────── Banco de dados ───────────────────────────
+#
+# Onde ficam a skin de cada jogador, o catalogo do servidor e o cache das
+# respostas da Mojang.
+#
+#   SQLITE - salva em dados/starskins.db (padrao, nao precisa de servidor externo)
+#   MYSQL  - servidor MySQL/MariaDB (use quando tiver varios servidores no mesmo BungeeCord)
+#
+# Os drivers sao baixados pelo loader StarPlugins, entao os dois funcionam em
+# qualquer servidor. Se o MYSQL nao conectar, o plugin cai para SQLITE em vez de
+# perder as skins dos jogadores.
+#
+Banco de dados:
+  Tipo: SQLITE
+  IP: localhost
+  Porta: 3306
+  Banco: starskins
+  Usuario: root
+  Senha: ''
+  # Prefixo das tabelas criadas (SQLITE/MYSQL).
+  Prefixo: 'starskins_'
+  # Salva os dados em disco a cada X segundos (0 desliga o salvamento automatico).
+  Salvar a cada: 300
+
+#
+# ────────────────────────── Como aplicar a skin ──────────────────────────
+#
+# Na entrada do jogador a skin sempre entra certa, sem piscar nada: ela e posta
+# no perfil antes de ele nascer no mundo. O que esta aqui vale para quando
+# alguem troca de skin com o jogo ja aberto.
+#
+Aplicacao:
+
+  # COMPLETO - atualiza a tela na hora (recomendado)
+  # SIMPLES  - so salva; a skin aparece quando o jogador entrar de novo
+  Modo: COMPLETO
+
+  # Reenvia o jogador para quem esta vendo ele, para os outros verem a skin nova
+  # na hora. Desligue so se algum plugin de vanish brigar com isso.
+  Atualizar para os outros: true
+
+  # O proprio jogador so ve a propria skin trocar depois de um respawn.
+  #
+  # Em servidores Paper (1.12.2+) isso acontece sozinho e esta opcao nem e usada.
+  # Em Spigot puro o unico jeito sem mexer em pacote e mandar o jogador para
+  # outro mundo e traze-lo de volta -- funciona, mas dispara os eventos de troca
+  # de mundo dos outros plugins. Por isso vem desligado: sem ele o jogador
+  # simplesmente recebe o aviso de entrar de novo.
+  Trocar de mundo: false
+
+  # Avisa o jogador quando a skin so vai aparecer para ele na proxima entrada.
+  Avisar para entrar de novo: true
+
+#
+# ─────────────────────────────── Mojang ───────────────────────────────
+#
+# A skin de uma conta original e buscada nos servidores da Mojang. Eles cortam
+# quem consulta demais pelo mesmo IP, entao tudo que ja foi buscado fica
+# guardado no banco.
+#
+Mojang:
+  # Segundos de espera por resposta antes de desistir.
+  Tempo limite: 5
+
+  # Por quantas horas uma skin ja buscada continua valendo.
+  # Quem trocar a skin no site da Mojang usa /skin atualizar para forcar.
+  Validade do cache: 24
+
+  # Pausa entre duas consultas seguidas, em milissegundos. So vale para a fila
+  # das skins personalizadas na carga do plugin.
+  Intervalo entre consultas: 400
+
+#
+# ──────────────────────── Skins disponiveis ────────────────────────
+#
+# E a lista do menu "Skins disponiveis": as skins que os jogadores do servidor
+# ja usaram, com a mais pedida na frente.
+#
+Skins disponiveis:
+  # Toda skin aplicada por /skin <nick> entra na lista.
+  # Deixe false para a lista so ter o que a staff puser na mao.
+  Registrar automaticamente: true
+
+  # Quantas skins a lista guarda ao todo. 0 = sem limite.
+  Limite: 500
+
+  # Botao de reportar nas opcoes de cada skin, para skins ofensivas ou que
+  # imitam a staff. Cada jogador reporta uma skin uma unica vez.
+  Permitir reportar: true
+
+  # Quantos reportes tiram a skin de circulacao: ela sai deste menu e o nick
+  # dela para de valer no /skin, para todo mundo.
+  # A staff libera de novo com /starskins desbloquear <nick>.
+  Reportes para bloquear: 5
+
+#
+# ────────────────────── Favoritas e recentes ──────────────────────
+#
+# Duas listas por jogador, dentro do menu de skins disponiveis. Elas guardam a
+# textura junto, entao continuam funcionando mesmo que a skin saia do catalogo.
+#
+Skins favoritas:
+  # Quantas favoritas cada jogador pode ter. 0 = sem limite.
+  Limite: 100
+
+Skins recentes:
+  # Quantas das ultimas skins usadas ficam guardadas por jogador.
+  # 27 e o que enche meio menu; 0 = sem limite (nao recomendado).
+  Limite: 27
+
+#
+# ─────────────────── Beneficios das skins personalizadas ───────────────────
+#
+# Efeitos, particulas, permissoes e comandos que uma skin personalizada da
+# enquanto esta vestida. Quem escolhe o que cada skin da e o personalizadas.yml;
+# aqui fica so o ritmo da tarefa que cuida disso.
+#
+# Nada disso custa nada quando ninguem esta usando uma skin com beneficio.
+#
+Beneficios:
+  # De quantos em quantos ticks as particulas sao desenhadas.
+  # 10 e suave e barato; 5 fica mais denso e custa o dobro de pacotes.
+  Ticks: 10
+
+  # De quantos em quantos segundos o plugin confere as liberacoes com prazo
+  # (/starskins liberar <jogador> <id> 30m). Quem perdeu o acesso volta para a
+  # skin normal na hora, sem precisar sair do servidor.
+  Checar liberacoes a cada: 60
+
+#
+# ───────────────────────────── Skin padrao ─────────────────────────────
+#
+# Para os jogadores que ainda nao escolheram nenhuma skin -- util em servidor
+# pirata, onde todo mundo entraria de Steve.
+#
+Skin padrao:
+  Ativar: false
+
+  # true  - sorteia uma da lista abaixo para cada jogador
+  # false - usa sempre a primeira da lista
+  Aleatorio: true
+
+  # Sorteia de novo a cada entrada. Deixe false para o jogador ficar com a
+  # mesma skin padrao que ele pegou da primeira vez.
+  Sortear a cada entrada: false
+
+  # Nicks de contas originais ou ids do personalizadas.yml.
+  # Uma opcao so = todo mundo com a mesma skin.
+  Skins:
+    - 'Steve'
+    - 'Alex'
+
+#
+# ─────────────────────────────────  Sons  ─────────────────────────────────
+#
+# Formato: SOM, SOM;volume ou SOM;volume;tom. Deixe vazio ('') para nao tocar.
+# Os nomes passam pelo XSeries, entao valem da 1.8 a 1.21.
+#
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Aplicada: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'

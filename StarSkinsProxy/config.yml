@@ -1,0 +1,43 @@
+# =========================================================================
+#  StarSkinsProxy - a skin do jogador valendo na rede inteira.
+#
+#  Este produto NAO troca skin de ninguem: quem troca sao os servidores, com
+#  /skin. O que ele faz e ler o MESMO MySQL deles e trocar a textura no perfil
+#  que o proxy encaminha, o que da duas coisas que so o proxy consegue:
+#
+#    - a skin vale tambem nos servidores que NAO tem o StarSkins instalado
+#      (um rankup, um minigame de terceiros);
+#    - ela continua a mesma em toda troca de servidor, sem piscada.
+#
+#  COMO CONFIGURAR
+#
+#    1. Nos servidores Bukkit, ponha o StarSkins em MySQL:
+#       config.yml -> "Banco de dados" -> Tipo: MYSQL (o mesmo banco em todos).
+#    2. Repita aqui embaixo o MESMO host, banco, usuario, senha e prefixo.
+#    3. Use /starskinproxy reload. Nao precisa reiniciar o proxy.
+#
+#  Enquanto o banco estiver em branco, o produto sobe e fica so esperando --
+#  /starskinproxy status diz em que pe esta.
+# =========================================================================
+
+database:
+  host: localhost
+  port: 3306
+  database: ''
+  username: ''
+  password: ''
+  # O MESMO prefixo configurado nos servidores Bukkit.
+  prefix: 'starskins_'
+  parametros: 'useSSL=false&autoReconnect=true&characterEncoding=utf8'
+
+# Troca a textura no perfil que o proxy manda para os servidores.
+#
+# Desligue so se voce quiser que cada servidor cuide da propria skin (todos
+# precisam ter o StarSkins instalado nesse caso). Vale para quem entrar depois
+# da mudanca; quem ja esta online segue com o perfil da conexao atual.
+aplicar-no-login: true
+
+mensagens:
+  sem-permissao: '&cVoce nao tem permissao para isso.'
+  recarregado: '&aStarSkinsProxy recarregado e ativo. A skin da rede vale para quem entrar de agora em diante.'
+  recarregado-inativo: '&eArquivo recarregado, mas o produto continua inativo: confira o MySQL no config.yml e o console.'

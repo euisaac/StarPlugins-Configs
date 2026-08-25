@@ -1,0 +1,124 @@
+# ==========================================================================
+#  StarSkins - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso
+#  sem precisar de uma opcao separada para cada um.
+#  Cores: &a, &e, &c... e tambem &#FF00AA nos servidores 1.16+.
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 3
+
+Prefixo: '&b&lSKINS &8» &7'
+
+Ajuda: |-
+  &8&m-----------------------------------------
+  &b&lStarSkins
+  &7Troque a sua skin sem sair do jogo.
+
+  &f/{comando} &8- &7abre o menu de skins
+  &f/{comando} <nick> &8- &7usa a skin de uma conta original
+  &f/{comando} resetar &8- &7volta para a sua skin original
+  &f/{comando} atualizar &8- &7busca a skin de novo na Mojang
+  &8&m-----------------------------------------
+
+Ajuda admin: |-
+  &8&m-----------------------------------------
+  &b&lStarSkins &7(staff)
+  &f/skin <nick> <jogador> &8- &7troca a skin de alguem
+  &f/skin resetar <jogador> &8- &7reseta a skin de alguem
+
+  &f/{comando} recarregar &8- &7recarrega os arquivos
+  &f/{comando} adicionar <id> <nick> &8- &7cria uma skin personalizada
+  &f/{comando} remover <id> &8- &7apaga uma skin personalizada
+  &f/{comando} listar &8- &7lista as skins personalizadas
+  &f/{comando} liberar <jogador> <id> [tempo] &8- &7da uma skin exclusiva
+  &f/{comando} retirar <jogador> <id> &8- &7tira a skin exclusiva
+  &f/{comando} tirar <nome> &8- &7tira uma skin do catalogo
+  &f/{comando} desbloquear <nome> &8- &7libera uma skin bloqueada por reportes
+  &f/{comando} limparcache &8- &7esquece o que veio da Mojang
+  &f/{comando} limparcatalogo &8- &7esvazia as skins disponiveis
+  &f/{comando} info <jogador> &8- &7mostra a skin de um jogador
+  &8&m-----------------------------------------
+
+Recarregado: '&aArquivos recarregados.'
+
+Buscando: '&7Procurando a skin de &f{skin}&7...'
+Skin aplicada: '&aPronto! Agora voce esta usando a skin de &f{skin}&a.'
+Skin aplicada em outro: '&aA skin de &f{jogador} &aagora e a de &f{skin}&a.'
+Sua skin foi trocada: '&aA sua skin foi trocada para a de &f{skin} &apor &f{autor}&a.'
+
+Skin resetada: '&aVoce voltou para a sua skin original.'
+Skin resetada em outro: '&a{jogador} voltou para a skin original.'
+Sua skin foi resetada: '&aA sua skin foi voltada ao normal por &f{autor}&a.'
+
+Entre de novo: '&7Entre no servidor de novo para ver a skin em voce mesmo.'
+
+Favorita adicionada: '&aA skin de &f{skin} &aentrou nas suas favoritas.'
+Favorita removida: '&7A skin de &f{skin} &7saiu das suas favoritas.'
+
+Skin reportada: '&aReporte enviado. A skin de &f{skin} &atem &f{reportes}&a/&f{limite} &areportes.'
+Skin bloqueada por reportes: '&cA skin de &f{skin} &cchegou ao limite de reportes e nao pode mais ser usada.'
+Skin desbloqueada: '&aA skin de &f{skin} &avoltou a poder ser usada.'
+
+Liberada: '&aA skin &f{skin} &afoi liberada para &f{jogador} &a({tempo}).'
+Voce ganhou uma skin: '&aVoce ganhou a skin &f{skin}&a! Tempo: &f{tempo}&a.'
+Liberacao tirada: '&aA skin &f{skin} &anao esta mais liberada para &f{jogador}&a.'
+Liberacao expirada: '&eO seu tempo com a skin &f{skin} &eacabou.'
+
+Personalizada adicionada: '&aSkin personalizada &f{id} &acriada a partir de &f{nick}&a.'
+Personalizada removida: '&aSkin personalizada &f{id} &aremovida.'
+Tirada do catalogo: '&aA skin &f{skin} &asaiu das skins disponiveis.'
+Cache limpo: '&aCache da Mojang limpo.'
+Catalogo limpo: '&aA lista de skins disponiveis foi esvaziada.'
+
+Lista personalizadas: '&7Skins personalizadas (&f{total}&7):'
+Linha personalizada: ' &8- &f{id} &7| origem: &f{origem} &7| {estado} &7| perm: &f{permissao}'
+
+Info: |-
+  &8&m-----------------------------------------
+  &b&lStarSkins &7- &f{jogador}
+  &7Skin atual: &f{skin}
+  &7Veio da lista padrao: &f{padrao}
+  &7Tem skin original guardada: &f{original}
+  &8&m-----------------------------------------
+
+Menu:
+  Sem skin: 'a sua original'
+
+Estado:
+  Para sempre: 'para sempre'
+  Pronta: '&apronta'
+  Pendente: '&ependente'
+  Sim: 'sim'
+  Nao: 'nao'
+
+Erros:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So no jogo: '&cEste comando so funciona dentro do jogo.'
+  Nick invalido: '&cO nick &f{nick} &cnao serve: use so letras, numeros e _.'
+  Nao encontrado: '&cNao existe nenhuma conta original chamada &f{nick}&c.'
+  Limite da Mojang: '&cA Mojang esta recusando consultas agora. Tente de novo em alguns minutos.'
+  Falha na busca: '&cNao consegui falar com a Mojang. Tente de novo em instantes.'
+  Cooldown: '&cEspere &f{segundos}s &cpara trocar de skin de novo.'
+  Skin bloqueada: '&cA skin &f{skin} &cnao pode ser usada neste servidor.'
+  Skin carregando: '&cEsta skin ainda esta sendo carregada. Tente de novo em instantes.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Ja buscando: '&cCalma, a sua skin anterior ainda esta sendo buscada.'
+  Sem skin para atualizar: '&cVoce nao tem nenhuma skin definida para atualizar.'
+  Sem personalizadas: '&cNao ha nenhuma skin personalizada no personalizadas.yml.'
+  Personalizada ja existe: '&cJa existe uma skin personalizada chamada &f{id}&c.'
+  Personalizada nao existe: '&cNao existe nenhuma skin personalizada chamada &f{id}&c.'
+  Sem registro: '&cO jogador &f{jogador} &cnunca trocou de skin por aqui.'
+  Uso adicionar: '&cUse: &f/{comando} adicionar <id> <nick>'
+  Uso remover: '&cUse: &f/{comando} remover <id>'
+  Uso tirar: '&cUse: &f/{comando} tirar <nome da skin>'
+  Uso info: '&cUse: &f/{comando} info <jogador>'
+  Uso liberar: '&cUse: &f/{comando} liberar <jogador> <id> [30m|2h|7d|perm]'
+  Uso retirar: '&cUse: &f/{comando} retirar <jogador> <id>'
+  Tempo invalido: '&cNao entendi o tempo &f{tempo}&c. Use 30m, 2h, 7d ou perm.'
+  Sem liberacao: '&c{jogador} nao tem a skin &f{skin} &cliberada.'
+  Uso desbloquear: '&cUse: &f/{comando} desbloquear <nome da skin>'
+  Ja reportou: '&cVoce ja reportou a skin de &f{skin}&c.'
+  Limite de favoritas: '&cVoce ja tem &f{limite} &cskins favoritas. Tire uma antes de guardar outra.'
+  Nao bloqueada: '&cA skin de &f{skin} &cnao esta bloqueada.'

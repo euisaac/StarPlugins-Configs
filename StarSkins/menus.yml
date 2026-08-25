@@ -1,0 +1,430 @@
+# ==========================================================================
+#  StarSkins - menus
+#
+#  Titulos, tamanhos e itens das telas do /skin menu.
+#
+#  Slot: -1 desliga o item. E assim que voce tira, por exemplo, o botao das
+#  skins personalizadas do menu principal, sem precisar apagar nada.
+#
+#  Os slots contam do 0, da esquerda para a direita, de cima para baixo:
+#  a primeira linha vai de 0 a 8, a segunda de 9 a 17, e assim por diante.
+#
+#  Nas telas de lista, a ULTIMA linha e a barra de navegacao e todo o resto
+#  e area de skins -- entao um menu de 6 linhas mostra 45 skins por pagina.
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 3
+
+#
+# ──────────────────────────── Menu principal ────────────────────────────
+#
+Menu principal:
+  Titulo: '&8Suas skins'
+  Linhas: 3
+
+  # Vidro de fundo dos espacos vazios.
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+
+    # A cabeca com a skin que o jogador esta usando agora.
+    # Clique normal abre as skins dele; clique direito volta para a skin padrao.
+    Minha skin:
+      Slot: 11
+      Nome: '&a&lSua skin'
+      Lore:
+        - '&7Usando agora: &f{skin}'
+        - ''
+        - '&eClique para ver as suas skins.'
+        - '&eClique com o botao direito para'
+        - '&evoltar a sua skin original.'
+
+    # Abre a lista das skins que os jogadores do servidor ja usaram.
+    Skins disponiveis:
+      Slot: 13
+      Material: CHEST
+      Nome: '&e&lSkins disponiveis'
+      Lore:
+        - '&7As skins que os jogadores'
+        - '&7do servidor ja usaram.'
+        - ''
+        - '&7Total: &f{total}'
+        - ''
+        - '&eClique para abrir.'
+
+    # Abre a lista de skins montada pela staff no personalizadas.yml.
+    Skins personalizadas:
+      Slot: 15
+      Material: NETHER_STAR
+      Nome: '&d&lSkins personalizadas'
+      Lore:
+        - '&7As skins exclusivas'
+        - '&7do servidor.'
+        - ''
+        - '&7Disponiveis para voce: &f{total}'
+        - ''
+        - '&eClique para abrir.'
+
+    Fechar:
+      Slot: 22
+      Material: RED_DYE
+      Nome: '&c&lFechar'
+      Lore: []
+
+#
+# ─────────────────────────── Skins disponiveis ───────────────────────────
+#
+Menu disponiveis:
+  Titulo: '&8Skins disponiveis &7({pagina}/{paginas})'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # Como cada skin da lista aparece.
+  Icone:
+    Nome: '&a{nome}'
+    Lore:
+      - '&7Usada por &f{usos} &7jogador(es).'
+      - ''
+      - '&eClique para ver as opcoes.'
+
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    # Atalho para as skins que o jogador favoritou.
+    Favoritas:
+      Slot: 46
+      Material: NETHER_STAR
+      Nome: '&e&lSuas favoritas'
+      Lore:
+        - '&7As skins que voce marcou.'
+        - ''
+        - '&7Voce tem: &f{total}'
+        - ''
+        - '&eClique para abrir.'
+    # Atalho para as ultimas skins que ele usou.
+    Recentes:
+      Slot: 52
+      Material: CLOCK
+      Nome: '&b&lUsadas recentemente'
+      Lore:
+        - '&7As ultimas skins que voce usou.'
+        - ''
+        - '&7Guardadas: &f{total}'
+        - ''
+        - '&eClique para abrir.'
+    Vazio:
+      Slot: 22
+      Material: COBWEB
+      Nome: '&cNenhuma skin por aqui ainda.'
+      Lore:
+        - '&7Assim que alguem usar &f/skin <nick>&7,'
+        - '&7a skin aparece nesta lista.'
+
+#
+# ───────────────────────────── Suas skins ─────────────────────────────
+#
+#  Aberta pela cabeca "Sua skin" do menu principal: as skins personalizadas
+#  que valem para o jogador, por permissao ou por liberacao temporaria
+#  (/starskins liberar).
+#
+Menu minhas skins:
+  Titulo: '&8Suas skins &7({pagina}/{paginas})'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Icone:
+    # Usada so quando a skin nao tem lore propria no personalizadas.yml.
+    Lore:
+      - ''
+      - '&eClique para usar esta skin.'
+    # Linha acrescentada conforme o tipo de acesso.
+    Permanente: '&7Liberada para voce &apara sempre&7.'
+    Temporaria: '&7Ainda liberada por: &f{tempo}'
+    Carregando: '&8Carregando a textura...'
+
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    # Volta para a skin de sempre (o mesmo que /skin resetar).
+    Skin padrao:
+      Slot: 46
+      Material: PLAYER_HEAD
+      Nome: '&f&lUsar a skin padrao'
+      Lore:
+        - '&7Tira a skin escolhida e devolve'
+        - '&7a aparencia da sua conta.'
+        - ''
+        - '&eClique para voltar ao normal.'
+    Favoritas:
+      Slot: 47
+      Material: NETHER_STAR
+      Nome: '&e&lSuas favoritas'
+      Lore:
+        - '&7Voce tem: &f{total}'
+        - ''
+        - '&eClique para abrir.'
+    Recentes:
+      Slot: 52
+      Material: CLOCK
+      Nome: '&b&lUsadas recentemente'
+      Lore:
+        - '&7Guardadas: &f{total}'
+        - ''
+        - '&eClique para abrir.'
+    Vazio:
+      Slot: 22
+      Material: COBWEB
+      Nome: '&cVoce ainda nao tem skins exclusivas.'
+      Lore:
+        - '&7Elas vem por permissao (vip) ou'
+        - '&7de um evento do servidor.'
+
+#
+# ────────────────────── Opcoes de uma skin da lista ──────────────────────
+#
+#  Aberto ao clicar numa skin das listas de disponiveis, favoritas ou
+#  recentes.
+#
+Menu acoes:
+  Titulo: '&8Skin: {nome}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    # O icone deste botao e sempre a cabeca da skin escolhida.
+    Usar:
+      Slot: 11
+      Nome: '&a&lUsar esta skin'
+      Lore:
+        - '&7Skin de &f{nome}&7.'
+        - ''
+        - '&eClique para usar.'
+
+    Favoritar:
+      Slot: 13
+      Material: NETHER_STAR
+      Nome: '&e&lFavoritar'
+      Lore:
+        - '&7Guarda esta skin na sua lista'
+        - '&7de favoritas.'
+        - ''
+        - '&eClique para favoritar.'
+      # O mesmo botao, quando a skin ja esta favoritada.
+      Quando favoritada:
+        Material: REDSTONE
+        Nome: '&c&lRemover dos favoritos'
+        Lore:
+          - '&7Esta skin esta nas suas favoritas.'
+          - ''
+          - '&eClique para tirar.'
+
+    Reportar:
+      Slot: 15
+      Material: PAPER
+      Nome: '&c&lReportar esta skin'
+      Lore:
+        - '&7Para skins ofensivas ou que'
+        - '&7imitam a staff.'
+        - ''
+        - '&7Com &f{reportes} &7reportes a skin'
+        - '&7deixa de poder ser usada.'
+        - ''
+        - '&eClique para reportar.'
+      # Segundo clique: e ele que envia o reporte de verdade.
+      Confirmar:
+        Material: PAPER
+        Nome: '&4&lClique de novo para confirmar'
+        Lore:
+          - '&7Voce so pode reportar uma vez'
+          - '&7cada skin, e nao da para desfazer.'
+          - ''
+          - '&cClique para confirmar o reporte.'
+
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore: []
+
+#
+# ───────────────────────────── Suas favoritas ─────────────────────────────
+#
+Menu favoritas:
+  Titulo: '&8Suas favoritas &7({pagina}/{paginas})'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Icone:
+    Nome: '&a{nome}'
+    Lore:
+      - '&7Uma das suas favoritas.'
+      - ''
+      - '&eClique para ver as opcoes.'
+
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Vazio:
+      Slot: 22
+      Material: COBWEB
+      Nome: '&cVoce ainda nao favoritou nenhuma skin.'
+      Lore:
+        - '&7Abra uma skin da lista e clique'
+        - '&7em &fFavoritar&7.'
+
+#
+# ────────────────────────── Usadas recentemente ──────────────────────────
+#
+Menu recentes:
+  Titulo: '&8Usadas recentemente &7({pagina}/{paginas})'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Icone:
+    Nome: '&a{nome}'
+    Lore:
+      - '&7Voce ja usou esta skin.'
+      - ''
+      - '&eClique para ver as opcoes.'
+
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Vazio:
+      Slot: 22
+      Material: COBWEB
+      Nome: '&cVoce ainda nao trocou de skin.'
+      Lore:
+        - '&7As skins que voce usar aparecem'
+        - '&7aqui, da mais recente para a mais antiga.'
+
+#
+# ────────────────────────── Skins personalizadas ──────────────────────────
+#
+Menu personalizadas:
+  Titulo: '&8Skins personalizadas &7({pagina}/{paginas})'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Icone:
+    # A lore de cada skin vem do personalizadas.yml; esta e usada so quando
+    # aquela skin nao tem lore propria.
+    Lore:
+      - ''
+      - '&eClique para usar esta skin.'
+    # Linha acrescentada enquanto a textura ainda esta sendo buscada.
+    Carregando: '&8Carregando a textura...'
+
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Vazio:
+      Slot: 22
+      Material: COBWEB
+      Nome: '&cNenhuma skin personalizada.'
+      Lore:
+        - '&7A staff monta esta lista no'
+        - '&fpersonalizadas.yml&7.'

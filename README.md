@@ -17,6 +17,8 @@ o plugin no servidor.
 |---|---|
 | `StarLobby/` | Plugin de lobby (servidor Spigot/Paper) |
 | `StarLobbyProxy/` | Módulo do StarLobby para o proxy Velocity |
+| `StarSkins/` | Troca de skin por comando e por menu (servidor Spigot/Paper) |
+| `StarSkinsProxy/` | Módulo do StarSkins para o proxy Velocity |
 | `StarPlugins/` | Loader que instala e atualiza os plugins |
 
 ## Como atualizar sua config sem perder o que você mexeu
