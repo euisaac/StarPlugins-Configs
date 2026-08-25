@@ -43,6 +43,8 @@ commands:
   battle: 'batalha|battle|batalhar'
   autoreconectar: 'autoreconectar|ar'
   fila: 'fila'
+  spawn: 'spawn'
+  setspawn: 'setspawn'
 
 # Sistema de modos do servidor (item 14). O modo "reiniciando" não tem
 # comando manual: é ativado programaticamente pelo sistema de fila de
@@ -166,6 +168,10 @@ scoreboard:
   # Bukkit) — "{online}" sozinho conta só quem está aqui; em multi-lobby, use
   # "{online_<chave>}" pra mostrar o total do lobby inteiro pela rede.
   server-line-format: '{status_color}{display} &7[{players_raw}/{max_players}]'
+  # Usado no lugar do formato acima quando o servidor NÃO está online
+  # (reiniciando, manutenção, dev ou beta-VIP): mostra o motivo em vez de um
+  # "[0/100]" que não diz nada. Aceita os mesmos placeholders.
+  server-line-format-offline: '{status_color}{display} &7[{status}]'
 
 # Sistema de tablist do lobby (item 7), com suporte a PlaceholderAPI. As tags
 # coloram o nome do jogador na tablist; "priority" decide quem vence quando o
@@ -295,6 +301,20 @@ status:
   restarting: '&cReiniciando'
   online: '&aOnline'
 
+  # Um servidor fora do ar so aparece como "Reiniciando" enquanto ele esta
+  # mesmo voltando: a queda tem de ter acontecido com o lobby ligado, e dentro
+  # do tempo que aquele servidor costuma levar para subir (o mesmo tempo do
+  # {abre_em}). Fora disso ele aparece como "Offline" -- inclusive quando o
+  # lobby liga com ele ja fora, porque ai nao houve reinicio nenhum para
+  # anunciar.
+  #
+  # Quantos segundos esperar quando ainda nao ha uma media (primeira queda
+  # deste servidor desde que o lobby foi instalado):
+  reiniciando-por: 120
+  # Folga somada a media, para ele nao virar "Offline" no segundo seguinte ao
+  # tempo medio:
+  reiniciando-folga: 60
+
 # Sistema de jump pads (item 2).
 jump-pad:
   enabled: true
@@ -328,6 +348,10 @@ combat:
   # "deactivation-delay" segundos desativa. Não troca inventário/armadura —
   # é só uma permissão de dano entre dois jogadores com o PvP ativo. Isso é
   # diferente da arena (x1/ffa), que troca o equipamento de verdade.
+  #
+  # slot: -1 desliga a espada de combate (ninguém recebe o item e o PvP de
+  # hub deixa de ser ativável), sem precisar apagar a configuração dela.
+  # Vale o mesmo para "bow.slot" e "arrow.slot" logo abaixo.
   item:
     material: 'IRON_SWORD'
     slot: 1
