@@ -1,0 +1,227 @@
+# ---------------------------------------------------------------------------
+# StarFerramentas
+#
+# Ferramentas e varinhas especiais para o seu servidor: picareta de tunel,
+# enxada colheitadeira, varinha de venda, varinha de canhao, pe de cabra,
+# motosserra de arvores e arco teleguiado.
+#
+# As ferramentas em si NAO ficam aqui: elas moram no ferramentas.yml, um
+# arquivo so delas. Aqui ficam os ajustes gerais do plugin, a derrubada de
+# arvores agachado e os padroes do arco teleguiado.
+#
+# Permissoes:
+# - starferramentas.admin ............... /starferramentas
+# - starferramentas.dar ................. /starferramentas dar
+# - starferramentas.arvore .............. derrubar a arvore inteira
+# - starferramentas.arvore.alternar ..... /derrubar
+# - starferramentas.usar.<ferramenta> ... exigida quando a ferramenta pede
+#
+# Cores: use &a como sempre e &#RRGGBB nas versoes 1.16+.
+# ---------------------------------------------------------------------------
+
+# Nao mexa: e por este numero que o plugin sabe que o modelo do arquivo mudou.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o que cada ferramenta fez (blocos, precos, alvos).
+  # Ligue apenas para investigar um problema: enche o log rapido.
+  Depuracao: false
+  # Quantos blocos, no maximo, uma ferramenta pode mexer de uma vez. E a rede
+  # de seguranca contra uma picareta configurada com "Nivel de quebra: 99".
+  Limite de blocos por uso: 4096
+  # Devolve o item no lugar certo mesmo quando o jogador troca de mao no meio
+  # do uso. Desligue apenas se outro plugin seu ja cuida disso.
+  Atualizar item na mao: true
+
+# De onde saem os precos usados pela varinha de venda e pela colheitadeira
+# que vende.
+Precos:
+  # AUTO             - procura sozinho, na ordem: lista abaixo, StarLoja,
+  #                    ShopGUIPlus, EconomyShopGUI, CMI, Essentials, zShop,
+  #                    GUIShop, ExcellentShop
+  # LISTA            - usa somente a lista abaixo
+  # STARLOJA / SHOPGUIPLUS / ECONOMYSHOPGUI / CMI / ESSENTIALS / ZSHOP /
+  # GUISHOP / EXCELLENTSHOP - forca um plugin especifico
+  # NENHUM           - desliga a venda
+  Plugin: AUTO
+  # Somente para o StarLoja: qual moeda dele a varinha paga. O preco de um item
+  # vendido em outra moeda e ignorado (a varinha paga pela economia do Vault),
+  # em vez de pagar em dinheiro o que valia cash.
+  Economia do StarLoja: 'money'
+  # Precos fixos, sempre consultados antes do plugin de loja.
+  # Formatos aceitos: "MATERIAL:PRECO" e "MATERIAL:DADO:PRECO".
+  Lista:
+    - 'STONE:5'      # cada pedra vale 5
+    - 'LOG:0:5'      # so o tronco de carvalho vale 5
+  # Arredonda o total pago para duas casas.
+  Arredondar: true
+
+# Registro em arquivo do que as ferramentas fizeram (vendas, spawners
+# quebrados, arvores derrubadas). Deixe vazio ('') para nao gravar nada.
+Registros:
+  Arquivo: 'registros.txt'
+  Vendas: true
+  Spawners: true
+  Arvores: false
+
+# Quais plugins precisam saber que um bloco foi quebrado.
+#
+# Otimizar estas listas melhora bastante o desempenho: cada nome aqui e um
+# listener a mais chamado por bloco.
+Eventos:
+  # Plugins que cuidam de protecao/terreno no seu servidor. Se um deles
+  # cancelar o evento, a ferramenta entende que o jogador nao tem acesso
+  # aquele bloco e pula ele.
+  Plugins de protecao:
+    - WorldGuard
+    - GriefPrevention
+    - GriefDefender
+    - Lands
+    - Residence
+  # Outros plugins que so precisam ser avisados (lojas, spawners, missoes).
+  # O que eles responderem e ignorado: cancelar aqui nao impede a quebra.
+  Outros plugins: []
+
+# Integracao com o Orebfuscator (e afins).
+#
+# Quando uma ferramenta apaga muitos blocos de uma vez, o cliente pode
+# continuar vendo minerios falsos no lugar. Isto reenvia os blocos afetados
+# para quem esta por perto, em lotes, para nao travar o servidor.
+Orebfuscator:
+  Ativado: true
+  # Quantos blocos sao reenviados por vez. Menor = mais seguro, maior = some
+  # mais rapido.
+  Blocos por lote: 96
+  # Tiques entre um lote e outro. 1 espalha o trabalho e e o recomendado.
+  Tiques entre lotes: 1
+  # Teto por jogador em cada uso da ferramenta. 0 = sem teto.
+  Blocos por uso: 512
+  # Teto da fila inteira. Passou disso, o resto e descartado em vez de
+  # segurar o servidor. 0 = sem teto.
+  Fila maxima: 8192
+  # Distancia (em blocos) para escolher quem recebe o reenvio.
+  Distancia: 48
+
+# ---------------------------------------------------------------------------
+# Derrubada de arvores
+#
+# Nao precisa de ferramenta especial: qualquer machado derruba a arvore
+# inteira quando o jogador quebra o tronco agachado. Quem quiser uma
+# ferramenta dedicada (com usos, cooldown e lore proprios) usa o modo
+# MOTOSSERRA no ferramentas.yml.
+# ---------------------------------------------------------------------------
+Arvores:
+  Ativado: true
+  # Exige que o jogador esteja agachado. Com false a arvore cai em qualquer
+  # quebra de tronco - cuidado com quem so queria um bloco.
+  Exigir agachado: true
+  # Exige um machado na mao.
+  Exigir machado: true
+  # Exige que haja folhas grudadas no tronco. E o que separa uma arvore de
+  # uma casa de madeira: sem folha nenhuma por perto, so o bloco batido cai.
+  Exigir folhas: true
+  # Comeca ligada para quem entra no servidor (o jogador alterna com /derrubar).
+  Ligada por padrao: true
+  # Teto de blocos por arvore.
+  Maximo de blocos: 250
+  # Quebra tambem as folhas ligadas ao tronco.
+  Quebrar folhas: true
+  # Quantas folhas, no maximo, saem junto.
+  Maximo de folhas: 200
+  # Os drops vao direto para o inventario do jogador.
+  Coleta automatica: false
+  # Deixa os drops caindo no lugar do tronco de baixo, e nao espalhados no ar.
+  Juntar drops na base: true
+  # Planta uma muda do mesmo tipo no lugar do tronco de baixo.
+  Replantar: true
+  # Segundos ate a muda nascer (0 planta na hora).
+  Atraso do replantio: 1
+  # Como o machado gasta:
+  # POR_BLOCO - um ponto de dano por tronco derrubado (padrao do jogo)
+  # UM_SO     - um ponto de dano pela arvore inteira
+  # NENHUM    - a arvore nao gasta o machado
+  Desgaste: POR_BLOCO
+  # Impede derrubar quando o machado quebraria no meio do caminho.
+  Proteger machado: true
+  # Exige que o jogador quebre o tronco de baixo (impede "cortar pelo meio").
+  Somente pela base: false
+  # Derruba tambem cogumelos gigantes e troncos escavados (stripped).
+  Incluir variantes: true
+  # Segundos de espera entre uma arvore e outra (0 desliga).
+  Tempo de espera: 0
+  Mundos bloqueados:
+    - mundo_pvp
+  Sons:
+    # Som quando a arvore cai. Formato: SOM;volume;tom
+    Derrubou: 'BLOCK_WOOD_BREAK;0.8;1.2'
+    Falhou: ''
+
+  # A arvore mirada fica marcada antes de o jogador bater nela, mostrando
+  # exatamente o que vai cair.
+  Marcacao:
+    # CONTORNO - desenha o contorno da arvore com particulas (so quem esta
+    #            mirando ve, um por jogador)
+    # NENHUMA  - desliga a marcacao
+    Modo: CONTORNO
+    # Marca somente com o jogador agachado (do mesmo jeito que ele derruba).
+    Exigir agachado: true
+    # Marca somente com o machado na mao.
+    Exigir machado: true
+    # Distancia maxima, em blocos, entre o jogador e o tronco mirado.
+    Alcance: 6
+    # Tiques entre uma atualizacao e outra do contorno. Menor = mais liso e
+    # mais pesado; 5 e um bom meio-termo.
+    Atualizar a cada: 5
+    # Cor do contorno, em RGB.
+    Cor:
+      Vermelho: 40
+      Verde: 230
+      Azul: 230
+    # Quantos blocos, no maximo, o contorno desenha (o resto da arvore cai
+    # do mesmo jeito, so nao fica marcado).
+    Maximo de blocos: 90
+    # Marca tambem as folhas.
+    Incluir folhas: false
+    # Quantidade de pontos desenhados em cada aresta do bloco.
+    Pontos por aresta: 4
+
+# ---------------------------------------------------------------------------
+# Arco teleguiado
+#
+# Os ajustes daqui valem como padrao para toda ferramenta no modo ARCO; cada
+# arco do ferramentas.yml pode sobrescrever o que quiser.
+# ---------------------------------------------------------------------------
+Arco:
+  # Distancia maxima, em blocos, para achar um alvo.
+  Alcance: 40
+  # Quem a flecha persegue: JOGADORES, MOBS ou TODOS.
+  Alvos: JOGADORES
+  # Quanto a flecha curva por tique, de 0.0 (nao curva) a 1.0 (gruda no alvo).
+  Forca da curva: 0.28
+  # Velocidade minima da flecha enquanto ela persegue.
+  Velocidade minima: 0.9
+  # Trava no alvo que o jogador estava mirando no momento do disparo. Com
+  # false a flecha escolhe o alvo mais proximo dela a cada tique.
+  Travar no mirado: true
+  # Sem alvo mirado, procura sozinha o mais proximo.
+  Procurar sozinha: true
+  # Tiques entre uma correcao de rota e outra.
+  Corrigir a cada: 1
+  # Tiques de voo antes de a flecha comecar a perseguir (deixa o tiro sair).
+  Atraso: 2
+  # Tempo maximo de vida da flecha, em tiques (200 = 10 segundos).
+  Vida maxima: 200
+  # Dano somado ao dano normal da flecha.
+  Dano extra: 0.0
+  # Ignora alvos invisiveis, no modo criativo/espectador e em equipe.
+  Ignorar invisiveis: true
+  Ignorar criativo: true
+  Ignorar mesma equipe: true
+  # Nao persegue quem esta com PvP desligado no mundo.
+  Respeitar pvp do mundo: true
+  # Rastro de particulas atras da flecha. Deixe vazio ('') para nenhum.
+  Rastro: 'CRIT_MAGIC'
+  Sons:
+    Travou: 'ENTITY_EXPERIENCE_ORB_PICKUP;0.6;1.8'
+    Acertou: 'ENTITY_ARROW_HIT_PLAYER;1.0;1.0'
+  Mundos bloqueados: []

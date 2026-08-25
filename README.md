@@ -15,6 +15,7 @@ o plugin no servidor.
 
 | Pasta | O que é |
 |---|---|
+| `StarFerramentas/` | Ferramentas e varinhas especiais, derrubada de arvore e arco teleguiado |
 | `StarLobby/` | Plugin de lobby (servidor Spigot/Paper) |
 | `StarLobbyProxy/` | Módulo do StarLobby para o proxy Velocity |
 | `StarSkins/` | Troca de skin por comando e por menu (servidor Spigot/Paper) |

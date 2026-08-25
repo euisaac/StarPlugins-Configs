@@ -1,0 +1,459 @@
+# ---------------------------------------------------------------------------
+# StarFerramentas - as ferramentas
+#
+# Cada chave dentro de "Ferramentas:" e uma ferramenta. O nome da chave e o id
+# usado em /starferramentas dar <jogador> <id> e na permissao
+# starferramentas.usar.<id>.
+#
+# Renomear, apagar ou criar ferramentas aqui e livre: o loader nao reclama
+# deste arquivo nem repoe os exemplos que voce tirar.
+#
+# ===========================================================================
+#  MODOS
+# ===========================================================================
+#
+# *** CUBO ***
+# Quebra uma area em cubo em volta do bloco (a classica picareta de tunel /
+# de bandeja).
+#   Nivel de quebra: tamanho do cubo (3 = 3x3x3) [NUMERO]
+#
+# *** PILAR ***
+# Quebra a coluna inteira de blocos do mesmo tipo (a varinha de areia).
+#   Limite: teto de blocos da coluna [NUMERO]
+#
+# *** CONSTRUTOR ***
+# Cria uma coluna do mesmo bloco clicado, para o lado em que voce clicou.
+#   Comprimento: tamanho da coluna [NUMERO]
+#   Consumir blocos: tira os blocos do inventario do jogador [true/false]
+#
+# *** CANHAO ***
+# Enche de TNT todos os dispensers de uma area. Marque a area com clique
+# esquerdo (canto 1) e clique direito (canto 2), e clique direito de novo no
+# ar para encher.
+#   Quantidade de tnt: quanto entra em cada dispenser [NUMERO]
+#
+# *** FABRICACAO ***
+# Fabrica sozinho, dentro do bau clicado, tudo o que der.
+#   Fabricacoes: os RESULTADOS que a varinha sabe fabricar [LISTA]
+#
+# *** PE_DE_CABRA ***
+# Quebra spawners e devolve o spawner em item, com o mob dentro.
+#   Comandos ao usar: comandos rodados no console; aceita %jogador%,
+#                     %entidade%, %mundo%, %x%, %y%, %z% [LISTA]
+#
+# *** DRENAR ***
+# Tira gelo e agua de uma area.
+#   Raio: 3 limpa uma area de 7x7x7 [NUMERO]
+#
+# *** GELO ***
+# Derrete o gelo da area, virando agua.
+#   Raio: igual ao de cima [NUMERO]
+#
+# *** COLHEITADEIRA ***
+# Colhe as plantacoes maduras, replanta sozinho e transforma terra em terra
+# arada. Respeita toque suave e fortuna.
+#   Raio: tamanho da area colhida [NUMERO]
+#   Raio da terra: area em que a terra vira terra arada [NUMERO]
+#   Somente uma camada: colhe so no nivel do bloco clicado [true/false]
+#   Vender colheita: vende o que colheu em vez de entregar [true/false]
+#   Multiplicador: multiplica o dinheiro da venda [DECIMAL]
+#
+# *** IMA ***
+# Puxa para o inventario todos os itens caidos por perto.
+#   Raio: distancia em blocos [NUMERO]
+#
+# *** RAIO ***
+# Cai um raio no lugar clicado, carregando os creepers em volta.
+#
+# *** VENDA ***
+# Vende tudo que estiver no bau clicado.
+#   Multiplicador: multiplica o valor pago [DECIMAL]
+#
+# *** ORGANIZAR ***
+# Organiza o conteudo do bau clicado.
+#
+# *** MOTOSSERRA ***
+# Derruba a arvore inteira de uma vez (com usos, cooldown e lore proprios).
+# Com ela na mao nao e preciso agachar nem usar machado.
+#   Maximo de blocos / Quebrar folhas / Replantar: iguais aos do config.yml
+#
+# *** ARCO ***
+# Arco cujas flechas perseguem o alvo. Tudo que nao estiver escrito aqui vem
+# da secao "Arco" do config.yml.
+#   Alcance / Alvos / Forca da curva / Travar no mirado / Dano extra / Rastro
+#
+# ===========================================================================
+#  OPCOES QUE VALEM PARA QUALQUER MODO
+# ===========================================================================
+#
+# Tipo ...................... material do item
+# Nome ...................... nome do item
+# Lore ...................... descricao; use {} onde entram os usos restantes
+# Quantidade ................ quantos itens saem no /starferramentas dar
+# Encantamentos ............. lista no formato "ENCANTAMENTO:NIVEL"
+# Flags ..................... lista de ItemFlag (HIDE_ENCHANTS, HIDE_ATTRIBUTES...)
+# Brilho .................... brilho de encantado, sem encantamento visivel
+# Modelo customizado ........ CustomModelData, para textura propria (1.14+)
+# Modelo do item ............ item_model, para textura propria (1.21.2+)
+# Tempo de espera ........... espera entre um uso e outro, em milissegundos
+# Coleta automatica ......... os drops vao direto para o inventario
+# Quebra instantanea ........ o bloco quebra no primeiro toque
+# Toque suave ............... toque suave escondido (o bloco cai inteiro)
+# Somente mesmo tipo ........ so quebra blocos iguais ao primeiro
+# Somente dentro de terreno . so funciona dentro de terreno protegido
+# Indestrutivel ............. a ferramenta nunca quebra
+# Dano vanilla .............. o uso normal do jogo tambem gasta a ferramenta
+# Marcar indestrutivel ...... marca o item como indestrutivel para o cliente
+# Multiferramenta ........... o item vira picareta, pa ou machado conforme o bloco
+# Usos ...................... durabilidade propria; sem isto vale a do jogo
+#                             (cada uso da ferramenta gasta um; a motosserra
+#                             gasta um por arvore, nao por tronco)
+# Barra de usos ............. a barra de durabilidade acompanha os usos
+# Manter no inventario ...... nao pode ser jogado fora nem perdido na morte
+# Particular ................ so o dono usa (o dono e quem recebeu o item)
+# Bigorna exp ............... xp para juntar duas na bigorna (-1 desliga)
+# Bigorna limite ............ teto de usos da ferramenta juntada (-1 desliga)
+# Estatisticas .............. conta os blocos nas estatisticas do jogador
+# Permissao ................. permissao extra exigida (alem da usar.<id>)
+# Acao ...................... CLIQUE_DIREITO ou CLIQUE_ESQUERDO, nos modos
+#                             que aceitam os dois
+# Blocos permitidos ......... so estes blocos sao quebrados
+# Blocos bloqueados ......... estes blocos nunca sao quebrados
+# Drops permitidos .......... so estes itens caem
+# Drops bloqueados .......... estes itens nunca caem
+# Mundos permitidos ......... so funciona nestes mundos
+# Mundos bloqueados ......... nao funciona nestes mundos
+# Plugins notificados ....... plugins avisados da quebra, so para esta ferramenta
+#
+# Blocos e drops aceitam "MATERIAL" e "MATERIAL:DADO".
+# ---------------------------------------------------------------------------
+
+# Nao mexa: e por este numero que o plugin sabe que o modelo do arquivo mudou.
+Versao do modelo: 1
+
+Ferramentas:
+
+  picareta_tunel:
+    Modo: CUBO
+    Nivel de quebra: 3
+    Somente mesmo tipo: false
+    Indestrutivel: true
+    Tipo: DIAMOND_PICKAXE
+    Nome: '&f --{ &a&lPicareta Tunel &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Esta picareta abre um tunel de 3x3.'
+      - '&f'
+      - '&a&l Blocos bloqueados:'
+      - '&f - &7Gerador de mobs'
+      - '&f'
+      - '&7 So os minerios sao dropados.'
+      - '&8&m---------------------------------------'
+    Encantamentos:
+      - 'DIG_SPEED:5'
+    Blocos bloqueados:
+      - 'SPAWNER'
+    Drops permitidos:
+      - 'COAL'
+      - 'IRON_ORE'
+      - 'GOLD_ORE'
+      - 'REDSTONE'
+      - 'LAPIS_LAZULI'
+      - 'DIAMOND'
+      - 'EMERALD'
+      - 'QUARTZ'
+      - 'RAW_IRON'
+      - 'RAW_GOLD'
+      - 'RAW_COPPER'
+
+  picareta_bandeja:
+    Modo: CUBO
+    Nivel de quebra: 3
+    Somente mesmo tipo: false
+    Indestrutivel: true
+    Tipo: DIAMOND_PICKAXE
+    Nome: '&f --{ &c&lPicareta Bandeja &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Esta picareta limpa toda a terra e a'
+      - '&7 netherrack em volta de voce.'
+      - '&f'
+      - '&c&l Blocos permitidos:'
+      - '&f - &7Terra'
+      - '&f - &7Netherrack'
+      - '&f'
+      - '&8&m---------------------------------------'
+    Encantamentos:
+      - 'DIG_SPEED:5'
+    Blocos permitidos:
+      - 'DIRT'
+      - 'NETHERRACK'
+
+  varinha_areia:
+    Modo: PILAR
+    Tempo de espera: 2000
+    Usos: 500
+    Limite: 256
+    Tipo: DIAMOND_HOE
+    Nome: '&f --{ &e&lVarinha de Areia &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Esta varinha derruba a coluna de areia'
+      - '&7 inteira de uma vez.'
+      - '&f'
+      - '&e&l Blocos permitidos:'
+      - '&f - &7Areia'
+      - '&f'
+      - '&e&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+    Blocos permitidos:
+      - 'SAND'
+
+  varinha_venda_1:
+    Modo: VENDA
+    Tempo de espera: 5000
+    Usos: 50
+    Tipo: STICK
+    Nome: '&f --{ &6&lVarinha de Venda &7(Nivel I) &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Esta varinha vende tudo o que estiver'
+      - '&7 dentro do bau clicado.'
+      - '&7'
+      - '&6&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  varinha_venda_2:
+    Modo: VENDA
+    Tempo de espera: 5000
+    Usos: 50
+    Multiplicador: 1.5
+    Tipo: STICK
+    Nome: '&f --{ &6&lVarinha de Venda &7(Nivel II) &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Esta varinha vende tudo o que estiver'
+      - '&7 dentro do bau clicado.'
+      - '&7'
+      - '&6&l Multiplicador:'
+      - '&f   x1.5'
+      - '&6&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  varinha_raio:
+    Modo: RAIO
+    Tipo: STICK
+    Usos: 5
+    Nome: '&f --{ &b&lVarinha de Raio &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Esta varinha faz cair um raio que'
+      - '&7 carrega os creepers em volta.'
+      - '&7'
+      - '&b&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  varinha_ima:
+    Modo: IMA
+    Tipo: STICK
+    Raio: 5
+    Usos: 500
+    Nome: '&f --{ &4&lVarinha Ima &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Esta varinha puxa para o seu inventario'
+      - '&7 todos os itens num raio de 5 blocos.'
+      - '&7'
+      - '&4&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  enxada_colheitadeira:
+    Modo: COLHEITADEIRA
+    Raio: 3
+    Raio da terra: 3
+    Coleta automatica: true
+    Tipo: DIAMOND_HOE
+    Usos: 500
+    Nome: '&f --{ &d&lEnxada Colheitadeira &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Clique numa plantacao para colher,'
+      - '&7 replantar e arar a terra em volta.'
+      - '&7'
+      - '&d&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  varinha_canhao:
+    Modo: CANHAO
+    Quantidade de tnt: 64
+    Tipo: DIAMOND_AXE
+    Usos: 30
+    Nome: '&f --{ &5&lVarinha de Canhao &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Enche com 64 TNT todos os dispensers'
+      - '&7 da area que voce marcar.'
+      - '&f'
+      - '&7 Clique esquerdo marca o canto 1.'
+      - '&7 Clique direito marca o canto 2.'
+      - '&f'
+      - '&5&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  varinha_fabricacao:
+    Modo: FABRICACAO
+    Tipo: STICK
+    Usos: 3000
+    Nome: '&f --{ &9&lVarinha de Fabricacao &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Bata num bau para fabricar TNT sozinho!'
+      - '&f'
+      - '&9&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+    Fabricacoes:
+      - 'TNT'
+
+  varinha_construtor:
+    Modo: CONSTRUTOR
+    Tipo: DIAMOND_AXE
+    Usos: 1000
+    Comprimento: 5
+    Consumir blocos: true
+    Nome: '&f --{ &2&lVarinha de Construcao &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Clique num bloco para criar uma coluna'
+      - '&7 igual a ele para o lado clicado.'
+      - '&f'
+      - '&2&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  varinha_gelo:
+    Modo: GELO
+    Tipo: STICK
+    Usos: 300
+    Raio: 10
+    Nome: '&f --{ &3&lDerretedor de Gelo &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Clique para derreter todo o gelo num'
+      - '&7 raio de 10 blocos.'
+      - '&f'
+      - '&3&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  varinha_drenagem:
+    Modo: DRENAR
+    Tipo: STICK
+    Usos: 300
+    Raio: 10
+    Nome: '&f --{ &3&lVarinha de Drenagem &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Clique para tirar toda a agua e todo o'
+      - '&7 gelo num raio de 10 blocos.'
+      - '&f'
+      - '&3&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  varinha_organizar:
+    Modo: ORGANIZAR
+    Tipo: STICK
+    Usos: 300
+    Nome: '&f --{ &1&lVarinha Organizadora &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Clique num bau para organizar tudo que'
+      - '&7 estiver dentro dele.'
+      - '&f'
+      - '&1&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+
+  pe_de_cabra:
+    Modo: PE_DE_CABRA
+    Tipo: GOLDEN_HOE
+    Usos: 25
+    Nome: '&f --{ &1&lPe de Cabra &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Clique num gerador de mobs para'
+      - '&7 quebra-lo e leva-lo com voce.'
+      - '&f'
+      - '&1&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+    Comandos ao usar: []
+
+  machado_motosserra:
+    Modo: MOTOSSERRA
+    Tipo: DIAMOND_AXE
+    Usos: 400
+    Maximo de blocos: 250
+    Quebrar folhas: true
+    Replantar: true
+    Coleta automatica: true
+    Nome: '&f --{ &6&lMotosserra &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 Derruba a arvore inteira num golpe so,'
+      - '&7 replanta a muda e recolhe a madeira.'
+      - '&f'
+      - '&6&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+    Encantamentos:
+      - 'DIG_SPEED:3'
+
+  arco_teleguiado:
+    Modo: ARCO
+    Tipo: BOW
+    Usos: 250
+    Alcance: 40
+    Alvos: JOGADORES
+    Forca da curva: 0.28
+    Travar no mirado: true
+    Dano extra: 1.0
+    Rastro: 'CRIT_MAGIC'
+    Nome: '&f --{ &c&lArco Teleguiado &f}-- '
+    Lore:
+      - '&8&m---------------------------------------'
+      - '&7 As flechas deste arco perseguem o alvo'
+      - '&7 que voce estava mirando no disparo.'
+      - '&f'
+      - '&c&l Alcance:'
+      - '&f   40 blocos'
+      - '&c&l Usos:'
+      - '&f   {}'
+      - '&f'
+      - '&8&m---------------------------------------'
+    Encantamentos:
+      - 'ARROW_INFINITE:1'
+    Flags:
+      - HIDE_ENCHANTS
