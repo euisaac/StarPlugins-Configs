@@ -1,0 +1,776 @@
+# =====================================================================
+#  StarAntiCheat - verificacoes
+#
+#  Cada verificacao tem um ou mais tipos (A, B, C...): sao jeitos
+#  diferentes de pegar a mesma trapaca, e cada um liga, pune e se
+#  calibra sozinho.
+#
+#  O que um tipo nao disser vem da secao "Padrao" logo abaixo. Escreva
+#  no tipo apenas o que for diferente.
+#
+#  Chaves de cada tipo:
+#    Ativado ............. liga a verificacao
+#    Punivel ............. deixa esta verificacao executar punicao
+#    Maximo de violacoes . a partir de quantas violacoes ela pune
+#    Intervalo de alerta . avisa a cada N violacoes (1 = todas)
+#    Nao alertar ate ..... segura os primeiros alertas
+#    Ping maximo ......... acima disso, nao conta violacao (0 = sem limite)
+#    TPS minima .......... abaixo disso, nao conta violacao
+#    Anunciar punicao .... anuncia no chat de todo mundo
+#    Cancelar ............ desfaz a acao (so vale onde faz sentido)
+#    Comandos de punicao . o que rodar ao chegar no maximo
+#    Buffer .............. quantas vezes seguidas antes de contar
+#      Maximo ........... quanto precisa acumular (0 = conta na hora)
+#      Multiplicador .... quanto cada deteccao soma
+#      Decaimento ....... quanto some quando o jogador se comporta
+#
+#  Nos comandos de punicao valem: {jogador} {uuid} {verificacao} {tipo}
+#  {vl} {detalhe} {ping} {tps}. Prefixe com [jogador] para rodar como o
+#  proprio jogador em vez do console.
+# =====================================================================
+Versao do modelo: 1
+
+Padrao:
+  Ativado: true
+  Punivel: true
+  Maximo de violacoes: 20
+  Intervalo de alerta: 1
+  Nao alertar ate: 3
+  Ping maximo: 400
+  TPS minima: 16.0
+  Anunciar punicao: true
+  Cancelar: false
+  Comandos de punicao:
+    # Por padrao o plugin so expulsa. Troque por um banimento quando
+    # tiver acompanhado os alertas do seu servidor por alguns dias --
+    # banir automaticamente numa verificacao mal calibrada e o jeito
+    # mais rapido de perder jogador honesto.
+    - 'kick {jogador} &cVoce foi removido pelo StarAntiCheat (&f{verificacao} {tipo}&c).'
+  Buffer:
+    Maximo: 3.0
+    Multiplicador: 1.0
+    Decaimento: 0.5
+
+Verificacoes:
+
+  # -------------------------------------------------------------------
+  # MOVIMENTO
+  # -------------------------------------------------------------------
+  movimento:
+
+    fly:
+      a:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Tiques no ar: 6
+          Tolerancia: 0.001
+      b:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Tiques no ar: 8
+          Movimento maximo: 0.005
+      c:
+        Maximo de violacoes: 25
+        Buffer:
+          Maximo: 8.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Tiques no ar: 4
+          Folga: 0.02
+
+    speed:
+      a:
+        Maximo de violacoes: 20
+        Buffer:
+          Maximo: 6.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Velocidade no chao: 0.36
+          Velocidade no ar: 0.52
+          Multiplicador do gelo: 2.4
+          Multiplicador do empurrao: 3.0
+      b:
+        Punivel: false
+        Buffer:
+          Maximo: 10.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Tiques no ar: 5
+          Velocidade minima: 0.18
+          Ganho maximo: 0.0
+
+    nofall:
+      a:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Queda minima: 0.1
+      b:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Tiques seguidos: 4
+
+    jesus:
+      a:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Variacao maxima: 0.03
+          Movimento minimo: 0.08
+      b:
+        Maximo de violacoes: 18
+        Buffer:
+          Maximo: 6.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Velocidade maxima: 0.23
+
+    step:
+      a:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Altura maxima: 0.6
+
+    vclip:
+      a:
+        Maximo de violacoes: 8
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Altura maxima: 1.0
+      b:
+        Maximo de violacoes: 10
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Tiques dentro do bloco: 5
+
+    noslow:
+      a:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Velocidade maxima: 0.13
+      b:
+        Maximo de violacoes: 18
+        Buffer:
+          Maximo: 6.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Velocidade maxima: 0.14
+
+    strafe:
+      a:
+        Punivel: false
+        Buffer:
+          Maximo: 8.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Tiques no ar: 3
+          Velocidade minima: 0.15
+          Giro maximo: 35.0
+
+    fastclimb:
+      a:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Subida maxima: 0.24
+
+    jump:
+      a:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Impulso maximo: 0.42
+          Folga: 0.03
+      b:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Tiques no ar: 5
+          Impulso minimo: 0.3
+
+  # -------------------------------------------------------------------
+  # COMBATE
+  # -------------------------------------------------------------------
+  combate:
+
+    reach:
+      a:
+        Maximo de violacoes: 15
+        Ping maximo: 350
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          # 3.0 e o alcance do jogo. 3.1 deixa uma folga para a variacao
+          # da conexao; abaixar isto gera alerta em quem so tem lag.
+          Alcance maximo: 3.1
+      b:
+        Punivel: false
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Golpes por amostra: 12
+          Media maxima: 3.0
+
+    killaura:
+      a:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Angulo maximo: 90.0
+      b:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Janela em ms: 120
+      c:
+        Maximo de violacoes: 10
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Janela em ms: 600
+          Alvos diferentes: 3
+      d:
+        Maximo de violacoes: 10
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+
+    autoclicker:
+      # Macro de clique nao deveria banir sozinho: mouse com clique duplo
+      # defeituoso gera numeros parecidos. Por isso os tres tipos so
+      # avisam a staff.
+      a:
+        Punivel: false
+        Nao alertar ate: 5
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Cliques por segundo: 20
+      b:
+        Punivel: false
+        Nao alertar ate: 5
+        Buffer:
+          Maximo: 6.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Desvio minimo: 12.0
+      c:
+        Punivel: false
+        Nao alertar ate: 5
+        Buffer:
+          Maximo: 6.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Valores diferentes: 5
+          Assimetria minima: 0.1
+
+    hitbox:
+      a:
+        Maximo de violacoes: 15
+        Ping maximo: 350
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Raio do alvo: 0.75
+          Folga em graus: 12.0
+
+    velocity:
+      a:
+        Maximo de violacoes: 18
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Percentual minimo: 35.0
+      b:
+        Maximo de violacoes: 18
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Percentual minimo: 30.0
+
+    criticals:
+      a:
+        Maximo de violacoes: 20
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Salto minimo: 0.1
+      b:
+        Maximo de violacoes: 20
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+
+    autoblock:
+      a:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Bloqueio minimo em ms: 60
+      b:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Janela em ms: 40
+
+    fastbow:
+      a:
+        Maximo de violacoes: 10
+        Cancelar: true
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Intervalo minimo em ms: 150
+
+    mace:
+      # So existe da 1.21 em diante. Em servidor mais antigo a maca nao
+      # existe e estas verificacoes nunca rodam.
+      #
+      # "Cancelar: true" e o que interessa aqui: o golpe da maca com queda
+      # inventada mata de uma vez, entao desfazer o dano vale mais do que
+      # somar violacao e esperar a punicao chegar.
+      a:
+        Maximo de violacoes: 8
+        Cancelar: true
+        Buffer:
+          Maximo: 1.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Queda minima: 1.5
+          Tiques no ar: 3
+      b:
+        Maximo de violacoes: 8
+        Cancelar: true
+        Buffer:
+          Maximo: 1.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          # Diferenca entre a queda que o servidor somou e a altura que o
+          # jogador realmente perdeu. Trepadeira, bolha de agua e andaime
+          # podem gerar um ou dois blocos de diferenca honesta.
+          Diferenca maxima: 3.0
+      c:
+        Punivel: false
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Queda minima: 1.5
+          Janela em ms: 1200
+          Tiques apos empurrao: 40
+
+    aim:
+      a:
+        Punivel: false
+        Buffer:
+          Maximo: 6.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Tiques apos o golpe: 2
+          Giro maximo: 45.0
+      b:
+        Punivel: false
+        Buffer:
+          Maximo: 8.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Giro minimo: 3.0
+          Variacao minima: 0.02
+      c:
+        # Desligada de proposito. A conta do MDC e a mais forte que
+        # existe contra aimbot, mas celular, controle e mods de mira
+        # suave produzem numeros parecidos. Ligue so em servidor de PvP
+        # de computador, e acompanhe os alertas antes de punir.
+        Ativado: false
+        Punivel: false
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Amostra: 20
+          MDC minimo: 20000
+
+  # -------------------------------------------------------------------
+  # JOGADOR E MUNDO
+  # -------------------------------------------------------------------
+  jogador:
+
+    scaffold:
+      a:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Angulo maximo: 100.0
+      b:
+        Maximo de violacoes: 18
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.75
+        Opcoes:
+          Velocidade minima: 0.12
+          Blocos por segundo: 6
+      c:
+        Punivel: false
+        Buffer:
+          Maximo: 8.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Inclinacao minima: 20.0
+
+    tower:
+      a:
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Intervalo minimo em ms: 320
+
+    fastplace:
+      a:
+        Maximo de violacoes: 20
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Blocos por segundo: 9
+
+    fastbreak:
+      a:
+        Maximo de violacoes: 20
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Blocos por segundo: 6
+      b:
+        Maximo de violacoes: 20
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Tempo minimo em ms: 60
+
+    nuker:
+      a:
+        Maximo de violacoes: 8
+        Cancelar: true
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Blocos por tique: 1
+      b:
+        Maximo de violacoes: 10
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Distancia maxima: 6.0
+      c:
+        Punivel: false
+        Buffer:
+          Maximo: 6.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Angulo maximo: 95.0
+
+    airplace:
+      a:
+        Maximo de violacoes: 10
+        Cancelar: true
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+
+    ghosthand:
+      a:
+        Maximo de violacoes: 12
+        Cancelar: true
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Distancia maxima: 6.0
+      b:
+        Punivel: false
+        Buffer:
+          Maximo: 6.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Angulo maximo: 100.0
+
+    fastuse:
+      a:
+        Maximo de violacoes: 12
+        Cancelar: true
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Tempo minimo em ms: 1400
+      b:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Intervalo minimo em ms: 900
+
+    inventario:
+      a:
+        Punivel: false
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Velocidade maxima: 0.2
+      b:
+        Punivel: false
+        Buffer:
+          Maximo: 5.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Tiques apos o golpe: 4
+
+    autotool:
+      a:
+        Punivel: false
+        Buffer:
+          Maximo: 8.0
+          Multiplicador: 1.0
+          Decaimento: 1.0
+        Opcoes:
+          Janela em ms: 25
+
+  # -------------------------------------------------------------------
+  # EXTRAS
+  # -------------------------------------------------------------------
+  extra:
+
+    timer:
+      a:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Saldo maximo: 300.0
+      b:
+        Punivel: false
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Saldo minimo: -1200.0
+
+    badpackets:
+      a:
+        Maximo de violacoes: 5
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+      b:
+        Punivel: false
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Repeticoes: 25
+      c:
+        Maximo de violacoes: 10
+        Buffer:
+          Maximo: 3.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Pacotes por tique: 45
+      d:
+        Maximo de violacoes: 12
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+      e:
+        Punivel: false
+        Buffer:
+          Maximo: 4.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Movimento maximo: 0.5
+
+    baritone:
+      a:
+        Punivel: false
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Tiques sem girar: 120
+      b:
+        Punivel: false
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Folga do centro: 0.002
+          Tiques no centro: 60
+
+    mineracao:
+      # Xray nao tem prova no pacote: isto e estatistica. Quem achou uma
+      # mina grande gera o mesmo numero de quem trapaceia -- por isso so
+      # avisa, para a staff ir assistir.
+      a:
+        Punivel: false
+        Nao alertar ate: 1
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Altura maxima: 63
+          Amostra: 300
+          Percentual maximo: 6.0
+      b:
+        Punivel: false
+        Nao alertar ate: 1
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Pedras entre minerios: 3
+          Minerios seguidos: 6
+
+    spam:
+      a:
+        Maximo de violacoes: 15
+        Cancelar: true
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Por segundo: 6
+      b:
+        Punivel: false
+        Cancelar: true
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Repeticoes: 3

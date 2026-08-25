@@ -1,0 +1,167 @@
+# =====================================================================
+#  StarAntiCheat - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso ou
+#  um som sem precisar de uma chave "Ativado" para cada um.
+#  Aceita as cores &a e tambem hex no formato &#RRGGBB (1.16+).
+# =====================================================================
+Versao do modelo: 1
+
+Prefixo: '&8[&cStarAntiCheat&8] &r'
+
+Alerta:
+  # Placeholders: {jogador} {verificacao} {tipo} {vl} {detalhe} {ping}
+  # {tps} {mundo} {cliente}
+  Formato: '&8[&cAC&8] &f{jogador} &7falhou em &c{verificacao} &8({tipo}) &7VL&8: &c{vl} &8| &7{detalhe} &8| &7{ping}ms'
+
+Sons:
+  Alerta: 'NOTE_PLING;0.7;2.0'
+
+Punicao:
+  Anuncio: '&8[&cAC&8] &f{jogador} &7foi punido pelo anti-cheat &8(&c{verificacao} {tipo}&8)&7.'
+  Aviso da staff: '&8[&cAC&8] &f{jogador} &7foi punido em silencio &8(&c{verificacao} {tipo}&8, VL {vl}&8)&7.'
+
+Comando:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Informe o jogador: '&cInforme o nome do jogador.'
+  Jogador nao encontrado: '&cNao encontrei o jogador &f{jogador}&c.'
+  Sem banco: '&cO banco de dados esta desligado ou nao subiu.'
+  Limpou: '&aViolacoes de &f{jogador} &azeradas.'
+  Recarregado: '&aStarAntiCheat &f{versao} &arecarregado.'
+  Alertas ligados: '&aVoce agora recebe os alertas do anti-cheat.'
+  Alertas desligados: '&7Voce parou de receber os alertas do anti-cheat.'
+  Verificacao ligada: '&aVerificacao &f{verificacao} &aligada.'
+  Verificacao desligada: '&7Verificacao &f{verificacao} &7desligada.'
+  Historico vazio: '&7Nenhuma deteccao guardada para &f{jogador}&7.'
+
+  Ajuda: |-
+    &8&m----------------------------------------
+    &c StarAntiCheat &7- comandos
+    &8&m----------------------------------------
+    &c/anticheat alertas &8- &7liga e desliga os alertas
+    &c/anticheat menu &8- &7abre o menu de staff
+    &c/anticheat info <jogador> &8- &7violacoes da sessao
+    &c/anticheat historico <jogador> &8- &7deteccoes salvas
+    &c/anticheat limpar <jogador> &8- &7zera as violacoes
+    &c/anticheat verificacoes &8- &7lista tudo que esta ligado
+    &c/anticheat recarregar &8- &7recarrega os arquivos
+    &8&m----------------------------------------
+
+  Info:
+    Cabecalho: '&8&m--------- &c{jogador} &8&m---------'
+    Resumo: '&7Violacoes&8: &c{vl} &8| &7Ping&8: &f{ping}ms &8| &7Cliente&8: &f{cliente} &8| &7TPS&8: &f{tps}'
+    Sem violacoes: '&7Nenhuma violacao nesta sessao.'
+    Linha: '&8 - &c{verificacao} &8: &f{vl}'
+
+  Historico:
+    Cabecalho: '&8&m------ &c{jogador} &7({quantidade}) &8&m------'
+    Linha: '&8[{data}] &c{verificacao} &8({tipo}) &7VL &f{vl} &8- &7{detalhe}'
+
+  Verificacoes:
+    Cabecalho: '&8&m--------- &cVerificacoes &8&m---------'
+    Linha: '&8[{categoria}] &f{verificacao} &8: {tipos}'
+    Tipo ligado: '&a{tipo}'
+    Tipo desligado: '&7{tipo}'
+
+Menu:
+  Voltar: '&cVoltar'
+
+  Principal:
+    Titulo: '&8Anti-cheat &7- suspeitos'
+    Item:
+      Nome: '&c{jogador}'
+      Violacoes: '&7Violacoes&8: &c{vl}'
+      Ping: '&7Ping&8: &f{ping}ms'
+      Linha: '&8 - &7{verificacao}&8: &f{vl}'
+      Clique: '&eClique para ver a ficha.'
+    Vazio:
+      Nome: '&aNinguem em alerta'
+      Descricao:
+        - '&7Nenhum jogador online tem'
+        - '&7violacao registrada agora.'
+    Verificacoes:
+      Nome: '&eVerificacoes'
+      Descricao:
+        - '&7Ligue e desligue verificacoes'
+        - '&7sem mexer no arquivo.'
+    Status:
+      Nome: '&bStatus'
+      Descricao:
+        - '&7TPS&8: &f{tps}'
+        - '&7Jogadores acompanhados&8: &f{jogadores}'
+        - '&7Verificacoes carregadas&8: &f{verificacoes}'
+
+  Jogador:
+    Titulo: '&8Ficha de &c{jogador}'
+    Resumo:
+      Nome: '&c{jogador}'
+      Violacoes: '&7Violacoes&8: &c{vl}'
+      Ping: '&7Ping&8: &f{ping}ms'
+      Cliente: '&7Cliente&8: &f{cliente}'
+      Mundo: '&7Mundo&8: &f{mundo}'
+      Linha: '&8 - &7{verificacao}&8: &f{vl}'
+    Deteccao:
+      Nome: '&c{verificacao} &8({tipo})'
+      Descricao:
+        - '&7{detalhe}'
+        - '&7VL&8: &f{vl} &8| &7Ping&8: &f{ping}ms &8| &7TPS&8: &f{tps}'
+        - '&7Mundo&8: &f{mundo} &8| &7Hora&8: &f{hora}'
+    Saiu:
+      Nome: '&cJogador saiu'
+      Descricao:
+        - '&7A sessao dele foi encerrada.'
+    Ir:
+      Nome: '&eIr ate ele'
+      Descricao:
+        - '&7Teleporta voce ate o jogador.'
+    Zerar:
+      Nome: '&aZerar violacoes'
+      Descricao:
+        - '&7Limpa o que ele acumulou'
+        - '&7nesta sessao.'
+    Expulsar:
+      Nome: '&cExpulsar'
+      Descricao:
+        - '&7Remove o jogador do servidor.'
+    Motivo do chute: '&cVoce foi removido pela equipe.'
+    Teleportou: '&aTeleportado ate &f{jogador}&a.'
+    Expulsou: '&8[&cAC&8] &f{staff} &7expulsou &f{jogador} &7pelo menu do anti-cheat.'
+
+  Verificacoes:
+    Titulo: '&8Verificacoes'
+    Titulo da categoria: '&8Verificacoes &7- {categoria}'
+    Nome: '&c{verificacao}'
+    Tipo: '&8 {tipo}&8: {estado} &8(&7pune em &f{vl}&8, {punivel})'
+    Ligado: '&aligado'
+    Desligado: '&7desligado'
+    Pune: '&cpune'
+    Nao pune: '&7so avisa'
+    Clique: '&eClique para ligar ou desligar tudo.'
+    Categoria:
+      Nome: '&e{categoria}'
+      Descricao:
+        - '&7Ligadas&8: &a{ligadas}&8/&f{total}'
+        - ''
+        - '&eClique para abrir.'
+    Material:
+      Movimento: 'FEATHER'
+      Combate: 'IRON_SWORD'
+      Jogador: 'GRASS_BLOCK'
+      Extra: 'REDSTONE'
+
+Discord:
+  Titulo da deteccao: 'Deteccao: {jogador}'
+  Descricao da deteccao: |-
+    **Verificacao:** {verificacao} ({tipo})
+    **Violacoes:** {vl}
+    **Detalhe:** {detalhe}
+    **Ping:** {ping}ms | **TPS:** {tps}
+    **Mundo:** {mundo} | **Cliente:** {cliente}
+    **Hora:** {hora}
+  Titulo da punicao: 'Punicao: {jogador}'
+  Descricao da punicao: |-
+    **Verificacao:** {verificacao} ({tipo})
+    **Violacoes:** {vl}
+    **Comandos:** {comandos}
+    **Hora:** {hora}

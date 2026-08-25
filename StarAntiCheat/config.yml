@@ -1,0 +1,133 @@
+# =====================================================================
+#  StarAntiCheat - configuracao geral
+#
+#  As verificacoes ficam no verificacoes.yml e as mensagens no
+#  mensagens.yml. Aqui ficam os ajustes que valem para o plugin inteiro.
+#
+#  Este plugin exige o PacketEvents instalado na pasta plugins/.
+# =====================================================================
+
+Geral:
+  # Escreve no console o que cada verificacao esta calculando.
+  # So ligue enquanto estiver calibrando: gera MUITA linha.
+  Depuracao: false
+
+  # Quem esta nestes modos nao e verificado.
+  Ignorar modo criativo: true
+  Ignorar modo espectador: true
+
+  # Operador continua sendo verificado por padrao. Se voce liga isto e
+  # da OP para a staff, ninguem da equipe aparece em alerta nenhum.
+  Ignorar operadores: false
+
+  # Respeita a permissao staranticheat.bypass.
+  Respeitar permissao de bypass: true
+
+# Mundos onde o plugin nao roda (minigames, criativo, lobby...).
+Mundos ignorados:
+  - mundo_criativo
+  - lobby
+
+# ---------------------------------------------------------------------
+# Cortesia: quantos tiques depois de cada evento as verificacoes de
+# movimento ficam quietas. E aqui que se resolve quase todo falso
+# positivo -- nesses momentos o cliente e o servidor discordam de
+# verdade, sem ninguem estar trapaceando.
+#
+# 20 tiques = 1 segundo.
+# ---------------------------------------------------------------------
+Cortesia:
+  Ao entrar: 60
+  Ao teleportar: 30
+  Ao ressuscitar: 40
+  Ao trocar de mundo: 100
+  Ao levar dano: 10
+  Ao levar empurrao: 20
+  Ao sair de veiculo: 40
+
+  # Acima deste ping, todas as cortesias acima valem em dobro.
+  Ping para dobrar a cortesia: 250
+
+Alertas:
+  # Quem tem a permissao staranticheat.alertas ja entra recebendo.
+  Ligados ao entrar: true
+  Mostrar no console: true
+
+  # Som tocado para a staff a cada alerta. Formato: NOME;VOLUME;TOM.
+  # Deixe vazio para nao tocar nada.
+  Som: 'NOTE_PLING;0.7;2.0'
+
+  # Freio de enxurrada: no maximo tantos alertas iguais por segundo, por
+  # jogador. 0 desliga o freio.
+  Alertas iguais por segundo: 2
+
+Punicoes:
+  # Os comandos de punicao rodam pelo console (recomendado).
+  Executar pelo console: true
+
+  # Espera em tiques antes de executar. Um tique e o suficiente para a
+  # punicao nunca acontecer dentro do processamento do pacote.
+  Atraso em tiques: 1
+
+  Zerar violacoes ao punir: true
+
+  # Cada verificacao pune uma vez por sessao. Sem isto, um jogador que
+  # continue trapaceando depois de escapar do banimento levaria o mesmo
+  # comando dezenas de vezes seguidas.
+  Punir so uma vez por sessao: true
+
+Violacoes:
+  # De quanto em quanto tempo as violacoes diminuem, e quanto some de
+  # cada verificacao. Com 30 e 1.0, quem parou de trapacear volta ao zero
+  # sozinho; 0 no intervalo desliga o esquecimento.
+  Diminuir a cada segundos: 30
+  Diminuir quantidade: 1.0
+
+  Zerar ao sair: false
+  Zerar ao morrer: false
+
+# ---------------------------------------------------------------------
+# Banco de dados: guarda deteccoes e punicoes para o menu de staff e o
+# comando /anticheat historico.
+#
+# Tipo: SQLITE (arquivo proprio, nao precisa configurar nada) ou MYSQL.
+# ---------------------------------------------------------------------
+Banco de dados:
+  Ativado: true
+  Tipo: SQLITE
+  Host: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+  Prefixo: 'staranticheat_'
+
+  # Deteccao mais antiga que isto e apagada quando o plugin sobe.
+  # 0 guarda para sempre (a tabela cresce rapido).
+  Dias de historico: 30
+
+Discord:
+  Ativado: false
+  Webhook: ''
+
+  # So avisa a partir desta violacao.
+  Violacao minima: 10
+
+  # Ligado, manda so as punicoes -- o canal nao vira mural de alerta.
+  Somente punicoes: false
+
+  Nome: 'StarAntiCheat'
+  Avatar: ''
+
+  # Cor da barra lateral do aviso, em decimal (15158332 = vermelho).
+  Cor: 15158332
+
+Menu:
+  # Materiais usados no menu de staff. Nome que nao existir na versao do
+  # servidor vira pedra, sem quebrar o menu.
+  Material do jogador: PLAYER_HEAD
+  Material ligado: LIME_DYE
+  Material desligado: GRAY_DYE
+
+  # De quantos em quantos tiques o menu aberto se redesenha.
+  Atualizar a cada tiques: 20
