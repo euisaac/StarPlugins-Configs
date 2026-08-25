@@ -9,7 +9,7 @@
 # ==========================================================================
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 4
+Versao do modelo: 5
 
 Geral:
   # Mostra detalhes a mais no console.
@@ -164,6 +164,13 @@ Beneficios:
 # Para os jogadores que ainda nao escolheram nenhuma skin -- util em servidor
 # pirata, onde todo mundo entraria de Steve.
 #
+# EM REDE (Velocity): o proxy tem a mesma lista, e ligar la vale para todos os
+# servidores de uma vez -- nao precisa repetir isto em cada um. Ligar aqui faz
+# ESTE servidor ignorar a do proxy e usar a de baixo, so nele.
+#
+# A skin padrao nunca e salva no jogador: ela e resolvida a cada entrada. E o
+# que garante que a lista de um servidor nao vire a skin dele na rede inteira.
+#
 Skin padrao:
   Ativar: false
 
@@ -171,9 +178,17 @@ Skin padrao:
   # false - usa sempre a primeira da lista
   Aleatorio: true
 
-  # Sorteia de novo a cada entrada. Deixe false para o jogador ficar com a
-  # mesma skin padrao que ele pegou da primeira vez.
+  # Sorteia de novo a cada entrada. Com false (o padrao) a sorte sai do UUID do
+  # jogador: ele pega sempre a mesma skin, sem o plugin guardar nada.
   Sortear a cada entrada: false
+
+  # Nao aplica a skin padrao em quem esta numa conta original da Mojang -- ela
+  # ja tem skin propria, e a padrao seria uma troca que o jogador nao pediu.
+  #
+  # A conta e reconhecida de dois jeitos: pelo UUID, quando o servidor (ou o
+  # proxy) autentica na Mojang, e -- em servidor offline, onde todo mundo chega
+  # com UUID inventado -- pelo nick, consultado na Mojang e guardado em cache.
+  Ignorar contas originais: true
 
   # Nicks de contas originais ou ids do personalizadas.yml.
   # Uma opcao so = todo mundo com a mesma skin.

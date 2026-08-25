@@ -1,9 +1,9 @@
 # =========================================================================
 #  StarSkinsProxy - a skin do jogador valendo na rede inteira.
 #
-#  Este produto NAO troca skin de ninguem: quem troca sao os servidores, com
-#  /skin. O que ele faz e ler o MESMO MySQL deles e trocar a textura no perfil
-#  que o proxy encaminha, o que da duas coisas que so o proxy consegue:
+#  Quem troca de skin sao os servidores, com /skin. O que este produto faz e
+#  ler o MESMO MySQL deles e trocar a textura no perfil que o proxy
+#  encaminha, o que da duas coisas que so o proxy consegue:
 #
 #    - a skin vale tambem nos servidores que NAO tem o StarSkins instalado
 #      (um rankup, um minigame de terceiros);
@@ -18,6 +18,10 @@
 #
 #  Enquanto o banco estiver em branco, o produto sobe e fica so esperando --
 #  /starskinproxy status diz em que pe esta.
+#
+#  As chaves aceitam os dois estilos: "Skin padrao > Ativar" e
+#  "skin-padrao > ativar" sao a mesma coisa, entao um arquivo antigo continua
+#  valendo sem precisar ser reescrito.
 # =========================================================================
 
 database:
@@ -35,7 +39,60 @@ database:
 # Desligue so se voce quiser que cada servidor cuide da propria skin (todos
 # precisam ter o StarSkins instalado nesse caso). Vale para quem entrar depois
 # da mudanca; quem ja esta online segue com o perfil da conexao atual.
-aplicar-no-login: true
+Aplicar no login: true
+
+#
+# ───────────────────────────── Skin padrao ─────────────────────────────
+#
+# Para os jogadores que ainda nao escolheram nenhuma skin -- util em servidor
+# pirata, onde todo mundo entraria de Steve.
+#
+# Ligando AQUI, vale para a rede inteira: nao precisa repetir a lista em cada
+# servidor, e funciona ate nos que nao tem o StarSkins instalado.
+#
+# Um servidor que ligar a propria lista ("Skin padrao > Ativar: true" no
+# config.yml dele) IGNORA esta e usa a dele -- e so naquele servidor.
+#
+# A skin padrao nunca e salva no jogador: ela e resolvida a cada entrada. E o
+# que garante que a lista de um servidor nao vire a skin dele na rede inteira.
+#
+Skin padrao:
+  Ativar: false
+
+  # true  - sorteia uma da lista abaixo para cada jogador
+  # false - usa sempre a primeira da lista
+  Aleatorio: true
+
+  # Sorteia de novo a cada entrada. Com false (o padrao) a sorte sai do UUID do
+  # jogador: ele pega sempre a mesma skin, sem o proxy guardar nada.
+  Sortear a cada entrada: false
+
+  # Nao aplica a skin padrao em quem esta numa conta original da Mojang -- ela
+  # ja tem skin propria, e a padrao seria uma troca que o jogador nao pediu.
+  #
+  # A conta e reconhecida pela autenticacao do proxy e, em rede offline (onde
+  # ninguem autentica), pelo nick consultado na Mojang e guardado em cache.
+  Ignorar contas originais: true
+
+  # Nicks de contas originais de onde a textura vem.
+  # Uma opcao so = todo mundo com a mesma skin.
+  Skins:
+    - 'Steve'
+    - 'Alex'
+
+#
+# ─────────────────────────────── Mojang ───────────────────────────────
+#
+# Usado so quando a lista padrao esta ligada: e assim que o proxy descobre a
+# textura de um nick. O resultado vai para a MESMA tabela de cache dos
+# servidores, entao um nick buscado aqui nao e buscado la de novo.
+#
+Mojang:
+  # Segundos de espera por resposta antes de desistir.
+  Tempo limite: 5
+
+  # Por quantas horas uma skin ja buscada continua valendo.
+  Validade do cache: 24
 
 mensagens:
   sem-permissao: '&cVoce nao tem permissao para isso.'
