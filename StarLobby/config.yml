@@ -153,7 +153,7 @@ scoreboard:
     - ''
     - '&a⋄ &fLobby: &a{online_lobby1}'
     - ''
-    - '&estarlobby.com.br'
+    - '&eStarPlugins.com.br'
   # Formato de cada linha gerada pela "{servers}" acima. {status_color} vira
   # só o código de cor do status (ex: &a se online, &c se offline/
   # reiniciando/manutenção) — pra colorir o nome do servidor inteiro, em vez
@@ -190,7 +190,7 @@ tablist:
     &r
   footer: |
     &r
-    &7starlobby.com.br
+    &7StarPlugins.com.br
     &r
   # Troque a seção inteira por "tags: false" para desligar o sistema de tags
   # (nenhum prefixo/sufixo é aplicado na tablist), sem precisar apagar as
@@ -268,6 +268,20 @@ join-items:
       - '&7Desafie jogadores ou entre na arena livre.'
     left-command: ''
     right-command: 'batalha'
+  # A espada do PvP de hub (HubPvPSword). É um join-item como os outros —
+  # quem aponta para ele é "combat.item.join-item". Segurá-lo na mão é o
+  # ÚNICO jeito de ativar o PvP; sem comando nos cliques, porque a ação
+  # dele é justamente ficar na mão.
+  combate:
+    material: 'IRON_SWORD'
+    slot: 1
+    name: '&cCombate'
+    lore:
+      - '&7Segure para ativar o PvP.'
+    enchants:
+      - 'DAMAGE_ALL:2'
+    left-command: ''
+    right-command: ''
 
 # Sistema de preferências (item 19): toggles pessoais do jogador.
 preferences:
@@ -343,33 +357,34 @@ combat:
   # Intervalo (segundos) entre cada lembrete na actionbar de como sair da
   # arena FFA ("/batalha sair"), mostrado só pra quem está lá dentro.
   ffa-actionbar-delay: 5
-  # Item de combate estilo HubPvPSword: segurar a espada por
-  # "activation-delay" segundos ativa o PvP; tirar a mão dela por
-  # "deactivation-delay" segundos desativa. Não troca inventário/armadura —
-  # é só uma permissão de dano entre dois jogadores com o PvP ativo. Isso é
-  # diferente da arena (x1/ffa), que troca o equipamento de verdade.
+  # PvP de hub estilo HubPvPSword: segurar a espada de aviso por
+  # "activation-delay" segundos ativa o PvP; ficar com a mão fora dos itens
+  # de combate por "deactivation-delay" segundos desativa. É só uma
+  # permissão de dano entre dois jogadores com o PvP ativo — diferente da
+  # arena (x1/ffa), que troca o equipamento e o mundo do jogador.
   #
-  # slot: -1 desliga a espada de combate (ninguém recebe o item e o PvP de
-  # hub deixa de ser ativável), sem precisar apagar a configuração dela.
-  # Vale o mesmo para "bow.slot" e "arrow.slot" logo abaixo.
+  # Enquanto o PvP fica ativo, a hotbar do lobby some inteira e entram no
+  # lugar a armadura de "armor", o kit de "items" e o arco/flecha. Ao
+  # desativar, a hotbar do lobby volta como estava.
+  #
+  # A ESPADA DE AVISO é um join-item normal (ver "join-items" mais acima):
+  # é lá que ficam material, slot, nome, lore e encantamentos. Aqui só se
+  # diz QUAL join-item é ela. Assim ela ganha tudo que os join-items já têm
+  # — slot -1 para desligar, reposicionamento no /starlobby reload e
+  # limpeza ao sair do servidor. Segurar ela é a ÚNICA forma de ativar o
+  # PvP: nenhum item do kit liga o modo sozinho.
   item:
-    material: 'IRON_SWORD'
-    slot: 1
-    name: '&cCombate'
-    lore:
-      - '&7Segure para ativar o PvP.'
-    enchants:
-      - 'DAMAGE_ALL:2'
+    # A chave do item dentro de "join-items". Deixe vazio ('') para
+    # desligar o PvP de hub por completo.
+    join-item: 'combate'
     activation-delay: 5
     deactivation-delay: 5
-  # Arco (opcional) dado ao jogador só enquanto o PvP estiver ativo (some
-  # junto com o resto da hotbar quando desativa). Segurar o arco também
-  # conta como "segurando item de combate": não inicia a contagem de
-  # desativação, igual à espada de "combat.item".
+  # Arco dado ao jogador só enquanto o PvP estiver ativo (some junto com o
+  # resto da hotbar quando desativa). Para tirar o arco do combate, apague
+  # a seção "bow" inteira — e a "arrow" junto.
   bow:
-    enabled: false
     material: 'BOW'
-    slot: 2
+    slot: 1
     name: '&cArco'
     lore:
       - '&7Munição infinita durante o combate.'
@@ -377,22 +392,26 @@ combat:
       - 'ARROW_INFINITE:1'
   arrow:
     material: 'ARROW'
-    slot: 3
+    slot: 8
     amount: 1
   armor:
     helmet: 'DIAMOND_HELMET'
     chestplate: 'DIAMOND_CHESTPLATE'
     leggings: 'DIAMOND_LEGGINGS'
     boots: 'DIAMOND_BOOTS'
+  # O kit usado ENQUANTO o PvP está ativo (é o mesmo da arena x1/ffa).
+  # Segurar qualquer um destes itens MANTÉM o modo de combate ligado — sem
+  # isso, comer a maçã dourada no meio da luta começava a desligar o PvP.
+  # Use slot -1 para desativar um item do kit.
   items:
-    maca:
-      material: 'GOLDEN_APPLE'
-      amount: 16
-      slot: 0
     espada:
       material: 'DIAMOND_SWORD'
       amount: 1
-      slot: 1
+      slot: 0
+    maca:
+      material: 'GOLDEN_APPLE'
+      amount: 16
+      slot: 2
 
 # Ponte com o starlobby-proxy (Velocity) — absorve o que era o
 # StarProxySpigot (spigot-bridge, agora descontinuado): recebe "mundo"
@@ -447,5 +466,5 @@ auto-message:
   delay: 320
   messages:
     msg1:
-      chat: '&b&lStarPlugins&f Compre plugins exclusivos em &bhttps://starplugins.redestars.com/'
+      chat: '&b&lStarPlugins&f Compre plugins exclusivos em &bhttps://starplugins.com.br/'
       actionbar: '&b&lStarPlugins'
