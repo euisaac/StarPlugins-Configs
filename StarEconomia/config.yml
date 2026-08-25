@@ -1,0 +1,90 @@
+#  ____  _              _____                                 _
+# / ___|| |_ __ _ _ __ | ____|___ ___  _ __   ___  _ __ ___  (_) __ _
+# \___ \| __/ _` | '__||  _| / __/ _ \| '_ \ / _ \| '_ ` _ \ | |/ _` |
+#  ___) | || (_| | |    | |__| (_| (_) | | | | (_) | | | | | || | (_| |
+# |____/ \__\__,_|_|    |_____\___\___/|_| |_|\___/|_| |_| |_|/ |\__,_|
+#                                                            |__/
+# Plugin de economia por Eulsaac.
+# Configuracoes de cada moeda ficam na pasta "Economias/" (money.yml, cash.yml, etc).
+# Use /stareconomia criar <nome> para criar uma moeda nova em tempo real.
+
+debug-mode: false
+
+# Marca cheques validos do StarEconomia (ver "cheques:" em cada Economias/<moeda>.yml). Usa NBT
+# de verdade (PersistentDataContainer) em servidores 1.14+, com fallback automatico pra versoes
+# mais antigas -- em qualquer um dos dois casos, TROCAR este valor invalida instantaneamente
+# todo cheque ja existente com a tag antiga (util se descobrir algum exploit de duplicacao, por
+# exemplo). /stareconomia reload ja aplica, sem precisar reiniciar o servidor.
+nbt-cheques: 'starcheques-nbt'
+
+database:
+  # SQLITE (padrao, sem configuracao extra) ou MYSQL.
+  storage-type: SQLITE
+  data:
+    host: localhost
+    port: 3306
+    database: ''
+    username: ''
+    password: ''
+    # prefixo aplicado as tabelas quando storage-type = MYSQL, util para dividir o banco com
+    # outros plugins.
+    prefix: 'stareco_'
+
+general:
+  # Intervalo (em segundos) entre atualizacoes do ranking (top) de cada moeda.
+  top-atualizar-segundos: 300
+
+log:
+  # Log estendido em arquivo (plugins/StarEconomia/logs/transacoes-AAAA-MM-DD.log), com
+  # rotacao diaria, independente do historico exibido no menu.
+  enabled: true
+
+# Quando outro plugin mexe no saldo pelo Vault sem informar um motivo (ex: uma loja vendendo
+# item), o StarEconomia detecta sozinho qual plugin chamou e mostra "Plugin: <nome>" como
+# origem no historico/menu/log (ver history.track-spent em cada Economias/<moeda>.yml). Aqui
+# voce troca esse nome tecnico por algo mais amigavel pro jogador ver.
+# Formato de cada linha: 'NomeDoPlugin:Nome que vai aparecer' (o nome do plugin e exatamente
+# como aparece no /plugins ou no console ao habilitar -- maiusculas/minusculas nao importam).
+# Exemplo (descomente e ajuste pro seu servidor):
+# origens:
+#   - 'EconomyShopGUI-Premium:Loja'
+#   - 'AdvancedChests:Baus'
+origens: []
+
+# =============================================================================
+# API para outros plugins (nao e uma configuracao -- e so documentacao de como
+# integrar com o StarEconomia a partir de codigo Java)
+# =============================================================================
+#
+# 1) EconomyAPIHolder -- so a moeda primaria, com um formato de metodos simples baseado em
+#    nome de jogador (String) em vez de OfflinePlayer, pensado pra facilitar integrar
+#    codigo que ja segue esse padrao. Registrada via ServicesManager (igual ao Vault),
+#    so quando existe uma moeda com "primary: true" habilitada.
+#
+#    RegisteredServiceProvider<EconomyAPIHolder> rsp = Bukkit.getServicesManager()
+#            .getRegistration(EconomyAPIHolder.class);
+#    EconomyAPIHolder economia = rsp == null ? null : rsp.getProvider();
+#
+#    Metodos: hasAccount(nome), hasAccount(nome, forcarConsulta), getAccount(nome),
+#    getBalance(nome), set(nome, valor), has(nome, valor),
+#    withdraw(nome, valor, apply), deposit(nome, valor, apply) -> EconomyResponse
+#    (apply=false so simula, sem alterar nada), getTop() -> HashMap<String,Double>
+#    (nome -> saldo, do 1o lugar pro ultimo), getPlayerTopPosition(jogador/nome).
+#    "Account" tem getPlayerName(), getBalance(), getCreationDate() (sempre 0 --
+#    o StarEconomia nao guarda essa data), withdraw(valor, apply), deposit(valor, apply).
+#    "EconomyResponse" tem transactionSuccess(), getAmount(), getBalance(),
+#    getResponseType() (SUCCESS/FAILURE), getErrorMessage().
+#
+#    Pacote: com.star.economia.api.economy (EconomyAPIHolder, Account, EconomyResponse).
+#
+# 2) StarEconomiaAPI -- fachada estatica propria do StarEconomia, cobre QUALQUER
+#    moeda (nao so a primaria) e usa OfflinePlayer em vez de nome em String. Prefira
+#    esta se voce esta escrevendo algo novo, e uma API mais completa.
+#    Ex: StarEconomiaAPI.getCurrency("cash"), StarEconomiaAPI.deposit(player, moeda,
+#    valor, "Loja: Espada de Diamante") -- o ultimo parametro vira a origem exibida
+#    no historico/log (respondendo "onde o dinheiro foi gasto/ganho").
+#    Pacote: com.star.economia.api.StarEconomiaAPI.
+#
+# 3) Vault -- se voce so precisa de saldo/saque/deposito basico da moeda primaria e
+#    ja usa Vault em outros lugares, o StarEconomia tambem se registra la
+#    normalmente (net.milkbowl.vault.economy.Economy), sem precisar de nada extra.

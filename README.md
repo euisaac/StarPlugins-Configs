@@ -15,6 +15,7 @@ o plugin no servidor.
 
 | Pasta | O que é |
 |---|---|
+| `StarEconomia/` | Economia com moedas multiplas (money, cash, almas, ...), historico e cheques |
 | `StarFerramentas/` | Ferramentas e varinhas especiais, derrubada de arvore e arco teleguiado |
 | `StarLobby/` | Plugin de lobby (servidor Spigot/Paper) |
 | `StarLobbyProxy/` | Módulo do StarLobby para o proxy Velocity |

@@ -1,0 +1,400 @@
+# Moeda "cash" -- um segundo dinheiro, separado do "money", com seu proprio comando/saldo/
+# historico. Nao fica vinculada ao Vault (so a moeda com "primary: true" fica); outros plugins
+# podem interagir com ela pela API do StarEconomia (com.star.economia.api.StarEconomiaAPI).
+#
+# Placeholders (requer PlaceholderAPI instalado):
+#   %stareconomia_cash_saldo%             -> 1234.5   (numero puro, sem formatacao)
+#   %stareconomia_cash_saldo_formatado%   -> 1,234.50 (com separador de milhar)
+#   %stareconomia_cash_saldo_abreviado%   -> 1.2K
+#   %stareconomia_cash_saldo_completo%    -> 1,234.50 cash
+#   %stareconomia_cash_unidade%           -> cash (conforme o saldo atual)
+#   %stareconomia_cash_simbolo%           -> C$
+#   %stareconomia_cash_posicao%           -> posicao do jogador no /cash top (ou "-")
+#   %stareconomia_cash_magnata%           -> nome de quem esta em 1o lugar
+#   %stareconomia_cash_magnata_tag%       -> magnata.tag, so quando quem pede o placeholder e o magnata (senao vazio)
+#   %stareconomia_cash_magnata_simbolo%   -> magnata.simbolo, mesma regra acima
+#   O magnata tambem esta disponivel como TAG GLOBAL do nChat (requer nChat instalado, sistema
+#   separado do PlaceholderAPI -- ver docs.nickuc.com/pt/nchat/development/usage), pra colar
+#   direto no "format" de um canal:
+#   {magnata_cash}             -> nome
+#   {magnata_cash_tag}         -> magnata.tag
+#   {magnata_cash_simbolo}     -> magnata.simbolo
+#   %stareconomia_cash_top_1_jogador%     -> nome de quem esta na posicao 1 (troque o numero)
+#   %stareconomia_cash_top_1_saldo%       -> saldo formatado da posicao 1
+#   %stareconomia_cash_top_1_saldo_bruto% -> saldo sem formatacao da posicao 1
+#   Moedas nao-primarias sempre precisam do prefixo ("cash_"); so a moeda "primary: true" tem
+#   o atalho sem prefixo (ver Economias/money.yml).
+
+enabled: true
+primary: false
+
+# Identificador unico desta economia para integracao com outros plugins.
+# Outros plugins podem usar este valor para referenciar esta moeda.
+provider-id: 'stareconomia-cash'
+
+command:
+  command: 'cash'
+  aliases: ['caixa']
+  # Apelidos de subcomando: o nome da esquerda e o subcomando de verdade e a
+  # lista e como voce tambem quer poder escrever. Ex.: com "add" abaixo, tanto
+  # /{comando} adicionar quanto /{comando} add funcionam.
+  subaliases:
+    adicionar: ['add', 'dar']
+    remover: ['rem', 'tirar']
+    setar: ['set']
+    pagar: ['pay']
+    saldo: ['ver', 'bal']
+    historico: ['hist']
+
+permission:
+  use: 'stareconomia.cash.use'
+  pay: 'stareconomia.cash.pay'
+  add: 'stareconomia.cash.add'
+  remove: 'stareconomia.cash.remove'
+  set: 'stareconomia.cash.set'
+  top: 'stareconomia.cash.top'
+  historico: 'stareconomia.cash.historico'
+  historico-outros: 'stareconomia.cash.historico.outros'
+  toggle: 'stareconomia.cash.toggle'
+  admin: 'stareconomia.cash.admin'
+  npc: 'stareconomia.cash.npc'
+  cheque: 'stareconomia.cash.cheque'
+  cheque-admin: 'stareconomia.cash.cheque.admin'
+
+general:
+  default-balance: 0.0
+  singular: 'cash'
+  plural: 'cash'
+  symbol: 'C$'
+  # Teto de saldo desta moeda. Ninguem passa daqui: deposito que ultrapassaria
+  # e recusado (nem pix, nem premio, nem venda), e quem ja estava acima e
+  # cortado para este valor. 0 ou negativo desliga o limite.
+  # Padrao: 100 bilhoes.
+  max-balance: 100000000000
+  allow-negative: false
+  offline-pay: true
+  toggle-receive: true
+  main-menu: true
+  top-menu: true
+
+history:
+  enabled: true
+  keep-days: 0
+  track-spent: true
+
+magnata:
+  # Desativado por padrao no cash -- ative se quiser anunciar o top 1 desta moeda tambem.
+  enabled: false
+  minimo: 0.0
+  # Prefixo/simbolo exibidos SO para quem esta em 1o lugar (placeholders magnata_tag/
+  # magnata_simbolo) -- use no tab list, no nick, no scoreboard etc.
+  tag: '&e[Magnata]'
+  simbolo: '💰'
+
+# Abate: da esta moeda automaticamente por matar mob/animal/jogador. Desativado por padrao no
+# cash -- quem quiser cash por kill e so ativar e preencher "mobs" (ver Economias/almas.yml
+# para um exemplo completo ja preenchido).
+abate:
+  enabled: false
+  jogador: 0.0
+  mobs: {}
+
+# Titulo rapido na tela do jogador quando ele ganha ou perde cash. Placeholders: {valor}
+# (quantia da transacao, sempre positiva), {simbolo}, {unidade}, {saldo} (saldo apos a
+# transacao). fade-in/permanencia/fade-out sao em ticks (20 ticks = 1 segundo).
+# O som (som.nome) aceita o nome de qualquer Sound do Bukkit (formato antigo ou moderno).
+# contagem: anima o {valor} subindo de forma fracionada ate o valor real antes de mostrar o
+# titulo final (efeito de contador/odometro). Desative se preferir o valor final direto.
+titulo:
+  ganho:
+    enabled: true
+    titulo: '&a&l+ &f{valor} &a{simbolo}'
+    subtitulo: ''
+    fade-in: 2
+    permanencia: 30
+    fade-out: 10
+    som:
+      enabled: true
+      nome: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+      volume: 1.0
+      pitch: 1.2
+    contagem:
+      enabled: true
+      passos: 8
+      intervalo-ticks: 2
+  perda:
+    enabled: true
+    titulo: '&c&l- &f{valor} &c{simbolo}'
+    subtitulo: ''
+    fade-in: 2
+    permanencia: 30
+    fade-out: 10
+    som:
+      enabled: true
+      nome: 'ENTITY_VILLAGER_NO'
+      volume: 1.0
+      pitch: 0.8
+    contagem:
+      enabled: true
+      passos: 8
+      intervalo-ticks: 2
+
+# Cheques: /cash cheque <quantia> saca a quantia do seu saldo e da um item fisico/transferivel
+# com esse valor (clique direito pra resgatar -- qualquer jogador pode ativar). "death-check"
+# dropa um cheque automaticamente quando o jogador morre, com uma % do saldo (limitada por
+# "maximum"). A tag que identifica um cheque valido e configurada globalmente em config.yml
+# (nbt-cheques) -- trocar aquele valor invalida todo cheque ja existente.
+cheques:
+  main-check:
+    material: PAPER
+    glow: true
+    name: '&aCheque de cash'
+    nome-admin: 'Administracao'
+    lore:
+      - ''
+      - '&7Criado por: &a{jogador}&7.'
+      - '&7Criado em: &f{data} &8- &f{hora}&7.'
+      - ''
+      - '&bValor do cheque: &a{valor}&b.'
+      - ''
+      - '&7Clique com botao direito para ativar'
+
+  death-check:
+    enabled: false
+    maximum: 100000.0
+    percentage: 25.0
+    item:
+      material: PAPER
+      glow: true
+      name: '&c☠ &aCheque de cash'
+      lore:
+        - ''
+        - '&7Dropado por: &a{jogador}&7.'
+        - '&7Aniquilado em: &f{data} &8- &f{hora}&7.'
+        - ''
+        - '&bValor do cheque: &a{valor}&b.'
+        - ''
+        - '&7Clique com botao direito para ativar'
+
+# NPCs de top: /cash setnpc <armorstand|npc> <posicao> (na sua localizacao) cria um "boneco"
+# com a cabeca do jogador daquela posicao do /cash top + um holograma acima dele.
+# "armorstand" nao precisa de nada extra; "npc" usa um NPC de verdade do Citizens (precisa do
+# plugin Citizens instalado). /cash delnpc <posicao> remove.
+# Os dados ficam em plugins/StarEconomia/npcs.yml (nao mexa la).
+npc:
+  offset-holograma: 1.8
+  altura-linha: 0.25
+  linhas:
+    - '&a&lTOP &7&l#{pos}'
+    - ''
+    - '&eJogador: &f{jogador}'
+    - '&7Cash: &f{valor}'
+  sem-jogador:
+    nome: 'Ninguem'
+    valor: '0'
+
+menu:
+  main:
+    titulo: '&8Seu cash'
+    size: 27
+    itens:
+      informacoes:
+        slot: 11
+        material: '{player}'
+        name: '&aSuas informacoes'
+        lore:
+          - '&7Veja seu saldo e'
+          - '&7acesse o restante do menu.'
+          - ''
+          - '&fSaldo atual: &a{valor} {unidade}&f.'
+          - ''
+      top:
+        slot: 13
+        material: EMERALD
+        name: '&aTop jogadores'
+        lore:
+          - '&7Veja quem sao os'
+          - '&7jogadores com mais cash.'
+          - ''
+          - '&aClique para visualizar.'
+      historico:
+        slot: 15
+        material: BOOK
+        name: '&aHistorico'
+        lore:
+          - '&7Veja suas entradas e saidas,'
+          - '&7com quem e onde voce gastou.'
+          - ''
+          - '&aClique para visualizar.'
+
+  top:
+    titulo: '&8Top cash'
+    size: 54
+    # Quatro linhas de 7: a quarta (37-43) ficava vazia por falta desta lista.
+    slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    previous-slot: 48
+    back-slot: 49
+    next-slot: 50
+    item:
+      material: '{player}'
+      name: '&f#{pos} &7> &a{jogador}'
+      lore: ['', '&fPossui: &a{valor}&f.', '']
+    back-item:
+      material: ARROW
+      name: '&cVoltar'
+      lore: ['&7Fecha o menu.']
+    previous-item:
+      material: ARROW
+      name: '&cPagina anterior'
+      lore: ['&7Clique para voltar uma pagina.']
+    next-item:
+      material: ARROW
+      name: '&aProxima pagina'
+      lore: ['&7Clique para avancar uma pagina.']
+
+  historico:
+    titulo: '&8Historico - cash'
+    size: 54
+    slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+    previous-slot: 48
+    back-slot: 49
+    next-slot: 50
+    item:
+      material: PAPER
+      name: '&f{tipo}'
+      lore:
+        - ''
+        - '&7Valor: &f{valor}'
+        - '&7Saldo apos: &f{saldo-apos}'
+        - '&7Com/de: &f{contraparte}'
+        - '&7Origem: &f{origem}'
+        - ''
+        - '&7Data: &f{data} &8- &f{hora}'
+    materiais:
+      RECEBER: EMERALD
+      ENVIAR: REDSTONE
+      GANHO: GOLD_INGOT
+      GASTO: IRON_INGOT
+      ADICIONAR: LIME_DYE
+      REMOVER: GRAY_DYE
+      SETAR: PAPER
+    filtros:
+      TODOS:
+        slot: 2
+        material: NETHER_STAR
+        name: '&fTodos'
+        lore: ['&7Mostra todas as transacoes.']
+      RECEBIDOS:
+        slot: 3
+        material: EMERALD
+        name: '&aRecebidos'
+        lore: ['&7Cash recebido de outros jogadores.']
+      ENVIADOS:
+        slot: 4
+        material: REDSTONE
+        name: '&cEnviados'
+        lore: ['&7Cash enviado para outros jogadores.']
+      GANHOS:
+        slot: 5
+        material: GOLD_INGOT
+        name: '&6Ganhos'
+        lore: ['&7Cash ganho (admin ou outros plugins).']
+      GASTOS:
+        slot: 6
+        material: IRON_INGOT
+        name: '&7Gastos'
+        lore: ['&7Cash gasto (admin ou outros plugins/lojas).']
+    back-item:
+      material: ARROW
+      name: '&cVoltar'
+      lore: ['&7Volta ao menu principal.']
+    previous-item:
+      material: ARROW
+      name: '&cPagina anterior'
+      lore: ['&7Clique para voltar uma pagina.']
+    next-item:
+      material: ARROW
+      name: '&aProxima pagina'
+      lore: ['&7Clique para avancar uma pagina.']
+
+messages:
+  chat:
+    syntax: '&cUse: /{comando} {uso}'
+    sem-permissao: '&cVoce nao tem permissao para fazer isto.'
+    apenas-jogador: '&cApenas jogadores podem executar este comando.'
+    jogador-nao-encontrado: '&cJogador &f{jogador}&c nao encontrado.'
+    numero-invalido: '&cO valor informado nao e valido.'
+    voce-mesmo: '&cVoce nao pode fazer isso consigo mesmo.'
+    recebimento-desativado: '&cO jogador &f{jogador}&c desativou o recebimento de {unidade}.'
+    limite-atingido: '&cO jogador &f{jogador}&c ja esta no limite maximo de {unidade}.'
+    saldo-insuficiente: '&cVoce nao possui &f{valor}&c {unidade}.'
+    acao-cancelada: '&cEsta acao foi cancelada por outro plugin.'
+    reload: '&aConfiguracoes da moeda cash recarregadas.'
+    saldo: '&aVoce possui: &f{valor}&a {unidade}.'
+    saldo-outro: '&aO jogador &f{jogador}&a possui: &f{valor}&a {unidade}.'
+    setar: '&aVoce setou o saldo de &f{jogador}&a para: &f{valor}&a {unidade}.'
+    adicionar: '&aVoce adicionou &f{valor}&a {unidade} para &f{jogador}&a.'
+    remover: '&aVoce removeu &f{valor}&a {unidade} de &f{jogador}&a.'
+    enviar: '&aVoce enviou &f{valor}&a {unidade} para &f{jogador}&a.'
+    receber: '&aVoce recebeu &f{valor}&a {unidade} de &f{jogador}&a.'
+    alternar-ativado: '&aVoce ativou o recebimento de cash.'
+    alternar-desativado: '&cVoce desativou o recebimento de cash.'
+    top-vazio: '&cAinda nao ha ranking para esta moeda.'
+    historico-vazio: '&cO historico desta moeda esta desativado ou vazio.'
+    formatar: '&a{entrada} &7-> &a{saida}&7.'
+    npc-setado: '&aNPC de top da posicao &f{posicao}&a criado/movido para a sua localizacao.'
+    npc-removido: '&aNPC de top da posicao &f{posicao}&a removido.'
+    npc-inexistente: '&cNao ha nenhum NPC na posicao &f{posicao}&c.'
+    npc-tipo-invalido: '&cTipo invalido. Use: armorstand ou npc (Citizens).'
+    npc-citizens-ausente: '&cO plugin Citizens nao esta instalado/ativo neste servidor.'
+    cheque-criado: '&aVoce criou um cheque de &f{valor}&a {unidade}.'
+    cheque-criado-admin: '&aVoce gerou um cheque administrativo de &f{valor}&a {unidade} &7(sem custo)&a.'
+    cheque-resgatado: '&aVoce resgatou um cheque de &f{valor}&a {unidade}.'
+    cheque-desativado: '&cO sistema de cheques esta desativado para esta moeda.'
+  magnata:
+    chat: |
+      &r
+      &6&l[$] &aO jogador &f{jogador} &ae o novo &6&nMAGNATA&a do servidor!
+      &7Ele possui &f{valor}&7 {unidade}.
+      &r
+  help: |
+    &a<--> Comandos de cash <-->
+    &f > &a/cash &8- &7Ver suas informacoes.
+    &f > &a/cash &f<jogador> &8- &7Ver as informacoes de outro jogador.
+    &f > &a/cash pagar &f<jogador> <quantia> &8- &7Enviar cash para um jogador.
+    &f > &a/cash historico &8- &7Ver seu historico de transacoes.
+    &f > &a/cash top &8- &7Ver o TOP com mais cash.
+    &f > &a/cash cheque &f<quantia> &8- &7Sacar um cheque com essa quantia.
+    &f > &a/cash alternar &8- &7Ativar/desativar o recebimento de cash.
+    &f > &a/cash formatar &f<quantia> &8- &7Converte numeros <-> abreviacoes (1000 <-> 1K).
+  help-staff: |
+    &a<--> Comandos de cash &7(STAFF)&a <-->
+    &f > &a/cash &8- &7Ver suas informacoes.
+    &f > &a/cash &f<jogador> &8- &7Ver as informacoes de outro jogador.
+    &f > &a/cash pagar &f<jogador> <quantia> &8- &7Enviar cash para um jogador.
+    &f > &a/cash adicionar &f<jogador> <quantia> &8- &7Adicionar cash para um jogador.
+    &f > &a/cash remover &f<jogador> <quantia> &8- &7Remover cash de um jogador.
+    &f > &a/cash setar &f<jogador> <quantia> &8- &7Setar o cash de um jogador.
+    &f > &7Coloque &f-s &7no fim de adicionar/remover/setar para o jogador nao ser avisado.
+    &f > &a/cash historico &f[jogador] &8- &7Ver o historico de transacoes.
+    &f > &a/cash top &8- &7Ver o TOP com mais cash.
+    &f > &a/cash cheque &f<quantia> &8- &7Sacar um cheque com essa quantia.
+    &f > &a/cash cheque &f<quantia> admin &8- &7Gera um cheque sem sacar de ninguem.
+    &f > &a/cash setnpc &f<armorstand|npc> <posicao> &8- &7Cria/move o NPC de top na sua localizacao.
+    &f > &a/cash delnpc &f<posicao> &8- &7Remove o NPC de top.
+    &f > &a/cash reload &8- &7Recarrega esta moeda.
+  # Usado por "/cash top" quando o menu esta desativado (general.top-menu: false). Alem de
+  # {formato} (expande pra uma linha por jogador, via formato-jogador), as linhas de "mensagem"
+  # tambem aceitam {self_top_pos} (posicao de quem digitou o comando, ou "-" se fora do top
+  # carregado) e {self_top_money} (saldo de quem digitou o comando, formatado).
+  top-chat:
+    formato-jogador: '&f{pos}o &7{jogador}&2: &7({valor})'
+    mensagem:
+      - ''
+      - '&2Top 10 Mais Cash &7(atualizado periodicamente)'
+      - ''
+      - '{formato}'
+      - ''
+      - '&a      Voce esta atualmente em &f{self_top_pos}º'
+      - '&a              Com &f{self_top_money}&a.'
+      - ''
