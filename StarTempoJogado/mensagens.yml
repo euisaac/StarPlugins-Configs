@@ -1,0 +1,115 @@
+#  Mensagens do StarTempoJogado.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB.
+#  Deixe '' (vazio) para nao enviar a mensagem.
+#
+#  "Versao do modelo" e o numero deste arquivo dentro do jar. Quando ele sobe
+#  numa atualizacao, o plugin guarda o seu arquivo como mensagens-antigo-vX.yml
+#  e escreve o modelo novo no lugar -- e assim que as mensagens novas chegam.
+Versao do modelo: 1
+
+Prefixo: '&6&lStarTempoJogado &8» &r'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Somente jogador: '&cApenas jogadores in-game podem fazer isso.'
+  Jogador nao encontrado: '&cO jogador &f{jogador}&c nunca entrou neste servidor.'
+  Jogador offline: '&cO jogador &f{jogador}&c nao esta online.'
+  Carregando: '&cSeus dados ainda estao carregando; tente de novo em instantes.'
+  Numero invalido: '&cO valor &f{valor}&c nao e um tempo valido. Use 30m, 12h, 7d ou os segundos.'
+  Comando desconhecido: '&cO subcomando &f{comando}&c nao existe. Use &f/startempojogado ajuda&c.'
+  Recarregado: '&aConfiguracoes recarregadas com sucesso.'
+  Periodo invalido: '&cPeriodo invalido. Use &fgeral&c, &fmensal&c ou &fsemanal&c.'
+
+# Textos curtos usados nos menus, nas listagens e nos placeholders.
+Etiquetas:
+  # Sai no lugar da posicao de quem ainda nao entrou no top.
+  Sem posicao: '&7--'
+  # Sai no lugar do nome, num slot do top que ainda nao tem dono.
+  Ninguem: '&7Ninguem'
+  Periodo geral: 'Geral'
+  Periodo mensal: 'Mensal'
+  Periodo semanal: 'Semanal'
+
+Tempo:
+  # Enviada por /tempo, quando o menu esta desligado no config.
+  Proprio: |-
+    &8&m--------------------------------
+    &eSeu tempo jogado
+    &7Total: &f{tempo}
+    &7Neste mes: &f{tempo_mensal}
+    &7Nesta semana: &f{tempo_semanal}
+    &7Nesta sessao: &f{tempo_sessao}
+    &7Posicao no top geral: &f{posicao}
+    &8&m--------------------------------
+  Outro: |-
+    &8&m--------------------------------
+    &eTempo jogado de &f{jogador}
+    &7Total: &f{tempo}
+    &7Neste mes: &f{tempo_mensal}
+    &7Nesta semana: &f{tempo_semanal}
+    &7Posicao no top geral: &f{posicao}
+    &7Visto pela ultima vez: &f{visto}
+    &8&m--------------------------------
+  Nunca visto: 'nunca'
+
+Missao:
+  Coletada: '&aVoce coletou a missao &f{missao}&a!'
+  Aguardando: '&cVoce ainda nao jogou o suficiente para essa missao. Faltam &f{tempo}&c.'
+  Ja coletada: '&cVoce ja coletou essa missao.'
+  Sem permissao: '&cVoce nao tem permissao para coletar essa missao.'
+  Sem espaco: '&cLibere espaco na sua mochila antes de coletar.'
+  Liberada: '&aA missao &f{missao}&a esta pronta! Use &f/tempo&a para coletar.'
+
+Aviso:
+  Entrada: '&aVoce tem &f{quantidade}&a missao(oes) esperando por voce! Use &f/tempo&a.'
+
+Top:
+  Vazio: '&cAinda nao ha ninguem no top {periodo}.'
+  Atualizando: '&7Buscando o top, um instante...'
+
+Npc:
+  Definido: '&aNPC do tempo online criado em &f{mundo} {x}, {y}, {z}&a.'
+  Removido: '&aNPC do tempo online removido. &7({quantidade} coisa(s) tirada(s) do mundo)'
+  Nada para remover: '&cNao achei NPC nem holograma do tempo online em {raio} blocos. Chegue mais perto dele ou aumente o alcance com &f/startempojogado delnpc <raio>&c.'
+  Nao definido: '&cNenhum NPC foi definido ainda. Use &f/startempojogado setnpc&c.'
+  Teleportado: '&aVoce foi teleportado ate o NPC do tempo online.'
+  Desligado: '&eO NPC esta desligado no config.yml (NPC.Ativar); o lugar foi salvo mesmo assim.'
+
+Admin:
+  Ajuda: |-
+    &8&m--------------------------------
+    &6&lStarTempoJogado &7- comandos de administrador
+    &e/startempojogado setar <jogador> <tempo> &7- define o tempo total
+    &e/startempojogado adicionar <jogador> <tempo> &7- soma tempo
+    &e/startempojogado remover <jogador> <tempo> &7- tira tempo
+    &e/startempojogado resetar <jogador> &7- zera tudo do jogador
+    &e/startempojogado abrir [jogador] &7- abre o menu
+    &e/startempojogado setnpc &7- cria o NPC onde voce esta
+    &e/startempojogado delnpc [raio] &7- tira o NPC do mundo (raio padrao: 10)
+    &e/startempojogado irnpc &7- teleporta voce ate o NPC
+    &e/startempojogado top [geral|mensal|semanal] &7- lista o top no chat
+    &e/startempojogado recarregar &7- recarrega os arquivos
+    &8&m--------------------------------
+  Uso setar: '&cUse &f/startempojogado setar <jogador> <tempo>&c.'
+  Uso adicionar: '&cUse &f/startempojogado adicionar <jogador> <tempo>&c.'
+  Uso remover: '&cUse &f/startempojogado remover <jogador> <tempo>&c.'
+  Uso resetar: '&cUse &f/startempojogado resetar <jogador>&c.'
+  Alterado: '&aTempo de &f{jogador}&a agora e &f{tempo}&a.'
+  Resetado: '&aO tempo de &f{jogador}&a foi zerado.'
+  Menu aberto: '&aMenu do tempo aberto para &f{jogador}&a.'
+  Top cabecalho: '&eTop {periodo} de tempo jogado:'
+  Top linha: '&8 {posicao}. &f{jogador} &7- &e{tempo}'
+
+Sons:
+  #  Som do aviso de missao liberada. Deixe '' para nao tocar nada.
+  #  Os sons dos cliques do menu ficam no config.yml, em "Menu".
+  Missao liberada: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.4'
+
+Titulos:
+  # Aparece quando uma missao fica pronta. Deixe os textos vazios para desligar.
+  Missao liberada:
+    Titulo: ''
+    Subtitulo: '&aMissao liberada: &f{missao}'
+    Aparecer: 5
+    Ficar: 40
+    Sumir: 10

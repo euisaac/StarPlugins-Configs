@@ -1,0 +1,137 @@
+#  Tela do TOP do StarTempoJogado.
+#
+#  Uma tela so, com tres abas: Geral, Mensal e Semanal. Clicar numa aba troca
+#  o ranking na mesma tela -- o menu nao fecha e nao volta para a pagina 1 a
+#  toa, so quando o periodo muda de verdade.
+#
+#  "Versao do modelo" e o numero deste arquivo dentro do jar. Quando ele sobe
+#  numa atualizacao, o plugin guarda o seu arquivo como top-antigo-vX.yml e
+#  escreve o modelo novo no lugar.
+Versao do modelo: 1
+
+Menu:
+  #  {periodo} vira Geral, Mensal ou Semanal (os textos estao no mensagens.yml,
+  #  em Etiquetas). O titulo do inventario tem limite de 32 caracteres nas
+  #  versoes antigas, entao segure a mao aqui.
+  Titulo: '&8Top tempo &7({periodo})'
+  Linhas: 6
+
+  Preencher:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # Onde os jogadores do ranking aparecem, na ordem em que estao escritos.
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+
+  #  ------------------------- Item de cada jogador -------------------------
+  #
+  #  Substituicoes: {posicao}  {jogador}  {tempo}  {periodo}
+  #
+  Jogador:
+    Material: PLAYER_HEAD
+    # false usa sempre o material acima, sem ir atras da skin de cada um.
+    Usar a cabeca do jogador: true
+    Nome: '&e{posicao}. &f{jogador}'
+    Lore:
+      - ''
+      - '&fTempo: &e{tempo}'
+      - '&fPosicao: &a{posicao}'
+      - ''
+    # Deixa o primeiro colocado brilhando.
+    Brilho no primeiro: true
+
+  # O que aparece nos slots que sobram quando o top tem menos gente que slots.
+  Vazio:
+    Mostrar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: '&7{posicao}. &8---'
+    Lore: [ ]
+
+  #  --------------------------------- Abas ---------------------------------
+  #
+  #  A aba que esta aberta ganha o brilho e as linhas de "Selecionada"; as
+  #  outras ganham as de "Nao selecionada".
+  #
+  Abas:
+    Selecionada:
+      Brilho: true
+      Lore:
+        - ''
+        - '&aVoce esta vendo este top.'
+    Nao selecionada:
+      Brilho: false
+      Lore:
+        - ''
+        - '&eClique para ver este top.'
+
+  Itens:
+
+    geral:
+      Slot: 38
+      Material: NETHER_STAR
+      Nome: '&6&lTOP GERAL'
+      Lore:
+        - '&7Todo o tempo ja jogado no servidor.'
+        - ''
+        - '&fSua posicao: &a{posicao}'
+        - '&fSeu tempo: &e{tempo}'
+      Acoes:
+        - 'top geral'
+
+    mensal:
+      Slot: 40
+      Material: CLOCK
+      Nome: '&b&lTOP MENSAL'
+      Lore:
+        - '&7O tempo jogado neste mes.'
+        - '&7Zera sozinho quando o mes vira.'
+        - ''
+        - '&fSua posicao: &a{posicao_mensal}'
+        - '&fSeu tempo: &e{tempo_mensal}'
+      Acoes:
+        - 'top mensal'
+
+    semanal:
+      Slot: 42
+      Material: PAPER
+      Nome: '&a&lTOP SEMANAL'
+      Lore:
+        - '&7O tempo jogado nesta semana.'
+        - '&7Zera sozinho quando a semana vira.'
+        - ''
+        - '&fSua posicao: &a{posicao_semanal}'
+        - '&fSeu tempo: &e{tempo_semanal}'
+      Acoes:
+        - 'top semanal'
+
+    #  ------------------------- Navegacao e voltar --------------------------
+    #
+    #  As setas so aparecem quando existe pagina para onde ir.
+    #
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+      Lore:
+        - '&7Pagina atual: &f{pagina}&7/&f{paginas}'
+      Acoes:
+        - 'anterior'
+
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+      Lore:
+        - '&7Pagina atual: &f{pagina}&7/&f{paginas}'
+      Acoes:
+        - 'proxima'
+
+    voltar:
+      Slot: 49
+      Material: OAK_DOOR
+      Nome: '&cVoltar'
+      Lore:
+        - '&7Volta para o menu do tempo.'
+      Acoes:
+        - 'voltar'

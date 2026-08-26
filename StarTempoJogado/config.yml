@@ -1,0 +1,233 @@
+#  ==========================================================================
+#                             StarTempoJogado
+#
+#    Conta o tempo que cada jogador passa no servidor, entrega missoes e
+#    recompensas por esse tempo e mostra o top geral, mensal e semanal
+#    num menu.
+#
+#    As missoes ficam no missoes.yml, as recompensas automaticas no
+#    recompensas.yml e as telas na pasta menus/.
+#  ==========================================================================
+
+# Mostra no console detalhes uteis so para achar problema.
+Debug: false
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre servidores).
+  # Com MYSQL varios servidores somam o tempo no mesmo lugar e o top e o da rede.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'startempojogado_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+#
+# ------------------------------- CONTAGEM ---------------------------------
+#
+Contagem:
+  #  Atraso entre o jogador entrar e o tempo dele comecar a contar, em ticks.
+  #  20 ticks = 1 segundo. Serve para servidores em rede, onde o jogador ainda
+  #  esta sendo mandado de um servidor para outro quando entra.
+  Atraso apos entrar: 20
+
+  #  De quanto em quanto tempo o que esta em memoria vai para o banco, em
+  #  segundos. Sair do servidor grava na hora, independente disto.
+  Salvar a cada: 60
+
+  #  Nao contar tempo para a staff.
+  #  Quem tiver a permissao startempojogado.bypass para de contar.
+  Nao contar para a staff: true
+
+  # Mundos onde o tempo nao anda (ex.: um lobby de espera).
+  Mundos ignorados: []
+
+  #  Para de contar quem esta parado.
+  #  O jogador volta a contar assim que se mexer, falar ou clicar.
+  Parar quando ausente: false
+  Minutos para considerar ausente: 5
+
+  #  Zera o "tempo desta sessao" quando o jogador sai.
+  #  Deixando false, o tempo da sessao continua de onde parou no proximo login
+  #  (e as recompensas automaticas continuam de onde pararam junto).
+  Zerar a sessao ao sair: true
+
+#
+# ------------------------------- PERIODOS ---------------------------------
+#
+#  O tempo mensal e o semanal se zeram sozinhos: cada jogador guarda em qual
+#  mes e em qual semana o tempo dele foi feito, e quando o mes (ou a semana)
+#  vira, a contagem daquele periodo recomeca do zero. Nao existe tarefa de
+#  reset para dar errado enquanto o servidor esta desligado.
+#
+Periodos:
+  #  Fuso horario usado para saber quando o dia, a semana e o mes viram.
+  #  Vazio ('') usa o fuso da maquina. Ex.: 'America/Sao_Paulo'.
+  Fuso horario: 'America/Sao_Paulo'
+
+  # Dia em que a semana comeca: MONDAY, SUNDAY, TUESDAY, ...
+  Primeiro dia da semana: 'MONDAY'
+
+#
+# ---------------------------------- TOP -----------------------------------
+#
+Top:
+  # Quantos jogadores o top guarda no total (as paginas saem daqui).
+  Limite: 45
+
+  #  De quanto em quanto tempo o top e relido do banco, em segundos.
+  #  Enquanto nao vence, abrir o menu nao consulta nada -- e o que impede um
+  #  jogador de castigar o banco abrindo e fechando o top.
+  Atualizar a cada: 60
+
+  # Qual aba abre primeiro: GERAL, MENSAL ou SEMANAL.
+  Periodo padrao: 'GERAL'
+
+  # Esconde do top quem tem a permissao startempojogado.bypass (a staff).
+  Esconder quem nao conta: true
+
+#
+# --------------------------------- TAGS -----------------------------------
+#
+#  Usadas nos placeholders %startempojogado_tag% e %startempojogado_tag_horas%,
+#  para por a etiqueta no chat ou no tab pelo seu plugin de chat.
+#
+Tags:
+  # Etiqueta de quem esta em primeiro no top geral. Vazio ('') desliga.
+  Top 1: '&e[VICIADO]'
+  # Etiqueta com as horas de todo mundo. {horas} e o numero de horas.
+  Horas: '&7[&e{horas}h&7]'
+
+#
+# --------------------------------- MENU -----------------------------------
+#
+Menu:
+  # Deixe false para que so o NPC abra o menu.
+  Abrir com o comando: true
+
+  #  De quanto em quanto tempo o menu aberto e redesenhado, em ticks.
+  #  E o que faz o contador do perfil andar sozinho na tela.
+  #  Coloque 0 para nao atualizar (o tempo so muda ao reabrir).
+  Atualizar a cada: 20
+
+  #  Sons no formato SOM;volume;tom -- o nome passa pelo XSeries, entao o mesmo
+  #  nome funciona da 1.8 a 1.21. Deixe '' para nao tocar nada.
+  Som ao clicar: 'UI_BUTTON_CLICK;1;1'
+  Som ao errar: 'ENTITY_VILLAGER_NO;1;1'
+  Som ao coletar: 'ENTITY_PLAYER_LEVELUP;1;1'
+  Som ao trocar de pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+
+#
+# -------------------------------- MISSOES ---------------------------------
+#
+Missoes:
+  #  Qual tempo conta para liberar a missao:
+  #  TOTAL (tudo que ele ja jogou), MENSAL, SEMANAL ou SESSAO (o login atual).
+  Usar tempo: TOTAL
+
+  # Avisa no chat quando uma missao nova fica pronta para coletar.
+  Avisar quando liberar: true
+  # Intervalo minimo entre dois avisos desses, em segundos.
+  Intervalo entre avisos: 30
+
+  #  Apaga as missoes coletadas quando o tempo do jogador e zerado pelo
+  #  /startempojogado resetar.
+  Limpar coletadas ao resetar: true
+
+  # Exige espaco livre na mochila antes de coletar (para missao que da item).
+  Exigir espaco no inventario: false
+  Espacos necessarios: 1
+
+#
+# ------------------------ RECOMPENSAS AUTOMATICAS -------------------------
+#
+#  Diferentes das missoes: nao aparecem em menu nenhum e caem sozinhas na mao
+#  do jogador de tempos em tempos. Ficam no recompensas.yml.
+#
+Recompensas:
+  Ativar: true
+
+  #  Qual tempo faz a conta do intervalo:
+  #  SESSAO (o login atual), TOTAL, MENSAL ou SEMANAL.
+  Usar tempo: SESSAO
+
+#
+# -------------------------------- ENTRADA ---------------------------------
+#
+Entrada:
+  # Avisa no chat quem entrou com missao esperando por ele.
+  Avisar missoes: true
+  # Atraso do aviso, em ticks, para nao brigar com a mensagem de bem-vindo.
+  Atraso do aviso: 60
+
+#
+# ---------------------------------- NPC -----------------------------------
+#
+#  Marque o lugar com /startempojogado setnpc, de pe onde o NPC deve ficar.
+#  Para tirar, /startempojogado delnpc.
+#
+NPC:
+  Ativar: true
+
+  # Nome interno do boneco; quem aparece em cima dele e o Holograma abaixo.
+  Nome: '&e&lTEMPO ONLINE'
+
+  #  Com o Citizens instalado o NPC vira um boneco com skin de jogador.
+  #  Sem ele (ou com isto em false), o NPC e a entidade escolhida em "Tipo".
+  Usar Citizens: true
+  # Nick de quem empresta a skin, quando o NPC e do Citizens. '' usa a padrao.
+  Skin: ''
+
+  #  Entidade usada quando o NPC nao e do Citizens.
+  #  Aceita qualquer tipo da sua versao: VILLAGER, ARMOR_STAND, WITCH, IRON_GOLEM...
+  Tipo: VILLAGER
+  # So vale para VILLAGER: LIBRARIAN, FARMER, PRIEST, BLACKSMITH, BUTCHER...
+  Profissao: LIBRARIAN
+  Bebe: false
+
+  #  De quanto em quanto tempo o plugin confere se o NPC continua no lugar, em
+  #  ticks. E o que traz o boneco de volta depois de um chunk descarregar ou de
+  #  outro plugin limpar as entidades. 0 desliga a conferencia.
+  Verificar a cada: 200
+
+  Holograma:
+    Ativar: true
+    # Altura das linhas acima do chao, em blocos.
+    Altura: 2.6
+    Linhas:
+      - '&e&lTEMPO ONLINE'
+      - '&fVeja o seu tempo e as suas missoes'
+      - '&7(clique com o botao direito)'
+
+#
+# --------------------------- FORMATO DO TEMPO -----------------------------
+#
+#  Como o tempo aparece nos menus, nas mensagens e nos placeholders.
+#  {valor} e o numero da unidade.
+#
+Formato do tempo:
+  #  Quantas unidades aparecem de uma vez.
+  #  Com 2, "1a 2mes 5d 3h" vira so "1a 2mes".
+  Maximo de unidades: 3
+  # Some com as unidades zeradas (ex.: "2d 15m" em vez de "2d 00h 15m").
+  Esconder zerados: true
+  # Texto que sai quando o jogador ainda nao tem tempo nenhum.
+  Vazio: '0s'
+  Separador: ' '
+
+  #  Ligue ou desligue as unidades maiores. Desligando "Usar anos", por
+  #  exemplo, um ano de jogo passa a aparecer como meses.
+  Usar anos: true
+  Usar meses: true
+  Usar semanas: false
+
+  Unidades:
+    Ano: '&f{valor}&7a'
+    Mes: '&f{valor}&7mes'
+    Semana: '&f{valor}&7sem'
+    Dia: '&f{valor}&7d'
+    Hora: '&f{valor}&7h'
+    Minuto: '&f{valor}&7m'
+    Segundo: '&f{valor}&7s'

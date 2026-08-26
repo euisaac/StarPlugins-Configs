@@ -1,0 +1,150 @@
+#  ==========================================================================
+#                       Missoes do StarTempoJogado
+#
+#    Cada bloco abaixo e uma missao: o jogador atinge X de tempo jogado e vai
+#    ao menu (/tempo -> Missoes) coletar o premio. Coleta uma vez so.
+#
+#    Crie quantas quiser -- as missoes sao ordenadas pelo "Tempo", da menor
+#    para a maior, e distribuidas nos slots do menus/missoes.yml. Quando nao
+#    cabem todas na tela, o menu cria paginas sozinho.
+#
+#    Esta secao e sua: o conferidor de config do loader nao repoe nem acusa o
+#    que voce mudar aqui dentro.
+#  ==========================================================================
+Versao do modelo: 1
+
+#  ------------------------ O que vai em cada missao ------------------------
+#
+#  Tempo             Quanto tempo jogado libera a missao.
+#                    Aceita 30m, 12h, 7d, 1d12h ou so o numero em segundos.
+#                    Qual tempo conta (total, mensal, semanal ou o da sessao)
+#                    e escolhido em "Missoes.Usar tempo" no config.yml.
+#  Permissao         Quem pode coletar. Vazio ('') libera para todos.
+#  Esconder sem permissao   true tira a missao do menu de quem nao pode.
+#
+#  Material          Nome moderno (EMERALD, PLAYER_HEAD...): funciona da 1.8 a 1.21.
+#  Material aguardando / Material coletada
+#                    Trocam o item nos outros dois estados. Sem escrever nada,
+#                    os dois repetem o "Material".
+#  Dono / Textura    Skin da cabeca, quando o material e uma cabeca.
+#  Quantidade        Tamanho da pilha mostrada.
+#  Nome              Nome do item no menu.
+#  Brilho            Deixa o item brilhando; "Brilho so disponivel: true" faz o
+#                    brilho aparecer so quando da para coletar.
+#
+#  Lore                    Aparece sempre (a descricao da missao).
+#  Lore disponivel         Entra embaixo quando da para coletar.
+#  Lore aguardando         Entra embaixo enquanto o tempo nao fecha.
+#  Lore coletada           Entra embaixo depois de coletada.
+#  Lore sem permissao      Entra embaixo para quem nao tem a permissao.
+#
+#  Comandos          O que acontece ao coletar, de cima para baixo:
+#                      console: <cmd>     roda no console (o normal)
+#                      jogador: <cmd>     roda como o proprio jogador
+#                      op: <cmd>          roda como o jogador, com op emprestado
+#                      mensagem: <texto>  manda so para ele
+#                      anuncio: <texto>   manda para o servidor todo
+#                      titulo: <texto<nl>subtitulo>
+#                      actionbar: <texto>
+#                      som: <SOM;volume;tom>
+#
+#  Substituicoes nos textos e nos comandos:
+#    {jogador}  {missao}  {tempo}  {tempo_necessario}  {falta}
+#    {tempo_mensal}  {tempo_semanal}  {tempo_sessao}
+#  Placeholders do PlaceholderAPI funcionam em todos os textos.
+#
+#  ---------------------------------------------------------------------------
+
+Missoes:
+
+  primeira-hora:
+    Tempo: 1h
+    Permissao: ''
+    Material: BREAD
+    Material aguardando: GRAY_DYE
+    Material coletada: GRAY_DYE
+    Nome: '&a1 hora jogada'
+    Brilho so disponivel: true
+    Lore:
+      - '&7Fique &f1 hora &7online e ganhe:'
+      - '&8- &f16 paes'
+      - ''
+      - '&7Seu tempo: &f{tempo}'
+    Lore disponivel:
+      - '&aClique para coletar!'
+    Lore aguardando:
+      - '&cFalta &f{falta}&c.'
+    Lore coletada:
+      - '&7Voce ja coletou esta missao.'
+    Comandos:
+      - 'console: give {jogador} bread 16'
+      - 'mensagem: &aVoce ganhou 16 paes por 1 hora de jogo!'
+
+  cinco-horas:
+    Tempo: 5h
+    Permissao: ''
+    Material: IRON_INGOT
+    Material aguardando: GRAY_DYE
+    Material coletada: GRAY_DYE
+    Nome: '&a5 horas jogadas'
+    Brilho so disponivel: true
+    Lore:
+      - '&7Fique &f5 horas &7online e ganhe:'
+      - '&8- &f16 barras de ferro'
+      - ''
+      - '&7Seu tempo: &f{tempo}'
+    Lore disponivel:
+      - '&aClique para coletar!'
+    Lore aguardando:
+      - '&cFalta &f{falta}&c.'
+    Lore coletada:
+      - '&7Voce ja coletou esta missao.'
+    Comandos:
+      - 'console: give {jogador} iron_ingot 16'
+
+  um-dia:
+    Tempo: 24h
+    Permissao: ''
+    Material: DIAMOND
+    Material aguardando: GRAY_DYE
+    Material coletada: GRAY_DYE
+    Nome: '&b1 dia jogado'
+    Brilho so disponivel: true
+    Lore:
+      - '&7Fique &f24 horas &7online e ganhe:'
+      - '&8- &f8 diamantes'
+      - ''
+      - '&7Seu tempo: &f{tempo}'
+    Lore disponivel:
+      - '&aClique para coletar!'
+    Lore aguardando:
+      - '&cFalta &f{falta}&c.'
+    Lore coletada:
+      - '&7Voce ja coletou esta missao.'
+    Comandos:
+      - 'console: give {jogador} diamond 8'
+      - 'anuncio: &e{jogador} &7ja passou &f24 horas &7no servidor!'
+
+  uma-semana:
+    Tempo: 7d
+    Permissao: ''
+    Material: NETHER_STAR
+    Material aguardando: GRAY_DYE
+    Material coletada: GRAY_DYE
+    Nome: '&d7 dias jogados'
+    Brilho so disponivel: true
+    Lore:
+      - '&7Fique &f7 dias &7online e ganhe:'
+      - '&8- &fum kit especial'
+      - ''
+      - '&7Seu tempo: &f{tempo}'
+    Lore disponivel:
+      - '&aClique para coletar!'
+    Lore aguardando:
+      - '&cFalta &f{falta}&c.'
+    Lore coletada:
+      - '&7Voce ja coletou esta missao.'
+    Comandos:
+      # Troque pelo comando do seu servidor.
+      - 'console: give {jogador} diamond_block 4'
+      - 'titulo: &d7 DIAS<nl>&fObrigado por jogar com a gente!'

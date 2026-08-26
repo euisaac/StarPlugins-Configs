@@ -1,0 +1,65 @@
+#  Tela das missoes do StarTempoJogado.
+#
+#  Aqui fica so a moldura -- titulo, tamanho, fundo, slots e botoes.
+#  As missoes em si (e o premio de cada uma) ficam no missoes.yml.
+#
+#  "Versao do modelo" e o numero deste arquivo dentro do jar. Quando ele sobe
+#  numa atualizacao, o plugin guarda o seu arquivo como missoes-antigo-vX.yml
+#  e escreve o modelo novo no lugar.
+Versao do modelo: 1
+
+Menu:
+  Titulo: '&8Missoes de tempo'
+  Linhas: 6
+
+  Preencher:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  #  Onde as missoes aparecem, na ordem em que estao escritas. Elas entram
+  #  ordenadas pelo tempo, da menor para a maior; o que nao couber vai para a
+  #  pagina seguinte.
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Itens:
+
+    resumo:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&e{jogador}'
+      Lore:
+        - ''
+        - '&fSeu tempo: &e{tempo}'
+        - ''
+        - '&fProntas para coletar: &a{missoes_disponiveis}'
+        - '&fJa coletadas: &7{missoes_coletadas}&8/&7{missoes_total}'
+        - ''
+
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+      Lore:
+        - '&7Pagina atual: &f{pagina}&7/&f{paginas}'
+      Acoes:
+        - 'anterior'
+
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+      Lore:
+        - '&7Pagina atual: &f{pagina}&7/&f{paginas}'
+      Acoes:
+        - 'proxima'
+
+    voltar:
+      Slot: 49
+      Material: OAK_DOOR
+      Nome: '&cVoltar'
+      Lore:
+        - '&7Volta para o menu do tempo.'
+      Acoes:
+        - 'voltar'

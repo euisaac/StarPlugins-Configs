@@ -1,0 +1,107 @@
+#  Tela principal do StarTempoJogado (/tempo, ou clique no NPC).
+#
+#  "Versao do modelo" e o numero deste arquivo dentro do jar. Quando ele sobe
+#  numa atualizacao, o plugin guarda o seu arquivo como principal-antigo-vX.yml
+#  e escreve o modelo novo no lugar -- e assim que os itens novos chegam.
+Versao do modelo: 1
+
+#  ---------------------- Como configurar um item --------------------------
+#
+#  Slot / Slots      Onde o item aparece (0 e o canto superior esquerdo).
+#  Material          Nome moderno (PLAYER_HEAD, BARRIER...). Funciona da 1.8 a 1.21.
+#  Dono              Nick de quem empresta a skin, quando o material e uma cabeca.
+#  Textura           Base64, URL ou hash de textura; tem prioridade sobre o Dono.
+#  Quantidade        Tamanho da pilha.
+#  Nome / Lore       Textos com cores &a e &#RRGGBB.
+#  Encantamentos     Lista no formato ENCANTAMENTO:NIVEL.
+#  Brilho            true deixa o item brilhando sem mostrar encantamento.
+#  Permissao         Permissao necessaria para usar o item.
+#  Esconder sem permissao   true esconde de quem nao tem a permissao acima.
+#  Acoes             O que acontece ao clicar (lista, de cima para baixo).
+#
+#  Acoes proprias deste plugin:
+#    missoes            abre a tela de missoes
+#    top                abre o top no periodo padrao do config
+#    top geral          abre o top geral
+#    top mensal         abre o top do mes
+#    top semanal        abre o top da semana
+#
+#  Acoes gerais: fechar, atualizar, comando: <cmd>, console: <cmd>, op: <cmd>,
+#         mensagem: <texto>, anuncio: <texto>, titulo: <texto<nl>subtitulo>,
+#         actionbar: <texto>, som: <SOM;volume;tom>
+#
+#  Substituicoes:
+#    {jogador}  {tempo}  {tempo_sessao}  {tempo_mensal}  {tempo_semanal}
+#    {horas}  {posicao}  {posicao_mensal}  {posicao_semanal}
+#    {missoes_disponiveis}  {missoes_coletadas}  {missoes_total}
+#  Placeholders do PlaceholderAPI funcionam em todos os textos.
+
+Menu:
+  Titulo: '&8Tempo online'
+  Linhas: 3
+
+  Preencher:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+
+    perfil:
+      Slot: 11
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&e{jogador}'
+      Lore:
+        - ''
+        - '&fSeu tempo online total:'
+        - '&8- &e{tempo}'
+        - ''
+        - '&fTempo desde o ultimo login:'
+        - '&8- &e{tempo_sessao}'
+        - ''
+        - '&fNeste mes: &e{tempo_mensal}'
+        - '&fNesta semana: &e{tempo_semanal}'
+        - ''
+        - '&fSua posicao no top geral: &a{posicao}'
+        - ''
+
+    missoes:
+      Slot: 13
+      Material: BOOK
+      Nome: '&a&lMISSOES'
+      Brilho: false
+      Lore:
+        - '&7Ganhe premios pelo tempo que voce'
+        - '&7passa no servidor.'
+        - ''
+        - '&fProntas para coletar: &a{missoes_disponiveis}'
+        - '&fJa coletadas: &7{missoes_coletadas}&8/&7{missoes_total}'
+        - ''
+        - '&eClique para abrir.'
+      Acoes:
+        - 'missoes'
+
+    top:
+      Slot: 15
+      Material: GOLD_INGOT
+      Nome: '&6&lTOP'
+      Lore:
+        - '&7Os jogadores com mais tempo online.'
+        - ''
+        - '&fGeral: &e{posicao}'
+        - '&fMensal: &e{posicao_mensal}'
+        - '&fSemanal: &e{posicao_semanal}'
+        - ''
+        - '&eClique para abrir.'
+      Acoes:
+        - 'top'
+
+    fechar:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&c&lFECHAR'
+      Lore:
+        - '&7Clique para fechar o menu.'
+      Acoes:
+        - 'fechar'

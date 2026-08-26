@@ -1,0 +1,62 @@
+#  ==========================================================================
+#                  Recompensas automaticas do StarTempoJogado
+#
+#    Diferentes das missoes: nao aparecem em menu nenhum. A cada X de tempo
+#    jogado elas caem sozinhas na mao do jogador.
+#
+#    Qual tempo faz a conta (SESSAO, TOTAL, MENSAL ou SEMANAL) esta em
+#    "Recompensas.Usar tempo" no config.yml. Com SESSAO (o padrao) a conta
+#    recomeca a cada login.
+#
+#    Esta secao e sua: o conferidor de config do loader nao repoe nem acusa o
+#    que voce mudar aqui dentro.
+#  ==========================================================================
+Versao do modelo: 1
+
+#  --------------------- O que vai em cada recompensa -----------------------
+#
+#  Intervalo         De quanto em quanto tempo ela cai.
+#                    Aceita 30m, 12h, 7d, 1d12h ou so o numero em segundos.
+#  Repetir           true entrega de novo a cada intervalo (1h, 2h, 3h...).
+#                    false entrega uma unica vez, ao bater o intervalo.
+#  Chance            0 a 100. Quando nao sorteia, o proximo intervalo comeca
+#                    a contar do mesmo jeito.
+#  Permissao         Quem recebe. Vazio ('') libera para todos.
+#
+#  Comandos          O que acontece ao receber, de cima para baixo:
+#                      console: <cmd>     roda no console (o normal)
+#                      jogador: <cmd>     roda como o proprio jogador
+#                      op: <cmd>          roda como o jogador, com op emprestado
+#                      mensagem: <texto>  manda so para ele
+#                      anuncio: <texto>   manda para o servidor todo
+#                      titulo: <texto<nl>subtitulo>
+#                      actionbar: <texto>
+#                      som: <SOM;volume;tom>
+#
+#  Substituicoes nos textos e nos comandos:
+#    {jogador}  {tempo}  {intervalo}  {vezes}
+#    {tempo_mensal}  {tempo_semanal}  {tempo_sessao}
+#  Placeholders do PlaceholderAPI funcionam em todos os textos.
+#
+#  ---------------------------------------------------------------------------
+
+Recompensas:
+
+  cada-hora:
+    Intervalo: 1h
+    Repetir: true
+    Chance: 100.0
+    Permissao: ''
+    Comandos:
+      - 'console: give {jogador} gold_ingot 2'
+      - 'actionbar: &aVoce ficou &e{intervalo} &aonline e foi recompensado!'
+      - 'som: ENTITY_PLAYER_LEVELUP;1;1'
+
+  cada-hora-vip:
+    Intervalo: 1h
+    Repetir: true
+    Chance: 100.0
+    Permissao: 'startempojogado.vip'
+    Comandos:
+      - 'console: give {jogador} diamond 1'
+      - 'mensagem: &bBonus VIP: &f1 diamante &bpela sua {vezes}a hora online.'
