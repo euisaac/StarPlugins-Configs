@@ -1,0 +1,70 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarLigas - recompensas                         ║
+#  ║   O que os clans levam quando uma liga encerra.                      ║
+#  ║                                                                      ║
+#  ║   A recompensa nao cai no inventario na hora: ela vai para o correio ║
+#  ║   do jogador (/ligas recompensas), que recolhe quando quiser. Assim  ║
+#  ║   nada se perde com o inventario cheio ou com o jogador offline.     ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+#  Cada recompensa tem:
+#    Icone     - como ela aparece no correio
+#    Item      - o item entregue (apague a secao para nao dar item)
+#    Comandos  - rodados no console; {jogador} {tag} {nome} {quantia}
+#
+#  Placeholders no icone: {quantia} {liga} {posicao}
+Recompensas:
+  ferro-vencedor:
+    Icone:
+      Material: 'IRON_BLOCK'
+      Nome: '&f&lPREMIO DA LIGA DE FERRO'
+      Lore:
+        - '&7Voce venceu a liga de ferro.'
+        - '&r'
+        - '&7Quantidade: &f{quantia}'
+        - '&r'
+        - '&a&lCLIQUE &fpara recolher'
+        - '&c&lCLIQUE DIREITO &fpara descartar'
+    Item:
+      Material: 'IRON_BLOCK'
+      Quantidade: 64
+      Nome: '&f&lRECOMPENSA DA LIGA'
+      Lore:
+        - '&7Premio da liga de ferro.'
+    Comandos: []
+
+  diamante:
+    Icone:
+      Material: 'DIAMOND'
+      Nome: '&b&lDIAMANTES'
+      Lore:
+        - '&7Um punhado de diamantes.'
+        - '&r'
+        - '&7Quantidade: &f{quantia}'
+        - '&r'
+        - '&a&lCLIQUE &fpara recolher'
+        - '&c&lCLIQUE DIREITO &fpara descartar'
+    Item:
+      Material: 'DIAMOND'
+      Quantidade: 32
+      Nome: '&b&lDIAMANTE'
+      Lore: []
+    Comandos: []
+
+  dinheiro:
+    Icone:
+      Material: 'GOLD_INGOT'
+      Nome: '&6&lPREMIO EM DINHEIRO'
+      Lore:
+        - '&7Dinheiro direto na conta.'
+        - '&r'
+        - '&7Quantidade: &f{quantia}'
+        - '&r'
+        - '&a&lCLIQUE &fpara recolher'
+        - '&c&lCLIQUE DIREITO &fpara descartar'
+    # Sem a secao "Item", so os comandos rodam.
+    Comandos:
+      - 'eco give {jogador} 100000'

@@ -1,0 +1,264 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                         StarLigas - menus                            ║
+#  ║   Slot -1 esconde o botao. "Material: {jogador}" vira a cabeca do    ║
+#  ║   jogador da vez.                                                    ║
+#  ║                                                                      ║
+#  ║   Os icones das ligas ficam no ligas.yml: cada liga tem os proprios. ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+#
+# ═══════════════════════════  MENU DAS LIGAS  ═════════════════════════════
+#
+Menu das ligas:
+  Titulo: '&8Ligas de clans'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lNENHUMA LIGA'
+    Lore:
+      - '&7O servidor ainda nao tem ligas.'
+
+  Botoes:
+    Perfil:
+      Slot: 49
+      Material: '{jogador}'
+      Nome: '&6&l{jogador}'
+      Lore:
+        - '&r'
+        - '&7Clan: &f{clan}'
+        - '&7Pontos do clan: &a{pontos}'
+        - '&7Rank: &f{rank}'
+        - '&r'
+    Recompensas:
+      Slot: 48
+      Material: 'CHEST'
+      Nome: '&e&lRECOMPENSAS'
+      Lore:
+        - '&7Os premios esperando por voce.'
+        - '&r'
+        - '&7Esperando: &f{recompensas}'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+    Historico:
+      Slot: 50
+      Material: 'BOOK'
+      Nome: '&e&lHISTORICO'
+      Lore:
+        - '&7As ligas que ja acabaram.'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Voltar:
+      # -1 esconde; o menu das ligas e a primeira tela do plugin.
+      Slot: -1
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ══════════════════════════════  PLACAR  ══════════════════════════════════
+#
+Menu do placar:
+  Titulo: '&8Placar &7» &f{liga}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Clan:
+    Material: 'SHIELD'
+    Nome: '&6&l#{posicao} &b{clan}'
+    Lore:
+      - '&r'
+      - '&7Pontos: &a{pontos}'
+      - '&7Lider: &f{lider}'
+      - '&7Membros: &f{membros}'
+      - '&7Entrou em: &f{entrou}'
+      - '&r'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lPLACAR VAZIO'
+    Lore:
+      - '&7Ninguem pontuou nesta liga ainda.'
+
+  Botoes:
+    Mercado:
+      Slot: 48
+      Material: 'EMERALD'
+      Nome: '&a&lMERCADO DA LIGA'
+      Lore:
+        - '&7Troque os pontos do clan'
+        - '&7por itens exclusivos.'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+    Sua posicao:
+      Slot: 50
+      Material: '{jogador}'
+      Nome: '&6&lSEU CLAN'
+      Lore:
+        - '&r'
+        - '&7Clan: &f{clan}'
+        - '&7Pontos: &a{pontos_do_clan}'
+        - '&7Posicao: &f#{posicao_do_clan}'
+        - '&r'
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ════════════════════════════  RECOMPENSAS  ═══════════════════════════════
+#
+Menu de recompensas:
+  Titulo: '&8Suas recompensas'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lNADA POR AQUI'
+    Lore:
+      - '&7Voce nao tem recompensas'
+      - '&7esperando no momento.'
+
+  Botoes:
+    Recolher tudo:
+      Slot: 48
+      Material: 'HOPPER'
+      Nome: '&a&lRECOLHER TUDO'
+      Lore:
+        - '&7Recolhe tudo o que couber'
+        - '&7no seu inventario.'
+        - '&r'
+        - '&a&lCLIQUE &fpara recolher'
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ══════════════════════════════  MERCADO  ═════════════════════════════════
+#
+Menu do mercado:
+  Titulo: '&8Mercado &7» &f{liga}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Pontos:
+      Slot: 22
+      Material: 'NETHER_STAR'
+      Nome: '&b&lPONTOS DO CLAN'
+      Lore:
+        - '&r'
+        - '&7Disponiveis: &b{pontos_do_clan}'
+        - '&r'
+        - '&8Comprar gasta pontos do placar.'
+    Voltar:
+      Slot: 18
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ═════════════════════════════  HISTORICO  ════════════════════════════════
+#
+Menu do historico:
+  Titulo: '&8Ligas encerradas'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Registro:
+    Material: 'PAPER'
+    Nome: '&6&l{liga}'
+    Lore:
+      - '&r'
+      - '&7Encerrada em: &f{data}'
+      - '&r'
+      - '&7Colocacoes:'
+      - '{colocacoes}'
+      - '&r'
+
+  Linha da colocacao: '&7 &f{posicao}) &b{clan} &8- &a{pontos}'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lSEM HISTORICO'
+    Lore:
+      - '&7Nenhuma liga foi encerrada ainda.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []

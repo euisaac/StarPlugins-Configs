@@ -1,0 +1,149 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                        StarClans - mercado                           ║
+#  ║   A loja interna do clan: melhorias compradas com o dinheiro do      ║
+#  ║   jogador ou com o dinheiro guardado no banco do clan.               ║
+#  ║                                                                      ║
+#  ║   Apagar um item daqui simplesmente tira ele do menu.                ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Menu:
+  Titulo: '&8Mercado &7» &f{nome}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+  Voltar:
+    Slot: 22
+    Material: 'ARROW'
+    Nome: '&c&lVOLTAR'
+    Lore: []
+
+#  Cada item tem:
+#    Slot        - onde fica no menu
+#    Preco       - quanto custa
+#    Pagar com   - JOGADOR (a carteira de quem clicou) ou CLAN (o banco do clan)
+#    Permissao   - '' libera a todos
+#    Acao        - o que acontece na compra:
+#                    EXPANDIR_BAU, EXPANDIR_MEMBROS, EXPANDIR_ALIADOS,
+#                    EXPANDIR_RIVAIS, RESETAR_KDR, VERIFICAR, COR_HEX,
+#                    COMANDOS (so roda a lista de Comandos)
+#    Comandos    - rodados no console; placeholders {jogador} {tag} {nome}
+#
+#  Placeholders na lore: {preco} {moeda} {tag} {nome} {membros} {aliados}
+#                        {rivais} {linhas} {banco}
+Itens:
+  expandir-membros:
+    Slot: 10
+    Preco: 25000.0
+    Pagar com: CLAN
+    Permissao: ''
+    Acao: EXPANDIR_MEMBROS
+    Comandos: []
+    Display:
+      Material: 'BRICK'
+      Nome: '&a&lMAIS UMA VAGA DE MEMBRO'
+      Lore:
+        - '&7Aumenta em &f1 &7o limite de'
+        - '&7membros do clan.'
+        - '&r'
+        - '&7Vagas agora: &f{membros}'
+        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&r'
+        - '&a&lCLIQUE &fpara comprar'
+
+  expandir-bau:
+    Slot: 11
+    Preco: 50000.0
+    Pagar com: CLAN
+    Permissao: ''
+    Acao: EXPANDIR_BAU
+    Comandos: []
+    Display:
+      Material: 'CHEST'
+      Nome: '&a&lMAIS UMA LINHA DE BAU'
+      Lore:
+        - '&7Aumenta em &f1 &7o numero de'
+        - '&7linhas do bau do clan.'
+        - '&r'
+        - '&7Linhas agora: &f{linhas}'
+        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&r'
+        - '&a&lCLIQUE &fpara comprar'
+
+  expandir-aliados:
+    Slot: 12
+    Preco: 15000.0
+    Pagar com: CLAN
+    Permissao: ''
+    Acao: EXPANDIR_ALIADOS
+    Comandos: []
+    Display:
+      Material: 'QUARTZ'
+      Nome: '&a&lMAIS UMA VAGA DE ALIADO'
+      Lore:
+        - '&7Aumenta em &f1 &7o limite de'
+        - '&7aliancas do clan.'
+        - '&r'
+        - '&7Vagas agora: &f{aliados}'
+        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&r'
+        - '&a&lCLIQUE &fpara comprar'
+
+  expandir-rivais:
+    Slot: 13
+    Preco: 15000.0
+    Pagar com: CLAN
+    Permissao: ''
+    Acao: EXPANDIR_RIVAIS
+    Comandos: []
+    Display:
+      Material: 'NETHER_WART'
+      Nome: '&a&lMAIS UMA VAGA DE RIVAL'
+      Lore:
+        - '&7Aumenta em &f1 &7o limite de'
+        - '&7rivalidades do clan.'
+        - '&r'
+        - '&7Vagas agora: &f{rivais}'
+        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&r'
+        - '&a&lCLIQUE &fpara comprar'
+
+  resetar-kdr:
+    Slot: 14
+    Preco: 100000.0
+    Pagar com: CLAN
+    Permissao: ''
+    Acao: RESETAR_KDR
+    Comandos: []
+    Display:
+      Material: 'NETHER_STAR'
+      Nome: '&a&lZERAR O KDR'
+      Lore:
+        - '&7Zera os abates e as mortes'
+        - '&7de todo o clan.'
+        - '&r'
+        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&r'
+        - '&a&lCLIQUE &fpara comprar'
+
+  cor-hex:
+    Slot: 16
+    Preco: 250000.0
+    Pagar com: CLAN
+    Permissao: ''
+    Acao: COR_HEX
+    Comandos: []
+    Display:
+      Material: 'NAME_TAG'
+      Nome: '&a&lTAG COM GRADIENTE'
+      Lore:
+        - '&7Libera as cores hex e o gradiente'
+        - '&7na tag do clan.'
+        - '&r'
+        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&r'
+        - '&a&lCLIQUE &fpara comprar'

@@ -1,0 +1,411 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                              StarClans                               ║
+#  ║   Clans com tag colorida, cargos, bau, banco, base, aliados,         ║
+#  ║   rivais, boletins, mercado e top.                                   ║
+#  ║                                                                      ║
+#  ║   Os cargos ficam no cargos.yml, as cores da tag no cores.yml, o     ║
+#  ║   mercado no mercado.yml e os textos no mensagens.yml.               ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Geral:
+  # Mostra no console detalhes uteis so para achar problema.
+  Debug: false
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre servidores).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starclans_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  #  De quantos em quantos segundos o que mudou vai para o banco, em lote.
+  #  O desligamento grava tudo de novo, entao baixar demais nao protege nada.
+  Salvar a cada: 60
+
+Clan:
+  #  Valores com que um clan nasce. O lider muda depois pelo menu, ate o
+  #  limite definido em "Limites".
+  Padrao:
+    # Cor das letras da tag; a lista de cores esta no cores.yml.
+    Cor da tag: '&7'
+    Descricao: 'Nenhuma descricao configurada.'
+    # Quantos membros cabem no clan.
+    Membros: 10
+    Aliados: 10
+    Rivais: 10
+    # Linhas do bau compartilhado (1 a 6).
+    Linhas do bau: 1
+    # Clan ja nasce verificado? Ver a secao "Verificacao".
+    Verificado: false
+    #  PRIVADO  - so entra quem for convidado
+    #  PEDIDO   - o jogador solicita e o clan aceita
+    #  PUBLICO  - qualquer um entra pelo menu
+    Tipo de entrada: PRIVADO
+
+Limites:
+  # Ate onde o clan pode expandir cada coisa (pelo mercado ou por item especial).
+  Maximo de membros: 100
+  Maximo de aliados: 100
+  Maximo de rivais: 100
+  Maximo de linhas do bau: 6
+
+  Tag:
+    Minimo de letras: 3
+    Maximo de letras: 3
+    #  Quais caracteres a tag aceita. O padrao e so letra e numero -- soltar
+    #  isso deixa passar simbolo que nem toda fonte desenha.
+    Caracteres: '[0-9a-zA-Z]*'
+    #  MAIUSCULA, MINUSCULA ou LIVRE (respeita o que o jogador digitou).
+    Formato: LIVRE
+    # Tags que ninguem pode usar; escreva em minusculo.
+    Bloqueadas: [ 'stf', 'tse', 'gov', 'adm', 'mod' ]
+
+  Nome:
+    Minimo de letras: 3
+    Maximo de letras: 16
+    Caracteres: '[0-9a-zA-Z _]*'
+    # Palavras proibidas no nome; escreva em minusculo.
+    Bloqueadas: []
+
+  Descricao:
+    Minimo de letras: 3
+    Maximo de letras: 40
+    Caracteres: '[0-9a-zA-Z _.,!?-]*'
+
+  Tag propria:
+    #  A "tag propria" e o apelido que o membro usa dentro do clan; aparece
+    #  no lugar da tag do clan no chat quando o cargo dele permite.
+    Minimo de letras: 3
+    Maximo de letras: 16
+    Caracteres: '[0-9a-zA-Z _&]*'
+
+  Boletim:
+    Maximo de letras: 100
+    # Quantos boletins ficam guardados por clan.
+    Guardados: 30
+
+Economia:
+  #  VAULT fala com qualquer economia registrada la. COMANDO serve para as
+  #  economias que nao se registram no Vault: o saldo e lido por placeholder e
+  #  o dinheiro entra e sai por comando de console.
+  Tipo: VAULT
+  Simbolo da moeda: '$'
+
+  # So no modo COMANDO:
+  Placeholder do saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+  # Quanto custa criar um clan (0 desliga a cobranca).
+  Custo para criar: 100.0
+  # Quanto custa expandir o bau em uma linha.
+  Custo por linha do bau: 1000.0
+  # Devolve o dinheiro do banco do clan aos membros quando o clan e desfeito?
+  Devolver banco ao desfazer: false
+
+Entrada:
+  # Quanto tempo o jogador espera para entrar ou criar outro clan (em segundos).
+  Espera para trocar de clan: 3600
+  #  Segundos de jogo que o jogador precisa ter para criar um clan.
+  #  Vale com o StarTempoJogado instalado; 0 desliga a exigencia.
+  Tempo jogado para criar: 0
+  # Manda os boletins que o jogador nao viu quando ele entra no servidor.
+  Mostrar boletins ao entrar: true
+  # Atraso da mensagem de entrada, em ticks, para nao brigar com o bem-vindo.
+  Atraso na entrada: 60
+
+Verificacao:
+  #  O clan verificado e o que o dono do servidor liberou (por item especial ou
+  #  pelo /starclans verificar). Aqui se escolhe o que fica trancado ate la.
+  Bloquear base: true
+  Bloquear bau: true
+  Bloquear banco: true
+  Bloquear mercado: true
+  Bloquear troca de cor: true
+  Bloquear troca de nome: true
+  Bloquear troca de descricao: true
+  Bloquear alianca: true
+  Bloquear rivalidade: true
+
+Chat:
+  #  Placeholders: {tag} {tagcolorida} {nome} {cargo} {simbolo} {jogador}
+  #                {tag_propria} {mensagem}
+  Formato do clan: '&b[C] &7[{tagcolorida}&7] &b{cargo} &f{jogador}&7: &f{mensagem}'
+  Formato do aliado: '&a[A] &7[{tagcolorida}&7] &b{cargo} &f{jogador}&7: &f{mensagem}'
+  Formato do espiao no clan: '&8[C] [{tagcolorida}&8] [{nome}] [{cargo}&8] {jogador}: {mensagem}'
+  Formato do espiao aliado: '&8[A] [{tagcolorida}&8] [{nome}] [{cargo}&8] {jogador}: {mensagem}'
+
+  #  Tira negrito, italico, sublinhado, riscado e ofuscado do que o jogador
+  #  escreve. As cores continuam passando.
+  Bloquear formatacao: true
+
+  #  Um jogador so fica preso a um chat depois de usar /clanchat sem mensagem.
+  #  Deixe false para o chat travado nao existir e cada fala precisar do comando.
+  Permitir travar o chat: true
+
+  # Desliga o modo espiao de quem sai do servidor.
+  Espiao cai ao sair: false
+
+  #  Registra o formato do chat global no PlaceholderAPI ao inves de mexer no
+  #  chat: use %starclans_tag%, %starclans_tagcolorida% e afins no seu plugin
+  #  de chat. Ligar isto aqui NAO e necessario para os placeholders funcionarem.
+  Reescrever o chat global: false
+  Formato do chat global: '{tagcolorida} &f{jogador}&7: &f{mensagem}'
+
+Combate:
+  #  Fogo amigo: quando desligado, membro nao machuca membro.
+  #  Cada clan pode ligar o seu no menu; aqui ficam as excecoes do servidor.
+  Fogo amigo sempre ligado nos mundos: []
+  # Aliado tambem e protegido pelo fogo amigo?
+  Proteger aliados: true
+  # Impede que a flecha, a pocao e o lobo passem por cima da protecao.
+  Proteger de projeteis: true
+
+  #  Nao conta o abate quando a vitima ja tinha morrido para o mesmo assassino
+  #  ha menos de X segundos. 0 desliga.
+  Anti free kill: 300
+
+  # Mundos onde o KDR nao e contabilizado (arenas, lobby, eventos).
+  Mundos sem KDR: []
+  # Morte natural (queda, lava, mob) conta como morte no KDR?
+  Contar morte natural: true
+
+  # Quais abates entram no KDR.
+  Contar abate de civil: true
+  Contar abate de neutro: true
+  Contar abate de rival: true
+
+Recompensa por abate:
+  #  O que quem mata ganha, por tipo de alvo. "Civil" e quem nao tem clan,
+  #  "Neutro" e de outro clan sem relacao e "Rival" e clan rival.
+  #  Deixe o valor em 0 e o comando em '' para nao dar nada.
+  Civil:
+    Dinheiro: 1.0
+    Comandos: []
+  Neutro:
+    Dinheiro: 3.0
+    Comandos: []
+  Rival:
+    Dinheiro: 5.0
+    Comandos: []
+
+Base:
+  # Mundos onde nao da para definir a base do clan.
+  Mundos bloqueados: []
+  # Segundos parado antes do teleporte; qualquer dano cancela.
+  Atraso do teleporte: 5
+  # Cancela o teleporte se o jogador andar.
+  Cancelar ao mover: true
+  # Segundos de espera entre um teleporte e o proximo.
+  Espera entre teleportes: 30
+  # Impede o teleporte enquanto o jogador estiver em combate (em segundos).
+  Bloquear em combate: 10
+
+Bau:
+  # Deixa usar as teclas numericas dentro do bau do clan.
+  Permitir teclas numericas: false
+  # Deixa usar shift-click dentro do bau do clan.
+  Permitir shift: false
+  # Deixa quem esta no criativo mexer no bau (duplicacao de item).
+  Permitir criativo: false
+  # So estes itens entram no bau; lista vazia libera tudo. Aceita curinga (*_ORE).
+  Itens permitidos: []
+  # Estes itens nunca entram no bau. Aceita curinga.
+  Itens proibidos: []
+  # Guarda quem abriu, fechou, depositou e sacou.
+  Guardar historico: true
+  # Quantos registros de historico ficam por clan.
+  Registros guardados: 60
+
+Banco:
+  # Impede desfazer o clan enquanto houver dinheiro guardado.
+  Impedir desfazer com dinheiro: true
+  # Menor deposito aceito.
+  Deposito minimo: 1.0
+
+Top:
+  #  De quanto em quanto tempo o top e recalculado, em segundos. O calculo
+  #  ordena todos os clans, entao nao adianta baixar demais.
+  Atualizar a cada: 60
+  # Quantos clans aparecem em cada pagina do top.
+  Clans por pagina: 45
+
+  #  Etiqueta que aparece ao lado do clan que lidera cada categoria.
+  #  Deixe '' para nao marcar.
+  Etiquetas:
+    Dinheiro: '&a[$]'
+    Abates: '&c[K]'
+    KDR: '&b[%]'
+    Membros: '&e[M]'
+
+Menu:
+  #  De quantos em quantos ticks os menus abertos sao redesenhados.
+  #  20 ticks = 1 segundo. Coloque 0 para nao atualizar sozinho.
+  Atualizar a cada: 20
+
+Transferencia automatica:
+  #  Passa a lideranca adiante quando o lider some por muito tempo. Sem isso um
+  #  clan inteiro fica travado porque quem podia convidar nao volta mais.
+  Ativar: false
+  # Dias sem entrar no servidor para o lider perder o cargo.
+  Dias parado: 30
+  # De quantos em quantos minutos os lideres sao conferidos.
+  Conferir a cada: 60
+  #  CARGO    - assume quem tem o cargo mais alto
+  #  ATIVIDADE- assume quem entrou no servidor mais recentemente
+  Criterio: CARGO
+  # Avisa os membros online quando a lideranca troca.
+  Avisar membros: true
+  # Desfaz o clan quando nao sobra ninguem para assumir.
+  Desfazer sem sucessor: false
+
+Comandos ao acontecer:
+  #  Rodados no console. Placeholders: {jogador} {tag} {nome}
+  Criar clan: []
+  Desfazer clan: []
+  Entrar no clan: []
+  Sair do clan: []
+
+Itens especiais:
+  #  Itens que o dono do servidor entrega (/starclans item <tipo> <jogador>) e o
+  #  jogador usa com o clique direito. Sao a moeda das lojas de VIP.
+  Resetar KDR:
+    Material: 'NETHER_STAR'
+    Nome: '&a&lRESETAR KDR'
+    Lore:
+      - '&7Clique com o direito para zerar'
+      - '&7os abates e as mortes do seu clan.'
+  Expandir bau:
+    Material: 'CHEST'
+    Nome: '&a&lEXPANDIR BAU'
+    Lore:
+      - '&7Clique com o direito para ganhar'
+      - '&7mais uma linha no bau do clan.'
+  Expandir membros:
+    Material: 'BRICK'
+    Nome: '&a&lEXPANDIR MEMBROS'
+    Lore:
+      - '&7Clique com o direito para ganhar'
+      - '&7mais uma vaga de membro.'
+  Expandir aliados:
+    Material: 'QUARTZ'
+    Nome: '&a&lEXPANDIR ALIADOS'
+    Lore:
+      - '&7Clique com o direito para ganhar'
+      - '&7mais uma vaga de aliado.'
+  Expandir rivais:
+    Material: 'NETHER_WART'
+    Nome: '&a&lEXPANDIR RIVAIS'
+    Lore:
+      - '&7Clique com o direito para ganhar'
+      - '&7mais uma vaga de rival.'
+  Cor hex:
+    Material: 'NAME_TAG'
+    Nome: '&a&lTAG GRADIENTE'
+    Lore:
+      - '&7Clique com o direito para liberar'
+      - '&7cores hex e gradiente na tag.'
+  Verificar clan:
+    Material: 'EMERALD'
+    Nome: '&a&lVERIFICADOR DE CLAN'
+    Lore:
+      - '&7Clique com o direito para verificar'
+      - '&7o seu clan e soltar tudo que esta preso.'
+
+Tipos de entrada:
+  # Como cada tipo aparece escrito nos menus.
+  PRIVADO: 'Privado'
+  PEDIDO: 'Sob pedido'
+  PUBLICO: 'Publico'
+
+Boletins:
+  #  O boletim e o mural do clan: cada acao importante deixa um recado que os
+  #  membros leem no menu. Mensagem vazia nao gera boletim.
+  #  Placeholders: {jogador} {alvo} {tag} {nome} {descricao} {mensagem}
+  Criacao:
+    Mensagem: '&bO jogador &f{jogador} &bcriou o clan.'
+    Material: 'PAPER'
+    Nome: '&aClan criado'
+  Entrada:
+    Mensagem: '&bO jogador &f{jogador} &bentrou para o clan.'
+    Material: 'PAPER'
+    Nome: '&aJogador entrou'
+  Saida:
+    Mensagem: '&bO jogador &f{jogador} &bsaiu do clan.'
+    Material: 'PAPER'
+    Nome: '&aJogador saiu'
+  Expulsao:
+    Mensagem: '&bO jogador &f{alvo} &bfoi expulso por &f{jogador}&b.'
+    Material: 'PAPER'
+    Nome: '&aJogador expulso'
+  Troca de nome:
+    Mensagem: '&bO jogador &f{jogador} &bmudou o nome do clan para &f{nome}&b.'
+    Material: 'PAPER'
+    Nome: '&aNome alterado'
+  Troca de descricao:
+    Mensagem: '&bO jogador &f{jogador} &bmudou a descricao para &f{descricao}&b.'
+    Material: 'PAPER'
+    Nome: '&aDescricao alterada'
+  Troca de cor:
+    Mensagem: '&bO jogador &f{jogador} &bmudou a cor da tag.'
+    Material: 'PAPER'
+    Nome: '&aCor alterada'
+  Troca de lider:
+    Mensagem: '&bO jogador &f{jogador} &bpassou a lideranca para &f{alvo}&b.'
+    Material: 'PAPER'
+    Nome: '&aLideranca transferida'
+  Recado:
+    Mensagem: '{mensagem}'
+    Material: 'PAPER'
+    Nome: '&a{jogador}'
+
+Tags no chat:
+  #  Como os placeholders do PlaceholderAPI saem quando o jogador tem clan.
+  #  Sem clan todos saem vazios.
+  Tag: '&7[{tag}&7]'
+  Tag colorida: '&7[{tagcolorida}&7]'
+  Nome: '&7[{nome}&7]'
+  Cargo: '{cargo}'
+  Simbolo: '{simbolo}'
+
+Cores da relacao:
+  #  Usadas pelo placeholder relativo %rel_starclans_cor%, que colore o nick de
+  #  quem esta sendo visto conforme a relacao com quem esta vendo.
+  #
+  #  ATENCAO: e um placeholder RELATIVO do PlaceholderAPI. Para usar na tablist,
+  #  o seu plugin de tablist precisa suportar placeholders relativos.
+  #
+  #  Para testar: /papi parserel <voce> <outro> %rel_starclans_cor%NICK
+  Sem clan: '&7'
+  Voce mesmo: '&a'
+  Mesmo clan: '&a'
+  Neutro: '&c'
+  Aliado: '&2[A] &a'
+  Rival: '&4[R] &c'
+
+StarLigas:
+  #  O botao das ligas so aparece nos menus quando o StarLigas esta instalado.
+  #  Desligue aqui para escondê-lo mesmo com o produto na casa.
+  Mostrar botao: true
+  # Comando aberto pelo botao.
+  Comando: 'ligas'
+
+Formato dos numeros:
+  #  ABREVIADO mostra 1.5K; COMPLETO mostra 1.500. Vale para dinheiro e para os
+  #  numeros do top.
+  Tipo: ABREVIADO
+  Casas decimais: 2
+
+#  Sons no formato SOM;volume;tom -- o nome passa pelo XSeries, entao o mesmo
+#  nome funciona da 1.8 a 1.21. Deixe '' para nao tocar nada.
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1.2'
+  Convite: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+  Abate: 'ENTITY_ARROW_HIT_PLAYER;1;1'

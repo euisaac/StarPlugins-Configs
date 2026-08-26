@@ -1,0 +1,172 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                         StarClans - cargos                           ║
+#  ║   Os cargos que existem dentro de um clan e o que cada um pode.      ║
+#  ║                                                                      ║
+#  ║   Peso e a hierarquia: quem tem peso maior manda em quem tem menor.  ║
+#  ║   Exatamente um cargo precisa ter "Lider: true" e um "Padrao: true". ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+#  Permissoes disponiveis (use o nome exato):
+#
+#    EXPULSAR             expulsar membros de peso menor
+#    CONVIDAR             convidar jogadores
+#    ACEITAR_PEDIDO       aceitar quem solicitou entrada
+#    ACESSAR_BAU          abrir o bau do clan
+#    DEPOSITAR            por dinheiro no banco do clan
+#    SACAR                tirar dinheiro do banco do clan
+#    IR_BASE              teleportar para a base
+#    DEFINIR_BASE         definir onde fica a base
+#    APAGAR_BASE          apagar a base
+#    ALIADO_ADICIONAR     propor e aceitar aliancas
+#    ALIADO_REMOVER       desfazer aliancas
+#    RIVAL_ADICIONAR      declarar rivalidade
+#    RIVAL_REMOVER        encerrar rivalidade
+#    BOLETIM              escrever no mural do clan
+#    FOGO_AMIGO_MEMBRO    ligar e desligar o fogo amigo entre membros
+#    FOGO_AMIGO_ALIADO    ligar e desligar o fogo amigo com aliados
+#    TAG_PROPRIA          escolher a propria tag dentro do clan
+#    MUDAR_CARGO          promover e rebaixar membros de peso menor
+#    MUDAR_TAG            trocar a cor da tag do clan
+#    MUDAR_NOME           trocar o nome do clan
+#    MUDAR_DESCRICAO      trocar a descricao do clan
+#    MUDAR_ENTRADA        trocar entre privado, sob pedido e publico
+#    MERCADO              comprar no mercado do clan
+#
+#  O lider tem todas, sempre -- nao adianta tirar dele aqui.
+
+Cargos:
+  Membro:
+    Nome: 'Membro'
+    Simbolo: '&9-'
+    Peso: 10
+    Lider: false
+    # Cargo com que todo mundo entra.
+    Padrao: true
+    Item:
+      Material: 'IRON_INGOT'
+      Nome: '&f&lMEMBRO'
+    Permissoes:
+      - IR_BASE
+
+  Confiavel:
+    Nome: 'Confiavel'
+    Simbolo: '&b='
+    Peso: 50
+    Lider: false
+    Padrao: false
+    Item:
+      Material: 'GOLD_INGOT'
+      Nome: '&e&lCONFIAVEL'
+    Permissoes:
+      - IR_BASE
+      - ACESSAR_BAU
+      - DEPOSITAR
+      - TAG_PROPRIA
+
+  Capitao:
+    Nome: 'Capitao'
+    Simbolo: '&e+'
+    Peso: 100
+    Lider: false
+    Padrao: false
+    Item:
+      Material: 'DIAMOND'
+      Nome: '&b&lCAPITAO'
+    Permissoes:
+      - IR_BASE
+      - DEFINIR_BASE
+      - ACESSAR_BAU
+      - DEPOSITAR
+      - SACAR
+      - CONVIDAR
+      - ACEITAR_PEDIDO
+      - EXPULSAR
+      - BOLETIM
+      - TAG_PROPRIA
+      - MUDAR_CARGO
+
+  Lider:
+    Nome: 'Lider'
+    Simbolo: '&c#'
+    Peso: 1000
+    # Exatamente um cargo pode ser o lider.
+    Lider: true
+    Padrao: false
+    Item:
+      Material: 'NETHER_STAR'
+      Nome: '&c&lLIDER'
+    # O lider tem todas as permissoes; esta lista e ignorada.
+    Permissoes: []
+
+#  ── Exemplos ────────────────────────────────────────────────────────────
+#  Copie para dentro de "Cargos:" e ajuste o peso para encaixar na hierarquia.
+#
+#  Recruta:
+#    Nome: 'Recruta'
+#    Simbolo: '&8*'
+#    Peso: 5
+#    Lider: false
+#    Padrao: false
+#    Item:
+#      Material: 'COAL'
+#      Nome: '&8&lRECRUTA'
+#    Permissoes: []
+#
+#  Vice:
+#    Nome: 'Vice-lider'
+#    Simbolo: '&6★'
+#    Peso: 500
+#    Lider: false
+#    Padrao: false
+#    Item:
+#      Material: 'EMERALD'
+#      Nome: '&a&lVICE-LIDER'
+#    Permissoes:
+#      - IR_BASE
+#      - DEFINIR_BASE
+#      - APAGAR_BASE
+#      - ACESSAR_BAU
+#      - DEPOSITAR
+#      - SACAR
+#      - CONVIDAR
+#      - ACEITAR_PEDIDO
+#      - EXPULSAR
+#      - BOLETIM
+#      - TAG_PROPRIA
+#      - MUDAR_CARGO
+#      - ALIADO_ADICIONAR
+#      - ALIADO_REMOVER
+#      - RIVAL_ADICIONAR
+#      - RIVAL_REMOVER
+#      - FOGO_AMIGO_MEMBRO
+#      - FOGO_AMIGO_ALIADO
+#      - MERCADO
+
+#  Como cada permissao aparece escrita no menu de cargos.
+Nomes das permissoes:
+  EXPULSAR: 'Expulsar membros'
+  CONVIDAR: 'Convidar jogadores'
+  ACEITAR_PEDIDO: 'Aceitar solicitacoes'
+  ACESSAR_BAU: 'Acessar o bau'
+  DEPOSITAR: 'Depositar no banco'
+  SACAR: 'Sacar do banco'
+  IR_BASE: 'Ir para a base'
+  DEFINIR_BASE: 'Definir a base'
+  APAGAR_BASE: 'Apagar a base'
+  ALIADO_ADICIONAR: 'Fazer aliancas'
+  ALIADO_REMOVER: 'Desfazer aliancas'
+  RIVAL_ADICIONAR: 'Declarar rivais'
+  RIVAL_REMOVER: 'Encerrar rivalidades'
+  BOLETIM: 'Escrever boletins'
+  FOGO_AMIGO_MEMBRO: 'Fogo amigo dos membros'
+  FOGO_AMIGO_ALIADO: 'Fogo amigo dos aliados'
+  TAG_PROPRIA: 'Usar tag propria'
+  MUDAR_CARGO: 'Promover e rebaixar'
+  MUDAR_TAG: 'Trocar a cor da tag'
+  MUDAR_NOME: 'Trocar o nome'
+  MUDAR_DESCRICAO: 'Trocar a descricao'
+  MUDAR_ENTRADA: 'Trocar o tipo de entrada'
+  MERCADO: 'Comprar no mercado'

@@ -1,0 +1,152 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                              StarLigas                               ║
+#  ║   Ligas de clans por temporada: os clans acumulam pontos, disputam   ║
+#  ║   o placar e levam premios quando a liga encerra.                    ║
+#  ║                                                                      ║
+#  ║   As ligas ficam no ligas.yml, os premios no recompensas.yml e os    ║
+#  ║   ranks de pontos no ranks.yml.                                      ║
+#  ║                                                                      ║
+#  ║   Precisa do StarClans instalado: sem clans nao ha o que disputar.   ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Geral:
+  # Mostra no console detalhes uteis so para achar problema.
+  Debug: false
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre servidores).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starligas_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  #  De quantos em quantos segundos o que mudou vai para o banco, em lote.
+  #  O desligamento grava tudo de novo, entao baixar demais nao protege nada.
+  Salvar a cada: 60
+
+Participacao:
+  # So o lider do clan pode inscrever o clan numa liga.
+  Apenas o lider: true
+  #  Inscreve automaticamente todo clan que ja tem pontos quando a liga comeca.
+  #  Vale so para as ligas com "Inscrever automatico: true" no ligas.yml.
+  Avisar ao inscrever: true
+
+Pontos:
+  #  Quanto cada acao vale para o clan de quem fez. Valor negativo tira pontos.
+  #  Deixe 0 para a acao nao valer nada.
+
+  # Ao matar outro jogador.
+  Matar jogador: 1.0
+  # Ao morrer (de qualquer jeito).
+  Morrer: -1.0
+  # Ao matar um jogador de um clan rival, alem do "Matar jogador".
+  Bonus por rival: 1.0
+
+  # Ao pescar qualquer coisa.
+  Pescar: 0.3
+
+  #  Ao matar um mob. "PADRAO" vale para todo mob que nao estiver na lista.
+  #  Os nomes sao os do Bukkit e passam pelo XSeries, entao o mesmo nome
+  #  funciona da 1.8 a 1.21.
+  Matar mobs:
+    PADRAO: 0.0
+    ZOMBIE: 0.05
+    SKELETON: 0.05
+    CREEPER: 0.1
+    ENDERMAN: 0.2
+    BLAZE: 0.2
+    WITHER: 25.0
+    ENDER_DRAGON: 50.0
+
+  #  Ao quebrar um bloco. Aceita curinga: '*_ORE' vale para todos os minerios.
+  #  Bloco colocado por jogador nunca conta -- ver "Anti abuso".
+  Quebrar blocos:
+    '*_ORE': 0.1
+    ANCIENT_DEBRIS: 2.0
+
+Anti abuso:
+  #  Bloco colocado por um jogador nao pontua quando for quebrado. Sem isto,
+  #  colocar e quebrar a mesma pedra seria uma fabrica de pontos.
+  Ignorar blocos colocados: true
+  #  Quantos blocos colocados ficam na memoria. Passando disso, o mais antigo
+  #  sai da lista -- em servidor de construcao esse numero precisa ser alto.
+  Blocos lembrados: 200000
+
+  #  Nao conta o abate quando o mesmo assassino ja tinha matado a mesma vitima
+  #  ha menos de X segundos. 0 desliga.
+  Anti free kill: 300
+
+  # Mundos onde nada pontua (lobby, arenas, eventos).
+  Mundos bloqueados: []
+
+  #  Nao pontua quando os dois jogadores estao no mesmo clan ou sao aliados:
+  #  senao um clan farmaria pontos matando os proprios membros.
+  Ignorar mesmo clan: true
+
+Avisos:
+  #  Mostra na actionbar quanto o clan ganhou a cada acao.
+  #  Deixe desligado em liga de mineracao: sao muitos blocos por segundo.
+  Mostrar ganho na actionbar: false
+  # Espacamento minimo entre dois avisos de ganho, em segundos.
+  Intervalo do ganho: 3
+
+  # Avisa quem entra no servidor que tem recompensa esperando.
+  Avisar recompensas pendentes: true
+  # Atraso do aviso, em ticks, para nao brigar com a mensagem de bem-vindo.
+  Atraso na entrada: 60
+
+Placar:
+  #  De quanto em quanto tempo o placar e reordenado, em segundos.
+  #  E este numero que aparece como "o placar atualiza a cada X segundos".
+  Atualizar a cada: 60
+  # Quantos clans cabem em cada pagina do placar (entre 9 e 45).
+  Clans por pagina: 45
+  # Quantas colocacoes vao para o historico quando a liga encerra.
+  Colocacoes guardadas: 10
+
+Recompensas:
+  #  Limite de itens recolhidos de uma vez pelo botao "recolher tudo".
+  #  Sem limite, um jogador com milhares de premios travaria o servidor.
+  Maximo por vez: 1000
+  # Quantas recompensas ficam guardadas por jogador.
+  Guardadas: 500
+
+Menu:
+  #  De quantos em quantos ticks os menus abertos sao redesenhados.
+  #  20 ticks = 1 segundo. Coloque 0 para nao atualizar sozinho.
+  Atualizar a cada: 20
+
+Ciclo:
+  #  De quantos em quantos segundos as datas das ligas sao conferidas.
+  #  E o relogio que inicia e encerra as ligas na hora certa.
+  Conferir a cada: 10
+
+Economia:
+  #  VAULT fala com qualquer economia registrada la. COMANDO serve para as
+  #  economias que nao se registram no Vault: o saldo e lido por placeholder e
+  #  o dinheiro sai por comando de console.
+  Tipo: VAULT
+  Simbolo da moeda: '$'
+
+  # So no modo COMANDO:
+  Placeholder do saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Formato dos numeros:
+  #  ABREVIADO mostra 1.5K; COMPLETO mostra 1.500.
+  Tipo: COMPLETO
+  Casas decimais: 1
+
+#  Sons no formato SOM;volume;tom -- o nome passa pelo XSeries, entao o mesmo
+#  nome funciona da 1.8 a 1.21. Deixe '' para nao tocar nada.
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1.2'
+  Premio: 'ENTITY_PLAYER_LEVELUP;1;1.2'

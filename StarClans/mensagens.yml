@@ -1,0 +1,375 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                       StarClans - mensagens                          ║
+#  ║   Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso ║
+#  ║   sem precisar de uma opcao para cada um.                            ║
+#  ║   Aceita &a e tambem hex no formato &#RRGGBB (1.16+).                ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Prefixo: '&b&lCLANS &8» &f'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar este comando.'
+  Uso: '&cUso: &f{uso}'
+  Numero invalido: '&cO valor &f{valor} &cnao e um numero.'
+  Valor invalido: '&cValor invalido.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Clan nao encontrado: '&cNenhum clan encontrado com &f{clan}&c.'
+  Sem clan: '&cVoce nao esta em nenhum clan.'
+  Ja tem clan: '&cVoce ja esta em um clan.'
+  Alvo sem clan: '&cO jogador &f{jogador} &cnao esta em nenhum clan.'
+  Sem permissao no clan: '&cO seu cargo no clan nao permite isso.'
+  So o lider: '&cSo o lider do clan pode fazer isso.'
+  Nao pode em si mesmo: '&cVoce nao pode fazer isso com voce mesmo.'
+  Cargo maior: '&cVoce nao pode fazer isso com alguem do mesmo cargo ou maior.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Erro no banco: '&cNao foi possivel falar com o banco de dados. Avise a equipe.'
+  Aguarde: '&cAguarde &f{tempo} &cpara fazer isso de novo.'
+  Nao verificado: '&cO seu clan precisa estar verificado para usar isso.'
+  Subcomando desconhecido: '&cSubcomando desconhecido. Use &f/{comando} ajuda&c.'
+
+Etiquetas:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ninguem: 'ninguem'
+  Sem base: 'nao definida'
+  Sem descricao: 'sem descricao'
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Online: '&aonline'
+  Offline: '&coffline'
+
+Ajuda:
+  Jogador: |
+    &r
+    &b&lCOMANDOS DO CLAN
+    &r
+    &b› &f/clan &8- &7abre o menu do clan
+    &b› &f/clan criar <tag> <nome> &8- &7cria um clan
+    &b› &f/clan info [clan/jogador] &8- &7mostra as informacoes
+    &b› &f/clan online &8- &7lista os clans com gente online
+    &b› &f/clan top &8- &7mostra o ranking dos clans
+    &b› &f/clan convidar <jogador> &8- &7convida alguem
+    &b› &f/clan convites &8- &7lista os seus convites
+    &b› &f/clan aceitar <clan> &8- &7aceita um convite
+    &b› &f/clan solicitar <clan> &8- &7pede para entrar
+    &b› &f/clan sair &8- &7sai do clan
+    &b› &f/clan desfazer &8- &7desfaz o clan
+    &r
+    &b› &f/clan membros &8- &7lista os membros
+    &b› &f/clan cargos &8- &7gerencia os cargos
+    &b› &f/clan expulsar <jogador> &8- &7expulsa um membro
+    &b› &f/clan transferir <jogador> &8- &7passa a lideranca
+    &r
+    &b› &f/clan base &8- &7vai para a base do clan
+    &b› &f/clan bau &8- &7abre o bau do clan
+    &b› &f/clan banco &8- &7abre o banco do clan
+    &b› &f/clan mercado &8- &7abre o mercado do clan
+    &b› &f/clan boletins &8- &7le o mural do clan
+    &r
+    &b› &f/clan cor &8- &7troca a cor da tag
+    &b› &f/clan nome <nome> &8- &7troca o nome
+    &b› &f/clan descricao <texto> &8- &7troca a descricao
+    &b› &f/clan aliados &8- &7gerencia as aliancas
+    &b› &f/clan rivais &8- &7gerencia as rivalidades
+    &b› &f/clan fogoamigo &8- &7liga e desliga o fogo amigo
+    &r
+    &b› &f/cc <mensagem> &8- &7fala no chat do clan
+    &b› &f/ac <mensagem> &8- &7fala no chat dos aliados
+    &r
+  Admin: |
+    &r
+    &b&lCOMANDOS ADMINISTRATIVOS
+    &r
+    &b› &f/starclans recarregar &8- &7recarrega os arquivos
+    &b› &f/starclans info &8- &7estado do plugin
+    &b› &f/starclans deletar <clan> &8- &7apaga um clan
+    &b› &f/starclans verificar <clan> &8- &7verifica um clan
+    &b› &f/starclans desverificar <clan> &8- &7tira a verificacao
+    &b› &f/starclans definirlider <clan> <jogador> &8- &7troca o lider
+    &b› &f/starclans item <tipo> <jogador> [quantia] &8- &7da um item especial
+    &b› &f/starclans membros <clan> <quantia> &8- &7define as vagas de membro
+    &b› &f/starclans aliados <clan> <quantia> &8- &7define as vagas de aliado
+    &b› &f/starclans rivais <clan> <quantia> &8- &7define as vagas de rival
+    &b› &f/starclans bau <clan> <linhas> &8- &7define as linhas do bau
+    &b› &f/starclans banco <clan> <valor> &8- &7define o dinheiro do clan
+    &b› &f/starclans resetarkdr <clan> &8- &7zera abates e mortes
+    &b› &f/starclans entrar <clan> <jogador> &8- &7poe alguem no clan
+    &b› &f/starclans sair <jogador> &8- &7tira alguem do clan
+    &b› &f/starclans salvar &8- &7grava tudo agora
+    &r
+
+Criar:
+  Sucesso: '&aClan &f{tagcolorida} &acriado! Use &f/clan &apara gerenciar.'
+  Anuncio: '&bO clan &f{tagcolorida} &bfoi criado por &f{jogador}&b.'
+  Uso: '&cUso: &f/clan criar <tag> <nome>'
+  Tag em uso: '&cJa existe um clan com a tag &f{tag}&c.'
+  Nome em uso: '&cJa existe um clan com o nome &f{nome}&c.'
+  Tag invalida: '&cA tag so aceita estes caracteres: &f{caracteres}'
+  Nome invalido: '&cO nome so aceita estes caracteres: &f{caracteres}'
+  Tag curta: '&cA tag precisa de pelo menos &f{minimo} &cletras.'
+  Tag longa: '&cA tag pode ter no maximo &f{maximo} &cletras.'
+  Nome curto: '&cO nome precisa de pelo menos &f{minimo} &cletras.'
+  Nome longo: '&cO nome pode ter no maximo &f{maximo} &cletras.'
+  Tag bloqueada: '&cEssa tag nao pode ser usada.'
+  Nome bloqueado: '&cEsse nome nao pode ser usado.'
+  Sem dinheiro: '&cVoce precisa de &f{moeda}{valor} &cpara criar um clan.'
+  Cobrado: '&7Foram descontados &f{moeda}{valor} &7da sua conta.'
+  Espera: '&cVoce saiu de um clan ha pouco. Espere &f{tempo}&c.'
+  Tempo jogado: '&cVoce precisa de &f{tempo} &cde jogo para criar um clan.'
+
+Desfazer:
+  Confirmar: '&eIsso apaga o clan para todo mundo. Use &f/clan desfazer confirmar &epara continuar.'
+  Sucesso: '&aO clan foi desfeito.'
+  Anuncio: '&bO clan &f{tagcolorida} &bfoi desfeito.'
+  Com dinheiro: '&cSaque o dinheiro do banco do clan antes de desfaze-lo. Guardado: &f{moeda}{valor}'
+  Aviso aos membros: '&cO clan &f{tagcolorida} &cfoi desfeito por &f{jogador}&c.'
+
+Entrada:
+  Entrou: '&aVoce entrou no clan &f{tagcolorida}&a.'
+  Anuncio de entrada: '&bO jogador &f{jogador} &bentrou no clan &f{tagcolorida}&b.'
+  Aviso ao clan de entrada: '&aO jogador &f{jogador} &aentrou no clan.'
+  Saiu: '&aVoce saiu do clan &f{tagcolorida}&a.'
+  Anuncio de saida: '&bO jogador &f{jogador} &bsaiu do clan &f{tagcolorida}&b.'
+  Aviso ao clan de saida: '&cO jogador &f{jogador} &csaiu do clan.'
+  Lider nao sai: '&cPasse a lideranca para outra pessoa antes de sair.'
+  Clan cheio: '&cO clan esta cheio ({membros}/{maximo}).'
+  Fechado: '&cEsse clan so aceita quem for convidado.'
+  So por pedido: '&cEsse clan so aceita quem solicitar entrada. Use &f/clan solicitar {tag}&c.'
+  Espera para entrar: '&cVoce saiu de um clan ha pouco. Espere &f{tempo}&c.'
+
+Convite:
+  Enviado: '&aConvite enviado para &f{jogador}&a.'
+  Recebido: |
+    &r
+    &b&lCONVITE DE CLAN
+    &7O clan &f{tagcolorida} &7(&f{nome}&7) convidou voce.
+    &aUse &f/clan aceitar {tag} &apara entrar ou &f/clan negar {tag} &apara recusar.
+    &r
+  Aviso ao clan: '&aO jogador &f{jogador} &afoi convidado por &f{convidou}&a.'
+  Ja convidado: '&cO jogador &f{jogador} &cja tem um convite deste clan.'
+  Alvo ja tem clan: '&cO jogador &f{jogador} &cja esta em um clan.'
+  Nenhum convite: '&cVoce nao tem convite deste clan.'
+  Sem convites: '&cVoce nao tem nenhum convite no momento.'
+  Negado: '&aVoce recusou o convite do clan &f{tagcolorida}&a.'
+  Aviso de negado: '&cO jogador &f{jogador} &crecusou o convite.'
+  Expirado: '&cEsse convite nao vale mais.'
+
+Solicitacao:
+  Enviada: '&aSolicitacao enviada ao clan &f{tagcolorida}&a.'
+  Recebida: '&aO jogador &f{jogador} &asolicitou entrada no clan.'
+  Ja enviada: '&cVoce ja solicitou entrada nesse clan.'
+  Nao aceita: '&cEsse clan nao aceita solicitacoes.'
+  Aceita: '&aVoce aceitou a solicitacao de &f{jogador}&a.'
+  Negada: '&aVoce recusou a solicitacao de &f{jogador}&a.'
+  Aviso de aceita: '&aA sua solicitacao ao clan &f{tagcolorida} &afoi aceita!'
+  Aviso de negada: '&cA sua solicitacao ao clan &f{tagcolorida} &cfoi recusada.'
+  Sem solicitacoes: '&cNao ha nenhuma solicitacao pendente.'
+  Nenhuma: '&cNao ha solicitacao desse jogador.'
+
+Expulsar:
+  Sucesso: '&aVoce expulsou &f{jogador} &ado clan.'
+  Aviso ao clan: '&cO jogador &f{alvo} &cfoi expulso por &f{jogador}&c.'
+  Aviso ao expulso: '&cVoce foi expulso do clan &f{tagcolorida}&c.'
+  Nao e do clan: '&cO jogador &f{jogador} &cnao e do seu clan.'
+
+Cargo:
+  Alterado: '&aO cargo de &f{jogador} &aagora e &f{cargo}&a.'
+  Aviso ao alterado: '&aO seu cargo no clan agora e &f{cargo}&a.'
+  Aviso ao clan: '&aO jogador &f{jogador} &aagora e &f{cargo}&a.'
+  Nao existe: '&cNao existe o cargo &f{cargo}&c. Disponiveis: &7{cargos}'
+  Nao pode lider: '&cUse &f/clan transferir &cpara passar a lideranca.'
+  Permissao alterada: '&aO cargo &f{cargo} &aagora &f{estado} &apode: &f{permissao}&a.'
+
+Transferir:
+  Confirmar: '&eIsso passa a lideranca para &f{jogador}&e. Use &f/clan transferir {jogador} confirmar&e.'
+  Sucesso: '&aVoce passou a lideranca para &f{jogador}&a.'
+  Aviso ao novo: '&aVoce agora e o lider do clan &f{tagcolorida}&a.'
+  Aviso ao clan: '&aO jogador &f{jogador} &apassou a lideranca para &f{alvo}&a.'
+  Automatica: '&eO lider ficou &f{dias} &edias sem entrar; a lideranca passou para &f{jogador}&e.'
+
+Tag:
+  Cor alterada: '&aA cor da tag agora e &f{cor}exemplo&a.'
+  Cor nao existe: '&cEssa cor nao existe.'
+  Sem permissao na cor: '&cVoce nao tem permissao para usar essa cor.'
+  Sem hex: '&cO seu clan ainda nao pode usar cores hex ou gradiente.'
+  Nome alterado: '&aO nome do clan agora e &f{nome}&a.'
+  Descricao alterada: '&aA descricao do clan foi alterada.'
+  Descricao invalida: '&cA descricao so aceita estes caracteres: &f{caracteres}'
+  Descricao curta: '&cA descricao precisa de pelo menos &f{minimo} &cletras.'
+  Descricao longa: '&cA descricao pode ter no maximo &f{maximo} &cletras.'
+  Tag propria alterada: '&aA sua tag dentro do clan agora e &f{tag}&a.'
+  Tag propria removida: '&aVoce voltou a usar a tag do clan.'
+  Tag propria invalida: '&cA sua tag so aceita estes caracteres: &f{caracteres}'
+  Tag propria curta: '&cA sua tag precisa de pelo menos &f{minimo} &cletras.'
+  Tag propria longa: '&cA sua tag pode ter no maximo &f{maximo} &cletras.'
+  Entrada alterada: '&aO clan agora e &f{tipo}&a.'
+
+Aliado:
+  Proposta enviada: '&aProposta de alianca enviada ao clan &f{tagcolorida}&a.'
+  Proposta recebida: |
+    &r
+    &b&lPROPOSTA DE ALIANCA
+    &7O clan &f{tagcolorida} &7(&f{nome}&7) quer se aliar a voces.
+    &aUse &f/clan aliados &apara aceitar ou recusar.
+    &r
+  Aceita: '&aO clan &f{tagcolorida} &aagora e seu aliado.'
+  Aviso de aceita: '&aO clan &f{tagcolorida} &aaceitou a alianca!'
+  Recusada: '&cA proposta do clan &f{tagcolorida} &cfoi recusada.'
+  Aviso de recusada: '&cO clan &f{tagcolorida} &crecusou a alianca.'
+  Removida: '&cA alianca com o clan &f{tagcolorida} &cfoi desfeita.'
+  Aviso de removida: '&cO clan &f{tagcolorida} &cdesfez a alianca com voces.'
+  Ja aliado: '&cEsse clan ja e seu aliado.'
+  Nao aliado: '&cEsse clan nao e seu aliado.'
+  E rival: '&cEsse clan e seu rival. Encerre a rivalidade primeiro.'
+  Sem vaga: '&cO seu clan chegou ao limite de aliados ({aliados}/{maximo}).'
+  Sem vaga no outro: '&cO clan &f{tagcolorida} &cchegou ao limite de aliados.'
+  Proprio clan: '&cO clan nao pode ser aliado de si mesmo.'
+  Ja proposto: '&cVoces ja propuseram alianca a esse clan.'
+
+Rival:
+  Declarado: '&cO clan &f{tagcolorida} &cagora e seu rival.'
+  Aviso ao rival: '&cO clan &f{tagcolorida} &cdeclarou rivalidade com voces!'
+  Removido: '&aA rivalidade com o clan &f{tagcolorida} &afoi encerrada.'
+  Aviso de removido: '&aO clan &f{tagcolorida} &aencerrou a rivalidade com voces.'
+  Ja rival: '&cEsse clan ja e seu rival.'
+  Nao rival: '&cEsse clan nao e seu rival.'
+  E aliado: '&cEsse clan e seu aliado. Desfaca a alianca primeiro.'
+  Sem vaga: '&cO seu clan chegou ao limite de rivais ({rivais}/{maximo}).'
+  Proprio clan: '&cO clan nao pode ser rival de si mesmo.'
+
+Base:
+  Definida: '&aA base do clan foi definida aqui.'
+  Apagada: '&aA base do clan foi apagada.'
+  Sem base: '&cO clan ainda nao tem uma base definida.'
+  Mundo bloqueado: '&cNao da para definir a base neste mundo.'
+  Mundo sumiu: '&cO mundo da base do clan nao existe mais.'
+  Aguarde: '&eNao se mova por &f{segundos} &esegundos...'
+  Cancelado: '&cTeleporte cancelado.'
+  Teleportado: '&aVoce foi para a base do clan.'
+  Em combate: '&cVoce esta em combate. Espere &f{tempo}&c.'
+
+Bau:
+  Bloqueado: '&cO bau do clan esta em uso por &f{jogador}&c.'
+  Item proibido: '&cEsse item nao pode ser guardado no bau do clan.'
+  Sem historico: '&7Nenhum registro guardado.'
+  Expandido: '&aO bau do clan agora tem &f{linhas} &alinhas.'
+  Bau cheio: '&cO bau ja esta no tamanho maximo ({maximo} linhas).'
+
+Banco:
+  Depositado: '&aVoce depositou &f{moeda}{valor} &ano banco do clan.'
+  Sacado: '&aVoce sacou &f{moeda}{valor} &ado banco do clan.'
+  Aviso de deposito: '&aO jogador &f{jogador} &adepositou &f{moeda}{valor}&a.'
+  Aviso de saque: '&eO jogador &f{jogador} &esacou &f{moeda}{valor}&e.'
+  Sem dinheiro: '&cVoce nao tem &f{moeda}{valor}&c.'
+  Clan sem dinheiro: '&cO clan nao tem &f{moeda}{valor} &cguardados.'
+  Minimo: '&cO deposito minimo e de &f{moeda}{valor}&c.'
+  Uso deposito: '&cUso: &f/clan depositar <valor>'
+  Uso saque: '&cUso: &f/clan sacar <valor>'
+
+Mercado:
+  Comprado: '&aCompra feita por &f{moeda}{preco}&a.'
+  Aviso ao clan: '&aO jogador &f{jogador} &acomprou &f{item} &ano mercado.'
+  Sem dinheiro: '&cFaltam &f{moeda}{valor} &cpara essa compra.'
+  Clan sem dinheiro: '&cO banco do clan nao tem &f{moeda}{valor}&c.'
+  No limite: '&cIsso ja esta no maximo permitido.'
+  Vazio: '&cO mercado nao tem nenhum item no momento.'
+
+Fogo amigo:
+  Membros: '&aO fogo amigo entre membros agora esta {estado}&a.'
+  Aliados: '&aO fogo amigo com aliados agora esta {estado}&a.'
+  Protegido: '&cVoce nao pode machucar &f{jogador}&c.'
+
+Chat:
+  Travado no clan: '&aVoce agora fala no chat do clan. Use &f/cc &apara voltar ao normal.'
+  Travado nos aliados: '&aVoce agora fala no chat dos aliados. Use &f/ac &apara voltar ao normal.'
+  Destravado: '&aVoce voltou a falar no chat normal.'
+  Sem aliados: '&cO seu clan nao tem aliados para conversar.'
+  Espiao ligado: '&aVoce agora ve os chats de clan e de aliados.'
+  Espiao desligado: '&cVoce parou de ver os chats de clan.'
+
+Boletim:
+  Escrito: '&aBoletim publicado no mural do clan.'
+  Vazio: '&cO mural do clan esta vazio.'
+  Longo: '&cO boletim pode ter no maximo &f{maximo} &cletras.'
+  Uso: '&cUso: &f/clan boletins <mensagem>'
+  Nao lidos: '&bO clan tem &f{quantia} &bboletim(ns) que voce ainda nao leu. Use &f/clan boletins&b.'
+
+Abate:
+  Civil: '&7Voce abateu &f{jogador} &7(sem clan).'
+  Neutro: '&7Voce abateu &f{jogador} &7do clan &f{tagcolorida}&7.'
+  Rival: '&cVoce abateu &f{jogador} &cdo clan rival &f{tagcolorida}&c!'
+  Recompensa: '&aVoce ganhou &f{moeda}{valor} &apelo abate.'
+  Free kill: '&cVoce abateu esse jogador ha pouco; o abate nao contou.'
+
+Verificacao:
+  Verificado: '&aO clan &f{tagcolorida} &afoi verificado!'
+  Desverificado: '&cO clan &f{tagcolorida} &cnao esta mais verificado.'
+  Aviso ao clan: '&aO clan foi verificado e tudo esta liberado!'
+
+Item especial:
+  Recebido: '&aVoce recebeu &f{item}&a.'
+  Entregue: '&aVoce entregou &f{item} &apara &f{jogador}&a.'
+  Usado: '&aItem usado com sucesso.'
+  Inventario cheio: '&cO inventario de &f{jogador} &cesta cheio.'
+  Tipo invalido: '&cTipo invalido. Disponiveis: &7{tipos}'
+  No limite: '&cO seu clan ja esta no maximo permitido.'
+
+Top:
+  Cabecalho: |
+    &r
+    &b&lTOP CLANS &7({categoria})
+    &r
+  Linha: '&7 › &b#{posicao} &f{tagcolorida} &7{nome} &8- &f{valor}'
+  Vazio: '&cNenhum clan cadastrado ainda.'
+  Categoria invalida: '&cCategoria invalida. Disponiveis: &7{categorias}'
+
+Info:
+  Clan: |
+    &r
+    &b&l{tagcolorida} &f{nome}
+    &7{descricao}
+    &r
+    &7Lider: &f{lider}
+    &7Membros: &f{membros}&7/&f{maximo_membros} &8(&a{online} online&8)
+    &7Fundado em: &f{criado}
+    &7Verificado: {verificado}
+    &r
+    &7Abates: &f{abates} &8| &7Mortes: &f{mortes} &8| &7KDR: &f{kdr}
+    &7Banco: &a{moeda}{banco}
+    &7Aliados: &f{aliados}&7/&f{maximo_aliados}
+    &7Rivais: &f{rivais}&7/&f{maximo_rivais}
+    &r
+  Sem clan no alvo: '&cO jogador &f{jogador} &cnao esta em nenhum clan.'
+
+Online:
+  Cabecalho: |
+    &r
+    &b&lCLANS ONLINE
+    &r
+  Linha: '&7 › &f{tagcolorida} &7{nome} &8- &a{online} &7online'
+  Vazio: '&cNenhum clan com jogadores online.'
+
+Admin:
+  Clan deletado: '&aO clan &f{tagcolorida} &afoi deletado.'
+  Lider definido: '&aO jogador &f{jogador} &aagora e o lider do clan &f{tagcolorida}&a.'
+  Vagas definidas: '&aAs vagas de &f{tipo} &ado clan &f{tagcolorida} &aagora sao &f{quantia}&a.'
+  Linhas definidas: '&aO bau do clan &f{tagcolorida} &aagora tem &f{linhas} &alinhas.'
+  Banco definido: '&aO banco do clan &f{tagcolorida} &aagora tem &f{moeda}{valor}&a.'
+  Kdr resetado: '&aOs abates e mortes do clan &f{tagcolorida} &aforam zerados.'
+  Jogador adicionado: '&aO jogador &f{jogador} &afoi colocado no clan &f{tagcolorida}&a.'
+  Jogador removido: '&aO jogador &f{jogador} &afoi tirado do clan.'
+  Salvo: '&aTudo foi gravado no banco de dados.'
+  Info: |
+    &r
+    &b&lSTARCLANS &7v{versao}
+    &7Clans: &f{clans}
+    &7Jogadores com clan: &f{jogadores}
+    &7Banco de dados: &f{banco}
+    &7Cargos carregados: &f{cargos}
+    &7StarLigas: {ligas}
+    &r

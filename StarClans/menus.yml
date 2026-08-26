@@ -1,0 +1,1133 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                         StarClans - menus                            ║
+#  ║   Slot -1 esconde o botao. "Material: {jogador}" vira a cabeca do    ║
+#  ║   jogador da vez.                                                    ║
+#  ║                                                                      ║
+#  ║   Placeholders comuns em todos os menus:                             ║
+#  ║     {tag} {tagcolorida} {nome} {descricao} {lider} {cargo}           ║
+#  ║     {simbolo} {jogador} {membros} {maximo_membros} {online}          ║
+#  ║     {aliados} {maximo_aliados} {rivais} {maximo_rivais}              ║
+#  ║     {banco} {moeda} {abates} {mortes} {kdr} {linhas} {verificado}    ║
+#  ║     {criado} {entrada} {base} {ff_membros} {ff_aliados}              ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+#
+# ══════════════════════  MENU DE QUEM NAO TEM CLAN  ═══════════════════════
+#
+Menu sem clan:
+  Titulo: '&8Clans'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Perfil:
+      Slot: 10
+      Material: '{jogador}'
+      Nome: '&b&l{jogador}'
+      Lore:
+        - '&r'
+        - '&7Clan: &f{clan}'
+        - '&7Abates: &f{abates}'
+        - '&7Mortes: &f{mortes}'
+        - '&7KDR: &f{kdr}'
+        - '&r'
+    Criar:
+      Slot: 12
+      Material: 'EMERALD_BLOCK'
+      Nome: '&a&lCRIAR CLAN'
+      Lore:
+        - '&7Monte o seu proprio clan.'
+        - '&r'
+        - '&7Custo: &a{moeda}{custo}'
+        - '&r'
+        - '&a&lCLIQUE &fpara criar'
+    Convites:
+      Slot: 13
+      Material: 'PAPER'
+      Nome: '&e&lCONVITES'
+      Lore:
+        - '&7Convites que voce recebeu.'
+        - '&r'
+        - '&7Pendentes: &f{convites}'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Procurar:
+      Slot: 14
+      Material: 'COMPASS'
+      Nome: '&b&lPROCURAR CLAN'
+      Lore:
+        - '&7Veja os clans abertos e'
+        - '&7peca para entrar.'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Online:
+      Slot: 15
+      Material: 'ENDER_PEARL'
+      Nome: '&b&lCLANS ONLINE'
+      Lore:
+        - '&7Quem esta jogando agora.'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Top:
+      Slot: 16
+      Material: 'DIAMOND'
+      Nome: '&6&lTOP CLANS'
+      Lore:
+        - '&7Os melhores clans do servidor.'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Ligas:
+      #  So aparece com o StarLigas instalado; -1 esconde de vez.
+      Slot: 22
+      Material: 'GOLDEN_APPLE'
+      Nome: '&6&lLIGAS DE CLANS'
+      Lore:
+        - '&7Dispute as ligas do servidor'
+        - '&7e garanta premios exclusivos.'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+    Fechar:
+      Slot: 26
+      Material: 'BARRIER'
+      Nome: '&c&lFECHAR'
+      Lore: []
+
+#
+# ══════════════════════════  MENU DO CLAN  ════════════════════════════════
+#
+Menu do clan:
+  Titulo: '&8{tag} &7» &f{nome}'
+  Linhas: 6
+
+  # O titulo da tela do bau compartilhado; o tamanho vem das linhas do clan.
+  Titulo do bau: '&8Bau &7» &f{nome}'
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Informacoes:
+      Slot: 4
+      Material: '{jogador}'
+      Nome: '&b&l{tagcolorida}'
+      Lore:
+        - '&7{descricao}'
+        - '&r'
+        - '&7Nome: &f{nome}'
+        - '&7Lider: &f{lider}'
+        - '&7Seu cargo: &f{simbolo}{cargo}'
+        - '&7Fundado em: &f{criado}'
+        - '&7Verificado: {verificado}'
+        - '&7Entrada: &f{entrada}'
+        - '&r'
+        - '&7Membros: &f{membros}&7/&f{maximo_membros} &8(&a{online} online&8)'
+        - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes} &8| &7KDR: &f{kdr}'
+        - '&r'
+    Membros:
+      Slot: 19
+      Material: 'PLAYER_HEAD'
+      Nome: '&b&lMEMBROS'
+      Lore:
+        - '&7Todos os membros do clan.'
+        - '&r'
+        - '&7No clan: &f{membros}&7/&f{maximo_membros}'
+        - '&7Online: &a{online}'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Cargos:
+      Slot: 20
+      Material: 'NAME_TAG'
+      Nome: '&b&lCARGOS'
+      Lore:
+        - '&7O que cada cargo pode fazer.'
+        - '&r'
+        - '&a&lCLIQUE &fpara gerenciar'
+    Convites:
+      Slot: 21
+      Material: 'PAPER'
+      Nome: '&e&lCONVITES E PEDIDOS'
+      Lore:
+        - '&7Quem foi convidado e quem'
+        - '&7pediu para entrar.'
+        - '&r'
+        - '&7Pedidos: &f{solicitacoes}'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Boletins:
+      Slot: 22
+      Material: 'BOOK'
+      Nome: '&e&lMURAL'
+      Lore:
+        - '&7Os recados do clan.'
+        - '&r'
+        - '&7Nao lidos: &f{nao_lidos}'
+        - '&r'
+        - '&a&lCLIQUE &fpara ler'
+    Aliados:
+      Slot: 23
+      Material: 'GOLDEN_CHESTPLATE'
+      Nome: '&a&lALIADOS'
+      Lore:
+        - '&7Os clans amigos.'
+        - '&r'
+        - '&7Aliados: &f{aliados}&7/&f{maximo_aliados}'
+        - '&7Propostas: &f{propostas}'
+        - '&r'
+        - '&a&lCLIQUE &fpara gerenciar'
+    Rivais:
+      Slot: 24
+      Material: 'IRON_SWORD'
+      Nome: '&c&lRIVAIS'
+      Lore:
+        - '&7Os clans inimigos.'
+        - '&r'
+        - '&7Rivais: &f{rivais}&7/&f{maximo_rivais}'
+        - '&r'
+        - '&a&lCLIQUE &fpara gerenciar'
+    Bau:
+      Slot: 28
+      Material: 'CHEST'
+      Nome: '&6&lBAU DO CLAN'
+      Lore:
+        - '&7Guarde itens com o clan.'
+        - '&r'
+        - '&7Linhas: &f{linhas}'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+        - '&e&lCLIQUE DIREITO &fpara o historico'
+    Banco:
+      Slot: 29
+      Material: 'GOLD_INGOT'
+      Nome: '&6&lBANCO DO CLAN'
+      Lore:
+        - '&7O caixa comum do clan.'
+        - '&r'
+        - '&7Guardado: &a{moeda}{banco}'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+    Base:
+      Slot: 30
+      Material: 'COMPASS'
+      Nome: '&b&lBASE DO CLAN'
+      Lore:
+        - '&7O ponto de encontro do clan.'
+        - '&r'
+        - '&7Local: &f{base}'
+        - '&r'
+        - '&a&lCLIQUE &fpara ir'
+        - '&e&lCLIQUE DIREITO &fpara definir aqui'
+    Mercado:
+      Slot: 31
+      Material: 'EMERALD'
+      Nome: '&a&lMERCADO'
+      Lore:
+        - '&7Melhorias para o clan.'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+    Cor:
+      Slot: 32
+      Material: 'INK_SAC'
+      Nome: '&d&lCOR DA TAG'
+      Lore:
+        - '&7A cor das letras da tag.'
+        - '&r'
+        - '&7Agora: &f{tagcolorida}'
+        - '&r'
+        - '&a&lCLIQUE &fpara trocar'
+    Gerenciar:
+      Slot: 33
+      Material: 'COMPARATOR'
+      Nome: '&b&lCONFIGURACOES'
+      Lore:
+        - '&7Nome, descricao, entrada e'
+        - '&7a sua tag dentro do clan.'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+    Fogo amigo:
+      Slot: 37
+      Material: 'FLINT_AND_STEEL'
+      Nome: '&c&lFOGO AMIGO'
+      Lore:
+        - '&7Deixa ou nao membros e aliados'
+        - '&7se machucarem.'
+        - '&r'
+        - '&7Membros: {ff_membros}'
+        - '&7Aliados: {ff_aliados}'
+        - '&r'
+        - '&a&lCLIQUE &fpara os membros'
+        - '&e&lCLIQUE DIREITO &fpara os aliados'
+    Top:
+      Slot: 39
+      Material: 'DIAMOND'
+      Nome: '&6&lTOP CLANS'
+      Lore:
+        - '&7Os melhores clans do servidor.'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Online:
+      Slot: 40
+      Material: 'ENDER_PEARL'
+      Nome: '&b&lCLANS ONLINE'
+      Lore:
+        - '&7Quem esta jogando agora.'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Ligas:
+      #  So aparece com o StarLigas instalado; -1 esconde de vez.
+      Slot: 41
+      Material: 'GOLDEN_APPLE'
+      Nome: '&6&lLIGAS DE CLANS'
+      Lore:
+        - '&7Dispute as ligas do servidor'
+        - '&7e garanta premios exclusivos.'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+    Sair:
+      Slot: 44
+      Material: 'OAK_DOOR'
+      Nome: '&c&lSAIR DO CLAN'
+      Lore:
+        - '&7Voce deixa de ser membro.'
+        - '&r'
+        - '&c&lCLIQUE &fpara sair'
+    Desfazer:
+      #  So aparece para o lider; ocupa o mesmo lugar do botao de sair.
+      Slot: 44
+      Material: 'TNT'
+      Nome: '&4&lDESFAZER O CLAN'
+      Lore:
+        - '&7Apaga o clan para todo mundo.'
+        - '&7Nao tem volta.'
+        - '&r'
+        - '&c&lCLIQUE &fpara desfazer'
+    Fechar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&c&lFECHAR'
+      Lore: []
+
+#
+# ═════════════════════════════  MEMBROS  ══════════════════════════════════
+#
+Menu de membros:
+  Titulo: '&8Membros &7» &f{nome}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Membro:
+    Material: '{jogador}'
+    Nome: '&f{simbolo} &b{jogador}'
+    Lore:
+      - '&r'
+      - '&7Cargo: &f{cargo}'
+      - '&7Estado: {estado}'
+      - '&7Entrou em: &f{entrou}'
+      - '&7Visto: &f{visto}'
+      - '&r'
+      - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes}'
+      - '&r'
+      - '&a&lCLIQUE &fpara promover'
+      - '&e&lCLIQUE DIREITO &fpara rebaixar'
+      - '&c&lSHIFT + CLIQUE &fpara expulsar'
+
+  Botoes:
+    Convidar:
+      Slot: 48
+      Material: 'PAPER'
+      Nome: '&a&lCONVIDAR'
+      Lore:
+        - '&7Use &f/clan convidar <jogador>'
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ══════════════════════════════  CARGOS  ══════════════════════════════════
+#
+Menu de cargos:
+  Titulo: '&8Cargos &7» &f{nome}'
+  Linhas: 4
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Cargo:
+    Nome: '&b&l{cargo}'
+    Lore:
+      - '&r'
+      - '&7Simbolo: &f{simbolo}'
+      - '&7Peso: &f{peso}'
+      - '&7Membros: &f{membros}'
+      - '&r'
+      - '&a&lCLIQUE &fpara ver as permissoes'
+
+  Botoes:
+    Voltar:
+      Slot: 31
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+Menu de permissoes:
+  Titulo: '&8Permissoes &7» &f{cargo}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Permissao:
+    Material ligada: 'LIME_DYE'
+    Material desligada: 'GRAY_DYE'
+    Nome: '&b{permissao}'
+    Lore:
+      - '&r'
+      - '&7Permitido: {estado}'
+      - '&r'
+      - '&a&lCLIQUE &fpara alternar'
+
+  Botoes:
+    Voltar:
+      Slot: 40
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 36
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 44
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ═══════════════════════  CONVITES E SOLICITACOES  ════════════════════════
+#
+Menu de convites:
+  Titulo: '&8Seus convites'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Convite:
+    Material: 'PAPER'
+    Nome: '&b&l{tagcolorida}'
+    Lore:
+      - '&7{descricao}'
+      - '&r'
+      - '&7Nome: &f{nome}'
+      - '&7Lider: &f{lider}'
+      - '&7Membros: &f{membros}&7/&f{maximo_membros}'
+      - '&7Convidado por: &f{convidou}'
+      - '&r'
+      - '&a&lCLIQUE &fpara aceitar'
+      - '&c&lCLIQUE DIREITO &fpara recusar'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lNENHUM CONVITE'
+    Lore:
+      - '&7Ninguem convidou voce ainda.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+Menu de solicitacoes:
+  Titulo: '&8Pedidos &7» &f{nome}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Solicitacao:
+    Material: '{jogador}'
+    Nome: '&b&l{jogador}'
+    Lore:
+      - '&r'
+      - '&7Pediu em: &f{data}'
+      - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes}'
+      - '&r'
+      - '&a&lCLIQUE &fpara aceitar'
+      - '&c&lCLIQUE DIREITO &fpara recusar'
+
+  Convidado:
+    Material: '{jogador}'
+    Nome: '&e&l{jogador}'
+    Lore:
+      - '&r'
+      - '&7Convidado por: &f{convidou}'
+      - '&7Convidado em: &f{data}'
+      - '&r'
+      - '&c&lCLIQUE DIREITO &fpara cancelar'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lNADA PENDENTE'
+    Lore:
+      - '&7Nenhum convite enviado e'
+      - '&7nenhum pedido recebido.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ═════════════════════  PROCURAR CLAN / CLANS ONLINE  ═════════════════════
+#
+Menu de procurar:
+  Titulo: '&8Clans abertos'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Clan:
+    Material: 'SHIELD'
+    Nome: '&b&l{tagcolorida}'
+    Lore:
+      - '&7{descricao}'
+      - '&r'
+      - '&7Nome: &f{nome}'
+      - '&7Lider: &f{lider}'
+      - '&7Membros: &f{membros}&7/&f{maximo_membros} &8(&a{online} online&8)'
+      - '&7Entrada: &f{entrada}'
+      - '&7KDR: &f{kdr}'
+      - '&r'
+      - '&a&lCLIQUE &fpara {acao}'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lNENHUM CLAN ABERTO'
+    Lore:
+      - '&7Todos os clans do servidor'
+      - '&7estao fechados no momento.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+Menu de online:
+  Titulo: '&8Clans online'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Clan:
+    Material: 'SHIELD'
+    Nome: '&b&l{tagcolorida}'
+    Lore:
+      - '&7{descricao}'
+      - '&r'
+      - '&7Nome: &f{nome}'
+      - '&7Lider: &f{lider}'
+      - '&7Online agora: &a{online}&7/&f{membros}'
+      - '&r'
+      - '{lista}'
+      - '&r'
+
+  Linha da lista: '&7 › &f{jogador}'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lNINGUEM ONLINE'
+    Lore:
+      - '&7Nenhum clan tem gente online.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ═══════════════════════════════  TOP  ════════════════════════════════════
+#
+Menu do top:
+  Titulo: '&8Top clans &7» &f{categoria}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Clan:
+    Material: 'SHIELD'
+    Nome: '&6&l#{posicao} &b{tagcolorida}'
+    Lore:
+      - '&7{descricao}'
+      - '&r'
+      - '&7Nome: &f{nome}'
+      - '&7Lider: &f{lider}'
+      - '&7Membros: &f{membros}&7/&f{maximo_membros}'
+      - '&r'
+      - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes}'
+      - '&7KDR: &f{kdr}'
+      - '&7Banco: &a{moeda}{banco}'
+      - '&r'
+      - '&7{categoria}: &f{valor}'
+      - '&r'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lTOP VAZIO'
+    Lore:
+      - '&7Nenhum clan cadastrado ainda.'
+
+  Categorias:
+    #  As categorias sao fixas: ABATES, KDR, MEMBROS, BANCO.
+    #  Slot -1 esconde a categoria do menu.
+    ABATES:
+      Slot: 47
+      Material: 'IRON_SWORD'
+      Nome: '&c&lABATES'
+      Lore:
+        - '&7Ordena pelos abates do clan.'
+    KDR:
+      Slot: 48
+      Material: 'BOW'
+      Nome: '&b&lKDR'
+      Lore:
+        - '&7Ordena pela razao de abates'
+        - '&7por mortes.'
+    MEMBROS:
+      Slot: 50
+      Material: 'PLAYER_HEAD'
+      Nome: '&e&lMEMBROS'
+      Lore:
+        - '&7Ordena pelo tamanho do clan.'
+    BANCO:
+      Slot: 51
+      Material: 'GOLD_INGOT'
+      Nome: '&a&lBANCO'
+      Lore:
+        - '&7Ordena pelo dinheiro guardado.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ═════════════════════════════  BOLETINS  ═════════════════════════════════
+#
+Menu de boletins:
+  Titulo: '&8Mural &7» &f{nome}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Boletim:
+    #  O material e o nome de cada tipo vem da secao "Boletins" do config.yml.
+    Lore:
+      - '&r'
+      - '&7{mensagem}'
+      - '&r'
+      - '&7Publicado em: &f{data}'
+      - '&r'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lMURAL VAZIO'
+    Lore:
+      - '&7Nenhum recado por aqui ainda.'
+
+  Botoes:
+    Escrever:
+      Slot: 48
+      Material: 'WRITABLE_BOOK'
+      Nome: '&a&lESCREVER'
+      Lore:
+        - '&7Use &f/clan boletins <mensagem>'
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ═══════════════════════════  ALIADOS E RIVAIS  ═══════════════════════════
+#
+Menu de aliados:
+  Titulo: '&8Aliados &7» &f{nome}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Aliado:
+    Material: 'GOLDEN_CHESTPLATE'
+    Nome: '&a&l{tagcolorida}'
+    Lore:
+      - '&7{descricao}'
+      - '&r'
+      - '&7Nome: &f{nome}'
+      - '&7Lider: &f{lider}'
+      - '&7Online: &a{online}&7/&f{membros}'
+      - '&r'
+      - '&c&lCLIQUE DIREITO &fpara desfazer a alianca'
+
+  Proposta:
+    Material: 'PAPER'
+    Nome: '&e&l{tagcolorida}'
+    Lore:
+      - '&7{descricao}'
+      - '&r'
+      - '&7Nome: &f{nome}'
+      - '&7Lider: &f{lider}'
+      - '&7Proposta em: &f{data}'
+      - '&r'
+      - '&a&lCLIQUE &fpara aceitar'
+      - '&c&lCLIQUE DIREITO &fpara recusar'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lNENHUM ALIADO'
+    Lore:
+      - '&7Use &f/clan aliados <clan> &7para'
+      - '&7propor uma alianca.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+Menu de rivais:
+  Titulo: '&8Rivais &7» &f{nome}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Rival:
+    Material: 'IRON_SWORD'
+    Nome: '&c&l{tagcolorida}'
+    Lore:
+      - '&7{descricao}'
+      - '&r'
+      - '&7Nome: &f{nome}'
+      - '&7Lider: &f{lider}'
+      - '&7Online: &a{online}&7/&f{membros}'
+      - '&7KDR: &f{kdr}'
+      - '&r'
+      - '&c&lCLIQUE DIREITO &fpara encerrar a rivalidade'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lNENHUM RIVAL'
+    Lore:
+      - '&7Use &f/clan rivais <clan> &7para'
+      - '&7declarar rivalidade.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ═══════════════════════════════  CORES  ══════════════════════════════════
+#
+Menu de cores:
+  Titulo: '&8Cor da tag'
+  Linhas: 4
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Cor:
+    #  O material e o nome de cada cor vem do cores.yml.
+    Lore:
+      - '&r'
+      - '&7A tag ficaria: &f{previa}'
+      - '&r'
+      - '{estado}'
+
+  Em uso: '&aEsta e a cor atual.'
+  Disponivel: '&a&lCLIQUE &fpara usar esta'
+  Sem permissao: '&cVoce nao tem permissao para esta cor.'
+
+  Botoes:
+    Voltar:
+      Slot: 31
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 27
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 35
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ═══════════════════════════════  BANCO  ══════════════════════════════════
+#
+Menu do banco:
+  Titulo: '&8Banco &7» &f{nome}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Saldo:
+      Slot: 13
+      Material: 'GOLD_BLOCK'
+      Nome: '&6&lCAIXA DO CLAN'
+      Lore:
+        - '&r'
+        - '&7Guardado: &a{moeda}{banco}'
+        - '&7Sua carteira: &a{moeda}{carteira}'
+        - '&r'
+    Depositar:
+      Slot: 11
+      Material: 'HOPPER'
+      Nome: '&a&lDEPOSITAR'
+      Lore:
+        - '&7Use &f/clan depositar <valor>'
+        - '&r'
+        - '&a&lCLIQUE &fpara depositar tudo'
+    Sacar:
+      Slot: 15
+      Material: 'DROPPER'
+      Nome: '&c&lSACAR'
+      Lore:
+        - '&7Use &f/clan sacar <valor>'
+        - '&r'
+        - '&a&lCLIQUE &fpara sacar tudo'
+    Historico:
+      Slot: 22
+      Material: 'BOOK'
+      Nome: '&e&lHISTORICO'
+      Lore:
+        - '&7Quem mexeu no caixa e no bau.'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Voltar:
+      Slot: 18
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+Menu do historico:
+  Titulo: '&8Historico &7» &f{nome}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Registro:
+    Material: '{jogador}'
+    Nome: '&b{jogador}'
+    Lore:
+      - '&r'
+      - '&7{acao}'
+      - '&7Em: &f{data}'
+      - '&r'
+
+  Acoes:
+    DEPOSITO: '&aDepositou &f{moeda}{valor}'
+    SAQUE: '&cSacou &f{moeda}{valor}'
+    ABRIU_BAU: '&aAbriu o bau'
+    FECHOU_BAU: '&cFechou o bau'
+    COMPRA: '&eComprou &f{item} &epor &f{moeda}{valor}'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lSEM REGISTROS'
+    Lore:
+      - '&7Nada aconteceu por aqui ainda.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+#
+# ═════════════════════════════  CONFIGURACOES  ════════════════════════════
+#
+Menu de configuracoes:
+  Titulo: '&8Configuracoes &7» &f{nome}'
+  Linhas: 4
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Nome:
+      Slot: 10
+      Material: 'NAME_TAG'
+      Nome: '&b&lNOME DO CLAN'
+      Lore:
+        - '&r'
+        - '&7Agora: &f{nome}'
+        - '&r'
+        - '&7Use &f/clan nome <novo nome>'
+    Descricao:
+      Slot: 11
+      Material: 'BOOK'
+      Nome: '&b&lDESCRICAO'
+      Lore:
+        - '&r'
+        - '&7Agora: &f{descricao}'
+        - '&r'
+        - '&7Use &f/clan descricao <texto>'
+    Entrada:
+      Slot: 12
+      Material: 'IRON_DOOR'
+      Nome: '&b&lTIPO DE ENTRADA'
+      Lore:
+        - '&r'
+        - '&7Agora: &f{entrada}'
+        - '&r'
+        - '&7Privado: so por convite'
+        - '&7Sob pedido: o clan aprova'
+        - '&7Publico: qualquer um entra'
+        - '&r'
+        - '&a&lCLIQUE &fpara alternar'
+    Tag propria:
+      Slot: 14
+      Material: 'PAPER'
+      Nome: '&b&lSUA TAG NO CLAN'
+      Lore:
+        - '&r'
+        - '&7Agora: &f{tag_propria}'
+        - '&r'
+        - '&7Use &f/clan tagpropria <texto>'
+        - '&7ou &f/clan tagpropria remover'
+    Cor:
+      Slot: 15
+      Material: 'INK_SAC'
+      Nome: '&d&lCOR DA TAG'
+      Lore:
+        - '&r'
+        - '&7Agora: &f{tagcolorida}'
+        - '&r'
+        - '&a&lCLIQUE &fpara trocar'
+    Base:
+      Slot: 16
+      Material: 'COMPASS'
+      Nome: '&b&lBASE DO CLAN'
+      Lore:
+        - '&r'
+        - '&7Local: &f{base}'
+        - '&r'
+        - '&a&lCLIQUE &fpara definir aqui'
+        - '&c&lCLIQUE DIREITO &fpara apagar'
+    Voltar:
+      Slot: 31
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ══════════════════════════════  CONFIRMAR  ═══════════════════════════════
+#
+Menu de confirmacao:
+  Titulo: '&8Tem certeza?'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Confirmar:
+      Slot: 11
+      Material: 'LIME_WOOL'
+      Nome: '&a&lCONFIRMAR'
+      Lore:
+        - '&7{acao}'
+    Aviso:
+      Slot: 13
+      Material: 'PAPER'
+      Nome: '&e&lATENCAO'
+      Lore:
+        - '&7{acao}'
+        - '&r'
+        - '&cEssa acao nao tem volta.'
+    Cancelar:
+      Slot: 15
+      Material: 'RED_WOOL'
+      Nome: '&c&lCANCELAR'
+      Lore:
+        - '&7Nada acontece.'

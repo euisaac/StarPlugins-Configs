@@ -1,0 +1,159 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                       StarLigas - mensagens                          ║
+#  ║   Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso ║
+#  ║   sem precisar de uma opcao para cada um.                            ║
+#  ║   Aceita &a e tambem hex no formato &#RRGGBB (1.16+).                ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Prefixo: '&6&lLIGAS &8» &f'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar este comando.'
+  Uso: '&cUso: &f{uso}'
+  Numero invalido: '&cO valor &f{valor} &cnao e um numero.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Erro no banco: '&cNao foi possivel falar com o banco de dados. Avise a equipe.'
+  Subcomando desconhecido: '&cSubcomando desconhecido. Use &f/{comando} ajuda&c.'
+  Sem clan: '&cVoce precisa estar em um clan para isso.'
+  Clan nao encontrado: '&cNenhum clan encontrado com &f{clan}&c.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnao esta online.'
+  Sem StarClans: '&cO StarClans nao esta instalado neste servidor.'
+
+Etiquetas:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ninguem: 'ninguem'
+  Sem prazo: 'sem prazo'
+  Encerrada: 'encerrada'
+  Sem rank: 'sem rank'
+
+Ajuda:
+  Jogador: |
+    &r
+    &6&lCOMANDOS DAS LIGAS
+    &r
+    &6› &f/ligas &8- &7abre o menu das ligas
+    &6› &f/ligas placar [liga] &8- &7mostra o placar
+    &6› &f/ligas recompensas &8- &7abre o seu correio de premios
+    &6› &f/ligas mercado [liga] &8- &7abre o mercado de pontos
+    &6› &f/ligas historico &8- &7mostra as ligas ja encerradas
+    &6› &f/ligas info [liga] &8- &7detalhes de uma liga
+    &r
+  Admin: |
+    &r
+    &6&lCOMANDOS ADMINISTRATIVOS
+    &r
+    &6› &f/starligas recarregar &8- &7recarrega os arquivos
+    &6› &f/starligas info &8- &7estado do plugin
+    &6› &f/starligas adicionar <clan> <pontos> [liga] &8- &7soma pontos
+    &6› &f/starligas remover <clan> <pontos> [liga] &8- &7tira pontos
+    &6› &f/starligas definir <clan> <pontos> [liga] &8- &7define os pontos
+    &6› &f/starligas iniciar <liga> &8- &7comeca a liga agora
+    &6› &f/starligas encerrar <liga> &8- &7encerra a liga agora
+    &6› &f/starligas reiniciar <liga> &8- &7reabre uma liga encerrada
+    &6› &f/starligas inscrever <liga> <clan> &8- &7poe um clan na liga
+    &6› &f/starligas desinscrever <liga> <clan> &8- &7tira um clan da liga
+    &6› &f/starligas premiar <jogador> <recompensa> [quantia] &8- &7manda um premio
+    &6› &f/starligas salvar &8- &7grava tudo agora
+    &r
+
+Liga:
+  Nao encontrada: '&cA liga &f{liga} &cnao existe. Disponiveis: &7{ligas}'
+  Nenhuma: '&cNenhuma liga cadastrada no servidor.'
+  Nenhuma acontecendo: '&cNenhuma liga esta acontecendo no momento.'
+  Ainda nao comecou: '&cA liga &f{liga} &cainda nao comecou. Comeca em &f{falta_inicio}&c.'
+  Ja encerrada: '&cA liga &f{liga} &cja foi encerrada.'
+  Ja participa: '&cO seu clan ja esta nesta liga.'
+  Nao participa: '&cO seu clan nao esta participando desta liga.'
+  So o lider: '&cSo o lider do clan ({jogador}) pode inscrever o clan na liga.'
+  Sem pontos: '&cO seu clan precisa de &f{necessario} &cpontos para entrar. Atual: &f{pontos}'
+  Sem dinheiro: '&cVoce precisa de &f{moeda}{valor} &cpara inscrever o clan.'
+  Sem vaga: '&cA liga chegou ao limite de &f{limite} &cclans.'
+  Falta anterior: '&cO seu clan precisaria ter disputado a liga &f{liga} &cpara entrar nesta.'
+  Inscrito: '&aO clan &f{clan} &aentrou na liga &f{liga}&a!'
+  Cobrado: '&7Foram descontados &f{moeda}{valor} &7da sua conta.'
+  Aviso ao clan: '&aO jogador &f{jogador} &ainscreveu o clan na liga &f{liga}&a.'
+  Inscricao automatica: '&aO seu clan entrou automaticamente na liga &f{liga}&a.'
+  Iniciada: '&aA liga &f{liga} &afoi iniciada.'
+  Encerrada: '&aA liga &f{liga} &afoi encerrada.'
+  Reiniciada: '&aA liga &f{liga} &afoi reaberta.'
+
+Pontos:
+  # Actionbar de ganho -- so aparece com "Mostrar ganho na actionbar" ligado.
+  Ganho: '&6&l+{pontos} &fpontos para o clan &7({total})'
+  Perda: '&c&l{pontos} &fpontos do clan &7({total})'
+  Alterados: '&aOs pontos do clan &f{clan} &aagora sao &f{pontos}&a.'
+  Free kill: '&cVoce abateu esse jogador ha pouco; nao pontuou.'
+
+Placar:
+  Cabecalho: |
+    &r
+    &6&lPLACAR &7» &f{liga}
+    &7{inscritos} clan(ns) na disputa
+    &r
+  Linha: '&7 › &6#{posicao} &b{clan} &8- &a{pontos}'
+  Vazio: '&cNinguem pontuou nesta liga ainda.'
+  Sua posicao: '&7O seu clan esta em &6#{posicao} &7com &a{pontos} &7pontos.'
+  Fora do placar: '&7O seu clan ainda nao pontuou nesta liga.'
+
+Recompensa:
+  Recolhida: '&aRecompensa recolhida.'
+  Todas recolhidas: '&aTodas as recompensas possiveis foram recolhidas.'
+  Descartada: '&cRecompensa descartada.'
+  Inventario cheio: '&cO seu inventario esta cheio; libere espaco e tente de novo.'
+  Vazio: '&cVoce nao tem nenhuma recompensa esperando.'
+  Pendentes: '&6Voce tem &f{quantia} &6recompensa(s) esperando. Use &f/ligas recompensas&6.'
+  Enviada: '&aRecompensa &f{recompensa} &aenviada para &f{jogador}&a.'
+  Nao existe: '&cA recompensa &f{recompensa} &cnao existe. Disponiveis: &7{recompensas}'
+  Guardadas cheias: '&cO correio de recompensas esta cheio.'
+
+Mercado:
+  Comprado: '&aVoce comprou &f{item} &apor &b{preco} &apontos.'
+  Aviso ao clan: '&aO jogador &f{jogador} &acomprou &f{item} &ano mercado da liga.'
+  Sem pontos: '&cO seu clan precisa de &b{necessario} &cpontos. Atual: &b{pontos}'
+  Vazio: '&cEsta liga nao tem mercado.'
+  Inventario cheio: '&cO seu inventario esta cheio.'
+
+Historico:
+  Cabecalho: |
+    &r
+    &6&lLIGAS ENCERRADAS
+    &r
+  Linha: '&7 › &f{liga} &8- &b{clan} &7com &a{pontos}'
+  Vazio: '&cNenhuma liga foi encerrada ainda.'
+
+Info:
+  Liga: |
+    &r
+    &6&l{liga}
+    &7Estado: &f{estado}
+    &7Comeca em: &f{inicio}
+    &7Encerra em: &f{fim}
+    &r
+    &7Inscritos: &f{inscritos}&7/&f{limite}
+    &7Pontos para vencer: &f{pontos_para_vencer}
+    &7Preco de entrada: &a{moeda}{preco}
+    &r
+    &7Lideres:
+    &7 &f1) {clan_1} &8- &a{pontos_1}
+    &7 &f2) {clan_2} &8- &a{pontos_2}
+    &7 &f3) {clan_3} &8- &a{pontos_3}
+    &r
+
+Admin:
+  Info: |
+    &r
+    &6&lSTARLIGAS &7v{versao}
+    &7Ligas: &f{ligas}
+    &7Acontecendo: &f{ativas}
+    &7Clans com pontos: &f{clans}
+    &7Banco de dados: &f{banco}
+    &7StarClans: {clans_instalado}
+    &r
+  Salvo: '&aTudo foi gravado no banco de dados.'
+  Clan inscrito: '&aO clan &f{clan} &afoi inscrito na liga &f{liga}&a.'
+  Clan removido: '&aO clan &f{clan} &afoi tirado da liga &f{liga}&a.'

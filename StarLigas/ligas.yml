@@ -1,0 +1,174 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                          StarLigas - ligas                           ║
+#  ║   As temporadas do servidor. Cada liga tem data de inicio, data de   ║
+#  ║   fim, preco de entrada, premios e um mercado proprio de pontos.     ║
+#  ║                                                                      ║
+#  ║   Apagar uma liga daqui tira ela do menu; o que ja foi jogado        ║
+#  ║   continua no historico.                                             ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+#  Datas no formato dd/MM/yyyy-HH:mm, no fuso do servidor.
+#
+#  Placeholders nos icones e nas mensagens:
+#    {liga} {ordem} {pontos} {limite} {inscritos} {moeda} {preco}
+#    {inicio} {fim} {falta_inicio} {falta_fim}
+#    {clan_1}..{clan_3}  {pontos_1}..{pontos_3}
+#    {clan} {tag} {nome} {jogador} {quantia}
+Ligas:
+  ferro:
+    # A ordem em que a liga aparece no menu.
+    Ordem: 1
+    Nome: '&f&lLIGA DE FERRO'
+
+    Inicio: '01/01/2020-10:00'
+    Fim: '01/01/2030-10:00'
+
+    Inscricao:
+      # Quantos clans cabem na liga; 0 e sem limite.
+      Limite de clans: 10
+      # Pontos que o clan precisa ter acumulado para se inscrever.
+      Pontos minimos: 0.0
+      # Dinheiro cobrado do lider na inscricao; 0 desliga a cobranca.
+      Preco: 1000.0
+      #  Id da liga que o clan precisa ter disputado antes desta.
+      #  Deixe '' para nao exigir nada.
+      Liga anterior: ''
+      # Inscreve sozinho todo clan que ja tem pontos quando a liga comeca.
+      Inscrever automatico: false
+
+    Encerramento:
+      #  Encerra assim que algum clan chegar a esta pontuacao.
+      #  Deixe 0 para encerrar so na data de fim.
+      Pontos para vencer: 100.0
+      # Zera os pontos dos participantes quando a liga encerra.
+      Zerar pontos: true
+
+    #  Os premios do encerramento, no formato 'chance,recompensa'.
+    #  A recompensa e uma chave do recompensas.yml e vai para o correio do
+    #  jogador -- por padrao, so o lider do clan vencedor recebe.
+    Premios:
+      - '100.0,ferro-vencedor'
+
+    # Entregar o premio a todos os membros do clan vencedor, e nao so ao lider.
+    Premiar todos os membros: false
+
+    Icones:
+      #  Cinco estados possiveis. Cada um e o mesmo botao da liga visto de um
+      #  jeito diferente -- e por isso que cada um tem a propria lore.
+      A comecar:
+        Material: 'IRON_INGOT'
+        Nome: '&f&lLIGA DE FERRO'
+        Lore:
+          - '&7Esta liga ainda vai comecar.'
+          - '&7Prepare o seu clan.'
+          - '&r'
+          - '&7Comeca em: &b{falta_inicio}'
+          - '&7 &8({inicio})'
+          - '&r'
+      Participar:
+        Material: 'IRON_INGOT'
+        Nome: '&f&lLIGA DE FERRO'
+        Lore:
+          - '&7Dispute a liga e garanta'
+          - '&7premios exclusivos.'
+          - '&r'
+          - '&7Pontos necessarios: &b{pontos}'
+          - '&7Preco: &a{moeda}{preco}'
+          - '&7Inscritos: &f{inscritos}&7/&f{limite}'
+          - '&r'
+          - '&7Lideres:'
+          - '&7 &f1) {clan_1} &8- &a{pontos_1}'
+          - '&7 &f2) {clan_2} &8- &a{pontos_2}'
+          - '&7 &f3) {clan_3} &8- &a{pontos_3}'
+          - '&r'
+          - '&a&lCLIQUE &fpara participar'
+      Participando:
+        Material: 'IRON_INGOT'
+        Nome: '&f&lLIGA DE FERRO'
+        Lore:
+          - '&7O seu clan esta nesta liga.'
+          - '&r'
+          - '&7Seus pontos: &a{pontos_do_clan}'
+          - '&7Sua posicao: &f#{posicao_do_clan}'
+          - '&r'
+          - '&7Lideres:'
+          - '&7 &f1) {clan_1} &8- &a{pontos_1}'
+          - '&7 &f2) {clan_2} &8- &a{pontos_2}'
+          - '&7 &f3) {clan_3} &8- &a{pontos_3}'
+          - '&r'
+          - '&7Encerra em: &b{falta_fim}'
+          - '&r'
+          - '&a&lCLIQUE &fpara ver o placar'
+      Encerrada:
+        Material: 'IRON_INGOT'
+        Nome: '&f&lLIGA DE FERRO'
+        Lore:
+          - '&7Esta liga ja acabou.'
+          - '&r'
+          - '&7Lideres:'
+          - '&7 &f1) {clan_1} &8- &a{pontos_1}'
+          - '&7 &f2) {clan_2} &8- &a{pontos_2}'
+          - '&7 &f3) {clan_3} &8- &a{pontos_3}'
+          - '&r'
+          - '&c&lCLIQUE &fpara ver o placar final'
+      Sem clan:
+        Material: 'IRON_INGOT'
+        Nome: '&f&lLIGA DE FERRO'
+        Lore:
+          - '&7Voce precisa estar em um clan'
+          - '&7para disputar as ligas.'
+          - '&r'
+          - '&cVoce nao tem clan.'
+          - '&r'
+
+    Mensagens:
+      #  Anunciadas para o servidor inteiro. Vazio nao e enviado.
+      Inicio: |
+        &r
+        &f&lLIGA DE FERRO &8» &aA liga comecou!
+        &7Use &f/ligas &7para inscrever o seu clan.
+        &r
+      Fim: |
+        &r
+        &f&lLIGA DE FERRO &8» &aA liga acabou!
+        &7Vencedor: &b{clan} &7com &a{pontos} &7pontos.
+        &r
+      Fim sem vencedor: |
+        &r
+        &f&lLIGA DE FERRO &8» &aA liga acabou!
+        &cNinguem pontuou nesta temporada.
+        &r
+      Premio entregue: '&aOs premios da liga foram para o seu correio. Use &f/ligas recompensas&a.'
+
+    #  O mercado desta liga: itens comprados com os pontos do clan.
+    #  Comprar gasta pontos do placar -- e uma decisao real entre levar o
+    #  premio agora ou disputar o primeiro lugar.
+    Mercado:
+      pedra-misteriosa:
+        Slot: 11
+        Preco: 10.0
+        Display:
+          Material: 'STONE'
+          Nome: '&c&lPEDRA MISTERIOSA'
+          Lore:
+            - '&7Uma pedra com efeitos diferentes.'
+            - '&r'
+            - '&7Custo: &b{preco} &7pontos'
+            - '&r'
+            - '&a&lCLIQUE &fpara comprar'
+        # O item entregue; apague a secao para so rodar comandos.
+        Item:
+          Material: 'STONE'
+          Quantidade: 64
+          Nome: '&c&lPEDRA MISTERIOSA'
+          Lore: []
+        # Comandos rodados no console: {jogador} {tag} {nome}
+        Comandos: []
+
+#  ── Como criar outra liga ───────────────────────────────────────────────
+#  Copie o bloco "ferro:" inteiro, troque o id (a primeira linha) e ajuste
+#  ordem, datas, preco e premios. Para encadear temporadas, ponha o id da
+#  anterior em "Liga anterior".
