@@ -114,6 +114,8 @@
 # Bigorna exp ............... xp para juntar duas na bigorna (-1 desliga)
 # Bigorna limite ............ teto de usos da ferramenta juntada (-1 desliga)
 # Estatisticas .............. conta os blocos nas estatisticas do jogador
+# Permitir encantar ......... deixa o jogador encantar a ferramenta na mesa e
+#                             na bigorna (true por padrao)
 # Permissao ................. permissao extra exigida (alem da usar.<id>)
 # Acao ...................... CLIQUE_DIREITO ou CLIQUE_ESQUERDO, nos modos
 #                             que aceitam os dois
@@ -136,8 +138,49 @@ Ferramentas:
   picareta_tunel:
     Modo: CUBO
     Nivel de quebra: 3
+    # Efeito visual (só aparência) tocado no centro do que a ferramenta quebra.
+    # Nome de partícula do Bukkit; ex.: EXPLOSION, EXPLOSION_EMITTER, POOF, FLAME.
+    # Deixe de fora ou vazio para nenhum efeito.
+    Efeito: EXPLOSION
+    # Opcoes que o dono libera para o jogador ligar/desligar com /ferramenta.
+    # Ids:
+    #   'dropar' ........... ligada, o que voce quebra cai no chao; desligada,
+    #                        vai direto para o inventario
+    #   'drops-permitidos' . ligada, so cai o que esta em "Drops permitidos";
+    #                        desligada, cai tudo o que o bloco daria -- os
+    #                        "Drops bloqueados" valem nos dois casos
+    #   'area' ............. o 3x3: ligada quebra a area toda, desligada quebra
+    #                        so o bloco batido
+    #   'efeito' ........... o efeito visual da ferramenta
+    #   'coleta' ........... coleta automatica (o mesmo que 'dropar' ao
+    #                        contrario; some da tela quando 'dropar' esta la)
+    # 'dropar' e 'area' aparecem sozinhas no modo CUBO, e 'drops-permitidos'
+    # aparece sozinha em quem tem lista de permitidos. Escrever aqui serve para
+    # fixar o estado inicial de cada uma.
+    #
+    # Dois jeitos de escrever:
+    #   Opcoes-do-jogador:      | Opcoes-do-jogador:
+    #     - drops               |   drops: ativado
+    #     - coleta              |   coleta: desativado
+    # A lista simples usa o padrao da opcao; a forma "id: ativado/desativado"
+    # fixa o estado inicial que o jogador recebe. Tire a lista para travar tudo.
+    # (O 'efeito' ate aparece sozinho por ter Efeito acima; deixamos escrito so
+    # para o jogador poder desligar a explosao e para o dono fixar o padrao.)
+    Opcoes-do-jogador:
+      dropar: desativado
+      drops-permitidos: ativado
+      area: ativado
+      efeito: ativado
     Somente mesmo tipo: false
-    Indestrutivel: true
+    # false = a picareta gasta a durabilidade normal do jogo a cada uso e quebra
+    # no fim (o Inquebravel continua valendo). Ponha true para ela nunca quebrar.
+    Indestrutivel: false
+    # false = ninguem consegue encantar esta ferramenta, nem na mesa nem com
+    # livro na bigorna. Ela ja vem com os encantamentos de baixo.
+    Permitir encantar: false
+    # Os drops dos blocos quebrados vao direto para o inventario do jogador,
+    # como se ele tivesse minerado cada um (senao cairiam espalhados no tunel).
+    Coleta automatica: true
     Tipo: DIAMOND_PICKAXE
     Nome: '&f --{ &a&lPicareta Tunel &f}-- '
     Lore:

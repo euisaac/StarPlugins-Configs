@@ -32,6 +32,26 @@ Geral:
   # Devolve o item no lugar certo mesmo quando o jogador troca de mao no meio
   # do uso. Desligue apenas se outro plugin seu ja cuida disso.
   Atualizar item na mao: true
+  # Blocos que NENHUMA ferramenta de area quebra, mesmo que a ferramenta nao
+  # os tenha na propria lista de bloqueados. Serve para proteger baus, spawners
+  # e maquinas de picareta de tunel, motosserra, etc. (o pe de cabra continua
+  # quebrando spawner pelo caminho dele). Aceita nome exato, apelidos de versao
+  # e o atalho "SHULKER_BOX" para todas as cores de shulker.
+  Blocos protegidos:
+    - SPAWNER
+    - CHEST
+    - TRAPPED_CHEST
+    - ENDER_CHEST
+    - BARREL
+    - SHULKER_BOX
+    - HOPPER
+    - DISPENSER
+    - DROPPER
+    - FURNACE
+    - BLAST_FURNACE
+    - SMOKER
+    - BREWING_STAND
+    - BEACON
 
 # De onde saem os precos usados pela varinha de venda e pela colheitadeira
 # que vende.
@@ -125,7 +145,7 @@ Arvores:
   # Teto de blocos por arvore.
   Maximo de blocos: 250
   # Quebra tambem as folhas ligadas ao tronco.
-  Quebrar folhas: true
+  Quebrar folhas: false
   # Quantas folhas, no maximo, saem junto.
   Maximo de folhas: 200
   # Os drops vao direto para o inventario do jogador.
