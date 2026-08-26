@@ -1,0 +1,473 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                       StarTorneios - torneios                        ║
+#  ║   Cada bloco abaixo e um torneio. Apague, copie e crie a vontade:    ║
+#  ║   o plugin nao repoe os exemplos que voce tirar daqui.               ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  TIPOS DISPONIVEIS
+#    QUEBRAR_BLOCO   COLOCAR_BLOCO   COLHER        FUNDIR       CRAFTAR
+#    PESCAR          COMER           ENCANTAR      NEGOCIAR     MATAR_MOB
+#    MATAR_JOGADOR   MORRER          DOMAR         REPRODUZIR   DANO_CAUSADO
+#    DANO_RECEBIDO   TEMPO_JOGADO    DISTANCIA     EXPERIENCIA  ENTRADAS
+#    MENSAGENS       QUEBRAR_ITEM    PERSONALIZADO
+#
+#  ALVOS
+#    Nos tipos de bloco/item a lista "Alvos" recebe materiais; nos tipos de
+#    mob, tipos de entidade. Aceita curinga: '*_ORE', 'DIAMOND_*', '*SWORD*'.
+#    Lista vazia = tudo conta. "Ignorar" tem prioridade sobre "Alvos".
+#
+#  AGENDA
+#    Tipo: INTERVALO  -> encerra X depois de comecar   (usa "Intervalo")
+#          DIARIO     -> todo dia numa hora            (usa "Hora")
+#          SEMANAL    -> um dia da semana              (usa "Dia" e "Hora")
+#          MENSAL     -> um dia do mes                 (usa "Dia do mes" e "Hora")
+#          MANUAL     -> so encerra no /startorneios encerrar
+#
+#  PREMIACAO
+#    A chave e a colocacao: '1', '2', '3', '4-10' (faixa) ou 'Participacao'
+#    (todo mundo que pontuou e nao pegou uma faixa acima).
+#    Nos Comandos e nas Mensagens valem {jogador}, {posicao}, {pontos},
+#    {pontuacao}, {torneio} e {ciclo}. Os comandos rodam no console.
+#    As linhas de "Exibir" sao o que aparece no lugar de {premiacao} na lore.
+#
+
+Torneios:
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Quem mais joga na semana. Encerra domingo as 23:00.
+  #  ──────────────────────────────────────────────────────────────────────
+  viciado:
+    Ativar: true
+    Tipo: TEMPO_JOGADO
+    Nome: '&6&lVICIADO'
+    Descricao:
+      - '&7Este torneio e focado em ter a maior'
+      - '&7quantidade de tempo jogado na semana.'
+
+    Menu:
+      Slot: 10
+      Material: CLOCK
+      Brilho: false
+
+    # Um ponto por minuto online.
+    Pontos por acao: 1
+    Contar a quantidade: true
+    Pontuacao minima: 1
+
+    Requisitos:
+      # Deixe vazio para todo mundo participar.
+      Permissao: ''
+      # true exige /torneios entrar viciado antes de comecar a contar.
+      Inscricao: false
+
+    Anti abuso:
+      Ignorar modo criativo: true
+      # Quem fica parado no teclado nao acumula tempo.
+      Ignorar jogadores parados: true
+
+    #  Multiplicadores por permissao: quem tiver a permissao pontua vezes o
+    #  numero. Vale o maior que o jogador tiver.
+    Multiplicadores:
+      'startorneios.vip': 1.5
+
+    Agenda:
+      Tipo: SEMANAL
+      Dia: DOMINGO
+      Hora: '23:00'
+
+    Anuncios:
+      Top no menu: 3
+      Avisar o resultado: true
+      Avisar novo lider: false
+      Avisar quando faltar: [ '1d', '1h', '10m' ]
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a5.000 coins &7+ &b60 pontos'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#1 &fno torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 5000'
+      '2':
+        Exibir: '&7 ⤷ &6#2 &f- &a3.000 coins &7+ &b40 pontos'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#2 &fno torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 3000'
+      '3':
+        Exibir: '&7 ⤷ &6#3 &f- &a1.750 coins &7+ &b25 pontos'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#3 &fno torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 1750'
+      '4-10':
+        Exibir: '&7 ⤷ &6#4 ao #10 &f- &a500 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#{posicao} &fno torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 500'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Minerador: so minerio, e so o que nasceu no mundo.
+  #  ──────────────────────────────────────────────────────────────────────
+  minerador:
+    Ativar: true
+    Tipo: QUEBRAR_BLOCO
+    Nome: '&6&lMINERADOR'
+    Descricao:
+      - '&7Quebre o maximo de minerios que'
+      - '&7conseguir antes do prazo acabar.'
+
+    Menu:
+      Slot: 12
+      Material: DIAMOND_ORE
+
+    Pontos por acao: 1
+
+    Alvos:
+      - '*_ORE'
+      - 'ANCIENT_DEBRIS'
+    Ignorar: []
+    # Vazio = todos os mundos.
+    Mundos: []
+
+    Anti abuso:
+      #  O classico: colocar o bloco e quebrar de novo. Com isto ligado, um
+      #  bloco posto por jogador nao conta quando for quebrado.
+      Ignorar blocos colocados: true
+      Ignorar modo criativo: true
+
+    Agenda:
+      Tipo: INTERVALO
+      Intervalo: '7d'
+
+    Anuncios:
+      Top no menu: 3
+      Avisar novo lider: true
+      Avisar quando faltar: [ '1d', '1h', '10m', '1m' ]
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a10.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 10000'
+      '2-3':
+        Exibir: '&7 ⤷ &6#2 e #3 &f- &a4.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#{posicao} &fno torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 4000'
+      Participacao:
+        Exibir: '&7 ⤷ &fParticipando &f- &a100 coins'
+        Mensagem: '&6&lTORNEIO! &fObrigado por participar do {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 100'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Lenhador: madeira, e so ela.
+  #  ──────────────────────────────────────────────────────────────────────
+  lenhador:
+    Ativar: true
+    Tipo: QUEBRAR_BLOCO
+    Nome: '&6&lLENHADOR'
+    Descricao:
+      - '&7Derrube arvores e junte madeira.'
+
+    Menu:
+      Slot: 14
+      Material: OAK_LOG
+
+    Pontos por acao: 1
+    Alvos:
+      - '*_LOG'
+      - '*_WOOD'
+      - 'LOG'
+      - 'LOG_2'
+
+    Anti abuso:
+      Ignorar blocos colocados: true
+
+    Agenda:
+      Tipo: INTERVALO
+      Intervalo: '7d'
+
+    Anuncios:
+      Top no menu: 3
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a8.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 8000'
+      '2-5':
+        Exibir: '&7 ⤷ &6#2 ao #5 &f- &a2.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#{posicao} &fno {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 2000'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Fazendeiro: so planta no ponto de colher conta.
+  #  ──────────────────────────────────────────────────────────────────────
+  fazendeiro:
+    Ativar: true
+    Tipo: COLHER
+    Nome: '&6&lFAZENDEIRO'
+    Descricao:
+      - '&7Colha plantacoes maduras.'
+      - '&7Planta verde nao vale ponto.'
+
+    Menu:
+      Slot: 16
+      Material: CARROT
+
+    Pontos por acao: 1
+    Alvos: []
+
+    Anti abuso:
+      # Aqui o replantio e normal, entao o bloco colocado continua contando.
+      Ignorar blocos colocados: false
+      Ignorar modo criativo: true
+
+    Agenda:
+      Tipo: SEMANAL
+      Dia: SABADO
+      Hora: '20:00'
+
+    Anuncios:
+      Top no menu: 3
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a6.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 6000'
+      '2-3':
+        Exibir: '&7 ⤷ &6#2 e #3 &f- &a2.500 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#{posicao} &fno {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 2500'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Cacador: mobs em geral, sem os de spawner.
+  #  ──────────────────────────────────────────────────────────────────────
+  cacador:
+    Ativar: true
+    Tipo: MATAR_MOB
+    Nome: '&6&lCACADOR'
+    Descricao:
+      - '&7Mate monstros pelo mundo.'
+      - '&7Mob de spawner nao conta.'
+
+    Menu:
+      Slot: 20
+      Material: DIAMOND_SWORD
+
+    Pontos por acao: 1
+    Alvos: []
+    Ignorar:
+      - 'ARMOR_STAND'
+
+    Anti abuso:
+      Ignorar mobs de spawner: true
+      Ignorar modo criativo: true
+
+    Agenda:
+      Tipo: INTERVALO
+      Intervalo: '7d'
+
+    Anuncios:
+      Top no menu: 3
+      Avisar novo lider: true
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a9.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 9000'
+      '2-3':
+        Exibir: '&7 ⤷ &6#2 e #3 &f- &a3.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#{posicao} &fno {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 3000'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Cacador de dragoes: um alvo so, e ele vale muito.
+  #  ──────────────────────────────────────────────────────────────────────
+  dragao:
+    Ativar: true
+    Tipo: MATAR_MOB
+    Nome: '&6&lCACADOR DE DRAGOES'
+    Descricao:
+      - '&7Cada enderdragon derrubado'
+      - '&7vale 100 pontos.'
+
+    Menu:
+      Slot: 22
+      Material: DRAGON_EGG
+      Brilho: true
+
+    Pontos por acao: 100
+    Alvos:
+      - 'ENDER_DRAGON'
+
+    Agenda:
+      Tipo: MENSAL
+      Dia do mes: 1
+      Hora: '12:00'
+
+    Anuncios:
+      Top no menu: 3
+      Avisar novo lider: true
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a25.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 25000'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Assassino: PvP. Costuma pedir permissao ou mundo proprio.
+  #  ──────────────────────────────────────────────────────────────────────
+  assassino:
+    Ativar: true
+    Tipo: MATAR_JOGADOR
+    Nome: '&6&lASSASSINO'
+    Descricao:
+      - '&7Quem matar mais jogadores'
+      - '&7leva a premiacao.'
+
+    Menu:
+      Slot: 24
+      Material: IRON_SWORD
+
+    Pontos por acao: 1
+
+    # Exemplo: so conta em mundos de pvp.
+    Mundos: []
+
+    Agenda:
+      Tipo: SEMANAL
+      Dia: DOMINGO
+      Hora: '23:00'
+
+    Anuncios:
+      Top no menu: 3
+      Avisar novo lider: true
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a12.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 12000'
+      '2-3':
+        Exibir: '&7 ⤷ &6#2 e #3 &f- &a4.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#{posicao} &fno {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 4000'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Pescador.
+  #  ──────────────────────────────────────────────────────────────────────
+  pescador:
+    Ativar: true
+    Tipo: PESCAR
+    Nome: '&6&lPESCADOR'
+    Descricao:
+      - '&7Cada peixe fisgado vale um ponto.'
+
+    Menu:
+      Slot: 28
+      Material: FISHING_ROD
+
+    Pontos por acao: 1
+    Alvos: []
+
+    Agenda:
+      Tipo: INTERVALO
+      Intervalo: '7d'
+
+    Anuncios:
+      Top no menu: 3
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a7.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 7000'
+      '2-3':
+        Exibir: '&7 ⤷ &6#2 e #3 &f- &a2.500 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#{posicao} &fno {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 2500'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Explorador: distancia percorrida a pe, em blocos.
+  #  ──────────────────────────────────────────────────────────────────────
+  explorador:
+    Ativar: true
+    Tipo: DISTANCIA
+    Nome: '&6&lEXPLORADOR'
+    Descricao:
+      - '&7Cada bloco andado conta.'
+
+    Menu:
+      Slot: 30
+      Material: LEATHER_BOOTS
+
+    Pontos por acao: 1
+
+    Anti abuso:
+      Ignorar modo criativo: true
+
+    Agenda:
+      Tipo: DIARIO
+      Hora: '00:00'
+
+    Anuncios:
+      Top no menu: 3
+      Avisar quando faltar: [ '1h', '10m' ]
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a2.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio de hoje!'
+        Comandos:
+          - 'eco give {jogador} 2000'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Torneio alimentado por fora: outro plugin (ou o proprio staff) da os
+  #  pontos com /startorneios pontos adicionar sortudo <jogador> <numero>.
+  #  ──────────────────────────────────────────────────────────────────────
+  sortudo:
+    Ativar: false
+    Tipo: PERSONALIZADO
+    Nome: '&6&lSORTUDO'
+    Descricao:
+      - '&7Pontos dados por eventos do servidor.'
+
+    Menu:
+      Slot: 32
+      Material: NETHER_STAR
+
+    Pontos por acao: 1
+
+    Requisitos:
+      Permissao: ''
+      # Aqui a inscricao faz sentido: so participa quem quiser.
+      Inscricao: true
+
+    Agenda:
+      Tipo: MANUAL
+
+    Anuncios:
+      Top no menu: 3
+      Avisar o resultado: true
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a15.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 15000'

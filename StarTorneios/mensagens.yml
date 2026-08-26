@@ -1,0 +1,106 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarTorneios - mensagens                        ║
+#  ║   Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso ║
+#  ║   sem precisar de uma opcao para cada um.                            ║
+#  ║   Aceita &a e tambem hex no formato &#RRGGBB (1.16+).                ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Prefixo: '&6&lTORNEIOS &8» &f'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar este comando.'
+  Nenhum torneio: '&cNenhum torneio esta ativo no momento.'
+  Torneio nao encontrado: '&cO torneio &f{id} &cnao existe. Disponiveis: &7{torneios}'
+  Diga o torneio: '&cDiga qual torneio. Disponiveis: &7{torneios}'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou no servidor.'
+  Numero invalido: '&cO valor &f{valor} &cnao e um numero.'
+  Uso: '&cUso: &f{uso}'
+
+Etiquetas:
+  Sem prazo: 'sem prazo'
+  Ninguem: 'ninguem'
+
+Torneio:
+  # Actionbar de ganho -- so aparece com "Mostrar ganho na actionbar" ligado.
+  Ganho: '&6&l+{pontos} &fpontos no {torneio} &7({pontuacao})'
+
+  # Uma linha por colocacao; usada no chat e no anuncio do encerramento.
+  Linha do top: '&7 ⤷ &6#{posicao} &f{jogador} &7({pontuacao})'
+
+  Top cabecalho: |
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    &6&l  {torneio}
+    &7  {participantes} participante(s)
+    &r
+  Sua posicao: |
+    &r
+    &7  A sua posicao: &6#{posicao} &7com &f{pontuacao}
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+  Novo lider: '&6&lLIDERANCA! &f{jogador} &fassumiu o topo do {torneio} &7({pontuacao})'
+
+  Faltando: '&6&lTORNEIO! &fO {torneio} &fencerra em &6{tempo}&f!'
+
+  Encerrado: |
+    &r
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    &6&l  O TORNEIO {torneio} &6&lACABOU!
+    &7  {participantes} jogador(es) pontuaram
+    &r
+    {top}
+    &r
+    &7  Use &f/torneios &7para ver o proximo.
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    &r
+  Encerrado sem ninguem: '&6&lTORNEIO! &fO {torneio} &fencerrou sem nenhum participante.'
+
+  Premios entregues: '&aVoce recebeu &f{quantidade} &apremio(s) de torneio que estavam guardados!'
+
+  Inscrito: '&aVoce entrou no torneio {torneio}&a!'
+  Ja inscrito: '&cVoce ja esta participando do {torneio}&c.'
+  Inscricao nao precisa: '&eO torneio {torneio} &enao precisa de inscricao: todo mundo ja participa.'
+  Sem permissao no torneio: '&cVoce nao pode participar do {torneio}&c.'
+  Carregando: '&eO placar deste torneio ainda esta carregando. Tente de novo em instantes.'
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas. &7({torneios} torneio(s))'
+  Encerrado: '&aTorneio {torneio} &aencerrado (ciclo {ciclo}).'
+  Reiniciado: '&aPlacar do torneio {torneio} &azerado, sem premiar ninguem.'
+  Salvo: '&aPlacar enviado para o banco de dados.'
+  Pontos somados: '&aSomados &f{quantidade} &apontos para &f{jogador} &ano {torneio}&a. Total: &f{total}'
+  Pontos definidos: '&aA pontuacao de &f{jogador} &ano {torneio} &aagora e &f{total}&a.'
+
+  Info: |
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    &6&l  STARTORNEIOS &7v{versao}
+    &7  Banco de dados: &f{banco}
+    &7  Torneios: &f{torneios}
+    &r
+  Linha do info: '&7 ⤷ &f{id} &7({tipo}) &8- &f{estado} &7| ciclo &f{ciclo} &7| &f{participantes} &7no placar &7| falta &f{restante}'
+
+Ajuda:
+  Jogador: |
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    &6&l  TORNEIOS
+    &r
+    &6 /torneios &7- abre o menu dos torneios
+    &6 /torneios placar <torneio> &7- todos os participantes em ordem
+    &6 /torneios top <torneio> &7- o top no chat
+    &6 /torneios historico <torneio> &7- os ciclos ja encerrados
+    &6 /torneios entrar <torneio> &7- entra num torneio de inscricao
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+  Admin: |
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+    &6&l  STARTORNEIOS &7- staff
+    &r
+    &6 /startorneios recarregar &7- recarrega os arquivos
+    &6 /startorneios info &7- estado de cada torneio
+    &6 /startorneios encerrar <torneio> &7- encerra e premia agora
+    &6 /startorneios reiniciar <torneio> &7- zera o placar sem premiar
+    &6 /startorneios salvar &7- grava o placar no banco
+    &6 /startorneios pontos <adicionar|definir|remover> <torneio> <jogador> <n>
+    &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬

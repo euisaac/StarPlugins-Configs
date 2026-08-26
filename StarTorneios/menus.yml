@@ -1,0 +1,197 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                        StarTorneios - menus                          ║
+#  ║   Slot -1 esconde o botao. As linhas com {descricao}, {top} e        ║
+#  ║   {premiacao} viram varias linhas -- e onde cada bloco aparece.      ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+#
+# ══════════════════════════  MENU PRINCIPAL  ══════════════════════════════
+#
+Menu principal:
+  Titulo: '&6&l✦ STAR TORNEIOS ✦'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Torneio:
+    #  O que cada clique faz: PLACAR, HISTORICO, ENTRAR ou NADA.
+    Clique esquerdo: PLACAR
+    Clique direito: HISTORICO
+
+    Linha do top: '&7 ⤷ &6#{posicao} &f{jogador} &7({pontuacao})'
+    Sem participantes: '&7 ⤷ &fNinguem pontuou ainda'
+
+    #  Placeholders: {torneio} {id} {tipo} {ciclo} {pontos} {pontuacao}
+    #  {posicao} {participantes} {agenda} {restante} {encerra} {data}
+    #  {lider} {lider_pontos} {atualiza}
+    Lore:
+      - '{descricao}'
+      - '&r'
+      - '&6&l▬▬▬ ESTATISTICAS ▬▬▬'
+      - '&7 ⤷ Sua pontuacao: &f{pontuacao}'
+      - '&7 ⤷ Sua posicao: &6#{posicao}'
+      - '&7 ⤷ Participantes: &f{participantes}'
+      - '&r'
+      - '&6&l▬▬▬ TOP ▬▬▬'
+      - '{top}'
+      - '&8O top atualiza a cada {atualiza} segundos'
+      - '&r'
+      - '&6&l▬▬▬ PREMIACAO ▬▬▬'
+      - '{premiacao}'
+      - '&r'
+      - '&6&l▬▬▬ ENCERRA ▬▬▬'
+      - '&7 ⤷ {agenda}'
+      - '&7 ⤷ Tempo restante: &f{encerra}'
+      - '&r'
+      - '&a&lCLIQUE &fpara ver todos os participantes'
+      - '&e&lCLIQUE DIREITO &fpara ver o historico'
+
+  Botoes:
+    Fechar:
+      Slot: 40
+      Material: BARRIER
+      Nome: '&c&lFECHAR'
+      Lore: []
+    Historico:
+      # Historico do primeiro torneio da lista; -1 esconde o botao.
+      Slot: -1
+      Material: BOOK
+      Nome: '&6&lHISTORICO'
+      Lore:
+        - '&7Veja os ciclos ja encerrados.'
+
+#
+# ══════════════════════════════  PLACAR  ═══════════════════════════════════
+#
+#  A tela de todos os participantes em ordem. A ultima linha e a barra de
+#  botoes; o resto e preenchido com os jogadores.
+#
+Placar:
+  Titulo: '&6&lPLACAR &8- &f{torneio}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Jogador:
+    Usar cabeca: true
+    Material: PLAYER_HEAD
+    Nome: '&6&l#{posicao} &f{jogador}'
+    #  Placeholders: {posicao} {jogador} {pontos} {pontuacao} {torneio}
+    #  {atualizado} {premio}
+    Lore:
+      - '&r'
+      - '&7Pontuacao: &f{pontuacao}'
+      - '&7Posicao: &6#{posicao}'
+      - '&7Premio: &f{premio}'
+
+  Voce:
+    Slot: 49
+    Usar cabeca: true
+    Material: PLAYER_HEAD
+    Nome: '&6&lSUAS ESTATISTICAS'
+    Lore:
+      - '&r'
+      - '&7Jogador: &f{jogador}'
+      - '&7Pontuacao: &f{pontuacao}'
+      - '&7Posicao: &6#{posicao}'
+      - '&7No placar: &f{participantes} jogador(es)'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+    Voltar:
+      Slot: 48
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Atualizar:
+      Slot: 50
+      Material: CLOCK
+      Nome: '&6&lATUALIZAR'
+      Lore:
+        - '&7O placar se reordena sozinho'
+        - '&7a cada &f{segundos} &7segundos.'
+
+#
+# ════════════════════════════  HISTORICO  ══════════════════════════════════
+#
+Historico:
+  Titulo: '&6&lHISTORICO &8- &f{torneio}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Carregando:
+    Material: CLOCK
+    Nome: '&7Carregando...'
+    Lore: []
+
+  Vazio:
+    Material: PAPER
+    Nome: '&7Nenhum ciclo encerrado ainda'
+    Lore:
+      - '&7Quando o torneio encerrar, o'
+      - '&7resultado dele aparece aqui.'
+
+  Ciclo:
+    Material: BOOK
+    Cabeca do campeao: false
+    Nome: '&6&lCICLO #{ciclo}'
+    Linha do top: '&7 ⤷ &6#{posicao} &f{jogador} &7({pontuacao})'
+    Lore:
+      - '&7Encerrado em &f{data}'
+      - '&r'
+      - '{top}'
+
+  Vencedor:
+    Usar cabeca: true
+    Material: PLAYER_HEAD
+    Nome: '&6&l#{posicao} &f{jogador}'
+    Lore:
+      - '&r'
+      - '&7Vitorias: &f{vitorias}'
+      - '&7Ultima em &f{data}'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+    Voltar:
+      Slot: 48
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Trocar:
+      Slot: 49
+      Material: GOLDEN_HELMET
+      Nome: '&6&lHALL DA FAMA'
+      Lore:
+        - '&7Alterna entre os ciclos'
+        - '&7e quem mais venceu.'

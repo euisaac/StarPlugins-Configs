@@ -1,0 +1,78 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                            StarTorneios                              ║
+#  ║   Torneios globais com placar de todos os participantes, premiacao   ║
+#  ║   automatica e historico dos ciclos ja encerrados.                   ║
+#  ║                                                                      ║
+#  ║   Os torneios em si ficam no torneios.yml.                           ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Geral:
+  # Mostra no console detalhes uteis so para achar problema.
+  Debug: false
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre servidores).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'startorneios_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Placar:
+  #  A pontuacao fica na memoria e vai para o banco de tempos em tempos, em
+  #  lote. Nao adianta baixar demais: o que protege o placar de um /stop
+  #  inesperado ja e a gravacao do desligamento.
+  Salvar a cada: 60
+
+  #  De quanto em quanto tempo o placar e reordenado, em segundos.
+  #  E este numero que aparece como "o top atualiza a cada X segundos" na lore.
+  #  Colocar 1 aqui deixa o placar sempre exato, mas ordena a lista inteira a
+  #  cada consulta -- em servidor cheio, deixe em 60.
+  Atualizar a cada: 60
+
+  # Quantas colocacoes vao para o historico quando o ciclo encerra.
+  Colocacoes guardadas: 10
+
+  # Quantos ciclos encerrados aparecem no menu de historico.
+  Ciclos no historico: 20
+
+  # Quantos jogadores cabem em cada pagina do placar (entre 9 e 45).
+  Jogadores por pagina: 45
+
+Menu:
+  #  De quantos em quantos ticks os menus abertos sao redesenhados.
+  #  20 ticks = 1 segundo. E o que faz o contador de "encerra em" andar na tela.
+  #  Coloque 0 para nao atualizar sozinho.
+  Atualizar a cada: 20
+
+Avisos:
+  #  Mostra na actionbar quanto o jogador ganhou a cada acao.
+  #  Deixe desligado em torneio de minerar: sao muitos blocos por segundo.
+  Mostrar ganho na actionbar: false
+  # Espacamento minimo entre dois avisos de ganho, em segundos.
+  Intervalo do ganho: 3
+
+  # Entrega na entrada o premio de quem estava offline no encerramento.
+  Entregar premios na entrada: true
+  # Atraso da entrega, em ticks, para nao brigar com a mensagem de bem-vindo.
+  Atraso na entrada: 60
+  Avisar premios pendentes: true
+
+Anti abuso:
+  #  Tempo parado a partir do qual o jogador para de acumular no torneio de
+  #  tempo jogado. So vale nos torneios com "Ignorar jogadores parados: true".
+  Minutos parado para nao contar: 5
+
+  # Mundos onde nada pontua, valendo para todos os torneios (ex.: arenas, lobby).
+  Mundos bloqueados: []
+
+#  Sons no formato SOM;volume;tom -- o nome passa pelo XSeries, entao o mesmo
+#  nome funciona da 1.8 a 1.21. Deixe '' para nao tocar nada.
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Premio: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1.2'
