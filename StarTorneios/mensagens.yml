@@ -66,6 +66,40 @@ Torneio:
   Sem permissao no torneio: '&cVoce nao pode participar do {torneio}&c.'
   Carregando: '&eO placar deste torneio ainda esta carregando. Tente de novo em instantes.'
 
+# O "digite no chat" dos menus de edicao.
+Entrada:
+  Como cancelar: '&7Escreva &fcancelar &7para desistir.'
+  Cancelado: '&cEdicao cancelada.'
+  Tempo esgotado: '&cVoce demorou demais; a edicao foi cancelada.'
+
+# O editor de premiacao (/startorneios premiacao <torneio>).
+Editor:
+  Digite a colocacao: |
+    &6&lPREMIACAO &8» &fDigite no chat quem recebe:
+    &7 ⤷ &f1 &7= so o campeao
+    &7 ⤷ &f2-3 &7= do segundo ao terceiro
+    &7 ⤷ &fparticipacao &7= todo mundo que pontuou
+  Digite o nome: |
+    &6&lPREMIACAO &8» &fDigite o nome da premiacao:
+    &7E a linha que aparece no menu do torneio. Aceita cores com &.
+    &7Escreva &fvazio &7para tirar a linha.
+  Digite a mensagem: |
+    &6&lPREMIACAO &8» &fDigite a mensagem enviada ao ganhador:
+    &7Vale {jogador}, {posicao}, {pontos}, {pontuacao}, {torneio} e {ciclo}.
+    &7Escreva &fvazio &7para nao enviar nada.
+  Digite o comando: |
+    &6&lPREMIACAO &8» &fDigite o comando (sem a barra):
+    &7Roda no console quando o torneio encerrar.
+    &7Exemplo: &feco give {jogador} 5000
+
+  Faixa criada: '&aColocacao &f#{faixa} &acriada no torneio {torneio}&a.'
+  Faixa apagada: '&cColocacao &f#{faixa} &capagada do torneio {torneio}&c.'
+  Faixa existe: '&cJa existe uma premiacao para &f#{faixa}&c.'
+  Colocacao invalida: '&cA colocacao &f{valor} &cnao serve. Use 1, 2-3 ou participacao.'
+  Comando adicionado: '&aComando adicionado: &f/{comando}'
+  Comando apagado: '&cComando apagado.'
+  Salvo: '&aPremiacao salva no torneios.yml.'
+
 Admin:
   Recarregado: '&aConfiguracoes recarregadas. &7({torneios} torneio(s))'
   Encerrado: '&aTorneio {torneio} &aencerrado (ciclo {ciclo}).'
@@ -102,5 +136,6 @@ Ajuda:
     &6 /startorneios encerrar <torneio> &7- encerra e premia agora
     &6 /startorneios reiniciar <torneio> &7- zera o placar sem premiar
     &6 /startorneios salvar &7- grava o placar no banco
+    &6 /startorneios premiacao <torneio> &7- edita os premios em menu
     &6 /startorneios pontos <adicionar|definir|remover> <torneio> <jogador> <n>
     &6&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
