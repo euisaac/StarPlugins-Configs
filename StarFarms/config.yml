@@ -1,0 +1,86 @@
+# Configuração do StarFarms
+
+# Ativar/desativar o plugin
+enabled: true
+
+# Configurações de aceleração de crescimento
+growth:
+  # Lista branca de plantações para acelerar com multiplicador individual (nomes dos materiais: multiplicador)
+  # O multiplicador indica quantos estágios crescer por evento (ex.: 5.0 cresce 5 estágios por vez)
+  # Valores aumentados para simular randomtickspeed 60
+  whitelist:
+    WHEAT: 5.0
+    CARROT: 5.0
+    POTATO: 5.0
+    BEETROOT: 5.0
+    MELON_STEM: 3.0
+    PUMPKIN_STEM: 3.0
+    NETHER_WART: 3.0
+
+# Configurações de replantação automática
+auto-replant:
+  enabled: true
+  # Lista branca de plantações para replantar automaticamente (nomes dos materiais)
+  whitelist:
+    - WHEAT
+    - CARROT
+    - POTATO
+    - BEETROOT
+    - MELON_STEM
+    - PUMPKIN_STEM
+    - NETHER_WART
+
+# Configurações de plantação automática de mudas
+sapling-auto-plant:
+  enabled: true
+  # Atraso em ticks antes de plantar mudas (20 ticks = 1 segundo)
+  delay: 100
+  # Lista branca de tipos de mudas para plantar automaticamente (nomes dos materiais)
+  whitelist:
+    - OAK_SAPLING
+    - SPRUCE_SAPLING
+    - BIRCH_SAPLING
+    - JUNGLE_SAPLING
+    - ACACIA_SAPLING
+    - DARK_OAK_SAPLING
+    - CHERRY_SAPLING
+    - MANGROVE_PROPAGULE
+
+# Configurações de derrubada de árvores
+tree-felling:
+  enabled: true
+  # O StarFerramentas tambem sabe derrubar arvore, e os dois cancelam o mesmo
+  # evento -- com os dois ligados, a arvore acaba nao caindo. Com "ceder: true"
+  # (padrao), o StarFarms sai de cena quando o StarFerramentas esta instalado
+  # com a derrubada ligada. Ponha false para a derrubada daqui mandar.
+  ceder: true
+  # Atraso em ticks entre quebras de troncos (para evitar lag)
+  delay: 2
+  # Lista branca de tipos de troncos para derrubar (nomes dos materiais)
+  whitelist:
+    - OAK_LOG
+    - SPRUCE_LOG
+    - BIRCH_LOG
+    - JUNGLE_LOG
+    - ACACIA_LOG
+    - DARK_OAK_LOG
+    - CHERRY_LOG
+    - MANGROVE_LOG
+  # Lista de machados que ativam a derrubada (nomes dos materiais)
+  axes:
+    - WOODEN_AXE
+    - STONE_AXE
+    - IRON_AXE
+    - GOLDEN_AXE
+    - DIAMOND_AXE
+    - NETHERITE_AXE
+
+# Configurações de auto-pickup
+auto-pickup:
+  enabled: true
+  # Lista negra de itens para não coletar automaticamente (nomes dos materiais)
+  blacklist:
+    - COBBLESTONE
+    - DIRT
+    - STONE
+    - GRAVEL
