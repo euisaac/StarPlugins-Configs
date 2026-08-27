@@ -127,6 +127,34 @@
 # Mundos bloqueados ......... nao funciona nestes mundos
 # Plugins notificados ....... plugins avisados da quebra, so para esta ferramenta
 #
+# ===========================================================================
+#  HABILIDADES
+# ===========================================================================
+#
+# Habilidade nao e o modo: o modo e o que a ferramenta faz sempre, a habilidade
+# e um poder que o jogador LIGA com o clique direito, dura alguns segundos e
+# depois entra em tempo de espera.
+#
+# Habilidade:
+#   Tipo ............... LASER ou NENHUMA
+#   Duracao ............ segundos ligada
+#   Tempo de espera .... segundos de recarga depois que acaba
+#   Alcance ............ no laser, quantos blocos a mais o tunel avanca na
+#                        direcao em que o jogador esta olhando
+#   Particula .......... a particula do feixe (FLAME, CRIT, SMOKE...); vazio
+#                        nao desenha feixe nenhum
+#   Exigir agachado .... true pede o jogador agachado para ligar
+#   Permissao .......... permissao extra so para a habilidade
+#   Sons.Ligou / Sons.Acabou
+#
+# LASER: enquanto esta ligada, cada golpe abre a mesma area do modo CUBO
+# esticada para a frente pelo Alcance -- um 3x3 com Alcance 10 vira um tunel de
+# 3x3x11 por golpe, com o feixe desenhado ate o fim.
+#
+# Em ferramenta que ja usa o clique direito para trabalhar (varinha de venda e
+# afins), ligar a habilidade pede o jogador agachado -- senao um clique so
+# faria as duas coisas.
+#
 # Blocos e drops aceitam "MATERIAL" e "MATERIAL:DADO".
 # ---------------------------------------------------------------------------
 
@@ -135,7 +163,7 @@ Versao do modelo: 1
 
 Ferramentas:
 
-  picareta_tunel:
+  super_area:
     Modo: CUBO
     Nivel de quebra: 3
     # Efeito visual (só aparência) tocado no centro do que a ferramenta quebra.
@@ -171,6 +199,20 @@ Ferramentas:
       drops-permitidos: ativado
       area: ativado
       efeito: ativado
+    # O poder que o jogador liga com o clique direito (veja HABILIDADES no
+    # cabecalho). Tire a secao inteira, ou ponha Tipo: NENHUMA, para a picareta
+    # nao ter habilidade.
+    Habilidade:
+      Tipo: LASER
+      Duracao: 15
+      Tempo de espera: 60
+      Alcance: 10
+      Particula: FLAME
+      Exigir agachado: false
+      Permissao: ''
+      Sons:
+        Ligou: 'ENTITY_BLAZE_SHOOT;0.8;1.4'
+        Acabou: 'BLOCK_FIRE_EXTINGUISH;0.8;1.0'
     Somente mesmo tipo: false
     # false = a picareta gasta a durabilidade normal do jogo a cada uso e quebra
     # no fim (o Inquebravel continua valendo). Ponha true para ela nunca quebrar.
@@ -182,16 +224,10 @@ Ferramentas:
     # como se ele tivesse minerado cada um (senao cairiam espalhados no tunel).
     Coleta automatica: true
     Tipo: DIAMOND_PICKAXE
-    Nome: '&f --{ &a&lPicareta Tunel &f}-- '
+    Nome: '&b&lSuper Area'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Esta picareta abre um tunel de 3x3.'
-      - '&f'
-      - '&a&l Blocos bloqueados:'
-      - '&f - &7Gerador de mobs'
-      - '&f'
-      - '&7 So os minerios sao dropados.'
-      - '&8&m---------------------------------------'
+      - '&7Item especial: quebra em &f3x3&7.'
+      - '&7Clique direito liga o &claser &7por 15s.'
     Encantamentos:
       - 'DIG_SPEED:5'
     Blocos bloqueados:
@@ -209,23 +245,42 @@ Ferramentas:
       - 'RAW_GOLD'
       - 'RAW_COPPER'
 
+  # A mesma picareta 3x3, mas com o laser SEMPRE ligado: nao tem clique para
+  # ativar, nao tem duracao e nao tem tempo de espera -- o poder e a propria
+  # ferramenta.
+  arma_laser:
+    Modo: CUBO
+    Nivel de quebra: 3
+    Habilidade:
+      Tipo: LASER
+      Sempre ligada: true
+      Alcance: 10
+      Particula: FLAME
+    Coleta automatica: true
+    Indestrutivel: false
+    Permitir encantar: false
+    Tipo: DIAMOND_PICKAXE
+    Nome: '&c&lArma Laser'
+    Lore:
+      - '&7Picareta &f3x3 &7com o &claser sempre ligado&7.'
+      - '&7Cada golpe abre &f10 blocos &7para a frente.'
+    Encantamentos:
+      - 'DIG_SPEED:5'
+    Blocos bloqueados:
+      - 'SPAWNER'
+    Opcoes-do-jogador:
+      dropar: desativado
+      area: ativado
+
   picareta_bandeja:
     Modo: CUBO
     Nivel de quebra: 3
     Somente mesmo tipo: false
     Indestrutivel: true
     Tipo: DIAMOND_PICKAXE
-    Nome: '&f --{ &c&lPicareta Bandeja &f}-- '
+    Nome: '&e&lPicareta Bandeja'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Esta picareta limpa toda a terra e a'
-      - '&7 netherrack em volta de voce.'
-      - '&f'
-      - '&c&l Blocos permitidos:'
-      - '&f - &7Terra'
-      - '&f - &7Netherrack'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Limpa a terra e a netherrack em volta, em &f3x3&7.'
     Encantamentos:
       - 'DIG_SPEED:5'
     Blocos permitidos:
@@ -238,19 +293,10 @@ Ferramentas:
     Usos: 500
     Limite: 256
     Tipo: DIAMOND_HOE
-    Nome: '&f --{ &e&lVarinha de Areia &f}-- '
+    Nome: '&e&lVarinha de Areia'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Esta varinha derruba a coluna de areia'
-      - '&7 inteira de uma vez.'
-      - '&f'
-      - '&e&l Blocos permitidos:'
-      - '&f - &7Areia'
-      - '&f'
-      - '&e&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Derruba a coluna de areia inteira.'
+      - '&8Usos: &7{}'
     Blocos permitidos:
       - 'SAND'
 
@@ -259,16 +305,10 @@ Ferramentas:
     Tempo de espera: 5000
     Usos: 50
     Tipo: STICK
-    Nome: '&f --{ &6&lVarinha de Venda &7(Nivel I) &f}-- '
+    Nome: '&6&lVarinha de Venda &7I'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Esta varinha vende tudo o que estiver'
-      - '&7 dentro do bau clicado.'
-      - '&7'
-      - '&6&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Vende tudo o que estiver no bau clicado.'
+      - '&8Usos: &7{}'
 
   varinha_venda_2:
     Modo: VENDA
@@ -276,49 +316,30 @@ Ferramentas:
     Usos: 50
     Multiplicador: 1.5
     Tipo: STICK
-    Nome: '&f --{ &6&lVarinha de Venda &7(Nivel II) &f}-- '
+    Nome: '&6&lVarinha de Venda &7II'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Esta varinha vende tudo o que estiver'
-      - '&7 dentro do bau clicado.'
-      - '&7'
-      - '&6&l Multiplicador:'
-      - '&f   x1.5'
-      - '&6&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Vende tudo o que estiver no bau clicado.'
+      - '&7Paga &fx1.5 &7do valor normal.'
+      - '&8Usos: &7{}'
 
   varinha_raio:
     Modo: RAIO
     Tipo: STICK
     Usos: 5
-    Nome: '&f --{ &b&lVarinha de Raio &f}-- '
+    Nome: '&b&lVarinha de Raio'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Esta varinha faz cair um raio que'
-      - '&7 carrega os creepers em volta.'
-      - '&7'
-      - '&b&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Faz cair um raio no lugar clicado.'
+      - '&8Usos: &7{}'
 
   varinha_ima:
     Modo: IMA
     Tipo: STICK
     Raio: 5
     Usos: 500
-    Nome: '&f --{ &4&lVarinha Ima &f}-- '
+    Nome: '&4&lVarinha Ima'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Esta varinha puxa para o seu inventario'
-      - '&7 todos os itens num raio de 5 blocos.'
-      - '&7'
-      - '&4&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Puxa os itens caidos num raio de &f5 blocos&7.'
+      - '&8Usos: &7{}'
 
   enxada_colheitadeira:
     Modo: COLHEITADEIRA
@@ -327,49 +348,30 @@ Ferramentas:
     Coleta automatica: true
     Tipo: DIAMOND_HOE
     Usos: 500
-    Nome: '&f --{ &d&lEnxada Colheitadeira &f}-- '
+    Nome: '&d&lEnxada Colheitadeira'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Clique numa plantacao para colher,'
-      - '&7 replantar e arar a terra em volta.'
-      - '&7'
-      - '&d&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Colhe, replanta e ara a terra em volta.'
+      - '&8Usos: &7{}'
 
   varinha_canhao:
     Modo: CANHAO
     Quantidade de tnt: 64
     Tipo: DIAMOND_AXE
     Usos: 30
-    Nome: '&f --{ &5&lVarinha de Canhao &f}-- '
+    Nome: '&5&lVarinha de Canhao'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Enche com 64 TNT todos os dispensers'
-      - '&7 da area que voce marcar.'
-      - '&f'
-      - '&7 Clique esquerdo marca o canto 1.'
-      - '&7 Clique direito marca o canto 2.'
-      - '&f'
-      - '&5&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Enche de TNT os dispensers da area marcada.'
+      - '&7Esquerdo marca o canto 1, direito o canto 2.'
+      - '&8Usos: &7{}'
 
   varinha_fabricacao:
     Modo: FABRICACAO
     Tipo: STICK
     Usos: 3000
-    Nome: '&f --{ &9&lVarinha de Fabricacao &f}-- '
+    Nome: '&9&lVarinha de Fabricacao'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Bata num bau para fabricar TNT sozinho!'
-      - '&f'
-      - '&9&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Bata num bau para fabricar TNT sozinho.'
+      - '&8Usos: &7{}'
     Fabricacoes:
       - 'TNT'
 
@@ -379,78 +381,48 @@ Ferramentas:
     Usos: 1000
     Comprimento: 5
     Consumir blocos: true
-    Nome: '&f --{ &2&lVarinha de Construcao &f}-- '
+    Nome: '&2&lVarinha de Construcao'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Clique num bloco para criar uma coluna'
-      - '&7 igual a ele para o lado clicado.'
-      - '&f'
-      - '&2&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Estica uma coluna do bloco clicado.'
+      - '&8Usos: &7{}'
 
   varinha_gelo:
     Modo: GELO
     Tipo: STICK
     Usos: 300
     Raio: 10
-    Nome: '&f --{ &3&lDerretedor de Gelo &f}-- '
+    Nome: '&3&lDerretedor de Gelo'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Clique para derreter todo o gelo num'
-      - '&7 raio de 10 blocos.'
-      - '&f'
-      - '&3&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Derrete o gelo num raio de &f10 blocos&7.'
+      - '&8Usos: &7{}'
 
   varinha_drenagem:
     Modo: DRENAR
     Tipo: STICK
     Usos: 300
     Raio: 10
-    Nome: '&f --{ &3&lVarinha de Drenagem &f}-- '
+    Nome: '&3&lVarinha de Drenagem'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Clique para tirar toda a agua e todo o'
-      - '&7 gelo num raio de 10 blocos.'
-      - '&f'
-      - '&3&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Tira agua e gelo num raio de &f10 blocos&7.'
+      - '&8Usos: &7{}'
 
   varinha_organizar:
     Modo: ORGANIZAR
     Tipo: STICK
     Usos: 300
-    Nome: '&f --{ &1&lVarinha Organizadora &f}-- '
+    Nome: '&1&lVarinha Organizadora'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Clique num bau para organizar tudo que'
-      - '&7 estiver dentro dele.'
-      - '&f'
-      - '&1&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Arruma e junta as pilhas do bau clicado.'
+      - '&8Usos: &7{}'
 
   pe_de_cabra:
     Modo: PE_DE_CABRA
     Tipo: GOLDEN_HOE
     Usos: 25
-    Nome: '&f --{ &1&lPe de Cabra &f}-- '
+    Nome: '&1&lPe de Cabra'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Clique num gerador de mobs para'
-      - '&7 quebra-lo e leva-lo com voce.'
-      - '&f'
-      - '&1&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Recolhe o gerador de mobs com o mob dentro.'
+      - '&8Usos: &7{}'
     Comandos ao usar: []
 
   machado_motosserra:
@@ -461,16 +433,10 @@ Ferramentas:
     Quebrar folhas: true
     Replantar: true
     Coleta automatica: true
-    Nome: '&f --{ &6&lMotosserra &f}-- '
+    Nome: '&6&lMotosserra'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 Derruba a arvore inteira num golpe so,'
-      - '&7 replanta a muda e recolhe a madeira.'
-      - '&f'
-      - '&6&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7Derruba a arvore inteira num golpe so.'
+      - '&8Usos: &7{}'
     Encantamentos:
       - 'DIG_SPEED:3'
 
@@ -484,18 +450,10 @@ Ferramentas:
     Travar no mirado: true
     Dano extra: 1.0
     Rastro: 'CRIT_MAGIC'
-    Nome: '&f --{ &c&lArco Teleguiado &f}-- '
+    Nome: '&c&lArco Teleguiado'
     Lore:
-      - '&8&m---------------------------------------'
-      - '&7 As flechas deste arco perseguem o alvo'
-      - '&7 que voce estava mirando no disparo.'
-      - '&f'
-      - '&c&l Alcance:'
-      - '&f   40 blocos'
-      - '&c&l Usos:'
-      - '&f   {}'
-      - '&f'
-      - '&8&m---------------------------------------'
+      - '&7As flechas perseguem o alvo mirado.'
+      - '&8Usos: &7{}'
     Encantamentos:
       - 'ARROW_INFINITE:1'
     Flags:
