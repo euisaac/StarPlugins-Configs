@@ -1,0 +1,132 @@
+# ---------------------------------------------------------------------------
+#  StarEncantamentos - configuracao geral
+#
+#  Os arquivos de conteudo ficam separados:
+#    runas.yml           as runas e as variacoes delas
+#    encantamentos.yml   nome, valor e chance de cada encantamento
+#    livros.yml          as raridades dos livros
+#    loja.yml            o que a loja do menu vende
+#    menus.yml           titulos, slots e itens das telas
+#    mensagens.yml       tudo que o jogador le
+#    comandos.yml        os nomes dos comandos e subcomandos
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+  Particulas: true
+
+  # Nada do plugin funciona nestes mundos.
+  Mundos bloqueados: []
+
+  # Itens que nao podem receber runa nem livro (ex.: ELYTRA, NETHERITE_SWORD).
+  Itens bloqueados: []
+
+  # Encantamentos fora de tudo: nao sao extraidos, aplicados nem reciclados.
+  Encantamentos bloqueados: []
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/starencantamentos.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: starencantamentos_
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Runas:
+  # Pegar a runa no inventario e soltar em cima do item aplica ela.
+  # Desligado, as runas so funcionam pelo que voce criar em cima da API.
+  Aplicar arrastando: true
+  # Se a runa tambem vale em livro encantado (extrair de um livro, por exemplo).
+  Funcionar em livro: true
+
+Livros:
+  # Pegar o livro e soltar em cima da ferramenta aplica o encantamento,
+  # sem bigorna e sem custo de niveis. Desligado, o inventario volta a se
+  # comportar como no jogo normal.
+  Aplicar arrastando: true
+
+  # Regras conferidas na hora de aplicar. Desligue para servidores que querem
+  # Fortuna em espada e Afiacao acima do teto pela via normal.
+  Respeitar nivel maximo: true
+  Respeitar conflitos: true
+  Respeitar item compativel: true
+
+  # Teto de encantamentos diferentes por item; 0 tira o limite.
+  Maximo de encantamentos por item: 0
+
+Fusao:
+  # Dois livros iguais viram um de nivel acima.
+  Ativar: true
+  Chance de sucesso: 70.0
+  # Na falha, a chance de os dois livros irem embora. O custo abaixo e sempre
+  # cobrado, dando certo ou nao.
+  Chance de perder os livros na falha: 50.0
+  # Ate onde a fusao sobe. O teto de cada encantamento no encantamentos.yml
+  # tambem vale -- manda o menor dos dois.
+  Nivel maximo: 5
+  Custo em xp: 300
+  Custo em essencia: 0
+
+Frascos:
+  Ativar: true
+  Material: EXPERIENCE_BOTTLE
+  Nome: '&aFrasco de XP &7({xp_curto})'
+  Lore:
+    - '&7Guarda &f{xp} &7de experiencia.'
+    - ''
+    - '&eClique com a direita &7para usar.'
+    - '&eShift + direita &7usa a pilha inteira.'
+  # Teto de xp por frasco; 0 poe tudo num frasco so.
+  Maximo por frasco: 0
+  # Menos que isto nao vale um frasco.
+  Minimo para sacar: 1
+
+Banco de xp:
+  Ativar: true
+  # Teto de xp guardado por jogador; 0 tira o limite.
+  Limite: 0
+
+Reciclagem:
+  Ativar: true
+  # Quanto cada nivel acima do primeiro rende a mais.
+  # 1.0 deixa linear (Afiacao V vale 5 vezes a I); 1.2 faz o nivel alto valer
+  # progressivamente mais, o que empurra o jogador para a fusao.
+  Multiplicador por nivel: 1.0
+
+Loja:
+  Ativar: true
+
+Essencia:
+  # A moeda que sai da reciclagem e so serve na loja do menu.
+  Nome: '&dEssencia'
+  Simbolo: '&d✦'
+
+Economia:
+  # VAULT fala com qualquer economia registrada no Vault.
+  # COMANDO serve para as economias que nao se registram: o saldo e lido pelo
+  # placeholder e a cobranca sai por comando de console.
+  Tipo: VAULT
+  Simbolo: '$'
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+
+Registro:
+  # Guarda no banco o que cada jogador fez (runa usada, livro aplicado,
+  # reciclagem, compra). Lido com /starencantamentos historico <jogador>.
+  Ativar: true
+  Guardar por dias: 30
+
+Sons:
+  # Formato: SOM, SOM;volume ou SOM;volume;tom. Vazio nao toca nada.
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Falha: 'BLOCK_ANVIL_LAND;1;0.6'
+  Quebra: 'ENTITY_ITEM_BREAK;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'

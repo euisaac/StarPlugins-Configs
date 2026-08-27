@@ -1,0 +1,367 @@
+# ---------------------------------------------------------------------------
+#  StarEncantamentos - telas
+#
+#  Slot: -1 esconde o botao. E assim que voce tira a loja ou o banco do menu
+#  sem precisar de uma opcao "Ativar" para cada um.
+#
+#  Chaves que valem em qualquer tela: {jogador} {xp} {xp_curto} {niveis}
+#  {essencia} {essencia_curto} {guardado} {limite_banco} {runas_usadas}
+#  {reciclados} {extraidos} {saldo} {moeda} {simbolo_essencia}
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Principal:
+  Titulo: '&8Encantamentos'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Reciclar:
+    Slot: 10
+    Material: HOPPER
+    Nome: '&a&lReciclar encantamentos'
+    Lore:
+      - '&7Jogue livros encantados e receba'
+      - '&7xp e essencia por eles.'
+      - ''
+      - '&7Ja reciclou: &f{reciclados} &7livros'
+      - ''
+      - '&eClique para abrir.'
+
+  Frascos:
+    Slot: 12
+    Material: EXPERIENCE_BOTTLE
+    Nome: '&a&lSacar xp em frascos'
+    Lore:
+      - '&7Guarde seu xp em frascos e leve'
+      - '&7para onde quiser.'
+      - ''
+      - '&7Seu xp: &f{xp} &7({niveis} niveis)'
+      - ''
+      - '&eClique para abrir.'
+
+  Banco:
+    Slot: 14
+    Material: ENDER_CHEST
+    Nome: '&a&lBanco de xp'
+    Lore:
+      - '&7Guarde xp na conta e saque quando'
+      - '&7precisar. Nao se perde na morte.'
+      - ''
+      - '&7Guardado: &f{guardado}'
+      - '&7Limite: &f{limite_banco}'
+      - ''
+      - '&eClique para abrir.'
+
+  Loja:
+    Slot: 16
+    Material: EMERALD
+    Nome: '&a&lLoja de encantamentos'
+    Lore:
+      - '&7Compre livros, runas e frascos.'
+      - ''
+      - '&7Sua essencia: &d{essencia}'
+      - ''
+      - '&eClique para abrir.'
+
+  Fusao:
+    Slot: 29
+    Material: ANVIL
+    Nome: '&a&lFundir livros'
+    Lore:
+      - '&7Dois livros iguais viram um'
+      - '&7de nivel acima.'
+      - ''
+      - '&eClique para abrir.'
+
+  Runas:
+    Slot: 31
+    Material: PAPER
+    Nome: '&a&lRunas'
+    Lore:
+      - '&7Veja o que cada runa faz antes'
+      - '&7de gastar a sua.'
+      - ''
+      - '&7Runas usadas: &f{runas_usadas}'
+      - ''
+      - '&eClique para abrir.'
+
+  Perfil:
+    Slot: 33
+    Material: BOOK
+    Nome: '&a&lSeu perfil'
+    Lore:
+      - '&7Essencia: &d{essencia}'
+      - '&7Xp guardado: &f{guardado}'
+      - '&7Runas usadas: &f{runas_usadas}'
+      - '&7Livros reciclados: &f{reciclados}'
+      - '&7Encantamentos extraidos: &f{extraidos}'
+
+  Fechar:
+    Slot: 40
+    Material: BARRIER
+    Nome: '&c&lFechar'
+    Lore: []
+
+Reciclar:
+  Titulo: '&8Reciclar encantamentos'
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Reciclar:
+    Slot: 49
+    Material: HOPPER
+    Nome: '&a&lReciclar'
+    Lore:
+      - '&7Livros na area: &f{livros}'
+      - ''
+      - '&7Voce recebe:'
+      - '  &f{ganho_xp} &7de xp'
+      - '  &d{ganho_essencia} &7de essencia'
+      - ''
+      - '&eClique para reciclar.'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+  Ajuda:
+    Slot: 53
+    Material: BOOK
+    Nome: '&e&lComo funciona'
+    Lore:
+      - '&7Ponha os livros encantados na'
+      - '&7area de cima e clique em reciclar.'
+      - ''
+      - '&7O que sobrar volta para voce'
+      - '&7quando a tela fechar.'
+
+Frascos:
+  Titulo: '&8Sacar xp em frascos'
+  Linhas: 4
+  # Quais botoes de nivel existem, e onde comeca a linha deles.
+  Niveis: [ 1, 5, 10, 30 ]
+  Slot inicial: 10
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Opcao:
+    Material: EXPERIENCE_BOTTLE
+    Nome: '&a&lSacar {niveis} niveis'
+    Lore:
+      - '&7Vira um frasco de &f{xp} &7de xp.'
+      - ''
+      - '&eClique para sacar.'
+
+  Tudo:
+    Slot: 16
+    Material: EXPERIENCE_BOTTLE
+    Nome: '&a&lSacar tudo'
+    Lore:
+      - '&7Saca os seus &f{xp} &7de xp.'
+      - ''
+      - '&eClique para sacar.'
+
+  Voltar:
+    Slot: 31
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+Banco:
+  Titulo: '&8Banco de xp'
+  Linhas: 5
+  Niveis: [ 1, 5, 10, 30 ]
+  Slot inicial depositar: 10
+  Slot inicial sacar: 28
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Depositar:
+    Material: LIME_DYE
+    Nome: '&a&lDepositar {niveis} niveis'
+    Lore:
+      - '&7Guarda &f{xp} &7de xp na conta.'
+      - ''
+      - '&eClique para depositar.'
+
+  Sacar:
+    Material: RED_DYE
+    Nome: '&c&lSacar {niveis} niveis'
+    Lore:
+      - '&7Tira &f{xp} &7de xp da conta.'
+      - ''
+      - '&eClique para sacar.'
+
+  Depositar tudo:
+    Slot: 16
+    Material: EMERALD_BLOCK
+    Nome: '&a&lDepositar tudo'
+    Lore:
+      - '&7Guarda os seus &f{xp} &7de xp.'
+
+  Sacar tudo:
+    Slot: 34
+    Material: REDSTONE_BLOCK
+    Nome: '&c&lSacar tudo'
+    Lore:
+      - '&7Tira os &f{guardado} &7guardados.'
+
+  Saldo:
+    Slot: 4
+    Material: ENDER_CHEST
+    Nome: '&d&lSua conta'
+    Lore:
+      - '&7Guardado: &f{guardado}'
+      - '&7Limite: &f{limite_banco}'
+      - '&7Xp com voce: &f{xp}'
+
+  Voltar:
+    Slot: 40
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+Loja:
+  Titulo: '&8Loja &7({pagina}/{paginas})'
+  # Linhas coladas embaixo da lore de cada item a venda.
+  Preco:
+    - ''
+    - '&7Preco:'
+    - '  &f{preco_xp} &7de xp'
+    - '  &d{preco_essencia} &7de essencia'
+    - ''
+    - '&eClique para comprar.'
+
+  Saldo:
+    Slot: 49
+    Material: ENDER_EYE
+    Nome: '&d&lSeu saldo'
+    Lore:
+      - '&7Essencia: &d{essencia}'
+      - '&7Xp: &f{xp}'
+      - '&7Dinheiro: &f{saldo}'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+  Anterior:
+    Slot: 48
+    Material: ARROW
+    Nome: '&7Pagina anterior'
+    Lore: []
+
+  Proxima:
+    Slot: 50
+    Material: ARROW
+    Nome: '&7Proxima pagina'
+    Lore: []
+
+Fusao:
+  Titulo: '&8Fundir livros'
+  Linhas: 5
+  Primeiro: 20
+  Segundo: 24
+  Resultado: 22
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Vazio:
+    Material: BARRIER
+    Nome: '&cPonha dois livros iguais'
+    Lore:
+      - '&7Mesmo encantamento, mesmo nivel.'
+
+  Fundir:
+    Slot: 40
+    Material: ANVIL
+    Nome: '&a&lFundir'
+    Lore:
+      - '&7Chance de dar certo: &a{chance}%'
+      - '&7Se falhar, &c{perder}% &7de perder os livros.'
+      - ''
+      - '&7Custo: &f{custo_xp} &7de xp'
+      - ''
+      - '&eClique para fundir.'
+
+  Voltar:
+    Slot: 36
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+Runas:
+  Titulo: '&8Runas &7({pagina}/{paginas})'
+  # Linhas coladas embaixo da lore de cada runa.
+  Info:
+    - ''
+    - '&8Tipo: {tipo}'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+  Anterior:
+    Slot: 48
+    Material: ARROW
+    Nome: '&7Pagina anterior'
+    Lore: []
+
+  Proxima:
+    Slot: 50
+    Material: ARROW
+    Nome: '&7Proxima pagina'
+    Lore: []
+
+Escolher:
+  Titulo: '&8Escolha ({marcados}/{limite})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Item:
+    Material: BOOK
+    Nome: '&7{encantamento} {nivel_romano}'
+    Lore:
+      - '&eClique para marcar.'
+
+  Marcado:
+    Material: ENCHANTED_BOOK
+    Nome: '&a{encantamento} {nivel_romano}'
+    Lore:
+      - '&aMarcado.'
+      - '&eClique para desmarcar.'
+
+  Confirmar:
+    Slot: 49
+    Material: LIME_DYE
+    Nome: '&a&lConfirmar'
+    Lore:
+      - '&7Marcados: &f{marcados}&7/&f{limite}'
+      - ''
+      - '&eClique para usar a runa.'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&c&lCancelar'
+    Lore: []

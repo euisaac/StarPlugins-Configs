@@ -1,0 +1,77 @@
+# ---------------------------------------------------------------------------
+#  StarEncantamentos - livros
+#
+#  A raridade decide a chance de o livro pegar quando o jogador o arrasta sobre
+#  um item, e o que acontece quando ele nao pega. O bloco "Falha:" e o mesmo
+#  das runas.
+#
+#  Livro de mundo (drop, pescaria, mesa de encantamento) nao tem raridade
+#  gravada: ele cai na "Raridade padrao". Deixe-a em 100% de sucesso e 0% de
+#  estrago para o servidor se comportar como o jogo normal.
+#
+#  Chaves da aparencia: {encantamento} {nivel} {nivel_romano} {raridade}
+#  {sucesso} {quebrar} {limpar} {xp} {essencia}
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Raridade padrao: comum
+
+Livro:
+  Material: ENCHANTED_BOOK
+  Nome: '{raridade} &f{encantamento} {nivel_romano}'
+  Lore:
+    - '&7Chance de aplicar: &a{sucesso}%'
+    - '&7Se falhar:'
+    - '  &c{quebrar}% &7de quebrar o item'
+    - '  &e{limpar}% &7de limpar o item'
+    - ''
+    - '&7Vale &f{xp} &7de xp na reciclagem.'
+    - ''
+    - '&eArraste sobre um item para aplicar.'
+
+Raridades:
+
+  comum:
+    Nome: '&7[Comum]'
+    Chance de sucesso: 100.0
+    # Peso no sorteio (loja, recompensa, caixa de outro produto).
+    Peso: 60
+    Falha:
+      Consumir runa: true
+      Quebrar item:
+        Chance: 0.0
+      Limpar encantamentos:
+        Chance: 0.0
+
+  raro:
+    Nome: '&9[Raro]'
+    Chance de sucesso: 80.0
+    Peso: 30
+    Falha:
+      Consumir runa: true
+      Quebrar item:
+        Chance: 0.0
+      Limpar encantamentos:
+        Chance: 15.0
+
+  epico:
+    Nome: '&5[Epico]'
+    Chance de sucesso: 65.0
+    Peso: 8
+    Falha:
+      Consumir runa: true
+      Quebrar item:
+        Chance: 10.0
+      Limpar encantamentos:
+        Chance: 25.0
+
+  lendario:
+    Nome: '&6[Lendario]'
+    Chance de sucesso: 50.0
+    Peso: 2
+    Falha:
+      Consumir runa: true
+      Quebrar item:
+        Chance: 25.0
+      Limpar encantamentos:
+        Chance: 40.0

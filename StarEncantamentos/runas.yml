@@ -1,0 +1,282 @@
+# ---------------------------------------------------------------------------
+#  StarEncantamentos - runas
+#
+#  Cada secao aqui e uma runa. O comportamento vem da chave "Tipo:", nunca do
+#  nome da secao -- copie uma runa, troque o id, as chances e os custos, e voce
+#  tem uma variacao nova sem mexer no jar.
+#
+#  Tipos:
+#    LIMPAR              tira todos os encantamentos; nada volta
+#    EXTRAIR_TUDO        tira todos e devolve em livro, cada um com a sua chance
+#    REMOVER_ESCOLHIDO   abre um menu para escolher quais tirar; nada volta
+#    EXTRAIR_ESCOLHIDO   abre um menu para escolher quais extrair em livro
+#    TRANSFERIR          passa os encantamentos de um item para outro
+#    REROLL              troca os encantamentos do item por outros, sorteados
+#    SUPREMA             sobe um encantamento acima do teto normal
+#    PROTECAO            cola no item uma protecao que anula a proxima falha
+#
+#  Como usar no jogo: pegue a runa no inventario e solte em cima do item.
+#  (A de transferencia pede dois cliques: o primeiro marca a origem.)
+#
+#  O bloco "Falha:" e o que separa uma runa mansa de uma arriscada. As tres
+#  linhas sao independentes:
+#    Consumir runa            a runa some mesmo tendo falhado
+#    Quebrar item.Chance      chance de o item ir embora inteiro
+#    Limpar encantamentos     chance de o item ficar, mas sem encantamento nenhum
+#  Uma protecao colada no item (runa PROTECAO) anula quebrar e limpar.
+#
+#  Chaves aceitas na lore: {chance} {quantidade} {retorno} {chance_quebrar}
+#  {chance_limpar} {niveis} {custo_xp} {custo_essencia} {custo_dinheiro}
+#  {essencia} {moeda}
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Runas:
+
+  # ---------------------------------------------------------------- limpar --
+  limpar:
+    Tipo: LIMPAR
+    Material: PAPER
+    Nome: '&f&lRuna do Vazio'
+    Lore:
+      - '&7Apaga &ftodos &7os encantamentos do item.'
+      - '&7Nada volta para voce.'
+      - ''
+      - '&7Chance de dar certo: &a{chance}%'
+      - ''
+      - '&eArraste sobre um item para usar.'
+    Brilho: true
+    Chance de sucesso: 100.0
+    Falha:
+      Consumir runa: true
+      Quebrar item:
+        Chance: 0.0
+      Limpar encantamentos:
+        Chance: 0.0
+
+  # Mesma coisa, mas com risco -- o exemplo do eixo de falha.
+  limpar-instavel:
+    Tipo: LIMPAR
+    Material: PAPER
+    Nome: '&c&lRuna do Vazio Instavel'
+    Lore:
+      - '&7Apaga &ftodos &7os encantamentos do item.'
+      - ''
+      - '&7Chance de dar certo: &a{chance}%'
+      - '&7Se falhar:'
+      - '  &c{chance_quebrar}% &7de quebrar o item'
+      - '  &e{chance_limpar}% &7de limpar mesmo assim'
+      - ''
+      - '&7Custa &f{custo_xp} &7de xp por tentativa.'
+    Brilho: true
+    Chance de sucesso: 70.0
+    Custo em xp: 100
+    Falha:
+      Consumir runa: true
+      Quebrar item:
+        Chance: 15.0
+      Limpar encantamentos:
+        Chance: 30.0
+
+  # -------------------------------------------------------------- extrair ---
+  extrair:
+    Tipo: EXTRAIR_TUDO
+    Material: PAPER
+    Nome: '&b&lRuna da Extracao'
+    Lore:
+      - '&7Tira &ftodos &7os encantamentos'
+      - '&7e devolve o que der sorte em livro.'
+      - ''
+      - '&7Chance por encantamento: &a{retorno}'
+      - '&7Chance de dar certo: &a{chance}%'
+      - ''
+      - '&8O encantamento sai do item de qualquer jeito.'
+      - '&eArraste sobre um item para usar.'
+    Brilho: true
+    Chance de sucesso: 100.0
+    # -1 usa a chance de cada encantamento do encantamentos.yml.
+    Chance de retorno: -1
+    Falha:
+      Consumir runa: true
+      Quebrar item:
+        Chance: 0.0
+      Limpar encantamentos:
+        Chance: 0.0
+
+  # A cara: devolve tudo, sem sorteio.
+  extrair-perfeita:
+    Tipo: EXTRAIR_TUDO
+    Material: PAPER
+    Nome: '&d&lRuna da Extracao Perfeita'
+    Lore:
+      - '&7Tira todos os encantamentos e'
+      - '&adevolve todos &7em livro.'
+      - ''
+      - '&7Chance por encantamento: &a{retorno}%'
+      - ''
+      - '&7Custa &f{custo_essencia} {essencia}'
+    Brilho: true
+    Chance de sucesso: 100.0
+    Chance de retorno: 100.0
+    Custo em essencia: 25
+    Falha:
+      Consumir runa: true
+
+  # Chance diferente por encantamento: os caros voltam menos.
+  extrair-comum:
+    Tipo: EXTRAIR_TUDO
+    Material: PAPER
+    Nome: '&a&lRuna da Extracao Simples'
+    Lore:
+      - '&7Tira todos os encantamentos.'
+      - '&7Cada um tem a sua chance de voltar.'
+      - ''
+      - '&7Chance geral: &a{retorno}%'
+      - '&8Mending e Toque Suave voltam menos.'
+    Brilho: true
+    Chance de sucesso: 100.0
+    Chance de retorno: 60.0
+    Chances:
+      mending: 20.0
+      silk_touch: 35.0
+      fortune: 40.0
+      infinity: 30.0
+    Falha:
+      Consumir runa: true
+
+  # ------------------------------------------------------------- escolhido --
+  remover-um:
+    Tipo: REMOVER_ESCOLHIDO
+    Material: PAPER
+    Nome: '&e&lRuna da Escolha'
+    Lore:
+      - '&7Escolha &f{quantidade} &7encantamento para'
+      - '&7apagar do item. Ele nao volta.'
+      - ''
+      - '&7Chance de dar certo: &a{chance}%'
+    Brilho: true
+    Quantidade: 1
+    Chance de sucesso: 100.0
+    Falha:
+      Consumir runa: true
+
+  extrair-um:
+    Tipo: EXTRAIR_ESCOLHIDO
+    Material: PAPER
+    Nome: '&6&lRuna da Coleta'
+    Lore:
+      - '&7Escolha &f{quantidade} &7encantamento'
+      - '&7para tirar do item e levar em livro.'
+      - ''
+      - '&7Chance de voltar: &a{retorno}%'
+      - '&7Chance de dar certo: &a{chance}%'
+    Brilho: true
+    Quantidade: 1
+    Chance de sucesso: 90.0
+    Chance de retorno: 85.0
+    Falha:
+      Consumir runa: true
+      Limpar encantamentos:
+        Chance: 10.0
+
+  extrair-tres:
+    Tipo: EXTRAIR_ESCOLHIDO
+    Material: PAPER
+    Nome: '&6&lRuna da Coleta Maior'
+    Lore:
+      - '&7Escolha ate &f{quantidade} &7encantamentos'
+      - '&7para tirar do item e levar em livro.'
+      - ''
+      - '&7Chance de voltar: &a{retorno}%'
+      - '&7Custa &f{custo_essencia} {essencia}'
+    Brilho: true
+    Quantidade: 3
+    Chance de sucesso: 100.0
+    Chance de retorno: 90.0
+    Custo em essencia: 15
+    Falha:
+      Consumir runa: true
+
+  # ------------------------------------------------------------ especiais ---
+  transferir:
+    Tipo: TRANSFERIR
+    Material: PAPER
+    Nome: '&9&lRuna da Transferencia'
+    Lore:
+      - '&7Passa os encantamentos de um item'
+      - '&7para outro.'
+      - ''
+      - '&7Chance por encantamento: &a{retorno}%'
+      - ''
+      - '&eClique no item de origem, depois no destino.'
+    Brilho: true
+    Chance de sucesso: 100.0
+    Chance de retorno: 80.0
+    Custo em essencia: 30
+    Falha:
+      Consumir runa: true
+
+  reroll:
+    Tipo: REROLL
+    Material: PAPER
+    Nome: '&5&lRuna do Acaso'
+    Lore:
+      - '&7Troca os encantamentos do item'
+      - '&7por outros, sorteados na hora.'
+      - ''
+      - '&cO que estava no item se perde.'
+      - '&7Chance de dar certo: &a{chance}%'
+    Brilho: true
+    Chance de sucesso: 100.0
+    Sortear:
+      # 0 sorteia a mesma quantidade que o item ja tinha.
+      Quantidade: 0
+      # 0 usa o teto de cada encantamento.
+      Nivel maximo: 0
+    Falha:
+      Consumir runa: true
+      Limpar encantamentos:
+        Chance: 100.0
+
+  suprema:
+    Tipo: SUPREMA
+    Material: PAPER
+    Nome: '&c&lRuna Suprema'
+    Lore:
+      - '&7Sobe &f{niveis} &7nivel de um encantamento'
+      - '&7do item, acima do teto normal.'
+      - ''
+      - '&7Chance de dar certo: &a{chance}%'
+      - '&7Se falhar: &c{chance_quebrar}% &7de quebrar o item'
+      - ''
+      - '&7Custa &f{custo_essencia} {essencia}'
+    Brilho: true
+    Quantidade: 1
+    Niveis: 1
+    # 0 = teto do encantamento + os niveis acima. Um numero aqui vira o teto
+    # absoluto (ex.: 6 nunca passa de Afiacao VI).
+    Teto: 0
+    Chance de sucesso: 60.0
+    Custo em essencia: 50
+    Falha:
+      Consumir runa: true
+      Quebrar item:
+        Chance: 20.0
+
+  protecao:
+    Tipo: PROTECAO
+    Material: PAPER
+    Nome: '&f&lRuna da Protecao'
+    Lore:
+      - '&7Cola no item uma protecao.'
+      - '&7A proxima falha de runa ou livro'
+      - '&anao quebra nem limpa o item.'
+      - ''
+      - '&7Protecoes coladas: &f{niveis}'
+      - '&8Cada uma vale por uma falha.'
+    Brilho: true
+    # Quantas protecoes esta runa cola de uma vez.
+    Niveis: 1
+    Chance de sucesso: 100.0
+    Falha:
+      Consumir runa: true
