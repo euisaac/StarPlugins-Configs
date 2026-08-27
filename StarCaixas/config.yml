@@ -1,0 +1,167 @@
+# ==========================================================================
+#  StarCaixas - configuracao geral
+#
+#  As caixas ficam no caixas.yml, as animacoes no animacoes.yml, os textos no
+#  mensagens.yml e a aparencia das telas no menus.yml.
+#
+#  Os blocos de caixa (blocos.yml) e os paineis de ranking (hologramas.yml)
+#  sao escritos pelo proprio plugin -- mexa neles so com o servidor desligado.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+Banco de dados:
+  # SQLITE (um arquivo dentro da pasta do plugin) ou MYSQL (servidor externo).
+  # Em rede com varios servidores, use MYSQL para as chaves valerem em todos.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starcaixas_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Dados:
+  # De quantos em quantos segundos os dados de quem esta online vao para o
+  # banco. Nenhuma abertura de caixa escreve no banco na hora que acontece.
+  Salvar a cada: 60
+
+  # De quantos em quantos segundos o ranking e refeito. E ele que alimenta os
+  # hologramas, os menus e os placeholders.
+  Atualizar ranking a cada: 120
+
+  # Quantas colocacoes o ranking guarda na memoria.
+  Tamanho do ranking: 15
+
+  # Quantos registros o menu de historico mostra.
+  Historico por pagina: 28
+
+  # Por quanto tempo o historico e guardado. Vazio ou 0 guarda para sempre.
+  # Aceita 7d, 12h, 30d, 1w.
+  Guardar historico por: 30d
+
+Abertura:
+  # Clique com o botao direito num bloco de caixa abre a caixa.
+  Abrir com clique no bloco: true
+
+  # Clique agachado (ou com o botao esquerdo) mostra a vitrine da caixa.
+  Pre-visualizar agachado: true
+
+  # Impede que a caixa do mundo seja quebrada, queimada, explodida, empurrada
+  # por pistao ou levada por enderman.
+  Proteger blocos de caixa: true
+
+  # Distancia maxima entre o jogador e a caixa para a abertura valer.
+  Distancia maxima do bloco: 8.0
+
+  # Segundos entre um clique e outro do mesmo jogador. Serve contra o clique
+  # repetido que dispararia varias aberturas de uma vez.
+  Espera entre aberturas: 1
+
+  # O que fazer quando o inventario esta cheio:
+  #   CHAO     - guarda o que couber e larga o resto no pe do jogador
+  #   CANCELAR - nem deixa abrir a caixa
+  Inventario cheio: CHAO
+
+  # Manda no chat a linha "voce ganhou ..." a cada premio.
+  Avisar premio no chat: true
+
+Animacoes:
+  # Usada pelas caixas que nao definem uma, ou que apontam para uma que nao
+  # existe mais no animacoes.yml.
+  Padrao: roleta
+
+  # Zera a velocidade de caminhada durante as animacoes de mundo, para o
+  # jogador nao sair andando do meio do efeito. A velocidade original e
+  # devolvida no fim -- inclusive se a animacao for cortada.
+  Travar o jogador: true
+
+  # Trava de seguranca: animacao que passar disso e encerrada na marra e o
+  # premio e entregue. Existe para que nenhum defeito prenda o jogador.
+  Tempo maximo: 45s
+
+Efeitos dos blocos:
+  # Particulas em volta das caixas paradas no mundo.
+  Ativar: true
+
+  # De quantos em quantos tiques as particulas sao desenhadas. 10 e suave;
+  # 2 fica bonito e pesa mais.
+  Atualizar a cada: 10
+
+  # Caixa sem ninguem dentro deste raio nao desenha nada.
+  Distancia: 24.0
+
+Hologramas:
+  # De quantos em quantos segundos os paineis de ranking sao conferidos. O
+  # painel so e redesenhado quando o texto muda.
+  Atualizar a cada: 60
+
+  # Distancia entre uma linha e outra.
+  Espacamento das linhas: 0.28
+
+  # Painel sem ninguem dentro deste raio nao precisa estar desenhado.
+  Distancia: 48.0
+
+  # O texto dos paineis criados por /starcaixas holograma criar.
+  Modelo:
+    Cabecalho:
+      - '&8&m                              '
+      - '&6&lTOP ABERTURAS'
+      - '&e{caixa}'
+      - ' '
+    # {posicao} {jogador} {aberturas} {caixa}
+    Linha: '&e#{posicao} &f{jogador} &7- &6{aberturas}'
+    Vazio: '&7#{posicao} &8---'
+    Rodape:
+      - ' '
+      - '&8&m                              '
+
+Sons:
+  # Formato: SOM;volume;tom. Deixe vazio para nao tocar nada.
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1.2'
+  Chave recebida: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+  Sem chave: 'BLOCK_NOTE_BLOCK_BASS;1;0.6'
+
+# Faixas de raridade das recompensas. Sao livres: crie quantas quiser e aponte
+# para elas no caixas.yml (Recompensas.<id>.Raridade).
+Raridades:
+  comum:
+    Nome: '&7Comum'
+    Cor: '&7'
+    Anunciar: false
+    Som: ''
+    Fogos: 0
+  incomum:
+    Nome: '&aIncomum'
+    Cor: '&a'
+    Anunciar: false
+    Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+    Fogos: 0
+  raro:
+    Nome: '&bRaro'
+    Cor: '&b'
+    Anunciar: false
+    Som: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+    Fogos: 1
+  epico:
+    Nome: '&5Epico'
+    Cor: '&5'
+    # Anuncia no servidor inteiro quem tirar uma recompensa desta faixa.
+    Anunciar: true
+    Som: 'ENTITY_ENDER_DRAGON_GROWL;0.7;1.6'
+    Fogos: 2
+  lendario:
+    Nome: '&6&lLendario'
+    Cor: '&6'
+    Anunciar: true
+    Som: 'UI_TOAST_CHALLENGE_COMPLETE;1;1'
+    Fogos: 4

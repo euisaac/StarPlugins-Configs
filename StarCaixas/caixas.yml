@@ -1,0 +1,438 @@
+# ==========================================================================
+#  StarCaixas - as caixas do servidor
+#
+#  Este arquivo e SEU: o plugin nunca repoe uma caixa que voce apagou nem
+#  reescreve o que voce mudou aqui. Os exemplos abaixo estao prontos para
+#  usar; apague os que nao quiser.
+#
+#  ---- CHANCE ----
+#  "Chance" nao e porcentagem: e o PESO da recompensa dentro da soma de todos
+#  os pesos da caixa. Nao precisa fechar em 100. Numa caixa com pesos 50, 30,
+#  15 e 5, a primeira sai em metade das aberturas. A vitrine (/caixas ver)
+#  mostra a porcentagem ja calculada.
+#
+#  ---- CHAVE ----
+#  Tipo: VIRTUAL (contada no banco), FISICA (item no inventario) ou AMBAS.
+#  A chave fisica e reconhecida por uma marca invisivel na lore -- pode
+#  renomear e trocar o material depois que as chaves ja dadas continuam
+#  valendo, e um item copiado na bigorna nao vira chave.
+#
+#  ---- COMANDOS ----
+#  Rodam pelo console. Variaveis: {jogador} {caixa} {premio}
+#
+#  Para colocar uma caixa no mundo: /starcaixas bloco definir <caixa>
+#  mirando no bloco, ou coloque a caixa fisica no chao com permissao de admin.
+# ==========================================================================
+
+Caixas:
+
+  # ======================================================== CAIXA COMUM ===
+  comum:
+    Nome: '&a&lCaixa Comum'
+
+    # O item que representa a caixa (o "bau" que se coloca no chao).
+    Item:
+      Material: CHEST
+      Nome: '&a&lCaixa Comum'
+      Lore:
+        - '&7Coloque no chao para abrir.'
+      Brilho: false
+
+    Chave:
+      Tipo: AMBAS
+      Material: TRIPWIRE_HOOK
+      Nome: '&a&lChave Comum'
+      Lore:
+        - '&7Abre a &aCaixa Comum&7.'
+      Brilho: true
+
+    # Id de um bloco do animacoes.yml.
+    Animacao: roleta
+
+    # Tempo minimo entre duas aberturas do mesmo jogador. 0 desliga.
+    Recarga: 0
+
+    # Vazia libera para todo mundo.
+    Permissao: ''
+
+    # Quantos premios saem por abertura.
+    Premios por abertura: 1
+
+    # Deixa abrir sem gastar chave (caixa de evento).
+    Abrir sem chave: false
+
+    # Mostra as recompensas no /caixas ver.
+    Pre-visualizacao: true
+
+    # Anuncia TODA abertura no servidor, mesmo as comuns.
+    Anunciar abertura: false
+
+    Menu:
+      Mostrar: true
+      # -1 deixa o plugin escolher o lugar.
+      Slot: 11
+
+    # Particulas em volta do bloco no mundo.
+    # Formato: NENHUM, ANEL, HELICE, ESPIRAL ou NUVEM.
+    Efeito:
+      Formato: ANEL
+      Particula: VILLAGER_HAPPY
+      Colorida: false
+      Cor: '85,255,85'
+      Raio: 0.8
+      Altura: 1.2
+      Velocidade: 0.25
+      Pontos: 8
+
+    # Texto flutuando acima do bloco. Variaveis: {caixa} {recompensas}
+    # {top1} {top1_aberturas}
+    Holograma:
+      Altura: 1.6
+      Linhas:
+        - '&a&lCAIXA COMUM'
+        - '&7Clique para abrir'
+        - '&7Maior abridor: &f{top1}'
+
+    Recompensas:
+      diamantes:
+        Nome: '&b8 Diamantes'
+        Chance: 25
+        Raridade: incomum
+        Itens:
+          '1':
+            Material: DIAMOND
+            Quantidade: 8
+      ferro:
+        Nome: '&f32 Ferros'
+        Chance: 40
+        Raridade: comum
+        Itens:
+          '1':
+            Material: IRON_INGOT
+            Quantidade: 32
+      comida:
+        Nome: '&616 Bifes'
+        Chance: 30
+        Raridade: comum
+        Itens:
+          '1':
+            Material: COOKED_BEEF
+            Quantidade: 16
+      espada:
+        Nome: '&bEspada Afiada'
+        Chance: 5
+        Raridade: raro
+        Itens:
+          '1':
+            Material: DIAMOND_SWORD
+            Nome: '&bEspada Afiada'
+            Encantamentos:
+              - 'DAMAGE_ALL:3'
+              - 'DURABILITY:2'
+
+  # ========================================================= CAIXA RARA ===
+  rara:
+    Nome: '&b&lCaixa Rara'
+
+    Item:
+      Material: ENDER_CHEST
+      Nome: '&b&lCaixa Rara'
+      Brilho: true
+
+    Chave:
+      Tipo: AMBAS
+      Material: TRIPWIRE_HOOK
+      Nome: '&b&lChave Rara'
+      Lore:
+        - '&7Abre a &bCaixa Rara&7.'
+      Brilho: true
+
+    Animacao: caca-niquel
+    Recarga: 0
+    Premios por abertura: 1
+    Pre-visualizacao: true
+
+    Menu:
+      Slot: 13
+
+    Efeito:
+      Formato: HELICE
+      Particula: REDSTONE
+      Colorida: true
+      Cor: '85,255,255'
+      Raio: 0.7
+      Altura: 1.6
+      Velocidade: 0.3
+      Pontos: 10
+
+    Holograma:
+      Altura: 1.6
+      Linhas:
+        - '&b&lCAIXA RARA'
+        - '&7{recompensas} recompensas'
+
+    # Metas por numero de aberturas desta caixa.
+    Marcos:
+      dez:
+        Aberturas: 10
+        Nome: '&b10 aberturas'
+        Comandos:
+          - 'starcaixas chave dar {jogador} rara 2'
+        Mensagem: '&bVoce abriu 10 caixas raras e ganhou 2 chaves!'
+      cada-cinquenta:
+        Aberturas: 50
+        # Repete: vale a cada 50 aberturas, e nao so na quinquagesima.
+        Repetir: true
+        Nome: '&ba cada 50 aberturas'
+        Comandos:
+          - 'starcaixas chave dar {jogador} epica 1'
+
+    Recompensas:
+      esmeraldas:
+        Nome: '&a32 Esmeraldas'
+        Chance: 30
+        Raridade: incomum
+        Itens:
+          '1':
+            Material: EMERALD
+            Quantidade: 32
+      blocos:
+        Nome: '&b4 Blocos de Diamante'
+        Chance: 25
+        Raridade: raro
+        Itens:
+          '1':
+            Material: DIAMOND_BLOCK
+            Quantidade: 4
+      pocao:
+        Nome: '&dPocao de Forca'
+        Chance: 25
+        Raridade: incomum
+        Itens:
+          '1':
+            Material: POTION
+            Nome: '&dPocao de Forca'
+      dinheiro:
+        Nome: '&a$50.000'
+        Chance: 15
+        Raridade: raro
+        # Recompensa que so roda comando: a "Exibicao" e o que aparece na
+        # vitrine e na animacao, ja que nao ha item para entregar.
+        Exibicao:
+          Material: GOLD_NUGGET
+          Nome: '&a$50.000'
+        Comandos:
+          - 'eco give {jogador} 50000'
+      elytra:
+        Nome: '&5Elytra'
+        Chance: 5
+        Raridade: epico
+        Itens:
+          '1':
+            Material: ELYTRA
+            Nome: '&5Elytra'
+
+  # ======================================================== CAIXA EPICA ===
+  epica:
+    Nome: '&5&lCaixa Epica'
+
+    Item:
+      Material: SHULKER_BOX
+      Nome: '&5&lCaixa Epica'
+      Brilho: true
+
+    Chave:
+      Tipo: VIRTUAL
+      Material: TRIPWIRE_HOOK
+      Nome: '&5&lChave Epica'
+      Brilho: true
+
+    Animacao: carrossel
+    Recarga: 1h
+    Premios por abertura: 2
+    Pre-visualizacao: true
+
+    Menu:
+      Slot: 15
+
+    Efeito:
+      Formato: ESPIRAL
+      Particula: SPELL_WITCH
+      Raio: 0.9
+      Altura: 2.0
+      Velocidade: 0.3
+      Pontos: 14
+
+    Holograma:
+      Altura: 1.8
+      Linhas:
+        - '&5&lCAIXA EPICA'
+        - '&7Da &f2 &7premios por abertura'
+        - '&8Recarga de 1 hora'
+
+    Recompensas:
+      netherite:
+        Nome: '&8Lingote de Netherite'
+        Chance: 10
+        Raridade: epico
+        Itens:
+          '1':
+            Material: NETHERITE_INGOT
+      picareta:
+        Nome: '&5Picareta Eficiente'
+        Chance: 25
+        Raridade: raro
+        Itens:
+          '1':
+            Material: DIAMOND_PICKAXE
+            Nome: '&5Picareta Eficiente'
+            Encantamentos:
+              - 'DIG_SPEED:5'
+              - 'DURABILITY:3'
+              - 'LOOT_BONUS_BLOCKS:3'
+      vip:
+        Nome: '&6VIP por 7 dias'
+        Chance: 5
+        Raridade: lendario
+        Exibicao:
+          Material: NETHER_STAR
+          Nome: '&6VIP por 7 dias'
+        Comandos:
+          - 'lp user {jogador} parent addtemp vip 7d'
+        Mensagem: '&6Voce ganhou VIP por 7 dias!'
+        # So pode sair uma vez por conta.
+        Limite: 1
+      xp:
+        Nome: '&a30 Niveis de XP'
+        Chance: 35
+        Raridade: incomum
+        Exibicao:
+          Material: EXPERIENCE_BOTTLE
+          Nome: '&a30 Niveis de XP'
+        Comandos:
+          - 'xp add {jogador} 30 levels'
+      ouro:
+        Nome: '&e16 Blocos de Ouro'
+        Chance: 25
+        Raridade: comum
+        Itens:
+          '1':
+            Material: GOLD_BLOCK
+            Quantidade: 16
+
+  # ===================================================== CAIXA LENDARIA ===
+  #
+  #  Esta e a caixa do buraco negro: a animacao dela puxa para o centro todo
+  #  jogador que estiver por perto. Deixe-a numa area aberta, longe de spawn
+  #  de mercado ou de PvP.
+  #
+  lendaria:
+    Nome: '&6&lCaixa Lendaria'
+
+    Item:
+      Material: BEACON
+      Nome: '&6&lCaixa Lendaria'
+      Brilho: true
+
+    Chave:
+      Tipo: FISICA
+      Material: NETHER_STAR
+      Nome: '&6&lChave Lendaria'
+      Lore:
+        - '&7Abre a &6Caixa Lendaria&7.'
+        - '&8Segure e clique na caixa.'
+      Brilho: true
+
+    Animacao: buraco-negro
+    Recarga: 0
+    Premios por abertura: 1
+    Pre-visualizacao: true
+
+    # Anuncia toda abertura desta caixa no servidor.
+    Anunciar abertura: true
+
+    Menu:
+      Slot: 22
+
+    Efeito:
+      Formato: NUVEM
+      Particula: REDSTONE
+      Colorida: true
+      Cor: '150,40,220'
+      Raio: 1.0
+      Altura: 2.2
+      Velocidade: 0.2
+      Pontos: 12
+
+    Holograma:
+      Altura: 2.0
+      Linhas:
+        - '&6&lCAIXA LENDARIA'
+        - '&5Buraco negro'
+        - '&7Maior abridor: &f{top1} &7({top1_aberturas})'
+
+    Marcos:
+      primeira:
+        Aberturas: 1
+        Nome: '&6primeira lendaria'
+        Mensagem: '&6Sua primeira Caixa Lendaria! Boa sorte nas proximas.'
+
+    Recompensas:
+      tridente:
+        Nome: '&bTridente do Abismo'
+        Chance: 20
+        Raridade: epico
+        Itens:
+          '1':
+            Material: TRIDENT
+            Nome: '&bTridente do Abismo'
+            Encantamentos:
+              - 'DURABILITY:3'
+      armadura:
+        Nome: '&8Peitoral de Netherite'
+        Chance: 25
+        Raridade: epico
+        Itens:
+          '1':
+            Material: NETHERITE_CHESTPLATE
+            Nome: '&8Peitoral de Netherite'
+            Encantamentos:
+              - 'PROTECTION_ENVIRONMENTAL:4'
+              - 'DURABILITY:3'
+      cabeca:
+        Nome: '&5Cabeca de Dragao'
+        Chance: 15
+        Raridade: lendario
+        Itens:
+          '1':
+            Material: DRAGON_HEAD
+            Nome: '&5Cabeca de Dragao'
+      dinheiro:
+        Nome: '&a$500.000'
+        Chance: 30
+        Raridade: raro
+        Exibicao:
+          Material: GOLD_INGOT
+          Nome: '&a$500.000'
+        Comandos:
+          - 'eco give {jogador} 500000'
+      titulo:
+        Nome: '&6Titulo &l[LENDARIO]'
+        Chance: 5
+        Raridade: lendario
+        Exibicao:
+          Material: NAME_TAG
+          Nome: '&6Titulo &l[LENDARIO]'
+        Comandos:
+          - 'lp user {jogador} meta addprefix 100 "&6&l[LENDARIO] "'
+        Limite: 1
+      # Recompensa de consolo: so sai quando nenhuma das outras esta
+      # disponivel para aquele jogador (limite batido, sem permissao).
+      consolo:
+        Nome: '&716 Diamantes'
+        Consolo: true
+        Raridade: comum
+        Itens:
+          '1':
+            Material: DIAMOND
+            Quantidade: 16

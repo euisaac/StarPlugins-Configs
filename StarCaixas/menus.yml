@@ -1,0 +1,221 @@
+# ==========================================================================
+#  StarCaixas - aparencia das telas
+#
+#  Slot -1 desliga um botao. Os slots contam a partir de 0, da esquerda para a
+#  direita e de cima para baixo (a primeira linha vai de 0 a 8).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ------------------------------- MENU PRINCIPAL ---------------------------
+Caixas:
+  Titulo: '&8Caixas do servidor'
+  Linhas: 5
+
+  # Esconde do menu as caixas que o jogador nao tem permissao de usar.
+  Esconder sem permissao: false
+
+  # Onde as caixas ficam. Deixe a lista vazia para o plugin usar a area do
+  # meio automaticamente. A caixa que tiver Menu.Slot no caixas.yml manda
+  # nesta lista.
+  Slots das caixas: []
+
+  Lore da caixa:
+    - ' '
+    - '&7Recompensas: &f{recompensas}'
+    - '&7Suas chaves: &e{chaves}'
+    - '&7Voce ja abriu: &f{aberturas}x'
+    - ' '
+    - '&eClique &7para abrir'
+    - '&eBotao direito &7para ver as recompensas'
+    - '&eShift + clique &7para ver o ranking'
+
+  # Usada no lugar da de cima quando a caixa esta em recarga para o jogador.
+  Lore em recarga:
+    - ' '
+    - '&7Recompensas: &f{recompensas}'
+    - '&7Suas chaves: &e{chaves}'
+    - ' '
+    - '&cEm recarga: &f{recarga}'
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Historico:
+    Slot: 39
+    Material: BOOK
+    Nome: '&e&lSeu historico'
+    Lore:
+      - '&7As ultimas caixas que voce abriu.'
+
+  Ranking:
+    Slot: 41
+    Material: PLAYER_HEAD
+    Nome: '&e&lRanking geral'
+    Lore:
+      - '&7Quem mais abriu caixas no servidor.'
+
+  Fechar:
+    Slot: 40
+    Material: BARRIER
+    Nome: '&c&lFechar'
+    Lore: []
+
+# ------------------------------ PRE-VISUALIZACAO --------------------------
+Pre-visualizacao:
+  Titulo: '&8{caixa}'
+  Linhas: 6
+
+  # Vazio usa todas as linhas menos a ultima.
+  Slots: []
+
+  Lore da recompensa:
+    - ' '
+    - '&7Raridade: {cor}{raridade}'
+    - '&7Chance: &f{chance}%'
+    - '&7Voce ja tirou: &f{tirou}x'
+    - '&7Limite por jogador: &f{limite}'
+
+  Lore bloqueada:
+    - ' '
+    - '&cVoce nao pode tirar esta recompensa.'
+
+  Lore esgotada:
+    - ' '
+    - '&cVoce ja tirou esta recompensa &f{limite}x&c.'
+
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Informacoes:
+    Slot: 49
+    Material: PAPER
+    Nome: '&e&l{caixa}'
+    Lore:
+      - '&7Recompensas: &f{recompensas}'
+      - '&7Premios por abertura: &f{premios}'
+      - ' '
+      - '&7As chances mostradas ja consideram'
+      - '&7o peso de todas as recompensas.'
+
+  Pagina anterior:
+    Slot: 48
+    Material: ARROW
+    Nome: '&ePagina {pagina}'
+    Lore: []
+
+  Proxima pagina:
+    Slot: 50
+    Material: ARROW
+    Nome: '&ePagina {pagina}'
+    Lore: []
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&c&lVoltar'
+    Lore: []
+
+# --------------------------------- RANKING --------------------------------
+Ranking:
+  Titulo: '&8Ranking - {caixa}'
+  Linhas: 6
+
+  Slots: []
+  Material da cabeca: PLAYER_HEAD
+
+  Nome da colocacao: '&e#{posicao} &f{jogador}'
+  Lore da colocacao:
+    - ' '
+    - '&7Aberturas: &6{aberturas}'
+    - '&7Caixa: &f{caixa}'
+
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Sua posicao:
+    Slot: 49
+    Material: PLAYER_HEAD
+    Nome: '&e&lSua posicao'
+    Lore:
+      - ' '
+      - '&7Colocacao: &f#{posicao}'
+      - '&7Aberturas: &6{aberturas}'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&c&lVoltar'
+    Lore: []
+
+# -------------------------------- HISTORICO -------------------------------
+Historico:
+  Titulo: '&8Seu historico'
+  Linhas: 6
+
+  Slots: []
+
+  Nome do registro: '&f{premio}'
+  Lore do registro:
+    - ' '
+    - '&7Caixa: &f{caixa}'
+    - '&7Quando: &f{data}'
+    - '&7Ha &f{atras}'
+
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Carregando:
+    Material: CLOCK
+    Nome: '&7Carregando...'
+    Lore: []
+
+  Vazio:
+    Material: BARRIER
+    Nome: '&cNada por aqui'
+    Lore:
+      - '&7Voce ainda nao abriu nenhuma caixa.'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&c&lVoltar'
+    Lore: []
+
+# --------------------------------- CHAVES ---------------------------------
+Chaves:
+  Titulo: '&8Suas chaves'
+  Linhas: 5
+
+  Slots: []
+
+  Lore da chave:
+    - ' '
+    - '&7Guardadas: &e{virtuais}'
+    - '&7No inventario: &e{fisicas}'
+    - '&7Total: &6{total}'
+    - ' '
+    - '&eClique &7para abrir a caixa'
+
+  Lore para sacar:
+    - '&eBotao direito &7para sacar 1 chave'
+    - '&eShift + direito &7para sacar tudo'
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Voltar:
+    Slot: 40
+    Material: ARROW
+    Nome: '&c&lVoltar'
+    Lore: []

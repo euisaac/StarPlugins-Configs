@@ -1,0 +1,290 @@
+# ==========================================================================
+#  StarCaixas - animacoes de abertura
+#
+#  Cada bloco aqui e um AJUSTE de um dos tipos que o plugin sabe rodar. Voce
+#  pode ter tres roletas diferentes, cada uma numa caixa: e so copiar o bloco,
+#  trocar o id (a linha antes dos dois pontos) e apontar a caixa para ele no
+#  caixas.yml (Animacao: <id>).
+#
+#  Tipos disponiveis:
+#    RAPIDA       - sem animacao, o premio cai direto no inventario
+#    ROLETA       - fileira de itens correndo, freando ate parar
+#    CASCATA      - as nove colunas caem e travam de fora para dentro
+#    RODA         - os itens giram pela borda e a casa de cima aponta
+#    CACA_NIQUEL  - tres colunas girando e parando uma depois da outra
+#    PIRAMIDE     - cinco degraus congelando de baixo para cima
+#    CARROSSEL    - itens girando em volta do jogador (no mundo)
+#    EXPLOSAO     - a caixa estoura e os premios voam (no mundo)
+#    FOGOS        - roda de fogos de artificio (no mundo)
+#    TORNADO      - funil de particulas subindo (no mundo)
+#    BURACO_NEGRO - engole tudo em volta e puxa os jogadores (no mundo)
+#
+#  As de mundo acontecem na frente de todo mundo, em volta da caixa; as de
+#  menu acontecem dentro de um inventario aberto so para quem abriu.
+#
+#  Sons: SOM;volume;tom. Deixe vazio para nao tocar nada.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Animacoes:
+
+  # ---------------------------------------------------------------- RAPIDA
+  rapida:
+    Tipo: RAPIDA
+    Duracao: 1s
+    Titulo: ''
+    Titulo do premio: '&6&lVOCE GANHOU!<nl>&f{premio}'
+    Som:
+      Fim: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ---------------------------------------------------------------- ROLETA
+  roleta:
+    Tipo: ROLETA
+    Duracao: 6s
+    Titulo: '&6&lABRINDO...<nl>&7{caixa}'
+    Titulo do premio: '&6&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo do menu: '&8{caixa}'
+
+    # Preenche o resto da tela. Vazio deixa os buracos vazios.
+    Fundo: BLACK_STAINED_GLASS_PANE
+
+    # O item que marca a casa do meio (acima e abaixo dela).
+    Marcador: HOPPER
+    Nome do marcador: '&e&l>>>'
+
+    # Quantas vezes a fileira da a volta na lista de recompensas.
+    Voltas: 3
+
+    Som:
+      Giro: 'UI_BUTTON_CLICK;0.6;1.6'
+      Fim: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # --------------------------------------------------------------- CASCATA
+  cascata:
+    Tipo: CASCATA
+    Duracao: 7s
+    Titulo: '&b&lCASCATA<nl>&7{caixa}'
+    Titulo do premio: '&b&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo do menu: '&8{caixa}'
+    Fundo: LIGHT_BLUE_STAINED_GLASS_PANE
+    Linhas: 5
+    Voltas: 3
+    Som:
+      Parada: 'BLOCK_NOTE_BLOCK_HAT;0.8;1.2'
+      Fim: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ------------------------------------------------------------------ RODA
+  roda:
+    Tipo: RODA
+    Duracao: 7s
+    Titulo: '&d&lRODA DA SORTE<nl>&7{caixa}'
+    Titulo do premio: '&d&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo do menu: '&8{caixa}'
+    Fundo: MAGENTA_STAINED_GLASS_PANE
+    Voltas: 4
+    Som:
+      Giro: 'UI_BUTTON_CLICK;0.6;1.5'
+      Fim: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ----------------------------------------------------------- CACA_NIQUEL
+  caca-niquel:
+    Tipo: CACA_NIQUEL
+    Duracao: 8s
+    Titulo: '&a&lGIRANDO...<nl>&7{caixa}'
+    Titulo do premio: '&a&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo do menu: '&8{caixa}'
+    Fundo: GRAY_STAINED_GLASS_PANE
+    Voltas: 3
+    Som:
+      Giro: 'UI_BUTTON_CLICK;0.5;1.8'
+      Parada: 'BLOCK_NOTE_BLOCK_PLING;1;1.4'
+      Fim: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # -------------------------------------------------------------- PIRAMIDE
+  piramide:
+    Tipo: PIRAMIDE
+    Duracao: 8s
+    Titulo: '&e&lPIRAMIDE<nl>&7{caixa}'
+    Titulo do premio: '&e&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo do menu: '&8{caixa}'
+    Fundo: YELLOW_STAINED_GLASS_PANE
+
+    # De quantos em quantos tiques as casas sorteiam um item novo.
+    Velocidade: 2
+
+    Som:
+      # Aqui so o NOME do som e usado: o tom sobe sozinho a cada degrau.
+      Degrau: 'BLOCK_NOTE_BLOCK_PLING'
+      Fim: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ------------------------------------------------------------- CARROSSEL
+  carrossel:
+    Tipo: CARROSSEL
+    Duracao: 7s
+    Titulo: '&6&lCARROSSEL<nl>&7{caixa}'
+    Titulo do premio: '&6&lVOCE GANHOU!<nl>&f{premio}'
+
+    Raio: 1.6
+    Altura: 1.2
+    Velocidade: 0.22
+
+    Particula: SPELL_INSTANT
+    Particula do fim: FIREWORKS_SPARK
+    Fogos: true
+
+    # Linha de texto que flutua junto com o premio no fim.
+    Linha do premio: '&f{premio}'
+
+    Som:
+      Giro: 'BLOCK_NOTE_BLOCK_HARP;0.5;1.4'
+      Revelacao: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # -------------------------------------------------------------- EXPLOSAO
+  explosao:
+    Tipo: EXPLOSAO
+    Duracao: 8s
+    Titulo: '&c&lCARREGANDO...<nl>&7{caixa}'
+    Titulo do premio: '&c&lVOCE GANHOU!<nl>&f{premio}'
+
+    # Ate onde os premios voam.
+    Raio: 3.2
+
+    # Quantos itens participam do estouro.
+    Itens: 10
+
+    Particula da carga: SMOKE_LARGE
+    Particula do estouro: EXPLOSION_LARGE
+    Faisca do estouro: FIREWORKS_SPARK
+    Rastro: FLAME
+    Particula do fim: FIREWORKS_SPARK
+    Fogos: true
+    Linha do premio: '&f{premio}'
+
+    Som:
+      # So o nome: o tom sobe conforme a carga.
+      Carga: 'BLOCK_NOTE_BLOCK_BASS'
+      Estouro: 'ENTITY_GENERIC_EXPLODE;1;1.2'
+      Revelacao: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ----------------------------------------------------------------- FOGOS
+  fogos:
+    Tipo: FOGOS
+    Duracao: 7s
+    Titulo: '&e&lFESTA!<nl>&7{caixa}'
+    Titulo do premio: '&e&lVOCE GANHOU!<nl>&f{premio}'
+
+    Raio: 2.5
+    Altura dos fogos: 0.5
+
+    # De quantos em quantos tiques sai um fogo.
+    Intervalo dos fogos: 8
+
+    # BALL, BALL_LARGE, STAR, BURST ou CREEPER.
+    Tipo dos fogos: BALL_LARGE
+
+    Particula: FIREWORKS_SPARK
+    Linha do premio: '&f{premio}'
+
+    Som:
+      Revelacao: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # --------------------------------------------------------------- TORNADO
+  tornado:
+    Tipo: TORNADO
+    Duracao: 8s
+    Titulo: '&f&lTORNADO<nl>&7{caixa}'
+    Titulo do premio: '&f&lVOCE GANHOU!<nl>&f{premio}'
+
+    Altura: 4.0
+    Raio: 2.0
+    Velocidade: 0.35
+
+    # Quantos aneis desenham o funil. Mais aneis = funil mais fechado e mais
+    # particulas por tique.
+    Aneis: 16
+
+    # Quantos itens rodam dentro do funil.
+    Itens: 6
+
+    Particula: CLOUD
+    Particula do fim: CLOUD
+    Fogos: false
+    Linha do premio: '&f{premio}'
+
+    Som:
+      Vento: 'ENTITY_ENDER_DRAGON_FLAP;0.6;1.4'
+      Revelacao: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ---------------------------------------------------------- BURACO NEGRO
+  #
+  #  ATENCAO: esta e a unica animacao que mexe em quem NAO abriu a caixa.
+  #  Ela puxa para o centro todo jogador dentro do "Raio da succao" -- menos
+  #  quem tem a permissao starcaixas.buraconegro.ignorar, quem esta montado,
+  #  em modo espectador ou em outro mundo.
+  #
+  #  Quem e puxado fica alguns segundos sem tomar dano de queda, senao a
+  #  animacao poderia matar alguem que so estava passando.
+  #
+  #  Para ter o visual sem mexer em ninguem: Puxar jogadores: false.
+  #
+  buraco-negro:
+    Tipo: BURACO_NEGRO
+    Duracao: 10s
+    Titulo: '&5&lBURACO NEGRO<nl>&7{caixa}'
+    Titulo do premio: '&5&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo da implosao: '&5&lCOLAPSO!<nl>&f{premio}'
+
+    # Altura do centro do buraco em relacao ao bloco da caixa.
+    Altura: 2.2
+
+    # ---- a esfera escura do centro
+    Raio do nucleo: 0.9
+    Particula do nucleo: SMOKE_LARGE
+    Pontos do nucleo: 18
+
+    # ---- o disco que gira em volta
+    Raio do disco: 2.6
+    Velocidade do disco: 0.25
+    Inclinacao do disco: 20.0
+    Pontos do disco: 48
+    Particula do disco: REDSTONE
+    Disco colorido: true
+    Cor do disco: '150,40,220'
+
+    # Quantos itens da caixa ficam espiralando para dentro.
+    Itens engolidos: 8
+
+    # ---- a succao
+    Puxar jogadores: true
+    Puxar itens: true
+
+    # Ate onde a succao alcanca, em blocos.
+    Raio da succao: 8.0
+
+    # Forca do puxao. 0.55 e forte o bastante para arrastar sem arremessar.
+    Forca: 0.55
+
+    # Quantos segundos quem foi puxado fica sem tomar dano de queda.
+    Segundos sem dano de queda: 8
+
+    # No fim, o colapso joga todo mundo para longe.
+    Empurrar no fim: true
+    Forca do empurrao: 0.7
+
+    # ---- a implosao
+    Particula da implosao: EXPLOSION_HUGE
+    Pontos da implosao: 4
+    Faisca da implosao: FIREWORKS_SPARK
+    Fogos: true
+    Linha do premio: '&f{premio}'
+
+    Som:
+      Formacao: 'ENTITY_ENDER_DRAGON_GROWL;1;0.6'
+      # So o nome: o tom sobe conforme o colapso se aproxima.
+      Zumbido: 'BLOCK_PORTAL_AMBIENT'
+      Implosao: 'ENTITY_GENERIC_EXPLODE;1;0.8'
+      Rugido: 'ENTITY_ENDER_DRAGON_GROWL;1;1.4'
+
+    # De quantos em quantos tiques o zumbido toca.
+    Intervalo do zumbido: 6
