@@ -1,0 +1,161 @@
+# ------------------------------------------------------------------------- #
+#                    StarMinions - aprimoramentos                             #
+#                                                                             #
+#  Aprimoramento e diferente de nivel: o nivel e um caminho unico e caro, o    #
+#  aprimoramento e ESCOLHA. Dois minions de mesmo nivel podem estar afinados   #
+#  para coisas diferentes -- e e isso que da o que decidir depois que o nivel  #
+#  bate no teto.                                                               #
+#                                                                             #
+#  As chaves abaixo sao as que o plugin conhece. Voce pode mudar nome, preco,  #
+#  icone, maximo e em quais tipos elas aparecem. Se APAGAR uma secao, o        #
+#  aprimoramento sai do jogo e o efeito dele some junto.                       #
+#                                                                             #
+#   Alcance     - soma +1 bloco de alcance por nivel                           #
+#   Velocidade  - tira 5% do tempo de espera por nivel                         #
+#   Estoque     - soma +1 slot de estoque interno por nivel                    #
+#   Fortuna     - soma +0,25 no multiplicador de producao por nivel            #
+#   Eficiencia  - tira 15% do gasto de combustivel por nivel                   #
+#   Autovenda   - libera a venda automatica do minion                          #
+#                                                                             #
+#  Preco de cada compra = Preco + (Preco por nivel x quantos ja comprou).      #
+#  Tipos: vazio vale para todos; aceita o id do arquivo (minerador) ou o       #
+#  trabalho (MINERADOR), e aceita curinga (min*).                              #
+#  Slot: -1 deixa o menu escolher a vaga.                                      #
+# ------------------------------------------------------------------------- #
+
+Versao do modelo: 1
+
+Aprimoramentos:
+
+  Alcance:
+    Ativar: true
+    Nome: '&b&lALCANCE &7[{nivel}/{maximo}]'
+    Material: SPYGLASS
+    Textura: ''
+    Slot: 10
+    Maximo: 5
+    Preco: 5000
+    Preco por nivel: 5000
+    Acoes: 0
+    Permissao: ''
+    # O vendedor nao usa alcance nenhum: ele mexe so no bau ligado.
+    Tipos:
+      - '*'
+    Lore:
+      - ''
+      - ' &7+1 bloco de alcance por nivel.'
+      - ''
+      - ' &7Nivel: &a{nivel} &7» &2{proximo_nivel}'
+      - ' &7Custa: &f{preco}'
+      - ''
+      - ' &e&l(!) &fClique para comprar.'
+
+  Velocidade:
+    Ativar: true
+    Nome: '&e&lVELOCIDADE &7[{nivel}/{maximo}]'
+    Material: SUGAR
+    Textura: ''
+    Slot: 11
+    Maximo: 5
+    Preco: 8000
+    Preco por nivel: 8000
+    Acoes: 100
+    Permissao: ''
+    Tipos: []
+    Lore:
+      - ''
+      - ' &7-5% no tempo de espera por nivel.'
+      - ''
+      - ' &7Nivel: &a{nivel} &7» &2{proximo_nivel}'
+      - ' &7Custa: &f{preco}'
+      - ' &7Pede: &f{acoes_necessarias} &7acoes'
+      - ''
+      - ' &e&l(!) &fClique para comprar.'
+
+  Estoque:
+    Ativar: true
+    Nome: '&6&lESTOQUE &7[{nivel}/{maximo}]'
+    Material: CHEST
+    Textura: ''
+    Slot: 12
+    Maximo: 9
+    Preco: 3000
+    Preco por nivel: 2000
+    Acoes: 0
+    Permissao: ''
+    Tipos: []
+    Lore:
+      - ''
+      - ' &7+1 slot de estoque interno por nivel.'
+      - ''
+      - ' &7Slots agora: &f{estoque_maximo}'
+      - ' &7Custa: &f{preco}'
+      - ''
+      - ' &e&l(!) &fClique para comprar.'
+
+  Fortuna:
+    Ativar: true
+    Nome: '&d&lFORTUNA &7[{nivel}/{maximo}]'
+    Material: DIAMOND
+    Textura: ''
+    Slot: 14
+    Maximo: 4
+    Preco: 15000
+    Preco por nivel: 15000
+    Acoes: 500
+    Permissao: ''
+    Tipos: []
+    Lore:
+      - ''
+      - ' &7+0,25 no multiplicador de producao.'
+      - ''
+      - ' &7Producao agora: &fx{multiplicador}'
+      - ' &7Custa: &f{preco}'
+      - ' &7Pede: &f{acoes_necessarias} &7acoes'
+      - ''
+      - ' &e&l(!) &fClique para comprar.'
+
+  Eficiencia:
+    Ativar: true
+    Nome: '&c&lEFICIENCIA &7[{nivel}/{maximo}]'
+    Material: BLAZE_POWDER
+    Textura: ''
+    Slot: 15
+    Maximo: 4
+    Preco: 10000
+    Preco por nivel: 10000
+    Acoes: 0
+    Permissao: ''
+    Tipos: []
+    Lore:
+      - ''
+      - ' &7-15% no gasto de combustivel por nivel.'
+      - ' &8(so vale com o combustivel ligado)'
+      - ''
+      - ' &7Carga agora: &f{combustivel}'
+      - ' &7Custa: &f{preco}'
+      - ''
+      - ' &e&l(!) &fClique para comprar.'
+
+  Autovenda:
+    Ativar: true
+    Nome: '&2&lVENDA AUTOMATICA'
+    Material: EMERALD
+    Textura: ''
+    Slot: 16
+    Maximo: 1
+    Preco: 50000
+    Preco por nivel: 0
+    Acoes: 1000
+    Permissao: ''
+    Tipos: []
+    Lore:
+      - ''
+      - ' &7Libera o botao de venda automatica'
+      - ' &7no menu deste minion.'
+      - ''
+      - ' &7Estado: {autovender}'
+      - ' &7Custa: &f{preco}'
+      - ' &7Pede: &f{acoes_necessarias} &7acoes'
+      - ''
+      - ' &e&l(!) &fClique para comprar.'

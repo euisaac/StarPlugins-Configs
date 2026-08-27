@@ -1,0 +1,153 @@
+# Minion Lenhador
+#
+# Derruba a arvore inteira e planta a muda de volta.
+#
+# A arvore e achada subindo a partir de um tronco vizinho, e nao pelo alcance:
+# um tronco de trinta blocos passa longe do alcance do minion, e cortar so o
+# pedaco que cabe deixaria a copa flutuando.
+#
+# O corte tem teto (Minions > Maximo de acoes por vez, no config.yml): numa
+# selva densa a floresta inteira e um unico bloco conectado.
+
+Versao do modelo: 1
+
+Nome: '&6Minion Lenhador'
+Trabalho: LENHADOR
+# Vazio libera para todos. Preencha para vender o tipo por permissao.
+Permissao: ''
+
+Item:
+  # Cole em Textura o base64, a url ou o hash de uma cabeca para dar
+  # cara propria ao seu minion. Vazio deixa a cabeca padrao.
+  Material: PLAYER_HEAD
+  Textura: ''
+  Nome: '&6Minion Lenhador &7[Nivel {nivel}]'
+  Lore:
+    - ''
+    - ' &7Derruba arvores e replanta a muda.'
+    - ''
+    - ' &7Ferramenta: &fmachado'
+    - ' &7Nivel: &f{nivel}&7/&f{nivel_maximo}'
+    - ''
+    - ' &e&l(!) &fClique num bloco para colocar.'
+
+Entidade:
+  Nome: '&7[&e{nivel}&7] &6Minion Lenhador &7({dono})'
+  # O que o boneco usa na cabeca. Troque por um bloco (CARVED_PUMPKIN,
+  # IRON_BLOCK...) se nao quiser mexer com textura.
+  Cabeca: PLAYER_HEAD
+  Textura: ''
+  Cor da armadura: '150, 90, 30'
+  Pequeno: false
+
+Ferramenta:
+  Obrigatoria: true
+  Aceitas:
+    - '*_AXE'
+
+Area:
+  # FACE (so a frente), LINHA (os quatro lados), AREA (quadrado) ou
+  # ESFERA (bola). Do mais barato para o mais caro, nessa ordem.
+  Modo: AREA
+  # Lista vazia aceita qualquer coisa. Aceita curinga (*_ORE).
+  Alvos:
+    - '*_LOG'
+    - '*_WOOD'
+    - '*_STEM'
+    - '*_HYPHAE'
+
+Opcoes:
+  Replantar: true
+  # A muda plantada no lugar. Vazio faz o proprio tronco voltar.
+  Muda: 'OAK_SAPLING'
+  Alturas: 1
+
+# Um nivel so precisa escrever o que MUDA: o que faltar vem do nivel
+# anterior. Requisitos valem para subir PARA aquele nivel.
+Niveis:
+  1:
+    Alcance: 3
+    Velocidade: 400
+    Estoque: 9
+    Multiplicador: 1
+  2:
+    Alcance: 3.5
+    Velocidade: 366
+    Estoque: 10
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 2000
+      Acoes: 50
+      Permissao: ''
+  3:
+    Alcance: 4
+    Velocidade: 332
+    Estoque: 11
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 6000
+      Acoes: 250
+      Permissao: ''
+  4:
+    Alcance: 4.5
+    Velocidade: 298
+    Estoque: 12
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 14000
+      Acoes: 1000
+      Permissao: ''
+  5:
+    Alcance: 5
+    Velocidade: 264
+    Estoque: 13
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 30000
+      Acoes: 3000
+      Permissao: ''
+  6:
+    Alcance: 5.5
+    Velocidade: 230
+    Estoque: 14
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 60000
+      Acoes: 8000
+      Permissao: ''
+  7:
+    Alcance: 6
+    Velocidade: 196
+    Estoque: 15
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 110000
+      Acoes: 20000
+      Permissao: ''
+  8:
+    Alcance: 6.5
+    Velocidade: 162
+    Estoque: 16
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 200000
+      Acoes: 45000
+      Permissao: ''
+  9:
+    Alcance: 7
+    Velocidade: 128
+    Estoque: 17
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 350000
+      Acoes: 90000
+      Permissao: ''
+  10:
+    Alcance: 7.5
+    Velocidade: 94
+    Estoque: 18
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 600000
+      Acoes: 180000
+      Permissao: ''

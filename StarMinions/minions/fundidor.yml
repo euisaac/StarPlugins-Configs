@@ -1,0 +1,149 @@
+# Minion Fundidor
+#
+# A mesma ideia do fabricante, mas com a lista de fundicoes: o que entra na
+# fornalha de um lado e sai do outro.
+#
+# Nao gasta carvao: o custo aqui e o tempo do minion e o combustivel dele,
+# quando o combustivel estiver ligado no config.yml.
+#
+# Formato: MATERIAL;QUANTIDADE > MATERIAL;QUANTIDADE
+
+Versao do modelo: 1
+
+Nome: '&cMinion Fundidor'
+Trabalho: FUNDIDOR
+# Vazio libera para todos. Preencha para vender o tipo por permissao.
+Permissao: ''
+
+Item:
+  # Cole em Textura o base64, a url ou o hash de uma cabeca para dar
+  # cara propria ao seu minion. Vazio deixa a cabeca padrao.
+  Material: PLAYER_HEAD
+  Textura: ''
+  Nome: '&cMinion Fundidor &7[Nivel {nivel}]'
+  Lore:
+    - ''
+    - ' &7Funde o que esta no bau ligado.'
+    - ''
+    - ' &7Ferramenta: &fnenhuma'
+    - ' &7Nivel: &f{nivel}&7/&f{nivel_maximo}'
+    - ''
+    - ' &e&l(!) &fClique num bloco para colocar.'
+
+Entidade:
+  Nome: '&7[&e{nivel}&7] &cMinion Fundidor &7({dono})'
+  # O que o boneco usa na cabeca. Troque por um bloco (CARVED_PUMPKIN,
+  # IRON_BLOCK...) se nao quiser mexer com textura.
+  Cabeca: PLAYER_HEAD
+  Textura: ''
+  Cor da armadura: '255, 120, 0'
+  Pequeno: false
+
+Ferramenta:
+  Obrigatoria: false
+  Aceitas: []
+
+Area:
+  # FACE (so a frente), LINHA (os quatro lados), AREA (quadrado) ou
+  # ESFERA (bola). Do mais barato para o mais caro, nessa ordem.
+  Modo: FACE
+  # Lista vazia aceita qualquer coisa. Aceita curinga (*_ORE).
+  Alvos: []
+
+Opcoes:
+  Receitas por vez: 4
+  Fundicoes:
+    - 'RAW_IRON;1 > IRON_INGOT;1'
+    - 'IRON_ORE;1 > IRON_INGOT;1'
+    - 'RAW_GOLD;1 > GOLD_INGOT;1'
+    - 'GOLD_ORE;1 > GOLD_INGOT;1'
+    - 'RAW_COPPER;1 > COPPER_INGOT;1'
+    - 'COBBLESTONE;1 > STONE;1'
+    - 'SAND;1 > GLASS;1'
+    - 'OAK_LOG;1 > CHARCOAL;1'
+    - 'BEEF;1 > COOKED_BEEF;1'
+    - 'PORKCHOP;1 > COOKED_PORKCHOP;1'
+    - 'CHICKEN;1 > COOKED_CHICKEN;1'
+    - 'COD;1 > COOKED_COD;1'
+    - 'SALMON;1 > COOKED_SALMON;1'
+
+# Um nivel so precisa escrever o que MUDA: o que faltar vem do nivel
+# anterior. Requisitos valem para subir PARA aquele nivel.
+Niveis:
+  1:
+    Alcance: 2
+    Velocidade: 300
+    Estoque: 9
+    Multiplicador: 1
+  2:
+    Velocidade: 275
+    Estoque: 10
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 2000
+      Acoes: 50
+      Permissao: ''
+  3:
+    Velocidade: 250
+    Estoque: 11
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 6000
+      Acoes: 250
+      Permissao: ''
+  4:
+    Velocidade: 225
+    Estoque: 12
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 14000
+      Acoes: 1000
+      Permissao: ''
+  5:
+    Velocidade: 200
+    Estoque: 13
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 30000
+      Acoes: 3000
+      Permissao: ''
+  6:
+    Velocidade: 175
+    Estoque: 14
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 60000
+      Acoes: 8000
+      Permissao: ''
+  7:
+    Velocidade: 150
+    Estoque: 15
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 110000
+      Acoes: 20000
+      Permissao: ''
+  8:
+    Velocidade: 125
+    Estoque: 16
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 200000
+      Acoes: 45000
+      Permissao: ''
+  9:
+    Velocidade: 100
+    Estoque: 17
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 350000
+      Acoes: 90000
+      Permissao: ''
+  10:
+    Velocidade: 75
+    Estoque: 18
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 600000
+      Acoes: 180000
+      Permissao: ''

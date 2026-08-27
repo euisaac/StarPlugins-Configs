@@ -1,0 +1,155 @@
+# Minion Pescador
+#
+# Pesca em qualquer poca de agua ao alcance.
+#
+# A tabela de pescados fica AQUI, e nao na tabela de saque do servidor: as
+# tabelas nativas mudaram de formato varias vezes entre a 1.8 e a 1.21, e o que
+# o dono do servidor quer mesmo e decidir o que sai e com que chance.
+#
+# Formato: MATERIAL;QUANTIDADE;CHANCE. A chance de cada linha e INDEPENDENTE:
+# duas linhas de 100 entregam as duas, duas de 50 podem nao entregar nenhuma.
+
+Versao do modelo: 1
+
+Nome: '&9Minion Pescador'
+Trabalho: PESCADOR
+# Vazio libera para todos. Preencha para vender o tipo por permissao.
+Permissao: ''
+
+Item:
+  # Cole em Textura o base64, a url ou o hash de uma cabeca para dar
+  # cara propria ao seu minion. Vazio deixa a cabeca padrao.
+  Material: PLAYER_HEAD
+  Textura: ''
+  Nome: '&9Minion Pescador &7[Nivel {nivel}]'
+  Lore:
+    - ''
+    - ' &7Pesca sozinho na agua ao lado.'
+    - ''
+    - ' &7Ferramenta: &fvara de pescar'
+    - ' &7Nivel: &f{nivel}&7/&f{nivel_maximo}'
+    - ''
+    - ' &e&l(!) &fClique num bloco para colocar.'
+
+Entidade:
+  Nome: '&7[&e{nivel}&7] &9Minion Pescador &7({dono})'
+  # O que o boneco usa na cabeca. Troque por um bloco (CARVED_PUMPKIN,
+  # IRON_BLOCK...) se nao quiser mexer com textura.
+  Cabeca: PLAYER_HEAD
+  Textura: ''
+  Cor da armadura: '0, 110, 255'
+  Pequeno: false
+
+Ferramenta:
+  Obrigatoria: true
+  Aceitas:
+    - 'FISHING_ROD'
+
+Area:
+  # FACE (so a frente), LINHA (os quatro lados), AREA (quadrado) ou
+  # ESFERA (bola). Do mais barato para o mais caro, nessa ordem.
+  Modo: ESFERA
+  # Lista vazia aceita qualquer coisa. Aceita curinga (*_ORE).
+  Alvos: []
+
+Opcoes:
+  Alturas: 0
+  Pescados:
+    - 'COD;1;60.0'
+    - 'SALMON;1;22.0'
+    - 'TROPICAL_FISH;1;4.0'
+    - 'PUFFERFISH;1;4.0'
+    - 'STICK;1;3.0'
+    - 'STRING;1;3.0'
+    - 'BONE;1;2.0'
+    - 'INK_SAC;1;1.0'
+
+# Um nivel so precisa escrever o que MUDA: o que faltar vem do nivel
+# anterior. Requisitos valem para subir PARA aquele nivel.
+Niveis:
+  1:
+    Alcance: 3
+    Velocidade: 300
+    Estoque: 9
+    Multiplicador: 1
+  2:
+    Alcance: 3.5
+    Velocidade: 275
+    Estoque: 10
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 2000
+      Acoes: 50
+      Permissao: ''
+  3:
+    Alcance: 4
+    Velocidade: 250
+    Estoque: 11
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 6000
+      Acoes: 250
+      Permissao: ''
+  4:
+    Alcance: 4.5
+    Velocidade: 225
+    Estoque: 12
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 14000
+      Acoes: 1000
+      Permissao: ''
+  5:
+    Alcance: 5
+    Velocidade: 200
+    Estoque: 13
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 30000
+      Acoes: 3000
+      Permissao: ''
+  6:
+    Alcance: 5.5
+    Velocidade: 175
+    Estoque: 14
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 60000
+      Acoes: 8000
+      Permissao: ''
+  7:
+    Alcance: 6
+    Velocidade: 150
+    Estoque: 15
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 110000
+      Acoes: 20000
+      Permissao: ''
+  8:
+    Alcance: 6.5
+    Velocidade: 125
+    Estoque: 16
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 200000
+      Acoes: 45000
+      Permissao: ''
+  9:
+    Alcance: 7
+    Velocidade: 100
+    Estoque: 17
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 350000
+      Acoes: 90000
+      Permissao: ''
+  10:
+    Alcance: 7.5
+    Velocidade: 75
+    Estoque: 18
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 600000
+      Acoes: 180000
+      Permissao: ''

@@ -1,0 +1,144 @@
+# Minion Coletor
+#
+# Junta os itens caidos em volta.
+#
+# Serve tanto para limpar o chao de uma fazenda de mob quanto para recolher o
+# que outro minion nao conseguiu guardar. Deixe a lista de alvos vazia para ele
+# pegar tudo, ou escreva materiais para ele pegar so aquilo.
+
+Versao do modelo: 1
+
+Nome: '&eMinion Coletor'
+Trabalho: COLETOR
+# Vazio libera para todos. Preencha para vender o tipo por permissao.
+Permissao: ''
+
+Item:
+  # Cole em Textura o base64, a url ou o hash de uma cabeca para dar
+  # cara propria ao seu minion. Vazio deixa a cabeca padrao.
+  Material: PLAYER_HEAD
+  Textura: ''
+  Nome: '&eMinion Coletor &7[Nivel {nivel}]'
+  Lore:
+    - ''
+    - ' &7Junta os itens caidos em volta.'
+    - ''
+    - ' &7Ferramenta: &fpa'
+    - ' &7Nivel: &f{nivel}&7/&f{nivel_maximo}'
+    - ''
+    - ' &e&l(!) &fClique num bloco para colocar.'
+
+Entidade:
+  Nome: '&7[&e{nivel}&7] &eMinion Coletor &7({dono})'
+  # O que o boneco usa na cabeca. Troque por um bloco (CARVED_PUMPKIN,
+  # IRON_BLOCK...) se nao quiser mexer com textura.
+  Cabeca: PLAYER_HEAD
+  Textura: ''
+  Cor da armadura: '255, 220, 0'
+  Pequeno: false
+
+Ferramenta:
+  Obrigatoria: true
+  Aceitas:
+    - '*_SHOVEL'
+    - '*_SPADE'
+
+Area:
+  # FACE (so a frente), LINHA (os quatro lados), AREA (quadrado) ou
+  # ESFERA (bola). Do mais barato para o mais caro, nessa ordem.
+  Modo: ESFERA
+  # Lista vazia aceita qualquer coisa. Aceita curinga (*_ORE).
+  Alvos: []
+
+Opcoes:
+  Itens por vez: 16
+
+# Um nivel so precisa escrever o que MUDA: o que faltar vem do nivel
+# anterior. Requisitos valem para subir PARA aquele nivel.
+Niveis:
+  1:
+    Alcance: 3
+    Velocidade: 160
+    Estoque: 9
+    Multiplicador: 1
+  2:
+    Alcance: 3.5
+    Velocidade: 147
+    Estoque: 10
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 2000
+      Acoes: 50
+      Permissao: ''
+  3:
+    Alcance: 4
+    Velocidade: 134
+    Estoque: 11
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 6000
+      Acoes: 250
+      Permissao: ''
+  4:
+    Alcance: 4.5
+    Velocidade: 121
+    Estoque: 12
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 14000
+      Acoes: 1000
+      Permissao: ''
+  5:
+    Alcance: 5
+    Velocidade: 108
+    Estoque: 13
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 30000
+      Acoes: 3000
+      Permissao: ''
+  6:
+    Alcance: 5.5
+    Velocidade: 95
+    Estoque: 14
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 60000
+      Acoes: 8000
+      Permissao: ''
+  7:
+    Alcance: 6
+    Velocidade: 82
+    Estoque: 15
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 110000
+      Acoes: 20000
+      Permissao: ''
+  8:
+    Alcance: 6.5
+    Velocidade: 69
+    Estoque: 16
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 200000
+      Acoes: 45000
+      Permissao: ''
+  9:
+    Alcance: 7
+    Velocidade: 56
+    Estoque: 17
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 350000
+      Acoes: 90000
+      Permissao: ''
+  10:
+    Alcance: 7.5
+    Velocidade: 43
+    Estoque: 18
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 600000
+      Acoes: 180000
+      Permissao: ''

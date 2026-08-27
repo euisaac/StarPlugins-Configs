@@ -1,0 +1,164 @@
+# Minion Criador
+#
+# Cria animais gastando a racao que estiver no bau ligado.
+#
+# O filhote nasce direto, em vez de o casal entrar no modo de amor: o modo de
+# amor so existe na API a partir da 1.12 e depende do tique do proprio mob, o
+# que faria o minion nao funcionar em metade das versoes suportadas.
+#
+# Quando a populacao bate no teto ele passa a ABATER os adultos (se "Abater no
+# limite" estiver ligado), e os drops caem no estoque. E o que fecha o ciclo sem
+# precisar de um cacador ao lado.
+
+Versao do modelo: 1
+
+Nome: '&2Minion Criador'
+Trabalho: CRIADOR
+# Vazio libera para todos. Preencha para vender o tipo por permissao.
+Permissao: ''
+
+Item:
+  # Cole em Textura o base64, a url ou o hash de uma cabeca para dar
+  # cara propria ao seu minion. Vazio deixa a cabeca padrao.
+  Material: PLAYER_HEAD
+  Textura: ''
+  Nome: '&2Minion Criador &7[Nivel {nivel}]'
+  Lore:
+    - ''
+    - ' &7Cria animais e colhe quando lota.'
+    - ''
+    - ' &7Ferramenta: &fnenhuma'
+    - ' &7Nivel: &f{nivel}&7/&f{nivel_maximo}'
+    - ''
+    - ' &e&l(!) &fClique num bloco para colocar.'
+
+Entidade:
+  Nome: '&7[&e{nivel}&7] &2Minion Criador &7({dono})'
+  # O que o boneco usa na cabeca. Troque por um bloco (CARVED_PUMPKIN,
+  # IRON_BLOCK...) se nao quiser mexer com textura.
+  Cabeca: PLAYER_HEAD
+  Textura: ''
+  Cor da armadura: '120, 200, 90'
+  Pequeno: false
+
+Ferramenta:
+  Obrigatoria: false
+  Aceitas: []
+
+Area:
+  # FACE (so a frente), LINHA (os quatro lados), AREA (quadrado) ou
+  # ESFERA (bola). Do mais barato para o mais caro, nessa ordem.
+  Modo: ESFERA
+  # Lista vazia aceita qualquer coisa. Aceita curinga (*_ORE).
+  Alvos:
+    - 'COW'
+    - 'SHEEP'
+    - 'PIG'
+    - 'CHICKEN'
+    - 'RABBIT'
+    - 'MOOSHROOM'
+
+Opcoes:
+  # Teto de animais no alcance. Obrigatorio: sem ele o minion enche o
+  # chunk de bicho ate o servidor engasgar.
+  Maximo de animais: 20
+  Abater no limite: true
+  Abates por vez: 1
+  Dano: 20.0
+  Racao:
+    - 'WHEAT'
+    - 'WHEAT_SEEDS'
+    - 'SEEDS'
+    - 'CARROT'
+    - 'POTATO'
+    - 'BEETROOT'
+
+# Um nivel so precisa escrever o que MUDA: o que faltar vem do nivel
+# anterior. Requisitos valem para subir PARA aquele nivel.
+Niveis:
+  1:
+    Alcance: 4
+    Velocidade: 400
+    Estoque: 9
+    Multiplicador: 1
+  2:
+    Alcance: 4.5
+    Velocidade: 366
+    Estoque: 10
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 2000
+      Acoes: 50
+      Permissao: ''
+  3:
+    Alcance: 5
+    Velocidade: 332
+    Estoque: 11
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 6000
+      Acoes: 250
+      Permissao: ''
+  4:
+    Alcance: 5.5
+    Velocidade: 298
+    Estoque: 12
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 14000
+      Acoes: 1000
+      Permissao: ''
+  5:
+    Alcance: 6
+    Velocidade: 264
+    Estoque: 13
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 30000
+      Acoes: 3000
+      Permissao: ''
+  6:
+    Alcance: 6.5
+    Velocidade: 230
+    Estoque: 14
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 60000
+      Acoes: 8000
+      Permissao: ''
+  7:
+    Alcance: 7
+    Velocidade: 196
+    Estoque: 15
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 110000
+      Acoes: 20000
+      Permissao: ''
+  8:
+    Alcance: 7.5
+    Velocidade: 162
+    Estoque: 16
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 200000
+      Acoes: 45000
+      Permissao: ''
+  9:
+    Alcance: 8
+    Velocidade: 128
+    Estoque: 17
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 350000
+      Acoes: 90000
+      Permissao: ''
+  10:
+    Alcance: 8.5
+    Velocidade: 94
+    Estoque: 18
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 600000
+      Acoes: 180000
+      Permissao: ''

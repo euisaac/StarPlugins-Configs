@@ -1,0 +1,168 @@
+# ------------------------------------------------------------------------- #
+#                                StarMinions                                  #
+#                                                                             #
+#  Minions que trabalham sozinhos pelo dono: mineram, plantam, cortam arvore,  #
+#  pescam, cacam, criam, fabricam, fundem, coletam e vendem.                   #
+#                                                                             #
+#  Os TIPOS de minion ficam na pasta minions/ -- um arquivo por tipo. Copie um #
+#  deles para criar um tipo novo; o que manda o comportamento e a chave        #
+#  "Trabalho:" de dentro do arquivo, e nao o nome dele.                        #
+#                                                                             #
+#  Mensagens: mensagens.yml   |   Telas: menus.yml                             #
+#  Precos de venda: precos.yml   |   Aprimoramentos: aprimoramentos.yml        #
+# ------------------------------------------------------------------------- #
+
+Geral:
+  # Liga o detalhamento de erros no console. So use se pedirem.
+  Debug: false
+
+Banco de dados:
+  # SQLITE (arquivo proprio, nao precisa configurar nada) ou MYSQL.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starminions_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+  # De quantos em quantos segundos o que mudou vai para o banco.
+  # Nada e gravado a cada acao: o minion trabalha varias vezes por segundo.
+  Salvar a cada: 60
+
+Minions:
+  # Quantos minions cada jogador pode ter.
+  # A permissao starminions.limite.<numero> passa por cima disto, e entre
+  # varias permissoes vale sempre a MAIOR. starminions.limite.ilimitado tira o
+  # limite de vez.
+  Limite padrao: 5
+
+  # Distancia minima entre dois minions, em blocos. 0 permite colar um no outro.
+  Distancia minima: 2
+
+  # Mundos onde nao da para colocar minion.
+  Mundos bloqueados:
+    - lobby
+    - spawn
+
+  # Com false, o minion so trabalha enquanto o dono esta online.
+  Trabalhar com dono offline: true
+
+  # Quantos blocos o bau ligado pode estar do minion.
+  Distancia do container: 30
+
+  # Com true, so o dono (e quem tem starminions.todos) recolhe e abre.
+  # Deixe true se voce NAO usa plugin de protecao de terreno.
+  Somente o dono quebra: true
+  Somente o dono abre: true
+
+  # Pergunta ao seu plugin de protecao se o jogador pode construir ali antes de
+  # deixar colocar o minion. Funciona com qualquer plugin que cancele o evento
+  # de colocar bloco (WorldGuard, GriefPrevention, Residence, Lands...).
+  Checar protecao: true
+
+  # Teto de acoes numa unica passada. Segura o lenhador numa arvore gigante e o
+  # coletor num chao coberto de itens.
+  Maximo de acoes por vez: 64
+
+  # Com true, recolher o minion devolve tambem o que estava no estoque dele.
+  Devolver estoque ao recolher: true
+
+  # Com true, e preciso estar agachado para recolher o minion no soco. Evita
+  # recolher sem querer o minion que voce so queria empurrar.
+  Recolher apenas agachado: true
+
+Ferramenta:
+  # Com false, a ferramenta do minion nunca gasta.
+  Usar durabilidade: true
+
+  # Com false, a ferramenta para em 1 de durabilidade e o minion avisa, em vez
+  # de a ferramenta sumir. Recomendado: deixe false.
+  Pode quebrar: false
+
+  # Com true, o minion troca sozinho a ferramenta gasta por outra do bau ligado.
+  Puxar do container: true
+
+# Combustivel: com isto ligado, o minion so trabalha enquanto tem carga.
+# Desligado (padrao), o minion trabalha para sempre.
+Combustivel:
+  Ativar: false
+  # Teto de carga guardada, em segundos (86400 = 24 horas).
+  Maximo: 86400
+  # Quantos segundos de carga cada acao consome.
+  Gasto por acao: 1
+  # Quanto custa uma hora de carga, quando o jogador abastece com dinheiro.
+  Preco da hora: 1000
+  # Quanto tempo cada compra pelo menu entrega, em segundos.
+  Segundos por compra: 1800
+  # Itens que servem de combustivel: MATERIAL: segundos que ele rende.
+  Itens:
+    COAL: 600
+    CHARCOAL: 600
+    COAL_BLOCK: 5400
+    BLAZE_ROD: 2400
+    LAVA_BUCKET: 10000
+
+# Sinergia: minions do MESMO tipo e do MESMO dono perto uns dos outros
+# trabalham mais rapido. E o que premia montar uma fazenda organizada em vez de
+# espalhar um minion em cada canto do mapa.
+Sinergia:
+  Ativar: true
+  Distancia: 8
+  # Desconto no tempo de espera por vizinho (0.03 = 3%).
+  Bonus por vizinho: 0.03
+  # Teto do desconto (0.25 = 25%).
+  Bonus maximo: 0.25
+
+Venda:
+  # Deixa cada minion vender a propria producao na hora, sem precisar de um
+  # minion vendedor ao lado. O jogador liga isso no menu do minion.
+  Ativar venda automatica: true
+  # Percentual descontado de toda venda feita por minion.
+  Imposto: 0.0
+  # Com true o dinheiro cai direto na conta do dono; com false ele fica no
+  # cofre do minion ate alguem recolher.
+  Depositar direto: false
+
+Avisos:
+  # O balao que aparece sobre o minion quando ele para (sem ferramenta,
+  # estoque cheio, sem alvo...). O jogador pode desligar o do minion dele.
+  Mostrar balao: true
+  Atualizar a cada: 40
+
+Menu:
+  # De quantos em quantos ticks o menu aberto se redesenha. 0 desliga.
+  Atualizar a cada: 20
+
+Ciclo:
+  # De quantos em quantos ticks o relogio confere quem tem que trabalhar.
+  # Valor menor deixa os tempos mais exatos e custa um pouco mais.
+  Conferir a cada: 5
+
+Economia:
+  # VAULT, PLACEHOLDER ou COMANDO.
+  Tipo: VAULT
+  Simbolo da moeda: '$'
+  # So para o tipo PLACEHOLDER.
+  Placeholder do saldo: '%vault_eco_balance%'
+  # So para o tipo COMANDO. {jogador} {valor}
+  Comando de retirar: ''
+  Comando de dar: ''
+
+Formato dos numeros:
+  # COMPLETO (1.250.000) ou ABREVIADO (1.25M).
+  Tipo: COMPLETO
+  Casas decimais: 1
+
+Particulas:
+  Ativar: true
+  # Nome da particula (1.9+) ou do efeito (1.8). Nome desconhecido nao desenha.
+  Trabalho: VILLAGER_HAPPY
+
+Sons:
+  # Formato: SOM, SOM;volume ou SOM;volume;tom. Vazio nao toca nada.
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;2'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Melhoria: 'ENTITY_PLAYER_LEVELUP;1;1'

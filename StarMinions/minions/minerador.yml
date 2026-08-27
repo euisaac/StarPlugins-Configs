@@ -1,0 +1,159 @@
+# Minion Minerador
+#
+# Quebra os blocos da lista de alvos que estiverem ao alcance.
+#
+# Com "Somente gerador: true" ele so mexe em bloco de gerador de pedra (agua e
+# lava encostadas) -- e o que separa a fazenda de cobblestone do minion que
+# comeria a montanha inteira do servidor.
+
+Versao do modelo: 1
+
+Nome: '&bMinion Minerador'
+Trabalho: MINERADOR
+# Vazio libera para todos. Preencha para vender o tipo por permissao.
+Permissao: ''
+
+Item:
+  # Cole em Textura o base64, a url ou o hash de uma cabeca para dar
+  # cara propria ao seu minion. Vazio deixa a cabeca padrao.
+  Material: PLAYER_HEAD
+  Textura: ''
+  Nome: '&bMinion Minerador &7[Nivel {nivel}]'
+  Lore:
+    - ''
+    - ' &7Quebra minerio e pedra em volta.'
+    - ''
+    - ' &7Ferramenta: &fpicareta'
+    - ' &7Nivel: &f{nivel}&7/&f{nivel_maximo}'
+    - ''
+    - ' &e&l(!) &fClique num bloco para colocar.'
+
+Entidade:
+  Nome: '&7[&e{nivel}&7] &bMinion Minerador &7({dono})'
+  # O que o boneco usa na cabeca. Troque por um bloco (CARVED_PUMPKIN,
+  # IRON_BLOCK...) se nao quiser mexer com textura.
+  Cabeca: PLAYER_HEAD
+  Textura: ''
+  Cor da armadura: '0, 170, 255'
+  Pequeno: false
+
+Ferramenta:
+  Obrigatoria: true
+  Aceitas:
+    - '*_PICKAXE'
+
+Area:
+  # FACE (so a frente), LINHA (os quatro lados), AREA (quadrado) ou
+  # ESFERA (bola). Do mais barato para o mais caro, nessa ordem.
+  Modo: LINHA
+  # Lista vazia aceita qualquer coisa. Aceita curinga (*_ORE).
+  Alvos:
+    - 'STONE'
+    - 'COBBLESTONE'
+    - 'DEEPSLATE'
+    - 'COBBLED_DEEPSLATE'
+    - 'ANDESITE'
+    - 'DIORITE'
+    - 'GRANITE'
+    - 'NETHERRACK'
+    - '*_ORE'
+    - 'ANCIENT_DEBRIS'
+    - 'OBSIDIAN'
+
+Opcoes:
+  # Com true, so quebra bloco de gerador de pedra (agua + lava ao lado).
+  Somente gerador: false
+  # Quantos blocos ele quebra por vez.
+  Blocos por vez: 1
+  # Quantos blocos acima da propria altura tambem entram no alcance.
+  Alturas: 0
+
+# Um nivel so precisa escrever o que MUDA: o que faltar vem do nivel
+# anterior. Requisitos valem para subir PARA aquele nivel.
+Niveis:
+  1:
+    Alcance: 3
+    Velocidade: 200
+    Estoque: 9
+    Multiplicador: 1
+  2:
+    Alcance: 3.5
+    Velocidade: 184
+    Estoque: 10
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 2000
+      Acoes: 50
+      Permissao: ''
+  3:
+    Alcance: 4
+    Velocidade: 168
+    Estoque: 11
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 6000
+      Acoes: 250
+      Permissao: ''
+  4:
+    Alcance: 4.5
+    Velocidade: 152
+    Estoque: 12
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 14000
+      Acoes: 1000
+      Permissao: ''
+  5:
+    Alcance: 5
+    Velocidade: 136
+    Estoque: 13
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 30000
+      Acoes: 3000
+      Permissao: ''
+  6:
+    Alcance: 5.5
+    Velocidade: 120
+    Estoque: 14
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 60000
+      Acoes: 8000
+      Permissao: ''
+  7:
+    Alcance: 6
+    Velocidade: 104
+    Estoque: 15
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 110000
+      Acoes: 20000
+      Permissao: ''
+  8:
+    Alcance: 6.5
+    Velocidade: 88
+    Estoque: 16
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 200000
+      Acoes: 45000
+      Permissao: ''
+  9:
+    Alcance: 7
+    Velocidade: 72
+    Estoque: 17
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 350000
+      Acoes: 90000
+      Permissao: ''
+  10:
+    Alcance: 7.5
+    Velocidade: 56
+    Estoque: 18
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 600000
+      Acoes: 180000
+      Permissao: ''

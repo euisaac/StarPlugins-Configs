@@ -1,0 +1,165 @@
+# Minion Fazendeiro
+#
+# Colhe o que esta maduro e replanta.
+#
+# O replantio usa a idade do proprio bloco em vez de quebrar e plantar de novo:
+# assim a semente nao entra na producao e sai de novo do estoque, e a lavoura
+# gira sozinha sem semente no bau.
+#
+# Cana, cacto e bambu nao tem idade -- neles o minion so quebra o que esta acima
+# do primeiro bloco, que e como a plantacao se mantem de pe.
+
+Versao do modelo: 1
+
+Nome: '&aMinion Fazendeiro'
+Trabalho: FAZENDEIRO
+# Vazio libera para todos. Preencha para vender o tipo por permissao.
+Permissao: ''
+
+Item:
+  # Cole em Textura o base64, a url ou o hash de uma cabeca para dar
+  # cara propria ao seu minion. Vazio deixa a cabeca padrao.
+  Material: PLAYER_HEAD
+  Textura: ''
+  Nome: '&aMinion Fazendeiro &7[Nivel {nivel}]'
+  Lore:
+    - ''
+    - ' &7Colhe e replanta a lavoura em volta.'
+    - ''
+    - ' &7Ferramenta: &fenxada'
+    - ' &7Nivel: &f{nivel}&7/&f{nivel_maximo}'
+    - ''
+    - ' &e&l(!) &fClique num bloco para colocar.'
+
+Entidade:
+  Nome: '&7[&e{nivel}&7] &aMinion Fazendeiro &7({dono})'
+  # O que o boneco usa na cabeca. Troque por um bloco (CARVED_PUMPKIN,
+  # IRON_BLOCK...) se nao quiser mexer com textura.
+  Cabeca: PLAYER_HEAD
+  Textura: ''
+  Cor da armadura: '0, 200, 60'
+  Pequeno: false
+
+Ferramenta:
+  Obrigatoria: true
+  Aceitas:
+    - '*_HOE'
+
+Area:
+  # FACE (so a frente), LINHA (os quatro lados), AREA (quadrado) ou
+  # ESFERA (bola). Do mais barato para o mais caro, nessa ordem.
+  Modo: ESFERA
+  # Lista vazia aceita qualquer coisa. Aceita curinga (*_ORE).
+  Alvos:
+    - 'WHEAT'
+    - 'CROPS'
+    - 'CARROTS'
+    - 'CARROT'
+    - 'POTATOES'
+    - 'POTATO'
+    - 'BEETROOTS'
+    - 'BEETROOT_BLOCK'
+    - 'NETHER_WART'
+    - 'NETHER_WARTS'
+    - 'SUGAR_CANE'
+    - 'CACTUS'
+    - 'BAMBOO'
+    - 'MELON'
+    - 'PUMPKIN'
+    - 'COCOA'
+
+Opcoes:
+  # Com true, a planta madura volta ao broto em vez de sumir.
+  Replantar: true
+  Plantas por vez: 4
+  Alturas: 1
+
+# Um nivel so precisa escrever o que MUDA: o que faltar vem do nivel
+# anterior. Requisitos valem para subir PARA aquele nivel.
+Niveis:
+  1:
+    Alcance: 2
+    Velocidade: 200
+    Estoque: 9
+    Multiplicador: 1
+  2:
+    Alcance: 2.5
+    Velocidade: 184
+    Estoque: 10
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 2000
+      Acoes: 50
+      Permissao: ''
+  3:
+    Alcance: 3
+    Velocidade: 168
+    Estoque: 11
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 6000
+      Acoes: 250
+      Permissao: ''
+  4:
+    Alcance: 3.5
+    Velocidade: 152
+    Estoque: 12
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 14000
+      Acoes: 1000
+      Permissao: ''
+  5:
+    Alcance: 4
+    Velocidade: 136
+    Estoque: 13
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 30000
+      Acoes: 3000
+      Permissao: ''
+  6:
+    Alcance: 4.5
+    Velocidade: 120
+    Estoque: 14
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 60000
+      Acoes: 8000
+      Permissao: ''
+  7:
+    Alcance: 5
+    Velocidade: 104
+    Estoque: 15
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 110000
+      Acoes: 20000
+      Permissao: ''
+  8:
+    Alcance: 5.5
+    Velocidade: 88
+    Estoque: 16
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 200000
+      Acoes: 45000
+      Permissao: ''
+  9:
+    Alcance: 6
+    Velocidade: 72
+    Estoque: 17
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 350000
+      Acoes: 90000
+      Permissao: ''
+  10:
+    Alcance: 6.5
+    Velocidade: 56
+    Estoque: 18
+    Multiplicador: 1
+    Requisitos:
+      Dinheiro: 600000
+      Acoes: 180000
+      Permissao: ''

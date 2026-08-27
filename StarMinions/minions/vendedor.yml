@@ -1,0 +1,141 @@
+# Minion Vendedor
+#
+# Vende o que estiver no bau ligado (ou no proprio estoque, quando nao ha bau).
+#
+# E o minion que fecha o ciclo de uma fazenda: os outros produzem para dentro de
+# um bau, este esvazia o bau em dinheiro. O valor vai para o cofre dele, que o
+# dono recolhe pelo menu.
+#
+# Os precos ficam no precos.yml. Item sem preco fica onde esta -- o vendedor
+# nunca apaga o que nao sabe vender.
+#
+# O Multiplicador dos niveis aqui vale como bonus no valor da venda.
+
+Versao do modelo: 1
+
+Nome: '&dMinion Vendedor'
+Trabalho: VENDEDOR
+# Vazio libera para todos. Preencha para vender o tipo por permissao.
+Permissao: ''
+
+Item:
+  # Cole em Textura o base64, a url ou o hash de uma cabeca para dar
+  # cara propria ao seu minion. Vazio deixa a cabeca padrao.
+  Material: PLAYER_HEAD
+  Textura: ''
+  Nome: '&dMinion Vendedor &7[Nivel {nivel}]'
+  Lore:
+    - ''
+    - ' &7Vende o conteudo do bau ligado.'
+    - ''
+    - ' &7Ferramenta: &farco'
+    - ' &7Nivel: &f{nivel}&7/&f{nivel_maximo}'
+    - ''
+    - ' &e&l(!) &fClique num bloco para colocar.'
+
+Entidade:
+  Nome: '&7[&e{nivel}&7] &dMinion Vendedor &7({dono})'
+  # O que o boneco usa na cabeca. Troque por um bloco (CARVED_PUMPKIN,
+  # IRON_BLOCK...) se nao quiser mexer com textura.
+  Cabeca: PLAYER_HEAD
+  Textura: ''
+  Cor da armadura: '200, 0, 255'
+  Pequeno: false
+
+Ferramenta:
+  Obrigatoria: true
+  Aceitas:
+    - 'BOW'
+    - 'CROSSBOW'
+
+Area:
+  # FACE (so a frente), LINHA (os quatro lados), AREA (quadrado) ou
+  # ESFERA (bola). Do mais barato para o mais caro, nessa ordem.
+  Modo: FACE
+  # Lista vazia aceita qualquer coisa. Aceita curinga (*_ORE).
+  Alvos: []
+
+Opcoes:
+  # Quantas pilhas ele vende por vez.
+  Pilhas por vez: 8
+
+# Um nivel so precisa escrever o que MUDA: o que faltar vem do nivel
+# anterior. Requisitos valem para subir PARA aquele nivel.
+Niveis:
+  1:
+    Alcance: 2
+    Velocidade: 600
+    Estoque: 9
+    Multiplicador: 1
+  2:
+    Velocidade: 550
+    Estoque: 10
+    Multiplicador: 1.05
+    Requisitos:
+      Dinheiro: 2000
+      Acoes: 50
+      Permissao: ''
+  3:
+    Velocidade: 500
+    Estoque: 11
+    Multiplicador: 1.1
+    Requisitos:
+      Dinheiro: 6000
+      Acoes: 250
+      Permissao: ''
+  4:
+    Velocidade: 450
+    Estoque: 12
+    Multiplicador: 1.15
+    Requisitos:
+      Dinheiro: 14000
+      Acoes: 1000
+      Permissao: ''
+  5:
+    Velocidade: 400
+    Estoque: 13
+    Multiplicador: 1.2
+    Requisitos:
+      Dinheiro: 30000
+      Acoes: 3000
+      Permissao: ''
+  6:
+    Velocidade: 350
+    Estoque: 14
+    Multiplicador: 1.25
+    Requisitos:
+      Dinheiro: 60000
+      Acoes: 8000
+      Permissao: ''
+  7:
+    Velocidade: 300
+    Estoque: 15
+    Multiplicador: 1.3
+    Requisitos:
+      Dinheiro: 110000
+      Acoes: 20000
+      Permissao: ''
+  8:
+    Velocidade: 250
+    Estoque: 16
+    Multiplicador: 1.35
+    Requisitos:
+      Dinheiro: 200000
+      Acoes: 45000
+      Permissao: ''
+  9:
+    Velocidade: 200
+    Estoque: 17
+    Multiplicador: 1.4
+    Requisitos:
+      Dinheiro: 350000
+      Acoes: 90000
+      Permissao: ''
+  10:
+    Velocidade: 150
+    Estoque: 18
+    Multiplicador: 1.45
+    Requisitos:
+      Dinheiro: 600000
+      Acoes: 180000
+      Permissao: ''

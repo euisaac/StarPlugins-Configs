@@ -1,0 +1,348 @@
+# ------------------------------------------------------------------------- #
+#                         StarMinions - telas                                 #
+#                                                                             #
+#  Slot: -1 ESCONDE o botao. E assim que voce tira um recurso da tela sem      #
+#  precisar de uma opcao "Ativar" para cada um.                                #
+#                                                                             #
+#  Nas telas de lista, os itens ocupam tudo menos a ULTIMA linha, que fica     #
+#  para os botoes de navegacao.                                                #
+#                                                                             #
+#  Chaves disponiveis nas telas de minion:                                     #
+#   {tipo} {tipo_id} {trabalho} {dono} {nivel} {nivel_maximo} {acoes}          #
+#   {alcance} {velocidade} {estoque} {estoque_maximo} {multiplicador}          #
+#   {cofre} {combustivel} {direcao} {ligado} {mundo} {x} {y} {z}               #
+#   {ferramenta} {durabilidade} {autovender} {avisos} {particulas}             #
+#   {sinergia} {aviso} {amigos} {moeda}                                        #
+#   {proximo_nivel} {proximo_alcance} {proxima_velocidade} {proximo_estoque}   #
+#   {proximo_multiplicador} {preco} {acoes_necessarias} {acoes_faltando}       #
+# ------------------------------------------------------------------------- #
+
+Versao do modelo: 1
+
+Minion:
+  Titulo: '&8{tipo}'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Botoes:
+    Informacoes:
+      Slot: 4
+      # Com true, o icone usa a textura do proprio tipo de minion.
+      Usar textura do tipo: true
+      Material: PLAYER_HEAD
+      Nome: '{tipo} &7[&e{nivel}&7/&e{nivel_maximo}&7]'
+      Lore:
+        - ''
+        - ' &7Dono: &f{dono}'
+        - ' &7Estado: {aviso}'
+        - ' &7Acoes feitas: &f{acoes}'
+        - ''
+        - ' &7Alcance: &f{alcance} &7blocos'
+        - ' &7Velocidade: &f{velocidade}'
+        - ' &7Producao: &fx{multiplicador}'
+        - ' &7Sinergia: &f+{sinergia}'
+        - ''
+        - ' &7Onde: &f{mundo} &8({x}, {y}, {z})'
+
+    Girar:
+      Slot: 19
+      Material: COMPASS
+      Nome: '&b&lGIRAR'
+      Lore:
+        - ''
+        - ' &7Olhando para: &f{direcao}'
+        - ''
+        - ' &e&l(!) &fClique para girar.'
+
+    Ligar:
+      Slot: 20
+      Material: CHEST
+      Nome: '&e&lLIGAR A UM BAU'
+      Lore:
+        - ''
+        - ' &7Bau atual: &f{ligado}'
+        - ''
+        - ' &e&l(!) &fClique e depois clique no bau.'
+        - ' &e&l(!) &fClique com o direito para desligar.'
+
+    Ferramenta:
+      Slot: 21
+      Material: IRON_PICKAXE
+      Nome: '&f&lFERRAMENTA'
+      Lore:
+        - ''
+        - ' &7Atual: &f{ferramenta}'
+        - ' &7Durabilidade: &f{durabilidade}'
+        - ''
+        - ' &e&l(!) &fSegure a nova e clique aqui.'
+
+    Estoque:
+      Slot: 22
+      Material: BARREL
+      Nome: '&6&lESTOQUE'
+      Lore:
+        - ''
+        - ' &7Ocupado: &f{estoque}&7/&f{estoque_maximo}'
+        - ''
+        - ' &e&l(!) &fClique para abrir.'
+
+    Combustivel:
+      Slot: 23
+      Material: LAVA_BUCKET
+      Nome: '&c&lCOMBUSTIVEL'
+      Lore:
+        - ''
+        - ' &7Carga: &f{combustivel}'
+        - ''
+        - ' &e&l(!) &fClique para abastecer.'
+
+    Cofre:
+      Slot: 24
+      Material: GOLD_INGOT
+      Nome: '&e&lCOFRE'
+      Lore:
+        - ''
+        - ' &7Guardado: &f{cofre}'
+        - ''
+        - ' &e&l(!) &fClique para recolher.'
+
+    Melhorar:
+      Slot: 25
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&a&lMELHORAR'
+      Lore:
+        - ''
+        - ' &7Nivel: &a{nivel} &7» &2{proximo_nivel}'
+        - ''
+        - ' &e&l(!) &fClique para ver os detalhes.'
+
+    Aprimoramentos:
+      Slot: 30
+      Material: NETHER_STAR
+      Nome: '&d&lAPRIMORAMENTOS'
+      Lore:
+        - ''
+        - ' &7Melhorias que voce escolhe,'
+        - ' &7fora do caminho dos niveis.'
+        - ''
+        - ' &e&l(!) &fClique para abrir.'
+
+    Autovender:
+      Slot: 31
+      Material: EMERALD
+      Nome: '&2&lVENDA AUTOMATICA'
+      Lore:
+        - ''
+        - ' &7Estado: {autovender}'
+        - ' &7Vende a producao na hora,'
+        - ' &7sem precisar de um vendedor.'
+        - ''
+        - ' &e&l(!) &fClique para alternar.'
+
+    Avisos:
+      Slot: 32
+      Material: PAPER
+      Nome: '&f&lBALAO DE AVISO'
+      Lore:
+        - ''
+        - ' &7Estado: {avisos}'
+        - ''
+        - ' &e&l(!) &fClique para alternar.'
+
+    Particulas:
+      Slot: 33
+      Material: BLAZE_POWDER
+      Nome: '&f&lPARTICULAS'
+      Lore:
+        - ''
+        - ' &7Estado: {particulas}'
+        - ''
+        - ' &e&l(!) &fClique para alternar.'
+
+    Recolher:
+      Slot: 40
+      Material: BARRIER
+      Nome: '&c&lRECOLHER MINION'
+      Lore:
+        - ''
+        - ' &7Volta para o seu inventario com'
+        - ' &7o nivel e os aprimoramentos.'
+        - ''
+        - ' &e&l(!) &fClique para recolher.'
+
+    Voltar:
+      Slot: 36
+      Material: ARROW
+      Nome: '&7&lVOLTAR'
+      Lore: []
+
+Estoque:
+  Titulo: '&8Estoque - {tipo}'
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+Melhorar:
+  Titulo: '&8Melhorar - {tipo}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Botoes:
+    Atual:
+      Slot: 11
+      Material: BOOK
+      Nome: '&f&lNIVEL ATUAL &7({nivel})'
+      Lore:
+        - ''
+        - ' &7Alcance: &f{alcance}'
+        - ' &7Velocidade: &f{velocidade}'
+        - ' &7Estoque: &f{estoque_maximo} &7slots'
+        - ' &7Producao: &fx{multiplicador}'
+        - ' &7Acoes feitas: &f{acoes}'
+
+    Melhorar:
+      Slot: 15
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&a&lMELHORAR PARA O NIVEL {proximo_nivel}'
+      Lore:
+        - ''
+        - ' &7Alcance: &a{alcance} &7» &2{proximo_alcance}'
+        - ' &7Velocidade: &a{velocidade} &7» &2{proxima_velocidade}'
+        - ' &7Estoque: &a{estoque_maximo} &7» &2{proximo_estoque}'
+        - ' &7Producao: &ax{multiplicador} &7» &2x{proximo_multiplicador}'
+        - ''
+        - ' &7Custa: &f{preco}'
+        - ' &7Pede: &f{acoes_necessarias} &7acoes &8(faltam {acoes_faltando})'
+        - ''
+        - ' &e&l(!) &fClique para melhorar.'
+
+    No maximo:
+      Slot: 15
+      Material: NETHER_STAR
+      Nome: '&6&lNIVEL MAXIMO'
+      Lore:
+        - ''
+        - ' &7Este minion chegou ao topo.'
+        - ' &7Daqui em diante, so aprimoramentos.'
+
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&7&lVOLTAR'
+      Lore: []
+
+Aprimoramentos:
+  Titulo: '&8Aprimoramentos - {tipo}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Botoes:
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&7&lVOLTAR'
+      Lore: []
+
+Meus minions:
+  Titulo: '&8Minions de {dono} &7({quantidade}/{limite})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # O item de cada minion da lista.
+  Minion:
+    Nome: '{tipo} &7[&e{nivel}&7]'
+    Lore:
+      - ''
+      - ' &7Estado: {aviso}'
+      - ' &7Acoes: &f{acoes}'
+      - ' &7Estoque: &f{estoque}&7/&f{estoque_maximo}'
+      - ' &7Cofre: &f{cofre}'
+      - ' &7Onde: &f{mundo} &8({x}, {y}, {z})'
+      - ''
+      - ' &e&l(!) &fClique para abrir.'
+      - ' &e&l(!) &fBotao direito para ir ate ele.'
+      - ' &e&l(!) &fShift para recolher tudo.'
+
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cVoce ainda nao tem minions'
+    Lore:
+      - ''
+      - ' &7Consiga um minion e clique com ele'
+      - ' &7em cima de um bloco para colocar.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+    Voltar:
+      Slot: -1
+      Material: ARROW
+      Nome: '&7&lVOLTAR'
+      Lore: []
+
+Tipos:
+  Titulo: '&8Tipos de minion &7({quantidade})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Tipo:
+    Nome: '{tipo}'
+    Lore:
+      - ''
+      - ' &7Trabalho: &f{trabalho}'
+      - ' &7Niveis: &f{niveis}'
+      - ' &7Alcance inicial: &f{alcance}'
+      - ' &7Velocidade inicial: &f{velocidade}'
+      - ' &7Estoque inicial: &f{estoque} &7slots'
+      - ''
+      - ' &8Id: {tipo_id}'
+
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhum tipo carregado'
+    Lore:
+      - ''
+      - ' &7Confira os arquivos da pasta minions/.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+    Voltar:
+      Slot: -1
+      Material: ARROW
+      Nome: '&7&lVOLTAR'
+      Lore: []
