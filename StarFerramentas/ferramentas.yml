@@ -136,7 +136,9 @@
 # depois entra em tempo de espera.
 #
 # Habilidade:
-#   Tipo ............... LASER ou NENHUMA
+#   Tipo ............... LASER, VEIA, FUSAO ou NENHUMA
+#   Sempre ligada ...... true faz o poder valer sempre, sem clique, sem duracao
+#                        e sem tempo de espera (e o caso da Arma Laser)
 #   Duracao ............ segundos ligada
 #   Tempo de espera .... segundos de recarga depois que acaba
 #   Alcance ............ no laser, quantos blocos a mais o tunel avanca na
@@ -149,7 +151,14 @@
 #
 # LASER: enquanto esta ligada, cada golpe abre a mesma area do modo CUBO
 # esticada para a frente pelo Alcance -- um 3x3 com Alcance 10 vira um tunel de
-# 3x3x11 por golpe, com o feixe desenhado ate o fim.
+# 3x3x11 por golpe, com o feixe desenhado ate o fim. O tunel sai na direcao em
+# que o jogador esta olhando, inclusive na diagonal e para cima ou para baixo.
+#
+# VEIA: quebrar um bloco leva junto todos os blocos iguais grudados nele (a veia
+# de minerio inteira). Aqui o Alcance e o teto de blocos por veia.
+#
+# FUSAO: o que cai ja vem do jeito que sairia do forno -- minerio vira barra,
+# areia vira vidro. Vale para qualquer ferramenta que quebre blocos.
 #
 # Em ferramenta que ja usa o clique direito para trabalhar (varinha de venda e
 # afins), ligar a habilidade pede o jogador agachado -- senao um clique so
@@ -228,6 +237,7 @@ Ferramentas:
     Lore:
       - '&7Item especial: quebra em &f3x3&7.'
       - '&7Clique direito liga o &claser &7por 15s.'
+      - '&8Gerencie em &7/ferramenta'
     Encantamentos:
       - 'DIG_SPEED:5'
     Blocos bloqueados:
@@ -264,6 +274,7 @@ Ferramentas:
     Lore:
       - '&7Picareta &f3x3 &7com o &claser sempre ligado&7.'
       - '&7Cada golpe abre &f10 blocos &7para a frente.'
+      - '&8Gerencie em &7/ferramenta'
     Encantamentos:
       - 'DIG_SPEED:5'
     Blocos bloqueados:
@@ -271,6 +282,54 @@ Ferramentas:
     Opcoes-do-jogador:
       dropar: desativado
       area: ativado
+
+  # Habilidade VEIA: fora dela e uma picareta comum (Nivel de quebra 1 = so o
+  # bloco batido); ligada, cada golpe leva a veia de minerio inteira.
+  picareta_veia:
+    Modo: CUBO
+    Nivel de quebra: 1
+    Habilidade:
+      Tipo: VEIA
+      Duracao: 20
+      Tempo de espera: 45
+      Alcance: 64
+      Particula: ''
+      Sons:
+        Ligou: 'ENTITY_EXPERIENCE_ORB_PICKUP;0.8;0.6'
+        Acabou: 'BLOCK_FIRE_EXTINGUISH;0.8;1.0'
+    Coleta automatica: true
+    Tipo: IRON_PICKAXE
+    Nome: '&a&lPicareta Veia'
+    Lore:
+      - '&7Clique direito para levar a &aveia inteira&7.'
+      - '&7Dura &f20s&7, recarrega em &f45s&7.'
+      - '&8Gerencie em &7/ferramenta'
+    Encantamentos:
+      - 'DIG_SPEED:3'
+    Blocos bloqueados:
+      - 'SPAWNER'
+
+  # Habilidade FUSAO: ligada, o que cai ja vem fundido (minerio vira barra).
+  picareta_fundicao:
+    Modo: CUBO
+    Nivel de quebra: 1
+    Habilidade:
+      Tipo: FUSAO
+      Duracao: 30
+      Tempo de espera: 60
+      Particula: ''
+      Sons:
+        Ligou: 'BLOCK_FIRE_AMBIENT;0.9;1.2'
+        Acabou: 'BLOCK_FIRE_EXTINGUISH;0.8;1.0'
+    Coleta automatica: true
+    Tipo: GOLDEN_PICKAXE
+    Nome: '&6&lPicareta de Fundicao'
+    Lore:
+      - '&7Clique direito e o que cair ja vem &6fundido&7.'
+      - '&7Dura &f30s&7, recarrega em &f60s&7.'
+      - '&8Gerencie em &7/ferramenta'
+    Encantamentos:
+      - 'DIG_SPEED:3'
 
   picareta_bandeja:
     Modo: CUBO
@@ -281,6 +340,7 @@ Ferramentas:
     Nome: '&e&lPicareta Bandeja'
     Lore:
       - '&7Limpa a terra e a netherrack em volta, em &f3x3&7.'
+      - '&8Gerencie em &7/ferramenta'
     Encantamentos:
       - 'DIG_SPEED:5'
     Blocos permitidos:
