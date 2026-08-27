@@ -97,6 +97,19 @@ Registros:
 # Otimizar estas listas melhora bastante o desempenho: cada nome aqui e um
 # listener a mais chamado por bloco.
 Eventos:
+  # Em que ponto da fila o plugin escuta a quebra de bloco:
+  # LOWEST, LOW, NORMAL, HIGH (padrao) ou HIGHEST.
+  #
+  # Com HIGH as protecoes falam antes e o plugin so age no que sobrou -- e o
+  # certo para a maioria dos servidores. Mas plugin que CANCELA a quebra para
+  # tratar o bloco por conta propria (drop customizado, farms, mineracao com
+  # recompensa) as vezes roda antes: quando isso acontece, a ferramenta e a
+  # derrubada de arvore nem sao chamadas, e o bloco some do mesmo jeito.
+  #
+  # Se o console avisar que a quebra "ja estava cancelada" numa faixa, baixe
+  # esta prioridade para uma faixa antes dela (NORMAL ou LOW). As protecoes
+  # continuam sendo consultadas bloco a bloco pela lista abaixo.
+  Prioridade da quebra: HIGH
   # Plugins que cuidam de protecao/terreno no seu servidor. Se um deles
   # cancelar o evento, a ferramenta entende que o jogador nao tem acesso
   # aquele bloco e pula ele.
