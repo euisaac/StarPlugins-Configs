@@ -158,6 +158,29 @@ Arvores:
   Exigir agachado: true
   # Exige um machado na mao.
   Exigir machado: true
+  # So derruba arvore que nasceu com o mapa. Tronco que um jogador colocou (uma
+  # casa, um poste, um cenario) nao e marcado nem cai -- o recurso simplesmente
+  # nao aparece ali.
+  Somente naturais:
+    Ativado: true
+    # O plugin anota sozinho cada tronco que um jogador colocar daqui para
+    # frente: resposta na hora, sem consultar banco nenhum.
+    #
+    # Para o que JA estava no mapa antes, ele pergunta ao CoreProtect (quando
+    # instalado). Essa consulta e feita fora da thread principal, e a resposta
+    # fica guardada por um tempo -- perguntar a cada bloco travaria o servidor.
+    Usar CoreProtect: true
+    # Segundos que a resposta do CoreProtect fica guardada.
+    Guardar resposta por: 300
+    # Ate quantos segundos atras o CoreProtect procura (o padrao e ~5 anos).
+    Olhar para tras: 157680000
+    # Enquanto ninguem souber responder (sem CoreProtect e sem anotacao), a
+    # arvore cai? Com false, so cai o que o plugin tiver certeza que e natural.
+    Permitir sem resposta: true
+  # Conta ao CoreProtect os blocos que a derrubada tirou. O plugin apaga os
+  # blocos direto, sem evento, entao sem isto a derrubada nao apareceria no
+  # /co inspect nem voltaria num rollback.
+  Avisar CoreProtect: true
   # Exige que haja folhas grudadas no tronco. E o que separa uma arvore de
   # uma casa de madeira: sem folha nenhuma por perto, so o bloco batido cai.
   Exigir folhas: true
