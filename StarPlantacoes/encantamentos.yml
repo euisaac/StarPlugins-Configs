@@ -9,7 +9,11 @@
 #    FORTUNA        soma % na quantidade de drop
 #    SORTUDO        soma % na chance das recompensas
 #    MULTIPLICADOR  soma % nas sementes ganhas
-#    COMANDO        sorteia comandos e sementes a cada colheita
+#
+#  Os encantamentos que o SERVIDOR inventa -- os que rodam comando e os que
+#  colhem em area (LINEAR, LASER, EXPLOSAO, BUMERANGUE) -- ficam no
+#  custom_encantamentos.yml, que e lido junto com este e nunca e tocado por uma
+#  atualizacao.
 #
 #  Preco do proximo nivel = Base + (Por nivel * nivel atual).
 #
@@ -129,44 +133,6 @@ Encantamentos:
         - ''
         - '&7Nivel: &f{nivel}&7/&f{maximo}'
         - '&7Bonus atual: &f{bonus}%'
-        - ''
-        - '&7Custo: &a{preco} {moeda}'
-        - ''
-        - '{status}'
-
-  chaveiro:
-    Ordem: 5
-    Tipo: COMANDO
-    Display: '&eChaveiro'
-    Nivel inicial: 0
-    Nivel maximo: 20
-    # Chance, por nivel, de o encantamento disparar numa colheita.
-    Bonus por nivel: 1.0
-    Permissao: ''
-    Preco:
-      Base: 500
-      Por nivel: 400
-    Mostrar no menu: true
-    Mostrar na lore: true
-    # Rodados no console quando ele dispara: 'chance em %,comando'.
-    Comandos:
-      - '100,give {jogador} quartz 1'
-    # Sementes entregues quando ele dispara; 0 desliga.
-    Sementes: 10
-    Mensagens:
-      Titulo: '&eChaveiro<nl>&7voce achou uma chave'
-      Actionbar: ''
-      Chat: ''
-    Item:
-      Slot: 14
-      Material: TRIPWIRE_HOOK
-      Nome: '&eChaveiro &7[{nivel}/{maximo}]'
-      Lore:
-        - '&7Da chance de achar chaves'
-        - '&7enquanto voce colhe.'
-        - ''
-        - '&7Nivel: &f{nivel}&7/&f{maximo}'
-        - '&7Chance atual: &f{bonus}%'
         - ''
         - '&7Custo: &a{preco} {moeda}'
         - ''

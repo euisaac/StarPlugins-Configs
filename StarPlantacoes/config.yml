@@ -4,6 +4,7 @@
 #  Os arquivos de conteudo ficam separados:
 #    plantacoes.yml     o que cada plantacao larga, quanto vale e quem colhe
 #    encantamentos.yml  os encantamentos da enxada, comprados com Sementes
+#    custom_encantamentos.yml  os encantamentos que o servidor inventa
 #    niveis.yml         a experiencia necessaria em cada nivel da enxada
 #    bonus.yml          os bonus por permissao (cargo, vip, etc)
 #    recompensas.yml    o que pode cair no armazem de recompensas
@@ -85,17 +86,24 @@ Enxada:
   Uma por jogador: true
 
   Item:
+    # Ligue para a enxada ser uma CABECA com textura propria: ponha em URL o
+    # hash do textures.minecraft.net (ou a URL inteira). Desligado, vale o
+    # Material abaixo.
+    CustomSkull: false
+    URL: ''
     Material: DIAMOND_HOE
-    Nome: '&aEnxada de farm &7[Nivel {nivel}]'
+    # Valor de dado das versoes antigas (1.8 -> 1.12); nas novas deixe 0.
+    Data: 0
+    Nome: '&bEnxada de farm &7[Nivel {nivel}]'
     Lore:
-      - '&7Inquebravel'
+      - '&7Inquebravel ∞'
       - '{encantamentos}'
       - ''
-      - '&7Experiencia: &f{exp}&7/&f{proximo}'
-      - '&7Nivel: &e{nivel}'
+      - '&7Experiencia: &f{exp}'
+      - '&7Nivel Atual: &e{nivel}'
       - ''
     # Modelo de cada linha que a lista {encantamentos} gera.
-    Linha do encantamento: ' &8- {display} &f{nivel}'
+    Linha do encantamento: ' &8- &7{display} &f{nivel}'
     # Usado quando a enxada ainda nao tem nenhum encantamento.
     Sem encantamentos: ' &8- &7Sem encantamentos'
     # O que aparece no lugar do proximo requisito quando a enxada esta no teto.

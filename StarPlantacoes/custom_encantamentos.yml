@@ -1,0 +1,230 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoes - encantamentos customizados
+#
+#  Este arquivo e o seu: aqui nascem os encantamentos que o SERVIDOR inventa.
+#  Ele e lido junto com o encantamentos.yml e nao ha diferenca nenhuma entre os
+#  dois no menu, na lore da enxada ou na colheita -- separar so mantem os de
+#  fabrica longe do que voce criou, para uma atualizacao nunca passar por cima.
+#
+#  Tudo continua sendo pago em SEMENTES.
+#
+#  Os tipos que fazem sentido aqui:
+#
+#    COMANDO      sorteia comandos, sementes e dinheiro a cada colheita
+#    LINEAR       colhe em linha reta, para onde o jogador esta olhando
+#    LASER        colhe a linha inteira, para os dois lados do bloco
+#    EXPLOSAO     colhe um quadrado ao redor do bloco
+#    BUMERANGUE   colhe em cruz: a linha do olhar e a perpendicular
+#
+#  Chaves que so existem nestes tipos:
+#
+#    Chance por nivel     chance, em %, de o encantamento disparar na colheita
+#                         (sem ela vale o "Bonus por nivel")
+#    Alcance              quantos blocos o desenho pega. Na LINEAR e o
+#                         comprimento; no LASER e no BUMERANGUE e o comprimento
+#                         para CADA lado; na EXPLOSAO e o raio do quadrado
+#                         (Alcance 1 = 3x3, Alcance 2 = 5x5)
+#    Comandos             'chance em %,comando' -- rodados quando ele dispara
+#    Sementes             sementes fixas quando ele dispara
+#    Sementes por nivel   sementes a mais por nivel do encantamento
+#    Dinheiro por nivel   dinheiro (economia do servidor) por nivel
+#    Mensagens            Titulo, Actionbar e Chat do momento em que ele dispara
+#
+#  Os blocos colhidos por area entregam drop, sementes e experiencia normalmente,
+#  mas nao repetem mensagem, recompensa nem encantamento de comando: um Laser de
+#  alcance 8 dispararia tudo isso oito vezes no mesmo golpe.
+#
+#  Na lore valem: {display} {nivel} {maximo} {bonus} {chance} {alcance} {preco}
+#  {moeda}. A linha {status} vira o bloco certo de menus.yml -> Evoluir -> Status.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Encantamentos:
+  chaveiro:
+    Ordem: 5
+    Tipo: COMANDO
+    Display: '&eChaveiro'
+    Nivel inicial: 0
+    Nivel maximo: 20
+    Chance por nivel: 1.0
+    Permissao: ''
+    Preco:
+      Base: 500
+      Por nivel: 400
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Comandos:
+      - '100,give {jogador} quartz 1'
+    Sementes: 0
+    Sementes por nivel: 1
+    Dinheiro por nivel: 0
+    Mensagens:
+      Titulo: '&eChaveiro<nl>&7voce achou uma chave'
+      Actionbar: ''
+      Chat: ''
+    Item:
+      Slot: 14
+      CustomSkull: false
+      URL: ''
+      Material: TRIPWIRE_HOOK
+      Data: 0
+      Nome: '&eChaveiro &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Da chance de achar chaves'
+        - '&7enquanto voce colhe.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Chance atual: &f{chance}%'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
+
+  linear:
+    Ordem: 6
+    Tipo: LINEAR
+    Display: '&aLinear'
+    Nivel inicial: 0
+    Nivel maximo: 20
+    Chance por nivel: 2.0
+    Alcance: 4
+    Permissao: ''
+    Preco:
+      Base: 800
+      Por nivel: 600
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Mensagens:
+      Titulo: '&aLinear<nl>&7ativado'
+      Actionbar: ''
+      Chat: ''
+    Item:
+      Slot: 15
+      CustomSkull: false
+      URL: ''
+      Material: BLAZE_ROD
+      Data: 0
+      Nome: '&aLinear &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Colhe em linha reta, para onde'
+        - '&7voce estiver olhando.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Chance atual: &f{chance}%'
+        - '&7Alcance: &f{alcance} blocos'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
+
+  laser:
+    Ordem: 7
+    Tipo: LASER
+    Display: '&cLaser'
+    Nivel inicial: 0
+    Nivel maximo: 20
+    Chance por nivel: 1.5
+    Alcance: 4
+    Permissao: ''
+    Preco:
+      Base: 1200
+      Por nivel: 900
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Mensagens:
+      Titulo: '&cLaser<nl>&7ativado'
+      Actionbar: ''
+      Chat: ''
+    Item:
+      Slot: 16
+      CustomSkull: false
+      URL: ''
+      Material: REDSTONE_TORCH
+      Data: 0
+      Nome: '&cLaser &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Colhe a linha inteira, para os'
+        - '&7dois lados do bloco.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Chance atual: &f{chance}%'
+        - '&7Alcance: &f{alcance} blocos para cada lado'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
+
+  explosao:
+    Ordem: 8
+    Tipo: EXPLOSAO
+    Display: '&6Explosao'
+    Nivel inicial: 0
+    Nivel maximo: 15
+    Chance por nivel: 1.0
+    # Raio do quadrado: 1 = 3x3, 2 = 5x5, 3 = 7x7.
+    Alcance: 2
+    Permissao: ''
+    Preco:
+      Base: 2000
+      Por nivel: 1500
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Mensagens:
+      Titulo: '&6Explosao<nl>&7ativada'
+      Actionbar: ''
+      Chat: ''
+    Item:
+      Slot: 19
+      CustomSkull: false
+      URL: ''
+      Material: TNT
+      Data: 0
+      Nome: '&6Explosao &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Colhe um quadrado inteiro'
+        - '&7ao redor do bloco.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Chance atual: &f{chance}%'
+        - '&7Raio: &f{alcance} blocos'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
+
+  bumerangue:
+    Ordem: 9
+    Tipo: BUMERANGUE
+    Display: '&bBumerangue'
+    Nivel inicial: 0
+    Nivel maximo: 15
+    Chance por nivel: 1.0
+    Alcance: 3
+    Permissao: ''
+    Preco:
+      Base: 1500
+      Por nivel: 1100
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Mensagens:
+      Titulo: '&bBumerangue<nl>&7ativado'
+      Actionbar: ''
+      Chat: ''
+    Item:
+      Slot: 20
+      CustomSkull: false
+      URL: ''
+      Material: ARROW
+      Data: 0
+      Nome: '&bBumerangue &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Colhe em cruz: a linha do seu'
+        - '&7olhar e a perpendicular a ela.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Chance atual: &f{chance}%'
+        - '&7Alcance: &f{alcance} blocos para cada ponta'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
