@@ -104,23 +104,22 @@ Texto no nome:
   # entidades com rigor.
   Ativar: true
 
-  # MONTAR -> o texto viaja MONTADO no jogador. Acompanha sem atraso nenhum,
-  #           porque quem posiciona passa a ser o proprio jogo. Em troca, as
-  #           linhas empilham acima da cabeca e as alturas abaixo NAO valem.
-  # SEGUIR -> o texto e reposicionado a cada tique. Respeita a altura exata, mas
-  #           fica para tras quando o jogador corre: o cliente espalha cada
-  #           reposicionamento por tres tiques, e isso ja e mais de um bloco em
-  #           velocidade de corrida. O plugin mira a frente do jogador para
-  #           amenizar, mas nao tem como zerar sem mexer em pacote.
-  Modo: MONTAR
-
-  # Ticks entre as atualizacoes. No modo SEGUIR e o que decide o atraso: deixe
-  # em 1. No modo MONTAR so serve para reescrever placeholders das linhas.
+  # Ticks entre as atualizacoes de posicao. Deixe em 1: e o que decide o atraso.
   Atualizar a cada: 1
 
-  # So valem no modo SEGUIR. A que altura (em blocos, a partir dos pes) fica a
-  # primeira linha de cada lado. Muda de versao para versao -- ajuste se o texto
-  # ficar colado no nick.
+  # Quantos tiques A FRENTE do jogador o texto e posicionado.
+  #
+  # O cliente espalha cada reposicionamento de entidade por tres tiques de
+  # interpolacao. Mirando onde o jogador esta agora, o texto chega la depois de
+  # ele ja ter saido -- e o rastro que aparece quando alguem corre. Mirando onde
+  # ele VAI estar, a interpolacao termina no lugar certo.
+  #
+  # 2 acerta bem a corrida. Aumente se ainda ficar para tras; diminua se o texto
+  # passar do jogador quando ele para de repente. 0 desliga a previsao.
+  Mirar a frente: 2
+
+  # A que altura (em blocos, a partir dos pes) fica a primeira linha de cada
+  # lado. Muda de versao para versao -- ajuste se o texto ficar colado no nick.
   Altura acima: 2.35
   Altura abaixo: 1.75
   Espaco entre linhas: 0.28
