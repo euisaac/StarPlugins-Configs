@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 2
+Versao do modelo: 3
 
 Geral:
   Debug: false
@@ -104,7 +104,26 @@ Texto no nome:
   # entidades com rigor.
   Ativar: true
 
-  # Ticks entre as atualizacoes de posicao. Deixe em 1: e o que decide o atraso.
+  # SUBSTITUIR O NOME DO JOGADOR
+  #
+  # Ligado, o nome que o JOGO desenha e escondido e o nick passa a ser mais uma
+  # destas linhas -- com a altura e o espacamento que voce definir aqui embaixo.
+  #
+  # Isto nao existe para tirar o atraso: linha flutuante atrasa do mesmo jeito,
+  # porque o cliente interpola qualquer entidade que se move. Existe porque o
+  # atraso que INCOMODA vem do contraste -- o nome do jogo fica grudado no
+  # jogador enquanto as linhas do plugin ficam para tras, e e a diferenca entre
+  # os dois que salta aos olhos. Com o nick na mesma condicao, o bloco inteiro
+  # anda junto.
+  #
+  # Precisa de "Nome.Ativar: true": e o time do placar que esconde o nome.
+  Substituir o nome do jogador: false
+  Formato do nome: '{tag}&f{nome}{sufixo}'
+  Altura do nome: 2.05
+
+  # Ticks entre as REESCRITAS do texto (para placeholders que mudam sozinhos).
+  # A posicao e refeita a cada tique sempre, e nao passa por aqui: e ela que
+  # decide o atraso, e baixar essa frequencia so pioraria.
   Atualizar a cada: 1
 
   # Quantos tiques A FRENTE do jogador o texto e posicionado.
