@@ -1,0 +1,251 @@
+# ---------------------------------------------------------------------------
+#  StarTags - as telas
+#
+#  Slot -1 (ou a chave apagada) desliga o botao: e assim que voce tira a loja
+#  ou os sufixos do menu sem precisar de uma opcao "Ativar" para cada um.
+#
+#  "Slots" e a lista de casas onde o conteudo aparece; a quantidade delas e o
+#  que define quantos itens cabem por pagina.
+#
+#  Nas molduras de tag e de sufixo, a linha {descricao} e trocada pelas linhas
+#  de "Lore" da propria tag -- pode virar tres linhas ou nenhuma.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+# ------------------------------- as gavetas --------------------------------
+Categorias:
+  Titulo: '&8Categorias'
+  Linhas: 3
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Categoria:
+    Material: CHEST
+    Nome: '{nome}'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&eClique para abrir.'
+
+  Todas:
+    Slot: 22
+    Material: NAME_TAG
+    Nome: '&aTodas as tags'
+    Lore:
+      - '&7Ve as &f{quantidade} &7tags de uma vez.'
+
+  Sufixos:
+    Slot: 18
+    Material: PAPER
+    Nome: '&aSufixos'
+    Lore:
+      - '&7O texto que vem depois do seu nome.'
+
+  Loja:
+    Slot: 26
+    Material: GOLD_INGOT
+    Nome: '&6Loja de tags'
+    Lore:
+      - '&7O que esta a venda agora.'
+
+  Anterior:
+    Slot: 19
+    Material: ARROW
+    Nome: '&ePagina anterior'
+  Proxima:
+    Slot: 25
+    Material: ARROW
+    Nome: '&eProxima pagina'
+
+# -------------------------------- as tags ----------------------------------
+Tags:
+  Titulo: '&8{categoria} &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34 ]
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Tag:
+    Material: NAME_TAG
+    Nome: '{tag}&r{nome}'
+    Lore:
+      - '&7Aparece assim: {tag}&r&7SeuNick'
+      - '{descricao}'
+      - ''
+      - '{estado}'
+    Estados:
+      Equipada: '&aEquipada. Clique para tirar.'
+      Disponivel: '&eClique para equipar.'
+      A venda: '&eClique para comprar por &f{preco}&e.'
+      Sem acesso: '&cVoce nao tem acesso a esta tag.'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Voltar'
+
+  Aleatoria:
+    Slot: 46
+    Material: ENDER_PEARL
+    Nome: '&bTag aleatoria'
+    Lore:
+      - '&7Sorteia uma entre as que voce tem.'
+
+  Brilho:
+    Slot: 47
+    Material: GLOWSTONE_DUST
+    Nome: '&eBrilho: {estado}'
+    Lore:
+      - '&7O contorno colorido em volta de voce.'
+      - '&8So funciona da 1.9 em diante.'
+
+  Anterior:
+    Slot: 48
+    Material: ARROW
+    Nome: '&ePagina anterior'
+
+  Tirar:
+    Slot: 49
+    Material: BARRIER
+    Nome: '&cTirar a tag'
+    Lore:
+      - '&7Volta ao seu nome sem tag.'
+
+  Proxima:
+    Slot: 50
+    Material: ARROW
+    Nome: '&eProxima pagina'
+
+  Sufixos:
+    Slot: 52
+    Material: PAPER
+    Nome: '&aSufixos'
+
+  Loja:
+    Slot: 53
+    Material: GOLD_INGOT
+    Nome: '&6Loja de tags'
+
+# ------------------------------- os sufixos --------------------------------
+Sufixos:
+  Titulo: '&8Sufixos &7({pagina}/{paginas})'
+  Linhas: 5
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34 ]
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Sufixo:
+    Material: PAPER
+    Nome: '&f{nome}'
+    Lore:
+      - '&7Aparece assim: &7SeuNick{sufixo}'
+      - '{descricao}'
+      - ''
+      - '{estado}'
+    Estados:
+      Equipado: '&aEm uso. Clique para tirar.'
+      Disponivel: '&eClique para usar.'
+      A venda: '&eClique para comprar por &f{preco}&e.'
+      Sem acesso: '&cVoce nao tem acesso a este sufixo.'
+
+  Digitar:
+    Slot: 36
+    Material: WRITABLE_BOOK
+    Nome: '&eDigitar um sufixo'
+    Lore:
+      - '&7Ate &f{maximo} &7letras.'
+      - '&8So aparece com "Escolher por: CHAT".'
+
+  Anterior:
+    Slot: 38
+    Material: ARROW
+    Nome: '&ePagina anterior'
+
+  Tirar:
+    Slot: 40
+    Material: BARRIER
+    Nome: '&cTirar o sufixo'
+
+  Proxima:
+    Slot: 42
+    Material: ARROW
+    Nome: '&eProxima pagina'
+
+  Voltar:
+    Slot: 44
+    Material: ARROW
+    Nome: '&7Voltar'
+
+# --------------------------------- a loja ----------------------------------
+Loja:
+  Titulo: '&8Loja &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34 ]
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Tag:
+    Material: NAME_TAG
+    Nome: '{tag}&r{nome}'
+    Lore:
+      - '&7Preco: &f{preco}'
+      - '{descricao}'
+      - ''
+      - '{estado}'
+    Estados:
+      A venda: '&eClique para comprar.'
+      Ja tem: '&aVoce ja tem esta tag.'
+      Pode vender: '&aVoce ja tem. &eShift + clique &avende por &f{valor}&a.'
+
+  Sufixo:
+    Material: PAPER
+    Nome: '&f{nome} &7{sufixo}'
+    Lore:
+      - '&7Preco: &f{preco}'
+      - '{descricao}'
+      - ''
+      - '{estado}'
+    Estados:
+      A venda: '&eClique para comprar.'
+      Ja tem: '&aVoce ja tem este sufixo.'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Voltar'
+
+  Anterior:
+    Slot: 48
+    Material: ARROW
+    Nome: '&ePagina anterior'
+
+  Saldo:
+    Slot: 49
+    Material: GOLD_NUGGET
+    Nome: '&6Seu saldo'
+    Lore:
+      - '&7Voce tem &f{saldo}&7.'
+
+  Proxima:
+    Slot: 50
+    Material: ARROW
+    Nome: '&eProxima pagina'

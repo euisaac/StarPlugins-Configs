@@ -1,0 +1,55 @@
+# ---------------------------------------------------------------------------
+#  StarTags - os sufixos
+#
+#  O sufixo e o texto que vem DEPOIS do nome. Fica separado das tags porque o
+#  servidor costuma vender as duas coisas em separado: a tag diz o cargo e o
+#  sufixo diz o clan, o time ou a temporada.
+#
+#  Campos (todos opcionais menos "Sufixo"):
+#    Sufixo      o texto em si
+#    Nome        como ele aparece no menu
+#    Lore        a descricao no menu
+#    Permissao   padrao: startags.sufixo.<id>
+#    Preco       poe o sufixo a venda
+#    Prioridade  usada so para ordenar a listagem
+#    Material    o item no menu
+#    Slot        prende num slot fixo (-1 = ordem normal)
+#    Escondido   true tira do menu quem ainda nao tem
+#
+#  O jogador tambem pode DIGITAR o proprio sufixo, quando o config.yml estiver
+#  em "Sufixos.Escolher por: CHAT". O digitado ganha do escolhido na lista.
+# ---------------------------------------------------------------------------
+
+Sufixos:
+
+  coracao:
+    Nome: 'Coracao'
+    Sufixo: ' &c♥'
+    Material: RED_DYE
+    Lore:
+      - '&7Um coracao vermelho no fim do nome.'
+
+  estrela:
+    Nome: 'Estrela'
+    Sufixo: ' &e★'
+    Preco: 2500
+    Material: NETHER_STAR
+    Lore:
+      - '&7Uma estrela dourada no fim do nome.'
+
+  raio:
+    Nome: 'Raio'
+    Sufixo: ' &b⚡'
+    Preco: 2500
+    Material: LIGHTNING_ROD
+    Lore:
+      - '&7Um raio azul no fim do nome.'
+
+  temporada:
+    Nome: 'Temporada 1'
+    Sufixo: ' &7[T1]'
+    Prioridade: 10
+    Escondido: true
+    Material: PAPER
+    Lore:
+      - '&7Dado por comando a quem jogou a primeira temporada.'

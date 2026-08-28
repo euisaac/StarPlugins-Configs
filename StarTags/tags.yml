@@ -1,0 +1,164 @@
+# ---------------------------------------------------------------------------
+#  StarTags - as tags e as categorias
+#
+#  Este arquivo e SEU. O plugin nunca repoe nem completa o que voce apagar
+#  daqui: as tags de exemplo abaixo podem ser trocadas por inteiro.
+#
+#  Campos de uma tag (todos opcionais menos "Tag"):
+#
+#    Tag                 o texto que vai para a frente do nome
+#    Sufixo              texto que vai DEPOIS do nome (some com a tag)
+#    Nome                como ela aparece no menu
+#    Lore                a descricao no menu ({descricao} do menus.yml)
+#    Categoria           o id da gaveta em que ela fica
+#    Prioridade          maior ganha: decide a "melhor tag" e a ordem do tab
+#    Permissao           padrao: startags.tag.<id>
+#    Preco               poe a tag a venda; sem esta linha ela nao esta a venda
+#    Material            o item que representa a tag no menu
+#    Slot                prende a tag num slot fixo do menu (-1 = ordem normal)
+#    Escondida           true tira do menu quem ainda nao tem a tag
+#    Brilho              cor do contorno do jogador (1.9+): AQUA, RED, GOLD...
+#    Invisivel           true esconde o nome do jogador acima da cabeca
+#    Nome personalizado  troca o nick no chat e no tab; use {nome} para o nick
+#    Acima do nome       linhas flutuantes acima do nick
+#    Abaixo do nome      linhas flutuantes abaixo do nick
+#    Animacao            lista de quadros; substitui o campo "Tag"
+#    Intervalo           ticks entre os quadros (20 = 1 segundo)
+#
+#  Cores: & classico em qualquer versao; &#RRGGBB e <g:FF0000:00FF00>TEXTO
+#  (gradiente) da 1.16 em diante. Numa versao antiga o hex some sozinho, em
+#  vez de aparecer cru para o jogador.
+# ---------------------------------------------------------------------------
+
+Categorias:
+  gerais:
+    Nome: '&aTags gerais'
+    Ordem: 1
+    Material: NAME_TAG
+    Lore:
+      - '&7As tags abertas a todo mundo.'
+      - '&7Disponiveis: &f{quantidade}'
+
+  vip:
+    Nome: '&6Tags VIP'
+    Ordem: 2
+    Material: GOLD_INGOT
+    # Vazio = a gaveta aparece para todos e cada tag decide o acesso.
+    # Escreva "padrao" para exigir startags.categoria.vip.
+    Permissao: ''
+    Lore:
+      - '&7Exclusivas de quem assina.'
+      - '&7Disponiveis: &f{quantidade}'
+
+  especiais:
+    Nome: '&dTags especiais'
+    Ordem: 3
+    Material: NETHER_STAR
+    Lore:
+      - '&7Animadas, brilhantes e com texto flutuante.'
+
+Tags:
+
+  # ------------------------------ tag simples ------------------------------
+  membro:
+    Nome: 'Membro'
+    Tag: '&7[Membro] '
+    Categoria: gerais
+    Prioridade: 1
+    Material: NAME_TAG
+    Lore:
+      - '&7A tag de quem acabou de chegar.'
+
+  # ------------------------- tag comprada com dinheiro ----------------------
+  guerreiro:
+    Nome: 'Guerreiro'
+    Tag: '&c[Guerreiro] '
+    Categoria: gerais
+    Prioridade: 5
+    Preco: 5000
+    Material: IRON_SWORD
+    Lore:
+      - '&7Para quem vive no PvP.'
+
+  # ------------------------- tag de VIP, com brilho -------------------------
+  vip:
+    Nome: 'VIP'
+    Tag: '&6&l[VIP] '
+    Categoria: vip
+    Prioridade: 20
+    Brilho: GOLD
+    Material: GOLD_INGOT
+    Lore:
+      - '&7Assine para ganhar esta tag.'
+      - '&7Use &f/brilho &7para ligar o contorno.'
+
+  # ------------------ tag com sufixo proprio e nome trocado -----------------
+  youtuber:
+    Nome: 'Youtuber'
+    Tag: '&c&lYT &f'
+    Sufixo: ' &c♥'
+    Categoria: vip
+    Prioridade: 30
+    Brilho: RED
+    Nome personalizado: '&c{nome}'
+    Material: REDSTONE
+    Lore:
+      - '&7A tag dos criadores de conteudo.'
+
+  # --------------- tag de limite alto: hex e gradiente (1.16+) --------------
+  lendaria:
+    Nome: 'Lendaria'
+    Tag: '<g:FFD700:FF4500>[LENDARIO] &r'
+    Categoria: especiais
+    Prioridade: 60
+    Brilho: YELLOW
+    Material: NETHER_STAR
+    Lore:
+      - '&7Gradiente de verdade, letra por letra.'
+      - '&8Numa 1.8 ela aparece sem cor, e nao quebrada.'
+
+  # ------------------------------ tag animada -------------------------------
+  arcoiris:
+    Nome: 'Arco-iris'
+    Categoria: especiais
+    Prioridade: 55
+    Intervalo: 10
+    Material: FIREWORK_STAR
+    Animacao:
+      - '&c[ARCO-IRIS] '
+      - '&6[ARCO-IRIS] '
+      - '&e[ARCO-IRIS] '
+      - '&a[ARCO-IRIS] '
+      - '&b[ARCO-IRIS] '
+      - '&d[ARCO-IRIS] '
+    Lore:
+      - '&7Troca de cor sozinha, e todo mundo ve o'
+      - '&7mesmo quadro no mesmo instante.'
+
+  # ------------------ tag com texto acima e abaixo do nome ------------------
+  campeao:
+    Nome: 'Campeao'
+    Tag: '&e&l[CAMPEAO] '
+    Categoria: especiais
+    Prioridade: 70
+    Brilho: YELLOW
+    Material: GOLDEN_HELMET
+    Acima do nome:
+      - '&e&l★ CAMPEAO ★'
+    Abaixo do nome:
+      - '&7Temporada 1'
+    Lore:
+      - '&7Leva duas linhas flutuantes junto com o nome.'
+
+  # ------------------------ tag que esconde o nome --------------------------
+  fantasma:
+    Nome: 'Fantasma'
+    Tag: ''
+    Categoria: especiais
+    Prioridade: 40
+    Invisivel: true
+    Escondida: true
+    Material: GLASS
+    Lore:
+      - '&7Some com o nome acima da cabeca.'
+      - '&8Nao aparece no menu de quem nao tem.'

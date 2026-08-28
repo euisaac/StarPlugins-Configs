@@ -1,0 +1,139 @@
+# ---------------------------------------------------------------------------
+#  StarTags - tudo que o jogador le
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao separada para ele.
+#
+#  O prefixo entra em toda mensagem simples. As listas (Ajuda, Admin.Ver,
+#  Admin.Info) saem sem prefixo, uma linha por vez.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Prefixo: '&6&lTAGS &8» &r'
+
+Geral:
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Carregando: '&cOs seus dados ainda estao chegando. Tente de novo em instantes.'
+
+Menu:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Todas as categorias: 'Tags'
+
+Tag:
+  Equipada: '&aVoce equipou a tag {tag}&a.'
+  Removida: '&7A sua tag foi removida.'
+  Sem acesso: '&cVoce nao tem acesso a tag &f{nome}&c.'
+  Nao existe: '&cNao existe nenhuma tag com o id &f{id}&c.'
+  Nenhuma disponivel: '&cVoce ainda nao tem nenhuma tag.'
+  Definida por admin: '&aUm administrador colocou a tag {tag}&a em voce.'
+  Ganhou: '&aVoce ganhou a tag &f{nome}&a!'
+  Perdeu: '&cVoce perdeu a tag &f{nome}&c.'
+  Lista cabecalho: '&7Voce tem &f{quantidade} &7tag(s):'
+  Lista item: '&f{tag}&7({id})'
+  Lista separador: '&8, '
+
+Sufixo:
+  Escolhido: '&aSufixo definido: {sufixo}&a.'
+  Removido: '&7O seu sufixo foi removido.'
+  Sem acesso: '&cVoce nao tem acesso ao sufixo &f{nome}&c.'
+  Nao existe: '&cNao existe nenhum sufixo com o id &f{id}&c.'
+  Desativado: '&cOs sufixos estao desligados neste servidor.'
+  Digite: |-
+    &eDigite no chat o sufixo que voce quer, com ate &f{maximo} &eletras.
+    &7Voce tem &f{segundos}s&7. Escreva &f{cancelar} &7para desistir.
+  Palavra de cancelar: 'cancelar'
+  Cancelado: '&7Voce desistiu de escolher um sufixo.'
+  Muito grande: '&cO sufixo tem que caber em &f{maximo} &cletras.'
+  Bloqueado: '&cEsse sufixo nao e permitido aqui.'
+
+Brilho:
+  Ligado: '&aO brilho da sua tag esta ligado.'
+  Desligado: '&7O brilho da sua tag esta desligado.'
+  Desativado: '&cO brilho esta desligado neste servidor.'
+  Versao antiga: '&cO brilho so existe da versao 1.9 em diante.'
+  Tag sem brilho: '&cA sua tag atual nao tem brilho.'
+
+Loja:
+  Desativada: '&cA loja de tags esta desligada.'
+  Nao esta a venda: '&cIsto nao esta a venda.'
+  Ja tem: '&cVoce ja tem &f{nome}&c.'
+  Sem dinheiro: '&cVoce precisa de &f{preco} &cpara comprar &f{nome}&c.'
+  Comprada: '&aVoce comprou a tag {tag}&a por &f{preco}&a.'
+  Comprado sufixo: '&aVoce comprou o sufixo {sufixo}&a por &f{preco}&a.'
+  Nao vende: '&cEste servidor nao compra tags de volta.'
+  Nao comprada: '&cVoce nao comprou &f{nome}&c, entao nao pode vender.'
+  Vendida: '&aVoce vendeu &f{nome} &apor &f{valor}&a.'
+  Falha ao pagar: '&cNao foi possivel devolver o dinheiro. Fale com um administrador.'
+
+Admin:
+  Recarregado: '&aConfiguracoes, tags e sufixos recarregados.'
+  Jogador desconhecido: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Tag definida: '&aA tag de &f{jogador} &aagora e {tag}&a.'
+  Tag dada: '&aVoce deu a tag &f{nome} &aa &f{jogador}&a.'
+  Tag tirada: '&aVoce tirou a tag &f{nome} &ade &f{jogador}&a.'
+  Tag desequipada: '&a{jogador} &aesta sem tag agora.'
+  Ja tinha: '&c{jogador} &cja tinha &f{nome}&c.'
+  Nao tinha: '&c{jogador} &cnao tinha &f{nome}&c.'
+  Sufixo alterado: '&aO sufixo de &f{jogador} &afoi alterado para &f{valor}&a.'
+  Nome alterado: '&aO nome de &f{jogador} &aagora aparece como &f{valor}&a.'
+
+  Uso definir: '&cUse: /startags {comando} <jogador> <tag>'
+  Uso dar: '&cUse: /startags {comando} <jogador> <tag>'
+  Uso tirar: '&cUse: /startags {comando} <jogador> <tag>'
+  Uso tirartag: '&cUse: /startags {comando} <jogador>'
+  Uso sufixo: '&cUse: /startags {comando} <dar|tirar|definir> <jogador> <id ou texto>'
+  Uso nome: '&cUse: /startags {comando} <jogador> <texto ou limpar>'
+  Uso ver: '&cUse: /startags {comando} <jogador>'
+
+  Ver:
+    - '&8&m--------------------------------'
+    - '&6{jogador} &7(online: {online})'
+    - '&7Tag: &f{tag} &8({tag_id})'
+    - '&7Sufixo: &f{sufixo}'
+    - '&7Nome personalizado: &f{nome_personalizado}'
+    - '&7Brilho: &f{brilho}'
+    - '&7Tags compradas: &f{compradas}'
+    - '&8{lista}'
+    - '&8&m--------------------------------'
+
+  Info:
+    - '&8&m--------------------------------'
+    - '&6StarTags &7v{versao}'
+    - '&7Tags: &f{tags} &8| &7Sufixos: &f{sufixos}'
+    - '&7Banco: &f{banco} &8| &7Perfis: &f{perfis}'
+    - '&7Modo do nome: &f{modo}'
+    - '&7Servidor: &f1.{versao_servidor}'
+    - '&8&m--------------------------------'
+
+Ajuda:
+  Jogador:
+    - '&8&m--------------------------------'
+    - '&6Tags'
+    - '&e/tags &7- abre o menu de tags'
+    - '&e/tags <id> &7- equipa uma tag direto'
+    - '&e/tags aleatoria &7- sorteia uma das suas'
+    - '&e/tags tirar &7- fica sem tag'
+    - '&e/tags lista &7- lista as suas tags'
+    - '&e/sufixo &7- escolhe o texto depois do nome'
+    - '&e/brilho &7- liga e desliga o brilho'
+    - '&e/lojatags &7- ve o que esta a venda'
+    - '&8&m--------------------------------'
+
+  Admin:
+    - '&8&m--------------------------------'
+    - '&6StarTags &7- administracao'
+    - '&e/startags recarregar &7- recarrega os arquivos'
+    - '&e/startags definir <jogador> <tag> &7- equipa a tag'
+    - '&e/startags dar <jogador> <tag> &7- da a tag em definitivo'
+    - '&e/startags tirar <jogador> <tag> &7- tira a tag dada'
+    - '&e/startags tirartag <jogador> &7- desequipa'
+    - '&e/startags sufixo <dar|tirar|definir> <jogador> <valor>'
+    - '&e/startags nome <jogador> <texto|limpar>'
+    - '&e/startags ver <jogador> &7- mostra o que ele tem'
+    - '&e/startags info &7- estado do plugin'
+    - '&7Atalhos: &f/dartag /removertag /definirtag /tirartag'
+    - '&8&m--------------------------------'

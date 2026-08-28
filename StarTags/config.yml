@@ -1,0 +1,149 @@
+# ---------------------------------------------------------------------------
+#  StarTags - configuracao geral
+#
+#  Os arquivos de conteudo ficam separados:
+#    tags.yml       as tags e as categorias
+#    sufixos.yml    os sufixos que o jogador pode escolher
+#    menus.yml      titulos, slots e itens das telas
+#    mensagens.yml  tudo que o jogador le
+#    comandos.yml   os nomes dos comandos e subcomandos
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+  # A tag nao e aplicada no nome nestes mundos.
+  Mundos bloqueados: []
+
+  # Quem entra sem tag equipada recebe a melhor que ele pode usar.
+  Equipar a melhor tag automaticamente: true
+
+  # Confere na entrada se ele ainda pode usar a tag que estava gravada.
+  # Desligue so se voce quiser que a tag do VIP sobreviva ao fim do VIP.
+  Conferir permissao ao entrar: true
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/startags.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: startags_
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Nome:
+  # Aplica a tag no nome acima da cabeca e na lista de jogadores (tab).
+  Ativar: true
+
+  # ONLINE  -> escreve no placar que cada jogador ja usa. E o modo que convive
+  #            com plugins de scoreboard (eles dao um placar proprio a cada um).
+  # PRINCIPAL -> escreve so no placar principal do servidor. Mais leve, mas some
+  #            para quem receber um placar de outro plugin.
+  Modo: ONLINE
+
+  # Segundos entre as reaplicacoes de seguranca; 0 desliga.
+  # Ligue (30, por exemplo) se outro plugin troca o placar do jogador depois da
+  # entrada e a tag some para ele.
+  Reaplicar a cada: 0
+
+  # Ordena a lista de jogadores pela prioridade da tag (maior no topo).
+  Ordenar a lista de jogadores: true
+
+  # Da 1.8 ate a 1.12 o prefixo do time so aceita 16 letras. Ligado, o que passa
+  # disso continua no sufixo do time, dobrando o espaco util. Sem efeito da 1.13
+  # em diante, onde nao ha limite.
+  Dividir tag longa: true
+
+  # Troca tambem o nome que os plugins de chat leem (getDisplayName).
+  Aplicar no apelido: true
+
+  # Troca o nome na lista de jogadores (tab).
+  Aplicar na lista de jogadores: true
+
+Chat:
+  # Desligado de fabrica: se voce ja tem um plugin de chat, use os placeholders
+  # do StarTags no formato dele em vez de ligar isto -- dois plugins formatando
+  # a mesma mensagem brigam.
+  Ativar: false
+  Formato: '{tag}&r{nome}{sufixo}&f: {mensagem}'
+  # LOWEST, LOW, NORMAL, HIGH, HIGHEST ou MONITOR.
+  Prioridade: NORMAL
+
+Brilho:
+  # O contorno colorido do jogador; existe da 1.9 em diante.
+  Ativar: true
+  # Lembra a escolha entre uma entrada e outra.
+  Lembrar: true
+  # Liga sozinho quando o jogador equipa uma tag que tem brilho.
+  Ligar automaticamente: false
+
+Sufixos:
+  Ativar: true
+
+  # MENU -> o jogador escolhe da lista do sufixos.yml.
+  # CHAT -> ele digita o que quiser (dentro dos limites abaixo).
+  Escolher por: MENU
+
+  # Segundos para responder, quando a escolha e por CHAT.
+  Tempo para responder: 30
+
+  # Teto de letras do sufixo digitado; os codigos de cor nao contam.
+  Tamanho maximo: 16
+
+  # Trechos recusados no sufixo digitado (comparacao sem caixa).
+  Palavras bloqueadas: []
+
+Texto no nome:
+  # As linhas de "Acima do nome" e "Abaixo do nome" das tags.
+  # Sao suportes invisiveis de verdade: desligue se o seu servidor conta
+  # entidades com rigor.
+  Ativar: true
+
+  # Ticks entre as atualizacoes de posicao. 2 e suave; 1 e perfeito e mais caro.
+  Atualizar a cada: 2
+
+  # A que altura (em blocos, a partir dos pes) fica a primeira linha de cada
+  # lado. Muda de versao para versao -- ajuste se o texto ficar colado no nick.
+  Altura acima: 2.35
+  Altura abaixo: 1.75
+  Espaco entre linhas: 0.28
+
+Animacoes:
+  Ativar: true
+  # Ticks entre os quadros. Cada tag pode pedir o seu proprio "Intervalo".
+  Intervalo: 20
+
+Loja:
+  Ativar: true
+  # Porcentagem do preco devolvida ao vender a tag de volta; 0 desliga a venda.
+  # So vale para tag comprada -- a que vem de permissao nao e dele para vender.
+  Porcentagem de venda: 0
+
+Nome personalizado:
+  # Deixa a tag (ou o admin) trocar o nick que aparece no chat e na lista.
+  # O nome acima da cabeca continua sendo o do perfil: so o servidor pode mudar
+  # aquele, e isso exigiria mexer no pacote de entrada do jogador.
+  Ativar: true
+
+Economia:
+  # VAULT fala com qualquer economia registrada no Vault.
+  # COMANDO serve para as economias que nao se registram: o saldo e lido pelo
+  # placeholder e a cobranca sai por comando de console.
+  Tipo: VAULT
+  Simbolo: '$'
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de depositar: 'eco give {jogador} {valor}'
+
+Sons:
+  # Formato: SOM, SOM;volume ou SOM;volume;tom. Vazio nao toca nada.
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Compra: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
