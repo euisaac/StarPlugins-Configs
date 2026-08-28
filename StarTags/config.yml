@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 3
+Versao do modelo: 4
 
 Geral:
   Debug: false
@@ -133,9 +133,18 @@ Texto no nome:
   # ele ja ter saido -- e o rastro que aparece quando alguem corre. Mirando onde
   # ele VAI estar, a interpolacao termina no lugar certo.
   #
-  # 2 acerta bem a corrida. Aumente se ainda ficar para tras; diminua se o texto
-  # passar do jogador quando ele para de repente. 0 desliga a previsao.
-  Mirar a frente: 2
+  # O quanto o jogador andou e medido na mao, comparando duas posicoes. Nao da
+  # para usar a velocidade que o servidor guarda: movimento de jogador vem do
+  # cliente, e ali so fica a inercia da fisica (pulo, empurrao, queda) -- quem
+  # corre no plano tem velocidade horizontal zero por aquele caminho.
+  #
+  # 3 cancela quase todo o rastro. Aumente se ainda ficar para tras; diminua se
+  # o texto passar do jogador quando ele para de repente. 0 desliga a previsao.
+  #
+  # OLHANDO PARA VOCE MESMO (F5) sempre sobra alguma diferenca: o seu proprio
+  # corpo o cliente desenha na hora, adivinhando o movimento, e o texto vem do
+  # servidor. Para os outros jogadores os dois vem do servidor e andam juntos.
+  Mirar a frente: 3
 
   # A que altura (em blocos, a partir dos pes) fica a primeira linha de cada
   # lado. Muda de versao para versao -- ajuste se o texto ficar colado no nick.
