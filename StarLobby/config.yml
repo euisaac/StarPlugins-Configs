@@ -42,9 +42,24 @@ commands:
   reply: 'responder|r|reply'
   battle: 'batalha|battle|batalhar'
   autoreconectar: 'autoreconectar|ar'
-  fila: 'fila'
+  fila: 'fila|queue'
   spawn: 'spawn'
   setspawn: 'setspawn'
+  delspawn: 'delspawn|deletarspawn'
+  gamemode: 'gm|gamemode|modojogo'
+  clearchat: 'limparchat|clearchat|cc'
+  clear: 'limpar|clear'
+  tp: 'tp|teleportar|teleport'
+  tphere: 'puxar|tphere'
+  vanish: 'vanish|v'
+  lockchat: 'trancarchat|lockchat|lc'
+  fly: 'voar|fly'
+  scoreboard: 'scoreboard|sb'
+  tablist: 'tablist|tab'
+  hotbaritems: 'hotbaritems|hbitems|hbi'
+  servers: 'servidores|servers'
+  lobbies: 'lobbies'
+  sudo: 'sudo'
 
 # Sistema de modos do servidor (item 14). O modo "reiniciando" não tem
 # comando manual: é ativado programaticamente pelo sistema de fila de
@@ -192,10 +207,10 @@ tablist:
     &r
     &7StarPlugins.com.br
     &r
-  # Troque a seção inteira por "tags: false" para desligar o sistema de tags
-  # (nenhum prefixo/sufixo é aplicado na tablist), sem precisar apagar as
-  # tags cadastradas abaixo.
   tags:
+    # false desliga o sistema de tags (nenhum prefixo/sufixo é aplicado na
+    # tablist) sem precisar apagar as tags cadastradas aqui embaixo.
+    enabled: true
     member:
       priority: 1
       permission: 'starlobby.tags.member'
@@ -449,6 +464,10 @@ fila:
 
 # Sistema de entrar no lobby
 join:
+  # Manda quem entra para o spawn do lobby (o do /setspawn; enquanto não
+  # houver um, o spawn do mundo). Sem isso o jogador nasce onde deslogou da
+  # última vez, que num lobby é sempre um lugar errado.
+  teleportar-ao-entrar: true
   # Limpar o chat ao entrar no lobby
   clear-chat: false
   # Enviar anúncio que o player entrou (deixe vazio para não usar)
@@ -456,7 +475,7 @@ join:
   # Esconder as mensagens padrão do Minecraft de entrada/saída
   # ("Fulano entrou no jogo"/"Fulano saiu do jogo"). Independente do
   # "announce": pode desativar as duas sem colocar um anúncio no lugar.
-  hide-join-quit-messages: false
+  hide-join-quit-messages: true
   # Mundos que não irá receber os Join-Items
   join-item-world-blacklist: []
 
