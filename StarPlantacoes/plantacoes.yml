@@ -1,0 +1,260 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoes - as plantacoes
+#
+#  Vale para plantacoes que crescem em estagios no mesmo bloco (trigo, cenoura,
+#  batata, beterraba, fungo do nether). Cana, cacto e bambu crescem empilhando
+#  blocos e nao passam por aqui.
+#
+#  A colheita nao quebra o bloco: ela volta a plantacao para o estagio zero
+#  (replante) ou deixa o lugar vazio. E o que faz o replante funcionar igual da
+#  1.8 ate a 1.21, sem depender do nome da semente em cada versao.
+#
+#  Nas mensagens de cada drop valem:
+#    {quantidade} {item} {sementes} {moeda} {dinheiro} {jogador} {bonus}
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Plantacoes:
+  trigo:
+    # O bloco plantado. Aceita o nome de qualquer versao (XSeries resolve).
+    Plantacao: 'WHEAT'
+    # Estagio em que a planta esta pronta. Trigo, cenoura e batata: 7.
+    Estagio maximo: 7
+    # Recusar a colheita antes de a planta estar pronta.
+    Quebrar so crescido: true
+    # Segundos de espera para colher o MESMO bloco de novo; 0 desliga.
+    Espera para colher de novo: 0
+    # Nivel que a enxada precisa ter; 0 libera para qualquer uma.
+    Nivel da enxada: 0
+    # Permissao para colher esta plantacao; vazio libera para todos.
+    Permissao: ''
+
+    Replantar:
+      Ativar: true
+      # Replantar so quando o jogador tem a semente no inventario -- e ela e
+      # consumida no replante.
+      Apenas com a semente: false
+      Semente: 'WHEAT_SEEDS'
+
+    # Peso do encantamento Fortuna nesta plantacao: 1.0 usa o bonus cheio,
+    # 0.5 usa metade dele e 0 faz a Fortuna nao valer aqui.
+    Peso da fortuna: 1.0
+
+    Experiencia:
+      # Experiencia de farm que vai para a enxada (ver niveis.yml).
+      Enxada: 1.0
+      # Experiencia normal do jogo entregue ao jogador.
+      Vanilla: 0
+
+    # Entregar todos os drops que o jogador tiver permissao, em vez de so o de
+    # maior Ordem.
+    Varios drops: false
+
+    Drops:
+      membro:
+        Ordem: 1
+        Permissao: ''
+        # Nome usado nas mensagens; vazio cai no nome do material.
+        Nome: 'Trigo'
+        Item:
+          Material: 'WHEAT'
+        Minimo: 3
+        Maximo: 6
+        Sementes:
+          Minimo: 1
+          Maximo: 3
+        # Vender na hora em vez de entregar o item.
+        Vender:
+          Ativar: false
+          # Preco em dinheiro de CADA unidade.
+          Preco: 5.0
+        Mensagens:
+          Titulo: ''
+          Actionbar: '&aVoce colheu &f{quantidade}x {item} &ae ganhou &f{sementes} &a{moeda}.'
+          Chat: ''
+        # Comandos rodados no console a cada colheita deste drop.
+        Comandos: []
+
+    # Recompensas sorteadas na colheita: 'chave da recompensa,chance em %'.
+    Recompensas:
+      - 'comum,2.0'
+
+  cenoura:
+    Plantacao: 'CARROTS'
+    Estagio maximo: 7
+    Quebrar so crescido: true
+    Espera para colher de novo: 0
+    Nivel da enxada: 0
+    Permissao: ''
+    Replantar:
+      Ativar: true
+      Apenas com a semente: false
+      Semente: 'CARROT'
+    Peso da fortuna: 1.0
+    Experiencia:
+      Enxada: 1.5
+      Vanilla: 0
+    Varios drops: false
+    Drops:
+      membro:
+        Ordem: 1
+        Permissao: ''
+        # Nome usado nas mensagens; vazio cai no nome do material.
+        Nome: 'Cenoura'
+        Item:
+          Material: 'CARROT'
+        Minimo: 2
+        Maximo: 5
+        Sementes:
+          Minimo: 2
+          Maximo: 4
+        Vender:
+          Ativar: false
+          Preco: 8.0
+        Mensagens:
+          Titulo: ''
+          Actionbar: '&aVoce colheu &f{quantidade}x {item} &ae ganhou &f{sementes} &a{moeda}.'
+          Chat: ''
+        Comandos: []
+    Recompensas:
+      - 'comum,2.0'
+
+  batata:
+    Plantacao: 'POTATOES'
+    Estagio maximo: 7
+    Quebrar so crescido: true
+    Espera para colher de novo: 0
+    Nivel da enxada: 0
+    Permissao: ''
+    Replantar:
+      Ativar: true
+      Apenas com a semente: false
+      Semente: 'POTATO'
+    Peso da fortuna: 1.0
+    Experiencia:
+      Enxada: 1.5
+      Vanilla: 0
+    Varios drops: false
+    Drops:
+      membro:
+        Ordem: 1
+        Permissao: ''
+        # Nome usado nas mensagens; vazio cai no nome do material.
+        Nome: 'Batata'
+        Item:
+          Material: 'POTATO'
+        Minimo: 2
+        Maximo: 5
+        Sementes:
+          Minimo: 2
+          Maximo: 4
+        Vender:
+          Ativar: false
+          Preco: 8.0
+        Mensagens:
+          Titulo: ''
+          Actionbar: '&aVoce colheu &f{quantidade}x {item} &ae ganhou &f{sementes} &a{moeda}.'
+          Chat: ''
+        Comandos: []
+    Recompensas:
+      - 'comum,2.0'
+
+  beterraba:
+    Plantacao: 'BEETROOTS'
+    Estagio maximo: 3
+    Quebrar so crescido: true
+    Espera para colher de novo: 0
+    Nivel da enxada: 2
+    Permissao: ''
+    Replantar:
+      Ativar: true
+      Apenas com a semente: false
+      Semente: 'BEETROOT_SEEDS'
+    Peso da fortuna: 1.0
+    Experiencia:
+      Enxada: 2.0
+      Vanilla: 0
+    Varios drops: false
+    Drops:
+      membro:
+        Ordem: 1
+        Permissao: ''
+        # Nome usado nas mensagens; vazio cai no nome do material.
+        Nome: 'Beterraba'
+        Item:
+          Material: 'BEETROOT'
+        Minimo: 2
+        Maximo: 4
+        Sementes:
+          Minimo: 3
+          Maximo: 6
+        Vender:
+          Ativar: false
+          Preco: 12.0
+        Mensagens:
+          Titulo: ''
+          Actionbar: '&aVoce colheu &f{quantidade}x {item} &ae ganhou &f{sementes} &a{moeda}.'
+          Chat: ''
+        Comandos: []
+    Recompensas:
+      - 'comum,3.0'
+
+  fungo:
+    Plantacao: 'NETHER_WART'
+    Estagio maximo: 3
+    Quebrar so crescido: true
+    Espera para colher de novo: 0
+    Nivel da enxada: 5
+    Permissao: 'starplantacoes.planta.fungo'
+    Replantar:
+      Ativar: true
+      Apenas com a semente: false
+      Semente: 'NETHER_WART'
+    Peso da fortuna: 1.0
+    Experiencia:
+      Enxada: 3.0
+      Vanilla: 0
+    Varios drops: false
+    Drops:
+      membro:
+        Ordem: 1
+        Permissao: ''
+        # Nome usado nas mensagens; vazio cai no nome do material.
+        Nome: 'Fungo'
+        Item:
+          Material: 'NETHER_WART'
+        Minimo: 4
+        Maximo: 8
+        Sementes:
+          Minimo: 5
+          Maximo: 10
+        Vender:
+          Ativar: false
+          Preco: 20.0
+        Mensagens:
+          Titulo: ''
+          Actionbar: '&aVoce colheu &f{quantidade}x {item} &ae ganhou &f{sementes} &a{moeda}.'
+          Chat: ''
+        Comandos: []
+      vip:
+        Ordem: 2
+        Permissao: 'starplantacoes.drop.vip'
+        Nome: 'Fungo'
+        Item:
+          Material: 'NETHER_WART'
+        Minimo: 8
+        Maximo: 14
+        Sementes:
+          Minimo: 10
+          Maximo: 18
+        Vender:
+          Ativar: false
+          Preco: 20.0
+        Mensagens:
+          Titulo: ''
+          Actionbar: '&aVoce colheu &f{quantidade}x {item} &ae ganhou &f{sementes} &a{moeda}. &7({bonus})'
+          Chat: ''
+        Comandos: []
+    Recompensas:
+      - 'comum,5.0'
+      - 'rara,0.5'

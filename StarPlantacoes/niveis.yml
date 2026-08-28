@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoes - niveis da enxada
+#
+#  A enxada guarda a experiencia de farm que ela ja acumulou. O numero abaixo
+#  e o TOTAL acumulado necessario para chegar naquele nivel.
+#
+#  Quem colhe ganha a experiencia definida em cada plantacao
+#  (plantacoes.yml -> Experiencia -> Enxada).
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+# Teto de nivel da enxada; 0 tira o limite.
+Nivel maximo: 0
+
+# Quando o nivel nao estiver na lista abaixo, o requisito e calculado:
+#   requisito = Base * (nivel ^ Progressao)
+Automatico:
+  Ativar: true
+  Base: 100.0
+  Progressao: 1.8
+
+Niveis:
+  1: 0
+  2: 100
+  3: 300
+  4: 700
+  5: 1400
+  6: 2500
+  7: 4200
+  8: 6800
+  9: 10500
+  10: 15500

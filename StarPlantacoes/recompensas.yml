@@ -1,0 +1,76 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoes - recompensas
+#
+#  Cada plantacao sorteia as recompensas listadas nela (plantacoes.yml ->
+#  Recompensas). A chance de sair sobe com o encantamento Sortudo.
+#
+#  A recompensa vai para o armazem (/plantacoes recompensas) quando
+#  "Guardar no armazem" esta ligado no config.yml; senao ela e entregue na
+#  hora da colheita.
+#
+#  Ao recolher, se "Comandos -> Ativar" estiver ligado rodam os comandos; se
+#  nao, o jogador recebe o item de "Item".
+#
+#  Valem {jogador} e {quantidade} nos comandos e nas mensagens.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Recompensas:
+  comum:
+    # Como a recompensa aparece no armazem.
+    Vitrine:
+      Material: 'IRON_INGOT'
+      Nome: '&fRecompensa comum'
+      Lore:
+        - '&7Uma lembrancinha da colheita.'
+        - ''
+        - '&7Guardadas: &f{quantidade}'
+        - ''
+        - '&aClique &7para recolher.'
+        - '&cClique direito &7para descartar.'
+
+    # Entregue quando os comandos estao desligados.
+    Item:
+      Material: 'IRON_INGOT'
+      Nome: ''
+      Lore: []
+
+    Comandos:
+      Ativar: false
+      # Rodar o comando uma vez so, usando {quantidade}, em vez de repetir.
+      Usar quantidade: true
+      Lista:
+        - 'money give {jogador} {quantidade}'
+
+    Mensagens:
+      Titulo: ''
+      Actionbar: '&aVoce recolheu &f{quantidade}x &arecompensa comum.'
+      Chat: ''
+
+  rara:
+    Vitrine:
+      Material: 'DIAMOND'
+      Nome: '&bRecompensa rara'
+      Lore:
+        - '&7Nao aparece toda hora.'
+        - ''
+        - '&7Guardadas: &f{quantidade}'
+        - ''
+        - '&aClique &7para recolher.'
+        - '&cClique direito &7para descartar.'
+
+    Item:
+      Material: 'DIAMOND'
+      Nome: ''
+      Lore: []
+
+    Comandos:
+      Ativar: false
+      Usar quantidade: true
+      Lista:
+        - 'money give {jogador} {quantidade}'
+
+    Mensagens:
+      Titulo: '&bRecompensa rara<nl>&7recolhida'
+      Actionbar: ''
+      Chat: ''

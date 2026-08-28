@@ -1,0 +1,180 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoes - as telas
+#
+#  Slot -1 esconde o item: e assim que voce tira um botao do menu sem precisar
+#  de uma opcao "Ativar" para cada um.
+#
+#  Em todas as telas valem {jogador}, {sementes}, {moeda}, {nivel} e {exp}.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Principal:
+  Titulo: '&8Plantacoes'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+  Itens:
+    Encantamentos:
+      Slot: 11
+      Material: ENCHANTING_TABLE
+      Nome: '&aEncantamentos'
+      Lore:
+        - '&7Evolua os encantamentos da'
+        - '&7sua enxada com {moeda}.'
+        - ''
+        - '&7Suas {moeda}: &a{sementes}'
+        - ''
+        - '&aClique &7para abrir.'
+    Top:
+      Slot: 12
+      Material: BOOK
+      Nome: '&aTop {moeda}'
+      Lore:
+        - '&7Veja quem mais colheu'
+        - '&7no servidor.'
+        - ''
+        - '&aClique &7para ver.'
+    Recompensas:
+      Slot: 14
+      Material: CHEST
+      Nome: '&aRecompensas'
+      Lore:
+        - '&7O que a sua colheita guardou'
+        - '&7para voce recolher.'
+        - ''
+        - '&7Guardadas: &f{recompensas}'
+        - ''
+        - '&aClique &7para abrir.'
+    Enxada:
+      Slot: 15
+      Material: DIAMOND_HOE
+      Nome: '&aEnxada de farm'
+      Lore:
+        - '&7Compre a sua enxada e comece'
+        - '&7a colher para ganhar {moeda}.'
+        - ''
+        - '&7Preco: &f{preco}'
+        - ''
+        - '&aClique &7para comprar.'
+    Perfil:
+      Slot: 22
+      Material: PLAYER_HEAD
+      Nome: '&a{jogador}'
+      Lore:
+        - '&7{moeda}: &a{sementes}'
+        - '&7Colhido: &f{colhido}'
+        - '&7Bonus: &f{bonus}'
+        - ''
+
+Evoluir:
+  Titulo: '&8Encantamentos'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+  # Os blocos que a linha {status} da lore de cada encantamento vira.
+  Status:
+    Pode:
+      - '&aClique &7para evoluir 1 nivel.'
+      - '&aClique direito &7para evoluir 10 niveis.'
+      - '&aShift + clique &7para evoluir o maximo.'
+    Sem sementes:
+      - '&cVoce nao tem {moeda} suficientes.'
+    Maximo:
+      - '&aEste encantamento esta no maximo.'
+  Itens:
+    # Mostra a enxada que o jogador esta segurando. O material, o nome e a lore
+    # abaixo so aparecem quando ele nao esta com nenhuma na mao.
+    Enxada:
+      Slot: 30
+      Material: BARRIER
+      Nome: '&cVoce nao esta segurando a enxada'
+      Lore:
+        - '&7Pegue a enxada de farm na mao'
+        - '&7para evoluir os encantamentos.'
+    Perfil:
+      Slot: 31
+      Material: PLAYER_HEAD
+      Nome: '&a{jogador}'
+      Lore:
+        - '&7{moeda}: &a{sementes}'
+        - '&7Nivel da enxada: &f{nivel}'
+        - '&7Experiencia: &f{exp}&7/&f{proximo}'
+        - ''
+    Voltar:
+      Slot: 27
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore:
+        - '&7Volta para o menu anterior.'
+
+Top:
+  Titulo: '&8Top {moeda}'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+  # Onde as cabecas do top aparecem, na ordem.
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 20, 21, 22, 23, 24 ]
+  Itens:
+    Posicao:
+      Material: PLAYER_HEAD
+      Nome: '&a{posicao}. {jogador}'
+      Lore:
+        - '&7{moeda}: &f{sementes}'
+        - ''
+    Vazio:
+      Material: 'GRAY_DYE'
+      Nome: '&7Vaga livre'
+      Lore:
+        - '&7Ninguem chegou aqui ainda.'
+    Voltar:
+      Slot: 27
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore:
+        - '&7Volta para o menu anterior.'
+
+Recompensas:
+  Titulo: '&8Recompensas'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Itens:
+    Vazio:
+      Slot: 22
+      Material: 'COBWEB'
+      Nome: '&7Vazio'
+      Lore:
+        - '&7Voce ainda nao tem recompensas'
+        - '&7para recolher.'
+    Recolher:
+      Slot: 49
+      Material: 'HOPPER'
+      Nome: '&aRecolher tudo'
+      Lore:
+        - '&7Recolhe todas as recompensas'
+        - '&7de uma vez.'
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+      Lore: []
+    Voltar:
+      Slot: 48
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore:
+        - '&7Volta para o menu anterior.'

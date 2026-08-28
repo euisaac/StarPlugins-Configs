@@ -1,0 +1,139 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoes - configuracao geral
+#
+#  Os arquivos de conteudo ficam separados:
+#    plantacoes.yml     o que cada plantacao larga, quanto vale e quem colhe
+#    encantamentos.yml  os encantamentos da enxada, comprados com Sementes
+#    niveis.yml         a experiencia necessaria em cada nivel da enxada
+#    bonus.yml          os bonus por permissao (cargo, vip, etc)
+#    recompensas.yml    o que pode cair no armazem de recompensas
+#    menus.yml          titulos, linhas e itens das telas
+#    mensagens.yml      tudo que o jogador le
+#    comandos.yml       os nomes dos comandos e subcomandos
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+  # Nada do plugin funciona nestes mundos.
+  Mundos bloqueados: []
+
+  # Recolher o drop direto para o inventario, em vez de deixar cair no chao.
+  Auto recolher: true
+
+  # Recusar a colheita quando o inventario estiver cheio, em vez de jogar o
+  # drop no chao.
+  Bloquear com inventario cheio: false
+
+  # Impede quebrar o bloco de baixo (terra arada, areia das almas) antes da
+  # plantacao que esta em cima dele.
+  Bloquear bloco de baixo: true
+
+  # No modo criativo o plugin nao interfere na quebra.
+  Ignorar criativo: true
+
+  # Segurando shift a quebra volta a ser a normal do jogo. E a valvula de
+  # escape para quem precisa limpar uma plantacao sem colher.
+  Shift ignora o plugin: true
+
+  # Materiais que a enxada nunca quebra: o caule de melancia e de abobora
+  # some junto com o fruto e nao tem estagio de crescimento util.
+  Materiais bloqueados:
+    - 'MELON_STEM'
+    - 'PUMPKIN_STEM'
+    - 'ATTACHED_MELON_STEM'
+    - 'ATTACHED_PUMPKIN_STEM'
+
+  # Somar todos os bonus que o jogador tiver permissao (bonus.yml).
+  # Desligado, vale so o de maior Ordem.
+  Acumular bonus: false
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/starplantacoes.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: starplantacoes_
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+# A moeda do proprio plugin. Ela nasce na colheita e so serve para comprar os
+# encantamentos da enxada -- a enxada em si e paga com o dinheiro do servidor.
+Sementes:
+  Nome: 'semente'
+  Nome plural: 'sementes'
+  # Tag que o TOP 1 de sementes recebe no placeholder %starplantacoes_tag%.
+  Tag do top 1: '&a&l[SEMENTUDO]'
+  # Teto de sementes por jogador; 0 tira o limite.
+  Limite: 0
+
+Enxada:
+  # Preco em dinheiro (economia do servidor) no menu principal.
+  Preco: 100.0
+  # A enxada nunca perde durabilidade.
+  Inquebravel: true
+  # Somente a enxada do plugin colhe as plantacoes configuradas.
+  So a enxada colhe: false
+  # Shift + botao direito com a enxada na mao abre o menu de encantamentos.
+  Abrir menu no clique: true
+  # Recusar a compra de quem ja tem uma enxada no inventario.
+  Uma por jogador: true
+
+  Item:
+    Material: DIAMOND_HOE
+    Nome: '&aEnxada de farm &7[Nivel {nivel}]'
+    Lore:
+      - '&7Inquebravel'
+      - '{encantamentos}'
+      - ''
+      - '&7Experiencia: &f{exp}&7/&f{proximo}'
+      - '&7Nivel: &e{nivel}'
+      - ''
+    # Modelo de cada linha que a lista {encantamentos} gera.
+    Linha do encantamento: ' &8- {display} &f{nivel}'
+    # Usado quando a enxada ainda nao tem nenhum encantamento.
+    Sem encantamentos: ' &8- &7Sem encantamentos'
+    # O que aparece no lugar do proximo requisito quando a enxada esta no teto.
+    Nivel maximo texto: 'MAX'
+
+Economia:
+  # VAULT fala com qualquer economia registrada no Vault.
+  # COMANDO serve para as economias que nao se registram la: o saldo e lido
+  # pelo placeholder e a cobranca sai por comando de console.
+  Tipo: VAULT
+  Simbolo: '$'
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'money take {jogador} {valor}'
+  Comando de dar: 'money give {jogador} {valor}'
+
+Eficiencia:
+  # O encantamento Eficiencia vira Pressa (Haste) enquanto a enxada esta na mao.
+  # amplificador = nivel * este valor, limitado a 9.
+  Amplificador por nivel: 0.34
+  # Segundos entre as conferidas de quem esta com a enxada na mao.
+  Conferir a cada: 3
+
+Ranking:
+  # Segundos entre as atualizacoes do top de sementes.
+  Atualizar a cada: 300
+  # Quantos jogadores o top guarda.
+  Quantidade: 10
+
+Recompensas:
+  # Guardar a recompensa no armazem em vez de entregar na hora da colheita.
+  Guardar no armazem: true
+  # Teto de recompensas diferentes guardadas por jogador; 0 tira o limite.
+  Limite: 0
+
+Sons:
+  Evoluir: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+  Subir de nivel: 'ENTITY_PLAYER_LEVELUP;1;1'
+  Comprar: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1'
+  Recompensa: 'ENTITY_ITEM_PICKUP;1;1.2'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Clique: 'UI_BUTTON_CLICK;1;1'

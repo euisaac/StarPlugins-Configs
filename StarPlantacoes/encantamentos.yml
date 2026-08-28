@@ -1,0 +1,173 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoes - encantamentos da enxada
+#
+#  Todos sao comprados com SEMENTES, a moeda do proprio plugin, no menu
+#  /plantacoes -> Encantamentos. Quem paga em dinheiro e so a enxada.
+#
+#  Tipos possiveis:
+#    EFICIENCIA     vira Pressa (Haste) enquanto a enxada esta na mao
+#    FORTUNA        soma % na quantidade de drop
+#    SORTUDO        soma % na chance das recompensas
+#    MULTIPLICADOR  soma % nas sementes ganhas
+#    COMANDO        sorteia comandos e sementes a cada colheita
+#
+#  Preco do proximo nivel = Base + (Por nivel * nivel atual).
+#
+#  Na lore valem: {display} {nivel} {maximo} {bonus} {preco} {moeda}. A linha
+#  {status} vira o bloco certo de menus.yml -> Evoluir -> Status (pode evoluir,
+#  sem sementes ou no maximo).
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Encantamentos:
+  eficiencia:
+    Ordem: 1
+    Tipo: EFICIENCIA
+    Display: '&aEficiencia'
+    Nivel inicial: 0
+    # 0 tira o limite.
+    Nivel maximo: 30
+    # Em porcentagem, por nivel.
+    Bonus por nivel: 10.0
+    Permissao: ''
+    Preco:
+      Base: 100
+      Por nivel: 50
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Item:
+      Slot: 10
+      Material: FEATHER
+      Nome: '&aEficiencia &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Faz voce colher as plantacoes'
+        - '&7mais rapido.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Bonus atual: &f{bonus}%'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
+
+  fortuna:
+    Ordem: 2
+    Tipo: FORTUNA
+    Display: '&6Fortuna'
+    Nivel inicial: 0
+    Nivel maximo: 50
+    Bonus por nivel: 10.0
+    Permissao: ''
+    Preco:
+      Base: 150
+      Por nivel: 100
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Item:
+      Slot: 11
+      Material: GOLD_INGOT
+      Nome: '&6Fortuna &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Aumenta a quantidade de itens'
+        - '&7que cada colheita larga.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Bonus atual: &f{bonus}%'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
+
+  sortudo:
+    Ordem: 3
+    Tipo: SORTUDO
+    Display: '&dSortudo'
+    Nivel inicial: 0
+    Nivel maximo: 30
+    Bonus por nivel: 10.0
+    Permissao: ''
+    Preco:
+      Base: 250
+      Por nivel: 150
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Item:
+      Slot: 12
+      Material: RABBIT_FOOT
+      Nome: '&dSortudo &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Aumenta a chance de sair'
+        - '&7recompensas na colheita.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Bonus atual: &f{bonus}%'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
+
+  multiplicador:
+    Ordem: 4
+    Tipo: MULTIPLICADOR
+    Display: '&bMultiplicador'
+    Nivel inicial: 0
+    Nivel maximo: 50
+    Bonus por nivel: 10.0
+    Permissao: ''
+    Preco:
+      Base: 200
+      Por nivel: 120
+    Mostrar no menu: true
+    Mostrar na lore: true
+    Item:
+      Slot: 13
+      Material: EMERALD
+      Nome: '&bMultiplicador &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Aumenta as {moeda} que voce'
+        - '&7ganha em cada colheita.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Bonus atual: &f{bonus}%'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
+
+  chaveiro:
+    Ordem: 5
+    Tipo: COMANDO
+    Display: '&eChaveiro'
+    Nivel inicial: 0
+    Nivel maximo: 20
+    # Chance, por nivel, de o encantamento disparar numa colheita.
+    Bonus por nivel: 1.0
+    Permissao: ''
+    Preco:
+      Base: 500
+      Por nivel: 400
+    Mostrar no menu: true
+    Mostrar na lore: true
+    # Rodados no console quando ele dispara: 'chance em %,comando'.
+    Comandos:
+      - '100,give {jogador} quartz 1'
+    # Sementes entregues quando ele dispara; 0 desliga.
+    Sementes: 10
+    Mensagens:
+      Titulo: '&eChaveiro<nl>&7voce achou uma chave'
+      Actionbar: ''
+      Chat: ''
+    Item:
+      Slot: 14
+      Material: TRIPWIRE_HOOK
+      Nome: '&eChaveiro &7[{nivel}/{maximo}]'
+      Lore:
+        - '&7Da chance de achar chaves'
+        - '&7enquanto voce colhe.'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+        - '&7Chance atual: &f{bonus}%'
+        - ''
+        - '&7Custo: &a{preco} {moeda}'
+        - ''
+        - '{status}'
