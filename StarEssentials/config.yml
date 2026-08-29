@@ -205,17 +205,17 @@ vida:
 # "prioridade", menor primeiro) que o jogador tiver a permissao correspondente
 # e' o que vale. So mexe no nome exibido no tab - o nick continua igual.
 tab-tags:
-  ativado: false
+  ativado: true
   grupos:
-    dono:
+    exemplo-dono:
       prioridade: 1
       permissao: "staressentials.tags.dono"
       prefixo: "&4[Dono] &c"
       sufixo: ""
-    membro:
+    padrao:
       prioridade: 99
-      permissao: "staressentials.tags.membro"
-      prefixo: "&7[Membro] &7"
+      permissao: "" # Vazio para nao precisar de permissao
+      prefixo: "%luckperms_prefix% &7"
       sufixo: ""
 
 # O que acontece quando um jogador morre.
