@@ -1,0 +1,147 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                  StarAtivadorRemoto - configuracao                   ║
+#  ║   O jogador coloca o ativador no chao, vira dono dele e aciona a     ║
+#  ║   redstone de qualquer lugar pelo menu. Os tipos de ativador ficam   ║
+#  ║   no ativadores.yml.                                                 ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Manda no console o que o plugin esta fazendo por dentro. So ligue para
+# investigar algum problema.
+Depuracao: false
+
+#
+# ═════════════════════════════  BANCO DE DADOS  ═════════════════════════════
+#
+# Guarda os ativadores colocados, o dono de cada um, o nome e os grupos.
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (varios servidores no mesmo
+  # banco).
+  Tipo: SQLITE
+
+  Endereco: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # Mude se voce roda mais de uma rede no mesmo banco.
+  Prefixo das tabelas: 'starativadorremoto_'
+
+  # De quantos em quantos segundos o que mudou vai para o banco. Os cliques do
+  # menu valem na hora; isto e so a gravacao.
+  Salvar a cada: 60
+
+#
+# ════════════════════════════════  ATIVACAO  ════════════════════════════════
+#
+Ativacao:
+  # Quanto tempo o bloco fica virado em bloco de redstone antes de voltar ao
+  # normal, em ticks (20 ticks = 1 segundo).
+  Duracao do pulso: 10
+
+  # Quanto tempo o jogador espera para poder ativar o mesmo ativador de novo,
+  # em ticks. Cada tipo de ativador pode ter o proprio valor no ativadores.yml.
+  Espera entre ativacoes: 20
+
+  # Bloco que aparece durante o pulso. Trocar isto muda o que a redstone
+  # enxerga -- o padrao e o unico que liga tudo em volta.
+  Bloco do pulso: 'REDSTONE_BLOCK'
+
+  Som ao ativar: 'CLICK'
+  Som ao recusar: 'VILLAGER_NO'
+
+  # Quantos ticks o plugin espera entre uma checagem e outra dos ativadores
+  # automaticos. 1 deixa o intervalo exato; subir alivia o servidor de quem tem
+  # muitos ativadores automaticos ligados.
+  Verificar automaticos a cada: 1
+
+#
+# ═══════════════════════════════  ATIVADORES  ═══════════════════════════════
+#
+Ativadores:
+  # Nome que o ativador recebe ao ser colocado. {numero} conta a partir de 1
+  # para cada dono.
+  Nome padrao: 'Ativador-{numero}'
+
+  # Quantos ativadores cada jogador pode ter no total, somando todos os tipos.
+  # 0 = sem limite. O limite por tipo fica no ativadores.yml, e a permissao
+  # starativadorremoto.limite.ignorar passa por cima dos dois.
+  Limite por jogador: 0
+
+  # Mundos onde o ativador nem pode ser colocado.
+  Mundos bloqueados: []
+
+  # Deixa quem tem starativadorremoto.admin abrir e ativar o ativador dos
+  # outros.
+  Admin mexe em tudo: true
+
+  # Devolve o item ao dono quando ele quebra o proprio ativador.
+  Devolver ao quebrar: true
+
+#
+# ══════════════════════════════════  GRUPOS  ════════════════════════════════
+#
+# Vincular dois ativadores cria um grupo: dai em diante, ativar um deles
+# aciona o grupo inteiro, e o automatico passa a ter uma configuracao unica
+# para todos.
+Grupos:
+  Ativar: true
+
+  # Nome que o grupo recebe ao nascer. {numero} conta a partir de 1 para cada
+  # dono.
+  Nome padrao: 'Grupo-{numero}'
+
+  # Quantos ativadores cabem num grupo. 0 = sem limite.
+  Limite de ativadores: 0
+
+#
+# ═══════════════════════════════  BARRA DE ACAO  ════════════════════════════
+#
+# Enquanto o jogador olha para um ativador, o nome e o dono aparecem na barra
+# de acao. O texto esta no mensagens.yml, em "Ativador.Barra de acao".
+Barra de acao:
+  Ativar: true
+
+  # Distancia maxima, em blocos, entre o jogador e o ativador.
+  Alcance: 6
+
+  # De quantos em quantos ticks o plugin olha para onde cada jogador esta
+  # mirando. Subir alivia o servidor; descer deixa a barra mais grudada.
+  Intervalo: 5
+
+#
+# ════════════════════════════════  ECONOMIA  ════════════════════════════════
+#
+# Usada apenas pela melhoria de ativador (o botao "Melhorar" do menu), quando
+# ela estiver ligada em algum tipo no ativadores.yml.
+Economia:
+  # VAULT        - a economia registrada no Vault.
+  # STARECONOMIA - fala direto com o StarEconomia (veja "Moeda" abaixo).
+  # COMANDO      - para economias que nao se registram no Vault: o saldo e lido
+  #                por placeholder e o dinheiro sai por comando de console.
+  Tipo: VAULT
+
+  Simbolo: '$'
+
+  # So no modo STARECONOMIA: o id da moeda cadastrada la.
+  Moeda: 'money'
+
+  # So no modo COMANDO.
+  Placeholder do saldo: ''
+  Comando para dar: ''
+  Comando para retirar: ''
+
+#
+# ═════════════════════════════════  TERRENOS  ═══════════════════════════════
+#
+# Quando o jogador abre o menu dentro de um terreno, a lista ja vem so com os
+# ativadores daquele terreno -- com um botao para ver todos.
+Terrenos:
+  Ativar: true
+
+  # Qual plugin de terrenos usar. Em AUTOMATICO ele procura nesta ordem:
+  # GriefDefender, GriefPrevention, PlotSquared, SuperiorSkyblock2.
+  #
+  # Valores: AUTOMATICO, NENHUM, GriefDefender, GriefPrevention, PlotSquared,
+  #          SuperiorSkyblock2
+  Provedor: AUTOMATICO

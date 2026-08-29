@@ -1,0 +1,109 @@
+# ---------------------------------------------------------------------------
+#  StarAtivadorRemoto - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso sem
+#  precisar de uma opcao no config.yml para cada um.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&b&lATIVADOR &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEsse comando so funciona no jogo.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Numero invalido: '&f{valor} &cnao e um numero valido.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+
+Ajuda:
+  Jogador: |
+    &8&m----------------------------------------
+    &b&lATIVADOR REMOTO
+    &e/ativadorremoto &8- &7abre os seus ativadores
+    &8&m----------------------------------------
+  Admin: |
+    &8&m----------------------------------------
+    &b&lATIVADOR REMOTO &7- administracao
+    &e/starativadorremoto dar <ativador> <jogador> [qtd] &8- &7entregar
+    &e/starativadorremoto listar &8- &7tipos cadastrados
+    &e/starativadorremoto ver <jogador> &8- &7abrir os ativadores dele
+    &e/starativadorremoto remover &8- &7tirar o ativador que voce olha
+    &e/starativadorremoto info &8- &7numeros do produto
+    &e/starativadorremoto salvar &8- &7gravar agora o que mudou
+    &e/starativadorremoto recarregar &8- &7reler os arquivos
+    &8&m----------------------------------------
+
+Comando:
+  Uso do dar: '&cUse: /starativadorremoto dar <ativador> <jogador> [quantidade]'
+  Tipo desconhecido: '&cNao existe o ativador &f{tipo}&c. Veja em /starativadorremoto listar.'
+  Entregue: '&aVoce deu &f{quantidade}x {ativador} &apara &f{jogador}&a.'
+  Recebido: '&aVoce recebeu &f{quantidade}x {ativador}&a.'
+  Inventario cheio: '&cO inventario de &f{jogador} &cestava cheio; o resto caiu no chao.'
+  Cabecalho da lista: '&e&lATIVADORES CADASTRADOS'
+  Linha da lista: '&8- &f{tipo} &7({nome}&7)'
+  Nao esta olhando: '&cOlhe para um ativador para usar este comando.'
+  Info: |
+    &8&m----------------------------------------
+    &b&lSTARATIVADORREMOTO &7v{versao}
+    &7Tipos cadastrados: &f{tipos}
+    &7Ativadores colocados: &f{ativadores}
+    &7Grupos: &f{grupos}
+    &7Banco de dados: &f{banco}
+    &7Plugin de terrenos: &f{terrenos}
+    &8&m----------------------------------------
+  Salvo: '&aO que estava por gravar foi para o banco.'
+
+Ativador:
+  Colocado: '&aAtivador &f{nome} &acolocado. Ative pelo &f/ativadorremoto&a.'
+  Quebrado: '&aAtivador &f{nome} &arecolhido.'
+  Removido: '&aAtivador &f{nome} &aremovido.'
+  Nenhum: '&cVoce ainda nao colocou nenhum ativador.'
+  Sem acesso: '&cEste ativador e de &f{dono}&c.'
+  Sem permissao do tipo: '&cVoce nao tem permissao para usar o &f{ativador}&c.'
+  Mundo proibido: '&cNao da para colocar ativador neste mundo.'
+  Limite atingido: '&cVoce ja chegou no limite de &f{limite} &cativador(es).'
+  Limite do tipo atingido: '&cVoce ja tem &f{limite} &cativador(es) do tipo &f{ativador}&c.'
+  Tipo sumiu: '&cO tipo deste ativador nao existe mais no ativadores.yml.'
+  Ativado: '&aAtivador &f{nome} &aacionado.'
+  Grupo ativado: '&aGrupo &f{grupo} &aacionado (&f{quantidade} &aativadores).'
+  Esperando: '&cEspere &f{tempo}s &cpara ativar de novo.'
+  Fora do mundo: '&cO mundo deste ativador nao esta carregado.'
+  Sumiu: '&cEste ativador nao esta mais la; o registro foi apagado.'
+  Barra de acao: '&b{nome} &8| &7Dono: &f{dono}'
+
+Renomear:
+  Pedido: '&aDigite no chat o novo nome do ativador.'
+  Feito: '&aAgora ele se chama &f{nome}&a.'
+  Muito grande: '&cO nome pode ter no maximo &f{limite} &ccaracteres.'
+
+Grupo:
+  Desligado: '&cOs grupos estao desligados neste servidor.'
+  Nenhum para vincular: '&cVoce nao tem outro ativador para vincular.'
+  Vinculado: '&aAtivador vinculado ao grupo &f{grupo}&a.'
+  Criado: '&aGrupo &f{grupo} &acriado com &f2 &aativadores.'
+  Juntado: '&aOs dois grupos viraram um so: &f{grupo}&a.'
+  Desvinculado: '&aAtivador tirado do grupo &f{grupo}&a.'
+  Desfeito: '&7O grupo &f{grupo} &7ficou sem par e foi desfeito.'
+  Ja esta no grupo: '&cEsse ativador ja esta neste grupo.'
+  Cheio: '&cO grupo ja tem &f{limite} &cativadores.'
+
+Automatico:
+  Nao suportado: '&cEste ativador nao tem modo automatico.'
+  Ligado: '&aAutomatico ligado: pulsa a cada &f{tempo}&a.'
+  Desligado: '&aAutomatico desligado.'
+  Intervalo alterado: '&aIntervalo do automatico: &f{tempo}&a.'
+  Pedido do intervalo: '&aDigite no chat o intervalo em ticks (20 = 1 segundo).'
+  Fora da faixa: '&cO intervalo tem que ficar entre &f{minimo} &ce &f{maximo} &cticks.'
+
+Melhoria:
+  Indisponivel: '&cEste ativador nao pode ser melhorado.'
+  Destino sumiu: '&cO ativador de destino da melhoria nao existe mais.'
+  Sem dinheiro: '&cVoce precisa de &f{custo} &cpara melhorar.'
+  Feita: '&aAtivador melhorado para &f{ativador}&a.'
+  Falhou: '&cNao foi possivel cobrar a melhoria; nada foi alterado.'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&cOperacao cancelada.'
+  Tempo esgotado: '&cVoce demorou demais; o pedido foi cancelado.'

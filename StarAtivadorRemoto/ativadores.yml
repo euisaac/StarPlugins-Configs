@@ -1,0 +1,106 @@
+# ---------------------------------------------------------------------------
+#  StarAtivadorRemoto - tipos de ativador
+#
+#  Cada chave aqui e um tipo de ativador. O id (a chave) e o que vai no comando
+#  /starativadorremoto dar <id> <jogador> [quantidade].
+#
+#  Este arquivo e seu: o plugin nunca repoe um tipo que voce apagou.
+# ---------------------------------------------------------------------------
+
+ativadores:
+
+  # ---------------------------------------------------------------- manual --
+  ativador1:
+    # Bloco que fica no chao. Durante o pulso ele vira bloco de redstone e
+    # depois volta a ser este aqui.
+    Material: 'GLASS'
+
+    # Nome, lore e brilho do item que o jogador recebe. O material do item e
+    # sempre o "Material" acima -- e ele que vai para o chao.
+    Item:
+      Nome: '&b&lAtivador Remoto'
+      Lore:
+        - '&7Coloque no chao para virar o dono.'
+        - '&7Ative de longe pelo &f/ativadorremoto&7.'
+        - ''
+        - '&8Manual'
+      Brilho: true
+
+    # Vazio = todo mundo pode usar.
+    Permissao: ''
+
+    # Quantos deste tipo cada jogador pode ter no chao. 0 = sem limite.
+    Limite por jogador: 0
+
+    # -1 usa o que esta no config.yml.
+    Duracao do pulso: -1
+    Espera entre ativacoes: -1
+
+    # Ativador manual: so pulsa quando alguem aperta "Ativar" no menu.
+    Automatico:
+      Ativar: false
+
+    # Botao "Melhorar" no menu do ativador. Deixe "Ativar: false" para o botao
+    # nem aparecer.
+    Melhoria:
+      Ativar: true
+      Para: 'ativador2'
+      Custo: 5000.0
+
+    # Receita de bancada. As tres linhas sao as tres linhas da bancada; use
+    # 'AR' (ou '') para deixar a casa vazia.
+    Craft:
+      Ativar: true
+      Quantidade: 1
+      Receita:
+        - [ 'IRON_BLOCK', 'IRON_BLOCK', 'IRON_BLOCK' ]
+        - [ 'IRON_BLOCK', 'REDSTONE_BLOCK', 'IRON_BLOCK' ]
+        - [ 'IRON_BLOCK', 'IRON_BLOCK', 'IRON_BLOCK' ]
+
+  # ------------------------------------------------------------ automatico --
+  ativador2:
+    Material: 'SEA_LANTERN'
+
+    Item:
+      Nome: '&e&lAtivador Automatico'
+      Lore:
+        - '&7Coloque no chao para virar o dono.'
+        - '&7Pulsa sozinho de tempos em tempos.'
+        - ''
+        - '&8Automatico'
+      Brilho: true
+
+    Permissao: ''
+    Limite por jogador: 0
+
+    Duracao do pulso: -1
+    Espera entre ativacoes: -1
+
+    Automatico:
+      # Liga o botao "Automatico" no menu deste ativador.
+      Ativar: true
+
+      # Ja nasce ligado?
+      Ligado ao colocar: false
+
+      # De quantos em quantos ticks ele pulsa (20 ticks = 1 segundo).
+      Intervalo padrao: 100
+      Intervalo minimo: 20
+      Intervalo maximo: 72000
+
+      # Quanto o botao "+" e "-" do menu mexe no intervalo. Com SHIFT, dez
+      # vezes isto.
+      Passo: 20
+
+    Melhoria:
+      Ativar: false
+      Para: ''
+      Custo: 0.0
+
+    Craft:
+      Ativar: true
+      Quantidade: 1
+      Receita:
+        - [ 'GOLD_BLOCK', 'GOLD_BLOCK', 'GOLD_BLOCK' ]
+        - [ 'GOLD_BLOCK', 'CLOCK', 'GOLD_BLOCK' ]
+        - [ 'GOLD_BLOCK', 'REDSTONE_BLOCK', 'GOLD_BLOCK' ]

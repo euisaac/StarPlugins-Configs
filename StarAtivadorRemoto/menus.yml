@@ -1,0 +1,260 @@
+# ---------------------------------------------------------------------------
+#  StarAtivadorRemoto - telas
+#
+#  Slot: -1 esconde o botao. As posicoes vao de 0 ate o tamanho do menu -1
+#  (uma linha tem 9 slots).
+#
+#  Marcadores que valem em qualquer texto daqui:
+#    {nome} {dono} {tipo} {ativador} {grupo} {local} {mundo} {estado}
+#    {intervalo} {tempo} {custo} {destino} {filtro} {pagina} {paginas} {total}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+#
+# ══════════════════════════  LISTA DE ATIVADORES  ═══════════════════════════
+#
+Lista:
+  Titulo: '&8Ativadores de {jogador}'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # Cada ativador da lista. O material vem do proprio tipo do ativador.
+  Item:
+    Nome: '&b&l{nome}'
+    Lore:
+      - '&7Tipo: &f{tipo}'
+      - '&7Local: &f{local}'
+      - '&7Grupo: &f{grupo}'
+      - '&7Automatico: &f{estado}'
+      - ''
+      - '&eClique para abrir o ativador.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina &f{pagina}&7/&f{paginas}' ]
+
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina &f{pagina}&7/&f{paginas}' ]
+
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cFechar'
+      Lore: [ ]
+
+    # So aparece quando o jogador esta dentro de um terreno.
+    Filtro:
+      Slot: 48
+      Material: 'MAP'
+      Nome: '&eMostrando: &f{filtro}'
+      Lore:
+        - '&7Total nesta lista: &f{total}'
+        - ''
+        - '&eClique para alternar entre'
+        - '&eeste terreno e todos.'
+
+#
+# ═══════════════════════════════  UM ATIVADOR  ══════════════════════════════
+#
+Ativador:
+  Titulo: '&8{nome}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Informacoes:
+      Slot: 4
+      Material: 'PAPER'
+      Nome: '&b&l{nome}'
+      Lore:
+        - '&7Tipo: &f{tipo}'
+        - '&7Dono: &f{dono}'
+        - '&7Local: &f{local}'
+        - '&7Terreno: &f{terreno}'
+        - '&7Grupo: &f{grupo}'
+
+    Ativar:
+      Slot: 20
+      Material: 'REDSTONE_BLOCK'
+      Nome: '&a&lATIVAR'
+      Lore:
+        - '&7Vira bloco de redstone por'
+        - '&f{tempo} &7e volta ao normal.'
+        - '&7Espera entre ativacoes: &f{espera}'
+        - ''
+        - '&eClique para acionar.'
+
+    Renomear:
+      Slot: 21
+      Material: 'NAME_TAG'
+      Nome: '&eRenomear'
+      Lore:
+        - '&7Nome atual: &f{nome}'
+        - ''
+        - '&eClique e digite no chat.'
+
+    Vincular:
+      Slot: 22
+      Material: 'TRIPWIRE_HOOK'
+      Nome: '&aVincular'
+      Lore:
+        - '&7Junta este ativador a outro.'
+        - '&7Ativar um aciona o grupo inteiro.'
+        - ''
+        - '&eClique para escolher.'
+
+    Desvincular:
+      Slot: 22
+      Material: 'SHEARS'
+      Nome: '&cDesvincular'
+      Lore:
+        - '&7Grupo atual: &f{grupo}'
+        - '&7Ativadores no grupo: &f{total}'
+        - ''
+        - '&eClique para sair do grupo.'
+
+    Automatico:
+      Slot: 23
+      Material: 'CLOCK'
+      Nome: '&6Automatico'
+      Lore:
+        - '&7Estado: &f{estado}'
+        - '&7Intervalo: &f{tempo}'
+        - '&7{aviso}'
+        - ''
+        - '&eClique para configurar.'
+
+    Melhorar:
+      Slot: 24
+      Material: 'ANVIL'
+      Nome: '&dMelhorar'
+      Lore:
+        - '&7Vira &f{destino}&7.'
+        - '&7Custo: &f{custo}'
+        - ''
+        - '&eClique para melhorar.'
+
+    Voltar:
+      Slot: 40
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ══════════════════════════════  VINCULAR  ══════════════════════════════════
+#
+Vincular:
+  Titulo: '&8Vincular {nome}'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Nome: '&b{nome}'
+    Lore:
+      - '&7Tipo: &f{tipo}'
+      - '&7Local: &f{local}'
+      - '&7Grupo: &f{grupo}'
+      - ''
+      - '&eClique para vincular.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ ]
+
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ ]
+
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ═══════════════════════════════  AUTOMATICO  ═══════════════════════════════
+#
+Automatico:
+  Titulo: '&8Automatico - {nome}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Estado:
+      Slot: 13
+      Material: 'CLOCK'
+      Nome: '&6Automatico: &f{estado}'
+      Lore:
+        - '&7Pulsa a cada &f{tempo}&7.'
+        - '&7{aviso}'
+        - ''
+        - '&eClique para ligar/desligar.'
+
+    Diminuir:
+      Slot: 11
+      Material: 'REDSTONE'
+      Nome: '&cDiminuir intervalo'
+      Lore:
+        - '&7-{passo} ticks &8(SHIFT: -{passoGrande})'
+        - '&7Minimo: &f{minimo} ticks'
+
+    Aumentar:
+      Slot: 15
+      Material: 'GLOWSTONE_DUST'
+      Nome: '&aAumentar intervalo'
+      Lore:
+        - '&7+{passo} ticks &8(SHIFT: +{passoGrande})'
+        - '&7Maximo: &f{maximo} ticks'
+
+    Digitar:
+      Slot: 22
+      Material: 'NAME_TAG'
+      Nome: '&eDigitar o intervalo'
+      Lore:
+        - '&7Intervalo atual: &f{intervalo} ticks'
+        - ''
+        - '&eClique e digite no chat.'
+
+    Voltar:
+      Slot: 18
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]
