@@ -1,0 +1,72 @@
+# ---------------------------------------------------------------------------
+#  StarBaus - as transformacoes automaticas
+#
+#  As tres listas fazem a mesma conta: "tantos de um material viram tantos de
+#  outro". O que muda e qual recurso do bau usa cada uma.
+#
+#    Fundicao      -> recurso auto-fundicao
+#    Compactacao   -> recurso auto-compactacao
+#    Montagem      -> recurso auto-craft
+#
+#  Item com nome, lore ou encantamento NUNCA e transformado: ele quase sempre e
+#  um item especial de outro plugin, e virar lingote seria destruir o que o
+#  jogador tinha de mais raro.
+#
+#  Nome de material que nao existe na versao do servidor e ignorado em silencio,
+#  entao da para deixar aqui as receitas das versoes novas e das antigas juntas.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Fundicao:
+  - { Entrada: IRON_ORE, Quantidade: 1, Saida: IRON_INGOT, Quantidade da saida: 1 }
+  - { Entrada: DEEPSLATE_IRON_ORE, Quantidade: 1, Saida: IRON_INGOT, Quantidade da saida: 1 }
+  - { Entrada: RAW_IRON, Quantidade: 1, Saida: IRON_INGOT, Quantidade da saida: 1 }
+  - { Entrada: GOLD_ORE, Quantidade: 1, Saida: GOLD_INGOT, Quantidade da saida: 1 }
+  - { Entrada: DEEPSLATE_GOLD_ORE, Quantidade: 1, Saida: GOLD_INGOT, Quantidade da saida: 1 }
+  - { Entrada: RAW_GOLD, Quantidade: 1, Saida: GOLD_INGOT, Quantidade da saida: 1 }
+  - { Entrada: COPPER_ORE, Quantidade: 1, Saida: COPPER_INGOT, Quantidade da saida: 1 }
+  - { Entrada: RAW_COPPER, Quantidade: 1, Saida: COPPER_INGOT, Quantidade da saida: 1 }
+  - { Entrada: ANCIENT_DEBRIS, Quantidade: 1, Saida: NETHERITE_SCRAP, Quantidade da saida: 1 }
+  - { Entrada: SAND, Quantidade: 1, Saida: GLASS, Quantidade da saida: 1 }
+  - { Entrada: COBBLESTONE, Quantidade: 1, Saida: STONE, Quantidade da saida: 1 }
+  - { Entrada: STONE, Quantidade: 1, Saida: SMOOTH_STONE, Quantidade da saida: 1 }
+  - { Entrada: CLAY_BALL, Quantidade: 1, Saida: BRICK, Quantidade da saida: 1 }
+  - { Entrada: NETHERRACK, Quantidade: 1, Saida: NETHER_BRICK, Quantidade da saida: 1 }
+  - { Entrada: PORKCHOP, Quantidade: 1, Saida: COOKED_PORKCHOP, Quantidade da saida: 1 }
+  - { Entrada: BEEF, Quantidade: 1, Saida: COOKED_BEEF, Quantidade da saida: 1 }
+  - { Entrada: CHICKEN, Quantidade: 1, Saida: COOKED_CHICKEN, Quantidade da saida: 1 }
+  - { Entrada: MUTTON, Quantidade: 1, Saida: COOKED_MUTTON, Quantidade da saida: 1 }
+  - { Entrada: RABBIT, Quantidade: 1, Saida: COOKED_RABBIT, Quantidade da saida: 1 }
+  - { Entrada: COD, Quantidade: 1, Saida: COOKED_COD, Quantidade da saida: 1 }
+  - { Entrada: SALMON, Quantidade: 1, Saida: COOKED_SALMON, Quantidade da saida: 1 }
+  - { Entrada: POTATO, Quantidade: 1, Saida: BAKED_POTATO, Quantidade da saida: 1 }
+  - { Entrada: KELP, Quantidade: 1, Saida: DRIED_KELP, Quantidade da saida: 1 }
+
+Compactacao:
+  - { Entrada: IRON_INGOT, Quantidade: 9, Saida: IRON_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: GOLD_INGOT, Quantidade: 9, Saida: GOLD_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: DIAMOND, Quantidade: 9, Saida: DIAMOND_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: EMERALD, Quantidade: 9, Saida: EMERALD_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: COAL, Quantidade: 9, Saida: COAL_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: REDSTONE, Quantidade: 9, Saida: REDSTONE_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: LAPIS_LAZULI, Quantidade: 9, Saida: LAPIS_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: COPPER_INGOT, Quantidade: 9, Saida: COPPER_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: RAW_IRON, Quantidade: 9, Saida: RAW_IRON_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: RAW_GOLD, Quantidade: 9, Saida: RAW_GOLD_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: RAW_COPPER, Quantidade: 9, Saida: RAW_COPPER_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: WHEAT, Quantidade: 9, Saida: HAY_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: SLIME_BALL, Quantidade: 9, Saida: SLIME_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: BONE_MEAL, Quantidade: 9, Saida: BONE_BLOCK, Quantidade da saida: 1 }
+  - { Entrada: NETHER_WART, Quantidade: 9, Saida: NETHER_WART_BLOCK, Quantidade da saida: 1 }
+
+Montagem:
+  - { Entrada: OAK_LOG, Quantidade: 1, Saida: OAK_PLANKS, Quantidade da saida: 4 }
+  - { Entrada: SPRUCE_LOG, Quantidade: 1, Saida: SPRUCE_PLANKS, Quantidade da saida: 4 }
+  - { Entrada: BIRCH_LOG, Quantidade: 1, Saida: BIRCH_PLANKS, Quantidade da saida: 4 }
+  - { Entrada: JUNGLE_LOG, Quantidade: 1, Saida: JUNGLE_PLANKS, Quantidade da saida: 4 }
+  - { Entrada: ACACIA_LOG, Quantidade: 1, Saida: ACACIA_PLANKS, Quantidade da saida: 4 }
+  - { Entrada: DARK_OAK_LOG, Quantidade: 1, Saida: DARK_OAK_PLANKS, Quantidade da saida: 4 }
+  - { Entrada: SUGAR_CANE, Quantidade: 1, Saida: PAPER, Quantidade da saida: 1 }
+  - { Entrada: SAND, Quantidade: 4, Saida: SANDSTONE, Quantidade da saida: 1 }
+  - { Entrada: STONE, Quantidade: 2, Saida: STONE_BRICKS, Quantidade da saida: 2 }

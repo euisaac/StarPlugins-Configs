@@ -1,0 +1,147 @@
+# ---------------------------------------------------------------------------
+#  StarBaus - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso sem
+#  precisar de uma opcao no config.yml para cada um.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&6&lBAUS &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEsse comando so funciona no jogo.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+
+Ajuda:
+  Admin: |
+    &8&m----------------------------------------
+    &6&lSTARBAUS &7- comandos de administracao
+    &e/starbaus editor &8- &7criar e editar tipos de bau
+    &e/starbaus dar <jogador> <tipo> [qtd] [nivel] &8- &7entregar um bau
+    &e/starbaus tipos &8- &7listar os tipos cadastrados
+    &e/starbaus info &8- &7numeros do produto
+    &e/starbaus remover &8- &7tirar o bau que voce esta olhando
+    &e/starbaus limpar <jogador> confirmar &8- &7apagar os baus dele
+    &e/starbaus salvar &8- &7gravar agora o que mudou
+    &e/starbaus recarregar &8- &7reler os arquivos
+    &8&m----------------------------------------
+
+Bau:
+  Colocado: '&aBau &f{bau} &acolocado. Clique nele para abrir.'
+  Quebrado: '&aBau &f{bau} &arecolhido.'
+  Conteudo devolvido: '&aO conteudo que estava guardado voltou para o bau.'
+  Cheio: '&cEste bau esta cheio.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+  Organizado: '&aConteudo organizado.'
+  Tipo sumiu: '&cO tipo deste bau nao existe mais no baus.yml.'
+  Nao pode juntar: '&cNao da para encostar um bau comum num bau especial.'
+  Mundo proibido: '&cEste bau nao pode ser colocado neste mundo.'
+  Limite atingido: '&cVoce ja tem &f{limite} &cbau(s) do tipo &f{bau}&c.'
+  Sem acesso: '&cEste bau e de &f{dono}&c.'
+  Sem permissao do tipo: '&cVoce nao tem permissao para usar o &f{bau}&c.'
+  Sem permissao de mexer: '&cVoce so pode olhar este bau.'
+  Sem permissao de administrar: '&cVoce nao pode mexer nas opcoes deste bau.'
+  Sem permissao de quebrar: '&cSo &f{dono} &cpode quebrar este bau.'
+  Aviso de cheio: '&eO seu bau &f{bau} &eem &f{local} &eesta cheio.'
+
+Estoque:
+  Vazio: '&cNao ha nada guardado neste bau de estoque.'
+  Nao aceita: '&cEste bau de estoque so guarda o item que ja esta nele.'
+  Nada para guardar: '&cVoce nao tem nada que este bau aceite.'
+  Guardado: '&aGuardado: &f{quantidade} &aitem(ns).'
+
+Filtro:
+  Item recusado: '&cO filtro deste bau nao aceita esse item.'
+  Adicionado: '&aO material &f{material} &aentrou na lista.'
+  Removido: '&aO material &f{material} &asaiu da lista.'
+  Mao vazia: '&cSegure o item que voce quer por na lista.'
+  Material desconhecido: '&cNao existe um material chamado &f{material}&c.'
+  Digite: '&eDigite o nome do material &7(ex.: DIAMOND)&e:'
+
+Recursos:
+  Ligado: '&aRecurso &f{recurso} &aligado neste bau.'
+  Desligado: '&cRecurso &f{recurso} &cdesligado neste bau.'
+
+Busca:
+  Digite: '&eDigite o que voce esta procurando:'
+  Achado: '&aAchei &f{item} &ana pagina &f{pagina}&a.'
+  Nao achado: '&cNao achei nada parecido com &f{texto}&c.'
+
+Venda:
+  Aviso: '&aO seu bau em &f{local} &avendeu &f{quantidade} &aitem(ns) por &f{valor}&a.'
+
+Experiencia:
+  Vazia: '&cNao ha experiencia guardada neste bau.'
+  Recebida: '&aVoce pegou &f{quantidade} &ade experiencia.'
+
+Vinculo:
+  Escolha: '&eAgora clique no bau para onde o excedente deve ir.'
+  Ligado: '&aO bau em &f{origem} &aagora manda o excedente para &f{destino}&a.'
+  Destino invalido: '&cO destino precisa ser outro bau seu.'
+  Desligado: '&aVinculo desligado.'
+
+Convidados:
+  Digite: '&eDigite o nick de quem voce quer convidar:'
+  Convidado: '&a{jogador} &aagora usa este bau.'
+  Voce foi convidado: '&a{dono} &adeixou voce usar o bau em &f{local}&a.'
+  Removido: '&c{jogador} &cnao usa mais este bau.'
+  Cargo trocado: '&a{jogador} &aagora e &f{cargo}&a.'
+  Precisa estar online: '&c{jogador} precisa estar online para ser convidado.'
+  E o dono: '&cEle ja e o dono do bau.'
+  Limite: '&cEste bau aceita no maximo &f{limite} &cconvidado(s).'
+
+Melhorias:
+  Comprada: '&aMelhoria &f{nivel} &acomprada por &f{custo}&a.'
+  Sem dinheiro: '&cVoce precisa de &f{custo} &cpara comprar esta melhoria.'
+  Ja comprado: '&cEste bau ja passou desse nivel.'
+  Fora de ordem: '&cCompre antes o nivel &f{nivel}&c.'
+  So o dono: '&cSo o dono do bau compra melhorias.'
+
+Remoto:
+  Sem recurso: '&cO bau em &f{local} &cnao abre de longe.'
+  Sem permissao: '&cVoce nao tem permissao para abrir baus de longe.'
+  Longe demais: '&cO pedaco do mundo desse bau nao esta carregado agora.'
+
+Editor:
+  Tipo criado: '&aTipo &f{id} &acriado.'
+  Tipo apagado: '&aTipo &f{id} &aapagado. Os baus dele continuam no mundo.'
+  Nao apagado: '&7Nada foi apagado.'
+  Identificador invalido: '&cO identificador &f{id} &cja existe ou nao serve.'
+  Item guardado: '&aO item da sua mao virou o item deste bau.'
+  Item entregue: '&aVoce recebeu um &f{bau}&a.'
+  Mao vazia: '&cSegure o item que voce quer usar.'
+  Especie travada: '&cJa existem &f{quantidade} &cbau(s) deste tipo no mundo.'
+  Nivel do meio: '&cSo da para apagar o ultimo nivel.'
+  Recurso ja existe: '&cO tipo ja tem &f{recurso} &cdesde o nivel 1.'
+
+Admin:
+  Info: |
+    &8&m----------------------------------------
+    &6&lSTARBAUS &7v{versao}
+    &7Tipos cadastrados: &f{tipos}
+    &7Baus no mundo: &f{baus}
+    &7Telas abertas agora: &f{abertos}
+    &7Hologramas desenhados: &f{hologramas}
+    &7Precos da venda: &f{precos}
+    &7Banco de dados: &f{banco}
+    &8&m----------------------------------------
+  Sem tipos: '&cNenhum tipo de bau cadastrado no baus.yml.'
+  Tipos cabecalho: '&e{quantidade} tipo(s) de bau:'
+  Tipos linha: '&8- &f{id} &7({especie}, {paginas} pagina(s), {niveis} nivel(is)) &8{nome}'
+  Uso dar: '&cUse: /starbaus dar <jogador> <tipo> [quantidade] [nivel]'
+  Uso limpar: '&cUse: /starbaus limpar <jogador> confirmar'
+  Tipo desconhecido: '&cNao existe um tipo chamado &f{id}&c.'
+  Entregue: '&aEntregue &f{quantidade}x {bau} &apara &f{jogador}&a.'
+  Recebeu: '&aVoce recebeu &f{quantidade}x {bau}&a.'
+  Nao e bau: '&cVoce nao esta olhando para um bau do plugin.'
+  Bau removido: '&aBau removido de &f{local}&a.'
+  Limpo: '&aApagados &f{quantidade} &abau(s) de &f{jogador}&a.'
+  Salvo: '&aEnviados &f{quantidade} &abau(s) para a fila do banco.'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&7Beleza, nada foi mudado.'
+  Tempo esgotado: '&cVoce demorou demais; o pedido foi esquecido.'

@@ -1,0 +1,408 @@
+# ---------------------------------------------------------------------------
+#  StarBaus - os tipos de bau do servidor
+#
+#  Cada tipo e um molde. Os baus colocados no mundo guardam so o identificador
+#  do tipo, entao mexer aqui muda todos eles de uma vez -- inclusive os que ja
+#  estao no chao.
+#
+#  A forma facil de mexer nisto e o &e/starbaus editor&r: ele escreve neste
+#  mesmo arquivo, com o item guardado exatamente como esta na sua mao.
+#
+#  Especie:
+#    NORMAL   - varias paginas de armazenamento.
+#    ESTOQUE  - um unico item, em quantidade muito maior que uma pilha.
+#    LIGADO   - todos os baus deste tipo do mesmo dono mostram o mesmo conteudo.
+#
+#  Recursos (nome que aparece na permissao e na lista do editor):
+#    succao, coleta-mobs, coleta-blocos, colheita, auto-venda, auto-fundicao,
+#    auto-compactacao, auto-craft, filtro, organizacao, ima-de-xp, vinculo,
+#    notificacao, holograma, convidados, acesso-remoto, busca, estatisticas
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Baus:
+
+  # -------------------------------------------------------------------------
+  #  O basico: mais espaco, nada automatico.
+  # -------------------------------------------------------------------------
+  simples:
+    Nome: '&eBau Reforcado'
+    Especie: NORMAL
+    Permissao: ''
+    Linhas: 5
+    Paginas: 2
+    Limite de estoque: 100000
+    Limite por jogador: 0
+    Manter conteudo no item: true
+    Devolver ao quebrar: true
+    Som ao abrir: 'BLOCK_CHEST_OPEN;1;1'
+    Mundos proibidos: []
+
+    Item:
+      Material: CHEST
+      Nome: '&eBau Reforcado'
+      Lore:
+        - '&7Duas paginas de espaco.'
+        - '&7Coloque no chao e clique para abrir.'
+        - '{nivel}'
+      Brilho: false
+
+    Recursos:
+      Succao: { Ativar: false, Raio: 5 }
+      Coleta de mobs: { Ativar: false, Raio: 8, Guardar xp: true }
+      Coleta de blocos: { Ativar: false, Raio: 8 }
+      Colheita: { Ativar: false, Raio: 4, Replantar: true }
+      Auto venda: { Ativar: false, Intervalo: 60, Taxa: 0.0 }
+      Auto fundicao: { Ativar: false }
+      Auto compactacao: { Ativar: false }
+      Auto craft: { Ativar: false }
+      Filtro: { Ativar: true, Descartar recusados: false }
+      Organizacao: { Ativar: true }
+      Ima de xp: { Ativar: false, Raio: 6 }
+      Vinculo: { Ativar: false }
+      Notificacao: { Ativar: true }
+      Convidados: { Ativar: true, Limite: 4 }
+      Acesso remoto: { Ativar: false }
+      Busca: { Ativar: true }
+      Estatisticas: { Ativar: true }
+      Protecao: { Explosao: true, Funil: true, Pistao: true }
+      Holograma:
+        Ativar: true
+        Altura: 1.4
+        Linhas:
+          - '&eBau Reforcado'
+          - '&7{guardado} item(ns)'
+
+  # -------------------------------------------------------------------------
+  #  O grandao, com melhorias para comprar.
+  # -------------------------------------------------------------------------
+  grande:
+    Nome: '&6Bau Colossal'
+    Especie: NORMAL
+    Permissao: 'starbaus.tipo.grande'
+    Linhas: 5
+    Paginas: 3
+    Limite de estoque: 100000
+    Limite por jogador: 0
+    Manter conteudo no item: true
+    Devolver ao quebrar: true
+    Som ao abrir: 'BLOCK_CHEST_OPEN;1;1'
+    Mundos proibidos: []
+
+    Item:
+      Material: ENDER_CHEST
+      Nome: '&6Bau Colossal'
+      Lore:
+        - '&7Varias paginas, succao e melhorias.'
+        - '{nivel}'
+      Brilho: true
+
+    Recursos:
+      Succao: { Ativar: true, Raio: 5 }
+      Coleta de mobs: { Ativar: false, Raio: 8, Guardar xp: true }
+      Coleta de blocos: { Ativar: false, Raio: 8 }
+      Colheita: { Ativar: false, Raio: 4, Replantar: true }
+      Auto venda: { Ativar: false, Intervalo: 120, Taxa: 5.0 }
+      Auto fundicao: { Ativar: false }
+      Auto compactacao: { Ativar: true }
+      Auto craft: { Ativar: false }
+      Filtro: { Ativar: true, Descartar recusados: false }
+      Organizacao: { Ativar: true }
+      Ima de xp: { Ativar: false, Raio: 6 }
+      Vinculo: { Ativar: true }
+      Notificacao: { Ativar: true }
+      Convidados: { Ativar: true, Limite: 8 }
+      Acesso remoto: { Ativar: false }
+      Busca: { Ativar: true }
+      Estatisticas: { Ativar: true }
+      Protecao: { Explosao: true, Funil: false, Pistao: true }
+      Holograma:
+        Ativar: true
+        Altura: 1.4
+        Linhas:
+          - '&6Bau Colossal &7({nivel_nome})'
+          - '&7{guardado} item(ns) &8| &7{livres} livre(s)'
+
+    Niveis:
+      '2':
+        Nome: '&aNivel 2'
+        Custo: 25000.0
+        Paginas: 6
+        Raio extra: 2
+        Estoque: 0
+        Recursos: []
+      '3':
+        Nome: '&bNivel 3'
+        Custo: 80000.0
+        Paginas: 12
+        Raio extra: 4
+        Estoque: 0
+        Recursos:
+          - acesso-remoto
+      '4':
+        Nome: '&dNivel 4'
+        Custo: 250000.0
+        Paginas: 24
+        Raio extra: 6
+        Estoque: 0
+        Recursos:
+          - auto-venda
+          - ima-de-xp
+
+  # -------------------------------------------------------------------------
+  #  Um item so, aos milhares.
+  # -------------------------------------------------------------------------
+  estoque:
+    Nome: '&bBau de Estoque'
+    Especie: ESTOQUE
+    Permissao: ''
+    Linhas: 3
+    Paginas: 1
+    Limite de estoque: 250000
+    Limite por jogador: 0
+    Manter conteudo no item: true
+    Devolver ao quebrar: true
+    Som ao abrir: 'BLOCK_BARREL_OPEN;1;1'
+    Mundos proibidos: []
+
+    Item:
+      Material: BARREL
+      Nome: '&bBau de Estoque'
+      Lore:
+        - '&7Guarda um item so, ate &f250.000&7.'
+        - '&7Mostra o total flutuando em cima.'
+        - '{nivel}'
+      Brilho: false
+
+    Recursos:
+      Succao: { Ativar: true, Raio: 4 }
+      Coleta de mobs: { Ativar: false, Raio: 8, Guardar xp: true }
+      Coleta de blocos: { Ativar: false, Raio: 8 }
+      Colheita: { Ativar: false, Raio: 4, Replantar: true }
+      Auto venda: { Ativar: false, Intervalo: 300, Taxa: 0.0 }
+      Auto fundicao: { Ativar: false }
+      Auto compactacao: { Ativar: false }
+      Auto craft: { Ativar: false }
+      Filtro: { Ativar: false, Descartar recusados: false }
+      Organizacao: { Ativar: false }
+      Ima de xp: { Ativar: false, Raio: 6 }
+      Vinculo: { Ativar: true }
+      Notificacao: { Ativar: true }
+      Convidados: { Ativar: true, Limite: 4 }
+      Acesso remoto: { Ativar: false }
+      Busca: { Ativar: false }
+      Estatisticas: { Ativar: true }
+      Protecao: { Explosao: true, Funil: false, Pistao: true }
+      Holograma:
+        Ativar: true
+        Altura: 1.6
+        Linhas:
+          - '&b{item}'
+          - '&f{guardado} &7de {limite}'
+
+  # -------------------------------------------------------------------------
+  #  O mesmo conteudo em qualquer lugar do mundo.
+  # -------------------------------------------------------------------------
+  ligado:
+    Nome: '&5Bau Ligado'
+    Especie: LIGADO
+    Permissao: 'starbaus.tipo.ligado'
+    Linhas: 5
+    Paginas: 2
+    Limite de estoque: 100000
+    Limite por jogador: 0
+    # Bau ligado nunca leva conteudo no item: ele e compartilhado, e uma copia
+    # viajando no item duplicaria tudo.
+    Manter conteudo no item: false
+    Devolver ao quebrar: true
+    Som ao abrir: 'BLOCK_ENDER_CHEST_OPEN;1;1'
+    Mundos proibidos: []
+
+    Item:
+      Material: PURPUR_BLOCK
+      Nome: '&5Bau Ligado'
+      Lore:
+        - '&7Todos os seus baus deste tipo mostram'
+        - '&7o mesmo conteudo, em qualquer lugar.'
+        - '{nivel}'
+      Brilho: true
+
+    Recursos:
+      Succao: { Ativar: false, Raio: 5 }
+      Coleta de mobs: { Ativar: false, Raio: 8, Guardar xp: true }
+      Coleta de blocos: { Ativar: false, Raio: 8 }
+      Colheita: { Ativar: false, Raio: 4, Replantar: true }
+      Auto venda: { Ativar: false, Intervalo: 120, Taxa: 0.0 }
+      Auto fundicao: { Ativar: false }
+      Auto compactacao: { Ativar: false }
+      Auto craft: { Ativar: false }
+      Filtro: { Ativar: true, Descartar recusados: false }
+      Organizacao: { Ativar: true }
+      Ima de xp: { Ativar: false, Raio: 6 }
+      Vinculo: { Ativar: false }
+      Notificacao: { Ativar: false }
+      Convidados: { Ativar: false, Limite: 0 }
+      Acesso remoto: { Ativar: true }
+      Busca: { Ativar: true }
+      Estatisticas: { Ativar: true }
+      Protecao: { Explosao: true, Funil: true, Pistao: true }
+      Holograma:
+        Ativar: true
+        Altura: 1.4
+        Linhas:
+          - '&5Bau Ligado'
+          - '&7de {dono}'
+
+  # -------------------------------------------------------------------------
+  #  Colhe, replanta, compacta e vende sozinho.
+  # -------------------------------------------------------------------------
+  fazenda:
+    Nome: '&aBau da Fazenda'
+    Especie: NORMAL
+    Permissao: 'starbaus.tipo.fazenda'
+    Linhas: 5
+    Paginas: 3
+    Limite de estoque: 100000
+    Limite por jogador: 0
+    Manter conteudo no item: true
+    Devolver ao quebrar: true
+    Som ao abrir: 'BLOCK_CHEST_OPEN;1;1'
+    Mundos proibidos: []
+
+    Item:
+      Material: HAY_BLOCK
+      Nome: '&aBau da Fazenda'
+      Lore:
+        - '&7Colhe e replanta o que estiver em volta.'
+        - '&7Vende o excedente de tempos em tempos.'
+        - '{nivel}'
+      Brilho: false
+
+    Recursos:
+      Succao: { Ativar: true, Raio: 6 }
+      Coleta de mobs: { Ativar: false, Raio: 8, Guardar xp: true }
+      Coleta de blocos: { Ativar: false, Raio: 8 }
+      Colheita: { Ativar: true, Raio: 5, Replantar: true }
+      Auto venda: { Ativar: true, Intervalo: 300, Taxa: 5.0 }
+      Auto fundicao: { Ativar: false }
+      Auto compactacao: { Ativar: true }
+      Auto craft: { Ativar: false }
+      Filtro: { Ativar: true, Descartar recusados: false }
+      Organizacao: { Ativar: true }
+      Ima de xp: { Ativar: false, Raio: 6 }
+      Vinculo: { Ativar: true }
+      Notificacao: { Ativar: true }
+      Convidados: { Ativar: true, Limite: 6 }
+      Acesso remoto: { Ativar: false }
+      Busca: { Ativar: true }
+      Estatisticas: { Ativar: true }
+      Protecao: { Explosao: true, Funil: false, Pistao: true }
+      Holograma:
+        Ativar: true
+        Altura: 1.4
+        Linhas:
+          - '&aBau da Fazenda'
+          - '&7{guardado} item(ns) guardado(s)'
+
+  # -------------------------------------------------------------------------
+  #  Para a mina: recolhe o que voce quebra, funde e compacta.
+  # -------------------------------------------------------------------------
+  mineiro:
+    Nome: '&7Bau do Mineiro'
+    Especie: NORMAL
+    Permissao: 'starbaus.tipo.mineiro'
+    Linhas: 5
+    Paginas: 3
+    Limite de estoque: 100000
+    Limite por jogador: 0
+    Manter conteudo no item: true
+    Devolver ao quebrar: true
+    Som ao abrir: 'BLOCK_CHEST_OPEN;1;1'
+    Mundos proibidos: []
+
+    Item:
+      Material: IRON_BLOCK
+      Nome: '&7Bau do Mineiro'
+      Lore:
+        - '&7Guarda o que voce quebra por perto,'
+        - '&7ja fundido e compactado.'
+        - '{nivel}'
+      Brilho: false
+
+    Recursos:
+      Succao: { Ativar: true, Raio: 6 }
+      Coleta de mobs: { Ativar: false, Raio: 8, Guardar xp: true }
+      Coleta de blocos: { Ativar: true, Raio: 10 }
+      Colheita: { Ativar: false, Raio: 4, Replantar: true }
+      Auto venda: { Ativar: false, Intervalo: 300, Taxa: 5.0 }
+      Auto fundicao: { Ativar: true }
+      Auto compactacao: { Ativar: true }
+      Auto craft: { Ativar: false }
+      Filtro: { Ativar: true, Descartar recusados: true }
+      Organizacao: { Ativar: true }
+      Ima de xp: { Ativar: true, Raio: 8 }
+      Vinculo: { Ativar: true }
+      Notificacao: { Ativar: true }
+      Convidados: { Ativar: true, Limite: 4 }
+      Acesso remoto: { Ativar: false }
+      Busca: { Ativar: true }
+      Estatisticas: { Ativar: true }
+      Protecao: { Explosao: true, Funil: false, Pistao: true }
+      Holograma:
+        Ativar: true
+        Altura: 1.4
+        Linhas:
+          - '&7Bau do Mineiro'
+          - '&7{guardado} item(ns) &8| &a{xp} xp'
+
+  # -------------------------------------------------------------------------
+  #  Para a farm de mobs: pega os drops e a experiencia.
+  # -------------------------------------------------------------------------
+  cacador:
+    Nome: '&cBau do Cacador'
+    Especie: NORMAL
+    Permissao: 'starbaus.tipo.cacador'
+    Linhas: 5
+    Paginas: 3
+    Limite de estoque: 100000
+    Limite por jogador: 0
+    Manter conteudo no item: true
+    Devolver ao quebrar: true
+    Som ao abrir: 'BLOCK_CHEST_OPEN;1;1'
+    Mundos proibidos: []
+
+    Item:
+      Material: ROTTEN_FLESH
+      Nome: '&cBau do Cacador'
+      Lore:
+        - '&7Recolhe o que os mobs derrubam por perto,'
+        - '&7com experiencia e tudo.'
+        - '{nivel}'
+      Brilho: false
+
+    Recursos:
+      Succao: { Ativar: true, Raio: 8 }
+      Coleta de mobs: { Ativar: true, Raio: 12, Guardar xp: true }
+      Coleta de blocos: { Ativar: false, Raio: 8 }
+      Colheita: { Ativar: false, Raio: 4, Replantar: true }
+      Auto venda: { Ativar: true, Intervalo: 600, Taxa: 10.0 }
+      Auto fundicao: { Ativar: true }
+      Auto compactacao: { Ativar: false }
+      Auto craft: { Ativar: false }
+      Filtro: { Ativar: true, Descartar recusados: true }
+      Organizacao: { Ativar: true }
+      Ima de xp: { Ativar: true, Raio: 10 }
+      Vinculo: { Ativar: true }
+      Notificacao: { Ativar: true }
+      Convidados: { Ativar: true, Limite: 6 }
+      Acesso remoto: { Ativar: false }
+      Busca: { Ativar: true }
+      Estatisticas: { Ativar: true }
+      Protecao: { Explosao: true, Funil: false, Pistao: true }
+      Holograma:
+        Ativar: true
+        Altura: 1.4
+        Linhas:
+          - '&cBau do Cacador'
+          - '&7{guardado} item(ns) &8| &a{xp} xp'

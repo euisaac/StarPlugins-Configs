@@ -1,0 +1,149 @@
+# ---------------------------------------------------------------------------
+#  StarBaus - telas
+#
+#  A tela do bau (secao "Bau") e um inventario de verdade: o jogador arrasta e
+#  empilha nela como faria num bau comum. So a ultima linha e barra de botoes.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Bau:
+  # {bau} {pagina} {total}
+  Titulo: '{bau} &8[{pagina}/{total}]'
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # A barra de baixo. Botao de recurso que o bau nao tem nao aparece, e os que
+  # sobram sao centralizados sozinhos.
+  Botoes:
+    anterior:
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Voce esta na pagina &f{pagina}&7/&f{total}&7.'
+    proxima:
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Voce esta na pagina &f{pagina}&7/&f{total}&7.'
+    busca:
+      Material: COMPASS
+      Nome: '&bProcurar um item'
+      Lore:
+        - '&7Digita o nome e eu abro a pagina dele.'
+    filtro:
+      Material: HOPPER
+      Nome: '&6Filtro'
+      Lore:
+        - '&7Agora: &f{filtro}'
+        - '&7Escolha o que pode entrar no bau.'
+    recursos:
+      Material: REDSTONE_TORCH
+      Nome: '&aRecursos'
+      Lore:
+        - '&7Ligue e desligue o que este bau faz sozinho.'
+    info:
+      Material: BOOK
+      Nome: '&eInformacoes'
+      Lore:
+        - '&7Dono: &f{dono}'
+        - '&7Nivel: &f{nivel_nome}'
+        - '&7Guardado: &f{guardado}'
+    melhorias:
+      Material: NETHER_STAR
+      Nome: '&dMelhorias'
+      Lore:
+        - '&7Nivel atual: &f{nivel_nome}'
+        - '&7Mais paginas, mais alcance, mais estoque.'
+    convidados:
+      Material: PLAYER_HEAD
+      Nome: '&bConvidados'
+      Lore:
+        - '&7Quem mais pode usar este bau.'
+    organizar:
+      Material: CHEST
+      Nome: '&aOrganizar'
+      Lore:
+        - '&7Junta as pilhas e poe tudo em ordem.'
+    depositar:
+      Material: HOPPER
+      Nome: '&aGuardar tudo'
+      Lore:
+        - '&7Passa para o estoque o que voce tem no inventario.'
+    sacar:
+      Material: DROPPER
+      Nome: '&eTirar o que couber'
+      Lore:
+        - '&7Enche o seu inventario com o que esta guardado.'
+
+  # A tela do bau de estoque: o item fica no meio, com o total na lore.
+  Estoque:
+    Material vazio: BARRIER
+    Nome vazio: '&cEstoque vazio'
+    Lore vazio:
+      - '&7Guarde um item aqui e este bau'
+      - '&7passa a aceitar so ele.'
+    # {quantidade} {limite} {item}
+    Lore:
+      - '&7Guardado: &f{quantidade}&7/&f{limite}'
+      - ''
+      - '&eClique &7para tirar uma pilha.'
+      - '&eClique direito &7para tirar uma unidade.'
+      - '&eShift + clique &7para encher o inventario.'
+      - '&eClique com item &7para guardar.'
+
+Baus:
+  Titulo: '&8Seus baus'
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+Informacoes:
+  Titulo: '&8Informacoes do bau'
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+Filtro:
+  Titulo: '&8Filtro do bau'
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+Recursos:
+  Titulo: '&8Recursos do bau'
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+Melhorias:
+  Titulo: '&8Melhorias do bau'
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+Convidados:
+  Titulo: '&8Convidados do bau'
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+Editor:
+  Titulo: '&8Editor de baus'
+  Titulo do tipo: '&8Editando: '
+  Titulo dos recursos: '&8Recursos: '
+  Titulo dos niveis: '&8Niveis: '
+  Titulo do nivel: '&8Nivel '
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '

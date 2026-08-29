@@ -1,0 +1,77 @@
+# ---------------------------------------------------------------------------
+#  StarBaus - configuracao geral
+#
+#  Os tipos de bau ficam no baus.yml, as receitas no receitas.yml e a tabela da
+#  venda automatica no precos.yml. Este arquivo cuida do que vale para o
+#  produto inteiro.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Geral:
+  # Liga os avisos tecnicos no console. So para achar problema.
+  Debug: false
+
+Banco de dados:
+  # SQLITE (um arquivo na pasta do plugin) ou MYSQL.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starbaus_'
+
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Dados:
+  # Em segundos. A gravacao e em lote e so leva os baus que mudaram.
+  Salvar a cada: 60
+
+Recursos:
+  # Em tiques. Um ciclo por segundo ja e mais rapido do que o jogador percebe;
+  # abaixar isso multiplica o custo da varredura sem mudar nada na tela.
+  Ciclo em tiques: 20
+
+  # Quantos baus sao atendidos por ciclo. A varredura continua de onde parou,
+  # entao um servidor com muitos baus paga o custo espalhado em varios ciclos.
+  # Zero atende todos de uma vez.
+  Baus por ciclo: 400
+
+  # O maior alcance que qualquer recurso pode ter. Serve de primeira peneira na
+  # busca por chunk -- cada bau confere o alcance dele depois.
+  Alcance maximo: 24
+
+  # De quanto em quanto tempo a colheita varre os blocos em volta.
+  Colheita a cada: 5s
+
+  # Espera entre dois avisos de "bau cheio" para o mesmo bau.
+  Aviso de cheio a cada: 5m
+
+Hologramas:
+  Ativar: true
+
+  # Em segundos.
+  Atualizar a cada: 5
+
+  # Distancia entre uma linha e a outra.
+  Espacamento das linhas: 0.28
+
+Economia:
+  # VAULT fala com qualquer economia registrada la.
+  # COMANDO serve para as economias que nao se registram no Vault: o saldo e
+  # lido por placeholder e o dinheiro entra e sai por comando de console.
+  Tipo: VAULT
+  Simbolo: '$'
+
+  # So no modo COMANDO. Deixe vazio para nao conferir saldo antes de cobrar.
+  Placeholder de saldo: ''
+
+  # So no modo COMANDO. Use {jogador}, {uuid} e {valor}.
+  Comando de dar: ''
+  Comando de retirar: ''
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Melhoria: 'ENTITY_PLAYER_LEVELUP;1;1.4'
