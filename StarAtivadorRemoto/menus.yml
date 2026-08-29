@@ -7,9 +7,10 @@
 #  Marcadores que valem em qualquer texto daqui:
 #    {nome} {dono} {tipo} {ativador} {grupo} {local} {mundo} {estado}
 #    {intervalo} {tempo} {custo} {destino} {filtro} {pagina} {paginas} {total}
+#    {terreno} {membros} {permissoes} {plugin} {aviso}
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 #
 # ══════════════════════════  LISTA DE ATIVADORES  ═══════════════════════════
@@ -32,6 +33,7 @@ Lista:
   Item:
     Nome: '&b&l{nome}'
     Lore:
+      - '&7Dono: &f{dono}'
       - '&7Tipo: &f{tipo}'
       - '&7Local: &f{local}'
       - '&7Grupo: &f{grupo}'
@@ -154,6 +156,18 @@ Ativador:
         - ''
         - '&eClique para melhorar.'
 
+    # So o dono (e o admin) enxerga este botao.
+    Permissoes:
+      Slot: 31
+      Material: 'PLAYER_HEAD'
+      Nome: '&bPermissoes'
+      Lore:
+        - '&7Terreno: &f{terreno}'
+        - '&7Membros do terreno: &f{membros}'
+        - '&7Podem: &f{permissoes}'
+        - ''
+        - '&eClique para configurar.'
+
     Voltar:
       Slot: 40
       Material: 'BARRIER'
@@ -255,6 +269,71 @@ Automatico:
 
     Voltar:
       Slot: 18
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ══════════════════════════════  PERMISSOES  ════════════════════════════════
+#
+# Quem, alem do dono, mexe no ativador. "Membros do terreno" e o interruptor
+# geral; as tres de baixo dizem ate onde eles vao.
+#
+# Quem e de confianca sai do SEU plugin de terrenos (o /trust, o /plot add, o
+# convite da ilha) -- este menu nao cadastra amigo nenhum.
+#
+Permissoes:
+  Titulo: '&8Permissoes - {nome}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Membros:
+      Slot: 4
+      Material: 'PLAYER_HEAD'
+      Nome: '&bMembros do terreno: &f{estadoMembros}'
+      Lore:
+        - '&7Terreno: &f{terreno}'
+        - '&7Lido do: &f{plugin}'
+        - '&7{aviso}'
+        - ''
+        - '&eClique para ligar/desligar.'
+
+    Ativar:
+      Slot: 11
+      Material: 'REDSTONE_BLOCK'
+      Nome: '&aAtivar: &f{estadoAtivar}'
+      Lore:
+        - '&7Deixa acionar o pulso.'
+        - ''
+        - '&eClique para ligar/desligar.'
+
+    Vincular:
+      Slot: 13
+      Material: 'TRIPWIRE_HOOK'
+      Nome: '&aVincular e desvincular: &f{estadoVincular}'
+      Lore:
+        - '&7Deixa juntar e separar ativadores'
+        - '&7do grupo.'
+        - ''
+        - '&eClique para ligar/desligar.'
+
+    Automatico:
+      Slot: 15
+      Material: 'CLOCK'
+      Nome: '&6Configurar o automatico: &f{estadoAutomatico}'
+      Lore:
+        - '&7Deixa ligar, desligar e mudar o'
+        - '&7tempo do automatico.'
+        - ''
+        - '&eClique para ligar/desligar.'
+
+    Voltar:
+      Slot: 22
       Material: 'BARRIER'
       Nome: '&cVoltar'
       Lore: [ ]

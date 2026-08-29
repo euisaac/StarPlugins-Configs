@@ -68,7 +68,13 @@ Ativadores:
   # starativadorremoto.limite.ignorar passa por cima dos dois.
   Limite por jogador: 0
 
-  # Mundos onde o ativador nem pode ser colocado.
+  # Lista negra de mundos: nestes o ativador nem chega a ser colocado (o item
+  # volta para a mao e o jogador leva o aviso "Mundo proibido" do mensagens.yml).
+  # Vale o nome da pasta do mundo, um por linha:
+  #
+  #   Mundos bloqueados:
+  #     - 'lobby'
+  #     - 'world_pvp'
   Mundos bloqueados: []
 
   # Deixa quem tem starativadorremoto.admin abrir e ativar o ativador dos
@@ -145,3 +151,28 @@ Terrenos:
   # Valores: AUTOMATICO, NENHUM, GriefDefender, GriefPrevention, PlotSquared,
   #          SuperiorSkyblock2
   Provedor: AUTOMATICO
+
+  # Deixa quem e de confianca no terreno (ou membro da ilha) mexer nos
+  # ativadores que estao la dentro -- sem o dono precisar cadastrar amigo
+  # nenhum: vale o /trust que ele ja deu no seu plugin de terrenos.
+  #
+  # Quem decide o que cada um pode e o DONO DO ATIVADOR, no botao "Permissoes"
+  # do menu. O que esta aqui e so como o ativador nasce.
+  Membros do terreno:
+    # Desligando isto, o botao "Permissoes" some e so o dono (e o admin) mexe.
+    Ativar: true
+
+    # O ativador ja nasce liberado para o pessoal do terreno?
+    Ligado por padrao: false
+
+    # Quais permissoes vem marcadas. Renomear, melhorar e quebrar NUNCA saem do
+    # dono, por isso nao estao aqui.
+    Padrao:
+      # Apertar o botao "Ativar" (o pulso).
+      Ativar: true
+
+      # Vincular e desvincular ativadores do grupo.
+      Vincular: false
+
+      # Ligar, desligar e mudar o tempo do automatico.
+      Automatico: false
