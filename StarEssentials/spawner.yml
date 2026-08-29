@@ -1,0 +1,106 @@
+# =========================================================
+#  StarEssentials - spawners
+# =========================================================
+
+# Usado pelo /spawner <mob> [jogador] (comando de staff pra dar um spawner
+# pronto). mobs-permitidos vazio = todos os mobs sao permitidos.
+mobs-permitidos: []
+custo: 0.0
+
+# Item entregue quando um jogador quebra um spawner sem silk touch (junto com
+# restricoes.spawner-quebra-sem-silk-touch, no config.yml) e a chance abaixo
+# da certo - um spawner do mesmo mob, pronto pra ser colocado de novo.
+item:
+  nome: "&eGerador de &f{mob}"
+  lore:
+    - ""
+    - "&7Coloque para criar um spawner"
+    - "&7de &f{mob}&7."
+
+# Chances de receber o item ao quebrar sem silk touch, avaliadas na ordem -
+# a primeira cuja permissao o jogador tiver e' a que vale.
+chances:
+  vip:
+    ordem: 1
+    permissao: "staressentials.spawnerbreak.vip"
+    chance: 100.0
+  padrao:
+    ordem: 2
+    permissao: ""
+    chance: 25.0
+
+# Traducao do nome de cada mob, usada em {mob} acima e no /spawner.
+nomes:
+  COW: "Vaca"
+  AXOLOTL: "Axolote"
+  BAT: "Morcego"
+  BEE: "Abelha"
+  BLAZE: "Blaze"
+  CAT: "Gato"
+  CAVE_SPIDER: "Aranha da Caverna"
+  CHICKEN: "Galinha"
+  COD: "Bacalhau"
+  CREEPER: "Creeper"
+  DOLPHIN: "Golfinho"
+  DONKEY: "Burro"
+  DROWNED: "Afogado"
+  ELDER_GUARDIAN: "Guardiao Mestre"
+  ENDER_DRAGON: "Dragao do Fim"
+  ENDERMAN: "Enderman"
+  ENDERMITE: "Endermite"
+  EVOKER: "Evocador"
+  FOX: "Raposa"
+  FROG: "Sapo"
+  GHAST: "Ghast"
+  GIANT: "Zumbi Gigante"
+  GLOW_SQUID: "Lula Brilhante"
+  GOAT: "Cabra"
+  GUARDIAN: "Guardiao"
+  HOGLIN: "Hoglin"
+  HORSE: "Cavalo"
+  HUSK: "Zumbi do Deserto"
+  IRON_GOLEM: "Golem de Ferro"
+  LLAMA: "Lhama"
+  MAGMA_CUBE: "Cubo de Magma"
+  MULE: "Mula"
+  MUSHROOM_COW: "Vaca de Cogumelo"
+  OCELOT: "Jaguatirica"
+  PANDA: "Panda"
+  PARROT: "Papagaio"
+  PHANTOM: "Phantom"
+  PIG: "Porco"
+  PIGLIN: "Piglin"
+  PIGLIN_BRUTE: "Piglin Barbaro"
+  PIG_ZOMBIE: "Porco Zumbi"
+  PILLAGER: "Saqueador"
+  POLAR_BEAR: "Urso Polar"
+  PUFFERFISH: "Baiacu"
+  RABBIT: "Coelho"
+  RAVAGER: "Ravager"
+  SALMON: "Salmao"
+  SHEEP: "Ovelha"
+  SHULKER: "Shulker"
+  SILVERFISH: "Silverfish"
+  SKELETON: "Esqueleto"
+  SKELETON_HORSE: "Cavalo Esqueleto"
+  SLIME: "Slime"
+  SNOWMAN: "Golem de Neve"
+  SPIDER: "Aranha"
+  SQUID: "Lula"
+  STRAY: "Esqueleto Glacial"
+  STRIDER: "Strider"
+  TROPICAL_FISH: "Peixe Tropical"
+  TURTLE: "Tartaruga"
+  VEX: "Fantasma"
+  VILLAGER: "Aldeao"
+  VINDICATOR: "Vingador"
+  WARDEN: "Warden"
+  WITCH: "Bruxa"
+  WITHER: "Wither"
+  WITHER_SKELETON: "Esqueleto Wither"
+  WOLF: "Lobo"
+  ZOGLIN: "Zoglin"
+  ZOMBIE: "Zumbi"
+  ZOMBIE_HORSE: "Cavalo Zumbi"
+  ZOMBIE_VILLAGER: "Aldeao Zumbi"
+  ZOMBIFIED_PIGLIN: "Piglin Zumbi"

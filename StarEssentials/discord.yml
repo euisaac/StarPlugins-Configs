@@ -1,0 +1,57 @@
+# =========================================================
+#  StarEssentials - integracao com Discord (webhooks)
+#
+#  Cada evento e cada aviso programado abaixo tem seu proprio webhook-url -
+#  podem apontar pra canais diferentes do Discord, ou ficar vazios (nesse
+#  caso, esse item especifico nao envia nada, mesmo com "ativado: true").
+# =========================================================
+
+# Nome/avatar usados pelo bot em todas as mensagens abaixo.
+nome-bot: "StarEssentials"
+avatar-bot-url: ""
+
+# Notificacoes de eventos do servidor.
+eventos:
+  entrada:
+    ativado: false
+    webhook-url: ""
+    # Se true, envia como embed (mensagem rica, com cor e avatar do jogador) em vez de texto simples.
+    usar-embed: false
+    cor: "#55FF55"
+    footer: "starplugins.com.br"
+    mostrar-avatar: true
+    formato: "**%jogador%** entrou no servidor."
+  saida:
+    ativado: false
+    webhook-url: ""
+    usar-embed: false
+    cor: "#FF5555"
+    footer: "starplugins.com.br"
+    mostrar-avatar: true
+    formato: "**%jogador%** saiu do servidor."
+  morte:
+    ativado: false
+    webhook-url: ""
+    usar-embed: false
+    cor: "#AAAAAA"
+    footer: "starplugins.com.br"
+    mostrar-avatar: true
+    formato: "**%jogador%** morreu."
+
+# Avisos programados: embeds enviados automaticamente em horarios fixos -
+# util pra divulgar a loja, redes sociais etc. Cada chave abaixo (ex.: "loja")
+# e' um aviso independente, com seu proprio webhook, horario e conteudo.
+#
+# "horarios" aceita "todos-HH:mm:ss" (todo dia, no horario) ou
+# "<dia>-HH:mm:ss" (segunda, terca, quarta, quinta, sexta, sabado ou domingo).
+avisos:
+  loja:
+    ativado: false
+    webhook-url: ""
+    horarios:
+      - "todos-00:00:00"
+    titulo: "Loja StarPlugins"
+    thumbnail: ""
+    cor: "#FFFFFF"
+    conteudo: "@everyone Confira a melhor loja de plugins: https://starplugins.com.br"
+    footer: "Todos os direitos reservados"

@@ -1,0 +1,35 @@
+# =========================================================
+#  StarEssentials - comando /divulgar
+# =========================================================
+
+delay-segundos: 300
+formato: "&b&l[DIVULGACAO] &f%jogador%&7: &f%mensagem%"
+
+# Titulo/subtitulo/actionbar mostrados pro servidor inteiro quando alguem
+# divulga (vazio = nao mostra nada nesse campo).
+titulo: ""
+subtitulo: "&f%jogador% &besta divulgando."
+actionbar: "&f%jogador% &besta divulgando."
+som: "ENTITY_PLAYER_LEVELUP"
+
+# Vazia = qualquer jogador pode usar o /divulgar.
+permissao: ""
+
+# Se true, a mensagem precisa ser um link unico (1 argumento). Se false,
+# aceita qualquer texto.
+somente-link: false
+
+custo:
+  valor: 0.0
+  economia: ''
+
+# Notifica um webhook do Discord (configurado em discord.yml) toda vez que
+# alguem usa o /divulgar.
+discord:
+  ativado: false
+  webhook-url: ""
+  titulo: "Divulgacao"
+  thumbnail: ""
+  cor: "#5555FF"
+  conteudo: "%jogador% esta divulgando: %mensagem%"
+  footer: "starplugins.com.br"

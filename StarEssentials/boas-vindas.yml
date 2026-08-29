@@ -1,0 +1,74 @@
+# =========================================================
+#  StarEssentials - boas-vindas na entrada do jogador
+#  Placeholder disponivel em qualquer texto: %player_name%
+# =========================================================
+
+# Boas-vindas normal, mostrada em toda entrada de quem ja jogou antes.
+ativado: true
+titulo: "&bBem-vindo(a)!"
+subtitulo: "&f%player_name%"
+mensagens:
+  - ""
+  - "&fBem-vindo(a), Ao melhor servidor &b%player_name%&f!"
+  - ""
+
+# Tudo abaixo so vale na PRIMEIRA entrada de verdade do jogador no servidor
+# (Player#hasPlayedBefore() == false). Depois disso ele passa a receber a
+# boas-vindas normal, acima.
+primeira-vez:
+  ativado: true
+  titulo: "&bBem-vindo(a)!"
+  subtitulo: "&f%player_name%"
+  mensagens:
+    - ""
+    - "&b&lNOVO JOGADOR &f➤ &bSeja bem-vindo(a) &f%player_name%&b!"
+    - ""
+
+  # Comandos rodados via console, uma unica vez, so nessa primeira entrada.
+  # Ex.: dar um kit inicial, mensagem no discord, etc.
+  comandos: []
+
+  # "BemVindo premiado": chance de comecar uma festa de boas-vindas na
+  # primeira entrada. Quem der as boas-vindas no chat (ou no /g) dentro do
+  # tempo configurado concorre a uma recompensa sorteada.
+  bemvindo-premiado:
+    ativado: true
+
+    # % de chance de a festa comecar nessa primeira entrada.
+    chance: 30.0
+
+    # Quanto tempo a festa dura, em segundos.
+    duracao-segundos: 120
+
+    # Esconde a mensagem de quem deu as boas-vindas no chat depois de contar.
+    cancelar-mensagem: false
+
+    # Qualquer uma dessas frases contando no chat (com ou sem mais texto
+    # junto, sem diferenciar maiusculo/minusculo ou acento) conta como boas-
+    # vindas. Adicione quantas variacoes quiser.
+    palavras:
+      - "bem vindo"
+      - "bem-vindo"
+      - "bemvindo"
+      - "seja bem vindo"
+      - "sbv"
+      - "welcome"
+
+    # Prefixos de comando de chat que tambem contam como chat normal pra
+    # deteccao acima, ex.: "g" aceita "/g seja bem vindo" igual ao chat.
+    canais-comando:
+      - "g"
+
+    mensagem-inicio: "&7De as boas vindas ao &f%player_name% &7valendo por %tempo%s!"
+    mensagem-contou: "&aVoce deu as boas-vindas! Aguarde o fim da festa pra saber se ganhou algo."
+    mensagem-ja-contou: "&7Voce ja deu as boas-vindas nesta festa."
+    mensagem-fim: "&7A festa de boas-vindas acabou. &f%total% &7jogador(es) participaram."
+
+    # Recompensa sorteada (por peso) pra cada jogador que participou.
+    # A soma dos "chance" nao precisa fechar em 100 - e so um peso relativo.
+    # Use %player_premiado% (ou %player_name%) no comando.
+    recompensas:
+      rec1:
+        chance: 100
+        comandos:
+          - "money add %player_premiado% 5000"

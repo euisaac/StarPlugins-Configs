@@ -1,0 +1,353 @@
+# =========================================================
+#  StarEssentials - configuracao geral
+#  Configuracoes especificas ficam em arquivos proprios:
+#  animacoes.yml, boas-vindas.yml, commands.yml, discord.yml,
+#  divulgar.yml, economias.yml, locais.yml, scoreboard.yml,
+#  spawner.yml, tab.yml, whitelist.yml
+# =========================================================
+
+# Onde os dados de jogador (homes, back, god, vanish etc.) e os locais
+# globais (spawn, loja, warps) ficam guardados. Os dados de jogador (homes,
+# back, god, vanish etc.) e os locais globais (spawn, loja, warps) sao
+# guardados no banco escolhido. Se a conexao com o MYSQL falhar ao iniciar
+# o plugin, o StarEssentials cai de volta pro SQLITE automaticamente. Trocar
+# "storage-type" exige reiniciar o servidor - nao e alterado por
+# /staressentials reload.
+database:
+  # SQLITE (padrao, sem configuracao extra) ou MYSQL.
+  storage-type: SQLITE
+  data:
+    host: localhost
+    port: 3306
+    database: ''
+    username: ''
+    password: ''
+    # prefixo aplicado as tabelas quando storage-type = MYSQL, util para dividir o banco com
+    # outros plugins.
+    prefix: 'staress_'
+
+# Configuracoes gerais do plugin.
+geral:
+  prefixo: "&b&lStarEssentials &f"
+
+# Receitas extras do /derreter, alem das ja embutidas no plugin (minerio ->
+# lingote, carne crua -> cozida etc). Formato "ORIGEM->DESTINO".
+derreter:
+  receitas-extras: []
+
+# Receitas do /compactar: alem de so juntar pilhas parciais, converte
+# multiplos configurados de um item num bloco compactado.
+# Formato "ITEM:QTD_NECESSARIA->RESULTADO:QTD_GERADA".
+compactar:
+  receitas:
+    - "COAL:9->COAL_BLOCK:1"
+    - "IRON_INGOT:9->IRON_BLOCK:1"
+    - "GOLD_INGOT:9->GOLD_BLOCK:1"
+    - "DIAMOND:9->DIAMOND_BLOCK:1"
+    - "EMERALD:9->EMERALD_BLOCK:1"
+    - "LAPIS_LAZULI:9->LAPIS_BLOCK:1"
+    - "REDSTONE:9->REDSTONE_BLOCK:1"
+    - "RAW_IRON:9->RAW_IRON_BLOCK:1"
+    - "RAW_COPPER:9->RAW_COPPER_BLOCK:1"
+    - "RAW_GOLD:9->RAW_GOLD_BLOCK:1"
+    - "COPPER_INGOT:9->COPPER_BLOCK:1"
+    - "SLIME_BALL:9->SLIME_BLOCK:1"
+
+# Perde uma % do dinheiro (Vault) ao morrer. Niveis avaliados na ordem, o
+# primeiro cuja permissao o jogador tiver e' o que vale.
+lose-on-death:
+  ativado: false
+  # Maximo que pode ser perdido numa morte so. 0 = sem limite.
+  maximo: 0
+  niveis:
+    membro:
+      ordem: 1
+      permissao: ""
+      porcentagem: 10.0
+    vip:
+      ordem: 2
+      permissao: "staressentials.deathlose.vip"
+      porcentagem: 5.0
+
+# Configuracoes gerais de teleporte (/spawn, /warp, /tpa, /back etc.).
+teleporte:
+  delay-padrao-segundos: 3
+  cancelar-ao-mover: true
+  som-ao-teleportar: "ENTITY_ENDERMAN_TELEPORT"
+  tpa-expira-segundos: 60
+  # Quando um staff manda outro jogador direto (ex.: /spawn <jogador>, /warp <warp> <jogador>),
+  # pula o delay de teleporte pra esse jogador em vez de fazer ele esperar parado.
+  forcar-sem-delay: true
+  back:
+    salvar-antes-de-morrer: true
+    # Cooldown proprio do /back, em segundos. 0 = desativado.
+    cooldown-segundos: 0
+    # Custo pra usar o /back. "economia" vazia usa a moeda "padrao" de economias.yml.
+    custo:
+      valor: 0.0
+      economia: ''
+
+  # Invulnerabilidade temporaria (imune a todo tipo de dano) ao entrar no servidor.
+  invulneravel-ao-logar-segundos: 0
+  # Mundos onde a invulnerabilidade ao logar nao vale
+  invulneravel-ao-logar-blacklist-mundos: []
+  # Invulnerabilidade temporaria ao ser teleportado via TPA (proprio ou aceito)
+  invulneravel-ao-tpa-segundos: 0
+
+# Configuracoes do /home, /sethome, /delhome e /homes.
+homes:
+  limite-padrao: 3
+  bloquear-em-mundos: []
+  # Comandos rodados via console pelo /darhome, pra dar mais limite de home a
+  # alguem (ex.: liberar uma permissao de limite maior no seu gerenciador de
+  # permissoes). Placeholders: %player% %quantia% %antigo% %novo%
+  dar-comandos: []
+
+# Mundos onde o /warp fica bloqueado.
+warps:
+  bloquear-em-mundos: []
+
+# Mundos onde o /voar fica bloqueado.
+voar:
+  bloquear-em-mundos: []
+
+# Mundos onde o /top fica bloqueado.
+top:
+  bloquear-em-mundos: []
+
+# Mundos onde ninguem perde fome (ex.: lobby, minigame).
+fome:
+  bloquear-em-mundos: []
+
+# Mundos onde redstone fica desligada (nao ativa mecanismos).
+redstone:
+  bloquear-em-mundos: []
+
+# Itens que o /hat nao deixa colocar na cabeca.
+hat:
+  bloqueados: []
+
+# Plugins que nao podem ser desativados/recarregados por outro plugin (ex.: /plugman).
+plugin:
+  protegidos: []
+
+# Configuracoes do /kit.
+kits:
+  cooldown-padrao-segundos: 3600
+  # Adiciona uma lore aos itens do kit dizendo de quem e' o kit.
+  lore-ativado: false
+  lore:
+    - ""
+    - "&eKit de &a%player%"
+  # Custo do /kit padrao. Kits com custo proprio no arquivo do kit continuam usando o deles.
+  custo-padrao:
+    valor: 0.0
+    economia: ''
+
+# Comportamento do spawn ao entrar no servidor.
+spawn:
+  entrar-automaticamente-no-login: false
+  gamemode-ao-entrar: ""
+
+# Configuracoes do /randomtp - teleporte aleatorio dentro de um raio.
+randomtp:
+  raio-minimo: 100
+  raio-maximo: 5000
+  tentativas-maximas: 20
+  custo:
+    valor: 0.0
+    economia: ''
+
+# Custos do /reparar (bypass por permissao: staressentials.repair.hand.free,
+# .armor.free e .all.free).
+reparar:
+  mao:
+    valor: 0.0
+    economia: ''
+  armadura:
+    valor: 0.0
+    economia: ''
+  tudo:
+    valor: 0.0
+    economia: ''
+
+# Limite de vagas do servidor (kicka quem entrar depois do maximo, exceto
+# quem tiver bypass).
+vagas:
+  ativado: false
+  maximo: 100
+  mensagem-kick: "&cO servidor esta cheio! Tente novamente mais tarde."
+
+# Modo deus (/god) automatico pra quem tem a permissao "staressentials.god" ao entrar.
+god:
+  automatico-para-permissao: false
+
+vida:
+  # Define uma vida maxima padrao pra quem entra pela primeira vez (o /vida
+  # continua funcionando normal depois disso, isso so afeta o primeiro login).
+  ativado: false
+  padrao: 20.0
+  # Teto pro /vida - ninguem sem bypass consegue setar acima disso.
+  maximo: 20.0
+
+# Tags de prefixo/sufixo no tab-list, por permissao. O primeiro grupo (por
+# "prioridade", menor primeiro) que o jogador tiver a permissao correspondente
+# e' o que vale. So mexe no nome exibido no tab - o nick continua igual.
+tab-tags:
+  ativado: false
+  grupos:
+    dono:
+      prioridade: 1
+      permissao: "staressentials.tags.dono"
+      prefixo: "&4[Dono] &c"
+      sufixo: ""
+    membro:
+      prioridade: 99
+      permissao: "staressentials.tags.membro"
+      prefixo: "&7[Membro] &7"
+      sufixo: ""
+
+# O que acontece quando um jogador morre.
+morte:
+  dropar-cabeca: false
+  chance-dropar-cabeca: 100
+
+# Mensagens de broadcast pro servidor inteiro. Deixe "mensagem" vazia ("")
+# pra manter a mensagem padrao do proprio Minecraft sem mexer; preenchida,
+# ela substitui a padrao pela sua. "actionbar" vazio so nao manda nada.
+broadcasts:
+  morte:
+    # Placeholders: %jogador% (quem morreu), %matador% (quem matou, vazio se nao foi pvp), %arma% (item do matador)
+    mensagem: ""
+    actionbar: ""
+
+  # Mensagens de entrada por permissao, no lugar da mensagem padrao do
+  # Minecraft ("Fulano entrou no jogo"). Avaliadas na ordem (menor primeiro) -
+  # a primeira cujo jogador tenha a permissao (ou sem nenhuma) e' a que vale.
+  # "mensagem" vazia em um grupo mantem a mensagem padrao do Minecraft so pra
+  # quem cair nesse grupo.
+  entrada:
+    vip:
+      ordem: 1
+      permissao: "staressentials.tags.vip"
+      mensagem: "&8[&6+&8] &f%jogador% &7entrou no servidor."
+      actionbar: ""
+    padrao:
+      ordem: 100
+      permissao: ""
+      mensagem: "&8[&a+&8] &f%jogador% &7entrou no servidor."
+      actionbar: ""
+
+  saida:
+    vip:
+      ordem: 1
+      permissao: "staressentials.tags.vip"
+      mensagem: "&8[&6-&8] &f%jogador% &7saiu do servidor."
+      actionbar: ""
+    padrao:
+      ordem: 100
+      permissao: ""
+      mensagem: "&8[&c-&8] &f%jogador% &7saiu do servidor."
+      actionbar: ""
+
+# Protecoes de mundo/ambiente e restricoes diversas.
+restricoes:
+  bloquear-containers: false
+  containers-bloqueados: []
+  bloquear-shift-click-containers: false
+  bloquear-camas: false
+  bloquear-explosao-itens: false
+  bloquear-pular-plantacao: false
+  bloquear-criacao-portal: false
+  bloquear-teleporte-portal: false
+  mobs-imunes-fogo: false
+  protecao-void: false
+  y-limite-void: -64
+  itens-banidos: []
+  spawner-quebra-sem-silk-touch: false
+
+  # Deixar a bigorna sem desgaste (nunca fica danificada/quebra de usar)
+  bigorna-infinita: false
+  # Cancela a mudanca de tempo para chuva/trovoada em todos os mundos
+  desativar-chuva: false
+  # Impede gelo e neve de derreter
+  desativar-derretimento: false
+  # Impede blocos de areia/areia vermelha/cascalho de cair
+  desativar-queda-areia: false
+  # Impede a bigorna de cair quando sem apoio embaixo
+  desativar-queda-bigorna: false
+  # Impede folhas de decair/sumir naturalmente
+  desativar-queda-folha: false
+  # Impede o spawn natural de mobs (spawner e /summon continuam funcionando)
+  desativar-mobs-naturais: false
+  # Mundos onde "desativar-mobs-naturais" nao tem efeito
+  mobs-naturais-blacklist-mundos: []
+  # Se nao vazia, so mobs nessa lista podem nascer naturalmente (os demais sao bloqueados mesmo com desativar-mobs-naturais desligado)
+  mobs-naturais-whitelist: []
+  # Impede agua/lava de escorrer pelos blocos
+  desativar-escorrer: false
+  # Impede o fogo de se espalhar para blocos vizinhos
+  desativar-fogo-espalhar: false
+  # Trava o ciclo dia/noite (nao afeta /time set manual)
+  desativar-ciclo-dia: false
+  # Bloqueia o dano de contato com cactos
+  bloquear-dano-cactos: false
+  # Impede trocar o mob de um spawner usando ovo de spawn nele
+  bloquear-troca-spawner-ovo: false
+  # Bloqueia jogador invisivel (/vanish) de interagir com o mundo
+  bloquear-vanish-interagir: false
+  # Bloqueia jogador invisivel (/vanish) de pegar itens do chao
+  bloquear-vanish-pegar-item: false
+  # Mundos onde explosoes nao destroem blocos (o dano em jogadores/itens continua)
+  mundos-sem-explosao: []
+
+# Impede criar placas com palavras banidas (links, palavroes etc.).
+placas-bloqueadas:
+  ativado: true
+  palavras: []
+
+# Palavras e caracteres proibidos no /nick.
+nicks-bloqueados:
+  palavras: []
+  # Caracteres proibidos no /nick (cada um bloqueia o nick inteiro se aparecer)
+  caracteres: []
+
+# Bloco que lanca o jogador pra cima quando ele pisa nele, tipo uma cama elastica.
+jump-pad:
+  ativado: false
+  bloco: "SLIME_BLOCK"
+  multiplicador: 1.5
+  altura: 2.0
+  som: "ENTITY_FIREWORK_ROCKET_LAUNCH"
+  mundos-bloqueados: []
+
+# Clicar direito com uma sopa (ensopado de cogumelo) na mao cura vida e consome o item.
+sopa:
+  ativado: false
+  cura: 3.0
+  mundos: []
+
+# Configuracoes da bigorna.
+bigorna:
+  # Adiciona uma lore "Forjado por" quando o jogador renomeia um item na bigorna.
+  forjado-ativado: false
+  forjado-lore:
+    - ""
+    - "&bForjado por: &f%player%&b."
+  # Itens que nao podem ser usados (nem como base nem como material) na bigorna.
+  itens-bloqueados: []
+
+# Restringe o autocompletar de "/" (lista de comandos) a uma whitelist.
+# Nao afeta os argumentos de cada comando, so a lista de comandos em si.
+antitab:
+  ativado: false
+  permitidos: []
+
+enderpearl:
+  # Cooldown proprio pra jogar ender pearl, em segundos. 0 = desativado.
+  cooldown-segundos: 0
+
+# Destinos do /lobby, enviados via mensagem de plugin do BungeeCord/Velocity
+# (o jogador e transferido pra outro servidor da rede, nao e um warp local).
+lobby:
+  destinos: []

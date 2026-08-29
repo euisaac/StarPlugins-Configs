@@ -1,0 +1,138 @@
+# =========================================================
+#  StarEssentials - aliases de comando, bloqueio e anti-spam
+#  Utilize "comando|comando" para criar aliases, ex.: "gm|gamemode".
+#  A chave e o nome interno do comando (case-insensitive); o primeiro
+#  nome antes do "|" nao precisa repetir o nome interno.
+#  Deixe o valor em branco (ex.: "Kit: ''") para desativar o comando
+#  por completo - ele deixa de existir ate' o proximo /staressentials
+#  reload (ou reinicio do servidor).
+# =========================================================
+
+Commands:
+  Spawn: 'spawn'
+  Setspawn: 'setspawn|spawnsetar'
+  Delspawn: 'delspawn'
+  Loja: 'loja'
+  Setloja: 'setloja|lojasetar'
+  Delloja: 'delloja'
+  Warp: 'warp'
+  Warps: 'warps'
+  Setwarp: 'setwarp|setarwarp'
+  Delwarp: 'delwarp|deletarwarp'
+  Back: 'back'
+  Top: 'top'
+  Randomtp: 'randomtp|rtp'
+  Tpa: 'tpa'
+  Tpahere: 'tpahere'
+  Tpaccept: 'tpaccept|tpaaceitar|tpaceitar'
+  Tpdeny: 'tpdeny|tpcancel|tpnegar|tpcancelar|tpanegar'
+  Tptoggle: 'tptoggle'
+  Tp: 'tp'
+  Tphere: 'tphere'
+  Tpall: 'tpall'
+
+  Home: 'home'
+  Homes: 'homes'
+  Sethome: 'sethome'
+  Delhome: 'delhome'
+  Privada: 'privada|private'
+  Publica: 'publica|public'
+  Publicas: 'publicas|publics'
+  Darhome: 'darhome|givehome'
+
+  Hat: 'hat|chapeu'
+  Luz: 'luz|lanterna|lampada'
+  Cores: 'cores|cor'
+  Nick: 'nick|customnick|name|nome|apelido'
+  Comer: 'comer|feed|comida'
+  Voar: 'voar|fly'
+  Ping: 'ping|ms'
+  Lista: 'lista|list'
+  Online: 'online|on'
+  Near: 'near|perto'
+  Suicidio: 'suicidio|suicide'
+  Slime: 'slime|slimechunk|chunkslime'
+
+  Gamemode: 'gamemode|gm'
+  God: 'god|deus'
+  Vanish: 'vanish|v'
+  Menu: 'menu'
+  Curar: 'curar|heal'
+  Speed: 'speed|velocidade'
+  Vida: 'vida|health|life'
+  Freeze: 'freeze|congelar|frozen'
+  Sudo: 'sudo'
+  Thor: 'thor|smite'
+  Burn: 'burn|fogo'
+  Crash: 'crash|crashar'
+  Whois: 'whois'
+  Clear: 'clear|limpar'
+  Clearenderchest: 'clearenderchest|clearechest|clearec|limparechest|limparenderchest'
+  Echest: 'echest|enderchest|ec'
+  Invsee: 'invsee|openinv|abririnv|invabrir'
+  Editaritem: 'editaritem|edititem|itemedit|itemeditar'
+  Enchant: 'enchant|encantar'
+  Giveall: 'giveall|darall|dartodos'
+  Itemgive: 'itemgive|giveitem'
+  Iteminfo: 'iteminfo|infoitem'
+  Cabeca: 'cabeca|skull|head'
+  Potion: 'potion|pocao'
+  Stack: 'stack|stackpotions|pilha'
+  Spawner: 'spawner|spawners|mobspawner'
+
+  Kit: 'kit'
+  Kits: 'kits|listkits|kitlist'
+  Verkit: 'verkit|kitver'
+  Criarkit: 'criarkit|createkit|kitcriar|kitcreate'
+  Editarkit: 'editarkit|kitedit|editkit|kiteditar'
+  Delkit: 'delkit|kitdel|deletarkit|kitdeletar'
+  Tempokit: 'tempokit|kittime|kittempo|timekit'
+
+  Actionbar: 'actionbar|ab'
+  Alerta: 'alerta|alert'
+  Alertapv: 'alertapv|alertpv|alertadm|alertdm'
+  Clearchat: 'clearchat|limparchat'
+  Motd: 'motd'
+  Title: 'title|titulo'
+  Som: 'som|sound'
+  Divulgar: 'divulgar'
+
+  Anvil: 'anvil|bigorna'
+  Craft: 'craft|workbench|craftingtable'
+  Smithingtable: 'smithingtable|ferraria'
+  Stonecutter: 'stonecutter|cortador'
+  Cartography: 'cartography|cartografo'
+  Grindstone: 'grindstone|amolador'
+  Loom: 'loom'
+  Lixo: 'lixo|trash|lixeira|trashcan'
+  Compactar: 'compactar|compact'
+  Derreter: 'derreter|melt'
+  Reparar: 'reparar|repair|fix'
+  Selcor: 'selcor|selecionarcor|selectcolor|selectcor'
+
+  Sb: 'sb|scoreboard'
+
+  Whitelist: 'whitelist|wlist'
+
+  Servertime: 'servertime|horario|hora'
+  Lobby: 'lobby|hub'
+  Serverstatus: 'serverstatus'
+  Estatisticas: 'estatisticas'
+  Blockdebug: 'blockdebug'
+  Worldborderset: 'worldborderset'
+  Summon: 'summon|sumonar'
+  Plugin: 'plugin'
+  Staressentials: 'staressentials|se|sestar'
+
+comandos-bloqueados: []
+
+# Comandos com cooldown proprio, no formato "comando::segundos".
+# Ex.: "pl::5" faz o /plugin (e aliases dele nao contam, so o nome digitado)
+# só poder ser usado de novo depois de 5 segundos.
+# bypass: staressentials.comandodelay.bypass
+comandos-com-delay: []
+
+antispam:
+  ativado: true
+  mensagens-repetidas-permitidas: 2
+  segundos-entre-mensagens: 1

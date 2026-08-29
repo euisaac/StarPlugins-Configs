@@ -1,0 +1,61 @@
+# =========================================================
+#  StarEssentials - moedas disponiveis
+#
+#  Providers disponiveis:
+#
+#    stareconomia-<id>  - moeda do StarEconomia (ex: stareconomia-cash, stareconomia-money)
+#    vault              - economia registrada via Vault
+#    playerpoints       - PlayerPoints via comandos de console
+#
+#  Os custos de cada comando (kit, /back, /reparar, /randomtp etc.) ficam no
+#  config.yml, junto da propria funcao - aqui so ficam definidas as moedas
+#  que eles podem usar. "economia" vazia em um custo usa a moeda "padrao"
+#  abaixo.
+# =========================================================
+
+# Moeda padrao usada quando um custo do config.yml nao especifica uma.
+padrao: 'money'
+
+economies:
+
+  # -------------------------
+  #  StarEconomia
+  # -------------------------
+  cash:
+    # Provider no formato stareconomia-<id-da-moeda> | vault | playerpoints
+    provider: 'stareconomia-cash'
+    # Nome completo da moeda (exibido nas mensagens)
+    display: 'Cash'
+    # Nome abreviado (exibido em itens de menu e precos)
+    abbreviated: 'Cash'
+    # Permite transacoes com jogador offline (apenas informativo - depende do provider)
+    allow-offline: false
+    # Permissao para uso desta economia (reservado para uso futuro)
+    permission: 'staressentials.economia.cash'
+
+  money:
+    provider: 'stareconomia-money'
+    display: 'Coins'
+    abbreviated: 'Coin'
+    allow-offline: false
+    permission: 'staressentials.economia.money'
+
+  # -------------------------
+  #  Vault
+  # -------------------------
+  # vault_money:
+  #   provider: 'vault'
+  #   display: 'Dinheiro'
+  #   abbreviated: 'Din'
+  #   allow-offline: true
+  #   permission: 'staressentials.economia.vault'
+
+  # -------------------------
+  #  PlayerPoints
+  # -------------------------
+  # points:
+  #   provider: 'playerpoints'
+  #   display: 'Points'
+  #   abbreviated: 'Pts'
+  #   allow-offline: false
+  #   permission: 'staressentials.economia.points'

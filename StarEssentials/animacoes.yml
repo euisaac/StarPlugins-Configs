@@ -1,0 +1,72 @@
+# =========================================================
+#  StarEssentials - animacoes.yml
+#
+#  Textos que trocam sozinhos, para usar na scoreboard e na tablist.
+#  Use em qualquer linha com:  %animacao:nome%
+#
+#  Exemplo, dentro de scoreboard.linhas ou tablist.cabecalho/rodape:
+#    - '%animacao:StarPlugins%'
+#    - '&7Bem-vindo, %animacao:brilho%'
+#
+#  Como funciona cada animacao:
+#    intervalo: de quantos em quantos TICKS o texto troca (20 ticks = 1 segundo).
+#               Quanto menor, mais rapida a animacao.
+#    textos:    a lista de quadros, na ordem. Quando chega no fim, volta ao comeco.
+#
+#  ATENCAO a fluidez: a animacao so aparece tao rapido quanto a scoreboard/tablist
+#  se redesenham. Com o padrao de 1 segundo, uma animacao de poucos ticks vai
+#  parecer travada. Para animacao fluida, use "delay-ticks" em scoreboard.yml/tab.yml:
+#
+#    scoreboard:
+#      delay-ticks: 2     # redesenha a cada 2 ticks
+#    tablist:
+#      delay-ticks: 2
+#
+#  O nome da animacao nao diferencia maiusculas de minusculas:
+#  %animacao:StarPlugins% e %animacao:starplugins% dao no mesmo.
+# =========================================================
+
+animacoes:
+
+  # Nome brilhando, trocando de cor com sublinhado alternado.
+  StarPlugins:
+    intervalo: 6
+    textos:
+      - '&c&lStarPlugins'
+      - '&c&l&nStarPlugins'
+      - '&b&lStarPlugins'
+      - '&b&l&nStarPlugins'
+      - '&e&lStarPlugins'
+      - '&e&l&nStarPlugins'
+
+  # Efeito de "luz passando" por cima do texto, letra por letra.
+  brilho:
+    intervalo: 3
+    textos:
+      - '&f&lS&7&ltarPlugins'
+      - '&7&lS&f&lt&7&larPlugins'
+      - '&7&lSt&f&la&7&lrPlugins'
+      - '&7&lSta&f&lr&7&lPlugins'
+      - '&7&lStar&f&lP&7&llugins'
+      - '&7&lStarP&f&ll&7&lugins'
+      - '&7&lStarPl&f&lu&7&lgins'
+      - '&7&lStarPlu&f&lg&7&lins'
+      - '&7&lStarPlug&f&li&7&lns'
+      - '&7&lStarPlugi&f&ln&7&ls'
+      - '&7&lStarPlugin&f&ls'
+      - '&7&lStarPlugins'
+
+  # Aviso piscando, para chamar atencao em uma linha so.
+  loja:
+    intervalo: 10
+    textos:
+      - '&6&lLOJA &fstarplugins.com.br'
+      - '&e&lLOJA &fstarplugins.com.br'
+
+  # Pontinhos de "carregando", util ao lado de um status.
+  carregando:
+    intervalo: 8
+    textos:
+      - '&7.'
+      - '&7..'
+      - '&7...'

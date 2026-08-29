@@ -1,0 +1,46 @@
+# =========================================================
+#  StarEssentials - scoreboard
+#
+#  Podem existir varias scoreboards dentro de "grupos": cada uma com sua
+#  propria permissao e ordem. Ao atualizar a scoreboard de um jogador, o
+#  StarEssentials pega o grupo de MENOR "ordem" cuja permissao ele tenha
+#  (ou sem nenhuma permissao definida) - por isso o grupo "padrao" deve
+#  ficar com a maior ordem, servindo de fallback pra quem nao tem nenhuma
+#  permissao especial.
+#
+#  As linhas aceitam animacoes de texto (veja animacoes.yml) com
+#  %animacao:nome%, por exemplo "%animacao:StarPlugins%". A fluidez da
+#  animacao depende de quao rapido a scoreboard se redesenha - use
+#  "delay-ticks" abaixo para redesenhar mais rapido que 1 segundo.
+# =========================================================
+
+atualizar-a-cada: 20 # em ticks, usado quando delay-ticks nao estiver definido
+
+scoreboard:
+  ativado: true
+  # delay-ticks: 2 # descomente para redesenhar mais rapido (necessario p/ animacoes fluidas)
+
+  grupos:
+    vip:
+      ordem: 10
+      permissao: "staressentials.scoreboard.vip"
+      titulo: "&8&l» &6&lVIP &8&l«"
+      linhas:
+        - "&7"
+        - "&fJogador: &b%player_name%"
+        - "&fOnline: &b%online%"
+        - "&7 "
+        - "&6Obrigado por apoiar o servidor!"
+        - "&7 "
+        - "&astarplugins.com.br"
+
+    padrao:
+      ordem: 100
+      permissao: ""
+      titulo: "&8&l» &b&lStarEssentials &8&l«"
+      linhas:
+        - "&7"
+        - "&fJogador: &b%player_name%"
+        - "&fOnline: &b%online%"
+        - "&7 "
+        - "&astarplugins.com.br"

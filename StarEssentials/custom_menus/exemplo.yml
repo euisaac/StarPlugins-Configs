@@ -1,0 +1,28 @@
+# =========================================================
+#  StarEssentials - menu customizavel (/menu exemplo)
+#  Cada arquivo dentro de custom_menus/ vira um menu acessivel por
+#  /menu <nome-do-arquivo-sem-extensao>. Adicione quantos quiser.
+#
+#  Os comandos de cada item podem comecar com:
+#    [player]  - executado como o proprio jogador que clicou
+#    [console] - executado pelo console (permite dar itens, dinheiro etc.)
+#  Sem prefixo, o comando e executado pelo console por padrao.
+# =========================================================
+
+titulo: '&8&lMenu de exemplo'
+linhas: 3
+permissao: ''
+
+itens:
+  '13':
+    material: DIAMOND
+    quantidade: 1
+    nome: '&bClique aqui'
+    lore:
+      - '&7Este e um item de exemplo.'
+      - '&7Edite ou crie novos arquivos'
+      - '&7dentro de custom_menus/.'
+    comandos:
+      - '[player] say Ola, eu cliquei no menu de exemplo!'
+    fechar-ao-clicar: true
+    permissao: ''

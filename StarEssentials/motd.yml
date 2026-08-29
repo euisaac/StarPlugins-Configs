@@ -1,0 +1,57 @@
+# =========================================================
+#  StarEssentials - MOTD (a mensagem da lista de servidores)
+#
+#  Variaveis disponiveis em qualquer linha:
+#    %online%     jogadores online agora
+#    %maximo%     limite de vagas mostrado na lista
+#    %versao%     versao do servidor
+#    %jogador%    nome de quem ja entrou daquele IP antes
+#                 (vira "jogador" quando ninguem entrou ainda)
+#
+#  Cores hex/RGB (ex.: &#38bdf8) funcionam a partir da 1.16; em versoes
+#  antigas o codigo hex e simplesmente ignorado.
+#
+#  Se o PlaceholderAPI estiver instalado, qualquer placeholder dele tambem
+#  funciona aqui (ex.: %luckperms_prefix%) - mas so quando ja se sabe quem
+#  esta pingando (ou seja, so depois que %jogador% deixa de ser "jogador").
+# =========================================================
+
+Motd:
+  Ativo: true
+
+  # A lista de servidores mostra no maximo 2 linhas. Se voce escrever mais,
+  # apenas as duas primeiras aparecem.
+  Linhas:
+    - '&b&lStarEssentials'
+    - '&7Compre plugins em &bstarplugins.com.br'
+
+  # Varios MOTDs em rodizio. Com "Aleatorio: true" um deles e sorteado a cada
+  # ping; com false eles se alternam em ordem. A lista acima e usada quando
+  # "Rodizio" esta vazio.
+  Rodizio: []
+  Aleatorio: true
+
+  Jogadores:
+    # Limite mostrado na lista. 0 = usar o do proprio servidor.
+    Maximo: 0
+    # Mostra sempre uma vaga a mais que o numero de online, para o servidor
+    # nunca aparecer como cheio na lista.
+    Sempre uma vaga: false
+    # Texto que aparece ao passar o mouse na contagem de jogadores.
+    # Deixe a lista vazia para manter os nomes reais dos online.
+    Hover:
+      - '&7Servidor com &a%online%&7 jogador(es) online'
+      - '&7Compre plugins em &fstarplugins.com.br'
+
+Manutencao:
+  Ativo: false
+  Linhas:
+    - '&c&lEM MANUTENCAO'
+    - '&7Ja ja estamos de volta!'
+  # Quem tiver essa permissao entra mesmo em manutencao.
+  Permissao: 'staressentials.manutencao.entrar'
+  Mensagem kick: '&c&lEM MANUTENCAO\n&7Volte daqui a pouco.'
+  # Contagem de vagas exibida enquanto a manutencao esta ligada.
+  # -1 = nao mexer no numero.
+  Online: 0
+  Maximo: 0
