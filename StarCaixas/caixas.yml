@@ -20,6 +20,20 @@
 #  ---- COMANDOS ----
 #  Rodam pelo console. Variaveis: {jogador} {caixa} {premio}
 #
+#  ---- EFEITO ----
+#  Particulas em volta do bloco. Formato aceita:
+#    NENHUM  ANEL  HELICE  ESPIRAL  NUVEM
+#    ESTRELA (estrela de cinco pontas)   CUBO (as arestas de um cubo)
+#    ONDAS   (aneis abrindo para fora)   VORTICE (funil de ponta-cabeca)
+#    FONTE   (jatos que sobem e caem)
+#
+#  ---- VITRINE ----
+#  Os proprios itens da caixa flutuando em volta dela. Modo aceita:
+#    NENHUM  ORBITA (giram em volta)  TOPO (um de cada vez acima)
+#    COLUNA  (empilhados acima dela)
+#  Cada item mostrado e uma ENTIDADE viva, nao uma particula: o teto e 12 por
+#  caixa, e a vitrine so existe enquanto tem gente por perto.
+#
 #  Para colocar uma caixa no mundo: /starcaixas bloco definir <caixa>
 #  mirando no bloco, ou coloque a caixa fisica no chao com permissao de admin.
 # ==========================================================================
@@ -72,8 +86,8 @@ Caixas:
       # -1 deixa o plugin escolher o lugar.
       Slot: 11
 
-    # Particulas em volta do bloco no mundo.
-    # Formato: NENHUM, ANEL, HELICE, ESPIRAL ou NUVEM.
+    # Particulas em volta do bloco no mundo. Os dez formatos estao listados
+    # no cabecalho deste arquivo.
     Efeito:
       Formato: ANEL
       Particula: VILLAGER_HAPPY
@@ -170,6 +184,18 @@ Caixas:
       Linhas:
         - '&b&lCAIXA RARA'
         - '&7{recompensas} recompensas'
+
+    # Os itens da caixa girando em volta dela.
+    Vitrine:
+      Modo: ORBITA
+      # Vazio mostra todas as raridades.
+      Raridades: []
+      Maximo: 5
+      Raio: 1.5
+      Altura: 1.3
+      Velocidade: 0.06
+      Mostrar nome: false
+      Nome: '&f{premio}'
 
     # Metas por numero de aberturas desta caixa.
     Marcos:
@@ -370,6 +396,18 @@ Caixas:
         - '&6&lCAIXA LENDARIA'
         - '&5Buraco negro'
         - '&7Maior abridor: &f{top1} &7({top1_aberturas})'
+
+    # Um item de cada vez acima da caixa, com o nome dele, mostrando so o que
+    # ela tem de melhor.
+    Vitrine:
+      Modo: TOPO
+      Raridades: [ 'epico', 'lendario' ]
+      Maximo: 6
+      Altura: 2.0
+      Velocidade: 0.06
+      Mostrar nome: true
+      Nome: '&6{premio}'
+      Trocar a cada: 4s
 
     Marcos:
       primeira:

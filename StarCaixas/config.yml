@@ -123,6 +123,23 @@ Hologramas:
       - ' '
       - '&8&m                              '
 
+# Acrescenta uma lore identificando o dono nos itens entregues pela caixa.
+#
+# Vale so para os itens que a propria recompensa entrega. Recompensa que roda
+# comando (dinheiro, vip, cargo) nao passa por aqui -- o item dela, quando
+# existe, nasce do outro plugin.
+Lore do dono:
+  Ativar: false
+  # Variaveis: {player} {jogador} {caixa} {data}
+  Lore:
+    - ''
+    - '&f Kit de &b{player}'
+    - ''
+  # Materiais que nunca recebem essa lore. Vale para recipiente e bloco que o
+  # jogador vai colocar no mundo: alem de ficar feio, a lore separa a pilha --
+  # dois baus assinados por donos diferentes nao empilham.
+  Materiais ignorados: [ 'CHEST', 'HOPPER', 'BELL', 'COMMAND_BLOCK', 'TNT', 'PAPER' ]
+
 Sons:
   # Formato: SOM;volume;tom. Deixe vazio para nao tocar nada.
   Clique: 'UI_BUTTON_CLICK;1;1'

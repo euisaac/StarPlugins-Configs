@@ -6,18 +6,27 @@
 #  trocar o id (a linha antes dos dois pontos) e apontar a caixa para ele no
 #  caixas.yml (Animacao: <id>).
 #
-#  Tipos disponiveis:
+#  Tipos disponiveis -- no INVENTARIO:
 #    RAPIDA       - sem animacao, o premio cai direto no inventario
 #    ROLETA       - fileira de itens correndo, freando ate parar
 #    CASCATA      - as nove colunas caem e travam de fora para dentro
 #    RODA         - os itens giram pela borda e a casa de cima aponta
 #    CACA_NIQUEL  - tres colunas girando e parando uma depois da outra
 #    PIRAMIDE     - cinco degraus congelando de baixo para cima
-#    CARROSSEL    - itens girando em volta do jogador (no mundo)
-#    EXPLOSAO     - a caixa estoura e os premios voam (no mundo)
-#    FOGOS        - roda de fogos de artificio (no mundo)
-#    TORNADO      - funil de particulas subindo (no mundo)
-#    BURACO_NEGRO - engole tudo em volta e puxa os jogadores (no mundo)
+#    CORTINA      - uma cortina que abre do meio para os lados
+#    CARTAS       - nove cartas desviradas uma a uma; a ultima e o premio
+#    ONDA         - os itens ficam parados e a marca corre por cima deles
+#
+#  Tipos disponiveis -- no MUNDO:
+#    CARROSSEL    - itens girando em volta do jogador
+#    EXPLOSAO     - a caixa estoura e os premios voam
+#    FOGOS        - roda de fogos de artificio
+#    TORNADO      - funil de particulas subindo
+#    RAIO         - raios caem em volta ate o ultimo revelar o premio
+#    PORTAL       - um portal se abre de pe e o premio sai de dentro
+#    VULCAO       - a caixa entra em erupcao e cospe os premios
+#    CHUVA        - os premios caem do ceu em volta da caixa
+#    BURACO_NEGRO - engole tudo em volta e puxa os jogadores
 #
 #  As de mundo acontecem na frente de todo mundo, em volta da caixa; as de
 #  menu acontecem dentro de um inventario aberto so para quem abriu.
@@ -214,6 +223,161 @@ Animacoes:
 
     Som:
       Vento: 'ENTITY_ENDER_DRAGON_FLAP;0.6;1.4'
+      Revelacao: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+
+  # --------------------------------------------------------------- CORTINA
+  cortina:
+    Tipo: CORTINA
+    Duracao: 6s
+    Titulo: '&c&lABRINDO A CORTINA<nl>&7{caixa}'
+    Titulo do premio: '&c&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo do menu: '&8{caixa}'
+
+    # O vidro que forma a cortina fechada.
+    Cortina: RED_STAINED_GLASS_PANE
+    Nome da cortina: '&c'
+
+    Som:
+      Abertura: 'BLOCK_WOOL_BREAK;1;1.2'
+      Fim: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ---------------------------------------------------------------- CARTAS
+  cartas:
+    Tipo: CARTAS
+    Duracao: 7s
+    Titulo: '&9&lESCOLHA A SORTE<nl>&7{caixa}'
+    Titulo do premio: '&9&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo do menu: '&8{caixa}'
+    Fundo: BLUE_STAINED_GLASS_PANE
+
+    # O item que representa a carta virada para baixo.
+    Verso: MAP
+    Nome do verso: '&8&lCARTA'
+
+    Som:
+      Virada: 'ITEM_BOOK_PAGE_TURN;1;1.2'
+      Premio: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+      Fim: ''
+
+  # ------------------------------------------------------------------ ONDA
+  onda:
+    Tipo: ONDA
+    Duracao: 6s
+    Titulo: '&e&lQUAL VAI SER?<nl>&7{caixa}'
+    Titulo do premio: '&e&lVOCE GANHOU!<nl>&f{premio}'
+    Titulo do menu: '&8{caixa}'
+    Fundo: BLACK_STAINED_GLASS_PANE
+
+    # A marca que corre por cima da fileira.
+    Marca: YELLOW_STAINED_GLASS_PANE
+    Nome da marca: '&e&l>>'
+
+    # Quantas vezes a marca da a volta na fileira.
+    Voltas: 4
+
+    Som:
+      Passo: 'UI_BUTTON_CLICK;0.6;1.6'
+      Fim: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ------------------------------------------------------------------ RAIO
+  #
+  #  Nao existe raio de verdade aqui: o risco e particula e o trovao e som.
+  #  Raio de verdade poria fogo na grama e mataria quem estivesse por perto,
+  #  e caixa costuma ficar em spawn cheio de gente.
+  #
+  raio:
+    Tipo: RAIO
+    Duracao: 8s
+    Titulo: '&8&lTEMPESTADE<nl>&7{caixa}'
+    Titulo do premio: '&8&lVOCE GANHOU!<nl>&f{premio}'
+
+    # Ate onde caem os primeiros raios; eles vao se aproximando sozinhos.
+    Raio: 4.0
+    # Altura da nuvem.
+    Altura: 8.0
+
+    # De quantos em quantos tiques cai um raio.
+    Intervalo dos raios: 14
+    # Quantas particulas formam o risco de cada raio.
+    Densidade do raio: 24
+
+    Particula da nuvem: SMOKE_LARGE
+    Particula do raio: FIREWORKS_SPARK
+    Particula do fim: FIREWORKS_SPARK
+    Fogos: true
+    Linha do premio: '&f{premio}'
+
+    Som:
+      Trovao: 'ENTITY_LIGHTNING_BOLT_THUNDER;0.7;1.4'
+      Raio final: 'ENTITY_LIGHTNING_BOLT_THUNDER;1;0.8'
+
+  # ---------------------------------------------------------------- PORTAL
+  portal:
+    Tipo: PORTAL
+    Duracao: 7s
+    Titulo: '&5&lPORTAL<nl>&7{caixa}'
+    Titulo do premio: '&5&lVOCE GANHOU!<nl>&f{premio}'
+
+    # O anel nasce virado para quem abriu a caixa.
+    Raio: 1.6
+    Altura: 1.6
+    Velocidade: 0.15
+    Pontos do anel: 40
+
+    Particula do anel: PORTAL
+    Rastro: PORTAL
+    Fogos: false
+    Linha do premio: '&f{premio}'
+
+    Som:
+      Portal: 'BLOCK_PORTAL_AMBIENT;0.6;1.2'
+      Saida: 'ENTITY_ENDERMAN_TELEPORT;1;0.8'
+      Revelacao: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ---------------------------------------------------------------- VULCAO
+  vulcao:
+    Tipo: VULCAO
+    Duracao: 8s
+    Titulo: '&6&lERUPCAO<nl>&7{caixa}'
+    Titulo do premio: '&6&lVOCE GANHOU!<nl>&f{premio}'
+
+    # Ate onde os premios voam, e a que altura eles chegam.
+    Alcance: 2.4
+    Altura: 3.5
+    Velocidade: 0.02
+    Itens: 8
+
+    Particula da boca: LAVA
+    Rastro: FLAME
+    Particula do fim: FLAME
+    Fogos: true
+    Linha do premio: '&f{premio}'
+
+    Som:
+      Erupcao: 'ENTITY_GENERIC_EXTINGUISH_FIRE;0.7;0.6'
+      Revelacao: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  # ----------------------------------------------------------------- CHUVA
+  chuva:
+    Tipo: CHUVA
+    Duracao: 8s
+    Titulo: '&b&lCHUVA DE PREMIOS<nl>&7{caixa}'
+    Titulo do premio: '&b&lVOCE GANHOU!<nl>&f{premio}'
+
+    # De que altura os premios caem, e em que raio em volta da caixa.
+    Raio: 2.5
+    Altura: 5.0
+    Velocidade: 0.03
+    Itens: 8
+
+    Particula do impacto: CLOUD
+    Particula do fim: CLOUD
+    Fogos: true
+    Linha do premio: '&f{premio}'
+
+    Som:
+      Gota: 'BLOCK_NOTE_BLOCK_HAT;0.5;1.6'
       Revelacao: 'ENTITY_PLAYER_LEVELUP;1;1.4'
 
   # ---------------------------------------------------------- BURACO NEGRO
