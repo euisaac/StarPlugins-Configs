@@ -1,0 +1,166 @@
+# ---------------------------------------------------------------------------
+#  StarTutorial - configuracao geral
+#
+#  Os arquivos de conteudo ficam separados:
+#    tutoriais.yml  os tutoriais, os passos, os efeitos e a camera
+#    menus.yml      titulos, slots e itens das telas do jogador
+#    mensagens.yml  tudo que o jogador le
+#    comandos.yml   os nomes dos comandos e subcomandos
+#
+#  Quase tudo daqui tambem pode ser feito dentro do jogo:
+#    /startutorial editor
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+  # O /tutorial nao funciona nestes mundos.
+  Mundos bloqueados: []
+
+  # Segundos que o editor espera por uma resposta digitada no chat.
+  Tempo para responder: 60
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/startutorial.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: startutorial_
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Tutorial:
+  # Manda o novato para o tutorial obrigatorio na primeira vez que ele entra.
+  # Quem tem startutorial.ignorar nunca e mandado.
+  Forcar na primeira entrada: true
+
+  # Segundos de espera antes de o tutorial comecar sozinho. Existe para os
+  # outros plugins de entrada agirem primeiro: um spawn na entrada que rodasse
+  # depois arrancaria o jogador do primeiro passo.
+  Atraso da entrada: 3
+
+  # Espera o jogador digitar a senha antes de comecar (AuthMe, nLogin).
+  # Ligue se voce usa plugin de login: sem isto o novato e teleportado para o
+  # tutorial ainda preso na tela de senha.
+  Esperar login: false
+  # Segundos maximos de espera pela senha; passou disso, o tutorial nao comeca.
+  Tempo maximo de login: 120
+
+  # Quem cai a conexao no meio volta de onde parou na proxima entrada.
+  Continuar de onde parou: true
+
+  # No fim (e na saida) o jogador volta para o lugar onde estava.
+  # Se o tutorial tiver um local de saida proprio, ele vence esta opcao.
+  Voltar ao lugar de origem: true
+
+  # Modo de jogo durante o tutorial. Deixe vazio ('') para manter o do jogador.
+  Modo de jogo: 'ADVENTURE'
+
+  # Guarda o inventario na entrada e devolve na saida, deixando o jogador de
+  # maos vazias durante o tutorial. Serve aos passos que dao itens de exemplo.
+  Guardar inventario: false
+
+  # Segundos de espera entre um tutorial e o proximo; 0 libera na hora.
+  Espera entre tutoriais: 0
+
+# O que o jogador NAO pode fazer enquanto esta no tutorial.
+# O avanco do passo vem antes do bloqueio: um passo que pede "quebre um bloco"
+# deixa aquele bloco ser quebrado mesmo com o bloqueio ligado.
+Bloqueios:
+  Dano: true
+  Fome: true
+  # Ele nao recebe as mensagens dos outros jogadores.
+  Chat dos outros: true
+  # Ele nao consegue falar no chat.
+  Falar no chat: true
+  Comandos: true
+  # Os que continuam funcionando mesmo com o bloqueio acima ligado.
+  # Quem tem startutorial.admin passa por todos.
+  Comandos liberados:
+    - 'tutorial'
+    - 'tuto'
+    - 'startutorial'
+    - 'login'
+    - 'l'
+    - 'register'
+    - 'reg'
+  Quebrar blocos: true
+  Colocar blocos: true
+  # Desligado de fabrica: muito passo usa placa, bau e alavanca de cenario.
+  Interagir: false
+  Soltar itens: true
+  Pegar itens: true
+  Mexer no inventario: true
+
+# A barra de boss com o andamento. So aparece na 1.9 em diante; na 1.8 o
+# produto simplesmente nao mostra barra nenhuma.
+Barra:
+  Ativar: true
+  Texto: '&e{titulo} &8| &7passo &f{passo}&7/&f{passos}'
+  # BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+  Cor: YELLOW
+  # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+  Estilo: SOLID
+  # TEMPO  -> a barra esvazia junto com o tempo do passo
+  # PASSOS -> a barra enche conforme os passos vao sendo cumpridos
+  Progresso: TEMPO
+
+# Tempos do titulo na tela, em tiques (20 tiques = 1 segundo).
+Titulo:
+  Aparecer: 10
+  Permanecer: 60
+  Sumir: 10
+
+# Formato: SOM, SOM;volume ou SOM;volume;tom.
+# Nome que nao existe na versao do servidor simplesmente nao toca.
+Sons:
+  Passo: 'ORB_PICKUP'
+  Concluir: 'LEVEL_UP'
+  Sair: 'ITEM_BREAK'
+  Erro: 'VILLAGER_NO'
+  Clique: 'CLICK'
+  Sucesso: 'LEVEL_UP'
+  Pagina: 'CLICK'
+
+# Usada so pela recompensa em dinheiro.
+Economia:
+  # VAULT   -> fala com qualquer economia registrada no Vault
+  # COMANDO -> para as economias que nao se registram no Vault; o pagamento
+  #            sai pelo comando abaixo, rodado no console
+  Tipo: VAULT
+  Simbolo: '$'
+  # So no modo COMANDO: como o produto le o saldo do jogador.
+  Placeholder de saldo: ''
+  # So no modo COMANDO. {jogador} e o nick, {valor} e a quantia.
+  Comando de depositar: 'eco give {jogador} {valor}'
+  Comando de retirar: 'eco take {jogador} {valor}'
+
+# O boneco que abre o tutorial. Com o Citizens instalado ele vira um NPC de
+# verdade, com skin de jogador; sem o Citizens, o produto cria uma entidade
+# comum parada e invulneravel. Marque o lugar com /startutorial setnpc.
+NPC:
+  Ativar: false
+  Usar Citizens: true
+  Nome: '&a&lTutorial'
+  # So com o Citizens: o nick de quem empresta a skin.
+  Skin: ''
+  # So sem o Citizens: que criatura o boneco e.
+  Tipo: VILLAGER
+  Profissao: LIBRARIAN
+  Bebe: false
+  # Id do tutorial que o clique comeca. Vazio abre o menu com a lista.
+  Tutorial: ''
+  # Tiques entre as conferidas que trazem o boneco de volta se ele sumir.
+  Vigiar a cada: 200
+  Holograma:
+    Ativar: true
+    Altura: 2.3
+    Linhas:
+      - '&a&lTUTORIAL'
+      - '&fConheca o servidor em poucos minutos!'
+      - '&7(clique com o botao direito)'

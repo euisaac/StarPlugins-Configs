@@ -1,0 +1,243 @@
+# ---------------------------------------------------------------------------
+#  StarTutorial - os tutoriais e os passos
+#
+#  Este arquivo e SEU. O produto nunca repoe o que voce apagar daqui, e o
+#  editor do jogo (/startutorial editor) escreve exatamente neste formato --
+#  entao da para trabalhar pelos dois lados sem medo.
+#
+#  A chave de cada passo e o numero da ordem. Reordenar pelo editor reescreve
+#  a numeracao inteira; se voce mexer na mao, deixe os numeros em sequencia.
+#
+#  Marcadores aceitos em qualquer texto:
+#    {jogador}  o nick        {tutorial}  o nome do tutorial
+#    {titulo}   o titulo do passo         {passo} / {passos}
+#    {restante} segundos que faltam       {online} jogadores online
+#  Placeholders do PlaceholderAPI tambem funcionam.
+#
+#  No titulo, <nl> separa o titulo do subtitulo.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Tutoriais:
+
+  padrao:
+    Nome: '&a&lTutorial do servidor'
+    Icone: BOOK
+    Descricao:
+      - '&7Conheca o servidor em poucos minutos.'
+      - '&7Voce ganha um premio ao terminar.'
+    # Vazia libera para todos. Quem tem startutorial.tutorial.padrao entra sempre.
+    Permissao: ''
+    # Este e o tutorial que o novato faz sozinho na primeira entrada.
+    Obrigatorio: true
+    Repetir: true
+    Ordem: 1
+    # Para onde ele vai ao terminar. Vazio devolve ao lugar de origem.
+    # Formato: mundo;x;y;z;yaw;pitch (marque pelo editor, e mais facil).
+    Saida: ''
+
+    Recompensa:
+      Ativar: true
+      So na primeira vez: true
+      Dinheiro: 5000.0
+      Experiencia: 0
+      Comandos:
+        - 'give {jogador} bread 16'
+      Mensagens:
+        Title:
+          Ativar: true
+          Msg: '&a&lTUTORIAL CONCLUIDO<nl>&7Obrigado por conhecer o servidor!'
+        Actionbar:
+          Ativar: true
+          Msg: '&aVoce recebeu a sua recompensa!'
+        Chat:
+          Ativar: true
+          Msg:
+            - ''
+            - '&a&lPARABENS! &7Voce terminou o tutorial.'
+            - '&7Como agradecimento, voce recebeu &f$5.000 &7e um pouco de comida.'
+            - '&7Bom jogo, &f{jogador}&7!'
+            - ''
+
+    Passos:
+
+      1:
+        Titulo: 'Boas-vindas'
+        Icone: PAPER
+        # Vazio nao teleporta: o passo acontece onde o jogador estiver.
+        Local: ''
+        Tempo: 8
+        # TEMPO, CLIQUE, AGACHAR, CHEGAR, COMANDO, CHAT, QUEBRAR, COLOCAR,
+        # MATAR, PEGAR_ITEM
+        Avancar: TEMPO
+        Argumento: ''
+        Raio: 3.0
+        Pode pular: true
+        Som: 'ORB_PICKUP'
+        Mensagens:
+          Title:
+            Ativar: true
+            Msg: '&aOla, &f{jogador}&a!<nl>&7Confira o chat.'
+          Actionbar:
+            Ativar: true
+            Msg: '&7Passo &f{passo}&7/&f{passos} &8| &7{restante}s'
+          Chat:
+            Ativar: true
+            Msg:
+              - ''
+              - '&a&lBEM-VINDO! &7Este tutorial dura menos de um minuto.'
+              - '&7Fique parado: eu levo voce pelos lugares importantes.'
+              - '&7Se quiser sair a qualquer momento, digite &f/tutorial sair&7.'
+              - ''
+        Comandos:
+          Ao entrar: []
+          Ao sair: []
+        Efeitos:
+          Congelar: true
+          Voar: false
+          Esconder jogadores: true
+          Invisivel: false
+          Limpar chat: true
+          Escurecer: true
+          Escurecer segundos: 1
+          # De 0 a 1; negativo mantem a do jogador.
+          Velocidade: -1.0
+          # 0 a 24000; negativo usa a hora do mundo.
+          Hora: -1
+          # CLEAR ou DOWNFALL; vazio usa o clima do mundo.
+          Clima: ''
+          # Formato: TIPO;nivel;segundos
+          Pocoes: []
+          Particulas:
+            Ativar: false
+            Tipo: 'FLAME'
+            Quantidade: 15
+            Raio: 1.5
+          Camera:
+            # NENHUM, TRAVELLING, ORBITA, OLHAR, SUBIR
+            Modo: NENHUM
+            # Pontos do TRAVELLING, na ordem. Marque pelo editor.
+            Pontos: []
+            # Ponto olhado pela ORBITA e pelo OLHAR.
+            Alvo: ''
+            # Segundos do movimento; 0 usa o tempo do passo.
+            Duracao: 0
+            Raio: 6.0
+            Altura: 3.0
+            Voltas: 1.0
+            Suave: true
+            Voltar ao fim: false
+
+      2:
+        Titulo: 'O spawn'
+        Icone: BEACON
+        Local: ''
+        Tempo: 10
+        Avancar: TEMPO
+        Argumento: ''
+        Raio: 3.0
+        Pode pular: true
+        Som: 'ORB_PICKUP'
+        Mensagens:
+          Title:
+            Ativar: true
+            Msg: '&e&lO SPAWN<nl>&7O coracao do servidor'
+          Actionbar:
+            Ativar: true
+            Msg: '&7Passo &f{passo}&7/&f{passos} &8| &7{restante}s'
+          Chat:
+            Ativar: true
+            Msg:
+              - ''
+              - '&e&lSPAWN &8- &7e para ca que voce volta com &f/spawn&7.'
+              - '&7Aqui ficam as lojas, os avisos e o portal dos modos de jogo.'
+              - ''
+        Comandos:
+          Ao entrar: []
+          Ao sair: []
+        Efeitos:
+          Congelar: true
+          Voar: false
+          Esconder jogadores: true
+          Invisivel: false
+          Limpar chat: false
+          Escurecer: false
+          Escurecer segundos: 1
+          Velocidade: -1.0
+          Hora: 6000
+          Clima: 'CLEAR'
+          Pocoes: []
+          Particulas:
+            Ativar: false
+            Tipo: 'FLAME'
+            Quantidade: 15
+            Raio: 1.5
+          Camera:
+            # Marque dois ou mais pontos pelo editor e a camera voa por eles.
+            Modo: NENHUM
+            Pontos: []
+            Alvo: ''
+            Duracao: 0
+            Raio: 6.0
+            Altura: 3.0
+            Voltas: 1.0
+            Suave: true
+            Voltar ao fim: false
+
+      3:
+        Titulo: 'Agora e com voce'
+        Icone: DIAMOND
+        Local: ''
+        Tempo: 30
+        # Este passo so termina quando o jogador digitar o comando pedido --
+        # e o jeito de ensinar um comando fazendo, em vez de so mostrando.
+        Avancar: COMANDO
+        Argumento: '/spawn'
+        Raio: 3.0
+        Pode pular: true
+        Som: 'ORB_PICKUP'
+        Mensagens:
+          Title:
+            Ativar: true
+            Msg: '&b&lSUA VEZ<nl>&7Digite &f/spawn'
+          Actionbar:
+            Ativar: true
+            Msg: '&7Digite &f/spawn &7para continuar'
+          Chat:
+            Ativar: true
+            Msg:
+              - ''
+              - '&b&lEXPERIMENTE! &7Digite &f/spawn &7no chat para continuar.'
+              - '&7Este e o comando que traz voce de volta ao spawn a qualquer hora.'
+              - ''
+        Comandos:
+          Ao entrar: []
+          Ao sair: []
+        Efeitos:
+          # Solto: ele precisa poder digitar e olhar em volta.
+          Congelar: false
+          Voar: false
+          Esconder jogadores: false
+          Invisivel: false
+          Limpar chat: false
+          Escurecer: false
+          Escurecer segundos: 1
+          Velocidade: -1.0
+          Hora: -1
+          Clima: ''
+          Pocoes: []
+          Particulas:
+            Ativar: true
+            Tipo: 'VILLAGER_HAPPY'
+            Quantidade: 12
+            Raio: 1.2
+          Camera:
+            Modo: NENHUM
+            Pontos: []
+            Alvo: ''
+            Duracao: 0
+            Raio: 6.0
+            Altura: 3.0
+            Voltas: 1.0
+            Suave: true
+            Voltar ao fim: false

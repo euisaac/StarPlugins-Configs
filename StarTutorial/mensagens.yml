@@ -1,0 +1,139 @@
+# ---------------------------------------------------------------------------
+#  StarTutorial - tudo que o jogador le
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao separada para ele.
+#
+#  O prefixo entra em toda mensagem simples. As listas (Ajuda, Admin.Ajuda,
+#  Admin.Ver, Admin.Info) saem sem prefixo, uma linha por vez.
+#
+#  As mensagens dos passos e das recompensas NAO ficam aqui -- elas sao de
+#  cada tutorial e moram no tutoriais.yml (ou no editor do jogo).
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Prefixo: '&a&lTUTORIAL &8» &r'
+
+Geral:
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Jogador desconhecido: '&cNunca vi o jogador &f{jogador} &caqui.'
+  Carregando: '&cOs seus dados ainda estao chegando. Tente de novo em instantes.'
+  # Serve para toda pergunta feita no chat pelo editor.
+  Palavra de cancelar: 'cancelar'
+  # Digitada numa pergunta, apaga o valor em vez de trocar.
+  Palavra de apagar: 'apagar'
+  Cancelado: '&7Voce cancelou.'
+
+Menu:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ja concluido: '&aJa concluido'
+  Ainda nao concluido: '&7Ainda nao feito'
+
+Tutorial:
+  Comecou: '&7Comecando &f{tutorial}&7. Sao &f{passos} &7passos -- fique tranquilo.'
+  Concluiu: '&aVoce terminou &f{tutorial} &aem &f{tempo}s&a!'
+  Saiu: '&7Voce saiu do tutorial.'
+  Tirado por admin: '&7Um administrador tirou voce do tutorial.'
+  Pulou: '&7Passo &f{passo} &7pulado.'
+  Nao pode pular: '&cEste passo nao pode ser pulado.'
+  Nao esta dentro: '&cVoce nao esta em nenhum tutorial.'
+  Ja esta dentro: '&cVoce ja esta num tutorial. Use &f/tutorial sair&c antes.'
+  Nao existe: '&cNao existe nenhum tutorial com o id &f{id}&c.'
+  Sem acesso: '&cVoce nao tem acesso ao tutorial {tutorial}&c.'
+  Sem passos: '&cEste tutorial ainda nao tem nenhum passo.'
+  Nao repete: '&cVoce ja concluiu {tutorial}&c e ele nao pode ser refeito.'
+  Nenhum disponivel: '&cNao ha nenhum tutorial disponivel para voce.'
+  Espere: '&cEspere &f{segundos}s &cpara entrar em outro tutorial.'
+  Mundo bloqueado: '&cO tutorial nao pode ser feito neste mundo.'
+
+Bloqueio:
+  Chat: '&cVoce nao pode falar no chat durante o tutorial.'
+  Comando: '&cComandos estao bloqueados no tutorial. Use &f{comando}&c para sair.'
+  Mundo: '&cVoce nao pode mexer no mundo durante o tutorial.'
+
+Lista:
+  Cabecalho: '&7Voce tem &f{quantidade} &7tutorial(is) disponivel(is):'
+  Item: '&8- &f{nome} &7({id}) &8| &7{passos} passos &8| {estado}'
+
+Npc:
+  Definido: '&aNPC do tutorial colocado onde voce esta.'
+  Removido: '&aNPC do tutorial removido &7({quantidade} coisa(s) tiradas do mundo)&a.'
+  Nao removido: '&cNao encontrei nenhum NPC do tutorial por perto.'
+  Desligado: '&cO NPC esta desligado no config.yml (secao NPC, opcao Ativar).'
+
+Editor:
+  Digite o id: |-
+    &7Digite no chat o &fid &7do tutorial (so letras, numeros, &f_&7 e &f-&7).
+    &7Voce tem &f{segundos}s&7. Digite &f{cancelar} &7para desistir.
+  Digite o texto: |-
+    &7Digite no chat o novo valor de &f{campo}&7.
+    &7Aceita cores com &f&&7 (ex: &f&&aVerde&7).
+    &7Digite &f{cancelar} &7para desistir ou &fapagar &7para deixar vazio.
+  Digite o numero: |-
+    &7Digite no chat o novo valor de &f{campo}&7.
+    &7Voce tem &f{segundos}s&7. Digite &f{cancelar} &7para desistir.
+  Digite o material: |-
+    &7Digite no chat o nome do material (ex: &fDIAMOND&7).
+    &7Digite &f{cancelar} &7para desistir.
+  Nao e numero: '&cIsso nao e um numero.'
+  Mao vazia: '&cVoce precisa estar segurando um item.'
+  Sem local: '&cEste ponto ainda nao foi marcado.'
+  Foi ate o local: '&aVoce foi levado ate o ponto marcado.'
+  Tutorial criado: '&aTutorial &f{id} &acriado. Abra o editor para montar os passos.'
+  Tutorial apagado: '&aTutorial &f{id} &aapagado.'
+  Id ocupado: '&cJa existe um tutorial com o id &f{id}&c (ou o id nao serve).'
+
+Ajuda:
+  - ''
+  - '&a&lSTARTUTORIAL &8- &7comandos'
+  - '&f{comando} &8- &7abre a lista de tutoriais'
+  - '&f{comando} <id> &8- &7comeca um tutorial'
+  - '&f{comando} sair &8- &7sai do tutorial'
+  - '&f{comando} pular &8- &7pula o passo atual'
+  - '&f{comando} lista &8- &7mostra os tutoriais disponiveis'
+  - ''
+
+Admin:
+  Ajuda:
+    - ''
+    - '&a&lSTARTUTORIAL &8- &7administracao'
+    - '&f/{comando} editor &8- &7abre o editor completo no jogo'
+    - '&f/{comando} recarregar &8- &7rele os arquivos'
+    - '&f/{comando} setnpc &8- &7poe o NPC onde voce esta'
+    - '&f/{comando} delnpc [raio] &8- &7tira o NPC'
+    - '&f/{comando} iniciar <jogador> [tutorial] &8- &7poe alguem no tutorial'
+    - '&f/{comando} tirar <jogador> &8- &7tira alguem do tutorial'
+    - '&f/{comando} zerar <jogador> [tutorial] &8- &7apaga o historico dele'
+    - '&f/{comando} ver <jogador> &8- &7mostra o progresso dele'
+    - '&f/{comando} info &8- &7numeros do produto'
+    - ''
+  Recarregado: '&aArquivos recarregados. &f{tutoriais} &atutorial(is) no ar.'
+  Uso iniciar: '&cUse: &f/{comando} iniciar <jogador> [tutorial]'
+  Uso tirar: '&cUse: &f/{comando} tirar <jogador>'
+  Uso zerar: '&cUse: &f/{comando} zerar <jogador> [tutorial]'
+  Uso ver: '&cUse: &f/{comando} ver <jogador>'
+  Colocou: '&a{jogador} &afoi colocado em {tutorial}&a.'
+  Nao entrou: '&c{jogador} nao pode entrar no tutorial agora.'
+  Tirou: '&a{jogador} &afoi tirado do tutorial.'
+  Nao estava: '&c{jogador} nao estava em nenhum tutorial.'
+  Zerou: '&aHistorico de &f{jogador} &azerado &7({tutorial})&a.'
+  Ver:
+    - ''
+    - '&a&lPROGRESSO DE &f{jogador}'
+    - '&7Tutoriais concluidos: &f{concluidos}'
+    - '&7Fazendo agora: &f{agora} &7({progresso})'
+    - '&7Parado em: &f{em aberto}'
+    - ''
+  Ver item: '&8- &f{id} &7terminado &f{vezes}x &8| &7premiado: {premiado}'
+  Info:
+    - ''
+    - '&a&lSTARTUTORIAL &7v{versao}'
+    - '&7Tutoriais: &f{tutoriais}'
+    - '&7Jogadores no tutorial agora: &f{sessoes}'
+    - '&7Banco de dados: &f{banco}'
+    - '&7NPC colocado: &f{npc}'
+    - ''
+  Info item: '&8- &f{id} &8| &7{passos} passos &8| &7{concluiram} jogador(es) concluiram'
