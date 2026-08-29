@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------------------
+#  Agenda de reinicios
+#
+#  Duas formas de marcar:
+#
+#   Modo: 'HORARIO'   - em tal hora do dia
+#                       'Dias' aceita TODOS ou uma lista de dias da semana
+#                       (SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA, SABADO, DOMINGO)
+#                       'Horario' aceita 'HH:MM' ou 'HH:MM:SS'
+#
+#   Modo: 'INTERVALO' - de X em X tempo, contado a partir de quando o servidor
+#                       subiu. 'Intervalo' aceita 30m, 6h, 1d, 1d12h...
+#
+#  'Antecipar: true' faz a contagem COMECAR antes, de modo que o servidor caia
+#  exatamente no horario marcado. Com 'false' o horario marcado e o inicio da
+#  contagem, e o reinicio acontece 'Tempo' segundos depois.
+#
+#  Este arquivo e SEU: o plugin nunca repoe um agendamento que voce apagou.
+#  Os reinicios marcados na hora por /reinicio agendar entram em 'Unicos' e
+#  saem sozinhos depois que acontecem.
+# ---------------------------------------------------------------------------
+
+Agendamentos:
+
+  madrugada:
+    Ativar: true
+    # Nome do tipo no tipos.yml.
+    Tipo: 'normal'
+    Modo: 'HORARIO'
+    Dias: [ 'TODOS' ]
+    Horario: '04:00'
+    Antecipar: true
+
+  meio-dia:
+    Ativar: false
+    Tipo: 'normal'
+    Modo: 'HORARIO'
+    Dias: [ 'SABADO', 'DOMINGO' ]
+    Horario: '12:00'
+    Antecipar: true
+
+  de-seis-em-seis:
+    Ativar: false
+    Tipo: 'normal'
+    Modo: 'INTERVALO'
+    Intervalo: '6h'
+    Antecipar: false
+
+# Escrito pelo plugin. Cada linha guarda a data e a hora exatas de um reinicio
+# marcado por comando; some sozinha depois que ele acontece.
+Unicos: {}

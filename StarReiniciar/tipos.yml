@@ -1,0 +1,174 @@
+# ---------------------------------------------------------------------------
+#  Tipos de reinicio
+#
+#  Cada tipo e um jeito de reiniciar: quanto tempo dura a contagem, o que fica
+#  bloqueado enquanto ela corre e o que roda antes e depois.
+#
+#  Este arquivo e SEU: o plugin nunca repoe um tipo que voce apagou nem
+#  reclama de tipo que voce inventou.
+#
+#  Nas opcoes de "Bloquear", true = a acao fica PROIBIDA durante o reinicio.
+#  Quem tem a permissao starreiniciar.ignorar passa por cima de todos eles.
+#
+#  AVISOS PROPRIOS: por padrao todo tipo usa as listas Avisos/Actionbar/Sons/
+#  Comandos/Discord do config.yml. Se voce escrever qualquer uma delas DENTRO
+#  de um tipo, aquele tipo passa a usar so as dele -- util para um reinicio de
+#  emergencia mais curto e mais barulhento. Exemplo:
+#
+#    emergencia:
+#      Avisos:
+#        - '30, &4&lEMERGENCIA &fReiniciando em &c30 segundos&f.'
+#      Sons:
+#        - '30, NOTE_PLING;1;0.5'
+# ---------------------------------------------------------------------------
+
+Tipos:
+
+  # Reinicio de rotina, o da madrugada.
+  normal:
+    Nome: '&eReinicio programado'
+    Icone: 'CLOCK'
+    # Duracao da contagem, em segundos.
+    Tempo: 180
+    # A partir de quantos segundos restantes os bloqueios comecam a valer.
+    # 0 = do comeco da contagem; -1 = nunca (so avisa, nao bloqueia nada).
+    Bloquear a partir de: 60
+
+    Bloquear:
+      Quebrar blocos: true
+      Colocar blocos: true
+      Pegar itens: true
+      Dropar itens: true
+      Enderpearl: true
+      Pvp: true
+      Chat: false
+      Inventario: false
+      Interagir: true
+      Comandos: false
+      # Congela o jogador no lugar. 'Congelar a partir de' conta em segundos
+      # restantes e so vale se 'Congelar' estiver ligado.
+      Congelar: false
+      Congelar a partir de: 10
+      # Tranca a entrada de quem nao tem starreiniciar.entrar na reta final:
+      # ninguem entra so para levar um kick 15 segundos depois.
+      Entrada: true
+      Entrada a partir de: 30
+
+    # Jogador nao toma dano nenhum enquanto os bloqueios estao valendo. Evita a
+    # morte boba de quem parou de poder se defender.
+    Invencivel: true
+
+    # So tem efeito com 'Bloquear.Comandos' ligado.
+    #   LISTA NEGRA - bloqueia os comandos da lista, libera o resto
+    #   LISTA BRANCA - libera so os comandos da lista, bloqueia o resto
+    Modo dos comandos: 'LISTA NEGRA'
+    Comandos bloqueados:
+      - '/pl'
+      - '/plugins'
+      - '/ver'
+      - '/trocar'
+      - '/leilao'
+      - '/loja'
+
+    # So tem efeito com 'Bloquear.Interagir' ligado. Vazio bloqueia qualquer
+    # bloco com tela. Aceita curinga: '*_SHULKER_BOX', '*BUTTON'.
+    Blocos bloqueados:
+      - 'CHEST'
+      - 'TRAPPED_CHEST'
+      - 'ENDER_CHEST'
+      - 'BARREL'
+      - '*_SHULKER_BOX'
+      - 'ANVIL'
+      - 'CRAFTING_TABLE'
+      - 'ENCHANTING_TABLE'
+      - 'FURNACE'
+      - 'BLAST_FURNACE'
+      - 'SMOKER'
+      - 'HOPPER'
+      - 'DISPENSER'
+      - 'DROPPER'
+      - 'BEACON'
+      - 'LEVER'
+      - '*BUTTON'
+
+    # Rodados pelo console no comeco da contagem.
+    Comandos ao iniciar: [ ]
+    # Rodados pelo console logo antes de desligar.
+    Comandos ao terminar:
+      - 'save-all'
+    # Rodados pelo console se o reinicio for cancelado.
+    Comandos ao cancelar: [ ]
+
+  # Reinicio na mao, para aplicar uma atualizacao. Contagem curta e tudo travado.
+  rapido:
+    Nome: '&cReinicio rapido'
+    Icone: 'REDSTONE_BLOCK'
+    Tempo: 60
+    Bloquear a partir de: 60
+
+    Bloquear:
+      Quebrar blocos: true
+      Colocar blocos: true
+      Pegar itens: true
+      Dropar itens: true
+      Enderpearl: true
+      Pvp: true
+      Chat: false
+      Inventario: true
+      Interagir: true
+      Comandos: true
+      Congelar: true
+      Congelar a partir de: 10
+      Entrada: true
+      Entrada a partir de: 60
+
+    Invencivel: true
+
+    Modo dos comandos: 'LISTA BRANCA'
+    Comandos bloqueados:
+      - '/reinicio'
+      - '/starreiniciar'
+      - '/msg'
+      - '/r'
+
+    Blocos bloqueados: [ ]
+
+    Comandos ao iniciar: [ ]
+    Comandos ao terminar:
+      - 'save-all'
+    Comandos ao cancelar: [ ]
+
+  # Usado pelo reinicio de emergencia da secao 'Saude' do config.yml. Com o
+  # servidor no chao, quanto menos tempo e menos coisa acontecendo, melhor.
+  emergencia:
+    Nome: '&4Reinicio de emergencia'
+    Icone: 'BLAZE_POWDER'
+    Tempo: 30
+    Bloquear a partir de: 30
+
+    Bloquear:
+      Quebrar blocos: true
+      Colocar blocos: true
+      Pegar itens: true
+      Dropar itens: true
+      Enderpearl: true
+      Pvp: true
+      Chat: false
+      Inventario: true
+      Interagir: true
+      Comandos: true
+      Congelar: true
+      Congelar a partir de: 30
+      Entrada: true
+      Entrada a partir de: 30
+
+    Invencivel: true
+
+    Modo dos comandos: 'LISTA BRANCA'
+    Comandos bloqueados: [ ]
+    Blocos bloqueados: [ ]
+
+    Comandos ao iniciar: [ ]
+    Comandos ao terminar:
+      - 'save-all'
+    Comandos ao cancelar: [ ]

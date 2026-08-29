@@ -1,0 +1,122 @@
+# ---------------------------------------------------------------------------
+#  Mensagens do StarReiniciar
+#
+#  Mensagem em branco nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao para cada um.
+#  <nl> nao vale aqui; use o bloco com | para varias linhas.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&c&lREINICIO &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEsse comando so funciona dentro do jogo.'
+  Numero invalido: '&cO valor &f{valor}&c nao e um numero.'
+
+Ajuda:
+  Jogador: |
+    &8&m----------------------------------------
+    &c&lSTARREINICIAR
+    &f> &c/reinicio &7- quanto falta para o proximo
+    &8&m----------------------------------------
+  Admin: |
+    &8&m----------------------------------------
+    &c&lSTARREINICIAR
+    &f> &c/reinicio &7- abre o menu
+    &f> &c/reinicio forcar <tipo> &7- comeca agora
+    &f> &c/reinicio cancelar &7- cancela o que esta correndo
+    &f> &c/reinicio agendar <HH:MM> [tipo] &7- marca um horario
+    &f> &c/reinicio agendar em <30m> [tipo] &7- marca daqui a pouco
+    &f> &c/reinicio tempo <segundos> &7- muda a contagem em andamento
+    &f> &c/reinicio editar <tipo> &7- abre o editor de bloqueios
+    &f> &c/starreiniciar agenda &7- lista o que esta marcado
+    &f> &c/starreiniciar historico &7- ultimos reinicios
+    &f> &c/starreiniciar uptime &7- ha quanto tempo o servidor esta no ar
+    &f> &c/starreiniciar recarregar &7- recarrega os arquivos
+    &8&m----------------------------------------
+
+Reinicio:
+  Tipo nao existe: '&cO tipo &f{tipo}&c nao existe. Disponiveis: &f{tipos}&c.'
+  Nenhum tipo: '&cNenhum tipo de reinicio foi configurado no tipos.yml.'
+  Ja esta correndo: '&cJa tem um reinicio acontecendo. Use &f/reinicio cancelar&c.'
+  Nao esta correndo: '&cNao tem nenhum reinicio acontecendo agora.'
+  Comecou: '&aReinicio iniciado: &f{tipo}&a, em &f{tempo}&a.'
+  Cancelou: '&aVoce cancelou o reinicio.'
+  Tempo alterado: '&aA contagem agora esta em &f{tempo}&a.'
+  Falta: '&7O proximo reinicio acontece em &f{tempo}&7.'
+  Falta agendado: '&7O proximo reinicio esta marcado para &f{data}&7, daqui a &f{tempo}&7.'
+  Sem previsao: '&7Nao tem nenhum reinicio marcado no momento.'
+  Anunciar inicio: |
+    &r
+    &c&lREINICIO &fO servidor sera reiniciado em &c{tempo}&f.
+    &7Motivo: &f{motivo}
+    &r
+  Anunciar cancelado: |
+    &r
+    &a&lREINICIO &fO reinicio foi cancelado por um administrador.
+    &r
+  Anunciar adiado: '&e&lREINICIO &fAdiado por &e{tempo}&f: ainda tem &e{jogadores} jogadores&f online.'
+  Motivo agendado: 'reinicio programado'
+  Motivo manual: 'pedido por {quem}'
+  Motivo emergencia: 'servidor sobrecarregado ({detalhe})'
+  Motivo intervalo: 'reinicio de rotina'
+
+Bloqueios:
+  Quebrar: '&cVoce nao pode quebrar blocos com o servidor em reinicio.'
+  Colocar: '&cVoce nao pode colocar blocos com o servidor em reinicio.'
+  Pegar: '&cVoce nao pode pegar itens com o servidor em reinicio.'
+  Dropar: '&cVoce nao pode dropar itens com o servidor em reinicio.'
+  Enderpearl: '&cVoce nao pode usar enderpearl com o servidor em reinicio.'
+  Pvp: '&cO PvP esta desligado ate o servidor reiniciar.'
+  Chat: '&cO chat esta fechado ate o servidor reiniciar.'
+  Inventario: '&cVoce nao pode mexer no inventario com o servidor em reinicio.'
+  Interagir: '&cVoce nao pode usar isso com o servidor em reinicio.'
+  Comandos: '&cVoce nao pode usar comandos com o servidor em reinicio.'
+  Comando: '&cO comando &f{comando}&c esta bloqueado ate o servidor reiniciar.'
+  Congelado: '&cVoce nao pode se mover com o servidor em reinicio.'
+  # Sai na tela de conexao de quem tentar entrar com a entrada trancada.
+  Entrada: '&c&lSTARPLUGINS<nl><nl>&fO servidor esta reiniciando.<nl>&7Volte em instantes!'
+  # Cooldown entre dois avisos de bloqueio para o mesmo jogador, em segundos.
+  Espera do aviso: 3
+
+Entrada:
+  # Mostrado a quem entra com um reinicio ja em andamento.
+  Avisar: '&c&lATENCAO &fO servidor sera reiniciado em &c{tempo}&f.'
+
+Agendar:
+  Marcado: '&aReinicio marcado para &f{data}&a (daqui a &f{tempo}&a), tipo &f{tipo}&a.'
+  Formato: '&cHorario invalido. Use &fHH:MM&c (ex: &f03:30&c) ou &fem 30m&c.'
+  Muito longe: '&cSo da para marcar um reinicio ate &f{tempo}&c a frente.'
+  Ja existe: '&cJa tem um reinicio marcado para esse horario.'
+  Removido: '&aAgendamento &f{id}&a removido.'
+  Nao existe: '&cNao encontrei o agendamento &f{id}&c.'
+  Cabecalho: |
+    &8&m----------------------------------------
+    &c&lAGENDA DE REINICIOS
+  Linha: '&f{id} &8» &7{descricao} &8(&f{tempo}&8)'
+  Vazia: '&7Nenhum reinicio marcado.'
+  Rodape: '&8&m----------------------------------------'
+
+Historico:
+  Cabecalho: |
+    &8&m----------------------------------------
+    &c&lULTIMOS REINICIOS
+  Linha: '&f{data} &8» &7{tipo} &8(&f{motivo}&8) &8- no ar por &f{uptime}'
+  Vazio: '&7Nenhum reinicio registrado ainda.'
+  Rodape: '&8&m----------------------------------------'
+
+Admin:
+  Recarregado: '&aArquivos recarregados. &f{tipos}&a tipos e &f{agendamentos}&a agendamentos.'
+  Uptime: '&7O servidor esta no ar ha &f{uptime}&7.'
+  Info: |
+    &8&m----------------------------------------
+    &c&lSTARREINICIAR &7v{versao}
+    &7No ar ha: &f{uptime}
+    &7Tipos: &f{tipos}
+    &7Agendamentos: &f{agendamentos}
+    &7Proximo: &f{proximo}
+    &7Reinicio agora: &f{estado}
+    &8&m----------------------------------------
+  Editado: '&aBloqueio &f{bloqueio}&a alterado para &f{estado}&a em &f{tipo}&a.'

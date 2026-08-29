@@ -1,0 +1,198 @@
+# ---------------------------------------------------------------------------
+#  StarReiniciar - configuracao principal
+#
+#  Aqui ficam as opcoes que valem para TODOS os reinicios. O que muda de um
+#  reinicio para o outro (quanto tempo dura, o que fica bloqueado) esta no
+#  tipos.yml. Quando e que cada um acontece esta no agendamentos.yml.
+# ---------------------------------------------------------------------------
+
+# Sobe de numero quando o modelo do arquivo muda. Nao mexa nesta linha: e por
+# ela que o plugin sabe que precisa trazer as opcoes novas de uma atualizacao.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o passo a passo do reinicio. Ligue so para investigar.
+  Debug: false
+
+  # O que fazer quando a contagem chega a zero:
+  #   REINICIAR - pede o restart ao proprio servidor (usa o restart-script do
+  #               spigot.yml; e o que reabre o servidor sozinho)
+  #   PARAR     - desliga o servidor (a hospedagem/o script de start reabre)
+  #   COMANDO   - roda a linha de 'Comando' abaixo, pelo console
+  Acao: 'REINICIAR'
+  Comando: 'stop'
+
+  # Salva mundos e jogadores antes de desligar. Deixe ligado.
+  Salvar antes: true
+
+  # Segundos entre o ultimo aviso e o desligamento de fato. Da tempo do kick
+  # chegar no cliente e do save-all terminar.
+  Atraso do desligamento: 2
+
+  # Rodados pelo console assim que o servidor termina de subir.
+  Comandos ao ligar: [ ]
+
+Contagem:
+  # Usado quando o tipo de reinicio nao define um tempo proprio (em segundos).
+  Tempo padrao: 180
+
+  # Servidor sem ninguem online reinicia na hora, sem contagem. Ninguem esta
+  # la para ler o aviso mesmo.
+  Reiniciar direto se vazio: true
+
+  # Quantos segundos, no maximo, o /reinicio agendar aceita marcar a frente.
+  # 0 tira o limite.
+  Limite do agendamento: 604800
+
+Adiar:
+  # ---------------------------------------------------------------------------
+  #  Adiamento automatico: quando a contagem chega ao fim com gente demais
+  #  online, o reinicio e empurrado para frente em vez de derrubar o servidor
+  #  cheio. Bom para servidor de evento.
+  # ---------------------------------------------------------------------------
+  Ativar: false
+  # Adia enquanto houver MAIS jogadores que isto online.
+  Jogadores: 20
+  # Quanto tempo cada adiamento acrescenta.
+  Adiar por: '10m'
+  # Quantas vezes, no maximo. Depois disso o reinicio acontece de qualquer jeito.
+  Maximo de vezes: 6
+
+Saude:
+  # ---------------------------------------------------------------------------
+  #  Reinicio de emergencia: o plugin observa o TPS e a memoria e dispara um
+  #  reinicio sozinho quando o servidor passa do limite pelo tempo indicado.
+  # ---------------------------------------------------------------------------
+  Ativar: false
+  # Tipo do tipos.yml usado nesses casos.
+  Tipo: 'emergencia'
+  # Nao dispara antes do servidor estar no ar ha este tempo (evita o pico
+  # normal da subida virar emergencia).
+  Carencia: '10m'
+  # Espera este tempo depois de um reinicio de emergencia para poder disparar
+  # outro.
+  Intervalo minimo: '30m'
+
+  TPS:
+    Ativar: true
+    # Dispara com o TPS abaixo deste valor...
+    Abaixo de: 12.0
+    # ...por este tempo seguido.
+    Por: '2m'
+
+  Memoria:
+    Ativar: false
+    # Porcentagem da memoria maxima da JVM.
+    Acima de: 92
+    Por: '5m'
+
+Bungeecord:
+  # Manda os jogadores para outro servidor da rede antes de desligar, em vez
+  # de expulsar todo mundo.
+  Ativar: false
+  # Sorteado quando tem mais de um. O nome e o do config.yml do proxy.
+  Lobbies: [ 'lobby' ]
+  # A quantos segundos do fim os jogadores sao enviados.
+  Enviar em: 5
+
+Expulsar:
+  # Mensagem do kick, para quem sobrou (ou quando o Bungeecord esta desligado).
+  Ativar: true
+  # <nl> vira quebra de linha.
+  Mensagem: '&c&lSTARPLUGINS<nl><nl>&fO servidor esta reiniciando.<nl>&7Volte em instantes!<nl>'
+
+Barra:
+  # ---------------------------------------------------------------------------
+  #  Barra de boss com a contagem. So existe da 1.9 para cima; em servidor 1.8
+  #  esta secao e simplesmente ignorada.
+  # ---------------------------------------------------------------------------
+  Ativar: true
+  # Aparece quando faltarem estes segundos.
+  Mostrar a partir de: 120
+  Titulo: '&c&lREINICIANDO EM &f{relogio}'
+  # BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+  Cor: 'RED'
+  # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+  Estilo: 'SEGMENTED_20'
+  # A barra esvazia conforme o tempo passa.
+  Esvaziar: true
+
+Titulo:
+  # Titulo no meio da tela nos ultimos segundos.
+  Ativar: true
+  Mostrar a partir de: 10
+  Titulo: '&c&l{segundos}'
+  Subtitulo: '&fO servidor vai reiniciar'
+  # Em ticks (20 = 1 segundo).
+  Aparecer: 0
+  Permanecer: 25
+  Sumir: 5
+
+Menu:
+  # De quanto em quanto tempo o menu aberto se redesenha, em ticks. 0 desliga.
+  Atualizar a cada: 20
+
+Historico:
+  # Guarda os ultimos reinicios em historico.yml, com data, tipo e quem pediu.
+  Ativar: true
+  Guardar: 40
+
+# ---------------------------------------------------------------------------
+#  Avisos da contagem regressiva
+#
+#  Cada linha e "<segundos>, <texto>" e sai quando faltarem exatamente aqueles
+#  segundos. Use <nl> para quebrar linha. Apagar a linha desliga o aviso.
+#
+#  O tipo de reinicio pode ter as suas proprias listas; quando ele tem, as
+#  daqui nao sao usadas para aquele tipo.
+# ---------------------------------------------------------------------------
+Avisos:
+  - '600, <nl>&c&lREINICIO &fO servidor sera reiniciado em &c10 minutos&f.<nl>&r'
+  - '300, <nl>&c&lREINICIO &fO servidor sera reiniciado em &c5 minutos&f.<nl>&r'
+  - '180, <nl>&c&lREINICIO &fO servidor sera reiniciado em &c3 minutos&f.<nl>&r'
+  - '120, <nl>&c&lREINICIO &fO servidor sera reiniciado em &c2 minutos&f.<nl>&r'
+  - '60, <nl>&c&lREINICIO &fO servidor sera reiniciado em &c1 minuto&f.<nl>&r'
+  - '30, <nl>&c&lREINICIO &fO servidor sera reiniciado em &c30 segundos&f.<nl>&r'
+  - '15, &c&lREINICIO &fFaltam &c15 segundos&f.'
+  - '10, &c&lREINICIO &fFaltam &c10 segundos&f.'
+  - '5, &c&lREINICIO &fFaltam &c5 segundos&f.'
+  - '4, &c&lREINICIO &fFaltam &c4 segundos&f.'
+  - '3, &c&lREINICIO &fFaltam &c3 segundos&f.'
+  - '2, &c&lREINICIO &fFaltam &c2 segundos&f.'
+  - '1, &c&lREINICIO &fFalta &c1 segundo&f.'
+
+# Igual aos avisos, mas na barra acima da hotbar.
+Actionbar:
+  - '60, &c&lREINICIO &fem &c{relogio}'
+  - '30, &c&lREINICIO &fem &c{relogio}'
+  - '15, &c&lREINICIO &fem &c{relogio}'
+  - '10, &c&lREINICIO &fem &c{segundos}s'
+  - '5, &c&lREINICIO &fem &c{segundos}s'
+  - '4, &c&lREINICIO &fem &c{segundos}s'
+  - '3, &c&lREINICIO &fem &c{segundos}s'
+  - '2, &c&lREINICIO &fem &c{segundos}s'
+  - '1, &c&lREINICIO &fem &c{segundos}s'
+
+# "<segundos>, SOM" ou "<segundos>, SOM;volume;tom". O nome vale para qualquer
+# versao: NOTE_PLING funciona tanto na 1.8 quanto na 1.21.
+Sons:
+  - '300, NOTE_STICKS'
+  - '180, NOTE_STICKS'
+  - '120, NOTE_STICKS'
+  - '60, NOTE_STICKS'
+  - '30, NOTE_STICKS'
+  - '15, NOTE_STICKS'
+  - '10, NOTE_STICKS'
+  - '5, NOTE_STICKS'
+  - '4, NOTE_STICKS'
+  - '3, NOTE_STICKS'
+  - '2, NOTE_STICKS'
+  - '1, NOTE_PLING;1;2'
+
+# Comandos rodados pelo console quando faltarem aqueles segundos.
+Comandos:
+  - '60, save-all'
+
+# Avisos enviados ao Discord. O nome depois da virgula e o do discord.yml.
+Discord:
+  - '300, aviso'

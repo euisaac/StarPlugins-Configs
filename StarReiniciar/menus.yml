@@ -1,0 +1,247 @@
+# ---------------------------------------------------------------------------
+#  Menus do StarReiniciar
+#
+#  Slot -1 esconde o botao. Os slots contam de 0, da esquerda para a direita.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Principal:
+  Titulo: '&8Reinicio do servidor'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Estado:
+    Slot: 4
+    Material: 'CLOCK'
+    Nome: '&c&lESTADO DO SERVIDOR'
+    Lore:
+      - '&7No ar ha: &f{uptime}'
+      - '&7Jogadores: &f{jogadores}'
+      - '&7TPS: &f{tps}'
+      - '&7Memoria: &f{memoria}'
+      - ''
+      - '&7Proximo reinicio: &f{proximo}'
+
+  Correndo:
+    Slot: 4
+    Material: 'REDSTONE_BLOCK'
+    Nome: '&c&lREINICIO EM ANDAMENTO'
+    Lore:
+      - '&7Tipo: &f{tipo}'
+      - '&7Falta: &c{relogio}'
+      - '&7Motivo: &f{motivo}'
+      - ''
+      - '&eClique para cancelar.'
+
+  Tipos:
+    Slot: 20
+    Material: 'PAPER'
+    Nome: '&e&lTIPOS DE REINICIO'
+    Lore:
+      - '&7Escolha como o servidor'
+      - '&7se comporta durante a contagem.'
+      - ''
+      - '&7Configurados: &f{tipos}'
+      - ''
+      - '&eClique para ver a lista.'
+
+  Agenda:
+    Slot: 22
+    Material: 'BOOK'
+    Nome: '&b&lAGENDA'
+    Lore:
+      - '&7Reinicios marcados por horario'
+      - '&7ou por intervalo.'
+      - ''
+      - '{agenda}'
+      - ''
+      - '&eClique para ver tudo.'
+    # A linha acima que so tem {agenda} vira uma linha por agendamento.
+    Linha da agenda: '&8- &f{id} &7{descricao}'
+    Sem agenda: '&8- &7nenhum marcado'
+
+  Historico:
+    Slot: 24
+    Material: 'CLOCK'
+    Nome: '&d&lHISTORICO'
+    Lore:
+      - '&7Os ultimos reinicios do servidor.'
+      - ''
+      - '&eClique para ver.'
+
+  Forcar:
+    Slot: 40
+    Material: 'LEVER'
+    Nome: '&a&lREINICIAR AGORA'
+    Lore:
+      - '&7Comeca a contagem com o tipo'
+      - '&7padrao (&f{padrao}&7).'
+      - ''
+      - '&eClique para comecar.'
+
+  Cancelar:
+    Slot: 40
+    Material: 'BARRIER'
+    Nome: '&c&lCANCELAR REINICIO'
+    Lore:
+      - '&7Para a contagem que esta correndo'
+      - '&7e libera o servidor.'
+      - ''
+      - '&eClique para cancelar.'
+
+  Fechar:
+    Slot: 36
+    Material: 'BARRIER'
+    Nome: '&cFechar'
+    Lore: [ ]
+
+Tipos:
+  Titulo: '&8Tipos de reinicio'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # Onde os tipos aparecem, em ordem.
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Item:
+    Nome: '{nome}'
+    Lore:
+      - '&7Id: &f{id}'
+      - '&7Contagem: &f{tempo}'
+      - '&7Bloqueios ligados: &f{bloqueios}'
+      - ''
+      - '&eClique esquerdo &7para editar.'
+      - '&eClique direito &7para reiniciar com ele.'
+
+  Voltar:
+    Slot: 36
+    Material: 'ARROW'
+    Nome: '&cVoltar'
+    Lore: [ ]
+
+Editar:
+  Titulo: '&8Editando: {id}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # Cada bloqueio vira um botao, na ordem desta lista.
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+
+  Ligado:
+    Material: 'LIME_STAINED_GLASS_PANE'
+    Nome: '&f{bloqueio}'
+    Lore:
+      - '&7Estado: &aBLOQUEADO'
+      - ''
+      - '&eClique para liberar.'
+
+  Desligado:
+    Material: 'RED_STAINED_GLASS_PANE'
+    Nome: '&f{bloqueio}'
+    Lore:
+      - '&7Estado: &cLIBERADO'
+      - ''
+      - '&eClique para bloquear.'
+
+  Invencivel:
+    Slot: 31
+    Material: 'GOLDEN_APPLE'
+    Nome: '&6&lINVENCIBILIDADE'
+    Lore:
+      - '&7Estado: &f{estado}'
+      - ''
+      - '&7Jogadores nao tomam dano'
+      - '&7enquanto os bloqueios valem.'
+      - ''
+      - '&eClique para trocar.'
+
+  Voltar:
+    Slot: 36
+    Material: 'ARROW'
+    Nome: '&cVoltar'
+    Lore: [ ]
+
+Agenda:
+  Titulo: '&8Agenda de reinicios'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Item:
+    Material: 'CLOCK'
+    Nome: '&b{id}'
+    Lore:
+      - '&7Tipo: &f{tipo}'
+      - '&7Quando: &f{descricao}'
+      - '&7Falta: &f{tempo}'
+      - '&7Estado: &f{estado}'
+      - ''
+      - '&eClique direito &7para remover.'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&cNenhum reinicio marcado'
+    Lore:
+      - '&7Marque no agendamentos.yml ou com'
+      - '&f/reinicio agendar 03:00&7.'
+
+  Voltar:
+    Slot: 36
+    Material: 'ARROW'
+    Nome: '&cVoltar'
+    Lore: [ ]
+
+Historico:
+  Titulo: '&8Ultimos reinicios'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Item:
+    Material: 'PAPER'
+    Nome: '&f{data}'
+    Lore:
+      - '&7Tipo: &f{tipo}'
+      - '&7Motivo: &f{motivo}'
+      - '&7Ficou no ar: &f{uptime}'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&cNada registrado ainda'
+    Lore: [ ]
+
+  Voltar:
+    Slot: 36
+    Material: 'ARROW'
+    Nome: '&cVoltar'
+    Lore: [ ]
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK'
+  Erro: 'BLOCK_NOTE_BLOCK_BASS;1;0.5'
+  Confirmar: 'ENTITY_PLAYER_LEVELUP;1;1.6'

@@ -1,0 +1,79 @@
+# ---------------------------------------------------------------------------
+#  Avisos no Discord
+#
+#  Cole em URL o webhook de um canal (Configuracoes do canal, Integracoes,
+#  Webhooks). O nome de cada embed daqui e o que voce escreve na lista
+#  Discord do config.yml.
+#
+#  Trocas disponiveis: {tipo} {motivo} {segundos} {tempo} {relogio}
+#                      {jogadores} {data} {hora} {uptime}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Opcoes:
+  Ativar: false
+  URL: ''
+  Nome: 'StarReiniciar'
+  Avatar: ''
+
+  # Manda um aviso assim que o servidor termina de subir.
+  Ao ligar:
+    Ativar: false
+    Embed: 'online'
+
+  # Manda um aviso quando um reinicio e cancelado.
+  Ao cancelar:
+    Ativar: false
+    Embed: 'cancelado'
+
+Embeds:
+
+  aviso:
+    Titulo: 'O servidor vai reiniciar'
+    Descricao: 'Reinicio em {tempo}.'
+    Cor: '#FF5555'
+    Conteudo: ''
+    Miniatura: ''
+    Rodape:
+      Texto: 'StarPlugins'
+      Imagem: ''
+    Campos:
+      quando:
+        Titulo: 'Falta'
+        Conteudo: '{tempo}'
+        Lado a lado: true
+      tipo:
+        Titulo: 'Tipo'
+        Conteudo: '{tipo}'
+        Lado a lado: true
+      online:
+        Titulo: 'Jogadores online'
+        Conteudo: '{jogadores}'
+        Lado a lado: true
+
+  online:
+    Titulo: 'Servidor online'
+    Descricao: 'O servidor voltou e ja pode receber jogadores.'
+    Cor: '#55FF55'
+    Conteudo: ''
+    Miniatura: ''
+    Rodape:
+      Texto: 'StarPlugins'
+      Imagem: ''
+    Campos:
+      data:
+        Titulo: 'Quando'
+        Conteudo: '{data} as {hora}'
+        Lado a lado: false
+
+  cancelado:
+    Titulo: 'Reinicio cancelado'
+    Descricao: 'O reinicio que estava marcado foi cancelado.'
+    Cor: '#FFAA00'
+    Conteudo: ''
+    Miniatura: ''
+    Rodape:
+      Texto: 'StarPlugins'
+      Imagem: ''
+    Campos: { }
