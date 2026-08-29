@@ -1,0 +1,301 @@
+# ---------------------------------------------------------------------------
+#  StarCormercios - tudo que o jogador le
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao separada para ele.
+#
+#  O prefixo entra em toda mensagem simples. As listas (Ajuda, Admin.Ajuda,
+#  Comercio.Info, Anuncio.Linhas) saem sem prefixo, uma linha por vez.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Prefixo: '&6&lCOMERCIOS &8» &r'
+
+Geral:
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Jogador offline: '&cO jogador &f{jogador} &cprecisa estar online.'
+  Numero invalido: '&cDigite um numero valido.'
+  Tempo invalido: '&cDigite um tempo valido, como &f7d&c, &f12h &cou &f30m&c.'
+  # Serve para toda pergunta feita no chat.
+  Palavra de cancelar: 'cancelar'
+  Cancelado: '&7Voce cancelou.'
+
+Menu:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ligado: '&aligada'
+  Desligado: '&cdesligada'
+  Online: '&aonline'
+  Offline: '&7offline'
+  Aberto: '&aaberto'
+  Fechado: '&cfechado'
+  Sem dono: '&7ninguem'
+  Sem nota: '&7nenhuma'
+  Sem busca: '&7nada'
+  Sem categoria: '&7Sem categoria'
+  Todas as categorias: '&aTodas'
+  Nao definido: '&cnao definido'
+  Favorito sim: '&aFavorito'
+  Favorito nao: '&7Nao e favorito'
+  Em destaque: '&6em destaque'
+  Sem destaque: '&7sem destaque'
+  Estrela cheia: '&6★'
+  Estrela vazia: '&7★'
+  Opcao atual: ' &f• &a{nome}'
+  Opcao: ' &f• &7{nome}'
+
+  Filtros:
+    TODOS: 'Todos'
+    DISPONIVEIS: 'Disponiveis'
+    ALUGADOS: 'Alugados'
+    MEUS: 'Meus comercios'
+    FAVORITOS: 'Favoritos'
+
+  Ordens:
+    PADRAO: 'Padrao'
+    NOTA: 'Melhor avaliados'
+    VISITAS: 'Mais visitados'
+    RECENTES: 'Mais novos'
+    NOME: 'Nome'
+    PRECO: 'Preco'
+
+  Estados:
+    Livre: '&alivre'
+    Alugado: '&ealugado'
+    Vencido: '&cvencido'
+    Incompleto: '&cincompleto'
+
+Ajuda:
+  - '&8&m-------------------------------'
+  - '&6&lCOMERCIOS'
+  - '&f/comercios &7- abre a lista de comercios'
+  - '&f/comercios meus &7- so os seus'
+  - '&f/comercios buscar <texto> &7- procura por nome, dono ou descricao'
+  - '&f/comercios ir <id> &7- teleporta para um comercio'
+  - '&f/comercios top &7- os melhores avaliados'
+  - '&f/comercios armazem &7- o que sobrou de um aluguel vencido'
+  - '&f/comercios info <id> &7- os detalhes de um comercio'
+  - '&f/anunciar &7- divulga a sua loja no chat'
+  - '&8&m-------------------------------'
+
+Comercio:
+  Nao existe: '&cNao existe nenhum comercio com o id &f{id}&c.'
+  Incompleto: '&cO comercio &f{id} &cainda nao esta pronto para alugar.'
+  Sem spawn: '&cEste comercio ainda nao tem um ponto de chegada.'
+  Fechado: '&cO comercio &f{comercio} &cesta fechado agora.'
+  Teleportado: '&aVoce chegou em &f{comercio}&a.'
+  Uso do ir: '&cUse: &f/{comando} {subcomando} <comercio>'
+  Uso do info: '&cUse: &f/{comando} {subcomando} <comercio>'
+
+  Digite o nome: |-
+    &eDigite no chat o novo nome do seu comercio.
+    &7Ate {maximo} letras. Escreva &f{cancelar} &7para desistir.
+  Nome trocado: '&aO seu comercio agora se chama &f{comercio}&a.'
+  Nome grande: '&cO nome pode ter no maximo &f{maximo} &cletras.'
+  Digite a descricao: |-
+    &eDigite no chat a descricao do seu comercio.
+    &7Ate {maximo} letras. Escreva &f{cancelar} &7para desistir.
+  Descricao trocada: '&aDescricao atualizada.'
+  Descricao grande: '&cA descricao pode ter no maximo &f{maximo} &cletras.'
+  Texto bloqueado: '&cEsse texto tem uma palavra que nao e permitida.'
+  Icone trocado: '&aIcone atualizado.'
+  Icone tirado: '&7O icone voltou ao padrao.'
+  Sem icone: '&cPonha um item na casa do meio antes de confirmar.'
+  Categoria trocada: '&aO seu comercio agora e da categoria &f{categoria}&a.'
+  Categoria tirada: '&7O seu comercio ficou sem categoria.'
+
+  Info:
+    - '&8&m-------------------------------'
+    - '&6{comercio} &7({id})'
+    - '&fDono: &a{dono}'
+    - '&fCategoria: &a{categoria}'
+    - '&fAvaliacao: {estrelas} &7({avaliacoes})'
+    - '&fVisitas: &a{visitas}'
+    - '&fAluguel: &a{preco} &7por &f{duracao}'
+    - '&fVence em: &a{vence}'
+    - '&8&m-------------------------------'
+
+Aluguel:
+  Alugado: '&aVoce alugou &f{comercio} &apor &f{preco}&a. O aluguel vale por &f{tempo}&a.'
+  Alugado por admin: '&aVoce recebeu o comercio &f{comercio} &apor &f{tempo}&a.'
+  Ja alugado: '&cEsse espaco acabou de ser alugado por outra pessoa.'
+  Em andamento: '&cEsse espaco esta sendo alugado neste momento. Tente de novo em instantes.'
+  No limite: '&cVoce ja tem &f{limite} &ccomercio(s). Abandone um antes de alugar outro.'
+  Sem dinheiro: '&cVoce precisa de &f{preco} &cpara isso.'
+  Sem moeda: '&cA moeda deste comercio nao existe mais. Avise a administracao.'
+  Cedo demais: '&cVoce so pode renovar quando faltar &f{porcentagem}% &cdo prazo.'
+  Renovado: '&aAluguel de &f{comercio} &arenovado por &f{preco}&a. Vence em &f{vence}&a.'
+  Auto renovado: '&aO aluguel de &f{comercio} &afoi renovado sozinho por &f{preco}&a.'
+  Auto falhou: '&cNao deu para renovar &f{comercio} &csozinho: faltou &f{preco}&c.'
+  Auto desligada no servidor: '&cA renovacao automatica esta desligada neste servidor.'
+  Abandonado: '&7Voce abandonou o comercio &f{comercio}&7. O que foi pago nao volta.'
+  Desalugado: '&cUm administrador tirou o seu aluguel de &f{comercio}&c.'
+  Vai vencer: '&eO aluguel de &f{comercio} &evence em &f{tempo}&e.'
+  Venceu: '&cO aluguel de &f{comercio} &cvenceu e o espaco voltou para o servidor.'
+  Venceu na sua ausencia: '&cO aluguel de &f{comercio} &cvenceu enquanto voce estava fora.'
+
+Armazem:
+  Guardamos: '&eGuardamos &f{quantidade} &eitem(ns) do seu comercio. Use &f/comercios armazem&e.'
+  Retirado: '&aItem retirado do armazem.'
+  Inventario cheio: '&cAbra espaco no seu inventario antes de retirar.'
+
+Destaque:
+  Comprado: '&6{comercio} &aesta em destaque por &f{tempo}&a.'
+  Sem dinheiro: '&cVoce precisa de &f{preco} &cpara destacar o seu comercio.'
+
+Avaliacao:
+  Enviada: '&aVoce avaliou &f{comercio} &acom {estrelas}&a.'
+  Trocada: '&aVoce trocou a sua avaliacao de &f{comercio} &apara {estrelas}&a.'
+  Recebida: '&e{jogador} &eavaliou o seu comercio &f{comercio} &ecom &f{nota} &eestrela(s).'
+  Seu comercio: '&cVoce nao pode avaliar o proprio comercio.'
+  Visite antes: '&cVisite &f{comercio} &cantes de avaliar.'
+
+Socios:
+  Digite: |-
+    &eDigite no chat o nome do jogador que vai virar socio.
+    &7Ele precisa estar online. Escreva &f{cancelar} &7para desistir.
+  Adicionado: '&a{jogador} &aagora e socio do seu comercio.'
+  Removido: '&7{jogador} &7nao e mais socio do seu comercio.'
+  Ja e: '&c{jogador} &cja e socio deste comercio.'
+  Voce mesmo: '&cVoce ja e o dono.'
+  Voce entrou: '&a{dono} &ate deixou construir no comercio &f{comercio}&a.'
+  Voce saiu: '&cVoce nao e mais socio do comercio &f{comercio}&c.'
+
+Busca:
+  Digite: |-
+    &eDigite no chat o que voce procura.
+    &7Vale nome, dono ou descricao. Escreva &f{cancelar} &7para desistir.
+  Uso: '&cUse: &f/{comando} {subcomando} <texto>'
+
+Protecao:
+  Nao pode: '&cVoce nao pode mexer aqui. Este espaco e de &f{dono}&c.'
+
+Entrada:
+  Boas vindas: '&8[&6{comercio}&8] &f{mensagem}'
+  Saiu: '&7Voce saiu de &f{comercio}&7.'
+
+  Disponivel:
+    Chat: '&aEste espaco esta disponivel! Use &f/comercios &apara alugar.'
+    Acao: '&aEspaco disponivel &7- &f{preco}'
+    Titulo: '&aEspaco disponivel'
+    Subtitulo: '&f{preco} &7por &f{duracao}'
+
+  Alugado:
+    Chat: '&aVoce entrou no comercio de &f{dono}&a.'
+    Acao: '&6{comercio} &7- &f{dono}'
+    Titulo: '&6{comercio}'
+    Subtitulo: '&7de &f{dono} &7{estrelas}'
+
+  Fechado:
+    Chat: '&cEste comercio esta fechado no momento.'
+    Acao: '&c{comercio} &7- fechado'
+    Titulo: '&c{comercio}'
+    Subtitulo: '&7fechado agora'
+
+Anuncio:
+  Desligado: '&cOs anuncios estao desligados neste servidor.'
+  Nenhum: '&cVoce nao tem nenhum comercio para anunciar.'
+  Nao e seu: '&cVoce so pode anunciar o seu proprio comercio.'
+  Loja fechada: '&cAbra o seu comercio antes de anuncia-lo.'
+  Espere: '&cEspere mais &f{tempo} &cpara anunciar de novo.'
+  Anunciado: '&aO seu comercio &f{comercio} &afoi anunciado.'
+  Escolha: '&eVoce tem mais de um comercio. Use &f/{comando} <comercio>&e:'
+  Item da lista: ' &f• &a{id} &7- {comercio}'
+  Comando do clique: 'comercios ir {id}'
+  Dica do clique: '&aClique para visitar &f{comercio}'
+
+  Linhas:
+    - '&8&m-------------------------------'
+    - '&6&lANUNCIO &8» &f{comercio}'
+    - '&7Dono: &f{dono} &8| &7{estrelas}'
+    - '&7{descricao}'
+    - '&aClique aqui para visitar!'
+    - '&8&m-------------------------------'
+
+  Automatico:
+    - '&8&m-------------------------------'
+    - '&6&lEM DESTAQUE &8» &f{comercio}'
+    - '&7Dono: &f{dono} &8| &7{estrelas}'
+    - '&aClique aqui para visitar!'
+    - '&8&m-------------------------------'
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Criado: '&aComercio &f{id} &acriado. Marque a area com a varinha.'
+  Ja existe: '&cJa existe um comercio com o id &f{id}&c.'
+  Id invalido: '&cO id &f{id} &cnao serve: use letras minusculas, numeros, - e _.'
+  Apagado: '&cComercio &f{id} &capagado.'
+  Confirme apagar: '&cSegure SHIFT e clique de novo para apagar &f{id} &cde vez.'
+  Desalugado: '&aO aluguel de &f{id} &afoi cancelado.'
+  Nao esta alugado: '&cO comercio &f{id} &cnao esta alugado.'
+  Alugado: '&aComercio &f{id} &aentregue a &f{jogador} &apor &f{tempo}&a.'
+  Comercio some: '&cO comercio &f{id} &cnao existe mais.'
+  Uso com id: '&cUse: &f/{comando} {subcomando} <comercio>'
+  Uso do criar: '&cUse: &f/{comando} {subcomando} <id>'
+  Uso do alugar: '&cUse: &f/starcormercios alugar <comercio> <jogador> [tempo]'
+  Uso do destaque: '&cUse: &f/starcormercios destaque <comercio> <tempo>'
+  Destaque dado: '&aO comercio &f{id} &aficou em destaque por mais &f{tempo}&a.'
+
+  Varinha entregue: '&aVarinha de &f{id} &aentregue. Esquerdo e direito marcam os cantos.'
+  Canto 1: '&aPrimeiro canto em &f{x}, {y}, {z}&a.'
+  Canto 2: '&aSegundo canto em &f{x}, {y}, {z}&a.'
+  Area definida: '&aArea de &f{id} &adefinida: &f{area} &7({blocos} blocos).'
+  Area encostada: '&cEssa area encosta no comercio &f{id}&c. Escolha outra.'
+  Cantos em mundos diferentes: '&cOs dois cantos precisam estar no mesmo mundo.'
+  Spawn definido: '&aPonto de chegada definido onde voce esta.'
+  Spawn apagado: '&7Ponto de chegada apagado.'
+  Holograma definido: '&aLetreiro definido onde voce esta.'
+  Holograma apagado: '&7Letreiro apagado.'
+  Preco definido: '&aPreco do aluguel: &f{preco}&a.'
+  Duracao definida: '&aPrazo do aluguel: &f{tempo}&a.'
+  Moeda definida: '&aEste comercio passa a ser cobrado em &f{moeda} &a({preco}).'
+
+  Digite o preco: |-
+    &eDigite no chat o novo preco do aluguel.
+    &7Escreva &f{cancelar} &7para desistir.
+  Digite a duracao: |-
+    &eDigite no chat o novo prazo do aluguel (7d, 12h, 30m).
+    &7Escreva &f{cancelar} &7para desistir.
+
+  Lista vazia: '&cNenhum comercio cadastrado ainda.'
+  Lista cabecalho: '&e{quantidade} comercio(s):'
+  Lista item: ' &f• &a{id} &7[{estado}&7] &7dono: &f{dono} &7mundo: &f{mundo} &7vence: &f{vence}'
+
+  Historico buscando: '&7Buscando o historico de &f{id}&7...'
+  Historico vazio: '&cO comercio &f{id} &cainda nao tem historico.'
+  Historico cabecalho: '&eUltimos {quantidade} registros de &f{id}&e:'
+  Historico item: ' &8[{quando}&8] &f{jogador} &7{acao} &7{valor}'
+
+  Acoes:
+    ALUGOU: '&aalugou'
+    RENOVOU: '&arenovou'
+    AUTO: '&arenovou sozinho'
+    ABANDONOU: '&cabandonou'
+    VENCEU: '&cvenceu'
+    DESALUGADO: '&cdesalugado'
+    DESTAQUE: '&6comprou destaque'
+    ADMIN: '&brecebeu da administracao'
+
+  Info:
+    - '&8&m-------------------------------'
+    - '&6StarCormercios &fv{versao}'
+    - '&fComercios: &a{comercios}'
+    - '&fBanco de dados: &a{banco}'
+    - '&fMoedas: &a{moedas}'
+    - '&8&m-------------------------------'
+
+  Ajuda:
+    - '&8&m-------------------------------'
+    - '&6&lCOMERCIOS &8- &fadministracao'
+    - '&f/starcormercios criar <id> &7- cria um espaco'
+    - '&f/starcormercios editar <id> &7- abre o menu de administracao'
+    - '&f/starcormercios varinha <id> &7- pega a varinha de area'
+    - '&f/starcormercios apagar <id> &7- apaga o espaco'
+    - '&f/starcormercios alugar <id> <jogador> [tempo] &7- entrega sem cobrar'
+    - '&f/starcormercios desalugar <id> &7- tira o aluguel'
+    - '&f/starcormercios destaque <id> <tempo> &7- destaque de cortesia'
+    - '&f/starcormercios listar &7- lista tudo'
+    - '&f/starcormercios historico <id> &7- o que aconteceu no espaco'
+    - '&f/starcormercios recarregar &7- recarrega os arquivos'
+    - '&8&m-------------------------------'

@@ -1,0 +1,35 @@
+# ---------------------------------------------------------------------------
+#  StarCormercios - as moedas em que o aluguel pode ser cobrado
+#
+#  Cada comercio guarda em qual delas ele e cobrado, entao o mesmo servidor pode
+#  ter uma feira paga em dinheiro e outra paga em cash.
+#
+#  Tipo: VAULT   - fala com a economia registrada no Vault.
+#        COMANDO - para as economias que nao se registram no Vault: o saldo e
+#                  lido por placeholder e o dinheiro se move por comando de
+#                  console. Aceitam {jogador} e {valor}.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+# Usada por todo comercio que nao escolheu outra.
+Padrao: dinheiro
+
+Moedas:
+  dinheiro:
+    Nome: '&aDinheiro'
+    Simbolo: '$'
+    Material: GOLD_INGOT
+    Tipo: VAULT
+    # Com mais de uma economia registrada no Vault, escreva aqui o nome do
+    # provedor que esta moeda deve usar. Vazio aceita o que o Vault entregar.
+    Provedor: ''
+
+  # Exemplo de moeda que nao passa pelo Vault. Apague se nao usar.
+  cash:
+    Nome: '&bCash'
+    Simbolo: '⛁ '
+    Material: DIAMOND
+    Tipo: COMANDO
+    Placeholder do saldo: '%cash_saldo%'
+    Comando de retirar: 'cash remover {jogador} {valor}'
+    Comando de depositar: 'cash adicionar {jogador} {valor}'

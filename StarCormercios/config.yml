@@ -1,0 +1,192 @@
+# ---------------------------------------------------------------------------
+#  StarCormercios - configuracao geral
+#
+#  Os arquivos de conteudo ficam separados:
+#    economias.yml   as moedas em que o aluguel pode ser cobrado
+#    categorias.yml  os ramos que o comerciante pode escolher
+#    menus.yml       titulos, slots e itens das telas
+#    mensagens.yml   tudo que o jogador le
+#    comandos.yml    os nomes dos comandos e subcomandos
+#
+#  Prazos aceitam 7d, 12h, 30m e 45s (sem letra, o numero e lido em segundos).
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+  # Quantos comercios um jogador pode alugar ao mesmo tempo.
+  # A permissao starcormercios.limite.<n> vale mais do que este numero.
+  Limite de comercios: 2
+
+  # Segundos entre dois anuncios do mesmo jogador.
+  # A permissao starcormercios.anunciodelay.<segundos> reduz esta espera.
+  Espera do anuncio: 60
+
+  # Porcentagem final do prazo em que a renovacao e liberada. Com 20, o dono so
+  # renova quando faltar 20% do tempo. Sem isto, ele renovaria no primeiro
+  # minuto e empilharia meses de aluguel de uma vez.
+  Renovar nos ultimos: 20.0
+
+  # Depois de vencer, o espaco ainda fica reservado ao antigo dono por este
+  # tempo. Quase todo aluguel perdido e um jogador que estava dormindo.
+  Carencia: 1h
+
+  # Valores de um comercio recem-criado; o administrador muda no menu depois.
+  Duracao padrao: 7d
+  Preco padrao: 5000.0
+
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+
+  # Segundos que o jogador tem para responder uma pergunta feita no chat.
+  Tempo para responder: 30
+
+  # Limites do que o comerciante escreve. O tamanho conta so as letras que
+  # aparecem, e nao os codigos de cor.
+  Tamanho do nome: 24
+  Tamanho da descricao: 60
+
+  # Palavras que nao podem aparecer no nome nem na descricao de um comercio.
+  Palavras bloqueadas:
+    - 'admin'
+    - 'staff'
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/starcormercios.db.
+  # No MySQL, dois servidores podem dividir os mesmos comercios: o aluguel usa
+  # um UPDATE condicional, entao ninguem leva o mesmo espaco duas vezes.
+  Tipo: SQLITE
+  Prefixo das tabelas: starcormercios_
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Aluguel:
+  # Segundos entre as conferencias de vencimento.
+  Conferir a cada: 20
+
+  Renovacao automatica:
+    Ativar: true
+    # Ja vem ligada em todo aluguel novo?
+    Ligada de fabrica: false
+
+  Avisos:
+    # Avisa o dono quando faltar um destes prazos para vencer.
+    Faltando:
+      - '1d'
+      - '6h'
+      - '1h'
+      - '10m'
+    # Avisa tambem na entrada de quem tem aluguel perto de vencer.
+    Ao entrar: true
+
+  Ao vencer:
+    # Recolhe o conteudo dos baus da area e manda para o armazem do antigo dono
+    # (/comercios armazem). Sem isto, perder o aluguel e perder tudo que estava
+    # guardado na loja.
+    Guardar itens: true
+    # Area maior que isto nao e varrida, para o tique nao sofrer num comercio
+    # gigante. O que passar do limite fica onde esta.
+    Maximo de blocos: 60000
+    # Comandos rodados no console. Aceitam {comercio} e {jogador}.
+    Comandos: []
+
+Area:
+  Protecao:
+    # Desligue a secao inteira se voce ja usa um plugin de regioes na feira.
+    Ativar: true
+    Quebrar: true
+    Colocar: true
+    Interagir: true
+    Baus: true
+    Pisar em plantacao: true
+    # PvP dentro do comercio, barrado inclusive para o dono: loja nao e arena.
+    Dano de jogador: true
+    Dano em entidade: true
+    Fogo: true
+
+  Varinha:
+    Material: GOLDEN_AXE
+    Nome: '&6Varinha de area &7({id})'
+    Lore:
+      - '&7Comercio: &f{id}'
+      - ''
+      - '&aEsquerdo &7- primeiro canto'
+      - '&aDireito &7- segundo canto'
+
+  Entrada:
+    Ativar: true
+    Contar visitas: true
+    # Segundos ate o mesmo jogador contar visita de novo no mesmo comercio.
+    Intervalo da visita: 300
+    # CHAT, ACAO e TITULO; pode combinar ('ACAO,TITULO').
+    Modo: 'ACAO'
+
+Holograma:
+  # O letreiro em cima do comercio. Sao suportes invisiveis do proprio plugin:
+  # nao precisa de nenhum plugin de holograma instalado.
+  Ativar: true
+  # Altura acima do ponto marcado (ou do meio da area, quando nao ha ponto).
+  Altura: 2.5
+  Espaco entre linhas: 0.28
+  # Tiques entre as reescritas; o texto tem prazo correndo.
+  Atualizar a cada: 40
+
+  Disponivel:
+    - '&e&lCOMERCIO'
+    - '&fEspaco &adisponivel'
+    - '&fAluguel: &a{preco}'
+    - '&7Prazo: &f{duracao}'
+    - '&8/comercios'
+  Alugado:
+    - '&e&lCOMERCIO'
+    - '&f{comercio}'
+    - '&7Dono: &f{dono}'
+    - '&7{estrelas} &8({avaliacoes})'
+    - '&7Vence em: &f{vence}'
+  Fechado:
+    - '&c&lFECHADO'
+    - '&f{comercio}'
+    - '&7Dono: &f{dono}'
+    - '&7Volte mais tarde.'
+
+Destaque:
+  # O comerciante paga para a loja dele ficar no topo da lista, com brilho, e
+  # entrar no rodizio de anuncios automaticos.
+  Ativar: true
+  Preco: 2500.0
+  # Vazio usa a moeda padrao do economias.yml.
+  Moeda: ''
+  Duracao: 12h
+
+Avaliacao:
+  Ativar: true
+  # So quem esteve dentro da loja pode avaliar. E o que separa a avaliacao de um
+  # voto dado de dentro do menu por quem nunca pisou la.
+  Exigir visita: true
+
+Anuncio:
+  Ativar: true
+  # Segundos entre os anuncios automaticos; 0 desliga. So entram os comercios em
+  # destaque -- senao o rodizio viraria spam num servidor com dezenas de lojas.
+  Automatico a cada: 0
+
+Menu:
+  # Ligado, o /comercios abre primeiro a lista de categorias. Desligado (padrao),
+  # ele ja abre com os comercios: quem digita o comando quer ver os espacos.
+  Categorias separadas: false
+  # Comercio em destaque aparece antes de todos na lista.
+  Destaque no topo: true
+  # PADRAO, NOTA, VISITAS, RECENTES, NOME ou PRECO.
+  Ordem inicial: PADRAO
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Alugar: 'ENTITY_PLAYER_LEVELUP;1;1'
