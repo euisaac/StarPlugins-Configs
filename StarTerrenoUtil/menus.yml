@@ -1,0 +1,739 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarTerrenoUtil - menus                          ║
+#  ║   Slot -1 esconde o botao. Os nomes de material valem para 1.8 ate   ║
+#  ║   1.21: escreva o nome novo que o plugin acha o equivalente antigo.  ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Marcadores que valem em qualquer tela de terreno:
+#    {terreno} {dono} {tipo} {mundo} {area} {membros} {subterrenos}
+#    {venda} {preco} {voo} {pvp} {aviso} {x} {y} {z}
+#    {mensagem_entrada} {mensagem_saida} {provedor} {jogador}
+#    {blocos_restantes} {blocos_totais} {limite} {meus_terrenos}
+#
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+#
+# ═══════════════════════════  MENU DO TERRENO  ══════════════════════════════
+#
+Menu do terreno:
+  Titulo: '&8Terreno de {dono}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Informacoes:
+      Slot: 10
+      Material: 'PAPER'
+      Nome: '&a&lINFORMACOES'
+      Lore:
+        - '&7Tudo sobre este terreno.'
+        - ''
+        - '&7 ⤷ Nome: &f{terreno}'
+        - '&7 ⤷ Dono: &f{dono}'
+        - '&7 ⤷ Tipo: &f{tipo}'
+        - '&7 ⤷ Mundo: &f{mundo}'
+        - '&7 ⤷ Area: &f{area} blocos'
+        - ''
+        - '&aCLIQUE &fpara mudar o nome'
+
+    Membros:
+      Slot: 12
+      Material: 'BOOK'
+      Nome: '&a&lMEMBROS'
+      Lore:
+        - '&7Quem pode entrar e mexer'
+        - '&7no seu terreno.'
+        - ''
+        - '&7 ⤷ Membros: &f{membros}'
+        - ''
+        - '&aCLIQUE &fpara gerenciar'
+
+    Venda:
+      Slot: 14
+      Material: 'EMERALD'
+      Nome: '&a&lVENDER'
+      Lore:
+        - '&7Anuncie seu terreno para os'
+        - '&7outros jogadores do servidor.'
+        - ''
+        - '&7 ⤷ A venda: &f{venda}'
+        - '&7 ⤷ Preco: &f{preco}'
+        - ''
+        - '&aCLIQUE &fpara abrir'
+
+    Teleporte:
+      Slot: 16
+      Material: 'ENDER_PEARL'
+      Nome: '&a&lTELEPORTAR'
+      Lore:
+        - '&7Va direto para a entrada'
+        - '&7deste terreno.'
+        - ''
+        - '&7 ⤷ Local: &fX:{x} Y:{y} Z:{z}'
+        - ''
+        - '&aCLIQUE &fpara teleportar'
+
+    Voo:
+      Slot: 20
+      Material: 'FEATHER'
+      Nome: '&a&lVOO'
+      Lore:
+        - '&7Deixe voce e seus membros'
+        - '&7voarem dentro do terreno.'
+        - ''
+        - '&7 ⤷ Voo: {voo}'
+        - ''
+        - '&aCLIQUE &fpara alternar'
+
+    Home:
+      Slot: 22
+      Material: 'OAK_DOOR'
+      Nome: '&a&lENTRADA DO TERRENO'
+      Lore:
+        - '&7Define onde cai quem'
+        - '&7teleporta para ca.'
+        - ''
+        - '&7 ⤷ Local: &fX:{x} Y:{y} Z:{z}'
+        - ''
+        - '&aCLIQUE &fno lugar onde voce esta'
+
+    Icone:
+      Slot: 24
+      Material: 'ITEM_FRAME'
+      Nome: '&a&lICONE'
+      Lore:
+        - '&7Escolha a cara do seu terreno'
+        - '&7nas listas do servidor.'
+        - ''
+        - '&aCLIQUE &fpara escolher'
+
+    Bandeiras:
+      Slot: 29
+      Material: 'REDSTONE_TORCH'
+      Nome: '&a&lBANDEIRAS'
+      Lore:
+        - '&7As regras do terreno: explosao,'
+        - '&7fogo, mobs, dano e mais.'
+        - ''
+        - '&aCLIQUE &fpara abrir'
+
+    Mensagens:
+      Slot: 31
+      Material: 'PAINTING'
+      Nome: '&a&lMENSAGENS'
+      Lore:
+        - '&7O recado que aparece para'
+        - '&7quem entra e quem sai.'
+        - ''
+        - '&7 ⤷ Entrada: &f{mensagem_entrada}'
+        - '&7 ⤷ Saida: &f{mensagem_saida}'
+        - ''
+        - '&aCLIQUE &fpara abrir'
+
+    Aviso:
+      Slot: 33
+      Material: 'NAME_TAG'
+      Nome: '&a&lAVISO DE ENTRADA'
+      Lore:
+        - '&7Mostrar o nome do terreno para'
+        - '&7quem entra nele.'
+        - ''
+        - '&7 ⤷ Aviso: {aviso}'
+        - ''
+        - '&aCLIQUE &fpara alternar'
+
+    PvP:
+      Slot: 38
+      Material: 'IRON_SWORD'
+      Nome: '&c&lPVP NOTURNO'
+      Lore:
+        - '&7Deixar o PvP valer neste'
+        - '&7terreno durante a noite.'
+        - ''
+        - '&7 ⤷ PvP: {pvp}'
+        - ''
+        - '&aCLIQUE &fpara alternar'
+
+    Blocos:
+      Slot: 40
+      Material: 'GRASS_BLOCK'
+      Nome: '&a&lBLOCOS DE TERRENO'
+      Lore:
+        - '&7Compre mais espaco para'
+        - '&7proteger seu terreno.'
+        - ''
+        - '&7 ⤷ Livres: &f{blocos_restantes}'
+        - '&7 ⤷ Totais: &f{blocos_totais}'
+        - ''
+        - '&aCLIQUE &fpara abrir'
+
+    Subterrenos:
+      Slot: 42
+      Material: 'CHEST'
+      Nome: '&b&lSUBTERRENOS'
+      Lore:
+        - '&7As divisoes dentro deste'
+        - '&7terreno, cada uma com as'
+        - '&7proprias regras.'
+        - ''
+        - '&7 ⤷ Divisoes: &f{subterrenos}'
+        - ''
+        - '&aCLIQUE &fpara abrir'
+
+    Comprar:
+      Slot: 4
+      Material: 'GOLD_INGOT'
+      Nome: '&6&lCOMPRAR TERRENO'
+      Lore:
+        - '&7Este terreno esta a venda.'
+        - ''
+        - '&7 ⤷ Dono: &f{dono}'
+        - '&7 ⤷ Preco: &f{preco}'
+        - ''
+        - '&aCLIQUE &fpara comprar'
+
+    Apagar:
+      Slot: 44
+      Material: 'BARRIER'
+      Nome: '&c&lAPAGAR TERRENO'
+      Lore:
+        - '&7Tira a protecao deste terreno'
+        - '&7para sempre.'
+        - ''
+        - '&cCLIQUE &fpara apagar'
+
+    Lista:
+      Slot: 36
+      Material: 'COMPASS'
+      Nome: '&a&lMEUS TERRENOS'
+      Lore:
+        - '&7 ⤷ Terrenos: &f{meus_terrenos}&7/&f{limite}'
+        - ''
+        - '&aCLIQUE &fpara ver a lista'
+
+    Fechar:
+      Slot: 8
+      Material: 'BARRIER'
+      Nome: '&c&lFECHAR'
+      Lore: []
+
+#
+# ═══════════════════════════  LISTA DE TERRENOS  ════════════════════════════
+#
+Menu de terrenos:
+  Titulo: '&8{aba}'
+  Linhas: 6
+  Slots: [ 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Terreno:
+    Material: 'GRASS_BLOCK'
+    Nome: '&a{terreno}'
+    Lore:
+      - '&7 ⤷ Dono: &f{dono}'
+      - '&7 ⤷ Tipo: &f{tipo}'
+      - '&7 ⤷ Mundo: &f{mundo}'
+      - '&7 ⤷ Area: &f{area} blocos'
+      - '&7 ⤷ Membros: &f{membros}'
+      - ''
+      - '&aCLIQUE &fpara abrir o menu'
+      - '&eCLIQUE DIREITO &fpara teleportar'
+
+    # Usada na aba "a venda"; deixe vazia para usar a de cima.
+    Lore a venda:
+      - '&7 ⤷ Dono: &f{dono}'
+      - '&7 ⤷ Mundo: &f{mundo}'
+      - '&7 ⤷ Area: &f{area} blocos'
+      - ''
+      - '&6 ⤷ Preco: &f{preco}'
+      - ''
+      - '&aCLIQUE &fpara ver e comprar'
+      - '&eCLIQUE DIREITO &fpara visitar'
+
+  Abas:
+    Meus:
+      Slot: 3
+      Material: 'CHEST'
+      Nome: '&a&lMEUS TERRENOS'
+      Lore:
+        - '&7Os terrenos que sao seus.'
+        - ''
+        - '&7 ⤷ Selecionada: {atual}'
+    Amigos:
+      Slot: 4
+      Material: 'PLAYER_HEAD'
+      Nome: '&a&lTERRENOS DE AMIGOS'
+      Lore:
+        - '&7Onde voce entra como membro.'
+        - ''
+        - '&7 ⤷ Selecionada: {atual}'
+    Venda:
+      Slot: 5
+      Material: 'EMERALD'
+      Nome: '&6&lA VENDA'
+      Lore:
+        - '&7Os terrenos anunciados no'
+        - '&7servidor.'
+        - ''
+        - '&7 ⤷ Selecionada: {atual}'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&a&lPAGINA ANTERIOR'
+      Lore:
+        - '&7Pagina {pagina} de {paginas}'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&a&lPROXIMA PAGINA'
+      Lore:
+        - '&7Pagina {pagina} de {paginas}'
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&c&lFECHAR'
+      Lore: []
+
+#
+# ════════════════════════════════  MEMBROS  ═════════════════════════════════
+#
+Menu de membros:
+  Titulo: '&8Membros de {terreno}'
+  Linhas: 6
+  Slots: [ 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Membro:
+    Material: 'PLAYER_HEAD'
+    Nome: '&a{jogador}'
+    Lore:
+      - '&7 ⤷ Nivel: {nivel}'
+      - '&7 ⤷ Online: {online}'
+      - ''
+      - '&aCLIQUE &fpara mudar o nivel'
+      - '&cCLIQUE DIREITO &fpara remover'
+
+  Botoes:
+    Adicionar:
+      Slot: 4
+      Material: 'NAME_TAG'
+      Nome: '&a&lADICIONAR MEMBRO'
+      Lore:
+        - '&7Digite o nome de quem voce'
+        - '&7quer deixar entrar.'
+        - ''
+        - '&aCLIQUE &fpara adicionar'
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&a&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&a&lPROXIMA PAGINA'
+      Lore: []
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ════════════════════════  NIVEIS DE CONFIANCA  ═════════════════════════════
+#
+# Aparece so em quem tem mais de um nivel (GriefDefender e PlotSquared).
+Menu de niveis:
+  Titulo: '&8Nivel de {jogador}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Niveis:
+    ACESSO:
+      Slot: 10
+      Material: 'OAK_DOOR'
+      Nome: '&7&lVISITANTE'
+      Lore:
+        - '&7Pode entrar e usar botoes e'
+        - '&7portas, nada mais.'
+        - ''
+        - '&7 ⤷ Atual: {atual}'
+    RESIDENTE:
+      Slot: 11
+      Material: 'BED'
+      Nome: '&a&lMORADOR'
+      Lore:
+        - '&7Entra e mora no terreno, sem'
+        - '&7mexer na construcao.'
+        - ''
+        - '&7 ⤷ Atual: {atual}'
+    BAU:
+      Slot: 12
+      Material: 'CHEST'
+      Nome: '&e&lBAUS'
+      Lore:
+        - '&7Alem de entrar, abre baus e'
+        - '&7fornalhas do terreno.'
+        - ''
+        - '&7 ⤷ Atual: {atual}'
+    CONSTRUTOR:
+      Slot: 13
+      Material: 'IRON_PICKAXE'
+      Nome: '&b&lCONSTRUTOR'
+      Lore:
+        - '&7Constroi e quebra blocos'
+        - '&7dentro do terreno.'
+        - ''
+        - '&7 ⤷ Atual: {atual}'
+    GERENTE:
+      Slot: 14
+      Material: 'GOLDEN_AXE'
+      Nome: '&6&lGERENTE'
+      Lore:
+        - '&7Faz tudo, inclusive convidar'
+        - '&7e tirar outros membros.'
+        - ''
+        - '&c⚠ De so a quem voce confia.'
+        - ''
+        - '&7 ⤷ Atual: {atual}'
+    MEMBRO:
+      Slot: 12
+      Material: 'CHEST'
+      Nome: '&a&lMEMBRO'
+      Lore:
+        - '&7Acesso completo ao terreno.'
+        - ''
+        - '&7 ⤷ Atual: {atual}'
+    CONFIAVEL:
+      Slot: 14
+      Material: 'GOLDEN_AXE'
+      Nome: '&b&lCONFIAVEL'
+      Lore:
+        - '&7Acesso completo, mesmo com o'
+        - '&7dono offline.'
+        - ''
+        - '&7 ⤷ Atual: {atual}'
+
+  Botoes:
+    Voltar:
+      Slot: 22
+      Material: 'BARRIER'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ════════════════════════════════  ICONES  ══════════════════════════════════
+#
+Menu de icones:
+  Titulo: '&8Icone do terreno'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # Linhas acrescentadas a lore de quem nao tem a permissao do icone.
+  Sem permissao:
+    - ''
+    - '&c✖ Voce ainda nao liberou este icone.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&a&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&a&lPROXIMA PAGINA'
+      Lore: []
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ═══════════════════════════════  BANDEIRAS  ════════════════════════════════
+#
+Menu de bandeiras:
+  Titulo: '&8Bandeiras de {terreno}'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Sem permissao:
+    - ''
+    - '&c✖ Voce nao pode mexer nesta bandeira.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&a&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&a&lPROXIMA PAGINA'
+      Lore: []
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ═══════════════════════════  BLOCOS DE TERRENO  ════════════════════════════
+#
+Menu de blocos:
+  Titulo: '&8Blocos de terreno'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Saldo:
+      Slot: 13
+      Material: 'PAPER'
+      Nome: '&a&lSEUS BLOCOS'
+      Lore:
+        - '&7Os blocos decidem o tamanho'
+        - '&7que voce ainda pode proteger.'
+        - ''
+        - '&7 ⤷ Livres: &f{blocos_restantes}'
+        - '&7 ⤷ Totais: &f{blocos_totais}'
+    Comprar:
+      Slot: 11
+      Material: 'EMERALD_BLOCK'
+      Nome: '&a&lCOMPRAR BLOCOS'
+      Lore:
+        - '&7 ⤷ Quantidade: &f{quantidade}'
+        - '&7 ⤷ Preco: &f{preco}'
+        - ''
+        - '&aCLIQUE &fpara comprar {quantidade}'
+        - '&aSHIFT + CLIQUE &fpara {quantidade_shift}'
+    Vender:
+      Slot: 15
+      Material: 'GOLD_BLOCK'
+      Nome: '&e&lVENDER BLOCOS'
+      Lore:
+        - '&7 ⤷ Quantidade: &f{quantidade}'
+        - '&7 ⤷ Voce recebe: &f{retorno}'
+        - ''
+        - '&eCLIQUE &fpara vender {quantidade}'
+        - '&eSHIFT + CLIQUE &fpara {quantidade_shift}'
+    Voltar:
+      Slot: 22
+      Material: 'BARRIER'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ════════════════════════════════  MENSAGENS  ═══════════════════════════════
+#
+Menu de mensagens:
+  Titulo: '&8Mensagens do terreno'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Entrada:
+      Slot: 11
+      Material: 'OAK_SIGN'
+      Nome: '&a&lMENSAGEM DE ENTRADA'
+      Lore:
+        - '&7O recado de quem chega.'
+        - ''
+        - '&7 ⤷ Agora: &f{mensagem_entrada}'
+        - ''
+        - '&aCLIQUE &fpara escrever'
+        - '&cCLIQUE DIREITO &fpara apagar'
+    Saida:
+      Slot: 15
+      Material: 'OAK_SIGN'
+      Nome: '&a&lMENSAGEM DE SAIDA'
+      Lore:
+        - '&7O recado de quem vai embora.'
+        - ''
+        - '&7 ⤷ Agora: &f{mensagem_saida}'
+        - ''
+        - '&aCLIQUE &fpara escrever'
+        - '&cCLIQUE DIREITO &fpara apagar'
+    Voltar:
+      Slot: 22
+      Material: 'BARRIER'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ══════════════════════════════════  VENDA  ═════════════════════════════════
+#
+Menu de venda:
+  Titulo: '&8Vender terreno'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Anunciar:
+      Slot: 11
+      Material: 'EMERALD'
+      Nome: '&a&lANUNCIAR TERRENO'
+      Lore:
+        - '&7Poe o terreno na vitrine do'
+        - '&7servidor por um preco.'
+        - ''
+        - '&7 ⤷ Minimo: &f{minimo}'
+        - '&7 ⤷ Maximo: &f{maximo}'
+        - '&7 ⤷ Taxa do servidor: &f{taxa}%'
+        - ''
+        - '&aCLIQUE &fpara escolher o preco'
+    Cancelar:
+      Slot: 15
+      Material: 'REDSTONE'
+      Nome: '&c&lTIRAR DA VENDA'
+      Lore:
+        - '&7 ⤷ Preco atual: &f{preco}'
+        - ''
+        - '&cCLIQUE &fpara tirar o anuncio'
+    Voltar:
+      Slot: 22
+      Material: 'BARRIER'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ════════════════════════════════  COMPRA  ══════════════════════════════════
+#
+Menu de compra:
+  Titulo: '&8Comprar terreno?'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Confirmar:
+      Slot: 11
+      Material: 'LIME_WOOL'
+      Nome: '&a&lCONFIRMAR'
+      Lore:
+        - '&7 ⤷ Terreno: &f{terreno}'
+        - '&7 ⤷ Dono: &f{dono}'
+        - '&7 ⤷ Preco: &f{valor}'
+        - ''
+        - '&aCLIQUE &fpara comprar'
+    Cancelar:
+      Slot: 15
+      Material: 'RED_WOOL'
+      Nome: '&c&lCANCELAR'
+      Lore: []
+
+#
+# ════════════════════════════════  EXCLUSAO  ════════════════════════════════
+#
+Menu de exclusao:
+  Titulo: '&8Apagar o terreno?'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Confirmar:
+      Slot: 11
+      Material: 'LIME_WOOL'
+      Nome: '&c&lAPAGAR MESMO'
+      Lore:
+        - '&7 ⤷ Terreno: &f{terreno}'
+        - '&7 ⤷ Area: &f{area} blocos'
+        - ''
+        - '&c⚠ A protecao some para sempre.'
+        - ''
+        - '&cCLIQUE &fpara apagar'
+    Cancelar:
+      Slot: 15
+      Material: 'RED_WOOL'
+      Nome: '&a&lNAO, VOLTAR'
+      Lore: []
+
+#
+# ═══════════════════════════════  SUBTERRENOS  ══════════════════════════════
+#
+Menu de subterrenos:
+  Titulo: '&8Subterrenos de {terreno}'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Subterreno:
+    Material: 'OAK_FENCE'
+    Nome: '&b{terreno}'
+    Lore:
+      - '&7 ⤷ Area: &f{area} blocos'
+      - '&7 ⤷ Membros: &f{membros}'
+      - ''
+      - '&aCLIQUE &fpara abrir'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&a&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&a&lPROXIMA PAGINA'
+      Lore: []
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&c&lVOLTAR'
+      Lore: []

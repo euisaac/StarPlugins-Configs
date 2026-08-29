@@ -1,0 +1,179 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                    StarTerrenoUtil - configuracao                    ║
+#  ║   O plugin trabalha em cima do seu plugin de terrenos: ele nao       ║
+#  ║   protege nada sozinho, so acrescenta menu, amigos, venda, voo,      ║
+#  ║   bandeiras e avisos.                                                ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Manda no console o que o plugin esta fazendo por dentro. So ligue para
+# investigar algum problema.
+Depuracao: false
+
+#
+# ════════════════════════════  PLUGIN DE TERRENOS  ══════════════════════════
+#
+# Qual plugin de terrenos usar. Em AUTOMATICO ele procura nesta ordem:
+# GriefDefender, GriefPrevention, Lands, PlotSquared, SuperiorSkyblock2.
+#
+# Valores: AUTOMATICO, GriefDefender, GriefPrevention, Lands, PlotSquared,
+#          SuperiorSkyblock2
+#
+# O GriefDefender e o mais completo aqui: so com ele saem niveis de confianca,
+# bandeiras, mensagens de entrada, venda com placa, blocos de terreno e
+# subterrenos. Nos outros, o botao do recurso que falta simplesmente nao aparece.
+Provedor: AUTOMATICO
+
+#
+# ═════════════════════════════  BANCO DE DADOS  ═════════════════════════════
+#
+# Guarda o que o seu plugin de terrenos nao sabe guardar: o icone do menu, o
+# aviso de entrada, o voo e -- quando o provedor nao tem os seus -- o preco e a
+# home do terreno.
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (varios servidores no mesmo
+  # banco).
+  Tipo: SQLITE
+
+  Endereco: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # Mude se voce roda mais de uma rede no mesmo banco.
+  Prefixo das tabelas: 'starterrenoutil_'
+
+  # De quantos em quantos segundos o que mudou vai para o banco. Os cliques do
+  # menu valem na hora; isto e so a gravacao.
+  Salvar a cada: 60
+
+#
+# ════════════════════════════════  ECONOMIA  ════════════════════════════════
+#
+Economia:
+  # VAULT usa a economia registrada no Vault.
+  # COMANDO serve para as economias que nao se registram no Vault: o saldo e
+  # lido por placeholder e o dinheiro entra e sai por comando de console.
+  Tipo: VAULT
+
+  Simbolo: '$'
+
+  # So no modo COMANDO.
+  Placeholder do saldo: ''
+  Comando para dar: ''
+  Comando para retirar: ''
+
+#
+# ════════════════════════════════  TERRENOS  ════════════════════════════════
+#
+Terrenos:
+  # Quantos terrenos cada jogador pode ter. A permissao
+  # starterrenoutil.limite.<numero> passa por cima disto (o maior numero que o
+  # jogador tiver e o que vale), e starterrenoutil.limite.ilimitado tira o teto.
+  #
+  # Quando o proprio plugin de terrenos sabe informar um limite, ele vale para
+  # quem nao tem nenhuma dessas permissoes.
+  Limite por jogador: 2
+
+  # Icone que os terrenos usam enquanto o dono nao escolhe outro no menu.
+  # Pode ser um material ou uma textura de cabeca (o codigo comprido).
+  Icone padrao: 'GRASS_BLOCK'
+
+  # Mundos onde o menu nem abre (o lobby, por exemplo).
+  Mundos bloqueados: []
+
+#
+# ════════════════════════════════  TELEPORTE  ═══════════════════════════════
+#
+Teleporte:
+  # Cobrado de quem nao e dono nem membro do terreno. 0 desliga a cobranca.
+  Custo: 0.0
+
+  # Segundos de espera antes de teleportar.
+  # A permissao starterrenoutil.teleporte.imediato pula a contagem.
+  Demora: 3
+
+  Cancelar ao mover: true
+  Cancelar ao levar dano: true
+
+#
+# ═══════════════════════════  COMPRA E VENDA  ═══════════════════════════════
+#
+Venda:
+  Preco minimo: 1.0
+  Preco maximo: 10000000.0
+
+  # Porcentagem que o servidor fica de cada venda (0 = nada).
+  Taxa do servidor: 0.0
+
+  # Avisa o servidor inteiro quando um terreno e anunciado.
+  Anunciar no chat: true
+
+#
+# ══════════════════════════════════  VOO  ═══════════════════════════════════
+#
+Voo:
+  Ativar: true
+
+  # Tira o voo de quem sai do terreno. Desligue so se outro plugin ja cuida
+  # disso, senao o jogador sai voando pelo mapa.
+  Desligar ao sair do terreno: true
+
+  # Cobrado do dono ao ligar o voo do terreno. 0 desliga a cobranca.
+  Custo para ligar: 0.0
+
+#
+# ═════════════════════════  AVISO DE ENTRADA E SAIDA  ═══════════════════════
+#
+# O texto sai do mensagens.yml (Aviso.Entrada e Aviso.Saida). Se o dono do
+# terreno escreveu a mensagem dele pelo menu, e a dele que aparece.
+Aviso de entrada:
+  Ativar: true
+  No chat: false
+  Na barra de acao: true
+  Em titulo: true
+
+  # Segundos entre um aviso e o proximo, para quem fica andando na divisa de
+  # dois terrenos nao levar uma enxurrada de titulos.
+  Intervalo: 3
+
+#
+# ═══════════════════════════════  PVP NOTURNO  ══════════════════════════════
+#
+# Deixa o PvP dos terrenos valer so a noite. Cada dono ainda pode desligar o
+# PvP noturno do proprio terreno pelo menu.
+PvP noturno:
+  Ativar: false
+
+  # Vazio = todos os mundos.
+  Mundos:
+    - 'world'
+
+  # Horas do Minecraft. 13000 e o anoitecer e 0 e o amanhecer.
+  Hora da noite: 13000
+  Hora do dia: 0
+
+  Som da noite: 'ENTITY_WITHER_SPAWN'
+  Som do dia: 'BLOCK_NOTE_BLOCK_PLING'
+
+#
+# ═══════════════════════════════  BANDEIRAS  ════════════════════════════════
+#
+# So funciona com GriefDefender. A lista do que aparece no menu esta no
+# bandeiras.yml.
+Bandeiras:
+  # Cobrado a cada alteracao. Cada bandeira pode ter o preco proprio no
+  # bandeiras.yml. Voltar uma bandeira ao padrao nunca custa nada.
+  Custo por alteracao: 0.0
+
+#
+# ═══════════════════════════  BLOCOS DE TERRENO  ════════════════════════════
+#
+# GriefDefender e GriefPrevention medem o terreno em blocos: e o saldo que
+# decide o tamanho que o jogador ainda pode proteger.
+Blocos de terreno:
+  # Quantos blocos por clique. Com SHIFT, dez vezes isto.
+  Quantidade por clique: 100
+
+  Preco de compra: 10.0
+  Valor de venda: 5.0

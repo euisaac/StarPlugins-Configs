@@ -1,0 +1,127 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                    StarTerrenoUtil - icones                          ║
+#  ║   A cara que cada terreno pode ter nas listas do servidor.           ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Campos:
+#    Material   um item comum (vale de 1.8 a 1.21: escreva o nome novo)
+#    Textura    o codigo de uma cabeca customizada; quando existe, manda no
+#               lugar do Material
+#    Nome       o titulo do item no menu
+#    Lore       a descricao ({icone} {custo} {liberado} {atual})
+#    Permissao  vazio = todos podem usar
+#    Custo      0 = de graca
+#
+#  Este arquivo e seu: pode apagar, renomear e acrescentar quantos quiser -- o
+#  plugin nao repoe o que voce tirar.
+#
+
+Icones:
+
+  Grama:
+    Material: 'GRASS_BLOCK'
+    Nome: '&a&lGRAMA'
+    Custo: 0.0
+    Lore:
+      - '&7O visual padrao dos terrenos.'
+      - ''
+      - '&7 ⤷ Preco: &f{custo}'
+      - '&7 ⤷ Em uso: {atual}'
+      - ''
+      - '&aCLIQUE &fpara escolher'
+
+  Casa:
+    Material: 'OAK_DOOR'
+    Nome: '&6&lCASA'
+    Custo: 0.0
+    Lore:
+      - '&7Para quem mora no terreno.'
+      - ''
+      - '&7 ⤷ Preco: &f{custo}'
+      - '&7 ⤷ Em uso: {atual}'
+      - ''
+      - '&aCLIQUE &fpara escolher'
+
+  Fazenda:
+    Material: 'WHEAT'
+    Nome: '&e&lFAZENDA'
+    Custo: 0.0
+    Lore:
+      - '&7Para as plantacoes.'
+      - ''
+      - '&7 ⤷ Preco: &f{custo}'
+      - '&7 ⤷ Em uso: {atual}'
+      - ''
+      - '&aCLIQUE &fpara escolher'
+
+  Mina:
+    Material: 'IRON_PICKAXE'
+    Nome: '&7&lMINA'
+    Custo: 0.0
+    Lore:
+      - '&7Para as bases subterraneas.'
+      - ''
+      - '&7 ⤷ Preco: &f{custo}'
+      - '&7 ⤷ Em uso: {atual}'
+      - ''
+      - '&aCLIQUE &fpara escolher'
+
+  Loja:
+    Material: 'EMERALD'
+    Nome: '&a&lLOJA'
+    Custo: 1000.0
+    Lore:
+      - '&7Para quem vende no proprio'
+      - '&7terreno.'
+      - ''
+      - '&7 ⤷ Preco: &f{custo}'
+      - '&7 ⤷ Em uso: {atual}'
+      - ''
+      - '&aCLIQUE &fpara escolher'
+
+  Castelo:
+    Material: 'STONE_BRICKS'
+    Nome: '&8&lCASTELO'
+    Custo: 5000.0
+    Lore:
+      - '&7Para as construcoes grandes.'
+      - ''
+      - '&7 ⤷ Preco: &f{custo}'
+      - '&7 ⤷ Em uso: {atual}'
+      - ''
+      - '&aCLIQUE &fpara escolher'
+
+  Arena:
+    Material: 'DIAMOND_SWORD'
+    Nome: '&c&lARENA'
+    Custo: 5000.0
+    Lore:
+      - '&7Para o terreno de PvP.'
+      - ''
+      - '&7 ⤷ Preco: &f{custo}'
+      - '&7 ⤷ Em uso: {atual}'
+      - ''
+      - '&aCLIQUE &fpara escolher'
+
+  # Exemplo de icone exclusivo: quem nao tem a permissao ve o item com o aviso
+  # de bloqueado (o texto do aviso esta no menus.yml).
+  Coroa:
+    Material: 'GOLDEN_HELMET'
+    Nome: '&6&lCOROA &7(VIP)'
+    Permissao: 'starterrenoutil.icone.vip'
+    Custo: 0.0
+    Lore:
+      - '&7So para quem tem VIP.'
+      - ''
+      - '&7 ⤷ Em uso: {atual}'
+      - ''
+      - '&aCLIQUE &fpara escolher'
+
+  # Exemplo com cabeca customizada: ponha o codigo comprido da textura em
+  # "Textura" e o Material passa a ser ignorado.
+  # Ilha:
+  #   Textura: '9e4b3f4b3e...'
+  #   Nome: '&b&lILHA'
+  #   Custo: 0.0
+  #   Lore:
+  #     - '&7 ⤷ Em uso: {atual}'

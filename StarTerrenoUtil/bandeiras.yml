@@ -1,0 +1,237 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                  StarTerrenoUtil - bandeiras                         ║
+#  ║   As regras que o dono do terreno liga e desliga no menu.            ║
+#  ║   Funciona com GriefDefender (os outros plugins de terreno nao       ║
+#  ║   expoem bandeiras por terreno, e o botao nem aparece).              ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Cada bandeira tem tres estados no menu:
+#    padrao do servidor  →  permitido  →  bloqueado  →  padrao ...
+#  O clique direito volta direto para o padrao, e voltar ao padrao nunca custa
+#  dinheiro.
+#
+#  Campos:
+#    Id        uma bandeira do GriefDefender
+#    Ids       varias de uma vez (o botao liga e desliga todas juntas)
+#    Material  o item no menu
+#    Nome      o titulo do item
+#    Lore      a descricao ({bandeira} {estado} {custo})
+#    Permissao quem nao tiver ve o item, mas nao consegue mexer (vazio = todos)
+#    Custo     preco desta bandeira; tire a linha para usar o custo do config
+#
+#  A lista das bandeiras do GriefDefender esta na documentacao dele; os ids
+#  usados aqui sao os mais pedidos. Pode apagar, renomear e acrescentar a
+#  vontade -- este arquivo e seu, o plugin nao repoe o que voce tirar.
+#
+
+Bandeiras:
+
+  Explosoes:
+    Ids:
+      - 'explosion-block'
+      - 'explosion-entity'
+    Material: 'TNT'
+    Nome: '&c&lEXPLOSOES'
+    Lore:
+      - '&7Creeper, TNT e cama do Nether'
+      - '&7estragando o seu terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Entrada:
+    Id: 'enter-claim'
+    Material: 'OAK_DOOR'
+    Nome: '&a&lENTRADA DE VISITANTES'
+    Lore:
+      - '&7Deixar (ou nao) que outros'
+      - '&7jogadores entrem no terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Mobs:
+    Ids:
+      - 'entity-spawn'
+      - 'entity-chunk-spawn'
+    Material: 'ZOMBIE_SPAWN_EGG'
+    Nome: '&2&lNASCIMENTO DE MOBS'
+    Lore:
+      - '&7Se monstros e animais podem'
+      - '&7nascer dentro do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Dano em criaturas:
+    Id: 'entity-damage'
+    Material: 'IRON_SWORD'
+    Nome: '&c&lDANO EM CRIATURAS'
+    Lore:
+      - '&7Machucar animais e monstros'
+      - '&7dentro do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Baus:
+    Id: 'interact-inventory'
+    Material: 'CHEST'
+    Nome: '&6&lBAUS E FORNALHAS'
+    Lore:
+      - '&7Abrir baus, fornalhas e'
+      - '&7funis do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Botoes e portas:
+    Id: 'interact-block-secondary'
+    Material: 'LEVER'
+    Nome: '&e&lBOTOES E PORTAS'
+    Lore:
+      - '&7Usar botoes, alavancas e'
+      - '&7portas do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Itens no chao:
+    Ids:
+      - 'item-drop'
+      - 'item-pickup'
+    Material: 'DROPPER'
+    Nome: '&b&lITENS NO CHAO'
+    Lore:
+      - '&7Jogar itens no chao e pegar'
+      - '&7itens dentro do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Cavalgar:
+    Id: 'entity-riding'
+    Material: 'SADDLE'
+    Nome: '&6&lCAVALGAR'
+    Lore:
+      - '&7Montar em cavalos, barcos e'
+      - '&7carrinhos do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Espalhamento:
+    Id: 'block-spread'
+    Material: 'FLINT_AND_STEEL'
+    Nome: '&c&lFOGO E ESPALHAMENTO'
+    Lore:
+      - '&7Fogo, grama e cipo se'
+      - '&7espalhando pelo terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Liquidos:
+    Id: 'liquid-flow'
+    Material: 'WATER_BUCKET'
+    Nome: '&9&lAGUA E LAVA'
+    Lore:
+      - '&7Deixar agua e lava correrem'
+      - '&7dentro do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Portais:
+    Id: 'portal-use'
+    Material: 'OBSIDIAN'
+    Nome: '&5&lPORTAIS'
+    Lore:
+      - '&7Usar portais do Nether e do'
+      - '&7End dentro do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Plantas:
+    Ids:
+      - 'block-grow'
+      - 'leaf-decay'
+    Material: 'WHEAT'
+    Nome: '&a&lPLANTAS E FOLHAS'
+    Lore:
+      - '&7Plantacao crescendo e folha'
+      - '&7caindo no terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  Flechas:
+    Ids:
+      - 'projectile-impact-block'
+      - 'projectile-impact-entity'
+    Material: 'ARROW'
+    Nome: '&f&lFLECHAS E PROJETEIS'
+    Lore:
+      - '&7Flecha, bola de neve e ovo'
+      - '&7acertando coisas no terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
+
+  # Exemplo de bandeira so para VIP: quem nao tiver a permissao ve o item, mas
+  # nao consegue mexer.
+  Comandos:
+    Id: 'command-execute'
+    Material: 'COMMAND_BLOCK'
+    Nome: '&d&lCOMANDOS'
+    Permissao: 'starterrenoutil.bandeira.comandos'
+    Custo: 0.0
+    Lore:
+      - '&7Deixar visitantes usarem'
+      - '&7comandos dentro do terreno.'
+      - ''
+      - '&7 ⤷ Agora: {estado}'
+      - '&7 ⤷ Custo: &f{custo}'
+      - ''
+      - '&aCLIQUE &fpara alternar'
+      - '&eCLIQUE DIREITO &fpara voltar ao padrao'
