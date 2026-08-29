@@ -1,0 +1,80 @@
+# ============================================================================
+#  Desafios da noite. A cada Lua de Sangue o plugin sorteia alguns (quantos,
+#  no config.yml > Desafios > Sortear por lua) e todo mundo corre pelos mesmos.
+#
+#  Tipos:
+#    ABATER          qualquer mob da lua
+#    ABATER_MOB      so o id de mob escrito em "Alvo"
+#    ABATER_CHEFE    so os mobs marcados como Chefe
+#    SEQUENCIA       abates seguidos sem morrer
+#    SOBREVIVER      segundos vivo durante a lua
+#    DANO            dano causado a mobs da lua
+#    SEM_MORRER      chegar ao fim da lua sem morrer (Meta e ignorada)
+# ============================================================================
+
+Versao do modelo: 1
+
+Desafios:
+
+  cacador:
+    Nome: '&cCacador'
+    Descricao: '&7Abata &c{meta} &7mobs da Lua de Sangue.'
+    Tipo: ABATER
+    Meta: 25
+    Icone: 'IRON_SWORD'
+    Fragmentos: 25
+    Dinheiro: 0
+    Xp: 100
+    Comandos: []
+
+  exterminador:
+    Nome: '&4Exterminador'
+    Descricao: '&7Abata &c{meta} &7mobs sem morrer uma vez.'
+    Tipo: SEQUENCIA
+    Meta: 15
+    Icone: 'DIAMOND_SWORD'
+    Fragmentos: 40
+    Xp: 150
+
+  matador_de_chefe:
+    Nome: '&5Matador de Chefe'
+    Descricao: '&7Abata o &5chefe &7da noite.'
+    Tipo: ABATER_CHEFE
+    Meta: 1
+    Icone: 'NETHER_STAR'
+    Fragmentos: 80
+    Xp: 300
+
+  teia_rasgada:
+    Nome: '&cTeia Rasgada'
+    Descricao: '&7Abata &c{meta} &7aranhas da lua.'
+    Tipo: ABATER_MOB
+    Alvo: 'aranha_da_lua'
+    Meta: 10
+    Icone: 'STRING'
+    Fragmentos: 30
+
+  resistente:
+    Nome: '&fResistente'
+    Descricao: '&7Fique vivo por &c{meta} &7durante a lua.'
+    Tipo: SOBREVIVER
+    Meta: 300
+    Icone: 'SHIELD'
+    Fragmentos: 35
+
+  imparavel:
+    Nome: '&6Imparavel'
+    Descricao: '&7Chegue ao fim da lua &csem morrer&7.'
+    Tipo: SEM_MORRER
+    Meta: 1
+    Icone: 'TOTEM_OF_UNDYING'
+    Fragmentos: 60
+    Xp: 200
+
+  devastador:
+    Nome: '&4Devastador'
+    Descricao: '&7Cause &c{meta} &7de dano aos mobs da lua.'
+    Tipo: DANO
+    Meta: 400
+    Icone: 'DIAMOND_AXE'
+    Fragmentos: 45

@@ -1,0 +1,168 @@
+# ============================================================================
+#  Todas as mensagens do plugin. Mensagem vazia ('') simplesmente nao e
+#  enviada -- e assim que voce desliga um aviso sem precisar de uma opcao.
+#
+#  <nl> num titulo separa o titulo do subtitulo.
+# ============================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&4&lLUA DE SANGUE &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Somente jogador: '&cEste comando so funciona dentro do jogo.'
+  Jogador nao encontrado: '&cJogador &f{jogador} &cnao encontrado.'
+  Numero invalido: '&c"{valor}" nao e um numero valido.'
+  Mundo nao encontrado: '&cO mundo &f{mundo} &cnao existe ou nao esta configurado.'
+  Mob nao encontrado: '&cNao existe um mob com o id &f{mob}&c.'
+  Recarregado: '&aConfiguracoes recarregadas em &f{tempo}ms&a.'
+  Uso: '&cUso correto: &f{uso}'
+
+Evento:
+  Aviso:
+    Chat: |-
+      &8&m
+      &4&l              ☾  A LUA DE SANGUE SE APROXIMA  ☾
+      &7                Ela comeca em &c{tempo}&7, no mundo &f{mundo}&7.
+      &7                Prepare-se: os mobs vao vir com tudo.
+      &8&m
+    Titulo: '&4&lLUA DE SANGUE<nl>&cComeca em {tempo}'
+    Actionbar: '&cA Lua de Sangue comeca em &f{tempo}&c...'
+
+  Inicio:
+    Chat: |-
+      &8&m
+      &4&l                    ☾  LUA DE SANGUE  ☾
+      &7          O ceu sangrou sobre &f{mundo}&7. Duracao: &c{duracao}&7.
+      &7          Abata tudo o que se mexer e leve os &cfragmentos&7.
+      &8&m
+    Titulo: '&4&lLUA DE SANGUE<nl>&cSobreviva ate o amanhecer'
+    Actionbar: '&4A Lua de Sangue comecou!'
+
+  Fim:
+    Chat: |-
+      &8&m
+      &c&l                     O SOL VOLTOU
+      &7          A Lua de Sangue de &f{mundo} &7acabou.
+      &7          Abates da noite: &c{abates}&7. Melhor cacador: &f{melhor}&7.
+      &8&m
+    Titulo: '&c&lFIM DA LUA<nl>&7Voce sobreviveu'
+    Actionbar: '&aA Lua de Sangue acabou.'
+
+  Fase: '&8» &7A lua mudou para &r{fase}&7.'
+  Prolongada: '&7A Lua de Sangue foi prolongada em &c{tempo}&7.'
+  Encerrada a mao: '&7A Lua de Sangue foi encerrada por um administrador.'
+  Ja esta ativa: '&cJa existe uma Lua de Sangue no mundo &f{mundo}&c.'
+  Nao esta ativa: '&cNao ha nenhuma Lua de Sangue no mundo &f{mundo}&c.'
+  Mundo desligado: '&cO mundo &f{mundo} &cnao tem a Lua de Sangue ligada.'
+  Poucos jogadores: '&cJogadores demais offline; a Lua de Sangue foi adiada.'
+  Iniciada: '&aLua de Sangue iniciada no mundo &f{mundo}&a.'
+
+Chefe:
+  Nascendo: |-
+    &8&m
+    &5&l                {nome} &5&lDESPERTOU
+    &7            Ele esta a &f{distancia} blocos &7de alguem no mundo.
+    &8&m
+  Titulo: '&5&l{nome}<nl>&dO chefe da noite despertou'
+  Morto: '&8» &d{jogador} &7derrubou &r{nome}&7!'
+  Fugiu: '&8» &7{nome} &7voltou para as sombras.'
+
+Abate:
+  Actionbar: '&c+{fragmentos} ✦ &8| &7{mob} &8| &c{abates} abates'
+  # Aviso do abate do chefe, para o servidor inteiro.
+  Chefe: '&8» &d{jogador} &7deu o golpe final em &r{nome}&7!'
+
+Fragmentos:
+  Saldo: '&7Voce tem &c{fragmentos} &7{nome}.'
+  Saldo de outro: '&f{jogador} &7tem &c{fragmentos} &7{nome}.'
+  Sem saldo: '&cVoce precisa de &f{faltam} &c{nome} para isso.'
+  Recebidos: '&aVoce recebeu &f{fragmentos} &a{nome}.'
+  Retirados: '&cForam retirados &f{fragmentos} &c{nome} de voce.'
+  Definidos: '&aO saldo de &f{jogador} &aagora e &f{fragmentos}&a.'
+  Perdidos: '&cVoce perdeu &f{fragmentos} &c{nome} ao morrer.'
+  No limite: '&cVoce ja esta no limite de {nome}.'
+
+Loja:
+  Desligada: '&cA loja de fragmentos esta desligada.'
+  Somente na lua: '&cA loja so abre durante a Lua de Sangue.'
+  Comprado: '&aVoce comprou &f{item} &apor &c{preco} ✦&a.'
+  Sem espaco: '&cSeu inventario esta cheio; o item foi jogado no chao.'
+  Limite da lua: '&cVoce ja comprou isso o maximo de vezes nesta lua.'
+  Limite total: '&cVoce ja comprou isso o maximo de vezes.'
+
+Desafios:
+  Concluido: '&8» &aDesafio concluido: &r{nome}&a! &7(+{fragmentos} ✦)'
+  Progresso: '&8» &7{nome}&7: &f{progresso}&7/&f{meta}'
+  Sorteados: '&7Desafios desta noite: &f{desafios}'
+  Nenhum: '&7Nenhum desafio nesta noite.'
+
+Recompensa:
+  Participacao: '&aVoce levou a recompensa de participacao: &f{nome}&a.'
+  Ranking: '&aVoce terminou em &f{posicao}o lugar &ee levou &f{nome}&a.'
+  Marco: '&aVoce alcancou o marco &f{nome} &ae foi recompensado.'
+  Sem abates: '&7Voce nao abateu nada nesta lua e ficou sem recompensa.'
+  Inventario cheio: '&eSeu inventario estava cheio; o resto caiu no chao.'
+
+Ritual:
+  Desligado: '&cO ritual de invocacao esta desligado.'
+  Mundo sem ritual: '&cEste mundo nao aceita invocacao por ritual.'
+  Altar errado: '&cO altar esta incompleto. Monte-o direito antes de tentar.'
+  Sem item: '&cVoce precisa da &f{item} &cna mao para acender o altar.'
+  Sem dinheiro: '&cO ritual custa &f{custo}&c e voce nao tem esse valor.'
+  Sem fragmentos: '&cO ritual custa &f{custo} ✦ &ce voce nao tem tanto.'
+  Recarga: '&cVoce ainda precisa esperar &f{tempo} &cpara invocar de novo.'
+  Invocado: '&4O sangue foi aceito. A lua esta subindo...'
+  Anuncio: |-
+    &8&m
+    &4&l              ☾  RITUAL DE SANGUE  ☾
+    &7            &f{jogador} &7invocou a Lua de Sangue em &f{mundo}&7.
+    &8&m
+  Item entregue: '&aVoce recebeu a &f{item}&a.'
+  Altar entregue: '&aOs blocos do altar foram entregues a &f{jogador}&a.'
+
+Restricao:
+  Dormir: '&cNinguem dorme durante a Lua de Sangue.'
+  Comando: '&cO comando &f/{comando} &cesta bloqueado durante a Lua de Sangue.'
+
+Ranking:
+  Cabecalho: '&8&m                    &r &4&lTOP CACADORES &r&8&m                    '
+  Linha: '&8 {posicao}. &f{jogador} &8- &c{abates} &7abates'
+  Vazio: '&7Ninguem abateu nada ainda.'
+  Sua posicao: '&7Sua posicao: &f{posicao}o &7com &c{abates} &7abates.'
+  Fora: '&7Voce ainda nao esta no ranking.'
+  Zerado: '&aO ranking foi zerado.'
+
+Status:
+  Ativa: |-
+    &8&m
+    &4&l              ☾  LUA DE SANGUE ATIVA  ☾
+    &7  Mundo: &f{mundo}
+    &7  Fase: &r{fase}
+    &7  Termina em: &c{tempo}
+    &7  Abates da noite: &c{abates}
+    &7  Chefe: &f{chefe}
+    &8&m
+  Inativa: |-
+    &8&m
+    &c&l              NENHUMA LUA DE SANGUE
+    &7  Mundos ligados: &f{mundos}
+    &7  Proxima possivel: &f{proxima}
+    &8&m
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&cOperacao cancelada.'
+  Tempo esgotado: '&cVoce demorou demais; a operacao foi cancelada.'
+  Numero: '&cDigite um numero.'
+  Salvo: '&aSalvo.'
+
+Editor:
+  Aberto: '&7Editor aberto. As mudancas sao gravadas na hora.'
+  Criado: '&aCriado &f{nome}&a.'
+  Removido: '&cRemovido &f{nome}&c.'
+  Ja existe: '&cJa existe algo com o id &f{nome}&c.'
+  Id invalido: '&cUse so letras, numeros e _ no id.'
+  Item na mao: '&cSegure um item na mao para isso.'
+  Item capturado: '&aItem capturado do seu inventario.'

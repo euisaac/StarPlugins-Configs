@@ -1,0 +1,273 @@
+# ============================================================================
+#  Os mobs da Lua de Sangue.
+#
+#  A chave (zumbi_sangrento, ...) e o id usado no mundos.yml, nos desafios e no
+#  /starluadesangue invocar. Use o editor em jogo para criar os seus.
+#
+#  Tipos de habilidade aceitos em "Habilidades > Tipo":
+#    EXPLODIR    explode ao morrer, sem quebrar bloco
+#    TELEPORTAR  pula para perto do alvo
+#    INVOCAR     chama lacaios (Mob: id do mobs.yml)
+#    PUXAR       arrasta o alvo para perto
+#    EMPURRAR    arremessa o alvo para longe
+#    EFEITO      aplica um efeito de pocao ao acertar (Efeito: NOME;nivel;segundos)
+#    DESARMAR    derruba o que o alvo tem na mao
+#    CURAR       se cura e cura os mobs da lua por perto
+#    ESCUDO      ganha absorcao por um tempo
+#    RAIO        cai um raio no alvo (sem fogo)
+#    SALTAR      pula na direcao do alvo
+#    REFLETIR    devolve parte do dano recebido
+#    ENFURECER   da forca e pressa aos mobs da lua por perto
+#    FOGO        incendeia o alvo
+#    PRENDER     prende o alvo no lugar por um instante
+#
+#  Todas aceitam: Chance (0-100), Recarga (ex.: 8s), Forca, Alcance, Duracao.
+# ============================================================================
+
+Versao do modelo: 1
+
+Mobs:
+
+  zumbi_sangrento:
+    Tipo: ZOMBIE
+    Nome: '&cZumbi Sangrento'
+    Mostrar nome: false
+    Peso: 40
+    Vida: 30
+    Dano: 5
+    Velocidade: 0.27
+    Resistencia a empurrao: 0.4
+    Bebe: false
+    Queimar no sol: false
+    Xp: 12
+    Fragmentos: 1
+    Equipamento:
+      Mao: 'IRON_SWORD'
+      Cabeca: ''
+      Peito: ''
+      Pernas: ''
+      Pes: ''
+      Chance de dropar: 0
+    Efeitos: []
+    Habilidades:
+      - Tipo: EFEITO
+        Efeito: 'SLOW;0;3'
+        Chance: 20
+    Drops:
+      - Material: 'ROTTEN_FLESH'
+        Quantidade: 3
+        Chance: 100
+      - Material: 'IRON_INGOT'
+        Quantidade: 1
+        Chance: 8
+
+  esqueleto_carmesim:
+    Tipo: SKELETON
+    Nome: '&4Esqueleto Carmesim'
+    Mostrar nome: false
+    Peso: 30
+    Vida: 26
+    Dano: 4
+    Velocidade: 0.3
+    Resistencia a empurrao: 0.3
+    Queimar no sol: false
+    Xp: 14
+    Fragmentos: 1
+    Equipamento:
+      Mao: 'BOW'
+      Chance de dropar: 0
+    Efeitos:
+      - 'SPEED;0'
+    Habilidades:
+      - Tipo: FOGO
+        Chance: 15
+        Duracao: 3s
+      - Tipo: EMPURRAR
+        Chance: 8
+        Forca: 0.8
+        Recarga: 6s
+    Drops:
+      - Material: 'BONE'
+        Quantidade: 3
+        Chance: 100
+      - Material: 'ARROW'
+        Quantidade: 8
+        Chance: 60
+
+  aranha_da_lua:
+    Tipo: SPIDER
+    Nome: '&cAranha da Lua'
+    Mostrar nome: false
+    Peso: 20
+    Vida: 22
+    Dano: 4
+    Velocidade: 0.4
+    Resistencia a empurrao: 0.2
+    Xp: 12
+    Fragmentos: 1
+    Habilidades:
+      - Tipo: PRENDER
+        Chance: 12
+        Recarga: 10s
+        Duracao: 2s
+      - Tipo: EFEITO
+        Efeito: 'POISON;0;5'
+        Chance: 25
+    Drops:
+      - Material: 'STRING'
+        Quantidade: 3
+        Chance: 100
+      - Material: 'SPIDER_EYE'
+        Quantidade: 1
+        Chance: 45
+
+  creeper_carmesim:
+    Tipo: CREEPER
+    Nome: '&4Creeper Carmesim'
+    Mostrar nome: true
+    Peso: 10
+    Vida: 24
+    Dano: 6
+    Velocidade: 0.3
+    Xp: 20
+    Fragmentos: 2
+    Habilidades:
+      - Tipo: EXPLODIR
+        Chance: 100
+        Forca: 2.5
+    Drops:
+      - Material: 'GUNPOWDER'
+        Quantidade: 3
+        Chance: 100
+      - Material: 'TNT'
+        Quantidade: 1
+        Chance: 10
+
+  bruxa_de_sangue:
+    Tipo: WITCH
+    Nome: '&5Bruxa de Sangue'
+    Mostrar nome: true
+    Peso: 8
+    Vida: 45
+    Dano: 4
+    Velocidade: 0.26
+    Resistencia a empurrao: 0.6
+    Xp: 35
+    Fragmentos: 4
+    Habilidades:
+      - Tipo: CURAR
+        Chance: 30
+        Recarga: 12s
+        Forca: 6
+        Alcance: 10
+      - Tipo: TELEPORTAR
+        Chance: 20
+        Recarga: 8s
+        Alcance: 12
+      - Tipo: EFEITO
+        Efeito: 'BLINDNESS;0;3'
+        Chance: 25
+    Drops:
+      - Material: 'GLOWSTONE_DUST'
+        Quantidade: 4
+        Chance: 100
+      - Material: 'REDSTONE'
+        Quantidade: 6
+        Chance: 70
+
+  afogado_sangrento:
+    Tipo: ZOMBIE
+    Nome: '&cCarniceiro'
+    Mostrar nome: true
+    Peso: 6
+    Vida: 60
+    Dano: 9
+    Velocidade: 0.24
+    Resistencia a empurrao: 0.8
+    Queimar no sol: false
+    Xp: 45
+    Fragmentos: 5
+    Equipamento:
+      Mao: 'IRON_AXE'
+      Cabeca: 'IRON_HELMET'
+      Peito: 'IRON_CHESTPLATE'
+      Chance de dropar: 2
+    Efeitos:
+      - 'INCREASE_DAMAGE;0'
+    Habilidades:
+      - Tipo: SALTAR
+        Chance: 20
+        Recarga: 7s
+        Forca: 1.2
+        Alcance: 12
+      - Tipo: DESARMAR
+        Chance: 8
+        Recarga: 10s
+      - Tipo: ENFURECER
+        Chance: 15
+        Recarga: 20s
+        Alcance: 12
+        Duracao: 10s
+    Drops:
+      - Material: 'IRON_INGOT'
+        Quantidade: 2
+        Chance: 60
+      - Material: 'DIAMOND'
+        Quantidade: 1
+        Chance: 8
+
+  # -------------------------------------------------------------------- chefe
+  ceifador_da_lua:
+    Tipo: WITHER_SKELETON
+    Nome: '&5&lCeifador da Lua'
+    Mostrar nome: true
+    Chefe: true
+    Peso: 0
+    Vida: 400
+    Dano: 14
+    Velocidade: 0.3
+    Resistencia a empurrao: 1.0
+    Queimar no sol: false
+    Xp: 500
+    Fragmentos: 60
+    Equipamento:
+      Mao: 'DIAMOND_SWORD'
+      Cabeca: 'NETHERITE_HELMET'
+      Chance de dropar: 0
+    Efeitos:
+      - 'DAMAGE_RESISTANCE;0'
+    Habilidades:
+      - Tipo: INVOCAR
+        Mob: 'zumbi_sangrento'
+        Chance: 25
+        Recarga: 15s
+        Forca: 3
+      - Tipo: PUXAR
+        Chance: 20
+        Recarga: 10s
+        Alcance: 16
+      - Tipo: RAIO
+        Chance: 15
+        Recarga: 12s
+      - Tipo: ESCUDO
+        Chance: 20
+        Recarga: 25s
+        Forca: 4
+        Duracao: 12s
+      - Tipo: REFLETIR
+        Chance: 25
+        Forca: 0.3
+      - Tipo: TELEPORTAR
+        Chance: 15
+        Recarga: 9s
+        Alcance: 20
+    Drops:
+      - Material: 'NETHER_STAR'
+        Quantidade: 1
+        Chance: 100
+      - Material: 'DIAMOND'
+        Quantidade: 8
+        Chance: 100
+      - Comando: 'give {jogador} golden_apple 3'
+        Chance: 50
+        Exibir: '&6Macas douradas'

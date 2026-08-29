@@ -1,0 +1,77 @@
+# ============================================================================
+#  O que os jogadores levam quando a Lua de Sangue acaba.
+#
+#  Participacao  -> todo mundo que bateu a meta minima de abates
+#  Ranking       -> as primeiras posicoes daquela lua
+#  Marcos        -> abates somados da vida toda, entregues na hora
+#
+#  Em Comandos e nas mensagens valem: {jogador}, {abates}, {posicao},
+#  {fragmentos}, {mundo}.
+# ============================================================================
+
+Versao do modelo: 1
+
+Participacao:
+
+  padrao:
+    Nome: '&cSobrevivente da Lua'
+    # Abates minimos para levar alguma coisa.
+    Abates minimos: 1
+    # true so paga quem chegou vivo ao fim.
+    Somente sobreviventes: false
+    Fragmentos: 10
+    Dinheiro: 0
+    Xp: 50
+    Comandos: []
+    Itens:
+      - Material: 'GOLDEN_APPLE'
+        Quantidade: 2
+        Nome: '&cRecompensa da Lua'
+
+Ranking:
+
+  padrao:
+    '1':
+      Nome: '&6&l1o lugar'
+      Fragmentos: 150
+      Dinheiro: 0
+      Xp: 300
+      Comandos:
+        - 'broadcast &4[Lua de Sangue] &f{jogador} &7terminou a noite em &61o lugar &7com &c{abates} &7abates!'
+      Itens:
+        - Material: 'DIAMOND_BLOCK'
+          Quantidade: 1
+    '2':
+      Nome: '&7&l2o lugar'
+      Fragmentos: 90
+      Xp: 180
+      Itens:
+        - Material: 'DIAMOND'
+          Quantidade: 5
+    '3':
+      Nome: '&c&l3o lugar'
+      Fragmentos: 50
+      Xp: 100
+      Itens:
+        - Material: 'DIAMOND'
+          Quantidade: 2
+
+# Marcos de abates acumulados. A chave e o total de abates da vida toda; a
+# recompensa sai uma vez so, no momento em que o jogador passa do numero.
+Marcos:
+
+  '100':
+    Nome: '&c100 abates'
+    Fragmentos: 50
+    Comandos: []
+
+  '500':
+    Nome: '&c500 abates'
+    Fragmentos: 200
+    Comandos: []
+
+  '1000':
+    Nome: '&4&l1000 abates'
+    Fragmentos: 500
+    Comandos:
+      - 'broadcast &4[Lua de Sangue] &f{jogador} &7chegou a &c1000 abates &7na Lua de Sangue!'

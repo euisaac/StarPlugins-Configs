@@ -1,0 +1,82 @@
+# ============================================================================
+#  A loja de Fragmentos de Sangue (/luadesangue loja).
+#
+#  Slot manda a posicao no menu. Limite por lua trava quantas vezes o mesmo
+#  jogador leva aquilo na mesma Lua de Sangue (0 = sem limite); Limite total
+#  vale para a vida toda dele.
+#
+#  O item entregue pode ser escrito na mao (Material/Nome/Lore) ou capturado do
+#  seu inventario pelo editor, que grava tambem o Base64 e preserva o item
+#  exatamente como ele e.
+# ============================================================================
+
+Versao do modelo: 1
+
+Itens:
+
+  totem:
+    Slot: 10
+    Preco: 200
+    Limite por lua: 1
+    Limite total: 0
+    Item:
+      Material: 'TOTEM_OF_UNDYING'
+      Quantidade: 1
+      Nome: '&6Totem da Lua'
+      Lore:
+        - '&7Comprado com fragmentos.'
+    Comandos: []
+
+  macas:
+    Slot: 11
+    Preco: 60
+    Limite por lua: 3
+    Item:
+      Material: 'GOLDEN_APPLE'
+      Quantidade: 4
+      Nome: '&6Maca Dourada'
+
+  flechas:
+    Slot: 12
+    Preco: 25
+    Limite por lua: 0
+    Item:
+      Material: 'ARROW'
+      Quantidade: 32
+
+  pocao_de_forca:
+    Slot: 13
+    Preco: 80
+    Limite por lua: 2
+    Item:
+      Material: 'BLAZE_POWDER'
+      Quantidade: 1
+      Nome: '&cSangue Fervente'
+      Lore:
+        - '&7Forca II por 3 minutos.'
+      Brilho: true
+    Comandos:
+      - 'effect give {jogador} strength 180 1'
+
+  bloco_de_diamante:
+    Slot: 15
+    Preco: 400
+    Limite por lua: 1
+    Item:
+      Material: 'DIAMOND_BLOCK'
+      Quantidade: 1
+
+  lagrima:
+    Slot: 16
+    Preco: 600
+    Limite por lua: 1
+    Item:
+      Material: 'GHAST_TEAR'
+      Quantidade: 1
+      Nome: '&4&lLagrima da Lua'
+      Lore:
+        - '&7Clique com ela no &caltar de sangue'
+        - '&7para invocar a &4Lua de Sangue&7.'
+        - ''
+        - '&8Item do StarLuaDeSangue'
+      Brilho: true

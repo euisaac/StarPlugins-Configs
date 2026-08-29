@@ -1,0 +1,150 @@
+# ============================================================================
+#  Um bloco por mundo. Mundo que nao esta aqui nunca tem Lua de Sangue.
+#
+#  A chave e o nome da pasta do mundo. Use o /starluadesangue editor > Mundos
+#  para criar e mexer nestes blocos sem sair do jogo.
+# ============================================================================
+
+Versao do modelo: 1
+
+Mundos:
+
+  world:
+    Ativar: true
+
+    # ---------------------------------------------------------------- gatilhos
+    # O que faz a lua comecar. Podem ficar varios ligados ao mesmo tempo: o
+    # primeiro que der certo comeca o evento.
+    Gatilhos:
+
+      # Sorteia quando a noite cai.
+      Noite:
+        Ativar: true
+        Chance: 10.0
+        # Noites que precisam passar entre duas Luas de Sangue.
+        Noites minimas entre luas: 2
+
+      # De tempo em tempo, contado em tempo real.
+      Intervalo:
+        Ativar: false
+        A cada: 6h
+        # Espera a noite chegar em vez de comecar as tres da tarde.
+        Esperar a noite: true
+
+      # A cada N dias do mundo (o contador do proprio Minecraft).
+      Ciclo:
+        Ativar: false
+        A cada dias: 7
+
+      # Depois de tantos mobs abatidos no mundo por todo mundo junto.
+      Abates:
+        Ativar: false
+        Abates necessarios: 1000
+        Esperar a noite: true
+
+      # O altar de invocacao do config.yml.
+      Ritual:
+        Ativar: true
+
+    # ----------------------------------------------------------------- evento
+    Duracao: 10m
+
+    # Aviso antes de comecar; 0 comeca sem avisar.
+    Aviso antes: 60s
+
+    # Prende o relogio do mundo na noite enquanto durar.
+    Prender a noite: true
+
+    # Liga a tempestade durante o evento e devolve o tempo de antes no fim.
+    Tempestade: false
+
+    # Impede que a lua comece com pouca gente online.
+    Jogadores minimos: 1
+
+    # Encerra sozinha se todo mundo sair do mundo.
+    Encerrar sem jogadores: true
+
+    # ------------------------------------------------------------------ fases
+    # A noite vai apertando. Cada fase comeca numa porcentagem da duracao e
+    # multiplica o que os mobs recebem. A primeira tem que comecar em 0.
+    Fases:
+      - Nome: '&cLua Nascente'
+        Comeca em: 0
+        Multiplicador de vida: 1.6
+        Multiplicador de dano: 1.3
+        Multiplicador de spawn: 1.0
+        Multiplicador de fragmentos: 1.0
+        Aviso: '&c☾ &fA lua sobe no horizonte...'
+      - Nome: '&4Lua Cheia'
+        Comeca em: 40
+        Multiplicador de vida: 2.2
+        Multiplicador de dano: 1.7
+        Multiplicador de spawn: 1.5
+        Multiplicador de fragmentos: 1.5
+        Aviso: '&4☾ &fA lua abre os olhos. Os mobs ficaram mais fortes!'
+      - Nome: '&4&lLua de Sangue'
+        Comeca em: 75
+        Multiplicador de vida: 3.0
+        Multiplicador de dano: 2.2
+        Multiplicador de spawn: 2.0
+        Multiplicador de fragmentos: 2.0
+        Aviso: '&4&l☾ &c&lO ceu sangra. Aguente ate o amanhecer!'
+
+    # ------------------------------------------------------------------ spawn
+    Spawn:
+      # Multiplica o que o proprio mundo ja tentaria gerar de mob natural: os
+      # mobs naturais viram mobs da lua em vez de sumir.
+      Converter mobs naturais: true
+
+      # Alem dos naturais, o plugin gera mobs perto de quem esta no mundo.
+      Gerar perto dos jogadores: true
+      A cada: 3s
+      Por ciclo: 2
+      Distancia minima: 12
+      Distancia maxima: 32
+      # Teto de mobs da lua vivos por jogador do mundo.
+      Limite por jogador: 20
+      # Nao nasce dentro de casa; false deixa nascer em qualquer lugar escuro.
+      Somente a ceu aberto: false
+
+      # Quais mobs do mobs.yml podem nascer aqui. Vazio usa todos.
+      Mobs:
+        - zumbi_sangrento
+        - esqueleto_carmesim
+        - aranha_da_lua
+        - creeper_carmesim
+        - bruxa_de_sangue
+        - afogado_sangrento
+
+    # ------------------------------------------------------------------ chefe
+    Chefe:
+      Ativar: true
+      # Id de um mob do mobs.yml marcado como Chefe.
+      Mob: ceifador_da_lua
+      # Porcentagem da duracao em que ele aparece.
+      Aparece em: 60
+      # Nasce perto de um jogador sorteado do mundo.
+      Distancia: 20
+      Anunciar: true
+      # Se ninguem matar ate o fim, ele some junto com a lua.
+      Sumir no fim: true
+
+    # ------------------------------------------------------------- restricoes
+    Restricoes:
+      # Ninguem dorme para pular a noite.
+      Bloquear dormir: true
+      # Bloqueia teleporte por comando (respeita a lista abaixo).
+      Bloquear comandos: false
+      Comandos bloqueados:
+        - home
+        - tpa
+        - spawn
+        - warp
+      # Quem morre durante a lua volta com este tempo de brilho vermelho.
+      Bloquear regeneracao natural: false
+
+    # ------------------------------------------------------------ recompensas
+    # Ids dos blocos do recompensas.yml usados neste mundo.
+    Recompensas:
+      Participacao: padrao
+      Ranking: padrao

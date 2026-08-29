@@ -1,0 +1,194 @@
+# ============================================================================
+#  StarLuaDeSangue - configuracao geral
+#
+#  O que e de um mundo so (gatilhos, duracao, spawn, fases, chefe, restricoes)
+#  fica no mundos.yml. Aqui ficam as opcoes que valem para o plugin inteiro.
+#
+#  Quase tudo daqui tambem pode ser mexido em jogo pelo /starluadesangue editor.
+# ============================================================================
+
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o que o plugin decide a cada verificacao. Ligue so para
+  # descobrir por que uma lua nao comecou.
+  Debug: false
+
+  # Tiques entre duas verificacoes de gatilho. 40 = duas vezes por segundo, que
+  # ja e bem mais rapido do que a noite chega.
+  Verificar a cada: 40
+
+  # Idioma de datas e numeros nas mensagens.
+  Fuso do servidor: 'America/Sao_Paulo'
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite nasce sozinho na pasta do plugin.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starluadesangue_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Dados:
+  # Segundos entre duas gravacoes em lote dos perfis alterados.
+  Salvar a cada: 60
+
+# ----------------------------------------------------------------------------
+#  Fragmentos de Sangue: a moeda que so existe durante a Lua de Sangue e que a
+#  loja do /luadesangue gasta.
+# ----------------------------------------------------------------------------
+Fragmentos:
+  Nome: 'Fragmento de Sangue'
+  Nome no plural: 'Fragmentos de Sangue'
+  Simbolo: '&c✦'
+
+  # Ganho por abate quando o mob nao define o proprio valor.
+  Por abate: 1
+  Por abate de chefe: 25
+
+  # Multiplicador aplicado ao ganho durante a lua; cada fase pode ter o seu.
+  Multiplicador: 1.0
+
+  # Teto por jogador; 0 tira o limite.
+  Maximo: 0
+
+  # Perde uma parte do que tinha ao morrer durante a lua (0 desliga).
+  Perder ao morrer: 0
+
+Economia:
+  # AUTOMATICO fala com o sistema de economia que o servidor registra sozinho.
+  # COMANDO serve para as economias que nao se registram: o saldo sai de um
+  # marcador de texto e o dinheiro entra e sai por comando de console.
+  Tipo: AUTOMATICO
+  Simbolo: '$'
+  # Marcador de texto que devolve o saldo, para o modo COMANDO.
+  Marcador de saldo: ''
+  Comando de dar: ''
+  Comando de retirar: ''
+
+# ----------------------------------------------------------------------------
+#  A barra vermelha no alto da tela enquanto a lua esta no ar.
+#  Em servidor 1.8 nao existe barra e o texto vai para a actionbar sozinho.
+# ----------------------------------------------------------------------------
+Barra de sangue:
+  Ativar: true
+  # RED, BLUE, GREEN, PINK, PURPLE, WHITE, YELLOW
+  Cor: RED
+  # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+  Estilo: SEGMENTED_12
+  Texto: '&4&lLUA DE SANGUE  &8|  &c{fase}  &8|  &f{tempo}  &8|  &c{abates} abates'
+  # A barra esvazia conforme o tempo passa; false deixa ela sempre cheia.
+  Esvaziar com o tempo: true
+  Atualizar a cada: 20
+
+  # Uma segunda barra, so para o chefe, enquanto ele estiver vivo.
+  Barra do chefe:
+    Ativar: true
+    Cor: PURPLE
+    Estilo: SEGMENTED_20
+    Texto: '&5&l{nome}  &8|  &d{vida}&8/&d{vida maxima}'
+    Alcance: 60
+
+Ambiente:
+  # Trava o relogio do mundo na noite enquanto a lua durar. Sem isso o dia
+  # nasce no meio do evento e os mobs queimam.
+  Prender a noite: true
+
+  # Partículas vermelhas caindo perto de quem esta no mundo da lua.
+  Particulas:
+    Ativar: true
+    # REDSTONE e a unica que existe do jeito certo em toda a faixa 1.8 -> 1.21.
+    Tipo: REDSTONE
+    Quantidade: 12
+    Raio: 8
+    A cada: 20
+
+  # Sons soltos de vez em quando, para a noite nao ficar silenciosa.
+  Sons de fundo:
+    Ativar: true
+    A cada: 15s
+    Chance: 60
+    Lista:
+      - 'ENTITY_WOLF_HOWL;0.6;0.6'
+      - 'AMBIENT_CAVE;0.8;0.5'
+      - 'ENTITY_ENDER_DRAGON_GROWL;0.3;0.5'
+
+  # Escurece a tela de quem esta no mundo (1.19+; ignorado nas anteriores).
+  Escuridao:
+    Ativar: false
+    Forca: 1
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Aviso: 'ENTITY_WOLF_HOWL;1;0.7'
+  Inicio: 'ENTITY_WITHER_SPAWN;1;0.6'
+  Fim: 'ENTITY_ENDER_DRAGON_DEATH;0.7;1.2'
+  Fase: 'ENTITY_WITHER_AMBIENT;1;0.7'
+  Chefe: 'ENTITY_ENDER_DRAGON_GROWL;1;0.6'
+  Abate: 'ENTITY_EXPERIENCE_ORB_PICKUP;0.7;1.6'
+  Compra: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Desafio: 'ENTITY_PLAYER_LEVELUP;1;1.2'
+  Ritual: 'BLOCK_ENDER_CHEST_OPEN;1;0.5'
+
+Ranking:
+  # Quantas posicoes o /luadesangue ranking mostra.
+  Tamanho: 10
+  # Segundos entre duas releituras do ranking a partir do banco.
+  Atualizar a cada: 60
+
+Loja:
+  Ativar: true
+  # true deixa a loja aberta so enquanto a Lua de Sangue estiver no ar.
+  Somente durante a lua: false
+
+Bestiario:
+  # A lista de mobs da lua, com o que cada um larga.
+  Ativar: true
+  # false esconde a chance de cada drop na lore.
+  Mostrar chances: true
+
+Desafios:
+  Ativar: true
+  # Quantos desafios sao sorteados a cada Lua de Sangue; 0 usa todos.
+  Sortear por lua: 3
+  # Zera o progresso dos desafios quando a lua acaba.
+  Zerar ao encerrar: true
+
+Ritual:
+  # O altar que invoca a lua na marra. A estrutura e o custo ficam aqui; o
+  # mundo ainda precisa do gatilho Ritual ligado no mundos.yml.
+  Ativar: true
+  # Bloco do centro, onde o jogador clica com o item de invocacao.
+  Bloco central: 'BEACON'
+  # Os quatro blocos ao redor, na mesma altura (deixe vazio para nao exigir).
+  Bloco ao redor: 'REDSTONE_BLOCK'
+  # Item que acende o altar. Vazio aceita qualquer item na mao.
+  Item de invocacao:
+    Material: 'GHAST_TEAR'
+    Nome: '&4&lLagrima da Lua'
+    Lore:
+      - '&7Clique com ela no &caltar de sangue'
+      - '&7para invocar a &4Lua de Sangue&7.'
+      - ''
+      - '&8Item do StarLuaDeSangue'
+    Brilho: true
+  # Gasta o item ao invocar.
+  Consumir item: true
+  # Custo extra em dinheiro (0 desliga) e em fragmentos (0 desliga).
+  Custo em dinheiro: 0
+  Custo em fragmentos: 0
+  # Recarga entre dois rituais do mesmo jogador.
+  Recarga: 1h
+  # Anuncia para o servidor quem invocou.
+  Anunciar quem invocou: true
+
+# ----------------------------------------------------------------------------
+#  Marcadores de texto (prefixo starluadesangue_):
+#   ativa, ativa_mundo, fase, tempo, tempo_relogio, abates, abates_totais,
+#   abates_chefe, mortes, luas, sobrevividas, fragmentos, posicao, sequencia,
+#   proxima, mundo_ativo, chefe_vivo, desafios_concluidos
+# ----------------------------------------------------------------------------

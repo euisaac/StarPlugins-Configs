@@ -1,0 +1,195 @@
+# ============================================================================
+#  Titulos, tamanhos e botoes dos menus.
+#
+#  Slot: -1 esconde o botao. Linhas vai de 1 a 6.
+# ============================================================================
+
+Versao do modelo: 1
+
+Principal:
+  Titulo: '&4Lua de Sangue'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'RED_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Estado:
+    Slot: 4
+    Material: 'REDSTONE_BLOCK'
+    Nome: '&4&lLua de Sangue'
+    Lore:
+      - '&7Estado: &f{estado}'
+      - '&7Mundo: &f{mundo}'
+      - '&7Fase: &r{fase}'
+      - '&7Termina em: &c{tempo}'
+      - ''
+      - '&7Abates da noite: &c{abates}'
+      - '&7Chefe: &f{chefe}'
+
+  Estatisticas:
+    Slot: 20
+    Material: 'PLAYER_HEAD'
+    Nome: '&cSuas estatisticas'
+    Lore:
+      - '&7Abates totais: &f{abates}'
+      - '&7Abates de chefe: &f{chefes}'
+      - '&7Mortes: &f{mortes}'
+      - '&7Luas vividas: &f{luas}'
+      - '&7Luas sobrevividas: &f{sobrevividas}'
+      - '&7Melhor sequencia: &f{sequencia}'
+      - ''
+      - '&8Clique para ver mais'
+
+  Desafios:
+    Slot: 21
+    Material: 'BOOK'
+    Nome: '&6Desafios da noite'
+    Lore:
+      - '&7Concluidos: &f{concluidos}&7/&f{total}'
+      - ''
+      - '&8Clique para abrir'
+
+  Loja:
+    Slot: 23
+    Material: 'EMERALD'
+    Nome: '&aLoja de Fragmentos'
+    Lore:
+      - '&7Seu saldo: &c{fragmentos} ✦'
+      - ''
+      - '&8Clique para abrir'
+
+  Ranking:
+    Slot: 24
+    Material: 'GOLD_INGOT'
+    Nome: '&6Top cacadores'
+    Lore:
+      - '&7Sua posicao: &f{posicao}'
+      - ''
+      - '&8Clique para abrir'
+
+  Bestiario:
+    Slot: 40
+    Material: 'ZOMBIE_HEAD'
+    Nome: '&cBestiario'
+    Lore:
+      - '&7Os mobs da Lua de Sangue'
+      - '&7e o que cada um larga.'
+      - ''
+      - '&8Clique para abrir'
+
+  Fechar:
+    Slot: 44
+    Material: 'BARRIER'
+    Nome: '&cFechar'
+
+Estatisticas:
+  Titulo: '&cEstatisticas de {jogador}'
+  Linhas: 3
+
+Desafios:
+  Titulo: '&6Desafios da noite'
+  Linhas: 3
+  Concluido:
+    Material: 'LIME_DYE'
+    Nome: '&a{nome}'
+  Em andamento:
+    Material: 'GRAY_DYE'
+    Nome: '&f{nome}'
+
+Loja:
+  Titulo: '&aLoja de Fragmentos'
+  Linhas: 4
+  Saldo:
+    Slot: 31
+    Material: 'REDSTONE'
+    Nome: '&cSeu saldo'
+    Lore:
+      - '&7{fragmentos} ✦'
+
+Ranking:
+  Titulo: '&6Top cacadores'
+  Linhas: 6
+
+Bestiario:
+  Titulo: '&cBestiario da Lua'
+  Linhas: 6
+
+Editor:
+  Titulo: '&4Editor - StarLuaDeSangue'
+  Linhas: 5
+  Geral:
+    Slot: 10
+    Material: 'COMPARATOR'
+    Nome: '&eOpcoes gerais'
+    Lore:
+      - '&7Barra, particulas, sons,'
+      - '&7fragmentos e ranking.'
+  Mundos:
+    Slot: 12
+    Material: 'GRASS_BLOCK'
+    Nome: '&aMundos'
+    Lore:
+      - '&7Gatilhos, duracao, fases,'
+      - '&7spawn, chefe e restricoes.'
+      - ''
+      - '&7Configurados: &f{mundos}'
+  Mobs:
+    Slot: 14
+    Material: 'ZOMBIE_HEAD'
+    Nome: '&cMobs'
+    Lore:
+      - '&7Vida, dano, equipamento,'
+      - '&7habilidades e drops.'
+      - ''
+      - '&7Cadastrados: &f{mobs}'
+  Recompensas:
+    Slot: 16
+    Material: 'CHEST'
+    Nome: '&6Recompensas'
+    Lore:
+      - '&7Participacao, ranking'
+      - '&7e marcos de abates.'
+  Desafios:
+    Slot: 29
+    Material: 'BOOK'
+    Nome: '&bDesafios'
+    Lore:
+      - '&7Cadastrados: &f{desafios}'
+  Loja:
+    Slot: 31
+    Material: 'EMERALD'
+    Nome: '&aLoja'
+    Lore:
+      - '&7Itens: &f{itens}'
+  Ritual:
+    Slot: 33
+    Material: 'BEACON'
+    Nome: '&5Ritual'
+    Lore:
+      - '&7O altar de invocacao.'
+  Fechar:
+    Slot: 44
+    Material: 'BARRIER'
+    Nome: '&cFechar'
+
+# Botoes comuns a todas as telas do plugin.
+Comuns:
+  Voltar:
+    Material: 'ARROW'
+    Nome: '&7Voltar'
+  Anterior:
+    Material: 'ARROW'
+    Nome: '&aPagina anterior'
+  Proxima:
+    Material: 'ARROW'
+    Nome: '&aProxima pagina'
+  Novo:
+    Material: 'LIME_DYE'
+    Nome: '&aCriar novo'
+  Apagar:
+    Material: 'BARRIER'
+    Nome: '&cApagar'
+    Lore:
+      - '&7Segure &fSHIFT &7e clique'
+      - '&7para confirmar.'
