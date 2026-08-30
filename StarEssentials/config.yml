@@ -169,6 +169,23 @@ randomtp:
     valor: 0.0
     economia: ''
 
+  # Executa o RTP em outro mundo quando o comando acontece a partir do mundo
+  # listado. Formato: "mundo-de-origem": "mundo-de-destino".
+  overrides:
+    spawn: world
+    creative_world: world
+
+  # Configuracoes proprias por mundo - sobrescrevem raio-minimo/raio-maximo/
+  # preco so' pra esse mundo (nao precisa listar todos, so' os diferentes do
+  # padrao acima). "usar-worldborder" impede sortear um ponto fora da
+  # world border configurada nesse mundo.
+  mundos:
+    world:
+      usar-worldborder: true
+      raio-maximo: 1000
+      raio-minimo: 250
+      preco: 0
+
 # Custos do /reparar (bypass por permissao: staressentials.repair.hand.free,
 # .armor.free e .all.free).
 reparar:
