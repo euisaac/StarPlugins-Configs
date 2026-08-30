@@ -201,22 +201,30 @@ vida:
   # Teto pro /vida - ninguem sem bypass consegue setar acima disso.
   maximo: 20.0
 
-# Tags de prefixo/sufixo no tab-list, por permissao. O primeiro grupo (por
-# "prioridade", menor primeiro) que o jogador tiver a permissao correspondente
-# e' o que vale. So mexe no nome exibido no tab - o nick continua igual.
+# Tags por permissao, em duas partes independentes - cada uma pode ser
+# editada sem mexer na outra:
+#   tabprefix/tabsuffix - nome exibido na lista de jogadores (tecla Tab)
+#   tagprefix/tagsuffix - nome exibido ACIMA DA CABECA do jogador, no mundo
+# O primeiro grupo (por "prioridade", menor primeiro) que o jogador tiver a
+# permissao correspondente e' o que vale. So mexe no nome exibido - o nick
+# (/nick) continua sendo a base usada nos dois casos.
 tab-tags:
   ativado: true
   grupos:
     exemplo-dono:
       prioridade: 1
       permissao: "staressentials.tags.dono"
-      prefixo: "&4[Dono] &c"
-      sufixo: ""
+      tabprefix: "&4[Dono] &c"
+      tabsuffix: ""
+      tagprefix: "&4[Dono] &c"
+      tagsuffix: ""
     padrao:
       prioridade: 99
       permissao: "" # Vazio para nao precisar de permissao
-      prefixo: "%luckperms_prefix% &7"
-      sufixo: ""
+      tabprefix: "%luckperms_prefix% &7"
+      tabsuffix: "%luckperms_suffix%"
+      tagprefix: "%luckperms_prefix% &7"
+      tagsuffix: "%luckperms_suffix%"
 
 # O que acontece quando um jogador morre.
 morte:
