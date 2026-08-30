@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 5
+Versao do modelo: 6
 
 Geral:
   Debug: false
@@ -16,7 +16,9 @@ Geral:
   # A tag nao e aplicada no nome nestes mundos.
   Mundos bloqueados: []
 
-  # Quem entra sem tag equipada recebe a melhor que ele pode usar.
+  # Quem entra sem NUNCA ter escolhido recebe a melhor tag que ele pode usar.
+  # Quem tirou a tag de proposito continua sem ela: o plugin guarda que a
+  # escolha foi dele e nao devolve a tag na entrada seguinte.
   Equipar a melhor tag automaticamente: true
 
   # Confere na entrada se ele ainda pode usar a tag que estava gravada.
@@ -114,7 +116,11 @@ Texto no nome:
   # desenhado pelo jogo e nao ha linha nenhuma para montar.
   #
   # Precisa de "Nome.Ativar: true": e o time do placar que esconde o nome.
-  Substituir o nome do jogador: false
+  #
+  # Vem LIGADO porque e o unico caminho em que o nome nao fica para tras quando
+  # o jogador corre. Desligue se voce preferir o nome do jogo (que some atras de
+  # blocos, como todo nametag) e nao se incomodar com o atraso.
+  Substituir o nome do jogador: true
   Formato do nome: '{tag}&f{nome}{sufixo}'
 
   # MONTAR O NOME NO JOGADOR -- e isto que tira o atraso.
