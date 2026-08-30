@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 4
+Versao do modelo: 5
 
 Geral:
   Debug: false
@@ -109,16 +109,33 @@ Texto no nome:
   # Ligado, o nome que o JOGO desenha e escondido e o nick passa a ser mais uma
   # destas linhas -- com a altura e o espacamento que voce definir aqui embaixo.
   #
-  # Isto nao existe para tirar o atraso: linha flutuante atrasa do mesmo jeito,
-  # porque o cliente interpola qualquer entidade que se move. Existe porque o
-  # atraso que INCOMODA vem do contraste -- o nome do jogo fica grudado no
-  # jogador enquanto as linhas do plugin ficam para tras, e e a diferenca entre
-  # os dois que salta aos olhos. Com o nick na mesma condicao, o bloco inteiro
-  # anda junto.
+  # E o que destrava o "Montar o nome no jogador" logo abaixo, que e onde o
+  # atraso do nome acaba de verdade. Sem substituir, o nick continua sendo
+  # desenhado pelo jogo e nao ha linha nenhuma para montar.
   #
   # Precisa de "Nome.Ativar: true": e o time do placar que esconde o nome.
   Substituir o nome do jogador: false
   Formato do nome: '{tag}&f{nome}{sufixo}'
+
+  # MONTAR O NOME NO JOGADOR -- e isto que tira o atraso.
+  #
+  # Ligado, a linha do nome viaja MONTADA no jogador, como quem esta sentado
+  # numa montaria. O cliente desenha passageiro colado no veiculo, inclusive no
+  # seu proprio corpo (que ele desenha adivinhando o movimento, sem esperar o
+  # servidor) -- entao o nome nao fica para tras de jeito nenhum.
+  #
+  # So a linha do NOME e montada. Quem posiciona passageiro e o jogo, e ele poe
+  # todos no mesmo ponto: duas linhas montadas ficariam uma escrita por cima da
+  # outra. As de acima e abaixo do nome continuam sendo reposicionadas.
+  #
+  # Montado, "Altura do nome" nao vale -- a altura passa a ser a do jogo, um
+  # pouco abaixo de onde ficaria o nome original. Desligue se voce precisar da
+  # altura exata e preferir conviver com o atraso.
+  #
+  # Precisa de "Substituir o nome do jogador: true".
+  Montar o nome no jogador: true
+
+  # So vale com "Montar o nome no jogador: false".
   Altura do nome: 2.05
 
   # Ticks entre as REESCRITAS do texto (para placeholders que mudam sozinhos).
