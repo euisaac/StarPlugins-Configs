@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 6
+Versao do modelo: 7
 
 Geral:
   Debug: false
@@ -123,7 +123,26 @@ Texto no nome:
   Substituir o nome do jogador: true
   Formato do nome: '{tag}&f{nome}{sufixo}'
 
-  # MONTAR O NOME NO JOGADOR -- e isto que tira o atraso.
+  # VISOR DE TEXTO -- o melhor caminho, quando o servidor tem.
+  #
+  # Da 1.19.4 em diante existe o TextDisplay, e ele resolve o problema inteiro:
+  # TODAS as linhas vao montadas no jogador (montado nao atrasa) e cada uma se
+  # desenha na altura que voce pediu, porque o visor tem deslocamento proprio.
+  # E ele nao tem caixa de colisao, entao nao come flecha na frente da cabeca.
+  #
+  # Abaixo da 1.19.4 a classe nem existe e o produto cai sozinho nos suportes de
+  # armadura -- onde so a linha do nome pode ir montada (veja abaixo).
+  Usar visor de texto: true
+
+  # A que altura o visor se encaixa no jogador, contando dos pes.
+  #
+  # Montado, ele nasce no ponto de encaixe que o JOGO escolhe, e esse ponto
+  # mudou entre versoes. As alturas deste arquivo sao contadas dos pes, entao e
+  # daqui que sai a conversao. Se o texto ficar alto ou baixo demais no seu
+  # servidor, ajuste este numero uma vez e todas as linhas acompanham.
+  Encaixe do visor: 1.8
+
+  # MONTAR O NOME NO JOGADOR -- so vale quando NAO ha visor de texto.
   #
   # Ligado, a linha do nome viaja MONTADA no jogador, como quem esta sentado
   # numa montaria. O cliente desenha passageiro colado no veiculo, inclusive no
@@ -134,14 +153,15 @@ Texto no nome:
   # todos no mesmo ponto: duas linhas montadas ficariam uma escrita por cima da
   # outra. As de acima e abaixo do nome continuam sendo reposicionadas.
   #
-  # Montado, "Altura do nome" nao vale -- a altura passa a ser a do jogo, um
-  # pouco abaixo de onde ficaria o nome original. Desligue se voce precisar da
-  # altura exata e preferir conviver com o atraso.
+  # Sem visor e montado, "Altura do nome" nao vale -- a altura passa a ser a do
+  # jogo. Desligue se voce precisar da altura exata numa versao antiga e
+  # preferir conviver com o atraso.
   #
   # Precisa de "Substituir o nome do jogador: true".
   Montar o nome no jogador: true
 
-  # So vale com "Montar o nome no jogador: false".
+  # Com visor de texto vale sempre. Sem visor, so com "Montar o nome no
+  # jogador: false".
   Altura do nome: 2.05
 
   # Ticks entre as REESCRITAS do texto (para placeholders que mudam sozinhos).
