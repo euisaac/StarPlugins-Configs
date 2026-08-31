@@ -1,0 +1,178 @@
+# ---------------------------------------------------------------------------
+#  StarPortalADDON
+#
+#  E o StarPortal morando dentro do StarEssentials: esta pasta (Portal) fica
+#  dentro da pasta dele, e os comandos de home e teleporte passam a abrir um
+#  portal em vez de levar o jogador embora.
+#
+#  Nada disso vira bloco no mundo: as molduras sao particulas, e o portal so e
+#  desenhado quando ha alguem por perto para ver.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+#
+# ===========================  COMANDOS SUBSTITUIDOS  ========================
+#
+#  Cada linha e a lista de comandos que passam a abrir portal. Lista vazia
+#  ([]) deixa o comando como estava, teleportando na hora.
+#
+#  Escreva os nomes que o SEU servidor usa: se voce renomeou o /home para
+#  /casa no commands.yml do StarEssentials, e /casa que entra aqui. Os
+#  apelidos do comando antigo vem junto sozinhos.
+#
+#  Comando que nao existe no servidor e apenas pulado, com um aviso no console.
+#
+Substituir comandos:
+  home: [ home ]
+  warp: [ warp ]
+  spawn: [ spawn ]
+  back: [ back, voltar ]
+
+  # A familia do /tpa passa a ser tratada aqui: o pedido continua igual, mas
+  # quem aceita ganha um portal em vez do teleporte imediato.
+  tpa: [ tpa ]
+  chamar: [ tpahere, tpaqui ]
+  aceitar: [ tpaccept, tpaceitar ]
+  negar: [ tpdeny, tpnegar ]
+
+#
+# =============================  STARESSENTIALS  =============================
+#
+StarEssentials:
+  # Com o portal, a viagem acontece quando a pessoa atravessa a moldura, e nao
+  # quando ela digita o comando. Ligado, o addon anota no StarEssentials o
+  # lugar de onde ela saiu no instante da travessia -- e o /back continua
+  # levando para o lugar certo.
+  Guardar o back: true
+
+#
+# ==============================  BANCO DE DADOS  ============================
+#
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (varios servidores no mesmo
+  # banco). O arquivo do SQLite fica em StarEssentials/Portal/dados.
+  Tipo: SQLITE
+
+  Endereco: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # Mude se voce roda mais de uma rede no mesmo banco.
+  Prefixo das tabelas: 'starportal_'
+
+  # De quantos em quantos segundos o que mudou vai para o banco. Os cliques do
+  # menu valem na hora; isto e so a gravacao.
+  Salvar a cada: 60
+
+#
+# =================================  PORTAIS  ================================
+#
+Portais:
+  # Quantos portais fixos alguem tem sem nenhuma permissao especial. Para dar
+  # mais, use a permissao starportal.limite.<numero> (por exemplo
+  # starportal.limite.5) ou starportal.limite.ilimitado.
+  Limite padrao: 1
+
+  # Tamanho da moldura, em blocos.
+  Largura: 1.4
+  Altura: 2.2
+
+  # Cor da borda, em R,G,B (ou #RRGGBB). Cada portal pode ter a cor dele, e
+  # esta e a de quem nao escolheu nenhuma.
+  #
+  # Servidor 1.8 nao aceita cor escolhida em particula: la a borda sai sempre
+  # avermelhada, e o resto funciona igual.
+  Cor padrao: '150,60,255'
+
+  # A particula que preenche o meio da moldura. Deixe vazio para so a borda.
+  Particula do miolo: 'PORTAL'
+
+  # Quantos pontos formam a volta da moldura. Mais pontos = borda mais fechada
+  # e mais particula no ar.
+  Pontos da borda: 28
+
+  # De quantos em quantos tiques o portal e redesenhado (20 tiques = 1 segundo).
+  # Este numero tambem manda na conferencia de quem entrou.
+  Desenhar a cada: 4
+
+  # A que distancia, em blocos, o portal aparece para quem esta perto.
+  Distancia para ver: 32
+
+  # Portal novo ja nasce deixando os outros atravessarem?
+  Permitir outros por padrao: true
+
+  # Segundos entre um uso e outro do mesmo jogador. Serve tambem para nao
+  # levar duas vezes seguidas quem parou em cima da moldura.
+  Espera entre usos: 3
+
+  # Tamanho maximo do nome de um portal.
+  Tamanho maximo do nome: 16
+
+  # Mundos onde nao da para abrir nem criar portais.
+  Mundos bloqueados: []
+
+#
+# ===========================  PORTAIS TEMPORARIOS  ==========================
+#
+Temporarios:
+  # Quantos segundos a moldura aberta por um comando fica de pe.
+  Duracao: 30
+
+  # A quantos blocos da frente do jogador o portal nasce.
+  Distancia na frente: 1.6
+
+#
+# =======================  PEDIDOS ENTRE JOGADORES  ==========================
+#
+Pedidos:
+  # Segundos que um pedido de portal fica esperando resposta.
+  Validade: 60
+
+#
+# ==================================  SONS  ==================================
+#
+#  Formato: SOM, SOM;volume ou SOM;volume;tom. O nome passa pelo XSeries,
+#  entao vale tanto o nome antigo quanto o novo. Deixe vazio para nao tocar.
+#
+Sons:
+  Abrir: 'BLOCK_PORTAL_TRIGGER;0.4;1.6'
+  Atravessar: 'ENTITY_ENDERMAN_TELEPORT;0.8;1.2'
+  Fechar: 'BLOCK_FIRE_EXTINGUISH;0.5;1.4'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Clique no menu: 'UI_BUTTON_CLICK;0.6;1.4'
+
+#
+# ====================  TROCAR O TELEPORTE DE OUTROS PLUGINS  ================
+#
+#  Serve para quem quer que TODO teleporte de comando vire portal, mesmo o de
+#  plugins que este aqui nao conhece: o teleporte e cancelado e a moldura abre
+#  no lugar dele.
+#
+#  Vem desligado de proposito. Minigame, arena, elevador e plugin de mundo
+#  tambem teleportam, e so voce sabe quais deles devem virar portal.
+#
+Trocar teleportes:
+  Ativar: false
+
+  # Causas que viram portal. PLUGIN cobre quase todo /home, /warp e /tpa de
+  # outros plugins; COMMAND e o /tp do proprio servidor.
+  # Outras possiveis: ENDER_PEARL, CHORUS_FRUIT, SPECTATE, UNKNOWN.
+  Causas: [ PLUGIN, COMMAND ]
+
+  # Teleporte mais curto que isto (em blocos, no mesmo mundo) continua direto:
+  # abrir moldura para um pulo de dois blocos so atrapalharia.
+  Distancia minima: 16
+
+  # Quem tem a permissao starportal.teleporte.direto continua sendo teleportado
+  # na hora -- deixe com o staff, para o /tp de moderacao nao virar portal.
+
+#
+# =================================  AVISOS  =================================
+#
+Avisos:
+  # Recusa (portal de outro, mundo bloqueado) aparece na barra de acao em vez
+  # do chat -- assim quem para na frente da moldura nao enche o proprio chat.
+  Barra de acao: true
