@@ -7,10 +7,10 @@
 #  Marcadores que valem em qualquer texto daqui:
 #    {nome} {dono} {tipo} {ativador} {grupo} {local} {mundo} {estado}
 #    {intervalo} {tempo} {custo} {destino} {filtro} {pagina} {paginas} {total}
-#    {terreno} {membros} {permissoes} {plugin} {aviso}
+#    {terreno} {membros} {permissoes} {plugin} {aviso} {tipos} {iguais} {automaticos}
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 #
 # ══════════════════════════  LISTA DE ATIVADORES  ═══════════════════════════
@@ -40,6 +40,23 @@ Lista:
       - '&7Automatico: &f{estado}'
       - ''
       - '&eClique para abrir o ativador.'
+
+  # A linha de um GRUPO de ativadores vinculados. Ele ocupa um espaco so na
+  # lista, no lugar de aparecer um item por ativador.
+  #
+  # A linha que tem {tipos} vira uma linha por tipo do grupo -- apague-a se
+  # voce nao quiser essa parte.
+  Grupo:
+    Material: 'REDSTONE_LAMP'
+    Nome: '&d&l{grupo}'
+    Lore:
+      - '&7Dono: &f{dono}'
+      - '&7Ativadores: &f{total}'
+      - '&7Local: &f{local}'
+      - ''
+      - '&7 &8- &f{tipos}'
+      - ''
+      - '&eClique para abrir o grupo.'
 
   Botoes:
     Anterior:
@@ -237,6 +254,7 @@ Automatico:
       Material: 'CLOCK'
       Nome: '&6Automatico: &f{estado}'
       Lore:
+        - '&7Tipo: &f{tipo}'
         - '&7Pulsa a cada &f{tempo}&7.'
         - '&7{aviso}'
         - ''
@@ -331,6 +349,135 @@ Permissoes:
         - '&7tempo do automatico.'
         - ''
         - '&eClique para ligar/desligar.'
+
+    Voltar:
+      Slot: 22
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ═════════════════════════════  UM GRUPO  ═══════════════════════════════════
+#
+# O grupo aparece como um item so na lista e abre esta tela, que controla o
+# conjunto. O que e de um ativador so (renomear, melhorar, desvincular) fica na
+# lista de membros, no botao "Ativadores do grupo".
+#
+Grupo:
+  Titulo: '&8{grupo}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Informacoes:
+      Slot: 4
+      Material: 'REDSTONE_LAMP'
+      Nome: '&d&l{grupo}'
+      Lore:
+        - '&7Dono: &f{dono}'
+        - '&7Ativadores: &f{total}'
+        - '&7Terreno: &f{terreno}'
+        - ''
+        - '&7 &8- &f{tipos}'
+
+    Ativar:
+      Slot: 20
+      Material: 'REDSTONE_BLOCK'
+      Nome: '&a&lATIVAR O GRUPO'
+      Lore:
+        - '&7Aciona os &f{total} &7ativadores'
+        - '&7de uma vez, por &f{tempo}&7.'
+        - '&7Espera entre ativacoes: &f{espera}'
+        - ''
+        - '&eClique para acionar.'
+
+    Renomear:
+      Slot: 21
+      Material: 'NAME_TAG'
+      Nome: '&eRenomear o grupo'
+      Lore:
+        - '&7Nome atual: &f{grupo}'
+        - ''
+        - '&eClique e digite no chat.'
+
+    Ativadores:
+      Slot: 22
+      Material: 'CHEST'
+      Nome: '&bAtivadores do grupo'
+      Lore:
+        - '&7Ver os &f{total} &7um por um, para'
+        - '&7renomear, melhorar ou desvincular.'
+        - ''
+        - '&eClique para abrir a lista.'
+
+    Automatico:
+      Slot: 23
+      Material: 'CLOCK'
+      Nome: '&6Automatico'
+      Lore:
+        - '&7Cada tipo tem o proprio relogio;'
+        - '&7so os iguais pulsam juntos.'
+        - '&7Tipos com automatico: &f{automaticos}'
+        - ''
+        - '&eClique para configurar.'
+
+    Permissoes:
+      Slot: 24
+      Material: 'PLAYER_HEAD'
+      Nome: '&bPermissoes'
+      Lore:
+        - '&7Valem para o grupo inteiro.'
+        - ''
+        - '&eClique para configurar.'
+
+    Voltar:
+      Slot: 40
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ══════════════════  ESCOLHA DO AUTOMATICO (grupo misturado)  ═══════════════
+#
+# So aparece quando o grupo tem MAIS DE UM tipo com automatico. Com um tipo so,
+# o botao do grupo abre a configuracao direto.
+#
+AutomaticosDoGrupo:
+  Titulo: '&8Automatico - {grupo}'
+  Linhas: 3
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Nome: '&6{tipo}'
+    Lore:
+      - '&7Ativadores deste tipo: &f{iguais}'
+      - '&7Estado: &f{estado}'
+      - '&7Intervalo: &f{tempo}'
+      - ''
+      - '&eClique para configurar.'
+
+  Botoes:
+    Anterior:
+      Slot: 18
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ ]
+
+    Proxima:
+      Slot: 26
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ ]
 
     Voltar:
       Slot: 22
