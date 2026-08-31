@@ -9,7 +9,7 @@
 #  desenhado quando ha alguem por perto para ver.
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 #
 # ==============================  BANCO DE DADOS  ============================
@@ -110,6 +110,14 @@ Temporarios:
   # A quantos blocos da frente do jogador o portal nasce.
   Distancia na frente: 1.6
 
+  # O portal fecha assim que o dono atravessa? Ligado, vale para todo mundo e
+  # o jogador nao escolhe.
+  Fechar quando o dono atravessa: false
+
+  # Com a linha acima desligada, cada jogador decide isso no menu de
+  # privacidade dele, uma escolha por tipo de portal (/home, /spawn...).
+  Deixar o jogador escolher: true
+
 #
 # ================================  HOLOGRAMA  ===============================
 #
@@ -174,6 +182,33 @@ Trocar teleportes:
 
   # Quem tem a permissao starportal.teleporte.direto continua sendo teleportado
   # na hora -- deixe com o staff, para o /tp de moderacao nao virar portal.
+
+#
+# ===============================  ANIMACOES  ================================
+#
+#  Como a moldura abre, fica de pe e fecha. Cada jogador escolhe a dele no
+#  /portal (botao Animacoes), dentro do que ele tiver permissao.
+#
+#    abertura  NENHUMA, EXPANDIR, GIRAR, SUBIR
+#    aberto    ANEL, ESPIRAL, CHUVA, PULSAR
+#    fechando  NENHUMA, IMPLODIR, DESABAR, ESTOURAR
+#
+Animacoes:
+  Ativar: true
+
+  # Quantos tiques duram a abertura e o fechamento (20 tiques = 1 segundo).
+  Duracao: 12
+
+  # O que vale para quem nunca escolheu.
+  Padrao:
+    Abertura: 'EXPANDIR'
+    Aberto: 'ANEL'
+    Fechando: 'IMPLODIR'
+
+  # Cada animacao pede a permissao starportal.animacao.<nome> (por exemplo
+  # starportal.animacao.implodir). As escritas aqui sao de graca para todo
+  # mundo -- o resto vira VIP.
+  Liberadas: [ NENHUMA, ANEL, EXPANDIR, IMPLODIR ]
 
 #
 # =================================  AVISOS  =================================

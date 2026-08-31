@@ -8,7 +8,7 @@
 #  {tempo} {total} {limite} {tamanho} {novo} {origem} {destino} {comando}
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 Prefixo: '&d&lPORTAL &8» &7'
 
@@ -55,6 +55,8 @@ Estado:
   Nenhum: '&cnao definido'
   Ilimitado: '&dsem limite'
   Cor automatica: 'automatica (pelo mundo do destino)'
+  Publico: 'publicos'
+  Privado: 'so meus'
   Lado de ida: 'ida'
   Lado de volta: 'volta'
 
@@ -111,10 +113,38 @@ Portal:
   Outros bloqueados: '&7So voce atravessa o portal &f{portal} &7agora.'
   Confirmar apagar: '&eSegure &fSHIFT &ee clique de novo para apagar o portal &f{portal}&e.'
 
+  Ja fechou: '&cEsse portal ja fechou.'
   Nome do teleporte: 'teleporte'
   Atravessou: '&dVoce atravessou o portal &f{portal}&d.'
   So do dono: '&cEste portal e so de {dono}.'
   Sem permissao para entrar: '&cVoce nao pode atravessar portais dos outros.'
+
+# ---------------------------------------------------------------------------
+#  O "digite no chat" dos menus (o renomear).
+# ---------------------------------------------------------------------------
+Entrada:
+  Nome do portal: |
+    &7Digite no chat o novo nome do portal &f{portal}&7.
+    &7Da para usar cor com o e-comercial, do mesmo jeito que numa placa.
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&7Deixei como estava.'
+  Tempo esgotado: '&cO tempo para digitar acabou.'
+
+# ---------------------------------------------------------------------------
+#  As escolhas de cada jogador (as telas do /portal).
+# ---------------------------------------------------------------------------
+Preferencias:
+  Acao ligada: '&aO &f{acao} &aagora abre portal.'
+  Acao desligada: '&7O &f{acao} &7volta a teleportar na hora.'
+  Fechar ligado: '&aO portal do &f{acao} &avai fechar assim que voce atravessar.'
+  Fechar desligado: '&7O portal do &f{acao} &7vai ficar de pe ate o tempo acabar.'
+  Portais publicos: '&aOs seus portais agora deixam os outros entrarem.'
+  Portais privados: '&7Os seus portais agora sao so seus.'
+  Aplicado a todos: '&aPronto: &f{total} &aportais foram ajustados.'
+
+Animacao:
+  Trocada: '&aA animacao de &f{fase} &aagora e &f{animacao}&a.'
+  Sem outra: '&cVoce ainda nao tem permissao para outra animacao dessa fase.'
 
 Pedido:
   Nome do portal: 'ate {jogador}'

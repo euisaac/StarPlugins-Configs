@@ -9,7 +9,7 @@
 #    {total} {limite} {pagina} {paginas} {jogador}
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 #
 # =========================  LISTA DE PORTAIS (/portal)  =====================
@@ -79,6 +79,33 @@ Lista:
     Slot: 48
     Material: 'BARRIER'
     Nome: '&cFechar'
+
+  # As tres telas de escolha do jogador. Slot -1 esconde qualquer uma delas.
+  Acoes:
+    Slot: 46
+    Material: 'COMPARATOR'
+    Nome: '&f&lOnde abrir portal'
+    Lore:
+      - '&7Escolha em quais comandos'
+      - '&7voce quer portal, e em quais'
+      - '&7prefere o teleporte de sempre.'
+
+  Privacidade:
+    Slot: 47
+    Material: 'IRON_DOOR'
+    Nome: '&f&lPrivacidade'
+    Lore:
+      - '&7Os seus portais nascem: &f{estado}'
+      - ''
+      - '&eClique &7para abrir.'
+
+  Animacoes:
+    Slot: 50
+    Material: 'BLAZE_POWDER'
+    Nome: '&f&lAnimacoes'
+    Lore:
+      - '&7Como o seu portal abre,'
+      - '&7fica de pe e fecha.'
 
 #
 # ==========================  AJUSTES DE UM PORTAL  ==========================
@@ -178,6 +205,15 @@ Portal:
       - '255,80,80'
       - '255,255,255'
 
+  Renomear:
+    Slot: 24
+    Material: 'NAME_TAG'
+    Nome: '&e&lRenomear'
+    Lore:
+      - '&7Agora: &f{portal}'
+      - ''
+      - '&eClique &7e digite o nome novo no chat.'
+
   Apagar:
     Slot: 40
     Material: 'BARRIER'
@@ -191,3 +227,275 @@ Portal:
     Slot: 36
     Material: 'ARROW'
     Nome: '&eVoltar'
+
+#
+# ==========================  ONDE ABRIR PORTAL  =============================
+#
+Acoes:
+  Titulo: '&8Onde abrir portal'
+  Linhas: 4
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item ligado:
+    Material: 'LIME_DYE'
+    Nome: '&a&l{acao}'
+    Lore:
+      - '&7Este comando abre um portal.'
+      - ''
+      - '&eClique &7para voltar ao teleporte normal.'
+
+  Item desligado:
+    Material: 'GRAY_DYE'
+    Nome: '&7&l{acao}'
+    Lore:
+      - '&7Este comando teleporta na hora.'
+      - ''
+      - '&eClique &7para ele abrir portal.'
+
+  Voltar:
+    Slot: 27
+    Material: 'ARROW'
+    Nome: '&eVoltar'
+
+  # O nome que cada acao recebe nas duas telas. O que nao estiver aqui aparece
+  # com o nome que o proprio produto registrou.
+  Nomes:
+    home: 'Home'
+    warp: 'Warp'
+    spawn: 'Spawn'
+    back: 'Voltar (/back)'
+    tpa: 'Ir ate um jogador'
+    chamar: 'Chamar um jogador'
+    aceitar: 'Aceitar pedido'
+    negar: 'Negar pedido'
+    teleporte: 'Teleporte de outros plugins'
+    portal: 'Portal do /portal'
+    jogador: 'Portal ate um jogador'
+
+#
+# ========================  FECHAR AO ATRAVESSAR  ============================
+#
+Fechar:
+  Titulo: '&8Fechar ao atravessar'
+  Linhas: 4
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item ligado:
+    Material: 'LIME_DYE'
+    Nome: '&a&l{acao}'
+    Lore:
+      - '&7O portal fecha assim que'
+      - '&7voce atravessa.'
+      - ''
+      - '&eClique &7para deixar ele aberto.'
+
+  Item desligado:
+    Material: 'GRAY_DYE'
+    Nome: '&7&l{acao}'
+    Lore:
+      - '&7O portal fica de pe ate o'
+      - '&7tempo dele acabar.'
+      - ''
+      - '&eClique &7para fechar ao atravessar.'
+
+  Voltar:
+    Slot: 27
+    Material: 'ARROW'
+    Nome: '&eVoltar'
+
+#
+# ==============================  PRIVACIDADE  ===============================
+#
+Privacidade:
+  Titulo: '&8Privacidade dos portais'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Publico:
+    Slot: 11
+    Material: 'PLAYER_HEAD'
+    Nome: '&a&lPortais publicos'
+    Lore:
+      - '&7Quem estiver por perto pode'
+      - '&7atravessar os seus portais.'
+      - ''
+      - '&eClique &7para deixar so para voce.'
+
+  Privado:
+    Slot: 11
+    Material: 'IRON_DOOR'
+    Nome: '&c&lPortais so seus'
+    Lore:
+      - '&7Ninguem alem de voce atravessa.'
+      - ''
+      - '&eClique &7para liberar para os outros.'
+
+  Aplicar a todos:
+    Slot: 13
+    Material: 'HOPPER'
+    Nome: '&e&lAplicar aos que ja existem'
+    Lore:
+      - '&7Poe a escolha de agora &f({estado})'
+      - '&7nos seus &f{total} &7portais.'
+
+  Fechar ao atravessar:
+    Slot: 15
+    Material: 'ENDER_EYE'
+    Nome: '&f&lFechar ao atravessar'
+    Lore:
+      - '&7Escolha quais portais somem'
+      - '&7assim que voce atravessa.'
+
+  Voltar:
+    Slot: 18
+    Material: 'ARROW'
+    Nome: '&eVoltar'
+
+#
+# ===============================  ANIMACOES  ================================
+#
+#  As animacoes que existem:
+#    abertura  NENHUMA, EXPANDIR, GIRAR, SUBIR
+#    aberto    ANEL, ESPIRAL, CHUVA, PULSAR
+#    fechando  NENHUMA, IMPLODIR, DESABAR, ESTOURAR
+#
+#  Cada uma pede a permissao starportal.animacao.<nome>; as escritas em
+#  "Animacoes.Liberadas" no config.yml valem para todo mundo.
+#
+Animacoes:
+  Titulo: '&8Animacoes do portal'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Fases:
+    abertura:
+      Slot: 11
+      Material: 'FEATHER'
+      Nome: '&d&l{fase}'
+      Lore:
+        - '&7Agora: &f{animacao}'
+        - ''
+        - '{lista}'
+        - ''
+        - '&eClique &7para a proxima, &eclique direito &7para voltar.'
+    aberto:
+      Slot: 13
+      Material: 'ENDER_EYE'
+      Nome: '&d&l{fase}'
+      Lore:
+        - '&7Agora: &f{animacao}'
+        - ''
+        - '{lista}'
+        - ''
+        - '&eClique &7para a proxima, &eclique direito &7para voltar.'
+    fechando:
+      Slot: 15
+      Material: 'FIRE_CHARGE'
+      Nome: '&d&l{fase}'
+      Lore:
+        - '&7Agora: &f{animacao}'
+        - ''
+        - '{lista}'
+        - ''
+        - '&eClique &7para a proxima, &eclique direito &7para voltar.'
+
+  Nomes das fases:
+    abertura: 'Abrindo'
+    aberto: 'De pe'
+    fechando: 'Fechando'
+
+  Nomes:
+    NENHUMA: 'Nenhuma'
+    EXPANDIR: 'Expandir'
+    GIRAR: 'Girar'
+    SUBIR: 'Subir do chao'
+    ANEL: 'Anel'
+    ESPIRAL: 'Espiral'
+    CHUVA: 'Chuva'
+    PULSAR: 'Pulsar'
+    IMPLODIR: 'Implodir'
+    DESABAR: 'Desabar'
+    ESTOURAR: 'Estourar'
+
+  Linha: ' &8- &7{animacao}'
+  Linha escolhida: ' &a> &f{animacao}'
+  Linha trancada: ' &8- &8{animacao} &c(sem permissao)'
+
+  Voltar:
+    Slot: 18
+    Material: 'ARROW'
+    Nome: '&eVoltar'
+
+#
+# =====================  PORTAL TEMPORARIO (clique direito)  =================
+#
+Temporario:
+  Titulo: '&8Portal para {portal}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Info:
+    Slot: 4
+    Material: 'CLOCK'
+    Nome: '&d&l{portal}'
+    Lore:
+      - '&7Destino: &f{destino}'
+      - '&7Fecha em: &f{tempo}'
+
+  Outros:
+    Slot: 11
+    Material: 'PLAYER_HEAD'
+    Nome: '&fPassagem: &e{outros}'
+    Lore:
+      - '&7Quem esta por perto pode ou nao'
+      - '&7atravessar este portal.'
+      - ''
+      - '&eClique &7para trocar.'
+
+  Volta:
+    Slot: 13
+    Material: 'LIME_DYE'
+    Nome: '&fMoldura de volta: &e{volta}'
+    Lore:
+      - '&7Liga a moldura do outro lado,'
+      - '&7para voltar pelo mesmo portal.'
+      - ''
+      - '&eClique &7para trocar.'
+
+  Fechar agora:
+    Slot: 15
+    Material: 'BARRIER'
+    Nome: '&c&lFechar o portal'
+    Lore:
+      - '&7Fecha a moldura agora mesmo.'
+
+  Sair:
+    Slot: 26
+    Material: 'ARROW'
+    Nome: '&eSair'
