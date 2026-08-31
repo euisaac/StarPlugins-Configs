@@ -9,7 +9,7 @@
 #  desenhado quando ha alguem por perto para ver.
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 #
 # ===========================  COMANDOS SUBSTITUIDOS  ========================
@@ -87,6 +87,27 @@ Portais:
   # avermelhada, e o resto funciona igual.
   Cor padrao: '150,60,255'
 
+  # Cor pelo mundo do DESTINO: o portal se pinta conforme o lugar para onde
+  # leva. O que leva para o Nether fica vermelho, o que leva para o End fica
+  # branco -- da para saber para onde a moldura vai antes de entrar.
+  #
+  # A cor escolhida no menu pelo dono do portal ganha de tudo isto; sem ela,
+  # vale o nome do mundo, depois o ambiente, e por ultimo a "Cor padrao".
+  Cor por mundo:
+    Ativar: true
+
+    # Pelo tipo do mundo. Os nomes sao os do Bukkit: NORMAL, NETHER e THE_END.
+    Ambientes:
+      NORMAL: '150,60,255'
+      NETHER: '255,60,60'
+      THE_END: '235,235,255'
+
+    # Pelo nome exato do mundo; ganha do ambiente. Serve para o mundo de
+    # mineracao, o lobby, o mundo de eventos...
+    Mundos:
+      # mineracao: '80,230,120'
+      # lobby: '60,180,255'
+
   # A particula que preenche o meio da moldura. Deixe vazio para so a borda.
   Particula do miolo: 'PORTAL'
 
@@ -123,6 +144,26 @@ Temporarios:
 
   # A quantos blocos da frente do jogador o portal nasce.
   Distancia na frente: 1.6
+
+#
+# ================================  HOLOGRAMA  ===============================
+#
+#  Um texto flutuando em cima de cada portal. Ele e um suporte de armadura
+#  invisivel -- nao precisa de plugin de holograma nenhum, e so existe
+#  enquanto tem alguem por perto para ver.
+#
+#  O QUE ele escreve (e em quantas linhas) esta no mensagens.yml, na secao
+#  Holograma. Apagar as linhas de la desliga o holograma daquele tipo de
+#  portal.
+#
+Holograma:
+  Ativar: true
+
+  # Altura, em blocos, acima do pe da moldura.
+  Altura: 2.6
+
+  # Distancia entre uma linha e a de cima.
+  Espaco entre linhas: 0.28
 
 #
 # =======================  PEDIDOS ENTRE JOGADORES  ==========================

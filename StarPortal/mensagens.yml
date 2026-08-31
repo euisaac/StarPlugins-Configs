@@ -8,7 +8,7 @@
 #  {tempo} {total} {limite} {tamanho} {novo} {origem} {destino} {comando}
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Prefixo: '&d&lPORTAL &8» &7'
 
@@ -54,6 +54,30 @@ Estado:
   Desligado: '&cdesligado'
   Nenhum: '&cnao definido'
   Ilimitado: '&dsem limite'
+  Cor automatica: 'automatica (pelo mundo do destino)'
+  Lado de ida: 'ida'
+  Lado de volta: 'volta'
+
+# ---------------------------------------------------------------------------
+#  O texto que flutua em cima do portal.
+#
+#  Ligue ou desligue no config.yml (Holograma.Ativar). Apagar as linhas de um
+#  dos dois tipos aqui tambem desliga so aquele.
+#
+#  A primeira linha da lista fica em cima. Marcadores:
+#    {portal}  nome do portal (a home, o warp, o outro jogador)
+#    {jogador} e {dono}  quem abriu o portal
+#    {tempo}   quanto falta para fechar, ja com o "s" (so no temporario)
+#    {origem} {destino}  os dois lados, em mundo e coordenadas
+#    {lado}    "ida" ou "volta", conforme a moldura
+# ---------------------------------------------------------------------------
+Holograma:
+  Temporario:
+    - '&5{portal} &fde &5{jogador}'
+    - '&7Fechando em &f{tempo}'
+  Fixo:
+    - '&5{portal}'
+    - '&7Portal de &f{dono}'
 
 Portal:
   Aberto: '&aPortal aberto para &f{portal}&a. Ele fica de pe por &f{tempo}&a.'
