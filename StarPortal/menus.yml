@@ -1,0 +1,193 @@
+# ---------------------------------------------------------------------------
+#  StarPortal - telas
+#
+#  Slot: -1 esconde o botao. As posicoes vao de 0 ate o tamanho do menu -1
+#  (uma linha tem 9 slots).
+#
+#  Marcadores que valem em qualquer texto daqui:
+#    {portal} {dono} {origem} {destino} {ida} {volta} {outros} {cor}
+#    {total} {limite} {pagina} {paginas} {jogador}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+#
+# =========================  LISTA DE PORTAIS (/portal)  =====================
+#
+Lista:
+  Titulo: '&8Portais de {jogador}'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # Cada portal da lista. O material sai do icone escolhido no portal, quando
+  # ele tem um; senao vale o que estiver aqui.
+  Item:
+    Material: 'ENDER_PEARL'
+    Nome: '&d&l{portal}'
+    Lore:
+      - '&7Dono: &f{dono}'
+      - '&7Origem: &f{origem}'
+      - '&7Destino: &f{destino}'
+      - ''
+      - '&7Lado de ida: {ida}'
+      - '&7Lado de volta: {volta}'
+      - '&7Outros podem entrar: {outros}'
+      - ''
+      - '&eClique &7para abrir uma passagem ate aqui.'
+      - '&eClique direito &7para ajustar o portal.'
+
+  Sem portais:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&cVoce ainda nao tem portais'
+    Lore:
+      - '&7Va ate o lugar que voce quer marcar'
+      - '&7e use &f/portal criar&7.'
+
+  Criar:
+    Slot: 49
+    Material: 'NETHER_STAR'
+    Nome: '&a&lCriar portal aqui'
+    Lore:
+      - '&7Voce tem &f{total} &7de &f{limite} &7portais.'
+      - ''
+      - '&eClique &7para marcar este lugar.'
+
+  Anterior:
+    Slot: 45
+    Material: 'ARROW'
+    Nome: '&ePagina anterior'
+    Lore:
+      - '&7Pagina &f{pagina} &7de &f{paginas}&7.'
+
+  Proxima:
+    Slot: 53
+    Material: 'ARROW'
+    Nome: '&eProxima pagina'
+    Lore:
+      - '&7Pagina &f{pagina} &7de &f{paginas}&7.'
+
+  Fechar:
+    Slot: 48
+    Material: 'BARRIER'
+    Nome: '&cFechar'
+
+#
+# ==========================  AJUSTES DE UM PORTAL  ==========================
+#
+Portal:
+  Titulo: '&8Portal {portal}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Info:
+    Slot: 4
+    Material: 'ENDER_PEARL'
+    Nome: '&d&l{portal}'
+    Lore:
+      - '&7Dono: &f{dono}'
+      - '&7Origem: &f{origem}'
+      - '&7Destino: &f{destino}'
+      - '&7Cor: &f{cor}'
+
+  Ir:
+    Slot: 20
+    Material: 'ENDER_EYE'
+    Nome: '&a&lAbrir passagem'
+    Lore:
+      - '&7Abre um portal aqui na sua frente'
+      - '&7levando ate &f{destino}&7.'
+
+  Origem aqui:
+    Slot: 21
+    Material: 'COMPASS'
+    Nome: '&e&lOrigem neste lugar'
+    Lore:
+      - '&7Agora: &f{origem}'
+      - ''
+      - '&eClique &7para trocar pela sua posicao.'
+
+  Destino aqui:
+    Slot: 22
+    Material: 'COMPASS'
+    Nome: '&e&lDestino neste lugar'
+    Lore:
+      - '&7Agora: &f{destino}'
+      - ''
+      - '&eClique &7para trocar pela sua posicao.'
+
+  Lado de ida:
+    Slot: 29
+    Material: 'LIME_DYE'
+    Nome: '&fLado de ida: {ida}'
+    Lore:
+      - '&7A moldura que aparece na &forigem&7,'
+      - '&7levando quem entra ate o destino.'
+      - ''
+      - '&eClique &7para ligar ou desligar.'
+
+  Lado de volta:
+    Slot: 30
+    Material: 'LIME_DYE'
+    Nome: '&fLado de volta: {volta}'
+    Lore:
+      - '&7A moldura que aparece no &fdestino&7,'
+      - '&7trazendo quem entra de volta.'
+      - ''
+      - '&7Deixe desligado para um portal'
+      - '&7so de ida.'
+      - ''
+      - '&eClique &7para ligar ou desligar.'
+
+  Outros:
+    Slot: 31
+    Material: 'PLAYER_HEAD'
+    Nome: '&fOutros podem entrar: {outros}'
+    Lore:
+      - '&7Quem estiver por perto tambem'
+      - '&7atravessa a moldura.'
+      - ''
+      - '&eClique &7para ligar ou desligar.'
+
+  Cor:
+    Slot: 32
+    Material: 'MAGENTA_DYE'
+    Nome: '&f&lCor do portal'
+    Lore:
+      - '&7Agora: &f{cor}'
+      - ''
+      - '&eClique &7para trocar.'
+    # A lista roda em ordem; depois da ultima ele volta para a cor padrao.
+    Cores:
+      - '150,60,255'
+      - '60,180,255'
+      - '80,230,120'
+      - '255,200,60'
+      - '255,80,80'
+      - '255,255,255'
+
+  Apagar:
+    Slot: 40
+    Material: 'BARRIER'
+    Nome: '&c&lApagar portal'
+    Lore:
+      - '&7O portal &f{portal} &7some para sempre.'
+      - ''
+      - '&cSegure SHIFT e clique para confirmar.'
+
+  Voltar:
+    Slot: 36
+    Material: 'ARROW'
+    Nome: '&eVoltar'

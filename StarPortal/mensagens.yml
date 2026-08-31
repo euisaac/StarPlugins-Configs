@@ -1,0 +1,136 @@
+# ---------------------------------------------------------------------------
+#  StarPortal - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso sem
+#  precisar de uma opcao no config.yml para cada um.
+#
+#  Marcadores que valem aqui: {portal} {dono} {jogador} {local} {mundo}
+#  {tempo} {total} {limite} {tamanho} {novo} {origem} {destino} {comando}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&d&lPORTAL &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEsse comando so funciona no jogo.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Jogador desconhecido: '&cNunca vi o jogador &f{jogador} &cpor aqui.'
+  Numero invalido: '&cIsso nao e um numero valido.'
+  Mundo nao encontrado: '&cO mundo &f{mundo} &cnao existe.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+
+Ajuda:
+  Jogador: |
+    &8&m----------------------------------------
+    &d&lSTARPORTAL
+    &e/portal &8- &7abre os seus portais
+    &e/portal criar [nome] &8- &7cria um portal fixo aqui
+    &e/portal ir <nome> &8- &7abre uma passagem ate ele
+    &e/portal origem <nome> &8- &7muda a origem para este lugar
+    &e/portal destino <nome> &8- &7muda o destino para este lugar
+    &e/portal ida <nome> &8- &7liga ou desliga o lado de ida
+    &e/portal volta <nome> &8- &7liga ou desliga o lado de volta
+    &e/portal outros <nome> &8- &7deixa (ou nao) os outros entrarem
+    &e/portal renomear <nome> <novo> &8- &7troca o nome
+    &e/portal remover <nome> &8- &7apaga o portal
+    &e/portal jogador <nick> &8- &7pede um portal ate alguem
+    &e/portal chamar <nick> &8- &7pede que alguem venha ate voce
+    &e/portal aceitar [nick] &8- &7aceita o pedido
+    &e/portal negar [nick] &8- &7nega o pedido
+    &e/portal fechar &8- &7fecha o portal que voce abriu
+    &8&m----------------------------------------
+  Admin: |
+    &8&m----------------------------------------
+    &d&lSTARPORTAL &7- administracao
+    &e/portal ver <jogador> &8- &7abre os portais de alguem
+    &e/portal coord <x> <y> <z> [mundo] &8- &7portal ate um ponto
+    &e/portal recarregar &8- &7recarrega os arquivos
+    &8&m----------------------------------------
+
+Estado:
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Nenhum: '&cnao definido'
+  Ilimitado: '&dsem limite'
+
+Portal:
+  Aberto: '&aPortal aberto para &f{portal}&a. Ele fica de pe por &f{tempo}&a.'
+  Criado: '&aPortal &f{portal} &acriado em &f{local}&a. Agora escolha o destino com &f/portal destino {portal}&a.'
+  Removido: '&aO portal &f{portal} &afoi apagado.'
+  Renomeado: '&aO portal &f{portal} &aagora se chama &f{novo}&a.'
+  Fechado: '&7O portal &f{portal} &7foi fechado.'
+  Nenhum aberto: '&cVoce nao tem nenhum portal aberto agora.'
+
+  Nome em uso: '&cVoce ja tem um portal chamado &f{portal}&c.'
+  Nome grande: '&cO nome do portal pode ter no maximo &f{tamanho} &ccaracteres.'
+  Nome invalido: '&cUse so letras, numeros, hifen e sublinhado no nome.'
+  No limite: '&cVoce ja tem o maximo de &f{limite} &cportais fixos.'
+  Nao encontrado: '&cVoce nao tem nenhum portal chamado &f{portal}&c.'
+
+  Lista vazia: '&7Voce ainda nao tem portais. Crie um com &f/portal criar&7.'
+  Lista cabecalho: '&7Os seus portais &8(&f{total}&8/&f{limite}&8):'
+  Lista linha: '  &d{portal} &8» &7de &f{origem} &7para &f{destino}'
+
+  Sem destino: '&cO portal &f{portal} &cainda nao tem destino. Va ate o lugar e use &f/portal destino {portal}&c.'
+  Mundo do destino fora: '&cO mundo do destino nao esta carregado agora.'
+  Mundo bloqueado: '&cNao da para abrir portais neste mundo.'
+
+  Origem definida: '&aA origem do portal &f{portal} &aagora e &f{local}&a.'
+  Destino definido: '&aO destino do portal &f{portal} &aagora e &f{local}&a.'
+  Ida ligada: '&aO lado de ida do portal &f{portal} &afoi ligado.'
+  Ida desligada: '&7O lado de ida do portal &f{portal} &7foi desligado.'
+  Volta ligada: '&aO lado de volta do portal &f{portal} &afoi ligado.'
+  Volta desligada: '&7O lado de volta do portal &f{portal} &7foi desligado.'
+  Outros liberados: '&aQualquer um pode atravessar o portal &f{portal}&a.'
+  Outros bloqueados: '&7So voce atravessa o portal &f{portal} &7agora.'
+  Confirmar apagar: '&eSegure &fSHIFT &ee clique de novo para apagar o portal &f{portal}&e.'
+
+  Nome do teleporte: 'teleporte'
+  Atravessou: '&dVoce atravessou o portal &f{portal}&d.'
+  So do dono: '&cEste portal e so de {dono}.'
+  Sem permissao para entrar: '&cVoce nao pode atravessar portais dos outros.'
+
+Pedido:
+  Nome do portal: 'ate {jogador}'
+  Enviado: '&aPedido enviado para &f{jogador}&a. Ele tem &f{tempo} &apara aceitar.'
+  Enviado chamando: '&aVoce pediu que &f{jogador} &avenha ate voce. Ele tem &f{tempo} &apara aceitar.'
+  Recebido: |
+    &f{jogador} &7quer abrir um portal ate voce.
+    &aDigite &f/portal aceitar {jogador} &apara abrir, ou &c/portal negar {jogador}&a. Vale por &f{tempo}&a.
+  Recebido chamando: |
+    &f{jogador} &7quer que voce va ate ele por um portal.
+    &aDigite &f/portal aceitar {jogador} &apara abrir, ou &c/portal negar {jogador}&a. Vale por &f{tempo}&a.
+  Aceito viajante: '&aO portal ate &f{jogador} &aesta aberto por &f{tempo}&a.'
+  Aceito anfitriao: '&aVoce aceitou o pedido de &f{jogador}&a.'
+  Negado: '&7Voce negou o pedido de &f{jogador}&7.'
+  Negado avisando: '&c{jogador} negou o seu pedido de portal.'
+  Nenhum: '&cVoce nao tem nenhum pedido esperando.'
+  Voce mesmo: '&cVoce ja esta onde voce esta.'
+
+Comando:
+  Nome do portal coordenada: 'coordenada'
+  Uso com nome: '&cUse &f/portal {comando} <nome do portal>&c.'
+  Uso renomear: '&cUse &f/portal renomear <nome> <novo nome>&c.'
+  Uso jogador: '&cUse &f/portal jogador <nick>&c.'
+  Uso coordenada: '&cUse &f/portal coord <x> <y> <z> [mundo]&c.'
+  Uso ver: '&cUse &f/portal ver <jogador>&c.'
+
+# ---------------------------------------------------------------------------
+#  So o StarPortalADDON usa o que vem daqui para baixo.
+# ---------------------------------------------------------------------------
+Essentials:
+  Nome do portal home: '{home}'
+  Nome do portal warp: '{warp}'
+  Nome do portal spawn: 'spawn'
+  Nome do portal back: 'de volta'
+  Home nao encontrada: '&cVoce nao tem uma home chamada &f{home}&c.'
+  Home sem homes: '&cVoce ainda nao tem nenhuma home.'
+  Home de outro fechada: '&cA home &f{home} &cde &f{jogador} &cnao e publica.'
+  Warp nao encontrado: '&cO warp &f{warp} &cnao existe.'
+  Warp sem nome: '&cUse &f/warp <nome>&c.'
+  Spawn nao definido: '&cO spawn ainda nao foi definido.'
+  Sem local anterior: '&cVoce nao tem um lugar anterior para voltar.'
+  Pedidos fechados: '&f{jogador} &cesta com os pedidos de teleporte desligados.'
+  Ausente: '&cO StarEssentials nao esta neste servidor, entao o addon nao tem o que substituir.'
