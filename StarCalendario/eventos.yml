@@ -1,0 +1,142 @@
+# ---------------------------------------------------------------------------
+#  StarCalendario - eventos
+#
+#  Cada evento e um dia (ou alguns dias) marcado no calendario. O jeito mais
+#  facil de mexer aqui e pelo menu: /starcalendario editar.
+#
+#  Data:    'dd/MM'       - todo ano (25/12)
+#           'dd/MM/yyyy'  - so uma vez (25/12/2026)
+#  Duracao: por quantos dias seguidos o presente fica disponivel. Todos os dias
+#           da mesma ocorrencia contam como um evento so.
+#
+#  Comandos aceitos:
+#    console: dar {jogador} 1000
+#    jogador: kit natal
+#    op: fly
+#    mensagem: &aTexto no chat
+#    anuncio: &aTexto para o servidor
+#    titulo: &aTitulo<nl>&7Subtitulo
+#    actionbar: &aTexto
+#    som: ENTITY_PLAYER_LEVELUP;1;1
+#
+#  Itens: sao guardados pelo menu (botao "Itens do premio"), item por item, com
+#  encantamento, nome e tudo o mais. Nao precisa mexer nesta lista na mao.
+# ---------------------------------------------------------------------------
+
+Eventos:
+
+  natal:
+    Nome: '&c&lNatal'
+    Descricao:
+      - '&7Feliz Natal! Pegue o seu presente'
+      - '&7antes que o dia acabe.'
+    Icone:
+      Material: 'RED_TERRACOTTA'
+      Textura: ''
+      Brilhar: true
+    Data: '25/12'
+    Duracao: 1
+    Permissao: ''
+    Coletar uma vez: false
+    Comandos:
+      - 'console: give {jogador} diamond 5'
+    Itens: [ ]
+    Mensagens:
+      Chat:
+        - ''
+        - '&c&lFELIZ NATAL, &f{jogador}&c&l!'
+        - '&7Aproveite o seu presente.'
+        - ''
+      Titulo: '&c&lFELIZ NATAL<nl>&fAproveite o seu presente'
+      Actionbar: ''
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Anuncio: '&c&lNATAL &8» &f{jogador} &7pegou o presente de Natal!'
+    Avisos:
+      Dias antes:
+        - 7
+        - 3
+        - 1
+      Anunciar ao comecar: true
+    Npc:
+      Ativar: true
+      Nome: '&c&lPAPAI NOEL'
+      Skin: ''
+      Tipo: 'VILLAGER'
+      Holograma:
+        - '&c&lNATAL'
+        - '&fClique para pegar o seu presente'
+
+  ano-novo:
+    Nome: '&e&lAno Novo'
+    Descricao:
+      - '&7Comeco de ano novo, presente novo.'
+    Icone:
+      Material: 'FIREWORK_ROCKET'
+      Textura: ''
+      Brilhar: true
+    Data: '01/01'
+    Duracao: 2
+    Permissao: ''
+    Coletar uma vez: false
+    Comandos:
+      - 'console: give {jogador} golden_apple 3'
+    Itens: [ ]
+    Mensagens:
+      Chat:
+        - ''
+        - '&e&lFELIZ ANO NOVO, &f{jogador}&e&l!'
+        - ''
+      Titulo: '&e&lFELIZ ANO NOVO<nl>&fUm otimo ano para voce'
+      Actionbar: ''
+      Som: 'ENTITY_FIREWORK_ROCKET_LAUNCH;1;1'
+      Anuncio: ''
+    Avisos:
+      Dias antes:
+        - 3
+        - 1
+      Anunciar ao comecar: true
+    Npc:
+      Ativar: true
+      Nome: '&e&lANO NOVO'
+      Skin: ''
+      Tipo: ''
+      Holograma:
+        - '&e&lANO NOVO'
+        - '&fClique para pegar o seu presente'
+
+  aniversario-da-rede:
+    Nome: '&b&lAniversario da Rede'
+    Descricao:
+      - '&7O servidor esta de aniversario!'
+      - '&7Obrigado por jogar com a gente.'
+    Icone:
+      Material: 'CAKE'
+      Textura: ''
+      Brilhar: false
+    # Data unica: acontece so neste ano. Troque para '15/06' se quiser todo ano.
+    Data: '15/06/2026'
+    Duracao: 3
+    Permissao: ''
+    Coletar uma vez: true
+    Comandos:
+      - 'mensagem: &bObrigado por fazer parte da nossa historia!'
+    Itens: [ ]
+    Mensagens:
+      Chat: [ ]
+      Titulo: '&b&lANIVERSARIO<nl>&fObrigado por jogar com a gente'
+      Actionbar: ''
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Anuncio: ''
+    Avisos:
+      Dias antes:
+        - 5
+        - 1
+      Anunciar ao comecar: true
+    Npc:
+      Ativar: true
+      Nome: '&b&lANIVERSARIO'
+      Skin: ''
+      Tipo: ''
+      Holograma:
+        - '&b&lANIVERSARIO DA REDE'
+        - '&fClique para pegar o seu presente'

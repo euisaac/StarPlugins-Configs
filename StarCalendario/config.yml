@@ -1,0 +1,172 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                    StarCalendario - configuracao                     ║
+#  ║   Um calendario de eventos em menu: cada dia do mes pode ter um      ║
+#  ║   presente. Os eventos ficam no eventos.yml (ou no menu do           ║
+#  ║   /starcalendario editar).                                           ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Versao do modelo: 1
+
+# Manda no console o que o plugin esta fazendo por dentro. So ligue para
+# investigar algum problema.
+Depuracao: false
+
+# O fuso que decide que dia e "hoje". Deixe vazio para usar o do servidor.
+# Exemplos: 'America/Sao_Paulo', 'America/Manaus', 'Europe/Lisbon'.
+# Serve para quem hospeda fora do pais: sem isso o dia viraria na hora errada.
+Fuso horario: 'America/Sao_Paulo'
+
+#
+# ═════════════════════════════  BANCO DE DADOS  ═════════════════════════════
+#
+# Guarda quem ja pegou o presente de cada evento.
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (varios servidores no mesmo
+  # banco -- a coleta feita no lobby vale no survival).
+  Tipo: SQLITE
+
+  Endereco: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # Mude se voce roda mais de uma rede no mesmo banco.
+  Prefixo das tabelas: 'starcalendario_'
+
+#
+# ══════════════════════════════  CALENDARIO  ════════════════════════════════
+#
+Calendario:
+  # Deixa o jogador pegar o presente de um dia que ja passou.
+  Permitir dias passados: false
+
+  # Com a opcao acima ligada: quantos dias depois do fim do evento ele ainda
+  # pode ser pego. 0 = para sempre (enquanto o mes estiver ao alcance).
+  Dias passados no limite de: 0
+
+  # Quantos meses o jogador pode andar para tras e para frente no menu.
+  # 0 desliga o botao daquele lado.
+  Meses para tras: 12
+  Meses para frente: 12
+
+  # Espacos livres exigidos no inventario para pegar um presente com itens.
+  # 0 nao exige nada.
+  Espaco necessario: 1
+
+  # O que nao coube no inventario cai no chao. Desligue para segurar o premio
+  # ate o jogador abrir espaco (ele recebe um aviso).
+  Largar sobra no chao: true
+
+  # Tocado quando o presente sai, se o evento nao tiver um som proprio.
+  Som da coleta: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+  # Fecha o menu depois de pegar. Desligado, o dia so muda de cor na tela.
+  Fechar ao coletar: false
+
+  # Uma conta so por IP em cada evento. Serve contra o jogador que entra com
+  # tres contas para pegar o mesmo presente tres vezes.
+  Limitar por IP: false
+
+  # Poe cada dia na coluna do dia da semana (domingo na primeira). Quando o mes
+  # nao cabe assim, o menu preenche os dias em sequencia sozinho.
+  Alinhar por semana: true
+
+  # Os nomes que aparecem no menu.
+  Meses:
+    - 'Janeiro'
+    - 'Fevereiro'
+    - 'Marco'
+    - 'Abril'
+    - 'Maio'
+    - 'Junho'
+    - 'Julho'
+    - 'Agosto'
+    - 'Setembro'
+    - 'Outubro'
+    - 'Novembro'
+    - 'Dezembro'
+
+  # Comecando no domingo. Precisa ter os sete.
+  Dias da semana:
+    - 'Domingo'
+    - 'Segunda-feira'
+    - 'Terca-feira'
+    - 'Quarta-feira'
+    - 'Quinta-feira'
+    - 'Sexta-feira'
+    - 'Sabado'
+
+#
+# ═══════════════════════════════════  AVISOS  ═══════════════════════════════
+#
+# Os textos de cada aviso estao no mensagens.yml. Mensagem vazia la nao e
+# enviada -- e assim que voce desliga so o titulo, ou so o som.
+Avisos:
+  # De quantos em quantos segundos o plugin confere se o dia virou, se e hora
+  # da contagem regressiva e se alguem precisa de lembrete.
+  Verificar a cada: 60
+
+  Ao entrar:
+    Ativar: true
+    # Segundos entre a entrada do jogador e o aviso.
+    Atraso: 3
+
+  Lembrete:
+    Ativar: true
+    # Minutos entre um lembrete e outro, para quem nao pegou o presente do dia.
+    Intervalo: 15
+
+  Ao comecar:
+    Ativar: true
+    Anunciar no servidor: true
+
+  Antes do evento:
+    Ativar: true
+    # A que horas do dia sai a contagem regressiva ("faltam 3 dias para...").
+    # Quais dias avisar e escolhido evento por evento, no editor.
+    Hora do anuncio: 12
+
+#
+# ════════════════════════════════════  NPC  ═════════════════════════════════
+#
+# Um NPC, marcado com /starcalendario setnpc, que abre o calendario no clique.
+# A cara dele muda sozinha quando um evento comeca: nome, skin, tipo e
+# holograma saem do evento e voltam para o que esta aqui quando ele acaba.
+Npc:
+  Ativar: true
+
+  # Com o Citizens instalado o boneco e dele (skin de jogador de verdade).
+  # Sem o Citizens, o plugin cria a propria criatura, parada e invulneravel.
+  Usar Citizens: true
+
+  Tipo: 'VILLAGER'
+  # So para aldeao: FARMER, LIBRARIAN, PRIEST, BLACKSMITH, BUTCHER...
+  Profissao: ''
+  Bebe: false
+
+  Nome: '&e&lCALENDARIO'
+  # Nick de quem empresta a skin (so com o Citizens).
+  Skin: ''
+
+  # De quantos em quantos ticks o NPC e conferido (20 ticks = 1 segundo).
+  # 0 desliga a vigia.
+  Verificar a cada: 100
+
+  # true: o clique entrega direto o presente do dia, sem abrir menu.
+  # false: o clique abre o calendario do mes.
+  Clique coleta: false
+
+  Holograma:
+    Ativar: true
+    Altura: 2.3
+    Linhas:
+      - '&e&lCALENDARIO'
+      - '&fClique para ver os presentes do mes'
+
+#
+# ═════════════════════════════════  INTEGRACOES  ════════════════════════════
+#
+Integracoes:
+  # %starcalendario_evento%, %starcalendario_proximo%, %starcalendario_pendentes%...
+  PlaceholderAPI: true

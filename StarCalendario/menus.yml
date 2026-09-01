@@ -1,0 +1,751 @@
+# ---------------------------------------------------------------------------
+#  StarCalendario - menus
+#
+#  Slot: -1 desliga o botao. As linhas de lore aceitam blocos, que somem quando
+#  estao vazios: {descricao}, {eventos}, {comandos}, {chat}, {holograma},
+#  {dias}.
+#
+#  Material: 'AUTO' nos dias com evento usa o icone do proprio evento.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+#
+# ══════════════════════════  O CALENDARIO DO JOGADOR  ═══════════════════════
+#
+Calendario:
+  Titulo: '&8&l{mes} &8de &8&l{ano}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # As 35 casas da grade: cinco linhas de sete colunas, com as bordas livres.
+  # Com "Alinhar por semana" ligado no config, o dia 1 cai na coluna do dia da
+  # semana dele.
+  Slots dos dias: [ 1, 2, 3, 4, 5, 6, 7,
+                    10, 11, 12, 13, 14, 15, 16,
+                    19, 20, 21, 22, 23, 24, 25,
+                    28, 29, 30, 31, 32, 33, 34,
+                    37, 38, 39, 40, 41, 42, 43 ]
+
+  # A quantidade do item vira o numero do dia (o "1" do dia 1, o "25" do 25).
+  Quantidade igual ao dia: true
+
+  Dias:
+    # Dia comum, sem nada marcado.
+    Comum:
+      Material: 'GRAY_DYE'
+      Nome: '&7Dia {dia}'
+      Lore:
+        - '&8{semana}'
+        - ''
+        - '&7Nada marcado neste dia.'
+
+    # Hoje, quando hoje nao tem evento.
+    Hoje:
+      Material: 'YELLOW_DYE'
+      Nome: '&e&lHOJE &8- &fDia {dia}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&7Nenhum presente hoje.'
+        - '&7Volte amanha!'
+
+    # Evento de hoje (ou de um dia passado ainda liberado) esperando o clique.
+    Disponivel:
+      Material: 'AUTO'
+      Nome: '&a&l{evento}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&f{descricao}'
+        - ''
+        - '&a&lCLIQUE PARA PEGAR O SEU PRESENTE'
+
+    Coletado:
+      Material: 'AUTO'
+      Nome: '&7{evento}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&7{descricao}'
+        - ''
+        - '&a✔ Voce ja pegou este presente.'
+
+    # Evento que ja passou e nao pode mais ser pego.
+    Perdido:
+      Material: 'AUTO'
+      Nome: '&c{evento}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&7{descricao}'
+        - ''
+        - '&c✖ Esse dia ja passou.'
+
+    Futuro:
+      Material: 'AUTO'
+      Nome: '&e{evento}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&7{descricao}'
+        - ''
+        - '&eFaltam &f{restam} &edia(s).'
+
+    # O jogador nao tem a permissao que o evento pede.
+    Bloqueado:
+      Material: 'BARRIER'
+      Nome: '&8{evento}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&cVoce nao tem acesso a este presente.'
+
+  Botoes:
+    Mes anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&a« {mes_anterior}'
+      Lore:
+        - '&7Ver o mes anterior.'
+
+    Proximo mes:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&a{mes_proximo} »'
+      Lore:
+        - '&7Ver o proximo mes.'
+
+    Hoje:
+      Slot: 49
+      Material: 'CLOCK'
+      Nome: '&e&l{mes} de {ano}'
+      Lore:
+        - '&7Voce ja pegou &f{coletas} &7presente(s).'
+        - ''
+        - '&eClique para voltar ao mes de hoje.'
+
+    Proximos:
+      Slot: 47
+      Material: 'BOOK'
+      Nome: '&d&lPROXIMOS EVENTOS'
+      Lore:
+        - '&7Veja o que vem por ai.'
+
+#
+# ══════════════════════════════  O EDITOR (STAFF)  ══════════════════════════
+#
+Editor:
+  Titulo: '&8Editor &8- &8&l{mes} {ano}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Slots dos dias: [ 1, 2, 3, 4, 5, 6, 7,
+                    10, 11, 12, 13, 14, 15, 16,
+                    19, 20, 21, 22, 23, 24, 25,
+                    28, 29, 30, 31, 32, 33, 34,
+                    37, 38, 39, 40, 41, 42, 43 ]
+
+  Quantidade igual ao dia: true
+
+  Dias:
+    Com evento:
+      Material: 'AUTO'
+      Nome: '&a&lDIA {dia} &8- &f{evento}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&7Marcado neste dia:'
+        - '&f - {eventos}'
+        - ''
+        - '&eClique para editar.'
+
+    Sem evento:
+      Material: 'GRAY_DYE'
+      Nome: '&7Dia {dia}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&7Nada marcado.'
+        - ''
+        - '&aClique para criar um evento aqui.'
+
+    Hoje:
+      Material: 'YELLOW_DYE'
+      Nome: '&e&lHOJE &8- &fDia {dia}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&7Nada marcado.'
+        - ''
+        - '&aClique para criar um evento aqui.'
+
+  Botoes:
+    Mes anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&a« {mes_anterior}'
+      Lore: [ ]
+
+    Proximo mes:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&a{mes_proximo} »'
+      Lore: [ ]
+
+    Hoje:
+      Slot: 49
+      Material: 'CLOCK'
+      Nome: '&e&l{mes} de {ano}'
+      Lore:
+        - '&7Eventos cadastrados: &f{eventos}'
+        - ''
+        - '&eClique para voltar ao mes de hoje.'
+
+    Lista de eventos:
+      Slot: 47
+      Material: 'BOOKSHELF'
+      Nome: '&d&lTODOS OS EVENTOS'
+      Lore:
+        - '&7Ver e editar todos os &f{eventos} &7eventos,'
+        - '&7inclusive os de outros meses.'
+
+#
+# ═══════════════════════════════  EDITAR EVENTO  ════════════════════════════
+#
+Editar evento:
+  Titulo: '&8Evento: &8&l{chave}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Icone:
+      Slot: 10
+      Nome: '&e&lICONE'
+      Lore:
+        - '&7Material: &f{material}'
+        - '&7Textura: &f{textura}'
+        - '&7Brilho: &f{brilho}'
+        - ''
+        - '&eClique &7- trocar o material'
+        - '&eBotao direito &7- textura de cabeca'
+        - '&eShift + clique &7- ligar/desligar o brilho'
+
+    Nome:
+      Slot: 11
+      Material: 'NAME_TAG'
+      Nome: '&e&lNOME'
+      Lore:
+        - '&7Agora: &r{evento}'
+        - ''
+        - '&eClique para trocar.'
+
+    Data:
+      Slot: 12
+      Material: 'CLOCK'
+      Nome: '&e&lDATA'
+      Lore:
+        - '&7Agora: &f{data}'
+        - '&7Proxima vez: &f{proxima} &7({restam} dia(s))'
+        - ''
+        - '&eClique para trocar.'
+
+    Todo ano:
+      Slot: 13
+      Material: 'REPEATER'
+      Nome: '&e&lREPETIR TODO ANO'
+      Lore:
+        - '&7Agora: {todo_ano}'
+        - ''
+        - '&7Ligado, o evento volta todo ano na'
+        - '&7mesma data. Desligado, acontece so'
+        - '&7no ano escrito na data.'
+        - ''
+        - '&eClique para alternar.'
+
+    Duracao:
+      Slot: 14
+      Material: 'PAPER'
+      Nome: '&e&lDURACAO'
+      Lore:
+        - '&7Agora: &f{duracao} &7dia(s)'
+        - ''
+        - '&7Por quantos dias seguidos o presente'
+        - '&7fica disponivel. Vale como um evento so:'
+        - '&7quem pegou no primeiro dia nao pega'
+        - '&7de novo no segundo.'
+        - ''
+        - '&eClique para trocar.'
+
+    Descricao:
+      Slot: 15
+      Material: 'BOOK'
+      Nome: '&e&lDESCRICAO'
+      Lore:
+        - '&7Linhas: &f{quantas_linhas}'
+        - '&f{descricao}'
+        - ''
+        - '&eClique para editar.'
+
+    Permissao:
+      Slot: 16
+      Material: 'IRON_BARS'
+      Nome: '&e&lPERMISSAO'
+      Lore:
+        - '&7Agora: &f{permissao}'
+        - ''
+        - '&7So quem tiver essa permissao ve e pega'
+        - '&7o presente deste evento.'
+        - ''
+        - '&eClique para trocar.'
+
+    Coletar uma vez:
+      Slot: 19
+      Material: 'COMPARATOR'
+      Nome: '&e&lCOLETAR UMA VEZ'
+      Lore:
+        - '&7Agora: {uma_vez}'
+        - ''
+        - '&7Ligado, cada jogador pega este presente'
+        - '&7uma unica vez na vida. Desligado, ele'
+        - '&7pega de novo a cada ano.'
+        - ''
+        - '&eClique para alternar.'
+
+    Comandos:
+      Slot: 20
+      Material: 'COMMAND_BLOCK'
+      Nome: '&e&lCOMANDOS'
+      Lore:
+        - '&7Comandos: &f{quantos_comandos}'
+        - '&f - {comandos}'
+        - ''
+        - '&7Formatos: &fconsole: dar {jogador} 100&7,'
+        - '&fjogador: kit natal&7, &fop: fly&7,'
+        - '&fmensagem: &a texto&7, &fsom: LEVEL_UP&7.'
+        - ''
+        - '&eClique para editar.'
+
+    Itens:
+      Slot: 21
+      Material: 'CHEST'
+      Nome: '&e&lITENS DO PREMIO'
+      Lore:
+        - '&7Itens: &f{itens}'
+        - ''
+        - '&7Abre um bau: o que voce deixar dentro'
+        - '&7vira o premio do evento.'
+        - ''
+        - '&eClique para abrir.'
+
+    Mensagens:
+      Slot: 22
+      Material: 'WRITABLE_BOOK'
+      Nome: '&e&lMENSAGENS'
+      Lore:
+        - '&7Chat, titulo, actionbar, som e o'
+        - '&7anuncio para o servidor.'
+        - ''
+        - '&eClique para abrir.'
+
+    Avisos:
+      Slot: 23
+      Material: 'BELL'
+      Nome: '&e&lAVISOS'
+      Lore:
+        - '&7Quantos dias antes o servidor comeca'
+        - '&7a falar deste evento.'
+        - ''
+        - '&eClique para abrir.'
+
+    Npc:
+      Slot: 24
+      Material: 'VILLAGER_SPAWN_EGG'
+      Nome: '&e&lNPC DO EVENTO'
+      Lore:
+        - '&7Usar este NPC: {npc}'
+        - ''
+        - '&7A cara que o NPC do servidor ganha'
+        - '&7enquanto este evento acontece.'
+        - ''
+        - '&eClique para abrir.'
+
+    Coletas:
+      Slot: 25
+      Material: 'PLAYER_HEAD'
+      Nome: '&e&lQUEM JA PEGOU'
+      Lore:
+        - '&7Conta no banco quantos jogadores ja'
+        - '&7pegaram o presente desta ocorrencia.'
+        - ''
+        - '&eClique para conferir.'
+
+    Excluir:
+      Slot: 53
+      Material: 'BARRIER'
+      Nome: '&c&lEXCLUIR EVENTO'
+      Lore:
+        - '&7Apaga &f{chave} &7do calendario.'
+        - ''
+        - '&cShift + botao direito para confirmar.'
+
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ═══════════════════════════  MENSAGENS DO EVENTO  ══════════════════════════
+#
+Mensagens do evento:
+  Titulo: '&8Mensagens: &8&l{chave}'
+  Linhas: 4
+
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Chat:
+      Slot: 10
+      Material: 'WRITABLE_BOOK'
+      Nome: '&e&lMENSAGENS NO CHAT'
+      Lore:
+        - '&7Linhas: &f{quantas_linhas}'
+        - '&f - {chat}'
+        - ''
+        - '&eClique para editar.'
+
+    Titulo:
+      Slot: 12
+      Material: 'NAME_TAG'
+      Nome: '&e&lTITULO NA TELA'
+      Lore:
+        - '&7Agora: &f{titulo}'
+        - ''
+        - '&7Use &f<nl> &7para separar o subtitulo.'
+        - ''
+        - '&eClique para trocar.'
+
+    Actionbar:
+      Slot: 14
+      Material: 'PAPER'
+      Nome: '&e&lACTIONBAR'
+      Lore:
+        - '&7Agora: &f{actionbar}'
+        - ''
+        - '&eClique para trocar.'
+
+    Som:
+      Slot: 16
+      Material: 'NOTE_BLOCK'
+      Nome: '&e&lSOM'
+      Lore:
+        - '&7Agora: &f{som}'
+        - ''
+        - '&7Vazio usa o som do config.yml.'
+        - ''
+        - '&eClique para trocar.'
+
+    Anuncio:
+      Slot: 22
+      Material: 'BEACON'
+      Nome: '&e&lANUNCIO NO SERVIDOR'
+      Lore:
+        - '&7Agora: &f{anuncio}'
+        - ''
+        - '&7Todo mundo ve quando alguem pega o'
+        - '&7presente. Use &f{jogador} &7no texto.'
+        - ''
+        - '&eClique para trocar.'
+
+    Voltar:
+      Slot: 31
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ════════════════════════════  AVISOS DO EVENTO  ════════════════════════════
+#
+Avisos do evento:
+  Titulo: '&8Avisos: &8&l{chave}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Dias antes:
+      Slot: 11
+      Material: 'CLOCK'
+      Nome: '&e&lAVISAR DIAS ANTES'
+      Lore:
+        - '&7Avisos: &f{quantos}'
+        - '&f - faltando {dias} dia(s)'
+        - ''
+        - '&7O anuncio sai uma vez por dia, na hora'
+        - '&7marcada no config.yml.'
+        - ''
+        - '&eClique para editar.'
+
+    Ao comecar:
+      Slot: 15
+      Material: 'BELL'
+      Nome: '&e&lANUNCIAR AO COMECAR'
+      Lore:
+        - '&7Agora: {ao_comecar}'
+        - ''
+        - '&7Avisa o servidor no primeiro dia do'
+        - '&7evento.'
+        - ''
+        - '&eClique para alternar.'
+
+    Voltar:
+      Slot: 22
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ══════════════════════════════  NPC DO EVENTO  ═════════════════════════════
+#
+Npc do evento:
+  Titulo: '&8NPC: &8&l{chave}'
+  Linhas: 4
+
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Ativar:
+      Slot: 10
+      Material: 'LEVER'
+      Nome: '&e&lUSAR ESTE NPC'
+      Lore:
+        - '&7Agora: {ativo}'
+        - ''
+        - '&7Desligado, o NPC continua com a cara'
+        - '&7normal durante este evento.'
+        - ''
+        - '&eClique para alternar.'
+
+    Nome:
+      Slot: 12
+      Material: 'NAME_TAG'
+      Nome: '&e&lNOME DO NPC'
+      Lore:
+        - '&7Agora: &r{nome}'
+        - ''
+        - '&eClique para trocar.'
+
+    Skin:
+      Slot: 14
+      Material: 'PLAYER_HEAD'
+      Nome: '&e&lSKIN'
+      Lore:
+        - '&7Agora: &f{skin}'
+        - ''
+        - '&7O nick de quem empresta a skin.'
+        - '&7So funciona com o Citizens instalado.'
+        - ''
+        - '&eClique para trocar.'
+
+    Tipo:
+      Slot: 16
+      Material: 'VILLAGER_SPAWN_EGG'
+      Nome: '&e&lTIPO DA CRIATURA'
+      Lore:
+        - '&7Agora: &f{tipo}'
+        - ''
+        - '&7Usado quando nao ha Citizens.'
+        - ''
+        - '&eClique para trocar.'
+
+    Holograma:
+      Slot: 22
+      Material: 'ARMOR_STAND'
+      Nome: '&e&lHOLOGRAMA'
+      Lore:
+        - '&7Linhas: &f{quantas_linhas}'
+        - '&f - {holograma}'
+        - ''
+        - '&eClique para editar.'
+
+    Voltar:
+      Slot: 31
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ══════════════════════════════  ITENS DO PREMIO  ═══════════════════════════
+#
+Itens do evento:
+  Titulo: '&8Itens: &8&l{chave}'
+
+#
+# ═══════════════════════  LISTA DE TEXTOS (editor)  ═════════════════════════
+#
+Lista:
+  Titulo: '&8{valor}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Item:
+    Material: 'PAPER'
+    Nome: '&f{valor}'
+    Lore:
+      - '&8Linha {indice}'
+      - ''
+      - '&eClique &7- trocar o texto'
+      - '&cShift + botao direito &7- apagar'
+
+  Botoes:
+    Adicionar:
+      Slot: 48
+      Material: 'LIME_DYE'
+      Nome: '&a&lADICIONAR'
+      Lore:
+        - '&7Linhas agora: &f{linhas}'
+
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ ]
+
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ ]
+
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ═══════════════════════  LISTA DE EVENTOS (editor)  ════════════════════════
+#
+Eventos:
+  Titulo: '&8{valor}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Item:
+    Nome: '&e&l{evento}'
+    Lore:
+      - '&8{chave}'
+      - ''
+      - '&7Data: &f{data} &7({repete})'
+      - '&7Proxima vez: &f{proxima} &7- {restam} dia(s)'
+      - '&7Duracao: &f{duracao} &7dia(s)'
+      - '&7Premios: &f{premios}'
+      - '&f{descricao}'
+      - ''
+      - '&eClique para editar.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ ]
+
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ ]
+
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]
+
+#
+# ═══════════════════════════  PROXIMOS EVENTOS  ═════════════════════════════
+#
+Proximos:
+  Titulo: '&8Proximos eventos'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Item:
+    Nome: '&e&l{evento}'
+    Lore:
+      - '&7{extenso} &8({data})'
+      - ''
+      - '&f{descricao}'
+      - ''
+      - '&7Faltam &f{restam} &7dia(s) &8- {estado}'
+      - ''
+      - '&eClique para ver no calendario.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ ]
+
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ ]
+
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: [ ]

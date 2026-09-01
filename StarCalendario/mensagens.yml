@@ -1,0 +1,160 @@
+# ---------------------------------------------------------------------------
+#  StarCalendario - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso sem
+#  precisar de uma opcao no config.yml para cada um.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&d&lCALENDARIO &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEsse comando so funciona no jogo.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+
+Ajuda:
+  Jogador: |-
+    &8&m
+    &d&lCALENDARIO
+    &f/calendario &7- abre o calendario do mes
+    &f/calendario proximos &7- os proximos eventos
+    &f/calendario hoje &7- o que tem hoje
+    &8&m
+  Admin: |-
+    &8&m
+    &d&lCALENDARIO &7- administracao
+    &f/starcalendario editar &7- marcar eventos nos dias
+    &f/starcalendario setnpc &7- poe o NPC onde voce esta
+    &f/starcalendario delnpc [raio] &7- tira o NPC do mundo
+    &f/starcalendario dar <jogador> <evento> &7- entrega o presente
+    &f/starcalendario limpar <evento> &7- libera o evento de novo
+    &f/starcalendario info &7- ficha do plugin
+    &f/starcalendario recarregar &7- recarrega os arquivos
+    &8&m
+
+Calendario:
+  Dia sem evento: '&7Nao ha nada marcado em &f{data}&7.'
+  Hoje sem evento: '&7Hoje ({data}) nao tem evento no calendario.'
+  Hoje disponivel: '&aHoje e &f{evento}&a! Abra o &f/calendario &apara pegar o seu presente.'
+  Hoje coletado: '&7Hoje e &f{evento}&7, e voce ja pegou o seu presente.'
+
+Coleta:
+  Sucesso: '&aVoce pegou o presente de &f{evento}&a!'
+  Ja coletou: '&cVoce ja pegou o presente de &f{evento}&c.'
+  Sem permissao: '&cVoce nao tem acesso ao presente de &f{evento}&c.'
+  Ainda nao chegou: '&cEsse dia ainda nao chegou. Faltam &f{restam} &cdia(s).'
+  Ja passou: '&cEsse dia ja passou.'
+  Sem evento: '&cNao ha presente nesse dia.'
+  Sem premio: '&cO evento &f{evento} &cainda nao tem premio nenhum.'
+  Carregando: '&7Ainda estou buscando os seus presentes. Tente de novo em instantes.'
+  Inventario cheio: '&cAbra espaco no inventario para pegar o presente.'
+  Inventario cheio no fim: '&cNao coube tudo: &f{quantidade} &citem(ns) ficaram de fora.'
+  Ip repetido: '&cOutra conta deste computador ja pegou o presente de &f{evento}&c.'
+
+Proximos:
+  Hoje: '&aE hoje!'
+  Coletado: '&7Ja pegou'
+  Falta: '&eEm breve'
+
+# Os avisos. Cada um tem quatro pedacos: a mensagem de chat, o titulo na tela,
+# a actionbar e o som. Deixe vazio o que nao quiser.
+Avisos:
+  Entrada: '&aVoce tem &f{quantidade} &apresente(s) esperando no &f/calendario&a!'
+  Entrada titulo: '&d&lCALENDARIO<nl>&fVoce tem presente esperando'
+  Entrada actionbar: ''
+  Entrada som: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+  Lembrete: '&eNao esqueca: &f{evento} &eainda esta esperando voce no &f/calendario&e.'
+  Lembrete titulo: ''
+  Lembrete actionbar: '&eVoce tem &f{quantidade} &epresente(s) para pegar'
+  Lembrete som: ''
+
+  Comecou: |-
+    &8&m
+    &d&lHOJE E {evento}&r
+    &fAbra o &d/calendario &fe pegue o seu presente!
+    &8&m
+  Comecou titulo: '&d&l{evento}<nl>&fAbra o /calendario'
+  Comecou actionbar: ''
+  Comecou som: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+  Faltam: '&dFaltam &f{dias} &ddia(s) para &f{evento} &d({data})!'
+  Faltam titulo: ''
+  Faltam actionbar: '&dFaltam {dias} dia(s) para {evento}'
+  Faltam som: ''
+
+Npc:
+  Definido: '&aNPC do calendario colocado onde voce esta.'
+  Removido: '&aNPC removido. &7({quantidade} coisa(s) tirada(s) do mundo)'
+  Nao encontrado: '&cNao achei nenhum NPC nosso por aqui.'
+  Desligado: '&cO NPC esta desligado no config.yml.'
+
+Comando:
+  Info: |-
+    &8&m
+    &d&lSTARCALENDARIO &7v{versao}
+    &7Eventos: &f{eventos}
+    &7Banco de dados: &f{banco}
+    &7Fuso: &f{fuso} &7(hoje: &f{data}&7)
+    &7Evento de hoje: &f{evento}
+    &7NPC marcado: &f{npc}
+    &8&m
+  Uso do dar: '&cUse: /starcalendario dar <jogador> <evento>'
+  Uso do limpar: '&cUse: /starcalendario limpar <evento>'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Evento desconhecido: '&cNao existe o evento &f{evento}&c.'
+  Premio entregue: '&aPresente de &f{evento} &aentregue para &f{jogador}&a.'
+  Coletas limpas: '&aAs coletas de &f{evento} &aforam apagadas. &7({quantidade} linha(s))'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&cVoce cancelou.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+
+Editor:
+  Salvo: '&aSalvo.'
+  Sim: '&aSim'
+  Nao: '&cNao'
+
+  Digite o valor: '&7Digite o novo texto no chat.'
+  Digite o numero: '&7Digite um numero no chat.'
+  Numero invalido: '&cIsso nao e um numero valido.'
+
+  Digite a chave do evento: |-
+    &7Digite o nome curto do evento (sem espacos nem acentos).
+    &7Exemplos: &fnatal&7, &fano-novo&7, &faniversario_da_rede&7.
+  Chave invalida: '&cA chave &f{valor} &cnao serve: ou esta vazia, ou ja existe.'
+  Evento criado: '&aEvento &f{evento} &acriado em &f{data}&a.'
+
+  Digite o nome: '&7Digite o nome do evento (pode usar cores com &).'
+  Digite a data: |-
+    &7Digite a data do evento.
+    &fdd/MM &7- todo ano (ex.: &f25/12&7)
+    &fdd/MM/yyyy &7- so uma vez (ex.: &f25/12/2026&7)
+  Digite a duracao: '&7Digite por quantos dias seguidos o evento vale.'
+  Digite o material: '&7Digite o material do icone (ex.: &fRED_TERRACOTTA&7).'
+  Digite a textura: '&7Digite a textura da cabeca (URL, hash ou base64). &f- &7limpa.'
+  Digite a permissao: '&7Digite a permissao para pegar este presente. &f- &7limpa.'
+  Digite o titulo: '&7Digite o titulo na tela. Use &f<nl> &7para separar o subtitulo. &f- &7limpa.'
+  Digite a actionbar: '&7Digite o texto da actionbar. &f- &7limpa.'
+  Digite o som: '&7Digite o som (ex.: &fENTITY_PLAYER_LEVELUP;1;1&7). &f- &7limpa.'
+  Digite o anuncio: '&7Digite o anuncio que o servidor inteiro ve quando alguem pega. &f- &7limpa.'
+  Digite o nome do npc: '&7Digite o nome que o NPC usa neste evento. &f- &7volta ao padrao.'
+  Digite a skin: '&7Digite o nick da skin do NPC (precisa do Citizens). &f- &7volta ao padrao.'
+  Digite o tipo: '&7Digite o tipo da criatura (ex.: &fVILLAGER&7, &fSNOWMAN&7). &f- &7volta ao padrao.'
+
+  Confirmar exclusao: '&cSegure SHIFT e clique com o botao direito para excluir &f{evento}&c.'
+  Evento excluido: '&cO evento &f{evento} &cfoi excluido.'
+  Coletas do evento: '&7{quantidade} jogador(es) ja pegaram &f{evento} &7no ciclo &f{ciclo}&7.'
+
+  Como usar os itens: '&7Arraste os itens do premio para dentro e feche a tela para salvar.'
+  Itens salvos: '&aPremio salvo com &f{quantidade} &aitem(ns).'
+
+  Titulos:
+    Descricao: 'Descricao'
+    Comandos: 'Comandos'
+    Chat: 'Mensagens no chat'
+    Dias antes: 'Avisar dias antes'
+    Holograma: 'Holograma do NPC'
