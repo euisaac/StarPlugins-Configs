@@ -1,0 +1,281 @@
+# ---------------------------------------------------------------------------
+#  Titulos, slots e itens das telas.
+#
+#  Slot: -1 esconde o item. Os slots comecam em 0 e vao ate Linhas x 9 - 1.
+#
+#  As telas do EDITOR (/starbrilho editor) nao estao aqui de proposito: elas
+#  sao ferramenta de administrador, e um arquivo desatualizado deixaria o admin
+#  sem botao.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Brilhos:
+  Titulo: '&8Brilhos &7({pagina}/{paginas})'
+  Linhas: 6
+  # Onde os brilhos aparecem.
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+
+  # O modelo de cada brilho da lista.
+  #   {nome} {id} {faixa} {animacao} {velocidade} {cores} {quantidade} {aura} {estado}
+  # A "faixa" e uma previa: mostra o brilho inteiro de uma vez, e nao so a cor
+  # do momento -- assim da para comparar dois brilhos animados sem esperar.
+  Item:
+    Nome: '{faixa} &f{nome}'
+    Lore:
+      - '&7Animacao: &f{animacao}'
+      - '&7Cores: {cores}'
+      - '&7Aura: &f{aura}'
+      - ''
+      - '{estado}'
+    Estado equipado: '&aEquipado &7- clique para tirar'
+    Estado livre: '&eClique para equipar'
+    Estado bloqueado: '&cVoce ainda nao tem este brilho'
+
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Anterior:
+    Slot: 48
+    Material: ARROW
+    Nome: '&ePagina anterior'
+    Lore:
+      - '&7Pagina {pagina} de {paginas}'
+  Proxima:
+    Slot: 50
+    Material: ARROW
+    Nome: '&eProxima pagina'
+    Lore:
+      - '&7Pagina {pagina} de {paginas}'
+
+  Desligar:
+    Slot: 49
+    Material: BARRIER
+    Nome: '&cTirar o brilho'
+    Lore:
+      - '&7Fica sem brilho nenhum.'
+
+  Criador:
+    Slot: 47
+    Material: NETHER_STAR
+    Nome: '&bMontar o meu brilho'
+    Lore:
+      - '&7Junte as suas cores e escolha'
+      - '&7como elas mudam.'
+      - ''
+      - '&7Cores montadas: &f{cores}&7/&f{limite}'
+      - '&eClique para abrir'
+
+  Visibilidade:
+    Slot: 51
+    Material: ENDER_EYE
+    Nome: '&eQuem enxerga'
+    Lore:
+      - '&7Agora: &f{visibilidade}'
+      - '{explicacao}'
+      - ''
+      - '&eClique para trocar'
+
+  Aura:
+    Slot: 45
+    Material: BLAZE_POWDER
+    Nome: '&6Aura de particulas'
+    Lore:
+      - '&7A poeira colorida em volta de voce.'
+      - '&7E ela que mostra a cor RGB exata.'
+      - ''
+      - '&7Agora: {estado}'
+      - '&eClique para trocar'
+
+  Ligar:
+    Slot: 46
+    Material: REDSTONE_TORCH
+    Nome: '&aLigar e desligar'
+    Lore:
+      - '&7Guarda o brilho escolhido.'
+      - ''
+      - '&7Agora: {estado}'
+      - '&eClique para trocar'
+
+  Fechar:
+    Slot: 53
+    Material: OAK_DOOR
+    Nome: '&cFechar'
+    Lore: []
+
+Visibilidade:
+  Titulo: '&8Quem enxerga o brilho'
+  Linhas: 3
+
+  TODOS:
+    Slot: 10
+    Material: BEACON
+    Nome: '&a{nome}'
+    Lore:
+      - '{explicacao}'
+      - ''
+      - '{estado}'
+  SO_EU:
+    Slot: 12
+    Material: ENDER_EYE
+    Nome: '&b{nome}'
+    Lore:
+      - '{explicacao}'
+      - '{aviso}'
+      - ''
+      - '{estado}'
+  OUTROS:
+    Slot: 14
+    Material: SPYGLASS
+    Nome: '&e{nome}'
+    Lore:
+      - '{explicacao}'
+      - '{aviso}'
+      - ''
+      - '{estado}'
+  NINGUEM:
+    Slot: 16
+    Material: BARRIER
+    Nome: '&c{nome}'
+    Lore:
+      - '{explicacao}'
+      - ''
+      - '{estado}'
+
+  Voltar:
+    Slot: 26
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+Criador:
+  Titulo: '&8O meu brilho'
+  Linhas: 5
+  # Onde as cores escolhidas aparecem. Ponha tantos slots quantas cores o seu
+  # servidor libera pela permissao starbrilho.cores.<n>.
+  Slots: [10, 11, 12, 13, 14, 15, 16]
+
+  Cor:
+    Nome: '{cor}{hex}'
+    Lore:
+      - '&7{nome}'
+      - '&7Posicao &f{posicao}'
+      - ''
+      - '&cClique para tirar'
+
+  Vaga:
+    Material: LIGHT_GRAY_STAINED_GLASS_PANE
+    Nome: '&7Vaga livre'
+    Lore:
+      - '&eClique para escolher uma cor'
+
+  Adicionar:
+    Slot: 29
+    Material: CHEST
+    Nome: '&aAdicionar uma cor'
+    Lore:
+      - '&7Usadas: &f{usadas}&7/&f{limite}'
+      - '&eClique para abrir a paleta'
+
+  Animacao:
+    Slot: 30
+    Material: CLOCK
+    Nome: '&eAnimacao: &f{animacao}'
+    Lore:
+      - '{explicacao}'
+      - ''
+      - '&eEsquerdo avanca, direito volta'
+
+  Velocidade:
+    Slot: 31
+    Material: SUGAR
+    Nome: '&eVelocidade: &f{velocidade}'
+    Lore:
+      - '&7Tiques por passo. Menor e mais rapido.'
+      - '&7Entre &f{minima} &7e &f{maxima}&7.'
+      - ''
+      - '&eEsquerdo acelera, direito desacelera'
+
+  Formato:
+    Slot: 32
+    Material: BLAZE_POWDER
+    Nome: '&6Formato da aura: &f{formato}'
+    Lore:
+      - '&7O desenho que a poeira faz.'
+      - ''
+      - '&eClique para trocar'
+
+  Equipar:
+    Slot: 33
+    Material: NETHER_STAR
+    Nome: '&aUsar este brilho'
+    Lore:
+      - '{faixa}'
+      - ''
+      - '&eClique para equipar'
+
+  Limpar:
+    Slot: 36
+    Material: BARRIER
+    Nome: '&cComecar de novo'
+    Lore:
+      - '&7Apaga todas as cores montadas.'
+
+  Voltar:
+    Slot: 44
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+Paleta:
+  Titulo: '&8Escolha a cor &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+
+  Cor:
+    Nome: '{cor}{nome}'
+    Lore:
+      - '&7{hex}'
+      - ''
+      - '&eClique para escolher'
+
+  Digitar:
+    Slot: 49
+    Material: NAME_TAG
+    Nome: '&bDigitar uma cor'
+    Lore:
+      - '&7Escreva o hex que voce quiser'
+      - '&7no chat -- por exemplo &f#FF7F00&7.'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+  Anterior:
+    Slot: 48
+    Material: ARROW
+    Nome: '&ePagina anterior'
+    Lore: []
+  Proxima:
+    Slot: 50
+    Material: ARROW
+    Nome: '&eProxima pagina'
+    Lore: []
+
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '

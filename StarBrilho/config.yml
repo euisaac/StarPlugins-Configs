@@ -1,0 +1,135 @@
+# ---------------------------------------------------------------------------
+#  StarBrilho - configuracao geral
+#
+#  Os arquivos de conteudo ficam separados:
+#    brilhos.yml    os brilhos, com cores, animacao e aura
+#    paleta.yml     as cores que o jogador pode juntar no criador
+#    menus.yml      titulos, slots e itens das telas
+#    mensagens.yml  tudo que o jogador le
+#    comandos.yml   os nomes dos comandos
+#
+#  COMO O BRILHO E DESENHADO
+#
+#  Sao duas camadas, e elas se completam:
+#
+#    CONTORNO  a silhueta luminosa em volta do jogador. Existe da 1.9 em
+#              diante. A cor dele vem do time do placar, entao so aceita as
+#              16 cores do Minecraft -- um #FF7F00 aparece como a mais
+#              parecida delas.
+#
+#    AURA      pontos de poeira colorida em volta do corpo. Carrega o RGB
+#              exato, sai jogador a jogador (por isso respeita a escolha de
+#              quem enxerga) e funciona ate na 1.8.
+#
+#  Um brilho RGB bonito usa as duas: a silhueta da o volume e a aura da a cor
+#  certa. Em servidor 1.8 a aura e o brilho inteiro.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+  # O brilho fica desligado nestes mundos.
+  Mundos bloqueados: []
+
+  # Quem entra sem NUNCA ter escolhido recebe o primeiro brilho que ele pode
+  # usar. Quem tirou o brilho de proposito continua sem: o plugin guarda que a
+  # escolha foi dele e nao devolve o brilho na entrada seguinte.
+  Equipar o melhor brilho automaticamente: false
+
+  # Confere na entrada se ele ainda pode usar o brilho que estava gravado.
+  # Desligue so se voce quiser que o brilho do VIP sobreviva ao fim do VIP.
+  Conferir permissao ao entrar: true
+
+  # Mostra no menu tambem os brilhos que ele ainda nao tem, marcados como
+  # bloqueados. E o que faz o jogador comum ver o que ganha ao virar VIP.
+  Mostrar brilhos bloqueados: true
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/starbrilho.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: starbrilho_
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Contorno:
+  # A silhueta luminosa. Sem efeito em servidor 1.8, que nao tem esse recurso.
+  Ativar: true
+
+  # PRINCIPAL  -> escreve a cor no placar principal do servidor. Mais leve, e
+  #               atende todo mundo que nao recebeu um placar proprio.
+  # OBSERVADOR -> escreve no placar de cada jogador. Custa mais, mas e o unico
+  #               modo que funciona quando outro plugin da um placar proprio a
+  #               cada um -- a cor mora no placar de QUEM OLHA.
+  Modo: PRINCIPAL
+
+  # Ligado, o contorno se apaga nos modos de visibilidade em que ele mentiria
+  # (SO_EU e NINGUEM), e a aura carrega o brilho sozinha. Desligue se voce
+  # prefere o contorno sempre aceso -- ele e uma marca da entidade e nao tem
+  # como valer so para um jogador.
+  Respeitar visibilidade: true
+
+  # Segundos entre as reaplicacoes de seguranca; 0 desliga.
+  # Ligue (30, por exemplo) se outro plugin troca o placar do jogador depois da
+  # entrada e o contorno fica branco para ele.
+  Reaplicar a cada: 0
+
+Aura:
+  Ativar: true
+
+  # Blocos de distancia em que a aura e enviada.
+  Alcance: 32
+
+  # Nao desenha a aura de quem esta invisivel ou escondido por vanish.
+  Esconder de quem esta invisivel: true
+
+  # Teto de pontos desenhados no mesmo tique, somando todos os jogadores.
+  # E a protecao contra lag de rede: um servidor cheio de auras densas manda
+  # dezenas de milhares de particulas por segundo sem isto.
+  Teto de pontos por tique: 3000
+
+  # A aura do brilho que o JOGADOR monta no criador. O formato ele escolhe no
+  # menu; o resto vem daqui.
+  Do criador:
+    Formato: CONTORNO
+    Pontos: 12
+    Raio: 0.6
+    Altura: 1.8
+    Intervalo: 2
+    Tamanho: 1.0
+
+Criador:
+  # O menu onde o jogador junta as proprias cores.
+  Ativar: true
+
+  # Quantas cores ele pode juntar sem nenhuma permissao numerada.
+  Cores no maximo: 3
+
+  # Maior numero procurado em starbrilho.cores.<n>. Quem tiver
+  # starbrilho.cores.8 junta oito cores; e assim que se separa o VIP do comum
+  # sem precisar cadastrar um brilho pronto para cada plano.
+  Teto de cores por permissao: 16
+
+  # Tiques por passo da animacao. Numero MENOR e mais rapido.
+  Velocidade minima: 1
+  Velocidade maxima: 40
+
+  # Deixa o jogador digitar um hex qualquer no chat, em vez de so clicar nas
+  # cores do paleta.yml. E o que abre o RGB inteiro para ele.
+  Permitir cor digitada: true
+
+  # Segundos para responder a uma pergunta feita no chat.
+  Tempo para responder: 30
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Abrir: 'BLOCK_NOTE_BLOCK_PLING;1;1.4'

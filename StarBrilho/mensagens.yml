@@ -1,0 +1,117 @@
+# ---------------------------------------------------------------------------
+#  Tudo que o jogador le.
+#
+#  Mensagem vazia ('') nao e enviada -- e assim que voce desliga um aviso sem
+#  precisar de uma opcao para cada um.
+#
+#  Aceita &a, hex (&#FF0000) e gradiente (<g:FF0000:0000FF>TEXTO).
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Prefixo: '&#FFD700&lStar&#FFFFFFBrilho &8> &r'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Cancelado: '&7Cancelado.'
+  Palavra de cancelar: 'cancelar'
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Sim: '&asim'
+  Nao: '&cnao'
+  Escolhido: '&aEscolhido'
+  Clique para escolher: '&eClique para escolher'
+  Info: |-
+    &7StarBrilho &f{versao}
+    &7Brilhos carregados: &f{brilhos}
+    &7Banco de dados: &f{banco}
+    &7Versao do jogo: &f{versaoDoJogo}
+    &7Contorno luminoso: &f{contorno}
+    &7Aura de particulas: &f{aura}
+
+Brilho:
+  Equipado: '&aBrilho &f{nome} &aequipado.'
+  Tirado: '&7Brilho tirado.'
+  Ligado: '&aBrilho ligado.'
+  Desconhecido: '&cNao existe brilho com o id &f{id}&c.'
+  Sem permissao: '&cVoce ainda nao tem o brilho &f{nome}&c.'
+  Bloqueado: '&cVoce nao pode usar brilho agora.'
+  Lista: '&7Brilhos liberados &8({quantidade})&7: {brilhos}'
+
+Aura:
+  Ligada: '&aAura de particulas ligada.'
+  Desligada: '&7Aura de particulas desligada.'
+
+Visibilidade:
+  Escolhida: '&aAgora quem enxerga o seu brilho e: &f{nome}&a.'
+  Desconhecida: '&cNao existe o modo &f{nome}&c. Use TODOS, SO_EU, OUTROS ou NINGUEM.'
+  # Fica na lore dos modos em que o contorno luminoso nao consegue obedecer.
+  Aviso do contorno: '&8Neste modo so a aura aparece.'
+
+Criador:
+  # O nome que o brilho montado pelo jogador recebe no menu.
+  Nome do brilho: '&bO meu brilho'
+  Cor adicionada: '&aCor {cor} &aadicionada.'
+  Cor invalida: '&cNao entendi a cor &f{texto}&c. Tente algo como &f#FF0000&c.'
+  Limite de cores: '&cVoce so pode juntar &f{limite}&c cor(es).'
+  Sem cores: '&cAdicione pelo menos uma cor antes.'
+  Sem animacao: '&cVoce nao pode deixar o seu brilho animado.'
+  Equipado: '&aPronto! O seu brilho esta no ar.'
+  Digite a cor: |-
+    &7Digite a cor no chat -- &f#FF0000&7, &fVERMELHO &7ou &f&c
+    &7Voce tem &f{segundos}s&7. Escreva &f{cancelar} &7para desistir.
+
+Editor:
+  Titulo: '&8Editor de brilhos'
+  Titulo do brilho: '&8Editando: &f{id}'
+  Criado: '&aBrilho &f{id} &acriado.'
+  Apagado: '&cBrilho &f{id} &capagado.'
+  Id invalido: '&cId invalido ou ja usado: &f{id}&c.'
+  Cor unica: '&cO brilho precisa de pelo menos uma cor.'
+  Digite o id: |-
+    &7Digite o id do brilho novo (so letras, numeros, _ e -).
+    &7Voce tem &f{segundos}s&7. Escreva &f{cancelar} &7para desistir.
+  Digite o nome: |-
+    &7Digite o nome que aparece no menu. Aceita &f&a&7, &f&#FF0000 &7e gradiente.
+    &7Voce tem &f{segundos}s&7. Escreva &f{cancelar} &7para desistir.
+  Digite o icone: |-
+    &7Digite o material do icone -- por exemplo &fNETHER_STAR&7.
+    &7Voce tem &f{segundos}s&7. Escreva &f{cancelar} &7para desistir.
+  Digite a permissao: |-
+    &7Digite a permissao. Escreva &f- &7para liberar a todos.
+    &7Voce tem &f{segundos}s&7. Escreva &f{cancelar} &7para desistir.
+
+Admin:
+  Uso do definir: '&cUse: /starbrilho definir <jogador> <brilho>'
+  Uso do tirar: '&cUse: /starbrilho tirar <jogador>'
+  Uso do ver: '&cUse: /starbrilho ver <jogador>'
+  Jogador desconhecido: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Definido: '&a{jogador} &aagora usa o brilho &f{nome}&a.'
+  Tirado: '&7O brilho de &f{jogador} &7foi tirado.'
+  Ver: |-
+    &7Brilho de &f{jogador}&7:
+    &7  Brilho: &f{brilho} &8({estado}&8)
+    &7  Cor agora: &f{cor}
+    &7  Quem enxerga: &f{visibilidade}
+    &7  Aura: &f{aura}
+    &7  Cores montadas por ele: &f{cores}
+
+Ajuda:
+  Jogador:
+    - '&#FFD700&lStarBrilho'
+    - '&e/brilho &7- abre o menu de brilhos'
+    - '&e/brilho <id> &7- equipa um brilho'
+    - '&e/brilho criar &7- monta o seu proprio brilho'
+    - '&e/brilho aura &7- liga e desliga a poeira colorida'
+    - '&e/brilho visibilidade &7- escolhe quem enxerga'
+    - '&e/brilho lista &7- os brilhos que voce ja tem'
+    - '&e/brilho desligar &7- tira o brilho'
+  Admin:
+    - '&#FFD700&lStarBrilho &7- administracao'
+    - '&e/starbrilho editor &7- cria e edita brilhos pelo jogo'
+    - '&e/starbrilho definir <jogador> <brilho> &7- equipa em alguem'
+    - '&e/starbrilho tirar <jogador> &7- tira o brilho de alguem'
+    - '&e/starbrilho ver <jogador> &7- mostra o brilho de alguem'
+    - '&e/starbrilho recarregar &7- recarrega os arquivos'
+    - '&e/starbrilho info &7- o que este servidor consegue desenhar'
