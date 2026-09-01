@@ -12,7 +12,7 @@
 #    mensagens.yml       tudo que o jogador le
 #    comandos.yml        os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 9
+Versao do modelo: 10
 
 Geral:
   Debug: false
@@ -94,6 +94,18 @@ Livros:
   # Teto de encantamentos diferentes por item; 0 tira o limite.
   Maximo de encantamentos por item: 0
 
+Encantamentos do jogo:
+  # Encantamento que aparece no servidor e ainda nao tem arquivo na pasta
+  # encantamentos-do-jogo/ ganha um sozinho, com o nome ja arrumado.
+  #
+  # E assim que datapack (Stellarity e parecidos) e plugin de encantamento
+  # entram sem ninguem cadastrar nada a mao. Para o Stellarity o arquivo ja
+  # vem pronto, com o nome e a descricao da traducao oficial dele.
+  #
+  # Arquivo que voce apagar NAO volta: a lista .cadastrados, dentro da pasta,
+  # guarda quem ja passou por aqui uma vez.
+  Cadastrar novos: true
+
 Display:
   # ATENCAO, leia antes de ligar.
   #
@@ -114,6 +126,11 @@ Display:
   # A linha de cada encantamento. O nome ja traz a cor dele (hex ou
   # gradiente), entao aqui so o nivel e pintado.
   Formato: '{nome} &7{nivel_romano}'
+
+  # A cor de quem ficou sem cor nenhuma. Sem ela, o nome cai no estilo padrao
+  # da lore (roxo e italico) -- que e como um encantamento ainda nao
+  # cadastrado se denuncia no item.
+  Cor padrao: '&7'
 
   # A descricao entra logo abaixo de cada encantamento. Vale para os proprios
   # e para os do jogo (pasta encantamentos-do-jogo/).
