@@ -26,7 +26,9 @@ Banco de dados:
   Senha: ''
 
   # Mude se voce roda mais de uma rede no mesmo banco.
-  Prefixo das tabelas: 'starportal_'
+  # Tabelas proprias: este plugin pode rodar ao lado do StarPortal, e cada um
+  # cuida dos portais que ele mesmo criou.
+  Prefixo das tabelas: 'starportalarmas_'
 
   # De quantos em quantos segundos o que mudou vai para o banco. Os cliques do
   # menu valem na hora; isto e so a gravacao.
@@ -36,11 +38,6 @@ Banco de dados:
 # =================================  PORTAIS  ================================
 #
 Portais:
-  # Quantos portais fixos alguem tem sem nenhuma permissao especial. Para dar
-  # mais, use a permissao starportal.limite.<numero> (por exemplo
-  # starportal.limite.5) ou starportal.limite.ilimitado.
-  Limite padrao: 1
-
   # Tamanho da moldura, em blocos.
   Largura: 1.4
   Altura: 2.2
@@ -99,25 +96,6 @@ Portais:
 
   # Mundos onde nao da para abrir nem criar portais.
   Mundos bloqueados: []
-
-#
-# ===========================  PORTAIS TEMPORARIOS  ==========================
-#
-Temporarios:
-  # Quantos segundos a moldura aberta por um comando fica de pe.
-  Duracao: 30
-
-  # A quantos blocos da frente do jogador o portal nasce.
-  Distancia na frente: 1.6
-
-  # O portal fecha assim que o dono atravessa? Ligado, vale para todo mundo e
-  # o jogador nao escolhe.
-  Fechar quando o dono atravessa: false
-
-  # Com a linha acima desligada, cada jogador decide isso no menu de
-  # privacidade dele, uma escolha por tipo de portal (/home, /spawn...).
-  Deixar o jogador escolher: true
-
 #
 # ================================  HOLOGRAMA  ===============================
 #
@@ -137,14 +115,6 @@ Holograma:
 
   # Distancia entre uma linha e a de cima.
   Espaco entre linhas: 0.28
-
-#
-# =======================  PEDIDOS ENTRE JOGADORES  ==========================
-#
-Pedidos:
-  # Segundos que um /portal jogador fica esperando resposta.
-  Validade: 60
-
 #
 # ==================================  SONS  ==================================
 #
@@ -157,32 +127,6 @@ Sons:
   Fechar: 'BLOCK_FIRE_EXTINGUISH;0.5;1.4'
   Erro: 'ENTITY_VILLAGER_NO;1;1'
   Clique no menu: 'UI_BUTTON_CLICK;0.6;1.4'
-
-#
-# ====================  TROCAR O TELEPORTE DE OUTROS PLUGINS  ================
-#
-#  Serve para quem quer que TODO teleporte de comando vire portal, mesmo o de
-#  plugins que este aqui nao conhece: o teleporte e cancelado e a moldura abre
-#  no lugar dele.
-#
-#  Vem desligado de proposito. Minigame, arena, elevador e plugin de mundo
-#  tambem teleportam, e so voce sabe quais deles devem virar portal.
-#
-Trocar teleportes:
-  Ativar: false
-
-  # Causas que viram portal. PLUGIN cobre quase todo /home, /warp e /tpa de
-  # outros plugins; COMMAND e o /tp do proprio servidor.
-  # Outras possiveis: ENDER_PEARL, CHORUS_FRUIT, SPECTATE, UNKNOWN.
-  Causas: [ PLUGIN, COMMAND ]
-
-  # Teleporte mais curto que isto (em blocos, no mesmo mundo) continua direto:
-  # abrir moldura para um pulo de dois blocos so atrapalharia.
-  Distancia minima: 16
-
-  # Quem tem a permissao starportal.teleporte.direto continua sendo teleportado
-  # na hora -- deixe com o staff, para o /tp de moderacao nao virar portal.
-
 #
 # =========================  AS ARMAS DE PORTAL  =============================
 #
