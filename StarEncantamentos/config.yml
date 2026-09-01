@@ -12,7 +12,7 @@
 #    mensagens.yml       tudo que o jogador le
 #    comandos.yml        os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 10
+Versao do modelo: 11
 
 Geral:
   Debug: false
@@ -126,6 +126,11 @@ Display:
   # A linha de cada encantamento. O nome ja traz a cor dele (hex ou
   # gradiente), entao aqui so o nivel e pintado.
   Formato: '{nome} &7{nivel_romano}'
+
+  # Descricao mais comprida que isto quebra em mais de uma linha, sempre
+  # entre palavras. Sem a quebra, uma frase longa estica a janelinha do item
+  # e empurra o resto da lore para fora da tela. 0 desliga a quebra.
+  Largura da descricao: 38
 
   # A cor de quem ficou sem cor nenhuma. Sem ela, o nome cai no estilo padrao
   # da lore (roxo e italico) -- que e como um encantamento ainda nao
