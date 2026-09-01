@@ -26,7 +26,7 @@
 #  {descricao} da lugar ao que o encantamento proprio faz (nos do jogo ela
 #  simplesmente some).
 # ---------------------------------------------------------------------------
-Versao do modelo: 3
+Versao do modelo: 4
 
 Raridade padrao: comum
 
@@ -35,6 +35,21 @@ Livro:
   Nome: '{raridade} &f{encantamento} {nivel_romano}'
   Lore:
     - '{descricao}'
+    - ''
+    - '&7Chance de aplicar: &a{sucesso}%'
+    - '&7Se falhar:'
+    - '{risco}'
+    - ''
+    - '&7Vale &f{xp} &7de xp na reciclagem.'
+    - ''
+    - '&eArraste sobre um item para aplicar.'
+
+  # Livro com MAIS DE UM encantamento (o que sai da bigorna). O nome vira um so
+  # e os encantamentos viram a lista de {encantamentos}; o xp e a soma de todos.
+  Nome multiplo: '{raridade} &fLivro Encantado &7({quantidade})'
+  Linha do encantamento: '&7{encantamento} {nivel_romano}'
+  Lore multiplo:
+    - '{encantamentos}'
     - ''
     - '&7Chance de aplicar: &a{sucesso}%'
     - '&7Se falhar:'

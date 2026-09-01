@@ -11,7 +11,7 @@
 #    mensagens.yml       tudo que o jogador le
 #    comandos.yml        os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 4
+Versao do modelo: 6
 
 Geral:
   Debug: false
@@ -76,6 +76,13 @@ Livros:
     # o reconhece pelo nome. Desligado, ele fica como esta e vale a raridade
     # padrao do livros.yml.
     Livros com nome proprio: false
+    # Livro cujo encantamento o plugin NAO sabe nomear -- tipicamente de outro
+    # plugin de encantamentos (EcoEnchants e afins). Ligado, o nome sairia na
+    # chave crua ("Lunge" no lugar de "Estocada") e ficaria duplicado com a
+    # linha que o outro plugin escreve na lore.
+    # Para trazer um encantamento de fora para ca, batize ele no
+    # encantamentos.yml: dali em diante ele e conhecido e entra sozinho.
+    Encantamentos desconhecidos: false
 
   # Regras conferidas na hora de aplicar. Desligue para servidores que querem
   # Fortuna em espada e Afiacao acima do teto pela via normal.
@@ -135,6 +142,16 @@ Banco de xp:
 
 Reciclagem:
   Ativar: true
+
+  # Alem dos livros, a recicladora aceita ferramenta, armadura e arma
+  # encantadas -- ela paga pelos encantamentos que o item carrega.
+  Aceitar itens encantados: true
+
+  # O que acontece com o item (nao vale para livro):
+  #   false  ele some junto, como o livro
+  #   true   ele volta LIMPO para o jogador, e a recicladora vira um
+  #          desencantador que paga
+  Devolver o item limpo: false
   # Quanto cada nivel acima do primeiro rende a mais.
   # 1.0 deixa linear (Afiacao V vale 5 vezes a I); 1.2 faz o nivel alto valer
   # progressivamente mais, o que empurra o jogador para a fusao.

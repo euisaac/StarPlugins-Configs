@@ -8,7 +8,7 @@
 #  {essencia} {essencia_curto} {guardado} {limite_banco} {runas_usadas}
 #  {reciclados} {extraidos} {saldo} {moeda} {simbolo_essencia}
 # ---------------------------------------------------------------------------
-Versao do modelo: 1
+Versao do modelo: 2
 
 Principal:
   Titulo: '&8Encantamentos'
@@ -88,8 +88,21 @@ Principal:
       - ''
       - '&eClique para abrir.'
 
-  Perfil:
+  Catalogo:
     Slot: 33
+    Material: KNOWLEDGE_BOOK
+    Nome: '&a&lTodos os encantamentos'
+    Lore:
+      - '&7Tudo que existe no servidor: o do jogo'
+      - '&7e o proprio do plugin.'
+      - ''
+      - '&7Ponha um item na tela para ver'
+      - '&7so o que cabe nele.'
+      - ''
+      - '&eClique para abrir.'
+
+  Perfil:
+    Slot: 34
     Material: BOOK
     Nome: '&a&lSeu perfil'
     Lore:
@@ -117,7 +130,7 @@ Reciclar:
     Material: HOPPER
     Nome: '&a&lReciclar'
     Lore:
-      - '&7Livros na area: &f{livros}'
+      - '&7Na area: &f{livros}'
       - ''
       - '&7Voce recebe:'
       - '  &f{ganho_xp} &7de xp'
@@ -136,8 +149,8 @@ Reciclar:
     Material: BOOK
     Nome: '&e&lComo funciona'
     Lore:
-      - '&7Ponha os livros encantados na'
-      - '&7area de cima e clique em reciclar.'
+      - '&7Ponha livros encantados (e itens'
+      - '&7encantados) na area e clique aqui.'
       - ''
       - '&7O que sobrar volta para voce'
       - '&7quando a tela fechar.'
@@ -326,6 +339,73 @@ Runas:
 
   Proxima:
     Slot: 50
+    Material: ARROW
+    Nome: '&7Proxima pagina'
+    Lore: []
+
+Catalogo:
+  Titulo: '&8Encantamentos &7({pagina}/{paginas})'
+  # Onde o jogador poe um item para filtrar a lista pelo que cabe nele.
+  Slot do item: 49
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # Modelo dos encantamentos do proprio jogo.
+  Item:
+    Material: BOOK
+    Nome: '&f{encantamento}'
+    Lore:
+      - '&7Nivel maximo: &f{nivel_maximo} &7({nivel_romano})'
+      - '&7Serve em: &f{alvos}'
+      - ''
+      - '&7No maximo vale &f{xp} &7de xp'
+      - '&7e &d{essencia} &7de essencia.'
+      - '&7Chance de voltar em livro: &a{chance}%'
+      - ''
+      - '&8{origem}'
+
+  # Modelo dos encantamentos proprios do plugin.
+  Proprio:
+    Material: ENCHANTED_BOOK
+    Nome: '{encantamento}'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&7Nivel maximo: &f{nivel_maximo} &7({nivel_romano})'
+      - '&7Serve em: &f{alvos}'
+      - ''
+      - '&7No maximo vale &f{xp} &7de xp'
+      - '&7e &d{essencia} &7de essencia.'
+      - '&7Chance de voltar em livro: &a{chance}%'
+      - ''
+      - '&8{origem} &8({efeito})'
+
+  Filtro:
+    Slot: 47
+    Material: HOPPER
+    Nome: '&e&lFiltro: &f{filtro}'
+    Lore:
+      - '&7Mostrando &f{quantidade} &7encantamentos.'
+      - ''
+      - '&eClique &7para o proximo filtro.'
+      - '&eBotao direito &7para o anterior.'
+
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Voltar'
+    Lore: []
+
+  Anterior:
+    Slot: 51
+    Material: ARROW
+    Nome: '&7Pagina anterior'
+    Lore: []
+
+  Proxima:
+    Slot: 53
     Material: ARROW
     Nome: '&7Proxima pagina'
     Lore: []
