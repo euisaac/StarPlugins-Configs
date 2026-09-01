@@ -12,7 +12,7 @@
 #    mensagens.yml       tudo que o jogador le
 #    comandos.yml        os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 8
+Versao do modelo: 9
 
 Geral:
   Debug: false
@@ -94,10 +94,25 @@ Livros:
   # Teto de encantamentos diferentes por item; 0 tira o limite.
   Maximo de encantamentos por item: 0
 
-Encantamentos proprios:
-  # Os encantamentos da pasta encantamentos/ (um arquivo cada um).
-  # Esta e a linha que eles escrevem na lore do item. O nome ja traz a cor
-  # dele (hex ou gradiente), entao aqui so o nivel e pintado.
+Display:
+  # ATENCAO, leia antes de ligar.
+  #
+  # Ligado, o plugin assume o desenho de TODAS as linhas de encantamento do
+  # item: as dele e as do proprio Minecraft. Para isso ele esconde as linhas
+  # que o jogo desenha e escreve todas de novo, com a cor de cada nome e a
+  # descricao embaixo. E o unico jeito de um encantamento do jogo ganhar
+  # descricao -- aquelas linhas nao sao lore, sao desenhadas pelo cliente.
+  #
+  # Se voce ja usa outro plugin que faz isso (EcoEnchants e parecidos),
+  # DESLIGUE o display dele antes: os dois brigando pela mesma lore da
+  # linha repetida e nome trocado.
+  Ativar: true
+
+  # Os encantamentos proprios aparecem antes dos do jogo.
+  Proprios primeiro: true
+
+  # A linha de cada encantamento. O nome ja traz a cor dele (hex ou
+  # gradiente), entao aqui so o nivel e pintado.
   Formato: '{nome} &7{nivel_romano}'
 
   # A descricao entra logo abaixo de cada encantamento. Vale para os proprios
