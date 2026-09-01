@@ -2,12 +2,55 @@
 #  ║                    StarTerrenos - nomes dos comandos                 ║
 #  ║   Separe as variacoes com | -- a primeira e o comando principal e    ║
 #  ║   as outras viram atalhos. Deixe vazio para usar so o padrao.        ║
+#  ║                                                                      ║
+#  ║   Os comandos sao registrados na subida do servidor: depois de       ║
+#  ║   mexer aqui, reinicie (o /starterrenos recarregar nao troca nome    ║
+#  ║   de comando).                                                       ║
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 1
+Versao do modelo: 2
 
+# Os tres comandos principais. Vazio mantem so o que ja vem no plugin.
+#
+# Exemplo: para o /terrenos atender tambem por /claimlist e /meusterrenos,
+# escreva:  terrenos: 'terrenos|claimlist|meusterrenos'
 comandos:
   terreno: ''
   terrenos: ''
   starterrenos: ''
+
+#
+# ══════════════════════════════════  ATALHOS  ═══════════════════════════════
+#
+# Comandos SOLTOS que fazem o mesmo que um subcomando do /terreno.
+#
+# Quem chega de outro plugin de terreno tem os dedos acostumados com os nomes
+# em ingles, e quem e do servidor prefere os em portugues -- aqui os dois
+# convivem: '/confiar Pedro', '/trust Pedro' e '/terreno confiar Pedro' fazem
+# exatamente a mesma coisa.
+#
+# A primeira palavra e o comando; as outras sao atalhos dele. Linha vazia ('')
+# desliga aquele atalho.
+#
+# Se outro plugin ja usa o mesmo nome, o dele continua valendo e o nosso
+# responde por /starterrenos:<nome> -- quem decide o empate e o servidor.
+atalhos:
+  confiar: 'confiar|trust'
+  remover: 'remover|untrust|desconfiar'
+  membros: 'membros|trustlist'
+  bandeiras: 'bandeiras|flags'
+  info: 'infoterreno|claiminfo'
+  abandonar: 'abandonar|abandonclaim'
+  blocos: 'blocosterreno|claimblocks'
+  ferramenta: 'ferramentaterreno|claimtool'
+  entrada: 'entradaterreno|setclaimspawn'
+  nome: 'nomearterreno|claimname'
+  vender: 'venderterreno|sellclaim'
+  comprar: 'comprarterreno|buyclaim'
+  leiloar: 'leiloarterreno|auctionclaim'
+  lance: 'lanceterreno|bidclaim'
+  modo: 'modoterreno|claimmode'
+  caixa: ''
+  cancelarvenda: ''
+  cancelarleilao: ''
