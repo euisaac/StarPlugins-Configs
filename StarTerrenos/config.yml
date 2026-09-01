@@ -118,13 +118,35 @@ Blocos de terreno:
 # ═══════════════════════════════  FERRAMENTA  ═══════════════════════════════
 #
 Ferramenta:
-  # Clique com a direita em dois cantos para marcar o terreno; clique num canto
-  # do seu proprio terreno para mudar o tamanho dele.
+  # ITEM QUE PROTEGE O TERRENO (marca os cantos).
+  #
+  # E um item normal do jogo: qualquer pa dourada do bau do jogador serve, nao
+  # precisa ser a que o plugin entregou. Clique com a direita num canto, depois
+  # no outro, e o terreno nasce. Clicar num canto de um terreno seu muda o
+  # tamanho dele; clique esquerdo cancela a marcacao.
+  #
+  # Exemplos: GOLDEN_SHOVEL, WOODEN_SHOVEL, GOLDEN_HOE, BLAZE_ROD
   Criar: 'GOLDEN_SHOVEL'
 
-  # Clique com a direita para ver de quem e o terreno; agachado, mostra todos
-  # os terrenos por perto.
+  # ITEM QUE INSPECIONA O TERRENO.
+  #
+  # Clique com a direita e ele diz de quem e o terreno e acende o contorno;
+  # agachado, mostra todos os terrenos por perto de uma vez.
+  #
+  # Exemplos: STICK, GOLD_NUGGET, PAPER, COMPASS
   Inspecionar: 'STICK'
+
+  # Raio da busca do "todos os terrenos por perto", que sai no shift + clique
+  # com o item de inspecionar: a lista vai para o chat e os contornos acendem
+  # todos ao mesmo tempo no chao.
+  Raio dos vizinhos: 100
+
+  # Ate quantos blocos de distancia o clique NO AR marca.
+  #
+  # Com isto o jogador nao precisa caminhar ate cada ponta: ele mira o bloco e
+  # clica no ar, e o canto cai onde a linha de visao encosta. Vale para as duas
+  # ferramentas. O maximo aceito e 100.
+  Alcance da mira: 15
 
   # Da a ferramenta na entrada de quem ainda nao tem nenhuma no inventario.
   Dar na primeira entrada: false
