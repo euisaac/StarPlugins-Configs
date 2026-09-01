@@ -1,0 +1,88 @@
+# ---------------------------------------------------------------------------
+#  StarLixeiro - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso sem
+#  precisar de uma opcao no config.yml para cada um.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&a&lLIXEIRO &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEsse comando so funciona no jogo.'
+  Numero invalido: '&f{valor} &cnao e um numero valido.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Inventario cheio: '&cO seu inventario esta cheio.'
+  Carregando: '&7Buscando no historico...'
+
+Ajuda:
+  Jogador: |
+    &8&m----------------------------------------
+    &a&lLIXEIRO
+    &e/lixeiro &8- &7tempo da proxima limpeza
+    &e/lixeiro menu &8- &7os lixeiros em tela
+    &e/lixeiro listar &8- &7todos os lixeiros
+    &e/lixeiro historico &8- &7o que ja foi limpo
+    &8&m----------------------------------------
+  Admin: |
+    &8&m----------------------------------------
+    &a&lLIXEIRO &7- administracao
+    &e/starlixeiro forcar [lixeiro] &8- &7limpar agora
+    &e/starlixeiro editor &8- &7editar os lixeiros
+    &e/starlixeiro historicoadmin &8- &7historico com resgate
+    &e/starlixeiro info &8- &7numeros do produto
+    &e/starlixeiro recarregar &8- &7reler os arquivos
+    &8&m----------------------------------------
+
+Tempo:
+  Cabecalho: '&8&m--------&r &a&lLIXEIRO &8&m--------'
+  Linha: ' &8» &f{lixeiro}&7: proxima limpeza em &f{tempo}&7.'
+  Ultima: ' &8» &7Ultima limpeza: &f{itens} &7itens e &f{entidades} &7criaturas.'
+  Rodape: '&8&m------------------------------'
+  Nenhum: '&cNenhum lixeiro ligado no momento.'
+  Desligado: '&7desligado'
+
+Comando:
+  Lixeiro desconhecido: '&cNao existe o lixeiro &f{lixeiro}&c. Veja em /lixeiro listar.'
+  Forcado: '&aLimpeza forcada: &f{itens} &aitens e &f{entidades} &acriaturas removidos.'
+  Forcado por: '&e{jogador} &7forcou a limpeza do servidor.'
+  Lista: ' &8» &f{lixeiro} &7({tipo}) &8- &7a cada &f{intervalo}&7, faltam &f{tempo}'
+  Info: |
+    &8&m----------------------------------------
+    &a&lSTARLIXEIRO &7v{versao}
+    &7Lixeiros ligados: &f{lixeiros}
+    &7Banco de dados: &f{banco}
+    &7Limpezas guardadas: &f{limpezas}
+    &7Nesta sessao: &f{itens} &7itens e &f{entidades} &7criaturas
+    &8&m----------------------------------------
+
+Historico:
+  Vazio: '&7Nenhuma limpeza foi registrada ainda.'
+  Sem itens: '&7Essa limpeza nao guardou nenhum item.'
+  Resgate desligado: '&cO resgate de itens do historico esta desligado.'
+  Resgatado: '&aVoce resgatou &f{quantidade}x {item}&a.'
+  Resgatado parcial: '&aVoce resgatou &f{quantidade}x {item}&a; o resto ficou no historico.'
+  Nada para resgatar: '&cNao sobrou nada desse item para resgatar.'
+  Item perdido: '&cNao foi possivel reconstruir esse item nesta versao do servidor.'
+
+Editor:
+  Nome do lixeiro: '&eDigite o nome do novo lixeiro no chat.'
+  Nome invalido: '&cUse so letras, numeros, hifen e sublinhado.'
+  Ja existe: '&cJa existe um lixeiro chamado &f{lixeiro}&c.'
+  Criado: '&aLixeiro &f{lixeiro} &acriado.'
+  Apagado: '&cLixeiro &f{lixeiro} &capagado.'
+  Digite o tempo: '&eDigite o tempo entre as limpezas, em segundos.'
+  Digite o titulo: '&eDigite o novo nome de exibicao do lixeiro.'
+  Digite a linha: |
+    &eDigite a linha no formato &fsegundos: texto&e.
+    &7Exemplo: &f10: Limpando em 10 segundos
+  Digite o valor: '&eDigite o novo valor.'
+  Linha invalida: '&cEscreva no formato &fsegundos: texto&c.'
+  Salvo: '&aAlteracao gravada no lixeiros.yml.'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&cVoce cancelou.'
+  Tempo esgotado: '&cO tempo para responder acabou.'

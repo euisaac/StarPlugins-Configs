@@ -1,0 +1,205 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarLixeiro - configuracao                       ║
+#  ║   Limpa os itens no chao e as criaturas soltas do mundo. Cada        ║
+#  ║   lixeiro tem o proprio relogio e a propria regra, e todos ficam     ║
+#  ║   no lixeiros.yml (ou no /starlixeiro editor).                       ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Versao do modelo: 1
+
+# Manda no console o que o plugin esta fazendo por dentro. So ligue para
+# investigar algum problema.
+Depuracao: false
+
+#
+# ═════════════════════════════  BANCO DE DADOS  ═════════════════════════════
+#
+# Guarda o historico das limpezas: quando foi, quanto saiu e quais itens.
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (varios servidores no mesmo
+  # banco).
+  Tipo: SQLITE
+
+  Endereco: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # Mude se voce roda mais de uma rede no mesmo banco.
+  Prefixo das tabelas: 'starlixeiro_'
+
+#
+# ════════════════════════════════  LIMPEZA  ═════════════════════════════════
+#
+Limpeza:
+  # Os avisos da contagem so vao para quem esta num mundo daquele lixeiro.
+  # Desligue para avisar o servidor inteiro.
+  Avisar somente nos mundos do lixeiro: true
+
+  # Segundos de vida que um item precisa ter para poder ser limpo. Serve de
+  # rede de seguranca para o drop que acabou de cair no chao. 0 desliga.
+  Proteger itens recentes: 0
+
+  # Criatura com nome (placa de nomes) nunca e limpa.
+  Ignorar renomeadas: true
+
+  # Criatura domesticada (cavalo, lobo, gato de alguem) nunca e limpa.
+  Ignorar domesticadas: true
+
+  # Criatura montada ou carregando alguem nunca e limpa.
+  Ignorar com passageiro: true
+
+  # Item com nome proprio ou lore nao e limpo. Util em servidor onde item
+  # nomeado significa item raro.
+  Ignorar itens com nome: false
+
+  # Criatura a menos que esta distancia de um jogador nao e limpa.
+  # 0 desliga a checagem (e o mais rapido).
+  Distancia minima do jogador: 0
+
+#
+# ═══════════════════════════════  BLOQUEIOS  ════════════════════════════════
+#
+# Valem para TODOS os lixeiros. Cada lixeiro pode ter as proprias listas no
+# lixeiros.yml, e elas se somam a estas.
+Bloqueios:
+  # Mundos que nenhum lixeiro toca.
+  Mundos: []
+
+  # Itens no chao que nunca sao limpos. Aceita 'MATERIAL' e o formato antigo
+  # 'MATERIAL:dado'.
+  Materiais:
+    - 'BARRIER'
+    - 'BEDROCK'
+    - 'NETHER_STAR'
+
+  # Criaturas e objetos que nunca sao limpos.
+  Entidades:
+    - 'ARMOR_STAND'
+    - 'ENDER_CRYSTAL'
+    - 'FALLING_BLOCK'
+    - 'FIREBALL'
+    - 'FIREWORK'
+    - 'FISHING_HOOK'
+    - 'ITEM_FRAME'
+    - 'LEASH_HITCH'
+    - 'LIGHTNING'
+    - 'MINECART'
+    - 'MINECART_CHEST'
+    - 'MINECART_FURNACE'
+    - 'MINECART_HOPPER'
+    - 'MINECART_TNT'
+    - 'PAINTING'
+    - 'PLAYER'
+    - 'PRIMED_TNT'
+    - 'SMALL_FIREBALL'
+    - 'SPLASH_POTION'
+    - 'THROWN_EXP_BOTTLE'
+    - 'VILLAGER'
+    - 'WEATHER'
+
+  # Criatura marcada por outro plugin com uma destas tags nunca e limpa.
+  # O plugin procura em tag de scoreboard e na tag persistente (1.14+).
+  Tags: []
+
+  # Criatura marcada por outro plugin com uma destas metadatas nunca e limpa.
+  Metadata: []
+
+#
+# ═══════════════════════════  LIMITADOR POR CHUNK  ══════════════════════════
+#
+# Corta o excesso de criaturas do mesmo tipo dentro de um chunk sem esperar a
+# hora do lixeiro. Serve para fazenda de mob que trava o servidor.
+Limitador por chunk:
+  Ativar: false
+
+  # De quantos em quantos segundos os chunks carregados sao conferidos.
+  Intervalo: 120
+
+  # Escreve no console quantas criaturas foram cortadas.
+  Avisar no console: false
+
+  # Um limite por tipo de criatura. O que passar do limite e removido, das
+  # mais novas para as mais antigas.
+  Limites:
+    COW: 20
+    PIG: 20
+    CHICKEN: 20
+    SHEEP: 20
+
+#
+# ═══════════════════════════════  HISTORICO  ════════════════════════════════
+#
+# O historico e o que o jogador ve em /lixeiro historico e a staff em
+# /starlixeiro historicoadmin.
+Historico:
+  Guardar itens: true
+  Guardar entidades: true
+
+  # Quantas limpezas ficam guardadas no banco. O que passa disso e apagado
+  # pelo expurgo, da mais velha para a mais nova. 0 = sem limite.
+  Guardar limpezas: 3000
+
+  # Idade maxima de uma limpeza guardada, em dias. 0 = sem limite.
+  Guardar por dias: 90
+
+  # Teto de linhas por limpeza. Itens iguais entram numa linha so, entao este
+  # numero conta TIPOS de item, nao unidades.
+  Itens por limpeza: 500
+  Entidades por limpeza: 200
+
+  # Quantas limpezas recentes ficam na memoria para o menu abrir na hora. As
+  # mais antigas continuam no banco e sao lidas quando o jogador pede.
+  Manter em memoria: 80
+
+  # Materiais que nunca entram no historico (lixo de verdade, que ninguem vai
+  # querer resgatar).
+  Ignorar materiais: []
+
+  # De quantos em quantos minutos o expurgo roda.
+  Expurgo a cada: 60
+
+  Resgate:
+    # Liga o resgate de item pelo /starlixeiro historicoadmin.
+    Ativar: true
+
+    # Guarda quem pegou o que, e quando.
+    Registrar quem pegou: true
+
+    # O item resgatado sai do historico. Desligue para o historico virar so
+    # consulta, com resgate ilimitado.
+    Retirar do historico ao pegar: true
+
+    # Teto de unidades por clique. Protege contra o clique que entope o
+    # inventario e o chao com dezenas de milhares de itens.
+    Maximo por clique: 2304
+
+#
+# ════════════════════════════════  DISCORD  ═════════════════════════════════
+#
+# Avisa num canal do Discord a cada limpeza, por webhook.
+Discord:
+  Ativar: false
+  Webhook: ''
+  Titulo: 'Limpeza do servidor'
+  Mensagem: '**{lixeiro}** removeu **{itens}** itens e **{entidades}** criaturas.'
+  Cor: '#f1c40f'
+
+  # Avisa somente quando alguem forcou a limpeza pelo comando.
+  Somente quando forcado: false
+
+#
+# ══════════════════════════════  PLACEHOLDERS  ══════════════════════════════
+#
+# Registra os placeholders do PlaceholderAPI:
+#   %starlixeiro_tempo%              tempo do lixeiro que vai limpar primeiro
+#   %starlixeiro_tempo_<lixeiro>%    tempo daquele lixeiro
+#   %starlixeiro_segundos_<lixeiro>% o mesmo, em segundos crus
+#   %starlixeiro_nome%               nome do lixeiro que vai limpar primeiro
+#   %starlixeiro_ultima_itens%       itens da ultima limpeza
+#   %starlixeiro_ultima_entidades%   criaturas da ultima limpeza
+#   %starlixeiro_total_itens%        itens limpos desde que o servidor subiu
+#   %starlixeiro_total_entidades%    criaturas limpas desde que o servidor subiu
+Placeholders:
+  Ativar: true

@@ -1,0 +1,465 @@
+# ---------------------------------------------------------------------------
+#  StarLixeiro - telas
+#
+#  Slot: -1 esconde o botao. As posicoes vao de 0 ate o tamanho do menu -1
+#  (uma linha tem 9 slots).
+#
+#  Marcadores que valem em qualquer texto daqui:
+#    {lixeiro} {chave} {tipo} {tempo} {intervalo} {estado} {mundos} {itens}
+#    {entidades} {total} {data} {hora} {atras} {autor} {quantidade} {material}
+#    {mundo} {pagina} {paginas} {jogador} {valor} {linhas}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+#
+# ═══════════════════════════  VISAO DOS LIXEIROS  ═══════════════════════════
+#
+Lixeiros:
+  Titulo: '&8Lixeiros'
+  Linhas: 5
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # O material vem do 'Icone' do lixeiro, no lixeiros.yml.
+  Item:
+    Nome: '{lixeiro}'
+    Lore:
+      - '&7Tipo: &f{tipo}'
+      - '&7Intervalo: &f{intervalo}'
+      - '&7Mundos: &f{mundos}'
+      - ''
+      - '&7Proxima limpeza: &a{tempo}'
+      - '&7Ultima limpeza: &f{itens} &7itens, &f{entidades} &7criaturas'
+
+  Botoes:
+    Historico:
+      Slot: 40
+      Material: 'PAPER'
+      Nome: '&e&lHISTORICO'
+      Lore:
+        - '&7Veja o que ja foi limpo e'
+        - '&7quais itens sairam do chao.'
+        - ''
+        - '&aClique para abrir.'
+    Voltar:
+      Slot: 36
+      Material: 'BARRIER'
+      Nome: '&cFechar'
+      Lore: []
+    Anterior:
+      Slot: 37
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 43
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+
+#
+# ══════════════════════════════  HISTORICO  ═════════════════════════════════
+#
+Historico:
+  Titulo: '&8Historico de limpezas'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Material: 'PAPER'
+    Nome: '&e{lixeiro} &8- &7{atras}'
+    Lore:
+      - '&7Quando: &f{data} as {hora}'
+      - '&7Itens: &f{itens}'
+      - '&7Criaturas: &f{entidades}'
+      - '&7Forcada por: &f{autor}'
+      - ''
+      - '&aClique para ver os itens.'
+
+  Botoes:
+    Filtro:
+      Slot: 48
+      Material: 'HOPPER'
+      Nome: '&e&lFILTRO'
+      Lore:
+        - '&7Mostrando: &f{lixeiro}'
+        - ''
+        - '&aClique para trocar.'
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+
+#
+# ═══════════════════════════  ITENS DE UMA LIMPEZA  ═════════════════════════
+#
+Itens:
+  Titulo: '&8Limpeza de {hora}'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # Linhas coladas embaixo da lore que o item ja tinha.
+  Item:
+    Lore:
+      - ''
+      - '&7Quantidade: &f{quantidade}'
+      - '&7Mundo: &f{mundo}'
+
+  # O mesmo item quando a staff pode resgatar.
+  Item resgate:
+    Lore:
+      - ''
+      - '&7Quantidade: &f{quantidade}'
+      - '&7Mundo: &f{mundo}'
+      - ''
+      - '&aClique &7para pegar uma pilha.'
+      - '&aShift + clique &7para pegar tudo que couber.'
+
+  # A criatura que foi removida.
+  Entidade:
+    Material: 'ZOMBIE_HEAD'
+    Nome: '&f{material}'
+    Lore:
+      - '&7Quantidade: &f{quantidade}'
+      - '&7Mundo: &f{mundo}'
+
+  Botoes:
+    Resumo:
+      Slot: 4
+      Material: 'PAPER'
+      Nome: '&e{lixeiro}'
+      Lore:
+        - '&7Quando: &f{data} as {hora}'
+        - '&7Itens: &f{itens}'
+        - '&7Criaturas: &f{entidades}'
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+
+#
+# ════════════════════════════════  EDITOR  ══════════════════════════════════
+#
+Editor:
+  Titulo: '&8Editor de lixeiros'
+  Linhas: 5
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Nome: '{lixeiro}'
+    Lore:
+      - '&7Chave: &f{chave}'
+      - '&7Tipo: &f{tipo}'
+      - '&7Intervalo: &f{intervalo}'
+      - '&7Estado: {estado}'
+      - ''
+      - '&aClique &7para editar.'
+      - '&cShift + clique direito &7para apagar.'
+
+  Botoes:
+    Criar:
+      Slot: 40
+      Material: 'LIME_DYE'
+      Nome: '&a&lNOVO LIXEIRO'
+      Lore:
+        - '&7Cria um lixeiro do zero.'
+        - ''
+        - '&aClique para criar.'
+    Voltar:
+      Slot: 36
+      Material: 'BARRIER'
+      Nome: '&cFechar'
+      Lore: []
+    Anterior:
+      Slot: 37
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 43
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+
+#
+# ═══════════════════════════  EDITAR UM LIXEIRO  ════════════════════════════
+#
+Editar:
+  Titulo: '&8Editando {chave}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Ativar:
+      Slot: 10
+      Material: 'LEVER'
+      Nome: '&e&lLIGADO'
+      Lore:
+        - '&7Estado: {estado}'
+        - ''
+        - '&aClique para trocar.'
+    Nome:
+      Slot: 11
+      Material: 'NAME_TAG'
+      Nome: '&e&lNOME'
+      Lore:
+        - '&7Atual: {valor}'
+        - ''
+        - '&aClique para digitar outro.'
+    Icone:
+      Slot: 12
+      Material: 'ITEM_FRAME'
+      Nome: '&e&lICONE'
+      Lore:
+        - '&7Atual: &f{valor}'
+        - ''
+        - '&aClique &7segurando o item que'
+        - '&7voce quer como icone.'
+    Tempo:
+      Slot: 13
+      Material: 'CLOCK'
+      Nome: '&e&lINTERVALO'
+      Lore:
+        - '&7A cada: &f{valor}'
+        - ''
+        - '&aClique para digitar outro.'
+    Tipo:
+      Slot: 14
+      Material: 'HOPPER'
+      Nome: '&e&lTIPO'
+      Lore:
+        - '&7Atual: &f{valor}'
+        - ''
+        - '&7TUDO &8- &7itens e criaturas'
+        - '&7ITENS &8- &7so o que esta no chao'
+        - '&7ENTIDADES &8- &7so criaturas'
+        - ''
+        - '&aClique para trocar.'
+    Mundos:
+      Slot: 15
+      Material: 'GRASS_BLOCK'
+      Nome: '&e&lMUNDOS'
+      Lore:
+        - '&7Agora: &f{valor}'
+        - ''
+        - '&aClique para escolher.'
+    Materiais:
+      Slot: 19
+      Material: 'BARRIER'
+      Nome: '&e&lITENS BLOQUEADOS'
+      Lore:
+        - '&7{linhas} na lista deste lixeiro.'
+        - ''
+        - '&aClique para editar.'
+    Entidades:
+      Slot: 20
+      Material: 'ZOMBIE_HEAD'
+      Nome: '&e&lCRIATURAS BLOQUEADAS'
+      Lore:
+        - '&7{linhas} na lista deste lixeiro.'
+        - ''
+        - '&aClique para editar.'
+    Chat:
+      Slot: 22
+      Material: 'WRITABLE_BOOK'
+      Nome: '&e&lAVISOS NO CHAT'
+      Lore:
+        - '&7{linhas} avisos.'
+        - ''
+        - '&aClique para editar.'
+    Actionbar:
+      Slot: 23
+      Material: 'BOOK'
+      Nome: '&e&lAVISOS NA ACTIONBAR'
+      Lore:
+        - '&7{linhas} avisos.'
+        - ''
+        - '&aClique para editar.'
+    Titulo:
+      Slot: 24
+      Material: 'PAINTING'
+      Nome: '&e&lTITULOS'
+      Lore:
+        - '&7{linhas} avisos.'
+        - ''
+        - '&aClique para editar.'
+    Sons:
+      Slot: 25
+      Material: 'NOTE_BLOCK'
+      Nome: '&e&lSONS'
+      Lore:
+        - '&7{linhas} sons.'
+        - ''
+        - '&aClique para editar.'
+    Forcar:
+      Slot: 31
+      Material: 'REDSTONE'
+      Nome: '&c&lLIMPAR AGORA'
+      Lore:
+        - '&7Roda este lixeiro na hora.'
+        - ''
+        - '&aClique para limpar.'
+    Voltar:
+      Slot: 36
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: []
+
+#
+# ═════════════════════════════  ESCOLHER MUNDOS  ════════════════════════════
+#
+Mundos:
+  Titulo: '&8Mundos de {chave}'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Material: 'GRASS_BLOCK'
+    Nome: '&f{valor}'
+    Lore:
+      - '&7Estado: {estado}'
+      - ''
+      - '&aClique para trocar.'
+
+  Botoes:
+    Todos:
+      Slot: 48
+      Material: 'NETHER_STAR'
+      Nome: '&e&lTODOS OS MUNDOS'
+      Lore:
+        - '&7Lista vazia = o lixeiro roda'
+        - '&7em todos os mundos.'
+        - ''
+        - '&aClique para limpar a lista.'
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+
+#
+# ═══════════════════════════  EDITAR UMA LISTA  ═════════════════════════════
+#
+Lista:
+  Titulo: '&8{valor}'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Material: 'PAPER'
+    Nome: '&f{valor}'
+    Lore:
+      - ''
+      - '&aClique &7para trocar o texto.'
+      - '&cShift + clique direito &7para apagar.'
+
+  Botoes:
+    Adicionar:
+      Slot: 48
+      Material: 'LIME_DYE'
+      Nome: '&a&lADICIONAR'
+      Lore:
+        - '&7Acrescenta uma linha.'
+        - ''
+        - '&aClique para digitar.'
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]

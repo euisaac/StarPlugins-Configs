@@ -1,0 +1,95 @@
+# ---------------------------------------------------------------------------
+#  StarLixeiro - os lixeiros
+#
+#  Cada lixeiro tem o proprio relogio, a propria regra e os proprios avisos.
+#  Crie quantos quiser: um so para itens de 2 em 2 minutos, outro so para
+#  criaturas de 10 em 10, um terceiro so no mundo do PvP...
+#
+#  Tudo aqui tambem se edita no jogo, por /starlixeiro editor.
+#
+#  Tipo:      TUDO, ITENS ou ENTIDADES
+#  Mundos:    lista vazia = todos os mundos (menos os bloqueados no config.yml)
+#  Avisos:    a chave e quantos SEGUNDOS faltam. 0 e o aviso do fim da limpeza.
+#  Sons:      mesma ideia. Aceita 'SOM', 'SOM;volume' e 'SOM;volume;tom'.
+#
+#  Marcadores que valem nos avisos:
+#    {lixeiro} {tempo} {segundos} {itens} {entidades} {total}
+#
+#  Use <nl> para quebrar linha (no titulo, separa titulo de subtitulo).
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Lixeiros:
+
+  # ─────────────────────────── itens no chao ────────────────────────────
+  itens:
+    Ativar: true
+    Nome: '&e&lItens'
+    Icone: 'HOPPER'
+    Tempo: 300
+    Tipo: ITENS
+    Mundos: []
+
+    # Somam-se aos bloqueios do config.yml; valem so para este lixeiro.
+    Bloqueios:
+      Materiais: []
+      Entidades: []
+
+    Avisos:
+      Chat:
+        '120': '&eOs itens no chao serao removidos em &f2 minutos&e.<nl>&8» &7Veja o tempo com &f/lixeiro&7.'
+        '60': '&eOs itens no chao serao removidos em &f1 minuto&e.'
+        '10': '&eOs itens no chao serao removidos em &f10 segundos&e.'
+        '5': '&eOs itens no chao serao removidos em &f5 segundos&e.'
+        '3': '&eOs itens no chao serao removidos em &f3 segundos&e.'
+        '2': '&eOs itens no chao serao removidos em &f2 segundos&e.'
+        '1': '&eOs itens no chao serao removidos em &f1 segundo&e.'
+        '0': '&aForam removidos &f{itens} &aitens do chao. &8(&7/lixeiro historico&8)'
+      Actionbar:
+        '30': '&eLimpeza de itens em &f30 segundos'
+        '10': '&eLimpeza de itens em &f10 segundos'
+        '5': '&eLimpeza de itens em &f5 segundos'
+        '3': '&eLimpeza de itens em &f3 segundos'
+        '2': '&eLimpeza de itens em &f2 segundos'
+        '1': '&eLimpeza de itens em &f1 segundo'
+        '0': '&a{itens} itens removidos do chao'
+      Titulo:
+        '10': '&e&lLIXEIRO<nl>&7Limpando em &f10 segundos'
+        '0': '&a&lLIXEIRO<nl>&7{itens} itens limpos'
+
+    Sons:
+      '10': 'BLOCK_NOTE_BLOCK_HAT;1;1'
+      '5': 'BLOCK_NOTE_BLOCK_HAT;1;1'
+      '3': 'BLOCK_NOTE_BLOCK_HAT;1;1'
+      '2': 'BLOCK_NOTE_BLOCK_HAT;1;1'
+      '1': 'BLOCK_NOTE_BLOCK_HAT;1;1'
+      '0': 'BLOCK_NOTE_BLOCK_PLING;1;1'
+
+  # ───────────────────────── criaturas soltas ───────────────────────────
+  criaturas:
+    Ativar: true
+    Nome: '&d&lCriaturas'
+    Icone: 'ROTTEN_FLESH'
+    Tempo: 900
+    Tipo: ENTIDADES
+    Mundos: []
+
+    Bloqueios:
+      Materiais: []
+      Entidades: []
+
+    Avisos:
+      Chat:
+        '60': '&dAs criaturas soltas serao removidas em &f1 minuto&d.'
+        '10': '&dAs criaturas soltas serao removidas em &f10 segundos&d.'
+        '0': '&aForam removidas &f{entidades} &acriaturas do mundo.'
+      Actionbar:
+        '30': '&dLimpeza de criaturas em &f30 segundos'
+        '10': '&dLimpeza de criaturas em &f10 segundos'
+        '0': '&a{entidades} criaturas removidas'
+      Titulo: {}
+
+    Sons:
+      '10': 'BLOCK_NOTE_BLOCK_HAT;1;1'
+      '0': 'BLOCK_NOTE_BLOCK_PLING;1;1'
