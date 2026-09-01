@@ -2,13 +2,17 @@
 #  StarCalendario - menus
 #
 #  Slot: -1 desliga o botao. As linhas de lore aceitam blocos, que somem quando
-#  estao vazios: {descricao}, {eventos}, {comandos}, {chat}, {holograma},
-#  {dias}.
+#  estao vazios: {descricao}, {eventos}, {aniversarios}, {comandos}, {chat},
+#  {holograma}, {dias}.
+#
+#  A grade tem seis linhas de sete colunas (42 casas), entao qualquer mes cabe
+#  alinhado pelo dia da semana. As duas colunas das pontas ficam livres para os
+#  botoes -- e por isso que eles moram nos slots 0, 8, 45 e 53.
 #
 #  Material: 'AUTO' nos dias com evento usa o icone do proprio evento.
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 #
 # ══════════════════════════  O CALENDARIO DO JOGADOR  ═══════════════════════
@@ -22,14 +26,15 @@ Calendario:
     Material: 'GRAY_STAINED_GLASS_PANE'
     Nome: ' '
 
-  # As 35 casas da grade: cinco linhas de sete colunas, com as bordas livres.
-  # Com "Alinhar por semana" ligado no config, o dia 1 cai na coluna do dia da
-  # semana dele.
+  # As 42 casas da grade: seis linhas de sete colunas, com as colunas das
+  # pontas livres para os botoes. No modo SEMANA (config.yml) o dia 1 cai na
+  # coluna do dia da semana dele, e o mes inteiro cabe sempre.
   Slots dos dias: [ 1, 2, 3, 4, 5, 6, 7,
                     10, 11, 12, 13, 14, 15, 16,
                     19, 20, 21, 22, 23, 24, 25,
                     28, 29, 30, 31, 32, 33, 34,
-                    37, 38, 39, 40, 41, 42, 43 ]
+                    37, 38, 39, 40, 41, 42, 43,
+                    46, 47, 48, 49, 50, 51, 52 ]
 
   # A quantidade do item vira o numero do dia (o "1" do dia 1, o "25" do 25).
   Quantidade igual ao dia: true
@@ -53,6 +58,7 @@ Calendario:
         - ''
         - '&7Nenhum presente hoje.'
         - '&7Volte amanha!'
+        - '{aniversarios}'
 
     # Evento de hoje (ou de um dia passado ainda liberado) esperando o clique.
     Disponivel:
@@ -62,6 +68,7 @@ Calendario:
         - '&8{semana}, {data}'
         - ''
         - '&f{descricao}'
+        - '{aniversarios}'
         - ''
         - '&a&lCLIQUE PARA PEGAR O SEU PRESENTE'
 
@@ -72,6 +79,7 @@ Calendario:
         - '&8{semana}, {data}'
         - ''
         - '&7{descricao}'
+        - '{aniversarios}'
         - ''
         - '&a✔ Voce ja pegou este presente.'
 
@@ -83,6 +91,7 @@ Calendario:
         - '&8{semana}, {data}'
         - ''
         - '&7{descricao}'
+        - '{aniversarios}'
         - ''
         - '&c✖ Esse dia ja passou.'
 
@@ -93,8 +102,20 @@ Calendario:
         - '&8{semana}, {data}'
         - ''
         - '&7{descricao}'
+        - '{aniversarios}'
         - ''
         - '&eFaltam &f{restam} &edia(s).'
+
+    # Ninguem marcou evento nesse dia, mas alguem faz aniversario nele.
+    # So aparece com o StarPerfil instalado (os aniversarios vem de la).
+    Aniversario:
+      Material: 'CAKE'
+      Nome: '&d&lDia {dia}'
+      Lore:
+        - '&8{semana}, {data}'
+        - ''
+        - '&d&lANIVERSARIO'
+        - '{aniversarios}'
 
     # O jogador nao tem a permissao que o evento pede.
     Bloqueado:
@@ -104,6 +125,11 @@ Calendario:
         - '&8{semana}, {data}'
         - ''
         - '&cVoce nao tem acesso a este presente.'
+
+  # Como cada aniversariante aparece dentro do bloco {aniversarios}.
+  Aniversarios:
+    Linha: '&d - &f{jogador} &7({idade} anos)'
+    Linha sem idade: '&d - &f{jogador}'
 
   Botoes:
     Mes anterior:
@@ -121,16 +147,17 @@ Calendario:
         - '&7Ver o proximo mes.'
 
     Hoje:
-      Slot: 49
+      Slot: 0
       Material: 'CLOCK'
       Nome: '&e&l{mes} de {ano}'
       Lore:
         - '&7Voce ja pegou &f{coletas} &7presente(s).'
+        - '&7Esperando por voce hoje: &f{pendentes}'
         - ''
         - '&eClique para voltar ao mes de hoje.'
 
     Proximos:
-      Slot: 47
+      Slot: 8
       Material: 'BOOK'
       Nome: '&d&lPROXIMOS EVENTOS'
       Lore:
@@ -152,7 +179,8 @@ Editor:
                     10, 11, 12, 13, 14, 15, 16,
                     19, 20, 21, 22, 23, 24, 25,
                     28, 29, 30, 31, 32, 33, 34,
-                    37, 38, 39, 40, 41, 42, 43 ]
+                    37, 38, 39, 40, 41, 42, 43,
+                    46, 47, 48, 49, 50, 51, 52 ]
 
   Quantidade igual ao dia: true
 
@@ -165,6 +193,7 @@ Editor:
         - ''
         - '&7Marcado neste dia:'
         - '&f - {eventos}'
+        - '{aniversarios}'
         - ''
         - '&eClique para editar.'
 
@@ -175,6 +204,7 @@ Editor:
         - '&8{semana}, {data}'
         - ''
         - '&7Nada marcado.'
+        - '{aniversarios}'
         - ''
         - '&aClique para criar um evento aqui.'
 
@@ -185,8 +215,13 @@ Editor:
         - '&8{semana}, {data}'
         - ''
         - '&7Nada marcado.'
+        - '{aniversarios}'
         - ''
         - '&aClique para criar um evento aqui.'
+
+  Aniversarios:
+    Linha: '&d - &f{jogador} &7({idade} anos)'
+    Linha sem idade: '&d - &f{jogador}'
 
   Botoes:
     Mes anterior:
@@ -202,7 +237,7 @@ Editor:
       Lore: [ ]
 
     Hoje:
-      Slot: 49
+      Slot: 0
       Material: 'CLOCK'
       Nome: '&e&l{mes} de {ano}'
       Lore:
@@ -211,7 +246,7 @@ Editor:
         - '&eClique para voltar ao mes de hoje.'
 
     Lista de eventos:
-      Slot: 47
+      Slot: 8
       Material: 'BOOKSHELF'
       Nome: '&d&lTODOS OS EVENTOS'
       Lore:

@@ -5,7 +5,7 @@
 #  ║   /starcalendario editar).                                           ║
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 # Manda no console o que o plugin esta fazendo por dentro. So ligue para
 # investigar algum problema.
@@ -68,9 +68,12 @@ Calendario:
   # tres contas para pegar o mesmo presente tres vezes.
   Limitar por IP: false
 
-  # Poe cada dia na coluna do dia da semana (domingo na primeira). Quando o mes
-  # nao cabe assim, o menu preenche os dias em sequencia sozinho.
-  Alinhar por semana: true
+  # Como os dias sao arrumados na tela:
+  #   SEMANA     - cada dia na coluna do dia da semana dele (domingo na
+  #                primeira), do jeito de um calendario de parede. Todo mes
+  #                fica com a mesma cara.
+  #   SEQUENCIAL - os dias em fila, do 1 ao ultimo, sem coluna fixa.
+  Modo: SEMANA
 
   # Os nomes que aparecem no menu.
   Meses:
@@ -170,3 +173,11 @@ Npc:
 Integracoes:
   # %starcalendario_evento%, %starcalendario_proximo%, %starcalendario_pendentes%...
   PlaceholderAPI: true
+
+  # Com o StarPerfil instalado, os aniversarios dos jogadores aparecem no
+  # calendario: o dia ganha um bolo e os nomes entram na lore (bloco
+  # {aniversarios} do menus.yml).
+  Aniversarios do StarPerfil: true
+
+  # Minutos entre uma leitura da lista de aniversarios e outra.
+  Atualizar aniversarios a cada: 10
