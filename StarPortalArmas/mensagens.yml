@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------
-#  StarPortal - mensagens
+#  StarPortalArmas - mensagens
 #
 #  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso sem
 #  precisar de uma opcao no config.yml para cada um.
@@ -20,35 +20,6 @@ Geral:
   Numero invalido: '&cIsso nao e um numero valido.'
   Mundo nao encontrado: '&cO mundo &f{mundo} &cnao existe.'
   Recarregado: '&aConfiguracoes recarregadas.'
-
-Ajuda:
-  Jogador: |
-    &8&m----------------------------------------
-    &d&lSTARPORTAL
-    &e/portal &8- &7abre os seus portais
-    &e/portal criar [nome] &8- &7cria um portal fixo aqui
-    &e/portal ir <nome> &8- &7abre uma passagem ate ele
-    &e/portal origem <nome> &8- &7muda a origem para este lugar
-    &e/portal destino <nome> &8- &7muda o destino para este lugar
-    &e/portal ida <nome> &8- &7liga ou desliga o lado de ida
-    &e/portal volta <nome> &8- &7liga ou desliga o lado de volta
-    &e/portal outros <nome> &8- &7deixa (ou nao) os outros entrarem
-    &e/portal renomear <nome> <novo> &8- &7troca o nome
-    &e/portal remover <nome> &8- &7apaga o portal
-    &e/portal jogador <nick> &8- &7pede um portal ate alguem
-    &e/portal chamar <nick> &8- &7pede que alguem venha ate voce
-    &e/portal aceitar [nick] &8- &7aceita o pedido
-    &e/portal negar [nick] &8- &7nega o pedido
-    &e/portal fechar &8- &7fecha o portal que voce abriu
-    &8&m----------------------------------------
-  Admin: |
-    &8&m----------------------------------------
-    &d&lSTARPORTAL &7- administracao
-    &e/portal ver <jogador> &8- &7abre os portais de alguem
-    &e/portal coord <x> <y> <z> [mundo] &8- &7portal ate um ponto
-    &e/portal recarregar &8- &7recarrega os arquivos
-    &8&m----------------------------------------
-
 Estado:
   Ligado: '&aligado'
   Desligado: '&cdesligado'
@@ -131,62 +102,43 @@ Entrada:
   Como cancelar: '&7Digite &fcancelar &7para desistir.'
   Cancelado: '&7Deixei como estava.'
   Tempo esgotado: '&cO tempo para digitar acabou.'
-
 # ---------------------------------------------------------------------------
-#  As escolhas de cada jogador (as telas do /portal).
+#  As armas de portal.
 # ---------------------------------------------------------------------------
-Preferencias:
-  Acao ligada: '&aO &f{acao} &aagora abre portal.'
-  Acao desligada: '&7O &f{acao} &7volta a teleportar na hora.'
-  Fechar ligado: '&aO portal do &f{acao} &avai fechar assim que voce atravessar.'
-  Fechar desligado: '&7O portal do &f{acao} &7vai ficar de pe ate o tempo acabar.'
-  Portais publicos: '&aOs seus portais agora deixam os outros entrarem.'
-  Portais privados: '&7Os seus portais agora sao so seus.'
-  Aplicado a todos: '&aPronto: &f{total} &aportais foram ajustados.'
+Armas:
+  Modo origem: 'origem'
+  Modo destino: 'destino'
+  Usos ilimitados: 'sem limite'
 
-Animacao:
-  Trocada: '&aA animacao de &f{fase} &aagora e &f{animacao}&a.'
-  Sem outra: '&cVoce ainda nao tem permissao para outra animacao dessa fase.'
+  # A linha que aparece acima da barra de itens de quem esta com a arma.
+  Barra: '&dModo: &f{modo}  &8|  &dUsos: &f{usos}'
 
-Pedido:
-  Nome do portal: 'ate {jogador}'
-  Enviado: '&aPedido enviado para &f{jogador}&a. Ele tem &f{tempo} &apara aceitar.'
-  Enviado chamando: '&aVoce pediu que &f{jogador} &avenha ate voce. Ele tem &f{tempo} &apara aceitar.'
-  Recebido: |
-    &f{jogador} &7quer abrir um portal ate voce.
-    &aDigite &f/portal aceitar {jogador} &apara abrir, ou &c/portal negar {jogador}&a. Vale por &f{tempo}&a.
-  Recebido chamando: |
-    &f{jogador} &7quer que voce va ate ele por um portal.
-    &aDigite &f/portal aceitar {jogador} &apara abrir, ou &c/portal negar {jogador}&a. Vale por &f{tempo}&a.
-  Aceito viajante: '&aO portal ate &f{jogador} &aesta aberto por &f{tempo}&a.'
-  Aceito anfitriao: '&aVoce aceitou o pedido de &f{jogador}&a.'
-  Negado: '&7Voce negou o pedido de &f{jogador}&7.'
-  Negado avisando: '&c{jogador} negou o seu pedido de portal.'
-  Nenhum: '&cVoce nao tem nenhum pedido esperando.'
-  Voce mesmo: '&cVoce ja esta onde voce esta.'
+  Modo trocado: '&7Agora a arma cria o lado de &f{modo}&7.'
+  Origem definida: '&aLado de origem posto em &f{local}&a. Usos: &f{usos}'
+  Destino definido: '&aLado de destino posto em &f{local}&a. Usos: &f{usos}'
 
-Comando:
-  Nome do portal coordenada: 'coordenada'
-  Uso com nome: '&cUse &f/portal {comando} <nome do portal>&c.'
-  Uso renomear: '&cUse &f/portal renomear <nome> <novo nome>&c.'
-  Uso jogador: '&cUse &f/portal jogador <nick>&c.'
-  Uso coordenada: '&cUse &f/portal coord <x> <y> <z> [mundo]&c.'
-  Uso ver: '&cUse &f/portal ver <jogador>&c.'
+  Mira longe: '&cMire num bloco mais perto para abrir o portal ali.'
+  Sem permissao: '&cVoce nao pode usar esta arma.'
+  Acabou: '&eOs usos acabaram. Bata mais uma vez para recolher o portal dela.'
+  Portais removidos: '&7Os portais desta arma foram recolhidos.'
+  Sem portais: '&7Esta arma nao tem nenhum portal de pe.'
+  Quebrou: '&cA arma se desfez na sua mao.'
+  Nada na mao: '&cVoce nao esta segurando uma arma de portal.'
+  Modelo sumiu: '&cEsta arma (&f{arma}&c) nao existe mais no armas.yml.'
 
-# ---------------------------------------------------------------------------
-#  So o StarPortalADDON usa o que vem daqui para baixo.
-# ---------------------------------------------------------------------------
-Essentials:
-  Nome do portal home: '{home}'
-  Nome do portal warp: '{warp}'
-  Nome do portal spawn: 'spawn'
-  Nome do portal back: 'de volta'
-  Home nao encontrada: '&cVoce nao tem uma home chamada &f{home}&c.'
-  Home sem homes: '&cVoce ainda nao tem nenhuma home.'
-  Home de outro fechada: '&cA home &f{home} &cde &f{jogador} &cnao e publica.'
-  Warp nao encontrado: '&cO warp &f{warp} &cnao existe.'
-  Warp sem nome: '&cUse &f/warp <nome>&c.'
-  Spawn nao definido: '&cO spawn ainda nao foi definido.'
-  Sem local anterior: '&cVoce nao tem um lugar anterior para voltar.'
-  Pedidos fechados: '&f{jogador} &cesta com os pedidos de teleporte desligados.'
-  Ausente: '&cO StarEssentials nao esta neste servidor, entao o addon nao tem o que substituir.'
+  Nao encontrada: '&cNao existe uma arma chamada &f{arma}&c.'
+  Uso dar: '&cUse: &f/portalarma dar <jogador> <arma> [quantidade]'
+  Dada: '&aEntregue: &f{total}x {arma} &apara &f{jogador}&a.'
+  Recebida: '&aVoce recebeu &f{total}x &aarma de portal (&f{arma}&a).'
+  Lista: '&7Armas do armas.yml (&f{total}&7):'
+  Lista item: '&8- &f{arma} &7(usos: &f{usos}&7, item: &f{material}&7)'
+  Lista vazia: '&cNenhuma arma foi carregada do armas.yml.'
+
+  Ajuda: |
+    &8&m--------------------------------------------
+    &d&lArmas de portal
+    &f/portalarma dar <jogador> <arma> [qtd] &7- entrega uma arma
+    &f/portalarma lista &7- as armas do armas.yml
+    &f/portalarma limpar &7- tira os portais da arma na sua mao
+    &f/portalarma recarregar &7- recarrega os arquivos
+    &8&m--------------------------------------------
