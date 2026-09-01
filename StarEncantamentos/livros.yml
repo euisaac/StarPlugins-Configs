@@ -20,13 +20,17 @@
 #  "Sortear raridade dos livros do jogo" no config.yml -- desligado, esse livro
 #  cai na "Raridade padrao" abaixo.
 #
+#  Cor: alem do &a classico, os nomes aceitam hex (&#FF5555) e gradiente
+#  (<g:FF5555:FFAA00>Texto). Em servidor de 1.8 a 1.15, onde hex nao existe, a
+#  cor cai sozinha na classica mais parecida -- entao da para usar sem medo.
+#
 #  Chaves da aparencia: {encantamento} {chave} {nivel} {nivel_romano} {raridade}
 #  {sucesso} {quebrar} {limpar} {xp} {essencia}
 #  A linha {risco} some e da lugar as linhas do castigo daquele livro, e a
 #  {descricao} da lugar ao que o encantamento proprio faz (nos do jogo ela
 #  simplesmente some).
 # ---------------------------------------------------------------------------
-Versao do modelo: 4
+Versao do modelo: 5
 
 Raridade padrao: comum
 
@@ -68,7 +72,7 @@ Livro:
 Raridades:
 
   comum:
-    Nome: '&7[Comum]'
+    Nome: '<g:9CA3AF:E5E7EB>[Comum]'
     Chance de sucesso: 100.0
     # Peso no sorteio da raridade (livro do jogo, loja, recompensa).
     Peso: 60
@@ -80,7 +84,7 @@ Raridades:
         Chance: 0.0
 
   raro:
-    Nome: '&9[Raro]'
+    Nome: '<g:2563EB:7DD3FC>[Raro]'
     Chance de sucesso: 80.0
     Peso: 30
     Falha:
@@ -96,7 +100,7 @@ Raridades:
         So limpar: 4
 
   epico:
-    Nome: '&5[Epico]'
+    Nome: '<g:9333EA:F0ABFC>[Epico]'
     Chance de sucesso: 65.0
     Peso: 8
     Falha:
@@ -111,7 +115,7 @@ Raridades:
         So limpar: 3
 
   lendario:
-    Nome: '&6[Lendario]'
+    Nome: '<g:D97706:FDE047>[Lendario]'
     Chance de sucesso: 50.0
     Peso: 2
     Falha:

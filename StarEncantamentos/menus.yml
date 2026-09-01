@@ -8,7 +8,7 @@
 #  {essencia} {essencia_curto} {guardado} {limite_banco} {runas_usadas}
 #  {reciclados} {extraidos} {saldo} {moeda} {simbolo_essencia}
 # ---------------------------------------------------------------------------
-Versao do modelo: 2
+Versao do modelo: 3
 
 Principal:
   Titulo: '&8Encantamentos'
@@ -355,8 +355,10 @@ Catalogo:
   # Modelo dos encantamentos do proprio jogo.
   Item:
     Material: BOOK
-    Nome: '&f{encantamento}'
+    Nome: '{encantamento}'
     Lore:
+      - '{descricao}'
+      - ''
       - '&7Nivel maximo: &f{nivel_maximo} &7({nivel_romano})'
       - '&7Serve em: &f{alvos}'
       - ''

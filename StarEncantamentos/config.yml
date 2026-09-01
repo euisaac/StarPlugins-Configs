@@ -4,14 +4,15 @@
 #  Os arquivos de conteudo ficam separados:
 #    runas.yml           as runas e as variacoes delas
 #    encantamentos.yml   nome, valor e chance dos encantamentos do jogo
-#    encantamentos/      um arquivo por encantamento PROPRIO do plugin
+#    encantamentos/          um arquivo por encantamento PROPRIO do plugin
+#    encantamentos-do-jogo/  nome e descricao dos encantamentos do Minecraft
 #    livros.yml          as raridades dos livros
 #    loja.yml            o que a loja do menu vende
 #    menus.yml           titulos, slots e itens das telas
 #    mensagens.yml       tudo que o jogador le
 #    comandos.yml        os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 6
+Versao do modelo: 7
 
 Geral:
   Debug: false
@@ -95,8 +96,16 @@ Livros:
 
 Encantamentos proprios:
   # Os encantamentos da pasta encantamentos/ (um arquivo cada um).
-  # Esta e a linha que eles escrevem na lore do item.
-  Formato: '&7{nome} {nivel_romano}'
+  # Esta e a linha que eles escrevem na lore do item. O nome ja traz a cor
+  # dele (hex ou gradiente), entao aqui so o nivel e pintado.
+  Formato: '{nome} &7{nivel_romano}'
+
+  # A descricao entra logo abaixo de cada encantamento. Vale para os proprios
+  # e para os do jogo (pasta encantamentos-do-jogo/).
+  # O jogador ainda pode desligar so para ele com /encantamentos descricao --
+  # mas ninguem liga o que voce desligar aqui.
+  Mostrar descricao: true
+  Formato da descricao: '  &8{linha}'
 
 Bigorna:
   # Tira da bigorna o que o plugin faz: juntar dois livros e por livro em item.
