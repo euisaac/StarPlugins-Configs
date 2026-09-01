@@ -8,7 +8,7 @@
 #  {tempo} {total} {limite} {tamanho} {novo} {origem} {destino} {comando}
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 3
+Versao do modelo: 4
 
 Prefixo: '&d&lPORTAL &8» &7'
 
@@ -114,6 +114,8 @@ Portal:
   Confirmar apagar: '&eSegure &fSHIFT &ee clique de novo para apagar o portal &f{portal}&e.'
 
   Ja fechou: '&cEsse portal ja fechou.'
+  Sem o outro lado: '&7O portal &f{portal} &7ainda nao tem o outro lado.'
+  Em combate: '&cVoce esta em combate! Espere &f{tempo}&c para usar portais.'
   Nome do teleporte: 'teleporte'
   Atravessou: '&dVoce atravessou o portal &f{portal}&d.'
   So do dono: '&cEste portal e so de {dono}.'
@@ -145,6 +147,47 @@ Preferencias:
 Animacao:
   Trocada: '&aA animacao de &f{fase} &aagora e &f{animacao}&a.'
   Sem outra: '&cVoce ainda nao tem permissao para outra animacao dessa fase.'
+
+# ---------------------------------------------------------------------------
+#  As armas de portal (so o StarPortalArmas usa).
+# ---------------------------------------------------------------------------
+Armas:
+  Modo origem: 'origem'
+  Modo destino: 'destino'
+  Usos ilimitados: 'sem limite'
+
+  # A linha que aparece acima da barra de itens de quem esta com a arma.
+  Barra: '&dModo: &f{modo}  &8|  &dUsos: &f{usos}'
+
+  Modo trocado: '&7Agora a arma cria o lado de &f{modo}&7.'
+  Origem definida: '&aLado de origem posto em &f{local}&a. Usos: &f{usos}'
+  Destino definido: '&aLado de destino posto em &f{local}&a. Usos: &f{usos}'
+
+  Mira longe: '&cMire num bloco mais perto para abrir o portal ali.'
+  Sem permissao: '&cVoce nao pode usar esta arma.'
+  Acabou: '&eOs usos acabaram. Bata mais uma vez para recolher o portal dela.'
+  Portais removidos: '&7Os portais desta arma foram recolhidos.'
+  Sem portais: '&7Esta arma nao tem nenhum portal de pe.'
+  Quebrou: '&cA arma se desfez na sua mao.'
+  Nada na mao: '&cVoce nao esta segurando uma arma de portal.'
+  Modelo sumiu: '&cEsta arma (&f{arma}&c) nao existe mais no armas.yml.'
+
+  Nao encontrada: '&cNao existe uma arma chamada &f{arma}&c.'
+  Uso dar: '&cUse: &f/portalarma dar <jogador> <arma> [quantidade]'
+  Dada: '&aEntregue: &f{total}x {arma} &apara &f{jogador}&a.'
+  Recebida: '&aVoce recebeu &f{total}x &aarma de portal (&f{arma}&a).'
+  Lista: '&7Armas do armas.yml (&f{total}&7):'
+  Lista item: '&8- &f{arma} &7(usos: &f{usos}&7, item: &f{material}&7)'
+  Lista vazia: '&cNenhuma arma foi carregada do armas.yml.'
+
+  Ajuda: |
+    &8&m--------------------------------------------
+    &d&lArmas de portal
+    &f/portalarma dar <jogador> <arma> [qtd] &7- entrega uma arma
+    &f/portalarma lista &7- as armas do armas.yml
+    &f/portalarma limpar &7- tira os portais da arma na sua mao
+    &f/portalarma recarregar &7- recarrega os arquivos
+    &8&m--------------------------------------------
 
 Pedido:
   Nome do portal: 'ate {jogador}'

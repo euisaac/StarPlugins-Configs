@@ -1,0 +1,77 @@
+# ---------------------------------------------------------------------------
+#  StarPortalArmas - as armas
+#
+#  Cada arma manda em UM portal: um lado de origem e um de destino.
+#
+#    bater / usar          poe o lado do modo atual onde voce esta mirando
+#    SHIFT + bater / usar  troca o modo entre origem e destino (nao gasta uso)
+#
+#  Quando os usos acabam, a arma so serve para recolher o portal dela: o
+#  proximo golpe tira a moldura dos dois lados e, com "Quebrar ao acabar"
+#  ligado, a arma some na mao.
+#
+#  Marcadores que valem no Nome e na Lore:
+#    {modo}  origem ou destino     {usos}  quantos faltam     {arma}  o id daqui
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Armas:
+
+  # A arma comum: cinco tiros e acabou.
+  basica:
+    Material: 'BLAZE_ROD'
+    Encantada: true
+
+    Nome: '&d&lArma de portal &8[&f{modo}&8]'
+    Lore:
+      - '&7Abre uma passagem entre dois lugares.'
+      - ''
+      - '&7Modo: &f{modo}'
+      - '&7Usos restantes: &f{usos}'
+      - ''
+      - '&eBater &7poe o lado do modo atual.'
+      - '&eSHIFT + bater &7troca o modo.'
+
+    # Quantas vezes ela cria (ou muda de lugar) um lado do portal.
+    # -1 deixa a arma sem limite nenhum.
+    Usos: 5
+
+    # Ate quantos blocos de distancia ela alcanca.
+    Alcance: 40
+
+    # Cor da moldura dos portais desta arma. Vazio usa a cor do config.yml.
+    Cor: '150,60,255'
+
+    # Permissao so desta arma. Vazio: quem tem starportal.armas.usar ja atira.
+    Permissao: ''
+
+    # A arma some depois de recolher os portais dela.
+    Quebrar ao acabar: true
+
+    # Nome do portal na lista do /portal. Ele ganha um pedaco do numero de
+    # serie no fim, para duas armas iguais nao virarem dois portais de mesmo
+    # nome.
+    Nome do portal: 'arma'
+
+  # A arma de quem manda no servidor: nunca acaba e nunca quebra.
+  infinita:
+    Material: 'BLAZE_ROD'
+    Encantada: true
+
+    Nome: '&b&lArma de portal &8[&f{modo}&8]'
+    Lore:
+      - '&7Abre uma passagem entre dois lugares.'
+      - ''
+      - '&7Modo: &f{modo}'
+      - '&7Usos restantes: &f{usos}'
+      - ''
+      - '&eBater &7poe o lado do modo atual.'
+      - '&eSHIFT + bater &7troca o modo.'
+
+    Usos: -1
+    Alcance: 60
+    Cor: '60,180,255'
+    Permissao: 'starportal.armas.infinita'
+    Quebrar ao acabar: false
+    Nome do portal: 'arma'
