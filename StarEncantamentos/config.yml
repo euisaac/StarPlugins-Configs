@@ -12,7 +12,7 @@
 #    mensagens.yml       tudo que o jogador le
 #    comandos.yml        os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 7
+Versao do modelo: 8
 
 Geral:
   Debug: false
@@ -105,7 +105,9 @@ Encantamentos proprios:
   # O jogador ainda pode desligar so para ele com /encantamentos descricao --
   # mas ninguem liga o que voce desligar aqui.
   Mostrar descricao: true
-  Formato da descricao: '  &8{linha}'
+  # Degrade do cinza escuro para o cinza claro. Em servidor 1.8 a 1.15, onde
+  # hex nao existe, ele cai sozinho nas cores classicas mais parecidas.
+  Formato da descricao: '  <g:4B5563:9CA3AF>{linha}'
 
 Bigorna:
   # Tira da bigorna o que o plugin faz: juntar dois livros e por livro em item.
