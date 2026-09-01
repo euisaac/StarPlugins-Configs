@@ -1,0 +1,35 @@
+# ---------------------------------------------------------------------------
+#  Cacador - encantamento proprio do StarEncantamentos
+#
+#  Copie este arquivo, troque o nome e os numeros: e um encantamento novo no
+#  servidor, com livro proprio, valor de reciclagem proprio e lugar na loja.
+#  Quem manda no comportamento e a chave Efeito.Tipo, nunca o nome do arquivo.
+#
+#  Alvos aceitos: ESPADA MACHADO PICARETA PA ENXADA FERRAMENTA ARCO BESTA
+#                 TRIDENTE VARA CAPACETE PEITORAL CALCA BOTA ARMADURA ELITRO
+#                 ESCUDO TODOS
+#
+#  Apagar este arquivo tira o encantamento do jogo, e ele nao volta sozinho.
+# ---------------------------------------------------------------------------
+
+Nome: '&aCacador'
+Descricao:
+  - '&7Dano a mais contra monstros.'
+Nivel maximo: 4
+# A faixa do livro que sai deste encantamento (vem do livros.yml).
+Raridade: raro
+Alvos: [ ESPADA, MACHADO, ARCO ]
+Conflitos: []
+Permitido: true
+
+# Quanto ele vale no nivel 1; o nivel multiplica (veja o config.yml).
+Xp: 170
+Essencia: 4
+Chance de extracao: 50.0
+
+Efeito:
+  Tipo: DANO_CONTRA
+  Valor: 2.0
+  Valor por nivel: 1.5
+  Chance: 100.0
+  Alvos do efeito: [ ZOMBIE, SKELETON, SPIDER, CREEPER, ENDERMAN, WITCH, PILLAGER ]

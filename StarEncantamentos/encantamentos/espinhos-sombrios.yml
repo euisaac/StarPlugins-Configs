@@ -1,0 +1,35 @@
+# ---------------------------------------------------------------------------
+#  Espinhos Sombrios - encantamento proprio do StarEncantamentos
+#
+#  Copie este arquivo, troque o nome e os numeros: e um encantamento novo no
+#  servidor, com livro proprio, valor de reciclagem proprio e lugar na loja.
+#  Quem manda no comportamento e a chave Efeito.Tipo, nunca o nome do arquivo.
+#
+#  Alvos aceitos: ESPADA MACHADO PICARETA PA ENXADA FERRAMENTA ARCO BESTA
+#                 TRIDENTE VARA CAPACETE PEITORAL CALCA BOTA ARMADURA ELITRO
+#                 ESCUDO TODOS
+#
+#  Apagar este arquivo tira o encantamento do jogo, e ele nao volta sozinho.
+# ---------------------------------------------------------------------------
+
+Nome: '&5Espinhos Sombrios'
+Descricao:
+  - '&7Devolve parte do dano a quem bateu.'
+Nivel maximo: 3
+# A faixa do livro que sai deste encantamento (vem do livros.yml).
+Raridade: epico
+Alvos: [ ARMADURA ]
+Conflitos: []
+Permitido: true
+
+# Quanto ele vale no nivel 1; o nivel multiplica (veja o config.yml).
+Xp: 230
+Essencia: 6
+Chance de extracao: 40.0
+
+Efeito:
+  Tipo: REFLETIR_DANO
+  Valor: 10.0
+  Valor por nivel: 5.0
+  Chance: 35.0
+  Chance por nivel: 10.0

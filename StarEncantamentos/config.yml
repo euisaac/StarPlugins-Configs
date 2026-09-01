@@ -3,14 +3,15 @@
 #
 #  Os arquivos de conteudo ficam separados:
 #    runas.yml           as runas e as variacoes delas
-#    encantamentos.yml   nome, valor e chance de cada encantamento
+#    encantamentos.yml   nome, valor e chance dos encantamentos do jogo
+#    encantamentos/      um arquivo por encantamento PROPRIO do plugin
 #    livros.yml          as raridades dos livros
 #    loja.yml            o que a loja do menu vende
 #    menus.yml           titulos, slots e itens das telas
 #    mensagens.yml       tudo que o jogador le
 #    comandos.yml        os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 1
+Versao do modelo: 3
 
 Geral:
   Debug: false
@@ -51,6 +52,25 @@ Livros:
   # comportar como no jogo normal.
   Aplicar arrastando: true
 
+  # Se o livro do PROPRIO JOGO (drop, pescaria, mesa de encantamento) tambem
+  # pode ser arrastado. Desligado, so os livros do plugin funcionam assim.
+  Aplicar livros do jogo: true
+
+  # O livro do jogo ganha raridade e castigo sorteados no momento em que o
+  # jogador o pega no inventario -- e por isso o risco ja aparece escrito nele,
+  # antes de alguem arriscar uma ferramenta.
+  # Desligado, esse livro cai na raridade padrao do livros.yml.
+  Sortear raridade dos livros do jogo: true
+
+  # Onde a identificacao do livro do jogo acontece. Com "Sempre que o livro
+  # for movido" ligado, todo livro que passa pela mao de alguem acaba com o
+  # sistema do plugin -- inclusive os que ja estavam em bau.
+  Identificar:
+    Ao pegar no inventario: true
+    Na mesa de encantamento: true
+    Ao pegar do chao: true
+    Sempre que o livro for movido: true
+
   # Regras conferidas na hora de aplicar. Desligue para servidores que querem
   # Fortuna em espada e Afiacao acima do teto pela via normal.
   Respeitar nivel maximo: true
@@ -59,6 +79,21 @@ Livros:
 
   # Teto de encantamentos diferentes por item; 0 tira o limite.
   Maximo de encantamentos por item: 0
+
+Encantamentos proprios:
+  # Os encantamentos da pasta encantamentos/ (um arquivo cada um).
+  # Esta e a linha que eles escrevem na lore do item.
+  Formato: '&7{nome} {nivel_romano}'
+
+Bigorna:
+  # Tira da bigorna o que o plugin faz: juntar dois livros e por livro em item.
+  # Sem isto os dois caminhos convivem e o do jogo ganha -- ninguem arrisca um
+  # livro raro quando a bigorna faz o mesmo por alguns niveis.
+  # Renomear e consertar continuam funcionando: so o segundo slot com livro
+  # encantado e recusado.
+  Bloquear livros: true
+  # Avisa o jogador (uma vez a cada 3 segundos) quando a bigorna recusa.
+  Avisar: true
 
 Fusao:
   # Dois livros iguais viram um de nivel acima.

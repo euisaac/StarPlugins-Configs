@@ -1,0 +1,36 @@
+# ---------------------------------------------------------------------------
+#  Cegueira - encantamento proprio do StarEncantamentos
+#
+#  Copie este arquivo, troque o nome e os numeros: e um encantamento novo no
+#  servidor, com livro proprio, valor de reciclagem proprio e lugar na loja.
+#  Quem manda no comportamento e a chave Efeito.Tipo, nunca o nome do arquivo.
+#
+#  Alvos aceitos: ESPADA MACHADO PICARETA PA ENXADA FERRAMENTA ARCO BESTA
+#                 TRIDENTE VARA CAPACETE PEITORAL CALCA BOTA ARMADURA ELITRO
+#                 ESCUDO TODOS
+#
+#  Apagar este arquivo tira o encantamento do jogo, e ele nao volta sozinho.
+# ---------------------------------------------------------------------------
+
+Nome: '&8Cegueira'
+Descricao:
+  - '&7Cega o alvo por alguns segundos.'
+Nivel maximo: 2
+# A faixa do livro que sai deste encantamento (vem do livros.yml).
+Raridade: epico
+Alvos: [ ESPADA ]
+Conflitos: []
+Permitido: true
+
+# Quanto ele vale no nivel 1; o nivel multiplica (veja o config.yml).
+Xp: 190
+Essencia: 5
+Chance de extracao: 45.0
+
+Efeito:
+  Tipo: EFEITO_NA_VITIMA
+  Pocao: BLINDNESS
+  Duracao: 40
+  Duracao por nivel: 20
+  Chance: 15.0
+  Chance por nivel: 10.0

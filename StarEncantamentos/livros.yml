@@ -5,14 +5,28 @@
 #  um item, e o que acontece quando ele nao pega. O bloco "Falha:" e o mesmo
 #  das runas.
 #
-#  Livro de mundo (drop, pescaria, mesa de encantamento) nao tem raridade
-#  gravada: ele cai na "Raridade padrao". Deixe-a em 100% de sucesso e 0% de
-#  estrago para o servidor se comportar como o jogo normal.
+#  MODOS: dentro de uma mesma raridade, cada livro sai com UM castigo sorteado.
+#  E o que faz dois livros raros nao serem iguais na mao do jogador:
+#    Ambos       pode quebrar o item OU limpar os encantamentos
+#    So quebrar  so corre o risco de quebrar
+#    So limpar   so corre o risco de limpar
+#  Os numeros sao pesos, nao porcentagens. Peso 0 tira aquele castigo do
+#  sorteio. Se a raridade so tem um dos dois riscos preenchido, e sempre ele
+#  que sai -- ninguem recebe um livro prometendo um risco que ele nao corre.
 #
-#  Chaves da aparencia: {encantamento} {nivel} {nivel_romano} {raridade}
+#  Livro do PROPRIO JOGO (drop, pescaria, mesa de encantamento) e identificado
+#  quando o jogador o pega: sorteia raridade pelos "Peso" e castigo pelos
+#  "Modos", e a partir dali o risco esta escrito nele. Para desligar isso, veja
+#  "Sortear raridade dos livros do jogo" no config.yml -- desligado, esse livro
+#  cai na "Raridade padrao" abaixo.
+#
+#  Chaves da aparencia: {encantamento} {chave} {nivel} {nivel_romano} {raridade}
 #  {sucesso} {quebrar} {limpar} {xp} {essencia}
+#  A linha {risco} some e da lugar as linhas do castigo daquele livro, e a
+#  {descricao} da lugar ao que o encantamento proprio faz (nos do jogo ela
+#  simplesmente some).
 # ---------------------------------------------------------------------------
-Versao do modelo: 1
+Versao do modelo: 3
 
 Raridade padrao: comum
 
@@ -20,21 +34,28 @@ Livro:
   Material: ENCHANTED_BOOK
   Nome: '{raridade} &f{encantamento} {nivel_romano}'
   Lore:
+    - '{descricao}'
+    - ''
     - '&7Chance de aplicar: &a{sucesso}%'
     - '&7Se falhar:'
-    - '  &c{quebrar}% &7de quebrar o item'
-    - '  &e{limpar}% &7de limpar o item'
+    - '{risco}'
     - ''
     - '&7Vale &f{xp} &7de xp na reciclagem.'
     - ''
     - '&eArraste sobre um item para aplicar.'
+
+  # As linhas que entram no lugar de {risco}, conforme o castigo do livro.
+  Risco:
+    Quebrar: '  &c{quebrar}% &7de quebrar o item'
+    Limpar: '  &e{limpar}% &7de limpar o item'
+    Nenhum: '  &anada acontece'
 
 Raridades:
 
   comum:
     Nome: '&7[Comum]'
     Chance de sucesso: 100.0
-    # Peso no sorteio (loja, recompensa, caixa de outro produto).
+    # Peso no sorteio da raridade (livro do jogo, loja, recompensa).
     Peso: 60
     Falha:
       Consumir runa: true
@@ -50,9 +71,14 @@ Raridades:
     Falha:
       Consumir runa: true
       Quebrar item:
-        Chance: 0.0
+        Chance: 8.0
       Limpar encantamentos:
         Chance: 15.0
+      # O raro quase nunca sai com os dois riscos juntos.
+      Modos:
+        Ambos: 1
+        So quebrar: 2
+        So limpar: 4
 
   epico:
     Nome: '&5[Epico]'
@@ -64,6 +90,10 @@ Raridades:
         Chance: 10.0
       Limpar encantamentos:
         Chance: 25.0
+      Modos:
+        Ambos: 2
+        So quebrar: 3
+        So limpar: 3
 
   lendario:
     Nome: '&6[Lendario]'
@@ -75,3 +105,8 @@ Raridades:
         Chance: 25.0
       Limpar encantamentos:
         Chance: 40.0
+      # No lendario o risco duplo e comum: e o preco de um livro desses.
+      Modos:
+        Ambos: 4
+        So quebrar: 3
+        So limpar: 3

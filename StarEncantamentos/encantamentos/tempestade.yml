@@ -1,0 +1,34 @@
+# ---------------------------------------------------------------------------
+#  Tempestade - encantamento proprio do StarEncantamentos
+#
+#  Copie este arquivo, troque o nome e os numeros: e um encantamento novo no
+#  servidor, com livro proprio, valor de reciclagem proprio e lugar na loja.
+#  Quem manda no comportamento e a chave Efeito.Tipo, nunca o nome do arquivo.
+#
+#  Alvos aceitos: ESPADA MACHADO PICARETA PA ENXADA FERRAMENTA ARCO BESTA
+#                 TRIDENTE VARA CAPACETE PEITORAL CALCA BOTA ARMADURA ELITRO
+#                 ESCUDO TODOS
+#
+#  Apagar este arquivo tira o encantamento do jogo, e ele nao volta sozinho.
+# ---------------------------------------------------------------------------
+
+Nome: '&eTempestade'
+Descricao:
+  - '&7Chama um raio sobre o alvo.'
+Nivel maximo: 3
+# A faixa do livro que sai deste encantamento (vem do livros.yml).
+Raridade: lendario
+Alvos: [ ESPADA, MACHADO, TRIDENTE ]
+Conflitos: []
+Permitido: true
+
+# Quanto ele vale no nivel 1; o nivel multiplica (veja o config.yml).
+Xp: 300
+Essencia: 9
+Chance de extracao: 30.0
+
+Efeito:
+  Tipo: RAIO
+  Chance: 5.0
+  Chance por nivel: 3.0
+  Recarga: 3
