@@ -8,6 +8,7 @@
 #    {terreno} {dono} {tipo} {mundo} {area} {largura} {comprimento} {altura}
 #    {membros} {subterrenos} {venda} {preco} {x} {y} {z} {entrada} {herdar}
 #    {min_x} {min_z} {max_x} {max_z} {mensagem_entrada} {mensagem_saida}
+#    {visto} {estado} {leilao} {lider} {leilao_termina}
 #    {jogador} {blocos_totais} {blocos_usados} {blocos_restantes}
 #    {blocos_ganhos} {blocos_bonus} {limite} {meus_terrenos}
 #
@@ -36,8 +37,8 @@ Menu do terreno:
         - '&7Tudo sobre este terreno.'
         - ''
         - '&7 ⤷ Nome: &f{terreno}'
-        - '&7 ⤷ Dono: &f{dono}'
-        - '&7 ⤷ Tipo: &f{tipo}'
+        - '&7 ⤷ Dono: &f{dono} &8({visto})'
+        - '&7 ⤷ Tipo: &f{tipo} &8| {estado}'
         - '&7 ⤷ Mundo: &f{mundo}'
         - '&7 ⤷ Tamanho: &f{largura}x{comprimento}'
         - '&7 ⤷ Area: &f{area} &7blocos'
@@ -171,6 +172,20 @@ Menu do terreno:
         - '&7 ⤷ Dono: &f{dono}'
         - ''
         - '&aCLIQUE &fpara comprar'
+
+    Lance:
+      Slot: 32
+      Material: 'GOLD_INGOT'
+      Nome: '&e&lDAR LANCE'
+      Lore:
+        - '&7Este terreno esta em leilao.'
+        - ''
+        - '&7 ⤷ Lance atual: &f{leilao}'
+        - '&7 ⤷ Maior lance: &f{lider}'
+        - '&7 ⤷ Termina em: &f{leilao_termina}'
+        - '&7 ⤷ Dono: &f{dono} &8({visto})'
+        - ''
+        - '&aCLIQUE &fpara cobrir o lance'
 
     Fechar:
       Slot: 40
@@ -363,6 +378,22 @@ Menu de venda:
         - ''
         - '&aCLIQUE &fpara cancelar'
 
+    Leiloar:
+      Slot: 13
+      Material: 'GOLD_INGOT'
+      Nome: '&e&lLEILOAR TERRENO'
+      Lore:
+        - '&7Quem der o maior lance leva.'
+        - '&7Voce recebe o dinheiro e a'
+        - '&7area de volta em blocos.'
+        - ''
+        - '&7 ⤷ Estado: {estado}'
+        - '&7 ⤷ Lance atual: &f{leilao}'
+        - '&7 ⤷ Maior lance: &f{lider}'
+        - '&7 ⤷ Termina em: &f{leilao_termina}'
+        - ''
+        - '&aCLIQUE &fpara leiloar'
+
     Voltar:
       Slot: 22
       Material: 'BARRIER'
@@ -385,8 +416,9 @@ Menu de terrenos:
   Terreno:
     Nome: '&a{terreno}'
     Lore:
-      - '&7 ⤷ Dono: &f{dono}'
+      - '&7 ⤷ Dono: &f{dono} &8({visto})'
       - '&7 ⤷ Mundo: &f{mundo}'
+      - '&7 ⤷ Estado: {estado}'
       - '&7 ⤷ Tamanho: &f{largura}x{comprimento}'
       - '&7 ⤷ Membros: &f{membros}'
       - '&7 ⤷ A venda: &f{venda} &8({preco})'

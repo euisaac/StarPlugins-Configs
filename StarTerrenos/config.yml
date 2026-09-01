@@ -228,6 +228,70 @@ Venda:
   Anunciar no chat: true
 
 #
+# ════════════════════════════════  LEILAO  ══════════════════════════════════
+#
+# O dono poe o terreno a leilao (/terreno leiloar <preco> [horas]) e quem quiser
+# da lances. O dinheiro do lance sai na hora e volta para quem for ultrapassado;
+# no fim, o maior lance leva o terreno e o antigo dono recebe o dinheiro e a
+# area de volta em blocos de terreno.
+Leilao:
+  Ativar: true
+
+  # Quanto tempo o leilao fica aberto quando o dono nao escolhe.
+  Duracao em horas: 48
+
+  # Teto do que o dono pode escolher.
+  Duracao maxima em horas: 168
+
+  # Quanto o proximo lance precisa passar do atual.
+  Lance minimo acima: 100.0
+
+  # Porcentagem que o servidor fica do arremate (0 = nada).
+  Taxa do servidor: 0.0
+
+  Anunciar no chat: true
+
+#
+# ═══════════════════════════════  INATIVIDADE  ══════════════════════════════
+#
+# O que fazer com o terreno de quem parou de entrar no servidor.
+#
+# Vem DESLIGADO: ligar isto tira terreno de jogador, e essa decisao tem de ser
+# sua. A contagem usa a ultima entrada que o proprio servidor conhece, entao ela
+# vale tambem para quem ja jogava antes de o plugin ser instalado. Jogador que o
+# servidor nao sabe datar nunca perde nada.
+Inatividade:
+  Ativar: false
+
+  # Dias sem entrar ate o servidor retomar o terreno.
+  Dias sem entrar: 60
+
+  # De quantos em quantos minutos o plugin confere os prazos (leilao vencendo,
+  # abandono vencido e dono sumido).
+  Verificar a cada minutos: 60
+
+  # LEILAO    - vai a leilao; sem lance nenhum, vira terreno abandonado
+  # ABANDONAR - vira terreno abandonado direto
+  # APAGAR    - some na hora, sem passar por nada disso
+  O que fazer: LEILAO
+
+  Leilao:
+    # O valor de saida sai da area do terreno, com um piso.
+    Preco por bloco: 1.0
+    Preco minimo: 500.0
+    Dias em leilao: 7
+
+#
+# ══════════════════════════════  ABANDONADOS  ═══════════════════════════════
+#
+# Terreno abandonado nao protege mais nada: qualquer um entra, pega o que ficou
+# la dentro e quebra o que quiser, e quem chegar pode marcar um terreno novo por
+# cima dele. Quem entra ve o aviso de terreno abandonado no lugar da saudacao.
+Abandonados:
+  # Depois de quantos dias o terreno abandonado some do mapa. 0 nunca apaga.
+  Dias ate sumir: 30
+
+#
 # ════════════════════════════════  TELEPORTE  ═══════════════════════════════
 #
 Teleporte:
