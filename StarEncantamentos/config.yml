@@ -11,7 +11,7 @@
 #    mensagens.yml       tudo que o jogador le
 #    comandos.yml        os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 3
+Versao do modelo: 4
 
 Geral:
   Debug: false
@@ -70,6 +70,12 @@ Livros:
     Na mesa de encantamento: true
     Ao pegar do chao: true
     Sempre que o livro for movido: true
+    # Livro que ja chega com NOME ou LORE proprios quase sempre e item de outro
+    # plugin (ou foi renomeado na bigorna). Ligado, ele tambem seria reescrito
+    # com a aparencia daqui -- o que estraga o item e pode quebrar o plugin que
+    # o reconhece pelo nome. Desligado, ele fica como esta e vale a raridade
+    # padrao do livros.yml.
+    Livros com nome proprio: false
 
   # Regras conferidas na hora de aplicar. Desligue para servidores que querem
   # Fortuna em espada e Afiacao acima do teto pela via normal.
