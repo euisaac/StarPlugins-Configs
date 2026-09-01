@@ -1,0 +1,385 @@
+# ---------------------------------------------------------------------------
+#  Semaforo -- so ande no verde
+#
+#  Este arquivo e um evento. Copie-o com outro nome, mude o Comando e a arena,
+#  e voce tem um segundo Semaforo rodando em outro lugar.
+#
+#  Os lugares da arena NAO ficam aqui: eles sao marcados no jogo e gravados no
+#  arenas.yml. Use /stareventos editor semaforo ou /semaforo|trafficlights setloc.
+#
+#  Marcadores que valem nos textos deste arquivo:
+#    {evento} {comando} {jogador} {jogadores} {restantes} {tempo} {atual} {total}
+#  Um pedaco pode virar botao: <click:run_command:/semaforo|trafficlights>ENTRAR</click>
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# NAO ALTERE: e o tipo que decide como o evento funciona.
+Tipo: SEMAFORO
+
+Nome: 'Semaforo'
+
+# Use "comando|apelido|apelido" para dar mais de um nome ao comando.
+Comando: 'semaforo|trafficlights'
+
+# Desligue para o plugin nem carregar este evento.
+Ativar: true
+
+# Segundos ate o evento se encerrar sozinho. 0 = sem limite.
+Tempo maximo: 300
+
+Minimo de jogadores: 2
+# 0 = sem limite.
+Maximo de jogadores: 0
+
+#
+# ═════════════════════════════════  ANUNCIOS  ═══════════════════════════════
+#
+# Quantos convites saem no chat antes das inscricoes fecharem.
+Anuncios:
+  Quantidade: 3
+  # Segundos entre um convite e outro.
+  Intervalo: 20
+
+# A contagem depois de todos ja teleportados.
+Aquecimento:
+  Intervalo: 10
+  # Deixar o jogador andar durante a contagem.
+  Pode andar: false
+
+#
+# ══════════════════════════════════  NO MENU  ═══════════════════════════════
+#
+Menu:
+  # Posicao na lista do /eventos (menor aparece antes).
+  Ordem: 46
+  Aparecer: true
+  Aparecer no TOP: true
+
+  Item:
+    Material: 'REDSTONE_LAMP'
+    Nome: '&e&lSEMAFORO'
+    Lore:
+      - '&7Ande no verde, pare no vermelho.'
+      - '&7Quem se mexer errado volta ao inicio.'
+      - ''
+      - ' &8» &fSuas vitorias: &7{vitorias}'
+      - ' &8» &fEstado: {estado}'
+      - ' &8» &fEntrada: &7{entrada}'
+      - ''
+      - '&7Ativar agora custa &f{preco}&7.'
+      - '&aClique para ativar ou entrar.'
+
+#
+# ══════════════════════════════  COMPRAR A ATIVACAO  ════════════════════════
+#
+# Deixa o jogador pagar para o evento comecar na hora, pelo menu.
+Comprar:
+  Ativar: true
+  # Vazio = qualquer um pode comprar.
+  Permissao: ''
+  # Segundos ate o mesmo jogador poder comprar de novo.
+  Espera: 900
+  Economias:
+    dinheiro: 5000.0
+
+#
+# ═══════════════════════════════  ENTRAR CUSTA  ═════════════════════════════
+#
+Custos:
+  # Segundos de tempo online exigidos. 0 = sem exigencia.
+  Tempo online: 0
+  # Deixe vazio para entrar de graca.
+  Economias: {}
+
+#
+# ════════════════════════════════════  REGRAS  ══════════════════════════════
+#
+Regras:
+  # Tag que o vencedor carrega ate o proximo evento (%stareventos_tag%).
+  Tag: '&e[Semaforo]'
+
+  PvP: false
+  # Dano de queda, fogo, lava... o dano do evento em si nunca depende disto.
+  Dano natural: false
+  # Exigir mochila vazia. Com "Guardar o inventario" ligado no config, o
+  # plugin guarda e devolve sozinho -- ninguem precisa esvaziar nada.
+  Inventario vazio: true
+  Manter XP: true
+  Dropar ao morrer: false
+
+  # Efeitos durante o evento inteiro. Formato: EFEITO:nivel-segundos
+  Efeitos: []
+  # Efeitos ao pisar num bloco. Formato: BLOCO,EFEITO:nivel-segundos
+  Efeitos por bloco: []
+
+#
+# ══════════════════════════════════════  KIT  ═══════════════════════════════
+#
+# O que o jogador veste e carrega dentro do evento. Tudo isto e devolvido ao
+# normal quando ele sai.
+Kit:
+  Armadura: {}
+  Itens: {}
+
+#
+# ═════════════════════════════════════  PLACAR  ═════════════════════════════
+#
+Placar:
+  Ativar: true
+  Titulo: '&6&lSEMAFORO'
+  Linhas:
+    - '&8&m                    '
+    - '&fSinal: &e{luz}'
+    - '&fJa chegaram: &e{chegaram}'
+    - '&fTempo: &e{tempo}'
+    - '&8&m                    '
+    - '&6starplugins.com.br'
+
+#
+# ═════════════════════════════  DO SEMAFORO  ════════════════════════════════
+#
+Opcoes:
+  # true = andar no vermelho tira do evento; false = so volta ao inicio.
+  Andar no vermelho elimina: false
+  Colocacoes: 3
+  Luzes:
+    Verde:
+      Nome: '&averde'
+      Tempo minimo: 2
+      Tempo maximo: 6
+      Titulo: '&a&lVERDE'
+      Actionbar: '&a&lVERDE - PODE ANDAR'
+      Chat: ''
+    Amarelo:
+      Nome: '&eamarelo'
+      Tempo minimo: 1
+      Tempo maximo: 2
+      Titulo: '&e&lAMARELO'
+      Actionbar: '&e&lAMARELO - PREPARE-SE'
+      Chat: ''
+    Vermelho:
+      Nome: '&cvermelho'
+      Tempo minimo: 2
+      Tempo maximo: 5
+      Titulo: '&c&lVERMELHO'
+      Actionbar: '&c&lVERMELHO - NAO SE MEXA'
+      Chat: ''
+
+#
+# ═══════════════════════════════════  VITORIA  ══════════════════════════════
+#
+# Como se ganha chegando a algum lugar.
+Vitoria:
+  Ativar: true
+  # Ganhar ao cair no vazio (o Dropper invertido).
+  No vazio: false
+  # Blocos que, ao serem pisados, dao a vitoria.
+  Blocos: [ 'STONE_PRESSURE_PLATE', 'GOLD_PLATE' ]
+  # Placa em que se clica para ganhar. A primeira linha e o identificador.
+  Placa:
+    Linha 1: '&3[Semaforo]'
+    Linha 2: '&aClique aqui'
+    Linha 3: '&apara ganhar'
+    Linha 4: '&ao evento.'
+
+#
+# ═════════════════════════════════  CHECKPOINT  ═════════════════════════════
+#
+Checkpoint:
+  Marcar:
+    Ativar: false
+    Blocos: []
+    Placa:
+      Linha 1: '&3[Semaforo]'
+      Linha 2: '&aClique para'
+      Linha 3: '&amarcar seu'
+      Linha 4: '&acheckpoint.'
+  Voltar:
+    Ativar: false
+    # Voltar ao checkpoint ao cair no vazio, em vez de ser eliminado.
+    No vazio: false
+    Blocos: []
+    Placa:
+      Linha 1: '&3[Semaforo]'
+      Linha 2: '&aClique para'
+      Linha 3: '&avoltar ao'
+      Linha 4: '&acheckpoint.'
+
+#
+# ══════════════════════════════  DESCLASSIFICAR  ════════════════════════════
+#
+Desclassificar:
+  No vazio: false
+  Blocos: [ 'LAVA' ]
+
+#
+# ══════════════════════════════════════  TIMES  ═════════════════════════════
+#
+Times:
+  Ativar: false
+  # Quantos jogadores por time. "2v2" = dois em cada.
+  Modo: '2v2'
+  Minimo de times: 2
+  # 0 = sem limite.
+  Maximo de times: 0
+  Formacao automatica: true
+  Fogo amigo: false
+  # true = o time inteiro sai quando o ultimo membro cai.
+  Eliminacao por time: true
+  Cores: [ 'RED', 'BLUE', 'GREEN', 'YELLOW', 'LIGHT_PURPLE', 'AQUA', 'GOLD', 'WHITE' ]
+  Spawns:
+    # Exigir um spawn por time para o evento poder comecar.
+    Exigir: false
+  Selecao:
+    Ativar: true
+    # Abrir a tela de escolha assim que o jogador entra.
+    Abrir ao entrar: true
+
+#
+# ═════════════════════════════════  MENSAGENS  ══════════════════════════════
+#
+# Mensagens diretas, so para o jogador. Vazio ('') nao envia nada.
+Mensagens:
+  Entrou: '&aVoce entrou no evento &f{evento}&a. Boa sorte!'
+  Saiu: '&cVoce saiu do evento &f{evento}&c.'
+  Ja esta dentro: '&cVoce ja esta neste evento.'
+  Ja esta em outro: '&cVoce ja esta participando de outro evento.'
+  Nao esta dentro: '&cVoce nao esta neste evento.'
+  Nao esta aberto: '&cAs inscricoes do &f{evento} &cnao estao abertas.'
+  Lotado: '&cO evento &f{evento} &cja esta cheio.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Sem saldo: '&cVoce precisa de &f{custo} &cpara entrar.'
+  Inventario cheio: '&cEsvazie seu inventario para entrar no evento.'
+  Limite de ip: '&cJa ha {quantidade} jogador(es) deste IP no evento. Limite: {maximo}.'
+  Morreu: '&cVoce foi eliminado!'
+  Caiu: '&cVoce caiu e foi eliminado!'
+  Desclassificado: '&cVoce foi desclassificado!'
+  Checkpoint marcado: '&aCheckpoint marcado.'
+  Voltou ao checkpoint: '&eVoce voltou ao ultimo checkpoint.'
+  Entrou no camarote: '&aVoce esta assistindo ao evento. Use &f/{comando} sair &apara voltar.'
+  Sem camarote: '&cEste evento nao tem camarote.'
+  Sem aposta: '&cNao ha aposta aberta agora.'
+  Nao esta duelando: '&cSo da para apostar em quem esta duelando.'
+  Ja apostou: '&cVoce ja apostou neste duelo.'
+  Aposta baixa: '&cA aposta minima e maior que isso.'
+  Aposta alta: '&cA aposta maxima e menor que isso.'
+  Apostou: '&aVoce apostou &f{valor} &aem &f{jogador}&a.'
+  Aposta paga: '&aVoce acertou a aposta e levou &f{valor} {moeda}&a!'
+  Andou no vermelho: '&cVoce se mexeu no vermelho!'
+  Ajuda: |
+    &8&m----------------------------------------
+    &6&l{evento}
+    &e/{comando} &8- &7entrar no evento
+    &e/{comando} sair &8- &7sair do evento
+    &e/{comando} assistir &8- &7ir para o camarote
+    &e/{comando} apostar <jogador> <valor> &8- &7apostar num duelo
+    &8&m----------------------------------------
+  Ajuda staff: |
+    &8&m----------------------------------------
+    &6&l{evento} &7- administracao
+    &e/{comando} &8- &7entrar no evento
+    &e/{comando} iniciar &8- &7comecar agora
+    &e/{comando} parar &8- &7derrubar o evento
+    &e/{comando} forcar &8- &7pular os anuncios
+    &e/{comando} locais &8- &7abrir o editor
+    &e/{comando} setloc <local> &8- &7marcar um lugar
+    &e/{comando} addloc &8- &7marcar uma entrada
+    &e/{comando} varinha &8- &7pegar a varinha da area
+    &e/{comando} definir &8- &7usar a selecao como area
+    &8&m----------------------------------------
+
+#
+# ══════════════════════════════  ANUNCIOS DE TEXTO  ═════════════════════════
+#
+# Mensagens para o servidor inteiro. Vazio ('') nao envia nada.
+Anuncios de texto:
+  Convite: |
+
+    &8&m
+    &6&l{evento}
+    &fEntre clicando &e&l<click:run_command:/{comando}>AQUI</click>&f ou digitando &e/{comando}&f.
+    &fJogadores: &e{jogadores} &8| &fAviso &e{atual}&f/&e{total}
+    &8&m
+
+  Actionbar convite: '&6{evento} &8» &fentre com &e/{comando}'
+  Titulo convite: '&6&l{evento}<nl>&fentre com &e/{comando}'
+
+  Aquecimento: |
+
+    &6&l{evento}
+    &fOs jogadores foram teleportados. Comeca em &e{tempo}&f.
+    &fParticipando: &e{jogadores}&f.
+
+  Actionbar aquecimento: '&eComeca em {tempo}...'
+  Barra aquecimento: '&e{evento} &7- comeca em {tempo}'
+
+  Comecou: |
+
+    &6&l{evento}
+    &a&lCOMECOU! &fBoa sorte aos &e{jogadores} &fparticipantes.
+
+  Titulo comecou: '&a&lVALENDO!<nl>&f{evento}'
+  Actionbar jogo: '&fRestam &e{jogadores} &8| &f{tempo}'
+  Barra jogo: '&6{evento} &7- {tempo}'
+
+  Vitoria: |
+
+    &8&m
+    &6&l{evento}
+    &e&l{jogador} &fvenceu o evento!
+    &8&m
+
+  Eliminado: '&8» &e{jogador} &ffoi eliminado. Restam &e{restantes}&f.'
+  Time eliminado: '&8» &fO {time} &ffoi eliminado.'
+  Time venceu: |
+
+    &8&m
+    &6&l{evento}
+    &fO {time} &fvenceu o evento!
+    &8&m
+
+  Sem jogadores: |
+
+    &6&l{evento}
+    &cNao teve gente suficiente; o evento foi cancelado.
+
+  Sem vencedor: |
+
+    &6&l{evento}
+    &cO evento acabou sem vencedor.
+
+  Cancelado: |
+
+    &6&l{evento}
+    &cO evento foi cancelado pela equipe.
+
+  Tempo esgotado: |
+
+    &6&l{evento}
+    &cO tempo acabou.
+
+  Actionbar entrou: '&e{jogador} &fentrou no {evento}'
+  Duelo: |
+
+    &6&l{evento}
+    &fDuelo: &e{jogador1} &fcontra &e{jogador2}&f!
+    &7Aposte com &f/{comando} apostar <jogador> <valor>&7.
+
+  Duelo vencido: '&8» &e{jogador} &fvenceu o duelo!'
+  Actionbar proximo duelo: '&eProximo duelo em {tempo}'
+  Chegou: '&8» &e{jogador} &fchegou em &e{posicao}o &flugar! &7({tempo})'
+
+#
+# ════════════════════════════════  PREMIACAO  ═══════════════════════════════
+#
+# Formato: 'chance,chave-do-recompensas.yml'
+Recompensas:
+  - '100.0,vencedor'
+  - '5.0,raro'
+
+# Para quem participou e nao venceu. So ganha quem ficou ate o fim: ser
+# eliminado conta, sair no meio nao.
+Recompensa por participacao:
+  Dar aos vencedores: false
+  Lista: []

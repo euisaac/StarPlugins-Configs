@@ -1,0 +1,256 @@
+# ---------------------------------------------------------------------------
+#  Bingo -- complete a cartela com o que voce achar pelo mundo
+#
+#  Todo mundo recebe a mesma lista de itens e sai atras deles do jeito que
+#  quiser: minerando, matando, plantando ou comprando de outro jogador. Nao ha
+#  arena e ninguem e teleportado -- o evento acontece no servidor inteiro.
+#
+#  E o evento para o horario em que ninguem quer parar o que estava fazendo.
+#
+#  Marcadores: {evento} {comando} {jogador} {itens} {quantidade} {item}
+#              {feitos} {total}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# NAO ALTERE.
+Tipo: BINGO
+
+Nome: 'Bingo'
+Comando: 'bingo'
+Ativar: true
+
+# Segundos ate acabar. No fim, ganha quem marcou mais.
+Tempo maximo: 900
+
+Minimo de jogadores: 2
+Maximo de jogadores: 0
+
+#
+# ═════════════════════════════════  ANUNCIOS  ═══════════════════════════════
+#
+Anuncios:
+  Quantidade: 3
+  Intervalo: 25
+
+# Segundos entre o fim das inscricoes e a largada.
+Aquecimento:
+  Intervalo: 5
+
+#
+# ══════════════════════════════════  NO MENU  ═══════════════════════════════
+#
+Menu:
+  Ordem: 61
+  Aparecer: true
+  Aparecer no TOP: true
+
+  Item:
+    Material: 'BOOK'
+    Nome: '&e&lBINGO'
+    Lore:
+      - '&7Uma cartela de itens para'
+      - '&7conseguir jogando normalmente.'
+      - ''
+      - ' &8» &fSuas vitorias: &7{vitorias}'
+      - ' &8» &fEstado: {estado}'
+      - ' &8» &fEntrada: &7{entrada}'
+      - ''
+      - '&7Ativar agora custa &f{preco}&7.'
+      - '&aClique para ativar o bingo.'
+
+Comprar:
+  Ativar: true
+  Permissao: ''
+  Espera: 1800
+  Economias:
+    dinheiro: 4000.0
+
+Custos:
+  Tempo online: 0
+  Economias: {}
+
+Regras:
+  Tag: '&e[Bingo]'
+
+#
+# ════════════════════════════════  DO BINGO  ════════════════════════════════
+#
+Opcoes:
+  # Quantos itens a cartela tem. Sao sorteados da lista abaixo, entao com
+  # trinta itens cadastrados cada bingo sai diferente do anterior.
+  Itens na cartela: 5
+
+  # Segundos entre uma conferencia e outra no inventario de quem entrou.
+  # Olhar a cada item pego custaria caro num servidor cheio.
+  Conferir a cada: 3
+
+  # Anunciar no chat cada item que alguem marca. Com muita gente, deixe false
+  # -- a actionbar de quem marcou ja avisa.
+  Anunciar cada item: false
+
+  Itens:
+    - 'DIAMOND'
+    - 'EMERALD'
+    - 'GOLD_INGOT'
+    - 'IRON_INGOT'
+    - 'COAL'
+    - 'REDSTONE'
+    - 'LAPIS_LAZULI'
+    - 'BONE'
+    - 'STRING'
+    - 'GUNPOWDER'
+    - 'ROTTEN_FLESH'
+    - 'SPIDER_EYE'
+    - 'WHEAT'
+    - 'CARROT'
+    - 'POTATO'
+    - 'SUGAR_CANE'
+    - 'CACTUS'
+    - 'PUMPKIN'
+    - 'MELON_SLICE'
+    - 'EGG'
+    - 'FEATHER'
+    - 'LEATHER'
+    - 'INK_SAC'
+    - 'CLAY_BALL'
+    - 'OBSIDIAN'
+    - 'BOOK'
+    - 'PAPER'
+    - 'SNOWBALL'
+
+  Nomes:
+    DIAMOND: 'diamante'
+    EMERALD: 'esmeralda'
+    GOLD_INGOT: 'barra de ouro'
+    IRON_INGOT: 'barra de ferro'
+    COAL: 'carvao'
+    REDSTONE: 'redstone'
+    LAPIS_LAZULI: 'lapis-lazuli'
+    BONE: 'osso'
+    STRING: 'linha'
+    GUNPOWDER: 'polvora'
+    ROTTEN_FLESH: 'carne podre'
+    SPIDER_EYE: 'olho de aranha'
+    WHEAT: 'trigo'
+    CARROT: 'cenoura'
+    POTATO: 'batata'
+    SUGAR_CANE: 'cana-de-acucar'
+    CACTUS: 'cacto'
+    PUMPKIN: 'abobora'
+    MELON_SLICE: 'fatia de melancia'
+    EGG: 'ovo'
+    FEATHER: 'pena'
+    LEATHER: 'couro'
+    INK_SAC: 'tinta'
+    CLAY_BALL: 'argila'
+    OBSIDIAN: 'obsidiana'
+    BOOK: 'livro'
+    PAPER: 'papel'
+    SNOWBALL: 'bola de neve'
+
+#
+# ═════════════════════════════════  MENSAGENS  ══════════════════════════════
+#
+Mensagens:
+  Entrou: '&aVoce entrou no bingo! Corra atras dos itens.'
+  Saiu: '&cVoce saiu do bingo.'
+  Ja esta dentro: '&cVoce ja esta no bingo.'
+  Ja esta em outro: '&cVoce ja esta participando de outro evento.'
+  Nao esta dentro: '&cVoce nao esta no bingo.'
+  Nao esta aberto: '&cO bingo nao esta aberto agora.'
+  Lotado: '&cO bingo ja esta cheio.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Sem saldo: '&cVoce precisa de &f{custo} &cpara entrar.'
+  Limite de ip: '&cJa ha {quantidade} jogador(es) deste IP no bingo. Limite: {maximo}.'
+  Cartela: |
+
+    &6&lSUA CARTELA
+    &7Consiga estes itens e mantenha no inventario:
+  Item da cartela: ' &8» &f{item}'
+  Ajuda: |
+    &8&m----------------------------------------
+    &6&l{evento}
+    &e/{comando} &8- &7entrar no bingo
+    &e/{comando} sair &8- &7sair do bingo
+    &8&m----------------------------------------
+  Ajuda staff: |
+    &8&m----------------------------------------
+    &6&l{evento} &7- administracao
+    &e/{comando} &8- &7entrar no bingo
+    &e/{comando} iniciar &8- &7abrir as inscricoes
+    &e/{comando} parar &8- &7cancelar
+    &e/{comando} forcar &8- &7pular os anuncios
+    &8&m----------------------------------------
+
+#
+# ══════════════════════════════  ANUNCIOS DE TEXTO  ═════════════════════════
+#
+Anuncios de texto:
+  Convite: |
+
+    &8&m
+    &6&lBINGO
+    &fEntre clicando &e&l<click:run_command:/{comando}>AQUI</click>&f e complete a cartela:
+    &7{itens}
+    &fJogadores: &e{jogadores} &8| &fAviso &e{atual}&f/&e{total}
+    &8&m
+
+  Actionbar convite: '&6Bingo &8» &fentre com &e/{comando}'
+  Titulo convite: '&6&lBINGO<nl>&fentre com &e/{comando}'
+
+  Aquecimento: |
+
+    &6&lBINGO
+    &fComeca em &e{tempo}&f! Preparem os inventarios.
+
+  Comecou: |
+
+    &6&lBINGO
+    &a&lVALENDO! &fComplete os &e{quantidade} &fitens da cartela.
+
+  Marcou: '&8» &e{jogador} &fconseguiu &e{item}&f! &7({feitos}/{total})'
+  Actionbar marcou: '&aMarcou &f{item}&a! &7{feitos}/{total}'
+
+  Vitoria: |
+
+    &8&m
+    &6&lBINGO
+    &e&l{jogador} &fcompletou a cartela inteira!
+    &8&m
+
+  Vitoria por pontos: |
+
+    &8&m
+    &6&lBINGO
+    &fO tempo acabou! &e&l{jogador} &fmarcou mais: &e{feitos}&f/&e{total}.
+    &8&m
+
+  Sem vencedor: |
+
+    &6&lBINGO
+    &cNinguem marcou nenhum item.
+
+  Sem jogadores: |
+
+    &6&lBINGO
+    &cNao teve gente suficiente; o evento foi cancelado.
+
+  Cancelado: |
+
+    &6&lBINGO
+    &cO bingo foi cancelado pela equipe.
+
+  Tempo esgotado: ''
+  Actionbar entrou: '&e{jogador} &fentrou no bingo'
+
+#
+# ════════════════════════════════  PREMIACAO  ═══════════════════════════════
+#
+Recompensas:
+  - '100.0,vencedor'
+  - '5.0,raro'
+
+Recompensa por participacao:
+  Dar aos vencedores: false
+  Lista: []

@@ -1,0 +1,50 @@
+StarEventos -- a pasta dos eventos
+==================================
+
+Cada arquivo .yml aqui dentro e UM evento. O plugin varre esta pasta inteira,
+subpastas incluidas, entao a arrumacao abaixo e so para voce se achar -- o
+StarEventos nao liga para o nome das pastas.
+
+  chat/          eventos que acontecem no servidor inteiro, sem arena e sem
+                 teleporte: quiz, matematica, palavra, loteria, bingo, bolao,
+                 votacao... Podem rodar a qualquer hora, sem tirar ninguem do
+                 que estava fazendo.
+
+  pessoalmente/  eventos com arena: os jogadores sao teleportados, recebem o
+                 kit e disputam ali. Sumo, Spleef, TNT Run, Parkour, Dropper,
+                 Corrida, Rei da Colina e companhia.
+
+  times/         eventos que nascem com o sistema de times ligado. Precisam de
+                 um spawn por time marcado no editor.
+
+  customizados/  o seu espaco. O evento "personalizado" junta tudo o que o
+                 plugin sabe fazer e espera voce montar as regras.
+
+
+Criando um evento novo
+----------------------
+Copie um arquivo parecido com o que voce quer, mude o "Comando" (dois eventos
+nao podem dividir o mesmo) e marque a arena. Pronto: da para ter dois Spleefs
+em mapas diferentes, cada um com o proprio horario e premio.
+
+Voce tambem pode criar as suas proprias pastas -- um eventos/natal/, por
+exemplo -- que o plugin acha do mesmo jeito.
+
+
+Montando a arena
+----------------
+Os lugares NAO ficam nestes arquivos: eles vao para o arenas.yml, para que os
+comentarios daqui nunca sejam apagados por uma gravacao do plugin.
+
+  /stareventos editor          abre a lista de eventos e mostra o que falta
+  /stareventos editor <evento> abre o editor daquele evento
+  /<evento> varinha            pega a varinha que marca os dois cantos da area
+  /<evento> definir            usa a selecao da varinha como area
+  /<evento> setloc <local>     marca um lugar onde voce esta
+  /<evento> addloc             acrescenta uma entrada
+
+
+Desligando um evento
+--------------------
+Mude "Ativar" para false no arquivo dele, ou ponha o nome do arquivo (sem o
+.yml) na lista "Eventos desligados" do config.yml.

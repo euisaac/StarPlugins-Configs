@@ -1,0 +1,149 @@
+# ---------------------------------------------------------------------------
+#  Votacao -- o servidor escolhe o proximo evento
+#
+#  Esta votacao nao premia ninguem: o resultado dela e outro evento comecando.
+#  So entram na lista os eventos que poderiam comecar agora -- nada de a
+#  comunidade votar num Spleef cuja arena nem foi montada.
+#
+#  Marcadores: {evento} {comando} {jogador} {votos} {candidatos} {escolha}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# NAO ALTERE.
+Tipo: VOTACAO
+
+Nome: 'Votacao'
+Comando: 'votacao|votar'
+Ativar: true
+
+Minimo de jogadores: 0
+Maximo de jogadores: 0
+
+#
+# ═════════════════════════════════  ANUNCIOS  ═══════════════════════════════
+#
+# Quantos convites saem antes da apuracao.
+Anuncios:
+  Quantidade: 4
+  Intervalo: 20
+
+#
+# ══════════════════════════════════  NO MENU  ═══════════════════════════════
+#
+Menu:
+  Ordem: 1
+  Aparecer: true
+  # A votacao nao tem vitorias para ranquear.
+  Aparecer no TOP: false
+
+  Item:
+    Material: 'PAPER'
+    Nome: '&e&lVOTACAO'
+    Lore:
+      - '&7O servidor escolhe qual sera'
+      - '&7o proximo evento.'
+      - ''
+      - ' &8» &fEstado: {estado}'
+      - ''
+      - '&7Ativar agora custa &f{preco}&7.'
+      - '&aClique para abrir a votacao.'
+
+Comprar:
+  Ativar: true
+  Permissao: ''
+  Espera: 1800
+  Economias:
+    dinheiro: 2000.0
+
+#
+# ═══════════════════════════════  VOTAR CUSTA  ══════════════════════════════
+#
+# Cobrado uma vez por jogador, no primeiro voto.
+Custos:
+  Tempo online: 0
+  Economias: {}
+
+Regras:
+  Tag: ''
+
+#
+# ══════════════════════════════════  DA VOTACAO  ════════════════════════════
+#
+Opcoes:
+  # Eventos que nunca entram na votacao (nomes de arquivo, sem o .yml).
+  Fora da votacao: []
+  # Deixar o jogador mudar de ideia depois de votar.
+  Pode trocar o voto: false
+  # Ninguem votou: sortear um candidato em vez de nao acontecer nada.
+  Sortear sem votos: true
+
+#
+# ═════════════════════════════════  MENSAGENS  ══════════════════════════════
+#
+Mensagens:
+  Nao esta aberto: '&cA votacao nao esta aberta agora.'
+  Sem permissao: '&cVoce nao tem permissao para votar.'
+  Sem saldo: '&cVoce precisa de &f{custo} &cpara votar.'
+  Ja votou: '&cVoce ja votou nesta rodada.'
+  Nao pode votar nele: '&cEsse evento nao esta na votacao.'
+  Votou: '&aVoto registrado em &f{escolha}&a!'
+  Ajuda: |
+    &8&m----------------------------------------
+    &6&l{evento}
+    &e/{comando} &8- &7abrir a tela de votacao
+    &e/{comando} <evento> &8- &7votar direto
+    &8&m----------------------------------------
+  Ajuda staff: |
+    &8&m----------------------------------------
+    &6&l{evento} &7- administracao
+    &e/{comando} &8- &7abrir a tela de votacao
+    &e/{comando} iniciar &8- &7abrir a votacao
+    &e/{comando} parar &8- &7cancelar
+    &8&m----------------------------------------
+
+#
+# ══════════════════════════════  ANUNCIOS DE TEXTO  ═════════════════════════
+#
+Anuncios de texto:
+  Convite: |
+
+    &8&m
+    &6&lVOTACAO
+    &fQual sera o proximo evento? Vote clicando &e&l<click:run_command:/{comando}>AQUI</click>&f.
+    &fVotos ate agora: &e{votos} &8| &fAviso &e{atual}&f/&e{total}
+    &8&m
+
+  Actionbar convite: '&6Votacao &8» &fvote com &e/{comando}'
+  Titulo convite: '&6&lVOTACAO<nl>&fvote com &e/{comando}'
+
+  Vitoria: |
+
+    &8&m
+    &6&lVOTACAO
+    &fO escolhido foi: &e&l{evento}&f, com &e{votos} &fvoto(s)!
+    &8&m
+
+  Sem vencedor: |
+
+    &6&lVOTACAO
+    &cNinguem votou e nao havia evento para sortear.
+
+  Cancelado: |
+
+    &6&lVOTACAO
+    &cA votacao foi cancelada pela equipe.
+
+  Sem jogadores: ''
+  Comecou: ''
+  Actionbar entrou: ''
+
+#
+# ════════════════════════════════  PREMIACAO  ═══════════════════════════════
+#
+# A votacao nao premia ninguem: o premio dela e o proximo evento.
+Recompensas: []
+
+Recompensa por participacao:
+  Dar aos vencedores: false
+  Lista: []

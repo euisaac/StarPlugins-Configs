@@ -1,0 +1,29 @@
+# ---------------------------------------------------------------------------
+#  StarEventos - avisos no Discord
+#
+#  Os mesmos anuncios que saem no chat do jogo podem ir para um canal do
+#  Discord por webhook. O envio acontece numa thread propria, entao um Discord
+#  lento nunca segura o servidor.
+#
+#  Para pegar a URL: no Discord, clique com o botao direito no canal ->
+#  Editar canal -> Integracoes -> Webhooks -> Novo webhook -> Copiar URL.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Ativar: false
+
+# Webhook usado por todos os eventos que nao tem um proprio.
+Webhook: ''
+
+# Titulo da mensagem. Marcador: {evento}
+Titulo: 'Evento: {evento}'
+
+# Cor da barra lateral da mensagem.
+Cor: '#f1c40f'
+
+# Um webhook por evento, quando voce quer separar os canais.
+# A chave e o nome do arquivo do evento, sem o .yml.
+Webhooks:
+  # sumo: 'https://discord.com/api/webhooks/...'
+  # loteria: 'https://discord.com/api/webhooks/...'

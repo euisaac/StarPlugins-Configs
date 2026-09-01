@@ -1,0 +1,79 @@
+# ---------------------------------------------------------------------------
+#  StarEventos - premios
+#
+#  Cada premio tem uma chave, e os eventos so citam essa chave. O mesmo premio
+#  serve a quantos eventos voce quiser.
+#
+#  Nos eventos, a premiacao e escrita como "chance,chave":
+#    - '100.0,vencedor'   -> sai sempre
+#    - '5.0,raro'         -> sai uma vez a cada vinte
+#  Cada linha e sorteada por conta propria, entao da para ter o premio
+#  garantido e um premio raro por cima.
+#
+#  Um premio pode ser tres coisas ao mesmo tempo: item, comandos e dinheiro.
+#  Item que nao couber no inventario nao cai no chao -- vira uma recompensa
+#  guardada, que o jogador pega no /eventos.
+#
+#  Marcadores dos comandos: {jogador} {quantidade}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Recompensas:
+
+  vencedor:
+    Nome: '&aPremio do vencedor'
+    # Dinheiro, cash, niveis... as chaves vem do economias.yml.
+    Economias:
+      dinheiro: 1000.0
+    Mensagem: '&aVoce ganhou &f1.000 coins &apor vencer o evento!'
+    # Item mostrado no menu de recompensas guardadas.
+    Icone:
+      Material: 'GOLD_INGOT'
+      Nome: '&6Premio do vencedor'
+
+  participacao:
+    Nome: '&fPremio de participacao'
+    Economias:
+      dinheiro: 100.0
+    Mensagem: '&7Obrigado por participar! Voce ganhou &f100 coins&7.'
+    Icone:
+      Material: 'IRON_INGOT'
+      Nome: '&fPremio de participacao'
+
+  diamantes:
+    Nome: '&bDiamantes'
+    Item:
+      Material: 'DIAMOND'
+      Quantidade: 8
+      Nome: '&bDiamante do evento'
+      Lore: [ '&7Voce ganhou vencendo um evento.' ]
+    Mensagem: '&bVoce ganhou &f8 diamantes&b!'
+
+  chave_de_caixa:
+    Nome: '&eChave de caixa'
+    # Um premio pode ser so um comando: e assim que se entrega uma chave de
+    # caixa, um cargo temporario ou um item de outro plugin.
+    Comandos:
+      - 'starcaixas dar {jogador} comum {quantidade}'
+    Mensagem: '&eVoce ganhou &f{quantidade} chave(s) de caixa&e!'
+    Icone:
+      Material: 'TRIPWIRE_HOOK'
+      Nome: '&eChave de caixa'
+      Brilho: true
+
+  raro:
+    Nome: '&5Premio raro'
+    Item:
+      Material: 'NETHER_STAR'
+      Quantidade: 1
+      Nome: '&5&lESTRELA DO CAMPEAO'
+      Lore:
+        - '&7Poucos conseguem.'
+        - ''
+        - '&8Premio raro de evento'
+      Brilho: true
+      Esconder atributos: true
+    # Anuncio para o servidor inteiro; deixe vazio para nao avisar ninguem.
+    Anuncio: '&5&l{jogador} &dganhou um premio raro no evento!'
+    Mensagem: '&5Voce ganhou um premio raro!'

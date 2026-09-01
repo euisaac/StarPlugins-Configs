@@ -1,0 +1,534 @@
+# ---------------------------------------------------------------------------
+#  StarEventos - telas
+#
+#  Slot: -1 esconde o botao. As posicoes vao de 0 ate o tamanho do menu -1
+#  (uma linha tem 9 slots).
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+#
+# ═══════════════════════════════  MENU PRINCIPAL  ═══════════════════════════
+#
+Principal:
+  Titulo: '&8Eventos'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Perfil:
+      Slot: 10
+      Material: 'PLAYER_HEAD'
+      Nome: '&e&lSEU PERFIL'
+      Lore:
+        - '&7Como voce vai nos eventos.'
+        - ''
+        - ' &8» &fVitorias: &7{vitorias}'
+        - ' &8» &fParticipacoes: &7{participacoes}'
+        - ' &8» &fPosicao no TOP: &7{posicao}'
+    Eventos:
+      Slot: 12
+      Material: 'NETHER_STAR'
+      Nome: '&e&lEVENTOS'
+      Lore:
+        - '&7Todos os eventos do servidor,'
+        - '&7com horarios e premios.'
+        - ''
+        - ' &8» &fCadastrados: &7{quantidade}'
+        - ' &8» &fAcontecendo: &7{andando}'
+        - ''
+        - '&aClique para ver.'
+    Top:
+      Slot: 14
+      Material: 'GOLD_INGOT'
+      Nome: '&6&lTOP JOGADORES'
+      Lore:
+        - '&7Quem mais venceu eventos'
+        - '&7neste servidor.'
+        - ''
+        - '&aClique para ver.'
+    Recompensas:
+      Slot: 16
+      Material: 'CHEST'
+      Nome: '&a&lSUAS RECOMPENSAS'
+      Lore:
+        - '&7Premios que nao couberam no'
+        - '&7seu inventario na hora.'
+        - ''
+        - '&aClique para pegar.'
+    Opcoes:
+      Slot: 22
+      Material: 'COMPARATOR'
+      Nome: '&f&lSUAS PREFERENCIAS'
+      Lore:
+        - ''
+        - ' &8» &fAnuncios no chat: {anuncios}'
+        - ' &8» &fEntrar sozinho: {fila}'
+        - ''
+        - '&aClique esquerdo &7- trocar os anuncios'
+        - '&aClique direito &7- trocar a entrada sozinha'
+
+#
+# ════════════════════════════════  LISTA DE EVENTOS  ════════════════════════
+#
+Eventos:
+  Titulo: '&8Eventos'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: []
+
+#
+# ══════════════════════════════════════  TOP  ═══════════════════════════════
+#
+Top:
+  Titulo: '&8TOP - {evento}'
+  Linhas: 5
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Material: 'PLAYER_HEAD'
+    Nome: '&e{posicao}. &f{jogador}'
+    Lore:
+      - ''
+      - ' &8» &fVitorias: &7{vitorias}'
+      - ' &8» &fRanking: &7{evento}'
+
+  Botoes:
+    Seletor:
+      Slot: 40
+      Material: 'HOPPER'
+      Nome: '&a&lESCOLHER O RANKING'
+      Lore:
+        - '&7Vendo agora: &f{evento} &7({periodo})'
+        - ''
+        - '&aClique esquerdo &7- trocar o evento'
+        - '&aClique direito &7- de sempre / da temporada'
+        - ''
+    Anterior:
+      Slot: 36
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 44
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Voltar:
+      Slot: 39
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: []
+
+#
+# ═══════════════════════════════════  VOTACAO  ══════════════════════════════
+#
+Votacao:
+  Titulo: '&8Vote no proximo evento'
+  Linhas: 5
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Lore:
+      - ''
+      - ' &8» &fVotos: &7{votos} &7de {total}'
+      - ''
+      - '&aClique para votar.'
+  Item votado:
+    Lore:
+      - ''
+      - ' &8» &fVotos: &7{votos} &7de {total}'
+      - ''
+      - '&aVoce votou neste evento.'
+
+  Botoes:
+    Anterior:
+      Slot: 36
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: []
+    Proxima:
+      Slot: 44
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: []
+    Voltar:
+      Slot: 40
+      Material: 'BARRIER'
+      Nome: '&cFechar'
+      Lore: []
+
+#
+# ═══════════════════════════════  SUAS RECOMPENSAS  ═════════════════════════
+#
+Recompensas:
+  Titulo: '&8Suas recompensas'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Lore:
+      - ''
+      - ' &8» &fQuantidade: &7{quantidade}'
+      - ' &8» &fGanho: &7{atras}'
+      - ''
+      - '&aClique para receber.'
+
+  Botoes:
+    Vazio:
+      Slot: 22
+      Material: 'BARRIER'
+      Nome: '&cNada por aqui'
+      Lore:
+        - '&7Voce nao tem nenhum premio'
+        - '&7esperando.'
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: []
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
+      Lore: []
+
+#
+# ═══════════════════════════════  ESCOLHA DE TIME  ══════════════════════════
+#
+Times:
+  Titulo: '&8Escolha o seu time'
+  Linhas: 3
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Nome: '&f{time}'
+    Lore:
+      - ''
+      - ' &8» &fJogadores: &7{jogadores}/{maximo}'
+      - ' &8» &fMembros: &7{membros}'
+      - ''
+      - '&7{estado}'
+  Item do meu time:
+    Nome: '&f{time}'
+    Brilho: true
+    Lore:
+      - ''
+      - ' &8» &fJogadores: &7{jogadores}/{maximo}'
+      - ' &8» &fMembros: &7{membros}'
+      - ''
+      - '&7{estado}'
+  Item cheio:
+    Nome: '&f{time}'
+    Lore:
+      - ''
+      - ' &8» &fJogadores: &7{jogadores}/{maximo}'
+      - ' &8» &fMembros: &7{membros}'
+      - ''
+      - '&7{estado}'
+
+  Botoes:
+    Voltar:
+      Slot: 22
+      Material: 'BARRIER'
+      Nome: '&cFechar'
+      Lore: [ '&7O time sai no sorteio se voce nao escolher.' ]
+
+#
+# ══════════════════════════════════  EDITOR  ════════════════════════════════
+#
+Editor lista:
+  Titulo: '&8Editor de eventos'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Lore:
+      - ''
+      - ' &8» &fTipo: &7{tipo}'
+      - ' &8» &fComando: &7/{comando}'
+      - ' &8» &fEstado: &7{estado}'
+      - ' &8» &fMontagem: {pronto} &8(&7falta: {falta}&8)'
+      - ''
+      - '&aClique para editar.'
+
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: []
+    Voltar:
+      Slot: 49
+      Material: 'BARRIER'
+      Nome: '&cFechar'
+      Lore: []
+
+Editor:
+  Titulo: '&8Editor: {evento}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Espera:
+      Slot: 10
+      Material: 'CLOCK'
+      Nome: '&e&lSALA DE ESPERA'
+      Lore:
+        - '&7Onde o jogador fica ate o'
+        - '&7evento comecar.'
+        - ''
+        - ' &8» &fEstado: {estado}'
+        - ' &8» &fLugar: &7{coordenadas} &8({mundo})'
+        - ''
+        - '&aClique &7- marcar onde voce esta'
+        - '&cShift + clique &7- apagar'
+    Saida:
+      Slot: 11
+      Material: 'OAK_DOOR'
+      Nome: '&e&lSAIDA'
+      Lore:
+        - '&7Para onde todos voltam quando'
+        - '&7o evento acaba.'
+        - ''
+        - ' &8» &fEstado: {estado}'
+        - ' &8» &fLugar: &7{coordenadas} &8({mundo})'
+        - ''
+        - '&aClique &7- marcar onde voce esta'
+        - '&cShift + clique &7- apagar'
+    Camarote:
+      Slot: 12
+      Material: 'GLASS'
+      Nome: '&e&lCAMAROTE'
+      Lore:
+        - '&7Para onde vai quem e eliminado'
+        - '&7e quem entra so para assistir.'
+        - ''
+        - ' &8» &fEstado: {estado}'
+        - ' &8» &fLugar: &7{coordenadas} &8({mundo})'
+        - ''
+        - '&aClique &7- marcar onde voce esta'
+        - '&cShift + clique &7- apagar'
+    Camarote saida:
+      Slot: 13
+      Material: 'GLASS_PANE'
+      Nome: '&e&lSAIDA DO CAMAROTE'
+      Lore:
+        - '&7Para onde volta quem sai do'
+        - '&7camarote no meio do evento.'
+        - ''
+        - ' &8» &fEstado: {estado}'
+        - ''
+        - '&aClique &7- marcar onde voce esta'
+        - '&cShift + clique &7- apagar'
+    Duelo 1:
+      Slot: 14
+      Material: 'IRON_SWORD'
+      Nome: '&e&lPONTO DE DUELO 1'
+      Lore:
+        - '&7Onde nasce o primeiro duelista'
+        - '&7nos eventos com duelo.'
+        - ''
+        - ' &8» &fEstado: {estado}'
+        - ''
+        - '&aClique &7- marcar onde voce esta'
+        - '&cShift + clique &7- apagar'
+    Duelo 2:
+      Slot: 15
+      Material: 'IRON_SWORD'
+      Nome: '&e&lPONTO DE DUELO 2'
+      Lore:
+        - '&7Onde nasce o segundo duelista.'
+        - ''
+        - ' &8» &fEstado: {estado}'
+        - ''
+        - '&aClique &7- marcar onde voce esta'
+        - '&cShift + clique &7- apagar'
+    Centro:
+      Slot: 16
+      Material: 'BEACON'
+      Nome: '&e&lCENTRO'
+      Lore:
+        - '&7O meio da arena. No Rei da Colina'
+        - '&7e a colina, quando nao ha area segura.'
+        - ''
+        - ' &8» &fEstado: {estado}'
+        - ''
+        - '&aClique &7- marcar onde voce esta'
+        - '&cShift + clique &7- apagar'
+    Entradas:
+      Slot: 19
+      Material: 'MINECART'
+      Nome: '&a&lENTRADAS'
+      Lore:
+        - '&7Onde os jogadores nascem. Marque'
+        - '&7varias: elas giram entre eles.'
+        - ''
+        - ' &8» &fMarcadas: &7{quantidade}'
+        - ''
+        - '&aClique &7- marcar mais uma aqui'
+        - '&cShift + clique &7- apagar todas'
+    Area:
+      Slot: 20
+      Material: 'GRASS_BLOCK'
+      Nome: '&a&lAREA DA ARENA'
+      Lore:
+        - '&7O pedaco do mundo que volta ao'
+        - '&7normal quando o evento acaba.'
+        - ''
+        - ' &8» &fEstado: {estado}'
+        - ' &8» &fTamanho: &7{blocos} blocos'
+        - ''
+        - '&aClique &7- usar a selecao da varinha'
+        - '&cShift + clique &7- apagar'
+    Varinha:
+      Slot: 21
+      Material: 'GOLDEN_AXE'
+      Nome: '&a&lVARINHA'
+      Lore:
+        - '&7Marca os dois cantos da area.'
+        - ''
+        - '&aClique &7- pegar a varinha'
+    Paredes:
+      Slot: 22
+      Material: 'GLASS'
+      Nome: '&a&lPAREDES'
+      Lore:
+        - '&7Blocos que somem quando o evento'
+        - '&7comeca (a largada do Campo Minado).'
+        - ''
+        - ' &8» &fMarcadas: &7{quantidade}'
+        - ''
+        - '&aClique &7- usar a selecao da varinha'
+        - '&cShift + clique &7- apagar todas'
+    Seguras:
+      Slot: 23
+      Material: 'BARRIER'
+      Nome: '&a&lAREAS SEGURAS'
+      Lore:
+        - '&7Onde ninguem toma dano. No Rei da'
+        - '&7Colina, e a colina.'
+        - ''
+        - ' &8» &fMarcadas: &7{quantidade}'
+        - ''
+        - '&aClique &7- usar a selecao da varinha'
+        - '&cShift + clique &7- apagar todas'
+    Times:
+      Slot: 24
+      Material: 'WHITE_BANNER'
+      Nome: '&a&lSPAWNS DE TIME'
+      Lore:
+        - '&7Onde cada time nasce. No Pique-'
+        - '&7Bandeira, e tambem a base dele.'
+        - ''
+        - ' &8» &fMarcados: &7{quantidade}'
+        - ''
+        - '&aClique &7- marcar o proximo aqui'
+        - '&cShift + clique &7- apagar todos'
+    Estado:
+      Slot: 31
+      Material: 'PAPER'
+      Nome: '&f&l{evento}'
+      Lore:
+        - ''
+        - ' &8» &fTipo: &7{tipo}'
+        - ' &8» &fArquivo: &7{chave}.yml'
+        - ' &8» &fMontagem: {pronto}'
+        - ' &8» &fFalta: &7{falta}'
+        - ''
+    Iniciar:
+      Slot: 39
+      Material: 'LIME_DYE'
+      Nome: '&a&lINICIAR AGORA'
+      Lore: [ '&7Comeca o evento &f{evento}&7.' ]
+    Parar:
+      Slot: 41
+      Material: 'RED_DYE'
+      Nome: '&c&lPARAR'
+      Lore: [ '&7Derruba o evento &f{evento}&7.' ]
+    Voltar:
+      Slot: 36
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+      Lore: []

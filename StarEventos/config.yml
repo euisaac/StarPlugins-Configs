@@ -1,0 +1,206 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarEventos - configuracao                       ║
+#  ║   Os eventos ficam um por arquivo, na pasta eventos/. Os lugares      ║
+#  ║   de cada arena ficam no arenas.yml (ou no /stareventos editor).      ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Versao do modelo: 1
+
+# Manda no console o que o plugin esta fazendo por dentro. So ligue para
+# investigar algum problema.
+Depuracao: false
+
+#
+# ═════════════════════════════  BANCO DE DADOS  ═════════════════════════════
+#
+# Guarda as vitorias, o TOP, os inventarios em custodia e as recompensas que
+# ficaram para o jogador pegar depois.
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (varios servidores no mesmo
+  # banco, com o TOP somando todos).
+  Tipo: SQLITE
+
+  Endereco: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # Mude se voce roda mais de uma rede no mesmo banco.
+  Prefixo das tabelas: 'stareventos_'
+
+#
+# ═══════════════════════════════════  GERAL  ════════════════════════════════
+#
+Geral:
+  # Tiques de espera entre o login e a leitura do perfil. Serve para as redes
+  # com servidor de mina separado, onde o jogador chega antes do outro
+  # servidor terminar de gravar. 20 tiques = 1 segundo.
+  Atraso do login: 20
+
+  # Altura em que o jogador conta como "caiu no vazio". Em mundos modernos com
+  # y negativo, use -64.
+  Altura do vazio: 0
+
+  # Guarda o inventario de quem entra num evento que exige mochila vazia, e
+  # devolve no fim. Com isso ninguem precisa esvaziar nada para participar --
+  # e um restart no meio do evento nao apaga as coisas de ninguem.
+  Guardar o inventario: true
+
+  # Calcula o empurrao do Sumo pelo proprio plugin, em vez de deixar com o
+  # servidor. Ligue se o Sumo estiver "leve demais" ou "pesado demais" na sua
+  # versao.
+  Calcular o empurrao: false
+
+  # Tiques ate o bloco pisado sumir no TNTRun. 20 tiques = 1 segundo.
+  Atraso dos blocos que somem: 8
+
+  # Tag que o vencedor carrega ate o proximo evento. Aparece no placeholder
+  # %stareventos_tag% -- o plugin nao mexe no nome de ninguem.
+  Tag do campeao: '&6[CAMPEAO]'
+
+  # Comandos rodados no console para cada vencedor de qualquer evento.
+  # Marcadores: {jogador} {evento} {chave}
+  Comandos ao vencer: []
+
+  # Placeholder de onde ler o tempo online do jogador, quando o evento exigir.
+  # Deixe vazio para o plugin descobrir sozinho (StarTempoJogado ou o proprio
+  # servidor).
+  Placeholder de tempo online: ''
+
+#
+# ═════════════════════════════════  ANUNCIOS  ═══════════════════════════════
+#
+Anuncios:
+  # Mundos onde os anuncios nao aparecem (lobby, mundo de construcao...).
+  Mundos ignorados: []
+
+  # Mostrar tambem o titulo na tela, alem do chat.
+  Mostrar titulo: true
+
+  Som do anuncio: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.4'
+  Som da vitoria: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+#
+# ═════════════════════════════  LIMITE POR IP  ══════════════════════════════
+#
+# Impede que a mesma pessoa entre com varias contas no mesmo evento.
+Limite por IP:
+  Ativar: false
+  Jogadores: 1
+
+#
+# ═════════════════════════════════  CAMAROTE  ═══════════════════════════════
+#
+# Para onde vai quem e eliminado e quem entra so para assistir.
+Camarote:
+  # Ligar o voo de quem esta assistindo.
+  Voar: true
+
+  # Comandos que continuam funcionando para quem esta em evento ou no camarote.
+  # Todo o resto fica bloqueado -- senao um /spawn tiraria o jogador da arena
+  # com o kit do evento no corpo.
+  Comandos liberados:
+    - '/g'
+    - '/l'
+    - '/tell'
+    - '/r'
+
+#
+# ══════════════════════════════════  PLACAR  ════════════════════════════════
+#
+# O quadro lateral durante os eventos. Cada evento tem as proprias linhas no
+# arquivo dele.
+Placar:
+  Ativar: true
+  # Tiques entre uma atualizacao e outra.
+  Atualizar a cada: 20
+
+#
+# ═══════════════════════════════  BARRA DE VIDA  ════════════════════════════
+#
+# A barra no alto da tela com a contagem. Existe da 1.9 em diante; na 1.8 o
+# plugin usa so a actionbar.
+Barra de vida:
+  Ativar: true
+  # BLUE, GREEN, PINK, PURPLE, RED, WHITE, YELLOW
+  Cor: 'YELLOW'
+
+#
+# ═══════════════════════════════  AGENDAMENTO  ══════════════════════════════
+#
+# Eventos que comecam sozinhos na hora marcada.
+Agendamento:
+  Ativar: true
+
+  # Formato: 'dia-hora:minuto:segundo'
+  # O dia pode ser: todos, domingo, segunda, terca, quarta, quinta, sexta, sabado
+  # O evento e o nome do arquivo (sem o .yml), ou 'sorteio' para um aleatorio.
+  Horarios:
+    manha:
+      Evento: 'sorteio'
+      Quando: [ 'todos-12:00:00' ]
+    tarde:
+      Evento: 'sorteio'
+      Quando: [ 'todos-16:00:00' ]
+    noite:
+      Evento: 'votacao'
+      Quando: [ 'todos-20:00:00' ]
+
+  Sorteio:
+    # Eventos que nunca saem no sorteio (mas continuam podendo ser iniciados
+    # na mao ou por horario proprio).
+    Ignorar: []
+
+#
+# ══════════════════════════════════  TEMPORADA  ═════════════════════════════
+#
+# Um segundo ranking que vira de tempos em tempos, sem zerar o de sempre.
+# O TOP do periodo aparece no menu, no botao do seletor.
+Temporada:
+  Ativar: true
+  # MENSAL, SEMANAL, DIARIO ou NENHUM
+  Periodo: MENSAL
+
+#
+# ═══════════════════════════════  FILA AUTOMATICA  ══════════════════════════
+#
+# Deixa o jogador pedir para entrar sozinho em todo evento que abrir, sem
+# precisar ver o chat. Ele liga e desliga no /eventos fila.
+Fila automatica:
+  Ativar: true
+
+#
+# ══════════════════════════════════  VARINHA  ═══════════════════════════════
+#
+# O item que marca os dois cantos da arena. Pegue com /stareventos varinha <evento>.
+Varinha:
+  Material: 'GOLDEN_AXE'
+  Nome: '&eSelecao de area'
+  Lore:
+    - '&7Evento: &f{evento}'
+    - ''
+    - '&aClique esquerdo &7- canto 1'
+    - '&aClique direito &7- canto 2'
+
+#
+# ════════════════════════════  EVENTOS DESLIGADOS  ══════════════════════════
+#
+# Nomes de arquivo (sem o .yml) que o plugin nem carrega.
+Eventos desligados: []
+
+#
+# ═══════════════════════════════  INTEGRACOES  ══════════════════════════════
+#
+PlaceholderAPI:
+  Ativar: true
+
+#
+# ═══════════════════════════  FORMATOS DE ESTADO  ═══════════════════════════
+#
+# O que o placeholder %stareventos_estado% mostra.
+Formatos de estado:
+  Fora: ''
+  Assistindo: '&cAssistindo'
+  Aguardando: '&eAguardando'
+  Jogando: '&aJogando'

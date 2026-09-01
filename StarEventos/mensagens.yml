@@ -1,0 +1,215 @@
+# ---------------------------------------------------------------------------
+#  StarEventos - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso sem
+#  precisar de uma opcao no config.yml para cada um.
+#
+#  As mensagens de dentro de cada evento (entrar, sair, vencer) ficam no
+#  arquivo do proprio evento, na pasta eventos/.
+#
+#  Um pedaco de texto pode virar botao clicavel:
+#    <click:run_command:/sumo>ENTRAR</click>
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&6&lEVENTOS &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEsse comando so funciona no jogo.'
+  Numero invalido: '&f{valor} &cnao e um numero valido.'
+  Jogador desconhecido: '&cO jogador &f{jogador} &cnao esta online.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Inventario cheio: '&cO seu inventario esta cheio.'
+  Inventario devolvido: '&aDevolvemos o que voce tinha antes do evento.'
+  Carregando: '&7Buscando...'
+  Comando bloqueado: '&cVoce nao pode usar esse comando durante o evento.'
+  Sem saldo: '&cVoce nao tem o suficiente. Custo: &f{custo}&c.'
+  Sem ajuda: '&cEste evento nao tem ajuda escrita.'
+  Evento sumiu: '&cEste evento nao existe mais. Avise a equipe.'
+  Uso da aposta: '&cUse: /<evento> apostar <jogador> <valor>'
+  Anuncios ligados: '&aVoce voltara a receber os anuncios dos eventos.'
+  Anuncios desligados: '&cVoce nao recebera mais os anuncios dos eventos.'
+  Fila ligada: '&aVoce entrara sozinho nos proximos eventos.'
+  Fila desligada agora: '&cVoce nao entrara mais sozinho nos eventos.'
+  Fila desligada: '&cA fila automatica esta desligada neste servidor.'
+
+Ajuda:
+  Jogador: |
+    &8&m----------------------------------------
+    &6&lEVENTOS
+    &e/eventos &8- &7abre o menu
+    &e/eventos top &8- &7o ranking
+    &e/eventos perfil &8- &7suas vitorias
+    &e/eventos recompensas &8- &7premios guardados
+    &e/eventos historico &8- &7os ultimos eventos
+    &e/eventos listar &8- &7todos os eventos
+    &e/eventos anuncios &8- &7ligar/desligar avisos
+    &e/eventos fila &8- &7entrar sozinho nos eventos
+    &8&m----------------------------------------
+  Admin: |
+    &8&m----------------------------------------
+    &6&lSTAREVENTOS &7- administracao
+    &e/stareventos iniciar <evento|sorteio> &8- &7comecar
+    &e/stareventos parar [evento|todos] &8- &7derrubar
+    &e/stareventos forcar [evento] &8- &7pular os anuncios
+    &e/stareventos editor [evento] &8- &7montar a arena
+    &e/stareventos varinha <evento> &8- &7pegar a varinha
+    &e/stareventos entrar <evento> <jogador> &8- &7por alguem
+    &e/stareventos listar &8- &7o que esta montado
+    &e/stareventos tipos &8- &7tipos disponiveis
+    &e/stareventos info &8- &7numeros do produto
+    &e/stareventos salvar &8- &7gravar agora
+    &e/stareventos recarregar &8- &7reler os arquivos
+    &8&m----------------------------------------
+
+Comando:
+  Iniciado: '&aO evento &f{evento} &acomecou.'
+  Parado: '&aO evento &f{evento} &afoi parado.'
+  Parados todos: '&a{quantidade} evento(s) parado(s).'
+  Forcado: '&aO evento &f{evento} &avai comecar agora.'
+  Salvo: '&aTudo salvo.'
+  Evento desconhecido: '&cNao existe o evento &f{evento}&c. Veja em /stareventos listar.'
+  Ja esta rodando: '&cO evento &f{evento} &cja esta acontecendo.'
+  Nao esta rodando: '&cO evento &f{evento} &cnao esta acontecendo.'
+  Nao pode iniciar: '&cO evento &f{evento} &cnao pode comecar agora.'
+  Sem sorteio: '&cNenhum evento esta pronto para ser sorteado.'
+  Uso do iniciar: '&cUse: /stareventos iniciar <evento|sorteio>'
+  Uso da varinha: '&cUse: /stareventos varinha <evento>'
+  Uso do entrar: '&cUse: /stareventos entrar <evento> <jogador>'
+  Tipos: |
+    &8&m----------------------------------------
+    &6&lTIPOS DE EVENTO
+    &7{lista}
+    &8&m----------------------------------------
+  Info: |
+    &8&m----------------------------------------
+    &6&lSTAREVENTOS &7v{versao}
+    &7Eventos carregados: &f{eventos}
+    &7Acontecendo agora: &f{rodando}
+    &7Banco de dados: &f{banco}
+    &7Economias: &f{economias}
+    &7Recompensas: &f{recompensas}
+    &7Perfis na memoria: &f{perfis}
+    &8&m----------------------------------------
+  # As mensagens do que falta montar (aparecem quando o evento nao pode comecar)
+  Falta entrada: '&cO evento &f{evento} &cnao tem entrada definida.'
+  Falta saida: '&cO evento &f{evento} &cnao tem saida definida.'
+  Falta area: '&cO evento &f{evento} &cnao tem area definida.'
+  Falta duelo: '&cO evento &f{evento} &cnao tem os pontos de duelo definidos.'
+  Falta spawn de time: '&cO evento &f{evento} &cprecisa de mais spawns de time.'
+  Falta colina: '&cO evento &f{evento} &cnao tem a colina definida.'
+  Falta pergunta: '&cO evento &f{evento} &cnao tem nenhuma pergunta escrita.'
+  Falta item: '&cO evento &f{evento} &cnao tem nenhum item na lista.'
+  Precisa de times: '&cO evento &f{evento} &cprecisa do sistema de times ligado.'
+  Sem candidatos: '&cNenhum evento esta pronto para entrar na votacao.'
+
+Editor:
+  Varinha: '&aVarinha do evento &f{evento} &aentregue.'
+  Canto marcado: '&aCanto &f{canto} &amarcado em &f{x}, {y}, {z}&a.'
+  Selecao pronta: '&aSelecao pronta: &f{blocos} &ablocos. Use &f/{evento} definir&a.'
+  Sem selecao: '&cMarque os dois cantos com a varinha primeiro.'
+  Local marcado: '&aLocal &f{local} &amarcado onde voce esta.'
+  Local apagado: '&aLocal &f{local} &aapagado.'
+  Local desconhecido: '&cLocal desconhecido. Use um destes: &f{lista}'
+  Locais: '&7Locais que voce pode marcar: &f{lista}'
+  Entrada marcada: '&aEntrada &f#{numero} &amarcada.'
+  Entrada apagada: '&aEntrada &f#{numero} &aapagada.'
+  Entrada desconhecida: '&cNao existe a entrada &f#{numero}&c.'
+  Entradas limpas: '&aTodas as entradas foram apagadas.'
+  Area definida: '&aArea definida com &f{blocos} &ablocos.'
+  Area limpa: '&aArea apagada.'
+  Parede adicionada: '&aParede adicionada.'
+  Paredes limpas: '&aParedes apagadas.'
+  Segura adicionada: '&aArea segura adicionada.'
+  Seguras limpas: '&aAreas seguras apagadas.'
+  Spawn de time: '&aSpawn do time &f{numero} &amarcado.'
+  Times limpos: '&aSpawns de time apagados.'
+  Uso do time: '&cUse: /<evento> time <numero>'
+  # O mesmo texto do "Comando.Falta ...", mas curto, para caber no menu
+  Falta entrada: 'entrada'
+  Falta saida: 'saida'
+  Falta area: 'area'
+  Falta duelo: 'pontos de duelo'
+  Falta spawn de time: 'spawns de time'
+  Falta colina: 'colina'
+  Falta pergunta: 'perguntas'
+  Falta item: 'itens'
+  Precisa de times: 'times ligados'
+  Sem candidatos: 'eventos para votar'
+
+Menus:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  De graca: '&ade graca'
+  Nenhum evento: '&7nenhum'
+  Aberto: '&ainscricoes abertas'
+  Rodando: '&eacontecendo'
+  Encerrando: '&7encerrando'
+  Parado: '&7parado'
+  Nao montado: '&cfalta montar'
+  Nao montado ainda: '&cO evento &f{evento} &cainda nao esta montado.'
+  Pronto: '&apronto'
+  Falta: '&cincompleto'
+  Nada falta: '&anada'
+  Definido: '&adefinido'
+  Indefinido: '&cindefinido'
+  Nome pronto: '&a{evento}'
+  Nome incompleto: '&c{evento}'
+  Top geral: '&eGeral'
+  Temporada: '&etemporada'
+  Sempre: '&ede sempre'
+  Selecionado: ' &8» &a{evento}'
+  Nao selecionado: ' &8» &7{evento}'
+  Seu time: '&aeste e o seu time'
+  Time cheio: '&ccheio'
+  Time livre: '&aentre neste'
+  Time vazio: '&7ninguem ainda'
+  Time trancado: '&cO evento ja comecou; nao da mais para trocar de time.'
+  Ja neste time: '&cVoce ja esta no {time}&c.'
+  Time cheio agora: '&cO {time} &cja esta cheio.'
+  Entrou no time: '&aVoce entrou no {time}&a.'
+  Cacador: '&ccacador'
+  Escondido: '&aescondido'
+  Sem compra: '&cEste evento nao pode ser comprado.'
+  Espere para comprar: '&cAguarde &f{tempo} &cpara comprar de novo.'
+  Comprado: '&aVoce ativou o evento &f{evento}&a!'
+  Recompensa sumiu: '&cEssa recompensa nao existe mais no recompensas.yml.'
+  Recompensa ja pega: '&cVoce ja pegou essa recompensa.'
+  Som do clique: 'UI_BUTTON_CLICK;1;1'
+  Som da compra: 'ENTITY_PLAYER_LEVELUP;1;1'
+  Som da coleta: 'ENTITY_ITEM_PICKUP;1;1'
+
+Perfil:
+  Cabecalho: |
+    &8&m----------------------------------------
+    &6&lPERFIL &7- {jogador}
+  Numeros: |
+    &7Vitorias: &f{vitorias}
+    &7Participacoes: &f{participacoes}
+  Evento: ' &8» &f{evento}&7: &f{vitorias}'
+
+Top:
+  Cabecalho: |
+    &8&m----------------------------------------
+    &6&lTOP &7- {evento}
+  Linha: ' &e{posicao}. &f{jogador} &7- &f{vitorias}'
+
+Lista:
+  Cabecalho: |
+    &8&m----------------------------------------
+    &6&lEVENTOS DO SERVIDOR
+  Linha: ' &8» &f{evento} &7(/{comando}) &8- &7{estado}'
+  Cabecalho admin: |
+    &8&m----------------------------------------
+    &6&lEVENTOS &7- administracao
+  Linha admin: ' &8» &f{evento} &7[{chave}] &8- &7{tipo} &8- &7/{comando} &8- &7{pronto}'
+
+Historico:
+  Cabecalho: |
+    &8&m----------------------------------------
+    &6&lULTIMOS EVENTOS
+  Linha: ' &8» &f{evento} &7- &f{jogador} &7({jogadores} jogadores, {atras})'
+  Sem vencedor: '&7ninguem'
+  Vazio: '&7Nenhum evento aconteceu ainda.'

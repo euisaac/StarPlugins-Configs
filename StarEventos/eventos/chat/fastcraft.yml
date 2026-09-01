@@ -1,0 +1,172 @@
+# ---------------------------------------------------------------------------
+#  Craft Rapido -- o primeiro a fabricar o item pedido
+#
+#  Evento de chat: ninguem e teleportado para lugar nenhum e nao ha arena para
+#  montar. Ele pode rodar a qualquer hora, com o servidor cheio, sem tirar
+#  ninguem do que estava fazendo.
+#
+#  Marcadores que valem nos textos deste arquivo:
+#    {evento} {comando} {jogador} {resposta} {atual} {total} {tempo}
+#  Um pedaco pode virar botao: <click:run_command:/craftrapido|fastcraft>AQUI</click>
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# NAO ALTERE: e o tipo que decide como o evento funciona.
+Tipo: FASTCRAFT
+
+Nome: 'Craft Rapido'
+
+# Use "comando|apelido|apelido" para dar mais de um nome ao comando.
+Comando: 'craftrapido|fastcraft'
+
+Ativar: true
+
+#
+# ═════════════════════════════════  RODADAS  ════════════════════════════════
+#
+# Quantas vezes a pergunta e repetida antes do evento desistir.
+Anuncios:
+  Quantidade: 3
+  # Segundos entre uma repeticao e outra.
+  Intervalo: 20
+
+# Quantas vezes o mesmo jogador pode tentar. 0 = sem limite.
+Tentativas por jogador: 0
+
+#
+# ══════════════════════════════════  NO MENU  ═══════════════════════════════
+#
+Menu:
+  Ordem: 58
+  Aparecer: true
+  Aparecer no TOP: true
+
+  Item:
+    Material: 'CRAFTING_TABLE'
+    Nome: '&e&lCRAFT RAPIDO'
+    Lore:
+      - '&7Fabrique o item pedido.'
+      - '&7Ganha o primeiro que conseguir.'
+      - ''
+      - ' &8» &fSuas vitorias: &7{vitorias}'
+      - ' &8» &fEstado: {estado}'
+      - ' &8» &fTentar custa: &7{entrada}'
+      - ''
+      - '&7Ativar agora custa &f{preco}&7.'
+      - '&aClique para ativar o evento.'
+
+#
+# ══════════════════════════════  COMPRAR A ATIVACAO  ════════════════════════
+#
+Comprar:
+  Ativar: true
+  Permissao: ''
+  Espera: 900
+  Economias:
+    dinheiro: 3000.0
+
+#
+# ═══════════════════════════════  TENTAR CUSTA  ═════════════════════════════
+#
+# O custo e cobrado a cada tentativa, e nao so de quem acerta.
+Custos:
+  Tempo online: 0
+  Economias: {}
+
+#
+# ════════════════════════════════════  REGRAS  ══════════════════════════════
+#
+Regras:
+  Tag: '&e[Craft Rapido]'
+
+#
+# ═══════════════════════════  DO CRAFT RAPIDO  ══════════════════════════════
+#
+Opcoes:
+  # Um deles e sorteado a cada evento.
+  Itens:
+    - 'CHEST'
+    - 'CRAFTING_TABLE'
+    - 'FURNACE'
+    - 'IRON_PICKAXE'
+    - 'BOOKSHELF'
+    - 'CAKE'
+  # Nomes bonitos para o anuncio.
+  Nomes:
+    CHEST: 'bau'
+    CRAFTING_TABLE: 'bancada'
+    FURNACE: 'fornalha'
+    IRON_PICKAXE: 'picareta de ferro'
+    BOOKSHELF: 'estante'
+    CAKE: 'bolo'
+
+#
+# ═════════════════════════════════  MENSAGENS  ══════════════════════════════
+#
+Mensagens:
+  Nao esta aberto: '&cO evento &f{evento} &cnao esta aberto agora.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Sem saldo: '&cVoce precisa de &f{custo} &cpara tentar.'
+  Sem tentativas: '&cVoce ja usou todas as suas tentativas.'
+  Errou: ''
+
+  Ajuda: |
+    &8&m----------------------------------------
+    &6&l{evento}
+    &e/{comando} <resposta> &8- &7responder
+    &8&m----------------------------------------
+  Ajuda staff: |
+    &8&m----------------------------------------
+    &6&l{evento} &7- administracao
+    &e/{comando} <resposta> &8- &7responder
+    &e/{comando} iniciar &8- &7comecar agora
+    &e/{comando} parar &8- &7derrubar o evento
+    &8&m----------------------------------------
+
+#
+# ══════════════════════════════  ANUNCIOS DE TEXTO  ═════════════════════════
+#
+Anuncios de texto:
+  Convite: |
+
+    &8&m
+    &6&l{evento}
+    &fFabrique um &e&l{item}&f antes de todo mundo!
+    &7Nao precisa digitar nada: basta craftar.
+    &8&m
+
+  Vitoria: |
+
+    &8&m
+    &6&l{evento}
+    &e&l{jogador} &facertou! A resposta era &e{resposta}&f.
+    &8&m
+
+  Sem vencedor: |
+
+    &6&l{evento}
+    &cNinguem acertou a tempo.
+
+  Tempo esgotado: |
+
+    &6&l{evento}
+    &cO tempo acabou e ninguem acertou. A resposta era &e{resposta}&f.
+
+  Cancelado: |
+
+    &6&l{evento}
+    &cO evento foi cancelado pela equipe.
+
+  Sem jogadores: ''
+  Comecou: ''
+
+#
+# ════════════════════════════════  PREMIACAO  ═══════════════════════════════
+#
+Recompensas:
+  - '100.0,vencedor'
+
+Recompensa por participacao:
+  Dar aos vencedores: false
+  Lista: []

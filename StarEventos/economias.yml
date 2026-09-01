@@ -1,0 +1,39 @@
+# ---------------------------------------------------------------------------
+#  StarEventos - moedas
+#
+#  Cada moeda ganha uma chave curta, e os custos dos eventos falam por ela.
+#  Trocar o plugin de cash do servidor vira mexer numa linha daqui, sem tocar
+#  em nenhum arquivo de evento.
+#
+#  Provedores:
+#    VAULT       - o dinheiro do servidor (precisa do Vault + um plugin de economia)
+#    EXPERIENCIA - os niveis de XP do jogador; nao depende de plugin nenhum
+#    PLUGIN      - qualquer outro plugin de pontos; diga o nome dele em "Plugin"
+#    NENHUM      - nao cobra nada (jeito de desligar um custo sem apagar a linha)
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Economias:
+  dinheiro:
+    Provedor: 'VAULT'
+    Nome: 'Dinheiro'
+    Abreviado: 'coins'
+    # Permissao para usar esta moeda. Vazio = todo mundo.
+    Permissao: ''
+
+  niveis:
+    Provedor: 'EXPERIENCIA'
+    Nome: 'Niveis'
+    Abreviado: 'niveis'
+    Permissao: ''
+
+  # Exemplo de moeda de outro plugin. O StarEventos procura sozinho os metodos
+  # mais comuns (look/take/give e parecidos); se o plugin nao tiver nenhum
+  # deles, a moeda simplesmente nao cobra.
+  cash:
+    Provedor: 'PLUGIN'
+    Plugin: 'PlayerPoints'
+    Nome: 'Cash'
+    Abreviado: 'cash'
+    Permissao: ''

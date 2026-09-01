@@ -1,0 +1,165 @@
+# ---------------------------------------------------------------------------
+#  Bolao -- todo mundo poe dinheiro, um leva
+#
+#  Cada cota comprada e uma chance no sorteio: quem arrisca mais tem mais
+#  chance, mas nunca a garantia. O premio e a soma do que entrou.
+#
+#  Nao ha arena nem teleporte: o bolao roda com o servidor inteiro no que
+#  estava fazendo.
+#
+#  Marcadores: {evento} {comando} {jogador} {premio} {moeda} {cotas} {acumulado}
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# NAO ALTERE.
+Tipo: BOLAO
+
+Nome: 'Bolao'
+Comando: 'bolao|jackpot'
+Ativar: true
+
+Minimo de jogadores: 2
+Maximo de jogadores: 0
+
+#
+# ═════════════════════════════════  ANUNCIOS  ═══════════════════════════════
+#
+# Quantos convites saem antes do sorteio acontecer.
+Anuncios:
+  Quantidade: 4
+  Intervalo: 30
+
+#
+# ══════════════════════════════════  NO MENU  ═══════════════════════════════
+#
+Menu:
+  Ordem: 60
+  Aparecer: true
+  Aparecer no TOP: true
+
+  Item:
+    Material: 'GOLD_INGOT'
+    Nome: '&e&lBOLAO'
+    Lore:
+      - '&7Todo mundo poe, um leva tudo.'
+      - '&7Cada cota e uma chance.'
+      - ''
+      - ' &8» &fSuas vitorias: &7{vitorias}'
+      - ' &8» &fEstado: {estado}'
+      - ' &8» &fCada cota: &7{entrada}'
+      - ''
+      - '&7Ativar agora custa &f{preco}&7.'
+      - '&aClique para ativar o bolao.'
+
+Comprar:
+  Ativar: true
+  Permissao: ''
+  Espera: 1800
+  Economias:
+    dinheiro: 5000.0
+
+#
+# ═══════════════════════════════  CADA COTA CUSTA  ══════════════════════════
+#
+# O que entra aqui e o que forma o premio.
+Custos:
+  Tempo online: 0
+  Economias:
+    dinheiro: 1000.0
+
+Regras:
+  Tag: '&e[Bolao]'
+
+#
+# ════════════════════════════════  DO BOLAO  ════════════════════════════════
+#
+Opcoes:
+  # Quantas cotas o mesmo jogador pode comprar. Sem esse teto, o mais rico
+  # compraria mil cotas e o sorteio deixaria de ser sorteio.
+  Cotas por jogador: 5
+  # Guardar o premio para o proximo bolao quando ninguem participa.
+  Acumular: true
+  # Em que moeda o premio e pago. Vazio = a mesma moeda da entrada.
+  Economia do premio: ''
+
+#
+# ═════════════════════════════════  MENSAGENS  ══════════════════════════════
+#
+Mensagens:
+  Entrou: '&aVoce comprou uma cota do bolao! Premio atual: &f{premio}&a.'
+  Saiu: '&cVoce saiu do bolao.'
+  Ja esta em outro: '&cVoce ja esta participando de outro evento.'
+  Nao esta dentro: '&cVoce nao esta no bolao.'
+  Nao esta aberto: '&cO bolao nao esta aberto agora.'
+  Lotado: '&cO bolao ja esta cheio.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Sem saldo: '&cVoce precisa de &f{custo} &cpara comprar uma cota.'
+  Limite de ip: '&cJa ha {quantidade} jogador(es) deste IP no bolao. Limite: {maximo}.'
+  Cota comprada: '&aMais uma cota! Voce tem &f{cotas}&a. Premio: &f{premio}&a.'
+  Limite de cotas: '&cVoce ja comprou o maximo de &f{limite} &ccotas.'
+  Ajuda: |
+    &8&m----------------------------------------
+    &6&l{evento}
+    &e/{comando} &8- &7comprar uma cota
+    &8&m----------------------------------------
+  Ajuda staff: |
+    &8&m----------------------------------------
+    &6&l{evento} &7- administracao
+    &e/{comando} &8- &7comprar uma cota
+    &e/{comando} iniciar &8- &7abrir o bolao
+    &e/{comando} parar &8- &7cancelar (devolve o dinheiro)
+    &8&m----------------------------------------
+
+#
+# ══════════════════════════════  ANUNCIOS DE TEXTO  ═════════════════════════
+#
+Anuncios de texto:
+  Convite: |
+
+    &8&m
+    &6&lBOLAO
+    &fPremio acumulado: &e&l{premio} {moeda}
+    &fCompre uma cota clicando &e&l<click:run_command:/{comando}>AQUI</click>&f.
+    &fCotas vendidas: &e{cotas} &8| &fAviso &e{atual}&f/&e{total}
+    &8&m
+
+  Actionbar convite: '&6Bolao &8» &fpremio de &e{premio} &8| &e/{comando}'
+  Titulo convite: '&6&lBOLAO<nl>&fpremio: &e{premio}'
+
+  Vitoria: |
+
+    &8&m
+    &6&lBOLAO
+    &e&l{jogador} &flevou o bolao de &e&l{premio} {moeda}&f!
+    &7Foram &f{cotas} &7cota(s) na disputa.
+    &8&m
+
+  Sem vencedor: |
+
+    &6&lBOLAO
+    &cNinguem comprou cota. O premio fica acumulado.
+
+  Sem jogadores: |
+
+    &6&lBOLAO
+    &cNao teve gente suficiente; o dinheiro foi devolvido.
+
+  Cancelado: |
+
+    &6&lBOLAO
+    &cO bolao foi cancelado e o dinheiro devolvido.
+
+  Actionbar entrou: '&e{jogador} &fcomprou uma cota do bolao'
+  Comecou: ''
+
+#
+# ════════════════════════════════  PREMIACAO  ═══════════════════════════════
+#
+# O premio principal do bolao e o dinheiro das cotas. O que estiver aqui vai
+# por cima disso.
+Recompensas: []
+
+Recompensa por participacao:
+  Dar aos vencedores: false
+  Lista: []
