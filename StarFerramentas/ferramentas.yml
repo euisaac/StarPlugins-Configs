@@ -77,6 +77,12 @@
 # Com ela na mao nao e preciso agachar nem usar machado.
 #   Maximo de blocos / Quebrar folhas / Replantar: iguais aos do config.yml
 #
+# *** DESCASCAR ***
+# Descasca de uma vez toda a madeira grudada na que voce clicou -- a arvore
+# inteira, ou a parede de troncos inteira.
+#   Maximo de blocos: teto de madeiras por clique [NUMERO]
+#   Somente mesmo tipo: true descasca so a madeira igual a clicada [true/false]
+#
 # *** ARCO ***
 # Arco cujas flechas perseguem o alvo. Tudo que nao estiver escrito aqui vem
 # da secao "Arco" do config.yml.
@@ -282,6 +288,20 @@ Ferramentas:
     Opcoes-do-jogador:
       dropar: desativado
       area: ativado
+
+  machado_descascador:
+    Modo: DESCASCAR
+    # Teto de madeiras por clique.
+    Maximo de blocos: 250
+    # false descasca qualquer madeira encostada; true so a igual a clicada.
+    Somente mesmo tipo: false
+    Tipo: IRON_AXE
+    Usos: 300
+    Nome: '&e&lMachado Descascador'
+    Lore:
+      - '&7Clique numa madeira e descasca &ftudo &7de uma vez.'
+      - '&7Serve para a arvore inteira ou para a parede toda.'
+      - '&8Usos: &7{}'
 
   # Habilidade VEIA: fora dela e uma picareta comum (Nivel de quebra 1 = so o
   # bloco batido); ligada, cada golpe leva a veia de minerio inteira.
