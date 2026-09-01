@@ -1,0 +1,236 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarTerrenos - mensagens                        ║
+#  ║   Mensagem vazia ('') nao e enviada -- e assim que voce desliga um   ║
+#  ║   aviso sem precisar de uma opcao no config.                         ║
+#  ║   Use <nl> para quebrar linha nos titulos.                           ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Prefixo: '&2&lTERRENOS &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Apenas jogadores: '&cSo quem esta no jogo pode usar este comando.'
+  Fora de terreno: '&cVoce precisa estar dentro de um terreno.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Nao e numero: '&f{texto} &cnao e um numero valido.'
+  Uso: '&cUse: &f{uso}'
+  Mundo bloqueado: '&cOs terrenos nao funcionam neste mundo.'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Nao definido: '&7nao definido'
+  Ilimitado: '&aIlimitado'
+  Sem nome: '&7Terreno sem nome'
+  Sem terreno: '&7Nenhum'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Tempo esgotado: '&cO tempo acabou e o pedido foi cancelado.'
+  Cancelado: '&cVoce cancelou.'
+  Nome do terreno: '&aDigite no chat o novo nome do terreno.'
+  Nome do membro: '&aDigite no chat o nome de quem voce quer adicionar.'
+  Preco do terreno: '&aDigite no chat o preco do terreno.'
+  Mensagem de entrada: '&aDigite no chat a mensagem de quem entra no terreno.'
+  Mensagem de saida: '&aDigite no chat a mensagem de quem sai do terreno.'
+
+# O que aparece ao entrar e ao sair. Se o dono do terreno escreveu a mensagem
+# dele pelo menu, a dele tem preferencia.
+Aviso:
+  Entrada: '&aTerreno de &f{jogador} &8| &7{terreno}'
+  Saida: '&7Voce saiu do terreno de &f{jogador}'
+
+# Aparece na lista de membros, explicando o que cada nivel pode fazer.
+Confianca:
+  ACESSO: '&7Entra, usa portas e botoes'
+  CONTAINER: '&7Tudo do acesso + baus e fornos'
+  CONSTRUTOR: '&7Tudo do container + construir'
+  GERENTE: '&7Tudo do construtor + membros e bandeiras'
+
+# As recusas da protecao. Elas saem na actionbar (veja Avisos no config.yml),
+# entao valem mais curtas.
+Protecao:
+  Construir: '&cVoce nao pode construir no terreno de &f{jogador}&c.'
+  Quebrar: '&cVoce nao pode quebrar nada no terreno de &f{jogador}&c.'
+  Interagir: '&cVoce nao pode mexer nisso no terreno de &f{jogador}&c.'
+  Container: '&cVoce nao pode abrir isso no terreno de &f{jogador}&c.'
+  Entidade: '&cVoce nao pode mexer nisso no terreno de &f{jogador}&c.'
+  Ferir animais: '&cOs animais de &f{jogador} &cestao protegidos aqui.'
+  Veiculo: '&cIsto pertence ao terreno de &f{jogador}&c.'
+  Pegar item: '&cVoce nao pode pegar itens no terreno de &f{jogador}&c.'
+  Soltar item: '&cVoce nao pode largar itens no terreno de &f{jogador}&c.'
+  Entrar: '&cO terreno de &f{jogador} &cesta fechado.'
+  Pisar plantacao: '&cNao pise na plantacao de &f{jogador}&c.'
+  Pvp: '&cO PvP esta desligado neste terreno.'
+
+Terreno:
+  Criado: '&aTerreno criado! &7Area: &f{area} &7blocos. Restam &f{restante} &7blocos de terreno.'
+  Criado admin: '&aTerreno do servidor criado! &7Area: &f{area} &7blocos.'
+  Sobrepondo: '&cJa existe um terreno de &f{jogador} &caqui.'
+  Muito perto: '&cVoce precisa ficar a pelo menos &f{distancia} &cblocos do terreno de &f{jogador}&c.'
+  Muito estreito: '&cNenhum lado pode ser menor que &f{lado} &cblocos (o seu tem {largura}x{comprimento}).'
+  Muito pequeno: '&cO terreno precisa de pelo menos &f{minima} &cblocos de area (o seu tem {area}).'
+  Muito grande: '&cO terreno nao pode passar de &f{maxima} &cblocos de area (o seu tem {area}).'
+  No limite: '&cVoce ja atingiu o limite de &f{limite} &cterrenos.'
+  Redimensionado: '&aTamanho alterado! &7Area: &f{area} &7blocos. Restam &f{restante} &7blocos.'
+  Abandonado: '&aTerreno abandonado. &7Voltaram &f{devolvidos} &7blocos de terreno para voce.'
+  Apenas o dono: '&cSo quem manda no terreno pode fazer isso.'
+  Subterreno fora: '&cO subterreno precisa ficar dentro de um terreno seu.'
+  Subterreno criado: '&aSubterreno criado! &7Area: &f{area} &7blocos.'
+  Subterreno dentro de subterreno: '&cNao da para criar um subterreno dentro de outro.'
+  Limite de subterrenos: '&cEste terreno ja tem &f{limite} &csubterrenos.'
+  Subterreno atrapalha: '&cUm subterreno ficaria de fora com esse tamanho.'
+  Nome alterado: '&aO terreno agora se chama &f{terreno}&a.'
+  Entrada fora: '&cVoce precisa estar dentro do terreno para marcar a entrada dele.'
+  Entrada definida: '&aEntrada do terreno marcada em &fX:{x} Y:{y} Z:{z}&a.'
+  Icone alterado: '&aIcone do terreno alterado para &f{icone}&a.'
+  Membro adicionado: '&f{jogador} &aagora e &f{nivel} &ano seu terreno.'
+  Membro alterado: '&f{jogador} &aagora e &f{nivel}&a.'
+  Membro removido: '&f{jogador} &cnao e mais membro do terreno.'
+  Ja e dono: '&cEssa pessoa ja manda no terreno.'
+  Nivel desconhecido: '&f{nivel} &cnao e um nivel valido (acesso, container, construtor, gerente).'
+  Mensagem alterada: '&aMensagem salva: &f{mensagem}'
+  Mensagem apagada: '&aMensagem apagada; o aviso padrao volta a valer.'
+  Informacoes: |
+    &8&m
+    &a&lTERRENO DE &f{jogador}
+    &7 ⤷ Nome: &f{terreno}
+    &7 ⤷ Tipo: &f{tipo}
+    &7 ⤷ Mundo: &f{mundo}
+    &7 ⤷ Tamanho: &f{largura}x{comprimento} &7(&f{area} &7blocos)
+    &7 ⤷ Membros: &f{membros} &8| &7Subterrenos: &f{subterrenos}
+    &8&m
+
+Blocos:
+  Sem blocos: '&cFaltam &f{faltando} &cblocos de terreno. &7(precisa de {necessario}, voce tem {restante})'
+  Sem dinheiro: '&cVoce precisa de &f{valor} &cpara comprar esses blocos.'
+  Sem sobra: '&cVoce so pode vender blocos que estao sobrando. &7(sobram {restante} de {quantidade})'
+  Comprados: '&aVoce comprou &f{quantidade} &ablocos por &f{valor}&a. Restam &f{restante} &alivres.'
+  Vendidos: '&aVoce vendeu &f{quantidade} &ablocos por &f{valor}&a. Restam &f{restante} &alivres.'
+  Falhou: '&cNao foi possivel completar a venda dos blocos.'
+  Alterados: '&aOs seus blocos de terreno mudaram: agora voce tem &f{total}&a.'
+  Resumo: |
+    &8&m
+    &a&lSEUS BLOCOS DE TERRENO
+    &7 ⤷ Total: &f{blocos_totais}
+    &7 ⤷ Ganhos jogando: &f{blocos_ganhos}
+    &7 ⤷ Bonus: &f{blocos_bonus}
+    &7 ⤷ Em uso: &f{blocos_usados}
+    &7 ⤷ Livres: &a{blocos_restantes}
+    &8&m
+
+Bandeira:
+  Alterada: '&aBandeira &f{bandeira} &a: {estado}'
+  Herdado: '&7herdado &8({valor}&8)'
+  Sem permissao: '&cVoce nao pode mexer na bandeira &f{bandeira}&c.'
+
+Venda:
+  Desligada: '&cA venda de terrenos esta desligada neste servidor.'
+  Nao pode este terreno: '&cEste tipo de terreno nao pode ser vendido.'
+  Preco invalido: '&cO preco precisa ficar entre &f{minimo} &ce &f{maximo}&c.'
+  Anunciado: '&aTerreno anunciado por &f{preco}&a.'
+  Aviso do servidor: '&e{jogador} &7colocou o terreno &f{terreno} &7({area} blocos) a venda por &a{preco}&7.'
+  Cancelada: '&aO anuncio do terreno foi cancelado.'
+  Nao esta a venda: '&cEste terreno nao esta a venda.'
+  Ja e seu: '&cO terreno ja e seu.'
+  Sem dinheiro: '&cVoce precisa de &f{preco} &cpara comprar este terreno.'
+  Falhou: '&cA compra nao pode ser concluida; o seu dinheiro foi devolvido.'
+  Comprado: '&aVoce comprou o terreno &f{terreno} &ade &f{jogador} &apor &f{preco}&a.'
+  Vendido: '&aVoce vendeu o terreno &f{terreno} &apara &f{jogador} &apor &f{preco}&a.'
+
+Teleporte:
+  Mundo fora do ar: '&cO mundo &f{mundo} &cnao esta carregado.'
+  Terreno fechado: '&cEste terreno esta fechado para visitantes.'
+  Sem dinheiro: '&cO teleporte custa &f{valor}&c.'
+  Contando: '&aNao se mexa: teleportando em &f{segundos} &asegundos.'
+  Chegou: '&aVoce chegou!'
+  Cancelado: '&cTeleporte cancelado.'
+
+Voo:
+  Ligado: '&aVoo ligado neste terreno.'
+  Desligado: '&cVoo desligado.'
+
+Ferramenta:
+  Nome: '&a&lFERRAMENTA DE TERRENO'
+  Lore:
+    - '&7Clique com a direita em dois'
+    - '&7cantos para marcar um terreno.'
+    - ''
+    - '&7Clique num canto do seu terreno'
+    - '&7para mudar o tamanho dele.'
+  Recebida: '&aPronto, a ferramenta esta no seu inventario.'
+  Cancelado: '&cMarcacao cancelada.'
+  Primeiro canto: '&aPrimeiro canto marcado em &fX:{x} Z:{z}&a. Agora marque o outro.'
+  Redimensionando: '&aMova o canto: clique onde ele deve ficar agora.'
+  Outro mundo: '&cOs dois cantos precisam ficar no mesmo mundo.'
+  Livre: '&aEsta area esta livre.'
+  Perto: '&aTerrenos por perto: &f{quantidade}&a.'
+  Modo: '&aA ferramenta agora cria: {modo}&a.'
+  Modo subterreno: '&aAgora marque dois cantos dentro do seu terreno para criar o subterreno.'
+  Caixa: '&aSubterreno em caixa: {estado}&a.'
+  Informacoes: |
+    &8&m
+    &a&lTERRENO DE &f{jogador}
+    &7 ⤷ Nome: &f{terreno}
+    &7 ⤷ Tipo: &f{tipo}
+    &7 ⤷ Tamanho: &f{largura}x{comprimento} &7(&f{area} &7blocos)
+    &7 ⤷ Membros: &f{membros} &8| &7Subterrenos: &f{subterrenos}
+    &8&m
+
+Migracao:
+  Comecou: '&aLendo os arquivos do outro plugin... isto acontece em segundo plano.'
+  Em andamento: '&cJa existe uma importacao acontecendo agora.'
+  Origem desconhecida: '&f{origem} &cnao e uma origem conhecida (griefdefender, griefprevention, tudo).'
+  Nada encontrado: '&cNao achei a pasta de nenhum plugin de terreno conhecido em plugins/.'
+  Pronto: '&aImportacao concluida: &f{terrenos} &aterrenos, &f{jogadores} &ajogadores. &7({pulados} pulados)'
+  Avisos: '&e{quantidade} avisos foram gravados no console -- vale a pena dar uma olhada.'
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Salvo: '&aTudo que estava na memoria foi mandado para o banco.'
+  Ignorando: '&aProtecao ignorada para voce: {estado}&a.'
+  Apagado: '&aTerreno de &f{jogador} &aapagado &7({quantidade} no total, contando subterrenos)&a.'
+  Transferido: '&aO terreno agora e de &f{jogador}&a.'
+  Blocos: '&aBlocos de &f{jogador} &aalterados em &f{quantidade}&a. Total: &f{total}&a.'
+  Informacoes: |
+    &8&m
+    &a&lSTARTERRENOS &7v{versao}
+    &7 ⤷ Terrenos: &f{terrenos}
+    &7 ⤷ Jogadores: &f{jogadores}
+    &7 ⤷ Banco: &f{banco}
+    &7 ⤷ Por mundo: {mundos}
+    &8&m
+
+Ajuda:
+  Jogador: |
+    &8&m
+    &a&lCOMANDOS DE TERRENO
+    &a/terreno &7- abre o menu do terreno
+    &a/terreno info &7- de quem e este terreno
+    &a/terreno confiar <jogador> [nivel] &7- da acesso
+    &a/terreno remover <jogador> &7- tira o acesso
+    &a/terreno bandeiras &7- regras do terreno
+    &a/terreno nome <nome> &7- da um nome ao terreno
+    &a/terreno entrada &7- marca onde o teleporte chega
+    &a/terreno vender <preco> &7- anuncia o terreno
+    &a/terreno abandonar &7- apaga o terreno
+    &a/terreno modo <basico|subterreno> &7- o que a ferramenta cria
+    &a/terreno ferramenta &7- pega a ferramenta de marcar
+    &a/terreno blocos &7- seus blocos de terreno
+    &a/terrenos &7- a lista dos seus terrenos
+    &8&m
+  Admin: |
+    &8&m
+    &a&lSTARTERRENOS &7- comandos de admin
+    &a/starterrenos recarregar &7- recarrega os arquivos
+    &a/starterrenos info &7- numeros do plugin
+    &a/starterrenos salvar &7- grava tudo agora
+    &a/starterrenos ignorar &7- liga/desliga a protecao para voce
+    &a/starterrenos apagar &7- apaga o terreno em que voce esta
+    &a/starterrenos transferir <jogador> &7- troca o dono
+    &a/starterrenos blocos <jogador> <dar|tirar|definir> <n>
+    &a/starterrenos migrar <griefdefender|griefprevention|tudo>
+    &8&m

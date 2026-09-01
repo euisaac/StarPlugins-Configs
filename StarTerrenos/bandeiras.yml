@@ -1,0 +1,243 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarTerrenos - bandeiras                        ║
+#  ║   Bandeira e a regra que vale para quem NAO e membro do terreno,     ║
+#  ║   e para o mundo em volta (fogo, explosao, mobs).                    ║
+#  ║                                                                      ║
+#  ║   Este arquivo nao cria bandeira nova: ele muda o nome, o icone, o   ║
+#  ║   texto, o valor padrao e quem pode mexer em cada uma.               ║
+#  ║                                                                      ║
+#  ║   Ativar: false  -> a bandeira some do menu, mas a regra continua    ║
+#  ║                     valendo pelo Padrao escrito aqui.                ║
+#  ║   Padrao         -> o que vale enquanto ninguem mexer nela.          ║
+#  ║   Permissao      -> quem pode mudar (vazio = todos os donos).        ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Bandeiras:
+
+  # ───────────────────────  quem nao e membro  ───────────────────────
+
+  construir:
+    Ativar: true
+    Nome: '&aColocar blocos'
+    Material: 'GRASS_BLOCK'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Deixa quem nao e membro'
+      - '&7colocar blocos no terreno.'
+
+  quebrar:
+    Ativar: true
+    Nome: '&aQuebrar blocos'
+    Material: 'IRON_PICKAXE'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Deixa quem nao e membro'
+      - '&7quebrar blocos no terreno.'
+
+  interagir:
+    Ativar: true
+    Nome: '&aUsar portas e botoes'
+    Material: 'OAK_DOOR'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Portas, botoes, alavancas,'
+      - '&7camas, placas e bancadas.'
+
+  containers:
+    Ativar: true
+    Nome: '&aAbrir baus e fornos'
+    Material: 'CHEST'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Baus, barris, fornos,'
+      - '&7funis e dispensadores.'
+
+  entidades:
+    Ativar: true
+    Nome: '&aUsar entidades'
+    Material: 'ARMOR_STAND'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Aldeoes, quadros, suportes'
+      - '&7de armadura e bigornas.'
+
+  ferir-animais:
+    Ativar: true
+    Nome: '&aFerir animais'
+    Material: 'BEEF'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Bater em animais e aldeoes'
+      - '&7dentro do terreno.'
+
+  veiculos:
+    Ativar: true
+    Nome: '&aUsar barcos e carrinhos'
+    Material: 'MINECART'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Entrar, colocar e quebrar'
+      - '&7barcos e carrinhos.'
+
+  pegar-itens:
+    Ativar: true
+    Nome: '&aPegar itens do chao'
+    Material: 'HOPPER'
+    Padrao: true
+    Permissao: ''
+    Descricao:
+      - '&7Pegar itens largados'
+      - '&7dentro do terreno.'
+
+  soltar-itens:
+    Ativar: true
+    Nome: '&aSoltar itens'
+    Material: 'DROPPER'
+    Padrao: true
+    Permissao: ''
+    Descricao:
+      - '&7Largar itens no chao'
+      - '&7dentro do terreno.'
+
+  entrar:
+    Ativar: true
+    Nome: '&aEntrar no terreno'
+    Material: 'IRON_DOOR'
+    Padrao: true
+    Permissao: ''
+    Descricao:
+      - '&7Desligue para virar terreno'
+      - '&7fechado: so membros entram.'
+
+  # ─────────────────────────  mundo e ambiente  ─────────────────────────
+
+  pvp:
+    Ativar: true
+    Nome: '&cPvP'
+    Material: 'DIAMOND_SWORD'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Jogadores podem se bater'
+      - '&7dentro do terreno.'
+
+  voar:
+    Ativar: true
+    Nome: '&bVoo'
+    Material: 'FEATHER'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Membros podem voar dentro'
+      - '&7do terreno.'
+      - '&8Exige starterrenos.voar'
+
+  explosoes:
+    Ativar: true
+    Nome: '&cExplosoes'
+    Material: 'TNT'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7TNT e creeper podem'
+      - '&7quebrar blocos aqui.'
+
+  fogo:
+    Ativar: true
+    Nome: '&cFogo'
+    Material: 'FLINT_AND_STEEL'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7O fogo se espalha e'
+      - '&7queima blocos aqui.'
+
+  fluidos:
+    Ativar: true
+    Nome: '&bAgua e lava de fora'
+    Material: 'WATER_BUCKET'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Deixa agua e lava de fora'
+      - '&7entrarem no terreno.'
+
+  pistoes:
+    Ativar: true
+    Nome: '&ePistoes de fora'
+    Material: 'PISTON'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Deixa pistao de fora empurrar'
+      - '&7os blocos do terreno.'
+
+  mobs-quebram:
+    Ativar: true
+    Nome: '&cMobs quebram blocos'
+    Material: 'CREEPER_HEAD'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Enderman, creeper, wither'
+      - '&7e ravager mexendo nos blocos.'
+
+  spawn-monstros:
+    Ativar: true
+    Nome: '&cNascer monstros'
+    Material: 'ZOMBIE_HEAD'
+    Padrao: true
+    Permissao: ''
+    Descricao:
+      - '&7Monstros nascem sozinhos'
+      - '&7dentro do terreno.'
+
+  spawn-animais:
+    Ativar: true
+    Nome: '&aNascer animais'
+    Material: 'WHEAT'
+    Padrao: true
+    Permissao: ''
+    Descricao:
+      - '&7Animais nascem sozinhos'
+      - '&7dentro do terreno.'
+
+  pisar-plantacao:
+    Ativar: true
+    Nome: '&ePisar na plantacao'
+    Material: 'FARMLAND'
+    Padrao: false
+    Permissao: ''
+    Descricao:
+      - '&7Pular na terra arada'
+      - '&7estraga a plantacao.'
+
+  crescimento:
+    Ativar: true
+    Nome: '&aCrescimento'
+    Material: 'BONE_MEAL'
+    Padrao: true
+    Permissao: ''
+    Descricao:
+      - '&7Plantas, arvores e cogumelos'
+      - '&7crescem aqui.'
+
+  dano-de-mobs:
+    Ativar: true
+    Nome: '&cMobs ferem jogadores'
+    Material: 'ROTTEN_FLESH'
+    Padrao: true
+    Permissao: ''
+    Descricao:
+      - '&7Monstros podem machucar'
+      - '&7quem esta no terreno.'

@@ -1,0 +1,220 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarTerrenos - configuracao                      ║
+#  ║   Terrenos com protecao propria: confianca por nivel, bandeiras,     ║
+#  ║   subterrenos, blocos de terreno, compra e venda.                    ║
+#  ║   Os nomes de material valem de 1.8 ate 1.21: escreva o nome novo    ║
+#  ║   que o plugin acha o equivalente antigo.                            ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Manda no console o que o plugin esta fazendo por dentro. So ligue para
+# investigar algum problema.
+Depuracao: false
+
+#
+# ═════════════════════════════  BANCO DE DADOS  ═════════════════════════════
+#
+# Aqui moram os terrenos. Diferente dos outros produtos, o StarTerrenos NAO sobe
+# sem banco: subir com o banco vazio deixaria o servidor inteiro sem protecao.
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (varios servidores no mesmo
+  # banco).
+  Tipo: SQLITE
+
+  Endereco: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # Mude se voce roda mais de uma rede no mesmo banco.
+  Prefixo das tabelas: 'starterrenos_'
+
+  # De quantos em quantos segundos o que mudou vai para o banco. As mudancas
+  # valem na hora; isto e so a gravacao.
+  Salvar a cada: 60
+
+#
+# ════════════════════════════════  ECONOMIA  ════════════════════════════════
+#
+Economia:
+  # VAULT usa a economia registrada no Vault.
+  # COMANDO serve para as economias que nao se registram no Vault: o saldo e
+  # lido por placeholder e o dinheiro entra e sai por comando de console.
+  Tipo: VAULT
+
+  Simbolo: '$'
+
+  # So no modo COMANDO. Marcadores: {jogador} {uuid} {valor}
+  Placeholder do saldo: ''
+  Comando para dar: ''
+  Comando para retirar: ''
+
+#
+# ════════════════════════════════  TERRENOS  ════════════════════════════════
+#
+Terrenos:
+  # Mundos onde o plugin nao faz nada: nem protege, nem deixa criar terreno.
+  Mundos bloqueados:
+    - 'lobby'
+
+  # Quantos terrenos cada jogador pode ter (-1 = sem limite).
+  # A permissao starterrenos.limite.<numero> passa por cima disto (o maior
+  # numero que o jogador tiver e o que vale) e starterrenos.limite.ilimitado
+  # tira o teto.
+  Limite por jogador: 3
+
+  # Nenhum lado do terreno pode ser menor que isto.
+  Lado minimo: 5
+
+  # Area minima em blocos (largura x comprimento).
+  Area minima: 100
+
+  # Area maxima em blocos; 0 tira o teto.
+  Area maxima: 0
+
+  # Blocos livres exigidos entre terrenos de donos diferentes. 0 deixa colar um
+  # no outro.
+  Distancia entre terrenos: 0
+
+  # Deixa o jogador com a permissao starterrenos.caixa criar subterreno com
+  # altura propria (/terreno caixa). O terreno de raiz vai sempre do fundo ao
+  # topo do mundo.
+  Permitir terreno em caixa: true
+
+  # Quantos subterrenos cabem dentro de um terreno; 0 tira o limite.
+  Limite de subterrenos: 10
+
+  # Icone que os terrenos usam na lista enquanto o dono nao escolhe outro.
+  Icone padrao: 'GRASS_BLOCK'
+
+#
+# ══════════════════════════  BLOCOS DE TERRENO  ═════════════════════════════
+#
+# Marcar terreno gasta "blocos de terreno": um por bloco de chao. Eles sao
+# ganhos jogando e podem ser comprados, vendidos e dados pelo admin.
+Blocos de terreno:
+  # Com quantos o jogador comeca.
+  Iniciais: 500
+
+  # Quantos ele ganha por hora online (0 desliga o ganho).
+  Por hora: 120
+
+  # De quantos em quantos minutos a premiacao acontece.
+  A cada minutos: 5
+
+  # Teto do que da para ganhar jogando; o que o admin da e o que ele compra
+  # entram como bonus e nao respeitam este teto. 0 tira o teto.
+  Maximo acumulado: 80000
+
+  # Quanto por cento dos blocos volta quando o jogador abandona um terreno.
+  Devolver ao abandonar: 100
+
+  # Loja de blocos no menu. 0 em qualquer um dos dois esconde o botao.
+  Preco de compra: 5.0
+  Preco de venda: 2.5
+  Quantidade por vez: 100
+
+#
+# ═══════════════════════════════  FERRAMENTA  ═══════════════════════════════
+#
+Ferramenta:
+  # Clique com a direita em dois cantos para marcar o terreno; clique num canto
+  # do seu proprio terreno para mudar o tamanho dele.
+  Criar: 'GOLDEN_SHOVEL'
+
+  # Clique com a direita para ver de quem e o terreno; agachado, mostra todos
+  # os terrenos por perto.
+  Inspecionar: 'STICK'
+
+  # Da a ferramenta na entrada de quem ainda nao tem nenhuma no inventario.
+  Dar na primeira entrada: false
+
+#
+# ═════════════════════════════  VISUALIZACAO  ═══════════════════════════════
+#
+# O contorno do terreno e feito de blocos que so existem na tela de quem esta
+# olhando -- nada e criado no mundo.
+Visualizacao:
+  Ativar: true
+
+  # Por quantos segundos o contorno fica na tela.
+  Segundos: 20
+
+  # De quantos em quantos blocos aparece uma marca nas laterais.
+  Espacamento: 10
+
+  Terreno:
+    Canto: 'GLOWSTONE'
+    Borda: 'GOLD_BLOCK'
+
+  Subterreno:
+    Canto: 'IRON_BLOCK'
+    Borda: 'WHITE_WOOL'
+
+  Administrativo:
+    Canto: 'GLOWSTONE'
+    Borda: 'PUMPKIN'
+
+  # Enquanto o jogador esta marcando os cantos.
+  Selecao:
+    Canto: 'DIAMOND_BLOCK'
+    Borda: 'LIGHT_BLUE_WOOL'
+
+  # Mostrado no terreno que atrapalhou a criacao.
+  Erro:
+    Canto: 'NETHERRACK'
+    Borda: 'REDSTONE_ORE'
+
+#
+# ══════════════════════════════════  AVISOS  ════════════════════════════════
+#
+Avisos:
+  # O aviso de quem entra e de quem sai de um terreno.
+  Entrada e saida: true
+
+  No chat: false
+  Na actionbar: true
+  Em titulo: false
+
+  # Segundos entre duas mensagens de "voce nao pode fazer isso aqui". Sem isto,
+  # segurar o botao de quebrar bloco encheria o chat.
+  Segundos entre recusas: 3
+
+#
+# ══════════════════════════════════  VOO  ═══════════════════════════════════
+#
+Voo:
+  Ativar: true
+
+  # Tira o voo de quem sai do terreno. Desligue so se outro plugin ja cuida
+  # disso, senao o jogador sai voando pelo mapa.
+  Desligar ao sair do terreno: true
+
+#
+# ═══════════════════════════  COMPRA E VENDA  ═══════════════════════════════
+#
+Venda:
+  Ativar: true
+
+  Preco minimo: 1.0
+  Preco maximo: 10000000.0
+
+  # Porcentagem que o servidor fica de cada venda (0 = nada).
+  Taxa do servidor: 0.0
+
+  # Avisa o servidor inteiro quando um terreno e anunciado.
+  Anunciar no chat: true
+
+#
+# ════════════════════════════════  TELEPORTE  ═══════════════════════════════
+#
+Teleporte:
+  # Cobrado de quem nao e dono nem membro do terreno. 0 desliga a cobranca.
+  Custo: 0.0
+
+  # Segundos de espera antes de teleportar.
+  # A permissao starterrenos.teleporte.imediato pula a contagem.
+  Demora: 3
+
+  Cancelar ao mover: true
+  Cancelar ao levar dano: true
