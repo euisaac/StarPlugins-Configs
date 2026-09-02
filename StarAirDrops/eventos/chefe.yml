@@ -1,0 +1,114 @@
+# AirDrop do Chefe: a caixa so libera quando o chefe cai.
+# Os campos sao os mesmos de comum.yml, que traz a explicacao de cada um.
+
+Nome: '&5AirDrop do Chefe'
+Descricao: 'Um chefe nasce junto e segura a caixa.'
+Tipo: CHEFE
+Ativado: true
+Peso: 6
+Raridade: EPICO
+
+Anunciar: true
+Anunciar local: true
+Secreto: false
+Permissao: ''
+
+Expira em: 1200
+Captura em: 3
+Tranca: 0
+Coletas: 3
+
+Animacao: OVNI
+Altura: 50
+Velocidade: 0.3
+Raio ao cair: true
+Explosao ao cair: false
+
+Mundos: []
+Comandos ao cair: []
+Comandos ao abrir: []
+
+Caixa:
+  Material: ENDER_CHEST
+  Modelo: 0
+  Deslocamento do holograma:
+    X: 0.0
+    Y: 1.6
+    Z: 0.0
+  Holograma:
+    - '&5&lAIRDROP DO CHEFE{temporada}'
+    - '&7Raridade: {raridade}'
+    - '&7Estado: {estado}'
+    - '&5Derrote o chefe para abrir'
+
+Requisitos:
+  Chave: ''
+  Senha: ''
+  Item: ''
+  Permissao: ''
+  Nivel: 0
+  Dinheiro: 0
+  Moeda: 'dinheiro'
+  Missao: ''
+
+Hackeamento:
+  Ativado: false
+  Tipo: SEQUENCIA
+  Digitos: 4
+  Acertos: 5
+  Segundos: 20
+
+Pvp:
+  Ativado: false
+  Raio: 20
+  Avisar ao entrar: true
+  Segundos de combate: 10
+
+Cooperativo:
+  Ativado: false
+  Jogadores: 5
+  Raio: 8
+  Dividir: false
+
+Chefe:
+  Ativado: true
+  Tipo: WITHER_SKELETON
+  Vida: 300
+  Nome: '&5&lGuardiao da Carga'
+  Dano: 0
+  Barra: true
+  Alcance da barra: 40
+
+Ondas:
+  Ativado: false
+  Raio: 6
+  Ondas: {}
+
+Premios:
+  Sorteios minimos: 5
+  Sorteios maximos: 8
+  Lista:
+    diamante:
+      Tipo: ITEM
+      Material: DIAMOND
+      Quantidade: 4
+      Quantidade maxima: 10
+      Chance: 80
+      Peso: 22
+    dinheiro:
+      Tipo: DINHEIRO
+      Moeda: 'dinheiro'
+      Valor: 6000
+      Valor maximo: 15000
+      Chance: 85
+      Peso: 25
+    arsenal:
+      Tipo: ARSENAL
+      Quantidade: 32
+      Chance: 90
+      Peso: 28
+    arma:
+      Tipo: ARMA
+      Id: ''
+      Chance: 45
+      Peso: 12

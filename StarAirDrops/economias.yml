@@ -1,0 +1,39 @@
+# ==========================================================================
+#  StarAirDrops - moedas
+#
+#  O airdrop nunca fala com o plugin de economia direto: ele pede "cobre 500
+#  de dinheiro" e o resto e resolvido aqui. Assim o mesmo evento serve para o
+#  servidor que usa Vault e para o que usa uma moeda propria.
+#
+#  Tipo:
+#    VAULT        - qualquer economia registrada no Vault (Essentials, CMI...)
+#    STARECONOMIA - uma moeda do StarEconomia; a chave "Moeda" e o id la
+#    NIVEIS       - niveis de experiencia, sem depender de plugin nenhum
+#
+#  Moeda indisponivel nao derruba nada: a cobranca falha, o premio em
+#  dinheiro nao e pago e o console avisa uma vez.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Usada quando um premio ou requisito nao diz qual moeda quer.
+Padrao: 'dinheiro'
+
+Economias:
+
+  dinheiro:
+    Tipo: VAULT
+    Nome: 'coins'
+    Simbolo: '$'
+
+  # Descomente se o servidor tiver o StarEconomia com uma moeda "cash".
+  # cash:
+  #   Tipo: STARECONOMIA
+  #   Moeda: 'cash'
+  #   Nome: 'cash'
+  #   Simbolo: ''
+
+  experiencia:
+    Tipo: NIVEIS
+    Nome: 'niveis'
+    Simbolo: ''

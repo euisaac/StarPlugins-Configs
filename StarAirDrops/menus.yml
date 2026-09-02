@@ -1,0 +1,184 @@
+# ==========================================================================
+#  StarAirDrops - telas
+#
+#  Slot -1 desliga o botao. Linhas vai de 1 a 6.
+#  As lores aceitam os marcadores anotados acima de cada tela.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Marcadores: {jogador} {coletas} {vitorias} {premios} {tempo} {ativos}
+#             {temporada} {sorte}
+Principal:
+  Titulo: '&8AirDrops'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+  Estatisticas:
+    Slot: 11
+    Material: 'PLAYER_HEAD'
+    Nome: '&6&l{jogador}'
+    Lore:
+      - ''
+      - ' &7Coletas: &a{coletas}'
+      - ' &7Vitorias: &a{vitorias}'
+      - ' &7Premios: &f{premios}'
+      - ' &7Melhor tempo: &e{tempo}'
+      - ' &7Sorte: &e+{sorte}'
+      - ''
+      - ' &7Temporada: &f{temporada}'
+      - ''
+  Ativos:
+    Slot: 13
+    Material: 'CHEST'
+    Nome: '&a&lAirDrops ativos'
+    Lore:
+      - ''
+      - ' &7Agora no ar: &f{ativos}'
+      - ''
+      - ' &eClique para ver'
+      - ''
+  Missoes:
+    Slot: 15
+    Material: 'BOOK'
+    Nome: '&e&lMissoes'
+    Lore:
+      - ''
+      - ' &7Cumpra objetivos e receba'
+      - ' &7premios por eles.'
+      - ''
+      - ' &eClique para ver'
+      - ''
+  Top:
+    Slot: 16
+    Material: 'GOLD_INGOT'
+    Nome: '&6&lRanking'
+    Lore:
+      - ''
+      - ' &7Quem mais coleta no servidor.'
+      - ''
+      - ' &eClique para ver'
+      - ''
+
+# Marcadores do item: {id} {evento} {raridade} {estado} {mundo} {x} {y} {z}
+#                     {expira} {restantes} {maximo} {distancia}
+# Material '{caixa}' usa o proprio bloco da caixa daquele evento.
+Ativos:
+  Titulo: '&8AirDrops ativos &7({pagina})'
+  Linhas: 6
+  Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34]
+  Item:
+    Material: '{caixa}'
+    Nome: '&6&l{evento}'
+    Lore:
+      - ''
+      - ' &7Id: &f{id}'
+      - ' &7Raridade: {raridade}'
+      - ' &7Estado: {estado}'
+      - ' &7Local: &f{mundo} &7- &f{x}, {y}, {z}'
+      - ' &7Distancia: &f{distancia}'
+      - ' &7Expira em: &f{expira}s'
+      - ' &7Coletas restantes: &e{restantes}&7/&e{maximo}'
+      - ''
+      - ' &eClique para apontar a bussola'
+      - ''
+  Bussola:
+    Slot: 47
+    Material: 'COMPASS'
+    Nome: '&6&lPegar o radar'
+    Lore:
+      - ''
+      - ' &7Uma bussola que aponta para'
+      - ' &7o airdrop mais proximo.'
+      - ''
+      - ' &7Custo: &f{custo}'
+      - ''
+      - ' &eClique para pegar'
+      - ''
+  Anterior:
+    Slot: 45
+    Material: 'ARROW'
+    Nome: '&cPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: 'ARROW'
+    Nome: '&aProxima pagina'
+  Voltar:
+    Slot: 49
+    Material: 'BARRIER'
+    Nome: '&cVoltar'
+
+# Marcadores do item: {nome} {descricao} {progresso} {alvo} {estado}
+Missoes:
+  Titulo: '&8Missoes de AirDrop &7({pagina})'
+  Linhas: 6
+  Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34]
+  Item:
+    Material: 'BOOK'
+    Nome: '&e&l{nome}'
+    Lore:
+      - ''
+      - ' &7{descricao}'
+      - ''
+      - ' &7Progresso: &e{progresso}&7/&e{alvo}'
+      - ' &7Estado: {estado}'
+      - ''
+  Anterior:
+    Slot: 45
+    Material: 'ARROW'
+    Nome: '&cPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: 'ARROW'
+    Nome: '&aProxima pagina'
+  Voltar:
+    Slot: 49
+    Material: 'BARRIER'
+    Nome: '&cVoltar'
+
+# Marcadores do item: {posicao} {jogador} {valor} {coluna}
+Top:
+  Titulo: '&8Ranking &7- {coluna}'
+  Linhas: 5
+  Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25]
+  Item:
+    Material: 'PLAYER_HEAD'
+    Nome: '&6#{posicao} &f{jogador}'
+    Lore:
+      - ''
+      - ' &7{coluna}&7: &f{valor}'
+      - ''
+  Coletas:
+    Slot: 38
+    Material: 'CHEST'
+    Nome: '&aTop coletas'
+  Vitorias:
+    Slot: 40
+    Material: 'DIAMOND'
+    Nome: '&bTop vitorias'
+  Premios:
+    Slot: 42
+    Material: 'GOLD_INGOT'
+    Nome: '&6Top premios'
+  Voltar:
+    Slot: 36
+    Material: 'BARRIER'
+    Nome: '&cVoltar'
+
+# O painel de acesso do tipo CLIQUE.
+# Marcadores: {acertos} {total} {segundos}
+Hackeamento:
+  Titulo: '&8Painel &7- {acertos}/{total}'
+  Linhas: 3
+  Fundo:
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: '&8...'
+  Alvo:
+    Material: 'LIME_STAINED_GLASS_PANE'
+    Nome: '&a&lCLIQUE!'
+    Lore:
+      - ''
+      - ' &7Acertos: &a{acertos}&7/&a{total}'
+      - ''
