@@ -150,28 +150,44 @@ Sons:
 
 # Faixas de raridade das recompensas. Sao livres: crie quantas quiser e aponte
 # para elas no caixas.yml (Recompensas.<id>.Raridade).
+#
+# ---- PESO ----
+# O "Peso" da faixa MULTIPLICA o "Chance" de toda recompensa dela. E o que faz a
+# raridade valer no sorteio, e nao so na cor: com os numeros abaixo, uma
+# recompensa lendaria escrita com o mesmo Chance de uma comum sai 50 vezes
+# menos.
+#
+# Peso 1 nao mexe em nada. Peso 0 tira a faixa inteira do sorteio -- util para
+# guardar uma faixa pronta e so ligar num evento.
+#
+# A porcentagem que o jogador ve no /caixas ver ja sai com a multiplicacao
+# feita, entao da para conferir o efeito na hora.
 Raridades:
   comum:
     Nome: '&7Comum'
     Cor: '&7'
+    Peso: 1.0
     Anunciar: false
     Som: ''
     Fogos: 0
   incomum:
     Nome: '&aIncomum'
     Cor: '&a'
+    Peso: 0.5
     Anunciar: false
     Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
     Fogos: 0
   raro:
     Nome: '&bRaro'
     Cor: '&b'
+    Peso: 0.2
     Anunciar: false
     Som: 'ENTITY_PLAYER_LEVELUP;1;1.4'
     Fogos: 1
   epico:
     Nome: '&5Epico'
     Cor: '&5'
+    Peso: 0.06
     # Anuncia no servidor inteiro quem tirar uma recompensa desta faixa.
     Anunciar: true
     Som: 'ENTITY_ENDER_DRAGON_GROWL;0.7;1.6'
@@ -179,6 +195,7 @@ Raridades:
   lendario:
     Nome: '&6&lLendario'
     Cor: '&6'
+    Peso: 0.02
     Anunciar: true
     Som: 'UI_TOAST_CHALLENGE_COMPLETE;1;1'
     Fogos: 4
