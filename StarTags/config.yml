@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 7
+Versao do modelo: 8
 
 Geral:
   Debug: false
@@ -66,6 +66,18 @@ Nome:
 
   # Troca o nome na lista de jogadores (tab).
   Aplicar na lista de jogadores: true
+
+  # Um jogador so pode estar em UM time do placar por vez. Se outro plugin do
+  # seu servidor puser ele no time dele depois do StarTags, o nosso deixa de
+  # valer -- e o nome que o jogo desenha reaparece, sem erro nenhum no console.
+  #
+  # Ligado, o StarTags escreve a visibilidade do nome NO TIME DELE em vez de
+  # brigar pelo time (os dois plugins ficariam se roubando a cada tique). Esses
+  # times sao por jogador, entao a mudanca nao vaza para mais ninguem e o
+  # prefixo continua sendo o que o outro plugin quiser.
+  #
+  # O /startags info mostra em qual time voce esta de verdade.
+  Esconder no time de outro plugin: true
 
 Chat:
   # Desligado de fabrica: se voce ja tem um plugin de chat, use os placeholders
@@ -160,9 +172,13 @@ Texto no nome:
   # Precisa de "Substituir o nome do jogador: true".
   Montar o nome no jogador: true
 
-  # Com visor de texto vale sempre. Sem visor, so com "Montar o nome no
-  # jogador: false".
-  Altura do nome: 2.05
+  # A altura da linha DE BAIXO do nome, em blocos a partir dos pes.
+  #
+  # E o piso do conjunto: as demais linhas do grupo empilham para cima a partir
+  # daqui, as de "Acima do nome" da tag ficam acima delas e as de "Abaixo do
+  # nome" descem. Cada grupo do nametags.yml ainda pode subir ou descer o
+  # proprio bloco com "Altura extra".
+  Altura: 2.05
 
   # Ticks entre as REESCRITAS do texto (para placeholders que mudam sozinhos).
   # A posicao e refeita a cada tique sempre, e nao passa por aqui: e ela que
@@ -189,10 +205,7 @@ Texto no nome:
   # servidor. Para os outros jogadores os dois vem do servidor e andam juntos.
   Mirar a frente: 3
 
-  # A que altura (em blocos, a partir dos pes) fica a primeira linha de cada
-  # lado. Muda de versao para versao -- ajuste se o texto ficar colado no nick.
-  Altura acima: 2.35
-  Altura abaixo: 1.75
+  # A distancia entre uma linha e outra.
   Espaco entre linhas: 0.28
 
 Animacoes:
