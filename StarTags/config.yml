@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 8
+Versao do modelo: 9
 
 Geral:
   Debug: false
@@ -172,12 +172,14 @@ Texto no nome:
   # Precisa de "Substituir o nome do jogador: true".
   Montar o nome no jogador: true
 
-  # A altura da linha DE BAIXO do nome, em blocos a partir dos pes.
+  # A altura da LINHA MAIS BAIXA de todas, em blocos a partir dos pes.
   #
-  # E o piso do conjunto: as demais linhas do grupo empilham para cima a partir
-  # daqui, as de "Acima do nome" da tag ficam acima delas e as de "Abaixo do
-  # nome" descem. Cada grupo do nametags.yml ainda pode subir ou descer o
-  # proprio bloco com "Altura extra".
+  # E o piso do conjunto inteiro: tudo empilha para cima a partir daqui, na
+  # ordem "Abaixo do nome" -> linhas do grupo -> "Acima do nome". Acrescentar
+  # uma linha nunca empurra nada para dentro do jogador -- o bloco sobe junto.
+  #
+  # Cada grupo do nametags.yml ainda pode subir ou descer o proprio bloco com
+  # "Altura extra".
   Altura: 2.05
 
   # Ticks entre as REESCRITAS do texto (para placeholders que mudam sozinhos).
