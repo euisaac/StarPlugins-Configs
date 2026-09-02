@@ -1,0 +1,88 @@
+# ---------------------------------------------------------------------------
+#  StarTags - os grupos de nome
+#
+#  Aqui voce desenha o NOME FLUTUANTE: quantas linhas ele tem, o que vai em
+#  cada uma, se tem fundo, o tamanho da letra e a altura do conjunto.
+#
+#  Quem decide o grupo de cada jogador e a PERMISSAO: o grupo de maior
+#  prioridade que ele tiver ganha. O grupo com permissao vazia atende todo
+#  mundo, e por isso deve ser o de menor prioridade.
+#
+#  A separacao e de proposito: a TAG diz o que aparece (%startags_tag%), o
+#  GRUPO diz como. Assim o mesmo desenho de nome serve para todas as tags do
+#  servidor, e trocar de tag nao mexe no desenho.
+#
+#  Este arquivo e SEU: o plugin nunca repoe nem completa o que voce apagar.
+#
+#  PRECISA de "Texto no nome.Substituir o nome do jogador: true" no config.yml
+#  -- e ele que esconde o nome que o proprio jogo desenha e poe estas linhas no
+#  lugar. Sem isso, o nome continua sendo o do jogo e estes grupos nao valem.
+#
+#  Campos de cada grupo:
+#
+#    Permissao       quem entra no grupo; vazio = todo mundo
+#    Prioridade      maior ganha quando o jogador serve para mais de um grupo
+#    Linhas          de CIMA para BAIXO; aceita cor, hex, gradiente e placeholder
+#    Fundo.Ativar    a caixinha escura atras do texto (so no visor, 1.19.4+)
+#    Fundo.Cor       '26,26,26' ou '#1A1A1A'
+#    Fundo.Opacidade 0 a 255
+#    Fundo.Sombra    sombra embaixo das letras
+#    Fundo.Atravessa parede   true faz o nome aparecer atraves dos blocos
+#    Escala          tamanho da letra (1.0 = igual ao nome do jogo)
+#    Altura extra    sobe (ou desce) o conjunto inteiro deste grupo
+#
+#  Fundo, Escala e Altura extra so funcionam no visor de texto (1.19.4+). Numa
+#  versao anterior as linhas ainda aparecem, so sem esses tres.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Nomes:
+
+  # ---------------------------- a equipe do servidor ----------------------------
+  staff:
+    Permissao: 'startags.nome.staff'
+    Prioridade: 100
+    Linhas:
+      - '&c&lSTAFF'
+      - '%startags_tag%&f{nome}%startags_sufixo%'
+    Fundo:
+      Ativar: true
+      Cor: '#1A1A1A'
+      Opacidade: 200
+      Sombra: false
+      Atravessa parede: false
+    Escala: 1.0
+    Altura extra: 0.0
+
+  # --------------------------------- todo mundo ---------------------------------
+  padrao:
+    # Vazio para valer sem precisar dar permissao a ninguem.
+    Permissao: ''
+    Prioridade: 0
+    Linhas:
+      - '%startags_tag%&f{nome}%startags_sufixo%'
+    Fundo:
+      Ativar: true
+      Cor: '#1A1A1A'
+      Opacidade: 200
+      Sombra: false
+      Atravessa parede: false
+    Escala: 1.0
+    Altura extra: 0.0
+
+# ---------------------------------------------------------------------------
+#  Placeholders uteis nas linhas
+#
+#    {nome}                  o nick (ou o nome personalizado da tag)
+#    {jogador}               o nick sempre, sem o nome personalizado
+#    {tag} e {sufixo}        atalhos para os dois de baixo
+#
+#    %startags_tag%          o texto da tag equipada
+#    %startags_sufixo%       o sufixo em uso
+#    %startags_nome%         o nome personalizado, ou o nick
+#    %startags_nome_completo%   tag + nome + sufixo, pronto
+#
+#  Com o PlaceholderAPI instalado, QUALQUER placeholder de outro plugin
+#  funciona aqui -- clan, cargo, nivel, o que voce tiver. E o %startags_tag%
+#  tambem funciona no seu plugin de tab e no seu plugin de chat.
+# ---------------------------------------------------------------------------
