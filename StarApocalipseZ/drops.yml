@@ -1,0 +1,79 @@
+# ============================================================================
+#  Drops
+#  O que cai de cada zumbi. A tabela usada vem do tipo (zumbis.yml >
+#  Tabela-De-Drops); quem nao aponta nenhuma cai na tabela COMUM.
+#
+#  ---------------------------------------------------------------------------
+#  COMO ESCREVER UMA LINHA
+#  Cada entrada e uma lista de Chave=Valor separada por ponto e virgula.
+#
+#    Item=BREAD; Quantidade=1-3; Chance=40
+#    Item=IRON_INGOT; Quantidade=1; Chance=8; Nome=&fSucata; Nivel-Minimo=10
+#    Comando=eco give {jogador} 50; Chance=5
+#
+#  Com o StarArmas instalado, o loot tambem sai de la, sorteado por raridade:
+#
+#    Arma=*; Raridade=COMUM; Chance=6
+#    Municao=*; Raridade=COMUM; Quantidade=8-24; Chance=20
+#    Acessorio=*; Raridade=RARO; Chance=3
+#
+#  Use * para "qualquer um daquela raridade" ou o id exato (Arma=AK47).
+#  Sem o StarArmas no servidor, essas linhas sao simplesmente ignoradas.
+#
+#  CHAVES COMUNS A TODAS
+#    Chance         0 a 100 (padrao 100)
+#    Quantidade     numero fixo ou faixa "min-max"
+#    Nivel-Minimo   so cai de zumbi deste nivel para cima
+#    Nivel-Maximo   so cai ate este nivel
+#    So-Em-Zona     true = so quando o abate acontece dentro de uma zona
+#    Por-Nivel      soma esta chance por nivel do zumbi (ex.: 0.2)
+# ============================================================================
+
+# Substitui o loot natural do mob (carne podre, batata...) pelo desta tabela?
+Substituir-Drops-Naturais: false
+
+# Multiplicador da experiencia natural, alem do que o nivel ja soma.
+Multiplicador-De-Xp: 1.0
+
+Tabelas:
+
+  COMUM:
+    Itens:
+      - 'Item=ROTTEN_FLESH; Quantidade=1-3; Chance=70'
+      - 'Item=IRON_NUGGET; Quantidade=1-2; Chance=12; Nome=&7Sucata'
+      - 'Item=IRON_INGOT; Quantidade=1; Chance=5; Nivel-Minimo=10'
+      - 'Item=GOLD_INGOT; Quantidade=1; Chance=2; Nivel-Minimo=25'
+      - 'Municao=*; Raridade=COMUM; Quantidade=4-10; Chance=8'
+      - 'Arma=*; Raridade=COMUM; Chance=1; Nivel-Minimo=15'
+
+  TANQUE:
+    Itens:
+      - 'Item=ROTTEN_FLESH; Quantidade=2-5; Chance=80'
+      - 'Item=IRON_INGOT; Quantidade=1-3; Chance=30'
+      - 'Item=IRON_HELMET; Chance=6'
+      - 'Item=DIAMOND; Chance=3; Nivel-Minimo=30'
+      - 'Municao=*; Raridade=COMUM; Quantidade=8-16; Chance=15'
+      - 'Arma=*; Raridade=COMUM; Chance=4; Nivel-Minimo=20'
+
+  RARO:
+    Itens:
+      - 'Item=ROTTEN_FLESH; Quantidade=1-2; Chance=50'
+      - 'Item=DIAMOND; Quantidade=1-2; Chance=12'
+      - 'Item=EMERALD; Quantidade=1-3; Chance=20'
+      - 'Item=EXPERIENCE_BOTTLE; Quantidade=1-4; Chance=25'
+      - 'Arma=*; Raridade=RARO; Chance=6'
+      - 'Acessorio=*; Raridade=COMUM; Chance=8'
+      - 'Municao=*; Raridade=RARO; Quantidade=6-12; Chance=18'
+
+  CHEFE:
+    Itens:
+      - 'Item=DIAMOND; Quantidade=4-9; Chance=100'
+      - 'Item=EMERALD; Quantidade=6-14; Chance=100'
+      - 'Item=EXPERIENCE_BOTTLE; Quantidade=8-16; Chance=100'
+      - 'Item=GOLDEN_APPLE; Quantidade=1-3; Chance=60'
+      - 'Item=NETHER_STAR; Chance=5'
+      - 'Arma=*; Raridade=EPICO; Chance=25'
+      - 'Arma=*; Raridade=RARO; Chance=45'
+      - 'Acessorio=*; Raridade=RARO; Chance=30'
+      - 'Municao=*; Raridade=EPICO; Quantidade=10-30; Chance=50'
+      - 'Comando=eco give {jogador} 5000; Chance=100'

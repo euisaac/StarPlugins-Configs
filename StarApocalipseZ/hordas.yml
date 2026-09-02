@@ -1,0 +1,103 @@
+# ============================================================================
+#  Hordas
+#  Um bando que nasce junto, anda junto atras do mesmo alvo e some junto.
+#  Diferente da raid: a horda nao tem ondas nem recompensa propria -- ela
+#  simplesmente aparece e vai atras de alguem.
+#
+#  O sorteio usa o Peso e so considera as hordas cuja faixa de nivel cabe no
+#  nivel do lugar onde ela vai nascer.
+# ============================================================================
+
+Hordas:
+
+  PEQUENA:
+    Nome: '&7Bando'
+    Peso: 50
+    # Faixa de nivel do LOCAL (nao do zumbi) em que esta horda pode nascer.
+    Nivel-Minimo: 1
+    Nivel-Maximo: 25
+    Membros-Minimo: 5
+    Membros-Maximo: 9
+    # Nivel somado a cada membro.
+    Bonus-De-Nivel: 0
+    # De onde saem os membros: 'TIPO' ou 'TIPO:peso'. Vazio = sorteio normal.
+    Composicao:
+      - 'COMUM:70'
+      - 'CORREDOR:30'
+    # O lider da horda: mais forte, e quem os outros seguem. Vazio = o
+    # primeiro membro vira lider sem nada de especial.
+    Lider: ''
+    Bonus-De-Nivel-Do-Lider: 5
+    # So nasce de noite?
+    So-A-Noite: false
+    # Aviso para quem estiver perto quando ela nascer.
+    Aviso:
+      Ativado: true
+      Raio: 80
+      Mensagem: '&7Voce ouve passos arrastados ao longe...'
+      Som: 'ENTITY_ZOMBIE_AMBIENT'
+
+  NOTURNA:
+    Nome: '&9Marcha da Noite'
+    Peso: 30
+    Nivel-Minimo: 10
+    Nivel-Maximo: 50
+    Membros-Minimo: 10
+    Membros-Maximo: 18
+    Bonus-De-Nivel: 5
+    Composicao:
+      - 'COMUM:50'
+      - 'CORREDOR:30'
+      - 'ARIDO:10'
+      - 'GRITADOR:10'
+    Lider: 'GRITADOR'
+    Bonus-De-Nivel-Do-Lider: 8
+    So-A-Noite: true
+    Aviso:
+      Ativado: true
+      Raio: 100
+      Mensagem: '&9Uma marcha se aproxima na escuridao.'
+      Som: 'ENTITY_ZOMBIE_AMBIENT'
+
+  BRUTAL:
+    Nome: '&cInvestida'
+    Peso: 15
+    Nivel-Minimo: 25
+    Nivel-Maximo: 60
+    Membros-Minimo: 12
+    Membros-Maximo: 20
+    Bonus-De-Nivel: 10
+    Composicao:
+      - 'CORREDOR:40'
+      - 'TANQUE:25'
+      - 'EXPLOSIVO:15'
+      - 'CUSPIDOR:20'
+    Lider: 'TANQUE'
+    Bonus-De-Nivel-Do-Lider: 12
+    So-A-Noite: false
+    Aviso:
+      Ativado: true
+      Raio: 120
+      Mensagem: '&c&lELES VIRAM VOCE.'
+      Som: 'ENTITY_ZOMBIE_VILLAGER_CONVERTED'
+
+  MATILHA:
+    Nome: '&4Matilha'
+    Peso: 5
+    Nivel-Minimo: 45
+    Nivel-Maximo: 0
+    Membros-Minimo: 16
+    Membros-Maximo: 26
+    Bonus-De-Nivel: 15
+    Composicao:
+      - 'CACADOR:50'
+      - 'CORREDOR:30'
+      - 'TANQUE:20'
+    Lider: 'CACADOR'
+    Bonus-De-Nivel-Do-Lider: 20
+    So-A-Noite: false
+    Aviso:
+      Ativado: true
+      Raio: 140
+      Mensagem: '&4&lUMA MATILHA ESTA CACANDO VOCE.'
+      Som: 'ENTITY_ENDER_DRAGON_GROWL'

@@ -1,0 +1,325 @@
+# ============================================================================
+#  Titulos, tamanhos e botoes dos menus.
+#
+#  Slot: -1 esconde o botao. Linhas vai de 1 a 6.
+# ============================================================================
+
+Versao do modelo: 1
+
+Principal:
+  Titulo: '&4Apocalipse'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Perfil:
+    Slot: 20
+    Material: 'PLAYER_HEAD'
+    Nome: '&aSeu perfil'
+    Lore:
+      - '&7Titulo: &r{titulo}'
+      - '&7Nivel: &f{nivel}'
+      - '&7Pontos: &f{pontos}&7/&f{proximo}'
+      - '{barra}'
+      - ''
+      - '&7Abates: &f{abates}'
+      - '&7Chefes: &f{chefes}'
+      - '&7Mortes: &f{mortes}'
+      - ''
+      - '&8Clique para ver mais'
+
+  Zonas:
+    Slot: 21
+    Material: 'COMPASS'
+    Nome: '&cZonas de perigo'
+    Lore:
+      - '&7Abertas agora: &f{zonas}'
+      - '&7Mais proxima: &r{proxima}'
+      - ''
+      - '&8Clique para abrir'
+
+  Bestiario:
+    Slot: 23
+    Material: 'ROTTEN_FLESH'
+    Nome: '&6Bestiario'
+    Lore:
+      - '&7Tipos conhecidos: &f{descobertos}&7/&f{total}'
+      - ''
+      - '&8Clique para abrir'
+
+  Ranking:
+    Slot: 24
+    Material: 'GOLDEN_SWORD'
+    Nome: '&eSobreviventes'
+    Lore:
+      - '&7Sua posicao: &f{posicao}'
+      - ''
+      - '&8Clique para abrir'
+
+  Clans:
+    Slot: 22
+    Material: 'SHIELD'
+    Nome: '&dClas sobreviventes'
+    Lore:
+      - '&7Seu cla: &r{tag}'
+      - '&7Posicao do cla: &f{posicao}'
+      - '&7Clas no ranking: &f{clas}'
+      - ''
+      - '&8Clique para abrir'
+
+  Local:
+    Slot: 40
+    Material: 'MAP'
+    Nome: '&fOnde voce esta'
+    Lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Distancia do abrigo: &f{distancia}m'
+      - '&7Nivel dos mortos aqui: &c{nivel}'
+      - '&7Dia do apocalipse: &f{dia}'
+      - '&7Zona: &r{zona}'
+
+  Infeccao:
+    Slot: 4
+    Material: 'FERMENTED_SPIDER_EYE'
+    Nome: '&2Infeccao'
+    Lore:
+      - '&7Estado: &r{estado}'
+      - '&7Tempo restante: &f{tempo}'
+      - '&7Estagio: &f{estagio}'
+      - ''
+      - '&7Antidotos no inventario: &f{antidotos}'
+
+Perfil:
+  Titulo: '&aPerfil de {jogador}'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Resumo:
+    Slot: 13
+    Material: 'PLAYER_HEAD'
+    Nome: '&a{jogador}'
+    Lore:
+      - '&7Titulo: &r{titulo}'
+      - '&7Nivel: &f{nivel}&7/&f{maximo}'
+      - '&7Pontos: &f{pontos}'
+      - '&7Para o proximo: &f{faltam}'
+      - '{barra}'
+
+  Abates:
+    Slot: 29
+    Material: 'IRON_SWORD'
+    Nome: '&cAbates'
+    Lore:
+      - '&7Total: &f{abates}'
+      - '&7Chefes: &f{chefes}'
+      - '&7Em zona: &f{zona}'
+      - '&7Maior nivel abatido: &f{maior}'
+      - '&7Sequencia atual: &f{sequencia}'
+      - '&7Melhor sequencia: &f{melhor}'
+
+  Sobrevivencia:
+    Slot: 31
+    Material: 'CLOCK'
+    Nome: '&fSobrevivencia'
+    Lore:
+      - '&7Mortes: &f{mortes}'
+      - '&7Infeccoes: &f{infeccoes}'
+      - '&7Curas: &f{curas}'
+      - '&7Raids vencidas: &f{raids}'
+      - '&7Zonas limpas: &f{zonas}'
+
+  Marcos:
+    Slot: 33
+    Material: 'BOOK'
+    Nome: '&6Marcos'
+    Lore:
+      - '&7Alcancados: &f{alcancados}&7/&f{total}'
+      - ''
+      - '&8Clique para ver'
+
+  Voltar:
+    Slot: 40
+    Material: 'ARROW'
+    Nome: '&7Voltar'
+    Lore: []
+
+Zonas:
+  Titulo: '&cZonas de perigo'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Zona:
+    Material: 'RED_STAINED_GLASS'
+    Nome: '&r{nome}'
+    Lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Local: &f{x}, {z}'
+      - '&7Distancia: &f{distancia}m'
+      - '&7Raio: &f{raio} blocos'
+      - '&7Nivel extra: &c+{bonus}'
+      - '&7Chefe: &f{chefe}'
+      - '&7Baus restantes: &f{baus}'
+      - '&7Fecha em: &f{tempo}'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&7Nenhuma zona aberta'
+    Lore:
+      - '&7O mapa esta quieto... por enquanto.'
+
+  Voltar:
+    Slot: 40
+    Material: 'ARROW'
+    Nome: '&7Voltar'
+    Lore: []
+
+Bestiario:
+  Titulo: '&6Bestiario'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Conhecido:
+    Nome: '&r{nome}'
+    Lore:
+      - '&7Nivel a partir de: &f{minimo}'
+      - '&7Vida: &fx{vida}'
+      - '&7Dano: &fx{dano}'
+      - '&7Velocidade: &fx{velocidade}'
+      - ''
+      - '&7Habilidades:'
+      - '{habilidades}'
+      - ''
+      - '&7Voce ja abateu: &f{abates}'
+
+  Desconhecido:
+    Material: 'GRAY_DYE'
+    Nome: '&8???'
+    Lore:
+      - '&7Voce ainda nao encontrou'
+      - '&7este tipo de morto.'
+
+  Voltar:
+    Slot: 49
+    Material: 'ARROW'
+    Nome: '&7Voltar'
+    Lore: []
+
+Ranking:
+  Titulo: '&eSobreviventes'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Posicao:
+    Material: 'PLAYER_HEAD'
+    Nome: '&e#{posicao} &f{jogador}'
+    Lore:
+      - '&7Titulo: &r{titulo}'
+      - '&7Nivel: &f{nivel}'
+      - '&7Pontos: &f{pontos}'
+      - '&7Abates: &f{abates}'
+
+  Voce:
+    Slot: 40
+    Material: 'NAME_TAG'
+    Nome: '&aSua posicao: &f#{posicao}'
+    Lore:
+      - '&7Pontos: &f{pontos}'
+      - '&7Faltam &f{faltam} &7para subir'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&7Ranking vazio'
+    Lore: []
+
+  Voltar:
+    Slot: 36
+    Material: 'ARROW'
+    Nome: '&7Voltar'
+    Lore: []
+
+Clans:
+  Titulo: '&dClas sobreviventes'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Posicao:
+    Material: 'SHIELD'
+    Nome: '&d#{posicao} &f{tag}'
+    Lore:
+      - '&7Nome: &f{nome}'
+      - '&7Pontos: &f{pontos}'
+      - '&7Abates: &f{abates}'
+      - '&7Sobreviventes no ranking: &f{membros}'
+
+  Voce:
+    Slot: 40
+    Material: 'NAME_TAG'
+    Nome: '&aSeu cla'
+    Lore:
+      - '&7Cla: &r{tag}'
+      - '&7Posicao: &f{posicao}'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&7Nenhum cla pontuou ainda'
+    Lore: []
+
+  Voltar:
+    Slot: 36
+    Material: 'ARROW'
+    Nome: '&7Voltar'
+    Lore: []
+
+Marcos:
+  Titulo: '&6Marcos'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Alcancado:
+    Material: 'LIME_DYE'
+    Nome: '&aNivel {nivel} &7- &r{nome}'
+    Lore:
+      - '&7{mensagem}'
+      - ''
+      - '&aJa recebido'
+
+  Bloqueado:
+    Material: 'GRAY_DYE'
+    Nome: '&7Nivel {nivel} &7- &r{nome}'
+    Lore:
+      - '&7{mensagem}'
+      - ''
+      - '&cFaltam &f{faltam} &cniveis'
+
+  Voltar:
+    Slot: 40
+    Material: 'ARROW'
+    Nome: '&7Voltar'
+    Lore: []
+
+Bau:
+  Titulo: '&8Suprimentos'
+  Linhas: 3

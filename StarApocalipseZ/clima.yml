@@ -1,0 +1,178 @@
+# ============================================================================
+#  Clima do apocalipse
+#  De tempos em tempos o ceu muda e o mundo inteiro fica pior por um tempo:
+#  mais mortos, mais fortes, ou simplesmente mais dificil ficar do lado de
+#  fora.
+#
+#  Um clima por mundo de cada vez. O sorteio usa o Peso, e so entram os
+#  modelos que couberem na hora do dia.
+#
+#  Ceu-Aberto: true faz os efeitos e o dano valerem so para quem esta sem
+#  telhado -- e o que transforma um abrigo qualquer em abrigo de verdade.
+# ============================================================================
+
+Modelos:
+
+  NEVOA:
+    Nome: '&7Nevoa Densa'
+    Cor: '&7'
+    Peso: 35
+    Duracao-Minima: '5m'
+    Duracao-Maxima: '12m'
+    So-A-Noite: false
+    So-De-Dia: false
+    Ceu-Aberto: false
+
+    # O que o clima faz com os mortos enquanto durar.
+    Multiplicador-De-Nivel: 1.0
+    Multiplicador-De-Densidade: 1.6
+    Multiplicador-De-Infeccao: 1.0
+
+    # Efeitos em quem estiver no mundo. Formato EFEITO;nivel.
+    Efeitos-No-Jogador: []
+    Dano-Por-Pulso: 0.0
+    Chance-De-Raio: 0
+
+    # O ceu do proprio Minecraft: CHUVA, TEMPESTADE, LIMPO ou NADA (nao mexe).
+    Ceu: 'NADA'
+
+    Particulas: true
+    Particula: 'CLOUD'
+
+    Aviso:
+      Titulo: '&7&lNEVOA'
+      Subtitulo: '&8Voce nao ve mais do que alguns passos'
+      Mensagem: '&7Uma nevoa espessa cobriu &f{mundo}&7. Eles chegam mais perto antes de voce ver.'
+      Som: 'AMBIENT_CAVE'
+    Fim:
+      Mensagem: '&7A nevoa se dissipou.'
+
+  CHUVA_ACIDA:
+    Nome: '&2Chuva Acida'
+    Cor: '&2'
+    Peso: 25
+    Duracao-Minima: '4m'
+    Duracao-Maxima: '9m'
+    So-A-Noite: false
+    So-De-Dia: false
+    # Quem estiver sob telhado nao sente nada.
+    Ceu-Aberto: true
+
+    Multiplicador-De-Nivel: 1.0
+    Multiplicador-De-Densidade: 1.2
+    Multiplicador-De-Infeccao: 1.5
+
+    Efeitos-No-Jogador:
+      - 'SLOW;0'
+    Dano-Por-Pulso: 1.0
+    Chance-De-Raio: 0
+
+    Ceu: 'CHUVA'
+
+    Particulas: true
+    Particula: 'SLIME'
+
+    Aviso:
+      Titulo: '&2&lCHUVA ACIDA'
+      Subtitulo: '&7Procure um teto'
+      Mensagem: '&2A chuva comecou a queimar. Fique sob um teto.'
+      Som: 'ENTITY_CREEPER_PRIMED'
+    Fim:
+      Mensagem: '&aA chuva passou. O ar voltou ao normal.'
+
+  NOITE_SEM_LUA:
+    Nome: '&8Noite Sem Lua'
+    Cor: '&8'
+    Peso: 20
+    Duracao-Minima: '6m'
+    Duracao-Maxima: '10m'
+    So-A-Noite: true
+    So-De-Dia: false
+    Ceu-Aberto: false
+
+    # A noite que todo servidor de apocalipse precisa ter.
+    Multiplicador-De-Nivel: 1.35
+    Multiplicador-De-Densidade: 2.2
+    Multiplicador-De-Infeccao: 1.2
+
+    Efeitos-No-Jogador: []
+    Dano-Por-Pulso: 0.0
+    Chance-De-Raio: 0
+
+    Ceu: 'NADA'
+
+    Particulas: false
+    Particula: 'SMOKE_NORMAL'
+
+    Aviso:
+      Titulo: '&8&lNOITE SEM LUA'
+      Subtitulo: '&7Eles estao em toda parte'
+      Mensagem: '&8A escuridao engoliu &f{mundo}&8. Eles vieram em numero.'
+      Som: 'ENTITY_ENDER_DRAGON_GROWL'
+    Fim:
+      Mensagem: '&7A noite passou. Voce sobreviveu a ela.'
+
+  TEMPESTADE:
+    Nome: '&9Tempestade'
+    Cor: '&9'
+    Peso: 15
+    Duracao-Minima: '3m'
+    Duracao-Maxima: '7m'
+    So-A-Noite: false
+    So-De-Dia: false
+    Ceu-Aberto: true
+
+    Multiplicador-De-Nivel: 1.1
+    Multiplicador-De-Densidade: 1.4
+    Multiplicador-De-Infeccao: 1.0
+
+    Efeitos-No-Jogador: []
+    Dano-Por-Pulso: 0.0
+    # Chance, por pulso, de cair um raio perto de quem esta a ceu aberto.
+    Chance-De-Raio: 3
+
+    Ceu: 'TEMPESTADE'
+
+    Particulas: false
+    Particula: 'CLOUD'
+
+    Aviso:
+      Titulo: '&9&lTEMPESTADE'
+      Subtitulo: '&7Os raios estao caindo'
+      Mensagem: '&9Uma tempestade se formou sobre &f{mundo}&9.'
+      Som: 'ENTITY_LIGHTNING_BOLT_THUNDER'
+    Fim:
+      Mensagem: '&7A tempestade passou.'
+
+  MIASMA:
+    Nome: '&5Miasma'
+    Cor: '&5'
+    Peso: 5
+    Duracao-Minima: '4m'
+    Duracao-Maxima: '8m'
+    So-A-Noite: false
+    So-De-Dia: false
+    Ceu-Aberto: true
+
+    Multiplicador-De-Nivel: 1.2
+    Multiplicador-De-Densidade: 1.5
+    # O ar carrega a praga: a mordida infecta muito mais facil.
+    Multiplicador-De-Infeccao: 3.0
+
+    Efeitos-No-Jogador:
+      - 'CONFUSION;0'
+    Dano-Por-Pulso: 0.0
+    Chance-De-Raio: 0
+
+    Ceu: 'NADA'
+
+    Particulas: true
+    Particula: 'SPELL_WITCH'
+
+    Aviso:
+      Titulo: '&5&lMIASMA'
+      Subtitulo: '&7O ar esta carregado'
+      Mensagem: '&5Um miasma roxo cobriu o ceu. Nao deixe eles te tocarem.'
+      Som: 'ENTITY_WITHER_SPAWN'
+    Fim:
+      Mensagem: '&7O ar clareou.'

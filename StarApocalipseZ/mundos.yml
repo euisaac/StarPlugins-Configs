@@ -1,0 +1,70 @@
+# ============================================================================
+#  Mundos
+#  O apocalipse so acontece nos mundos listados aqui. Um mundo que nao esta
+#  nesta lista fica como o Minecraft o entregou: spawn normal, sem niveis,
+#  sem zonas, sem hordas.
+#
+#  Use /starapocalipsez editor para mexer nisto pelo jogo.
+# ============================================================================
+
+Mundos:
+
+  world:
+    Ativado: true
+
+    # Nivel somado a tudo que nascer neste mundo. Um mundo de fim de jogo
+    # pode comecar em 20 enquanto o mundo inicial comeca em 0.
+    Nivel-Base: 0
+    # Tetos do mundo. 0 = usa os do config.yml.
+    Nivel-Minimo: 0
+    Nivel-Maximo: 0
+    # Multiplicador aplicado ao nivel calculado neste mundo.
+    Multiplicador-De-Nivel: 1.0
+
+    # Ponto de referencia quando Nivel > Distancia > Referencia esta em MUNDO.
+    Referencia:
+      X: 0
+      Z: 0
+
+    # Sobrescreve o config.yml so para este mundo. Deixe as listas vazias
+    # para herdar o que esta la.
+    Spawn:
+      Bloquear-Mobs-Naturais: true
+      Animais-Ativado: false
+      Animais: []
+      Excecoes: []
+
+    Zonas: true
+    Hordas: true
+    Raids: true
+    Infeccao: true
+
+    # Areas onde o apocalipse nao entra: nada de zona, horda ou raid nasce
+    # aqui e o zumbi que passar dos limites perde o alvo. O spawn e o
+    # nivelamento continuam valendo -- para desligar o mundo inteiro use
+    # Ativado: false.
+    Areas-Seguras:
+      - Nome: 'Spawn'
+        # CENTRO usa o proprio spawn do mundo; troque por X/Z para outro ponto.
+        Centro: 'SPAWN'
+        Raio: 200
+
+  world_nether:
+    Ativado: false
+    Nivel-Base: 15
+    Nivel-Minimo: 0
+    Nivel-Maximo: 0
+    Multiplicador-De-Nivel: 1.0
+    Referencia:
+      X: 0
+      Z: 0
+    Spawn:
+      Bloquear-Mobs-Naturais: false
+      Animais-Ativado: false
+      Animais: []
+      Excecoes: []
+    Zonas: false
+    Hordas: true
+    Raids: false
+    Infeccao: true
+    Areas-Seguras: []

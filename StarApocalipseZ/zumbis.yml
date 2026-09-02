@@ -1,0 +1,350 @@
+# ============================================================================
+#  Tipos de zumbi
+#  Cada tipo e uma variante com nome, aparencia e habilidades proprias.
+#  Quando um zumbi nasce, o plugin sorteia entre os tipos que cabem naquele
+#  nivel e naquele lugar, usando o Peso como chance relativa.
+#
+#  O tipo COMUM (peso alto, sem habilidade) e o que segura a maior parte dos
+#  sorteios: sem ele, todo zumbi do mapa seria especial.
+#
+#  ---------------------------------------------------------------------------
+#  HABILIDADES
+#  Formato: 'NOME; Chave=Valor; Chave=Valor'
+#  Chaves aceitas por todas: Cooldown (tempo), Chance (0-100), Alcance (blocos)
+#
+#    INVESTIDA    Forca=1.4              avanca em linha reta sobre o alvo
+#    SALTO        Forca=0.9              pula por cima de muros e cercas
+#    CUSPE        Dano=3; Efeito=POISON;120;0
+#    EXPLODIR     Poder=2.5; Fogo=false; Quebrar=false; AoMorrer=true
+#    GRITO        Raio=25; Reforco=0     chama os zumbis proximos para o alvo
+#    REVIVER      Raio=8; Maximo=3       levanta de volta os zumbis abatidos
+#    INVOCAR      Tipo=COMUM; Quantidade=2; Maximo=6
+#    PUXAR        Forca=1.2              arrasta o alvo para perto
+#    EMPURRAR     Forca=1.5
+#    CEGAR        Duracao=4s
+#    FOME         Duracao=10s; Nivel=1
+#    TELEPORTE    Distancia=10           surge atras do alvo
+#    ESCUDO       Duracao=5s; Nivel=1    resistencia temporaria
+#    VENENO       Duracao=6s; Nivel=0    aplica no golpe
+#    FRENESI      Vida=30; Nivel=1       acelera quando a vida cai
+#    REGENERAR    Vida=2.0
+#    CURAR_ALIADOS Raio=10; Vida=4.0
+#    QUEBRAR_PORTA Tempo=2s              derruba porta, vidro e madeira fraca
+#    ONDA_DE_CHOQUE Raio=6; Dano=4; Forca=1.2
+#    RAIO         Dano=6                 so faz sentido em chefe
+#    ESCALAR      -                      sobe parede atras do alvo
+#    DIVIDIR      Quantidade=2; Nivel=-5 ao morrer, vira dois menores
+# ============================================================================
+
+Tipos:
+
+  # --------------------------------------------------------------------------
+  #  O grosso da horda.
+  # --------------------------------------------------------------------------
+  COMUM:
+    Nome: 'Zumbi'
+    Entidade: 'ZOMBIE'
+    Peso: 100
+    Nivel-Minimo: 1
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: true
+    Bebe: false
+    Modificadores:
+      Vida: 1.0
+      Dano: 1.0
+      Velocidade: 1.0
+    Efeitos: []
+    Equipamento: {}
+    Habilidades: []
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  Rapido, fraco e em bando. O que mata quem se distrai.
+  # --------------------------------------------------------------------------
+  CORREDOR:
+    Nome: '&fCorredor'
+    Entidade: 'ZOMBIE'
+    Peso: 25
+    Nivel-Minimo: 1
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: true
+    Bebe: true
+    Modificadores:
+      Vida: 0.6
+      Dano: 0.8
+      Velocidade: 1.45
+    Efeitos:
+      - 'SPEED;1'
+    Equipamento: {}
+    Habilidades:
+      - 'INVESTIDA; Cooldown=7s; Alcance=14; Forca=1.5; Chance=60'
+      - 'SALTO; Cooldown=5s; Alcance=8; Forca=0.85'
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  Devagar, enorme, nao morre. Segura o jogador no lugar enquanto o resto
+  #  chega.
+  # --------------------------------------------------------------------------
+  TANQUE:
+    Nome: '&8Bruto'
+    Entidade: 'ZOMBIE'
+    Peso: 12
+    Nivel-Minimo: 5
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 3.2
+      Dano: 1.6
+      Velocidade: 0.75
+    Efeitos:
+      - 'DAMAGE_RESISTANCE;0'
+    Equipamento:
+      Capacete: 'IRON_HELMET'
+      Peitoral: 'IRON_CHESTPLATE'
+      Chance-De-Drop: 3
+    Habilidades:
+      - 'EMPURRAR; Cooldown=8s; Alcance=4; Forca=1.6'
+      - 'ONDA_DE_CHOQUE; Cooldown=14s; Raio=6; Dano=4; Forca=1.2; Chance=50'
+      - 'QUEBRAR_PORTA; Tempo=2s'
+    Tabela-De-Drops: 'TANQUE'
+
+  # --------------------------------------------------------------------------
+  #  Ataca de longe. Obriga a fechar a distancia.
+  # --------------------------------------------------------------------------
+  CUSPIDOR:
+    Nome: '&2Cuspidor'
+    Entidade: 'ZOMBIE'
+    Peso: 14
+    Nivel-Minimo: 8
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: true
+    Bebe: false
+    Modificadores:
+      Vida: 0.9
+      Dano: 0.7
+      Velocidade: 0.95
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'CUSPE; Cooldown=4s; Alcance=16; Dano=3; Efeito=POISON;120;0'
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  Corre, chega perto e leva a base junto.
+  # --------------------------------------------------------------------------
+  EXPLOSIVO:
+    Nome: '&cInchado'
+    Entidade: 'ZOMBIE'
+    Peso: 8
+    Nivel-Minimo: 10
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: true
+    Bebe: false
+    Modificadores:
+      Vida: 1.2
+      Dano: 0.5
+      Velocidade: 1.15
+    Efeitos: []
+    Equipamento:
+      Capacete: 'TNT'
+      Chance-De-Drop: 0
+    Habilidades:
+      - 'EXPLODIR; Cooldown=1s; Alcance=3; Poder=2.5; Fogo=false; Quebrar=false; AoMorrer=true'
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  Sozinho e inofensivo. Vivo por muito tempo, e uma horda inteira.
+  # --------------------------------------------------------------------------
+  GRITADOR:
+    Nome: '&eGritador'
+    Entidade: 'ZOMBIE_VILLAGER'
+    Peso: 7
+    Nivel-Minimo: 6
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: true
+    Bebe: false
+    Modificadores:
+      Vida: 0.8
+      Dano: 0.5
+      Velocidade: 1.1
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'GRITO; Cooldown=25s; Raio=30; Reforco=3; Chance=70'
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  Enquanto ele estiver de pe, os mortos voltam.
+  # --------------------------------------------------------------------------
+  NECROMANTE:
+    Nome: '&5Necromante'
+    Entidade: 'ZOMBIE_VILLAGER'
+    Peso: 5
+    Nivel-Minimo: 15
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.5
+      Dano: 0.9
+      Velocidade: 0.9
+    Efeitos: []
+    Equipamento:
+      Capacete: 'PLAYER_HEAD'
+      Chance-De-Drop: 0
+    Habilidades:
+      - 'REVIVER; Cooldown=15s; Raio=10; Maximo=3'
+      - 'CURAR_ALIADOS; Cooldown=12s; Raio=10; Vida=4.0'
+      - 'TELEPORTE; Cooldown=10s; Alcance=16; Distancia=8; Chance=40'
+    Tabela-De-Drops: 'RARO'
+
+  # --------------------------------------------------------------------------
+  #  Areia e sol nao o incomodam. Perseguidor de deserto.
+  # --------------------------------------------------------------------------
+  ARIDO:
+    Nome: '&6Arido'
+    Entidade: 'HUSK'
+    Peso: 18
+    Nivel-Minimo: 3
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.2
+      Dano: 1.1
+      Velocidade: 1.0
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'FOME; Cooldown=10s; Alcance=3; Duracao=12s; Nivel=1'
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  O que ficou na agua. Puxa quem passa perto da margem.
+  # --------------------------------------------------------------------------
+  AFOGADO:
+    Nome: '&3Afogado'
+    Entidade: 'DROWNED'
+    Peso: 10
+    Nivel-Minimo: 4
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.1
+      Dano: 1.0
+      Velocidade: 1.0
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'PUXAR; Cooldown=9s; Alcance=14; Forca=1.2; Chance=60'
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  So aparece dentro de zona de perigo e em raid.
+  # --------------------------------------------------------------------------
+  CACADOR:
+    Nome: '&4Cacador'
+    Entidade: 'ZOMBIE'
+    Peso: 12
+    Nivel-Minimo: 20
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    So-Em-Zona: true
+    So-Em-Raid: true
+    Modificadores:
+      Vida: 1.8
+      Dano: 1.5
+      Velocidade: 1.2
+    Efeitos: []
+    Equipamento:
+      Capacete: 'CHAINMAIL_HELMET'
+      Mao: 'IRON_SWORD'
+      Chance-De-Drop: 5
+    Habilidades:
+      - 'INVESTIDA; Cooldown=6s; Alcance=16; Forca=1.7'
+      - 'ESCALAR; Cooldown=4s; Alcance=12'
+      - 'VENENO; Duracao=6s; Nivel=0; Chance=35'
+    Tabela-De-Drops: 'RARO'
+
+  # --------------------------------------------------------------------------
+  #  CHEFES
+  #  Nao nascem sozinhos: sao invocados pela zona de perigo, pela ultima onda
+  #  de uma raid ou por /starapocalipsez invocar.
+  # --------------------------------------------------------------------------
+  CHEFE_CARNICEIRO:
+    Nome: '&4&lCarniceiro'
+    Entidade: 'ZOMBIE'
+    Peso: 10
+    Nivel-Minimo: 25
+    Nivel-Maximo: 0
+    Chefe: true
+    Queimar-No-Sol: false
+    Bebe: false
+    Barra:
+      Ativado: true
+      Cor: RED
+      Estilo: SEGMENTED_10
+      Texto: '&4&l{nome} &7| &c{vida}&7/&c{vidamax}'
+      Raio: 60
+    Modificadores:
+      Vida: 8.0
+      Dano: 2.2
+      Velocidade: 1.05
+    Efeitos:
+      - 'DAMAGE_RESISTANCE;0'
+    Equipamento:
+      Capacete: 'DIAMOND_HELMET'
+      Peitoral: 'DIAMOND_CHESTPLATE'
+      Mao: 'IRON_AXE'
+      Chance-De-Drop: 8
+    Habilidades:
+      - 'ONDA_DE_CHOQUE; Cooldown=10s; Raio=8; Dano=6; Forca=1.4'
+      - 'INVOCAR; Cooldown=20s; Tipo=CORREDOR; Quantidade=3; Maximo=9'
+      - 'INVESTIDA; Cooldown=8s; Alcance=18; Forca=1.8'
+      - 'FRENESI; Vida=35; Nivel=1'
+      - 'QUEBRAR_PORTA; Tempo=1s'
+    Tabela-De-Drops: 'CHEFE'
+
+  CHEFE_MAE:
+    Nome: '&5&lMae da Praga'
+    Entidade: 'ZOMBIE_VILLAGER'
+    Peso: 8
+    Nivel-Minimo: 30
+    Nivel-Maximo: 0
+    Chefe: true
+    Queimar-No-Sol: false
+    Bebe: false
+    Barra:
+      Ativado: true
+      Cor: PURPLE
+      Estilo: SEGMENTED_10
+      Texto: '&5&l{nome} &7| &d{vida}&7/&d{vidamax}'
+      Raio: 60
+    Modificadores:
+      Vida: 6.5
+      Dano: 1.6
+      Velocidade: 0.95
+    Efeitos: []
+    Equipamento:
+      Capacete: 'PLAYER_HEAD'
+      Chance-De-Drop: 0
+    Habilidades:
+      - 'INVOCAR; Cooldown=12s; Tipo=CORREDOR; Quantidade=4; Maximo=14'
+      - 'REVIVER; Cooldown=10s; Raio=14; Maximo=5'
+      - 'CUSPE; Cooldown=3s; Alcance=20; Dano=5; Efeito=POISON;200;1'
+      - 'TELEPORTE; Cooldown=14s; Alcance=24; Distancia=10'
+      - 'CURAR_ALIADOS; Cooldown=15s; Raio=14; Vida=8.0'
+    Tabela-De-Drops: 'CHEFE'
