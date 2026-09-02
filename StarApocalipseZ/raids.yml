@@ -1,0 +1,120 @@
+# ============================================================================
+#  Raids
+#  O ataque com hora marcada: ondas de zumbis contra um ponto -- a base do
+#  jogador, o spawn de uma cidade ou onde o administrador mandar.
+#
+#  Uma raid pode comecar sozinha (Raids > Espontanea-A-Cada no config.yml),
+#  por comando (/starapocalipsez raid <modelo> <jogador>) ou como parte de
+#  uma zona de perigo.
+# ============================================================================
+
+Raids:
+
+  ASSEDIO:
+    Nome: '&cAssedio'
+    Peso: 50
+    # Faixa de nivel do lugar onde a raid pode comecar sozinha.
+    Nivel-Minimo: 1
+    Nivel-Maximo: 40
+    # Raio em que os zumbis nascem em volta do alvo.
+    Raio-De-Spawn: 30
+    # Tempo maximo da raid inteira. Estourou, ela e cancelada.
+    Duracao-Maxima: '20m'
+    # Tempo entre uma onda e a proxima depois que a anterior e limpa.
+    Intervalo-Entre-Ondas: '15s'
+    # Bonus de nivel somado a cada zumbi da raid.
+    Bonus-De-Nivel: 5
+    # Contagem regressiva antes da primeira onda.
+    Preparacao: '30s'
+
+    Ondas:
+      1:
+        Quantidade: 8
+        Composicao:
+          - 'COMUM:80'
+          - 'CORREDOR:20'
+        Bonus-De-Nivel: 0
+      2:
+        Quantidade: 12
+        Composicao:
+          - 'COMUM:50'
+          - 'CORREDOR:40'
+          - 'ARIDO:10'
+        Bonus-De-Nivel: 3
+      3:
+        Quantidade: 16
+        Composicao:
+          - 'CORREDOR:40'
+          - 'TANQUE:20'
+          - 'CUSPIDOR:20'
+          - 'GRITADOR:20'
+        Bonus-De-Nivel: 6
+        # Chefe da onda. Vazio = onda sem chefe.
+        Chefe: ''
+
+    Recompensas:
+      # Para todo mundo que participou (ver Raids > Participacao no config).
+      Participacao:
+        Pontos: 50
+        Comandos:
+          - 'give {jogador} arrow 16'
+        Itens: []
+      # So para quem mais matou.
+      Destaque:
+        Pontos: 150
+        Comandos: []
+        Itens:
+          - 'GOLDEN_APPLE;2;&6Racao de Emergencia'
+
+  INVASAO:
+    Nome: '&4&lInvasao'
+    Peso: 30
+    Nivel-Minimo: 25
+    Nivel-Maximo: 0
+    Raio-De-Spawn: 40
+    Duracao-Maxima: '30m'
+    Intervalo-Entre-Ondas: '20s'
+    Bonus-De-Nivel: 15
+    Preparacao: '45s'
+
+    Ondas:
+      1:
+        Quantidade: 14
+        Composicao:
+          - 'CORREDOR:60'
+          - 'COMUM:40'
+        Bonus-De-Nivel: 0
+      2:
+        Quantidade: 18
+        Composicao:
+          - 'CORREDOR:40'
+          - 'TANQUE:30'
+          - 'CUSPIDOR:30'
+        Bonus-De-Nivel: 5
+      3:
+        Quantidade: 22
+        Composicao:
+          - 'CACADOR:35'
+          - 'EXPLOSIVO:25'
+          - 'TANQUE:25'
+          - 'NECROMANTE:15'
+        Bonus-De-Nivel: 10
+      4:
+        Quantidade: 10
+        Composicao:
+          - 'CACADOR:60'
+          - 'TANQUE:40'
+        Bonus-De-Nivel: 15
+        Chefe: 'CHEFE_CARNICEIRO'
+
+    Recompensas:
+      Participacao:
+        Pontos: 200
+        Comandos: []
+        Itens:
+          - 'GOLDEN_APPLE;3;&6Racao de Emergencia'
+      Destaque:
+        Pontos: 600
+        Comandos: []
+        Itens:
+          - 'DIAMOND;5'

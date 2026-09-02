@@ -1,0 +1,526 @@
+# ============================================================================
+#  StarApocalipseZ
+#  O mundo caiu. So restaram os mortos -- e eles ficam piores quanto mais
+#  longe voce vai.
+#
+#  Todo tempo aceita "10s", "5m", "2h" ou um numero puro em segundos.
+# ============================================================================
+
+# Escreve no console cada decisao de nivel, spawn, zona e raid. Use so para
+# descobrir por que algo nasceu (ou nao nasceu) como voce esperava.
+Debug: false
+
+# ----------------------------------------------------------------------------
+#  Banco de dados
+#  Guarda o perfil do sobrevivente: abates, nivel, pontos e infeccoes.
+# ----------------------------------------------------------------------------
+Banco:
+  # false = SQLite (arquivo dados.db na pasta do produto).
+  # true  = MySQL (varias instancias do servidor no mesmo banco).
+  MySQL: false
+  Prefixo-Tabelas: 'starapocalipsez_'
+  Host: 'localhost'
+  Porta: 3306
+  Banco: 'minecraft'
+  Usuario: 'root'
+  Senha: ''
+  # De quanto em quanto tempo os perfis sujos vao para o banco. A escrita
+  # acontece fora da thread principal, entao o servidor nao trava.
+  Salvar-A-Cada: '5m'
+
+# ----------------------------------------------------------------------------
+#  Controle de spawn
+#  O apocalipse comeca aqui: por padrao so os mortos nascem no mundo.
+# ----------------------------------------------------------------------------
+Spawn:
+  # Bloqueia o nascimento natural de tudo que nao esta liberado abaixo.
+  # Nasceu de ovo, de spawner, de comando ou de plugin? Passa -- so o que a
+  # natureza gera e barrado.
+  Bloquear-Mobs-Naturais: true
+
+  # Os mortos. Nascem sempre, em qualquer mundo ligado.
+  Zumbis-Permitidos:
+    - ZOMBIE
+    - ZOMBIE_VILLAGER
+    - HUSK
+    - DROWNED
+    - ZOMBIFIED_PIGLIN
+
+  # Animais (vaca, porco, galinha...). Desligado por padrao: no apocalipse
+  # nem gado sobrou. Ligue e escolha quais voltam.
+  Animais:
+    Ativado: false
+    Lista:
+      - COW
+      - PIG
+      - CHICKEN
+      - SHEEP
+
+  # Mobs que o dono do servidor quer manter vivos mesmo com o bloqueio geral
+  # (guardioes do templo, o dragao, o wither invocado...). Nome do tipo de
+  # entidade, um por linha.
+  Excecoes:
+    - ENDER_DRAGON
+    - WITHER
+    - VILLAGER
+    - IRON_GOLEM
+
+  # O bloqueio tambem vale para spawners de bloco? Deixe false para que uma
+  # spawner de esqueleto construida pelo jogador continue funcionando.
+  Bloquear-Spawners: false
+
+  # Quantos zumbis, no maximo, por jogador carregado. Impede que o mapa vire
+  # uma sopa de mobs quando varios sistemas empurram spawn ao mesmo tempo.
+  Limite-Por-Jogador: 60
+
+# ----------------------------------------------------------------------------
+#  Nivel dos zumbis
+#  Quanto maior o nivel, mais vida, mais forca e melhor o loot.
+# ----------------------------------------------------------------------------
+Nivel:
+  Minimo: 1
+  Maximo: 100
+
+  # De onde sai o nivel. Cada bloco liga ou desliga sozinho e as parcelas se
+  # somam -- distancia + dias + zona, por exemplo.
+  Distancia:
+    Ativado: true
+    # De onde a distancia e medida:
+    #   SPAWN  = ponto de spawn do mundo
+    #   MUNDO  = coordenada definida em mundos.yml
+    #   ORIGEM = 0, 0
+    Referencia: SPAWN
+    # A cada quantos blocos o nivel sobe um degrau.
+    Blocos-Por-Nivel: 250
+    # Distancia a partir da qual a conta comeca: dentro disso e area inicial.
+    Distancia-Inicial: 300
+    # Teto da parcela de distancia. 0 = sem teto (respeita so o Maximo).
+    Maximo: 0
+
+  # O apocalipse piora com o tempo: cada dia que passa empurra o nivel base.
+  Dias:
+    Ativado: true
+    # Quantos dias precisam passar para o nivel base subir um degrau.
+    Dias-Por-Nivel: 3
+    Maximo: 25
+
+  # Fundo do mundo e mais perigoso que a superficie.
+  Altura:
+    Ativado: false
+    # Abaixo desta altura comeca a somar.
+    A-Partir-De: 50
+    Blocos-Por-Nivel: 10
+    Maximo: 10
+
+  # Uma pitada de sorte para que dois zumbis lado a lado nao sejam identicos.
+  Variacao:
+    Ativado: true
+    Minimo: -2
+    Maximo: 3
+
+  # O que cada nivel faz com o zumbi. Todos os valores sao POR NIVEL ACIMA DO
+  # PRIMEIRO -- um zumbi nivel 1 e um zumbi comum.
+  Modificadores:
+    # Vida: +X por nivel, limitada pelo teto (a vida maxima do Minecraft e
+    # 2048 em qualquer versao).
+    Vida-Por-Nivel: 1.5
+    Vida-Maxima: 500.0
+    # Dano: multiplicador somado por nivel. 0.08 = +8% de dano por nivel.
+    Dano-Por-Nivel: 0.08
+    Dano-Maximo: 8.0
+    # Velocidade de movimento: somada por nivel sobre a base (0.23).
+    Velocidade-Por-Nivel: 0.0015
+    Velocidade-Maxima: 0.42
+    # Alcance de perseguicao em blocos, somado por nivel.
+    Alcance-Por-Nivel: 0.25
+    Alcance-Maximo: 60.0
+    # Resistencia a repulsao (0.0 a 1.0). Zumbi de nivel alto quase nao voa.
+    Resistencia-Por-Nivel: 0.008
+    Resistencia-Maxima: 0.8
+    # Armadura natural, somada por nivel.
+    Armadura-Por-Nivel: 0.15
+    Armadura-Maxima: 25.0
+    # Experiencia derrubada: multiplicador somado por nivel.
+    Xp-Por-Nivel: 0.05
+    Xp-Maximo: 5.0
+
+  # Como o nivel aparece no nome do mob.
+  Nome:
+    Ativado: true
+    # Marcadores: {nivel} {nome} {cor} {vida} {vidamax} {coracoes}
+    Formato: '{cor}[Nv. {nivel}] &f{nome}'
+    # O nome fica sempre visivel por cima do zumbi? Com muitos mobs na tela
+    # isso polui -- false mostra so quando o jogador olha para ele.
+    Sempre-Visivel: false
+    # Cor por faixa de nivel: 'ate-nivel: cor'. A primeira faixa que couber
+    # ganha; acima da ultima usa a cor da ultima linha.
+    Cores:
+      10: '&a'
+      25: '&e'
+      50: '&6'
+      75: '&c'
+      100: '&4'
+      9999: '&5'
+
+  # Nasceu de um ovo, de uma spawner ou de outro plugin: recebe nivel tambem?
+  Nivelar-Nao-Naturais: true
+  # Zumbi que veio de uma transformacao (aldeao infectado, afogado convertido)
+  # mantem o nivel da forma anterior.
+  Manter-Nivel-Na-Transformacao: true
+
+# ----------------------------------------------------------------------------
+#  Zonas de perigo
+#  Manchas do mapa onde o apocalipse aperta: nivel maior, chefes e loot bom.
+# ----------------------------------------------------------------------------
+Zonas:
+  Ativado: true
+  # Quantas zonas ficam abertas ao mesmo tempo por mundo.
+  Maximo-Por-Mundo: 3
+  # De quanto em quanto tempo o plugin tenta abrir uma zona nova.
+  Abrir-A-Cada: '20m'
+  # Quanto tempo uma zona vive antes de fechar sozinha.
+  Duracao: '45m'
+  # Onde a zona pode nascer, medido do spawn do mundo.
+  Distancia-Minima: 500
+  Distancia-Maxima: 6000
+  # Duas zonas nunca nascem a menos disto uma da outra.
+  Separacao: 400
+  # Precisa de jogador no mundo para abrir uma zona.
+  Exigir-Jogador: true
+  # Aviso ao cruzar a borda.
+  Aviso:
+    Titulo: true
+    Som: true
+    # Reavisa o mesmo jogador no maximo uma vez a cada:
+    Intervalo: '30s'
+  # Marcacao visual da borda com particulas (custa desempenho em zona grande).
+  Borda:
+    Particulas: true
+    A-Cada: '2s'
+    # So desenha para quem estiver a esta distancia ou menos.
+    Raio-De-Visao: 48
+  # A bussola do menu /apocalipse zonas aponta para a zona mais proxima.
+  Mostrar-No-Menu: true
+
+# ----------------------------------------------------------------------------
+#  Hordas
+#  Grupos que nascem juntos, andam juntos e batem juntos.
+# ----------------------------------------------------------------------------
+Hordas:
+  Ativado: true
+  Maximo-Por-Mundo: 4
+  Nascer-A-Cada: '8m'
+  # Distancia do jogador em que a horda aparece (longe o bastante para nao
+  # nascer na cara dele, perto o bastante para ser encontrada).
+  Distancia-Minima: 40
+  Distancia-Maxima: 90
+  # A horda persegue o jogador mais proximo enquanto ele estiver ate:
+  Alcance-De-Caca: 64
+  # Sem alvo por este tempo, a horda se dispersa e vira zumbi comum.
+  Dispersar-Apos: '5m'
+  # Quantos membros podem estar carregados de uma vez, somando todas as
+  # hordas de um mundo.
+  Limite-De-Membros: 120
+  # A horda anda em bloco: membros que ficam para tras sao puxados de volta.
+  Coesao:
+    Ativado: true
+    # Distancia do lider a partir da qual o membro e puxado.
+    Distancia: 12
+    A-Cada: '3s'
+
+# ----------------------------------------------------------------------------
+#  Raids
+#  O ataque organizado: em ondas, contra um ponto do mapa ou contra o jogador.
+# ----------------------------------------------------------------------------
+Raids:
+  Ativado: true
+  # Uma raid espontanea por mundo a cada:
+  Espontanea-A-Cada: '45m'
+  Chance-Espontanea: 35
+  # Limite de raids acontecendo ao mesmo tempo (o servidor inteiro).
+  Maximo-Simultaneas: 3
+  # Avisar todo o servidor quando uma raid comeca?
+  Anunciar-Global: true
+  # Barra de progresso das ondas (1.9+; nas versoes antigas vira action bar).
+  Barra:
+    Ativado: true
+    Cor: RED
+    Estilo: SEGMENTED_10
+    # Marcadores: {raid} {onda} {ondas} {vivos} {total}
+    Texto: '&c&l{raid} &7| &fOnda &c{onda}&7/&c{ondas} &7| &fRestam &c{vivos}'
+  # Quem entra na conta de participacao da raid.
+  Participacao:
+    # Distancia do centro da raid para contar como participante.
+    Raio: 60
+    # Abates minimos para levar recompensa.
+    Abates-Minimos: 1
+
+# ----------------------------------------------------------------------------
+#  Infeccao
+#  A mordida cobra o preco depois. Curar exige o antidoto.
+# ----------------------------------------------------------------------------
+Infeccao:
+  Ativado: true
+  # Chance base de pegar infeccao ao levar dano de um zumbi (0 a 100).
+  Chance: 12
+  # A chance sobe com o nivel do zumbi: +X por nivel.
+  Chance-Por-Nivel: 0.35
+  Chance-Maxima: 60
+  # Quanto tempo a infeccao dura sem cura.
+  Duracao: '10m'
+  # Estagios: quanto mais tempo infectado, pior fica. O estagio muda quando a
+  # porcentagem de tempo decorrido passa do valor de A-Partir-De.
+  Estagios:
+    1:
+      A-Partir-De: 0
+      Efeitos:
+        - 'CONFUSION;100;0'
+      Dano: 0.0
+      Titulo: '&2&lINFECTADO'
+      Subtitulo: '&7A mordida esta ardendo...'
+    2:
+      A-Partir-De: 40
+      Efeitos:
+        - 'CONFUSION;100;0'
+        - 'SLOW;100;0'
+        - 'WEAKNESS;100;0'
+      Dano: 0.5
+      Titulo: '&c&lINFECCAO AVANCANDO'
+      Subtitulo: '&7Voce precisa de um antidoto.'
+    3:
+      A-Partir-De: 75
+      Efeitos:
+        - 'CONFUSION;100;1'
+        - 'SLOW;100;1'
+        - 'WEAKNESS;100;1'
+        - 'BLINDNESS;60;0'
+      Dano: 1.5
+      Titulo: '&4&lVOCE ESTA MORRENDO'
+      Subtitulo: '&7O antidoto e a unica saida.'
+  # De quanto em quanto tempo o dano e os efeitos do estagio sao aplicados.
+  Aplicar-A-Cada: '5s'
+  # A infeccao continua correndo quando o jogador sai do servidor?
+  Continuar-Offline: false
+  # Morreu infectado: perde a infeccao ao renascer?
+  Limpar-Na-Morte: true
+  # Leite cura? A pocao de leite limpa efeitos, mas nao deveria limpar a
+  # infeccao sem o antidoto.
+  Leite-Cura: false
+  # Barra de acao com o tempo restante.
+  Action-Bar:
+    Ativado: true
+    # Marcadores: {tempo} {estagio} {barra}
+    Texto: '&2&lINFECTADO &7| {barra} &7| &f{tempo}'
+
+  # O antidoto: item que cura. O jogador clica com ele na mao.
+  Antidoto:
+    Material: 'POTION'
+    Nome: '&a&lAntidoto'
+    Lore:
+      - '&7Uma dose amarga que empurra'
+      - '&7a infeccao para fora do sangue.'
+      - ''
+      - '&eClique para se curar'
+    Brilho: true
+    # Receita na bancada. Deixe Ativado: false para distribuir so por loja,
+    # loot ou comando.
+    Receita:
+      Ativado: true
+      # Tres linhas de tres, espaco = vazio.
+      Formato:
+        - ' F '
+        - 'GSG'
+        - ' B '
+      Ingredientes:
+        F: 'FERMENTED_SPIDER_EYE'
+        G: 'GLISTERING_MELON_SLICE'
+        S: 'SUGAR'
+        B: 'GLASS_BOTTLE'
+      Quantidade: 1
+
+# ----------------------------------------------------------------------------
+#  Progressao do sobrevivente
+#  Cada abate conta. Cada nivel abre um marco em recompensas.yml.
+# ----------------------------------------------------------------------------
+Progressao:
+  Ativado: true
+  # Pontos por abate: base + (nivel do zumbi x fator).
+  Pontos-Por-Abate: 3
+  Pontos-Por-Nivel-Do-Zumbi: 0.5
+  Pontos-Por-Chefe: 150
+  # Multiplicador quando o abate acontece dentro de uma zona de perigo.
+  Multiplicador-Na-Zona: 1.5
+  # Quanto se perde ao morrer (porcentagem dos pontos do nivel atual).
+  Perder-Ao-Morrer: 0
+  # Custo do nivel N: Base x (Crescimento ^ (N - 1)).
+  Nivel:
+    Maximo: 100
+    Base: 100
+    Crescimento: 1.12
+  # Quem ajudou a matar tambem pontua (dano acima desta porcentagem do total).
+  Assistencia:
+    Ativado: true
+    Fracao-Minima: 20
+    Fracao-Dos-Pontos: 50
+
+# ----------------------------------------------------------------------------
+#  Ranking
+# ----------------------------------------------------------------------------
+Ranking:
+  # De quanto em quanto tempo o top e relido do banco.
+  Atualizar-A-Cada: '5m'
+  Tamanho: 25
+
+# ----------------------------------------------------------------------------
+#  Clima do apocalipse
+#  De tempos em tempos o ceu de um mundo muda e tudo fica pior por um tempo.
+#  Os tipos de clima estao no clima.yml.
+# ----------------------------------------------------------------------------
+Clima:
+  Ativado: true
+  # De quanto em quanto tempo o plugin tenta abrir um clima em cada mundo.
+  Tentar-A-Cada: '10m'
+  # A chance de a tentativa dar certo (0 a 100).
+  Chance: 40
+  # Avisar o servidor inteiro, ou so quem esta no mundo?
+  Anunciar-Global: true
+  # De quanto em quanto tempo os efeitos do clima sao aplicados.
+  Pulsar-A-Cada: '3s'
+  # O nome do clima aparece na barra de acao junto com sede e infeccao?
+  Mostrar-Na-Barra: true
+
+# ----------------------------------------------------------------------------
+#  Sede
+#  Uma segunda barra de fome, so que sua. Desligada por padrao: ligue quando
+#  quiser que o servidor seja de sobrevivencia dura.
+# ----------------------------------------------------------------------------
+Sede:
+  Ativado: false
+  # Quanto de sede se perde por minuto parado (a barra vai de 0 a 20).
+  Gasto-Por-Minuto: 1.2
+  # Somado ao gasto quando o jogador andou bastante desde o ultimo pulso.
+  Gasto-Extra-Correndo: 0.8
+  # Somado quando ele esta a ceu aberto durante o dia.
+  Gasto-Extra-No-Sol: 0.5
+  # Somado em bioma seco (deserto, savana, mesa, nether).
+  Gasto-Extra-No-Deserto: 0.8
+  Pulsar-A-Cada: '5s'
+
+  Mostrar-Na-Barra: true
+  # Marcadores: {barra} {sede} {maximo}
+  Texto-Da-Barra: '&b{barra} &f{sede}'
+
+  # O que cada item devolve de sede quando consumido.
+  Bebidas:
+    POTION: 6.0
+    MILK_BUCKET: 8.0
+    HONEY_BOTTLE: 5.0
+    MELON_SLICE: 2.0
+    APPLE: 1.5
+    SWEET_BERRIES: 1.5
+    MUSHROOM_STEW: 3.0
+    BEETROOT_SOUP: 3.0
+    RABBIT_STEW: 3.0
+
+  # Agua sem tratar. Chance 0 desliga -- num servidor onde a garrafa d'agua e
+  # a bebida principal, envenenar sempre viraria castigo.
+  Agua-Suja:
+    Item: 'POTION'
+    Chance: 0
+
+  # O que a sede baixa faz. Cada estagio vale abaixo do valor indicado.
+  Estagios:
+    1:
+      Abaixo-De: 8
+      Efeitos: []
+      Dano: 0.0
+      Aviso: '&eVoce esta com sede.'
+    2:
+      Abaixo-De: 4
+      Efeitos:
+        - 'SLOW;0;10'
+      Dano: 0.0
+      Aviso: '&6Sua garganta esta seca. Procure agua.'
+    3:
+      Abaixo-De: 0.5
+      Efeitos:
+        - 'SLOW;1;10'
+        - 'WEAKNESS;0;10'
+        - 'CONFUSION;0;10'
+      Dano: 1.0
+      Aviso: '&4Voce esta desidratado.'
+
+# ----------------------------------------------------------------------------
+#  Radio
+#  O item que diz onde as coisas estao acontecendo. Sem ele, o jogador so
+#  descobre a zona de perigo tropecando nela.
+# ----------------------------------------------------------------------------
+Radio:
+  Ativado: true
+  Cooldown: '10s'
+  # Quantas zonas o relatorio lista, da mais perto para a mais longe.
+  Zonas-Listadas: 3
+  # A bussola do jogador passa a apontar para a zona mais proxima.
+  Apontar-Bussola: true
+  # Quem carrega radio recebe o aviso de raid assim que ela comeca.
+  Avisar-Raid: true
+
+  Item:
+    Material: 'COMPASS'
+    Nome: '&b&lRadio'
+    Lore:
+      - '&7Ainda pega alguma coisa.'
+      - ''
+      - '&eClique para ouvir o que resta das transmissoes'
+    Brilho: false
+    Receita:
+      Ativado: true
+      Formato:
+        - ' I '
+        - 'IRI'
+        - ' I '
+      Ingredientes:
+        I: 'IRON_INGOT'
+        R: 'REDSTONE'
+      Quantidade: 1
+
+# ----------------------------------------------------------------------------
+#  Integracoes com outros produtos StarPlugins
+#  Cada uma so vale quando o produto correspondente esta no servidor.
+# ----------------------------------------------------------------------------
+Integracoes:
+
+  # O abrigo do sobrevivente. O apocalipse nao tem base propria: quem cuida
+  # disso e o StarBunkers.
+  StarBunkers:
+    # O bunker conta como area segura: zona, horda e raid nao nascem dentro.
+    Area-Segura: true
+    # Nada nasce pela natureza dentro de um bunker.
+    Bloquear-Spawn-Dentro: true
+    # Quem esta dentro nao sente chuva acida, miasma nem raio.
+    Proteger-Do-Clima: true
+    # A raid espontanea prefere quem esta no proprio bunker -- assim ha o que
+    # defender.
+    Raid-No-Bunker: true
+
+  StarClans:
+    # Ranking de clas somando os pontos dos sobreviventes de cada um.
+    Ranking-De-Clas: true
+    # Cacar junto com o clan rende mais.
+    Cacada-Em-Grupo: true
+    # Porcentagem a mais por companheiro de clan dentro do raio.
+    Bonus-De-Grupo: 15
+    Raio-De-Grupo: 24
+
+# ----------------------------------------------------------------------------
+#  Desempenho
+# ----------------------------------------------------------------------------
+Desempenho:
+  # Tique do motor de hordas, raids e zonas, em tiques do servidor.
+  Tique: 20
+  # Quantos zumbis o motor de habilidades processa por tique. Acima disso a
+  # fila continua no tique seguinte.
+  Habilidades-Por-Tique: 40
+  # Distancia maxima de um jogador para um zumbi continuar processando
+  # habilidades. Longe disso ele vira um zumbi comum ate alguem chegar perto.
+  Distancia-De-Processamento: 64

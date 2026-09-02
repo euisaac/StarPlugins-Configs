@@ -1,0 +1,139 @@
+# ============================================================================
+#  Zonas de perigo
+#  De tempos em tempos o plugin escolhe um ponto qualquer do mapa e abre uma
+#  zona. Quem entra recebe o aviso, encontra zumbis mais fortes, chefes -- e
+#  os baus de suprimento que sobraram la dentro.
+#
+#  Cada modelo abaixo e um tipo de zona. O sorteio usa o Peso, e o modelo so
+#  entra se a distancia do spawn couber na faixa dele.
+# ============================================================================
+
+Modelos:
+
+  ACAMPAMENTO:
+    Nome: '&eAcampamento Abandonado'
+    # Cor da borda e dos avisos.
+    Cor: '&e'
+    Peso: 40
+    Raio: 45
+    # Distancia do spawn do mundo em que este modelo pode nascer.
+    Distancia-Minima: 500
+    Distancia-Maxima: 2500
+    # Somado ao nivel de todo zumbi que nascer dentro da zona.
+    Bonus-De-Nivel: 5
+    # Multiplicador de vida e dano por cima do nivel, so dentro da zona.
+    Multiplicador-De-Vida: 1.0
+    Multiplicador-De-Dano: 1.0
+    # Zumbis nascem mais rapido aqui: multiplicador da taxa natural.
+    Densidade: 2.0
+    # Quantos zumbis a zona mantem vivos ao mesmo tempo.
+    Populacao: 25
+    # Tipos que podem nascer aqui. Vazio = qualquer um que caiba no nivel.
+    Tipos: []
+    # Chefe da zona. Vazio = sem chefe.
+    Chefe: ''
+    # Baus de suprimento espalhados pela zona (ver loot.yml).
+    Baus:
+      Quantidade: 4
+      Tabela: 'SUPRIMENTO'
+    # Ambiente: efeitos aplicados em quem esta dentro. Formato EFEITO;nivel.
+    Efeitos-No-Jogador: []
+    # Titulo mostrado ao cruzar a borda.
+    Aviso:
+      Titulo: '&e&lZONA DE PERIGO'
+      Subtitulo: '&7{nome}'
+      Som: 'ENTITY_ZOMBIE_AMBIENT'
+    Saida:
+      Titulo: '&a&lAREA LIMPA'
+      Subtitulo: '&7Voce saiu de {nome}'
+
+  HOSPITAL:
+    Nome: '&2Foco de Contagio'
+    Cor: '&2'
+    Peso: 25
+    Raio: 55
+    Distancia-Minima: 1200
+    Distancia-Maxima: 4000
+    Bonus-De-Nivel: 12
+    Multiplicador-De-Vida: 1.2
+    Multiplicador-De-Dano: 1.1
+    Densidade: 2.5
+    Populacao: 35
+    Tipos:
+      - COMUM
+      - CORREDOR
+      - CUSPIDOR
+      - GRITADOR
+    Chefe: 'CHEFE_MAE'
+    Baus:
+      Quantidade: 5
+      Tabela: 'MEDICO'
+    # O ar aqui e denso: quem fica dentro tosse.
+    Efeitos-No-Jogador:
+      - 'CONFUSION;0'
+    # A chance de infeccao dentro desta zona e multiplicada por:
+    Multiplicador-De-Infeccao: 2.0
+    Aviso:
+      Titulo: '&2&lFOCO DE CONTAGIO'
+      Subtitulo: '&7O ar aqui esta podre'
+      Som: 'ENTITY_ZOMBIE_VILLAGER_CURE'
+    Saida:
+      Titulo: '&a&lAR LIMPO'
+      Subtitulo: '&7Voce saiu de {nome}'
+
+  QUARENTENA:
+    Nome: '&cZona de Quarentena'
+    Cor: '&c'
+    Peso: 20
+    Raio: 65
+    Distancia-Minima: 2500
+    Distancia-Maxima: 6000
+    Bonus-De-Nivel: 20
+    Multiplicador-De-Vida: 1.4
+    Multiplicador-De-Dano: 1.3
+    Densidade: 3.0
+    Populacao: 45
+    Tipos:
+      - CORREDOR
+      - TANQUE
+      - CACADOR
+      - EXPLOSIVO
+    Chefe: 'CHEFE_CARNICEIRO'
+    Baus:
+      Quantidade: 6
+      Tabela: 'MILITAR'
+    Efeitos-No-Jogador: []
+    Aviso:
+      Titulo: '&c&lZONA DE QUARENTENA'
+      Subtitulo: '&7Ninguem saiu daqui'
+      Som: 'ENTITY_WITHER_SPAWN'
+    Saida:
+      Titulo: '&a&lVOCE SOBREVIVEU'
+      Subtitulo: '&7Voce saiu de {nome}'
+
+  NINHO:
+    Nome: '&4Ninho'
+    Cor: '&4'
+    Peso: 15
+    Raio: 40
+    Distancia-Minima: 3500
+    Distancia-Maxima: 0
+    Bonus-De-Nivel: 30
+    Multiplicador-De-Vida: 1.6
+    Multiplicador-De-Dano: 1.5
+    Densidade: 4.0
+    Populacao: 55
+    Tipos: []
+    Chefe: 'CHEFE_CARNICEIRO'
+    Baus:
+      Quantidade: 3
+      Tabela: 'RELIQUIA'
+    Efeitos-No-Jogador: []
+    Multiplicador-De-Infeccao: 1.5
+    Aviso:
+      Titulo: '&4&lNINHO'
+      Subtitulo: '&7Eles vieram daqui'
+      Som: 'ENTITY_ENDER_DRAGON_GROWL'
+    Saida:
+      Titulo: '&a&lVOCE ESCAPOU'
+      Subtitulo: '&7Voce saiu de {nome}'

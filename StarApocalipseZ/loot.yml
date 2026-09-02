@@ -1,0 +1,78 @@
+# ============================================================================
+#  Baus de suprimento
+#  Quando uma zona de perigo abre, o plugin espalha baus dentro dela. O bau e
+#  temporario: quando a zona fecha, ele some junto com o que sobrou dentro.
+#
+#  As linhas seguem a mesma escrita de drops.yml (Chave=Valor separado por
+#  ponto e virgula), incluindo o loot vindo do StarArmas por raridade.
+# ============================================================================
+
+# Aparencia e comportamento do bau no mundo.
+Bau:
+  # Material do bau colocado no chao.
+  Material: 'CHEST'
+  # Nome que aparece ao abrir.
+  Titulo: '&8Suprimentos'
+  # Cada jogador abre o bau uma vez e leva o proprio loot (true), ou o bau e
+  # unico e vale para quem chegar primeiro (false).
+  Loot-Por-Jogador: true
+  # Particulas e som marcando o bau.
+  Brilho: true
+  # O bau devolve o bloco original quando a zona fecha.
+  Restaurar-Bloco: true
+  # Quantos itens, no maximo, cada bau entrega (as chances sao sorteadas ate
+  # este limite).
+  Maximo-De-Itens: 8
+  # Minimo garantido: se o sorteio nao encher, ele repete ate chegar aqui.
+  Minimo-De-Itens: 3
+
+Baus:
+
+  SUPRIMENTO:
+    Itens:
+      - 'Item=BREAD; Quantidade=2-6; Chance=70'
+      - 'Item=COOKED_BEEF; Quantidade=2-5; Chance=45'
+      - 'Item=TORCH; Quantidade=4-12; Chance=50'
+      - 'Item=IRON_INGOT; Quantidade=1-4; Chance=35'
+      - 'Item=ARROW; Quantidade=8-24; Chance=40'
+      - 'Item=LEATHER_CHESTPLATE; Chance=15'
+      - 'Municao=*; Raridade=COMUM; Quantidade=8-20; Chance=35'
+      - 'Arma=*; Raridade=COMUM; Chance=12'
+      - 'Acessorio=*; Raridade=COMUM; Chance=8'
+
+  MEDICO:
+    Itens:
+      - 'Item=GOLDEN_CARROT; Quantidade=2-5; Chance=55'
+      - 'Item=GOLDEN_APPLE; Quantidade=1-2; Chance=30'
+      - 'Item=SUGAR; Quantidade=3-8; Chance=60'
+      - 'Item=GLISTERING_MELON_SLICE; Quantidade=1-3; Chance=40'
+      - 'Item=FERMENTED_SPIDER_EYE; Quantidade=1-2; Chance=35'
+      # O antidoto pronto: o achado que salva a noite.
+      - 'Antidoto=1; Quantidade=1-2; Chance=45'
+      - 'Municao=*; Raridade=COMUM; Quantidade=6-14; Chance=25'
+      - 'Acessorio=*; Raridade=COMUM; Chance=12'
+
+  MILITAR:
+    Itens:
+      - 'Item=IRON_INGOT; Quantidade=3-8; Chance=60'
+      - 'Item=IRON_CHESTPLATE; Chance=25'
+      - 'Item=IRON_HELMET; Chance=30'
+      - 'Item=SHIELD; Chance=25'
+      - 'Item=TNT; Quantidade=1-3; Chance=20'
+      - 'Item=DIAMOND; Quantidade=1-3; Chance=25'
+      - 'Arma=*; Raridade=RARO; Chance=25'
+      - 'Arma=*; Raridade=COMUM; Chance=45'
+      - 'Municao=*; Raridade=RARO; Quantidade=10-25; Chance=45'
+      - 'Acessorio=*; Raridade=RARO; Chance=18'
+
+  RELIQUIA:
+    Itens:
+      - 'Item=DIAMOND; Quantidade=3-7; Chance=70'
+      - 'Item=EMERALD; Quantidade=4-10; Chance=60'
+      - 'Item=EXPERIENCE_BOTTLE; Quantidade=6-14; Chance=65'
+      - 'Item=ENCHANTED_GOLDEN_APPLE; Chance=12'
+      - 'Item=NETHER_STAR; Chance=4'
+      - 'Arma=*; Raridade=LENDARIO; Chance=8'
+      - 'Arma=*; Raridade=EPICO; Chance=30'
+      - 'Acessorio=*; Raridade=EPICO; Chance=25'
+      - 'Municao=*; Raridade=EPICO; Quantidade=15-40; Chance=55'

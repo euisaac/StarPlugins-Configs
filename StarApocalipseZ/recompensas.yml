@@ -1,0 +1,79 @@
+# ============================================================================
+#  Marcos do sobrevivente
+#  A cada nivel alcancado o plugin procura um marco com aquele numero. Se
+#  existir, entrega o que estiver aqui. Marcos sao entregues uma vez so.
+#
+#  Marcadores: {jogador} {nivel} {pontos} {abates}
+# ============================================================================
+
+# Mensagem enviada a cada nivel novo, mesmo sem marco.
+Ao-Subir-De-Nivel:
+  Titulo: '&a&lNIVEL {nivel}'
+  Subtitulo: '&7Voce esta sobrevivendo.'
+  Som: 'ENTITY_PLAYER_LEVELUP'
+  Anunciar-Global: false
+  # A partir de qual nivel o anuncio global sai (quando ligado acima).
+  Anunciar-A-Partir-De: 25
+
+Marcos:
+
+  5:
+    Nome: '&fSobrevivente'
+    Comandos:
+      - 'give {jogador} bread 16'
+    Itens: []
+    Mensagem: '&aVoce chegou ao nivel 5. Continue vivo.'
+
+  10:
+    Nome: '&aBatedor'
+    Comandos: []
+    Itens:
+      - 'Item=IRON_SWORD; Nome=&fFacao Improvisado'
+      - 'Item=COOKED_BEEF; Quantidade=16'
+    Mensagem: '&aNivel 10: voce ja conhece o barulho deles.'
+
+  25:
+    Nome: '&eVeterano'
+    Comandos: []
+    Itens:
+      - 'Item=GOLDEN_APPLE; Quantidade=3'
+      - 'Arma=*; Raridade=COMUM'
+    Mensagem: '&eNivel 25: os fracos ja morreram.'
+
+  50:
+    Nome: '&6Cacador de Mortos'
+    Comandos: []
+    Itens:
+      - 'Item=DIAMOND; Quantidade=10'
+      - 'Arma=*; Raridade=RARO'
+      - 'Acessorio=*; Raridade=RARO'
+    Mensagem: '&6Nivel 50: eles fogem de voce.'
+
+  75:
+    Nome: '&cImune'
+    Comandos: []
+    Itens:
+      - 'Item=ENCHANTED_GOLDEN_APPLE; Quantidade=2'
+      - 'Arma=*; Raridade=EPICO'
+    Mensagem: '&cNivel 75: a infeccao nao te pega mais tao facil.'
+
+  100:
+    Nome: '&4&lUltimo Homem'
+    Comandos: []
+    Itens:
+      - 'Item=NETHER_STAR'
+      - 'Arma=*; Raridade=LENDARIO'
+      - 'Acessorio=*; Raridade=EPICO'
+    Mensagem: '&4&lNivel 100. Nao sobrou mais ninguem alem de voce.'
+
+# ----------------------------------------------------------------------------
+#  Titulos exibidos no perfil por faixa de nivel.
+# ----------------------------------------------------------------------------
+Titulos:
+  1: '&7Recem-Chegado'
+  5: '&fSobrevivente'
+  10: '&aBatedor'
+  25: '&eVeterano'
+  50: '&6Cacador de Mortos'
+  75: '&cImune'
+  100: '&4Ultimo Homem'

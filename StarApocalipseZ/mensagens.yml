@@ -1,0 +1,216 @@
+# ============================================================================
+#  Mensagens
+#  Mensagem vazia ('') nao e enviada -- e assim que voce desliga um aviso sem
+#  precisar de uma opcao para cada um.
+# ============================================================================
+
+Prefixo: '&8[&4Apocalipse&8] &r'
+
+Sem-Permissao: '&cVoce nao tem permissao para isso.'
+So-Jogador: '&cSo um jogador pode usar este comando.'
+Jogador-Nao-Encontrado: '&cJogador &f{jogador} &cnao encontrado.'
+Mundo-Nao-Encontrado: '&cMundo &f{mundo} &cnao encontrado.'
+Numero-Invalido: '&c&f{valor} &cnao e um numero valido.'
+Recarregado: '&aConfiguracoes recarregadas.'
+Mundo-Desligado: '&cO apocalipse nao esta ligado neste mundo.'
+Inventario-Cheio: '&cSeu inventario esta cheio.'
+
+Ajuda:
+  Jogador: |-
+    &8&m
+    &4&lSTAR APOCALIPSE Z
+    &7/apocalipse &8- &fabre o painel
+    &7/apocalipse perfil &8- &fseu progresso de sobrevivente
+    &7/apocalipse zonas &8- &fzonas de perigo abertas agora
+    &7/apocalipse bestiario &8- &fos tipos de zumbi
+    &7/apocalipse ranking &8- &fos maiores sobreviventes
+    &7/apocalipse nivel &8- &fo nivel dos zumbis onde voce esta
+    &7/apocalipse clas &8- &fo ranking de clas sobreviventes
+    &7/apocalipse clima &8- &fo clima deste mundo
+    &8&m
+  Admin: |-
+    &8&m
+    &4&lSTAR APOCALIPSE Z &7- administracao
+    &7/sapoc recarregar &8- &frecarrega os arquivos
+    &7/sapoc editor &8- &fabre o editor em jogo
+    &7/sapoc zona abrir <modelo> &8- &fabre uma zona onde voce esta
+    &7/sapoc zona fechar <id> &8- &ffecha uma zona
+    &7/sapoc zona listar &8- &flista as zonas abertas
+    &7/sapoc raid <modelo> [jogador] &8- &fcomeca uma raid
+    &7/sapoc raid parar [id] &8- &fencerra uma raid
+    &7/sapoc horda <modelo> [jogador] &8- &fsolta uma horda
+    &7/sapoc invocar <tipo> [nivel] &8- &finvoca um zumbi
+    &7/sapoc nivel [jogador] &8- &fmostra o nivel do lugar
+    &7/sapoc infeccao <dar|curar> <jogador> &8- &fmexe na infeccao
+    &7/sapoc antidoto [jogador] [qtd] &8- &fentrega antidotos
+    &7/sapoc radio [jogador] &8- &fentrega um radio
+    &7/sapoc clima <modelo|parar> &8- &fmuda o clima do mundo
+    &7/sapoc sede <jogador> <valor> &8- &fdefine a sede de alguem
+    &7/sapoc perfil <jogador> &8- &fve o perfil de alguem
+    &7/sapoc limpar [mundo] &8- &fremove os zumbis do plugin
+    &7/sapoc status &8- &fresumo do que esta acontecendo
+    &8&m
+
+# ----------------------------------------------------------------------------
+#  Nivel
+# ----------------------------------------------------------------------------
+Nivel:
+  Consulta: '&7Aqui os zumbis nascem no nivel &c{nivel} &7(distancia: &f{distancia}&7, dia &f{dia}&7).'
+  Consulta-Outro: '&7{jogador} esta numa area de nivel &c{nivel}&7.'
+  Invocado: '&aInvocado &f{tipo} &anivel &f{nivel}&a.'
+  Tipo-Nao-Encontrado: '&cNao existe um tipo de zumbi chamado &f{tipo}&c.'
+
+# ----------------------------------------------------------------------------
+#  Zonas
+# ----------------------------------------------------------------------------
+Zona:
+  Entrou: '&7Voce entrou em &r{nome}&7. Nivel dos mortos aqui: &c+{bonus}&7.'
+  Saiu: '&7Voce saiu de &r{nome}&7.'
+  Aberta-Anuncio: '&7Uma zona de perigo apareceu: &r{nome} &7em &f{mundo} &7({x}, {z}).'
+  Fechada-Anuncio: '&7A zona &r{nome} &7se dissolveu.'
+  Aberta: '&aZona &r{nome} &aaberta em &f{x}, {y}, {z}&a. Id: &f{id}'
+  Fechada: '&aZona &f{id} &afechada.'
+  Nao-Encontrada: '&cNao existe uma zona com o id &f{id}&c.'
+  Modelo-Nao-Encontrado: '&cNao existe um modelo de zona chamado &f{modelo}&c.'
+  Sem-Zonas: '&7Nenhuma zona de perigo aberta no momento.'
+  Lista-Cabecalho: '&7Zonas abertas:'
+  Lista-Linha: '&8 - &f{id} &7| &r{nome} &7| &f{mundo} &7({x}, {z}) &7| &f{distancia}m &7| &f{tempo}'
+  Limite-Atingido: '&cJa existem zonas demais abertas neste mundo.'
+  Sem-Lugar: '&cNao encontrei um lugar bom para a zona.'
+  Bau-Vazio: '&7Este bau ja foi esvaziado.'
+  Bau-Ja-Aberto: '&7Voce ja pegou o que tinha neste bau.'
+
+# ----------------------------------------------------------------------------
+#  Hordas
+# ----------------------------------------------------------------------------
+Horda:
+  Solta: '&aHorda &r{nome} &acom &f{membros} &amembros solta atras de &f{jogador}&a.'
+  Modelo-Nao-Encontrado: '&cNao existe uma horda chamada &f{modelo}&c.'
+  Limite-Atingido: '&cJa existem hordas demais neste mundo.'
+
+# ----------------------------------------------------------------------------
+#  Raids
+# ----------------------------------------------------------------------------
+Raid:
+  Modelo-Nao-Encontrado: '&cNao existe uma raid chamada &f{modelo}&c.'
+  Limite-Atingido: '&cJa existem raids demais acontecendo.'
+  Ja-Em-Raid: '&cJa existe uma raid acontecendo perto dali.'
+  Comecou-Anuncio: |-
+    &8&m
+    &c&lUMA RAID COMECOU
+    &7{nome} &7esta atacando &f{alvo}&7.
+    &7Ondas: &c{ondas} &7| Prepare-se.
+    &8&m
+  Preparacao: '&7A primeira onda chega em &c{tempo}&7.'
+  Onda: '&c&lONDA {onda}&7/&c&l{ondas} &7- &f{quantidade} &7chegando.'
+  Onda-Limpa: '&aOnda &f{onda} &alimpa. Proxima em &f{tempo}&a.'
+  Vitoria: |-
+    &8&m
+    &a&lRAID REPELIDA
+    &7{nome} &7acabou. Sobreviventes: &f{participantes}&7.
+    &7Destaque: &f{destaque} &7com &f{abates} &7abates.
+    &8&m
+  Derrota: '&c&lA raid {nome} tomou o lugar. Ninguem restou para defender.'
+  Cancelada: '&7A raid &f{nome} &7foi encerrada.'
+  Recompensa: '&aVoce recebeu a recompensa da raid.'
+  Sem-Recompensa: '&7Voce nao matou o bastante para levar recompensa.'
+  Sem-Raids: '&7Nenhuma raid acontecendo.'
+  Lista-Linha: '&8 - &f{id} &7| &r{nome} &7| &f{mundo} &7| onda &f{onda}&7/&f{ondas} &7| &f{vivos} &7vivos'
+  Parada: '&aRaid &f{id} &aencerrada.'
+
+# ----------------------------------------------------------------------------
+#  Infeccao
+# ----------------------------------------------------------------------------
+Infeccao:
+  Pegou: '&2Voce foi infectado. Procure um antidoto.'
+  Curado: '&aA infeccao passou.'
+  Curado-Antidoto: '&aO antidoto fez efeito. Voce esta limpo.'
+  Ja-Infectado: '&cEste jogador ja esta infectado.'
+  Nao-Infectado: '&cEste jogador nao esta infectado.'
+  Dado: '&aVoce infectou &f{jogador}&a.'
+  Removido: '&aVoce curou &f{jogador}&a.'
+  Sem-Antidoto: '&cVoce nao tem um antidoto.'
+  Nao-Esta-Infectado: '&7Voce nao esta infectado.'
+  Antidoto-Entregue: '&aVoce recebeu &f{quantidade}x &aantidoto.'
+  Antidoto-Dado: '&aEntregue &f{quantidade}x &aantidoto para &f{jogador}&a.'
+  Morreu: '&4{jogador} nao resistiu a infeccao.'
+
+# ----------------------------------------------------------------------------
+#  Progressao
+# ----------------------------------------------------------------------------
+Progressao:
+  Subiu: '&aVoce subiu para o nivel &f{nivel} &a-- &r{titulo}&a.'
+  Anuncio: '&e{jogador} &7chegou ao nivel de sobrevivente &f{nivel}&7.'
+  Marco: '&6Marco alcancado: &r{nome}&6.'
+  Perdeu: '&cVoce perdeu &f{pontos} &cpontos ao morrer.'
+  Perfil-Nao-Carregado: '&cSeu perfil ainda esta carregando. Tente de novo.'
+
+# ----------------------------------------------------------------------------
+#  Ranking
+# ----------------------------------------------------------------------------
+Ranking:
+  Vazio: '&7Ninguem sobreviveu tempo o bastante para entrar no ranking.'
+
+# ----------------------------------------------------------------------------
+#  Entrada pelo chat
+#  Usada pelo editor, quando ele pede um valor digitado.
+# ----------------------------------------------------------------------------
+Entrada:
+  Como cancelar: '&7Digite &ccancelar &7para desistir.'
+  Cancelado: '&7Alteracao cancelada.'
+  Tempo esgotado: '&7Voce demorou demais; a alteracao foi cancelada.'
+
+# ----------------------------------------------------------------------------
+#  Sede
+# ----------------------------------------------------------------------------
+Sede:
+  Bebeu: '&bVoce bebeu. &7(+{quantidade})'
+  Agua-Suja: '&2A agua estava suja.'
+  Definida: '&aSede de &f{jogador} &adefinida em &f{valor}&a.'
+  Desligada: '&cA sede esta desligada no config.yml.'
+
+# ----------------------------------------------------------------------------
+#  Radio
+# ----------------------------------------------------------------------------
+Radio:
+  Cabecalho: '&8&m                    &r &b&lRADIO &8&m                    '
+  Zona: '&8 - &r{nome} &7| &f{distancia}m &7ao &f{direcao} &7| fecha em &f{tempo}'
+  Raid: '&8 - &c{nome} &7| onda &f{onda}&7/&f{ondas} &7| &f{distancia}m &7ao &f{direcao}'
+  Clima: '&8 - &r{nome} &7| passa em &f{tempo}'
+  Sem-Zonas: '&8 - &7Nenhuma zona de perigo no ar.'
+  Esperando: '&cO radio ainda esta esquentando. &7({tempo})'
+  Aviso-De-Raid: '&c&lRADIO: &fuma raid comecou a &f{distancia}m &7ao &f{direcao}&f. &7({nome})'
+  Entregue: '&aVoce recebeu um radio.'
+  Dado: '&aEntregue um radio para &f{jogador}&a.'
+
+# ----------------------------------------------------------------------------
+#  Clima
+# ----------------------------------------------------------------------------
+Clima:
+  Comecou: '&aClima &r{nome} &acomecou em &f{mundo}&a.'
+  Encerrado: '&aO clima de &f{mundo} &afoi encerrado.'
+  Sem-Clima: '&7Nenhum clima acontecendo neste mundo.'
+  Nao-Encontrado: '&cNao existe um clima chamado &f{modelo}&c.'
+  Atual: '&7Clima em &f{mundo}&7: &r{nome} &7(resta &f{tempo}&7)'
+
+# ----------------------------------------------------------------------------
+#  Administracao
+# ----------------------------------------------------------------------------
+Admin:
+  Limpou: '&aRemovidos &f{quantidade} &azumbis do plugin.'
+  Status: |-
+    &8&m
+    &4&lSTAR APOCALIPSE Z
+    &7Mundos ligados: &f{mundos}
+    &7Clima aqui: &r{clima}
+    &7Zumbis do plugin: &f{zumbis}
+    &7Zonas abertas: &f{zonas}
+    &7Hordas ativas: &f{hordas}
+    &7Raids acontecendo: &f{raids}
+    &7Infectados: &f{infectados}
+    &7Dia do apocalipse: &f{dia}
+    &8&m
+  Editor-Salvo: '&aAlteracoes salvas.'
+  Editor-Cancelado: '&7Alteracao cancelada.'
+  Editor-Digite: '&7Digite o novo valor no chat. &8(&ccancelar &8para desistir)'
+  Editor-Valor-Invalido: '&cValor invalido.'
