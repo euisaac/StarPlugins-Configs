@@ -1,0 +1,308 @@
+# ---------------------------------------------------------------------------
+#  StarBunkers - tudo que o jogador le
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao separada para ele.
+#
+#  O prefixo entra em toda mensagem simples. As listas (Ajuda, Ajuda do bunker,
+#  Admin.Ajuda, Bunker.Info) saem sem prefixo, uma linha por vez.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Prefixo: '&2&lBUNKERS &8» &r'
+
+Geral:
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Jogador offline: '&cO jogador &f{jogador} &cprecisa estar online.'
+  Numero invalido: '&cDigite um numero valido.'
+  Tempo invalido: '&cDigite um tempo valido, como &f7d&c, &f12h &cou &f30m&c.'
+  # Serve para toda pergunta feita no chat.
+  Palavra de cancelar: 'cancelar'
+  # Serve para o que nao tem volta e e digitado no chat (abandonar o bunker).
+  Palavra de confirmar: 'confirmar'
+  Cancelado: '&7Voce cancelou.'
+
+Menu:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Online: '&aonline'
+  Offline: '&7offline'
+  Trancado: '&ctrancado'
+  Destrancado: '&adestrancado'
+  Sem dono: '&7ninguem'
+  Sem busca: '&7nada'
+  Sem categoria: '&7Sem tipo'
+  Sem boas vindas: '&7nenhuma'
+  Todas as categorias: '&aTodos'
+  Nao definido: '&cnao definido'
+  Opcao atual: ' &f• &a{nome}'
+  Opcao: ' &f• &7{nome}'
+
+  Acesso dono: '&aSeu bunker'
+  Acesso amigo: '&aVoce e amigo daqui'
+  Acesso livre: '&aLivre para alugar'
+  Acesso visitante: '&eA porta esta aberta'
+  Acesso barrado: '&cPorta trancada'
+
+  Filtros:
+    TODOS: 'Todos'
+    DISPONIVEIS: 'Disponiveis'
+    ALUGADOS: 'Alugados'
+    MEUS: 'Meus bunkers'
+    AMIGO: 'Sou amigo'
+
+  Ordens:
+    PADRAO: 'Padrao'
+    PRECO: 'Preco'
+    TAMANHO: 'Tamanho'
+    VISITAS: 'Mais visitados'
+    RECENTES: 'Mais novos'
+    NOME: 'Nome'
+
+  Estados:
+    Livre: '&alivre'
+    Alugado: '&ealugado'
+    Vencido: '&cvencido'
+    Incompleto: '&cincompleto'
+
+Ajuda:
+  - '&8&m-------------------------------'
+  - '&2&lBUNKERS'
+  - '&f/bunker &7- abre o menu do seu bunker'
+  - '&f/bunkers &7- todos os bunkers do servidor'
+  - '&f/bunkers livres &7- so os que estao para alugar'
+  - '&f/bunkers buscar <texto> &7- procura por nome, dono ou descricao'
+  - '&f/bunkers ir <id> &7- vai ate um bunker'
+  - '&f/bunkers info <id> &7- os detalhes de um bunker'
+  - '&f/bunkers cofre &7- o que sobrou de um aluguel vencido'
+  - '&8&m-------------------------------'
+
+Ajuda do bunker:
+  - '&8&m-------------------------------'
+  - '&2&lO SEU BUNKER'
+  - '&f/bunker &7- abre o menu'
+  - '&f/bunker amigos &7- quem pode entrar'
+  - '&f/bunker trancar &7- fecha a porta'
+  - '&f/bunker destrancar &7- abre a porta'
+  - '&f/bunker ir &7- teleporta para o seu bunker'
+  - '&f/bunker renovar &7- paga mais um periodo'
+  - '&f/bunker registro &7- quem apareceu por la'
+  - '&f/bunker cofre &7- itens guardados'
+  - '&f/bunker abandonar &7- devolve o bunker'
+  - '&8&m-------------------------------'
+
+Bunker:
+  Nao existe: '&cNao existe nenhum bunker com o id &f{id}&c.'
+  Nao e seu: '&cO bunker &f{id} &cnao e seu.'
+  Incompleto: '&cO bunker &f{id} &cainda nao esta pronto para alugar.'
+  Sem spawn: '&cEste bunker ainda nao tem um ponto de chegada.'
+  Trancado: '&cO bunker &f{bunker} &cesta trancado.'
+  Teleportado: '&aVoce chegou em &f{bunker}&a.'
+  Voce nao tem: '&eVoce ainda nao alugou nenhum bunker. Veja os que estao livres:'
+  Escolha: '&eVoce tem mais de um bunker. Escreva o id depois do comando:'
+  Item da lista: ' &f• &a{id} &7- {bunker}'
+  Uso do ir: '&cUse: &f/{comando} {subcomando} <bunker>'
+  Uso do info: '&cUse: &f/{comando} {subcomando} <bunker>'
+
+  Digite o nome: |-
+    &eDigite no chat o novo nome do seu bunker.
+    &7Ate {maximo} letras. Escreva &f{cancelar} &7para desistir.
+  Nome trocado: '&aO seu bunker agora se chama &f{bunker}&a.'
+  Nome grande: '&cO nome pode ter no maximo &f{maximo} &cletras.'
+  Digite a descricao: |-
+    &eDigite no chat a descricao do seu bunker.
+    &7Ate {maximo} letras. Escreva &f{cancelar} &7para desistir.
+  Descricao trocada: '&aDescricao atualizada.'
+  Descricao grande: '&cO texto pode ter no maximo &f{maximo} &cletras.'
+  Digite as boas vindas: |-
+    &eDigite no chat a mensagem que quem entrar vai ler.
+    &7Escreva &f{cancelar} &7para desistir.
+  Boas vindas trocadas: '&aMensagem de boas-vindas atualizada.'
+  Texto bloqueado: '&cEsse texto tem uma palavra que nao e permitida.'
+  Icone trocado: '&aIcone atualizado.'
+  Icone tirado: '&7O icone voltou ao padrao.'
+  Sem icone: '&cPonha um item na casa do meio antes de confirmar.'
+  Categoria trocada: '&aO seu bunker agora e do tipo &f{categoria}&a.'
+  Categoria tirada: '&7O seu bunker ficou sem tipo.'
+
+  Info:
+    - '&8&m-------------------------------'
+    - '&a{bunker} &7({id})'
+    - '&fMorador: &a{dono}'
+    - '&fTipo: &a{categoria}'
+    - '&fPorta: {estado}'
+    - '&fAmigos: &a{amigos}'
+    - '&fVisitas: &a{visitas}'
+    - '&fTamanho: &a{tamanho} &7blocos'
+    - '&fAluguel: &a{preco} &7por &f{duracao}'
+    - '&fVence em: &a{vence}'
+    - '&8&m-------------------------------'
+
+Aluguel:
+  Alugado: '&aVoce alugou o bunker &f{bunker} &apor &f{preco}&a. O aluguel vale por &f{tempo}&a.'
+  Alugado por admin: '&aVoce recebeu o bunker &f{bunker} &apor &f{tempo}&a.'
+  Ja alugado: '&cEsse bunker acabou de ser alugado por outra pessoa.'
+  Em andamento: '&cEsse bunker esta sendo alugado neste momento. Tente de novo em instantes.'
+  No limite: '&cVoce ja tem &f{limite} &cbunker(s). Abandone um antes de alugar outro.'
+  Sem dinheiro: '&cVoce precisa de &f{preco} &cpara isso.'
+  Sem moeda: '&cA moeda deste bunker nao existe mais. Avise a administracao.'
+  Cedo demais: '&cVoce so pode renovar quando faltar &f{porcentagem}% &cdo prazo.'
+  Renovado: '&aAluguel de &f{bunker} &arenovado por &f{preco}&a. Vence em &f{vence}&a.'
+  Auto renovado: '&aO aluguel de &f{bunker} &afoi renovado sozinho por &f{preco}&a.'
+  Auto falhou: '&cNao deu para renovar &f{bunker} &csozinho: faltou &f{preco}&c.'
+  Auto desligada no servidor: '&cA renovacao automatica esta desligada neste servidor.'
+  Confirme abandonar: |-
+    &cIsso devolve o bunker &f{bunker} &ce tudo que estiver nele.
+    &cSe for isso mesmo: &f/{comando} {subcomando} {id} {confirmar}
+  Abandonado: '&7Voce abandonou o bunker &f{bunker}&7. O que foi pago nao volta.'
+  Desalugado: '&cUm administrador tirou o seu aluguel de &f{bunker}&c.'
+  Vai vencer: '&eO aluguel de &f{bunker} &evence em &f{tempo}&e.'
+  Venceu: '&cO aluguel de &f{bunker} &cvenceu e o bunker voltou para o servidor.'
+  Venceu na sua ausencia: '&cO aluguel de &f{bunker} &cvenceu enquanto voce estava fora.'
+
+Tranca:
+  Trancou: '&aO bunker &f{bunker} &aesta trancado. So voce e os seus amigos entram.'
+  Destrancou: '&eO bunker &f{bunker} &eesta destrancado: qualquer um pode entrar.'
+  Ja trancado: '&cO bunker &f{bunker} &cja esta trancado.'
+  Ja destrancado: '&cO bunker &f{bunker} &cja esta destrancado.'
+  Expulsou: '&7{quantidade} pessoa(s) que estavam la dentro foram para fora.'
+  Expulso: '&c{dono} &ctrancou o bunker &f{bunker}&c.'
+  Barrado: '&cO bunker &f{bunker} &cesta trancado. Fale com &f{dono}&c.'
+  Alarme: '&c&lALARME &8» &fAlguem tentou entrar no seu bunker &a{bunker}&f: &e{jogador}'
+  Alarme ligado: '&aO alarme do bunker foi ligado.'
+  Alarme desligado: '&7O alarme do bunker foi desligado.'
+  Confirme limpar: '&cSegure SHIFT e clique de novo para apagar o registro.'
+  Registro limpo: '&aO registro de &f{bunker} &afoi apagado.'
+
+Amigos:
+  Digite: |-
+    &eDigite no chat o nome de quem vai virar seu amigo no bunker.
+    &7Escreva &f{cancelar} &7para desistir.
+  Procurando: '&7Procurando &f{jogador}&7...'
+  Nunca entrou: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Adicionado: '&a{jogador} &aagora entra no seu bunker.'
+  Removido: '&7{jogador} &7nao entra mais no seu bunker.'
+  Ja e: '&c{jogador} &cja e seu amigo neste bunker.'
+  Voce mesmo: '&cVoce ja e o dono.'
+  No limite: '&cO seu bunker so cabe &f{limite} &camigo(s).'
+  So o dono: '&cSo o dono do bunker mexe nisso.'
+  Sem convidar: '&cVoce nao pode chamar outras pessoas para este bunker.'
+  Voce entrou: '&a{dono} &ate deixou entrar no bunker &f{bunker}&a.'
+  Voce saiu: '&cVoce nao entra mais no bunker &f{bunker}&c.'
+
+Cofre:
+  Guardamos: '&eGuardamos &f{quantidade} &eitem(ns) do seu bunker. Use &f/bunkers cofre&e.'
+  Retirado: '&aItem retirado do cofre.'
+  Inventario cheio: '&cAbra espaco no seu inventario antes de retirar.'
+
+Busca:
+  Digite: |-
+    &eDigite no chat o que voce procura.
+    &7Vale nome, dono ou descricao. Escreva &f{cancelar} &7para desistir.
+  Uso: '&cUse: &f/{comando} {subcomando} <texto>'
+
+Protecao:
+  Nao pode: '&cVoce nao pode mexer aqui. Este bunker e de &f{dono}&c.'
+
+Entrada:
+  Boas vindas: '&8[&a{bunker}&8] &f{mensagem}'
+  Saiu: '&7Voce saiu de &f{bunker}&7.'
+
+  Disponivel:
+    Chat: '&aEste bunker esta disponivel! Use &f/bunkers &apara alugar.'
+    Acao: '&aBunker disponivel &7- &f{preco}'
+    Titulo: '&aBunker disponivel'
+    Subtitulo: '&f{preco} &7por &f{duracao}'
+
+  Alugado:
+    Chat: '&aVoce entrou no bunker de &f{dono}&a.'
+    Acao: '&a{bunker} &7- &f{dono}'
+    Titulo: '&a{bunker}'
+    Subtitulo: '&7de &f{dono}'
+
+  Trancado:
+    Chat: '&eVoce entrou no bunker trancado de &f{dono}&e.'
+    Acao: '&c{bunker} &7- trancado'
+    Titulo: '&c{bunker}'
+    Subtitulo: '&7bunker trancado de &f{dono}'
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Criado: '&aBunker &f{id} &acriado. Marque a area com a varinha.'
+  Ja existe: '&cJa existe um bunker com o id &f{id}&c.'
+  Id invalido: '&cO id &f{id} &cnao serve: use letras minusculas, numeros, - e _.'
+  Apagado: '&cBunker &f{id} &capagado.'
+  Confirme apagar: '&cSegure SHIFT e clique de novo para apagar &f{id} &cde vez.'
+  Desalugado: '&aO aluguel de &f{id} &afoi cancelado.'
+  Destrancado: '&aA porta do bunker &f{id} &afoi destrancada.'
+  Nao esta alugado: '&cO bunker &f{id} &cnao esta alugado.'
+  Alugado: '&aBunker &f{id} &aentregue a &f{jogador} &apor &f{tempo}&a.'
+  Bunker some: '&cO bunker &f{id} &cnao existe mais.'
+  Uso com id: '&cUse: &f/{comando} {subcomando} <bunker>'
+  Uso do criar: '&cUse: &f/{comando} {subcomando} <id>'
+  Uso do alugar: '&cUse: &f/starbunkers alugar <bunker> <jogador> [tempo]'
+
+  Varinha entregue: '&aVarinha de &f{id} &aentregue. Esquerdo e direito marcam os cantos.'
+  Canto 1: '&aPrimeiro canto em &f{x}, {y}, {z}&a.'
+  Canto 2: '&aSegundo canto em &f{x}, {y}, {z}&a.'
+  Area definida: '&aArea de &f{id} &adefinida: &f{area} &7({blocos} blocos).'
+  Area encostada: '&cEssa area encosta no bunker &f{id}&c. Escolha outra.'
+  Cantos em mundos diferentes: '&cOs dois cantos precisam estar no mesmo mundo.'
+  Spawn definido: '&aPonto de chegada definido onde voce esta.'
+  Spawn apagado: '&7Ponto de chegada apagado.'
+  Holograma definido: '&aLetreiro definido onde voce esta.'
+  Holograma apagado: '&7Letreiro apagado.'
+  Preco definido: '&aPreco do aluguel: &f{preco}&a.'
+  Duracao definida: '&aPrazo do aluguel: &f{tempo}&a.'
+  Moeda definida: '&aEste bunker passa a ser cobrado em &f{moeda} &a({preco}).'
+
+  Digite o preco: |-
+    &eDigite no chat o novo preco do aluguel.
+    &7Escreva &f{cancelar} &7para desistir.
+  Digite a duracao: |-
+    &eDigite no chat o novo prazo do aluguel (7d, 12h, 30m).
+    &7Escreva &f{cancelar} &7para desistir.
+
+  Lista vazia: '&cNenhum bunker cadastrado ainda.'
+  Lista cabecalho: '&e{quantidade} bunker(s):'
+  Lista item: ' &f• &a{id} &7[{estado}&7] &7dono: &f{dono} &7mundo: &f{mundo} &7vence: &f{vence}'
+
+  Historico buscando: '&7Buscando o historico de &f{id}&7...'
+  Historico vazio: '&cO bunker &f{id} &cainda nao tem historico.'
+  Historico cabecalho: '&eUltimos {quantidade} registros de &f{id}&e:'
+  Historico item: ' &8[{quando}&8] &f{jogador} &7{acao} &7{valor}'
+
+  Acoes:
+    ALUGOU: '&aalugou'
+    RENOVOU: '&arenovou'
+    AUTO: '&arenovou sozinho'
+    ABANDONOU: '&cabandonou'
+    VENCEU: '&cvenceu'
+    DESALUGADO: '&cdesalugado'
+    ADMIN: '&brecebeu da administracao'
+
+  Info:
+    - '&8&m-------------------------------'
+    - '&2StarBunkers &fv{versao}'
+    - '&fBunkers: &a{bunkers}'
+    - '&fBanco de dados: &a{banco}'
+    - '&fMoedas: &a{moedas}'
+    - '&8&m-------------------------------'
+
+  Ajuda:
+    - '&8&m-------------------------------'
+    - '&2&lBUNKERS &8- &fadministracao'
+    - '&f/starbunkers criar <id> &7- cria um bunker'
+    - '&f/starbunkers editar <id> &7- abre o menu de administracao'
+    - '&f/starbunkers varinha <id> &7- pega a varinha de area'
+    - '&f/starbunkers apagar <id> &7- apaga o bunker'
+    - '&f/starbunkers alugar <id> <jogador> [tempo] &7- entrega sem cobrar'
+    - '&f/starbunkers desalugar <id> &7- tira o aluguel'
+    - '&f/starbunkers destrancar <id> &7- abre a porta de um bunker alugado'
+    - '&f/starbunkers listar &7- lista tudo'
+    - '&f/starbunkers historico <id> &7- o que aconteceu no bunker'
+    - '&f/starbunkers recarregar &7- recarrega os arquivos'
+    - '&8&m-------------------------------'

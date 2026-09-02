@@ -1,0 +1,205 @@
+# ---------------------------------------------------------------------------
+#  StarBunkers - configuracao geral
+#
+#  Os arquivos de conteudo ficam separados:
+#    economias.yml   as moedas em que o aluguel pode ser cobrado
+#    categorias.yml  os tipos de bunker que o morador pode escolher
+#    menus.yml       titulos, slots e itens das telas
+#    mensagens.yml   tudo que o jogador le
+#    comandos.yml    os nomes dos comandos e subcomandos
+#
+#  Prazos aceitam 7d, 12h, 30m e 45s (sem letra, o numero e lido em segundos).
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+  # Quantos bunkers um jogador pode alugar ao mesmo tempo.
+  # A permissao starbunkers.limite.<n> vale mais do que este numero.
+  Limite de bunkers: 1
+
+  # Porcentagem final do prazo em que a renovacao e liberada. Com 30, o dono so
+  # renova quando faltar 30% do tempo. Sem isto, ele renovaria no primeiro
+  # minuto e empilharia meses de aluguel de uma vez.
+  Renovar nos ultimos: 30.0
+
+  # Depois de vencer, o bunker ainda fica reservado ao antigo dono por este
+  # tempo. Quase todo aluguel perdido e um jogador que estava dormindo.
+  Carencia: 1h
+
+  # Valores de um bunker recem-criado; a equipe muda no menu depois.
+  Duracao padrao: 7d
+  Preco padrao: 5000.0
+
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+
+  # Segundos que o jogador tem para responder uma pergunta feita no chat.
+  Tempo para responder: 30
+
+  # Limites do que o morador escreve. O tamanho conta so as letras que
+  # aparecem, e nao os codigos de cor.
+  Tamanho do nome: 24
+  Tamanho da descricao: 60
+
+  # Palavras que nao podem aparecer no nome nem na descricao de um bunker.
+  Palavras bloqueadas:
+    - 'admin'
+    - 'staff'
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/starbunkers.db.
+  # No MySQL, dois servidores podem dividir os mesmos bunkers: o aluguel usa um
+  # UPDATE condicional, entao ninguem leva o mesmo bunker duas vezes.
+  Tipo: SQLITE
+  Prefixo das tabelas: starbunkers_
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Aluguel:
+  # Segundos entre as conferencias de vencimento.
+  Conferir a cada: 20
+
+  Renovacao automatica:
+    Ativar: true
+    # Ja vem ligada em todo aluguel novo?
+    Ligada de fabrica: false
+
+  Avisos:
+    # Avisa o dono quando faltar um destes prazos para vencer.
+    Faltando:
+      - '1d'
+      - '6h'
+      - '1h'
+      - '10m'
+    # Avisa tambem na entrada de quem tem aluguel perto de vencer.
+    Ao entrar: true
+
+  Ao vencer:
+    # Recolhe o conteudo dos baus do bunker e manda para o cofre do antigo dono
+    # (/bunkers cofre). Sem isto, perder o aluguel e perder tudo que estava
+    # guardado la dentro -- e um bunker existe para guardar coisas.
+    Guardar itens: true
+    # Area maior que isto nao e varrida, para o tique nao sofrer num bunker
+    # gigante. O que passar do limite fica onde esta.
+    Maximo de blocos: 60000
+    # Comandos rodados no console. Aceitam {bunker} e {jogador}.
+    Comandos: []
+
+Area:
+  Protecao:
+    # Desligue a secao inteira se voce ja usa um plugin de regioes nos bunkers.
+    Ativar: true
+    Quebrar: true
+    Colocar: true
+    Interagir: true
+    Baus: true
+    Pisar em plantacao: true
+    # PvP dentro do bunker, barrado inclusive para o dono: abrigo nao e arena.
+    Dano de jogador: true
+    Dano em entidade: true
+    Fogo: true
+
+  Varinha:
+    Material: GOLDEN_AXE
+    Nome: '&6Varinha de area &7({id})'
+    Lore:
+      - '&7Bunker: &f{id}'
+      - ''
+      - '&aEsquerdo &7- primeiro canto'
+      - '&aDireito &7- segundo canto'
+
+  Entrada:
+    Ativar: true
+    Contar visitas: true
+    # Segundos ate o mesmo jogador contar visita de novo no mesmo bunker.
+    Intervalo da visita: 300
+    # CHAT, ACAO e TITULO; pode combinar ('ACAO,TITULO').
+    Modo: 'ACAO'
+
+Tranca:
+  # A tranca do bunker: com ela ligada, so o dono e os amigos atravessam a porta.
+  # Desligada aqui, trancar vira so um aviso -- ninguem e barrado de verdade.
+  Ativar: true
+
+  # Devolve o passo de quem tenta atravessar a porta de um bunker trancado.
+  # Desligado, a tranca so avisa e registra a entrada.
+  Devolver quem entrar: true
+
+  # O bunker recem-alugado ja nasce trancado. E o padrao certo: deixa-lo aberto
+  # entregaria a base ao servidor inteiro enquanto o dono ainda esta arrumando.
+  Trancado de fabrica: true
+
+  Alarme:
+    # Avisa o dono, se estiver online, quando alguem encosta na porta.
+    Ativar: true
+    # Segundos ate o mesmo jogador poder disparar o alarme do mesmo bunker de
+    # novo. Sem isto, quem anda na fronteira mandaria uma mensagem por passo.
+    Espera entre avisos: 30
+
+  Registro:
+    # Guarda no banco quem entrou (ou tentou entrar). E o que o dono le no menu
+    # depois de passar o dia fora. Amigos e o proprio dono nao entram na lista.
+    Ativar: true
+    # Quantas linhas guardar por bunker; as mais velhas somem sozinhas.
+    Guardar: 60
+
+Amigos:
+  # Quantos amigos cabem num bunker.
+  # A permissao starbunkers.amigos.<n> vale mais do que este numero.
+  Limite: 10
+
+  # Deixa adicionar um amigo que esta offline, desde que ele ja tenha entrado no
+  # servidor alguma vez (o produto guarda o par nome/uuid na entrada).
+  Aceitar offline: true
+
+Holograma:
+  # O letreiro em cima do bunker. Sao suportes invisiveis do proprio plugin:
+  # nao precisa de nenhum plugin de holograma instalado.
+  Ativar: true
+  # Altura acima do ponto marcado (ou do meio da area, quando nao ha ponto).
+  Altura: 2.5
+  Espaco entre linhas: 0.28
+  # Tiques entre as reescritas; o texto tem prazo correndo.
+  Atualizar a cada: 40
+
+  Disponivel:
+    - '&e&lBUNKER'
+    - '&fEspaco &adisponivel'
+    - '&fAluguel: &a{preco}'
+    - '&7Prazo: &f{duracao}'
+    - '&8/bunkers'
+  Alugado:
+    - '&e&lBUNKER'
+    - '&f{bunker}'
+    - '&7Morador: &f{dono}'
+    - '&aPorta destrancada'
+    - '&7Vence em: &f{vence}'
+  Trancado:
+    - '&c&lBUNKER TRANCADO'
+    - '&f{bunker}'
+    - '&7Morador: &f{dono}'
+    - '&7Amigos: &f{amigos}'
+    - '&7Vence em: &f{vence}'
+
+Menu:
+  # Ligado, o /bunkers abre primeiro a lista de categorias. Desligado (padrao),
+  # ele ja abre com os bunkers: quem digita o comando quer ver as bases.
+  Categorias separadas: false
+  # PADRAO, PRECO, TAMANHO, VISITAS, RECENTES ou NOME.
+  Ordem inicial: PADRAO
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Alugar: 'ENTITY_PLAYER_LEVELUP;1;1'
+  Alarme: 'BLOCK_NOTE_BLOCK_PLING;1;0.6'
+  Trancar: 'BLOCK_IRON_DOOR_CLOSE;1;1'
+  Destrancar: 'BLOCK_IRON_DOOR_OPEN;1;1'
