@@ -1,0 +1,193 @@
+# ==========================================================================
+#  StarAirDrops - evento
+#
+#  O nome do arquivo e o id do evento: comum.yml vira
+#  /starairdrops iniciar comum. Criar um evento novo e copiar este arquivo e
+#  mudar o que interessa -- nao ha lista de eventos em lugar nenhum.
+#
+#  Tipo: NORMAL | RELAMPAGO | GLOBAL | SECRETO | VIP | PVP | COOPERATIVO
+#        | CHEFE | ONDAS
+#  Animacao: NENHUMA | PARAQUEDAS | BALAO | FOGUETE | METEORO | AVIAO
+#            | HELICOPTERO | NAVIO | OVNI     (as pecas ficam no config.yml)
+#  Raridade: SORTEADA, ou o id de uma faixa do raridades.yml
+#
+#  Premios -> Lista -> Tipo:
+#    ITEM        - um item comum (Material, Quantidade, Nome, Lore, Base64)
+#    DINHEIRO    - Moeda (economias.yml) + Valor / Valor maximo
+#    EXPERIENCIA - Quantidade em pontos
+#    COMANDO     - Comando ou Comandos; aceita {jogador} {uuid}
+#    ARMA        - uma arma do StarArmas (Id fixo, ou vazio para sortear)
+#    MUNICAO     - uma municao do StarArmas
+#    ACESSORIO   - um acessorio do StarArmas
+#    ARSENAL     - arma + municao + acessorio de uma vez, cada um pela chance
+#                  que a RARIDADE do airdrop definiu no raridades.yml
+#
+#  Chance e a pergunta "ela sai?"; Peso e a pergunta "qual das linhas foi
+#  escolhida nesta rodada?". Sempre: true entrega fora do sorteio.
+# ==========================================================================
+
+# Nome com cor, usado nas mensagens e nos menus.
+Nome: '&aAirDrop Comum'
+Descricao: 'Uma caixa de suprimentos cai do ceu.'
+Tipo: NORMAL
+
+# false tira o evento do sorteio automatico (o comando continua chamando).
+Ativado: true
+
+# Peso no sorteio do inicio automatico.
+Peso: 50
+
+# SORTEADA sorteia a faixa a cada queda, pelo Peso do raridades.yml.
+Raridade: SORTEADA
+
+# Anuncia no chat quando a caixa sai do ceu.
+Anunciar: true
+# Inclui as coordenadas no anuncio.
+Anunciar local: true
+# Airdrop secreto: sem coordenadas e so aparece no radar de quem descobriu.
+Secreto: false
+
+# Permissao para abrir. Vazio libera para todos.
+Permissao: ''
+
+# Segundos ate a caixa sumir sozinha, contados a partir do pouso.
+Expira em: 600
+# Segundos parado perto da caixa para captura-la. 0 coleta no clique.
+Captura em: 5
+# Segundos de tranca depois do pouso.
+Tranca: 0
+# Quantas vezes a caixa pode ser recolhida (sempre uma vez por jogador).
+Coletas: 1
+
+# A queda.
+Animacao: PARAQUEDAS
+Altura: 40
+Velocidade: 0.45
+Raio ao cair: false
+Explosao ao cair: false
+
+# Mundos onde este evento cai. Vazio usa os do config.yml.
+Mundos: []
+
+# Rodados pelo console. Aceitam {evento} {raridade} {mundo} {x} {y} {z} e,
+# nos de abrir, tambem {jogador} e {uuid}.
+Comandos ao cair: []
+Comandos ao abrir: []
+
+Caixa:
+  Material: CHEST
+  # CustomModelData (1.14+). 0 desliga.
+  Modelo: 0
+  Deslocamento do holograma:
+    X: 0.0
+    Y: 1.6
+    Z: 0.0
+  # Marcadores: {id} {evento} {raridade} {estado} {coletas} {restantes}
+  #             {maximo} {expira} {tranca} {onda} {ondas} {mobs} {temporada}
+  Holograma:
+    - '&a&lAIRDROP COMUM{temporada}'
+    - '&7Raridade: {raridade}'
+    - '&7Estado: {estado}'
+    - '&7Coletas: &e{restantes}&7/&e{maximo}'
+    - '&eClique para abrir'
+
+Requisitos:
+  # Id do evento cuja chave e exigida (/starairdrops chave). Vazio = sem chave.
+  Chave: ''
+  # Senha digitada no chat. Vazio = sem senha.
+  Senha: ''
+  # Material exigido no inventario; e um passe, nao e consumido.
+  Item: ''
+  # Permissao do Bukkit exigida.
+  Permissao: ''
+  # Nivel minimo. 0 desliga.
+  Nivel: 0
+  # Custo para abrir. 0 e de graca.
+  Dinheiro: 0
+  Moeda: 'dinheiro'
+  # Missao do missoes.yml que precisa estar concluida.
+  Missao: ''
+
+Hackeamento:
+  Ativado: false
+  # SEQUENCIA (digitar numeros no chat) ou CLIQUE (acertar o alvo na tela)
+  Tipo: SEQUENCIA
+  Digitos: 4
+  Acertos: 5
+  Segundos: 20
+
+Pvp:
+  Ativado: false
+  Raio: 20
+  Avisar ao entrar: true
+  # Segundos em que quem trocou dano nao consegue coletar. 0 desliga.
+  Segundos de combate: 10
+
+Cooperativo:
+  Ativado: false
+  Jogadores: 5
+  Raio: 8
+  # Cada ajudante recebe a propria rolagem da tabela.
+  Dividir: false
+
+Chefe:
+  Ativado: false
+  Tipo: ZOMBIE
+  Vida: 200
+  Nome: ''
+  Dano: 0
+  Barra: true
+  Alcance da barra: 40
+
+Ondas:
+  Ativado: false
+  Raio: 6
+  Ondas: {}
+
+Premios:
+  Sorteios minimos: 2
+  Sorteios maximos: 4
+  Lista:
+    pao:
+      Tipo: ITEM
+      Material: BREAD
+      Quantidade: 4
+      Quantidade maxima: 8
+      Chance: 100
+      # Sai fora do sorteio, em toda caixa aberta.
+      Sempre: true
+    ferro:
+      Tipo: ITEM
+      Material: IRON_INGOT
+      Quantidade: 4
+      Quantidade maxima: 12
+      Chance: 70
+      Peso: 25
+    diamante:
+      Tipo: ITEM
+      Material: DIAMOND
+      Quantidade: 1
+      Quantidade maxima: 2
+      Chance: 35
+      Peso: 10
+      Nome: '&bDiamante'
+    dinheiro:
+      Tipo: DINHEIRO
+      Moeda: 'dinheiro'
+      Valor: 500
+      Valor maximo: 1500
+      Chance: 60
+      Peso: 20
+    experiencia:
+      Tipo: EXPERIENCIA
+      Quantidade: 100
+      Chance: 40
+      Peso: 12
+    municao:
+      Tipo: MUNICAO
+      # Id vazio sorteia entre as raridades que a faixa do airdrop permite.
+      Id: ''
+      Quantidade: 16
+      Quantidade maxima: 32
+      Chance: 50
+      Peso: 15

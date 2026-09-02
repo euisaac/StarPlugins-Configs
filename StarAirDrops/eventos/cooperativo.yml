@@ -1,0 +1,111 @@
+# AirDrop Cooperativo: so abre com gente por perto, e todo mundo leva a sua.
+# Os campos sao os mesmos de comum.yml, que traz a explicacao de cada um.
+
+Nome: '&2AirDrop Cooperativo'
+Descricao: 'Precisa de varios jogadores por perto para abrir.'
+Tipo: COOPERATIVO
+Ativado: true
+Peso: 10
+Raridade: SORTEADA
+
+Anunciar: true
+Anunciar local: true
+Secreto: false
+Permissao: ''
+
+Expira em: 900
+Captura em: 6
+Tranca: 5
+Coletas: 5
+
+Animacao: NAVIO
+Altura: 45
+Velocidade: 0.35
+Raio ao cair: false
+Explosao ao cair: false
+
+Mundos: []
+Comandos ao cair: []
+Comandos ao abrir: []
+
+Caixa:
+  Material: BARREL
+  Modelo: 0
+  Deslocamento do holograma:
+    X: 0.0
+    Y: 1.6
+    Z: 0.0
+  Holograma:
+    - '&2&lAIRDROP COOPERATIVO{temporada}'
+    - '&7Raridade: {raridade}'
+    - '&7Estado: {estado}'
+    - '&7Chame os amigos!'
+
+Requisitos:
+  Chave: ''
+  Senha: ''
+  Item: ''
+  Permissao: ''
+  Nivel: 0
+  Dinheiro: 0
+  Moeda: 'dinheiro'
+  Missao: ''
+
+Hackeamento:
+  Ativado: false
+  Tipo: SEQUENCIA
+  Digitos: 4
+  Acertos: 5
+  Segundos: 20
+
+Pvp:
+  Ativado: false
+  Raio: 20
+  Avisar ao entrar: true
+  Segundos de combate: 10
+
+Cooperativo:
+  Ativado: true
+  Jogadores: 3
+  Raio: 10
+  Dividir: true
+
+Chefe:
+  Ativado: false
+  Tipo: ZOMBIE
+  Vida: 200
+  Nome: ''
+  Dano: 0
+  Barra: true
+  Alcance da barra: 40
+
+Ondas:
+  Ativado: false
+  Raio: 6
+  Ondas: {}
+
+Premios:
+  Sorteios minimos: 2
+  Sorteios maximos: 4
+  Lista:
+    ferro:
+      Tipo: ITEM
+      Material: IRON_INGOT
+      Quantidade: 8
+      Quantidade maxima: 16
+      Chance: 80
+      Peso: 25
+    dinheiro:
+      Tipo: DINHEIRO
+      Moeda: 'dinheiro'
+      Valor: 1500
+      Valor maximo: 3000
+      Chance: 70
+      Peso: 22
+    municao:
+      Tipo: MUNICAO
+      Id: ''
+      Quantidade: 16
+      Quantidade maxima: 32
+      Chance: 60
+      Peso: 18

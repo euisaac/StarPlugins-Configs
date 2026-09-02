@@ -1,0 +1,96 @@
+# ==========================================================================
+#  StarAirDrops - missoes
+#
+#  Tipo:
+#    COLETAR           - qualquer coleta
+#    VENCER            - coletas em que voce foi o primeiro a abrir
+#    COLETAR_EVENTO    - coletas de um evento (use a chave Evento)
+#    COLETAR_RARIDADE  - coletas de uma raridade (use a chave Raridade)
+#    DERROTAR_CHEFE    - chefes de airdrop derrotados
+#    LIMPAR_ONDAS      - batalhas de ondas terminadas
+#    RECEBER_ARSENAL   - itens do StarArmas recebidos numa caixa
+#
+#  Os premios usam o mesmo formato da tabela de premios dos eventos.
+#  Uma missao paga uma vez so: quem ja concluiu para de acumular progresso.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Missoes:
+
+  primeiros_passos:
+    Nome: '&aPrimeiros passos'
+    Descricao: 'Colete 5 airdrops quaisquer.'
+    Tipo: COLETAR
+    Alvo: 5
+    Ordem: 1
+    Premios:
+      dinheiro:
+        Tipo: DINHEIRO
+        Moeda: 'dinheiro'
+        Valor: 1000
+
+  cacador:
+    Nome: '&aCacador de suprimentos'
+    Descricao: 'Colete 25 airdrops.'
+    Tipo: COLETAR
+    Alvo: 25
+    Ordem: 2
+    Premios:
+      dinheiro:
+        Tipo: DINHEIRO
+        Moeda: 'dinheiro'
+        Valor: 5000
+
+  primeiro_sempre:
+    Nome: '&eSempre na frente'
+    Descricao: 'Seja o primeiro a abrir 3 airdrops.'
+    Tipo: VENCER
+    Alvo: 3
+    Ordem: 3
+    Premios:
+      dinheiro:
+        Tipo: DINHEIRO
+        Moeda: 'dinheiro'
+        Valor: 2500
+
+  cacador_de_lendas:
+    Nome: '&6Cacador de lendas'
+    Descricao: 'Colete um airdrop lendario.'
+    Tipo: COLETAR_RARIDADE
+    Raridade: 'LENDARIO'
+    Alvo: 1
+    Ordem: 4
+    Anunciar: true
+    Premios:
+      chave:
+        Tipo: ITEM
+        Material: 'DIAMOND_BLOCK'
+        Quantidade: 1
+        Nome: '&6Trofeu de lenda'
+
+  matador_de_chefes:
+    Nome: '&5Matador de chefes'
+    Descricao: 'Derrote 3 chefes de airdrop.'
+    Tipo: DERROTAR_CHEFE
+    Alvo: 3
+    Ordem: 5
+    Premios:
+      dinheiro:
+        Tipo: DINHEIRO
+        Moeda: 'dinheiro'
+        Valor: 7500
+
+  # Esta so anda em servidor com o StarArmas: sem ele, nenhum item de arsenal
+  # e entregue e o progresso simplesmente fica parado.
+  arsenal_montado:
+    Nome: '&bArsenal montado'
+    Descricao: 'Receba 10 itens do StarArmas em airdrops.'
+    Tipo: RECEBER_ARSENAL
+    Alvo: 10
+    Ordem: 6
+    Premios:
+      dinheiro:
+        Tipo: DINHEIRO
+        Moeda: 'dinheiro'
+        Valor: 4000

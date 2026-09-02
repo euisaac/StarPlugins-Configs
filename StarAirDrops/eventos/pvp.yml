@@ -1,0 +1,116 @@
+# AirDrop de Guerra: liga uma zona de combate em volta da caixa.
+# Os campos sao os mesmos de comum.yml, que traz a explicacao de cada um.
+
+Nome: '&cAirDrop de Guerra'
+Descricao: 'Zona de combate liberada em volta da caixa.'
+Tipo: PVP
+Ativado: true
+Peso: 12
+Raridade: SORTEADA
+
+Anunciar: true
+Anunciar local: true
+Secreto: false
+Permissao: ''
+
+Expira em: 600
+Captura em: 8
+Tranca: 10
+Coletas: 1
+
+Animacao: HELICOPTERO
+Altura: 50
+Velocidade: 0.4
+Raio ao cair: false
+Explosao ao cair: true
+
+Mundos: []
+Comandos ao cair: []
+Comandos ao abrir: []
+
+Caixa:
+  Material: TRAPPED_CHEST
+  Modelo: 0
+  Deslocamento do holograma:
+    X: 0.0
+    Y: 1.6
+    Z: 0.0
+  Holograma:
+    - '&c&lAIRDROP DE GUERRA{temporada}'
+    - '&7Raridade: {raridade}'
+    - '&7Estado: {estado}'
+    - '&cZona de combate ativa'
+
+Requisitos:
+  Chave: ''
+  Senha: ''
+  Item: ''
+  Permissao: ''
+  Nivel: 0
+  Dinheiro: 0
+  Moeda: 'dinheiro'
+  Missao: ''
+
+Hackeamento:
+  Ativado: false
+  Tipo: SEQUENCIA
+  Digitos: 4
+  Acertos: 5
+  Segundos: 20
+
+Pvp:
+  Ativado: true
+  Raio: 25
+  Avisar ao entrar: true
+  Segundos de combate: 10
+
+Cooperativo:
+  Ativado: false
+  Jogadores: 5
+  Raio: 8
+  Dividir: false
+
+Chefe:
+  Ativado: false
+  Tipo: ZOMBIE
+  Vida: 200
+  Nome: ''
+  Dano: 0
+  Barra: true
+  Alcance da barra: 40
+
+Ondas:
+  Ativado: false
+  Raio: 6
+  Ondas: {}
+
+Premios:
+  Sorteios minimos: 4
+  Sorteios maximos: 7
+  Lista:
+    pocao:
+      Tipo: ITEM
+      Material: GOLDEN_APPLE
+      Quantidade: 2
+      Quantidade maxima: 5
+      Chance: 70
+      Peso: 20
+    dinheiro:
+      Tipo: DINHEIRO
+      Moeda: 'dinheiro'
+      Valor: 3000
+      Valor maximo: 7000
+      Chance: 75
+      Peso: 22
+    arma:
+      Tipo: ARMA
+      Id: ''
+      Chance: 55
+      Peso: 15
+    municao:
+      Tipo: MUNICAO
+      Id: ''
+      Quantidade: 32
+      Quantidade maxima: 64
+      Chance: 80
+      Peso: 25

@@ -1,0 +1,149 @@
+# ==========================================================================
+#  StarAirDrops - raridades dos airdrops
+#
+#  A raridade NAO troca os premios do evento: quem diz o que cai e a lista de
+#  premios de cada arquivo em eventos/. O que ela faz e graduar a mesma queda
+#  -- o mesmo airdrop comum, quando sai LENDARIO, rola mais vezes na tabela,
+#  paga mais, avisa o servidor inteiro e vem com outra cor no holograma.
+#
+#  Um evento com "Raridade: SORTEADA" recebe uma faixa por queda, sorteada
+#  pelo Peso. Um evento com "Raridade: LENDARIO" e sempre lendario.
+#
+#  ------------------------------------------------------------------------
+#  StarArmas
+#
+#  A secao StarArmas de cada faixa liga as duas escalas: um airdrop LENDARIO
+#  entrega arma, municao e acessorio das raridades LENDARIA e MITICA do
+#  StarArmas, com as chances daqui. Lista vazia = qualquer raridade de la.
+#
+#  As chances so valem para os premios do tipo ARSENAL. Um premio do tipo
+#  ARMA na tabela do evento usa a lista de raridades, mas cai pela chance da
+#  propria linha.
+#
+#  Sem o StarArmas instalado, nada disto atrapalha: os premios de arsenal
+#  simplesmente nao entram no sorteio.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Raridades:
+
+  COMUM:
+    Nome: '&fComum'
+    Cor: '&f'
+    # Quanto maior, mais raro. E por ela que as listas se ordenam.
+    Ordem: 1
+    # Peso no sorteio da faixa de cada queda.
+    Peso: 50
+    # Multiplica quantas vezes a tabela de premios e rolada.
+    Multiplicador de premios: 1.0
+    # Multiplica os premios do tipo DINHEIRO.
+    Multiplicador de dinheiro: 1.0
+    # Avisa o servidor inteiro quando alguem coleta.
+    Anunciar: false
+    # Manda um titulo na tela de todo mundo quando a caixa sai do ceu.
+    Titulo: false
+    # Solta fogos quando a caixa cai e quando ela e aberta.
+    Fogos: false
+    # Deixa o item da caixa brilhando no menu.
+    Brilho: false
+    # Particula que fica em volta da caixa no chao.
+    Particula: 'CLOUD'
+    Som: ''
+    # Colado no fim da primeira linha do holograma.
+    Sufixo do holograma: ''
+    StarArmas:
+      Raridades:
+        - COMUM
+      Chance de arma: 20
+      Chance de municao: 60
+      Chance de acessorio: 10
+
+  INCOMUM:
+    Nome: '&aIncomum'
+    Cor: '&a'
+    Ordem: 2
+    Peso: 28
+    Multiplicador de premios: 1.2
+    Multiplicador de dinheiro: 1.3
+    Anunciar: false
+    Titulo: false
+    Fogos: false
+    Brilho: false
+    Particula: 'VILLAGER_HAPPY'
+    Som: ''
+    Sufixo do holograma: ''
+    StarArmas:
+      Raridades:
+        - COMUM
+        - INCOMUM
+      Chance de arma: 35
+      Chance de municao: 70
+      Chance de acessorio: 20
+
+  RARO:
+    Nome: '&bRaro'
+    Cor: '&b'
+    Ordem: 3
+    Peso: 14
+    Multiplicador de premios: 1.5
+    Multiplicador de dinheiro: 1.8
+    Anunciar: true
+    Titulo: false
+    Fogos: false
+    Brilho: true
+    Particula: 'DRIP_WATER'
+    Som: ''
+    Sufixo do holograma: ' &bRARO'
+    StarArmas:
+      Raridades:
+        - INCOMUM
+        - RARA
+      Chance de arma: 55
+      Chance de municao: 80
+      Chance de acessorio: 35
+
+  EPICO:
+    Nome: '&5Epico'
+    Cor: '&5'
+    Ordem: 4
+    Peso: 6
+    Multiplicador de premios: 2.0
+    Multiplicador de dinheiro: 2.5
+    Anunciar: true
+    Titulo: true
+    Fogos: true
+    Brilho: true
+    Particula: 'PORTAL'
+    Som: 'ENTITY_ENDER_DRAGON_GROWL;0.6;1.4'
+    Sufixo do holograma: ' &5EPICO'
+    StarArmas:
+      Raridades:
+        - RARA
+        - EPICA
+      Chance de arma: 75
+      Chance de municao: 90
+      Chance de acessorio: 55
+
+  LENDARIO:
+    Nome: '&6&lLendario'
+    Cor: '&6'
+    Ordem: 5
+    Peso: 2
+    Multiplicador de premios: 3.0
+    Multiplicador de dinheiro: 4.0
+    Anunciar: true
+    Titulo: true
+    Fogos: true
+    Brilho: true
+    Particula: 'FLAME'
+    Som: 'ENTITY_ENDER_DRAGON_GROWL;1;1'
+    Sufixo do holograma: ' &6&lLENDARIO'
+    StarArmas:
+      Raridades:
+        - EPICA
+        - LENDARIA
+        - MITICA
+      Chance de arma: 100
+      Chance de municao: 100
+      Chance de acessorio: 80

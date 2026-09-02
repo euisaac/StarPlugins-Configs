@@ -1,0 +1,136 @@
+# ==========================================================================
+#  AirDrop Arsenal: a caixa feita para o StarArmas.
+#
+#  Todos os premios daqui vem do catalogo do outro produto: arma, municao e
+#  acessorio de verdade, com a lore, o modelo e o pente que ele desenhou.
+#  Quais raridades do StarArmas caem e decidido pela RARIDADE do airdrop --
+#  veja a secao StarArmas de cada faixa no raridades.yml.
+#
+#  Sem o StarArmas instalado, esta caixa entrega so o dinheiro: os premios de
+#  arsenal simplesmente nao entram no sorteio, sem erro no console e sem
+#  rodada perdida.
+#
+#  Os demais campos sao os mesmos de comum.yml, que traz a explicacao de
+#  cada um.
+# ==========================================================================
+
+Nome: '&6AirDrop Arsenal'
+Descricao: 'Armas, municoes e acessorios do StarArmas.'
+Tipo: NORMAL
+Ativado: true
+Peso: 10
+Raridade: SORTEADA
+
+Anunciar: true
+Anunciar local: true
+Secreto: false
+Permissao: ''
+
+Expira em: 600
+Captura em: 5
+Tranca: 0
+Coletas: 1
+
+Animacao: HELICOPTERO
+Altura: 45
+Velocidade: 0.4
+Raio ao cair: false
+Explosao ao cair: false
+
+Mundos: []
+Comandos ao cair: []
+Comandos ao abrir: []
+
+Caixa:
+  Material: TRAPPED_CHEST
+  Modelo: 0
+  Deslocamento do holograma:
+    X: 0.0
+    Y: 1.6
+    Z: 0.0
+  Holograma:
+    - '&6&lAIRDROP ARSENAL{temporada}'
+    - '&7Raridade: {raridade}'
+    - '&7Estado: {estado}'
+    - '&eClique para abrir'
+
+Requisitos:
+  Chave: ''
+  Senha: ''
+  Item: ''
+  Permissao: ''
+  Nivel: 0
+  Dinheiro: 0
+  Moeda: 'dinheiro'
+  Missao: ''
+
+Hackeamento:
+  Ativado: false
+  Tipo: SEQUENCIA
+  Digitos: 4
+  Acertos: 5
+  Segundos: 20
+
+Pvp:
+  Ativado: false
+  Raio: 20
+  Avisar ao entrar: true
+  Segundos de combate: 10
+
+Cooperativo:
+  Ativado: false
+  Jogadores: 5
+  Raio: 8
+  Dividir: false
+
+Chefe:
+  Ativado: false
+  Tipo: ZOMBIE
+  Vida: 200
+  Nome: ''
+  Dano: 0
+  Barra: true
+  Alcance da barra: 40
+
+Ondas:
+  Ativado: false
+  Raio: 6
+  Ondas: {}
+
+Premios:
+  Sorteios minimos: 3
+  Sorteios maximos: 5
+  Lista:
+    # O kit completo: arma + municao + acessorio, cada um pela chance que a
+    # raridade do airdrop definiu.
+    kit:
+      Tipo: ARSENAL
+      Quantidade: 32
+      Chance: 100
+      Sempre: true
+    arma:
+      Tipo: ARMA
+      # Id vazio sorteia entre as raridades que a faixa do airdrop permite.
+      # Preencha com o id de uma arma do StarArmas para fixar uma.
+      Id: ''
+      Chance: 60
+      Peso: 18
+    municao:
+      Tipo: MUNICAO
+      Id: ''
+      Quantidade: 32
+      Quantidade maxima: 64
+      Chance: 90
+      Peso: 30
+    acessorio:
+      Tipo: ACESSORIO
+      Id: ''
+      Chance: 40
+      Peso: 12
+    dinheiro:
+      Tipo: DINHEIRO
+      Moeda: 'dinheiro'
+      Valor: 1500
+      Valor maximo: 3500
+      Chance: 55
+      Peso: 15

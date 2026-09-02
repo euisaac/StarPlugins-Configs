@@ -1,0 +1,435 @@
+# ==========================================================================
+#  StarAirDrops - configuracao geral
+#
+#  Os eventos ficam em eventos/, as temporadas em temporadas/, as raridades no
+#  raridades.yml, as missoes no missoes.yml, as moedas no economias.yml, os
+#  textos no mensagens.yml e a aparencia das telas no menus.yml.
+#
+#  A pasta eventos/ e sua: os exemplos so sao escritos na primeira subida.
+#  Apagar um evento la deixa ele apagado para sempre, e um evento criado por
+#  voce nunca e sobrescrito por uma atualizacao.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+  # Quantos airdrops podem existir ao mesmo tempo no servidor inteiro.
+  Maximo de airdrops ativos: 5
+
+  # De quantos em quantos tiques a checagem pesada roda (expiracao, ondas,
+  # holograma). A queda em si anda a cada tique e nao depende disto.
+  Intervalo da checagem: 10
+
+  # Distancia entre uma linha do holograma e a proxima.
+  Espacamento das linhas: 0.3
+
+  # De quantos em quantos tiques o texto do holograma e reescrito.
+  Atualizar hologramas a cada: 20
+
+  # Teto do bonus da permissao starairdrops.sorte.<n>: quem tem
+  # starairdrops.sorte.3 leva 3 premios a mais por caixa. Zero desliga.
+  Maximo de sorte: 5
+
+Banco de dados:
+  # SQLITE (um arquivo dentro da pasta do plugin) ou MYSQL (servidor externo).
+  # Em rede com varios servidores, use MYSQL para as estatisticas valerem em
+  # todos.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starairdrops_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Dados:
+  # De quantos em quantos segundos os dados de quem esta online vao para o
+  # banco. Nenhuma coleta escreve no banco na hora que acontece.
+  Salvar a cada: 60
+
+  # De quantos em quantos segundos o ranking e refeito.
+  Atualizar ranking a cada: 120
+
+  # Quantas colocacoes o ranking guarda na memoria.
+  Tamanho do ranking: 15
+
+Local:
+  # Mundos onde os airdrops podem cair. Um evento pode ter a lista dele.
+  Mundos:
+    - world
+
+  # Altura minima e maxima do chao onde a caixa pode parar.
+  Y minimo: 40
+  Y maximo: 180
+
+  # Distancia do spawn do mundo (usada quando nao ha ninguem online).
+  Distancia minima do spawn: 10
+  Distancia maxima do spawn: 400
+
+  # Distancia dos jogadores online.
+  Distancia minima dos jogadores: 5
+  Distancia maxima dos jogadores: 250
+
+  # Procura primeiro perto de quem esta jogando. E o que faz o airdrop virar
+  # evento em vez de item escondido no mapa.
+  Perto dos jogadores: true
+
+  # Nao gera mapa novo: um ponto em chunk fria e descartado.
+  So chunks carregadas: false
+
+  # Carrega a chunk escolhida quando ela ja existe no disco.
+  Carregar chunk: true
+
+  # Quantas tentativas por fase de busca.
+  Tentativas: 80
+
+  # Biomas permitidos. Vazio aceita todos. Ex: [PLAINS, DESERT]
+  Biomas: []
+
+  # Lugares onde a caixa nunca deve nascer.
+  Nao cair em:
+    Lava: true
+    Agua: true
+    Folhas: true
+    Arvores: true
+    Cavernas: true
+    Teto: true
+
+Protecao:
+  # Impede quebrar o bloco da caixa (inclusive por enderman e areia caindo).
+  Quebrar: true
+  # Tira a caixa da lista de blocos de uma explosao de TNT.
+  TNT: true
+  # O mesmo para creeper.
+  Creeper: true
+  # Impede pistao mover a caixa.
+  Pistao: true
+  # Impede agua e lava correrem por cima dela.
+  Liquidos: true
+  # Impede o fogo queimar a caixa.
+  Fogo: true
+
+Coleta:
+  # Distancia maxima entre o jogador e a caixa para o clique valer.
+  Distancia maxima: 6.0
+
+  # De quantos em quantos tiques a barra de captura anda.
+  Intervalo da captura: 5
+
+  # A que distancia um airdrop secreto se revela para quem passa perto.
+  Distancia para descobrir: 30.0
+
+  # O que fazer quando o inventario esta cheio:
+  #   CHAO     - guarda o que couber e larga o resto no pe do jogador
+  #   CANCELAR - nem deixa coletar a caixa
+  Inventario cheio: CHAO
+
+  # Manda no chat a linha "voce ganhou ..." a cada coleta.
+  Avisar premio no chat: true
+
+Anti-trapaca:
+  # Ignora o clique de quem passa do teto abaixo. Ninguem e punido: um falso
+  # positivo aqui nao pode virar jogador banido a toa.
+  Ativado: true
+  Cliques por segundo: 20
+  Alcance maximo: 6.0
+
+Radar:
+  # De quantos em quantos tiques a bussola e reapontada.
+  Atualizar a cada: 20
+
+  # Alem desta distancia o radar deixa de apontar.
+  Alcance: 500.0
+
+  # Mostra o evento, a distancia e o estado na actionbar.
+  Mostrar na actionbar: true
+
+  # Cobranca do botao "pegar o radar" no menu de ativos. Custo 0 deixa de
+  # graca. A moeda e uma chave do economias.yml.
+  Moeda: 'dinheiro'
+  Custo: 0.0
+
+  # O item entregue pelo /airdrops radar e pelo botao do menu.
+  Item:
+    Material: 'COMPASS'
+    Nome: '&6&lRadar de AirDrop'
+    Lore:
+      - ''
+      - ' &7Aponta para o airdrop mais'
+      - ' &7proximo do seu mundo.'
+      - ''
+
+Chave:
+  # O item exigido pelos eventos que pedem chave.
+  Material: 'TRIPWIRE_HOOK'
+  Nome: '&e&lChave de {evento}'
+  Lore:
+    - ''
+    - ' &7Serve para abrir a caixa'
+    - ' &7do evento {evento}&7.'
+    - ''
+
+Sinalizador:
+  # Segundos entre um uso e o proximo, por jogador.
+  Espera: 300
+
+  # Segundos entre acionar o item e a caixa comecar a cair.
+  Atraso: 5
+
+  # O item que chama um airdrop para onde o jogador esta.
+  Item:
+    Material: 'FIREWORK_ROCKET'
+    Nome: '&6&lSinalizador de {evento}'
+    Lore:
+      - ''
+      - ' &7Clique com ele na mao para'
+      - ' &7chamar um airdrop aqui.'
+      - ''
+
+Temporadas:
+  # Liga a pasta temporadas/.
+  Ativado: true
+
+  # Aumenta a chance do inicio automatico quando e noite no mundo do sorteio.
+  Multiplicar a noite: true
+  Multiplicador noturno: 1.5
+
+Sons:
+  # Formato: SOM, SOM;volume ou SOM;volume;tom. Vazio nao toca nada.
+  Queda: ''
+  Ao cair: 'ENTITY_GENERIC_EXPLODE;1;1'
+  Ao abrir: 'ENTITY_PLAYER_LEVELUP;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Captura: 'BLOCK_NOTE_BLOCK_PLING;1;1.4'
+  Onda: 'ENTITY_ZOMBIE_AMBIENT;1;1'
+  Chefe: 'ENTITY_WITHER_SPAWN;1;1'
+
+# ==========================================================================
+#  Inicio automatico
+#
+#  Varios tipos independentes, cada um com o proprio relogio e a propria
+#  lista de eventos. E o que deixa uma caixa comum cair a cada cinco minutos
+#  e um chefe a cada vinte, sem um atrasar o outro.
+#
+#  Eventos vazio = qualquer evento ligado. Mundos vazio = os de Local.Mundos.
+# ==========================================================================
+Inicio automatico:
+  Ativado: true
+  Tipos:
+    comum:
+      Ativado: true
+      Intervalo minimo: 300
+      Intervalo maximo: 600
+      Jogadores minimos: 1
+      Quantidade: 1
+      Chance: 100
+      Aviso: 30
+      Mundos: []
+      Eventos:
+        - comum
+        - relampago
+        - secreto
+        - arsenal
+    especial:
+      Ativado: true
+      Intervalo minimo: 900
+      Intervalo maximo: 1500
+      Jogadores minimos: 3
+      Quantidade: 1
+      Chance: 80
+      Aviso: 60
+      Mundos: []
+      Eventos:
+        - global
+        - pvp
+        - cooperativo
+        - chefe
+        - ondas
+        - vip
+
+# ==========================================================================
+#  Desenhos de queda
+#
+#  Cada animacao e uma lista de pecas com deslocamento em relacao a caixa.
+#  Material aceita qualquer bloco ou item; Textura aceita o codigo de uma
+#  cabeca (o mesmo que os sites de cabeca mostram). Girar: true faz a peca
+#  rodar sobre o proprio eixo -- e o rotor do helicoptero e o disco do ovni.
+#
+#  Mexer aqui muda so o visual: altura, velocidade e som da queda ficam no
+#  arquivo de cada evento.
+# ==========================================================================
+Quedas:
+  PARAQUEDAS:
+    Particula: 'CLOUD'
+    Som: ''
+    Pecas:
+      cupula:
+        Material: 'WHITE_WOOL'
+        X: 0.0
+        Y: 2.4
+        Z: 0.0
+      esquerda:
+        Material: 'WHITE_WOOL'
+        X: -0.6
+        Y: 2.1
+        Z: 0.0
+      direita:
+        Material: 'WHITE_WOOL'
+        X: 0.6
+        Y: 2.1
+        Z: 0.0
+      frente:
+        Material: 'WHITE_WOOL'
+        X: 0.0
+        Y: 2.1
+        Z: 0.6
+      tras:
+        Material: 'WHITE_WOOL'
+        X: 0.0
+        Y: 2.1
+        Z: -0.6
+      corda:
+        Material: 'IRON_BARS'
+        X: 0.0
+        Y: 1.4
+        Z: 0.0
+
+  BALAO:
+    Particula: 'FLAME'
+    Som: ''
+    Pecas:
+      corpo:
+        Material: 'RED_WOOL'
+        X: 0.0
+        Y: 2.6
+        Z: 0.0
+      faixa:
+        Material: 'WHITE_WOOL'
+        X: 0.0
+        Y: 2.1
+        Z: 0.0
+      chama:
+        Material: 'TORCH'
+        X: 0.0
+        Y: 1.5
+        Z: 0.0
+
+  FOGUETE:
+    Particula: 'FLAME'
+    Som: ''
+    Pecas:
+      ponta:
+        Material: 'REDSTONE_BLOCK'
+        X: 0.0
+        Y: 1.6
+        Z: 0.0
+      chama:
+        Material: 'TORCH'
+        X: 0.0
+        Y: -0.8
+        Z: 0.0
+
+  METEORO:
+    Particula: 'LAVA'
+    Som: ''
+    Pecas:
+      nucleo:
+        Material: 'MAGMA_BLOCK'
+        X: 0.0
+        Y: 1.2
+        Z: 0.0
+
+  AVIAO:
+    Particula: 'CLOUD'
+    Som: ''
+    Pecas:
+      corpo:
+        Material: 'IRON_BLOCK'
+        X: 0.0
+        Y: 2.2
+        Z: 0.0
+      asa_esquerda:
+        Material: 'LIGHT_GRAY_CARPET'
+        X: -1.2
+        Y: 2.2
+        Z: 0.0
+      asa_direita:
+        Material: 'LIGHT_GRAY_CARPET'
+        X: 1.2
+        Y: 2.2
+        Z: 0.0
+      cauda:
+        Material: 'IRON_BLOCK'
+        X: 0.0
+        Y: 2.5
+        Z: -1.0
+
+  HELICOPTERO:
+    Particula: 'CLOUD'
+    Som: ''
+    Pecas:
+      corpo:
+        Material: 'IRON_BLOCK'
+        X: 0.0
+        Y: 2.2
+        Z: 0.0
+      rotor:
+        Material: 'STONE_SLAB'
+        X: 0.0
+        Y: 3.0
+        Z: 0.0
+        Girar: true
+        Giro: 45.0
+      cauda:
+        Material: 'IRON_BARS'
+        X: 0.0
+        Y: 2.4
+        Z: -1.0
+
+  NAVIO:
+    Particula: 'CLOUD'
+    Som: ''
+    Pecas:
+      casco:
+        Material: 'OAK_PLANKS'
+        X: 0.0
+        Y: 2.0
+        Z: 0.0
+      mastro:
+        Material: 'STICK'
+        X: 0.0
+        Y: 2.8
+        Z: 0.0
+      vela:
+        Material: 'WHITE_WOOL'
+        X: 0.0
+        Y: 3.2
+        Z: 0.0
+
+  OVNI:
+    Particula: 'END_ROD'
+    Som: ''
+    Pecas:
+      disco:
+        Material: 'IRON_BLOCK'
+        X: 0.0
+        Y: 2.4
+        Z: 0.0
+        Girar: true
+        Giro: 12.0
+      cupula:
+        Material: 'GLASS'
+        X: 0.0
+        Y: 2.9
+        Z: 0.0
+      luz:
+        Material: 'SEA_LANTERN'
+        X: 0.0
+        Y: 1.9
+        Z: 0.0

@@ -1,0 +1,146 @@
+# AirDrop de Ondas: mobs nascem em volta ate a ultima onda ser limpa.
+# Os campos sao os mesmos de comum.yml, que traz a explicacao de cada um.
+#
+# A ordem das ondas e a ordem em que elas aparecem aqui. Atraso e o tempo, em
+# segundos, entre a onda anterior ser limpa e esta comecar.
+
+Nome: '&dAirDrop de Ondas'
+Descricao: 'Sobreviva as ondas de mobs para abrir a caixa.'
+Tipo: ONDAS
+Ativado: true
+Peso: 8
+Raridade: SORTEADA
+
+Anunciar: true
+Anunciar local: true
+Secreto: false
+Permissao: ''
+
+Expira em: 1200
+Captura em: 3
+Tranca: 5
+Coletas: 3
+
+Animacao: METEORO
+Altura: 55
+Velocidade: 1.0
+Raio ao cair: false
+Explosao ao cair: true
+
+Mundos: []
+Comandos ao cair: []
+Comandos ao abrir: []
+
+Caixa:
+  Material: CHEST
+  Modelo: 0
+  Deslocamento do holograma:
+    X: 0.0
+    Y: 1.6
+    Z: 0.0
+  Holograma:
+    - '&d&lAIRDROP DE ONDAS{temporada}'
+    - '&7Raridade: {raridade}'
+    - '&7Onda &e{onda}&7/&e{ondas} &8- &f{mobs} &7mob(s)'
+    - '&7Estado: {estado}'
+
+Requisitos:
+  Chave: ''
+  Senha: ''
+  Item: ''
+  Permissao: ''
+  Nivel: 0
+  Dinheiro: 0
+  Moeda: 'dinheiro'
+  Missao: ''
+
+Hackeamento:
+  Ativado: false
+  Tipo: SEQUENCIA
+  Digitos: 4
+  Acertos: 5
+  Segundos: 20
+
+Pvp:
+  Ativado: false
+  Raio: 20
+  Avisar ao entrar: true
+  Segundos de combate: 10
+
+Cooperativo:
+  Ativado: false
+  Jogadores: 5
+  Raio: 8
+  Dividir: false
+
+Chefe:
+  Ativado: false
+  Tipo: ZOMBIE
+  Vida: 200
+  Nome: ''
+  Dano: 0
+  Barra: true
+  Alcance da barra: 40
+
+Ondas:
+  Ativado: true
+  Raio: 7
+  Ondas:
+    onda1:
+      Atraso: 3
+      Mobs:
+        zumbis:
+          Tipo: ZOMBIE
+          Quantidade: 5
+          Vida: 0
+          Nome: ''
+    onda2:
+      Atraso: 5
+      Mobs:
+        esqueletos:
+          Tipo: SKELETON
+          Quantidade: 4
+          Vida: 0
+          Nome: ''
+        zumbis:
+          Tipo: ZOMBIE
+          Quantidade: 3
+          Vida: 0
+          Nome: ''
+    onda3:
+      Atraso: 5
+      Mobs:
+        aranhas:
+          Tipo: SPIDER
+          Quantidade: 4
+          Vida: 0
+          Nome: ''
+        creepers:
+          Tipo: CREEPER
+          Quantidade: 2
+          Vida: 0
+          Nome: ''
+
+Premios:
+  Sorteios minimos: 4
+  Sorteios maximos: 8
+  Lista:
+    ferro:
+      Tipo: ITEM
+      Material: IRON_INGOT
+      Quantidade: 16
+      Quantidade maxima: 32
+      Chance: 85
+      Peso: 25
+    dinheiro:
+      Tipo: DINHEIRO
+      Moeda: 'dinheiro'
+      Valor: 3500
+      Valor maximo: 8000
+      Chance: 80
+      Peso: 24
+    arsenal:
+      Tipo: ARSENAL
+      Quantidade: 24
+      Chance: 70
+      Peso: 20
