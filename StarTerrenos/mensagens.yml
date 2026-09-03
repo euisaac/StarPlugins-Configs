@@ -36,6 +36,7 @@ Entrada:
   Cancelado: '&cVoce cancelou.'
   Nome do terreno: '&aDigite no chat o novo nome do terreno.'
   Nome do membro: '&aDigite no chat o nome de quem voce quer adicionar.'
+  Nome de quem recebe: '&aDigite no chat o nome de quem vai ficar com o terreno.'
   Preco do terreno: '&aDigite no chat o preco do terreno.'
   Preco do leilao: '&aDigite no chat o valor de saida do leilao.'
   Mensagem de entrada: '&aDigite no chat a mensagem de quem entra no terreno.'
@@ -99,6 +100,16 @@ Terreno:
   Membro alterado: '&f{jogador} &aagora e &f{nivel}&a.'
   Membro removido: '&f{jogador} &cnao e mais membro do terreno.'
   Ja e dono: '&cEssa pessoa ja manda no terreno.'
+  Transferir confirmar: |
+    &c&lATENCAO: &7voce vai entregar o terreno &f{terreno} &7({area} blocos) para &f{jogador}&7.
+    &7Ele passa a mandar em tudo que esta la dentro, e voce sai da lista de membros.
+    &7Repita o comando em ate 30 segundos para confirmar.
+  Transferido: '&aO terreno &f{terreno} &aagora e de &f{jogador}&a.'
+  Recebido: '&a{jogador} &atransferiu o terreno &f{terreno} &apara voce! &7({area} blocos em {mundo}, X:{x} Z:{z})'
+  Transferir para o dono: '&cO terreno ja e dessa pessoa.'
+  Transferir bloqueado: '&cEste terreno nao pode ser transferido agora.'
+  Transferir sem espaco: '&f{jogador} &cja esta no limite de &f{limite} &cterrenos.'
+  Transferir sem blocos: '&f{jogador} &cnao tem blocos de terreno suficientes. &7(precisa de {necessario}, tem {restante})'
   Nivel desconhecido: '&f{nivel} &cnao e um nivel valido (acesso, container, construtor, gerente).'
   Mensagem alterada: '&aMensagem salva: &f{mensagem}'
   Mensagem apagada: '&aMensagem apagada; o aviso padrao volta a valer.'
@@ -253,6 +264,7 @@ Ajuda:
     &a/terreno modo <basico|subterreno> &7- o que a ferramenta cria
     &a/terreno blocos &7- seus blocos de terreno
     &a/terreno abandonar &7- apaga o terreno
+    &a/terreno transferir <jogador> &7- entrega o terreno para alguem
     &a/terrenos &7- a lista dos seus terrenos
 
     &a&lQUEM ENTRA E O QUE PODE FAZER
