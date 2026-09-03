@@ -110,6 +110,11 @@ Eventos:
   # esta prioridade para uma faixa antes dela (NORMAL ou LOW). As protecoes
   # continuam sendo consultadas bloco a bloco pela lista abaixo.
   Prioridade da quebra: HIGH
+  # O StarTerrenos NAO precisa entrar na lista abaixo: ele e produto do loader
+  # (na fila de eventos todos os produtos aparecem como "StarPlugins", e por o
+  # nome ai chamaria os listeners de todos eles). O plugin acha ele sozinho e
+  # pergunta pela API, que ainda sabe de dono, membro e bandeira.
+  #
   # Plugins que cuidam de protecao/terreno no seu servidor. Se um deles
   # cancelar o evento, a ferramenta entende que o jogador nao tem acesso
   # aquele bloco e pula ele.
