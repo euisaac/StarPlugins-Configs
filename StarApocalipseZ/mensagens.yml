@@ -47,6 +47,7 @@ Ajuda:
     &7/sapoc clima <modelo|parar> &8- &fmuda o clima do mundo
     &7/sapoc sede <jogador> <valor> &8- &fdefine a sede de alguem
     &7/sapoc perfil <jogador> &8- &fve o perfil de alguem
+    &7/sapoc povoar [quantidade] &8- &fenche a area em volta de voce
     &7/sapoc limpar [mundo] &8- &fremove os zumbis do plugin
     &7/sapoc status &8- &fresumo do que esta acontecendo
     &8&m
@@ -87,6 +88,8 @@ Horda:
   Solta: '&aHorda &r{nome} &acom &f{membros} &amembros solta atras de &f{jogador}&a.'
   Modelo-Nao-Encontrado: '&cNao existe uma horda chamada &f{modelo}&c.'
   Limite-Atingido: '&cJa existem hordas demais neste mundo.'
+  Area-Segura: '&c{jogador} esta numa area segura; a horda nao entra la.'
+  Sem-Lugar: '&cNao achei chao livre para a horda nascer perto de &f{jogador}&c. Chegue mais perto de terreno aberto e tente de novo.'
 
 # ----------------------------------------------------------------------------
 #  Raids
@@ -198,6 +201,8 @@ Clima:
 # ----------------------------------------------------------------------------
 Admin:
   Limpou: '&aRemovidos &f{quantidade} &azumbis do plugin.'
+  Povoado: '&aNasceram &f{quantidade} &amortos perto de &f{jogador}&a.'
+  Populacao-Desligada: '&cO povoamento esta desligado no config.yml.'
   Status: |-
     &8&m
     &4&lSTAR APOCALIPSE Z
@@ -208,6 +213,7 @@ Admin:
     &7Hordas ativas: &f{hordas}
     &7Raids acontecendo: &f{raids}
     &7Infectados: &f{infectados}
+    &7Mortos perto de voce: &f{perto}
     &7Dia do apocalipse: &f{dia}
     &8&m
   Editor-Salvo: '&aAlteracoes salvas.'
