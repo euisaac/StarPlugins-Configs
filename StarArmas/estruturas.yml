@@ -1,0 +1,1219 @@
+# =====================================================================
+#  Estruturas de defesa
+#  -------------------------------------------------------------------
+#  Torres e cercas que o jogador coloca no chao para defender a base.
+#
+#  QUEM PODE MEXER, QUEM NAO LEVA DANO
+#  A estrutura guarda o dono, e o resto vem do plugin de terreno que o
+#  servidor ja usa -- StarTerrenos, GriefDefender ou GriefPrevention,
+#  nessa ordem. Quem tem confianca no terreno nao leva dano da cerca nem
+#  da torre, e quem tem confianca de construtor tambem recarrega,
+#  desliga e recolhe. Sem plugin de terreno, so o dono.
+#
+#  DOIS TIPOS
+#    TORRE    procura alvo sozinha dentro do alcance e atira nele
+#             (com "Explosao:" ela vira MORTEIRO: solta uma bomba do
+#             alto em cima do alvo, boa contra horda)
+#    LIGACAO  postes que acendem um feixe de um para o proximo
+#    MINA     espera alguem chegar perto, estoura e some
+#    ALARME   nao machuca: avisa o dono que tem gente na base
+#
+#  Campos:
+#    Tipo, Raridade, Bloco, Vida, Limite por jogador, Permissao
+#    Dano, Particula, Particulas por bloco, No alvo
+#    Torre:   Alcance, Tiros por segundo, Alvos, Precisa enxergar
+#    Ligacao: Distancia maxima, Intervalo, Espessura, Ligacoes maximas,
+#             Altura (1 = cerca de uma linha; 4 = PAREDE de laser)
+#    Boneco:  Ativado, Altura, Item, Pequeno, Bracos, Nome, Visivel
+#
+#  O EJETOR QUE GIRA
+#  Com "Boneco.Ativado: true" nasce um suporte invisivel e sem colisao
+#  com o "Item" na CABECA dele. Pondo um BLOCO ali (um dispensador, um
+#  caldeirao), o que aparece no jogo e o bloco assentado em cima da base
+#  GIRANDO para onde a torre atira: base + ejetor, uma estrutura de dois
+#  blocos. So CUBO INTEIRO serve: caldeirao, alambique e bigorna sao desenhados
+#  como item chato na cabeca, e nao como bloco. Item fino (uma enxada,
+#  uma vara) fica com cara de enfeite flutuando.
+#
+#  "Coluna" e o bloco do CORPO da torre, entre a base e o ejetor. Ele
+#  fica parado (nao gira) e existe para o ejetor nao parecer flutuando:
+#  base + corpo + ejetor viram uma coluna de tres blocos. Vazio desliga,
+#  e "Altura da coluna" desloca so ele.
+#
+#  "Nivel" e EM QUAL BLOCO acima da base a peca fica: 1 e logo em cima
+#  dela, 2 e o proximo. Com o corpo no 1 e o ejetor no 2, a torre vira
+#  uma coluna de tres blocos sem vao nenhum.
+#
+#  A "Coluna" e um bloco DE VERDADE, posto no mundo, e o ejetor e uma
+#  peca de armadura invisivel com o bloco no capacete. Nao e capricho: o
+#  jogo desenha o bloco do capacete a 62,5% do tamanho, entao duas pecas
+#  assim nunca encostam uma na outra. O corpo, que fica parado, nao
+#  precisa ser entidade; o ejetor, que gira para o alvo, precisa. A
+#  coluna so entra se o lugar estiver vazio, e sai junto com a torre.
+#
+#  Para a coluna, prefira CERCA ou GRADE (IRON_BARS, OAK_FENCE,
+#  NETHER_BRICK_FENCE, COBBLESTONE_WALL): elas sao finas e ja tem cara de
+#  mastro. Bloco cheio no meio deixa a torre com jeito de pilha de cubos.
+#
+#  ---------------------------------------------------------------
+#  DRONE (Tipo: DRONE) -- o hangar
+#
+#  Aqui a arma SAI DO LUGAR. O bloco fica no chao gastando energia e
+#  escolhendo o alvo dentro do "Alcance"; quem vai ate la e o drone, que
+#  ronda a base e atira de perto. Contra quem se esconde atras do muro, e
+#  a unica defesa que chega.
+#
+#    Ativado          liga o drone
+#    Item             o que aparece voando (bloco inteiro fica melhor)
+#    Pequeno          true deixa o drone do tamanho de um drone mesmo
+#    Altura           a que altura, acima do hangar, ele ronda
+#    Altura do ataque a que altura, acima do alvo, ele para para atirar
+#    Raio             o tamanho da volta que ele da quando nao tem alvo
+#    Velocidade       em blocos por TIQUE (0.35 = 7 blocos por segundo)
+#    Alcance do tiro  de que distancia ele ja consegue atirar
+#
+#  O drone so voa quando tem alguem por perto para ver, e volta para o
+#  hangar quando a energia acaba ou a estrutura e desligada. A coleira do
+#  "Alcance" e o que o prende aquela base: ele nao persegue um zumbi ate
+#  o outro lado do mapa.
+#
+#  "Altura" e "Altura da coluna" sao um retoque fino somado por cima do
+#  nivel, para encostar meio bloco de um jeito ou de outro. Deixe em 0
+#  se estiver bom.
+#
+#  Ligue "Visivel: true" se quiser o boneco a mostra, com bracos e a
+#  peca na mao. E so enfeite: pode ser apagado e recriado a qualquer
+#  momento.
+#
+#  O MORTEIRO E A VISAO DELE
+#  A torre comum pergunta se ENXERGA o alvo em linha reta
+#  ("Precisa enxergar"). O morteiro pergunta outra coisa: se a BOMBA
+#  CHEGA nele. Por isso ele acerta por cima de um muro (o arco passa)
+#  e nao acerta quem esta debaixo de um teto (o arco bate nele).
+#
+#  CERCA EM CADEIA
+#  "Ligacoes maximas" diz em quantos vizinhos cada poste acende. Com 2
+#  (o padrao) da para fechar um quadrado: cada poste liga no anterior e
+#  no proximo, e o ultimo fecha no primeiro.
+#    Energia: Maxima, Por uso, Por item, Itens
+#    Efeitos: Colocar, Ligar, Atirar, Acerto, Recarregar, Recolher,
+#             Sem energia
+#
+#  Alvos: MONSTRO, ANIMAL, JOGADOR ou TODOS.
+#
+#  MONSTRO e so o que ataca: zumbi, esqueleto, creeper, aranha, slime,
+#  ghast, phantom, warden e companhia. Vaca, ovelha, aldeao, golem,
+#  morcego e lobo NAO entram ai -- eles so viram alvo se voce escrever
+#  ANIMAL (ou TODOS) na lista, e nenhuma defesa que vem pronta faz isso.
+#  A explosao do morteiro e da mina respeita a mesma lista: a bomba nao
+#  mata o rebanho do dono da base junto com o zumbi.
+#
+#  Energia "Maxima: 0" faz a estrutura funcionar para sempre, sem
+#  recarga. Os "Itens" aceitam tanto o id de uma municao do
+#  municoes.yml quanto o nome de um material do jogo.
+# =====================================================================
+Versao do modelo: 7
+
+Estruturas:
+
+  TORRE_SENTINELA:
+    Tipo: TORRE
+    Raridade: INCOMUM
+    Item:
+      Material: STONE_BRICKS
+      Nome: "&e&lTorre Sentinela"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Atira sozinha em tudo que for monstro"
+        - "&7e chegar perto demais."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+        - ""
+        - "&eColoque no chao para ativar"
+        - "&7Clique nela para gerenciar"
+    Bloco: STONE_BRICKS
+    Vida: 120
+    # O bloco que fica no lugar quando ela e derrubada. Vazio deixa o bloco de
+    # sempre, so que apagado.
+    Bloco-Quebrado: CRACKED_STONE_BRICKS
+    Limite por jogador: 8
+    Dano: 4.0
+    Particula: "FLAME"
+    Particulas por bloco: 2
+    Torre:
+      Alcance: 14.0
+      Tiros por segundo: 1.4
+      Alvos: [ MONSTRO ]
+      Precisa enxergar: true
+    Boneco:
+      Ativado: true
+      Nivel: 2
+      Item: DISPENSER
+      Pequeno: false
+      Bracos: true
+      Visivel: false
+      Coluna: IRON_BARS
+      Nivel da coluna: 1
+    Energia:
+      Maxima: 500
+      Por uso: 1
+      Por item: 100
+      Itens:
+        - REDSTONE
+        - CARGA_DE_TNT
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;0.8;1.2"
+        Actionbar: "&aTorre ativada"
+      Atirar:
+        Som: "ENTITY_BLAZE_SHOOT;0.5;1.8"
+        Particula: "SMOKE_NORMAL"
+        Quantidade: 3
+      Acerto:
+        Som: "ENTITY_ARROW_HIT_PLAYER;0.4;1.6"
+      Recarregar:
+        Som: "BLOCK_NOTE_BLOCK_PLING;0.8;1.6"
+      Recolher:
+        Som: "BLOCK_PISTON_CONTRACT;0.8;1.0"
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.6;0.6"
+
+  TORRE_PESADA:
+    Tipo: TORRE
+    Raridade: EPICA
+    Item:
+      Material: NETHER_BRICKS
+      Nome: "&c&lTorre Pesada"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Alcance maior, dano maior, e ela nao"
+        - "&7pergunta se o invasor e monstro ou gente."
+        - ""
+        - "&cAtira em jogadores que nao sao de confianca"
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+        - ""
+        - "&eColoque no chao para ativar"
+    Bloco: NETHER_BRICKS
+    Vida: 260
+    Limite por jogador: 4
+    Permissao: "stararmas.estruturas.pesada"
+    Dano: 7.0
+    Particula: "CRIT_MAGIC"
+    Particulas por bloco: 3
+    Torre:
+      Alcance: 22.0
+      Tiros por segundo: 2.0
+      Alvos: [ MONSTRO, JOGADOR ]
+      Precisa enxergar: true
+    Boneco:
+      Ativado: true
+      Nivel: 2
+      Item: DROPPER
+      Pequeno: false
+      Bracos: true
+      Visivel: false
+      Coluna: NETHER_BRICK_FENCE
+      Nivel da coluna: 1
+      Nome: "&c&lTorre Pesada"
+    No alvo:
+      Efeitos:
+        - "SLOW:40:0"
+    Energia:
+      Maxima: 800
+      Por uso: 2
+      Por item: 100
+      Itens:
+        - REDSTONE
+        - CELULA_ESTELAR
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;1.0;0.9"
+        Actionbar: "&cTorre pesada ativada"
+      Atirar:
+        Som: "ENTITY_GENERIC_EXPLODE;0.35;1.9"
+        Particula: "SMOKE_LARGE"
+        Quantidade: 4
+      Acerto:
+        Som: "ENTITY_ARROW_HIT_PLAYER;0.6;1.2"
+      Recarregar:
+        Som: "BLOCK_NOTE_BLOCK_PLING;0.8;1.2"
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.6;0.5"
+
+  TORRE_CONGELANTE:
+    Tipo: TORRE
+    Raridade: RARA
+    Item:
+      Material: ICE
+      Nome: "&b&lTorre Congelante"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Quase nao machuca: ela &fsegura&7."
+        - "&7Zumbi congelado nao chega na porta."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+    Bloco: ICE
+    Vida: 100
+    Limite por jogador: 6
+    Dano: 1.0
+    Particula: "SNOW_SHOVEL"
+    Particulas por bloco: 3
+    Torre:
+      Alcance: 12.0
+      Tiros por segundo: 2.5
+      Alvos: [ MONSTRO ]
+      Precisa enxergar: true
+    Boneco:
+      Ativado: true
+      Nivel: 2
+      Item: DISPENSER
+      Pequeno: false
+      Bracos: true
+      Visivel: false
+      Coluna: IRON_BARS
+      Nivel da coluna: 1
+    No alvo:
+      Congelar: 80
+      Efeitos:
+        - "SLOW:80:3"
+    Energia:
+      Maxima: 400
+      Por uso: 1
+      Por item: 80
+      Itens:
+        - REDSTONE
+        - CELULA_CRIOGENICA
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;0.8;1.6"
+      Atirar:
+        Som: "BLOCK_GLASS_BREAK;0.2;2.0"
+        Particula: "SNOW_SHOVEL"
+        Quantidade: 4
+      Acerto:
+        Particula: "SNOW_SHOVEL"
+        Quantidade: 8
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.6;0.7"
+
+  CERCA_ELETRICA:
+    Tipo: LIGACAO
+    Raridade: INCOMUM
+    Item:
+      Material: IRON_BARS
+      Nome: "&e&lPoste de cerca eletrica"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Coloque postes a ate {distancia} blocos um do"
+        - "&7outro: o arco acende de um para o proximo."
+        - "&7Va contornando a base e o ultimo fecha o cerco."
+        - ""
+        - "&7Quem atravessar leva &f{dano} &7de dano."
+        - "&8Voce e quem voce confia passam sem sentir."
+        - ""
+        - "&eColoque o segundo poste para ligar"
+    Bloco: IRON_BARS
+    Vida: 80
+    Limite por jogador: 16
+    Dano: 4.0
+    Particula: "CRIT_MAGIC"
+    Particulas por bloco: 3
+    Ligacao:
+      Distancia maxima: 16.0
+      Intervalo: 20
+      Espessura: 0.8
+      Ligacoes maximas: 2
+    Alvos: [ MONSTRO, JOGADOR ]
+    No alvo:
+      # Congela e trava quem encosta: preso no arco, o invasor leva o
+      # choque de novo antes de conseguir sair.
+      Congelar: 60
+      Efeitos:
+        - "SLOW:60:2"
+        - "SLOW_DIGGING:60:1"
+    Energia:
+      Maxima: 600
+      Por uso: 1
+      Por item: 100
+      Itens:
+        - REDSTONE
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_LEVER_CLICK;0.8;1.4"
+      Ligar:
+        Som: "BLOCK_BEACON_ACTIVATE;0.7;1.8"
+        Actionbar: "&aCerca ligada"
+      Acerto:
+        Som: "ENTITY_CREEPER_HURT;0.4;1.8"
+        Particula: "CRIT_MAGIC"
+        Quantidade: 12
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.5;0.6"
+
+  LASER_PERIMETRO:
+    Tipo: LIGACAO
+    Raridade: EPICA
+    Item:
+      Material: SEA_LANTERN
+      Nome: "&c&lEmissor de laser"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Dois emissores a ate {distancia} blocos acendem"
+        - "&7um feixe que corta qualquer coisa no caminho."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Mais rapido que a cerca"
+        - "&cAtinge jogadores que nao sao de confianca"
+        - ""
+        - "&eColoque o segundo emissor para ligar"
+    Bloco: SEA_LANTERN
+    Vida: 140
+    Limite por jogador: 10
+    Permissao: "stararmas.estruturas.laser"
+    Dano: 7.0
+    Particula: "REDSTONE"
+    Particulas por bloco: 4
+    Ligacao:
+      Distancia maxima: 28.0
+      Intervalo: 10
+      Espessura: 0.6
+      Ligacoes maximas: 2
+    Alvos: [ MONSTRO, JOGADOR ]
+    No alvo:
+      Fogo: 40
+    Energia:
+      Maxima: 1000
+      Por uso: 2
+      Por item: 120
+      Itens:
+        - REDSTONE
+        - CELULA_ESTELAR
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_LEVER_CLICK;0.8;1.1"
+      Ligar:
+        Som: "BLOCK_BEACON_ACTIVATE;1.0;1.2"
+        Actionbar: "&cLaser ligado"
+      Acerto:
+        Som: "ENTITY_BLAZE_HURT;0.4;1.6"
+        Particula: "FLAME"
+        Quantidade: 10
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.5;0.5"
+
+  # -------------------------------------------------------------------
+  #  Torres especiais
+  # -------------------------------------------------------------------
+
+  TORRE_FLAMEJANTE:
+    Tipo: TORRE
+    Raridade: RARA
+    Item:
+      Material: FURNACE
+      Nome: "&6&lTorre Flamejante"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Alcance curto, mas o que ela toca sai queimando"
+        - "&7e continua perdendo vida enquanto foge."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+    Bloco: FURNACE
+    Vida: 140
+    Limite por jogador: 6
+    Dano: 2.5
+    Particula: "FLAME"
+    Particulas por bloco: 4
+    Torre:
+      Alcance: 9.0
+      Tiros por segundo: 3.0
+      Alvos: [ MONSTRO ]
+      Precisa enxergar: true
+    Boneco:
+      Ativado: true
+      Nivel: 2
+      Item: DISPENSER
+      Pequeno: false
+      Bracos: true
+      Visivel: false
+      Coluna: NETHER_BRICK_FENCE
+      Nivel da coluna: 1
+    No alvo:
+      Fogo: 100
+    Energia:
+      Maxima: 600
+      Por uso: 1
+      Por item: 100
+      Itens:
+        - REDSTONE
+        - COMBUSTIVEL
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;0.8;1.3"
+      Atirar:
+        Som: "ITEM_FLINTANDSTEEL_USE;0.4;1.4"
+        Particula: "FLAME"
+        Quantidade: 6
+      Acerto:
+        Particula: "FLAME"
+        Quantidade: 10
+      Sem energia:
+        Som: "BLOCK_FIRE_EXTINGUISH;0.6;0.8"
+
+  TORRE_VENENOSA:
+    Tipo: TORRE
+    Raridade: RARA
+    Item:
+      Material: MOSSY_COBBLESTONE
+      Nome: "&2&lTorre Venenosa"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Um bulbo de gosma em cima de uma pedra musgosa."
+        - "&7Dardo envenenado: quase nao machuca na hora,"
+        - "&7mas o invasor derrete no caminho de volta."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+    Bloco: MOSSY_COBBLESTONE
+    Vida: 100
+    Limite por jogador: 6
+    Dano: 1.5
+    Particula: "SPELL_WITCH"
+    Particulas por bloco: 3
+    Torre:
+      Alcance: 16.0
+      Tiros por segundo: 1.2
+      Alvos: [ MONSTRO ]
+      Precisa enxergar: true
+    Boneco:
+      Ativado: true
+      Nivel: 2
+      Item: SLIME_BLOCK
+      Pequeno: false
+      Bracos: true
+      Visivel: false
+      Coluna: OAK_FENCE
+      Nivel da coluna: 1
+    No alvo:
+      Efeitos:
+        - "POISON:140:1"
+        - "SLOW_DIGGING:100:0"
+    Energia:
+      Maxima: 500
+      Por uso: 1
+      Por item: 100
+      Itens:
+        - REDSTONE
+        - BALA_LEVE_VENENOSA
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_BREWING_STAND_BREW;0.8;1.4"
+      Atirar:
+        Som: "ENTITY_ARROW_SHOOT;0.4;1.9"
+        Particula: "SPELL_WITCH"
+        Quantidade: 5
+      Acerto:
+        Particula: "SPELL_WITCH"
+        Quantidade: 12
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.6;0.7"
+
+  TORRE_TESLA:
+    Tipo: TORRE
+    Raridade: EPICA
+    Item:
+      Material: REDSTONE_BLOCK
+      Nome: "&d&lTorre Tesla"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Descarga atras de descarga: quem entra no"
+        - "&7alcance fica cego, lento e sem reacao."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+    Bloco: REDSTONE_BLOCK
+    Vida: 160
+    Limite por jogador: 4
+    Dano: 3.0
+    Particula: "CRIT_MAGIC"
+    Particulas por bloco: 4
+    Torre:
+      Alcance: 12.0
+      Tiros por segundo: 4.0
+      Alvos: [ MONSTRO, JOGADOR ]
+      Precisa enxergar: true
+    Boneco:
+      Ativado: true
+      Nivel: 2
+      Item: DROPPER
+      Pequeno: false
+      Bracos: true
+      Visivel: false
+      Coluna: IRON_BARS
+      Nivel da coluna: 1
+    No alvo:
+      Efeitos:
+        - "SLOW:40:1"
+        - "BLINDNESS:30:0"
+    Energia:
+      Maxima: 900
+      Por uso: 1
+      Por item: 120
+      Itens:
+        - REDSTONE
+        - CELULA_ESTELAR
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_BEACON_ACTIVATE;0.8;1.6"
+      Atirar:
+        Som: "ENTITY_CREEPER_HURT;0.3;2.0"
+        Particula: "CRIT_MAGIC"
+        Quantidade: 4
+      Acerto:
+        Particula: "CRIT_MAGIC"
+        Quantidade: 10
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.6;0.6"
+
+  TORRE_ANTIAEREA:
+    Tipo: TORRE
+    Raridade: LENDARIA
+    Item:
+      Material: IRON_BLOCK
+      Nome: "&b&lTorre Antiaerea"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Trinta e dois blocos de alcance."
+        - "&7Nada que voe passa por cima da sua base."
+        - ""
+        - "&cAtira em jogadores que nao sao de confianca"
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+    Bloco: IRON_BLOCK
+    Vida: 320
+    Limite por jogador: 2
+    Permissao: "stararmas.estruturas.antiaerea"
+    Dano: 9.0
+    Particula: "FIREWORKS_SPARK"
+    Particulas por bloco: 3
+    Torre:
+      Alcance: 32.0
+      Tiros por segundo: 0.8
+      Alvos: [ MONSTRO, JOGADOR ]
+      Precisa enxergar: true
+    Boneco:
+      Ativado: true
+      Nivel: 2
+      Item: DROPPER
+      Pequeno: false
+      Bracos: true
+      Visivel: false
+      Coluna: IRON_BARS
+      Nivel da coluna: 1
+      Nome: "&b&lANTIAEREA"
+    No alvo:
+      Empurrao: 0.6
+    Energia:
+      Maxima: 1200
+      Por uso: 3
+      Por item: 150
+      Itens:
+        - REDSTONE
+        - BALA_PESADA
+        - CELULA_ESTELAR
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;1.0;0.8"
+        Actionbar: "&bAntiaerea ativada"
+      Atirar:
+        Som: "ENTITY_GENERIC_EXPLODE;0.5;1.6"
+        Particula: "SMOKE_LARGE"
+        Quantidade: 6
+      Acerto:
+        Som: "ENTITY_ARROW_HIT_PLAYER;0.8;1.0"
+        Particula: "EXPLOSION_NORMAL"
+        Quantidade: 2
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.7;0.4"
+
+  # -------------------------------------------------------------------
+  #  Morteiro: a torre que solta bomba do alto em cima do alvo.
+  #  E o que existe de melhor contra HORDA -- a explosao pega o grupo
+  #  inteiro em vez de um zumbi por vez.
+  # -------------------------------------------------------------------
+
+  TORRE_MORTEIRO:
+    Tipo: TORRE
+    Raridade: EPICA
+    Item:
+      Material: CHISELED_STONE_BRICKS
+      Nome: "&8&lTorre Morteiro"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Cospe uma bomba em arco ate o alvo."
+        - "&7A explosao pega a horda inteira."
+        - ""
+        - "&7O tempo de voo da ao alvo a chance de sair,"
+        - "&7e um teto no caminho segura o tiro."
+        - ""
+        - "&8Os blocos que ela derrubar voltam sozinhos."
+        - ""
+        - "&7Energia: &f{energia}"
+    Bloco: CHISELED_STONE_BRICKS
+    Vida: 220
+    Limite por jogador: 3
+    Permissao: "stararmas.estruturas.morteiro"
+    Dano: 0.0
+    Particula: "SMOKE_LARGE"
+    Particulas por bloco: 2
+    Torre:
+      Alcance: 26.0
+      Tiros por segundo: 0.25
+      Alvos: [ MONSTRO, JOGADOR ]
+      Precisa enxergar: false
+      # De onde a bomba sai (acima do bloco), a inclinacao do cano e o teto
+      # da forca do arremesso. Forca maior = alcance maior.
+      Altura da bomba: 2.6
+      Angulo da bomba: 55.0
+      Forca maxima da bomba: 3.2
+    Boneco:
+      Ativado: true
+      Nivel: 2
+      Item: DISPENSER
+      Pequeno: false
+      Bracos: true
+      Visivel: false
+      Coluna: COBBLESTONE_WALL
+      Nivel da coluna: 1
+      Nome: "&8&lMORTEIRO"
+    Explosao:
+      Raio: 5.0
+      Dano: 13.0
+      Forma: ESFERA
+      Quebrar blocos: true
+      Resistencia maxima: 6.0
+      Empurrao: 1.0
+      Atravessa parede: false
+      Regenerar:
+        Ativado: true
+        Atraso: 240
+        Blocos por tique: 5
+      Efeitos:
+        Som: "ENTITY_GENERIC_EXPLODE;1.0;0.9"
+        Particula: "EXPLOSION_HUGE"
+        Quantidade: 3
+    Energia:
+      Maxima: 800
+      Por uso: 4
+      Por item: 120
+      Itens:
+        - REDSTONE
+        - CARGA_DE_TNT
+        - GRANADA_40
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;1.0;0.7"
+        Actionbar: "&8Morteiro armado"
+      Atirar:
+        Som: "ENTITY_GENERIC_EXPLODE;0.6;1.3"
+        Particula: "SMOKE_LARGE"
+        Quantidade: 20
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.7;0.4"
+
+  # -------------------------------------------------------------------
+  #  Armadilha, aviso e a cerca que prende
+  # -------------------------------------------------------------------
+
+  MINA_TERRESTRE:
+    Tipo: MINA
+    Raridade: RARA
+    Item:
+      Material: STONE_PRESSURE_PLATE
+      Nome: "&c&lMina terrestre"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Fica quietinha no chao ate alguem chegar perto."
+        - "&7Estoura uma vez e some com ela mesma."
+        - ""
+        - "&8Voce e quem voce confia passam por cima"
+        - "&8sem acontecer nada."
+        - ""
+        - "&7Raio de gatilho: &f{alcance} blocos"
+    Bloco: STONE_PRESSURE_PLATE
+    Vida: 20
+    Limite por jogador: 20
+    Dano: 0.0
+    Particula: ""
+    Torre:
+      Alcance: 2.5
+      Alvos: [ MONSTRO, JOGADOR ]
+    Explosao:
+      Raio: 4.0
+      Dano: 14.0
+      Forma: ESFERA
+      Quebrar blocos: true
+      Resistencia maxima: 6.0
+      Empurrao: 1.2
+      Regenerar:
+        Ativado: true
+        Atraso: 240
+        Blocos por tique: 4
+      Efeitos:
+        Som: "ENTITY_GENERIC_EXPLODE;1.0;1.0"
+        Particula: "EXPLOSION_HUGE"
+        Quantidade: 2
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_LEVER_CLICK;0.6;1.8"
+        Actionbar: "&cMina armada"
+      Atirar:
+        Som: "ENTITY_TNT_PRIMED;1.0;1.4"
+
+  ALARME_PERIMETRO:
+    Tipo: ALARME
+    Raridade: INCOMUM
+    Item:
+      Material: JUKEBOX
+      Nome: "&e&lAlarme de perimetro"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Nao machuca ninguem: toca a sirene e te avisa"
+        - "&7no chat quando entra gente na sua base."
+        - ""
+        - "&7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+    Bloco: JUKEBOX
+    Vida: 80
+    Limite por jogador: 6
+    Dano: 0.0
+    Particula: ""
+    Torre:
+      Alcance: 20.0
+      Tiros por segundo: 0.15
+      Alvos: [ MONSTRO, JOGADOR ]
+      Precisa enxergar: false
+    Energia:
+      Maxima: 300
+      Por uso: 1
+      Por item: 100
+      Itens:
+        - REDSTONE
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_NOTE_BLOCK_PLING;0.8;1.4"
+      Atirar:
+        Som: "BLOCK_NOTE_BLOCK_PLING;1.0;0.6"
+        Particula: "NOTE"
+        Quantidade: 8
+      Aviso:
+        Som: "ENTITY_EXPERIENCE_ORB_PICKUP;1.0;0.5"
+        Actionbar: "&c&lALGUEM NA SUA BASE"
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.5;0.5"
+
+  CERCA_CONGELANTE:
+    Tipo: LIGACAO
+    Raridade: RARA
+    Item:
+      Material: PACKED_ICE
+      Nome: "&b&lPoste congelante"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Quase nao machuca: prende no lugar."
+        - "&7Quem tentar atravessar fica travado no feixe"
+        - "&7ate as torres darem conta dele."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Ate &f{distancia} &7blocos"
+    Bloco: PACKED_ICE
+    Vida: 100
+    Limite por jogador: 16
+    Dano: 1.0
+    Particula: "SNOW_SHOVEL"
+    Particulas por bloco: 3
+    Ligacao:
+      Distancia maxima: 20.0
+      Intervalo: 15
+      Espessura: 0.9
+      Ligacoes maximas: 2
+    Alvos: [ MONSTRO, JOGADOR ]
+    No alvo:
+      Congelar: 120
+      Efeitos:
+        - "SLOW:100:4"
+        - "JUMP:100:128"
+    Energia:
+      Maxima: 700
+      Por uso: 1
+      Por item: 100
+      Itens:
+        - REDSTONE
+        - CELULA_CRIOGENICA
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_GLASS_BREAK;0.5;1.6"
+      Ligar:
+        Som: "BLOCK_BEACON_ACTIVATE;0.7;2.0"
+        Actionbar: "&bCerca congelante ligada"
+      Acerto:
+        Som: "BLOCK_GLASS_BREAK;0.3;2.0"
+        Particula: "SNOW_SHOVEL"
+        Quantidade: 10
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.5;0.7"
+
+  PAREDE_LASER:
+    Tipo: LIGACAO
+    Raridade: LENDARIA
+    Item:
+      Material: PRISMARINE
+      Nome: "&c&lEmissor de parede laser"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Igual ao laser, mas o feixe sobe &f4 blocos&7:"
+        - "&7uma parede de verdade, que ninguem pula."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Ate &f{distancia} &7blocos"
+        - "&cAtinge jogadores que nao sao de confianca"
+        - ""
+        - "&eColoque o segundo emissor para ligar"
+    Bloco: PRISMARINE
+    Vida: 180
+    Limite por jogador: 8
+    Permissao: "stararmas.estruturas.parede"
+    Dano: 6.0
+    Particula: "REDSTONE"
+    Particulas por bloco: 3
+    Ligacao:
+      Distancia maxima: 24.0
+      Intervalo: 12
+      Espessura: 0.7
+      Ligacoes maximas: 2
+      # A parede: quatro blocos de altura em vez de uma linha so.
+      Altura: 4
+    Alvos: [ MONSTRO, JOGADOR ]
+    No alvo:
+      Fogo: 40
+      Efeitos:
+        - "SLOW:40:1"
+    Energia:
+      Maxima: 1400
+      Por uso: 2
+      Por item: 120
+      Itens:
+        - REDSTONE
+        - CELULA_ESTELAR
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_LEVER_CLICK;0.8;1.0"
+      Ligar:
+        Som: "BLOCK_BEACON_ACTIVATE;1.0;1.0"
+        Actionbar: "&cParede laser ligada"
+      Acerto:
+        Som: "ENTITY_BLAZE_HURT;0.4;1.4"
+        Particula: "FLAME"
+        Quantidade: 12
+      Sem energia:
+        Som: "BLOCK_NOTE_BLOCK_BASS;0.5;0.4"
+
+  HANGAR_BATEDOR:
+    Tipo: DRONE
+    Raridade: RARA
+    Item:
+      Material: IRON_BLOCK
+      Nome: "&b&lHangar Batedor"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Solta um drone que ronda a base e"
+        - "&7desce em cima de qualquer monstro."
+        - ""
+        - "&7Ele passa por cima do muro: o que se"
+        - "&7esconde de torre nao se esconde dele."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+        - ""
+        - "&eColoque no chao para ativar"
+        - "&7Clique nele para gerenciar"
+    Bloco: IRON_BLOCK
+    Vida: 130
+    Limite por jogador: 4
+    Dano: 3.5
+    Particula: "CRIT"
+    Particulas por bloco: 2
+    Torre:
+      Alcance: 20.0
+      Tiros por segundo: 2.0
+      Alvos: [ MONSTRO ]
+      Precisa enxergar: true
+    Drone:
+      Ativado: true
+      Item: SEA_LANTERN
+      Pequeno: true
+      Nome: "&b\u2708 Batedor"
+      Altura: 5.0
+      Altura do ataque: 3.0
+      Raio: 7.0
+      Velocidade: 0.42
+      Alcance do tiro: 12.0
+    Boneco:
+      Ativado: false
+      Coluna: IRON_BARS
+      Nivel da coluna: 1
+    Energia:
+      Maxima: 600
+      Por uso: 1
+      Por item: 100
+      Itens:
+        - REDSTONE
+        - CARGA_DE_TNT
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;0.8;1.6"
+        Actionbar: "&bDrone no ar"
+      Atirar:
+        Som: "ENTITY_BLAZE_SHOOT;0.4;2.0"
+        Particula: "CRIT"
+        Quantidade: 3
+      Acerto:
+        Som: "ENTITY_ARROW_HIT_PLAYER;0.4;1.8"
+      Recarregar:
+        Som: "BLOCK_NOTE_BLOCK_PLING;0.8;1.8"
+      Recolher:
+        Som: "BLOCK_PISTON_CONTRACT;0.8;1.2"
+
+  HANGAR_ARTILHEIRO:
+    Tipo: DRONE
+    Raridade: EPICA
+    Item:
+      Material: NETHERITE_BLOCK|IRON_BLOCK
+      Nome: "&5&lHangar Artilheiro"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Drone pesado: voa devagar, bate forte"
+        - "&7e nao faz distincao entre monstro e"
+        - "&7invasor de duas pernas."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+        - ""
+        - "&eColoque no chao para ativar"
+        - "&7Clique nele para gerenciar"
+    Bloco: NETHERITE_BLOCK|IRON_BLOCK
+    Vida: 200
+    Limite por jogador: 3
+    Dano: 7.5
+    Particula: "FLAME"
+    Particulas por bloco: 3
+    Torre:
+      Alcance: 24.0
+      Tiros por segundo: 0.9
+      Alvos: [ MONSTRO, JOGADOR ]
+      Precisa enxergar: true
+    Impacto:
+      Empurrao: 0.4
+    Drone:
+      Ativado: true
+      Item: NETHERITE_BLOCK|IRON_BLOCK
+      Pequeno: true
+      Nome: "&5\u2708 Artilheiro"
+      Altura: 6.0
+      Altura do ataque: 4.0
+      Raio: 8.0
+      Velocidade: 0.26
+      Alcance do tiro: 14.0
+    Boneco:
+      Ativado: false
+      Coluna: IRON_BARS
+      Nivel da coluna: 1
+    Energia:
+      Maxima: 800
+      Por uso: 2
+      Por item: 100
+      Itens:
+        - REDSTONE
+        - CARGA_DE_TNT
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;0.8;1.2"
+        Actionbar: "&5Artilheiro no ar"
+      Atirar:
+        Som: "ENTITY_GENERIC_EXPLODE;0.3;2.0"
+        Particula: "FLAME"
+        Quantidade: 5
+      Acerto:
+        Som: "ENTITY_PLAYER_HURT;0.4;0.8"
+      Recarregar:
+        Som: "BLOCK_NOTE_BLOCK_PLING;0.8;1.2"
+      Recolher:
+        Som: "BLOCK_PISTON_CONTRACT;0.8;0.8"
+
+  HANGAR_BOMBARDEIRO:
+    Tipo: DRONE
+    Raridade: LENDARIA
+    Item:
+      Material: TNT
+      Nome: "&c&lHangar Bombardeiro"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7O drone chega por cima da horda e"
+        - "&7larga a carga la de dentro."
+        - ""
+        - "&7Fora de terreno a bomba abre o chao."
+        - "&7Dentro, so machuca quem esta perto."
+        - ""
+        - "&7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+        - ""
+        - "&eColoque no chao para ativar"
+        - "&7Clique nele para gerenciar"
+    Bloco: TNT
+    Vida: 150
+    Limite por jogador: 2
+    Dano: 0.0
+    Particula: "SMOKE_NORMAL"
+    Particulas por bloco: 2
+    Torre:
+      Alcance: 26.0
+      Tiros por segundo: 0.3
+      Alvos: [ MONSTRO, JOGADOR ]
+      Precisa enxergar: false
+    Explosao:
+      Raio: 4.5
+      Dano: 9.0
+      Empurrao: 0.6
+      Quebrar blocos: true
+      Forma: ESFERA
+      Resistencia maxima: 6.0
+      Atravessa parede: false
+      Regenerar:
+        Ativado: true
+        Atraso: 240
+        Blocos por tique: 5
+      Efeitos:
+        Som: "ENTITY_GENERIC_EXPLODE;1.0;1.1"
+        Particula: "EXPLOSION_LARGE"
+        Quantidade: 1
+    Drone:
+      Ativado: true
+      Item: TNT
+      Pequeno: true
+      Nome: "&c\u2708 Bombardeiro"
+      Altura: 7.0
+      Altura do ataque: 5.0
+      Raio: 9.0
+      Velocidade: 0.3
+      Alcance do tiro: 10.0
+    Boneco:
+      Ativado: false
+      Coluna: IRON_BARS
+      Nivel da coluna: 1
+    Energia:
+      Maxima: 400
+      Por uso: 8
+      Por item: 100
+      Itens:
+        - CARGA_DE_TNT
+        - TNT
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;0.8;0.9"
+        Actionbar: "&cBombardeiro no ar"
+      Atirar:
+        Som: "ENTITY_TNT_PRIMED;0.8;1.0"
+        Particula: "SMOKE_NORMAL"
+        Quantidade: 6
+      Recarregar:
+        Som: "BLOCK_NOTE_BLOCK_PLING;0.8;0.9"
+      Recolher:
+        Som: "BLOCK_PISTON_CONTRACT;0.8;0.7"
+
+  HANGAR_INCENDIARIO:
+    Tipo: DRONE
+    Raridade: EPICA
+    Item:
+      Material: MAGMA_BLOCK|NETHERRACK
+      Nome: "&6&lHangar Incendiario"
+      Lore:
+        - "&8{tipo} &7| &8Defesa de base"
+        - ""
+        - "&7Drone rapido que passa raspando e"
+        - "&7deixa a horda inteira pegando fogo."
+        - ""
+        - "&7Pouco dano no golpe, muito no caminho"
+        - "&7de volta."
+        - ""
+        - "&7Dano: &f{dano} &8| &7Alcance: &f{alcance} blocos"
+        - "&7Energia: &f{energia}"
+        - ""
+        - "&eColoque no chao para ativar"
+        - "&7Clique nele para gerenciar"
+    Bloco: MAGMA_BLOCK|NETHERRACK
+    Vida: 120
+    Limite por jogador: 4
+    Dano: 1.5
+    Particula: "FLAME"
+    Particulas por bloco: 4
+    Torre:
+      Alcance: 18.0
+      Tiros por segundo: 3.0
+      Alvos: [ MONSTRO ]
+      Precisa enxergar: true
+    Impacto:
+      Fogo: 80
+    Drone:
+      Ativado: true
+      Item: MAGMA_BLOCK|NETHERRACK
+      Pequeno: true
+      Nome: "&6\u2708 Incendiario"
+      Altura: 4.5
+      Altura do ataque: 2.5
+      Raio: 6.0
+      Velocidade: 0.5
+      Alcance do tiro: 8.0
+    Boneco:
+      Ativado: false
+      Coluna: IRON_BARS
+      Nivel da coluna: 1
+    Energia:
+      Maxima: 500
+      Por uso: 1
+      Por item: 100
+      Itens:
+        - REDSTONE
+        - CARGA_DE_TNT
+    Efeitos:
+      Colocar:
+        Som: "BLOCK_PISTON_EXTEND;0.8;1.4"
+        Actionbar: "&6Incendiario no ar"
+      Atirar:
+        Som: "ENTITY_BLAZE_SHOOT;0.4;1.2"
+        Particula: "FLAME"
+        Quantidade: 6
+      Acerto:
+        Som: "ENTITY_GENERIC_BURN;0.4;1.4"
+      Recarregar:
+        Som: "BLOCK_NOTE_BLOCK_PLING;0.8;1.4"
+      Recolher:
+        Som: "BLOCK_PISTON_CONTRACT;0.8;1.1"

@@ -1,0 +1,73 @@
+# =====================================================================
+#  Raridades
+#  -------------------------------------------------------------------
+#  A raridade nao muda nada no combate: quem decide se a arma e forte
+#  sao os numeros dela. Ela existe para ORGANIZAR -- o catalogo se
+#  ordena por ela, a caixa sorteia por ela, a loja precifica por ela e
+#  o jogador entende de longe o que caiu na mao dele.
+#
+#  Cada arma, municao e acessorio aponta um degrau com uma linha:
+#
+#    Raridade: LENDARIA
+#
+#  Quem nao aponta nada cai no degrau padrao (Comum). Quem aponta um
+#  degrau que nao existe tambem -- item nenhum some do catalogo por
+#  causa de uma raridade escrita errado.
+#
+#  Campos de cada degrau:
+#    Nome    o texto que aparece, ja com cor
+#    Cor     a cor sozinha, para usar em {cor} nas lores
+#    Ordem   quanto maior, mais raro (e a ordem do catalogo)
+#    Brilho  liga o brilho de encantamento no item
+#    Linha   a linha que entra na lore; use {raridade} e {cor}
+#
+#  A linha SO entra sozinha quando a lore do item nao usa {raridade}
+#  em lugar nenhum -- quem escreve a lore a mao decide onde ela fica.
+#
+#  Voce pode apagar, renomear e criar degraus a vontade.
+# =====================================================================
+Versao do modelo: 1
+
+Raridades:
+
+  COMUM:
+    Nome: "&7Comum"
+    Cor: "&7"
+    Ordem: 1
+    Brilho: false
+    Linha: "&8Raridade: {raridade}"
+
+  INCOMUM:
+    Nome: "&aIncomum"
+    Cor: "&a"
+    Ordem: 2
+    Brilho: false
+    Linha: "&8Raridade: {raridade}"
+
+  RARA:
+    Nome: "&bRara"
+    Cor: "&b"
+    Ordem: 3
+    Brilho: false
+    Linha: "&8Raridade: {raridade}"
+
+  EPICA:
+    Nome: "&5Epica"
+    Cor: "&5"
+    Ordem: 4
+    Brilho: false
+    Linha: "&8Raridade: {raridade}"
+
+  LENDARIA:
+    Nome: "&6&lLendaria"
+    Cor: "&6"
+    Ordem: 5
+    Brilho: true
+    Linha: "&8Raridade: {raridade}"
+
+  MITICA:
+    Nome: "&d&lMitica"
+    Cor: "&d"
+    Ordem: 6
+    Brilho: true
+    Linha: "&8Raridade: {raridade}"

@@ -1,0 +1,139 @@
+# =====================================================================
+#  StarArmas
+#  -------------------------------------------------------------------
+#  As armas ficam na pasta armas/ (um arquivo por categoria), as balas
+#  em municoes.yml e as pecas em acessorios.yml. Este arquivo aqui so
+#  cuida do que vale para o produto inteiro.
+#
+#  Controles (iguais em toda arma):
+#    - gatilho (esquerdo ou direito, conforme a arma) ... atira
+#    - o clique que sobra .......................... mira, quando tem luneta
+#    - agachado + clique direito ................... recarrega
+#    - soltar o item (Q) ........................... recarrega
+#    - agachado + soltar o item (Q) ................ troca o modo de tiro
+#    - tecla F (1.9+) .............................. troca o modo de tiro
+# =====================================================================
+
+# Mundos em que as armas nao funcionam (lobby, mundo de construcao...).
+Mundos bloqueados:
+  - lobby_exemplo
+
+# Ligado, so quem tem stararmas.usar consegue atirar. Desligado, a
+# permissao continua existindo, mas nao e conferida no disparo.
+Somente com permissao: false
+
+# ---------------------------------------------------------------------
+#  A linha de informacao acima da barra de itens.
+#  {arma} {barra} {balas} {pente} {municao} {modo}
+# ---------------------------------------------------------------------
+HUD:
+  Ativado: true
+  Formato: "&e{arma} &8| &f{barra} &7{balas}&8/&7{pente} &8| &7{municao} &8| &b{modo}"
+  Recarregando: "&e{arma} &8| &6Recarregando &7{barra} &8({porcento}%)"
+  Sem municao: "&e{arma} &8| &c&lSEM MUNICAO &7({tipo})"
+  Mirando: " &8| &bMirando"
+  Tamanho da barra: 10
+  Simbolo cheio: "&a|"
+  Simbolo gasto: "&8|"
+
+Controles:
+  # Soltar o item recarrega em vez de dropar a arma. Evita perder o fuzil
+  # no meio da briga por causa de um Q sem querer.
+  Recarregar ao soltar o item: true
+  Recarregar agachado com clique direito: true
+  # Agachado + Q passa para o proximo modo de tiro da arma.
+  Trocar modo agachado ao soltar: true
+
+Combate:
+  # Aviso no chat de quem atirou, a cada acerto.
+  Marcador de acerto: true
+  Efeito de acerto:
+    Som: "ENTITY_EXPERIENCE_ORB_PICKUP;0.6;1.9"
+  # Particula no ponto do impacto no alvo.
+  Particula de impacto: "REDSTONE"
+  Quantidade de particulas: 6
+  # Mensagem de morte propria, com arma, parte do corpo e distancia.
+  Mensagem de morte: true
+  Acertar quem esta na mesma equipe: true
+  # Quanto a caixa do alvo cresce no teste de acerto (blocos). Compensa a
+  # diferenca entre o que o cliente desenha e o que o servidor sabe. Zero
+  # faz o tiro "passar" por quem esta correndo; acima de 0.25 vira ima.
+  Folga de acerto: 0.12
+
+Seguranca:
+  # A enxada da arma nao ara a terra, o arco nao atira flecha, o bloco
+  # nao e colocado. Desligue so se souber o que esta fazendo.
+  Bloquear uso original do item: true
+  # Antes de a explosao levar um bloco, o produto pergunta a protecao do
+  # terreno se aquele jogador poderia quebra-lo. Funciona com qualquer
+  # plugin de protecao, sem integracao especifica.
+  Respeitar protecao de terreno: true
+  # Chave geral: desligado, nenhuma explosao quebra bloco nenhum, mesmo
+  # que a arma peca.
+  Explosoes podem quebrar blocos: true
+  # Dentro de terreno, bunker ou claim, a explosao SO DA DANO -- nem a do
+  # proprio dono derruba parede. Buraco fica para o mundo aberto.
+  #
+  # Vale para arma, TNT, granada, morteiro e mina, e a pergunta e "tem
+  # dono aqui?", nao "esse jogador pode construir aqui?": um foguete
+  # disparado de dentro da propria base derrubaria a parede do vizinho
+  # a cinco blocos de distancia.
+  #
+  # Le os terrenos do StarTerrenos, do StarBunkers, do GriefDefender e
+  # do GriefPrevention -- os que estiverem instalados, todos juntos.
+  Explosoes quebram blocos dentro de terreno: false
+
+Desempenho:
+  # Teto de balas no ar ao mesmo tempo. Passando disso, a mais antiga sai.
+  Maximo de projeteis: 600
+  # Em quantas fatias cada tique da bala e dividido. Mais fatias = acerto
+  # mais fiel em bala rapida; menos = menos calculo.
+  Passos por tique: 4
+  # A cada quantos tiques os pentes vao para o disco (a escrita e fora da
+  # thread principal). 6000 = 5 minutos.
+  Salvar a cada: 6000
+  # Pente de arma que ninguem toca ha esse tempo e esquecido na subida --
+  # e o que impede o pentes.yml de crescer para sempre.
+  Dias para esquecer um pente: 30
+
+# ----------------------------------------------------------------------------
+#  Estruturas: vida, dano e conserto
+#
+#  Toda estrutura tem uma Vida (no estruturas.yml). Quando ela chega a zero, a
+#  estrutura NAO some: vira sucata no proprio lugar, para de funcionar e deixa
+#  de ser vista como defesa -- inclusive pelos mortos do StarApocalipseZ, que
+#  param de vir atras dela. Consertar e o que a traz de volta.
+# ----------------------------------------------------------------------------
+Estruturas:
+
+  # Quanto de vida cada soco de quem NAO e o dono tira da estrutura.
+  # 0 volta ao comportamento antigo: quem nao e dono simplesmente nao mexe.
+  #
+  # Uma torre de 120 de vida com dano 4 leva trinta socos para cair -- tempo de
+  # sobra para o dono aparecer, que e o ponto.
+  Dano-Por-Soco: 4.0
+
+  Reparo:
+    Ativado: true
+    # Quanta vida o kit devolve. 0 conserta a estrutura inteira.
+    Vida: 0
+
+    Item:
+      Material: 'PAPER'
+      Nome: '&a&lKit de Reparo'
+      Lore:
+        - '&7Levanta uma estrutura derrubada'
+        - '&7e devolve &f{vida} &7de vida.'
+        - ''
+        - '&eClique na estrutura para consertar'
+      Brilho: true
+      Receita:
+        Ativado: true
+        Formato:
+          - ' I '
+          - 'IRI'
+          - ' I '
+        Ingredientes:
+          I: 'IRON_INGOT'
+          R: 'REDSTONE'
+        Quantidade: 1
