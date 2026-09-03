@@ -73,6 +73,33 @@ Spawn:
   # uma sopa de mobs quando varios sistemas empurram spawn ao mesmo tempo.
   Limite-Por-Jogador: 60
 
+  # --------------------------------------------------------------------------
+  #  Povoamento
+  #  O que enche o mundo. Sem isto, o plugin apenas BLOQUEIA o spawn dos outros
+  #  mobs e nivela o que a natureza cria -- e a natureza cria pouquissimo: de
+  #  dia, na superficie, quase nada nasce e o que nasce queima ao sol. O
+  #  apocalipse ficaria vazio.
+  # --------------------------------------------------------------------------
+  Populacao:
+    Ativado: true
+    # Quantos mortos manter perto de cada jogador. O clima multiplica isso.
+    Alvo-Por-Jogador: 14
+    # Raio em que eles sao contados.
+    Raio: 48
+    # Onde nascem: longe o bastante para nao aparecer na cara do jogador,
+    # perto o bastante para o terreno estar carregado.
+    Distancia-Minima: 24
+    Distancia-Maxima: 44
+    A-Cada: '6s'
+    # Quantos podem nascer por rodada, por jogador.
+    Por-Rodada: 3
+    # true faz o mundo so encher de noite.
+    So-A-Noite: false
+    # Nao criar, sob o sol, quem queimaria em cinco segundos. Para ter mortos
+    # andando de dia, deixe algum tipo com Queimar-No-Sol: false no zumbis.yml
+    # (o Arido, o Bruto e o Cacador ja vem assim).
+    Evitar-Sol: true
+
 # ----------------------------------------------------------------------------
 #  Nivel dos zumbis
 #  Quanto maior o nivel, mais vida, mais forca e melhor o loot.
