@@ -39,10 +39,13 @@ Mundos:
     Raids: true
     Infeccao: true
 
-    # Areas onde o apocalipse nao entra: nada de zona, horda ou raid nasce
-    # aqui e o zumbi que passar dos limites perde o alvo. O spawn e o
-    # nivelamento continuam valendo -- para desligar o mundo inteiro use
-    # Ativado: false.
+    # Areas onde o apocalipse nao entra: zona, horda, raid e povoamento nao
+    # nascem aqui. O nivelamento continua valendo -- para desligar o mundo
+    # inteiro use Ativado: false.
+    #
+    # A area abaixo protege 200 blocos em volta do spawn. E a razao mais comum
+    # de o apocalipse parecer parado perto da cidade: diminua o raio, ou apague
+    # a entrada, se voce quiser mortos ate no spawn.
     Areas-Seguras:
       - Nome: 'Spawn'
         # CENTRO usa o proprio spawn do mundo; troque por X/Z para outro ponto.
