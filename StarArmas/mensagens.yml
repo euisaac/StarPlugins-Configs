@@ -1,0 +1,129 @@
+# Mensagens do StarArmas.
+#
+# Mensagem em branco nao e enviada -- e assim que se desliga um aviso sem
+# precisar de uma opcao separada para cada um.
+#
+# Versao do modelo: quando este numero sobe numa atualizacao, o arquivo
+# do servidor e guardado ao lado (mensagens-antigo-vN.yml) e o novo entra
+# no lugar. Nao mexa nele.
+Versao do modelo: 4
+
+Prefixo: "&8[&c&lStar&f&lArmas&8] &r"
+
+Geral:
+  Somente jogador: "&cEste comando so funciona dentro do jogo."
+  Sem permissao: "&cVoce nao tem permissao para isso."
+  Jogador offline: "&cO jogador &f{jogador} &cnao esta online."
+  Ajuda jogador: |
+    &8&m--------------------------------
+    &c&lStarArmas
+    &7/armas &8- &fcatalogo de armas
+    &7/municoes &8- &fmunicoes do servidor
+    &7/acessorios &8- &fpecas para as armas
+    &7/acessorios bancada &8- &fmontar a arma da sua mao
+    &7/estruturas &8- &ftorres e cercas de defesa
+    &8&m--------------------------------
+    &7Atirar: &fclique do gatilho da arma
+    &7Mirar: &fo clique que sobra
+    &7Recarregar: &fagachado + direito, ou Q
+    &7Trocar modo: &fagachado + Q, ou a tecla F
+    &8&m--------------------------------
+  Ajuda admin: |
+    &8&m--------------------------------
+    &c&lStarArmas &7(admin)
+    &7/stararmas recarregar
+    &7/stararmas dar <jogador> <arma> [qtd]
+    &7/stararmas municao <jogador> <tipo> [qtd]
+    &7/stararmas acessorio <jogador> <id> [qtd]
+    &7/stararmas listar [armas|municoes|acessorios|estruturas]
+    &7/stararmas estruturas &8- &fpor que a torre nao atira
+    &7/stararmas info
+    &8&m--------------------------------
+
+Arma:
+  Sem permissao: "&cVoce nao tem permissao para usar a &f{arma}&c."
+  Duas maos: "&cA &f{arma} &cprecisa das duas maos: esvazie a mao secundaria."
+  Desgastando: "&eA sua &f{arma} &eaguenta mais &f{restantes} &etiros."
+  Quebrou: "&cA sua &f{arma} &cse desfez de tanto uso."
+  Modo unico: "&cA &f{arma} &cso tem um modo de tiro."
+  Modo trocado: "&aModo de tiro da &f{arma}&a: &e{modo}&a."
+
+Recarga:
+  Pente cheio: "&7O pente ja esta cheio."
+  Sem municao: "&cVoce nao tem municao para a &f{arma}&c. &7Aceita: &f{tipos}"
+
+Combate:
+  # Enviadas so para quem atirou, sem prefixo.
+  Acerto: "&7Acerto em &f{alvo} &8| &c{dano} &8| &7{distancia}m"
+  Acerto na cabeca: "&c&lNA CABECA! &7{alvo} &8| &c{dano} &8| &7{distancia}m"
+  # Mensagem de morte do servidor inteiro.
+  Morte: "&f{morto} &7foi abatido por &f{atirador} &7com &f{arma} &7a &f{distancia}m&7."
+  Morte na cabeca: "&f{morto} &7levou um tiro na cabeca de &f{atirador} &7com &f{arma} &7a &f{distancia}m&7."
+
+Menu:
+  Sem permissao para pegar: "&cVoce so pode olhar o catalogo."
+  Arma recebida: "&aVoce recebeu a arma &f{arma}&a."
+  Municao recebida: "&aVoce recebeu municao &f{municao}&a."
+  Acessorio recebido: "&aVoce recebeu a peca &f{acessorio}&a."
+
+Estruturas:
+  Danificada: '&eVoce danificou a &f{estrutura}&e. &7({vida}&7/&f{vidamax}&7)'
+  Derrubada: '&aVoce derrubou a &f{estrutura}&a. Ela virou sucata.'
+  Esta quebrada: '&cA &f{estrutura} &cesta quebrada. Use um kit de reparo nela.'
+  Nao precisa de reparo: '&7A &f{estrutura} &7esta inteira.'
+  Reparada: '&aReparada. &7({vida}&7/&f{vidamax}&7)'
+  Consertada: '&aA &f{estrutura} &avoltou a funcionar.'
+  Sua esta sob ataque: '&c&lSUA DEFESA ESTA SOB ATAQUE! &7{estrutura} em {x}, {y}, {z} &8({vida} de vida)'
+  Sua foi derrubada: '&4&lSUA DEFESA CAIU! &7{estrutura} em {x}, {y}, {z}'
+  Recebida: "&aVoce recebeu a estrutura &f{estrutura}&a."
+  Sem permissao: "&cVoce nao tem permissao para usar a &f{estrutura}&c."
+  No limite: "&cVoce ja tem &f{limite} &cestruturas do tipo &f{estrutura}&c no mundo."
+  Colocada: "&aEstrutura &f{estrutura} &aativada. &7Clique nela para gerenciar."
+  Ponta sozinha: "&eNenhum poste livre por perto. &7Coloque outro a ate &f{distancia} &7blocos para acender."
+  Ligada: "&aLigado! &7Este poste acendeu &f{pontas} &7ponta(s)."
+  Nao e sua: "&cEsta estrutura nao e sua, e voce nao tem confianca no terreno."
+  Recolhida: "&eVoce recolheu a estrutura &f{estrutura}&e."
+  Sumiu: "&cEssa estrutura nao esta mais ali."
+  Ligou: "&aA &f{estrutura} &avoltou a trabalhar."
+  Desligou: "&eA &f{estrutura} &efoi desligada."
+  Energia cheia: "&7A energia dela ja esta cheia."
+  Recarregada: "&aRecarregada: &f{estrutura} &7({energia})"
+  # Fica escrito em cima da torre enquanto ela estiver sem energia.
+  # Vazio nao mostra nada.
+  Corpo da torre: "{prefixo}&cIsso e parte da torre: recolha a base para tirar a estrutura."
+  Holograma sem energia: "&c&lSEM MUNICAO"
+  Alarme: "&c&lINVASAO! &f{quem} &7perto do alarme em &f{x}, {y}, {z}&7."
+
+Bancada:
+  Sem arma na mao: "&cSegure a arma que voce quer montar."
+  Sem encaixes: "&cA &f{arma} &cnao aceita acessorios."
+  Instalado: "&aVoce instalou &f{acessorio} &ana &f{arma}&a."
+  Removido: "&eVoce removeu &f{acessorio} &eda &f{arma}&e."
+  Nao serve: "&cA peca &f{acessorio} &cnao serve nesta arma."
+  Sem a peca: "&cVoce nao tem a peca &f{acessorio} &cno inventario."
+
+Admin:
+  Recarregado: "&aRecarregado: &f{armas} &aarmas, &f{municoes} &amunicoes e &f{acessorios} &aacessorios."
+  Uso dar: "&cUse: &f/stararmas dar <jogador> <arma> [quantidade]"
+  Uso municao: "&cUse: &f/stararmas municao <jogador> <tipo> [quantidade]"
+  Uso acessorio: "&cUse: &f/stararmas acessorio <jogador> <id> [quantidade]"
+  Arma desconhecida: "&cNao existe uma arma chamada &f{arma}&c."
+  Municao desconhecida: "&cNao existe uma municao chamada &f{municao}&c."
+  Acessorio desconhecido: "&cNao existe uma peca chamada &f{acessorio}&c."
+  Arma entregue: "&aVoce entregou &f{quantidade}x {arma} &apara &f{jogador}&a."
+  Municao entregue: "&aVoce entregou municao &f{municao} &apara &f{jogador}&a."
+  Acessorio entregue: "&aVoce entregou a peca &f{acessorio} &apara &f{jogador}&a."
+  Voce recebeu arma: "&aVoce recebeu a arma &f{arma}&a."
+  Lista: "&7{tipo}&8: &f{itens}"
+  Sem estruturas perto: "&7Nenhuma estrutura num raio de 48 blocos daqui."
+  Estruturas titulo: "&8&m--------&r &e{quantas} estrutura(s) por perto &8&m--------"
+  Info: |
+    &8&m--------------------------------
+    &c&lStarArmas &7v{versao}
+    &7Armas: &f{armas} &8| &7Municoes: &f{municoes} &8| &7Pecas: &f{acessorios}
+    &7Balas no ar agora: &f{projeteis}
+    &7Pentes na memoria: &f{pentes}
+    &7Blocos esperando voltar: &f{blocos}
+    &7Estruturas no mundo: &f{estruturas}
+    &7Confianca vinda de: &f{terrenos}
+    &8&m--------------------------------

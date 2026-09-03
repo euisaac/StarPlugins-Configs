@@ -1,0 +1,240 @@
+# =====================================================================
+#  Acessorios
+#  -------------------------------------------------------------------
+#  Pecas que o jogador instala na arma pela bancada (/armas bancada).
+#  A peca fica gravada no proprio item da arma: guardar no bau, dropar
+#  ou passar para outro jogador nao desmonta nada.
+#
+#  Encaixe: CANO | MIRA | PENTE | CORONHA | TRILHO
+#  Cada arma diz quais encaixes tem (Acessorios.Encaixes) e cabe uma
+#  peca por encaixe.
+#
+#  Sem "Armas:" e sem "Categorias:", a peca serve em qualquer arma que
+#  tenha o encaixe. Com uma das duas listas, so nas que estiverem la.
+#
+#  Modificadores: os mesmos das municoes. O que a arma faz e o produto
+#  de tudo -- arma x municao x cada peca instalada.
+# =====================================================================
+Versao do modelo: 1
+
+Acessorios:
+
+  # ----------------------------- cano -----------------------------
+  CANO_LONGO:
+    Raridade: INCOMUM
+    Encaixe: CANO
+    Item:
+      Material: IRON_INGOT
+      Nome: "&f&lCano longo"
+      Lore:
+        - "&7A bala sai mais rapido e mais reta,"
+        - "&7mas o tiro demora um tico mais."
+        - ""
+        - "&a+30% alcance  &a-25% espalhamento"
+        - "&c-10% cadencia"
+    Modificadores:
+      Alcance: 1.30
+      Velocidade: 1.15
+      Espalhamento: 0.75
+      Cadencia: 0.90
+
+  SILENCIADOR:
+    Raridade: RARA
+    Encaixe: CANO
+    Item:
+      Material: IRON_BARS
+      Nome: "&8&lSilenciador"
+      Lore:
+        - "&7Quem esta longe nao ouve o tiro."
+        - ""
+        - "&a-75% barulho  &a-15% recuo"
+        - "&c-10% dano  &c-15% alcance"
+    Silencioso: true
+    Modificadores:
+      Dano: 0.90
+      Alcance: 0.85
+      Recuo: 0.85
+      Volume: 0.25
+
+  FREIO_DE_BOCA:
+    Raridade: INCOMUM
+    Encaixe: CANO
+    Item:
+      Material: NETHER_BRICK
+      Nome: "&7&lFreio de boca"
+      Lore:
+        - "&7Joga o gas para os lados e segura o coice."
+        - ""
+        - "&a-45% recuo"
+        - "&cO tiro fica bem mais alto"
+    Modificadores:
+      Recuo: 0.55
+      Volume: 1.4
+
+  # ----------------------------- mira -----------------------------
+  MIRA_HOLOGRAFICA:
+    Raridade: INCOMUM
+    Encaixe: MIRA
+    Item:
+      Material: GLASS_PANE
+      Nome: "&b&lMira holografica"
+      Lore:
+        - "&7Ponto vermelho: pouca aproximacao, muita precisao."
+        - ""
+        - "&a-35% espalhamento"
+    Modificadores:
+      Espalhamento: 0.65
+      Zoom: 1.0
+
+  LUNETA_TATICA:
+    Raridade: RARA
+    Encaixe: MIRA
+    Item:
+      Material: SPYGLASS
+      Nome: "&e&lLuneta tatica"
+      Lore:
+        - "&7Aproxima bem mais ao mirar."
+        - ""
+        - "&a+80% zoom  &a-20% espalhamento"
+        - "&cVoce anda mais devagar mirando"
+    Modificadores:
+      Zoom: 1.8
+      Espalhamento: 0.80
+
+  MIRA_NOTURNA:
+    Raridade: EPICA
+    Encaixe: MIRA
+    Item:
+      Material: ENDER_EYE
+      Nome: "&2&lMira noturna"
+      Lore:
+        - "&7Enxerga no escuro enquanto voce mira."
+        - ""
+        - "&a+50% zoom  &aVisao noturna na mira"
+    Visao noturna: true
+    Modificadores:
+      Zoom: 1.5
+
+  # ----------------------------- pente ----------------------------
+  PENTE_ESTENDIDO:
+    Raridade: INCOMUM
+    Encaixe: PENTE
+    Item:
+      Material: IRON_BLOCK
+      Nome: "&f&lPente estendido"
+      Lore:
+        - "&7Mais dez balas antes de recarregar."
+        - ""
+        - "&a+10 balas"
+        - "&cRecarga 15% mais lenta"
+    Modificadores:
+      Pente extra: 10
+      Recarga: 1.15
+
+  PENTE_TAMBOR:
+    Raridade: RARA
+    Encaixe: PENTE
+    Item:
+      Material: CAULDRON
+      Nome: "&6&lPente tambor"
+      Lore:
+        - "&7Um tambor inteiro de municao."
+        - ""
+        - "&a+30 balas"
+        - "&cRecarga 60% mais lenta  &c-10% cadencia"
+    Modificadores:
+      Pente extra: 30
+      Recarga: 1.60
+      Cadencia: 0.90
+
+  CARREGADOR_RAPIDO:
+    Raridade: RARA
+    Encaixe: PENTE
+    Item:
+      Material: LEATHER
+      Nome: "&a&lCarregador rapido"
+      Lore:
+        - "&7Fita de puxar: o pente entra na metade do tempo."
+        - ""
+        - "&a-45% tempo de recarga"
+        - "&c-4 balas no pente"
+    Modificadores:
+      Recarga: 0.55
+      Pente extra: -4
+
+  # ---------------------------- coronha ---------------------------
+  CORONHA_TATICA:
+    Raridade: INCOMUM
+    Encaixe: CORONHA
+    Item:
+      Material: OAK_PLANKS
+      Nome: "&f&lCoronha tatica"
+      Lore:
+        - "&7Apoio firme no ombro."
+        - ""
+        - "&a-30% recuo  &a-20% espalhamento"
+    Modificadores:
+      Recuo: 0.70
+      Espalhamento: 0.80
+
+  CORONHA_LEVE:
+    Raridade: INCOMUM
+    Encaixe: CORONHA
+    Item:
+      Material: FEATHER
+      Nome: "&e&lCoronha leve"
+      Lore:
+        - "&7Arma mais solta na mao: atira mais rapido,"
+        - "&7mas pula mais."
+        - ""
+        - "&a+20% cadencia"
+        - "&c+25% recuo"
+    Modificadores:
+      Cadencia: 1.20
+      Recuo: 1.25
+
+  # ---------------------------- trilho ----------------------------
+  LASER_TATICO:
+    Raridade: RARA
+    Encaixe: TRILHO
+    Item:
+      Material: REDSTONE_TORCH
+      Nome: "&c&lLaser tatico"
+      Lore:
+        - "&7Ajuda a acertar sem mirar."
+        - ""
+        - "&a-30% espalhamento sem mirar"
+    Modificadores:
+      Espalhamento: 0.70
+
+  BIPE:
+    Raridade: RARA
+    Encaixe: TRILHO
+    Item:
+      Material: TRIPWIRE_HOOK
+      Nome: "&7&lBipe"
+      Lore:
+        - "&7Apoio no chao: quase nao ha coice."
+        - ""
+        - "&a-55% recuo"
+        - "&c-15% cadencia"
+    Modificadores:
+      Recuo: 0.45
+      Cadencia: 0.85
+
+  DESCARGA_ELETRICA:
+    Raridade: EPICA
+    Encaixe: TRILHO
+    Item:
+      Material: REDSTONE_BLOCK
+      Nome: "&d&lDescarga eletrica"
+      Lore:
+        - "&7Um choque em cada acerto, seja qual for a bala."
+        - ""
+        - "&aLentidao no alvo a cada tiro"
+        - "&c-8% dano"
+    Modificadores:
+      Dano: 0.92
+    No alvo:
+      Efeitos:
+        - "SLOW:40:0"

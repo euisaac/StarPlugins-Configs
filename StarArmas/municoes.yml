@@ -1,0 +1,590 @@
+# =====================================================================
+#  Municoes
+#  -------------------------------------------------------------------
+#  Municao aqui nao e so "a bala que a arma aceita": ela carrega os
+#  proprios multiplicadores, o proprio impacto e ate a propria explosao.
+#  E o que faz a mesma arma virar outra coisa so trocando o pente.
+#
+#  Modificadores (tudo opcional; 1.0 = nao muda nada):
+#    Dano, Velocidade, Alcance, Espalhamento, Recuo, Cadencia,
+#    Recarga, Gravidade, Volume, Zoom
+#    Pente extra, Perfuracao extra, Projeteis extra  (somam, nao multiplicam)
+#
+#  No alvo (tudo opcional):
+#    Fogo: tiques de fogo
+#    Efeitos: ["TIPO:duracao:nivel", ...]
+#    Empurrao, Raio, Roubo de vida, Dano extra, Congelar
+#
+#  Apagar uma municao daqui e permitido: ela nao volta na proxima subida.
+#  So lembre de tirar o nome dela da lista "Municao.Tipos" das armas.
+# =====================================================================
+Versao do modelo: 1
+
+Municoes:
+
+  # ------------------------------------------------------------------
+  #  Calibre leve -- pistolas e submetralhadoras
+  # ------------------------------------------------------------------
+  BALA_LEVE:
+    Raridade: COMUM
+    Item:
+      Material: GOLD_NUGGET
+      Nome: "&f&lBala leve"
+      Lore:
+        - "&7Calibre de pistola e submetralhadora."
+        - "&7Sem nenhum truque: barata e confiavel."
+    Balas por item: 1
+
+  CAIXA_BALA_LEVE:
+    Raridade: COMUM
+    Item:
+      Material: GOLD_NUGGET
+      Nome: "&e&lCaixa de balas leves"
+      Lore:
+        - "&7Uma caixa fechada com &f32 &7balas leves."
+        - "&8Ocupa um espaco so no inventario."
+      Brilho: true
+    Balas por item: 32
+
+  BALA_LEVE_PERFURANTE:
+    Raridade: INCOMUM
+    Item:
+      Material: FLINT
+      Nome: "&b&lBala leve perfurante"
+      Lore:
+        - "&7Nucleo duro: atravessa &fum &7alvo"
+        - "&7e ignora parte da armadura."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.9
+      Velocidade: 1.15
+      Perfuracao extra: 1
+
+  BALA_LEVE_INCENDIARIA:
+    Raridade: INCOMUM
+    Item:
+      Material: BLAZE_POWDER
+      Nome: "&6&lBala leve incendiaria"
+      Lore:
+        - "&7Deixa o alvo em chamas por &f3s&7."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.85
+    No alvo:
+      Fogo: 60
+    Rastro: "FLAME"
+    Efeito ao acertar:
+      Particula: "FLAME"
+      Quantidade: 8
+
+  BALA_LEVE_VENENOSA:
+    Raridade: INCOMUM
+    Item:
+      Material: SPIDER_EYE
+      Nome: "&2&lBala leve venenosa"
+      Lore:
+        - "&7Ponta oca com veneno."
+        - "&7Dano baixo, mas o alvo continua perdendo vida."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.7
+    No alvo:
+      Efeitos:
+        - "POISON:100:0"
+
+  BALA_LEVE_TRACANTE:
+    Raridade: INCOMUM
+    Item:
+      Material: GLOWSTONE_DUST
+      Nome: "&e&lBala leve tracante"
+      Lore:
+        - "&7Deixa um rastro luminoso no ar."
+        - "&7Mostra onde a rajada esta indo -- e de onde ela veio."
+    Balas por item: 1
+    Rastro: "FIREWORKS_SPARK"
+
+  # ------------------------------------------------------------------
+  #  Calibre medio -- fuzis e carabinas
+  # ------------------------------------------------------------------
+  BALA_MEDIA:
+    Raridade: COMUM
+    Item:
+      Material: BRICK
+      Nome: "&f&lBala media"
+      Lore:
+        - "&7Calibre de fuzil. O feijao com arroz do arsenal."
+    Balas por item: 1
+
+  CAIXA_BALA_MEDIA:
+    Raridade: COMUM
+    Item:
+      Material: BRICK
+      Nome: "&e&lCaixa de balas medias"
+      Lore:
+        - "&7Uma caixa fechada com &f32 &7balas medias."
+      Brilho: true
+    Balas por item: 32
+
+  BALA_MEDIA_PERFURANTE:
+    Raridade: RARA
+    Item:
+      Material: QUARTZ
+      Nome: "&b&lBala media perfurante"
+      Lore:
+        - "&7Atravessa &fdois &7alvos em linha."
+        - "&7Feita para corredor cheio."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.9
+      Velocidade: 1.2
+      Perfuracao extra: 2
+
+  BALA_MEDIA_INCENDIARIA:
+    Raridade: INCOMUM
+    Item:
+      Material: MAGMA_CREAM
+      Nome: "&6&lBala media incendiaria"
+      Lore:
+        - "&7Queima o alvo por &f5s&7."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.85
+    No alvo:
+      Fogo: 100
+    Rastro: "FLAME"
+
+  BALA_MEDIA_EXPLOSIVA:
+    Raridade: RARA
+    Item:
+      Material: GUNPOWDER
+      Nome: "&c&lBala media explosiva"
+      Lore:
+        - "&7Estoura ao acertar, num raio curto."
+        - "&8Nao derruba blocos."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.6
+      Cadencia: 0.8
+    Explosao:
+      Raio: 2.5
+      Dano: 5.0
+      Forma: ESFERA
+      Quebrar blocos: false
+      Empurrao: 0.4
+      Efeitos:
+        Som: "ENTITY_GENERIC_EXPLODE;0.7;1.6"
+        Particula: "EXPLOSION_NORMAL"
+        Quantidade: 3
+
+  BALA_MEDIA_TRACANTE:
+    Raridade: INCOMUM
+    Item:
+      Material: GLOWSTONE_DUST
+      Nome: "&e&lBala media tracante"
+      Lore:
+        - "&7Risca o ar de luz."
+        - "&7Otima para corrigir a mira de longe -- e pessima"
+        - "&7para nao ser achado."
+    Balas por item: 1
+    Rastro: "FIREWORKS_SPARK"
+
+  BALA_MEDIA_ELETRICA:
+    Raridade: RARA
+    Item:
+      Material: REDSTONE
+      Nome: "&d&lBala media eletrica"
+      Lore:
+        - "&7Descarrega no alvo: lentidao e cegueira curtas."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.8
+    No alvo:
+      Efeitos:
+        - "SLOW:60:1"
+        - "BLINDNESS:30:0"
+    Rastro: "CRIT_MAGIC"
+
+  # ------------------------------------------------------------------
+  #  Cartuchos -- escopetas
+  # ------------------------------------------------------------------
+  CARTUCHO_CHUMBO:
+    Raridade: COMUM
+    Item:
+      Material: CLAY_BALL
+      Nome: "&f&lCartucho de chumbo"
+      Lore:
+        - "&7Um punhado de chumbo por tiro."
+        - "&7Devastador de perto, inutil de longe."
+    Balas por item: 1
+
+  CARTUCHO_FERRO:
+    Raridade: INCOMUM
+    Item:
+      Material: IRON_INGOT
+      Nome: "&b&lCartucho de ferro bruto"
+      Lore:
+        - "&7Chumbo grosso: menos bolinhas, mais dano em cada uma."
+    Balas por item: 1
+    Modificadores:
+      Dano: 1.6
+      Espalhamento: 0.7
+      Projeteis extra: -3
+
+  CARTUCHO_BRASA:
+    Raridade: INCOMUM
+    Item:
+      Material: FIRE_CHARGE
+      Nome: "&6&lCartucho de brasa"
+      Lore:
+        - "&7Cada bolinha sai em brasa."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.7
+    No alvo:
+      Fogo: 80
+    Rastro: "FLAME"
+
+  CARTUCHO_SAL:
+    Raridade: RARA
+    Item:
+      Material: SUGAR
+      Nome: "&7&lCartucho de sal"
+      Lore:
+        - "&7Nao mata: atordoa, cega e empurra."
+        - "&8Para tirar gente de cima do muro sem matar."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.25
+    No alvo:
+      Efeitos:
+        - "SLOW:80:2"
+        - "BLINDNESS:60:0"
+      Empurrao: 0.8
+
+  # ------------------------------------------------------------------
+  #  Calibre pesado -- armas de precisao
+  # ------------------------------------------------------------------
+  BALA_PESADA:
+    Raridade: INCOMUM
+    Item:
+      Material: EMERALD
+      Nome: "&f&lBala pesada"
+      Lore:
+        - "&7Calibre de precisao. Cara e certeira."
+    Balas por item: 1
+
+  BALA_PESADA_ANTIMATERIAL:
+    Raridade: EPICA
+    Item:
+      Material: DIAMOND
+      Nome: "&b&lBala antimaterial"
+      Lore:
+        - "&7Atravessa &fdois &7alvos e &fduas &7paredes finas."
+        - "&7Ignora quase toda armadura."
+    Balas por item: 1
+    Modificadores:
+      Dano: 1.25
+      Velocidade: 1.3
+      Perfuracao extra: 2
+
+  BALA_PESADA_SUBSONICA:
+    Raridade: RARA
+    Item:
+      Material: COAL
+      Nome: "&8&lBala subsonica"
+      Lore:
+        - "&7Voa devagar e quase sem barulho."
+        - "&7Ninguem descobre de onde veio o tiro."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.9
+      Velocidade: 0.6
+      Volume: 0.15
+
+  BALA_PESADA_RASTREADORA:
+    Raridade: RARA
+    Item:
+      Material: ENDER_PEARL
+      Nome: "&5&lBala rastreadora"
+      Lore:
+        - "&7Marca o alvo: ele fica brilhando de lentidao"
+        - "&7e leva mais dano de todo mundo por um tempo."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.85
+    No alvo:
+      Efeitos:
+        - "SLOW:120:0"
+        - "GLOWING:200:0"
+
+  # ------------------------------------------------------------------
+  #  Explosivos
+  # ------------------------------------------------------------------
+  FOGUETE:
+    Raridade: EPICA
+    Item:
+      Material: FIREWORK_ROCKET
+      Nome: "&c&lFoguete"
+      Lore:
+        - "&7Explode ao encostar em qualquer coisa."
+        - "&7Derruba blocos -- que voltam sozinhos depois."
+    Balas por item: 1
+    Rastro: "SMOKE_NORMAL"
+
+  FOGUETE_TERMOBARICO:
+    Raridade: LENDARIA
+    Item:
+      Material: TNT
+      Nome: "&4&lFoguete termobarico"
+      Lore:
+        - "&7Onda de calor: raio maior, tudo pega fogo."
+        - "&8Nao respeita quem esta atras de parede fina."
+    Balas por item: 1
+    Modificadores:
+      Velocidade: 0.85
+    Explosao:
+      Raio: 6.0
+      Dano: 16.0
+      Forma: ESFERA
+      Quebrar blocos: true
+      Resistencia maxima: 12.0
+      Incendiar: true
+      Empurrao: 1.4
+      Regenerar:
+        Ativado: true
+        Atraso: 400
+        Blocos por tique: 6
+      Efeitos:
+        Som: "ENTITY_GENERIC_EXPLODE;1.0;0.7"
+        Particula: "EXPLOSION_HUGE"
+        Quantidade: 4
+    Rastro: "FLAME"
+
+  GRANADA_40:
+    Raridade: RARA
+    Item:
+      Material: EGG
+      Nome: "&2&lGranada 40mm"
+      Lore:
+        - "&7Voa em arco e estoura no chao."
+    Balas por item: 1
+    Rastro: "SMOKE_NORMAL"
+
+  GRANADA_INCENDIARIA:
+    Raridade: EPICA
+    Item:
+      Material: NETHER_WART
+      Nome: "&6&lGranada incendiaria"
+      Lore:
+        - "&7Espalha fogo num disco no chao."
+        - "&8Nao quebra bloco nenhum."
+    Balas por item: 1
+    Explosao:
+      Raio: 4.0
+      Dano: 6.0
+      Forma: DISCO
+      Quebrar blocos: false
+      Incendiar: true
+      Empurrao: 0.2
+      Efeitos:
+        Som: "ENTITY_BLAZE_SHOOT;1.0;0.6"
+        Particula: "FLAME"
+        Quantidade: 25
+
+  # ------------------------------------------------------------------
+  #  Combustivel -- lanca-chamas
+  # ------------------------------------------------------------------
+  COMBUSTIVEL:
+    Raridade: INCOMUM
+    Item:
+      Material: ORANGE_DYE
+      Nome: "&6&lCombustivel"
+      Lore:
+        - "&7Um jato curto de fogo liquido."
+    Balas por item: 4
+    No alvo:
+      Fogo: 100
+    Rastro: "FLAME"
+
+  COMBUSTIVEL_AZUL:
+    Raridade: RARA
+    Item:
+      Material: LIGHT_BLUE_DYE
+      Nome: "&b&lCombustivel azul"
+      Lore:
+        - "&7Queima mais quente: mais dano, mais alcance."
+    Balas por item: 4
+    Modificadores:
+      Dano: 1.5
+      Alcance: 1.3
+    No alvo:
+      Fogo: 160
+    Rastro: "SOUL_FIRE_FLAME"
+
+  # ------------------------------------------------------------------
+  #  Cargas -- explosivos, granadas e bombardeio
+  # ------------------------------------------------------------------
+  CARGA_DE_TNT:
+    Raridade: RARA
+    Item:
+      Material: TNT
+      Nome: "&c&lCarga de TNT"
+      Lore:
+        - "&7Uma banana de dinamite pronta para o cano."
+        - "&7Derruba parede -- e a parede volta depois."
+    Balas por item: 1
+
+  CARGA_FRAG:
+    Raridade: INCOMUM
+    Item:
+      Material: FIREWORK_STAR
+      Nome: "&7&lCarga de estilhaco"
+      Lore:
+        - "&7O recheio da granada de fragmentacao."
+        - "&8Nao derruba bloco nenhum."
+    Balas por item: 1
+
+  CARGA_INCENDIARIA:
+    Raridade: RARA
+    Item:
+      Material: FIRE_CHARGE
+      Nome: "&6&lCarga incendiaria"
+      Lore:
+        - "&7Napalm engarrafado."
+        - "&7Espalha fogo no chao sem quebrar nada."
+    Balas por item: 1
+    No alvo:
+      Fogo: 120
+
+  CARGA_ATORDOANTE:
+    Raridade: RARA
+    Item:
+      Material: GHAST_TEAR
+      Nome: "&f&lCarga atordoante"
+      Lore:
+        - "&7Clarao e estrondo, quase nenhum dano."
+        - "&7Quem estiver perto fica cego e lento."
+    Balas por item: 1
+    No alvo:
+      Efeitos:
+        - "BLINDNESS:100:0"
+        - "SLOW:100:2"
+        - "CONFUSION:140:0"
+
+  MARCADOR_AEREO:
+    Raridade: LENDARIA
+    Item:
+      Material: PAPER
+      Nome: "&5&lMarcador aereo"
+      Lore:
+        - "&7Uma coordenada e um pedido de fogo."
+        - "&7Onde ele encostar, o ceu responde."
+      Brilho: true
+    Balas por item: 1
+    Rastro: "FIREWORKS_SPARK"
+
+  # ------------------------------------------------------------------
+  #  Celulas -- armas experimentais
+  # ------------------------------------------------------------------
+  CELULA_ESTELAR:
+    Raridade: EPICA
+    Item:
+      Material: NETHER_STAR
+      Nome: "&b&lCelula estelar"
+      Lore:
+        - "&7Energia pura. Serve em quase toda arma experimental."
+      Brilho: true
+    Balas por item: 1
+    Rastro: "END_ROD"
+
+  CELULA_CRIOGENICA:
+    Raridade: EPICA
+    Item:
+      Material: SNOWBALL
+      Nome: "&b&lCelula criogenica"
+      Lore:
+        - "&7Congela o alvo no lugar."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.6
+    No alvo:
+      Congelar: 120
+      Efeitos:
+        - "SLOW:100:3"
+    Rastro: "SNOW_SHOVEL"
+
+  CELULA_GRAVITACIONAL:
+    Raridade: EPICA
+    Item:
+      Material: ENDER_EYE
+      Nome: "&5&lCelula gravitacional"
+      Lore:
+        - "&7Arranca o alvo do chao e joga longe."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.5
+    No alvo:
+      Empurrao: 2.2
+      Efeitos:
+        - "SLOW_FALLING:80:0"
+    Rastro: "PORTAL"
+
+  CELULA_VAMPIRICA:
+    Raridade: LENDARIA
+    Item:
+      Material: FERMENTED_SPIDER_EYE
+      Nome: "&4&lCelula vampirica"
+      Lore:
+        - "&7Metade do dano volta como vida para quem atirou."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.8
+    No alvo:
+      Roubo de vida: 0.5
+    Rastro: "REDSTONE"
+
+  CELULA_SOLAR:
+    Raridade: LENDARIA
+    Item:
+      Material: YELLOW_DYE
+      Nome: "&e&lCelula solar"
+      Lore:
+        - "&7Guarda luz enquanto a arma carrega."
+        - "&7Quanto mais tempo, mais forte o disparo."
+    Balas por item: 1
+    Modificadores:
+      Dano: 1.2
+    No alvo:
+      Fogo: 40
+    Rastro: "FIREWORKS_SPARK"
+
+  CELULA_TEIA:
+    Raridade: RARA
+    Item:
+      Material: STRING
+      Nome: "&f&lCelula de teia"
+      Lore:
+        - "&7Prende o alvo no lugar por alguns segundos."
+        - "&8Quase nao causa dano."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.2
+    No alvo:
+      Efeitos:
+        - "SLOW:120:5"
+        - "JUMP:120:128"
+    Rastro: "CLOUD"
+
+  CELULA_ECO:
+    Raridade: MITICA
+    Item:
+      Material: PRISMARINE_SHARD
+      Nome: "&3&lCelula de eco"
+      Lore:
+        - "&7O disparo atravessa &fduas &7paredes."
+        - "&7Nao tem barulho nem clarao."
+    Balas por item: 1
+    Modificadores:
+      Dano: 0.75
+      Volume: 0.1
+    Rastro: "SPELL_WITCH"

@@ -73,6 +73,13 @@ Spawn:
   # uma sopa de mobs quando varios sistemas empurram spawn ao mesmo tempo.
   Limite-Por-Jogador: 60
 
+  # O sol queima os mortos do plugin?
+  #
+  # Desligado de proposito: num apocalipse o dia nao pode ser um intervalo de
+  # paz -- eles andam de manha tambem. Ligando, cada tipo volta a decidir
+  # sozinho pelo Queimar-No-Sol dele no zumbis.yml.
+  Queimar-No-Sol: false
+
   # --------------------------------------------------------------------------
   #  Povoamento
   #  O que enche o mundo. Sem isto, o plugin apenas BLOQUEIA o spawn dos outros
@@ -529,6 +536,29 @@ Integracoes:
     # A raid espontanea prefere quem esta no proprio bunker -- assim ha o que
     # defender.
     Raid-No-Bunker: true
+
+  StarArmas:
+    # As torres, cercas e minas do StarArmas viram alvo: os mortos sentem a
+    # defesa de longe e vao ate ela. Sem isto, quem se tranca atras das torres
+    # nunca mais e incomodado.
+    #
+    # Estrutura ja derrubada nao atrai ninguem -- so volta a chamar a horda
+    # depois de consertada com o kit de reparo.
+    Torres:
+      Ativado: true
+      # De quao longe eles sentem a defesa.
+      Alcance-De-Atracao: 90
+      # A que distancia comecam a bater nela.
+      Distancia-Para-Bater: 3
+      # Dano por golpe, mais um tanto por nivel do morto.
+      Dano-Por-Golpe: 2.0
+      Dano-Por-Nivel: 0.15
+      Intervalo-Do-Golpe: '2s'
+      # A forca do empurrao que leva o morto ate la.
+      Forca-Do-Passo: 0.28
+      A-Cada: '2s'
+      # Avisar quem estiver por perto quando uma defesa cai.
+      Avisar-Dono: true
 
   StarClans:
     # Ranking de clas somando os pontos dos sobreviventes de cada um.
