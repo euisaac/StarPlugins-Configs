@@ -41,6 +41,12 @@
 #                                        no peitoral para a asa aparecer)
 #    RECUAR       Forca=0.75; Altura=0.32; Duracao=2s; Nivel=1
 #                                        gatilho: pula para tras ao APANHAR
+#    INVISIVEL    Duracao=8s             some da vista (armadura continua visivel)
+#    AURA         Efeito=WITHER; Nivel=0; Raio=6; Duracao=4s
+#                                        efeito continuo em quem chega perto
+#    ROUBAR_VIDA  Vida=2                 gatilho: o golpe alimenta o morto
+#    CORROER      Desgaste=30            gatilho: gasta a armadura de quem apanha
+#    ESPINHOS     Dano=2                 gatilho: devolve parte do golpe recebido
 #    PEDRA        Delay=1s; Dano=5; Velocidade=1.6
 #                                        mira, espera e arremessa uma pedra;
 #                                        acerta o que estiver no caminho,
@@ -378,7 +384,611 @@ Tipos:
       - 'INVESTIDA; Cooldown=8s; Alcance=10; Forca=1.3'
     Tabela-De-Drops: 'RARO'
 
+
+  # ==========================================================================
+  #  PERTO DO ABRIGO  --  nivel 1 a 15
+  #  O que qualquer um encontra no primeiro dia.
+  # ==========================================================================
   # --------------------------------------------------------------------------
+  #  Magro, faminto e em numero. Nao e ameaca sozinho.
+  # --------------------------------------------------------------------------
+  ESFOMEADO:
+    Nome: '&7Esfomeado'
+    Entidade: 'ZOMBIE'
+    Peso: 45
+    Nivel-Minimo: 1
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 0.7
+      Dano: 0.8
+      Velocidade: 1.05
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+    Tabela-De-Drops: 'COMUM'
+  # --------------------------------------------------------------------------
+  #  Devagar e dificil de derrubar. Ele cansa voce.
+  # --------------------------------------------------------------------------
+  CARCACA:
+    Nome: '&8Carcaca'
+    Entidade: 'ZOMBIE'
+    Peso: 20
+    Nivel-Minimo: 3
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.8
+      Dano: 0.9
+      Velocidade: 0.7
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'REGENERAR; Cooldown=8s; Vida=1.0'
+    Tabela-De-Drops: 'COMUM'
+  # --------------------------------------------------------------------------
+  #  Pequeno, veloz e sempre em bando.
+  # --------------------------------------------------------------------------
+  RASTEJANTE:
+    Nome: '&fRastejante'
+    Entidade: 'ZOMBIE'
+    Peso: 16
+    Nivel-Minimo: 5
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: true
+    Modificadores:
+      Vida: 0.4
+      Dano: 0.6
+      Velocidade: 1.55
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'INVESTIDA; Cooldown=5s; Alcance=10; Forca=1.3; Chance=70'
+    Tabela-De-Drops: 'COMUM'
+
+  # ==========================================================================
+  #  LONGE DO ABRIGO  --  nivel 15 a 30
+  #  A partir daqui eles vem equipados e com truque.
+  # ==========================================================================
+  # --------------------------------------------------------------------------
+  #  Morreu fardado e continua batendo em formacao.
+  # --------------------------------------------------------------------------
+  SOLDADO:
+    Nome: '&7Soldado Morto'
+    Entidade: 'ZOMBIE'
+    Peso: 14
+    Nivel-Minimo: 15
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.6
+      Dano: 1.4
+      Velocidade: 1.0
+    Efeitos: []
+    Equipamento:
+      Capacete: IRON_HELMET
+      Peitoral: IRON_CHESTPLATE
+      Mao: IRON_SWORD
+      Chance-De-Drop: 4
+    Habilidades:
+      - 'QUEBRAR_PORTA; Tempo=2s'
+      - 'ESCUDO; Cooldown=16s; Duracao=5s; Nivel=1; Chance=50'
+    Tabela-De-Drops: 'TANQUE'
+  # --------------------------------------------------------------------------
+  #  O ar em volta dele ja machuca. Nao precisa encostar.
+  # --------------------------------------------------------------------------
+  PESTILENTO:
+    Nome: '&2Pestilento'
+    Entidade: 'ZOMBIE_VILLAGER'
+    Peso: 11
+    Nivel-Minimo: 18
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.1
+      Dano: 0.9
+      Velocidade: 0.95
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'AURA; Cooldown=3s; Efeito=POISON; Nivel=0; Raio=5; Duracao=4s; Particula=SPELL_MOB'
+      - 'VENENO; Duracao=8s; Nivel=1; Chance=60'
+    Tabela-De-Drops: 'COMUM'
+  # --------------------------------------------------------------------------
+  #  Cada golpe dele o deixa mais inteiro.
+  # --------------------------------------------------------------------------
+  LADRAO:
+    Nome: '&eLadrao de Vida'
+    Entidade: 'ZOMBIE'
+    Peso: 9
+    Nivel-Minimo: 20
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 0.9
+      Dano: 1.1
+      Velocidade: 1.3
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'ROUBAR_VIDA; Vida=2.5; Chance=80'
+      - 'INVESTIDA; Cooldown=7s; Alcance=12; Forca=1.4'
+    Tabela-De-Drops: 'COMUM'
+  # --------------------------------------------------------------------------
+  #  Bater nele custa caro. Melhor usar arma de longe.
+  # --------------------------------------------------------------------------
+  ESPINHOSO:
+    Nome: '&6Espinhoso'
+    Entidade: 'ZOMBIE'
+    Peso: 8
+    Nivel-Minimo: 22
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.4
+      Dano: 0.8
+      Velocidade: 0.85
+    Efeitos: []
+    Equipamento:
+      Peitoral: CHAINMAIL_CHESTPLATE
+      Chance-De-Drop: 2
+    Habilidades:
+      - 'ESPINHOS; Cooldown=0s; Dano=3; Chance=70'
+    Tabela-De-Drops: 'COMUM'
+  # --------------------------------------------------------------------------
+  #  Nao mata rapido -- come a armadura ate voce ficar nu.
+  # --------------------------------------------------------------------------
+  CORROSIVO:
+    Nome: '&aCorrosivo'
+    Entidade: 'ZOMBIE'
+    Peso: 7
+    Nivel-Minimo: 25
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.2
+      Dano: 0.9
+      Velocidade: 1.0
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'CORROER; Desgaste=45; Chance=75'
+      - 'AURA; Cooldown=5s; Efeito=SLOW; Nivel=0; Raio=4; Duracao=3s; Particula=SPELL_MOB'
+    Tabela-De-Drops: 'COMUM'
+  # --------------------------------------------------------------------------
+  #  Quanto mais perto da morte, pior ele fica.
+  # --------------------------------------------------------------------------
+  BERSERKER:
+    Nome: '&cBerserker'
+    Entidade: 'ZOMBIE'
+    Peso: 6
+    Nivel-Minimo: 28
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.5
+      Dano: 1.6
+      Velocidade: 1.15
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'FRENESI; Vida=50; Nivel=2'
+      - 'INVESTIDA; Cooldown=6s; Alcance=14; Forca=1.7'
+      - 'RECUAR; Cooldown=6s; Forca=0.6; Altura=0.3; Chance=30'
+    Tabela-De-Drops: 'TANQUE'
+
+  # ==========================================================================
+  #  TERRA DE NINGUEM  --  nivel 30 a 50
+  #  Raros. Cada um exige uma resposta diferente.
+  # ==========================================================================
+  # --------------------------------------------------------------------------
+  #  Voce o perde de vista e ele aparece atras.
+  # --------------------------------------------------------------------------
+  SOMBRA:
+    Nome: '&8&lSombra'
+    Entidade: 'ZOMBIE'
+    Peso: 5
+    Nivel-Minimo: 30
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.1
+      Dano: 1.5
+      Velocidade: 1.35
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'INVISIVEL; Cooldown=12s; Duracao=8s'
+      - 'TELEPORTE; Cooldown=9s; Alcance=20; Distancia=10'
+      - 'INVESTIDA; Cooldown=7s; Alcance=14; Forca=1.6'
+    Tabela-De-Drops: 'RARO'
+  # --------------------------------------------------------------------------
+  #  Uma parede que anda. Nao da para segurar no corpo a corpo.
+  # --------------------------------------------------------------------------
+  GIGANTE:
+    Nome: '&4Gigante'
+    Entidade: 'ZOMBIE'
+    Peso: 5
+    Nivel-Minimo: 35
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 4.5
+      Dano: 2.0
+      Velocidade: 0.7
+    Efeitos:
+      - 'DAMAGE_RESISTANCE;0'
+    Equipamento:
+      Capacete: DIAMOND_HELMET
+      Chance-De-Drop: 3
+    Habilidades:
+      - 'ONDA_DE_CHOQUE; Cooldown=10s; Raio=7; Dano=6; Forca=1.5'
+      - 'EMPURRAR; Cooldown=6s; Alcance=5; Forca=2.0'
+      - 'QUEBRAR_PORTA; Tempo=1s'
+    Tabela-De-Drops: 'TANQUE'
+  # --------------------------------------------------------------------------
+  #  Rapido e letal. Ou voce corre, ou morre.
+  # --------------------------------------------------------------------------
+  CEIFADOR:
+    Nome: '&5Ceifador'
+    Entidade: 'ZOMBIE'
+    Peso: 4
+    Nivel-Minimo: 38
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.3
+      Dano: 2.2
+      Velocidade: 1.4
+    Efeitos: []
+    Equipamento:
+      Mao: IRON_HOE
+      Chance-De-Drop: 5
+    Habilidades:
+      - 'INVESTIDA; Cooldown=5s; Alcance=16; Forca=1.9'
+      - 'ROUBAR_VIDA; Vida=3; Chance=60'
+      - 'VENENO; Duracao=10s; Nivel=1; Chance=50'
+    Tabela-De-Drops: 'RARO'
+  # --------------------------------------------------------------------------
+  #  Sozinho e so barulho. Vivo, ele nunca esta sozinho.
+  # --------------------------------------------------------------------------
+  ARAUTO:
+    Nome: '&e&lArauto'
+    Entidade: 'ZOMBIE_VILLAGER'
+    Peso: 3
+    Nivel-Minimo: 40
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 2.0
+      Dano: 1.2
+      Velocidade: 0.95
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'GRITO; Cooldown=20s; Raio=40; Reforco=5'
+      - 'INVOCAR; Cooldown=15s; Tipo=CORREDOR; Quantidade=3; Maximo=10'
+      - 'CURAR_ALIADOS; Cooldown=10s; Raio=12; Vida=6.0'
+    Tabela-De-Drops: 'RARO'
+  # --------------------------------------------------------------------------
+  #  Arrasta voce para perto e nao deixa mais sair.
+  # --------------------------------------------------------------------------
+  ABISSAL:
+    Nome: '&3Abissal'
+    Entidade: 'DROWNED'
+    Peso: 4
+    Nivel-Minimo: 42
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.8
+      Dano: 1.5
+      Velocidade: 1.0
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'PUXAR; Cooldown=7s; Alcance=18; Forca=1.6'
+      - 'CUSPE; Cooldown=4s; Alcance=20; Dano=6; Efeito=SLOW;140;1'
+      - 'AURA; Cooldown=4s; Efeito=SLOW; Nivel=0; Raio=6; Duracao=3s; Particula=WATER_SPLASH'
+    Tabela-De-Drops: 'RARO'
+
+  # ==========================================================================
+  #  FIM DO MAPA  --  nivel 50 a 75
+  #  Muito raros. Encontrar um ja e um acontecimento.
+  # ==========================================================================
+  # --------------------------------------------------------------------------
+  #  Ele nao persegue: ele executa.
+  # --------------------------------------------------------------------------
+  CARRASCO:
+    Nome: '&4&lCarrasco'
+    Entidade: 'ZOMBIE'
+    Peso: 3
+    Nivel-Minimo: 50
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 3.0
+      Dano: 2.8
+      Velocidade: 1.1
+    Efeitos: []
+    Equipamento:
+      Capacete: NETHERITE_HELMET
+      Mao: DIAMOND_AXE
+      Chance-De-Drop: 3
+    Habilidades:
+      - 'ONDA_DE_CHOQUE; Cooldown=8s; Raio=6; Dano=8; Forca=1.4'
+      - 'INVESTIDA; Cooldown=6s; Alcance=18; Forca=2.0'
+      - 'FRENESI; Vida=40; Nivel=2'
+    Tabela-De-Drops: 'RARO'
+  # --------------------------------------------------------------------------
+  #  A infeccao anda com ele. Fique longe.
+  # --------------------------------------------------------------------------
+  PRAGA:
+    Nome: '&2&lPraga Viva'
+    Entidade: 'ZOMBIE_VILLAGER'
+    Peso: 2
+    Nivel-Minimo: 55
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 2.2
+      Dano: 1.4
+      Velocidade: 0.9
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'AURA; Cooldown=2s; Efeito=POISON; Nivel=1; Raio=8; Duracao=5s; Particula=SPELL_MOB'
+      - 'VENENO; Duracao=15s; Nivel=2; Chance=100'
+      - 'CURAR_ALIADOS; Cooldown=12s; Raio=14; Vida=8.0'
+    Tabela-De-Drops: 'RARO'
+  # --------------------------------------------------------------------------
+  #  Vida absurda, passo lento. Uma guerra de desgaste.
+  # --------------------------------------------------------------------------
+  TITA:
+    Nome: '&8&lTita'
+    Entidade: 'ZOMBIE'
+    Peso: 2
+    Nivel-Minimo: 60
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 8.0
+      Dano: 2.4
+      Velocidade: 0.6
+    Efeitos:
+      - 'DAMAGE_RESISTANCE;1'
+    Equipamento:
+      Peitoral: NETHERITE_CHESTPLATE
+      Chance-De-Drop: 2
+    Habilidades:
+      - 'ONDA_DE_CHOQUE; Cooldown=9s; Raio=9; Dano=9; Forca=1.8'
+      - 'EMPURRAR; Cooldown=5s; Alcance=6; Forca=2.4'
+      - 'ESPINHOS; Cooldown=0s; Dano=4; Chance=60'
+      - 'QUEBRAR_PORTA; Tempo=1s'
+    Tabela-De-Drops: 'CHEFE'
+  # --------------------------------------------------------------------------
+  #  Voce nunca ve o golpe que leva.
+  # --------------------------------------------------------------------------
+  FANTASMA:
+    Nome: '&f&lFantasma'
+    Entidade: 'ZOMBIE'
+    Peso: 2
+    Nivel-Minimo: 65
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.5
+      Dano: 2.2
+      Velocidade: 1.5
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'INVISIVEL; Cooldown=6s; Duracao=10s'
+      - 'TELEPORTE; Cooldown=6s; Alcance=26; Distancia=12'
+      - 'ROUBAR_VIDA; Vida=4; Chance=80'
+    Tabela-De-Drops: 'RARO'
+  # --------------------------------------------------------------------------
+  #  Cada mordida o cura. Deixar a briga longa e perder.
+  # --------------------------------------------------------------------------
+  DEVORADOR:
+    Nome: '&c&lDevorador'
+    Entidade: 'ZOMBIE'
+    Peso: 2
+    Nivel-Minimo: 70
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 3.5
+      Dano: 2.6
+      Velocidade: 1.2
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'ROUBAR_VIDA; Vida=6; Chance=100'
+      - 'INVESTIDA; Cooldown=5s; Alcance=16; Forca=1.8'
+      - 'FOME; Cooldown=8s; Alcance=4; Duracao=20s; Nivel=2'
+    Tabela-De-Drops: 'CHEFE'
+
+  # ==========================================================================
+  #  ALEM DO FIM  --  nivel 75 ou mais
+  #  Lendarios. A maioria dos servidores nunca ve um destes.
+  # ==========================================================================
+  # --------------------------------------------------------------------------
+  #  Enquanto ele respira, os outros nao morrem de verdade.
+  # --------------------------------------------------------------------------
+  ANCIAO:
+    Nome: '&5&lAnciao'
+    Entidade: 'ZOMBIE_VILLAGER'
+    Peso: 2
+    Nivel-Minimo: 75
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 4.0
+      Dano: 2.0
+      Velocidade: 0.9
+    Efeitos: []
+    Equipamento:
+      Capacete: PLAYER_HEAD
+      Chance-De-Drop: 0
+    Habilidades:
+      - 'REVIVER; Cooldown=8s; Raio=16; Maximo=6'
+      - 'CURAR_ALIADOS; Cooldown=8s; Raio=18; Vida=12.0'
+      - 'ESCUDO; Cooldown=14s; Duracao=8s; Nivel=2'
+      - 'INVOCAR; Cooldown=12s; Tipo=CEIFADOR; Quantidade=2; Maximo=6'
+    Tabela-De-Drops: 'CHEFE'
+  # --------------------------------------------------------------------------
+  #  Tudo que os outros fazem, ele faz junto e pior.
+  # --------------------------------------------------------------------------
+  FLAGELO:
+    Nome: '&4&lFlagelo'
+    Entidade: 'ZOMBIE'
+    Peso: 1
+    Nivel-Minimo: 85
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 6.0
+      Dano: 3.2
+      Velocidade: 1.25
+    Efeitos: []
+    Equipamento:
+      Peitoral: NETHERITE_CHESTPLATE
+      Mao: NETHERITE_SWORD
+      Chance-De-Drop: 1
+    Habilidades:
+      - 'INVESTIDA; Cooldown=4s; Alcance=20; Forca=2.2'
+      - 'ONDA_DE_CHOQUE; Cooldown=7s; Raio=8; Dano=10; Forca=1.6'
+      - 'ROUBAR_VIDA; Vida=6; Chance=100'
+      - 'CORROER; Desgaste=80; Chance=100'
+      - 'ESPINHOS; Cooldown=0s; Dano=6; Chance=80'
+      - 'FRENESI; Vida=45; Nivel=3'
+    Tabela-De-Drops: 'CHEFE'
+  # --------------------------------------------------------------------------
+  #  O ultimo que a maioria ve. Invisivel, cego voce, e come.
+  # --------------------------------------------------------------------------
+  PESADELO:
+    Nome: '&0&lPesadelo'
+    Entidade: 'ZOMBIE'
+    Peso: 1
+    Nivel-Minimo: 95
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 7.0
+      Dano: 3.5
+      Velocidade: 1.45
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      - 'INVISIVEL; Cooldown=5s; Duracao=12s'
+      - 'TELEPORTE; Cooldown=4s; Alcance=30; Distancia=14'
+      - 'ROUBAR_VIDA; Vida=8; Chance=100'
+      - 'AURA; Cooldown=3s; Efeito=BLINDNESS; Nivel=0; Raio=7; Duracao=3s; Particula=SMOKE_LARGE'
+      - 'ONDA_DE_CHOQUE; Cooldown=8s; Raio=8; Dano=12; Forca=2.0'
+      - 'RECUAR; Cooldown=5s; Forca=1.0; Altura=0.4; Chance=50'
+    Tabela-De-Drops: 'CHEFE'
+
+  # ==========================================================================
+  #  ALADOS RAROS  --  so aparecem muito longe
+  # ==========================================================================
+  # --------------------------------------------------------------------------
+  #  Voa, atira de cima e recua. Nao deixa voce chegar perto.
+  # --------------------------------------------------------------------------
+  ALADO_CACADOR:
+    Nome: '&d&lAlado Cacador'
+    Entidade: 'ZOMBIE'
+    Peso: 1
+    Nivel-Minimo: 55
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 2.5
+      Dano: 2.0
+      Velocidade: 1.2
+    Efeitos: []
+    Equipamento:
+      Peitoral: ELYTRA
+      Chance-De-Drop: 0
+    Habilidades:
+      - 'VOAR; Cooldown=1s; Alcance=100; Impulso=0.7; Impulso-Inicial=1.0; Sustentacao=0.1; Distancia-Minima=7'
+      - 'PEDRA; Cooldown=4s; Alcance=30; Delay=1s; Dano=7; Velocidade=1.8; Chance=80'
+      - 'RECUAR; Cooldown=3s; Forca=0.9; Altura=0.4; Chance=80'
+    Tabela-De-Drops: 'RARO'
+  # --------------------------------------------------------------------------
+  #  Cai do ceu em cima de voce e sobe antes da resposta.
+  # --------------------------------------------------------------------------
+  ALADO_CARRASCO:
+    Nome: '&5&lAlado Carrasco'
+    Entidade: 'ZOMBIE'
+    Peso: 1
+    Nivel-Minimo: 80
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 4.5
+      Dano: 3.0
+      Velocidade: 1.3
+    Efeitos: []
+    Equipamento:
+      Peitoral: ELYTRA
+      Chance-De-Drop: 0
+    Habilidades:
+      - 'VOAR; Cooldown=1s; Alcance=120; Impulso=0.75; Impulso-Inicial=1.1; Sustentacao=0.12; Distancia-Minima=6'
+      - 'INVESTIDA; Cooldown=5s; Alcance=20; Forca=2.2'
+      - 'ONDA_DE_CHOQUE; Cooldown=9s; Raio=7; Dano=9; Forca=1.6'
+      - 'RECUAR; Cooldown=4s; Forca=1.0; Altura=0.45; Chance=70'
+    Tabela-De-Drops: 'CHEFE'
+
+  # ==========================================================================
   #  CHEFES
   #  Nao nascem sozinhos: sao invocados pela zona de perigo, pela ultima onda
   #  de uma raid ou por /starapocalipsez invocar.
