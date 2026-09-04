@@ -15,6 +15,12 @@
 #  Formato: 'NOME; Chave=Valor; Chave=Valor'
 #  Chaves aceitas por todas: Cooldown (tempo), Chance (0-100), Alcance (blocos)
 #
+#  As que agem NO ALVO (PUXAR, EMPURRAR, ONDA_DE_CHOQUE, CUSPE, PEDRA, RAIO,
+#  CEGAR, FOME) aceitam mais duas:
+#    Altura-Maxima=4   desnivel maximo ate o alvo; acima disso, nao alcanca --
+#                      e o que impede levar empurrao de quem esta la embaixo
+#    Precisa-Ver=true  exige linha de visao livre ate o alvo
+#
 #    INVESTIDA    Forca=1.4              avanca em linha reta sobre o alvo
 #    SALTO        Forca=0.9              pula por cima de muros e cercas
 #    CUSPE        Dano=3; Efeito=POISON;120;0
@@ -91,7 +97,9 @@ Tipos:
     Nivel-Maximo: 0
     Chefe: false
     Queimar-No-Sol: false
-    Bebe: true
+    # Adulto: o Corredor e o zumbi rapido, nao o zumbi pequeno. Quem faz o
+    # papel de bebe veloz e o Rastejante.
+    Bebe: false
     Modificadores:
       Vida: 0.6
       Dano: 0.8
