@@ -18,7 +18,10 @@
 #    INVESTIDA    Forca=1.4              avanca em linha reta sobre o alvo
 #    SALTO        Forca=0.9              pula por cima de muros e cercas
 #    CUSPE        Dano=3; Efeito=POISON;120;0
-#    EXPLODIR     Poder=2.5; Fogo=false; Quebrar=false; AoMorrer=true
+#    EXPLODIR     Poder=2.5; Dano=7.5; Fogo=false; Quebrar=false; AoMorrer=true
+#                 A explosao NAO fere os outros mortos. Quebrar=true troca pela
+#                 explosao do jogo, que derruba bloco -- e ai o fogo amigo
+#                 volta junto, porque quem escolhe as vitimas passa a ser ela.
 #    GRITO        Raio=25; Reforco=0     chama os zumbis proximos para o alvo
 #    REVIVER      Raio=8; Maximo=3       levanta de volta os zumbis abatidos
 #    INVOCAR      Tipo=COMUM; Quantidade=2; Maximo=6
@@ -92,9 +95,10 @@ Tipos:
     Modificadores:
       Vida: 0.6
       Dano: 0.8
-      Velocidade: 1.45
-    Efeitos:
-      - 'SPEED;1'
+      # Ele ja e bebe, e bebe zumbi ja e rapido de fabrica: um numero alto aqui
+      # vira um bando que ninguem consegue acompanhar.
+      Velocidade: 1.15
+    Efeitos: []
     Equipamento: {}
     Habilidades:
       - 'INVESTIDA; Cooldown=7s; Alcance=14; Forca=1.5; Chance=60'
@@ -445,7 +449,7 @@ Tipos:
     Modificadores:
       Vida: 0.4
       Dano: 0.6
-      Velocidade: 1.55
+      Velocidade: 1.2
     Efeitos: []
     Equipamento: {}
     Habilidades:
