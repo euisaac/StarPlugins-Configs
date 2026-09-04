@@ -80,6 +80,14 @@ Spawn:
   # sozinho pelo Queimar-No-Sol dele no zumbis.yml.
   Queimar-No-Sol: false
 
+  # Um morto pode ferir outro?
+  #
+  # Desligado de proposito. Quem obriga a isso e o Inchado: a explosao dele
+  # acertava a horda inteira, e um explosivo no meio do bando limpava os
+  # proprios companheiros antes de chegar em alguem. Vale para golpe, cuspe e
+  # explosao.
+  Fogo-Amigo: false
+
   # --------------------------------------------------------------------------
   #  Povoamento
   #  O que enche o mundo. Sem isto, o plugin apenas BLOQUEIA o spawn dos outros
@@ -165,6 +173,12 @@ Nivel:
     # Velocidade de movimento: somada por nivel sobre a base (0.23).
     Velocidade-Por-Nivel: 0.0015
     Velocidade-Maxima: 0.42
+    # O jogo ja acelera bebe zumbi sozinho -- e um bonus do proprio Minecraft,
+    # que nao aparece em arquivo nenhum. Sem este desconto, o multiplicador do
+    # tipo entra POR CIMA dele e um bando de bebes atravessa a tela.
+    #
+    # 1.0 desliga o desconto (e devolve o comportamento antigo).
+    Ajuste-De-Velocidade-Bebe: 0.6
     # Alcance de perseguicao em blocos, somado por nivel.
     Alcance-Por-Nivel: 0.25
     Alcance-Maximo: 60.0
