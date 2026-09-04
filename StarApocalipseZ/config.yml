@@ -554,7 +554,20 @@ Integracoes:
       Dano-Por-Golpe: 2.0
       Dano-Por-Nivel: 0.15
       Intervalo-Do-Golpe: '2s'
-      # A forca do empurrao que leva o morto ate la.
+      # A partir daqui o plugin larga o morto: ele para de ser guiado e a IA
+      # dele reassume (procura jogador, vagueia, ataca o que estiver ao lado).
+      # Sem isso, uma fila de zumbis ficaria parada encarando a torre.
+      Distancia-Para-Soltar: 14
+      # Velocidade da caminhada; 1.0 e o passo normal do mob.
+      Velocidade: 1.0
+
+      # Em Paper 1.16+ (e forks, como o Leaf) eles ANDAM ate a defesa, pelo
+      # pathfinder do servidor: desviam de parede, sobem bloco, contornam
+      # buraco. Em Spigot puro isso nao existe na API, e resta o empurrao --
+      # que desliza em vez de andar. Deixe false para que, sem pathfinder,
+      # eles simplesmente nao sejam atraidos.
+      Empurrar-Sem-Pathfinding: true
+      # A forca desse empurrao de reserva.
       Forca-Do-Passo: 0.28
       A-Cada: '2s'
       # Avisar quem estiver por perto quando uma defesa cai.
