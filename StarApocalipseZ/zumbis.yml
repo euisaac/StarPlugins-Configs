@@ -35,7 +35,16 @@
 #    QUEBRAR_PORTA Tempo=2s              derruba porta, vidro e madeira fraca
 #    ONDA_DE_CHOQUE Raio=6; Dano=4; Forca=1.2
 #    RAIO         Dano=6                 so faz sentido em chefe
-#    ESCALAR      -                      sobe parede atras do alvo
+#    ESCALAR      Forca=0.42             sobe a parede que separa do alvo
+#    VOAR         Impulso=0.62; Impulso-Inicial=0.95; Sustentacao=0.08;
+#                 Distancia-Minima=8     decola e voa ate o alvo (pede elytra
+#                                        no peitoral para a asa aparecer)
+#    RECUAR       Forca=0.75; Altura=0.32; Duracao=2s; Nivel=1
+#                                        gatilho: pula para tras ao APANHAR
+#    PEDRA        Delay=1s; Dano=5; Velocidade=1.6
+#                                        mira, espera e arremessa uma pedra;
+#                                        acerta o que estiver no caminho,
+#                                        inclusive o que estiver voando
 #    DIVIDIR      Quantidade=2; Nivel=-5 ao morrer, vira dois menores
 # ============================================================================
 
@@ -280,6 +289,93 @@ Tipos:
       - 'INVESTIDA; Cooldown=6s; Alcance=16; Forca=1.7'
       - 'ESCALAR; Cooldown=4s; Alcance=12'
       - 'VENENO; Duracao=6s; Nivel=0; Chance=35'
+    Tabela-De-Drops: 'RARO'
+
+
+  # --------------------------------------------------------------------------
+  #  Ataca de longe com o que acha no chao. A pedra tem tempo de voo e da para
+  #  desviar -- mas ela acerta quem estiver no ar, o que faz dele a resposta a
+  #  quem luta voando.
+  # --------------------------------------------------------------------------
+  ATIRADOR:
+    Nome: '&7Atirador'
+    Entidade: 'ZOMBIE'
+    Peso: 9
+    Nivel-Minimo: 12
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 0.9
+      Dano: 0.7
+      Velocidade: 0.9
+    Efeitos: []
+    Equipamento:
+      Mao: 'COBBLESTONE'
+      Chance-De-Drop: 0
+    Habilidades:
+      # O Delay e o intervalo entre erguer a pedra e solta-la: e a janela para
+      # o alvo se esconder atras de um bloco.
+      - 'PEDRA; Cooldown=5s; Alcance=26; Delay=1s; Dano=5; Velocidade=1.7; Chance=85'
+      # Se encostarem nele, ele recua para voltar a atirar de longe.
+      - 'RECUAR; Cooldown=4s; Forca=0.7; Altura=0.3; Duracao=2s; Nivel=1; Chance=60'
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  Muro nao e defesa contra ele. Mais raro que o comum, e o bastante para o
+  #  jogador aprender a olhar para cima.
+  # --------------------------------------------------------------------------
+  ESCALADOR:
+    Nome: '&3Escalador'
+    Entidade: 'ZOMBIE'
+    Peso: 6
+    Nivel-Minimo: 8
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: true
+    Modificadores:
+      Vida: 0.8
+      Dano: 1.0
+      Velocidade: 1.2
+    Efeitos: []
+    Equipamento: {}
+    Habilidades:
+      # Cooldown curto: a subida e feita de impulso em impulso, e um intervalo
+      # longo faria ele escorregar de volta no meio do muro.
+      - 'ESCALAR; Cooldown=1s; Alcance=20; Forca=0.45'
+      - 'SALTO; Cooldown=6s; Alcance=10; Forca=0.8'
+    Tabela-De-Drops: 'COMUM'
+
+  # --------------------------------------------------------------------------
+  #  O mais raro de todos: cai do ceu. Decola, cruza o mapa de asa e recua
+  #  quando apanha -- e a asa NAO fica para quem o abater.
+  # --------------------------------------------------------------------------
+  ALADO:
+    Nome: '&d&lAlado'
+    Entidade: 'ZOMBIE'
+    Peso: 1
+    Nivel-Minimo: 25
+    Nivel-Maximo: 0
+    Chefe: false
+    Queimar-No-Sol: false
+    Bebe: false
+    Modificadores:
+      Vida: 1.4
+      Dano: 1.3
+      Velocidade: 1.1
+    Efeitos: []
+    Equipamento:
+      # A elytra e o que faz a asa aparecer abrindo no voo. A chance de queda
+      # fica em zero, e o produto ainda tira qualquer elytra dos drops -- ela
+      # nunca vira espolio.
+      Peitoral: 'ELYTRA'
+      Chance-De-Drop: 0
+    Habilidades:
+      - 'VOAR; Cooldown=1s; Alcance=80; Impulso=0.62; Impulso-Inicial=0.95; Sustentacao=0.08; Distancia-Minima=8'
+      - 'RECUAR; Cooldown=3s; Forca=0.8; Altura=0.35; Duracao=2s; Nivel=1; Chance=70'
+      - 'INVESTIDA; Cooldown=8s; Alcance=10; Forca=1.3'
     Tabela-De-Drops: 'RARO'
 
   # --------------------------------------------------------------------------
