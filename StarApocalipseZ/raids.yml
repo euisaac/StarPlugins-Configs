@@ -1,11 +1,21 @@
 # ============================================================================
 #  Raids
-#  O ataque com hora marcada: ondas de zumbis contra um ponto -- a base do
+#  O ataque com hora marcada: ondas de mortos contra um ponto -- a base do
 #  jogador, o spawn de uma cidade ou onde o administrador mandar.
 #
 #  Uma raid pode comecar sozinha (Raids > Espontanea-A-Cada no config.yml),
 #  por comando (/starapocalipsez raid <modelo> <jogador>) ou como parte de
 #  uma zona de perigo.
+#
+#  ---------------------------------------------------------------------------
+#  SOBRE O TAMANHO DAS ONDAS
+#  Uma onda NAO nasce de uma vez: ela entra numa fila e o motor solta um
+#  punhado por tique (Raids > Spawn-Por-Tique no config.yml). E por isso que
+#  uma onda de setenta mortos nao trava o servidor -- e por isso que ela chega
+#  em levas, o que ainda parece mais com um cerco de verdade.
+#
+#  A onda so conta como limpa depois de nascer inteira. O chefe e sempre o
+#  ultimo a entrar, para nao apanhar sozinho enquanto a escolta ainda chega.
 # ============================================================================
 
 Raids:
@@ -15,106 +25,265 @@ Raids:
     Peso: 50
     # Faixa de nivel do lugar onde a raid pode comecar sozinha.
     Nivel-Minimo: 1
-    Nivel-Maximo: 40
-    # Raio em que os zumbis nascem em volta do alvo.
-    Raio-De-Spawn: 30
+    Nivel-Maximo: 45
+    # Raio em que os mortos nascem em volta do alvo.
+    Raio-De-Spawn: 38
     # Tempo maximo da raid inteira. Estourou, ela e cancelada.
-    Duracao-Maxima: '20m'
+    Duracao-Maxima: '30m'
     # Tempo entre uma onda e a proxima depois que a anterior e limpa.
     Intervalo-Entre-Ondas: '15s'
-    # Bonus de nivel somado a cada zumbi da raid.
-    Bonus-De-Nivel: 5
+    # Bonus de nivel somado a cada morto da raid.
+    Bonus-De-Nivel: 12
     # Contagem regressiva antes da primeira onda.
     Preparacao: '30s'
 
     Ondas:
       1:
-        Quantidade: 8
+        Quantidade: 18
         Composicao:
-          - 'COMUM:80'
-          - 'CORREDOR:20'
+          - 'COMUM:60'
+          - 'CORREDOR:40'
         Bonus-De-Nivel: 0
       2:
-        Quantidade: 12
+        Quantidade: 26
         Composicao:
-          - 'COMUM:50'
           - 'CORREDOR:40'
-          - 'ARIDO:10'
-        Bonus-De-Nivel: 3
+          - 'COMUM:25'
+          - 'ARIDO:20'
+          - 'ESCALADOR:15'
+        Bonus-De-Nivel: 4
       3:
-        Quantidade: 16
+        Quantidade: 34
         Composicao:
-          - 'CORREDOR:40'
+          - 'CORREDOR:30'
           - 'TANQUE:20'
           - 'CUSPIDOR:20'
-          - 'GRITADOR:20'
-        Bonus-De-Nivel: 6
-        # Chefe da onda. Vazio = onda sem chefe.
-        Chefe: ''
+          - 'ATIRADOR:15'
+          - 'GRITADOR:15'
+        Bonus-De-Nivel: 8
+      4:
+        Quantidade: 42
+        Composicao:
+          - 'TANQUE:25'
+          - 'EXPLOSIVO:20'
+          - 'CACADOR:20'
+          - 'ESCALADOR:20'
+          - 'NECROMANTE:15'
+        Bonus-De-Nivel: 14
+      5:
+        Quantidade: 30
+        Composicao:
+          - 'CACADOR:35'
+          - 'TANQUE:25'
+          - 'SOLDADO:25'
+          - 'BERSERKER:15'
+        Bonus-De-Nivel: 20
+        Chefe: 'CHEFE_CARNICEIRO'
 
     Recompensas:
       # Para todo mundo que participou (ver Raids > Participacao no config).
       Participacao:
-        Pontos: 50
-        Comandos:
-          - 'give {jogador} arrow 16'
-        Itens: []
-      # So para quem mais matou.
-      Destaque:
-        Pontos: 150
+        Pontos: 300
         Comandos: []
         Itens:
-          - 'GOLDEN_APPLE;2;&6Racao de Emergencia'
+          - 'Item=GOLDEN_APPLE; Quantidade=3'
+          - 'Item=ARROW; Quantidade=32'
+      # So para quem mais matou.
+      Destaque:
+        Pontos: 900
+        Comandos: []
+        Itens:
+          - 'Item=DIAMOND; Quantidade=8'
+          - 'Arma=*; Raridade=RARO'
 
   INVASAO:
     Nome: '&4&lInvasao'
     Peso: 30
-    Nivel-Minimo: 25
-    Nivel-Maximo: 0
-    Raio-De-Spawn: 40
-    Duracao-Maxima: '30m'
+    Nivel-Minimo: 30
+    Nivel-Maximo: 70
+    Raio-De-Spawn: 45
+    Duracao-Maxima: '45m'
     Intervalo-Entre-Ondas: '20s'
-    Bonus-De-Nivel: 15
+    Bonus-De-Nivel: 25
     Preparacao: '45s'
 
     Ondas:
       1:
-        Quantidade: 14
+        Quantidade: 35
         Composicao:
-          - 'CORREDOR:60'
-          - 'COMUM:40'
+          - 'CORREDOR:50'
+          - 'ESCALADOR:30'
+          - 'COMUM:20'
         Bonus-De-Nivel: 0
       2:
-        Quantidade: 18
+        Quantidade: 45
         Composicao:
-          - 'CORREDOR:40'
-          - 'TANQUE:30'
-          - 'CUSPIDOR:30'
+          - 'CORREDOR:30'
+          - 'TANQUE:25'
+          - 'CUSPIDOR:20'
+          - 'ATIRADOR:15'
+          - 'LADRAO:10'
         Bonus-De-Nivel: 5
       3:
-        Quantidade: 22
+        Quantidade: 55
         Composicao:
-          - 'CACADOR:35'
-          - 'EXPLOSIVO:25'
-          - 'TANQUE:25'
-          - 'NECROMANTE:15'
-        Bonus-De-Nivel: 10
+          - 'CACADOR:25'
+          - 'EXPLOSIVO:20'
+          - 'TANQUE:20'
+          - 'CORROSIVO:15'
+          - 'ESPINHOSO:10'
+          - 'NECROMANTE:10'
+        Bonus-De-Nivel: 12
       4:
-        Quantidade: 10
+        Quantidade: 60
         Composicao:
-          - 'CACADOR:60'
-          - 'TANQUE:40'
-        Bonus-De-Nivel: 15
+          - 'BERSERKER:25'
+          - 'SOMBRA:20'
+          - 'CACADOR:20'
+          - 'GIGANTE:15'
+          - 'PESTILENTO:10'
+          - 'ARAUTO:10'
+        Bonus-De-Nivel: 20
+      5:
+        Quantidade: 45
+        Composicao:
+          - 'GIGANTE:30'
+          - 'CEIFADOR:25'
+          - 'SOMBRA:20'
+          - 'ABISSAL:15'
+          - 'ALADO:10'
+        Bonus-De-Nivel: 28
+        Chefe: 'CHEFE_MAE'
+      6:
+        Quantidade: 35
+        Composicao:
+          - 'CEIFADOR:30'
+          - 'GIGANTE:25'
+          - 'CARRASCO:25'
+          - 'ARAUTO:20'
+        Bonus-De-Nivel: 35
         Chefe: 'CHEFE_CARNICEIRO'
 
     Recompensas:
       Participacao:
-        Pontos: 200
+        Pontos: 900
         Comandos: []
         Itens:
-          - 'GOLDEN_APPLE;3;&6Racao de Emergencia'
+          - 'Item=GOLDEN_APPLE; Quantidade=6'
+          - 'Item=DIAMOND; Quantidade=6'
+          - 'Municao=*; Raridade=RARO; Quantidade=32'
       Destaque:
-        Pontos: 600
+        Pontos: 2500
         Comandos: []
         Itens:
-          - 'DIAMOND;5'
+          - 'Item=ENCHANTED_GOLDEN_APPLE; Quantidade=2'
+          - 'Item=DIAMOND; Quantidade=20'
+          - 'Arma=*; Raridade=EPICO'
+          - 'Acessorio=*; Raridade=RARO'
+
+  # ==========================================================================
+  #  O fim do mundo em oito ondas. So nasce sozinha onde o mapa ja e brutal,
+  #  e nao existe para ser vencida por uma pessoa.
+  # ==========================================================================
+  EXTERMINIO:
+    Nome: '&0&lEXTERMINIO'
+    Peso: 12
+    Nivel-Minimo: 60
+    Nivel-Maximo: 0
+    Raio-De-Spawn: 55
+    Duracao-Maxima: '1h'
+    Intervalo-Entre-Ondas: '25s'
+    Bonus-De-Nivel: 45
+    Preparacao: '60s'
+
+    Ondas:
+      1:
+        Quantidade: 50
+        Composicao:
+          - 'CORREDOR:40'
+          - 'ESCALADOR:35'
+          - 'CACADOR:25'
+        Bonus-De-Nivel: 0
+      2:
+        Quantidade: 60
+        Composicao:
+          - 'CACADOR:30'
+          - 'BERSERKER:25'
+          - 'ATIRADOR:20'
+          - 'CORROSIVO:15'
+          - 'EXPLOSIVO:10'
+        Bonus-De-Nivel: 5
+      3:
+        Quantidade: 70
+        Composicao:
+          - 'SOMBRA:25'
+          - 'GIGANTE:20'
+          - 'CEIFADOR:20'
+          - 'ABISSAL:15'
+          - 'PESTILENTO:10'
+          - 'ALADO_CACADOR:10'
+        Bonus-De-Nivel: 12
+      4:
+        Quantidade: 75
+        Composicao:
+          - 'CARRASCO:25'
+          - 'GIGANTE:25'
+          - 'CEIFADOR:20'
+          - 'ARAUTO:15'
+          - 'PRAGA:15'
+        Bonus-De-Nivel: 20
+        Chefe: 'CHEFE_MAE'
+      5:
+        Quantidade: 80
+        Composicao:
+          - 'TITA:25'
+          - 'CARRASCO:25'
+          - 'FANTASMA:20'
+          - 'DEVORADOR:15'
+          - 'ALADO_CARRASCO:15'
+        Bonus-De-Nivel: 30
+      6:
+        Quantidade: 85
+        Composicao:
+          - 'DEVORADOR:30'
+          - 'TITA:25'
+          - 'FANTASMA:20'
+          - 'ANCIAO:15'
+          - 'PRAGA:10'
+        Bonus-De-Nivel: 40
+        Chefe: 'CHEFE_CARNICEIRO'
+      7:
+        Quantidade: 90
+        Composicao:
+          - 'FLAGELO:30'
+          - 'DEVORADOR:25'
+          - 'TITA:20'
+          - 'ANCIAO:15'
+          - 'ALADO_CARRASCO:10'
+        Bonus-De-Nivel: 50
+      8:
+        Quantidade: 60
+        Composicao:
+          - 'PESADELO:35'
+          - 'FLAGELO:30'
+          - 'ANCIAO:20'
+          - 'TITA:15'
+        Bonus-De-Nivel: 60
+        Chefe: 'CHEFE_CARNICEIRO'
+
+    Recompensas:
+      Participacao:
+        Pontos: 3000
+        Comandos: []
+        Itens:
+          - 'Item=ENCHANTED_GOLDEN_APPLE; Quantidade=4'
+          - 'Item=DIAMOND; Quantidade=32'
+          - 'Municao=*; Raridade=EPICO; Quantidade=64'
+      Destaque:
+        Pontos: 10000
+        Comandos: []
+        Itens:
+          - 'Item=NETHER_STAR; Quantidade=2'
+          - 'Item=ENCHANTED_GOLDEN_APPLE; Quantidade=8'
+          - 'Arma=*; Raridade=LENDARIO'
+          - 'Acessorio=*; Raridade=EPICO'
