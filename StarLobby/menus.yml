@@ -10,11 +10,56 @@
 
 menu-updater: true
 
+# ---------------------------------------------------------------------------
+# ITENS EXTRAS — funcionam em QUALQUER menu deste arquivo
+# ---------------------------------------------------------------------------
+# Qualquer menu daqui (servers, lobbies, preferences, battle, autoreconectar)
+# aceita uma seção "custom-items" com itens seus: um botão da loja, o link do
+# Discord, um aviso, o que você quiser. Eles são desenhados por cima do menu,
+# então escolha um slot que já não esteja em uso.
+#
+#   custom-items:
+#     loja:                        # o nome da entrada é só pra você se achar
+#       slot: 26                   # 0 até (size - 1). Fora disso, o item é
+#                                  # ignorado e o console avisa.
+#       material: 'EMERALD'        # mesma escrita dos outros itens ('INK_SACK:8')
+#       amount: 1                  # opcional, padrão 1
+#       name: '&a&lLoja'
+#       lore:
+#         - '&7Compre seu VIP em'
+#         - '&fStarPlugins.com.br'
+#       left-command: ''           # clique esquerdo
+#       right-command: ''          # clique direito
+#       close-on-click: true       # fechar o menu ao rodar o comando
+#
+# Deixando os DOIS comandos vazios, o item é só informativo: clicar nele não
+# faz nada e o menu continua aberto. É o caso do exemplo da loja abaixo — um
+# cartaz, não um botão.
+#
+# Com comando, vale o mesmo dos itens de entrada do config.yml: "{player}"
+# vira o nick de quem clicou e a "/" na frente é opcional. O comando roda
+# COMO O JOGADOR, então ele precisa ter permissão pra usar.
+#
+# name e lore passam pelo PlaceholderAPI, então dá pra usar %vault_prefix% e
+# afins.
+# ---------------------------------------------------------------------------
+
 # Menu de seleção de servidores (item 12 — aberto pela bússola). Os itens
 # vêm de servers.yml (campo "icon" de cada entrada), não daqui.
 servers:
   name: '&8Servidores'
   size: 27
+  custom-items:
+    # Cartaz da loja: sem comando nenhum, só informativo.
+    loja:
+      slot: 26
+      material: 'EMERALD'
+      name: '&a&lStarPlugins.com.br'
+      lore:
+        - '&7Plugins e serviços para o'
+        - '&7seu servidor de Minecraft.'
+        - ''
+        - '&fStarPlugins.com.br'
 
 # Menu de seleção de lobbies (item 11). Os itens vêm de lobbies.yml.
 lobbies:

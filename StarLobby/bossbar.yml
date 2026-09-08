@@ -1,0 +1,42 @@
+# ---------------------------------------------------------------------------
+# BOSSBAR ROTATIVA
+# ---------------------------------------------------------------------------
+# Uma lista de barras que aparecem uma apos a outra, trocando no delay
+# configurado. Requer servidor 1.9+ (a bossbar so existe a partir dessa versao;
+# em 1.8 o sistema simplesmente nao liga).
+#
+# - E uma barra por jogador, todas em sincronia (todo mundo ve a mesma barra no
+#   mesmo instante). Por isso da pra usar placeholders do PlaceholderAPI
+#   (%player_name%, %server_online% etc.) que o texto acompanha ao vivo.
+# - Cores no texto com &  (ex: &a, &b, &l).
+# - Suporta %animacao:nome% do animacoes.yml no texto.
+
+# Liga/desliga o sistema inteiro.
+ativado: true
+
+# Delay padrao (em SEGUNDOS) antes de trocar para a proxima barra.
+# Cada barra pode ter o proprio "delay" para sobrescrever este.
+delay: 5
+
+# As barras, NA ORDEM em que aparecem (depois da ultima, volta para a primeira).
+#   texto     -> o texto da barra (cores com &, placeholders, %animacao:nome%)
+#   cor       -> PINK BLUE RED GREEN YELLOW PURPLE WHITE
+#   estilo    -> SOLID SEGMENTED_6 SEGMENTED_10 SEGMENTED_12 SEGMENTED_20
+#   progresso -> 0.0 a 1.0 (quanto da barra fica preenchido)
+#   delay     -> (opcional) segundos so desta barra, no lugar do delay global
+barras:
+  - texto: '&a&lBEM-VINDO AO LOBBY&r &7» &fDivirta-se!'
+    cor: GREEN
+    estilo: SOLID
+    progresso: 1.0
+
+  - texto: '&b&lLOJA&r &7» &fstarplugins.com.br'
+    cor: BLUE
+    estilo: SEGMENTED_10
+    progresso: 1.0
+    delay: 8
+
+  - texto: '&d&lDISCORD&r &7» &fEntre na nossa comunidade!'
+    cor: PURPLE
+    estilo: SEGMENTED_20
+    progresso: 1.0

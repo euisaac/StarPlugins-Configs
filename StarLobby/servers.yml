@@ -23,6 +23,11 @@ servers:
     # outro proxy nem vê o item no menu. Deixe vazio (ou remova a linha)
     # para não restringir: aparece/funciona pra qualquer proxy (padrão).
     proxy: ''
+    # Liga/desliga o servidor no saguão. Com 'false' ele SOME por completo: não
+    # aparece no menu, não ganha NPC/teleporter, não é pingado e ninguém entra
+    # nele — sem apagar a configuração. Para reativar depois é só voltar para
+    # 'true' e dar /starlobby reload. Ausente = true (ligado).
+    enabled: true
     options:
       maintenance: false
       deployment: false
@@ -46,12 +51,44 @@ servers:
         - '&f Jogadores: &b{players_raw}/{max_players}'
         - ''
         - '&aClique para conectar-se'
-    # Entidade visual usada como "portal" para este servidor no mundo (item
-    # 3/4/5). Sem posição (world/x/y/z) definida, fica desativada — um
-    # comando de posicionamento chega numa fase futura.
+    # Entidade visual usada como "portal" para este servidor no mundo. A posição
+    # é definida em jogo com "/starlobby setnpc <chave>" (olhando para o lugar);
+    # sem posição, o teleporter fica desativado. "/starlobby delnpc <chave>" remove.
+    #
+    # Tipos (type):
+    #   NPC          -> boneco de jogador com a skin de 'skin-or-material'
+    #                   (nick, ex.: 'Notch', ou o Value/URL/hash da textura).
+    #                   Usa Citizens ou FancyNpcs (o que o servidor tiver); sem
+    #                   nenhum dos dois, cai numa estátua de ArmorStand.
+    #   ROTATING-HEAD-> cabeça flutuante girando; 'skin-or-material' é a skin da
+    #                   cabeça (nick ou textura).
+    #   HUGE-ITEM    -> item gigante flutuando; 'skin-or-material' é o MATERIAL
+    #                   (ex.: 'DIAMOND_SWORD').
+    #   (MINIATURE-PETS / MYTHIC-MOBS ficam para integrações futuras.)
     teleporter-entity:
       type: NPC
       skin-or-material: 'Notch'
+      # Partículas de ambiente SÓ deste teleporter (opcional). Não existe global:
+      # sem este bloco, o teleporter fica sem partícula. Descomente para ligar —
+      # ou use o "/starlobby editor". Só do 1.9 em diante (no 1.8 é ignorado).
+      #particulas:
+      #  ativado: true
+      #  # Animação: GIRANDO (anel girando), PISCANDO (pontos em volta piscando)
+      #  # ou HELICE (pontos subindo em espiral).
+      #  animacao: GIRANDO
+      #  # Qual partícula usar (nome do Particle do Bukkit): END_ROD, FLAME,
+      #  # SOUL_FIRE_FLAME, CRIT, PORTAL... Se não existir na versão, cai em END_ROD.
+      #  tipo: 'END_ROD'
+      #  # Raio do anel, em blocos.
+      #  raio: 0.85
+      #  # Quantos pontos ao mesmo tempo (mais = mais cheio).
+      #  pontos: 3
+      # Brilho (contorno colorido) SÓ deste teleporter (opcional). Sem este bloco,
+      # o teleporter não brilha. "cor" é uma cor do Minecraft: WHITE, YELLOW, RED,
+      # AQUA, GREEN, GOLD, LIGHT_PURPLE... Só do 1.9 em diante (cor a partir da 1.13).
+      #brilho:
+      #  ativado: true
+      #  cor: 'YELLOW'
       hologram:
         offset: 2.3
         # Placeholders: {status}, {players}/{players_raw}, {max_players},

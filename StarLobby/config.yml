@@ -120,6 +120,13 @@ npcs:
   # Distância, em blocos, para o NPC notar um jogador.
   distancia-olhar: 8
 
+# Partículas de ambiente e brilho dos teleporter-entity (NPC, cabeça giratória
+# ou item gigante) são configurados POR SERVIDOR, dentro do bloco
+# "teleporter-entity" de cada servidor em servers.yml/lobbies.yml (ou pelo
+# "/starlobby editor"). Não há configuração global aqui: um teleporter só ganha
+# partícula/brilho se o bloco correspondente estiver no próprio servidor. Só do
+# 1.9 em diante (no 1.8 é ignorado, sem erro).
+
 # Sistema de day-cycle: mantém o horário fixo no lobby.
 day-cycle:
   enabled: true
@@ -155,6 +162,7 @@ scoreboard:
   #
   # Campos disponíveis por servidor:
   #   {chave_displayname}         nome de exibição (sem cor)
+  #   {chave_displayname_color}   o mesmo, mas com as cores do servers.yml
   #   {chave_status}              Online / Reiniciando / Manutenção...
   #   {chave_status_color}        só o código de cor do status (&a, &c...)
   #   {chave_players_raw}         quantos estão online agora
@@ -177,6 +185,12 @@ scoreboard:
   # {max_players} e {players_formatted}, os mesmos placeholders já usados no
   # ícone do menu de seleção e no holograma dos NPCs.
   #
+  # {display} sai sem cor de propósito: o "&l" de um display-name colide com
+  # o {status_color} injetado antes dele e o Minecraft desenha um bloco
+  # branco no meio da linha. Se você quer as cores do servers.yml mandando na
+  # linha, troque por {display_color} — aí tire o {status_color} da frente,
+  # ou deixe só para colorir o que vem antes do nome.
+  #
   # Em qualquer linha (não só nas geradas por "{servers}"), "{online_<chave>}"
   # mostra o total de jogadores online de UM servidor/lobby específico de
   # servers.yml/lobbies.yml (pelo ping real, não só quem está nesta instância
@@ -186,7 +200,7 @@ scoreboard:
   # Usado no lugar do formato acima quando o servidor NÃO está online
   # (reiniciando, manutenção, dev ou beta-VIP): mostra o motivo em vez de um
   # "[0/100]" que não diz nada. Aceita os mesmos placeholders.
-  server-line-format-offline: '{status_color}{display} &7[{status}]'
+  server-line-format-offline: '{status_color}{display} &7[{status}&7]'
 
 # Sistema de tablist do lobby (item 7), com suporte a PlaceholderAPI. As tags
 # coloram o nome do jogador na tablist; "priority" decide quem vence quando o
@@ -207,10 +221,10 @@ tablist:
     &r
     &7StarPlugins.com.br
     &r
+  # Troque a seção inteira por "tags: false" para desligar o sistema de tags
+  # (nenhum prefixo/sufixo é aplicado na tablist), sem precisar apagar as
+  # tags cadastradas abaixo.
   tags:
-    # false desliga o sistema de tags (nenhum prefixo/sufixo é aplicado na
-    # tablist) sem precisar apagar as tags cadastradas aqui embaixo.
-    enabled: true
     member:
       priority: 1
       permission: 'starlobby.tags.member'
@@ -287,6 +301,18 @@ join-items:
   # quem aponta para ele é "combat.item.join-item". Segurá-lo na mão é o
   # ÚNICO jeito de ativar o PvP; sem comando nos cliques, porque a ação
   # dele é justamente ficar na mão.
+  # A pérola voadora (PerolaVoadoraManager): "perolavoadora" não é um
+  # comando, é uma função interna — ela lança a pérola e leva o jogador
+  # MONTADO nela até onde a pérola cair, em vez do teleporte normal. Ajustes
+  # de cooldown/velocidade ficam na seção "perola-voadora" mais abaixo.
+  perola:
+    material: 'ENDER_PEARL'
+    slot: 6
+    name: '&5Pérola do Fim'
+    lore:
+      - '&7Use para voar!'
+    left-command: ''
+    right-command: 'perolavoadora'
   combate:
     material: 'IRON_SWORD'
     slot: 1
@@ -297,6 +323,23 @@ join-items:
       - 'DAMAGE_ALL:2'
     left-command: ''
     right-command: ''
+
+# Pérola voadora: o join-item "perola" acima leva o jogador montado na
+# pérola até o ponto de queda.
+perola-voadora:
+  enabled: true
+  # Segundos de espera para DECOLAR de novo. Não vale para o
+  # redirecionamento: quem já está montado pode arremessar de novo a
+  # qualquer momento e a pérola só muda de direção, sem descer.
+  cooldown: 3
+  # Multiplicador da força do arremesso (1.0 = pérola normal do Minecraft).
+  # Aumente para voos mais longos.
+  velocidade: 1.0
+  # Trava de segurança: uma pérola atirada pro céu pode nunca acertar nada
+  # e deixaria o jogador montado para sempre. Passado esse tempo (segundos)
+  # o voo é encerrado de qualquer jeito.
+  tempo-maximo-de-voo: 10
+  som: 'ENDERMAN_TELEPORT'
 
 # Sistema de preferências (item 19): toggles pessoais do jogador.
 preferences:
@@ -348,9 +391,23 @@ status:
 jump-pad:
   enabled: true
   block: 'SLIME_BLOCK'
-  multiply: 1.5
-  offset: 2.0
+  # Quantos BLOCOS pra frente o jump-pad arremessa, em media. A media e
+  # medida ate o jogador voltar na altura em que saiu: cair num degrau mais
+  # alto encurta o voo, num mais baixo estica.
+  distancia: 8
+  # Impulso pra cima, em velocidade por tick (nao e em blocos). Referencia:
+  # 0.42 e o pulo normal do jogador, 0.9 sobe ~4 blocos, 1.2 sobe ~7.
+  # Mexer aqui NAO muda a distancia -- ela e recalculada pro alcance
+  # continuar sendo o da "distancia" acima, so que num arco mais alto.
+  offset: 0.9
+  # "multiply" era o jeito antigo de dar a forca horizontal: velocidade
+  # crua, sem relacao com blocos, o que deixava o pad jogando mais pra cima
+  # do que pra frente. Ainda funciona em configs antigos que o tenham, mas
+  # so enquanto "distancia" nao estiver definida -- e ela manda.
   sound: 'FIREWORK_LAUNCH'
+  # Rastro de particulas brancas do End (END_ROD) atras de quem e arremessado.
+  # So aparece do 1.9 em diante (no 1.8 e ignorado, sem erro).
+  particulas: true
 
 # Sistema de double jump (extra do item 2): dá um segundo pulo no ar.
 # Requer allowFlight=true no jogador (padrão em lobbies).
@@ -472,6 +529,15 @@ join:
   clear-chat: false
   # Enviar anúncio que o player entrou (deixe vazio para não usar)
   announce: '&b+ %luckperms_prefix% &b{player} &fentrou.'
+  # Anunciar só a entrada de quem tem esta permissão (ex.: 'starlobby.vip'),
+  # em vez de todo mundo que entra. Deixe vazio para anunciar todo mundo.
+  announce-permission: ''
+  # Quantos ticks esperar antes de mandar o anúncio (20 ticks = 1 segundo).
+  # Placeholder de outro plugin (tag, cargo, nick...) costuma depender de um
+  # carregamento que só termina DEPOIS de o jogador entrar -- anunciando na
+  # hora exata da entrada, ele sai em branco. Aumente se o seu plugin de tag
+  # demorar mais; 0 anuncia na hora, sem espera.
+  announce-delay-ticks: 20
   # Esconder as mensagens padrão do Minecraft de entrada/saída
   # ("Fulano entrou no jogo"/"Fulano saiu do jogo"). Independente do
   # "announce": pode desativar as duas sem colocar um anúncio no lugar.
