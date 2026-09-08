@@ -79,6 +79,10 @@ protection:
   deny-damage: true
   deny-drop-item: true
   deny-pickup-item: true
+  # Impede que mobs nasçam no lobby (slime, zumbi, animais...). Barra apenas
+  # spawns naturais/spawner/geracao de chunk; NPCs e hologramas do proprio
+  # plugin, /summon e ovo de spawn continuam funcionando.
+  deny-mob-spawn: true
 
 # Sistema de bloqueio de comandos (item 23).
 command-manager:
@@ -581,7 +585,16 @@ join:
 auto-message:
   enabled: true
   delay: 320
+  # O "chat" pode ser uma linha unica OU uma LISTA de linhas. Numa lista, cada
+  # item vira uma linha e '' (vazio) vira uma linha em branco. Cores com & e
+  # tambem hexadecimal &#RRGGBB (servidores 1.16+).
   messages:
     msg1:
       chat: '&b&lStarPlugins&f Compre plugins exclusivos em &bhttps://starplugins.com.br/'
       actionbar: '&b&lStarPlugins'
+    msg2:
+      chat:
+        - ''
+        - '&#49F8FF&lBem-vindo ao servidor!'
+        - '&7Aproveite sua estadia.'
+        - ''
