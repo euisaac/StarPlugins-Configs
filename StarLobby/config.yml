@@ -281,6 +281,10 @@ join-items:
       - '&7reconectado automaticamente ao voltar.'
     left-command: ''
     right-command: 'autoreconectar'
+    # Permissao para RECEBER o item e usar a funcao. Sem ela, o item nem
+    # aparece na hotbar. Deixe '' para liberar para todos. Qualquer join-item
+    # aceita este campo.
+    permission: 'starlobby.autoreconectar'
   preferences:
     material: 'REDSTONE_COMPARATOR'
     slot: 7
@@ -518,6 +522,13 @@ fila:
   # fila inteira pra sempre, já que só o primeiro é tentado a cada ciclo.
   # Use -1 para desativar (nunca remover automaticamente por falhas).
   max-tentativas: 10
+  # Sons da fila. Deixe em '' (vazio) para nao tocar nada. Aceita nomes de som
+  # antigos e novos (o plugin converte para a versao do servidor).
+  som:
+    # Ao ENTRAR na fila de um servidor.
+    entrar: 'BLOCK_NOTE_BLOCK_PLING'
+    # Toda vez que o jogador SOBE de posicao na fila (anda pra frente).
+    avancar: 'BLOCK_NOTE_BLOCK_HAT'
 
 # Sistema de entrar no lobby
 join:
@@ -544,6 +555,27 @@ join:
   hide-join-quit-messages: true
   # Mundos que não irá receber os Join-Items
   join-item-world-blacklist: []
+
+  # Efeitos de entrada por grupo/permissao (VIPs entram com foguete/particula/
+  # som proprios). Os grupos sao avaliados DE CIMA PRA BAIXO e vale o PRIMEIRO
+  # que o jogador tiver permissao -- entao coloque o VIP mais alto no topo.
+  # Um grupo com "permissao: ''" (vazio) vale para todo mundo (bom pro ultimo).
+  efeitos:
+    ativado: true
+    grupos:
+      - permissao: 'starlobby.efeito.vip'
+        # Solta um foguete no jogador ao entrar.
+        foguete: true
+        # Nome de uma particula (FLAME, HEART, VILLAGER_HAPPY, SPELL_WITCH...).
+        # Deixe '' para nenhuma.
+        particula: 'FLAME'
+        # Som ao entrar. '' para nenhum.
+        som: 'ENTITY_PLAYER_LEVELUP'
+      # Exemplo de um grupo para todos (sem permissao) - desligado por padrao:
+      # - permissao: ''
+      #   foguete: false
+      #   particula: 'VILLAGER_HAPPY'
+      #   som: ''
 
 # Sistema de mensagens automáticas (item 21).
 auto-message:

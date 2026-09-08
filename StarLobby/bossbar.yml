@@ -18,12 +18,19 @@ ativado: true
 # Cada barra pode ter o proprio "delay" para sobrescrever este.
 delay: 5
 
+# Padrao do "animar" das barras (pode ser sobrescrito por barra, ver abaixo).
+#   true  -> a barra de cor ENCHE de 0 a 1 ao longo do delay (contagem visual
+#            ate trocar para a proxima). Ignora o "progresso" fixo da barra.
+#   false -> a barra fica parada no "progresso" configurado.
+animar-progresso: false
+
 # As barras, NA ORDEM em que aparecem (depois da ultima, volta para a primeira).
 #   texto     -> o texto da barra (cores com &, placeholders, %animacao:nome%)
 #   cor       -> PINK BLUE RED GREEN YELLOW PURPLE WHITE
 #   estilo    -> SOLID SEGMENTED_6 SEGMENTED_10 SEGMENTED_12 SEGMENTED_20
-#   progresso -> 0.0 a 1.0 (quanto da barra fica preenchido)
+#   progresso -> 0.0 a 1.0 (quanto da barra fica preenchido) - so quando animar=false
 #   delay     -> (opcional) segundos so desta barra, no lugar do delay global
+#   animar    -> (opcional) true/false so desta barra, no lugar de animar-progresso
 barras:
   - texto: '&a&lBEM-VINDO AO LOBBY&r &7» &fDivirta-se!'
     cor: GREEN
@@ -33,7 +40,8 @@ barras:
   - texto: '&b&lLOJA&r &7» &fstarplugins.com.br'
     cor: BLUE
     estilo: SEGMENTED_10
-    progresso: 1.0
+    # Esta enche de 0 a 1 nos 8s ate trocar, mesmo com o global desligado.
+    animar: true
     delay: 8
 
   - texto: '&d&lDISCORD&r &7» &fEntre na nossa comunidade!'
