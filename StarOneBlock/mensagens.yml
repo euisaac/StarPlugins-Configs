@@ -91,6 +91,7 @@ Ilha:
   Info: |
     &8&m---------------------------------
     &e&l{ilha} &8(&7de &f{dono}&8)
+    &7Ilha n&f{id}
     &7{descricao}
     &fFase: &d{fase} &8({fase_numero}/{fase_total})
     &fProgresso: &e{atual}&7/&e{total}
@@ -179,8 +180,8 @@ Admin:
   Impulso dado: '&aImpulso x{multiplicador} por {minutos} min na ilha &f{ilha}&a.'
   Info: |
     &8&m---------------------------------
-    &e&l{ilha} &8(&7id &f{id}&8)
-    &fDono: &f{dono} &8| &fCelula: &f{celula}
+    &e&l{ilha} &8(&7ilha n&f{id}&8)
+    &fDono: &f{dono} &8| &fCelula: &f{celula} &8| &7chave &f{chave}
     &fFase: &d{fase} &8| &fNa fase: &e{atual}
     &fBlocos: &f{blocos} &8| &fNivel: &a{nivel} &8| &fValor: &a{valor}
     &fBanco: &6{banco} &8| &fMembros: &f{membros}
@@ -205,8 +206,15 @@ Menus:
   Confirmar reset: 'A ilha volta ao primeiro dia e tudo se perde.'
   Confirmar expulsar: '{jogador} sai da ilha na hora.'
 
+# O que os placeholders respondem quando o jogador ainda nao tem ilha.
+#
+# Sao dois de proposito: numa scoreboard, "Nivel: &cSem Info" fica estranho e
+# "Nivel: 0" fica certo -- entao os placeholders de numero tem o seu proprio.
+#
+# Deixe '' (vazio) em qualquer um dos dois para a linha sair em branco.
 Placeholder:
-  Sem ilha: '-'
+  Sem ilha: '&cSem Info'
+  Sem ilha nos numeros: '0'
 
 Acao:
   Link: '&e&nClique aqui'
