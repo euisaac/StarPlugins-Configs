@@ -1,261 +1,1195 @@
 # ------------------------------------------------------------------------
-#  StarOneBlock - o desenho dos menus
+#  StarOneBlock - o desenho de TODAS as telas
 #
-#  O menu do /ilha e montado INTEIRO a partir deste arquivo: slot, material,
-#  nome, lore e o que o clique faz.
+#  Cada tela tem:
+#
+#    Titulo    o texto do topo ('' usa o do mensagens.yml)
+#    Linhas    de 1 a 6 (cada linha tem 9 slots; eles comecam no 0)
+#    Enfeite   o vidro que fecha os buracos
+#    Slots     onde a lista aparece (so nas telas com lista)
+#    Itens     os botoes
+#    Modelos   como cada item da lista e escrito, por estado
 #
 #  Para TIRAR um botao, ponha  Slot: -1  (a configuracao dele fica guardada
 #  aqui, esperando o dia em que voce quiser de volta).
 #
-#  Para POR UM BOTAO SEU, escreva mais um item com "Comandos" -- veja o
-#  exemplo "loja-do-servidor" no fim da lista.
+#  Para POR UM BOTAO SEU em qualquer tela, escreva mais um item com
+#  "Comandos" -- veja o exemplo "loja-do-servidor" no menu Principal.
 #
-#  Os outros menus (membros, loja, ranking...) sao listas que o plugin
-#  preenche sozinho; deles este arquivo cuida do titulo, la embaixo.
+#  Todo item aceita:
+#    Slot        onde ele fica (-1 desliga)
+#    Acao        o que o clique faz (a lista esta em cada tela)
+#    Material    o icone ('' deixa o menu escolher: a cabeca do jogador,
+#                o item que a loja vende, o icone da fase...)
+#    Nome        o nome do item
+#    Lore        as linhas de baixo
+#    Brilho      true da o brilho de encantado
+#    Permissao   so quem tem ve o item ('' = todo mundo)
+#    Comandos    lista de comandos rodados no clique
+#    Fechar      true fecha o menu antes de rodar os comandos
+#
+#  Os comandos aceitam os mesmos prefixos das recompensas de fase:
+#    jogador: loja          console: give {jogador} diamond 1
+#    op: gamemode creative  mensagem: &aOi!
+#    som: ENTITY_PLAYER_LEVELUP    titulo: &aTitulo<nl>&7Subtitulo
+#    link: seusite.com.br          espera: 20
 #
 #  Tudo isto tambem pode ser editado por menu: /staroneblock config
 # ------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
-Principal:
-  # Quantas linhas de 9 slots a tela tem (1 a 6). Os slots comecam no 0.
-  Linhas: 6
+Menus:
 
-  # O vidro que fecha os buracos da tela.
-  Enfeite:
-    Ativar: true
-    Material: GRAY_STAINED_GLASS_PANE
-
-  # As acoes que um item pode ter no clique:
+  # ====================================================================
+  #  O menu do /ilha
   #
-  #   RETRATO    a cabeca do dono com o resumo da ilha
-  #   FASES      MEMBROS     MELHORIAS   BANCO      LOJA
-  #   BANDEIRAS  CARGOS      WARPS       GERADORES  TOP
-  #   VISITAS    IR          RESETAR     FECHAR     NENHUMA
+  #  Acoes: RETRATO FASES MEMBROS MELHORIAS BANCO LOJA BANDEIRAS CARGOS
+  #         WARPS GERADORES TOP VISITAS IR RESETAR FECHAR NENHUMA
   #
-  # Qualquer item aceita:
-  #   Comandos    lista de comandos rodados no clique
-  #   Fechar      true fecha o menu antes de rodar os comandos
-  #   Permissao   so quem tem ve o item ('' = todo mundo)
-  #   Brilho      true da o brilho de encantado
+  #  Trocas: {ilha} {id} {dono} {descricao} {jogador} {cargo} {fase}
+  #          {fase_numero} {fase_total} {atual} {meta} {barra} {porcento}
+  #          {nivel} {valor} {banco} {blocos} {membros} {membros_max}
+  #          {tamanho} {warps} {warps_max} {geradores} {banidos}
+  #          {posicao} {aberta} {impulso}
+  # ====================================================================
+  Principal:
+    Titulo: '&8{ilha}'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+
+      retrato:
+        Slot: 13
+        Acao: RETRATO
+        Material: PLAYER_HEAD
+        Nome: '&6&l{ilha}'
+        Lore:
+          - '&7Dono: &f{dono}'
+          - '&7{descricao}'
+          - ''
+          - '&7Fase: &b{fase} &8({fase_numero}/{fase_total})'
+          - '&7Progresso: &f{atual}&7/&f{meta}'
+          - '{barra} &7{porcento}%'
+          - ''
+          - '&7Nivel: &a{nivel}'
+          - '&7Valor: &a{valor}'
+          - '&7Blocos quebrados: &f{blocos}'
+          - '&7Tamanho: &f{tamanho}x{tamanho}'
+          - '&7Visitantes: &f{aberta}'
+          - ''
+          - '&7Ilha n&f{id} &8| &7Ranking: &e#{posicao}'
+
+      fases:
+        Slot: 20
+        Acao: FASES
+        Material: FILLED_MAP
+        Nome: '&b&lFases'
+        Lore:
+          - '&7Veja por onde a ilha ja passou'
+          - '&7e o que vem pela frente.'
+          - ''
+          - '&7Agora: &b{fase} &8({fase_numero}/{fase_total})'
+          - ''
+          - '&eClique para abrir.'
+
+      membros:
+        Slot: 21
+        Acao: MEMBROS
+        Material: PLAYER_HEAD
+        Nome: '&a&lMembros'
+        Lore:
+          - '&7Gente na ilha: &f{membros}&7/&f{membros_max}'
+          - ''
+          - '&eClique para abrir.'
+
+      melhorias:
+        Slot: 22
+        Acao: MELHORIAS
+        Material: ANVIL
+        Nome: '&e&lMelhorias'
+        Lore:
+          - '&7Gaste o banco da ilha para'
+          - '&7crescer, acelerar e caber mais.'
+          - ''
+          - '&eClique para abrir.'
+
+      banco:
+        Slot: 23
+        Acao: BANCO
+        Material: GOLD_INGOT
+        Nome: '&6&lBanco'
+        Lore:
+          - '&7Saldo: &f{banco}'
+          - ''
+          - '&eClique para abrir.'
+
+      loja:
+        Slot: 24
+        Acao: LOJA
+        Material: EMERALD
+        Nome: '&a&lLoja'
+        Lore:
+          - '&7Venda o que saiu do nucleo.'
+          - '&7O dinheiro cai no banco da ilha.'
+          - ''
+          - '&eClique para abrir.'
+
+      regras:
+        Slot: 29
+        Acao: BANDEIRAS
+        Material: REDSTONE_TORCH
+        Nome: '&c&lRegras'
+        Lore:
+          - '&7PvP, mobs, visitantes, redstone...'
+          - ''
+          - '&eClique para abrir.'
+
+      cargos:
+        Slot: 30
+        Acao: CARGOS
+        Material: NAME_TAG
+        Nome: '&d&lCargos'
+        Lore:
+          - '&7Quem pode fazer o que na ilha.'
+          - ''
+          - '&eClique para abrir.'
+
+      warps:
+        Slot: 31
+        Acao: WARPS
+        Material: ENDER_PEARL
+        Nome: '&5&lWarps'
+        Lore:
+          - '&7Pontos salvos: &f{warps}&7/&f{warps_max}'
+          - ''
+          - '&eClique para abrir.'
+
+      geradores:
+        Slot: 32
+        Acao: GERADORES
+        Material: DISPENSER
+        Nome: '&3&lGeradores'
+        Lore:
+          - '&7No chao: &f{geradores}'
+          - ''
+          - '&eClique para abrir.'
+
+      ranking:
+        Slot: 33
+        Acao: TOP
+        Material: BEACON
+        Nome: '&b&lRanking'
+        Lore:
+          - '&7Sua posicao: &f#{posicao}'
+          - ''
+          - '&eClique para abrir.'
+
+      ir:
+        Slot: 38
+        Acao: IR
+        Material: GRASS_BLOCK
+        Nome: '&a&lIr para a ilha'
+        Lore:
+          - '&7Leva voce para casa.'
+          - ''
+          - '&eClique para viajar.'
+
+      visitar:
+        Slot: 40
+        Acao: VISITAS
+        Material: COMPASS
+        Nome: '&e&lVisitar'
+        Lore:
+          - '&7As ilhas abertas do servidor.'
+          - ''
+          - '&eClique para abrir.'
+
+      resetar:
+        Slot: 42
+        Acao: RESETAR
+        Material: TNT
+        Nome: '&4&lResetar a ilha'
+        Lore:
+          - '&cApaga tudo e comeca do zero.'
+          - '&cNao tem volta.'
+          - ''
+          - '&eClique para comecar.'
+
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+
+      # Exemplo de botao SEU. Esta desligado; ponha um slot livre e ele
+      # aparece. Vale em qualquer tela deste arquivo.
+      loja-do-servidor:
+        Slot: -1
+        Material: EMERALD_BLOCK
+        Nome: '&a&lLoja do servidor'
+        Lore:
+          - '&7Abre a loja principal.'
+          - ''
+          - '&eClique para abrir.'
+        Brilho: false
+        Permissao: ''
+        Fechar: true
+        Comandos:
+          - 'jogador: loja'
+
+  # ====================================================================
+  #  A trilha de fases
   #
-  # Nas linhas de Nome e Lore valem:
-  #   {ilha} {id} {dono} {descricao} {jogador} {cargo}
-  #   {fase} {fase_numero} {fase_total} {atual} {total} {barra} {porcento}
-  #   {nivel} {valor} {banco} {blocos} {membros} {membros_max} {tamanho}
-  #   {warps} {warps_max} {geradores} {posicao} {aberta} {impulso}
-  Itens:
+  #  Modelos: atual, concluida, fechada
+  #  Trocas do item: {fase} {fase_id} {numero} {fase_total} {descricao}
+  #                  {atual} {meta} {barra} {porcento} {bioma}
+  #                  {chance_bau} {mobs} {blocos_da_fase}
+  # ====================================================================
+  Fases:
+    Titulo: '&8Fases da ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore:
+          - '&7Volta para a tela anterior.'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore:
+          - '&7Pagina &f{pagina}&7/&f{paginas}'
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore:
+          - '&7Pagina &f{pagina}&7/&f{paginas}'
+    Modelos:
+      atual:
+        Nome: '&aFase {numero}: {fase}'
+        Lore:
+          - '&a&lFASE ATUAL'
+          - ''
+          - '&7{descricao}'
+          - ''
+          - '&7Progresso: &f{atual}&7/&f{meta}'
+          - '{barra} &7{porcento}%'
+          - ''
+          - '&7Bioma: &f{bioma}'
+          - '&7Chance de bau: &f{chance_bau}'
+          - '&7Solta &f{mobs} &7tipo(s) de mob'
+      concluida:
+        Nome: '&7Fase {numero}: {fase}'
+        Lore:
+          - '&8Ja concluida'
+          - ''
+          - '&7{descricao}'
+          - ''
+          - '&7Blocos para concluir: &f{meta}'
+          - '&7Bioma: &f{bioma}'
+      fechada:
+        Material: GRAY_DYE
+        Nome: '&8Fase {numero}: ???'
+        Lore:
+          - '&c&lAINDA FECHADA'
+          - ''
+          - '&7Chegue ate aqui para descobrir'
+          - '&7o que esta fase guarda.'
 
-    retrato:
-      Slot: 13
-      Acao: RETRATO
-      Material: PLAYER_HEAD
-      Nome: '&6&l{ilha}'
-      Lore:
-        - '&7Dono: &f{dono}'
-        - '&7{descricao}'
-        - ''
-        - '&7Fase: &b{fase} &8({fase_numero}/{fase_total})'
-        - '&7Progresso: &f{atual}&7/&f{total}'
-        - '{barra} &7{porcento}%'
-        - ''
-        - '&7Nivel: &a{nivel}'
-        - '&7Valor: &a{valor}'
-        - '&7Blocos quebrados: &f{blocos}'
-        - '&7Tamanho: &f{tamanho}x{tamanho}'
-        - '&7Visitantes: &f{aberta}'
-        - ''
-        - '&7Ilha n&f{id} &8| &7Ranking: &e#{posicao}'
+  # ====================================================================
+  #  Os membros da ilha
+  #
+  #  Acoes: CONVIDAR BANIDOS VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Modelos: dono, membro, sem_permissao
+  #  Trocas do item: {jogador} {cargo} {cargo_colorido} {cor} {estado}
+  # ====================================================================
+  Membros:
+    Titulo: '&8Membros da ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      convidar:
+        Slot: 47
+        Acao: CONVIDAR
+        Material: PAPER
+        Nome: '&a&lConvidar'
+        Lore:
+          - '&7Vagas: &f{membros}&7/&f{membros_max}'
+          - ''
+          - '&eClique para digitar o nick.'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+      banidos:
+        Slot: 51
+        Acao: BANIDOS
+        Material: BARRIER
+        Nome: '&c&lBanidos'
+        Lore:
+          - '&7Barrados: &f{banidos}'
+          - ''
+          - '&eClique para abrir.'
+    Modelos:
+      dono:
+        Nome: '&6{jogador}'
+        Lore:
+          - '&7Cargo: {cargo_colorido}'
+          - '&7Estado: {estado}'
+          - ''
+          - '&8O dono nao pode ser mexido aqui.'
+      membro:
+        Nome: '{cor}{jogador}'
+        Lore:
+          - '&7Cargo: {cargo_colorido}'
+          - '&7Estado: {estado}'
+          - ''
+          - '&eClique &7para promover.'
+          - '&eClique direito &7para rebaixar.'
+          - '&eShift + clique &7para expulsar.'
+      sem_permissao:
+        Nome: '{cor}{jogador}'
+        Lore:
+          - '&7Cargo: {cargo_colorido}'
+          - '&7Estado: {estado}'
+          - ''
+          - '&8Voce nao mexe nos membros desta ilha.'
 
-    fases:
-      Slot: 20
-      Acao: FASES
-      Material: FILLED_MAP
-      Nome: '&b&lFases'
-      Lore:
-        - '&7Veja por onde a ilha ja passou'
-        - '&7e o que vem pela frente.'
-        - ''
-        - '&7Agora: &b{fase} &8({fase_numero}/{fase_total})'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  Os barrados
+  #
+  #  Modelos: banido, banido_sem_permissao
+  #  Trocas do item: {jogador} {quando}
+  # ====================================================================
+  Banidos:
+    Titulo: '&8Barrados na ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+    Modelos:
+      banido:
+        Nome: '&c{jogador}'
+        Lore:
+          - '&7Banido em: &f{quando}'
+          - ''
+          - '&eClique para perdoar.'
+      banido_sem_permissao:
+        Nome: '&c{jogador}'
+        Lore:
+          - '&7Banido em: &f{quando}'
+          - ''
+          - '&8Voce nao mexe nos banimentos.'
 
-    membros:
-      Slot: 21
-      Acao: MEMBROS
-      Material: PLAYER_HEAD
-      Nome: '&a&lMembros'
-      Lore:
-        - '&7Gente na ilha: &f{membros}&7/&f{membros_max}'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  As regras da ilha
+  #
+  #  Acoes: ABRIR_FECHAR VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Modelos: ligada, desligada, ilha_aberta, ilha_fechada
+  #  Trocas do item: {regra} {descricao} {chave}
+  # ====================================================================
+  Bandeiras:
+    Titulo: '&8Regras da ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      visitantes:
+        Slot: 47
+        Acao: ABRIR_FECHAR
+        Material: OAK_DOOR
+        Nome: '&eVisitantes'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+    Modelos:
+      ligada:
+        Nome: '&a{regra}'
+        Lore:
+          - '&7{descricao}'
+          - ''
+          - '&7Agora: &aligada'
+          - ''
+          - '&eClique para trocar.'
+      desligada:
+        Material: GRAY_DYE
+        Nome: '&c{regra}'
+        Lore:
+          - '&7{descricao}'
+          - ''
+          - '&7Agora: &cdesligada'
+          - ''
+          - '&eClique para trocar.'
+      ilha_aberta:
+        Material: LIME_DYE
+        Nome: '&a&lIlha aberta'
+        Lore:
+          - '&7Qualquer um consegue visitar'
+          - '&7sem convite.'
+          - ''
+          - '&eClique para trocar.'
+      ilha_fechada:
+        Material: GRAY_DYE
+        Nome: '&c&lIlha fechada'
+        Lore:
+          - '&7So os membros entram.'
+          - ''
+          - '&eClique para trocar.'
 
-    melhorias:
-      Slot: 22
-      Acao: MELHORIAS
-      Material: ANVIL
-      Nome: '&e&lMelhorias'
-      Lore:
-        - '&7Gaste o banco da ilha para'
-        - '&7crescer, acelerar e caber mais.'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  Os cargos
+  #
+  #  Modelos: acao
+  #  Trocas do item: {acao} {descricao} {minimo} {minimo_colorido} {escada}
+  # ====================================================================
+  Cargos:
+    Titulo: '&8Cargos da ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+    Modelos:
+      acao:
+        Nome: '&f{acao} &8| {minimo_colorido}'
+        Lore:
+          - '&7{descricao}'
+          - ''
+          - '{escada}'
+          - ''
+          - '&eClique &7para exigir mais.'
+          - '&eClique direito &7para exigir menos.'
 
-    banco:
-      Slot: 23
-      Acao: BANCO
-      Material: GOLD_INGOT
-      Nome: '&6&lBanco'
-      Lore:
-        - '&7Saldo: &f{banco}'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  As melhorias
+  #
+  #  Modelos: pode_comprar, sem_saldo, no_topo
+  #  Trocas do item: {melhoria} {descricao} {nivel} {nivel_max}
+  #                  {agora} {depois} {custo} {banco}
+  # ====================================================================
+  Melhorias:
+    Titulo: '&8Melhorias da ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      saldo:
+        Slot: 49
+        Acao: NENHUMA
+        Material: GOLD_INGOT
+        Nome: '&6&lBanco da ilha'
+        Lore:
+          - '&7Saldo: &f{banco}'
+          - ''
+          - '&7As melhorias saem daqui.'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+    Modelos:
+      pode_comprar:
+        Nome: '&b&l{melhoria}'
+        Lore:
+          - '&7{descricao}'
+          - ''
+          - '&7Nivel: &f{nivel}&7/&f{nivel_max}'
+          - '&7Agora: &a{agora}'
+          - '&7Depois: &a{depois}'
+          - ''
+          - '&7Custo: &e{custo}'
+          - '&aClique para comprar.'
+      sem_saldo:
+        Nome: '&b&l{melhoria}'
+        Lore:
+          - '&7{descricao}'
+          - ''
+          - '&7Nivel: &f{nivel}&7/&f{nivel_max}'
+          - '&7Agora: &a{agora}'
+          - '&7Depois: &a{depois}'
+          - ''
+          - '&7Custo: &e{custo}'
+          - '&cO banco da ilha nao tem esse valor.'
+      no_topo:
+        Nome: '&b&l{melhoria}'
+        Lore:
+          - '&7{descricao}'
+          - ''
+          - '&7Nivel: &f{nivel}&7/&f{nivel_max}'
+          - '&7Agora: &a{agora}'
+          - ''
+          - '&6&lNO MAXIMO'
 
-    loja:
-      Slot: 24
-      Acao: LOJA
-      Material: EMERALD
-      Nome: '&a&lLoja'
-      Lore:
-        - '&7Venda o que saiu do nucleo.'
-        - '&7O dinheiro cai no banco da ilha.'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  O banco da ilha
+  #
+  #  Acoes: DEPOSITAR SACAR DIGITAR_VALOR IMPULSO VOLTAR FECHAR
+  #  A chave "Valor" de cada botao diz quanto ele mexe; -1 quer dizer tudo.
+  #  Modelos: impulso_ativo, impulso_parado
+  #  Trocas: as da ilha mais {bolso} {juros} {teto} {preco_impulso}
+  #          {minutos_impulso} {resta}
+  # ====================================================================
+  Banco:
+    Titulo: '&8Banco da ilha'
+    Linhas: 5
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      resumo:
+        Slot: 4
+        Acao: NENHUMA
+        Material: GOLD_BLOCK
+        Nome: '&6&lBanco da ilha'
+        Lore:
+          - '&7Saldo da ilha: &e{banco}'
+          - '&7No seu bolso: &e{bolso}'
+          - ''
+          - '&7Rende &a{juros}% &7por hora.'
+          - '&7Teto: &f{teto}'
+      depositar-mil:
+        Slot: 19
+        Acao: DEPOSITAR
+        Valor: 1000
+        Material: GOLD_NUGGET
+        Nome: '&aDepositar 1.000'
+        Lore:
+          - '&7Tira do seu bolso e poe no banco.'
+      depositar-dez-mil:
+        Slot: 20
+        Acao: DEPOSITAR
+        Valor: 10000
+        Material: GOLD_INGOT
+        Nome: '&aDepositar 10.000'
+        Lore:
+          - '&7Tira do seu bolso e poe no banco.'
+      depositar-tudo:
+        Slot: 21
+        Acao: DEPOSITAR
+        Valor: -1
+        Material: GOLD_BLOCK
+        Nome: '&a&lDepositar tudo'
+        Lore:
+          - '&7Manda todo o seu dinheiro'
+          - '&7para o banco da ilha.'
+          - ''
+          - '&7Voce tem: &e{bolso}'
+      digitar:
+        Slot: 22
+        Acao: DIGITAR_VALOR
+        Material: NAME_TAG
+        Nome: '&e&lDigitar um valor'
+        Lore:
+          - '&7Escolha exatamente quanto depositar.'
+          - ''
+          - '&eClique para digitar no chat.'
+      sacar-mil:
+        Slot: 23
+        Acao: SACAR
+        Valor: 1000
+        Material: IRON_NUGGET
+        Nome: '&cSacar 1.000'
+        Lore:
+          - '&7Tira do banco e poe no seu bolso.'
+      sacar-dez-mil:
+        Slot: 24
+        Acao: SACAR
+        Valor: 10000
+        Material: IRON_INGOT
+        Nome: '&cSacar 10.000'
+        Lore:
+          - '&7Tira do banco e poe no seu bolso.'
+      sacar-tudo:
+        Slot: 25
+        Acao: SACAR
+        Valor: -1
+        Material: IRON_BLOCK
+        Nome: '&c&lSacar tudo'
+        Lore:
+          - '&7Esvazia o banco da ilha.'
+          - ''
+          - '&7No banco: &e{banco}'
+      impulso:
+        Slot: 31
+        Acao: IMPULSO
+        Material: NETHER_STAR
+        Nome: '&d&lImpulso da ilha'
+        Lore: []
+      voltar:
+        Slot: 40
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+    Modelos:
+      impulso_parado:
+        Material: NETHER_STAR
+        Nome: '&d&lImpulso da ilha'
+        Lore:
+          - '&7Multiplica o avanco da fase'
+          - '&7durante &f{minutos_impulso} minutos&7.'
+          - ''
+          - '&7Custo: &e{preco_impulso}'
+          - ''
+          - '&eClique para comprar.'
+      impulso_ativo:
+        Material: NETHER_STAR
+        Brilho: true
+        Nome: '&d&lImpulso da ilha &8(&aativo&8)'
+        Lore:
+          - '&d&lATIVO &7- termina em &f{resta}'
+          - ''
+          - '&7Comprar de novo estende o tempo.'
+          - '&7Custo: &e{preco_impulso}'
+          - ''
+          - '&eClique para estender.'
 
-    regras:
-      Slot: 29
-      Acao: BANDEIRAS
-      Material: REDSTONE_TORCH
-      Nome: '&c&lRegras'
-      Lore:
-        - '&7PvP, mobs, visitantes, redstone...'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  A loja da ilha
+  #
+  #  Acoes: VENDER_TUDO VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Modelos: tem, nao_tem
+  #  Trocas do item: {item} {preco} {quantidade} {total_do_item}
+  #                  {multiplicador}
+  # ====================================================================
+  Loja:
+    Titulo: '&8Loja da ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      vender-tudo:
+        Slot: 49
+        Acao: VENDER_TUDO
+        Material: HOPPER
+        Nome: '&a&lVender tudo'
+        Lore:
+          - '&7Vende de uma vez tudo que a loja'
+          - '&7aceita do seu inventario.'
+          - ''
+          - '&7Banco da ilha: &e{banco}'
+          - '&7Multiplicador: &ax{multiplicador}'
+          - ''
+          - '&eClique para vender tudo.'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+    Modelos:
+      tem:
+        Nome: '&f{item}'
+        Lore:
+          - '&7Preco: &e{preco} &7cada'
+          - '&7No seu inventario: &f{quantidade}'
+          - '&7Vale tudo: &a{total_do_item}'
+          - ''
+          - '&eClique &7para vender uma pilha.'
+          - '&eShift + clique &7para vender todos.'
+      nao_tem:
+        Nome: '&7{item}'
+        Lore:
+          - '&7Preco: &e{preco} &7cada'
+          - ''
+          - '&8Voce nao tem nenhum.'
 
-    cargos:
-      Slot: 30
-      Acao: CARGOS
-      Material: NAME_TAG
-      Nome: '&d&lCargos'
-      Lore:
-        - '&7Quem pode fazer o que na ilha.'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  Os warps
+  #
+  #  Acoes: CRIAR_WARP VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Modelos: publico, privado, publico_sem_permissao,
+  #           privado_sem_permissao
+  #  Trocas do item: {warp} {visitas}
+  # ====================================================================
+  Warps:
+    Titulo: '&8Warps da ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      criar:
+        Slot: 49
+        Acao: CRIAR_WARP
+        Material: NAME_TAG
+        Nome: '&a&lCriar um warp'
+        Lore:
+          - '&7Marca o lugar onde voce esta.'
+          - '&7Salvos: &f{warps}&7/&f{warps_max}'
+          - ''
+          - '&eClique para digitar o nome.'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+    Modelos:
+      publico:
+        Nome: '&5{warp}'
+        Lore:
+          - '&aPublico &7- qualquer visitante usa.'
+          - '&7Visitas: &f{visitas}'
+          - ''
+          - '&eClique &7para viajar.'
+          - '&eClique direito &7para trocar publico/privado.'
+          - '&eShift + clique &7para apagar.'
+      privado:
+        Nome: '&5{warp}'
+        Lore:
+          - '&cPrivado &7- so os membros usam.'
+          - '&7Visitas: &f{visitas}'
+          - ''
+          - '&eClique &7para viajar.'
+          - '&eClique direito &7para trocar publico/privado.'
+          - '&eShift + clique &7para apagar.'
+      publico_sem_permissao:
+        Nome: '&5{warp}'
+        Lore:
+          - '&aPublico &7- qualquer visitante usa.'
+          - '&7Visitas: &f{visitas}'
+          - ''
+          - '&eClique &7para viajar.'
+      privado_sem_permissao:
+        Nome: '&5{warp}'
+        Lore:
+          - '&cPrivado &7- so os membros usam.'
+          - '&7Visitas: &f{visitas}'
+          - ''
+          - '&eClique &7para viajar.'
 
-    warps:
-      Slot: 31
-      Acao: WARPS
-      Material: ENDER_PEARL
-      Nome: '&5&lWarps'
-      Lore:
-        - '&7Pontos salvos: &f{warps}&7/&f{warps_max}'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  O catalogo de geradores
+  #
+  #  Modelos: pode_comprar, sem_saldo, fora_de_venda
+  #  Trocas do item: {gerador} {espera} {chance} {materiais}
+  #                  {quantos_materiais} {custo} {banco}
+  # ====================================================================
+  Geradores:
+    Titulo: '&8Geradores'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      resumo:
+        Slot: 49
+        Acao: NENHUMA
+        Material: DISPENSER
+        Nome: '&3&lGeradores da ilha'
+        Lore:
+          - '&7No chao: &f{geradores}&7/&f{geradores_max}'
+          - '&7Banco: &e{banco}'
+          - ''
+          - '&7Quebre &eagachado &7para recolher'
+          - '&7um gerador que ja esta no chao.'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+    Modelos:
+      pode_comprar:
+        Nome: '&3&l{gerador}'
+        Lore:
+          - '&7Espera: &f{espera}'
+          - '&7Chance: &f{chance}'
+          - '&7Produz: &f{materiais}'
+          - ''
+          - '&7Custo: &e{custo}'
+          - '&aClique para comprar.'
+      sem_saldo:
+        Nome: '&3&l{gerador}'
+        Lore:
+          - '&7Espera: &f{espera}'
+          - '&7Chance: &f{chance}'
+          - '&7Produz: &f{materiais}'
+          - ''
+          - '&7Custo: &e{custo}'
+          - '&cO banco da ilha nao tem esse valor.'
+      fora_de_venda:
+        Nome: '&8{gerador}'
+        Lore:
+          - '&7Espera: &f{espera}'
+          - '&7Produz: &f{materiais}'
+          - ''
+          - '&8Nao esta a venda.'
 
-    geradores:
-      Slot: 32
-      Acao: GERADORES
-      Material: DISPENSER
-      Nome: '&3&lGeradores'
-      Lore:
-        - '&7No chao: &f{geradores}'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  O ranking
+  #
+  #  Modelos: aberta, fechada
+  #  Trocas do item: {posicao} {ilha} {dono} {membros} {nivel} {valor}
+  #                  {banco} {blocos} {fase}
+  #  Trocas da tela: {criterio} {ilhas} {posicao} {jogador}
+  # ====================================================================
+  Top:
+    Titulo: '&8Ranking das ilhas'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      legenda:
+        Slot: 49
+        Acao: NENHUMA
+        Material: BEACON
+        Nome: '&b&lRanking das ilhas'
+        Lore:
+          - '&7Ordenado por: &f{criterio}'
+          - '&7Ilhas no servidor: &f{ilhas}'
+          - ''
+          - '&7Sua posicao: &e#{posicao}'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+    Modelos:
+      aberta:
+        Nome: '&6#{posicao} &f{ilha}'
+        Lore:
+          - '&7Dono: &f{dono}'
+          - '&7Membros: &f{membros}'
+          - ''
+          - '&7Nivel: &a{nivel}'
+          - '&7Valor: &a{valor}'
+          - '&7Blocos: &f{blocos}'
+          - '&7Fase: &b{fase}'
+          - ''
+          - '&eClique para visitar.'
+      fechada:
+        Nome: '&6#{posicao} &f{ilha}'
+        Lore:
+          - '&7Dono: &f{dono}'
+          - '&7Membros: &f{membros}'
+          - ''
+          - '&7Nivel: &a{nivel}'
+          - '&7Valor: &a{valor}'
+          - '&7Blocos: &f{blocos}'
+          - '&7Fase: &b{fase}'
+          - ''
+          - '&8Esta ilha esta fechada.'
 
-    ranking:
-      Slot: 33
-      Acao: TOP
-      Material: BEACON
-      Nome: '&b&lRanking'
-      Lore:
-        - '&7Sua posicao: &f#{posicao}'
-        - ''
-        - '&eClique para abrir.'
+  # ====================================================================
+  #  As ilhas abertas
+  #
+  #  Modelos: com_gente, vazia
+  #  Trocas do item: {ilha} {dono} {descricao} {online} {nivel} {valor}
+  #                  {fase}
+  # ====================================================================
+  Visitas:
+    Titulo: '&8Ilhas abertas'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+    Modelos:
+      com_gente:
+        Nome: '&a{ilha}'
+        Lore:
+          - '&7Dono: &f{dono}'
+          - '&7{descricao}'
+          - ''
+          - '&7Fase: &b{fase}'
+          - '&7Nivel: &a{nivel}'
+          - '&7Valor: &a{valor}'
+          - '&7Gente online: &a{online}'
+          - ''
+          - '&eClique para visitar.'
+      vazia:
+        Nome: '&7{ilha}'
+        Lore:
+          - '&7Dono: &f{dono}'
+          - '&7{descricao}'
+          - ''
+          - '&7Fase: &b{fase}'
+          - '&7Nivel: &a{nivel}'
+          - '&7Valor: &a{valor}'
+          - '&7Gente online: &8ninguem'
+          - ''
+          - '&eClique para visitar.'
 
-    ir:
-      Slot: 38
-      Acao: IR
-      Material: GRASS_BLOCK
-      Nome: '&a&lIr para a ilha'
-      Lore:
-        - '&7Leva voce para casa.'
-        - ''
-        - '&eClique para viajar.'
-
-    visitar:
-      Slot: 40
-      Acao: VISITAS
-      Material: COMPASS
-      Nome: '&e&lVisitar'
-      Lore:
-        - '&7As ilhas abertas do servidor.'
-        - ''
-        - '&eClique para abrir.'
-
-    resetar:
-      Slot: 42
-      Acao: RESETAR
-      Material: TNT
-      Nome: '&4&lResetar a ilha'
-      Lore:
-        - '&cApaga tudo e comeca do zero.'
-        - '&cNao tem volta.'
-        - ''
-        - '&eClique para comecar.'
-
-    fechar:
-      Slot: 49
-      Acao: FECHAR
-      Material: BARRIER
-      Nome: '&c&lFechar'
-      Lore: []
-
-    # --------------------------------------------------------------------
-    #  Exemplo de botao SEU.
-    #
-    #  Esta desligado (Slot: -1). Ponha um slot livre e ele aparece.
-    #  Os comandos aceitam os mesmos prefixos das recompensas de fase:
-    #
-    #    jogador: loja          roda como o jogador
-    #    console: give {jogador} diamond 1
-    #    op: gamemode creative  roda como o jogador, com op emprestado
-    #    mensagem: &aOi!        so escreve no chat
-    #    som: ENTITY_PLAYER_LEVELUP
-    #    titulo: &aTitulo<nl>&7Subtitulo
-    #    link: seusite.com.br
-    #    espera: 20             segura as linhas seguintes por 20 tiques
-    # --------------------------------------------------------------------
-    loja-do-servidor:
-      Slot: -1
-      Material: EMERALD_BLOCK
-      Nome: '&a&lLoja do servidor'
-      Lore:
-        - '&7Abre a loja principal.'
-        - ''
-        - '&eClique para abrir.'
-      Brilho: false
-      Permissao: ''
-      Fechar: true
-      Comandos:
-        - 'jogador: loja'
-
-# Os titulos das telas. Deixe '' em qualquer um para usar o que esta no
-# mensagens.yml (e o que acontece com quem ja traduziu os menus por la).
-#
-# O titulo do menu principal aceita {ilha}.
-Titulos:
-  Principal: '&8{ilha}'
-  Fases: '&8Fases da ilha'
-  Membros: '&8Membros da ilha'
-  Melhorias: '&8Melhorias da ilha'
-  Banco: '&8Banco da ilha'
-  Loja: '&8Loja da ilha'
-  Bandeiras: '&8Regras da ilha'
-  Cargos: '&8Cargos da ilha'
-  Warps: '&8Warps da ilha'
-  Geradores: '&8Geradores'
-  Top: '&8Ranking das ilhas'
-  Visitas: '&8Ilhas abertas'
-  Banidos: '&8Barrados na ilha'
-  Confirmar: '&8Tem certeza?'
+  # ====================================================================
+  #  A tela de "tem certeza?"
+  #
+  #  Acoes: CONFIRMAR CANCELAR
+  #  Trocas: {pergunta} {jogador}
+  # ====================================================================
+  Confirmar:
+    Titulo: '&8Tem certeza?'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      cancelar:
+        Slot: 11
+        Acao: CANCELAR
+        Material: RED_STAINED_GLASS_PANE
+        Nome: '&c&lCancelar'
+        Lore:
+          - '&7Nada muda.'
+          - ''
+          - '&eClique para voltar.'
+      aviso:
+        Slot: 13
+        Acao: NENHUMA
+        Material: PAPER
+        Nome: '&e&lTem certeza?'
+        Lore:
+          - '&7{pergunta}'
+      confirmar:
+        Slot: 15
+        Acao: CONFIRMAR
+        Material: LIME_STAINED_GLASS_PANE
+        Nome: '&a&lConfirmar'
+        Lore:
+          - '&7{pergunta}'
+          - ''
+          - '&eClique para confirmar.'
