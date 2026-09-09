@@ -1,0 +1,328 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - as missoes
+#
+#  OBJETIVOS: escritos como  TIPO:ALVO:QUANTIDADE  (o alvo aceita QUALQUER).
+#  Uma missao pode ter varios; ela so fica pronta quando todos terminam.
+#
+#  Os 16 tipos:
+#    QUEBRAR    COLOCAR    COLHER     MATAR      PESCAR     FABRICAR
+#    FUNDIR     ENCANTAR   FERMENTAR  DOMAR      TOSQUIAR   VENDER
+#    ENTREGAR   GERAR      NIVEL      TEMPO
+#
+#  Nos tipos NIVEL e TEMPO o alvo nao existe: escreva  NIVEL:25.
+#
+#  FREQUENCIA:
+#    UNICA      termina e acabou (a trilha de conquistas)
+#    DIARIA     zera na virada do dia
+#    SEMANAL    zera na virada da semana
+#    INFINITA   termina, paga, SOBE DE NIVEL e recomeca maior
+#
+#  As diarias e semanais zeram pela data, e nao por tarefa agendada: servidor
+#  desligado na virada (ou fora do ar por dias) zera certo sozinho.
+#
+#  DE QUEM:
+#    ILHA       todo mundo empurra o mesmo numero, e o premio e da ilha
+#    JOGADOR    cada um tem o seu
+#
+#  Use os dois. Missao de ilha faz o time trabalhar junto; a de jogador
+#  impede que o veterano termine tudo antes de o novato chegar.
+#
+#  Tudo isto tambem pode ser editado por menu: /starskyblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# Avisar na barra de acao a cada avanco. Desligue num servidor muito cheio.
+Avisar a cada avanco: true
+
+# A ordem das abas no menu de missoes. Categoria que nao estiver aqui entra
+# no fim, na ordem em que aparecer.
+Ordem das categorias:
+  - comeco
+  - mineracao
+  - fazenda
+  - combate
+  - ilha
+
+Missoes:
+
+  # ====================================================================
+  #  Comeco -- a trilha do primeiro dia
+  # ====================================================================
+
+  primeira-arvore:
+    Categoria: comeco
+    Nome: '&aA primeira arvore'
+    Icone: OAK_SAPLING
+    Descricao:
+      - '&7Toda ilha comeca com uma arvore.'
+      - '&7Corte a sua e plante outra.'
+    Frequencia: UNICA
+    De quem: ILHA
+    Objetivos:
+      - 'QUEBRAR:OAK_LOG:10'
+      - 'COLOCAR:OAK_SAPLING:1'
+    Recompensa:
+      Dinheiro: 250
+      Experiencia da ilha: 10
+      Cristais: 1
+      Itens:
+        - 'OAK_SAPLING:2'
+      Mensagem:
+        - '&a&lMISSAO! &7Voce plantou a semente do seu futuro.'
+
+  primeiro-gerador:
+    Categoria: comeco
+    Nome: '&7O gerador'
+    Icone: COBBLESTONE
+    Descricao:
+      - '&7Agua e lava juntas viram pedra.'
+      - '&7E a mina da sua ilha.'
+    Frequencia: UNICA
+    De quem: ILHA
+    Objetivos:
+      - 'GERAR:QUALQUER:64'
+    Exige:
+      - primeira-arvore
+    Recompensa:
+      Dinheiro: 500
+      Experiencia da ilha: 15
+      Cristais: 2
+      Itens:
+        - 'STONE_PICKAXE:1:EFFICIENCY:1'
+
+  primeira-fazenda:
+    Categoria: comeco
+    Nome: '&6A primeira fazenda'
+    Icone: WHEAT
+    Descricao:
+      - '&7Plante, espere e colha.'
+      - '&7So conta o que esta no ponto.'
+    Frequencia: UNICA
+    De quem: ILHA
+    Objetivos:
+      - 'COLHER:WHEAT:32'
+    Recompensa:
+      Dinheiro: 400
+      Experiencia da ilha: 12
+      Cristais: 1
+      Itens:
+        - 'BREAD:16'
+
+  # ====================================================================
+  #  Mineracao
+  # ====================================================================
+
+  minerador:
+    Categoria: mineracao
+    Nome: '&7Minerador'
+    Icone: IRON_PICKAXE
+    Descricao:
+      - '&7Quebre pedra. Muita pedra.'
+      - ''
+      - '&e&lINFINITA &7- cada nivel pede mais e paga mais.'
+    Frequencia: INFINITA
+    De quem: JOGADOR
+    Objetivos:
+      - 'QUEBRAR:COBBLESTONE:500'
+    Infinita:
+      # Nivel 1 pede 500; nivel 2 pede 500 x 1.7; e assim por diante.
+      Fator da meta: 1.7
+      Acrescimo da meta: 0
+      # Zero e sem teto.
+      Nivel maximo: 0
+      Fator do premio: 1.6
+    Recompensa:
+      Dinheiro: 300
+      Experiencia da ilha: 8
+      Cristais: 1
+
+  cacador-de-ferro:
+    Categoria: mineracao
+    Nome: '&fCacador de ferro'
+    Icone: IRON_INGOT
+    Descricao:
+      - '&7Melhore o gerador e o ferro comeca a sair.'
+    Frequencia: INFINITA
+    De quem: ILHA
+    Objetivos:
+      - 'GERAR:IRON_ORE:64'
+      - 'FUNDIR:IRON_INGOT:64'
+    Infinita:
+      Fator da meta: 1.8
+      Nivel maximo: 0
+      Fator do premio: 1.7
+    Recompensa:
+      Banco da ilha: 1500
+      Experiencia da ilha: 25
+      Cristais: 3
+
+  diamante:
+    Categoria: mineracao
+    Nome: '&bDiamante'
+    Icone: DIAMOND
+    Descricao:
+      - '&7O gerador no nivel alto solta diamante.'
+      - '&7Chegue la.'
+    Frequencia: UNICA
+    De quem: ILHA
+    Objetivos:
+      - 'GERAR:DIAMOND_ORE:16'
+    Recompensa:
+      Banco da ilha: 5000
+      Experiencia da ilha: 60
+      Cristais: 10
+      Itens:
+        - 'DIAMOND:8'
+
+  # ====================================================================
+  #  Fazenda
+  # ====================================================================
+
+  colheita-diaria:
+    Categoria: fazenda
+    Nome: '&aColheita do dia'
+    Icone: WHEAT
+    Descricao:
+      - '&7Colha o que plantou.'
+      - ''
+      - '&b&lDIARIA &7- zera todo dia.'
+    Frequencia: DIARIA
+    De quem: JOGADOR
+    Objetivos:
+      - 'COLHER:QUALQUER:128'
+    Recompensa:
+      Dinheiro: 800
+      Experiencia da ilha: 15
+      Cristais: 2
+
+  criador:
+    Categoria: fazenda
+    Nome: '&eCriador de animais'
+    Icone: LEAD
+    Descricao:
+      - '&7Dome e tosquie os bichos da ilha.'
+    Frequencia: SEMANAL
+    De quem: ILHA
+    Objetivos:
+      - 'TOSQUIAR:SHEEP:32'
+      - 'DOMAR:QUALQUER:2'
+    Recompensa:
+      Banco da ilha: 2500
+      Experiencia da ilha: 30
+      Cristais: 4
+
+  cozinheiro:
+    Categoria: fazenda
+    Nome: '&6Cozinheiro'
+    Icone: FURNACE
+    Descricao:
+      - '&7Do forno sai comida, e da comida sai tempo.'
+    Frequencia: INFINITA
+    De quem: JOGADOR
+    Objetivos:
+      - 'FUNDIR:QUALQUER:128'
+    Infinita:
+      Fator da meta: 1.6
+      Fator do premio: 1.5
+    Recompensa:
+      Dinheiro: 350
+      Experiencia da ilha: 6
+
+  # ====================================================================
+  #  Combate
+  # ====================================================================
+
+  cacador:
+    Categoria: combate
+    Nome: '&cCacador'
+    Icone: DIAMOND_SWORD
+    Descricao:
+      - '&7Os mobs vem. Esteja pronto.'
+    Frequencia: INFINITA
+    De quem: JOGADOR
+    Objetivos:
+      - 'MATAR:QUALQUER:100'
+    Infinita:
+      Fator da meta: 1.7
+      Fator do premio: 1.6
+    Recompensa:
+      Dinheiro: 400
+      Experiencia da ilha: 10
+      Cristais: 1
+
+  caveira:
+    Categoria: combate
+    Nome: '&8Caveira'
+    Icone: SKELETON_SKULL
+    Descricao:
+      - '&7Esqueletos, zumbis e creepers.'
+      - ''
+      - '&b&lSEMANAL'
+    Frequencia: SEMANAL
+    De quem: ILHA
+    Objetivos:
+      - 'MATAR:ZOMBIE:150'
+      - 'MATAR:SKELETON:150'
+      - 'MATAR:CREEPER:50'
+    Recompensa:
+      Banco da ilha: 4000
+      Experiencia da ilha: 45
+      Cristais: 6
+
+  # ====================================================================
+  #  Ilha
+  # ====================================================================
+
+  crescendo:
+    Categoria: ilha
+    Nome: '&dA ilha cresce'
+    Icone: BEACON
+    Descricao:
+      - '&7Suba o nivel da sua ilha.'
+      - ''
+      - '&e&lINFINITA'
+    Frequencia: INFINITA
+    De quem: ILHA
+    Objetivos:
+      - 'NIVEL:25'
+    Infinita:
+      Fator da meta: 1.5
+      Fator do premio: 1.8
+    Recompensa:
+      Banco da ilha: 3000
+      Cristais: 5
+
+  comerciante:
+    Categoria: ilha
+    Nome: '&aComerciante'
+    Icone: EMERALD
+    Descricao:
+      - '&7Venda na loja da ilha.'
+      - '&7O dinheiro vai para o banco dela.'
+    Frequencia: DIARIA
+    De quem: ILHA
+    Objetivos:
+      - 'VENDER:QUALQUER:512'
+    Recompensa:
+      Banco da ilha: 1200
+      Experiencia da ilha: 12
+      Cristais: 2
+
+  construtor:
+    Categoria: ilha
+    Nome: '&fConstrutor'
+    Icone: BRICKS
+    Descricao:
+      - '&7Uma ilha e feita de blocos colocados.'
+    Frequencia: INFINITA
+    De quem: ILHA
+    Objetivos:
+      - 'COLOCAR:QUALQUER:1000'
+    Infinita:
+      Fator da meta: 1.6
+      Fator do premio: 1.5
+    Recompensa:
+      Banco da ilha: 1000
+      Experiencia da ilha: 20
+      Cristais: 2

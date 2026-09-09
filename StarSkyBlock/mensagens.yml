@@ -1,0 +1,302 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - todo texto que o plugin fala
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao para cada um.
+#
+#  Cores: use &a, &e, &c... e tambem &#RRGGBB nas versoes 1.16+.
+#  Em titulo, <nl> separa o titulo do subtitulo.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&e&lSKYBLOCK &8| &f'
+
+Erros:
+  Sem permissao: '&cVoce nao pode fazer isso.'
+  Sem permissao na ilha: '&cSo quem e &f{cargo} &cou mais pode: &f{acao}&c.'
+  Fora de ilha: '&cAqui e terra de ninguem. Va para dentro de uma ilha.'
+  Sem ilha: '&cVoce ainda nao tem uma ilha. Use &f/ilha criar&c.'
+  Sem ilha outro: '&f{jogador} &cnao tem ilha.'
+  Ja tem ilha: '&cVoce ja tem uma ilha.'
+  Ja tem ilha outro: '&f{jogador} &cja tem uma ilha.'
+  Nome invalido: '&cNome invalido. Use de 3 a 24 letras, numeros, espaco, - ou _.'
+  Sem espaco: '&cNao ha mais espaco para ilhas novas. Avise a administracao.'
+  Jogador offline: '&f{jogador} &cnao esta online.'
+  Jogador desconhecido: '&cNunca vi ninguem chamado &f{jogador}&c por aqui.'
+  Convidar a si mesmo: '&cVoce ja mora aqui.'
+  Ja e membro: '&f{jogador} &cja e da ilha.'
+  Ilha cheia: '&cA ilha ja esta com as &f{limite} &cvagas ocupadas.'
+  Escolha o convite: '&cVoce tem mais de um convite. Use &f/ilha entrar <dono>&c.'
+  Sem convite: '&cVoce nao tem convite dessa ilha.'
+  Dono nao sai: '&cO dono nao sai da propria ilha. Passe a ilha ou resete.'
+  Nao mexe no dono: '&cO dono da ilha nao pode ser mexido.'
+  Nao e membro: '&f{jogador} &cnao e da ilha.'
+  So o dono: '&cSo o dono da ilha pode fazer isso.'
+  Cargo alto demais: '&cVoce nao mexe em quem esta no seu nivel ou acima.'
+  Fora da propria ilha: '&cVoce precisa estar dentro da sua ilha.'
+  Limite de warps: '&cA ilha ja tem os &f{limite} &cwarps.'
+  Warp desconhecido: '&cNao existe um warp chamado &f{nome}&c.'
+  Warp privado: '&cEsse warp e so para os membros da ilha.'
+  Banido da ilha: '&cVoce esta barrado na ilha &f{ilha}&c.'
+  Ilha fechada: '&cA ilha &f{ilha} &cnao esta aceitando visita.'
+  Valor invalido: '&cEscreva um valor maior que zero.'
+  Sem dinheiro: '&cVoce nao tem &f{valor}&c.'
+  Banco cheio: '&cO banco da ilha ja esta no teto.'
+  Banco sem saldo: '&cO banco da ilha so tem &f{saldo}&c.'
+  Limite de funis: '&cO limite e de &f{limite} &cfunis por pedaco. Melhore a ilha.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+  Nao esta banido: '&f{jogador} &cnao esta barrado nesta ilha.'
+  Subcomando desconhecido: '&cNao conheco &f{sub}&c. Use &f/ilha ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+  So jogador: '&cEsse comando e para jogadores.'
+  Nao e numero: '&cIsso nao e um numero.'
+  Modelo desconhecido: '&cNao existe o modelo &f{modelo}&c.'
+  Modelo bloqueado: '&cO modelo &f{modelo} &cnao esta liberado para voce.'
+  Ja e esse modelo: '&cA sua ilha ja usa esse modelo.'
+  PvP desligado: '&cO PvP esta desligado nesta ilha.'
+
+Ilha:
+  Ainda nao tem: |
+    &7Voce ainda nao tem uma ilha.
+    &eUse &f/ilha criar &epara comecar a sua.
+  Criando: '&7Montando a sua ilha... isso leva alguns segundos.'
+  Criada: '&aPronto! A sua ilha &f{ilha} &anasceu. Boa sorte la em cima.'
+  Renomeada: '&aA ilha agora se chama &f{ilha}&a.'
+  Chegou: '&aVoce chegou na sua ilha.'
+  Visitando: '&aVoce chegou na ilha visitada.'
+  Resgatado do vazio: '&eVoce caiu no vazio e foi trazido de volta.'
+  Convidou: '&aConvite enviado para &f{jogador}&a.'
+  Convite recebido: |
+    &e{jogador} &7chamou voce para a ilha &f{ilha}&7.
+    &7Use &a/ilha entrar {dono} &7dentro de &f{segundos}s&7.
+  Entrou: '&aVoce agora faz parte da ilha &f{ilha}&a.'
+  Membro chegou: '&e{jogador} &7entrou na ilha.'
+  Saiu: '&7Voce saiu da ilha &f{ilha}&7.'
+  Membro saiu: '&e{jogador} &7saiu da ilha.'
+  Expulso: '&cVoce foi tirado da ilha &f{ilha}&c.'
+  Expulsou: '&aVoce tirou &f{jogador} &ada ilha.'
+  Baniu: '&aAgora &f{jogador} &anao entra mais na ilha.'
+  Desbaniu: '&a{jogador} &apode voltar a visitar a ilha.'
+  Transferiu: '&aA ilha agora e de &f{jogador}&a.'
+  Virou dono: '&aVoce agora e o dono da ilha &f{ilha}&a.'
+  Cargo mudou: '&7Seu cargo na ilha agora e &f{cargo}&7.'
+  Casa definida: '&aA casa da ilha ficou aqui.'
+  Descricao definida: '&aDescricao da ilha atualizada.'
+  Aberta: '&aA ilha esta aberta para visitas.'
+  Fechada: '&cA ilha esta fechada para visitas.'
+  Resetando: '&7Limpando a ilha... isso leva alguns segundos.'
+  Resetada: '&aA ilha voltou ao primeiro dia.'
+  Subiu de nivel: '&a&lNIVEL {nivel}! &7A sua ilha subiu de nivel.'
+  Visita chegou: '&e{jogador} &7chegou na sua ilha.'
+  Info: |
+    &8&m---------------------------------
+    &e&l{ilha} &8(&7de &f{dono}&8)
+    &7Ilha n&f{id} &8| &7Modelo: &f{modelo}
+    &7{descricao}
+    &fNivel: &a{nivel} &8({porcento}%)
+    {barra}
+    &7Faltam &f{falta} &7pontos para o proximo.
+    &fValor: &a{valor} &8| &fExperiencia: &d{experiencia}
+    &fBanco: &6{banco} &8| &fCristais: &b{cristais}
+    &fMissoes concluidas: &f{missoes}
+    &fMembros: &f{membros}/{membros_max} &8| &fTamanho: &f{tamanho}x{tamanho}
+    &fGerador: &f nivel {gerador} &8| &fBioma: &f{bioma}
+    &fRanking: &e#{posicao} &8| &fVisitas: &f{aberta}
+    &8&m---------------------------------
+  Calculando: '&7Recontando a sua ilha... isso leva alguns segundos.'
+  Ja calculando: '&cA sua ilha ja esta sendo recontada.'
+  Calculada: '&aPronto: &f{blocos} &abloco(s) contados. &7Pedacos pulados: &f{pulados}&7.'
+  Modelo trocado: '&aA sua ilha foi refeita com o modelo &f{modelo}&a.'
+  Anuncio de nivel: '&e&l{ilha} &7(de &f{dono}&7) chegou ao nivel &a{nivel}&7!'
+
+Missao:
+  Pronta: '&a&lMISSAO PRONTA! &f{missao} &7- pegue o premio no &f/ilha missoes&7.'
+  Avanco: '&e{missao} &8| &7{progresso}'
+  Ainda nao: '&cEssa missao ainda nao esta pronta.'
+  Nada para pegar: '&cVoce nao tem nenhuma missao pronta agora.'
+  Pegou tudo: '&aVoce pegou o premio de &f{quantidade} &amissao(oes).'
+
+Warp:
+  Criado: '&aWarp &f{nome} &acriado.'
+  Apagado: '&7Warp &f{nome} &7apagado.'
+  Chegou: '&aVoce chegou no warp.'
+
+Banco:
+  Saldo: '&7Banco da ilha: &6{saldo}'
+  Depositou: '&aVoce depositou &f{valor}&a. Banco: &6{saldo}'
+  Sacou: '&aVoce sacou &f{valor}&a. Banco: &6{saldo}'
+  Impulso ligado: '&d&lIMPULSO &f{impulso} &7ligado por &f{minutos} minutos&7!'
+
+Loja:
+  Vendeu: '&aVendeu &f{itens} &aitem(ns) por &6{valor}&a. Banco: &6{saldo}'
+  Nada para vender: '&cNao ha nada no seu inventario que a loja compre.'
+  Nao tem esse item: '&cVoce nao tem esse item.'
+
+Melhoria:
+  Comprada: '&aMelhoria &f{melhoria} &asubiu para o nivel &f{nivel}&a.'
+  No maximo: '&7A melhoria &f{melhoria} &7ja esta no maximo.'
+
+Chat:
+  Formato: '&b[Ilha] &7{cargo} &f{jogador}&7: &f{mensagem}'
+  Ligado: '&aTudo que voce escrever vai para o chat da ilha. Use &f/ilha chat &apara sair.'
+  Desligado: '&7Voce voltou para o chat normal.'
+
+Voo:
+  Ligado: '&aVoo ligado. Ele cai sozinho quando voce sair da ilha.'
+  Desligado: '&7Voo desligado.'
+  So na ilha: '&cVoce so voa dentro de uma ilha em que tenha esse direito.'
+  Desligado no servidor: '&cO voo esta desligado neste servidor.'
+
+Teleporte:
+  Contagem: '&7Nao se mexa por &f{segundos}s&7...'
+  Cancelado: '&cVoce se mexeu e a viagem foi cancelada.'
+
+Entrada:
+  Como cancelar: '&8Escreva &fcancelar &8para desistir.'
+  Cancelado: '&7Beleza, deixei como estava.'
+  Tempo esgotado: '&7Voce demorou demais e o pedido foi esquecido.'
+  Nick do convidado: '&eEscreva no chat o nick de quem voce quer convidar.'
+  Nome do warp: '&eEscreva no chat o nome do warp.'
+  Valor do deposito: '&eEscreva no chat quanto voce quer depositar.'
+  Novo numero: '&eEscreva no chat o numero novo.'
+  Novo texto: '&eEscreva no chat o texto novo.'
+  Nova linha: '&eEscreva no chat a linha.'
+
+Config:
+  Salvo: '&aSalvei &f{opcao} &acomo &f{valor}&a.'
+  Recarregado: '&aTodos os arquivos foram lidos de novo.'
+
+Admin:
+  Resumo: '&7Ilhas: &f{ilhas} &8| &7Modelos: &f{modelos} &8| &7Missoes: &f{missoes}'
+  Salvo: '&aSalvei &f{ilhas} &ailha(s).'
+  Resetando: '&7Resetando a ilha &f{ilha}&7...'
+  Apagando: '&7Apagando a ilha &f{ilha}&7...'
+  Apagada: '&aA ilha &f{ilha} &afoi apagada.'
+  Dono trocado: '&aA ilha &f{ilha} &aagora e de &f{jogador}&a.'
+  Cristais: '&aA ilha &f{ilha} &aagora tem &f{cristais} &acristais.'
+  Experiencia: '&aA ilha &f{ilha} &aagora tem &f{experiencia} &ade experiencia.'
+  Nivel trocado: '&aA ilha &f{ilha} &aagora esta no nivel &f{nivel}&a.'
+  Banco trocado: '&aBanco da ilha &f{ilha}&a: &6{saldo}'
+  Impulso dado: '&aImpulso x{multiplicador} por {minutos} min na ilha &f{ilha}&a.'
+  Info: |
+    &8&m---------------------------------
+    &e&l{ilha} &8(&7ilha n&f{id}&8)
+    &fDono: &f{dono} &8| &fCelula: &f{celula} &8| &7chave &f{chave}
+    &fModelo: &f{modelo}
+    &fNivel: &a{nivel} &8| &fValor: &a{valor}
+    &fExperiencia: &d{experiencia} &8| &fCristais: &b{cristais}
+    &fBanco: &6{banco} &8| &fMissoes: &f{missoes}
+    &fMembros: &f{membros}
+    &8&m---------------------------------
+
+Ajuda:
+  Ilha: |
+    &8&m---------------------------------
+    &e&lSUA ILHA
+    &f/ilha &8- &7abre o menu da ilha
+    &f/ilha criar [nome] &8- &7comeca a sua ilha
+    &f/ilha ir &8- &7leva voce para casa
+    &f/ilha info &8- &7o retrato da ilha
+    &f/ilha convidar <jogador> &8- &7chama alguem
+    &f/ilha entrar [dono] &8- &7aceita um convite
+    &f/ilha sair &8- &7deixa a ilha
+    &f/ilha expulsar|banir|desbanir <jogador>
+    &f/ilha dono <jogador> &8- &7passa a ilha
+    &f/ilha abrir|fechar &8- &7deixa (ou nao) visitarem
+    &f/ilha nome|descricao <texto>
+    &f/ilha definircasa &8- &7marca onde o /ilha ir chega
+    &f/ilha warp [nome|criar|apagar]
+    &f/ilha banco [depositar|sacar] [valor]
+    &f/ilha loja|melhorias|fases|geradores
+    &f/ilha visitar [jogador] &8- &7conhece outra ilha
+    &f/ilha top &8- &7o ranking das ilhas
+    &f/ilha chat &8- &7fala so com a sua ilha
+    &f/ilha voar &8- &7voa dentro da ilha
+    &f/ilha resetar &8- &7comeca tudo de novo
+    &8&m---------------------------------
+  Admin: |
+    &8&m---------------------------------
+    &c&lADMINISTRACAO DAS ILHAS
+    &f/ilhaadmin listar &8- &7numeros do servidor
+    &f/ilhaadmin ir <jogador>
+    &f/ilhaadmin info <jogador>
+    &f/ilhaadmin resetar <jogador>
+    &f/ilhaadmin apagar <jogador>
+    &f/ilhaadmin dono <jogador> <novo dono>
+    &f/ilhaadmin fase <jogador> <fase>
+    &f/ilhaadmin nivel <jogador> <numero>
+    &f/ilhaadmin banco <jogador> <dar|tirar|definir> <valor>
+    &f/ilhaadmin desbanir <jogador> <banido>
+    &8&m---------------------------------
+  Produto: |
+    &8&m---------------------------------
+    &e&lStarSkyBlock &7v{versao}
+    &7Ilhas: &f{ilhas} &8| &7Modelos: &f{modelos}
+    &f/starskyblock config &8- &7edita tudo por menu
+    &f/starskyblock recarregar &8- &7le os arquivos de novo
+    &f/starskyblock salvar &8- &7grava as ilhas agora
+    &7Desenvolvido por EuIsaac
+    &8&m---------------------------------
+
+# A ferramenta de salvar modelos de ilha (/ilhaadmin varinha).
+Modelo:
+  Varinha entregue: |
+    &aPronto, a varinha esta no seu inventario.
+    &7Clique &fesquerdo &7num canto e &fdireito &7no outro.
+    &7Depois fique de pe onde a ilha deve nascer e use &f/ilhaadmin salvarmodelo <nome>&7.
+  Primeiro canto: '&aPrimeiro canto em &f{x}, {y}, {z}&a. &7Selecao: &f{volume} &7blocos.'
+  Segundo canto: '&aSegundo canto em &f{x}, {y}, {z}&a. &7Selecao: &f{volume} &7blocos.'
+  Sem selecao: '&cMarque os dois cantos antes. Use &f/ilhaadmin varinha&c.'
+  Nome invalido: '&cUse so letras, numeros, - e _ no nome do modelo.'
+  Selecao grande demais: '&cA selecao tem &f{volume} &cblocos. O limite e 2.000.000.'
+  Salvo: |
+    &aModelo &f{nome} &asalvo!
+    &7Blocos: &f{blocos} &8| &7materiais diferentes: &f{paleta}
+    &7Agora aponte um modelo do &fmodelos.yml &7para o arquivo &f{nome}&7.
+  Falhou: '&cNao consegui salvar o modelo: &f{erro}'
+
+# Os titulos das telas. O menus.yml pode ganhar de qualquer um deles: o que
+# estiver escrito la vale; o que ficar vazio la cai aqui.
+Menus:
+  Principal: '&8{ilha}'
+  Missoes: '&8Missoes'
+  Modelos: '&8Tipos de ilha'
+  Membros: '&8Membros da ilha'
+  Melhorias: '&8Melhorias da ilha'
+  Banco: '&8Banco da ilha'
+  Loja: '&8Loja da ilha'
+  Bandeiras: '&8Regras da ilha'
+  Cargos: '&8Cargos da ilha'
+  Warps: '&8Warps da ilha'
+  Top: '&8Ranking das ilhas'
+  Visitas: '&8Ilhas abertas'
+  Banidos: '&8Barrados na ilha'
+  Confirmar: '&8Tem certeza?'
+  Configuracao: '&8Configuracao'
+  Editor: '&8Editor'
+
+  # As perguntas da tela de confirmar.
+  Confirmar reset: 'Isso apaga a sua ilha inteira e comeca do zero.'
+  Confirmar modelo: 'Isso refaz a sua ilha com o modelo {modelo}. Tudo que esta la se perde.'
+  Confirmar expulsar: 'Tirar {jogador} da ilha.'
+
+# O que os placeholders respondem quando o jogador ainda nao tem ilha.
+#
+# Sao dois de proposito: numa scoreboard, "Nivel: 0" fica certo e
+# "Nivel: Sem Info" fica torto. Deixe '' em qualquer um para a linha sair
+# em branco.
+Placeholder:
+  Sem ilha: '&cSem Info'
+  Sem ilha nos numeros: '0'
+
+# O texto que aparece como explicacao no menu de configuracao.
+# A chave e o caminho da opcao dentro do arquivo.
+Ajuda de config:
+  Mundo.Nome: 'O mundo das ilhas. Trocar isto depois de o servidor rodar deixa as ilhas antigas para tras.'
+  Mundo.Distancia entre ilhas: 'Precisa ser maior que o maior tamanho de ilha possivel.'
+  Mundo.Blocos por tique ao colar: 'Mais alto faz a ilha nascer mais rapido e pesa mais no servidor.'
+  Ilha.Membros iniciais: 'Conta o dono. A melhoria membros aumenta.'
+  Ilha.Kit inicial: 'O que o jogador ganha ao criar a ilha. Formato MATERIAL:QUANTIDADE.'
+  Banco.Juros por hora: 'Quanto o dinheiro guardado rende por hora, em porcento. Zero desliga.'
+  Holograma.Altura: 'Onde fica a linha de baixo do letreiro. Suba se o texto encostar no chao.'

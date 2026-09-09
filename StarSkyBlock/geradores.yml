@@ -1,0 +1,74 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - o gerador de cobblestone
+#
+#  Quando agua encontra lava na ilha, o que nasce ali sai desta tabela. O
+#  nivel vem da melhoria 'gerador' (ver melhorias.yml).
+#
+#  PESO, e nao porcentagem: 'COBBLESTONE:70' e 'IRON_ORE:30' da o mesmo
+#  resultado que 7 e 3. Assim voce acrescenta um minerio novo sem recalcular
+#  todos os outros para fechar em cem.
+#
+#  Nao precisa escrever todos os niveis: escrever so o 1, o 3 e o 5 funciona,
+#  e o nivel 4 usa a tabela do 3.
+#
+#  Bloco que nao existe na versao do servidor e avisado no console e pulado.
+#
+#  Tudo isto tambem pode ser editado por menu: /starskyblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Ativar: true
+
+# O gerador do mundo comum.
+Mundo:
+  '1':
+    - 'COBBLESTONE:100'
+  '2':
+    - 'COBBLESTONE:88'
+    - 'COAL_ORE:10'
+    - 'IRON_ORE:2'
+  '3':
+    - 'COBBLESTONE:75'
+    - 'COAL_ORE:14'
+    - 'IRON_ORE:8'
+    - 'GOLD_ORE:3'
+  '4':
+    - 'COBBLESTONE:60'
+    - 'COAL_ORE:15'
+    - 'IRON_ORE:13'
+    - 'GOLD_ORE:7'
+    - 'REDSTONE_ORE:4'
+    - 'LAPIS_ORE:1'
+  '5':
+    - 'COBBLESTONE:45'
+    - 'COAL_ORE:15'
+    - 'IRON_ORE:16'
+    - 'GOLD_ORE:10'
+    - 'REDSTONE_ORE:7'
+    - 'LAPIS_ORE:5'
+    - 'DIAMOND_ORE:2'
+  '6':
+    - 'COBBLESTONE:30'
+    - 'COAL_ORE:12'
+    - 'IRON_ORE:18'
+    - 'GOLD_ORE:14'
+    - 'REDSTONE_ORE:10'
+    - 'LAPIS_ORE:8'
+    - 'DIAMOND_ORE:6'
+    - 'EMERALD_ORE:2'
+
+# O gerador do nether. Vale so onde a lava encontra agua la -- na pratica,
+# o basalto e o que o servidor faz nascer.
+Nether:
+  '1':
+    - 'BASALT:100'
+  '3':
+    - 'BASALT:85'
+    - 'NETHER_QUARTZ_ORE:12'
+    - 'NETHER_GOLD_ORE:3'
+  '5':
+    - 'BASALT:60'
+    - 'NETHER_QUARTZ_ORE:22'
+    - 'NETHER_GOLD_ORE:14'
+    - 'ANCIENT_DEBRIS:1'

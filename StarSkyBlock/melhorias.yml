@@ -1,0 +1,189 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - as melhorias da ilha
+#
+#  Cada melhoria e uma escada: o nivel 0 e o 'Valor inicial' (o que a ilha ja
+#  tem de graca) e cada degrau tem um Custo (tirado do banco da ilha) e um
+#  Valor novo.
+#
+#  Os ids abaixo sao os que o plugin entende. Voce pode mudar nome, icone,
+#  precos, valores e quantos degraus quiser -- mas nao os ids.
+#
+#    tamanho       lado do quadrado protegido, em blocos
+#    membros       quantas pessoas cabem na ilha (contando o dono)
+#    gerador       o nivel do gerador de cobblestone (ver geradores.yml)
+#    mobs          teto de mobs vivos por pedaco da ilha
+#    funis         funis por pedaco
+#    multiplicador multiplica o que a loja da ilha paga
+#
+#  O 'gerador' e o unico cujo Valor nao e usado: o que muda com o nivel dele
+#  e a tabela de minerios do geradores.yml. Deixe o Valor igual ao nivel para
+#  a lore do menu fazer sentido.
+#
+#  Tudo isto tambem pode ser editado por menu: /starskyblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Melhorias:
+
+  tamanho:
+    Nome: 'Tamanho da ilha'
+    Icone: GRASS_BLOCK
+    Slot: -1
+    Descricao:
+      - '&7Aumenta o quadrado protegido'
+      - '&7da sua ilha.'
+    Valor inicial: 100
+    Niveis:
+      '1':
+        Custo: 25000
+        Valor: 125
+        Comandos: []
+      '2':
+        Custo: 90000
+        Valor: 150
+        Comandos: []
+      '3':
+        Custo: 250000
+        Valor: 175
+        Comandos: []
+      '4':
+        Custo: 600000
+        Valor: 200
+        Comandos: []
+      '5':
+        Custo: 1500000
+        Valor: 250
+        Comandos: []
+
+  membros:
+    Nome: 'Vagas de membro'
+    Icone: PLAYER_HEAD
+    Slot: -1
+    Descricao:
+      - '&7Quanta gente cabe na ilha,'
+      - '&7contando voce.'
+    Valor inicial: 4
+    Niveis:
+      '1':
+        Custo: 15000
+        Valor: 6
+        Comandos: []
+      '2':
+        Custo: 50000
+        Valor: 8
+        Comandos: []
+      '3':
+        Custo: 150000
+        Valor: 10
+        Comandos: []
+      '4':
+        Custo: 400000
+        Valor: 14
+        Comandos: []
+
+  gerador:
+    Nome: 'Gerador'
+    Icone: COBBLESTONE
+    Slot: -1
+    Descricao:
+      - '&7Melhora o que sai quando agua'
+      - '&7e lava se encontram na sua ilha.'
+      - ''
+      - '&7Ver geradores.yml para o que'
+      - '&7cada nivel solta.'
+    Valor inicial: 1
+    Niveis:
+      '1':
+        Custo: 20000
+        Valor: 2
+        Comandos: []
+      '2':
+        Custo: 60000
+        Valor: 3
+        Comandos: []
+      '3':
+        Custo: 180000
+        Valor: 4
+        Comandos: []
+      '4':
+        Custo: 500000
+        Valor: 5
+        Comandos: []
+      '5':
+        Custo: 1200000
+        Valor: 6
+        Comandos: []
+
+  mobs:
+    Nome: 'Limite de mobs'
+    Icone: ZOMBIE_SPAWN_EGG
+    Slot: -1
+    Descricao:
+      - '&7Quantos mobs podem estar vivos'
+      - '&7em cada pedaco da ilha.'
+    Valor inicial: 30
+    Niveis:
+      '1':
+        Custo: 20000
+        Valor: 45
+        Comandos: []
+      '2':
+        Custo: 70000
+        Valor: 60
+        Comandos: []
+      '3':
+        Custo: 200000
+        Valor: 90
+        Comandos: []
+
+  funis:
+    Nome: 'Limite de funis'
+    Icone: HOPPER
+    Slot: -1
+    Descricao:
+      - '&7Quantos funis cabem em cada'
+      - '&7pedaco da ilha.'
+      - ''
+      - '&7E o limite que segura a fabrica'
+      - '&7de funis, que derruba o tique.'
+    Valor inicial: 8
+    Niveis:
+      '1':
+        Custo: 30000
+        Valor: 16
+        Comandos: []
+      '2':
+        Custo: 120000
+        Valor: 32
+        Comandos: []
+      '3':
+        Custo: 400000
+        Valor: 64
+        Comandos: []
+
+  multiplicador:
+    Nome: 'Preco da loja'
+    Icone: EMERALD
+    Slot: -1
+    Descricao:
+      - '&7Multiplica tudo que a loja'
+      - '&7da ilha paga.'
+    Valor inicial: 1
+    Niveis:
+      '1':
+        Custo: 50000
+        Valor: 1.15
+        Comandos: []
+      '2':
+        Custo: 200000
+        Valor: 1.35
+        Comandos: []
+      '3':
+        Custo: 700000
+        Valor: 1.6
+        Comandos: []
+      '4':
+        Custo: 2000000
+        Valor: 2.0
+        Comandos: []

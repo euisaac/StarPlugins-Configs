@@ -1,0 +1,100 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - quanto vale cada bloco
+#
+#  O VALOR da ilha e a soma dos blocos que ela tem, cada um pelo numero
+#  abaixo. O NIVEL sai de (valor + experiencia) dividido pelos 'Pontos por
+#  nivel'.
+#
+#  A contagem e mantida a cada bloco colocado e quebrado -- perguntar o nivel
+#  de uma ilha nao varre nada. A varredura completa existe para a ilha que
+#  veio de outro plugin ou saiu de sincronia, e e sempre pedida:
+#
+#    /ilha calcular
+#
+#  Bloco sem valor escrito aqui vale o 'Valor padrao do bloco'. Deixe em zero
+#  para que so o que esta na lista conte -- e o que impede o jogador de subir
+#  de nivel empilhando terra.
+#
+#  Tudo isto tambem pode ser editado por menu: /starskyblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Valor padrao do bloco: 0
+
+# Quantos pontos valem um nivel.
+Pontos por nivel: 100
+
+# Quanto a experiencia das missoes pesa no nivel, em relacao ao valor dos
+# blocos. 1 quer dizer "um ponto de experiencia vale um ponto de bloco".
+Peso da experiencia: 1
+
+Valores:
+  # ---------------------------------------------------------------- basico
+  DIRT: 0.05
+  GRASS_BLOCK: 0.1
+  SAND: 0.1
+  GRAVEL: 0.1
+  COBBLESTONE: 0.1
+  STONE: 0.2
+  NETHERRACK: 0.05
+  END_STONE: 0.5
+
+  # ---------------------------------------------------------------- madeira
+  OAK_LOG: 0.5
+  BIRCH_LOG: 0.5
+  SPRUCE_LOG: 0.5
+  JUNGLE_LOG: 0.6
+  ACACIA_LOG: 0.6
+  DARK_OAK_LOG: 0.6
+  OAK_LEAVES: 0.05
+  BIRCH_LEAVES: 0.05
+  SPRUCE_LEAVES: 0.05
+
+  # ---------------------------------------------------------------- minerio
+  COAL_ORE: 2
+  IRON_ORE: 4
+  GOLD_ORE: 8
+  REDSTONE_ORE: 6
+  LAPIS_ORE: 8
+  DIAMOND_ORE: 25
+  EMERALD_ORE: 35
+  NETHER_QUARTZ_ORE: 4
+  NETHER_GOLD_ORE: 6
+  ANCIENT_DEBRIS: 120
+
+  # ------------------------------------------------------------ blocos ricos
+  COAL_BLOCK: 18
+  IRON_BLOCK: 40
+  GOLD_BLOCK: 80
+  REDSTONE_BLOCK: 55
+  LAPIS_BLOCK: 75
+  DIAMOND_BLOCK: 250
+  EMERALD_BLOCK: 350
+  NETHERITE_BLOCK: 1200
+
+  # -------------------------------------------------------------- fazenda
+  HAY_BLOCK: 3
+  PUMPKIN: 1
+  MELON: 1
+  SUGAR_CANE: 0.5
+  CACTUS: 0.5
+  BAMBOO: 0.2
+  MYCELIUM: 1
+
+  # -------------------------------------------------------------- decoracao
+  GLASS: 0.3
+  GLOWSTONE: 2
+  SEA_LANTERN: 5
+  PRISMARINE: 2
+  QUARTZ_BLOCK: 3
+  OBSIDIAN: 6
+  BEACON: 500
+  CONDUIT: 400
+
+  # -------------------------------------------------------------- especiais
+  SPAWNER: 300
+  ENCHANTING_TABLE: 25
+  ANVIL: 15
+  END_PORTAL_FRAME: 200
+  DRAGON_EGG: 2000

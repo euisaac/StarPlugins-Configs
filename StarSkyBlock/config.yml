@@ -1,0 +1,184 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - configuracao geral
+#
+#  Tudo aqui tambem pode ser editado por menu, dentro do jogo:
+#  /starskyblock config
+#
+#  Os outros arquivos: modelos.yml (tipos de ilha), missoes.yml,
+#  melhorias.yml, niveis.yml (valor de cada bloco), geradores.yml,
+#  loja.yml, menus.yml, mensagens.yml e comandos.yml.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Debug: false
+
+Mundo:
+  # Os tres mundos das ilhas. Eles nascem vazios de verdade -- nao precisa de
+  # plugin de mundo nenhum.
+  Nome: 'ilhas'
+  Nome do nether: 'ilhas_nether'
+  Nome do end: 'ilhas_end'
+
+  # Desligar uma dimensao faz o mundo dela nem ser criado. O modelo que tiver
+  # arquivo para ela simplesmente nao usa.
+  Ativar o nether: true
+  Ativar o end: true
+
+  # A altura em que o centro da ilha e colado.
+  Altura da ilha: 100
+
+  # Distancia entre uma ilha e outra, em blocos. E o teto do tamanho que uma
+  # ilha pode alcancar pelas melhorias -- deixe folga.
+  Distancia entre ilhas: 400
+
+  # Zero e sem limite.
+  Limite de ilhas: 0
+
+  # Lado do quadrado protegido de uma ilha nova, em blocos.
+  Tamanho inicial: 100
+
+  # Quantas camadas por tique ao limpar uma ilha (reset). Mais alto limpa mais
+  # rapido e pesa mais no servidor.
+  Camadas por tique ao limpar: 4
+
+  # Quantos blocos por tique ao colar um modelo. Mesma troca: mais alto faz a
+  # ilha nascer mais rapido e pesa mais.
+  Blocos por tique ao colar: 2000
+
+  Spawn natural de mobs: true
+  Fogo se propaga: false
+  Dificuldade: NORMAL
+
+Ilha:
+  Nome padrao: 'Ilha de {jogador}'
+  Nasce aberta: false
+
+  # Quantas pessoas cabem numa ilha nova (contando o dono). A melhoria de
+  # membros sobe daqui.
+  Membros iniciais: 4
+
+  Limite de warps: 9
+  Segundos do convite: 120
+  Espera do teleporte: 3
+  Confirmar reset: true
+  Voo liberado: true
+
+  # A partir de que nivel a ilha e anunciada no servidor. Zero desliga.
+  Nivel para anunciar: 10
+
+  # O que o jogador ganha ao criar a ilha.
+  #
+  # Vem daqui, e nao de um bau dentro do modelo: assim voce troca o kit sem
+  # refazer os modelos, e ele e o mesmo qualquer que seja a ilha escolhida.
+  #
+  # Formato: MATERIAL:QUANTIDADE[:ENCANTAMENTO:NIVEL...]
+  Kit inicial:
+    - 'ICE:2'
+    - 'LAVA_BUCKET:1'
+    - 'OAK_SAPLING:2'
+    - 'BONE_MEAL:8'
+    - 'MELON_SEEDS:1'
+    - 'PUMPKIN_SEEDS:1'
+    - 'SUGAR_CANE:1'
+    - 'BREAD:8'
+    - 'WOODEN_PICKAXE:1'
+    - 'WOODEN_AXE:1'
+
+# A barra que aparece no holograma, nos menus e nos placeholders de barra.
+#
+# Do jeito que vem: &8[&a██████&7████&8]
+#
+# Para a barra fina, troque os dois caracteres por | :
+#   Cheio: '|'
+#   Vazio: '|'
+Barra de progresso:
+  Prefixo: '&8['
+  Sufixo: '&8]'
+  Cheio: '█'
+  Vazio: '█'
+  Tamanho: 10
+  Cor cheia: '&a'
+  Cor vazia: '&7'
+
+Ranking:
+  # NIVEL, VALOR, BANCO ou MISSOES.
+  Criterio: NIVEL
+  Tamanho: 10
+
+Banco:
+  # Quanto o dinheiro guardado rende por hora, em porcento. Zero desliga.
+  Juros por hora: 0.5
+
+  # Teto do banco da ilha. Zero e sem teto.
+  Teto: 0
+
+Holograma:
+  Ativar: true
+
+  # Onde fica a linha DE BAIXO do letreiro, contando do centro da ilha. As
+  # outras empilham para cima a partir dela, entao ligar ou desligar uma linha
+  # nunca empurra o resto para dentro do chao.
+  Altura: 3.0
+
+  # Distancia entre uma linha e outra. So e usada para a conta da altura --
+  # quem desenha as linhas e o provedor de holograma.
+  Espaco entre linhas: 0.3
+
+  # A que distancia o letreiro nasce. Ele so existe enquanto tem gente perto:
+  # ilha vazia nao custa nada ao servidor.
+  Alcance: 48
+
+  Intervalo em segundos: 3
+
+  # true reescreve o texto a cada passada, mesmo sem nada ter mudado. Custa
+  # mais e so vale se voce puser algo que muda sozinho nas linhas.
+  Sempre atualizado: false
+
+  Linhas:
+    - '&e&l{ilha}'
+    - '&7de &f{dono}'
+    - '&fNivel: &a{nivel} &8| &fValor: &a{valor}'
+    - '{barra} &7{porcento}%'
+    - '&7Missoes: &f{missoes} &8| &7Ranking: &e#{posicao}'
+
+Compatibilidade:
+  # Alem dos placeholders proprios (%starskyblock_...%), responder tambem aos
+  # do formato %skyblock_...% -- os mesmos nomes que outros plugins de ilha
+  # usam, para quem esta trocando e nao quer reescrever a scoreboard.
+  Placeholders skyblock: true
+
+Sons:
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Nivel: 'UI_TOAST_CHALLENGE_COMPLETE;1;1'
+  Missao pronta: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.6'
+  Missao paga: 'ENTITY_PLAYER_LEVELUP;1;1.2'
+
+Economia:
+  # VAULT, STARECONOMIA, PLACEHOLDER ou COMANDO.
+  Tipo: VAULT
+  Simbolo: '$'
+  Moeda do StarEconomia: 'coins'
+
+  # So para o tipo PLACEHOLDER.
+  Placeholder de saldo: ''
+
+  # So para o tipo COMANDO. {jogador} e {valor} sao trocados.
+  Comando de retirar: ''
+  Comando de dar: ''
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite nao precisa de nada instalado.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starskyblock_'
+
+  Host: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # De quanto em quanto tempo as ilhas que mudaram vao para o banco.
+  Salvar a cada segundos: 300

@@ -1,0 +1,111 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - os tipos de ilha
+#
+#  Cada modelo aponta para um arquivo dentro da pasta 'modelos/'. Dois
+#  formatos sao aceitos:
+#
+#    .ilha       o formato do proprio plugin. Nao precisa de nada instalado
+#                e nao se importa com a versao em que foi salvo. Voce cria o
+#                seu dentro do jogo:
+#
+#                  /ilhaadmin salvarmodelo <nome>
+#
+#                (marque os dois cantos com a varinha antes -- veja o comando)
+#
+#    .schem      o do WorldEdit, lido quando o WorldEdit esta instalado.
+#                Serve para quem ja tem uma biblioteca de ilhas pronta.
+#                Aviso honesto: o conteudo dos baus NAO atravessa nesse
+#                formato. Se o seu modelo precisa de bau cheio, salve pelo
+#                formato proprio -- ele guarda os itens inteiros.
+#
+#  Escrever o nome sem extensao faz o plugin procurar nas duas.
+#
+#  Nether e end sao opcionais: deixe em branco e a ilha simplesmente nao
+#  tera aquela dimensao.
+#
+#  Tudo isto tambem pode ser editado por menu: /starskyblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Modelos:
+
+  planicie:
+    Nome: '&aPlanicie'
+    Icone: GRASS_BLOCK
+    Slot: 11
+    Descricao:
+      - '&7A ilha classica: um pedaco de terra,'
+      - '&7uma arvore e o que voce fizer dai.'
+      - ''
+      - '&7Boa para quem esta comecando.'
+    # Vazio libera para todo mundo.
+    Permissao: ''
+
+    Arquivo: 'planicie'
+    Arquivo do nether: 'planicie_nether'
+    Arquivo do end: 'planicie_end'
+
+    Bioma: PLAINS
+    Bioma do nether: NETHER_WASTES
+    Bioma do end: THE_END
+
+    # Onde o jogador nasce, contando a partir da origem do modelo.
+    Casa:
+      X: 0.5
+      Y: 1.0
+      Z: 0.5
+      Direcao: 0
+
+  cogumelo:
+    Nome: '&dCogumelo'
+    Icone: RED_MUSHROOM_BLOCK
+    Slot: 13
+    Descricao:
+      - '&7Uma ilha de micelio, com cogumelo'
+      - '&7gigante no lugar da arvore.'
+      - ''
+      - '&7Mais dificil: nao tem madeira de graca.'
+    Permissao: ''
+
+    Arquivo: 'cogumelo'
+    Arquivo do nether: 'cogumelo_nether'
+    Arquivo do end: 'cogumelo_end'
+
+    Bioma: MUSHROOM_FIELDS
+    Bioma do nether: NETHER_WASTES
+    Bioma do end: THE_END
+
+    Casa:
+      X: 0.5
+      Y: 1.0
+      Z: 0.5
+      Direcao: 0
+
+  # Exemplo de modelo so para quem tem uma permissao -- um modelo de vip, por
+  # exemplo. Ele aparece na lista para todos, mas so quem tem a permissao
+  # consegue escolher.
+  deserto:
+    Nome: '&eDeserto'
+    Icone: SAND
+    Slot: 15
+    Descricao:
+      - '&7Areia, cacto e nada mais.'
+      - ''
+      - '&7O comeco mais duro que existe.'
+      - '&6Exclusivo para VIP.'
+    Permissao: 'starskyblock.modelo.deserto'
+
+    Arquivo: 'deserto'
+    Arquivo do nether: ''
+    Arquivo do end: ''
+
+    Bioma: DESERT
+    Bioma do nether: ''
+    Bioma do end: ''
+
+    Casa:
+      X: 0.5
+      Y: 1.0
+      Z: 0.5
+      Direcao: 0
