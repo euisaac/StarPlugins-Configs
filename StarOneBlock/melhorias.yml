@@ -1,0 +1,221 @@
+# ------------------------------------------------------------------------
+#  StarOneBlock - as melhorias da ilha
+#
+#  Cada melhoria e uma escada: o nivel 0 e o 'Valor inicial' (o que a ilha ja
+#  tem de graca) e cada degrau tem um Custo (tirado do banco da ilha) e um
+#  Valor novo.
+#
+#  Os ids abaixo sao os que o plugin entende. Voce pode mudar nome, icone,
+#  precos, valores e quantos degraus quiser -- mas nao os ids.
+#
+#    tamanho       lado do quadrado protegido, em blocos
+#    velocidade    quantos por cento saem da espera dos geradores
+#    membros       quantas pessoas cabem na ilha (contando o dono)
+#    mobs          teto de mobs vivos na ilha
+#    funis         funis por pedaco
+#    multiplicador multiplica o que a loja da ilha paga
+#    sorte         soma pontos de chance de bau no nucleo
+#
+#  Tudo isto tambem pode ser editado por menu: /staroneblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Melhorias:
+
+  tamanho:
+    Nome: 'Tamanho da ilha'
+    Icone: GRASS_BLOCK
+    Slot: -1
+    Descricao:
+      - '&7Aumenta o quadrado protegido'
+      - '&7da sua ilha.'
+    Valor inicial: 60
+    Niveis:
+      '1':
+        Custo: 25000
+        Valor: 80
+        Comandos: []
+      '2':
+        Custo: 75000
+        Valor: 110
+        Comandos: []
+      '3':
+        Custo: 200000
+        Valor: 150
+        Comandos: []
+      '4':
+        Custo: 500000
+        Valor: 200
+        Comandos: []
+      '5':
+        Custo: 1200000
+        Valor: 280
+        Comandos: []
+
+  velocidade:
+    Nome: 'Velocidade dos geradores'
+    Icone: REDSTONE
+    Slot: -1
+    Descricao:
+      - '&7Diminui a espera de todos os'
+      - '&7geradores colocados na ilha.'
+      - '&7Agora: &f{valor}% mais rapido'
+    Valor inicial: 0
+    Niveis:
+      '1':
+        Custo: 15000
+        Valor: 10
+        Comandos: []
+      '2':
+        Custo: 40000
+        Valor: 20
+        Comandos: []
+      '3':
+        Custo: 100000
+        Valor: 35
+        Comandos: []
+      '4':
+        Custo: 260000
+        Valor: 50
+        Comandos: []
+      '5':
+        Custo: 700000
+        Valor: 70
+        Comandos: []
+
+  membros:
+    Nome: 'Vagas de membro'
+    Icone: PLAYER_HEAD
+    Slot: -1
+    Descricao:
+      - '&7Quantas pessoas cabem na ilha,'
+      - '&7contando voce.'
+    Valor inicial: 3
+    Niveis:
+      '1':
+        Custo: 20000
+        Valor: 5
+        Comandos: []
+      '2':
+        Custo: 60000
+        Valor: 8
+        Comandos: []
+      '3':
+        Custo: 180000
+        Valor: 12
+        Comandos: []
+      '4':
+        Custo: 500000
+        Valor: 16
+        Comandos: []
+
+  mobs:
+    Nome: 'Limite de mobs'
+    Icone: ZOMBIE_HEAD
+    Slot: -1
+    Descricao:
+      - '&7Quantos mobs conseguem estar'
+      - '&7vivos na ilha ao mesmo tempo.'
+    Valor inicial: 30
+    Niveis:
+      '1':
+        Custo: 12000
+        Valor: 45
+        Comandos: []
+      '2':
+        Custo: 35000
+        Valor: 65
+        Comandos: []
+      '3':
+        Custo: 90000
+        Valor: 90
+        Comandos: []
+      '4':
+        Custo: 250000
+        Valor: 130
+        Comandos: []
+
+  funis:
+    Nome: 'Limite de funis'
+    Icone: HOPPER
+    Slot: -1
+    Descricao:
+      - '&7Funis por pedaco. Existe para'
+      - '&7o servidor aguentar o tranco.'
+    Valor inicial: 8
+    Niveis:
+      '1':
+        Custo: 18000
+        Valor: 16
+        Comandos: []
+      '2':
+        Custo: 50000
+        Valor: 24
+        Comandos: []
+      '3':
+        Custo: 140000
+        Valor: 32
+        Comandos: []
+      '4':
+        Custo: 400000
+        Valor: 48
+        Comandos: []
+
+  multiplicador:
+    Nome: 'Preco da loja'
+    Icone: EMERALD
+    Slot: -1
+    Descricao:
+      - '&7Multiplica tudo que a loja'
+      - '&7da ilha paga.'
+      - '&7Agora: &fx{valor}'
+    Valor inicial: 1.0
+    Niveis:
+      '1':
+        Custo: 30000
+        Valor: 1.15
+        Comandos: []
+      '2':
+        Custo: 90000
+        Valor: 1.3
+        Comandos: []
+      '3':
+        Custo: 250000
+        Valor: 1.5
+        Comandos: []
+      '4':
+        Custo: 700000
+        Valor: 1.8
+        Comandos: []
+      '5':
+        Custo: 2000000
+        Valor: 2.2
+        Comandos: []
+
+  sorte:
+    Nome: 'Sorte do nucleo'
+    Icone: NETHER_STAR
+    Slot: -1
+    Descricao:
+      - '&7Soma chance de o nucleo virar'
+      - '&7um bau da fase.'
+      - '&7Agora: &f+{valor} pontos'
+    Valor inicial: 0
+    Niveis:
+      '1':
+        Custo: 40000
+        Valor: 1
+        Comandos: []
+      '2':
+        Custo: 120000
+        Valor: 2.5
+        Comandos: []
+      '3':
+        Custo: 350000
+        Valor: 4
+        Comandos: []
+      '4':
+        Custo: 1000000
+        Valor: 6
+        Comandos: []

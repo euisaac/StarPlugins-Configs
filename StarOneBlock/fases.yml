@@ -1,0 +1,636 @@
+# ------------------------------------------------------------------------
+#  StarOneBlock - as fases da ilha
+#
+#  A ordem e a deste arquivo, de cima para baixo. 'Proxima' so precisa ser
+#  preenchida quando voce quiser fugir dessa ordem (um atalho, um ciclo,
+#  uma fase secreta).
+#
+#  Blocos e mobs usam PESO, nao porcentagem: 'STONE:70' e 'COAL_ORE:30' da o
+#  mesmo resultado que 'STONE:7' e 'COAL_ORE:3'. Assim voce acrescenta um
+#  bloco novo sem recalcular todos os outros.
+#
+#  Itens do bau: MATERIAL:QUANTIDADE:PESO[:ENCANTAMENTO:NIVEL...]
+#  A quantidade aceita faixa: '3-8'.
+#
+#  Bloco, mob ou bioma que nao existe na versao do seu servidor e avisado no
+#  console e pulado -- a fase continua funcionando com o resto.
+#
+#  Tudo isto tambem pode ser editado por menu: /staroneblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Fases:
+
+  planicie:
+    Nome: '&aPlanicie'
+    Icone: GRASS_BLOCK
+    Bioma: PLAINS
+    Blocos necessarios: 250
+    Descricao:
+      - '&7Onde tudo comeca: terra, grama'
+      - '&7e a primeira madeira da sua vida.'
+    Blocos:
+      - 'GRASS_BLOCK:30'
+      - 'DIRT:25'
+      - 'OAK_LOG:12'
+      - 'OAK_LEAVES:8'
+      - 'STONE:10'
+      - 'COAL_ORE:5'
+      - 'SAND:5'
+      - 'GRAVEL:4'
+      - 'IRON_ORE:1'
+    Bau:
+      Chance: 2.0
+      Itens por bau: 3
+      Itens:
+        - 'OAK_SAPLING:1-3:25'
+        - 'WHEAT_SEEDS:2-6:25'
+        - 'APPLE:1-3:15'
+        - 'BREAD:2-5:15'
+        - 'WOODEN_PICKAXE:1:10'
+        - 'IRON_INGOT:1-2:8'
+        - 'STONE_PICKAXE:1:2:EFFICIENCY:1'
+    Mobs:
+      Chance: 3.0
+      A cada X blocos: 80
+      Lista:
+        - 'COW:30'
+        - 'SHEEP:30'
+        - 'PIG:25'
+        - 'CHICKEN:15'
+    Visual:
+      Particula: VILLAGER_HAPPY
+      Quantidade: 5
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&a&lPLANICIE<nl>&7A sua ilha comecou'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aFase &fPlanicie&a! Quebre o bloco e veja no que ele vira.'
+      Anuncio: ''
+      Recompensas: []
+
+  floresta:
+    Nome: '&2Floresta'
+    Icone: OAK_SAPLING
+    Bioma: FOREST
+    Blocos necessarios: 500
+    Descricao:
+      - '&7Madeira de sobra e os primeiros'
+      - '&7bichos que mordem de volta.'
+    Blocos:
+      - 'OAK_LOG:20'
+      - 'BIRCH_LOG:12'
+      - 'OAK_LEAVES:15'
+      - 'DIRT:15'
+      - 'GRASS_BLOCK:10'
+      - 'STONE:12'
+      - 'COAL_ORE:8'
+      - 'IRON_ORE:5'
+      - 'MOSSY_COBBLESTONE:3'
+    Bau:
+      Chance: 2.5
+      Itens por bau: 3
+      Itens:
+        - 'OAK_SAPLING:2-5:20'
+        - 'BIRCH_SAPLING:2-5:15'
+        - 'STICK:4-12:15'
+        - 'IRON_INGOT:1-3:15'
+        - 'STONE_AXE:1:10'
+        - 'BOW:1:8:POWER:1'
+        - 'ARROW:8-16:12'
+        - 'GOLDEN_APPLE:1:5'
+    Mobs:
+      Chance: 5.0
+      A cada X blocos: 60
+      Lista:
+        - 'ZOMBIE:30'
+        - 'SKELETON:25'
+        - 'SPIDER:20'
+        - 'WOLF:15'
+        - 'COW:10'
+    Visual:
+      Particula: COMPOSTER
+      Quantidade: 6
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&2&lFLORESTA<nl>&7A ilha cresceu'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou uma &2Floresta&a.'
+      Anuncio: ''
+      Recompensas: []
+
+  deserto:
+    Nome: '&eDeserto'
+    Icone: SAND
+    Bioma: DESERT
+    Blocos necessarios: 800
+    Descricao:
+      - '&7Areia, cacto e o primeiro ouro'
+      - '&7de verdade.'
+    Blocos:
+      - 'SAND:30'
+      - 'SANDSTONE:20'
+      - 'TERRACOTTA:10'
+      - 'CACTUS:6'
+      - 'DEAD_BUSH:4'
+      - 'STONE:12'
+      - 'COAL_ORE:6'
+      - 'IRON_ORE:7'
+      - 'GOLD_ORE:4'
+    Bau:
+      Chance: 3.0
+      Itens por bau: 4
+      Itens:
+        - 'GOLD_INGOT:1-3:20'
+        - 'IRON_INGOT:2-4:20'
+        - 'BONE:2-6:15'
+        - 'STRING:2-6:15'
+        - 'IRON_PICKAXE:1:10:EFFICIENCY:2'
+        - 'GOLDEN_APPLE:1:8'
+        - 'DIAMOND:1:5'
+        - 'ENCHANTED_GOLDEN_APPLE:1:1'
+    Mobs:
+      Chance: 6.0
+      A cada X blocos: 50
+      Lista:
+        - 'HUSK:30'
+        - 'ZOMBIE:25'
+        - 'SKELETON:25'
+        - 'SPIDER:20'
+    Visual:
+      Particula: FALLING_DUST
+      Quantidade: 6
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&e&lDESERTO<nl>&7Cuidado com o cacto'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou um &eDeserto&a.'
+      Anuncio: ''
+      Recompensas: []
+
+  oceano:
+    Nome: '&bOceano'
+    Icone: PRISMARINE
+    Bioma: OCEAN
+    Blocos necessarios: 1200
+    Descricao:
+      - '&7Prismarinho, coral e tudo que'
+      - '&7o fundo do mar guarda.'
+    Blocos:
+      - 'SAND:20'
+      - 'GRAVEL:15'
+      - 'PRISMARINE:15'
+      - 'PRISMARINE_BRICKS:8'
+      - 'DARK_PRISMARINE:6'
+      - 'SEA_LANTERN:2'
+      - 'CLAY:10'
+      - 'STONE:12'
+      - 'IRON_ORE:6'
+      - 'GOLD_ORE:4'
+      - 'LAPIS_ORE:2'
+    Bau:
+      Chance: 3.0
+      Itens por bau: 4
+      Itens:
+        - 'PRISMARINE_SHARD:2-6:20'
+        - 'PRISMARINE_CRYSTALS:2-5:15'
+        - 'COD:2-6:15'
+        - 'LAPIS_LAZULI:3-8:15'
+        - 'HEART_OF_THE_SEA:1:3'
+        - 'DIAMOND:1-2:8'
+        - 'TRIDENT:1:2'
+        - 'FISHING_ROD:1:10:LURE:2'
+    Mobs:
+      Chance: 6.0
+      A cada X blocos: 45
+      Lista:
+        - 'DROWNED:40'
+        - 'GUARDIAN:20'
+        - 'SQUID:25'
+        - 'COD:15'
+    Visual:
+      Particula: WATER_SPLASH
+      Quantidade: 8
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&b&lOCEANO<nl>&7O fundo do mar chegou'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou um &bOceano&a.'
+      Anuncio: ''
+      Recompensas: []
+
+  caverna:
+    Nome: '&8Caverna'
+    Icone: STONE
+    Bioma: WINDSWEPT_HILLS
+    Blocos necessarios: 1800
+    Descricao:
+      - '&7Onde os minerios finalmente'
+      - '&7aparecem em quantidade.'
+    Blocos:
+      - 'STONE:30'
+      - 'COBBLESTONE:15'
+      - 'ANDESITE:8'
+      - 'DIORITE:8'
+      - 'GRANITE:8'
+      - 'COAL_ORE:12'
+      - 'IRON_ORE:10'
+      - 'GOLD_ORE:6'
+      - 'REDSTONE_ORE:6'
+      - 'LAPIS_ORE:4'
+      - 'DIAMOND_ORE:2'
+    Bau:
+      Chance: 3.5
+      Itens por bau: 4
+      Itens:
+        - 'IRON_INGOT:3-8:20'
+        - 'GOLD_INGOT:2-6:18'
+        - 'REDSTONE:4-12:15'
+        - 'DIAMOND:1-3:12'
+        - 'TORCH:8-16:15'
+        - 'IRON_PICKAXE:1:8:EFFICIENCY:3:UNBREAKING:2'
+        - 'DIAMOND_PICKAXE:1:3:EFFICIENCY:2'
+        - 'EXPERIENCE_BOTTLE:2-6:9'
+    Mobs:
+      Chance: 7.0
+      A cada X blocos: 40
+      Lista:
+        - 'ZOMBIE:25'
+        - 'SKELETON:25'
+        - 'SPIDER:20'
+        - 'CREEPER:15'
+        - 'CAVE_SPIDER:10'
+        - 'SILVERFISH:5'
+    Visual:
+      Particula: SMOKE_NORMAL
+      Quantidade: 4
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&8&lCAVERNA<nl>&7Traga tocha'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou uma &8Caverna&a.'
+      Anuncio: ''
+      Recompensas: []
+
+  neve:
+    Nome: '&fNeve'
+    Icone: SNOW_BLOCK
+    Bioma: SNOWY_TAIGA
+    Blocos necessarios: 2500
+    Descricao:
+      - '&7Frio, gelo e madeira de abeto.'
+    Blocos:
+      - 'SNOW_BLOCK:25'
+      - 'ICE:15'
+      - 'PACKED_ICE:8'
+      - 'SPRUCE_LOG:12'
+      - 'SPRUCE_LEAVES:8'
+      - 'STONE:12'
+      - 'COAL_ORE:8'
+      - 'IRON_ORE:8'
+      - 'EMERALD_ORE:2'
+      - 'DIAMOND_ORE:2'
+    Bau:
+      Chance: 3.5
+      Itens por bau: 4
+      Itens:
+        - 'SNOWBALL:8-16:20'
+        - 'SPRUCE_SAPLING:2-5:15'
+        - 'EMERALD:1-3:15'
+        - 'DIAMOND:1-3:12'
+        - 'BLUE_ICE:2-5:10'
+        - 'DIAMOND_SWORD:1:5:SHARPNESS:2'
+        - 'GOLDEN_CARROT:3-8:13'
+        - 'ENCHANTED_BOOK:1:10:FROST_WALKER:2'
+    Mobs:
+      Chance: 7.0
+      A cada X blocos: 40
+      Lista:
+        - 'STRAY:35'
+        - 'ZOMBIE:20'
+        - 'SKELETON:20'
+        - 'POLAR_BEAR:15'
+        - 'WOLF:10'
+    Visual:
+      Particula: SNOW_SHOVEL
+      Quantidade: 8
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&f&lNEVE<nl>&7Esfriou'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou um campo de &fNeve&a.'
+      Anuncio: ''
+      Recompensas: []
+
+  selva:
+    Nome: '&aSelva'
+    Icone: JUNGLE_LOG
+    Bioma: JUNGLE
+    Blocos necessarios: 3200
+    Descricao:
+      - '&7Verde por todo lado, e um'
+      - '&7esmeralda escondida aqui e ali.'
+    Blocos:
+      - 'JUNGLE_LOG:20'
+      - 'JUNGLE_LEAVES:15'
+      - 'MOSSY_COBBLESTONE:10'
+      - 'VINE:8'
+      - 'BAMBOO:6'
+      - 'MELON:5'
+      - 'COCOA_BEANS:3'
+      - 'STONE:12'
+      - 'IRON_ORE:8'
+      - 'GOLD_ORE:6'
+      - 'EMERALD_ORE:4'
+      - 'DIAMOND_ORE:3'
+    Bau:
+      Chance: 4.0
+      Itens por bau: 4
+      Itens:
+        - 'EMERALD:2-5:20'
+        - 'DIAMOND:1-3:15'
+        - 'JUNGLE_SAPLING:2-5:12'
+        - 'MELON_SLICE:4-10:12'
+        - 'GOLDEN_APPLE:1-2:10'
+        - 'DIAMOND_AXE:1:8:EFFICIENCY:3'
+        - 'ENCHANTED_BOOK:1:13:FORTUNE:2'
+        - 'EXPERIENCE_BOTTLE:4-10:10'
+    Mobs:
+      Chance: 7.0
+      A cada X blocos: 35
+      Lista:
+        - 'OCELOT:20'
+        - 'PARROT:15'
+        - 'ZOMBIE:20'
+        - 'SKELETON:20'
+        - 'CREEPER:15'
+        - 'WITCH:10'
+    Visual:
+      Particula: VILLAGER_HAPPY
+      Quantidade: 6
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&a&lSELVA<nl>&7Verde de todos os lados'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou uma &aSelva&a.'
+      Anuncio: ''
+      Recompensas: []
+
+  pantano:
+    Nome: '&2Pantano'
+    Icone: SLIME_BLOCK
+    Bioma: SWAMP
+    Blocos necessarios: 4000
+    Descricao:
+      - '&7Lama, slime e o que mora nela.'
+    Blocos:
+      - 'CLAY:18'
+      - 'DIRT:15'
+      - 'OAK_LOG:12'
+      - 'LILY_PAD:6'
+      - 'MOSSY_COBBLESTONE:10'
+      - 'SLIME_BLOCK:4'
+      - 'STONE:12'
+      - 'IRON_ORE:8'
+      - 'REDSTONE_ORE:8'
+      - 'EMERALD_ORE:4'
+      - 'DIAMOND_ORE:3'
+    Bau:
+      Chance: 4.0
+      Itens por bau: 4
+      Itens:
+        - 'SLIME_BALL:3-8:20'
+        - 'REDSTONE:6-16:18'
+        - 'EMERALD:2-5:15'
+        - 'DIAMOND:1-3:13'
+        - 'SPIDER_EYE:2-6:12'
+        - 'BREWING_STAND:1:8'
+        - 'ENCHANTED_BOOK:1:9:DEPTH_STRIDER:2'
+        - 'DIAMOND_BOOTS:1:5:PROTECTION:2'
+    Mobs:
+      Chance: 8.0
+      A cada X blocos: 35
+      Lista:
+        - 'SLIME:30'
+        - 'WITCH:20'
+        - 'ZOMBIE:20'
+        - 'SKELETON:15'
+        - 'CREEPER:15'
+    Visual:
+      Particula: SLIME
+      Quantidade: 6
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&2&lPANTANO<nl>&7Cuidado com o slime'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou um &2Pantano&a.'
+      Anuncio: ''
+      Recompensas: []
+
+  nether:
+    Nome: '&cNether'
+    Icone: NETHERRACK
+    Bioma: NETHER_WASTES
+    Blocos necessarios: 5000
+    Descricao:
+      - '&7O outro lado. Quartzo, ouro'
+      - '&7e coisas que pegam fogo.'
+    Blocos:
+      - 'NETHERRACK:30'
+      - 'SOUL_SAND:12'
+      - 'NETHER_BRICKS:10'
+      - 'GLOWSTONE:6'
+      - 'MAGMA_BLOCK:5'
+      - 'NETHER_QUARTZ_ORE:12'
+      - 'NETHER_GOLD_ORE:8'
+      - 'BASALT:6'
+      - 'BLACKSTONE:6'
+      - 'CRYING_OBSIDIAN:2'
+      - 'ANCIENT_DEBRIS:1'
+    Bau:
+      Chance: 4.5
+      Itens por bau: 4
+      Itens:
+        - 'QUARTZ:4-12:20'
+        - 'GOLD_INGOT:3-8:18'
+        - 'BLAZE_ROD:1-3:12'
+        - 'GHAST_TEAR:1-2:8'
+        - 'NETHERITE_SCRAP:1:4'
+        - 'OBSIDIAN:2-6:12'
+        - 'DIAMOND:2-4:12'
+        - 'ENCHANTED_BOOK:1:9:FIRE_PROTECTION:3'
+        - 'POTION:1:5'
+    Mobs:
+      Chance: 8.0
+      A cada X blocos: 30
+      Lista:
+        - 'ZOMBIFIED_PIGLIN:25'
+        - 'BLAZE:20'
+        - 'MAGMA_CUBE:20'
+        - 'GHAST:10'
+        - 'PIGLIN:15'
+        - 'HOGLIN:10'
+    Visual:
+      Particula: FLAME
+      Quantidade: 8
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&c&lNETHER<nl>&7Esquentou de vez'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou o &cNether&a.'
+      Anuncio: '&e{ilha} &7chegou no &cNether&7!'
+      Recompensas: []
+
+  fortaleza:
+    Nome: '&4Fortaleza'
+    Icone: NETHER_BRICKS
+    Bioma: SOUL_SAND_VALLEY
+    Blocos necessarios: 6500
+    Descricao:
+      - '&7Tijolo do nether ate onde a'
+      - '&7vista alcanca, e wither esqueleto.'
+    Blocos:
+      - 'NETHER_BRICKS:30'
+      - 'RED_NETHER_BRICKS:10'
+      - 'NETHERRACK:15'
+      - 'SOUL_SOIL:10'
+      - 'NETHER_WART_BLOCK:6'
+      - 'NETHER_QUARTZ_ORE:10'
+      - 'NETHER_GOLD_ORE:8'
+      - 'GILDED_BLACKSTONE:4'
+      - 'ANCIENT_DEBRIS:2'
+    Bau:
+      Chance: 5.0
+      Itens por bau: 5
+      Itens:
+        - 'NETHER_WART:3-8:18'
+        - 'BLAZE_ROD:2-4:15'
+        - 'NETHERITE_SCRAP:1-2:8'
+        - 'GOLD_BLOCK:1-3:12'
+        - 'DIAMOND:2-5:15'
+        - 'ENCHANTED_BOOK:1:10:UNBREAKING:3'
+        - 'DIAMOND_CHESTPLATE:1:7:PROTECTION:3'
+        - 'EXPERIENCE_BOTTLE:6-16:15'
+    Mobs:
+      Chance: 9.0
+      A cada X blocos: 25
+      Lista:
+        - 'WITHER_SKELETON:30'
+        - 'BLAZE:25'
+        - 'ZOMBIFIED_PIGLIN:20'
+        - 'MAGMA_CUBE:15'
+        - 'PIGLIN_BRUTE:10'
+    Visual:
+      Particula: SOUL_FIRE_FLAME
+      Quantidade: 8
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&4&lFORTALEZA<nl>&7Traga armadura'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha virou uma &4Fortaleza&a.'
+      Anuncio: ''
+      Recompensas: []
+
+  cidade antiga:
+    Nome: '&3Cidade Antiga'
+    Icone: SCULK_CATALYST
+    Bioma: DEEP_DARK
+    Blocos necessarios: 8000
+    Descricao:
+      - '&7Silencio, sculk e o melhor'
+      - '&7bau do jogo inteiro.'
+    Blocos:
+      - 'DEEPSLATE:25'
+      - 'COBBLED_DEEPSLATE:15'
+      - 'DEEPSLATE_BRICKS:12'
+      - 'SCULK:10'
+      - 'SCULK_CATALYST:2'
+      - 'DEEPSLATE_DIAMOND_ORE:6'
+      - 'DEEPSLATE_EMERALD_ORE:4'
+      - 'DEEPSLATE_GOLD_ORE:6'
+      - 'DEEPSLATE_REDSTONE_ORE:8'
+      - 'ANCIENT_DEBRIS:2'
+      - 'AMETHYST_BLOCK:4'
+    Bau:
+      Chance: 6.0
+      Itens por bau: 5
+      Itens:
+        - 'DIAMOND:3-8:18'
+        - 'ECHO_SHARD:1-3:10'
+        - 'AMETHYST_SHARD:3-8:14'
+        - 'NETHERITE_SCRAP:1-3:8'
+        - 'NETHERITE_INGOT:1:3'
+        - 'ENCHANTED_BOOK:1:12:MENDING:1'
+        - 'ENCHANTED_BOOK:1:10:FORTUNE:3'
+        - 'DIAMOND_PICKAXE:1:10:EFFICIENCY:5:UNBREAKING:3'
+        - 'EXPERIENCE_BOTTLE:10-24:15'
+    Mobs:
+      Chance: 9.0
+      A cada X blocos: 25
+      Lista:
+        - 'WARDEN:2'
+        - 'SKELETON:30'
+        - 'ZOMBIE:25'
+        - 'CREEPER:20'
+        - 'WITHER_SKELETON:23'
+    Visual:
+      Particula: SCULK_SOUL
+      Quantidade: 6
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&3&lCIDADE ANTIGA<nl>&7Pise devagar'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha chegou na &3Cidade Antiga&a.'
+      Anuncio: '&e{ilha} &7chegou na &3Cidade Antiga&7!'
+      Recompensas: []
+
+  end:
+    Nome: '&5End'
+    Icone: END_STONE
+    Bioma: THE_END
+    Blocos necessarios: 12000
+    Descricao:
+      - '&7O fim da trilha. Depois daqui'
+      - '&7a ilha volta ao comeco, mais forte.'
+    Blocos:
+      - 'END_STONE:35'
+      - 'END_STONE_BRICKS:15'
+      - 'PURPUR_BLOCK:10'
+      - 'OBSIDIAN:8'
+      - 'CHORUS_FLOWER:4'
+      - 'DEEPSLATE_DIAMOND_ORE:8'
+      - 'DEEPSLATE_EMERALD_ORE:6'
+      - 'ANCIENT_DEBRIS:3'
+      - 'AMETHYST_BLOCK:5'
+    Bau:
+      Chance: 7.0
+      Itens por bau: 5
+      Itens:
+        - 'ENDER_PEARL:2-6:18'
+        - 'CHORUS_FRUIT:4-10:14'
+        - 'DIAMOND:4-10:16'
+        - 'NETHERITE_INGOT:1-2:6'
+        - 'ELYTRA:1:2'
+        - 'SHULKER_SHELL:1-2:8'
+        - 'ENCHANTED_BOOK:1:12:MENDING:1'
+        - 'EXPERIENCE_BOTTLE:16-32:16'
+        - 'DRAGON_BREATH:1-3:8'
+    Mobs:
+      Chance: 9.0
+      A cada X blocos: 20
+      Lista:
+        - 'ENDERMAN:50'
+        - 'SHULKER:15'
+        - 'PHANTOM:20'
+        - 'BLAZE:15'
+    Visual:
+      Particula: PORTAL
+      Quantidade: 10
+      Som ao quebrar: ''
+    Ao entrar:
+      Titulo: '&5&lEND<nl>&7O fim da trilha'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: '&aA sua ilha chegou ao &5End&a. Depois daqui a trilha recomeca.'
+      Anuncio: '&e{ilha} &7chegou ao &5End&7!'
+      Recompensas: []

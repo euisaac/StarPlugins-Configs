@@ -1,0 +1,273 @@
+# ------------------------------------------------------------------------
+#  StarOneBlock - todo texto que o plugin fala
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao para cada um.
+#
+#  Cores: use &a, &e, &c... e tambem &#RRGGBB nas versoes 1.16+.
+#  Em titulo, <nl> separa o titulo do subtitulo.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&e&lONEBLOCK &8| &f'
+
+Erros:
+  Sem permissao: '&cVoce nao pode fazer isso.'
+  Sem permissao na ilha: '&cSo quem e &f{cargo} &cou mais pode: &f{acao}&c.'
+  Fora de ilha: '&cAqui e terra de ninguem. Va para dentro de uma ilha.'
+  Sem ilha: '&cVoce ainda nao tem uma ilha. Use &f/ilha criar&c.'
+  Sem ilha outro: '&f{jogador} &cnao tem ilha.'
+  Ja tem ilha: '&cVoce ja tem uma ilha.'
+  Ja tem ilha outro: '&f{jogador} &cja tem uma ilha.'
+  Nome invalido: '&cNome invalido. Use de 3 a 24 letras, numeros, espaco, - ou _.'
+  Sem espaco: '&cNao ha mais espaco para ilhas novas. Avise a administracao.'
+  Jogador offline: '&f{jogador} &cnao esta online.'
+  Jogador desconhecido: '&cNunca vi ninguem chamado &f{jogador}&c por aqui.'
+  Convidar a si mesmo: '&cVoce ja mora aqui.'
+  Ja e membro: '&f{jogador} &cja e da ilha.'
+  Ilha cheia: '&cA ilha ja esta com as &f{limite} &cvagas ocupadas.'
+  Escolha o convite: '&cVoce tem mais de um convite. Use &f/ilha entrar <dono>&c.'
+  Sem convite: '&cVoce nao tem convite dessa ilha.'
+  Dono nao sai: '&cO dono nao sai da propria ilha. Passe a ilha ou resete.'
+  Nao mexe no dono: '&cO dono da ilha nao pode ser mexido.'
+  Nao e membro: '&f{jogador} &cnao e da ilha.'
+  So o dono: '&cSo o dono da ilha pode fazer isso.'
+  Cargo alto demais: '&cVoce nao mexe em quem esta no seu nivel ou acima.'
+  Fora da propria ilha: '&cVoce precisa estar dentro da sua ilha.'
+  Limite de warps: '&cA ilha ja tem os &f{limite} &cwarps.'
+  Warp desconhecido: '&cNao existe um warp chamado &f{nome}&c.'
+  Warp privado: '&cEsse warp e so para os membros da ilha.'
+  Banido da ilha: '&cVoce esta barrado na ilha &f{ilha}&c.'
+  Ilha fechada: '&cA ilha &f{ilha} &cnao esta aceitando visita.'
+  Valor invalido: '&cEscreva um valor maior que zero.'
+  Sem dinheiro: '&cVoce nao tem &f{valor}&c.'
+  Banco cheio: '&cO banco da ilha ja esta no teto.'
+  Banco sem saldo: '&cO banco da ilha so tem &f{saldo}&c.'
+  Limite de funis: '&cO limite e de &f{limite} &cfunis por pedaco. Melhore a ilha.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+  Nao esta banido: '&f{jogador} &cnao esta barrado nesta ilha.'
+  Subcomando desconhecido: '&cNao conheco &f{sub}&c. Use &f/ilha ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+  So jogador: '&cEsse comando e para jogadores.'
+  Nao e numero: '&cIsso nao e um numero.'
+  Fase desconhecida: '&cNao existe a fase &f{fase}&c.'
+  Gerador desconhecido: '&cNao existe o gerador &f{gerador}&c.'
+  PvP desligado: '&cO PvP esta desligado nesta ilha.'
+
+Ilha:
+  Ainda nao tem: |
+    &7Voce ainda nao tem uma ilha.
+    &eUse &f/ilha criar &epara comecar a sua.
+  Criando: '&7Preparando a sua ilha...'
+  Criada: '&aPronto! A sua ilha &f{ilha} &anasceu. Quebre o bloco e veja no que ela vira.'
+  Renomeada: '&aA ilha agora se chama &f{ilha}&a.'
+  Chegou: '&aVoce chegou na sua ilha.'
+  Visitando: '&aVoce chegou na ilha visitada.'
+  Resgatado do vazio: '&eVoce caiu no vazio e foi trazido de volta.'
+  Convidou: '&aConvite enviado para &f{jogador}&a.'
+  Convite recebido: |
+    &e{jogador} &7chamou voce para a ilha &f{ilha}&7.
+    &7Use &a/ilha entrar {dono} &7dentro de &f{segundos}s&7.
+  Entrou: '&aVoce agora faz parte da ilha &f{ilha}&a.'
+  Membro chegou: '&e{jogador} &7entrou na ilha.'
+  Saiu: '&7Voce saiu da ilha &f{ilha}&7.'
+  Membro saiu: '&e{jogador} &7saiu da ilha.'
+  Expulso: '&cVoce foi tirado da ilha &f{ilha}&c.'
+  Expulsou: '&aVoce tirou &f{jogador} &ada ilha.'
+  Baniu: '&aAgora &f{jogador} &anao entra mais na ilha.'
+  Desbaniu: '&a{jogador} &apode voltar a visitar a ilha.'
+  Transferiu: '&aA ilha agora e de &f{jogador}&a.'
+  Virou dono: '&aVoce agora e o dono da ilha &f{ilha}&a.'
+  Cargo mudou: '&7Seu cargo na ilha agora e &f{cargo}&7.'
+  Casa definida: '&aA casa da ilha ficou aqui.'
+  Descricao definida: '&aDescricao da ilha atualizada.'
+  Aberta: '&aA ilha esta aberta para visitas.'
+  Fechada: '&cA ilha esta fechada para visitas.'
+  Resetando: '&7Limpando a ilha... isso leva alguns segundos.'
+  Resetada: '&aA ilha voltou ao primeiro dia.'
+  Subiu de nivel: '&a&lNIVEL {nivel}! &7A sua ilha subiu de nivel.'
+  Visita chegou: '&e{jogador} &7chegou na sua ilha.'
+  Info: |
+    &8&m---------------------------------
+    &e&l{ilha} &8(&7de &f{dono}&8)
+    &7{descricao}
+    &fFase: &d{fase} &8({fase_numero}/{fase_total})
+    &fProgresso: &e{atual}&7/&e{total}
+    {barra}
+    &fNivel: &a{nivel} &8| &fValor: &a{valor}
+    &fBanco: &6{banco}
+    &fBlocos quebrados: &f{blocos}
+    &fMembros: &f{membros}/{membros_max} &8| &fTamanho: &f{tamanho}
+    &fRanking: &e#{posicao} &8| &fVisitas: &f{aberta}
+    &8&m---------------------------------
+
+Nucleo:
+  Progresso: '&d{fase} &8| &e{atual}&7/&e{total} {barra} &7{porcento}% &d{impulso}'
+  Bau: '&6Um bau da fase &f{fase} &6apareceu no nucleo!'
+  Nao da para cobrir: '&cO bloco central nao pode ser coberto.'
+
+Warp:
+  Criado: '&aWarp &f{nome} &acriado.'
+  Apagado: '&7Warp &f{nome} &7apagado.'
+  Chegou: '&aVoce chegou no warp.'
+
+Banco:
+  Saldo: '&7Banco da ilha: &6{saldo}'
+  Depositou: '&aVoce depositou &f{valor}&a. Banco: &6{saldo}'
+  Sacou: '&aVoce sacou &f{valor}&a. Banco: &6{saldo}'
+  Impulso ligado: '&d&lIMPULSO x{multiplicador} &7ligado por &f{minutos} minutos&7!'
+
+Loja:
+  Vendeu: '&aVendeu &f{itens} &aitem(ns) por &6{valor}&a. Banco: &6{saldo}'
+  Nada para vender: '&cNao ha nada no seu inventario que a loja compre.'
+  Nao tem esse item: '&cVoce nao tem esse item.'
+
+Melhoria:
+  Comprada: '&aMelhoria &f{melhoria} &asubiu para o nivel &f{nivel}&a.'
+  No maximo: '&7A melhoria &f{melhoria} &7ja esta no maximo.'
+
+Gerador:
+  Colocado: '&aGerador de &f{nome} &acolocado.'
+  Recolhido: '&7Gerador de &f{nome} &7recolhido.'
+  Comprado: '&aVoce comprou um gerador de &f{nome} &apor &6{valor}&a.'
+  Recebido: '&aVoce recebeu &f{quantidade}x &agerador de &f{nome}&a.'
+  Entregue: '&aGerador de &f{nome} &aentregue para &f{jogador}&a.'
+  Limite: '&cA ilha ja tem os &f{limite} &cgeradores. Aumente o limite ou recolha um.'
+  Nao esta a venda: '&cEsse gerador nao esta a venda.'
+
+Chat:
+  Formato: '&b[Ilha] &7{cargo} &f{jogador}&7: &f{mensagem}'
+  Ligado: '&aTudo que voce escrever vai para o chat da ilha. Use &f/ilha chat &apara sair.'
+  Desligado: '&7Voce voltou para o chat normal.'
+
+Voo:
+  Ligado: '&aVoo ligado. Ele cai sozinho quando voce sair da ilha.'
+  Desligado: '&7Voo desligado.'
+  So na ilha: '&cVoce so voa dentro de uma ilha em que tenha esse direito.'
+  Desligado no servidor: '&cO voo esta desligado neste servidor.'
+
+Teleporte:
+  Contagem: '&7Nao se mexa por &f{segundos}s&7...'
+  Cancelado: '&cVoce se mexeu e a viagem foi cancelada.'
+
+Entrada:
+  Como cancelar: '&8Escreva &fcancelar &8para desistir.'
+  Cancelado: '&7Beleza, deixei como estava.'
+  Tempo esgotado: '&7Voce demorou demais e o pedido foi esquecido.'
+  Nick do convidado: '&eEscreva no chat o nick de quem voce quer convidar.'
+  Nome do warp: '&eEscreva no chat o nome do warp.'
+  Valor do deposito: '&eEscreva no chat quanto voce quer depositar.'
+  Novo numero: '&eEscreva no chat o numero novo.'
+  Novo texto: '&eEscreva no chat o texto novo.'
+  Nova linha: '&eEscreva no chat a linha.'
+
+Config:
+  Salvo: '&aSalvei &f{opcao} &acomo &f{valor}&a.'
+  Recarregado: '&aTodos os arquivos foram lidos de novo.'
+
+Admin:
+  Resumo: '&7Ilhas: &f{ilhas} &8| &7Fases: &f{fases} &8| &7Geradores no chao: &f{geradores}'
+  Salvo: '&aSalvei &f{ilhas} &ailha(s).'
+  Resetando: '&7Resetando a ilha &f{ilha}&7...'
+  Apagando: '&7Apagando a ilha &f{ilha}&7...'
+  Apagada: '&aA ilha &f{ilha} &afoi apagada.'
+  Dono trocado: '&aA ilha &f{ilha} &aagora e de &f{jogador}&a.'
+  Fase trocada: '&aA ilha &f{ilha} &afoi para a fase &f{fase}&a.'
+  Nivel trocado: '&aA ilha &f{ilha} &aagora esta no nivel &f{nivel}&a.'
+  Banco trocado: '&aBanco da ilha &f{ilha}&a: &6{saldo}'
+  Impulso dado: '&aImpulso x{multiplicador} por {minutos} min na ilha &f{ilha}&a.'
+  Info: |
+    &8&m---------------------------------
+    &e&l{ilha} &8(&7id &f{id}&8)
+    &fDono: &f{dono} &8| &fCelula: &f{celula}
+    &fFase: &d{fase} &8| &fNa fase: &e{atual}
+    &fBlocos: &f{blocos} &8| &fNivel: &a{nivel} &8| &fValor: &a{valor}
+    &fBanco: &6{banco} &8| &fMembros: &f{membros}
+    &8&m---------------------------------
+
+Menus:
+  Principal: '&8{ilha}'
+  Fases: '&8Fases da ilha'
+  Membros: '&8Membros da ilha'
+  Melhorias: '&8Melhorias da ilha'
+  Banco: '&8Banco da ilha'
+  Loja: '&8Loja da ilha'
+  Bandeiras: '&8Regras da ilha'
+  Cargos: '&8Cargos da ilha'
+  Warps: '&8Warps da ilha'
+  Geradores: '&8Geradores'
+  Top: '&8Ranking das ilhas'
+  Visitas: '&8Ilhas abertas'
+  Banidos: '&8Barrados na ilha'
+  Configuracao: '&8StarOneBlock - configuracao'
+  Confirmar: '&8Tem certeza?'
+  Confirmar reset: 'A ilha volta ao primeiro dia e tudo se perde.'
+  Confirmar expulsar: '{jogador} sai da ilha na hora.'
+
+Placeholder:
+  Sem ilha: '-'
+
+Acao:
+  Link: '&e&nClique aqui'
+  Link dica: '&7Abre {link}'
+  Link no chat: '&7Ou copie: &f{link}'
+
+Ajuda:
+  Ilha: |
+    &8&m---------------------------------
+    &e&lSUA ILHA
+    &f/ilha &8- &7abre o menu da ilha
+    &f/ilha criar [nome] &8- &7comeca a sua ilha
+    &f/ilha ir &8- &7leva voce para casa
+    &f/ilha info &8- &7o retrato da ilha
+    &f/ilha convidar <jogador> &8- &7chama alguem
+    &f/ilha entrar [dono] &8- &7aceita um convite
+    &f/ilha sair &8- &7deixa a ilha
+    &f/ilha expulsar|banir|desbanir <jogador>
+    &f/ilha dono <jogador> &8- &7passa a ilha
+    &f/ilha abrir|fechar &8- &7deixa (ou nao) visitarem
+    &f/ilha nome|descricao <texto>
+    &f/ilha definircasa &8- &7marca onde o /ilha ir chega
+    &f/ilha warp [nome|criar|apagar]
+    &f/ilha banco [depositar|sacar] [valor]
+    &f/ilha loja|melhorias|fases|geradores
+    &f/ilha visitar [jogador] &8- &7conhece outra ilha
+    &f/ilha top &8- &7o ranking das ilhas
+    &f/ilha chat &8- &7fala so com a sua ilha
+    &f/ilha voar &8- &7voa dentro da ilha
+    &f/ilha resetar &8- &7comeca tudo de novo
+    &8&m---------------------------------
+  Admin: |
+    &8&m---------------------------------
+    &c&lADMINISTRACAO DAS ILHAS
+    &f/ilhaadmin listar &8- &7numeros do servidor
+    &f/ilhaadmin ir <jogador>
+    &f/ilhaadmin info <jogador>
+    &f/ilhaadmin resetar <jogador>
+    &f/ilhaadmin apagar <jogador>
+    &f/ilhaadmin dono <jogador> <novo dono>
+    &f/ilhaadmin fase <jogador> <fase>
+    &f/ilhaadmin nivel <jogador> <numero>
+    &f/ilhaadmin banco <jogador> <dar|tirar|definir> <valor>
+    &f/ilhaadmin impulso <jogador> [multiplicador] [minutos]
+    &f/ilhaadmin desbanir <jogador> <banido>
+    &8&m---------------------------------
+  Produto: |
+    &8&m---------------------------------
+    &e&lStarOneBlock &7v{versao}
+    &7Ilhas: &f{ilhas} &8| &7Fases: &f{fases}
+    &f/staroneblock config &8- &7edita tudo por menu
+    &f/staroneblock gerador <id> [jogador] [qtd]
+    &f/staroneblock recarregar &8- &7le os arquivos de novo
+    &f/staroneblock salvar &8- &7grava as ilhas agora
+    &7Desenvolvido por EuIsaac
+    &8&m---------------------------------
+
+# O texto que aparece como explicacao no menu de configuracao.
+# A chave e o caminho da opcao dentro do arquivo.
+Ajuda de config:
+  Mundo.Nome: 'O mundo das ilhas. Trocar isto depois de o servidor rodar deixa as ilhas antigas para tras.'
+  Mundo.Distancia entre ilhas: 'Precisa ser maior que o maior tamanho de ilha possivel.'
+  Ilha.Membros iniciais: 'Conta o dono. A melhoria membros aumenta.'
+  Nivel.Valor por nivel: 'Quanto de valor a ilha precisa juntar para subir um nivel.'

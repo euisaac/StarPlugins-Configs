@@ -1,0 +1,214 @@
+# ------------------------------------------------------------------------
+#  StarOneBlock - configuracao principal
+#
+#  Tudo aqui pode ser mexido pelo menu, sem abrir arquivo nenhum:
+#  /staroneblock config
+#
+#  Suporte: https://starplugins.com.br
+# ------------------------------------------------------------------------
+
+# Nao mexa: e por este numero que o plugin sabe quando o modelo do arquivo
+# mudou e precisa ser atualizado (o seu antigo e guardado ao lado).
+Versao do modelo: 1
+
+# Escreve no console o que o plugin esta fazendo. So ligue para cacar problema.
+Debug: false
+
+Mundo:
+  # O mundo das ilhas. Ele e criado sozinho na primeira vez, vazio (sem terreno).
+  Nome: ilhas
+
+  # Altura em que o bloco central de cada ilha fica.
+  Altura do nucleo: 100
+
+  # Distancia, em blocos, entre o centro de uma ilha e o da vizinha.
+  # Precisa ser maior que o maior tamanho que uma ilha pode ter.
+  Distancia entre ilhas: 400
+
+  # Teto de ilhas no servidor. Zero = sem teto.
+  Limite de ilhas: 0
+
+  # Lado do quadrado protegido de uma ilha nova, em blocos.
+  # A melhoria 'tamanho' aumenta isto.
+  Tamanho inicial: 60
+
+  # Plataforma de apoio embaixo do nucleo, para o jogador nao cair no vazio
+  # no primeiro minuto. Zero desliga (fica so o bloco central).
+  Raio da plataforma: 1
+  Bloco da plataforma: BEDROCK
+
+  # Quantas camadas o plugin apaga por tique ao resetar uma ilha.
+  # Numero alto limpa mais rapido e pesa mais no servidor.
+  Camadas por tique ao limpar: 4
+
+  # Deixa o proprio mundo fazer mob nascer. O normal e false: quem faz mob
+  # aparecer aqui e a fase da ilha.
+  Spawn natural de mobs: false
+
+  # PEACEFUL, EASY, NORMAL ou HARD.
+  Dificuldade: NORMAL
+
+Ilha:
+  # Nome da ilha nova. Aceita {jogador}.
+  Nome padrao: 'Ilha de {jogador}'
+
+  # Ilha nova ja nasce aceitando visita?
+  Nasce aberta: false
+
+  # Vagas de uma ilha nova (contando o dono). A melhoria 'membros' aumenta.
+  Membros iniciais: 3
+
+  # Teto de mobs vivos numa ilha. A melhoria 'mobs' aumenta.
+  Limite inicial de mobs: 30
+
+  # Funis por pedaco. A melhoria 'funis' aumenta.
+  Limite inicial de funis: 8
+
+  # Geradores colocaveis por ilha. Zero = sem limite.
+  Limite de geradores: 16
+
+  # Pontos salvos por ilha.
+  Limite de warps: 9
+
+  # Quanto tempo um convite fica de pe.
+  Segundos do convite: 120
+
+  # Contagem antes de todo teleporte do plugin. Zero desliga.
+  # Quem anda no meio da contagem perde a viagem.
+  Espera do teleporte: 3
+
+  # Pede confirmacao antes de resetar a ilha.
+  Confirmar reset: true
+
+  # Quando a ilha termina a ultima fase, ela volta para a primeira.
+  # Com false, a ilha fica parada na ultima fase para sempre.
+  Repetir fases no fim: true
+
+  # Avisa no console quando uma fase pede bloco, mob ou bioma que nao existe
+  # nesta versao do servidor.
+  Avisar sobre erros nas fases: true
+
+  # Deixa o /ilha voar funcionar. O voo cai sozinho ao sair da ilha.
+  Voo liberado: true
+
+Nucleo:
+  # Mostra a barra de progresso da fase na actionbar de quem esta minerando.
+  Progresso na actionbar: true
+
+  # A coleta automatica tambem recolhe a experiencia do bloco.
+  Coletar experiencia: true
+
+  # Particula solta quando a ilha passa de fase.
+  Particula ao mudar de fase: FIREWORKS_SPARK
+
+Barra de progresso:
+  Cheio: '|'
+  Vazio: '|'
+  Tamanho: 10
+  Cor cheia: '&a'
+  Cor vazia: '&7'
+
+Nivel:
+  # Cada bloco quebrado soma o valor dele ao valor da ilha; o nivel e o valor
+  # dividido por este numero.
+  Valor por nivel: 100
+
+  # Quanto vale um bloco que nao esta na lista abaixo.
+  Valor padrao do bloco: 1.0
+
+  # Por que criterio o /ilha top ordena: NIVEL, VALOR, BLOCOS ou BANCO.
+  Criterio do ranking: NIVEL
+
+  # Quantas ilhas o ranking mostra.
+  Tamanho do top: 10
+
+  Valores:
+    DIRT: 0.5
+    GRASS_BLOCK: 0.5
+    SAND: 0.5
+    GRAVEL: 0.5
+    STONE: 1.0
+    COBBLESTONE: 1.0
+    COAL_ORE: 4.0
+    IRON_ORE: 8.0
+    GOLD_ORE: 16.0
+    REDSTONE_ORE: 12.0
+    LAPIS_ORE: 14.0
+    DIAMOND_ORE: 40.0
+    EMERALD_ORE: 60.0
+    ANCIENT_DEBRIS: 150.0
+    NETHER_QUARTZ_ORE: 10.0
+    OBSIDIAN: 25.0
+    CHEST: 30.0
+
+Banco:
+  # Quanto o dinheiro guardado rende por hora, em porcento. Zero desliga.
+  # Ilha parada ha mais de uma semana nao rende.
+  Juros por hora: 0.5
+
+  # Teto do banco da ilha. Zero = sem teto.
+  Teto: 0
+
+  Impulso:
+    # O impulso multiplica o avanco da fase (nao o drop) por um tempo.
+    Preco: 25000
+    Multiplicador: 2.0
+    Minutos: 15
+
+Holograma:
+  # O letreiro flutuante sobre o nucleo. Ele so existe enquanto tem alguem
+  # perto: ilha vazia nao gasta nada.
+  Ativar: true
+
+  # Altura acima do bloco central.
+  Altura: 2.2
+
+  # A que distancia o letreiro aparece.
+  Alcance: 48
+
+  # Tiques entre as passadas.
+  Atualizar a cada: 20
+
+  # Reescreve o texto em toda passada, mesmo sem nada ter mudado.
+  # Deixe false: o normal e reescrever so quando a ilha muda.
+  Reescrever sempre: false
+
+  Linhas:
+    - '&e&l{ilha}'
+    - '&fFase: &d{fase}'
+    - '&fBlocos: &e{atual} &7/ &e{total}'
+    - '{barra}'
+    - '&fNivel: &a{nivel}'
+    - '&d&lIMPULSO {impulso}'
+
+Sons:
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Clique: 'UI_BUTTON_CLICK;0.6;1.2'
+  Bau: 'BLOCK_CHEST_OPEN;1;1'
+  Nivel: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+Economia:
+  # VAULT: qualquer economia registrada no Vault.
+  # STARECONOMIA: fala direto com o produto irmao.
+  # COMANDO: le o saldo por placeholder e mexe no dinheiro por comando.
+  Tipo: VAULT
+  Simbolo: '$'
+  Moeda do StarEconomia: dinheiro
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/staroneblock.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: staroneblock_
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  # Segundos entre os salvamentos automaticos. So o que mudou e escrito.
+  Salvar a cada: 300

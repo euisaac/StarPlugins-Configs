@@ -1,0 +1,149 @@
+# ------------------------------------------------------------------------
+#  StarOneBlock - os geradores colocaveis
+#
+#  Um gerador e um bloco que se refaz sozinho depois de um tempo. O jogador
+#  compra pelo menu (/ilha geradores), coloca no chao e mina a vontade.
+#  Para levar o gerador embora, quebre-o AGACHADO.
+#
+#  Materiais usam PESO, nao porcentagem: 'STONE:70' e 'COAL_ORE:30' da o
+#  mesmo que 'STONE:7' e 'COAL_ORE:3'.
+#
+#  Espera esta em milissegundos. A melhoria 'velocidade' da ilha desconta
+#  uma porcentagem dela.
+#
+#  Preco 0 tira o gerador da venda (ele continua funcionando se ja estiver
+#  no chao, e voce ainda pode entregar um por comando).
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Geradores:
+
+  pedra:
+    Nome: 'Pedra'
+    Espera: 2000
+    Chance: 100
+    Preco: 5000
+    Bloco de espera: BEDROCK
+    Materiais:
+      - 'COBBLESTONE:70'
+      - 'STONE:25'
+      - 'ANDESITE:5'
+    Item:
+      Material: STONE
+      Nome: '&7Gerador de Pedra'
+      Lore:
+        - '&7Produz pedra sem parar.'
+        - '&7Espera: &f{espera}'
+
+  madeira:
+    Nome: 'Madeira'
+    Espera: 3500
+    Chance: 100
+    Preco: 12000
+    Bloco de espera: BEDROCK
+    Materiais:
+      - 'OAK_LOG:35'
+      - 'BIRCH_LOG:25'
+      - 'SPRUCE_LOG:20'
+      - 'JUNGLE_LOG:12'
+      - 'ACACIA_LOG:8'
+    Item:
+      Material: OAK_LOG
+      Nome: '&6Gerador de Madeira'
+      Lore:
+        - '&7Cinco tipos de tronco.'
+        - '&7Espera: &f{espera}'
+
+  minerio:
+    Nome: 'Minerio'
+    Espera: 6000
+    Chance: 85
+    Preco: 45000
+    Bloco de espera: BEDROCK
+    Materiais:
+      - 'COAL_ORE:35'
+      - 'IRON_ORE:28'
+      - 'GOLD_ORE:16'
+      - 'REDSTONE_ORE:12'
+      - 'LAPIS_ORE:6'
+      - 'DIAMOND_ORE:3'
+    Item:
+      Material: IRON_ORE
+      Nome: '&fGerador de Minerio'
+      Lore:
+        - '&7Do carvao ao diamante.'
+        - '&7Espera: &f{espera} &8| &7Chance: &f{chance}'
+
+  redstone:
+    Nome: 'Redstone'
+    Espera: 5000
+    Chance: 95
+    Preco: 30000
+    Bloco de espera: BEDROCK
+    Materiais:
+      - 'REDSTONE_ORE:70'
+      - 'LAPIS_ORE:25'
+      - 'DIAMOND_ORE:5'
+    Item:
+      Material: REDSTONE_BLOCK
+      Nome: '&cGerador de Redstone'
+      Lore:
+        - '&7Para quem constroi maquina.'
+        - '&7Espera: &f{espera}'
+
+  nether:
+    Nome: 'Nether'
+    Espera: 7000
+    Chance: 85
+    Preco: 90000
+    Bloco de espera: BEDROCK
+    Materiais:
+      - 'NETHERRACK:40'
+      - 'NETHER_QUARTZ_ORE:25'
+      - 'SOUL_SAND:15'
+      - 'GLOWSTONE:10'
+      - 'NETHER_GOLD_ORE:8'
+      - 'ANCIENT_DEBRIS:2'
+    Item:
+      Material: NETHERRACK
+      Nome: '&cGerador do Nether'
+      Lore:
+        - '&7O outro lado, na sua ilha.'
+        - '&7Espera: &f{espera} &8| &7Chance: &f{chance}'
+
+  ametista:
+    Nome: 'Ametista'
+    Espera: 9000
+    Chance: 80
+    Preco: 150000
+    Bloco de espera: BEDROCK
+    Materiais:
+      - 'AMETHYST_BLOCK:60'
+      - 'CALCITE:25'
+      - 'BUDDING_AMETHYST:10'
+      - 'EMERALD_ORE:5'
+    Item:
+      Material: AMETHYST_BLOCK
+      Nome: '&dGerador de Ametista'
+      Lore:
+        - '&7Caro, lento e valioso.'
+        - '&7Espera: &f{espera} &8| &7Chance: &f{chance}'
+
+  prismarinho:
+    Nome: 'Prismarinho'
+    Espera: 8000
+    Chance: 85
+    Preco: 110000
+    Bloco de espera: BEDROCK
+    Materiais:
+      - 'PRISMARINE:45'
+      - 'PRISMARINE_BRICKS:25'
+      - 'DARK_PRISMARINE:20'
+      - 'SEA_LANTERN:10'
+    Item:
+      Material: PRISMARINE
+      Nome: '&bGerador de Prismarinho'
+      Lore:
+        - '&7Do fundo do mar para a sua ilha.'
+        - '&7Espera: &f{espera}'
