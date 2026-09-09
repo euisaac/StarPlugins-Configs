@@ -1,0 +1,252 @@
+# Configuração do StarSentar
+debug: true
+
+# Número máximo de jogadores que podem ser empilhados (0 = ilimitado)
+max-stack: 0
+
+# Desativar sentar em NPCs
+npc-sit: false #True para permitir
+
+# Se true, verifica pelo GriefDefender (se instalado) se o jogador tem permissão de acesso
+# (trust ACCESSOR) na claim antes de sentar na cabeça de um animal ou colocar um animal na
+# cabeça - impede pegar animais/mobs no terreno de outra pessoa sem permissão. Sem o
+# GriefDefender instalado, essa opção não faz nada.
+verificar-terreno-proprio: true
+
+# Ao sentar num bloco/com o /sentar, gira o corpo pra acompanhar a câmera quando o jogador olha
+# pros lados, em vez de ficar travado sempre pro mesmo lado. É o ângulo (graus) que precisa girar
+# antes do corpo acompanhar (evita reteleportar toda hora) - 0 desativa e mantém o corpo travado.
+sentar-rotacao-angulo: 20
+
+# Head sit configurations
+# A partir da versão com correção anti-kick, sentar na cabeça / pegar / animal na cabeça
+# usam o sistema nativo de passageiros do Minecraft (o assento é montado diretamente no
+# alvo), então a posição e a altura da pilha são resolvidas pelo próprio jogo - não é mais
+# necessário reteleportar essas entidades a cada tick (era isso que causava os kicks de anticheat).
+head-sit:
+  grabbed-height: 1.62      # Altura usada apenas para entidades agarradas soltas (sem passageiro), ex.: mobs
+  update-interval-ticks: 10 # Intervalo em ticks da checagem de validade/limpeza (não afeta mais a suavidade do movimento)
+  seat-scale: 0.15          # Escala do assento invisível (sentar na cabeça, empilhar, grab, animal na cabeça).
+                            # Controla a altura de quem senta em cima: 1.0 = tamanho normal (mais alto),
+                            # menor = mais baixo (ex.: 0.5). Precisa de /starsentar reload depois de mudar.
+
+# Prefixo das mensagens
+prefix: "&6&lStarSentar&r"
+
+# Prefixo para jogadores móveis (Geyser)
+mobile-prefix: "RS_"
+
+# Tempo em segundos para ficar deitado automaticamente (0 = sem limite)
+lying-duration: 5
+
+# Configurações padrão para jogadores
+defaults:
+  allow-head-sit: false
+  allow-sit-blocks: false
+  allow-head-sit-while-flying: false
+  allow-animal-head-sit: false
+  allow-put-animal-on-head: false
+
+# Configuração para o grab
+grab:
+  use: "LEFT" #pegue alguem na cabeça usando shift + RIGHT ou LEFT
+  request-timeout: 30 # Segundos que o pedido de grab fica válido antes de expirar (quem não tem starsentar.grab.bypass precisa que o alvo aceite com /starsentar aceitar)
+
+# Comando /pegar: pede pra carregar o jogador que está na mira. O alvo precisa aceitar
+# (/pegar aceitar) - quem tem starsentar.grab.bypass pega na hora, igual ao grab por clique.
+# Para soltar/descer basta uma agachada RÁPIDA (dos dois lados): segurar o shift por mais
+# tempo que "toque-agachar-ms" não solta ninguém, então dá pra andar agachado carregando.
+pegar:
+  alcance: 5.0             # Distância máxima (blocos) do jogador que você está mirando
+  toque-agachar-ms: 500    # Janela da agachada rápida que solta. Acima disso, o shift é ignorado
+  cooldown-soltar-ms: 1500 # Tempo mínimo carregado antes de poder soltar (evita soltar sem querer)
+  modos:
+    costas:
+      # Escala do assento invisível: quanto menor, mais colado ao carregador fica quem é
+      # carregado. Precisa de /starsentar reload depois de mudar.
+      escala-assento: 0.05
+    cabeca:
+      escala-assento: 0.15
+
+# Lista de animais permitidos para sentar na cabeça
+animal-whitelist:
+  - COW
+  - PIG
+  - SHEEP
+  - CHICKEN
+  - HORSE
+  - DONKEY
+  - MULE
+  - LLAMA
+  - WOLF
+  - CAT
+  - PARROT
+  - RABBIT
+
+# Aliases (configured in plugin.yml)
+aliases:
+  sentar: [sit, sits]
+  deitar: [lay, lays]
+
+# Blocos onde o jogador pode sentar clicando com o direito
+blocks-to-sit:
+  - STONE_STAIRS
+  - COBBLESTONE_STAIRS
+  - OAK_STAIRS
+  - SPRUCE_STAIRS
+  - BIRCH_STAIRS
+  - JUNGLE_STAIRS
+  - ACACIA_STAIRS
+  - DARK_OAK_STAIRS
+  - CRIMSON_STAIRS
+  - WARPED_STAIRS
+  - STONE_SLAB
+  - COBBLESTONE_SLAB
+  - OAK_SLAB
+  - SPRUCE_SLAB
+  - BIRCH_SLAB
+  - JUNGLE_SLAB
+  - ACACIA_SLAB
+  - DARK_OAK_SLAB
+  - CRIMSON_SLAB
+  - WARPED_SLAB
+  - DEEPSLATE_BRICK_SLAB
+
+# Blocos onde o jogador NÃO pode sentar com /sentar
+non-sitable-blocks:
+  - WATER
+  - LAVA
+  - AIR
+
+# Mundos onde o sistema está desabilitado
+disabled-worlds:
+  - world_nether
+  - world_the_end
+
+# Menu de opções
+menu:
+  title: "Opções StarSentar"
+  size: 27
+  items:
+    block-sit-toggle:
+      slot: 11
+      material: OAK_STAIRS
+      name: "&ePermitir sentar em blocos"
+      lore:
+        - "&7Clique para alternar"
+        - "&7Atualmente: %status%"  
+    head-sit-toggle:
+      slot: 13
+      material: PAPER
+      name: "&ePermitir sentar na cabeça"
+      lore:
+        - "&7Clique para alternar"
+        - "&7Atualmente: %status%"
+    head-sit-while-flying-toggle:
+      slot: 15
+      material: PAPER
+      name: "&ePermitir sentar na cabeça enquanto voando"
+      lore:
+        - "&7Clique para alternar"
+        - "&7Atualmente: %status%"
+    animal-head-sit-toggle:
+      slot: 17
+      material: BONE
+      name: "&ePermitir sentar na cabeça de animais"
+      lore:
+        - "&7Clique para alternar"
+        - "&7Atualmente: %status%"
+    animal-put-toggle:
+      slot: 10
+      material: BONE
+      name: "&ePermitir colocar animais na cabeça"
+      lore:
+        - "&7Clique para alternar"
+        - "&7Atualmente: %status%"
+
+# Mensagens
+messages:
+  only-players: "&cApenas jogadores podem usar este comando."
+  no-permission: "&cVocê não tem permissão para usar este comando."
+  already-sitting: "&cVocê já está sentado."
+  cannot-stand-grabbed: "&cVocê está sendo carregado e não pode se soltar sozinho."
+  already-lying: "&cVocê já está deitado."
+  sat-down: "&fVocê se sentou."
+  lay-down: "&fVocê se deitou."
+  stood-up: "&fVocê se levantou."
+  sat-on-head: "&fVocê se sentou na cabeça do jogador."
+  grabbed-player: "&fVocê trouxe o jogador para sua cabeça."
+  grabbed-by: "&fVocê foi pego por &c%player%&f."
+  grab-request-sent: "&fPedido enviado para &c%player%&f. Aguardando aceitar."
+  # %accept% e %deny% são substituídos pelos botões clicáveis (funcionam pra quem está no Java);
+  # o texto ao redor continua normal pra quem está no Bedrock, que não consegue clicar.
+  grab-request-received: "&e%player% &fquer te pegar na cabeça. Use %accept% &fou %deny%&f."
+  grab-request-accept-button: "&a&l[Aceitar]"
+  grab-request-deny-button: "&c&l[Negar]"
+  grab-request-already-pending: "&cEsse jogador já tem um pedido de grab pendente."
+  grab-request-denied: "&c%player% &frecusou o pedido para pegar na cabeça."
+  grab-request-denied-self: "&fVocê recusou o pedido."
+  grab-request-expired: "&cEsse pedido não é mais válido."
+  no-grab-request: "&cVocê não tem nenhum pedido de grab pendente."
+  target-sitting: "&cO jogador alvo já está sentado."
+  target-no-head: "&cO jogador não permite sentar na cabeça."
+  config-reloaded: "&aConfiguração recarregada com sucesso."
+  actionbar-sit: "&eLevante &6Agachando &eou com o comando &f/sentar"
+  actionbar-lie: "&eLevante &6Agachando &eou com o comando &f/deitar"
+  actionbar-head: "&eLevante &6Agachando &eou com o comando &f/sentar"
+  actionbar-head-cooldown: "&cAguarde %seconds% segundos para levantar"
+  actionbar-grabbed: "&eLevante &6Agachando"
+  released-player: "&fVocê soltou o jogador."
+  grabbed-entity: "&fVocê trouxe o animal para sua cabeça."
+  released-entity: "&fVocê soltou o animal."
+  confirm-release-entity: "&eSolte o shift por menos de %time% segundos para soltar o animal."
+  region-no-sit: "&cNão é permitido sentar nesta região."
+  region-no-head: "&cNão é permitido sentar na cabeça nesta região."
+  griefdefender-no-permission: "&cVocê não tem permissão para mexer em animais no terreno de outra pessoa."
+  block-occupied: "&cEste bloco já está ocupado."
+  not-on-sitable-block: "&cVocê não está em pé em um bloco sentável."
+  cant-sit-on-block: "&cVocê não pode sentar neste bloco."
+  confirm-release: "&eSolte o shift por menos de %time% segundos para soltar o jogador."
+  target-no-head-while-flying: "&cO jogador não permite sentar na cabeça enquanto voa."
+  option-changed: "&aOpção alterada: %status%"
+  disabled-world: "&cEste recurso está desabilitado neste mundo."
+  disable-disabled-world-message: false
+  head-sit-cooldown: "&cAguarde o cooldown para sentar na cabeça novamente."
+  release-confirm-time: 3
+  head-sit-cooldown-time: 5
+  disabled-world-message-cooldown: 5
+  animal-head-disabled: "&cVocê não permite sentar na cabeça de animais."
+  sat-on-animal-head: "&fVocê se sentou na cabeça do animal."
+  actionbar-animal-head: "&eLevante &6Agachando &eou com o comando &f/sentar"
+  animal-on-head: "&fVocê colocou o animal na sua cabeça."
+  animal-removed-from-head: "&fVocê removeu o animal da sua cabeça."
+  already-has-animal-on-head: "&cVocê já tem um animal na cabeça."
+  put-animal-cooldown: "&cAguarde o cooldown para colocar animal na cabeça novamente."
+  put-animal-disabled: "&cVocê não permite colocar animais na sua cabeça."
+  confirm-release-animal: "&eSolte o shift por menos de %time% segundos para remover o animal da cabeça."
+  put-animal-cooldown-time: 2
+  started-spinning: "&fVocê começou a girar!"
+  stopped-spinning: "&fVocê parou de girar."
+  already-spinning: "&cVocê já está girando."
+  cannot-grab-while-on-head: "&cVocê não pode agarrar enquanto está na cabeça de alguém."
+  cannot-sit-on-head-while-someone-on-yours: "&cVocê não pode sentar na cabeça de alguém enquanto alguém está sentado na sua."
+  cannot-sit-on-animal-head-while-has-animal: "&cVocê não pode sentar na cabeça de um animal enquanto já tem um animal na sua cabeça."
+  max-stack-reached: "&cO limite máximo de jogadores empilhados foi atingido."
+  # Mensagens do /pegar
+  pegar-uso: "&fUse &e/pegar <modo> &folhando para um jogador. Modos: &e%modos%"
+  pegar-modo-invalido: "&cModo inválido. Modos: &e%modos%"
+  pegar-sem-alvo: "&cVocê precisa estar olhando para um jogador."
+  pegar-alvo-ocupado: "&cEsse jogador está ocupado no momento."
+  pegar-ja-carregando: "&cVocê já está carregando alguém."
+  pegar-ja-sendo-carregado: "&cVocê está sendo carregado agora."
+  pegar-nada-pra-soltar: "&cVocê não está carregando ninguém."
+  pegar-espere: "&cEspere um instante antes de soltar."
+  # %accept% e %deny% viram os botões clicáveis, igual no pedido de grab
+  pegar-pedido-costas: "&e%player% &fquer te carregar nas costas. Use %accept% &fou %deny%&f."
+  pegar-carregando: "&fVocê está carregando &e%player% &fnas costas."
+  pegar-carregado: "&fVocê subiu nas costas de &e%player%&f."
+  pegar-soltou: "&fVocê soltou &e%player%&f."
+  pegar-desceu: "&fVocê desceu das costas de &e%player%&f."
+  actionbar-costas: "&eDesça com uma &6agachada rápida"
+  actionbar-costas-carregando: "&eSolte com uma &6agachada rápida"
+
