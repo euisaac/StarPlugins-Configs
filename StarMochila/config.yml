@@ -1,0 +1,321 @@
+# Configuração da mochila
+Database:
+  Tipo: SQLite # MySQL ou SQLite
+  IP: localhost:3306
+  DB: test
+  User: admin
+  Pass: ''
+  Debug: false
+
+# Upgrades disponíveis
+upgrades:
+  auto-store:
+    material: "EMERALD"
+    slot: 10
+    name: "&9Auto Armazenamento"
+    description: "&7Quando o inventário estiver cheio, os itens vão automaticamente para a mochila."
+    cost: 250000  # 250k money
+  chest-interaction:
+    material: "CHEST"
+    slot: 12
+    name: "&6Depósitar e Retirar no Baú"
+    description: "&7Permite depositar ou retirar itens da mochila em um baú clicando com o botão direito."
+    cost: 150000  # 150k money
+  movimentacao-rapida:
+    material: "BARREL"
+    slot: 13
+    name: "&aMovimentação Rápida"
+    description: "&7Permite mover itens rapidamente entre o inventário e a mochila."
+    cost: 100000  # 100k money
+  cosmetic-backpack:
+    material: "LEATHER_CHESTPLATE"
+    slot: 14
+    name: "&dCosméticos de Mochila"
+    description: "&7Adicionar novas skins a mochila e cosmeticos."
+    cost: 200000  # 200k money
+  fluid-storage-water:
+    material: "WATER_BUCKET"
+    slot: 15
+    name: "&bArmazenamento de Água"
+    description: "&7Permite armazenar água na mochila."
+    cost: 150000  # 150k money
+  fluid-storage-lava:
+    material: "LAVA_BUCKET"
+    slot: 16
+    name: "&6Armazenamento de Lava"
+    description: "&7Permite armazenar lava na mochila."
+    cost: 150000  # 150k money
+  bancada:
+    material: "CRAFTING_TABLE"
+    slot: 18
+    name: "&6Bancada de Trabalho"
+    description: "&7Abre uma bancada de craft direto da mochila."
+    cost: 300000  # 300k money
+  fornalha:
+    material: "FURNACE"
+    slot: 19
+    name: "&6Fornalhas"
+    description: "&7Fornalhas que cozinham na mochila (mesmo fechada)."
+    cost: 400000  # 400k: custo do UPGRADE (ja vem com 1 fornalha)
+    cost-por-fornalha: 100000  # 100k: custo de cada fornalha extra
+    max: 5  # maximo de fornalhas por mochila (limite 5)
+
+# Configuração da interface gráfica (GUI)
+gui:
+  cosmetics-menu:
+    title: "&7Menu de Cosméticos da Mochila"
+    size: 27
+    modo-de-uso:
+      material: "BOOK"
+      slot: 10
+      name: "&eModo de Uso"
+      lore:
+        - "&7Escolha como você quer usar o cosmético da mochila."
+        - "&7Clique para alternar entre nas costas ou como pet."
+        - ""
+        - "&aAtualmente: &f%current-mode%" # Cosmético nas costas, pet ou Desativado.
+        - ""
+    skin-padrao:
+      material: "PLAYER_HEAD"
+      skull_data: "%skull_data%"
+      slot: 12
+      name: "&8Skin Padrão"
+      lore:
+        - ""
+        - "&7Essa é a skin padrão da sua mochila."
+        - ""
+        - "&e%skin-status%" # Status de skin em uso ou clique para selecionar.
+        - ""
+    skins-menu:
+      material: "PLAYER_HEAD"
+      slot: [13,14,15,16]
+      name: "&a%nome-da-skin%"
+      lore:
+        - ""
+        - "&7%descricao-da-skin%"
+        - ""
+        - "&e%skin-status%" # Status de skin em uso ou clique para selecionar.
+        - ""
+    voltar:
+      material: "ARROW"
+      slot: 18
+      name: "&cVoltar"
+      lore:
+        - "&7Clique para voltar a mochila."
+  navigation:
+    guardar-items:
+      material: "CHEST"
+      slot: 50
+      name: "&aGuardar Itens"
+      lore:
+        - "&7Clique para guardar todos os itens do seu inventário na mochila."
+    retirar-items:
+      material: "HOPPER"
+      slot: 51
+      name: "&eRetirar Itens"
+      lore:
+        - "&7Clique para retirar todos os itens da mochila para o seu inventário."
+    water:
+      material: "WATER_BUCKET"
+      slot: 47
+      name: "&bArmazenamento de Água"
+      lore:
+        - "&7Água na mochila: &b%current-water%&7/&b%max-water%"
+        - "&7Coloque aqui um balde de água para armazená-lo na mochila."
+        - "&7Ou clique para retirar um balde de água da mochila."
+    lava:
+      material: "LAVA_BUCKET"
+      slot: 48
+      name: "&6Armazenamento de Lava"
+      lore:
+        - "&7Lava na mochila: &6%current-lava%&7/&6%max-lava%"
+        - "&7Coloque aqui um balde de lava para armazená-lo na mochila."
+        - "&7Ou clique para retirar um balde de lava da mochila."
+    previous-page:
+      material: "ARROW"
+      slot: 45
+      name: "&aPágina Anterior"
+      lore:
+        - "&7Clique para ir para a página anterior"
+    next-page:
+      material: "ARROW"
+      slot: 53
+      name: "&aPróxima Página"
+      lore:
+        - "&7Clique para ir para a próxima página"
+    cosmetic: # Menu de cosmeticos e skins.
+      material: "PLAYER_HEAD"
+      skull_data: "%skull_data%"
+      slot: 49
+      name: "&dPersonalizar Mochila"
+      lore:
+        - "&7Menu de cosmético da sua mochila."
+    glass-pane:
+      material: "BLACK_STAINED_GLASS_PANE"
+      name: " "
+
+# Configurações gerais
+settings:
+
+  # Chance de receber uma skin rara ao criar uma mochila.
+  rare-skin-chance-percentage: 10 # Porcentagem de chance (0-100), Deixe 0 para desativar.
+  rare-skin-chance: [vermelha, azul, verde]
+
+  # Ativar ou desativar a função de guardar itens na mochila colocando-os sobre ela no inventário
+  inventory-store-enabled: true
+
+  # Cooldown em segundos para abrir a mochila
+  backpack-cooldown-seconds: 1
+
+  # Raio de coleta por proximidade para água e lava (em blocos)
+  proximity-collection-radius: 2
+
+  # Impedir guardar mochilas dentro de outras mochilas
+  prevent-nested-backpacks: true
+
+  # Se alguma dessas condições for igual a "true", o jogador não poderá abrir sua mochila.
+  backpack-prevent-open-placeholders:
+    - "false"
+  # - "%pvpmanager_is_in_combat%"
+
+  # Mundos onde o uso de mochilas é proibido
+  blacklist-worlds:
+    - world_teste
+
+  # Limite de mochilas por jogador baseado em permissões
+  max-backpacks-per-player:
+    membro:
+      permission: "backpacks.limit.member"
+      max: 5
+    vip:
+      permission: "backpacks.limit.vip"
+      max: 10
+
+  # Configuração do cosmético da mochila
+  cosmetic-backpack:
+    enabled: true  # true/false para ativar ou desativar o cosmético
+    mode: "back"  # "back" para nas costas, "pet" para pet seguindo no chão
+    back-position:
+      offset-x: 0.6  # Ajuste horizontal da posição nas costas
+      offset-y: 0.1  # Ajuste vertical da posição nas costas
+      offset-z: 0.4  # Ajuste de profundidade nas costas
+      rotation-offset: 180  # Ajuste de rotação (graus)
+    pet-position:
+      follow-distance: 1.5  # Distância que o pet segue atrás do jogador
+      height-offset: 0.0  # Ajuste de altura do pet (0 = no chão)
+      speed: 0.2  # Velocidade de movimento do pet (0.1-0.5 recomendado)
+
+  # Controle administrativo dos upgrades (desativa mesmo se o jogador tiver comprado)
+  upgrades:
+    enabled:
+      auto-store: true  # Auto Armazenamento
+      chest-interaction: true  # Depósitar e Retirar no Baú
+      movimentacao-rapida: true  # Movimentação Rápida
+      cosmetic-backpack: true  # Cosméticos de Mochila
+      fluid-storage-water: true  # Armazenamento de Água
+      fluid-storage-lava: true  # Armazenamento de Lava
+      bancada: true  # Bancada de Trabalho
+      fornalha: true  # Fornalhas
+
+# Tipos de mochilas
+backpacks:
+  basica:
+    backpack-item: PLAYER_HEAD
+    # Use PLAYER_HEAD e defina a skin personalizada abaixo, ou use qualquer outro item do Minecraft.
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjliMThiMDI0NTNkYjFiYTI1NjRjMWY5Yzk2N2ZkYWE0ZjNmOGY5NWQ2OTcyNjVkNGJkZTY2MjBkNjhkZWVhYiJ9fX0=" # Deixar caso não seja uma cabeça personalizada.
+    slots: 45
+    pages: 1
+    max-lava: 10
+    max-water: 10
+    name: "&8Mochila Basica &f(&7%id%&f)"
+    lore:
+      - "&7Uma mochila pequena para itens básicos."
+      - "&7Slots: %slots-ocupada%/%slots-total% | Páginas: %paginas%"
+      - ""
+      - "&7Melhorias: %upgrades-comprados%"
+      - ""
+      - "&eClique com o botão direito para abrir!"
+    # Configurações de whitelist e blacklist de itens
+    whitelist:
+      enabled: false # Ativar ou desativar whitelist
+      items: # Itens permitidos na mochila
+      - DIRT
+      - IRON_INGOT
+    blacklist:
+      enabled: false
+      items: # Itens proibidos na mochila
+      - DIAMOND_SWORD
+  media:
+    backpack-item: PLAYER_HEAD
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGJmOTI4N2E0YWFhMDA2MjhmMmQ0Yjc5ZTcwZDk4MWRlODEyMjg5NzU5ZTlkOTA3MzM0YjYxNWVhMTQ2YmFkOCJ9fX0="
+    slots: 45
+    pages: 2
+    max-lava: 20
+    max-water: 20
+    name: "&fMochila Média &f(&7%id%&f)"
+    lore:
+      - "&7Uma mochila média para mais itens."
+      - "&7Slots: %slots-ocupada%/%slots-total% | Páginas: %paginas%"
+      - ""
+      - "&7Melhorias: %upgrades-comprados%"
+      - ""
+      - "&eClique com o botão direito para abrir!"
+    # Configurações de whitelist e blacklist de itens
+    whitelist:
+      enabled: false # Ativar ou desativar whitelist
+      items: # Itens permitidos na mochila
+      - DIRT
+      - IRON_INGOT
+    blacklist:
+      enabled: false
+      items: # Itens proibidos na mochila
+      - DIAMOND_SWORD
+  ultra:
+    backpack-item: PLAYER_HEAD
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmI4MGE4NzFlOTkzOWViMWRlM2I0MGM5YzFmMDVjY2NhODlkYzk2NTQ3YzZlNjZjNjVhNTFiYWU3YTM1NWY4OSJ9fX0="
+    slots: 45
+    pages: 3
+    max-lava: 50
+    max-water: 50
+    name: "&cMochila Grande &f(&7%id%&f)"
+    lore:
+      - "&7Uma mochila grande para muitos itens."
+      - "&7Slots: %slots-ocupada%/%slots-total% | Páginas: %paginas%"
+      - ""
+      - "&7Melhorias: %upgrades-comprados%"
+      - ""
+      - "&eClique com o botão direito para abrir!"
+    # Configurações de whitelist e blacklist de itens
+    whitelist:
+      enabled: false # Ativar ou desativar whitelist
+      items: # Itens permitidos na mochila
+      - DIRT
+      - IRON_INGOT
+    blacklist:
+      enabled: false
+      items: # Itens proibidos na mochila
+      - DIAMOND_SWORD
+
+
+# Skins disponíveis para mochilas
+backpack-skins:
+  rosa:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTU2NGYwOTllZTE5NjUzODBhOGQxY2ZjZjZiOGQxZWQ3ZDhlMDUwZTk5NWEyNTZjM2I2NmM1NDYxNDQ3YmViYSJ9fX0="
+    name: "&dRosa"
+    description: "&7A skin rosa da mochila."
+    permission: "starmochila.skin.rosa" # Permissão necessária para usar esta skin.
+  amarelo:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDUyMDE5NWRkYzI4NjNjYjJhODI2OGZlMjY5OGU5ZDA4MjBjZjRjZTlkMGRjMWI2NDE4NTBjNTYwNmFhYzdiZSJ9fX0="
+    name: "&eAmarelo"
+    description: "&7Uma skin amarela para a mochila."
+    permission: "starmochila.skin.amarelo"
+  verde:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIxMjU0YjExOGRhNjg0NDlhMGE5YWM3ZGE4MDgyMTNkNjBmYTZmM2FkM2EwZGQxZWMzOGFiYTRhZjlmMzc3YiJ9fX0="
+    name: "&aVerde"
+    description: "&7Uma skin verde para a mochila."
+    permission: "starmochila.skin.verde"
+  gucci:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTIwOGY1ODk3ZjEyZTVmY2IyZThiNDM4MWY1NDQ1YTc3MTFlODQ3MjFlYzRhN2ZjMTAxZDViNzQwYjg2ZjhmYSJ9fX0="
+    name: "&6Gucci"
+    description: "&7Uma skin gucci estilosa para a mochila."
+    permission: "starmochila.skin.gucci"    
