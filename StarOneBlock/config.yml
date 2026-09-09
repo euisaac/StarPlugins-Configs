@@ -181,6 +181,18 @@ Holograma:
     - '&fNivel: &a{nivel}'
     - '&d&lIMPULSO {impulso}'
 
+Compatibilidade:
+  # Alem dos placeholders proprios (%staroneblock_...%), o plugin responde
+  # tambem aos do formato %oneblock_...% -- os mesmos nomes que outros plugins
+  # de OneBlock usam.
+  #
+  # Serve para quem esta trocando de plugin: a scoreboard, o tab e as placas
+  # continuam funcionando sem precisar reescrever nada.
+  #
+  # Desligue se outro plugin do servidor ja usa esse prefixo (nesse caso quem
+  # registrou primeiro fica com ele, e o aviso aparece no console).
+  Placeholders oneblock: true
+
 Sons:
   Erro: 'ENTITY_VILLAGER_NO;1;1'
   Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
