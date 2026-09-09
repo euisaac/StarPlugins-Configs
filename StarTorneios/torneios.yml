@@ -10,6 +10,13 @@
 #    MATAR_JOGADOR   MORRER          DOMAR         REPRODUZIR   DANO_CAUSADO
 #    DANO_RECEBIDO   TEMPO_JOGADO    DISTANCIA     EXPERIENCIA  ENTRADAS
 #    MENSAGENS       QUEBRAR_ITEM    PERSONALIZADO
+#    MATAR_MOB_DE_SPAWNER
+#
+#  MATAR_MOB x MATAR_MOB_DE_SPAWNER
+#    Sao os dois lados da mesma moeda. No MATAR_MOB voce liga
+#    "Ignorar mobs de spawner: true" para o farm nao valer; no
+#    MATAR_MOB_DE_SPAWNER **so** o mob de spawner conta, e nada mais.
+#    Vale tanto o spawner vanilla quanto os spawners do StarSpawners.
 #
 #  ALVOS
 #    Nos tipos de bloco/item a lista "Alvos" recebe materiais; nos tipos de
@@ -276,6 +283,49 @@ Torneios:
     Anuncios:
       Top no menu: 3
       Avisar novo lider: true
+
+    Premiacao:
+      '1':
+        Exibir: '&7 ⤷ &6#1 &f- &a9.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce venceu o torneio {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 9000'
+      '2-3':
+        Exibir: '&7 ⤷ &6#2 e #3 &f- &a3.000 coins'
+        Mensagem: '&6&lTORNEIO! &fVoce ficou em &6#{posicao} &fno {torneio}&f!'
+        Comandos:
+          - 'eco give {jogador} 3000'
+
+  #  ──────────────────────────────────────────────────────────────────────
+  #  Matador de mobs: o oposto do Cacador -- aqui SO conta mob de spawner.
+  #  Serve para premiar quem investiu em farm sem misturar com quem caca no
+  #  mundo, e os dois torneios podem rodar ao mesmo tempo sem se atrapalhar.
+  #  ──────────────────────────────────────────────────────────────────────
+  matador:
+    Ativar: true
+    Tipo: MATAR_MOB_DE_SPAWNER
+    Nome: '&6&lMATADOR DE MOBS'
+    Descricao:
+      - '&7Somente mobs nascidos de spawners'
+      - '&7contam neste torneio.'
+
+    Menu:
+      Slot: 34
+      Material: SPAWNER
+
+    Pontos por acao: 1
+    # Vazio conta qualquer mob; liste tipos para restringir (ZOMBIE, BLAZE...).
+    Alvos: []
+
+    Anti abuso:
+      Ignorar modo criativo: true
+
+    Agenda:
+      Tipo: INTERVALO
+      Intervalo: '7d'
+
+    Anuncios:
+      Top no menu: 3
 
     Premiacao:
       '1':
