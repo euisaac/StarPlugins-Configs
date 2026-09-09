@@ -1,0 +1,68 @@
+# ==========================================================================
+#  StarDemolidor - textos
+#
+#  Mensagem vazia ('') simplesmente nao e enviada: e assim que se desliga um
+#  aviso sem precisar de uma opcao "Ativar" para cada um.
+#
+#  <nl> quebra a linha nos titulos.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&c&lDEMOLIDOR &8- &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Numero invalido: '&cO numero &f{valor} &cnao vale.'
+  Tipo invalido: '&cNao existe um demolidor chamado &f{tipo}&c.'
+  Tipos disponiveis: '&7Tipos: &f{tipos}'
+
+Colocacao:
+  Iniciado: '{prefixo}&aDemolidor colocado! A demolicao comeca em &f{segundos} &asegundos.'
+  Iniciado agora: '{prefixo}&aDemolidor colocado! Fique longe da area.'
+  Sem permissao: '&cVoce nao tem permissao para colocar este demolidor.'
+  Mundo bloqueado: '&cNao da para usar um demolidor neste mundo.'
+  Chunk ocupado: '&cJa existe um demolidor rodando neste chunk.'
+  Fora do terreno: '&cVoce so pode colocar um demolidor dentro do seu proprio terreno.'
+  Limite atingido: '&cVoce ja tem &f{limite} &cdemolidor(es) rodando ao mesmo tempo.'
+  Limite do servidor: '&cO servidor ja esta no limite de demolidores em andamento. Tente daqui a pouco.'
+  Cooldown: '&cEspere mais &f{segundos}s &cpara usar outro demolidor.'
+  Aviso na area: '{prefixo}&eUm demolidor vai limpar esta area. Saia daqui!'
+
+Andamento:
+  Actionbar: '&c&lDEMOLINDO &8| &fAltura &c{altura} &8| &f{progresso}%'
+  Actionbar revertendo: '&e&lDEVOLVENDO &8| &f{restantes} &7blocos restantes'
+  Actionbar aguardando: '&7Comecando em &f{segundos}s&7...'
+  Terminou: '{prefixo}&aO seu demolidor terminou o servico.'
+  Terminou com blocos: '{prefixo}&aO seu demolidor terminou: &f{blocos} &ablocos removidos.'
+  Retomado: '{prefixo}&7{quantidade} demolidor(es) retomado(s) de antes do restart.'
+
+Cancelamento:
+  Sucesso: '{prefixo}&eDemolidor cancelado. Devolvendo os blocos...'
+  Sucesso sem reversao: '{prefixo}&eDemolidor cancelado.'
+  Outro jogador: '{prefixo}&eO seu demolidor foi cancelado por &f{jogador}&e. Devolvendo os blocos...'
+  Cancelou de outro: '{prefixo}&aDemolidor de &f{jogador} &acancelado.'
+  Ja cancelado: '&cEste demolidor ja foi cancelado.'
+  Abaixo do minimo: '&cEste demolidor ja passou da altura &f{altura} &ce nao pode mais ser cancelado.'
+  Sem demolidores: '&cVoce nao tem nenhum demolidor em andamento.'
+  Sem demolidores de: '&cO jogador &f{jogador} &cnao tem nenhum demolidor em andamento.'
+  Reversao concluida: '{prefixo}&aOs blocos do seu demolidor voltaram para o lugar.'
+  Reversao desligada: '&7A reversao esta desligada neste servidor: cancelar apenas para a demolicao.'
+
+Administracao:
+  Recarregado: '{prefixo}&aConfiguracoes recarregadas. &7({tipos} tipo(s) carregado(s))'
+  Salvo: '{prefixo}&aDemolidores em andamento gravados em disco.'
+  Deu item: '{prefixo}&aVoce deu &fx{quantidade} {tipo} &apara &f{jogador}&a.'
+  Recebeu item: '{prefixo}&aVoce recebeu &fx{quantidade} {tipo}&a.'
+  Inventario cheio: '&cO inventario de &f{jogador} &cesta cheio.'
+  Nenhum ativo: '&7Nenhum demolidor em andamento no momento.'
+  Cabecalho lista: '&8&m--------&r &c&lDEMOLIDORES ATIVOS &8&m--------'
+  Linha lista: '&7#{indice} &f{jogador} &7- &f{tipo} &7em &f{mundo} {x}, {z} &7- altura &f{altura} &7({progresso}%)'
+  Rodape lista: '&8&m----------------------------------'
+
+Ajuda:
+  Cabecalho: '&8&m--------&r &c&lSTARDEMOLIDOR &8&m--------'
+  Linha: '&c/{comando} &8- &f{descricao}'
+  Rodape: '&8&m----------------------------------'

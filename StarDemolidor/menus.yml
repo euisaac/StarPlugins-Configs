@@ -1,0 +1,69 @@
+# ==========================================================================
+#  StarDemolidor - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Confirmacao:
+  Titulo: '&8Usar o demolidor?'
+  Linhas: 3
+  Enfeite:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Confirmar:
+    Slot: 11
+    Material: LIME_STAINED_GLASS_PANE
+    Nome: '&a&lCONFIRMAR'
+    Lore:
+      - '&7O demolidor comeca a limpar'
+      - '&7a area imediatamente.'
+      - ''
+      - '&8Area: &f{area}'
+      - '&8Altura: &f{inicial} &7ate &f{final}'
+  Informacao:
+    Slot: 13
+    Material: PAPER
+    Nome: '&f{nome}'
+    Lore:
+      - '&7Modo: &f{modo}'
+      - '&7Area: &f{area}'
+      - '&7Chunks: &f{chunks}'
+      - '&7Altura: &f{inicial} &7ate &f{final}'
+  Cancelar:
+    Slot: 15
+    Material: RED_STAINED_GLASS_PANE
+    Nome: '&c&lCANCELAR'
+    Lore:
+      - '&7O item volta para o seu inventario.'
+
+Cancelamento:
+  Titulo: '&8Demolidores em andamento'
+  Linhas: 3
+  Enfeite:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Demolidor:
+    Material: TNT
+    Nome: '&c{tipo}'
+    Lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Local: &f{x}, {z}'
+      - '&7Altura atual: &f{altura}'
+      - '&7Progresso: &f{progresso}%'
+      - '&7Blocos removidos: &f{blocos}'
+      - ''
+      - '&eClique para cancelar e'
+      - '&edevolver os blocos.'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhum demolidor em andamento'
+    Lore:
+      - '&7Coloque um demolidor no chao'
+      - '&7para ele aparecer aqui.'
+  Fechar:
+    Slot: 26
+    Material: ARROW
+    Nome: '&cFechar'

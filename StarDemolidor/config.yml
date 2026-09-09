@@ -1,0 +1,158 @@
+# ==========================================================================
+#  StarDemolidor - configuracao geral
+#
+#  Os tipos de demolidor ficam no demolidores.yml, os textos no mensagens.yml
+#  e a aparencia das telas no menus.yml.
+#
+#  Como funciona: o demolidor e um item. Ao ser COLOCADO no chao ele vira uma
+#  demolicao, que apaga o terreno camada por camada (uma altura Y por vez)
+#  dentro dos chunks do raio configurado. Uma camada por ciclo, com intervalo
+#  entre os ciclos, e o que impede o servidor de travar.
+#
+#  Tudo que esta aqui e o PADRAO. Cada tipo do demolidores.yml pode ter os
+#  proprios valores para intervalo, camadas, altura e materiais bloqueados.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+  # Mundos onde nenhum demolidor pode ser colocado.
+  Mundos bloqueados:
+    - mundo_do_spawn
+    - lobby
+
+Demolicao:
+  # Quantos tiques o plugin espera entre uma camada e a proxima. Menor = mais
+  # rapido e mais pesado. 20 tiques = 1 segundo.
+  Intervalo: 10
+
+  # Quantas camadas caem a cada ciclo. Subir isto acelera sem diminuir o
+  # intervalo -- util em raio 1, arriscado em raio 5.
+  Camadas por ciclo: 1
+
+  # Altura Y onde a demolicao comeca. Use -1 para comecar na altura do proprio
+  # bloco colocado (o normal), ou um numero fixo como 256 para varrer o mapa
+  # inteiro de cima a baixo.
+  Altura inicial: -1
+
+  # Altura Y onde a demolicao para. Em mundos 1.18+ o chao vai ate -64.
+  Altura final: 1
+
+  # Camada 100% vazia nao gasta um ciclo: o plugin pula direto para a proxima.
+  # E o que faz um demolidor comecado no ceu chegar rapido ao chao.
+  Pular camadas vazias: true
+
+  # Quantos tiques o demolidor espera antes do primeiro ciclo, contados a
+  # partir da colocacao. Da tempo de o jogador sair de dentro.
+  Tempo antes de iniciar: 0
+
+  # Nenhum destes materiais e removido. O nome passa pelo XSeries, entao vale
+  # tanto o nome novo quanto o antigo.
+  Materiais bloqueados:
+    - BEDROCK
+    - END_PORTAL
+    - END_PORTAL_FRAME
+    - NETHER_PORTAL
+    - BARRIER
+    - COMMAND_BLOCK
+    - END_GATEWAY
+
+  # Deixa agua e lava de fora da demolicao.
+  Ignorar liquidos: false
+
+  # Quantos demolidores um jogador pode ter rodando ao mesmo tempo. 0 = sem
+  # limite. A permissao stardemolidor.limite.<numero> troca este valor para
+  # quem a tiver (stardemolidor.limite.5 = cinco), e
+  # stardemolidor.limite.ilimitado tira o teto.
+  Maximo por jogador: 2
+
+  # Teto do servidor inteiro, somando todos os jogadores. 0 = sem limite.
+  Maximo no servidor: 0
+
+  # Segundos de espera entre um demolidor e o proximo do mesmo jogador.
+  Cooldown: 0
+
+Itens:
+  # Os blocos quebrados viram drop no chao. Ligado, isto enche o chunk de itens
+  # e e a forma mais rapida de derrubar o TPS de um servidor cheio -- so ligue
+  # em raio 1 e com pouca gente online.
+  Dropar itens: false
+
+  # Manda os blocos direto para o inventario de quem colocou o demolidor. O que
+  # nao couber e descartado (nao cai no chao).
+  Enviar para o inventario: false
+
+Colocacao:
+  # Abre uma tela de confirmacao antes de comecar. Evita o demolidor colocado
+  # sem querer no meio da base.
+  Confirmar: true
+
+  # Exige que o bloco esteja dentro de um terreno do proprio jogador -- ser
+  # dono mesmo, nao apenas ter permissao de construir. Reconhece WorldGuard,
+  # GriefDefender, Towny e Lands. Sem nenhum deles instalado, a opcao nao
+  # bloqueia nada (a protecao do terreno ja cancela a colocacao de quem nao
+  # pode construir ali).
+  Somente no proprio terreno: false
+
+  # Impede colocar um demolidor dentro de um chunk que ja esta sendo demolido.
+  Bloquear chunk ocupado: true
+
+  # Avisa quem estiver dentro da area que a demolicao vai comecar.
+  Avisar jogadores dentro: true
+
+  # Sobe quem estiver dentro da area para o topo antes de cada camada, para
+  # ninguem cair no vazio junto com o terreno.
+  Proteger jogadores dentro: true
+
+Reversao:
+  # Guarda cada bloco removido para que o cancelamento devolva o terreno.
+  # Desligado, cancelar apenas para a demolicao -- o que ja caiu nao volta.
+  Ativada: true
+
+  # Teto de blocos guardados por demolicao. Passando disto, a demolicao segue
+  # normalmente mas perde o direito de ser revertida (o aviso vai para o
+  # console). Cada bloco guardado ocupa memoria: 150000 sao poucos MB, alguns
+  # milhoes nao sao.
+  Maximo de blocos guardados: 150000
+
+  # Altura minima para poder cancelar: passando desta camada para baixo, o
+  # demolidor nao aceita mais cancelamento. 0 desliga a trava.
+  Altura minima para cancelar: 0
+
+  # Quantos blocos voltam por ciclo enquanto a reversao acontece. A reversao
+  # anda no mesmo intervalo da demolicao.
+  Blocos por ciclo: 4000
+
+  # Abre a tela de cancelamento quando o jogador roda /demolidor sem argumento.
+  Menu de cancelamento: true
+
+Efeitos:
+  # Som tocado em quem esta perto a cada camada. Formato: SOM;volume;tom.
+  # Deixe vazio ('') para nao tocar nada.
+  Som da camada: 'BLOCK_STONE_BREAK;0.4;1.6'
+  Som ao iniciar: 'ENTITY_GENERIC_EXPLODE;0.6;1.2'
+  Som ao terminar: 'ENTITY_PLAYER_LEVELUP;0.8;1.0'
+  Som ao cancelar: 'BLOCK_NOTE_BLOCK_BASS;0.8;0.8'
+
+  # Particula desenhada na camada que esta caindo. Vazio ('') desliga.
+  Particula da camada: 'CLOUD'
+
+  # Mostra o progresso na actionbar de quem colocou o demolidor.
+  Actionbar: true
+
+  # Alcance, em blocos, de quem escuta o som e ve a particula.
+  Alcance dos efeitos: 40
+
+Dados:
+  # De quantos em quantos segundos as demolicoes em andamento sao gravadas em
+  # disco, para voltarem sozinhas depois de um restart. 0 grava so no
+  # desligamento. A gravacao acontece fora da thread principal.
+  Salvar a cada: 300
+
+  # Retoma as demolicoes que estavam no ar quando o servidor caiu.
+  Retomar ao ligar: true

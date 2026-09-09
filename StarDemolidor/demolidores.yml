@@ -1,0 +1,151 @@
+# ==========================================================================
+#  StarDemolidor - os tipos de demolidor
+#
+#  Este arquivo e SEU. Os exemplos abaixo so sao escritos na primeira subida:
+#  um tipo apagado por voce continua apagado depois de uma atualizacao, e um
+#  tipo criado por voce nunca e sobrescrito.
+#
+#  Cada chave em "Demolidores" e um tipo. O nome da chave e o que vai nos
+#  comandos: /stardemolidor dar EuIsaac comum 1
+#
+#  Qualquer opcao que voce nao escrever cai no valor do config.yml. Escreva so
+#  o que muda de um tipo para o outro.
+#
+#  ---------------------------------------------------------------------
+#  Modo: o que o demolidor faz com a area
+#
+#    DESCER      Apaga o terreno de cima para baixo. E o modo classico.
+#    SUBIR       Apaga de baixo para cima. Serve para limpar caverna e
+#                deixar a superficie por ultimo.
+#    PREENCHER   Nao apaga nada: enche o que estiver vazio com o "Bloco".
+#                Bom para tapar buraco de mina e aterrar terreno.
+#    PLATAFORMA  Apaga tudo de cima para baixo e, ao chegar na altura
+#                final, deixa uma laje inteira do "Bloco" no lugar.
+#  ---------------------------------------------------------------------
+#
+#  Raio: 1 = so o chunk onde o bloco foi colocado. 3 = 3x3 chunks (9 chunks),
+#  5 = 5x5 (25 chunks). Sempre numero impar.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Demolidores:
+
+  comum:
+    # 1 = so o chunk do bloco colocado.
+    Raio: 1
+    Modo: DESCER
+    Item:
+      Material: SPONGE
+      # Nas versoes anteriores a 1.13 o dado do item e a cor/variante.
+      Dado: 0
+      Nome: '&c&lDEMOLIDOR DE CHUNK &fNivel 1 &7(Coloque para destruir)'
+      Lore:
+        - '&7Coloque este Demolidor'
+        - '&7para destruir a chunk!'
+        - ''
+        - '&8Area: &f1 chunk'
+      Brilho: true
+    # Vazio = qualquer um com stardemolidor.usar pode colocar.
+    Permissao: ''
+    Intervalo: 10
+    Camadas por ciclo: 1
+
+  avancado:
+    Raio: 3
+    Modo: DESCER
+    Item:
+      Material: SPONGE
+      Dado: 0
+      Nome: '&6&lDEMOLIDOR DE CHUNK &fNivel 2 &7(Coloque para destruir)'
+      Lore:
+        - '&7Coloque este Demolidor'
+        - '&7para destruir 9 chunks!'
+        - ''
+        - '&8Area: &f3x3 chunks'
+      Brilho: true
+    Permissao: 'stardemolidor.tipo.avancado'
+    Intervalo: 15
+    Camadas por ciclo: 1
+
+  supremo:
+    Raio: 5
+    Modo: DESCER
+    Item:
+      Material: SPONGE
+      Dado: 0
+      Nome: '&d&lDEMOLIDOR DE CHUNK &fNivel 3 &7(Coloque para destruir)'
+      Lore:
+        - '&7Coloque este Demolidor'
+        - '&7para destruir 25 chunks!'
+        - ''
+        - '&8Area: &f5x5 chunks'
+        - '&8Um demolidor por vez.'
+      Brilho: true
+    Permissao: 'stardemolidor.tipo.supremo'
+    Intervalo: 20
+    Camadas por ciclo: 1
+    # Teto proprio deste tipo, contado a parte do limite geral.
+    Maximo por jogador: 1
+
+  subterraneo:
+    Raio: 1
+    # Comeca no fundo e sobe: a superficie so cai no fim.
+    Modo: SUBIR
+    Item:
+      Material: SPONGE
+      Dado: 0
+      Nome: '&b&lDEMOLIDOR SUBTERRANEO &7(Coloque para escavar)'
+      Lore:
+        - '&7Limpa a chunk de baixo'
+        - '&7para cima, do fundo ate voce.'
+        - ''
+        - '&8Area: &f1 chunk'
+      Brilho: true
+    Permissao: 'stardemolidor.tipo.subterraneo'
+    Intervalo: 10
+    Camadas por ciclo: 2
+    # Aqui a "inicial" e o teto e a "final" e o piso: o modo SUBIR percorre o
+    # mesmo intervalo, so que ao contrario.
+    Altura inicial: -1
+    Altura final: 1
+    Enviar para o inventario: true
+
+  aterro:
+    Raio: 1
+    # Nao apaga nada: enche o vazio com o bloco abaixo.
+    Modo: PREENCHER
+    Bloco: DIRT
+    Item:
+      Material: SPONGE
+      Dado: 0
+      Nome: '&a&lATERRADOR DE CHUNK &7(Coloque para aterrar)'
+      Lore:
+        - '&7Enche a chunk inteira de terra,'
+        - '&7do fundo ate a altura em que'
+        - '&7voce colocar o bloco.'
+        - ''
+        - '&8Area: &f1 chunk'
+      Brilho: true
+    Permissao: 'stardemolidor.tipo.aterro'
+    Intervalo: 10
+    Camadas por ciclo: 1
+
+  plataforma:
+    Raio: 3
+    # Limpa tudo e deixa uma laje inteira na altura final.
+    Modo: PLATAFORMA
+    Bloco: STONE
+    Item:
+      Material: SPONGE
+      Dado: 0
+      Nome: '&f&lNIVELADOR DE CHUNK &7(Coloque para nivelar)'
+      Lore:
+        - '&7Limpa 9 chunks e deixa'
+        - '&7uma plataforma de pedra no chao.'
+        - ''
+        - '&8Area: &f3x3 chunks'
+      Brilho: true
+    Permissao: 'stardemolidor.tipo.plataforma'
+    Intervalo: 15
+    Camadas por ciclo: 1
