@@ -1,0 +1,115 @@
+# ==========================================================================
+#  StarPortalPorComando - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao separada para cada um.
+#  Cores: &a, &e, &c... e tambem &#FF00AA nos servidores 1.16+.
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Prefixo: '&b&lAREAS &8» &7'
+
+Ajuda: |-
+  &8&m-----------------------------------------
+  &b&lStarPortalPorComando
+  &7Areas que rodam comandos quando alguem entra.
+
+  &f/{comando} menu &8- &7abre a lista de areas
+  &f/{comando} varinha &8- &7pega a varinha dos cantos
+  &f/{comando} pos1 &8| &fpos2 &8- &7marca um canto sem a varinha
+  &f/{comando} criar <nome> &8- &7cria a area da sua selecao
+  &f/{comando} editar <nome> &8- &7abre o editor dela
+  &f/{comando} listar &8- &7lista tudo no chat
+  &f/{comando} ir <nome> &8- &7teleporta ate ela
+  &f/{comando} ligar &8| &fdesligar <nome>
+  &f/{comando} testar <nome> &8- &7roda os comandos de entrada em voce
+  &f/{comando} zerar <nome> &8- &7zera o historico de usos
+  &f/{comando} ver &8- &7liga o contorno de todas as areas
+  &f/{comando} remover <nome> &8- &7apaga a area
+  &f/{comando} texto <valor> &8- &7responde ao "Digitar" sem usar o chat
+  &f/{comando} recarregar &8- &7recarrega os arquivos
+  &8&m-----------------------------------------
+
+Recarregado: '&aArquivos recarregados.'
+
+Erros:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So no jogo: '&cEste comando so funciona dentro do jogo.'
+  Falta o nome: '&cFalta o nome. Use: &f/{comando} <nome>'
+  Nao existe: '&cNao existe nenhuma area chamada &f{nome}&c.'
+  Ja existe: '&cJa existe uma area chamada &f{nome}&c.'
+  Nome invalido: '&cO nome &f{nome} &cnao serve: use so letras, numeros, - e _.'
+  Limite: '&cO servidor chegou ao limite de &f{limite} &careas.'
+  Sem selecao: '&cMarque os dois cantos antes. Pegue a varinha com &f/starportalporcomando varinha&c.'
+  Sem cantos: '&cA area &f{nome} &cainda nao tem os cantos marcados.'
+  Sem mundo: '&cO mundo da area &f{nome} &cnao esta aberto neste servidor.'
+  Area pequena demais: '&cA area ficaria sem nenhum bloco desse jeito.'
+  Material invalido: '&cO material &f{material} &cnao existe nesta versao.'
+  Efeito invalido: '&cO efeito &f{efeito} &cnao existe nesta versao.'
+  Numero invalido: '&cO valor &f{valor} &cnao e um numero.'
+  Cor invalida: '&cEscreva a cor como &fR,G,B &c-- por exemplo &f255,80,255&c.'
+
+Varinha:
+  Entregue: '&aVarinha entregue. Esquerdo marca o primeiro canto, direito o segundo.'
+  Canto 1: '&aPrimeiro canto em &f{x}, {y}, {z}&a.'
+  Canto 2: '&aSegundo canto em &f{x}, {y}, {z}&a.'
+  Selecao pronta: '&7Selecao de &f{tamanho} &7(&f{blocos} &7blocos). Agora use &f/starportalporcomando criar <nome>&7.'
+  Mundos diferentes: '&cOs dois cantos precisam estar no mesmo mundo.'
+
+Editor:
+  Criada: '&aArea &f{nome} &acriada com &f{tamanho} &7(&f{blocos} &7blocos)&a.'
+  Removida: '&aArea &f{nome} &aapagada.'
+  Ligada: '&aArea &f{nome} &aligada.'
+  Desligada: '&eArea &f{nome} &edesligada.'
+  Teleportado: '&aVoce foi para a area &f{nome}&a.'
+  Testado: '&aComandos da area &f{nome} &arodados em voce.'
+  Area marcada: '&aOs limites de &f{nome} &aagora sao a sua selecao (&f{tamanho}&a).'
+  Historico zerado: '&aO historico da area &f{nome} &afoi zerado.'
+  Vendo: '&aVoce passou a ver o contorno de todas as areas por perto.'
+  Nao vendo: '&eVoce parou de ver o contorno das areas.'
+
+Lista:
+  Vazia: '&7Nenhuma area criada ainda.'
+  Cabecalho: '&8&m----- &b{quantidade} area(s) &8&m-----'
+  Linha: '&f{nome} &8(&7{id}&8) &7- &f{mundo} &7- &f{tamanho} &7- &f{estado} &7- &f{usos} &7disparo(s)'
+
+# Os avisos de quando o jogador nao pode disparar a area. Cada area pode
+# calar todos eles de uma vez pelo botao "Sem avisos" dos requisitos.
+Requisitos:
+  Sem permissao: '&cVoce nao tem permissao para usar esta area.'
+  Fora do periodo: '&cA area &f{area} &cso funciona de &f{periodo}&c.'
+  Espera: '&cEspere &f{tempo} &cpara usar a area &f{area} &cde novo.'
+  Espera da area: '&cA area &f{area} &cesta descansando: &f{tempo}&c.'
+  Limite do jogador: '&cVoce ja usou a area &f{area} &cas &f{limite} &cvez(es) permitidas.'
+  Limite da area: '&cA area &f{area} &cja foi usada as &f{limite} &cvez(es) permitidas.'
+  Sem dinheiro: '&cVoce precisa de &f{valor} &cpara usar a area &f{area}&c.'
+
+Aquecimento:
+  Contagem: '&eFique parado... &f{segundos}s'
+
+Acao:
+  Link: '&b{link}'
+  Link dica: '&7Clique para abrir &f{link}'
+  Link no chat: '&7Endereco: &f{link}'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&cPedido cancelado.'
+  Tempo esgotado: '&cVoce demorou demais; o pedido foi cancelado.'
+  Sem texto: '&cEscreva o texto depois do comando.'
+  Nada pendente: '&cVoce nao tem nada para responder agora.'
+  Nome da area: '&eEscreva no chat o nome da area nova.'
+  Nome: '&eEscreva no chat o novo nome da area.'
+  Icone: '&eEscreva no chat o material do icone (ex: &fENDER_PEARL&e).'
+  Comando: '&eEscreva no chat o comando, sem a barra. Prefixos que valem: &fconsole:&e, &fjogador:&e, &fop:&e, &fmensagem:&e, &fanuncio:&e, &ftitulo:&e, &factionbar:&e, &fsom:&e, &fparticula:&e, &fefeito:&e, &fteleporte:&e, &flink:&e, &fespera:&e.'
+  Mensagem: '&eEscreva no chat a mensagem. Use &f{jogador}&e para o nick.'
+  Titulo: '&eEscreva no chat o titulo. Use &f<nl>&e para separar o subtitulo, ou &fnada&e para apagar.'
+  Actionbar: '&eEscreva no chat a actionbar, ou &fnada&e para apagar.'
+  Permissao: '&eEscreva no chat a permissao exigida (ex: &fmeuservidor.vip&e).'
+  Custo: '&eEscreva no chat o valor cobrado a cada disparo.'
+  Particula: '&eEscreva no chat o nome da particula (ex: &fFLAME&e).'
+  Som: '&eEscreva no chat o som (&fSOM&e, &fSOM;volume&e ou &fSOM;volume;tom&e).'
+  Efeito: '&eEscreva no chat o efeito (ex: &fSPEED&e).'
+  Cor: '&eEscreva no chat a cor como &fR,G,B &e-- por exemplo &f255,80,255&e.'

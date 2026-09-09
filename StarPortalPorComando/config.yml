@@ -1,0 +1,208 @@
+# ==========================================================================
+#  StarPortalPorComando - configuracao
+#
+#  As areas em si NAO ficam aqui: elas sao criadas no jogo (marque os dois
+#  cantos com a varinha e use /starportalporcomando criar <nome>) e ficam
+#  guardadas no areas.yml, ao lado. Este arquivo cuida do que vale para o
+#  produto inteiro.
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Geral:
+  # Mostra no console cada disparo e cada resposta de chat capturada.
+  Debug: false
+
+  # Quantas areas o servidor aceita ao todo. 0 = sem limite.
+  Limite de areas: 0
+
+Verificacao:
+  # De quantos em quantos ticks a presenca de cada jogador e refeita.
+  # 10 ticks = meio segundo. E esta tarefa que cuida do gatilho
+  # "Permanecer", do fim do aquecimento e dos casos que o movimento nao
+  # cobre (teleporte de outro plugin, area criada em volta de quem esta
+  # parado). Baixar demais custa CPU a toa.
+  Ticks: 10
+
+  # Alem da tarefa acima, recalcula na hora em que o jogador muda de bloco.
+  # E o que faz a area parecer instantanea. Desligue so se o seu servidor
+  # tiver um problema serio de performance no evento de movimento.
+  No movimento: true
+
+  # Quem sai do servidor dentro de uma area dispara o gatilho "Sair".
+  # Desligue se os seus comandos de saida dependerem de o jogador estar
+  # mesmo online (dar item, teleportar).
+  Disparar saida ao sair do servidor: true
+
+  # Mostra na actionbar quantos segundos faltam para o aquecimento acabar.
+  Contagem no aquecimento: true
+
+  # De quantos em quantos segundos o dados.yml (usos e entradas de cada
+  # jogador) vai para o disco. A gravacao acontece fora da thread principal.
+  Salvar os dados a cada: 60
+
+Contorno:
+  # De quantos em quantos ticks o contorno das areas e redesenhado.
+  Ticks: 12
+
+  # Teto de particulas por area em cada desenho. Passando disso, o
+  # espacamento e afrouxado sozinho ate caber -- e assim que uma area de
+  # 200 blocos de lado nao derruba a banda do servidor.
+  Maximo de particulas por area: 400
+
+# A varinha que marca os dois cantos: esquerdo o primeiro, direito o
+# segundo. Ela e reconhecida por uma marca escondida, nao pelo material --
+# renomear na bigorna nao quebra nada.
+Varinha:
+  Material: BLAZE_ROD
+  Nome: '&d&lVarinha de area'
+  Lore:
+    - '&7Marca os cantos das areas do'
+    - '&7StarPortalPorComando.'
+    - ''
+    - '&fClique esquerdo num bloco&7: primeiro canto'
+    - '&fClique direito num bloco&7: segundo canto'
+    - ''
+    - '&7Depois: &f/starportalporcomando criar <nome>'
+
+# Formato: SOM, SOM;volume ou SOM;volume;tom. Deixe vazio para nao tocar.
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+
+# So importa quando alguma area cobra um valor para disparar.
+Economia:
+  # VAULT, STARECONOMIA ou COMANDO.
+  #   VAULT        - qualquer economia registrada no Vault
+  #   STARECONOMIA - fala direto com o produto irmao
+  #   COMANDO      - para as economias que nao se registram em lugar nenhum:
+  #                  o saldo e lido por placeholder e o dinheiro sai por
+  #                  comando de console
+  Tipo: VAULT
+
+  # So no modo STARECONOMIA.
+  Moeda do StarEconomia: 'dinheiro'
+
+  Simbolo: '$'
+
+  # So no modo COMANDO.
+  Placeholder do saldo: ''
+  Comando de retirar: ''
+  Comando de dar: ''
+
+# --------------------------------------------------------------------------
+#  Sugestoes dos menus
+#
+#  Sao so atalhos: o botao "Digitar" de cada menu aceita qualquer nome que
+#  exista na sua versao de servidor, mesmo fora destas listas.
+# --------------------------------------------------------------------------
+
+Particulas sugeridas:
+  REDSTONE:
+    Nome: '&cPoeira colorida'
+    Material: REDSTONE
+  FLAME:
+    Nome: '&6Chama'
+    Material: BLAZE_POWDER
+  VILLAGER_HAPPY:
+    Nome: '&aFaiscas verdes'
+    Material: EMERALD
+  CLOUD:
+    Nome: '&fNuvem'
+    Material: WHITE_WOOL
+  SPELL_WITCH:
+    Nome: '&5Magia de bruxa'
+    Material: POTION
+  PORTAL:
+    Nome: '&5Portal'
+    Material: OBSIDIAN
+  ENCHANTMENT_TABLE:
+    Nome: '&bRunas'
+    Material: ENCHANTING_TABLE
+  HEART:
+    Nome: '&dCoracoes'
+    Material: RED_DYE
+  NOTE:
+    Nome: '&eNotas musicais'
+    Material: NOTE_BLOCK
+  SMOKE_NORMAL:
+    Nome: '&8Fumaca'
+    Material: COAL
+  DRIP_LAVA:
+    Nome: '&6Pingos de lava'
+    Material: LAVA_BUCKET
+  SNOWBALL:
+    Nome: '&fNeve'
+    Material: SNOWBALL
+
+Sons sugeridos:
+  ENTITY_PLAYER_LEVELUP:
+    Nome: '&aSubiu de nivel'
+    Material: EXPERIENCE_BOTTLE
+  BLOCK_NOTE_BLOCK_PLING:
+    Nome: '&ePling'
+    Material: NOTE_BLOCK
+  ENTITY_ENDERMAN_TELEPORT:
+    Nome: '&5Teleporte de enderman'
+    Material: ENDER_PEARL
+  BLOCK_PORTAL_TRAVEL:
+    Nome: '&5Viagem de portal'
+    Material: OBSIDIAN
+  ENTITY_EXPERIENCE_ORB_PICKUP:
+    Nome: '&aPegar experiencia'
+    Material: EXPERIENCE_BOTTLE
+  BLOCK_ANVIL_LAND:
+    Nome: '&7Bigorna caindo'
+    Material: ANVIL
+  ENTITY_VILLAGER_NO:
+    Nome: '&cAldeao dizendo nao'
+    Material: BARRIER
+  BLOCK_CHEST_OPEN:
+    Nome: '&6Bau abrindo'
+    Material: CHEST
+  ENTITY_FIREWORK_ROCKET_BLAST:
+    Nome: '&eFogos de artificio'
+    Material: FIREWORK_ROCKET
+  UI_BUTTON_CLICK:
+    Nome: '&fClique'
+    Material: STONE_BUTTON
+
+Efeitos sugeridos:
+  SPEED:
+    Nome: '&bVelocidade'
+    Material: SUGAR
+  SLOWNESS:
+    Nome: '&8Lentidao'
+    Material: SOUL_SAND
+  JUMP_BOOST:
+    Nome: '&aSalto'
+    Material: RABBIT_FOOT
+  REGENERATION:
+    Nome: '&dRegeneracao'
+    Material: GHAST_TEAR
+  NIGHT_VISION:
+    Nome: '&eVisao noturna'
+    Material: GOLDEN_CARROT
+  INVISIBILITY:
+    Nome: '&7Invisibilidade'
+    Material: GLASS
+  WATER_BREATHING:
+    Nome: '&bRespirar embaixo da agua'
+    Material: PUFFERFISH
+  FIRE_RESISTANCE:
+    Nome: '&6Resistencia ao fogo'
+    Material: MAGMA_CREAM
+  STRENGTH:
+    Nome: '&cForca'
+    Material: BLAZE_POWDER
+  RESISTANCE:
+    Nome: '&8Resistencia'
+    Material: IRON_CHESTPLATE
+  GLOWING:
+    Nome: '&fBrilho no contorno'
+    Material: GLOWSTONE_DUST
+  SLOW_FALLING:
+    Nome: '&fQueda lenta'
+    Material: FEATHER
