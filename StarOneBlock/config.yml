@@ -32,9 +32,17 @@ Mundo:
   # A melhoria 'tamanho' aumenta isto.
   Tamanho inicial: 60
 
-  # Plataforma de apoio embaixo do nucleo, para o jogador nao cair no vazio
-  # no primeiro minuto. Zero desliga (fica so o bloco central).
-  Raio da plataforma: 1
+  # A plataforma de apoio embaixo do nucleo, para o jogador nao cair no vazio
+  # no primeiro minuto.
+  #
+  # O numero e o LADO do quadrado, em blocos:
+  #   0 = nenhuma plataforma (so o bloco central, no vazio)
+  #   1 = um bloco so, bem embaixo do nucleo
+  #   3 = 3x3   5 = 5x5   7 = 7x7 ...
+  #
+  # Numero par vira o impar de baixo (4 vira 3): a plataforma precisa ter o
+  # nucleo no meio dela.
+  Lado da plataforma: 1
   Bloco da plataforma: BEDROCK
 
   # Quantas camadas o plugin apaga por tique ao resetar uma ilha.
@@ -171,8 +179,16 @@ Holograma:
   # perto: ilha vazia nao gasta nada.
   Ativar: true
 
-  # Altura acima do bloco central.
-  Altura: 2.2
+  # Onde fica a linha DE BAIXO do letreiro, contando a partir do bloco central.
+  # As outras linhas empilham para cima a partir dela, entao ligar ou desligar
+  # uma linha nunca empurra o resto para dentro do bloco.
+  #
+  # Suba este numero se o texto estiver encostando no bloco.
+  Altura: 3.0
+
+  # Distancia entre uma linha e outra. So e usada para a conta da altura --
+  # quem desenha as linhas e o provedor de holograma.
+  Espaco entre linhas: 0.3
 
   # A que distancia o letreiro aparece.
   Alcance: 48

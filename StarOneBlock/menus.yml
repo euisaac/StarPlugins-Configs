@@ -1,0 +1,261 @@
+# ------------------------------------------------------------------------
+#  StarOneBlock - o desenho dos menus
+#
+#  O menu do /ilha e montado INTEIRO a partir deste arquivo: slot, material,
+#  nome, lore e o que o clique faz.
+#
+#  Para TIRAR um botao, ponha  Slot: -1  (a configuracao dele fica guardada
+#  aqui, esperando o dia em que voce quiser de volta).
+#
+#  Para POR UM BOTAO SEU, escreva mais um item com "Comandos" -- veja o
+#  exemplo "loja-do-servidor" no fim da lista.
+#
+#  Os outros menus (membros, loja, ranking...) sao listas que o plugin
+#  preenche sozinho; deles este arquivo cuida do titulo, la embaixo.
+#
+#  Tudo isto tambem pode ser editado por menu: /staroneblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Principal:
+  # Quantas linhas de 9 slots a tela tem (1 a 6). Os slots comecam no 0.
+  Linhas: 6
+
+  # O vidro que fecha os buracos da tela.
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+
+  # As acoes que um item pode ter no clique:
+  #
+  #   RETRATO    a cabeca do dono com o resumo da ilha
+  #   FASES      MEMBROS     MELHORIAS   BANCO      LOJA
+  #   BANDEIRAS  CARGOS      WARPS       GERADORES  TOP
+  #   VISITAS    IR          RESETAR     FECHAR     NENHUMA
+  #
+  # Qualquer item aceita:
+  #   Comandos    lista de comandos rodados no clique
+  #   Fechar      true fecha o menu antes de rodar os comandos
+  #   Permissao   so quem tem ve o item ('' = todo mundo)
+  #   Brilho      true da o brilho de encantado
+  #
+  # Nas linhas de Nome e Lore valem:
+  #   {ilha} {id} {dono} {descricao} {jogador} {cargo}
+  #   {fase} {fase_numero} {fase_total} {atual} {total} {barra} {porcento}
+  #   {nivel} {valor} {banco} {blocos} {membros} {membros_max} {tamanho}
+  #   {warps} {warps_max} {geradores} {posicao} {aberta} {impulso}
+  Itens:
+
+    retrato:
+      Slot: 13
+      Acao: RETRATO
+      Material: PLAYER_HEAD
+      Nome: '&6&l{ilha}'
+      Lore:
+        - '&7Dono: &f{dono}'
+        - '&7{descricao}'
+        - ''
+        - '&7Fase: &b{fase} &8({fase_numero}/{fase_total})'
+        - '&7Progresso: &f{atual}&7/&f{total}'
+        - '{barra} &7{porcento}%'
+        - ''
+        - '&7Nivel: &a{nivel}'
+        - '&7Valor: &a{valor}'
+        - '&7Blocos quebrados: &f{blocos}'
+        - '&7Tamanho: &f{tamanho}x{tamanho}'
+        - '&7Visitantes: &f{aberta}'
+        - ''
+        - '&7Ilha n&f{id} &8| &7Ranking: &e#{posicao}'
+
+    fases:
+      Slot: 20
+      Acao: FASES
+      Material: FILLED_MAP
+      Nome: '&b&lFases'
+      Lore:
+        - '&7Veja por onde a ilha ja passou'
+        - '&7e o que vem pela frente.'
+        - ''
+        - '&7Agora: &b{fase} &8({fase_numero}/{fase_total})'
+        - ''
+        - '&eClique para abrir.'
+
+    membros:
+      Slot: 21
+      Acao: MEMBROS
+      Material: PLAYER_HEAD
+      Nome: '&a&lMembros'
+      Lore:
+        - '&7Gente na ilha: &f{membros}&7/&f{membros_max}'
+        - ''
+        - '&eClique para abrir.'
+
+    melhorias:
+      Slot: 22
+      Acao: MELHORIAS
+      Material: ANVIL
+      Nome: '&e&lMelhorias'
+      Lore:
+        - '&7Gaste o banco da ilha para'
+        - '&7crescer, acelerar e caber mais.'
+        - ''
+        - '&eClique para abrir.'
+
+    banco:
+      Slot: 23
+      Acao: BANCO
+      Material: GOLD_INGOT
+      Nome: '&6&lBanco'
+      Lore:
+        - '&7Saldo: &f{banco}'
+        - ''
+        - '&eClique para abrir.'
+
+    loja:
+      Slot: 24
+      Acao: LOJA
+      Material: EMERALD
+      Nome: '&a&lLoja'
+      Lore:
+        - '&7Venda o que saiu do nucleo.'
+        - '&7O dinheiro cai no banco da ilha.'
+        - ''
+        - '&eClique para abrir.'
+
+    regras:
+      Slot: 29
+      Acao: BANDEIRAS
+      Material: REDSTONE_TORCH
+      Nome: '&c&lRegras'
+      Lore:
+        - '&7PvP, mobs, visitantes, redstone...'
+        - ''
+        - '&eClique para abrir.'
+
+    cargos:
+      Slot: 30
+      Acao: CARGOS
+      Material: NAME_TAG
+      Nome: '&d&lCargos'
+      Lore:
+        - '&7Quem pode fazer o que na ilha.'
+        - ''
+        - '&eClique para abrir.'
+
+    warps:
+      Slot: 31
+      Acao: WARPS
+      Material: ENDER_PEARL
+      Nome: '&5&lWarps'
+      Lore:
+        - '&7Pontos salvos: &f{warps}&7/&f{warps_max}'
+        - ''
+        - '&eClique para abrir.'
+
+    geradores:
+      Slot: 32
+      Acao: GERADORES
+      Material: DISPENSER
+      Nome: '&3&lGeradores'
+      Lore:
+        - '&7No chao: &f{geradores}'
+        - ''
+        - '&eClique para abrir.'
+
+    ranking:
+      Slot: 33
+      Acao: TOP
+      Material: BEACON
+      Nome: '&b&lRanking'
+      Lore:
+        - '&7Sua posicao: &f#{posicao}'
+        - ''
+        - '&eClique para abrir.'
+
+    ir:
+      Slot: 38
+      Acao: IR
+      Material: GRASS_BLOCK
+      Nome: '&a&lIr para a ilha'
+      Lore:
+        - '&7Leva voce para casa.'
+        - ''
+        - '&eClique para viajar.'
+
+    visitar:
+      Slot: 40
+      Acao: VISITAS
+      Material: COMPASS
+      Nome: '&e&lVisitar'
+      Lore:
+        - '&7As ilhas abertas do servidor.'
+        - ''
+        - '&eClique para abrir.'
+
+    resetar:
+      Slot: 42
+      Acao: RESETAR
+      Material: TNT
+      Nome: '&4&lResetar a ilha'
+      Lore:
+        - '&cApaga tudo e comeca do zero.'
+        - '&cNao tem volta.'
+        - ''
+        - '&eClique para comecar.'
+
+    fechar:
+      Slot: 49
+      Acao: FECHAR
+      Material: BARRIER
+      Nome: '&c&lFechar'
+      Lore: []
+
+    # --------------------------------------------------------------------
+    #  Exemplo de botao SEU.
+    #
+    #  Esta desligado (Slot: -1). Ponha um slot livre e ele aparece.
+    #  Os comandos aceitam os mesmos prefixos das recompensas de fase:
+    #
+    #    jogador: loja          roda como o jogador
+    #    console: give {jogador} diamond 1
+    #    op: gamemode creative  roda como o jogador, com op emprestado
+    #    mensagem: &aOi!        so escreve no chat
+    #    som: ENTITY_PLAYER_LEVELUP
+    #    titulo: &aTitulo<nl>&7Subtitulo
+    #    link: seusite.com.br
+    #    espera: 20             segura as linhas seguintes por 20 tiques
+    # --------------------------------------------------------------------
+    loja-do-servidor:
+      Slot: -1
+      Material: EMERALD_BLOCK
+      Nome: '&a&lLoja do servidor'
+      Lore:
+        - '&7Abre a loja principal.'
+        - ''
+        - '&eClique para abrir.'
+      Brilho: false
+      Permissao: ''
+      Fechar: true
+      Comandos:
+        - 'jogador: loja'
+
+# Os titulos das telas. Deixe '' em qualquer um para usar o que esta no
+# mensagens.yml (e o que acontece com quem ja traduziu os menus por la).
+#
+# O titulo do menu principal aceita {ilha}.
+Titulos:
+  Principal: '&8{ilha}'
+  Fases: '&8Fases da ilha'
+  Membros: '&8Membros da ilha'
+  Melhorias: '&8Melhorias da ilha'
+  Banco: '&8Banco da ilha'
+  Loja: '&8Loja da ilha'
+  Bandeiras: '&8Regras da ilha'
+  Cargos: '&8Cargos da ilha'
+  Warps: '&8Warps da ilha'
+  Geradores: '&8Geradores'
+  Top: '&8Ranking das ilhas'
+  Visitas: '&8Ilhas abertas'
+  Banidos: '&8Barrados na ilha'
+  Confirmar: '&8Tem certeza?'
