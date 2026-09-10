@@ -1,0 +1,93 @@
+# ==========================================================================
+#  StarFragmentos - textos
+#
+#  Mensagem vazia ('') simplesmente nao e enviada: e assim que se desliga um
+#  aviso sem precisar de uma opcao "Ativar" para cada um.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&d&lFRAGMENTOS &8- &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Carregando: '&cSeus fragmentos ainda estao carregando; tente de novo em instantes.'
+  Numero invalido: '&cO numero &f{valor} &cnao vale.'
+  Fragmento invalido: '&cNao existe um fragmento chamado &f{fragmento}&c.'
+  Comando desconhecido: '&cO subcomando &f{comando} &cnao existe. Use &f/fragmentos ajuda&c.'
+
+# Textos curtos usados nos menus, nas listagens e nos placeholders.
+Etiquetas:
+  Sem posicao: '&7--'
+  Ninguem: '&7Ninguem'
+  Top geral: '&dGeral'
+  Todos: '&ftodos'
+  Tudo: 'Tudo'
+  # Como cada parte do preco aparece em mensagens ("50x Fragmento Organico").
+  Formato do preco: '&f{quantidade}x {fragmento}'
+  Separador de preco: '&7, '
+
+# Aviso ao ganhar fragmento. Chat e actionbar sao independentes: deixe um
+# deles vazio para usar so o outro.
+Ganho:
+  Chat: ''
+  Actionbar: '&a+{quantidade} {fragmento} &7(total: &f{total}&7)'
+
+Item:
+  Ativado: '{prefixo}&aVoce guardou &f{quantidade}x {fragmento}&a. Agora tem &f{total}&a.'
+  Mundo bloqueado: '&cVoce nao pode ativar fragmentos neste mundo.'
+  Regiao bloqueada: '&cVoce nao pode ativar fragmentos nesta regiao.'
+  Fragmento desconhecido: '&cEste item e de um fragmento que nao existe mais (&f{id}&c).'
+
+Retirar:
+  Uso: '&cUse: &f/fragmentos retirar <fragmento> <quantidade|tudo>'
+  Sucesso: '{prefixo}&aVoce retirou &f{quantidade}x {fragmento}&a. Restam &f{restante}&a.'
+  Nao possui: '&cVoce nao possui nenhum {fragmento}&c.'
+  Insuficiente: '&cVoce so tem &f{quantidade}x {fragmento}&c.'
+  Sem espaco: '&cNao ha espaco no seu inventario. Cabem &f{cabe} &cagora.'
+  Acima do maximo: '&cVoce so pode retirar &f{maximo} &cde uma vez.'
+
+Loja:
+  Comprou: '{prefixo}&aVoce comprou &f{item} &apor {preco}&a.'
+  Fragmentos insuficientes: '&cVoce nao tem fragmentos suficientes para &f{item}&c. Faltam: {falta}&c.'
+  Sem permissao do item: '&cVoce nao tem permissao para comprar este item.'
+  Sem espaco: '&cLibere &f{espacos} &cespaco(s) no inventario antes de comprar.'
+  Desligada: '&cA loja de fragmentos esta desligada.'
+  Produto invalido: '&cEste produto esta mal configurado; avise a equipe.'
+
+Top:
+  Atualizando: '&7Carregando o top...'
+
+Ver:
+  Cabecalho proprio: '&8&m--------&r &d&lSEUS FRAGMENTOS &8&m--------'
+  Cabecalho: '&8&m--------&r &d&lFRAGMENTOS DE {jogador} &8&m--------'
+  Linha: '&8- {fragmento}&7: &f{quantidade}'
+  Rodape: '&7Total: &f{total}'
+  # 'true' mostra tambem os fragmentos que estao em zero.
+  Mostrar zerados: 'false'
+
+Administracao:
+  Recarregado: '{prefixo}&aConfiguracoes recarregadas. &7({fragmentos} fragmento(s), {produtos} produto(s))'
+  Salvo: '{prefixo}&aFragmentos gravados no banco.'
+  Deu: '{prefixo}&aVoce deu &f{quantidade}x {fragmento} &apara &f{jogador}&a. Saldo: &f{saldo}&a.'
+  Deu (jogador): '{prefixo}&aVoce recebeu &f{quantidade}x {fragmento}&a.'
+  Removeu: '{prefixo}&aVoce removeu &f{quantidade}x {fragmento} &ade &f{jogador}&a. Saldo: &f{saldo}&a.'
+  Removeu (jogador): '{prefixo}&c{quantidade}x {fragmento} &cforam removidos de voce.'
+  Setou: '{prefixo}&aO saldo de {fragmento} &ade &f{jogador} &aagora e &f{saldo}&a.'
+  Setou (jogador): '{prefixo}&eSeu saldo de {fragmento} &eagora e &f{saldo}&e.'
+  Zerou: '{prefixo}&aFragmentos zerados de &f{jogador} &7({fragmento}&7).'
+  Deu item: '{prefixo}&aVoce entregou &f{quantidade}x {fragmento} &a(item) para &f{jogador}&a.'
+  Recebeu item: '{prefixo}&aVoce recebeu &f{quantidade}x {fragmento}&a.'
+  Inventario cheio: '&cO inventario de &f{jogador} &cencheu: so &f{quantidade} &ccouberam.'
+  Cabecalho lista: '&8&m--------&r &d&lFRAGMENTOS CONFIGURADOS &8&m--------'
+  Linha lista: '&8- &f{id} &7-> {fragmento} &7(slot {slot}) &8| {origens}'
+  Rodape lista: '&8&m----------------------------------------'
+
+Ajuda:
+  Cabecalho: '&8&m--------&r &d&lSTARFRAGMENTOS &8&m--------'
+  Linha: '&d/{comando} &8- &f{descricao}'
+  Rodape: '&8&m----------------------------------'

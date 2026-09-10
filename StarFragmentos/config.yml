@@ -1,0 +1,102 @@
+# ==========================================================================
+#  StarFragmentos - configuracao geral
+#
+#  Os fragmentos ficam no fragmentos.yml, a loja no loja.yml, os textos no
+#  mensagens.yml e a aparencia das telas no menus.yml.
+#
+#  Como funciona: o jogador ganha fragmentos jogando (quebrando plantacoes e
+#  minerios, matando mobs, pescando, encantando...). O fragmento e VIRTUAL --
+#  um numero guardado no banco -- e aparece no /fragmentos. De la ele pode ser
+#  retirado como item (uma cabeca) para trocar com outros jogadores; clicar
+#  com o item na mao devolve ele para o saldo. A loja de fragmentos vende
+#  caixas, itens, comandos e ate outros fragmentos em troca deles.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores). Com MYSQL varios servidores somam no mesmo lugar e o top e o
+  # da rede inteira.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starfragmentos_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  # De quanto em quanto tempo o que esta em memoria vai para o banco, em
+  # segundos. Sair do servidor grava na hora, independente disto.
+  Salvar a cada: 60
+
+Ganho:
+  # Mundos onde ninguem ganha fragmento (nem ativa item).
+  Mundos bloqueados:
+    - lobby
+
+  # Bloco que um jogador colocou nao rende fragmento ao ser quebrado. Sem isto,
+  # colocar e quebrar a mesma pedra viraria uma maquina de fragmento. Nao vale
+  # para plantacao: ela e plantada de proposito, e o que conta e estar madura.
+  Ignorar blocos colocados por jogadores: true
+
+  # Som tocado ao ganhar. Formato: SOM;volume;tom. Vazio ('') nao toca nada.
+  Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;0.6;1.4'
+
+  # Quem tiver a permissao ganha a quantidade multiplicada. Vale o MAIOR
+  # multiplicador que o jogador tiver, nao a soma. Acrescente quantos quiser.
+  Multiplicadores:
+    starfragmentos.vip: 2.0
+
+Item:
+  # Clicar com a pilha de fragmentos na mao ativa a pilha inteira de uma vez.
+  # false ativa um por clique.
+  Ativar a pilha inteira: true
+
+  # Regioes do WorldGuard onde o item nao pode ser ativado (ids das regioes).
+  # Precisa do WorldGuard instalado; sem ele a lista e ignorada.
+  Regioes bloqueadas: []
+
+  # Teto de fragmentos por retirada (comando ou menu). 0 = sem teto.
+  Maximo por retirada: 0
+
+  Som ao ativar: 'ENTITY_PLAYER_LEVELUP;0.8;1.5'
+  Som ao retirar: 'ENTITY_ITEM_PICKUP;1;1'
+
+Top:
+  # Quantos jogadores o top guarda no total (as paginas saem daqui).
+  Limite: 45
+
+  # De quanto em quanto tempo o top geral e relido do banco, em segundos. E
+  # ele que alimenta os placeholders e a posicao mostrada no menu.
+  Atualizar a cada: 60
+
+  # O top de UM fragmento e lido quando alguem abre e fica guardado por estes
+  # segundos antes de ser lido de novo.
+  Guardar top de fragmento por: 60
+
+Loja:
+  # Desliga a loja inteira (o botao continua no menu, mas avisa).
+  Ativar: true
+
+  # Abre uma tela de confirmacao antes de cobrar. Cada produto do loja.yml
+  # pode ter o proprio 'Confirmar' por cima deste.
+  Confirmar compra: true
+
+  Som ao comprar: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+Menu:
+  # De quantos em quantos ticks o menu aberto e redesenhado, para a quantidade
+  # andar na tela enquanto o jogador ganha. 0 desliga.
+  Atualizar a cada: 20
+
+  Som ao clicar: 'UI_BUTTON_CLICK;1;1'
+  Som ao errar: 'ENTITY_VILLAGER_NO;1;1'
+  Som ao trocar de pagina: 'ITEM_BOOK_PAGE_TURN;1;1'

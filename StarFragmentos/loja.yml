@@ -1,0 +1,182 @@
+# ==========================================================================
+#  StarFragmentos - a loja de fragmentos
+#
+#  Cada produto custa fragmentos e entrega o que voce quiser: comandos
+#  (caixas, dinheiro, VIP...), itens de verdade ou outros fragmentos. E aqui
+#  que "comprar caixa com fragmento" e "trocar fragmento por fragmento"
+#  acontecem -- sao o mesmo formato.
+#
+#    Slot          Onde o produto aparece na loja (se o menus.yml nao usar
+#                  Slots com paginas).
+#    Material / Textura / Dono / Quantidade / Brilho   O icone, como em qualquer
+#                  item de menu.
+#    Nome, Lore    Textos. Na lore, a linha '{precos}' vira uma linha por
+#                  fragmento do preco (formato em menus.yml > Loja > Produto) e
+#                  a linha '{estado}' vira "Lore pode comprar" ou "Lore nao
+#                  pode comprar". {preco} numa linha comum vira o preco inteiro
+#                  numa frase so.
+#    Permissao     Vazio = todo mundo. Preenchida, so quem tem compra (e, por
+#                  padrao, so quem tem ve -- menus.yml > Loja).
+#    Confirmar     true/false por cima do "Loja.Confirmar compra" do config.
+#    Preco         fragmento: quantidade. Pode ter mais de um.
+#    Recompensa
+#      Comandos    Lista. 'console: ...' roda pelo console, 'jogador: ...'
+#                  pelo jogador, 'op: ...' pelo jogador com op emprestado.
+#                  {jogador} vira o nick. Tambem aceita mensagem:, titulo:,
+#                  actionbar:, som: e anuncio:.
+#      Fragmentos  fragmento: quantidade que o comprador recebe.
+#      Itens       Secoes de item (Material, Nome, Lore, Encantamentos,
+#                  Quantidade, Textura). Exige espaco no inventario.
+#      Mensagem    Texto extra enviado depois da compra (opcional).
+# ==========================================================================
+
+Itens:
+
+  caixa_comum:
+    Slot: 10
+    Material: CHEST
+    Nome: '&e&lCAIXA COMUM'
+    Lore:
+      - '&7Uma chave da caixa comum.'
+      - ''
+      - '&fPreco:'
+      - '{precos}'
+      - ''
+      - '{estado}'
+    Preco:
+      organico: 50
+      mineral: 30
+    Recompensa:
+      Comandos:
+        # Exemplo com o StarCaixas; troque pelo comando do seu plugin de caixas.
+        - 'console: starcaixas chave dar {jogador} comum 1'
+
+  caixa_rara:
+    Slot: 11
+    Material: ENDER_CHEST
+    Nome: '&d&lCAIXA RARA'
+    Lore:
+      - '&7Uma chave da caixa rara.'
+      - ''
+      - '&fPreco:'
+      - '{precos}'
+      - ''
+      - '{estado}'
+    Preco:
+      diamante: 20
+      sombrio: 40
+      ender: 10
+    Recompensa:
+      Comandos:
+        - 'console: starcaixas chave dar {jogador} rara 1'
+
+  dinheiro:
+    Slot: 12
+    Material: GOLD_INGOT
+    Nome: '&6&l$ 10.000'
+    Lore:
+      - '&7Troque fragmentos por dinheiro.'
+      - ''
+      - '&fPreco:'
+      - '{precos}'
+      - ''
+      - '{estado}'
+    Preco:
+      dourado: 25
+    Recompensa:
+      Comandos:
+        - 'console: eco give {jogador} 10000'
+
+  espada:
+    Slot: 14
+    Material: DIAMOND_SWORD
+    Brilho: true
+    Nome: '&b&lESPADA DO CACADOR'
+    Lore:
+      - '&7Uma espada encantada, pronta'
+      - '&7para a proxima caca.'
+      - ''
+      - '&fPreco:'
+      - '{precos}'
+      - ''
+      - '{estado}'
+    Preco:
+      bestial: 60
+      sombrio: 60
+    Recompensa:
+      Itens:
+        espada:
+          Material: DIAMOND_SWORD
+          Nome: '&bEspada do Cacador'
+          Lore:
+            - '&7Forjada com fragmentos.'
+          Encantamentos:
+            - 'DAMAGE_ALL:4'
+            - 'LOOT_BONUS_MOBS:2'
+            - 'DURABILITY:3'
+
+  # ---------------- Fragmento por fragmento ----------------
+
+  troca_dourado:
+    Slot: 19
+    Material: PLAYER_HEAD
+    Textura: '7aa09ad177fbccc53fa316cc04bdd2c9366baed889df76c5a29defea8170def5'
+    Nome: '&6&lTROCA: &fMineral -> Dourado'
+    Lore:
+      - '&7Troque fragmentos minerais'
+      - '&7por um fragmento dourado.'
+      - ''
+      - '&fPreco:'
+      - '{precos}'
+      - '&fRecebe: &61x Fragmento Dourado'
+      - ''
+      - '{estado}'
+    Confirmar: false
+    Preco:
+      mineral: 10
+    Recompensa:
+      Fragmentos:
+        dourado: 1
+
+  troca_diamante:
+    Slot: 20
+    Material: PLAYER_HEAD
+    Textura: '1d7620b2e4934963bb12508310d05494c067dc33e008cecf2cd7b4549654fab3'
+    Nome: '&b&lTROCA: &fDourado -> Diamante'
+    Lore:
+      - '&7Troque fragmentos dourados'
+      - '&7por um fragmento de diamante.'
+      - ''
+      - '&fPreco:'
+      - '{precos}'
+      - '&fRecebe: &b1x Fragmento de Diamante'
+      - ''
+      - '{estado}'
+    Confirmar: false
+    Preco:
+      dourado: 5
+    Recompensa:
+      Fragmentos:
+        diamante: 1
+
+  troca_arcano:
+    Slot: 21
+    Material: PLAYER_HEAD
+    Textura: '6f89b150be9c4c5249f355f68ea0c4391300a9be1f260d750fc35a1817ad796e'
+    Nome: '&9&lTROCA: &fDiamante + End -> Arcano'
+    Lore:
+      - '&7Funda dois fragmentos raros'
+      - '&7em um fragmento arcano.'
+      - ''
+      - '&fPreco:'
+      - '{precos}'
+      - '&fRecebe: &91x Fragmento Arcano'
+      - ''
+      - '{estado}'
+    Confirmar: false
+    Preco:
+      diamante: 3
+      ender: 3
+    Recompensa:
+      Fragmentos:
+        arcano: 1

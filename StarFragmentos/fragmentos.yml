@@ -1,0 +1,285 @@
+# ==========================================================================
+#  StarFragmentos - os fragmentos
+#
+#  Crie quantos quiser. Cada fragmento tem:
+#
+#    Nome        Nome com cores; e o que aparece no menu, no item e no chat.
+#    Material    Icone. PLAYER_HEAD com Textura da uma cabeca customizada;
+#                qualquer outro material (DIAMOND, EMERALD...) tambem serve.
+#    Textura     Hash, URL ou base64 da textura da cabeca (minecraft-heads).
+#    Slot        Onde o fragmento aparece no /fragmentos (ver menus.yml).
+#    Descricao   Linhas da lore que explicam como conseguir.
+#    Permissao   Vazio = todo mundo ganha. Preenchida, so quem tem ela ganha.
+#    Item        Nome e lore do item fisico (o que sai no "retirar").
+#    Origens     Lista de jeitos de ganhar. Cada origem tem:
+#
+#      Tipo        PLANTACAO  quebrar plantacao (so madura, por padrao)
+#                  BLOCO      quebrar bloco (minerio, pedra, madeira...)
+#                  MOB        matar um mob
+#                  JOGADOR    matar um jogador
+#                  PESCA      pescar (Alvos = o que foi pescado, ex.: COD)
+#                  ENCANTAR   encantar na mesa (Alvos = item encantado)
+#                  FUNDIR     tirar da fornalha (Alvos = o que saiu)
+#                  CRAFTAR    fabricar na mesa (Alvos = o que foi feito)
+#      Alvos       Lista de blocos/mobs/itens. VAZIA = qualquer um. Os nomes
+#                  de bloco sao os modernos (WHEAT, DIAMOND_ORE) e funcionam
+#                  em toda versao, da 1.8 a 1.21.
+#      Chance      Porcentagem, 0 a 100. Aceita decimal (2.5).
+#      Quantidade  Um numero ('1') ou uma faixa ('1-3').
+#      Exigir madura   So para PLANTACAO. false da fragmento em qualquer estagio.
+#      Permissao   Opcional: so quem tem ela ganha por esta origem.
+#
+#  Um fragmento pode ter varias origens. Apagar ou renomear um fragmento NAO
+#  apaga o saldo de ninguem no banco; ele so deixa de aparecer no menu.
+# ==========================================================================
+
+Fragmentos:
+
+  organico:
+    Nome: '&dFragmento Organico'
+    Material: PLAYER_HEAD
+    Textura: 'd6d203caffdb4400d70815f3f0d5f6822ffdc3a9b2cffb386bdb46b6509b8a2e'
+    Slot: 12
+    Descricao:
+      - '&7Consiga fragmentos organicos'
+      - '&7quebrando plantacoes.'
+    Item:
+      Nome: '&dFragmento Organico'
+      Lore:
+        - '&7Um fragmento colhido das plantacoes.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: PLANTACAO
+        Alvos: [ WHEAT, CARROTS, POTATOES, BEETROOTS, NETHER_WART, COCOA, MELON, PUMPKIN, SUGAR_CANE, SWEET_BERRY_BUSH ]
+        Chance: 25
+        Quantidade: '1-2'
+        Exigir madura: true
+
+  mineral:
+    Nome: '&7Fragmento Mineral'
+    Material: PLAYER_HEAD
+    Textura: '48de339af63a229c9238d027e47f53eeb56141a419f51b35c31ea1494b435dd3'
+    Slot: 13
+    Descricao:
+      - '&7Consiga fragmentos minerais'
+      - '&7minerando pedra, carvao e ferro.'
+    Item:
+      Nome: '&7Fragmento Mineral'
+      Lore:
+        - '&7Um fragmento arrancado da rocha.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: BLOCO
+        Alvos: [ STONE, DEEPSLATE, COAL_ORE, DEEPSLATE_COAL_ORE, IRON_ORE, DEEPSLATE_IRON_ORE, COPPER_ORE, DEEPSLATE_COPPER_ORE ]
+        Chance: 5
+        Quantidade: '1'
+
+  dourado:
+    Nome: '&6Fragmento Dourado'
+    Material: PLAYER_HEAD
+    Textura: '7aa09ad177fbccc53fa316cc04bdd2c9366baed889df76c5a29defea8170def5'
+    Slot: 14
+    Descricao:
+      - '&7Consiga fragmentos dourados'
+      - '&7minerando ouro.'
+    Item:
+      Nome: '&6Fragmento Dourado'
+      Lore:
+        - '&7Um fragmento que brilha como ouro.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: BLOCO
+        Alvos: [ GOLD_ORE, DEEPSLATE_GOLD_ORE, NETHER_GOLD_ORE ]
+        Chance: 30
+        Quantidade: '1-2'
+
+  diamante:
+    Nome: '&bFragmento de Diamante'
+    Material: PLAYER_HEAD
+    Textura: '1d7620b2e4934963bb12508310d05494c067dc33e008cecf2cd7b4549654fab3'
+    Slot: 15
+    Descricao:
+      - '&7Consiga fragmentos de diamante'
+      - '&7minerando diamante.'
+    Item:
+      Nome: '&bFragmento de Diamante'
+      Lore:
+        - '&7Um fragmento lapidado de diamante.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: BLOCO
+        Alvos: [ DIAMOND_ORE, DEEPSLATE_DIAMOND_ORE ]
+        Chance: 50
+        Quantidade: '1-2'
+
+  esmeralda:
+    Nome: '&aFragmento de Esmeralda'
+    Material: PLAYER_HEAD
+    Textura: '958b0861f337ed75d1fe6badfc35d2f3aa5b24d42607f81fc86abe53855870f7'
+    Slot: 16
+    Descricao:
+      - '&7Consiga fragmentos de esmeralda'
+      - '&7minerando esmeralda.'
+    Item:
+      Nome: '&aFragmento de Esmeralda'
+      Lore:
+        - '&7Um fragmento raro de esmeralda.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: BLOCO
+        Alvos: [ EMERALD_ORE, DEEPSLATE_EMERALD_ORE ]
+        Chance: 75
+        Quantidade: '1-3'
+
+  aquatico:
+    Nome: '&3Fragmento Aquatico'
+    Material: PLAYER_HEAD
+    Textura: '58c6fb76db3c771858102e14e6dcc7f2791f57eb93c0d4cbd9c8a1d9dcbe1030'
+    Slot: 21
+    Descricao:
+      - '&7Consiga fragmentos aquaticos'
+      - '&7pescando.'
+    Item:
+      Nome: '&3Fragmento Aquatico'
+      Lore:
+        - '&7Um fragmento trazido pelo anzol.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: PESCA
+        Alvos: []
+        Chance: 20
+        Quantidade: '1-2'
+
+  bestial:
+    Nome: '&eFragmento Bestial'
+    Material: PLAYER_HEAD
+    Textura: '4b5bd6b64e8bd6c58f5cd1e79a5502d4448bafc006d2fe0568f6a0d6b86d449e'
+    Slot: 22
+    Descricao:
+      - '&7Consiga fragmentos bestiais'
+      - '&7abatendo animais.'
+    Item:
+      Nome: '&eFragmento Bestial'
+      Lore:
+        - '&7Um fragmento de quem vive da caca.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: MOB
+        Alvos: [ COW, PIG, SHEEP, CHICKEN, RABBIT, HORSE, MUSHROOM_COW, MOOSHROOM, GOAT, LLAMA ]
+        Chance: 15
+        Quantidade: '1'
+
+  sombrio:
+    Nome: '&8Fragmento Sombrio'
+    Material: PLAYER_HEAD
+    Textura: 'bb39c0e53e79e7ebd4db6c6d096c9d9a160cff27822c077fb8f5d45969cc4972'
+    Slot: 23
+    Descricao:
+      - '&7Consiga fragmentos sombrios'
+      - '&7matando monstros.'
+    Item:
+      Nome: '&8Fragmento Sombrio'
+      Lore:
+        - '&7Um fragmento que a noite deixou.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: MOB
+        Alvos: [ ZOMBIE, SKELETON, CREEPER, SPIDER, CAVE_SPIDER, WITCH, DROWNED, HUSK, STRAY, PHANTOM, ZOMBIE_VILLAGER, PILLAGER, VINDICATOR ]
+        Chance: 12
+        Quantidade: '1'
+
+  infernal:
+    Nome: '&cFragmento Infernal'
+    Material: PLAYER_HEAD
+    Textura: '82ccf1a1a6f4b18054bf4ec66bcd379f1215b06f37598ba79e0de2092823fb5'
+    Slot: 24
+    Descricao:
+      - '&7Consiga fragmentos infernais'
+      - '&7matando criaturas do Nether.'
+    Item:
+      Nome: '&cFragmento Infernal'
+      Lore:
+        - '&7Um fragmento ainda quente.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: MOB
+        Alvos: [ BLAZE, GHAST, MAGMA_CUBE, WITHER_SKELETON, PIG_ZOMBIE, ZOMBIFIED_PIGLIN, PIGLIN, PIGLIN_BRUTE, HOGLIN, ZOGLIN, STRIDER ]
+        Chance: 20
+        Quantidade: '1-2'
+      - Tipo: BLOCO
+        Alvos: [ NETHER_QUARTZ_ORE, ANCIENT_DEBRIS ]
+        Chance: 10
+        Quantidade: '1'
+
+  ender:
+    Nome: '&5Fragmento do End'
+    Material: PLAYER_HEAD
+    Textura: '98228c234c3903c512a5a0aa45260e7b567e0e20eefc7d561ccec97b295871af'
+    Slot: 25
+    Descricao:
+      - '&7Consiga fragmentos do End'
+      - '&7matando endermans e shulkers.'
+    Item:
+      Nome: '&5Fragmento do End'
+      Lore:
+        - '&7Um fragmento de outra dimensao.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: MOB
+        Alvos: [ ENDERMAN, ENDERMITE, SHULKER ]
+        Chance: 25
+        Quantidade: '1-2'
+      - Tipo: MOB
+        Alvos: [ ENDER_DRAGON ]
+        Chance: 100
+        Quantidade: '20-40'
+
+  arcano:
+    Nome: '&9Fragmento Arcano'
+    Material: PLAYER_HEAD
+    Textura: '6f89b150be9c4c5249f355f68ea0c4391300a9be1f260d750fc35a1817ad796e'
+    Slot: 30
+    Descricao:
+      - '&7Consiga fragmentos arcanos'
+      - '&7encantando itens na mesa.'
+    Item:
+      Nome: '&9Fragmento Arcano'
+      Lore:
+        - '&7Um fragmento carregado de magia.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: ENCANTAR
+        Alvos: []
+        Chance: 40
+        Quantidade: '1-3'
+
+  sangue:
+    Nome: '&4Fragmento de Sangue'
+    Material: PLAYER_HEAD
+    Textura: '6ee32fbd4c7b03b869078aa1f493a390e6e13b461d613707eafb326dbcd2b4b5'
+    Slot: 31
+    Descricao:
+      - '&7Consiga fragmentos de sangue'
+      - '&7derrotando outros jogadores.'
+    Item:
+      Nome: '&4Fragmento de Sangue'
+      Lore:
+        - '&7Um fragmento tomado em combate.'
+        - ''
+        - '&eClique direito para guardar.'
+    Origens:
+      - Tipo: JOGADOR
+        Alvos: []
+        Chance: 100
+        Quantidade: '1'

@@ -1,0 +1,327 @@
+# ==========================================================================
+#  StarFragmentos - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#  {jogador} no Dono vira o nick de quem esta olhando.
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo (Ativar: false deixa vazio).
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao e Acoes.
+#
+#  Acoes proprias:  principal | top | top <fragmento> | loja | retirar <fragmento>
+#                   anterior | proxima | fechar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
+#                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
+#                   som: <SOM;volume;tom>
+#
+#  Substituicoes em qualquer texto: {jogador} {total} {total_raw}
+#  {total_abreviado} {posicao} {pagina} {paginas}. Placeholders do
+#  PlaceholderAPI tambem funcionam.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  /fragmentos
+#
+#  Os fragmentos aparecem no Slot que cada um tem no fragmentos.yml. Extras
+#  aqui: {fragmentos} (quantos existem) e {fragmentos_possuidos}.
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Fragmentos'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # Como cada fragmento e desenhado. {descricao} vira as linhas de Descricao
+  # do fragmentos.yml e {acoes} vira "Lore possui" ou "Lore nao possui".
+  Fragmento:
+    Nome: '{fragmento}'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&fQuantidade: &a{quantidade}'
+      - ''
+      - '{acoes}'
+    Quantidade zero: '&cNenhum'
+    Lore possui:
+      - '&eClique esquerdo para retirar.'
+      - '&eClique direito para ver o top.'
+    Lore nao possui:
+      - '&cVoce nao possui este fragmento.'
+    Brilho quando possui: true
+
+  Itens:
+    perfil:
+      Slot: 10
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&e&lSUAS INFORMACOES'
+      Lore:
+        - ''
+        - '&fFragmentos armazenados: &a{total}'
+        - '&fTipos que voce possui: &a{fragmentos_possuidos}&7/&a{fragmentos}'
+        - '&fSua posicao no top: &a{posicao}'
+        - ''
+
+    top:
+      Slot: 19
+      Material: BOOK
+      Nome: '&e&lTOP'
+      Lore:
+        - ''
+        - '&7Visualize os jogadores'
+        - '&7que possuem mais fragmentos.'
+        - ''
+        - '&aCLIQUE &7para visualizar.'
+      Acoes:
+        - 'top'
+
+    loja:
+      Slot: 28
+      Material: EMERALD
+      Nome: '&a&lLOJA DE FRAGMENTOS'
+      Lore:
+        - ''
+        - '&7Troque seus fragmentos por'
+        - '&7caixas, itens e outros fragmentos.'
+        - ''
+        - '&aCLIQUE &7para abrir.'
+      Acoes:
+        - 'loja'
+
+    fechar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cFechar'
+      Acoes:
+        - 'fechar'
+
+# ---------------------------------------------------------------------------
+#  Top (geral ou de um fragmento). Extras: {tipo} (Geral ou o nome do
+#  fragmento), {minha_posicao}, {minha_quantidade}. No item de cada jogador:
+#  {posicao}, {jogador}, {quantidade}, {quantidade_raw}.
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8Top {tipo}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # Onde os jogadores do ranking aparecem, na ordem em que estao escritos.
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Jogador:
+    Material: PLAYER_HEAD
+    # false usa sempre o material acima, sem a skin de cada um.
+    Usar a cabeca do jogador: true
+    Nome: '&e{posicao}. &f{jogador}'
+    Lore:
+      - ''
+      - '&fFragmentos: &a{quantidade}'
+      - '&fPosicao: &a{posicao}'
+      - ''
+    Brilho no primeiro: true
+
+  # O que aparece nos slots que sobram quando o top tem menos gente que slots.
+  Vazio:
+    Mostrar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: '&7{posicao}. &8---'
+    Lore: [ ]
+
+  Itens:
+    eu:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&e{jogador}'
+      Lore:
+        - ''
+        - '&fSua posicao: &a{minha_posicao}'
+        - '&fSeus fragmentos: &a{minha_quantidade}'
+        - ''
+    anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Pagina {pagina} de {paginas}'
+      Acoes:
+        - 'anterior'
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'principal'
+    proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Pagina {pagina} de {paginas}'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  Loja de fragmentos. Os produtos ficam no Slot de cada um no loja.yml. Se
+#  voce tiver mais produto do que slot, escreva uma lista em Slots (como no
+#  Top) e os produtos passam a entrar em ordem, com paginas.
+# ---------------------------------------------------------------------------
+Loja:
+  Titulo: '&8Loja de Fragmentos'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+
+  # Produto sem permissao some da tela (false mostra, mas nao deixa comprar).
+  Esconder sem permissao: true
+
+  Produto:
+    # Uma linha destas por fragmento do preco, no lugar de '{precos}' na lore.
+    # {tem} e quanto o jogador possui daquele fragmento.
+    Linha do preco: '&8- &f{quantidade}x {fragmento} &7(voce tem {tem})'
+    Lore pode comprar:
+      - '&aCLIQUE &7para comprar.'
+    Lore nao pode comprar:
+      - '&cVoce nao tem fragmentos suficientes.'
+    Brilho quando pode comprar: true
+
+  Itens:
+    saldo:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&e{jogador}'
+      Lore:
+        - ''
+        - '&fFragmentos armazenados: &a{total}'
+        - ''
+    anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes:
+        - 'anterior'
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'principal'
+    proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  Retirar (escolha da quantidade). Extras: {fragmento}, {quantidade} (o que
+#  o jogador tem), {cabe} (quanto cabe no inventario). Nos botoes, {valor} e
+#  a quantidade do botao; Quantidade: -1 quer dizer "tudo que der".
+# ---------------------------------------------------------------------------
+Retirar:
+  Titulo: '&8Retirar fragmento'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Informacao:
+    Slot: 4
+    Nome: '{fragmento}'
+    Lore:
+      - ''
+      - '&fVoce possui: &a{quantidade}'
+      - '&fCabem no inventario: &a{cabe}'
+      - ''
+      - '&7Escolha quantos retirar.'
+
+  Quantidades:
+    um:
+      Slot: 10
+      Quantidade: 1
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aRetirar &f{valor}'
+    oito:
+      Slot: 11
+      Quantidade: 8
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aRetirar &f{valor}'
+    dezesseis:
+      Slot: 12
+      Quantidade: 16
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aRetirar &f{valor}'
+    trinta_e_dois:
+      Slot: 14
+      Quantidade: 32
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aRetirar &f{valor}'
+    sessenta_e_quatro:
+      Slot: 15
+      Quantidade: 64
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aRetirar &f{valor}'
+    tudo:
+      Slot: 16
+      Quantidade: -1
+      Material: CHEST
+      Nome: '&aRetirar &f{valor}'
+      Lore:
+        - '&7Tudo que voce tem e que'
+        - '&7couber no inventario.'
+
+  Itens:
+    voltar:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'principal'
+
+# ---------------------------------------------------------------------------
+#  Confirmacao de compra. Extras: {item}, {preco}.
+# ---------------------------------------------------------------------------
+Confirmacao:
+  Titulo: '&8Confirmar compra?'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Confirmar:
+    Slot: 11
+    Material: LIME_STAINED_GLASS_PANE
+    Nome: '&a&lCONFIRMAR'
+    Lore:
+      - '&7Comprar &f{item}'
+      - '&7por {preco}&7.'
+  Informacao:
+    Slot: 13
+    Nome: '{item}'
+    Lore:
+      - ''
+      - '&fPreco: {preco}'
+      - ''
+  Cancelar:
+    Slot: 15
+    Material: RED_STAINED_GLASS_PANE
+    Nome: '&c&lCANCELAR'
+    Lore:
+      - '&7Nada e cobrado.'
