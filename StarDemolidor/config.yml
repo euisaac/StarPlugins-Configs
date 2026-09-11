@@ -15,7 +15,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 1
+Versao do modelo: 2
 
 Geral:
   # Escreve no console o caminho de cada acao. Ligue so para achar problema.
@@ -36,12 +36,14 @@ Demolicao:
   Camadas por ciclo: 1
 
   # Altura Y onde a demolicao comeca. Use -1 para comecar na altura do proprio
-  # bloco colocado (o normal), ou um numero fixo como 256 para varrer o mapa
-  # inteiro de cima a baixo.
+  # bloco colocado (o normal), um numero fixo como 100, ou a palavra 'topo'
+  # para varrer o mapa inteiro de cima a baixo.
   Altura inicial: -1
 
-  # Altura Y onde a demolicao para. Em mundos 1.18+ o chao vai ate -64.
-  Altura final: 1
+  # Altura Y onde a demolicao para. A palavra 'fundo' e o chao de verdade do
+  # mundo, seja ele qual for: 0 ate a 1.17, -64 da 1.18 em diante (e o que o
+  # mundo disser, se ele tiver altura propria). Um numero fixo tambem vale.
+  Altura final: fundo
 
   # Camada 100% vazia nao gasta um ciclo: o plugin pula direto para a proxima.
   # E o que faz um demolidor comecado no ceu chegar rapido ao chao.
@@ -105,9 +107,11 @@ Colocacao:
   # Avisa quem estiver dentro da area que a demolicao vai comecar.
   Avisar jogadores dentro: true
 
-  # Sobe quem estiver dentro da area para o topo antes de cada camada, para
-  # ninguem cair no vazio junto com o terreno.
-  Proteger jogadores dentro: true
+  # Leva quem estiver dentro da area para um lugar seguro FORA dela (o chunk
+  # vizinho mais proximo que nao esta sendo demolido). Desligado, quem entrar
+  # no buraco fica no buraco -- e isso e o normal: ninguem quer ser puxado toda
+  # hora enquanto olha a chunk descer.
+  Puxar para local seguro: false
 
 Reversao:
   # Guarda cada bloco removido para que o cancelamento devolva o terreno.
