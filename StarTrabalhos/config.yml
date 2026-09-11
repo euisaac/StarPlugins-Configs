@@ -1,0 +1,192 @@
+# ==========================================================================
+#  StarTrabalhos - configuracao geral
+#
+#  Os trabalhos ficam na pasta trabalhos/ (um arquivo por trabalho), as
+#  recompensas no recompensas.yml, os textos no mensagens.yml e a aparencia
+#  das telas no menus.yml.
+#
+#  Como funciona: o jogador escolhe ate N trabalhos (vagas) e sobe de nivel
+#  neles fazendo o que cada um pede -- minerar, colher, pescar, cacar,
+#  construir, fabricar, negociar, nadar... Cada nivel concluido paga pontos e
+#  recompensas (dinheiro, itens, comandos). Os pontos abrem trabalhos mais
+#  exigentes e disputam o top. Impulsos (boosters) do servidor, do jogador ou
+#  por permissao aumentam o progresso, os pontos ou as recompensas. A rotacao
+#  diaria, se ligada, sorteia quais trabalhos ficam disponiveis a cada dia.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+  # Mundos onde nenhum trabalho progride.
+  Mundos bloqueados:
+    - lobby
+
+  # Bloco que um jogador colocou nao rende progresso ao ser quebrado. Sem
+  # isto, colocar e quebrar a mesma pedra viraria uma maquina de nivel. Nao
+  # vale para plantacao: ela e plantada de proposito, e o que conta e estar
+  # madura.
+  Ignorar blocos colocados por jogadores: true
+
+  # Jogador no criativo nao progride em nada.
+  Ignorar criativo: true
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores). Com MYSQL varios servidores somam no mesmo lugar e o top e o
+  # da rede inteira.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'startrabalhos_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  # De quanto em quanto tempo o que esta em memoria vai para o banco, em
+  # segundos. Sair do servidor grava na hora, independente disto.
+  Salvar a cada: 60
+
+Trabalhos:
+  # Quantos trabalhos um jogador pode ter ativos ao mesmo tempo. A permissao
+  # startrabalhos.vagas.<n> da mais vagas a quem tiver (vale o maior n).
+  Vagas padrao: 3
+  # Maior n que o plugin procura na permissao startrabalhos.vagas.<n>.
+  Vagas maximas por permissao: 20
+
+  # Nivel mais alto que da para chegar em cada trabalho. -1 = sem limite.
+  # Cada trabalho pode ter o proprio 'Nivel maximo' no arquivo dele.
+  Nivel maximo: -1
+  # A permissao startrabalhos.nivelmaximo.<n> libera um teto maior. Aqui vai
+  # o maior n procurado; -1 desliga a permissao.
+  Nivel maximo por permissao: -1
+
+  # Quem chegou no nivel maximo continua "trabalhando"? Se false, o trabalho
+  # para de contar e pode ser trocado por outro.
+  Trabalhar no nivel maximo: false
+
+  # Sair de um trabalho volta ele para o nivel 1? Se false, o jogador retoma
+  # de onde parou quando entrar de novo.
+  Zerar progresso ao sair: false
+
+  # Minutos que o jogador tem de esperar depois de entrar para poder sair.
+  # 0 desliga. Nao sobrevive a restart.
+  Cooldown para sair: 0
+
+  # Tela que o /trabalhos abre: principal, gratuitos, premium, todos ou meus.
+  Menu padrao: principal
+
+Entrar:
+  # Comandos de console rodados quando alguem entra num trabalho.
+  # Substituicoes: {jogador} {trabalho} {trabalho_id}
+  Comandos: []
+
+Sair:
+  Comandos: []
+
+Nivel:
+  # O que acontece ao subir de nivel, alem das recompensas do trabalho.
+  # Acoes: titulo: <t<nl>sub> | actionbar: <texto> | som: <SOM;vol;tom>
+  #        mensagem: <texto> | comando: <cmd> | console: <cmd> | anuncio: <texto>
+  # Substituicoes: {jogador} {trabalho} {nivel} {pontos} {recompensas}
+  Acoes ao subir:
+    - 'titulo: &e&lNIVEL {nivel}!<nl>&f{trabalho}'
+    - 'som: ENTITY_PLAYER_LEVELUP;1;1.2'
+
+  # Ao chegar no nivel maximo.
+  Acoes no nivel maximo:
+    - 'titulo: &6&lNIVEL MAXIMO!<nl>&f{trabalho}'
+    - 'som: UI_TOAST_CHALLENGE_COMPLETE;1;1'
+
+Notificacao:
+  # Como o jogador e avisado do progresso: CHAT, ACTIONBAR, AMBOS ou NENHUM.
+  # O aviso sai so nas porcentagens de 'Avisar em' de cada trabalho.
+  Modo: ACTIONBAR
+
+  # Barra no alto da tela (1.9+; ignorada em servidor 1.8).
+  Barra de chefe:
+    Ativar: false
+    # true deixa a barra sempre visivel; false mostra so depois de progredir.
+    Fixa: false
+    # Segundos que a barra fica depois de um progresso (quando nao e fixa).
+    Esconder apos: 5
+    # true mostra a barra so quando uma porcentagem de aviso e atingida.
+    So nas porcentagens: false
+    # Cores: PINK BLUE RED GREEN YELLOW PURPLE WHITE
+    Cor: GREEN
+    # Estilos: SOLID SEGMENTED_6 SEGMENTED_10 SEGMENTED_12 SEGMENTED_20
+    Estilo: SEGMENTED_10
+    # Acoes que nao mexem na barra (as de deslocamento disparam o tempo todo).
+    Acoes sem barra: [ ANDAR, CORRER, AGACHAR, NADAR, PLANAR, VOAR ]
+
+Rotacao:
+  # Sorteia, todo dia, quais trabalhos ficam disponiveis. Quem estava num
+  # trabalho que saiu do sorteio e tirado dele.
+  Ativar: false
+  # Quantos trabalhos gratuitos e quantos premium entram no sorteio.
+  Quantidade por categoria: 10
+  # Hora do sorteio (HH:mm) e fuso horario.
+  Horario: '00:00'
+  Fuso: 'America/Sao_Paulo'
+  # Zera o nivel de quem foi tirado do trabalho na rotacao.
+  Zerar progresso: true
+
+Impulsos:
+  # Como varios impulsos do mesmo tipo se juntam:
+  #   SOMAR             - soma todos (servidor 10% + vip 7% + evento 5% = 22%)
+  #   SOMAR_DIFERENTES  - maior do servidor + maior do jogador (10% + 7% = 17%)
+  #   MAIOR             - so o maior de todos (10%)
+  Estrategia: SOMAR_DIFERENTES
+
+  # Mostra o impulso em vigor na lore dos trabalhos.
+  Mostrar no menu: true
+
+  # Impulsos por permissao: quem tiver startrabalhos.impulso.<id> recebe.
+  # Tipo: PROGRESSO, PONTOS ou RECOMPENSAS. Afeta: todos, gratuitos, premium
+  # ou o id de um trabalho.
+  Por permissao:
+    vip:
+      Tipo: PROGRESSO
+      Porcentagem: 25
+      Afeta: todos
+
+  # De quanto em quanto tempo os impulsos vencidos sao retirados, em segundos.
+  Conferir a cada: 30
+
+Economia:
+  # VAULT usa a economia registrada no Vault. COMANDO roda o comando abaixo
+  # (para economias que nao se registram no Vault).
+  Tipo: VAULT
+  # {jogador} e {valor} sao trocados; roda no console.
+  Comando de dar: 'eco give {jogador} {valor}'
+  # Placeholder que devolve o saldo (so para mostrar; precisa do PlaceholderAPI).
+  Placeholder de saldo: '%vault_eco_balance%'
+  Simbolo da moeda: '$'
+
+Top:
+  # Quantos jogadores o top guarda no total (as paginas saem daqui).
+  Limite: 45
+
+  # De quanto em quanto tempo o top de pontos e relido do banco, em segundos.
+  # E ele que alimenta os placeholders e a posicao mostrada no menu.
+  Atualizar a cada: 60
+
+  # O top de UM trabalho e lido quando alguem abre e fica guardado por estes
+  # segundos antes de ser lido de novo.
+  Guardar top de trabalho por: 60
+
+Menu:
+  # De quantos em quantos ticks o menu aberto e redesenhado, para o
+  # progresso andar na tela. 0 desliga.
+  Atualizar a cada: 20
+
+  Som ao clicar: 'UI_BUTTON_CLICK;1;1'
+  Som ao errar: 'ENTITY_VILLAGER_NO;1;1'
+  Som ao trocar de pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Som ao entrar: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+  Som ao sair: 'BLOCK_NOTE_BLOCK_BASS;1;0.8'

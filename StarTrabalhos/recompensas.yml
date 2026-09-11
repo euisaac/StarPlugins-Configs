@@ -1,0 +1,92 @@
+# ==========================================================================
+#  StarTrabalhos - recompensas
+#
+#  Cada recompensa e uma RECEITA, nao um valor fixo: as Variaveis sao
+#  formulas com {nivel} (o nivel concluido) e {impulso} (a porcentagem do
+#  impulso de recompensas, 0 quando nao ha). O mesmo 'dinheiro' paga pouco no
+#  nivel 1 e muito no nivel 50 sem precisar de duas entradas.
+#
+#  Os trabalhos apontam para as recompensas pelo id (a chave de cada bloco):
+#    Recompensas:
+#      Padrao: [ dinheiro ]           # todo nivel
+#      Por nivel:
+#        10: [ dinheiro, diamantes ]  # so o nivel 10
+#
+#  Campos:
+#    Nome       Como aparece nos menus e no aviso de nivel ({valor} e as
+#               outras variaveis podem ser usadas).
+#    Variaveis  nome: formula. Operadores + - * / ^ %, parenteses e as funcoes
+#               min max floor ceil round sqrt abs pow.
+#    Dinheiro   Formula (ou variavel) do valor pago pela economia.
+#    Pontos     Formula de pontos extras (alem dos 'Pontos por nivel').
+#    Itens      Lista: 'MATERIAL:quantidade' ou blocos com Material,
+#               Quantidade (formula), Nome, Lore, Brilho, Encantamentos.
+#    Comandos   Rodam no console. Substituicoes: {jogador} {trabalho}
+#               {trabalho_id} {nivel} e as variaveis. Prefixos: console:,
+#               jogador:, op:, mensagem:, titulo:, actionbar:, som:.
+#    Mensagem   Enviada ao jogador ao receber.
+# ==========================================================================
+
+dinheiro:
+  Nome: '&a${valor}'
+  Variaveis:
+    valor: 'round(25 * ({nivel} ^ 1.6) * (1 + {impulso} / 100))'
+  Dinheiro: '{valor}'
+
+dinheiro-premium:
+  Nome: '&a${valor}'
+  Variaveis:
+    valor: 'round(45 * ({nivel} ^ 1.6) * (1 + {impulso} / 100))'
+  Dinheiro: '{valor}'
+
+dinheiro-grande:
+  Nome: '&a&l${valor}'
+  Variaveis:
+    valor: 'round(400 * {nivel} * (1 + {impulso} / 100))'
+  Dinheiro: '{valor}'
+  Mensagem: '&a&lBONUS! &7Voce recebeu &a${valor} &7por chegar ao nivel {nivel}!'
+
+diamantes:
+  Nome: '&b{quantidade} diamante(s)'
+  Variaveis:
+    quantidade: 'max(1, round({nivel} / 5 * (1 + {impulso} / 100)))'
+  Itens:
+    - 'DIAMOND:{quantidade}'
+
+esmeraldas:
+  Nome: '&a{quantidade} esmeralda(s)'
+  Variaveis:
+    quantidade: 'max(1, round({nivel} / 4 * (1 + {impulso} / 100)))'
+  Itens:
+    - 'EMERALD:{quantidade}'
+
+xp:
+  Nome: '&e{quantidade} niveis de XP'
+  Variaveis:
+    quantidade: 'max(1, round({nivel} / 2 * (1 + {impulso} / 100)))'
+  Comandos:
+    - 'console: xp give {jogador} {quantidade} levels'
+
+caixa:
+  Nome: '&d1 chave de caixa'
+  Variaveis:
+    quantidade: '1'
+  Comandos:
+    # Troque pelo comando da sua caixa. Exemplo com o StarCaixas:
+    # - 'console: starcaixas dar {jogador} comum {quantidade}'
+    - 'mensagem: &dVoce ganhou uma chave de caixa! (configure em recompensas.yml)'
+
+pontos-extras:
+  Nome: '&6+{quantidade} pontos'
+  Variaveis:
+    quantidade: 'round(5 * {nivel} * (1 + {impulso} / 100))'
+  Pontos: '{quantidade}'
+
+maca-dourada:
+  Nome: '&6{quantidade} maca(s) dourada(s)'
+  Variaveis:
+    quantidade: 'max(1, round({nivel} / 10))'
+  Itens:
+    - Material: GOLDEN_APPLE
+      Quantidade: '{quantidade}'
+      Brilho: true

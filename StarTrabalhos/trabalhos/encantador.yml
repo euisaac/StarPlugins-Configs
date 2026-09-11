@@ -1,0 +1,78 @@
+# ==========================================================================
+#  StarTrabalhos - trabalho 'encantador'
+#
+#  O id do trabalho e o nome deste arquivo. Apague o arquivo para tirar o
+#  trabalho; copie e renomeie para criar outro.
+#
+#  Formulas usam {nivel} e aceitam + - * / ^ %, parenteses e as funcoes
+#  min max floor ceil round sqrt abs pow.
+#
+#  Alvos: nome do material/entidade (nomes novos ou antigos), com curinga
+#  ('*_ORE' pega todo minerio, '*' pega tudo) e peso opcional
+#  ('DIAMOND_ORE 3' vale tres progressos). O exato ganha do curinga.
+#  Lista vazia aceita qualquer alvo.
+# ==========================================================================
+
+Nome: '&5&lEncantador'
+Descricao:
+  - '&7Encante itens na mesa'
+  - '&7de encantamentos.'
+
+# O item que representa o trabalho nos menus (Material, Nome e Lore vem do
+# menus.yml; aqui tambem cabem Textura/Dono para cabeca e Brilho).
+Icone:
+  Material: ENCHANTING_TABLE
+
+# Posicao nas listas (menor primeiro).
+Ordem: 28
+
+# Trabalho premium exige a permissao startrabalhos.premium.
+Premium: false
+# Permissao extra para entrar (vazio = nenhuma).
+Permissao: ''
+# Pontos de trabalho necessarios para entrar.
+Pontos para entrar: 0
+# Nivel mais alto neste trabalho; -1 usa o do config.yml.
+Nivel maximo: -1
+
+# Quanto progresso cada nivel pede para ser concluido.
+Progresso necessario: '3 * ({nivel} ^ 2)'
+# Pontos pagos ao concluir cada nivel.
+Pontos por nivel: '1 * {nivel}'
+
+# Ids do recompensas.yml.
+Recompensas:
+  Padrao: [ xp, dinheiro ]
+  Por nivel:
+    10: [ dinheiro-grande ]
+  # true paga o padrao E o do nivel; false paga so o do nivel quando ele existe.
+  Somar padrao com nivel: false
+
+# Porcentagens do nivel em que o jogador e avisado do progresso.
+Avisar em: [ 25, 50, 75 ]
+
+# O que o trabalho conta. Cada acao tem Tipo, Alvos e Multiplicador.
+# Tipos: QUEBRAR COLHER PLANTAR COLOCAR MATAR MATAR_JOGADORES DANO FLECHAR
+#        PESCAR FABRICAR FUNDIR ENCANTAR POCAO REPARAR COMER DOMAR PROCRIAR
+#        TOSQUIAR ORDENHAR NEGOCIAR COLETAR MEL ANDAR CORRER AGACHAR NADAR
+#        PLANAR VOAR PULAR TEMPO_JOGADO
+Acoes:
+  encantar:
+    Tipo: ENCANTAR
+    Alvos:
+      - '*'
+      - 'BOOK 2'
+      - 'DIAMOND_* 2'
+      - 'NETHERITE_* 3'
+    Multiplicador: 1.0
+
+# Comandos de console rodados ao subir de nivel. Substituicoes: {jogador}
+# {trabalho} {nivel} {pontos} {recompensas}
+Comandos ao subir: []
+
+# Onde o trabalho conta. Listas vazias = em todo lugar. Regioes precisam
+# do WorldGuard.
+Mundos permitidos: []
+Mundos bloqueados: []
+Regioes permitidas: []
+Regioes bloqueadas: []

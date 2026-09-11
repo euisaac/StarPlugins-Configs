@@ -1,0 +1,90 @@
+# ==========================================================================
+#  StarTrabalhos - trabalho 'joalheiro'
+#
+#  O id do trabalho e o nome deste arquivo. Apague o arquivo para tirar o
+#  trabalho; copie e renomeie para criar outro.
+#
+#  Formulas usam {nivel} e aceitam + - * / ^ %, parenteses e as funcoes
+#  min max floor ceil round sqrt abs pow.
+#
+#  Alvos: nome do material/entidade (nomes novos ou antigos), com curinga
+#  ('*_ORE' pega todo minerio, '*' pega tudo) e peso opcional
+#  ('DIAMOND_ORE 3' vale tres progressos). O exato ganha do curinga.
+#  Lista vazia aceita qualquer alvo.
+# ==========================================================================
+
+Nome: '&b&lJoalheiro'
+Descricao:
+  - '&7Trabalhe com o que brilha:'
+  - '&7blocos e itens preciosos.'
+
+# O item que representa o trabalho nos menus (Material, Nome e Lore vem do
+# menus.yml; aqui tambem cabem Textura/Dono para cabeca e Brilho).
+Icone:
+  Material: EMERALD
+
+# Posicao nas listas (menor primeiro).
+Ordem: 24
+
+# Trabalho premium exige a permissao startrabalhos.premium.
+Premium: false
+# Permissao extra para entrar (vazio = nenhuma).
+Permissao: ''
+# Pontos de trabalho necessarios para entrar.
+Pontos para entrar: 0
+# Nivel mais alto neste trabalho; -1 usa o do config.yml.
+Nivel maximo: -1
+
+# Quanto progresso cada nivel pede para ser concluido.
+Progresso necessario: '2 * ({nivel} ^ 2)'
+# Pontos pagos ao concluir cada nivel.
+Pontos por nivel: '2 * {nivel}'
+
+# Ids do recompensas.yml.
+Recompensas:
+  Padrao: [ dinheiro-premium ]
+  Por nivel:
+    10: [ dinheiro-grande, esmeraldas ]
+  # true paga o padrao E o do nivel; false paga so o do nivel quando ele existe.
+  Somar padrao com nivel: false
+
+# Porcentagens do nivel em que o jogador e avisado do progresso.
+Avisar em: [ 25, 50, 75 ]
+
+# O que o trabalho conta. Cada acao tem Tipo, Alvos e Multiplicador.
+# Tipos: QUEBRAR COLHER PLANTAR COLOCAR MATAR MATAR_JOGADORES DANO FLECHAR
+#        PESCAR FABRICAR FUNDIR ENCANTAR POCAO REPARAR COMER DOMAR PROCRIAR
+#        TOSQUIAR ORDENHAR NEGOCIAR COLETAR MEL ANDAR CORRER AGACHAR NADAR
+#        PLANAR VOAR PULAR TEMPO_JOGADO
+Acoes:
+  lapidar:
+    Tipo: FABRICAR
+    Alvos:
+      - 'DIAMOND_BLOCK 9'
+      - 'EMERALD_BLOCK 9'
+      - 'GOLD_BLOCK 6'
+      - 'IRON_BLOCK 3'
+      - 'LAPIS_BLOCK 2'
+      - 'REDSTONE_BLOCK 2'
+      - 'NETHERITE_BLOCK 30'
+      - 'NETHERITE_INGOT 8'
+      - 'AMETHYST_BLOCK 2'
+      - 'GOLDEN_APPLE 5'
+      - 'ENCHANTED_GOLDEN_APPLE 40'
+      - 'CLOCK 2'
+      - 'COMPASS 2'
+      - 'GOLDEN_CARROT 2'
+      - 'GLISTERING_MELON_SLICE 2'
+      - 'BEACON 50'
+    Multiplicador: 1.0
+
+# Comandos de console rodados ao subir de nivel. Substituicoes: {jogador}
+# {trabalho} {nivel} {pontos} {recompensas}
+Comandos ao subir: []
+
+# Onde o trabalho conta. Listas vazias = em todo lugar. Regioes precisam
+# do WorldGuard.
+Mundos permitidos: []
+Mundos bloqueados: []
+Regioes permitidas: []
+Regioes bloqueadas: []

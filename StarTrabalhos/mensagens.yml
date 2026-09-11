@@ -1,0 +1,210 @@
+# ==========================================================================
+#  StarTrabalhos - textos
+#
+#  Mensagem vazia ('') simplesmente nao e enviada: e assim que se desliga um
+#  aviso sem precisar de uma opcao "Ativar" para cada um.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&6&lTRABALHOS &8- &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Inativo: '&cO plugin de trabalhos esta inativo (sem banco de dados). Avise a equipe.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Carregando: '&cSeus trabalhos ainda estao carregando; tente de novo em instantes.'
+  Numero invalido: '&cO numero &f{valor} &cnao vale.'
+  Trabalho invalido: '&cNao existe um trabalho chamado &f{trabalho}&c. Veja &f/trabalhos lista&c.'
+  Comando desconhecido: '&cO subcomando &f{comando} &cnao existe. Use &f/trabalhos ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+
+# Textos curtos usados nos menus, nas listagens e nos placeholders.
+Etiquetas:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Sem posicao: '&7--'
+  Ninguem: '&7Ninguem'
+  Nenhum: '&7Nenhum'
+  Tudo: 'Tudo'
+  Sem limite: '&7sem limite'
+  Sem recompensa: '&7Nenhuma'
+  Entrar: '&aEntrar'
+  Sair: '&cSair'
+  Pontos: 'pontos'
+  Nivel: 'nivel'
+  Top geral: '&6Pontos'
+  Rotacao desligada: '&7--'
+  Separador de lista: '&7, '
+  Separador de recompensas: '&7, '
+  # Como um trabalho aparece nas listas ("Minerador (Nv. 3)").
+  Trabalho com nivel: '{trabalho} &7(Nv. {nivel})'
+  Categorias:
+    TODOS: '&fTodos'
+    GRATUITOS: '&aGratuitos'
+    PREMIUM: '&dPremium'
+    MEUS: '&eMeus trabalhos'
+    DISPONIVEIS: '&bDisponiveis hoje'
+  # Motivos que o admin ve quando /startrabalhos entrar|sair nao deu.
+  Resultados:
+    CARREGANDO: 'os dados do jogador ainda nao carregaram'
+    JA_ESTA: 'o jogador ja esta neste trabalho'
+    NAO_ESTA: 'o jogador nao esta neste trabalho'
+    LIMITE: 'as vagas do jogador estao cheias'
+    OK: 'ok'
+
+# O nome de cada acao, para as lores ("O que fazer: Quebrar blocos").
+Acoes:
+  QUEBRAR: 'Quebrar blocos'
+  COLHER: 'Colher plantacoes'
+  PLANTAR: 'Plantar'
+  COLOCAR: 'Colocar blocos'
+  MATAR: 'Matar mobs'
+  MATAR_JOGADORES: 'Matar jogadores'
+  DANO: 'Causar dano'
+  FLECHAR: 'Acertar projeteis'
+  PESCAR: 'Pescar'
+  FABRICAR: 'Fabricar itens'
+  FUNDIR: 'Fundir no forno'
+  ENCANTAR: 'Encantar itens'
+  POCAO: 'Fazer pocoes'
+  REPARAR: 'Usar a bigorna'
+  COMER: 'Comer'
+  DOMAR: 'Domar animais'
+  PROCRIAR: 'Procriar animais'
+  TOSQUIAR: 'Tosquiar ovelhas'
+  ORDENHAR: 'Ordenhar vacas'
+  NEGOCIAR: 'Negociar com aldeoes'
+  COLETAR: 'Coletar itens'
+  MEL: 'Colher mel'
+  ANDAR: 'Andar'
+  CORRER: 'Correr'
+  AGACHAR: 'Andar agachado'
+  NADAR: 'Nadar'
+  PLANAR: 'Planar de elytra'
+  VOAR: 'Voar'
+  PULAR: 'Pular'
+  TEMPO_JOGADO: 'Tempo jogado'
+
+# Unidades de tempo, curtas.
+Tempo:
+  Dias: 'd'
+  Horas: 'h'
+  Minutos: 'm'
+  Segundos: 's'
+
+# A barrinha de progresso das lores e do actionbar.
+Barra:
+  Tamanho: 20
+  Cheio: '|'
+  Vazio: '|'
+  Cor cheia: '&a'
+  Cor vazia: '&8'
+
+# Aviso de progresso, nas porcentagens de 'Avisar em' de cada trabalho.
+# Substituicoes: {trabalho} {nivel} {progresso} {necessario} {porcentagem} {barra}
+Progresso:
+  Chat: '&7Voce progrediu em {trabalho}&7: &f{progresso}&7/&f{necessario} &8({porcentagem}%)'
+  Actionbar: '{trabalho} &7Nv. {nivel} &8| {barra} &7{progresso}/{necessario}'
+  Barra de chefe: '{trabalho} &7Nv. {nivel} &8- &f{progresso}&7/&f{necessario}'
+
+# Ao fechar um nivel. Substituicoes: {trabalho} {nivel} {nivel_concluido}
+# {pontos} {pontos_total} {recompensas}
+Nivel:
+  Subiu: '&aVoce subiu para o nivel &f{nivel} &aem {trabalho}&a! &7(+{pontos} pontos) &8| &7Recompensas: {recompensas}'
+  Nivel maximo: '&6Voce chegou ao nivel maximo (&f{nivel}&6) em {trabalho}&6! &7(+{pontos} pontos) &8| &7Recompensas: {recompensas}'
+
+Entrar:
+  Entrou: '&aVoce entrou no trabalho {trabalho}&a. &7(Nv. {nivel})'
+  Ja esta: '&cVoce ja esta no trabalho {trabalho}&c.'
+  So premium: '&cO trabalho {trabalho} &ce so para premium.'
+  Sem permissao do trabalho: '&cVoce nao tem permissao para o trabalho {trabalho}&c.'
+  Limite: '&cSuas vagas estao cheias (&f{ativos}&c/&f{vagas}&c). Saia de um trabalho antes.'
+  Pontos insuficientes: '&cVoce precisa de &f{pontos_necessarios} &cpontos para entrar em {trabalho}&c.'
+  Fora da rotacao: '&cO trabalho {trabalho} &cnao esta na rotacao de hoje.'
+
+Sair:
+  Saiu: '&cVoce saiu do trabalho {trabalho}&c.'
+  Nao esta: '&cVoce nao esta no trabalho {trabalho}&c.'
+  Cooldown: '&cVoce entrou ha pouco; espere &f{cooldown} &cpara sair de {trabalho}&c.'
+
+Pontos:
+  Meus: '&fVoce tem &6{pontos} &fpontos de trabalho.'
+
+Rotacao:
+  Sorteada: '&eOs trabalhos de hoje foram sorteados! Veja em &f/trabalhos hoje&e.'
+  Removido: '&cO trabalho {trabalho} &csaiu da rotacao e voce foi retirado dele.'
+  Desligada: '&cA rotacao diaria esta desligada no config.yml.'
+  Ver: '&fDisponiveis hoje: {trabalhos}&f. Proximo sorteio em &e{tempo}&f.'
+
+Impulsos:
+  Tipos:
+    PROGRESSO: 'progresso'
+    PONTOS: 'pontos'
+    RECOMPENSAS: 'recompensas'
+  Afeta:
+    Todos: 'todos os trabalhos'
+    Gratuitos: 'os trabalhos gratuitos'
+    Premium: 'os trabalhos premium'
+  Permanente: 'permanente'
+  Linha: '&8- &d+{porcentagem}% &fde {tipo} &7em {afeta} &8({tempo})'
+  Cabecalho: '&8&m--------&r &6&lIMPULSOS &8&m--------'
+  Titulo servidor: '&e» &fDo servidor:'
+  Titulo jogador: '&e» &fSeus:'
+  Titulo permissao: '&e» &fPor permissao:'
+  Nenhum: '&8- &7nenhum'
+  Rodape: '&8&m----------------------------------'
+  Servidor comecou: '&dImpulso: &d+{porcentagem}% de {tipo} em {afeta} por &f{tempo}&7!'
+  Servidor terminou: '&dImpulso: &7O impulso de +{porcentagem}% de {tipo} em {afeta} acabou.'
+  Jogador comecou: '&dImpulso: &7Voce ganhou +{porcentagem}% de {tipo} em {afeta} por &f{tempo}&7!'
+  Jogador terminou: '&dImpulso: &7Seu impulso de +{porcentagem}% de {tipo} em {afeta} acabou.'
+
+Top:
+  Atualizando: '&7Carregando o top...'
+
+Ver:
+  Cabecalho proprio: '&8&m--------&r &6&lSEUS TRABALHOS &8&m--------'
+  Cabecalho: '&8&m--------&r &6&lTRABALHOS DE {jogador} &8&m--------'
+  Linha: '&8- {trabalho} &7Nv. &f{nivel} &8| {barra} &7{progresso}/{necessario}'
+  Linha inativo: '&8- &7&o{trabalho} &7Nv. &f{nivel} &8(inativo)'
+  Nenhum: '&7Nenhum trabalho ativo.'
+  Rodape: '&7Pontos: &6{pontos} &8| &7Vagas: &f{ativos}&7/&f{vagas}'
+
+Lista:
+  Cabecalho: '&8&m--------&r &6&lTRABALHOS &8&m--------'
+  Linha: '&8- &f{id} &7-> {trabalho} &8| &7premium: {premium} &8| &7hoje: {disponivel}'
+  Rodape: '&7{quantidade} trabalho(s).'
+
+Administracao:
+  Recarregado: '{prefixo}&aConfiguracoes recarregadas. &7({trabalhos} trabalho(s), {recompensas} recompensa(s))'
+  Salvo: '{prefixo}&aTrabalhos gravados no banco.'
+  Pontos dar: '{prefixo}&aVoce deu &f{quantidade} &apontos para &f{jogador}&a. Agora: &f{pontos}&a.'
+  Pontos dar (jogador): '{prefixo}&aVoce recebeu &f{quantidade} &apontos de trabalho. Agora: &f{pontos}&a.'
+  Pontos remover: '{prefixo}&aVoce removeu &f{quantidade} &apontos de &f{jogador}&a. Agora: &f{pontos}&a.'
+  Pontos remover (jogador): '{prefixo}&c{quantidade} &cpontos de trabalho foram removidos de voce. Agora: &f{pontos}&c.'
+  Pontos setar: '{prefixo}&aOs pontos de &f{jogador} &aagora sao &f{pontos}&a.'
+  Pontos setar (jogador): '{prefixo}&eSeus pontos de trabalho agora sao &f{pontos}&e.'
+  Nivel: '{prefixo}&a{jogador} &aagora esta no nivel &f{nivel} &aem {trabalho}&a.'
+  Nivel (jogador): '{prefixo}&eSeu nivel em {trabalho} &eagora e &f{nivel}&e.'
+  Progresso: '{prefixo}&aVoce deu &f{quantidade} &ade progresso em {trabalho} &apara &f{jogador}&a. Nivel: &f{nivel}&a.'
+  Entrou: '{prefixo}&a{jogador} &afoi colocado no trabalho {trabalho}&a.'
+  Saiu: '{prefixo}&a{jogador} &afoi tirado do trabalho {trabalho}&a.'
+  Nao deu: '{prefixo}&cNao deu: {motivo}.'
+  Confirmar: '{prefixo}&cIsso apaga os dados. Repita o comando com &fconfirmar &cno final.'
+  Resetado: '{prefixo}&aDados de &f{jogador} &aapagados ({trabalho}&a).'
+  Resetado (jogador): '{prefixo}&cSeus dados de trabalho foram apagados.'
+  Impulso criado: '{prefixo}&aImpulso criado. &7(id: {id})'
+  Impulso removido: '{prefixo}&aImpulso &f{id} &aremovido.'
+  Impulso inexistente: '{prefixo}&cNao existe um impulso com o id &f{id}&c.'
+  Tipo de impulso invalido: '{prefixo}&cTipo &f{tipo} &cinvalido. Use PROGRESSO, PONTOS ou RECOMPENSAS.'
+  Tempo invalido: '{prefixo}&cTempo &f{tempo} &cinvalido. Exemplos: 30m, 2h, 1d, permanente.'
+  Rotacao sorteada: '{prefixo}&aRotacao sorteada agora.'
+
+Ajuda:
+  Cabecalho: '&8&m--------&r &6&lTRABALHOS &8&m--------'
+  Cabecalho admin: '&8&m--------&r &6&lSTARTRABALHOS &8&m--------'
+  Linha: '&6/{comando} &8- &f{descricao}'
+  Rodape: '&8&m----------------------------------'
