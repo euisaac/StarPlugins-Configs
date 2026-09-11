@@ -1,0 +1,186 @@
+# =========================================================
+#  StarSpawners - Menus
+#  Texto/formato de todos os menus (GUI) do plugin: título, nome e lore de
+#  cada item. Use "&" para cores. Placeholders variam por item, veja os que
+#  já estão em cada um.
+#
+#  Mensagens de chat (avisos, confirmações fora de menu) ficam em
+#  mensagens.yml, não aqui.
+# =========================================================
+
+spawner:
+  titulo: "&8Spawner de %mob%"
+  item-tipo:
+    nome: "&b%mob%"
+    lore:
+      - "&7Tipo de mob que esse spawner gera."
+      - ""
+      - "&7Quantidade empilhada: &e%quantidade%"
+  item-dados:
+    nome: "&aDados do Spawner"
+    lore:
+      - "&7Tipo: &e%mob%"
+      - "&7Quantidade empilhada: &e%quantidade%"
+      - "&7Dono: &e%dono%"
+      - "&7Origem: &e%origem%"
+      - "&7Próximo spawn em: &e%tempo%"
+  item-condicoes:
+    nome: "&aCondições do Spawner"
+  item-armazenamento:
+    nome: "&eArmazenamento de Drops"
+    lore-com-upgrade:
+      - "&7Status: &e%status%"
+      - "&7Itens armazenados: &e%itens%"
+      - "&7Pilhas ocupadas: &e%pilhas%"
+      - "&7XP armazenado: &e%xp%"
+      - ""
+      - "&aClique para abrir"
+    lore-sem-upgrade:
+      - "&cEsse spawner não tem o upgrade de armazenamento."
+
+confirmar-quebra:
+  titulo: "&8Quebrar spawner?"
+  item-info:
+    nome: "&b%mob%"
+    lore-unidade:
+      - "&7Isso vai remover &e1 &7unidade do stack."
+      - "&7O spawner continua no bloco com &e%restante% &7restante(s)."
+    lore-tudo:
+      - "&7Isso vai remover o &cstack inteiro&7:"
+      - "&7&e%quantidade% &7unidade(s)."
+    aviso-armazenamento:
+      - ""
+      - "&c⚠ Esse spawner tem o upgrade de Armazenamento!"
+      - "&cO upgrade em si será perdido (itens/XP guardados caem no chão)."
+  item-confirmar:
+    nome: "&aConfirmar quebra"
+    lore:
+      - "&7Clique para confirmar."
+  item-cancelar:
+    nome: "&cCancelar"
+    lore:
+      - "&7Clique para cancelar (nada acontece)."
+
+staff:
+  titulo: "&8Staff - Spawners de %mundo%"
+  voltar: "&cVoltar"
+  proxima-pagina: "&aPróxima página »"
+  pagina-anterior: "« &aPágina anterior"
+
+jogador:
+  titulo: "&8Spawners de %jogador% - %mundo%"
+  sem-spawners: "&7Esse jogador não possui spawners registrados nesse mundo."
+
+selecionar-mundo:
+  titulo-staff: "&8Staff - Selecione um mundo"
+  titulo-jogador: "&8Spawners de %jogador% - Selecione um mundo"
+  sem-mundos: "&7Nenhum spawner encontrado."
+  item-mundo:
+    nome: "&b%mundo%"
+    lore:
+      - "&7Spawners nesse mundo: &e%quantidade%"
+      - ""
+      - "&aClique para ver os spawners"
+  item-historico:
+    nome: "&eHistórico de Spawners"
+    lore:
+      - "&7Veja tudo que já aconteceu com os"
+      - "&7spawners do servidor (adicionado,"
+      - "&7removido, stack alterado)."
+      - ""
+      - "&aClique para abrir"
+
+acoes-spawner:
+  titulo: "&8Ações - %mob%"
+  item-info:
+    nome: "&b%mob%"
+    lore:
+      - "&7Quantidade empilhada: &e%quantidade%"
+      - "&7Dono: &e%dono%"
+      - "&7Localização: &e%coords%"
+      - "&7Adicionado em: &e%data%"
+  item-teleportar:
+    nome: "&aTeleportar"
+    lore:
+      - "&7Clique para se teleportar até esse spawner."
+  item-abrir-menu:
+    nome: "&eAbrir Menu do Spawner"
+    lore:
+      - "&7Abre o mesmo menu que o dono veria"
+      - "&7ao clicar no spawner."
+  item-editar-stack:
+    nome: "&6Editar Stack"
+    lore:
+      - "&7Digita no chat a nova quantidade"
+      - "&7empilhada desse spawner."
+      - ""
+      - "&aClique para editar"
+  item-remover:
+    normal:
+      nome: "&cRemover Spawner"
+      lore:
+        - "&7Remove esse spawner de vez."
+        - "&7O item do spawner NÃO é devolvido."
+        - ""
+        - "&cClique para confirmar"
+    confirmar:
+      nome: "&4&lCONFIRMAR REMOÇÃO?"
+      lore:
+        - "&cEssa ação não pode ser desfeita!"
+        - ""
+        - "&cClique de novo para remover de vez"
+
+historico:
+  titulo: "&8Histórico de Spawners"
+  sem-eventos: "&7Nenhum evento registrado ainda."
+  verbo:
+    adicionado: "Adicionado"
+    removido: "Removido"
+    stack-aumentado: "Stack aumentado"
+    stack-reduzido: "Stack reduzido"
+    stack-editado: "Stack editado"
+  item-evento:
+    nome: "&b%verbo% &7- &e%mob%"
+    lore:
+      - "&7Mundo: &e%mundo%"
+      - "&7Coords: &e%x%, %y%, %z%"
+      - "&7Quantidade: &e%quantidade%"
+      - "&7Por: &e%autor%"
+      - "&7Quando: &e%data%"
+      - ""
+      - "&aClique para se teleportar até lá"
+
+armazenamento:
+  titulo: "&8Armazenamento [%pagina%/%total-paginas%]"
+  item-coletar-xp:
+    nome: "&aColetar XP"
+    lore:
+      - "&7XP armazenado: &e%xp%"
+      - "&7Itens armazenados: &e%itens%"
+      - ""
+      - "&aClique para coletar"
+  item-dropar-pagina:
+    nome: "&cDropar Página"
+    lore:
+      - "&7Solta todos os itens dessa página no chão."
+      - ""
+      - "&cClique para dropar!"
+  item-vender:
+    nome: "&6Vender Tudo e Coletar XP"
+    lore:
+      - "&7Vende todos os itens armazenados (todas as páginas)"
+      - "&7e coleta o XP guardado."
+      - ""
+      - "&7Itens armazenados: &e%itens%"
+      - "&7XP armazenado: &e%xp%"
+      - "&7Total estimado: &e$%total%"
+      - ""
+      - "&6Clique para vender!"
+  item-toggle-ligado:
+    nome: "&aArmazenamento: LIGADO"
+    lore:
+      - "&7Clique para desativar"
+  item-toggle-desligado:
+    nome: "&cArmazenamento: DESLIGADO"
+    lore:
+      - "&7Clique para ativar"

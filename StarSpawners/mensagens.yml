@@ -1,0 +1,87 @@
+# =========================================================
+#  StarSpawners - Mensagens
+#  Use "&" para cores. Placeholders variam por mensagem.
+#
+#  O formato da actionbar, do holograma do spawner e da nametag de pilhas de
+#  mob/item ficam no config.yml (seções actionbar, holograma, stack-mobs e
+#  stack-itens). O texto/formato dos menus (título, nome e lore de item) fica
+#  no menus.yml. Aqui ficam só as mensagens de chat.
+# =========================================================
+
+prefixo: "&8[&bStarSpawners&8] &r"
+
+geral:
+  sem-permissao: "&cVocê não tem permissão para fazer isso."
+  apenas-jogador: "&cApenas jogadores podem usar esse comando."
+  jogador-nao-encontrado: "&cJogador &e%jogador% &cnão encontrado."
+  comando-invalido: "&cComando inválido. Use &e/starspawners ajuda&c."
+  config-recarregada: "&aConfigurações recarregadas com sucesso!"
+
+spawner:
+  colocado: "&aSpawner de &e%mob% &acolocado com sucesso."
+  quebrado: "&aVocê quebrou um spawner de &e%mob% &a(x%quantidade%)."
+  nao-pode-quebrar-natural: "&cEsse é um spawner natural do mundo, você não pode quebrá-lo."
+  precisa-toque-suave: "&cVocê precisa de uma ferramenta com Toque Suave nível %nivel% ou maior para pegar esse spawner."
+  stack-aumentado: "&aStack do spawner aumentado para &e%quantidade%&a."
+  stack-maximo: "&cEsse spawner já está no stack máximo (&e%quantidade%&c)."
+  nao-e-mesmo-tipo: "&cVocê só pode empilhar spawners do mesmo tipo de mob."
+  natural-nao-empilha: "&cSpawners naturais do mundo não podem ser empilhados."
+  recurso-por-ovo-desativado: "&cA ativação de spawners por ovo está desativada nesse servidor."
+  convertido: "&aVocê converteu 1 spawner de &e%mob-antigo% &apara &e%mob-novo% &a(recebido no inventário)."
+  vazio-nome: "Vazio"
+  tosquia-bloqueada: "&cVocê não pode tosquiar mobs de spawner."
+  removido-staff: "&aSpawner de &e%mob% &aremovido."
+  editar-stack-prompt: "&eDigite no chat a nova quantidade empilhada (atual: &f%quantidade-atual%&e), ou &fcancelar&e."
+  editar-stack-cancelado: "&7Edição de stack cancelada."
+  editar-stack-invalido: "&cValor inválido. Digite um número, ou 'cancelar'."
+  editar-stack-sucesso: "&aStack alterado de &e%anterior% &apara &e%novo%&a."
+
+stack:
+  spawner-empilhado: "&eSpawner de %mob% &7x&e%quantidade%"
+
+upgrade:
+  usar-em-spawner: "&cEsse item não pode ser colocado. Use com clique direito em um spawner."
+  armazenamento-aplicado: "&aUpgrade de Armazenamento de Drops aplicado nesse spawner!"
+  armazenamento-ja-tem: "&cEsse spawner já possui o upgrade de Armazenamento de Drops."
+  venda-aplicado: "&aUpgrade de Venda de Drops aplicado nesse spawner!"
+  venda-ja-tem: "&cEsse spawner já possui o upgrade de Venda de Drops."
+
+armazenamento:
+  ativado: "&aArmazenamento de drops e XP ativado nesse spawner."
+  desativado: "&cArmazenamento de drops e XP desativado nesse spawner."
+  sem-upgrade: "&cEsse spawner não tem o upgrade de Armazenamento de Drops."
+  cheio: "&eO armazenamento desse spawner está cheio, alguns itens caíram no chão."
+  xp-coletado: "&aVocê coletou &e%xp% &ade XP armazenado."
+  xp-vazio: "&cNão há XP armazenado nesse spawner."
+  venda-realizada: "&aVocê vendeu os drops armazenados por &e$%total% &ae coletou &e%xp% &ade XP."
+  venda-vazia: "&cNão há itens armazenados para vender."
+  venda-sem-economia: "&cO sistema de economia (Vault) não está disponível nesse servidor."
+
+condicoes:
+  titulo-item: "&aCondições do Spawner"
+  sem-tipo: "&cEsse spawner está vazio. Use um ovo de spawn nele para ativá-lo."
+  apto: "&aEsse spawner está apto para spawnar mobs!"
+  nao-apto: "&cEsse spawner NÃO está apto para spawnar mobs."
+  falta-jogador: "&c- Nenhum jogador está a menos de %raio% blocos do spawner."
+  falta-espaco: "&c- Não há espaço livre para o mob nascer."
+  limite-mobs: "&c- Já existem &e%quantidade% &cmobs desse tipo próximos (limite: %limite%)."
+  tudo-ok: "&a- Espaço livre para spawnar"
+  jogador-proximo: "&a- Jogador próximo (dentro de %raio% blocos)"
+  dentro-do-limite: "&a- Dentro do limite de mobs próximos (%quantidade%/%limite%)"
+
+comandos:
+  item-dado: "&aVocê deu um spawner de &e%mob% &7x&e%quantidade% &apara &e%jogador%&a."
+  item-dado-vazio: "&aVocê deu um spawner vazio &7x&e%quantidade% &apara &e%jogador%&a."
+  item-dado-upgrade: "&aVocê deu um item de upgrade para &e%jogador%&a."
+  hologramas-limpos: "&aLimpeza concluída: &e%hologramas% &aholograma(s) órfão(s) e &e%nametags% &anametag(s) de pilha presa(s) removida(s)."
+  ajuda:
+    - "&b&l== StarSpawners =="
+    - "&e/starspawners ajuda &7- Mostra essa mensagem"
+    - "&e/starspawners staff &7- Abre o menu de staff"
+    - "&e/starspawners jogador <nome> &7- Vê os spawners de um jogador"
+    - "&e/starspawners recarregar &7- Recarrega as configurações"
+    - "&e/starspawners dar <jogador> <mob> [quantidade] &7- Dá um spawner"
+    - "&e/starspawners dar <jogador> vazio [quantidade] &7- Dá um spawner vazio (requer spawner-por-ovo ativado)"
+    - "&e/starspawners darupgrade <jogador> armazenamento &7- Dá o upgrade de Armazenamento de Drops"
+    - "&e/starspawners darupgrade <jogador> venda &7- Dá o upgrade de Venda de Drops"
+    - "&e/starspawners limparhologramas &7- Remove hologramas/nametags órfãos pelo mundo"

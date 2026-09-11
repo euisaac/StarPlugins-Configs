@@ -1,0 +1,19 @@
+# =========================================================
+#  StarSpawners - Blacklist de Stack
+#  Mobs e itens listados aqui NUNCA formam pilha (stack-mobs/stack-itens),
+#  mesmo com o sistema de stack ativado no config.yml. Um item/mob bloqueado
+#  se comporta 100% vanilla (empilha só até o normal do Minecraft).
+#
+#  mobs: nome do EntityType em inglês (ex: ENDER_DRAGON, WITHER, COW)
+#  itens: nome do Material em inglês (ex: NETHER_STAR, DIAMOND)
+# =========================================================
+
+mobs:
+  # O Ender Dragon tem estado proprio (portal, cristais, batalha do End) que
+  # nao sobrevive a virar pilha. O Wither nao: da para empilhar normalmente,
+  # e quem vende spawner dele espera isso. Se quiser o Wither um por um,
+  # basta acrescentar WITHER de volta nesta lista.
+  - ENDER_DRAGON
+  - PLAYER
+
+itens: []

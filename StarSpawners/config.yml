@@ -1,0 +1,350 @@
+# =========================================================
+#  StarSpawners - Configuração Geral
+#  Por Eulsaac
+# =========================================================
+
+geral:
+  # Idioma não é selecionável, o plugin é 100% em português.
+  verificar-atualizacoes: true
+  debug: false
+  # Impede que mobs (zumbi, piglin, raposa, etc - o vanilla deixa vários tipos
+  # pegarem item do chão) peguem item, spawner ou drop do chão. Spawner e item
+  # de upgrade nunca podem ser pegos por mob, independente dessa opção. Sem
+  # isso, um mob podia pegar (e sumir com) um spawner caído, ou "roubar" uma
+  # pilha de item empilhada pelo plugin sem dar nada a ninguém.
+  impedir-mobs-pegarem-itens:
+    ativado: true
+    # Se true, só impede pegar quando o item é uma PILHA de verdade (empilhada
+    # pelo plugin, quantidade rastreada maior que a quantidade física do
+    # item) - item solto normal (não empilhado) continua podendo ser pego por
+    # mob igual no vanilla. Se false, impede qualquer item, pilha ou não,
+    # enquanto "ativado" acima for true.
+    impedir-apenas-pilha: true
+    # Mobs que PODEM pegar item mesmo com o bloqueio ligado (por nome do
+    # EntityType). Ao pegar uma pilha, o mob leva um stack físico e o restante
+    # volta ao chão como pilha nova (a contagem não some). Padrão: só o villager,
+    # que é o mob que pega item de forma útil. Deixe vazio ([]) para bloquear todos.
+    mobs-permitidos:
+      - VILLAGER
+
+# ---------------------------------------------------------
+# Quebra e coleta de spawners
+# ---------------------------------------------------------
+quebra-spawner:
+  # Nível mínimo de Toque Suave (Silk Touch) necessário para pegar o spawner.
+  # 1 = qualquer nível de Toque Suave já serve
+  # 2 = precisa ser nível 2 ou maior
+  nivel-toque-suave-necessario: 1
+
+  # Se true, ferramentas sem Toque Suave não conseguem quebrar o spawner (ele fica protegido).
+  exigir-toque-suave: true
+
+  # Se true, apenas spawners colocados por jogadores podem ser quebrados.
+  # Spawners naturais/gerados pelo mundo (masmorras, fortalezas, trial chambers, etc)
+  # ficam protegidos e não podem ser quebrados, mesmo com Toque Suave.
+  proteger-spawners-naturais: true
+
+  # Se true, abre um menu de confirmação antes de quebrar o spawner (evita quebra
+  # acidental por engano na mineração).
+  exigir-confirmacao: true
+
+  # Se true, quebrar normalmente (sem agachar) remove só 1 unidade do stack do
+  # spawner - o bloco continua lá com o stack reduzido em 1. Quebrar agachado
+  # (shift) sempre remove o stack inteiro de uma vez (bloco some, item sai com
+  # a quantidade total). Se false, qualquer quebra sempre remove o stack inteiro.
+  quebra-normal-remove-so-uma-unidade: true
+
+  # Se true, o item do spawner vai direto pro inventário do jogador ao quebrar
+  # em vez de cair no chão. Se o inventário estiver cheio, cai no chão do mesmo
+  # jeito (não perde o item).
+  ir-direto-pro-inventario: true
+
+# ---------------------------------------------------------
+# Explosão (TNT, creeper, cama/âncora, etc) atingindo um spawner
+# ---------------------------------------------------------
+explosao-spawner:
+  # Se false (padrão), spawners são imunes a explosão - o bloco nunca é
+  # destruído por ela, não importa o que mais essa seção configura.
+  permitir-quebrar: false
+  # Só usado se permitir-quebrar for true. Chance (0-100) de o spawner soltar
+  # o item dele ao ser destruído pela explosão. Se a chance não bater, o
+  # spawner é destruído sem soltar o item (perda total do spawner em si).
+  chance-dropar: 50
+  # Só usado se permitir-quebrar for true e a chance acima bater. Porcentagem
+  # (0-100) de quantas unidades da pilha empilhada do spawner saem no item
+  # dropado - ex: pilha de 100 com 30% solta um item de quantidade 30, o
+  # resto se perde na explosão. Use 100 para sempre soltar a pilha inteira.
+  porcentagem-pilha-que-dropa: 100
+
+# ---------------------------------------------------------
+# Histórico de spawners (menu de staff)
+# ---------------------------------------------------------
+historico-spawners:
+  # Quantos eventos (adicionado, removido, stack alterado...) guardar por
+  # spawner (por localização). Eventos mais antigos que isso são descartados.
+  maximo-eventos-por-spawner: 20
+
+# ---------------------------------------------------------
+# Spawner vazio / ativação por ovo
+# ---------------------------------------------------------
+spawner-por-ovo:
+  # Se true, além dos spawners já com tipo definido, é possível dar/colocar um
+  # "spawner vazio" (sem mob definido, não spawna nada) e ativá-lo usando um ovo
+  # de spawn do mob desejado com clique direito nele.
+  #
+  # Se o spawner já tiver um tipo diferente do ovo usado, 1 unidade do stack
+  # daquele spawner é convertida: o stack do tipo antigo diminui em 1 e um novo
+  # spawner (quantidade 1) do tipo do ovo vai para o inventário do jogador.
+  # Se o spawner ficar com quantidade 0, ele volta a ficar vazio (não é removido).
+  #
+  # Se o ovo for do mesmo tipo do spawner, ele soma +1 na quantidade empilhada.
+  ativado: true
+
+# ---------------------------------------------------------
+# Sistema de Stack (empilhamento) - inspirado no RoseStacker
+# ---------------------------------------------------------
+stack-spawners:
+  ativado: true
+  # Use -1 para não ter limite (stack infinito).
+  quantidade-maxima: 10000
+  # Distância em blocos para dois spawners do mesmo tipo se empilharem automaticamente ao colocar.
+  raio-auto-stack: 5
+
+stack-mobs:
+  ativado: true
+  # Use -1 para não ter limite (stack infinito).
+  quantidade-maxima: 100000
+  # Raio (em blocos) usado para procurar mobs próximos para empilhar.
+  raio-empilhamento: 5
+  # Intervalo em ticks entre cada verificação de empilhamento19 de mobs (20 ticks = 1 segundo).
+  intervalo-verificacao: 20
+  # Mobs e itens impedidos de formar pilha ficam no blacklist.yml, não aqui.
+  # Se true, mobs/animais que NÃO vieram de um spawner do StarSpawners (natural
+  # do mundo, nascidos por reprodução, etc) também podem se empilhar entre eles
+  # ao se encontrarem no mapa. Se false (padrão), só mobs que nasceram de um
+  # spawner formam pilha - mobs soltos no mundo nunca são puxados pra dentro de
+  # uma pilha nem empilham entre si. Isso não afeta o empilhamento feito pelo
+  # próprio spawner ao spawnar, que sempre funciona independente dessa opção.
+  empilhar-fora-do-spawner: false
+  # Não empilha mobs que tenham sido nomeados (placa de nome/nametag).
+  ignorar-mobs-nomeados: true
+  # Se true, impede usar tesoura em mobs que nasceram de um spawner (ex: tosquiar
+  # ovelha de spawner pra farmar lã infinita sem precisar esperar ela regenerar).
+  impedir-tosquia: true
+  # Se true: matar um mob empilhado normalmente abate só 1 unidade da pilha
+  # (o resto continua vivo). Matar agachado (shift) abate a pilha inteira de
+  # uma vez só, multiplicando os drops e o XP pela quantidade empilhada.
+  matar-pilha-toda-ao-agachar: true
+  # Ao matar 1 unidade de uma pilha, o mob substituto (com a quantidade
+  # reduzida em 1) normalmente nasce no PRÓXIMO tick, não no mesmo golpe -
+  # isso evita problemas em servidores antigos, mas quem farma uma pilha bem
+  # rápido (autoclicker, etc) sente um pequeno intervalo sem nada pra acertar
+  # entre uma morte e o substituto aparecer. Se true, o substituto nasce na
+  # hora, no mesmo tick do golpe (sem esse intervalo).
+  kill-instantaneo: true
+  # Raio (em blocos) usado em duas situações: 1) quando um spawner precisa
+  # reconectar com a própria entidade representante (ex: depois de um reinício,
+  # ou se o chunk dela descarregou por um instante) mas não a encontra pelo
+  # UUID direto; 2) no ciclo periódico de empilhamento, pra juntar pilhas de
+  # spawners diferentes que acabaram próximas uma da outra (ex: as duas caindo
+  # no mesmo coletor de uma farm).
+  raio-maximo-pilhas: 16
+  # Nome (nametag) mostrado acima do mob quando ele representa uma pilha (quantidade > 1).
+  # Placeholders: %mob%, %quantidade%. Use "&" para cores.
+  formato-nome-empilhado: "&e%mob% &7x&e%quantidade%"
+  # Se true, a quantidade de cada pilha de mob é salva em disco (mobs-empilhados.yml)
+  # e restaurada quando o plugin recarrega/o servidor reinicia. Sem isso, a
+  # pilha "esquece" a quantidade ao reiniciar e volta como se fosse 1 mob só,
+  # mesmo com a entidade ainda lá.
+  persistir-entre-reinicios: true
+
+stack-itens:
+  ativado: true
+  # Use -1 para não ter limite (stack infinito).
+  quantidade-maxima: -1
+  # Raio (em blocos) usado para procurar itens próximos no chão para empilhar.
+  raio-empilhamento: 2.5
+  intervalo-verificacao: 20
+  # Nome (nametag) mostrado acima do item quando ele representa uma pilha maior
+  # que o stack vanilla. Placeholders: %item%, %quantidade%. Use "&" para cores.
+  formato-nome-empilhado: "&e%item% &7x&e%quantidade%"
+  # Mesma ideia do persistir-entre-reinicios do stack-mobs, mas pra pilhas de
+  # item no chão (itens-empilhados.yml).
+  persistir-entre-reinicios: true
+
+# ---------------------------------------------------------
+# Inteligência Artificial dos mobs - inspirado no RoseStacker
+# ---------------------------------------------------------
+desativar-ia:
+  # Se true, mobs que nasceram de um spawner (do StarSpawners) nascem sem IA
+  # (não se movem, não atacam, não fogem do sol, etc), útil para farms/grinders.
+  mobs-de-spawner: true
+  # Se true, desativa também a IA de mobs que fazem parte de uma pilha (stack) de mobs.
+  mobs-empilhados: true
+  # Mob sem IA fica completamente parado no vanilla: não cai em buracos nem é
+  # levado por correnteza de água, porque essa física normalmente depende do
+  # próprio sistema de IA que foi desligado. Se true, simula manualmente as
+  # duas coisas (queda por gravidade quando não tem chão embaixo, empurrão na
+  # direção da correnteza quando estiver na água) pra mobs sem IA - útil pra
+  # farms onde os mobs precisam ser levados até um ponto de coleta.
+  simular-fisica-basica: true
+
+# ---------------------------------------------------------
+# Comportamento do spawner (lógica própria do StarSpawners)
+# ---------------------------------------------------------
+spawner:
+  # Tempo mínimo e máximo (em ticks) entre cada ciclo de spawn. 20 ticks = 1 segundo.
+  delay-minimo: 200
+  delay-maximo: 800
+  # Quantos mobs nascem por ciclo, multiplicado pela quantidade empilhada no spawner.
+  mobs-por-ciclo: 1
+  # Raio (em blocos) que um jogador precisa estar para o spawner ficar ativo.
+  raio-ativacao: 16
+  # Raio (em blocos) para checar o limite de mobs próximos antes de spawnar mais.
+  # O teto usado nessa checagem é o stack-mobs.quantidade-maxima (a pilha do
+  # spawner não cresce além do stack máximo configurado ali).
+  raio-limite-mobs: 8
+  # Exige espaço livre (pés e cabeça) no local do spawn. Não exige chão: em
+  # farm suspensa o mob nasce no ar e cai — pela gravidade do vanilla, ou pela
+  # física simulada quando ele nasce sem IA (desativar-ia.simular-fisica-basica).
+  exigir-espaco-livre: true
+  # Distância máxima do centro do spawner onde o mob pode nascer.
+  raio-spawn: 4
+  # Se true (padrão), ao colocar um item de spawner que NÃO é do StarSpawners
+  # (ex: um spawner de outro plugin de stack como RoseStacker/EpicSpawners/
+  # SmartSpawner, ou um spawner obtido com Toque Suave vanilla), o plugin
+  # passa a gerenciar ele normalmente, lendo o tipo de mob certo da própria
+  # NBT vanilla do item (é assim que esses plugins/o silk touch preservam o
+  # tipo) - útil ao migrar de outro plugin de spawner pro StarSpawners. Se
+  # false, itens de spawner não reconhecidos são ignorados: o bloco é colocado
+  # puro (vanilla), sem o plugin registrar ou gerenciar nada nele.
+  permitir-spawners-externos: true
+  # O TIPO do mob de um spawner externo dá pra ler certinho (linha acima), mas
+  # a QUANTIDADE empilhada não - plugins como o RoseStacker guardam isso numa
+  # NBT própria que não é exposta pela API pública do Bukkit sem depender de
+  # NMS versionado (algo que esse plugin evita de propósito, pra funcionar
+  # igual de 1.8 a 1.21). Como alternativa (melhor esforço, não garantido),
+  # tenta ler o número direto do NOME do item usando essa expressão regular -
+  # o grupo 1 (a primeira coisa entre parênteses) precisa ser o número. O
+  # padrão já bate com o formato padrão do RoseStacker ("5x Nome do Spawner").
+  # Se o nome não bater com a regex (ex: você customizou o locale do
+  # RoseStacker), o spawner externo ainda é reconhecido certinho, só entra com
+  # quantidade 1 em vez do valor real. Deixe em branco ("") pra desativar essa
+  # tentativa.
+  regex-quantidade-spawner-externo: "^(\\d+)x\\s"
+  # Impede colocar um item de spawner dentro desses containers específicos -
+  # cada um é uma opção separada, todas desativadas por padrão. Não afeta
+  # baú, fornalha e outros containers normais, só esses três (que dá pra
+  # carregar no inventário/esconder).
+  impedir-em-trouxa: false
+  impedir-em-enderchest: false
+  impedir-em-shulker-box: false
+  # Se o bloco físico de um spawner sumir sem passar pela quebra normal do
+  # plugin (ex: removido em massa por WorldEdit/FAWE, /setblock, terreno
+  # regenerado por outro plugin), o registro dele ficaria "órfão", tentando
+  # spawnar mob do nada pra sempre. Essa opção decide o que fazer quando isso
+  # é detectado: true = remove o spawner de vez (dropa o que estava no
+  # armazenamento, mas perde o spawner em si - não tem bloco pra virar item).
+  # false = recoloca o bloco físico de volta no lugar, mantendo os dados
+  # (stack, upgrades, armazenamento) intactos - protege contra remoção
+  # acidental/grief que não passa pelos eventos normais do Bukkit.
+  remover-registro-se-bloco-sumir: false
+
+# ---------------------------------------------------------
+# Upgrade: Armazenamento de Drops no Spawner (estilo SmartSpawner)
+# ---------------------------------------------------------
+armazenamento-spawner:
+  # Quantos slots de armazenamento cada unidade empilhada do spawner adiciona.
+  # Ex: um spawner com stack 4 tem 4 páginas de 45 slots = 180 slots no total.
+  slots-por-unidade-empilhada: 45
+  # Teto de páginas de armazenamento, independente de quantidadeEmpilhada.
+  # Sem isso, um spawner com stack na casa das centenas de milhares gera uma
+  # capacidade (e uma lista de itens pra salvar em disco) gigantesca o
+  # bastante pra travar o servidor inteiro ao salvar spawners.yml. Use -1
+  # para não ter teto (não recomendado com stacks muito altos).
+  paginas-maximas: 200
+  # true faz todo spawner NOVO (colocado por jogador, ou um natural do mundo
+  # registrado pela primeira vez) já nascer com o upgrade de Armazenamento e
+  # o de Venda ativos - sem precisar do item nem do comando de upgrade. Só
+  # vale pra spawner novo: não muda nada nos que já existem no mundo.
+  upgrades-ativados-por-padrao: false
+
+# ---------------------------------------------------------
+# Upgrade: Venda de Drops pelo Spawner
+# ---------------------------------------------------------
+venda-spawner:
+  # Preço de venda por item. Use o nome do Material (em inglês). Itens que não
+  # estiverem na lista usam o "preco-padrao".
+  preco-padrao: 0.5
+  precos:
+    ROTTEN_FLESH: 1.0
+    BONE: 2.0
+    STRING: 1.5
+    GUNPOWDER: 3.0
+    ARROW: 1.0
+    SPIDER_EYE: 2.5
+    ENDER_PEARL: 50.0
+    BLAZE_ROD: 25.0
+    SLIME_BALL: 4.0
+    LEATHER: 3.0
+    FEATHER: 1.0
+    RABBIT_HIDE: 1.5
+    RABBIT_FOOT: 15.0
+
+# ---------------------------------------------------------
+# Actionbar ao olhar para um spawner
+# ---------------------------------------------------------
+actionbar:
+  ativado: true
+  # Intervalo em ticks entre cada atualização da actionbar (20 ticks = 1 segundo).
+  intervalo-ticks: 10
+  # Distância máxima (em blocos) que o jogador pode estar olhando para o spawner.
+  raio-visao: 8
+  # Texto mostrado na actionbar. Placeholders: %mob%, %quantidade%. Use "&" para cores.
+  formato: "&b%mob% &7» &eStack: &f%quantidade%"
+  formato-vazio: "&7Spawner vazio &7» &eUse um ovo pra ativar"
+  formato-natural: "&b%mob% &7» &cNatural (protegido)"
+
+# ---------------------------------------------------------
+# Partículas ambiente nos spawners
+# ---------------------------------------------------------
+particulas-spawner:
+  ativado: true
+  # Nome do Particle (em inglês). Se o nome não existir na versão do servidor,
+  # o plugin tenta o próximo da lista de fallback interna automaticamente.
+  tipo: FLAME
+  quantidade: 2
+  intervalo-ticks: 20
+
+# ---------------------------------------------------------
+# Holograma acima do spawner
+# ---------------------------------------------------------
+holograma:
+  ativado: true
+  altura-acima-do-spawner: 1.6
+  distancia-entre-linhas: 0.25
+  intervalo-atualizacao-ticks: 20
+  # Linhas do holograma (uma entidade por linha, empilhadas de baixo pra cima).
+  # Placeholders: %mob%, %quantidade%. Use "&" para cores.
+  formato:
+    - "&b%mob%"
+    - "&7Stack: &e%quantidade%"
+  formato-vazio:
+    - "&7Spawner Vazio"
+    - "&7Stack: &e%quantidade%"
+  # Linhas extras mostradas embaixo do formato normal, só quando o spawner tem
+  # o upgrade de Armazenamento (não aparece em spawner sem o upgrade).
+  # Placeholders: %drops% (pilhas ocupadas), %drops-maximo% (capacidade em
+  # slots), %pilhas% (mesmo que %drops%), %itens% (contagem real de itens - 3
+  # pilhas cheias sao 192 itens) e %xp%. Use "&" para cores.
+  formato-armazenamento:
+    - "&7Drops: &e%drops%&7/&e%drops-maximo%"
+    - "&7Itens: &e%itens%"
+    - "&7Xp: &e%xp%"
+
+# ---------------------------------------------------------
+# Armazenamento
+# ---------------------------------------------------------
+armazenamento:
+  # Intervalo em ticks para salvar os dados automaticamente (20 ticks = 1 segundo). 6000 = 5 minutos.
+  intervalo-auto-save: 6000
