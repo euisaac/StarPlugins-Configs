@@ -1,0 +1,103 @@
+# ============================================================================
+#  Categoria: tags  (loja cash)
+#
+#  Todos os itens aqui usam a moeda 'cash' (economias.yml) e executam
+#  comandos no lugar de entregar um item fisico.
+# ============================================================================
+
+Nome: '&8TAGS'
+Permissao: ''
+Som: 'NOTA'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+Slot: 23
+Icone:
+  material: NAME_TAG
+  nome: '&d&lTAGS'
+  lore:
+    - '&r'
+    - '&7Adquira tags personalizadas'
+    - '&7para voce.'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+
+Dinamico:
+  Ativar: false
+
+Itens:
+
+  tag-vip:
+    Item:
+      material: NAME_TAG
+      nome: '&a&lTag [VIP]'
+      lore:
+        - '&r'
+        - '&7Mostra &a[VIP] &7antes do seu nome.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 300.0
+      Economia: cash
+      Comandos:
+        - 'tag dar {jogador} vip'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+  tag-mvp:
+    Item:
+      material: NAME_TAG
+      nome: '&b&lTag [MVP]'
+      lore:
+        - '&r'
+        - '&7Mostra &b[MVP] &7antes do seu nome.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 600.0
+      Economia: cash
+      Comandos:
+        - 'tag dar {jogador} mvp'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+  tag-lenda:
+    Item:
+      material: NAME_TAG
+      nome: '&6&lTag [LENDA]'
+      lore:
+        - '&r'
+        - '&7Mostra &6[LENDA] &7antes do seu nome.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 1200.0
+      Economia: cash
+      Comandos:
+        - 'tag dar {jogador} lenda'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

@@ -1,0 +1,179 @@
+# ============================================================================
+#  Categoria: armaduras  (loja principal)
+#
+#  O formato completo de um item esta comentado em minerios.yml.
+#  Em jogo: /starloja editor e depois Shift + clique num item.
+# ============================================================================
+
+Nome: '&8ARMADURAS'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+# Posicao desta categoria no menu principal (/loja).
+Slot: 16
+Icone:
+  material: DIAMOND_CHESTPLATE
+  nome: '&b&lARMADURAS'
+  lore:
+    - '&r'
+    - '&7Compre armaduras e prepare-se'
+    - '&7para o combate.'
+    - '&r'
+    - '&8| &7Itens: &f{itens}'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+
+Dinamico:
+  Ativar: false
+
+Dinamico-categoria:
+  Ativar: false
+
+Itens:
+
+  capacete-couro:
+    Item:
+      material: LEATHER_HELMET
+    Compra:
+      Ativar: true
+      Preco: 40.0
+    Venda:
+      Ativar: true
+      Preco: 12.0
+
+  peitoral-couro:
+    Item:
+      material: LEATHER_CHESTPLATE
+    Compra:
+      Ativar: true
+      Preco: 64.0
+    Venda:
+      Ativar: true
+      Preco: 20.0
+
+  calca-couro:
+    Item:
+      material: LEATHER_LEGGINGS
+    Compra:
+      Ativar: true
+      Preco: 56.0
+    Venda:
+      Ativar: true
+      Preco: 18.0
+
+  bota-couro:
+    Item:
+      material: LEATHER_BOOTS
+    Compra:
+      Ativar: true
+      Preco: 32.0
+    Venda:
+      Ativar: true
+      Preco: 10.0
+
+  capacete-ferro:
+    Item:
+      material: IRON_HELMET
+    Compra:
+      Ativar: true
+      Preco: 250.0
+    Venda:
+      Ativar: true
+      Preco: 80.0
+
+  peitoral-ferro:
+    Item:
+      material: IRON_CHESTPLATE
+    Compra:
+      Ativar: true
+      Preco: 400.0
+    Venda:
+      Ativar: true
+      Preco: 130.0
+
+  calca-ferro:
+    Item:
+      material: IRON_LEGGINGS
+    Compra:
+      Ativar: true
+      Preco: 350.0
+    Venda:
+      Ativar: true
+      Preco: 115.0
+
+  bota-ferro:
+    Item:
+      material: IRON_BOOTS
+    Compra:
+      Ativar: true
+      Preco: 200.0
+    Venda:
+      Ativar: true
+      Preco: 65.0
+
+  capacete-diamante:
+    Item:
+      material: DIAMOND_HELMET
+    Compra:
+      Ativar: true
+      Preco: 1600.0
+    Venda:
+      Ativar: true
+      Preco: 550.0
+
+  peitoral-diamante:
+    Item:
+      material: DIAMOND_CHESTPLATE
+    Compra:
+      Ativar: true
+      Preco: 2560.0
+    Venda:
+      Ativar: true
+      Preco: 880.0
+
+  calca-diamante:
+    Item:
+      material: DIAMOND_LEGGINGS
+    Compra:
+      Ativar: true
+      Preco: 2240.0
+    Venda:
+      Ativar: true
+      Preco: 770.0
+
+  bota-diamante:
+    Item:
+      material: DIAMOND_BOOTS
+    Compra:
+      Ativar: true
+      Preco: 1280.0
+    Venda:
+      Ativar: true
+      Preco: 440.0
+
+  escudo:
+    Item:
+      material: SHIELD
+    Compra:
+      Ativar: true
+      Preco: 300.0
+    Venda:
+      Ativar: true
+      Preco: 100.0
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

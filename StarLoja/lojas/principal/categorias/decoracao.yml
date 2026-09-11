@@ -1,0 +1,238 @@
+# ============================================================================
+#  Categoria: decoracao  (loja principal)
+#
+#  Exemplo de categoria que usa nomes de material coloridos.
+#  Em servidores 1.8 a 1.12 o plugin converte automaticamente
+#  (LIME_WOOL -> WOOL:5, RED_TERRACOTTA -> STAINED_CLAY:14, e assim por diante).
+#
+#  Aqui os cliques foram configurados do jeito que voce pediu:
+#  esquerdo compra, direito vende.
+# ============================================================================
+
+Nome: '&8Decoração'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+Slot: 24
+Icone:
+  material: LIME_WOOL
+  nome: '&dDecoração'
+  lore:
+    - '&7Lã, vidro colorido, tochas e flores.'
+    - ''
+    - '&7Itens: &f{itens}'
+    - ''
+    - '&eClique para abrir.'
+
+Cliques:
+  LEFT_CLICK: MENU
+  RIGHT_CLICK: NEGOCIAR
+  SHIFT_LEFT_CLICK: MENU
+  SHIFT_RIGHT_CLICK: NEGOCIAR_INVENTARIO
+  MIDDLE_CLICK: NENHUMA
+  DROP: COMPRAR_QUANTIA
+
+Dinamico:
+  Ativar: false
+
+Dinamico-categoria:
+  Ativar: false
+
+Itens:
+
+  la-branca:
+    Item:
+      material: WHITE_WOOL
+    Compra:
+      Ativar: true
+      Preco: 6.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  la-vermelha:
+    Item:
+      material: RED_WOOL
+    Compra:
+      Ativar: true
+      Preco: 7.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  la-verde:
+    Item:
+      material: LIME_WOOL
+    Compra:
+      Ativar: true
+      Preco: 7.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  la-azul:
+    Item:
+      material: BLUE_WOOL
+    Compra:
+      Ativar: true
+      Preco: 7.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  la-amarela:
+    Item:
+      material: YELLOW_WOOL
+    Compra:
+      Ativar: true
+      Preco: 7.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  la-preta:
+    Item:
+      material: BLACK_WOOL
+    Compra:
+      Ativar: true
+      Preco: 7.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  vidro-branco:
+    Item:
+      material: WHITE_STAINED_GLASS
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 2.5
+
+  vidro-vermelho:
+    Item:
+      material: RED_STAINED_GLASS
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 2.5
+
+  vidraca-cinza:
+    Item:
+      material: GRAY_STAINED_GLASS_PANE
+    Compra:
+      Ativar: true
+      Preco: 5.0
+    Venda:
+      Ativar: true
+      Preco: 1.5
+
+  terracota-vermelha:
+    Item:
+      material: RED_TERRACOTTA
+    Compra:
+      Ativar: true
+      Preco: 10.0
+    Venda:
+      Ativar: true
+      Preco: 3.0
+
+  tocha:
+    Item:
+      material: TORCH
+    Compra:
+      Ativar: true
+      Preco: 2.0
+    Venda:
+      Ativar: true
+      Preco: 0.5
+
+  lanterna-do-mar:
+    Item:
+      material: SEA_LANTERN
+    Compra:
+      Ativar: true
+      Preco: 45.0
+    Venda:
+      Ativar: true
+      Preco: 15.0
+
+  estante:
+    Item:
+      material: BOOKSHELF
+    Compra:
+      Ativar: true
+      Preco: 40.0
+    Venda:
+      Ativar: true
+      Preco: 14.0
+
+  vaso:
+    Item:
+      material: FLOWER_POT
+    Compra:
+      Ativar: true
+      Preco: 12.0
+    Venda:
+      Ativar: true
+      Preco: 4.0
+
+  papoula:
+    Item:
+      material: POPPY
+    Compra:
+      Ativar: true
+      Preco: 3.0
+    Venda:
+      Ativar: true
+      Preco: 0.8
+
+  dente-de-leao:
+    Item:
+      material: DANDELION
+    Compra:
+      Ativar: true
+      Preco: 3.0
+    Venda:
+      Ativar: true
+      Preco: 0.8
+
+  quadro:
+    Item:
+      material: PAINTING
+    Compra:
+      Ativar: true
+      Preco: 20.0
+    Venda:
+      Ativar: true
+      Preco: 7.0
+
+  moldura:
+    Item:
+      material: ITEM_FRAME
+    Compra:
+      Ativar: true
+      Preco: 25.0
+    Venda:
+      Ativar: true
+      Preco: 8.0
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

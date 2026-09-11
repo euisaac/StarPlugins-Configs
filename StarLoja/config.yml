@@ -1,0 +1,278 @@
+# ============================================================================
+#   ____  _             _          _
+#  / ___|| |_ __ _ _ __| |    ___ (_) __ _
+#  \___ \| __/ _` | '__| |   / _ \| |/ _` |
+#   ___) | || (_| | |  | |__| (_) | | (_| |
+#  |____/ \__\__,_|_|  |_____\___// |\__,_|
+#                              |__/
+#
+#  Plugin de loja por Eulsaac - compativel da 1.8 ate a 1.21
+#
+#  Estrutura das pastas:
+#
+#    plugins/StarLoja/
+#      config.yml            <- este arquivo
+#      mensagens.yml         <- todos os textos
+#      economias.yml         <- as moedas aceitas
+#      lojas/
+#        principal/
+#          loja.yml          <- menu principal da loja
+#          categorias/
+#            blocos.yml      <- uma categoria = um arquivo
+#            minerios.yml
+#      menus/                <- menus auxiliares (item, quantia, confirmacao)
+#      dados/                <- estado dos precos dinamicos (nao edite a mao)
+#
+# ============================================================================
+
+# Mostra detalhes de erro no console. Deixe true so para investigar problemas.
+Depuracao: false
+
+# Loja aberta quando o jogador digita apenas /loja.
+# Deixe '' para abrir o menu com a lista de lojas.
+Loja-padrao: 'principal'
+
+# ---------------------------------------------------------------------------
+# Formatacao dos numeros
+# ---------------------------------------------------------------------------
+Numeros:
+  # Padrao do java.text.DecimalFormat.
+  Formato: '#,##0.00'
+  Separador-milhar: '.'
+  Separador-decimal: ','
+  Casas: 2
+
+# ---------------------------------------------------------------------------
+# Opcoes gerais de compra e venda
+# ---------------------------------------------------------------------------
+Geral:
+  # Maximo de unidades por transacao (0 = sem limite).
+  Max-por-compra: 2304
+
+  # Segundos de espera entre transacoes do mesmo jogador (0 = desativado).
+  # Quem tem starloja.admin ignora.
+  Delay: 0
+
+  # Pedir confirmacao no menu antes de concluir.
+  Confirmar-compra: false
+  Confirmar-venda: false
+
+  # Fechar o menu depois de concluir a transacao.
+  Fechar-ao-confirmar: false
+
+  # Mostrar o resultado tambem na action bar (ignorado na 1.8 sem suporte).
+  Mostrar-actionbar: true
+
+  # Sons. Aceita apelidos (COMPRA, VENDA, ERRO, CLIQUE, ABRIR, EDITAR)
+  # ou o nome exato do enum da sua versao. Formato: NOME:volume:tom
+  Som-compra: 'COMPRA'
+  Som-venda: 'VENDA'
+  Som-erro: 'ERRO'
+
+  # Quando false, itens com nome customizado nao sao vendidos na comparacao
+  # por MATERIAL (protege equipamento nomeado do jogador).
+  Vender-item-com-nome: false
+
+# ---------------------------------------------------------------------------
+# Editor de itens em jogo
+# ---------------------------------------------------------------------------
+Editor:
+  Ativar: true
+
+  # Com true (padrao), quem tem a permissao starloja.editor ja abre o editor
+  # dando Shift + clique num item da loja, igual ao EconomyShopGUI Premium,
+  # sem precisar ligar nada antes.
+  #
+  # O staff que quiser usar o Shift + clique para comprar/vender de novo
+  # desliga o modo com /starloja editor (e liga de volta com o mesmo comando).
+  #
+  # Com false, o comportamento se inverte: o Shift + clique compra/vende
+  # normalmente e o editor so responde depois de /starloja editor.
+  Modo-padrao: true
+
+  # Grava tambem a serializacao nativa do item (chave "completo" no YAML).
+  # Deixe true se seus itens tem NBT de outros plugins que precisa ser
+  # preservado exatamente. Obs: a chave "completo" nao e portavel entre
+  # versoes muito diferentes do Minecraft.
+  Salvar-item-completo: false
+
+  Som: 'EDITAR'
+
+# ---------------------------------------------------------------------------
+# Precos dinamicos
+# ---------------------------------------------------------------------------
+Dinamico:
+  # De quantos em quantos segundos o estado do mercado e gravado em disco.
+  Salvar-cada: 300
+
+# ---------------------------------------------------------------------------
+# Descontos na compra (por permissao)
+# ---------------------------------------------------------------------------
+Descontos:
+  # Com false vale apenas o grupo de menor Ordem que o jogador tiver.
+  # Com true os valores somam.
+  Acumular: false
+  # Teto de desconto em porcentagem.
+  Maximo: 90.0
+  Grupos:
+    vip:
+      Permissao: 'starloja.desconto.vip'
+      Valor: 5.0
+      Ordem: 3
+    mvp:
+      Permissao: 'starloja.desconto.mvp'
+      Valor: 10.0
+      Ordem: 2
+    lenda:
+      Permissao: 'starloja.desconto.lenda'
+      Valor: 15.0
+      Ordem: 1
+
+# ---------------------------------------------------------------------------
+# Bonus na venda (por permissao)
+# ---------------------------------------------------------------------------
+Bonus:
+  Acumular: false
+  Maximo: 500.0
+  Grupos:
+    vip:
+      Permissao: 'starloja.bonus.vip'
+      Valor: 5.0
+      Ordem: 3
+    mvp:
+      Permissao: 'starloja.bonus.mvp'
+      Valor: 10.0
+      Ordem: 2
+    lenda:
+      Permissao: 'starloja.bonus.lenda'
+      Valor: 20.0
+      Ordem: 1
+
+# ---------------------------------------------------------------------------
+# Bau de venda rapida (/vendergui)
+# ---------------------------------------------------------------------------
+Venda-inventario:
+  Titulo: '&8Venda rapida &7(feche para vender)'
+  Tamanho: 54
+
+# ---------------------------------------------------------------------------
+# Auto vender
+#
+# Sao dois gatilhos independentes, os dois vendendo o que estiver no
+# inventario e tiver preco de venda:
+#
+#   /autovender        -> vende sozinho QUANDO O INVENTARIO ENCHE
+#   /shiftautovender   -> vende TODA VEZ QUE O JOGADOR APERTA SHIFT
+#
+# Os dois podem ficar ligados ao mesmo tempo. Nenhum dos dois passa pelo
+# captcha: ele e so para venda por comando.
+# ---------------------------------------------------------------------------
+Auto-vender:
+  Ativar: true
+
+  # Com quantos slots livres (ou menos) o inventario ja conta como cheio.
+  # 0 = so vende quando nao sobrar nenhum slot.
+  Slots-livres: 0
+
+  # De quantos em quantos ticks conferir se o inventario encheu (20 = 1s).
+  # Precisa ser por tempo: com o inventario cheio o jogador nem consegue
+  # coletar item, entao nao existe evento do Bukkit para escutar.
+  Verificar-cada: 20
+
+  # Segundos minimos entre duas vendas automaticas do mesmo jogador.
+  # Segura o spam de quem fica apertando Shift sem parar.
+  Intervalo: 2
+
+  # De quantos em quantos segundos avisar o total ganho (evita spam).
+  Aviso-cada: 5
+
+  # Alem da action bar, mandar tambem no chat.
+  Avisar-no-chat: false
+
+# ---------------------------------------------------------------------------
+# Captcha anti-macro na venda por comando
+#
+# Depois de algumas vendas por comando, existe uma chance de abrir um menu
+# pedindo para o jogador clicar num item especifico. Errar (ou fechar sem
+# responder) bloqueia a venda por comando por um tempo.
+#
+# Nao afeta a compra, nem a venda pelo menu da loja, nem o auto vender.
+# ---------------------------------------------------------------------------
+Captcha:
+  Ativar: true
+
+  # Quantas vendas por comando o jogador faz antes do captcha poder aparecer.
+  Depois-de: 5
+
+  # Chance (%) de aparecer, depois do limite acima.
+  Chance: 30.0
+
+  # Quem tem esta permissao nunca recebe captcha.
+  Permissao-bypass: 'starloja.captcha.bypass'
+
+  # Chances diferentes por permissao. Vale o grupo de menor Ordem que o
+  # jogador tiver; quem nao tem nenhum usa a Chance acima.
+  Chances:
+    vip:
+      Permissao: 'starloja.captcha.chance.vip'
+      Valor: 15.0
+      Ordem: 3
+    mvp:
+      Permissao: 'starloja.captcha.chance.mvp'
+      Valor: 8.0
+      Ordem: 2
+    lenda:
+      Permissao: 'starloja.captcha.chance.lenda'
+      Valor: 3.0
+      Ordem: 1
+
+  Menu:
+    # {item} vira o nome do item que precisa ser clicado.
+    Titulo: '&8Clique no item: {item}'
+    # 27 = 3 linhas.
+    Tamanho: 27
+    # Quantas opcoes diferentes aparecem (2 a 9).
+    Opcoes: 4
+
+  # Tempo sem poder vender por comando ao errar, em segundos.
+  Punicao: 300
+
+  # Fechar o menu sem responder conta como erro?
+  Fechar-conta-erro: true
+
+# ---------------------------------------------------------------------------
+#  SETAS DE PAGINA
+#
+#  Aparecem na pagina de itens de uma categoria quando os itens nao cabem em
+#  uma pagina so. Valem para todas as lojas.
+#
+#  Slot: onde cada seta aparece. Use -1 para desligar a seta.
+#
+#  Os slots abaixo (48 e 50) ficam ao lado da venda rapida no layout padrao de
+#  menus/categoria.yml. Se voce mudar aquele layout, mude estes junto: uma seta
+#  em cima de um botao apaga o botao.
+#
+#  Se o slot nao existir no menu (categoria com Tamanho menor), a seta cai
+#  sozinha na ultima linha para nao sumir.
+#
+#  Para usar uma seta diferente em UMA categoria (ou em uma loja), declare la
+#  na "Decoracao" um item com Acao: PROXIMA_PAGINA ou PAGINA_ANTERIOR: quando
+#  a categoria ja tem a sua, o plugin nao desenha a daqui.
+# ---------------------------------------------------------------------------
+Navegacao:
+
+  Anterior:
+    Slot: 48
+    Item:
+      material: ARROW
+      nome: '&e« Página anterior'
+      lore:
+        - '&7Clique para voltar uma página.'
+
+  Proxima:
+    Slot: 50
+    Item:
+      material: ARROW
+      nome: '&ePróxima página »'
+      lore:
+        - '&7Clique para avançar uma página.'

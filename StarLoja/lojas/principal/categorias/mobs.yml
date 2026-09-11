@@ -1,0 +1,186 @@
+# ============================================================================
+#  Categoria: mobs  (loja principal)
+#
+#  O formato completo de um item esta comentado em minerios.yml.
+#  Em jogo: /starloja editor e depois Shift + clique num item.
+# ============================================================================
+
+Nome: '&8DROPS DE MOBS'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+# Posicao desta categoria no menu principal (/loja).
+Slot: 22
+Icone:
+  material: ROTTEN_FLESH
+  nome: '&c&lDROPS DE MOBS'
+  lore:
+    - '&r'
+    - '&7Itens que caem dos monstros.'
+    - '&r'
+    - '&8| &7Itens: &f{itens}'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+
+Dinamico:
+  Ativar: true
+  Estoque: 5000.0
+  Elasticidade: 0.5
+  Minimo: 0.6
+  Maximo: 1.8
+  Recuperacao: 2.0
+  Afetar-compra: true
+  Afetar-venda: true
+  Peso-venda: 1.0
+
+Dinamico-categoria:
+  Ativar: false
+
+Itens:
+
+  carne-podre:
+    Item:
+      material: ROTTEN_FLESH
+    Compra:
+      Ativar: true
+      Preco: 3.0
+    Venda:
+      Ativar: true
+      Preco: 0.8
+
+  osso:
+    Item:
+      material: BONE
+    Compra:
+      Ativar: true
+      Preco: 6.0
+    Venda:
+      Ativar: true
+      Preco: 1.8
+
+  linha:
+    Item:
+      material: STRING
+    Compra:
+      Ativar: true
+      Preco: 6.0
+    Venda:
+      Ativar: true
+      Preco: 1.8
+
+  polvora:
+    Item:
+      material: GUNPOWDER
+    Compra:
+      Ativar: true
+      Preco: 18.0
+    Venda:
+      Ativar: true
+      Preco: 6.0
+
+  olho-de-aranha:
+    Item:
+      material: SPIDER_EYE
+    Compra:
+      Ativar: true
+      Preco: 12.0
+    Venda:
+      Ativar: true
+      Preco: 4.0
+
+  perola-do-ender:
+    Item:
+      material: ENDER_PEARL
+    Compra:
+      Ativar: true
+      Preco: 120.0
+    Venda:
+      Ativar: true
+      Preco: 40.0
+
+  bastao-de-blaze:
+    Item:
+      material: BLAZE_ROD
+    Compra:
+      Ativar: true
+      Preco: 150.0
+    Venda:
+      Ativar: true
+      Preco: 50.0
+
+  creme-de-magma:
+    Item:
+      material: MAGMA_CREAM
+    Compra:
+      Ativar: true
+      Preco: 90.0
+    Venda:
+      Ativar: true
+      Preco: 30.0
+
+  bola-de-slime:
+    Item:
+      material: SLIME_BALL
+    Compra:
+      Ativar: true
+      Preco: 30.0
+    Venda:
+      Ativar: true
+      Preco: 10.0
+
+  lagrima-de-ghast:
+    Item:
+      material: GHAST_TEAR
+    Compra:
+      Ativar: true
+      Preco: 200.0
+    Venda:
+      Ativar: true
+      Preco: 70.0
+
+  couro:
+    Item:
+      material: LEATHER
+    Compra:
+      Ativar: true
+      Preco: 20.0
+    Venda:
+      Ativar: true
+      Preco: 6.0
+
+  pena:
+    Item:
+      material: FEATHER
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 2.5
+
+  tinta:
+    Item:
+      material: INK_SAC
+    Compra:
+      Ativar: true
+      Preco: 10.0
+    Venda:
+      Ativar: true
+      Preco: 3.0
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

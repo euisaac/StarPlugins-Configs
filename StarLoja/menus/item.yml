@@ -1,0 +1,236 @@
+# ============================================================================
+#  Menu de compra e venda de um item (acao MENU nos cliques da categoria)
+#
+#  Layout deste padrao:
+#
+#     0  1  2  3  4  5  6  7  8    <- verdes somam | ITEM | vermelhos tiram
+#     9 10 11 12 13 14 15 16 17    <- bigorna (digitar a quantia)
+#    18 19 20 21 22 23 24 25 26    <- bau comprar inv | COMPRAR | VENDER | bau vender inv
+#    27 28 29 30 31 32 33 34 35    <- voltar
+#
+#  Comprar e vender NAO fecham o menu: a quantidade e o saldo sao redesenhados
+#  e o jogador continua ali.
+#
+#  Acoes dos botoes:
+#    SOMAR               soma o valor de Quantia (negativo diminui)
+#    DEFINIR             define exatamente o valor de Quantia
+#    MAXIMO              usa o maior valor possivel
+#    DIGITAR             pede a quantia no chat
+#    COMPRAR             compra a quantidade escolhida
+#    VENDER              vende a quantidade escolhida
+#    COMPRAR_INVENTARIO  compra o maximo que couber (sempre pede confirmacao)
+#    VENDER_INVENTARIO   vende tudo o que o jogador tem do item
+#    VOLTAR / FECHAR
+#
+#  Botoes de SOMAR e DEFINIR mostram o proprio valor na pilha do item.
+#
+#  MATERIAL POR VERSAO: separe alternativas com barra vertical, do bloco mais
+#  novo para o mais antigo, e o plugin usa o primeiro que existir no servidor.
+#    material: 'LIME_CONCRETE | LIME_WOOL'
+#  Em 1.12+ vira concreto verde; em 1.8, que nao tem concreto, vira la verde.
+#  Use isso nos botoes de menu. Em ITEM DE LOJA nao use: ali a identidade do
+#  item importa, e o plugin prefere omitir o item a entregar outro no lugar.
+#
+#  Slot-solo: posicao usada quando o item so tem um lado (so compra ou so
+#  venda). Assim o concreto e o bau ficam sempre no mesmo lugar: num item so
+#  de compra aparece o verde, num item so de venda o vermelho, na mesma casa.
+#
+#  Variaveis: {item} {quantia} {limite} {total_compra} {total_venda}
+#             {quantia_inventario_compra} {total_inventario_compra}
+#             {quantia_inventario_venda} {total_inventario_venda}
+#             {preco_compra} {preco_venda} {tenho} {maximo} {stack}
+#             {variacao} {tendencia} {desconto} {bonus} {saldo_money} ...
+# ============================================================================
+
+# {item} e o nome em portugues, {quantia} e a quantidade escolhida.
+Nome: '&8{item} &7x{quantia}'
+Tamanho: 36
+Slot-item: 4
+
+# Lore adicionada ao item que fica no centro.
+# Prefixos condicionais: {se_compra}, {se_venda}, {se_dinamico}
+Lore-item:
+  - '&r'
+  - '&e&lPreços'
+  - '{se_compra} &a&lCOMPRAR: &f{total_compra}'
+  - '{se_venda} &c&lVENDER: &f{total_venda}'
+  - '&r'
+  - '&8| &7Unidade: &a{preco_compra} &8/ &c{preco_venda}'
+  - '&8| &7Você tem: &f{tenho}'
+  - '{se_dinamico}&8| &7Mercado: {tendencia} &8({variacao})'
+  - '&r'
+  - '&8| &7Seu saldo: &a{saldo_money}'
+
+Botoes:
+
+  # ---------------- Verdes: somam quantidade ----------------
+  mais-64:
+    Slot: 0
+    Acao: SOMAR
+    Quantia: 64
+    Item:
+      material: LIME_STAINED_GLASS_PANE
+      nome: '&a&l+64'
+      lore:
+        - '&r'
+        - '&7Adiciona &a64 &7à quantidade.'
+
+  mais-10:
+    Slot: 1
+    Acao: SOMAR
+    Quantia: 10
+    Item:
+      material: LIME_STAINED_GLASS_PANE
+      nome: '&a&l+10'
+      lore:
+        - '&r'
+        - '&7Adiciona &a10 &7à quantidade.'
+
+  mais-1:
+    Slot: 2
+    Acao: SOMAR
+    Quantia: 1
+    Item:
+      material: LIME_STAINED_GLASS_PANE
+      nome: '&a&l+1'
+      lore:
+        - '&r'
+        - '&7Adiciona &a1 &7à quantidade.'
+
+  # ---------------- Vermelhos: tiram quantidade ----------------
+  menos-1:
+    Slot: 6
+    Acao: SOMAR
+    Quantia: -1
+    Item:
+      material: RED_STAINED_GLASS_PANE
+      nome: '&c&l-1'
+      lore:
+        - '&r'
+        - '&7Remove &c1 &7da quantidade.'
+
+  menos-10:
+    Slot: 7
+    Acao: SOMAR
+    Quantia: -10
+    Item:
+      material: RED_STAINED_GLASS_PANE
+      nome: '&c&l-10'
+      lore:
+        - '&r'
+        - '&7Remove &c10 &7da quantidade.'
+
+  menos-64:
+    Slot: 8
+    Acao: SOMAR
+    Quantia: -64
+    Item:
+      material: RED_STAINED_GLASS_PANE
+      nome: '&c&l-64'
+      lore:
+        - '&r'
+        - '&7Remove &c64 &7da quantidade.'
+
+  # ---------------- Bigorna: escolher o número ----------------
+  digitar:
+    Slot: 13
+    Acao: DIGITAR
+    Esconder-se-indisponivel: false
+    Item:
+      material: ANVIL
+      nome: '&b&lESCOLHER QUANTIDADE'
+      lore:
+        - '&r'
+        - '&7Quantidade atual: &f{quantia}'
+        - '&7Máximo: &f{limite}'
+        - '&r'
+        - '&eClique para digitar no chat.'
+
+  # ---------------- Baú da esquerda: comprar um inventário ----------------
+  comprar-inventario:
+    Slot: 19
+    # Quando o item SO pode ser comprado, o bau vem para ca.
+    Slot-solo: 23
+    Acao: COMPRAR_INVENTARIO
+    Item:
+      material: CHEST
+      nome: '&a&lCOMPRAR UM INVENTÁRIO'
+      lore:
+        - '&r'
+        - '&7Compra o máximo que couber no'
+        - '&7seu inventário.'
+        - '&r'
+        - '&8| &7Quantidade: &f{quantia_inventario_compra}'
+        - '&8| &7Custo: &c{total_inventario_compra}'
+        - '&r'
+        - '&eClique para comprar. &7(pede confirmação)'
+
+  # ---------------- Concreto verde: comprar a quantidade ----------------
+  comprar:
+    Slot: 21
+    # Quando o item SO pode ser comprado, o concreto verde fica aqui.
+    Slot-solo: 21
+    Acao: COMPRAR
+    Item:
+      material: 'LIME_CONCRETE | LIME_WOOL'
+      nome: '&a&lCOMPRAR'
+      lore:
+        - '&r'
+        - '&8| &7Quantidade: &f{quantia}'
+        - '&8| &7Total: &c{total_compra}'
+        - '&r'
+        - '&a&lCLIQUE PARA COMPRAR'
+      brilho: true
+
+  # ---------------- Concreto vermelho: vender a quantidade ----------------
+  vender:
+    Slot: 23
+    # Quando o item SO pode ser vendido, o concreto vermelho ocupa o mesmo
+    # lugar que o verde ocuparia: a posicao nao muda, so a cor.
+    Slot-solo: 21
+    Acao: VENDER
+    Item:
+      material: 'RED_CONCRETE | RED_WOOL'
+      nome: '&c&lVENDER'
+      lore:
+        - '&r'
+        - '&8| &7Quantidade: &f{quantia}'
+        - '&8| &7Total: &a{total_venda}'
+        - '&8| &7Você tem: &f{tenho}'
+        - '&r'
+        - '&c&lCLIQUE PARA VENDER'
+      brilho: true
+
+  # ---------------- Baú da direita: vender o inventário ----------------
+  vender-inventario:
+    Slot: 25
+    # Mesma ideia do concreto: o bau de venda assume a posicao do de compra.
+    Slot-solo: 23
+    Acao: VENDER_INVENTARIO
+    Item:
+      material: CHEST
+      nome: '&c&lVENDER O INVENTÁRIO'
+      lore:
+        - '&r'
+        - '&7Vende tudo o que você tiver'
+        - '&7deste item no inventário.'
+        - '&r'
+        - '&8| &7Quantidade: &f{quantia_inventario_venda}'
+        - '&8| &7Você recebe: &a{total_inventario_venda}'
+        - '&r'
+        - '&eClique para vender.'
+
+  # ---------------- Voltar ----------------
+  voltar:
+    Slot: 31
+    Acao: VOLTAR
+    Esconder-se-indisponivel: false
+    Item:
+      material: ARROW
+      nome: '&c&lVOLTAR'
+      lore:
+        - '&r'
+        - '&7Volta para a categoria.'
+
+# Itens sem função, só enfeite. Use Slots: '0-8' para faixas.
+Decoracao: {}

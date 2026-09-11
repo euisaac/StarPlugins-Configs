@@ -1,0 +1,226 @@
+# ============================================================================
+#  Mensagens do StarLoja
+#
+#  Cores: use &a, &c, &l... Em servidores 1.16+ tambem funciona &#FF0000.
+#  Deixe uma mensagem como '' para nao enviar nada.
+# ============================================================================
+
+geral:
+  prefixo: '&8[&aStarLoja&8] &r'
+  sem-permissao: '&cVocê não tem permissão para fazer isso.'
+  apenas-jogador: '&cEsse comando só funciona dentro do jogo.'
+  jogador-nao-encontrado: '&cO jogador &f{jogador} &cnão está online.'
+  numero-invalido: '&cValor inválido. Digite um número.'
+  cancelado: '&7Ação cancelada.'
+  uso: '&cUso correto: &f{uso}'
+  erro-economia: '&cErro na economia. Avise um administrador.'
+  delay: '&cAguarde &f{tempo} &cpara comercializar novamente.'
+  recarregado: '&aConfigurações recarregadas em &f{tempo}ms&a. &7({lojas} lojas, {itens} itens)'
+  info: |
+    &8&m--------------------------------------------
+    &a StarLoja &7v{versao}
+    &7 Servidor: &f{servidor}
+    &7 Lojas: &f{lojas} &8| &7Itens: &f{itens}
+    &7 Mercados dinâmicos ativos: &f{estados}
+    &8&m--------------------------------------------
+  ajuda: |
+    &8&m--------------------------------------------
+    &a StarLoja &7- comandos
+    &8&m--------------------------------------------
+    &a/loja &7- abre a loja padrão.
+    &a/loja lojas &7- lista todas as lojas.
+    &a/loja <loja> [categoria] &7- abre uma loja ou categoria.
+    &a/vender &7- abre o menu de venda.
+    &a/vender tudo &7- vende tudo do inventário.
+    &a/vender mao &7- vende o item da sua mão.
+    &a/vendergui &7- abre o baú de venda rápida.
+    &a/autovender &7- liga/desliga a venda automática ao coletar.
+    &a/shiftautovender &7- faz o auto vender agir só agachado.
+    &7
+    &a/starloja editor &7- liga/desliga o modo editor (Shift + clique).
+    &a/starloja adicionar <loja> <categoria> [compra] [venda] &7- adiciona o item da mão.
+    &a/starloja remover <loja> <categoria> <item> &7- remove um item.
+    &a/starloja abrir <loja[/categoria]> <jogador> &7- abre para outro jogador.
+    &a/starloja dinamico resetar [alvo] &7- volta os preços ao valor base.
+    &a/starloja boost [sortear] &7- vê ou sorteia de novo os boosts.
+    &a/starloja meta [reiniciar] &7- vê ou reinicia a meta de venda.
+    &a/starloja lojas &7- lista lojas e categorias no chat.
+    &a/starloja recarregar &7- recarrega as configurações.
+    &8&m--------------------------------------------
+
+# Simbolos usados nas lores e nos placeholders.
+simbolos:
+  alta: '&a▲'
+  baixa: '&c▼'
+  estavel: '&7='
+  indisponivel: '&8indisponível'
+  compra: '&acompra'
+  venda: '&cvenda'
+
+loja:
+  nao-encontrada: '&cA loja &f{loja} &cnão existe.'
+  categoria-nao-encontrada: '&cA categoria &f{categoria} &cnão existe na loja &f{loja}&c.'
+  sem-permissao-loja: '&cVocê não tem permissão para abrir essa loja.'
+  sem-permissao-categoria: '&cVocê não tem permissão para abrir essa categoria.'
+  nenhuma-disponivel: '&cNenhuma loja disponível para você.'
+  sem-categorias: '&cA loja &f{loja} &cnão tem nenhuma categoria configurada.'
+  aberta-para: '&aVocê abriu &f{destino} &apara &f{jogador}&a.'
+  lista-cabecalho: '&aLojas carregadas: &f{total}'
+  lista-linha: '&8 » &a{loja} &8- {categorias}'
+
+compra:
+  sucesso: '&aVocê comprou &f{quantia}x {item} &apor &f{total}&a.'
+  actionbar: '&a+{quantia}x {item} &8| &c-{total}'
+  desativada: '&cO item &f{item} &cnão está à venda.'
+  sem-saldo: '&cVocê precisa de &f{total} &cpara comprar isso.'
+  sem-saldo-ou-espaco: '&cVocê não tem saldo ou espaço para comprar esse item.'
+  inventario-cheio: '&cSeu inventário está cheio.'
+  max: '&cO máximo por transação é &f{maximo}&c.'
+  quantia-invalida: '&cQuantia inválida.'
+
+venda:
+  mao-vazia: '&cVocê precisa estar com um item na mão.'
+  sucesso: '&aVocê vendeu &f{quantia}x {item} &apor &f{total}&a.'
+  actionbar: '&c-{quantia}x {item} &8| &a+{total}'
+  desativada: '&cO item &f{item} &cnão pode ser vendido.'
+  sem-item: '&cVocê não tem esse item no inventário.'
+  item-sem-preco: '&cEsse item não tem preço de venda em nenhuma loja.'
+
+venda-rapida:
+  sucesso: '&aVenda concluída: {total}&a. &7(bônus: {bonus})'
+  nada: '&cNada aqui tinha preço de venda.'
+
+auto-vender:
+  ligado: '&aAuto vender &lLIGADO&a. Quando seu inventário encher, o que tiver preço é vendido.'
+  desligado: '&cAuto vender &lDESLIGADO&c.'
+  desativado-servidor: '&cO auto vender está desativado neste servidor.'
+  # Enviado quando o inventário enche e a venda acontece.
+  vendeu-cheio: '&aInventário cheio! Vendido: {total}&a. &7({livres} slots livres)'
+  # Mostrado na action bar.
+  actionbar: '&a+{total}'
+  ganho: '&aAuto vender: &f{total}&a.'
+
+shift-auto-vender:
+  ligado: '&aVender com Shift &lLIGADO&a. Aperte Shift para vender o inventário.'
+  desligado: '&cVender com Shift &lDESLIGADO&c.'
+  # Enviado a cada venda disparada pelo Shift. Deixe '' para só usar a action bar.
+  vendeu: '&aVendido com Shift: {total}&a.'
+
+captcha:
+  lore-opcao: '&eClique se este for o item pedido.'
+  acertou: '&aCaptcha correto! Pode vender.'
+  errou: '&cItem errado! Você não pode vender por comando durante &f{tempo}&c.'
+  bloqueado: '&cVocê errou o captcha. Aguarde &f{tempo} &cpara vender por comando.'
+  liberado: '&aO bloqueio de &f{jogador} &afoi removido.'
+
+quantia:
+  pedir-compra: |
+    &8&m--------------------------------------------
+    &aDigite no chat quantos &f{item} &avocê quer comprar.
+    &7Preço por unidade: &f{preco} &7({moeda})
+    &7Máximo possível agora: &f{limite}
+    &7
+    &7Digite &fcancelar &7para desistir. Digite &ftudo &7para o máximo.
+    &8&m--------------------------------------------
+  pedir-menu: |
+    &r
+    &aDigite a quantidade de &f{item}&a.
+    &7Máximo: &f{limite}&7. Digite &fcancelar &7para desistir.
+    &r
+  pedir-venda: |
+    &8&m--------------------------------------------
+    &aDigite no chat quantos &f{item} &avocê quer vender.
+    &7Valor por unidade: &f{preco} &7({moeda})
+    &7Você tem: &f{limite}
+    &7
+    &7Digite &fcancelar &7para desistir. Digite &ftudo &7para vender tudo.
+    &8&m--------------------------------------------
+
+editor:
+  titulo-item: '&8Editor » &f{item}'
+  titulo-categoria: '&8Editor » &f{categoria}'
+  titulo-cliques: '&8Cliques » &f{alvo}'
+  sem-permissao: '&cVocê não tem permissão para usar o editor.'
+  ativado: '&aModo editor &lLIGADO&a. Dê Shift + clique num item da loja para editar.'
+  desativado: '&cModo editor &lDESLIGADO&c. Agora o Shift + clique compra e vende normalmente.'
+  ligado: '&aligado'
+  desligado: '&cdesligado'
+  mao-vazia: '&cVocê precisa estar com um item na mão.'
+  item-adicionado: '&aItem &f{item} &aadicionado na categoria &f{categoria} &a(loja &f{loja}&a).'
+  item-removido: '&cItem &f{item} &cremovido da categoria.'
+  item-salvo: '&aItem &f{item} &asalvo no arquivo.'
+  item-trocado: '&aItem trocado por &f{material}&a.'
+  item-nao-encontrado: '&cO item &f{item} &cnão existe nessa categoria.'
+  valor-invalido: '&cValor inválido.'
+  confirmar-remocao: '&cDê Shift + clique para confirmar a remoção.'
+  confirmar-aplicar: '&cDê Shift + clique para confirmar.'
+  dinamico-aplicado: '&aRegras dinâmicas aplicadas em &f{total} &aitem(ns).'
+  pedir-preco-compra: '&aDigite o novo &fpreço de compra&a. (&f-1 &apara desativar, &fcancelar &apara desistir)'
+  pedir-preco-venda: '&aDigite o novo &fpreço de venda&a. (&f-1 &apara desativar, &fcancelar &apara desistir)'
+  compra-desativada: '&cCompra desativada para &f{item}&c.'
+  venda-desativada: '&cVenda desativada para &f{item}&c.'
+  pedir-quantidade: '&aDigite a nova &fquantidade base &a(1 a 64).'
+  pedir-nome: '&aDigite o novo nome do item. Use &f&&a para cores.'
+  pedir-lore: '&aDigite a linha que será adicionada na lore. Use &f&&a para cores.'
+  pedir-comando: '&aDigite o comando. Use &fjogador: &aantes para executar como o jogador.'
+  pedir-permissao: '&aDigite a permissão necessária para usar esse item.'
+  pedir-ordem: '&aDigite a ordem do item na categoria (&f1 &ae o primeiro) ou &f0 &apara o fim da fila.'
+  pedir-slot: '&aDigite a slot (0 a {maximo}) ou &f-1 &apara automática.'
+  pedir-estoque: '&aDigite o novo estoque de referência.'
+  pedir-elasticidade: '&aDigite a nova elasticidade (ex: &f1.0&a).'
+
+dinamico:
+  info: '&aMercados dinâmicos com estado salvo: &f{total}&a.'
+  salvo: '&aEstado do mercado salvo. &7({total} registros)'
+  item-resetado: '&aO item &f{item} &avoltou ao preço base.'
+  categoria-resetada: '&aA categoria &f{categoria} &avoltou ao preço base.'
+  loja-resetada: '&aA loja &f{loja} &avoltou ao preço base.'
+  tudo-resetado: '&aTodos os preços dinâmicos voltaram ao valor base.'
+
+boost:
+  nenhum: '&7Nenhum'
+  sorteado: '&aNovos boosts foram sorteados.'
+  info-cabecalho: '&aBoosts ativos:'
+  info-linha: |
+    &8 » {periodo}
+    &8   ↗ &aBoost: &f{boost_item} &a({boost_valor}&a)
+    &8   ↘ &cDebuff: &f{debuff_item} &c({debuff_valor}&c)
+    &8   Troca em: &7{tempo}
+  # Anúncio no chat quando um período sorteia itens novos. Deixe '' para não anunciar.
+  anuncio: |
+    &r
+    {periodo}
+    &8 ↗ &aBoost: &f{boost_item} &a({boost_valor}&a)
+    &8 ↘ &cDebuff: &f{debuff_item} &c({debuff_valor}&c)
+    &r
+
+meta:
+  nenhum: '&7Nenhum'
+  status-ativa: '&aAtiva'
+  status-inativa: '&cInativa'
+  anuncio-nova: |
+    &r
+    &e&lMETA DE VENDA
+    &7Nova meta: vender &f{alvo}x {item}&7.
+    &7Tempo: &f{tempo}&7. Todo mundo pode ajudar!
+    &r
+  anuncio-concluida: |
+    &r
+    &a&lMETA CONCLUÍDA!
+    &7O servidor bateu a meta de &f{item}&7, fechada por &f{jogador}&7.
+    &7Todos os itens da loja estão com &a+{boost} &7de venda por &f{tempo}&7.
+    &r
+  reiniciada: '&aA meta de venda foi reiniciada.'
+  sorteada: '&aNovo item sorteado para a meta: &f{item}&a.'
+  info: |
+    &8&m--------------------------------------------
+    &e&lMETA DE VENDA
+    &7 Item: &f{item}
+    &7 Progresso: &f{progresso}&7/&f{alvo} &8({porcentagem})
+    &7 Termina em: &f{tempo}
+    &7 Boost ativo: &f{boost}
+    &8&m--------------------------------------------
+
+menus:
+  lojas:
+    titulo: '&8Escolha uma loja'

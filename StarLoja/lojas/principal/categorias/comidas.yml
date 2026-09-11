@@ -1,0 +1,205 @@
+# ============================================================================
+#  Categoria: comidas  (loja principal)
+#
+#  Exemplo de categoria com preco dinamico suave: os precos andam, mas
+#  voltam ao normal rapido (Recuperacao alta).
+# ============================================================================
+
+Nome: '&8Comidas'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+Slot: 13
+Icone:
+  material: COOKED_BEEF
+  nome: '&6Comidas'
+  lore:
+    - '&7Comida pronta, plantações e doces.'
+    - ''
+    - '&7Itens: &f{itens}'
+    - ''
+    - '&eClique para abrir.'
+
+Dinamico:
+  Ativar: true
+  Estoque: 5000.0
+  Elasticidade: 0.5
+  Minimo: 0.6
+  Maximo: 1.8
+  Recuperacao: 3.0
+  Afetar-compra: true
+  Afetar-venda: true
+  Peso-venda: 1.0
+
+Dinamico-categoria:
+  Ativar: false
+
+Itens:
+
+  pao:
+    Item:
+      material: BREAD
+    Compra:
+      Ativar: true
+      Preco: 6.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  maca:
+    Item:
+      material: APPLE
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 2.5
+
+  maca-dourada:
+    Item:
+      material: GOLDEN_APPLE
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 380.0
+    Venda:
+      Ativar: true
+      Preco: 150.0
+
+  carne-assada:
+    Item:
+      material: COOKED_BEEF
+    Compra:
+      Ativar: true
+      Preco: 12.0
+    Venda:
+      Ativar: true
+      Preco: 4.0
+
+  porco-assado:
+    Item:
+      material: COOKED_PORKCHOP
+    Compra:
+      Ativar: true
+      Preco: 12.0
+    Venda:
+      Ativar: true
+      Preco: 4.0
+
+  frango-assado:
+    Item:
+      material: COOKED_CHICKEN
+    Compra:
+      Ativar: true
+      Preco: 10.0
+    Venda:
+      Ativar: true
+      Preco: 3.0
+
+  peixe-assado:
+    Item:
+      material: COOKED_COD
+    Compra:
+      Ativar: true
+      Preco: 9.0
+    Venda:
+      Ativar: true
+      Preco: 3.0
+
+  cenoura:
+    Item:
+      material: CARROT
+    Compra:
+      Ativar: true
+      Preco: 5.0
+    Venda:
+      Ativar: true
+      Preco: 1.5
+
+  batata:
+    Item:
+      material: POTATO
+    Compra:
+      Ativar: true
+      Preco: 5.0
+    Venda:
+      Ativar: true
+      Preco: 1.5
+
+  batata-assada:
+    Item:
+      material: BAKED_POTATO
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 2.5
+
+  fatia-de-melancia:
+    Item:
+      material: MELON_SLICE
+    Compra:
+      Ativar: true
+      Preco: 3.0
+    Venda:
+      Ativar: true
+      Preco: 0.8
+
+  trigo:
+    Item:
+      material: WHEAT
+    Compra:
+      Ativar: true
+      Preco: 4.0
+    Venda:
+      Ativar: true
+      Preco: 1.2
+
+  acucar:
+    Item:
+      material: SUGAR
+    Compra:
+      Ativar: true
+      Preco: 4.0
+    Venda:
+      Ativar: true
+      Preco: 1.2
+
+  bolo:
+    Item:
+      material: CAKE
+    Compra:
+      Ativar: true
+      Preco: 90.0
+    Venda:
+      Ativar: true
+      Preco: 30.0
+
+  cenoura-dourada:
+    Item:
+      material: GOLDEN_CARROT
+    Compra:
+      Ativar: true
+      Preco: 60.0
+    Venda:
+      Ativar: true
+      Preco: 22.0
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

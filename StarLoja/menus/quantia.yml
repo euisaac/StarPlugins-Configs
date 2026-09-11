@@ -1,0 +1,129 @@
+# ============================================================================
+#  Menu de selecao de quantia (acoes COMPRAR_MENU e VENDER_MENU)
+#
+#  Acoes dos botoes:
+#    SOMAR      -> soma o valor de Quantia (use negativo para diminuir)
+#    DEFINIR    -> define exatamente o valor de Quantia
+#    MAXIMO     -> usa o maximo possivel
+#    CHAT       -> pede a quantia no chat
+#    CONFIRMAR  -> conclui a transacao
+#    CANCELAR   -> volta para o menu anterior
+#
+#  Variaveis: {item} {quantia} {total} {limite} {acao} {valor} {valor_abs}
+#             e todas as variaveis de preco do item.
+# ============================================================================
+
+Nome: '&8Quantia » &f{item}'
+Tamanho: 45
+Slot-item: 22
+
+Lore-compra:
+  - ''
+  - '&7Quantidade: &f{quantia}'
+  - '&7Total a pagar: &c{total}'
+  - '&7Máximo: &f{limite}'
+  - ''
+
+Lore-venda:
+  - ''
+  - '&7Quantidade: &f{quantia}'
+  - '&7Total a receber: &a{total}'
+  - '&7Você tem: &f{limite}'
+  - ''
+
+Botoes:
+
+  menos-64:
+    Slot: 18
+    Acao: SOMAR
+    Quantia: -64
+    Item:
+      material: RED_STAINED_GLASS_PANE
+      nome: '&c-64'
+
+  menos-8:
+    Slot: 19
+    Acao: SOMAR
+    Quantia: -8
+    Item:
+      material: RED_STAINED_GLASS_PANE
+      nome: '&c-8'
+
+  menos-1:
+    Slot: 20
+    Acao: SOMAR
+    Quantia: -1
+    Item:
+      material: RED_STAINED_GLASS_PANE
+      nome: '&c-1'
+
+  mais-1:
+    Slot: 24
+    Acao: SOMAR
+    Quantia: 1
+    Item:
+      material: LIME_STAINED_GLASS_PANE
+      nome: '&a+1'
+
+  mais-8:
+    Slot: 25
+    Acao: SOMAR
+    Quantia: 8
+    Item:
+      material: LIME_STAINED_GLASS_PANE
+      nome: '&a+8'
+
+  mais-64:
+    Slot: 26
+    Acao: SOMAR
+    Quantia: 64
+    Item:
+      material: LIME_STAINED_GLASS_PANE
+      nome: '&a+64'
+
+  maximo:
+    Slot: 13
+    Acao: MAXIMO
+    Item:
+      material: HOPPER
+      nome: '&e&lMÁXIMO'
+      lore:
+        - '&7Usa o maior valor possível: &f{limite}'
+
+  chat:
+    Slot: 31
+    Acao: CHAT
+    Item:
+      material: NAME_TAG
+      nome: '&bDigitar no chat'
+      lore:
+        - '&7Prefere escrever a quantia?'
+        - '&eClique aqui.'
+
+  confirmar:
+    Slot: 39
+    Acao: CONFIRMAR
+    Item:
+      material: EMERALD_BLOCK
+      nome: '&a&lCONFIRMAR'
+      lore:
+        - '&7Quantidade: &f{quantia}'
+        - '&7Total: &f{total}'
+        - ''
+        - '&eClique para concluir a {acao}&e.'
+
+  cancelar:
+    Slot: 41
+    Acao: CANCELAR
+    Item:
+      material: REDSTONE_BLOCK
+      nome: '&c&lCANCELAR'
+      lore:
+        - '&7Volta sem comercializar.'
+
+Decoracao:
+  borda:
+    Slots: '0-8,9,17,27,35,36-38,40,42-44'
+    Item:
+      material: GRAY_STAINED_GLASS_PANE
+      nome: ' '

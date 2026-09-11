@@ -1,0 +1,199 @@
+# ============================================================================
+#  Categoria: redstone  (loja principal)
+#
+#  O formato completo de um item esta comentado em minerios.yml.
+#  Em jogo: /starloja editor e depois Shift + clique num item.
+# ============================================================================
+
+Nome: '&8REDSTONE'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+# Posicao desta categoria no menu principal (/loja).
+Slot: 30
+Icone:
+  material: REDSTONE_TORCH
+  nome: '&c&lREDSTONE'
+  lore:
+    - '&r'
+    - '&7Componentes de redstone'
+    - '&7e mecanismos.'
+    - '&r'
+    - '&8| &7Itens: &f{itens}'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+
+Dinamico:
+  Ativar: false
+
+Dinamico-categoria:
+  Ativar: false
+
+Itens:
+
+  po-de-redstone:
+    Item:
+      material: REDSTONE
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 3.0
+
+  tocha-de-redstone:
+    Item:
+      material: REDSTONE_TORCH
+    Compra:
+      Ativar: true
+      Preco: 12.0
+    Venda:
+      Ativar: true
+      Preco: 4.0
+
+  bloco-de-redstone:
+    Item:
+      material: REDSTONE_BLOCK
+    Compra:
+      Ativar: true
+      Preco: 70.0
+    Venda:
+      Ativar: true
+      Preco: 25.0
+
+  repetidor:
+    Item:
+      material: REPEATER
+    Compra:
+      Ativar: true
+      Preco: 45.0
+    Venda:
+      Ativar: true
+      Preco: 15.0
+
+  comparador:
+    Item:
+      material: COMPARATOR
+    Compra:
+      Ativar: true
+      Preco: 55.0
+    Venda:
+      Ativar: true
+      Preco: 18.0
+
+  pistao:
+    Item:
+      material: PISTON
+    Compra:
+      Ativar: true
+      Preco: 80.0
+    Venda:
+      Ativar: true
+      Preco: 26.0
+
+  pistao-grudento:
+    Item:
+      material: STICKY_PISTON
+    Compra:
+      Ativar: true
+      Preco: 120.0
+    Venda:
+      Ativar: true
+      Preco: 40.0
+
+  alavanca:
+    Item:
+      material: LEVER
+    Compra:
+      Ativar: true
+      Preco: 10.0
+    Venda:
+      Ativar: true
+      Preco: 3.0
+
+  botao:
+    Item:
+      material: STONE_BUTTON
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  placa-de-pressao:
+    Item:
+      material: STONE_PRESSURE_PLATE
+    Compra:
+      Ativar: true
+      Preco: 12.0
+    Venda:
+      Ativar: true
+      Preco: 4.0
+
+  dispensador:
+    Item:
+      material: DISPENSER
+    Compra:
+      Ativar: true
+      Preco: 90.0
+    Venda:
+      Ativar: true
+      Preco: 30.0
+
+  funil:
+    Item:
+      material: HOPPER
+    Compra:
+      Ativar: true
+      Preco: 220.0
+    Venda:
+      Ativar: true
+      Preco: 75.0
+
+  trilho:
+    Item:
+      material: RAIL
+    Compra:
+      Ativar: true
+      Preco: 25.0
+    Venda:
+      Ativar: true
+      Preco: 8.0
+
+  trilho-motorizado:
+    Item:
+      material: POWERED_RAIL
+    Compra:
+      Ativar: true
+      Preco: 90.0
+    Venda:
+      Ativar: true
+      Preco: 30.0
+
+  carrinho:
+    Item:
+      material: MINECART
+    Compra:
+      Ativar: true
+      Preco: 150.0
+    Venda:
+      Ativar: true
+      Preco: 50.0
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

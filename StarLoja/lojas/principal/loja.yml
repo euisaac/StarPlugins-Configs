@@ -1,0 +1,215 @@
+# ============================================================================
+#  Loja: principal   ->   /loja
+#
+#  Este arquivo e o MENU PRINCIPAL: os itens dele sao as CATEGORIAS
+#  (cada categoria e um arquivo em categorias/) mais os itens informativos
+#  (Boosts, Meta de Venda, Saldo) e os atalhos do rodape.
+#
+#  O slot de cada categoria e definido dentro do arquivo dela, na chave "Slot".
+#  Os itens informativos ficam aqui embaixo, em "Decoracao".
+# ============================================================================
+
+Nome: '&8LOJA DE ITENS'
+Tamanho: 54
+Permissao: ''
+Som: 'ABRIR'
+
+# Cria de verdade os comandos /loja, /shop e /mercado para esta loja.
+Comandos:
+  - 'lojaitens'
+  - 'mercado'
+
+Abrir-categoria-unica: false
+
+Slot: 11
+Icone:
+  material: EMERALD
+  nome: '&a&lLOJA DE ITENS'
+  lore:
+    - '&r'
+    - '&7Compre e venda itens do servidor.'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+  brilho: true
+
+# ---------------------------------------------------------------------------
+#  Cliques padrao, herdados por todas as categorias desta loja.
+#
+#  Acoes: NENHUMA, COMPRAR, COMPRAR_STACK, COMPRAR_MAXIMO, COMPRAR_QUANTIA,
+#         COMPRAR_MENU, VENDER, VENDER_STACK, VENDER_TUDO, VENDER_QUANTIA,
+#         VENDER_MENU, MENU, EDITAR
+# ---------------------------------------------------------------------------
+Cliques:
+  LEFT_CLICK: MENU
+  RIGHT_CLICK: NEGOCIAR
+  SHIFT_LEFT_CLICK: MENU
+  SHIFT_RIGHT_CLICK: NEGOCIAR_INVENTARIO
+  MIDDLE_CLICK: NENHUMA
+  DROP: COMPRAR_QUANTIA
+
+Lore-formato:
+  - '&r'
+  - '&e&lPreços'
+  - '{se_compra} &a&lCOMPRAR: &f{preco_compra}'
+  - '{nao_compra} &a&lCOMPRAR: &7Não é possível'
+  - '{se_venda} &c&lVENDER: &f{preco_venda}'
+  - '{nao_venda} &c&lVENDER: &7Não é possível'
+  - '{se_dinamico} &7Mercado: {tendencia} &8({variacao})'
+  - '&r'
+  - '&e&lAções'
+  - ' &a&lCLIQUE ESQUERDO &7para abrir o menu'
+  - '{se_venda} &c&lCLIQUE DIREITO &7para vender'
+  - '{nao_venda} &a&lCLIQUE DIREITO &7para comprar'
+  - '{se_venda} &c&lSHIFT + DIREITO &7para vender tudo'
+  - '{nao_venda} &a&lSHIFT + DIREITO &7para encher o inventário'
+  - '{se_editor}&r'
+  - '{se_editor} &6&lSHIFT + CLIQUE &7para editar'
+
+Dinamico:
+  Ativar: false
+  Estoque: 1000.0
+  Elasticidade: 1.0
+  Minimo: 0.25
+  Maximo: 4.0
+  Recuperacao: 0.5
+  Afetar-compra: true
+  Afetar-venda: true
+  Peso-venda: 1.0
+
+# ---------------------------------------------------------------------------
+#  DECORACAO EXTRA DAS CATEGORIAS DESTA LOJA
+#
+#  O que fica na pagina de itens das categorias (voltar, saldo, venda rapida,
+#  fechar) vem de menus/categoria.yml e vale para TODAS as lojas. O bloco
+#  abaixo e a camada desta loja: o que voce escrever aqui se soma naquele
+#  padrao, em todas as categorias desta loja.
+#
+#  Mesma chave substitui a padrao, entao da para mover, trocar o icone ou
+#  desligar um item padrao com "Slot: -1". A categoria ainda pode sobrescrever
+#  isto de novo, no "Decoracao" do arquivo dela.
+#
+#  Descomente para ver funcionando:
+#
+# Decoracao-categorias:
+#   venda-rapida:
+#     Slot: -1              # some com a venda rapida nas categorias desta loja
+#   ajuda:
+#     Slot: 46              # um enfeite so desta loja
+#     Acao: NENHUMA
+#     Item:
+#       material: BOOK
+#       nome: '&e&lCOMO COMPRAR'
+#       lore:
+#         - '&r'
+#         - '&7Clique esquerdo abre o menu do item.'
+#         - '&7Clique direito compra ou vende na hora.'
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+#  ITENS INFORMATIVOS E ATALHOS
+#
+#  Acoes: NENHUMA, VOLTAR, FECHAR, ABRIR_LOJA, ABRIR_CATEGORIA,
+#         VENDER_INVENTARIO, COMANDO, COMANDO_CONSOLE
+#
+#  Todo item daqui enxerga automaticamente as variaveis de saldo
+#  ({saldo}, {saldo_money}, {saldo_cash}, ...), de boost e de meta.
+# ---------------------------------------------------------------------------
+Decoracao:
+
+  # --- Boosts (nether star) ------------------------------------------------
+  # Fica na coluna 2, separado da fileira de categorias.
+  boosts:
+    Slot: 10
+    Acao: NENHUMA
+    Item:
+      material: NETHER_STAR
+      nome: '&b&lBoosts'
+      lore:
+        - '&r'
+        - '&7De tempos em tempos itens aleatórios'
+        - '&7recebem boosts ou debuffs.'
+        - '&r'
+        - '{boost_semanal_nome}'
+        - '&8 ↗ &aBoost: &f{boost_semanal_item} &a({boost_semanal_valor}&a)'
+        - '&8 ↘ &cDebuff: &f{debuff_semanal_item} &c({debuff_semanal_valor}&c)'
+        - '&r'
+        - '{boost_diario_nome}'
+        - '&8 ↗ &aBoost: &f{boost_diario_item} &a({boost_diario_valor}&a)'
+        - '&8 ↘ &cDebuff: &f{debuff_diario_item} &c({debuff_diario_valor}&c)'
+        - '&r'
+        - '&8Troca em: &7{boost_diario_tempo}'
+      brilho: true
+
+  # --- Meta de venda (garrafa de experiência) ------------------------------
+  # Logo abaixo do item de Boosts, na mesma coluna.
+  meta:
+    Slot: 19
+    Acao: NENHUMA
+    Item:
+      material: EXPERIENCE_BOTTLE
+      nome: '&e&lMeta de Venda'
+      lore:
+        - '&r'
+        - '&7Todos os jogadores podem ajudar na'
+        - '&7meta vendendo o item especificado.'
+        - '&r'
+        - '&e&lMETA ATUAL &8- &7({meta_status}&7)'
+        - '&8| &7Item: &f{meta_item}'
+        - '&8| &7Termina em: &f{meta_tempo}'
+        - '&8| {meta_barra} &7({meta_porcentagem})'
+        - '&8| &7Progresso: &f{meta_progresso}&7/&f{meta_alvo}'
+        - '&r'
+        - '&a&lBOOST DA META'
+        - '&8| &7Status: &f{meta_boost_status}'
+        - '&8| &7Termina em: &f{meta_boost_tempo}'
+        - '&8Ao completar a meta, todos os itens'
+        - '&8da loja recebem um boost de {meta_boost_valor}.'
+      brilho: true
+
+  # --- Saldo do jogador -----------------------------------------------------
+  saldo:
+    Slot: 49
+    Acao: NENHUMA
+    Item:
+      material: GOLD_NUGGET
+      nome: '&6&lSEU SALDO'
+      lore:
+        - '&r'
+        - '&8| &7Dinheiro: &a{saldo_money}'
+        - '&8| &7Cash: &e{saldo_cash}'
+        - '&8| &7Experiência: &b{saldo_xp}'
+        - '&r'
+        - '&7Seu desconto na compra: &b{desconto}'
+        - '&7Seu bônus na venda: &b{bonus}'
+      brilho: true
+
+  # --- Venda rápida (print: funil) -----------------------------------------
+  venda-rapida:
+    Slot: 48
+    Acao: VENDER_INVENTARIO
+    Item:
+      material: HOPPER
+      nome: '&6&lVENDA RÁPIDA'
+      lore:
+        - '&r'
+        - '&7Abre um baú: jogue os itens dentro'
+        - '&7e feche para vender tudo de uma vez.'
+        - '&r'
+        - '&a&lCLIQUE PARA ACESSAR'
+
+  # --- Loja de Cash --------------------------------------------------------
+  loja-cash:
+    Slot: 50
+    Acao: 'ABRIR_LOJA:cash'
+    Item:
+      material: GOLD_INGOT
+      nome: '&6&lLOJA CASH'
+      lore:
+        - '&r'
+        - '&7Utilize seu Cash para'
+        - '&7adquirir itens raros e exclusivos.'
+        - '&r'
+        - '&8| &7Você tem: &e{saldo_cash}'
+        - '&r'
+        - '&a&lCLIQUE PARA ACESSAR'
+      brilho: true

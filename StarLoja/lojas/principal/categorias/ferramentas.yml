@@ -1,0 +1,209 @@
+# ============================================================================
+#  Categoria: ferramentas  (loja principal)
+#
+#  O formato completo de um item esta comentado em minerios.yml.
+#  Em jogo: /starloja editor e depois Shift + clique num item.
+# ============================================================================
+
+Nome: '&8FERRAMENTAS'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+# Posicao desta categoria no menu principal (/loja).
+Slot: 15
+Icone:
+  material: DIAMOND_PICKAXE
+  nome: '&e&lFERRAMENTAS'
+  lore:
+    - '&r'
+    - '&7Picaretas, machados, espadas e'
+    - '&7o resto do equipamento.'
+    - '&r'
+    - '&8| &7Itens: &f{itens}'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+
+Dinamico:
+  Ativar: false
+
+Dinamico-categoria:
+  Ativar: false
+
+Itens:
+
+  picareta-pedra:
+    Item:
+      material: STONE_PICKAXE
+    Compra:
+      Ativar: true
+      Preco: 45.0
+    Venda:
+      Ativar: true
+      Preco: 12.0
+
+  picareta-ferro:
+    Item:
+      material: IRON_PICKAXE
+    Compra:
+      Ativar: true
+      Preco: 180.0
+    Venda:
+      Ativar: true
+      Preco: 60.0
+
+  picareta-diamante:
+    Item:
+      material: DIAMOND_PICKAXE
+    Compra:
+      Ativar: true
+      Preco: 1200.0
+    Venda:
+      Ativar: true
+      Preco: 420.0
+
+  machado-ferro:
+    Item:
+      material: IRON_AXE
+    Compra:
+      Ativar: true
+      Preco: 180.0
+    Venda:
+      Ativar: true
+      Preco: 60.0
+
+  machado-diamante:
+    Item:
+      material: DIAMOND_AXE
+    Compra:
+      Ativar: true
+      Preco: 1200.0
+    Venda:
+      Ativar: true
+      Preco: 420.0
+
+  pa-ferro:
+    Item:
+      material: IRON_SHOVEL
+    Compra:
+      Ativar: true
+      Preco: 60.0
+    Venda:
+      Ativar: true
+      Preco: 20.0
+
+  pa-diamante:
+    Item:
+      material: DIAMOND_SHOVEL
+    Compra:
+      Ativar: true
+      Preco: 400.0
+    Venda:
+      Ativar: true
+      Preco: 140.0
+
+  enxada-ferro:
+    Item:
+      material: IRON_HOE
+    Compra:
+      Ativar: true
+      Preco: 120.0
+    Venda:
+      Ativar: true
+      Preco: 40.0
+
+  espada-ferro:
+    Item:
+      material: IRON_SWORD
+    Compra:
+      Ativar: true
+      Preco: 180.0
+    Venda:
+      Ativar: true
+      Preco: 60.0
+
+  espada-diamante:
+    Item:
+      material: DIAMOND_SWORD
+    Compra:
+      Ativar: true
+      Preco: 1200.0
+    Venda:
+      Ativar: true
+      Preco: 420.0
+
+  arco:
+    Item:
+      material: BOW
+    Compra:
+      Ativar: true
+      Preco: 250.0
+    Venda:
+      Ativar: true
+      Preco: 80.0
+
+  flecha:
+    Item:
+      material: ARROW
+    Compra:
+      Ativar: true
+      Preco: 3.0
+    Venda:
+      Ativar: true
+      Preco: 0.8
+
+  vara-de-pesca:
+    Item:
+      material: FISHING_ROD
+    Compra:
+      Ativar: true
+      Preco: 150.0
+    Venda:
+      Ativar: true
+      Preco: 50.0
+
+  tesoura:
+    Item:
+      material: SHEARS
+    Compra:
+      Ativar: true
+      Preco: 90.0
+    Venda:
+      Ativar: true
+      Preco: 30.0
+
+  balde:
+    Item:
+      material: BUCKET
+    Compra:
+      Ativar: true
+      Preco: 110.0
+    Venda:
+      Ativar: true
+      Preco: 36.0
+
+  bigorna:
+    Item:
+      material: ANVIL
+    Compra:
+      Ativar: true
+      Preco: 900.0
+    Venda:
+      Ativar: true
+      Preco: 300.0
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

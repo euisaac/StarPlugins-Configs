@@ -1,0 +1,139 @@
+# ============================================================================
+#  Menu do comando /vender
+#
+#  Acoes dos botoes:
+#    VENDER_TUDO   -> vende tudo do inventario (passa pelo captcha)
+#    VENDER_MAO    -> vende o item da mao (passa pelo captcha)
+#    ABRIR_BAU     -> abre o bau de venda rapida (/vendergui)
+#    AUTO_VENDER   -> liga/desliga o auto vender
+#    SHIFT_AUTO_VENDER -> liga/desliga o vender apertando Shift
+#    FECHAR
+#
+#  Os botoes de liga/desliga aceitam duas aparencias: "Ligado" e "Desligado".
+#  Se voce definir so "Item", ele e usado nos dois estados.
+#
+#  Variaveis: {saldo}, {saldo_money}, {saldo_cash}, {auto_vender},
+#             {shift_auto_vender}, {desconto}, {bonus} e as de boost/meta.
+# ============================================================================
+
+Nome: '&8Venda'
+Tamanho: 27
+
+Botoes:
+
+  vender-tudo:
+    Slot: 11
+    Acao: VENDER_TUDO
+    Item:
+      material: HOPPER
+      nome: '&a&lVENDER TUDO'
+      lore:
+        - '&r'
+        - '&7Vende tudo do seu inventário que'
+        - '&7tiver preço de venda na loja.'
+        - '&r'
+        - '&8| &7Seu bônus: &b{bonus}'
+        - '&r'
+        - '&a&lCLIQUE PARA VENDER'
+
+  bau:
+    Slot: 13
+    Acao: ABRIR_BAU
+    Item:
+      material: CHEST
+      nome: '&6&lBAÚ DE VENDA'
+      lore:
+        - '&r'
+        - '&7Abre um baú: jogue os itens dentro'
+        - '&7e feche para vender só o que quiser.'
+        - '&r'
+        - '&a&lCLIQUE PARA ABRIR'
+
+  vender-mao:
+    Slot: 15
+    Acao: VENDER_MAO
+    Item:
+      material: GOLD_INGOT
+      nome: '&e&lVENDER A MÃO'
+      lore:
+        - '&r'
+        - '&7Vende o item que você está segurando.'
+        - '&r'
+        - '&a&lCLIQUE PARA VENDER'
+
+  auto-vender:
+    Slot: 20
+    Acao: AUTO_VENDER
+    Ligado:
+      material: 'LIME_DYE | INK_SACK:10'
+      nome: '&a&lAUTO VENDER'
+      lore:
+        - '&r'
+        - '&7Quando seu inventário encher, o que'
+        - '&7tiver preço de venda é vendido sozinho.'
+        - '&r'
+        - '&8| &7Estado: {auto_vender}'
+        - '&r'
+        - '&c&lCLIQUE PARA DESLIGAR'
+      brilho: true
+    Desligado:
+      material: 'GRAY_DYE | INK_SACK:8'
+      nome: '&7&lAUTO VENDER'
+      lore:
+        - '&r'
+        - '&7Quando seu inventário encher, o que'
+        - '&7tiver preço de venda é vendido sozinho.'
+        - '&r'
+        - '&8| &7Estado: {auto_vender}'
+        - '&r'
+        - '&a&lCLIQUE PARA LIGAR'
+
+  shift-auto-vender:
+    Slot: 24
+    Acao: SHIFT_AUTO_VENDER
+    Ligado:
+      material: 'LIME_DYE | INK_SACK:10'
+      nome: '&a&lVENDER COM SHIFT'
+      lore:
+        - '&r'
+        - '&7Aperte Shift a qualquer momento para'
+        - '&7vender o que tiver preço no inventário.'
+        - '&r'
+        - '&8| &7Estado: {shift_auto_vender}'
+        - '&r'
+        - '&c&lCLIQUE PARA DESLIGAR'
+      brilho: true
+    Desligado:
+      material: 'GRAY_DYE | INK_SACK:8'
+      nome: '&7&lVENDER COM SHIFT'
+      lore:
+        - '&r'
+        - '&7Aperte Shift a qualquer momento para'
+        - '&7vender o que tiver preço no inventário.'
+        - '&r'
+        - '&8| &7Estado: {shift_auto_vender}'
+        - '&r'
+        - '&a&lCLIQUE PARA LIGAR'
+
+  fechar:
+    Slot: 26
+    Acao: FECHAR
+    Item:
+      material: BARRIER
+      nome: '&c&lFECHAR'
+
+Decoracao:
+
+  saldo:
+    Slot: 22
+    Acao: NENHUMA
+    Item:
+      material: GOLD_NUGGET
+      nome: '&6&lSEU SALDO'
+      lore:
+        - '&r'
+        - '&8| &7Dinheiro: &a{saldo_money}'
+        - '&8| &7Cash: &e{saldo_cash}'
+        - '&r'
+        - '&7Seu bônus na venda: &b{bonus}'
+      brilho: true

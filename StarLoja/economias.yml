@@ -1,0 +1,109 @@
+# ============================================================================
+#  Moedas aceitas pela loja
+#
+#  Provedores disponiveis:
+#
+#    stareconomia-<moeda>  -> uma moeda especifica do StarEconomia
+#                             (ex: stareconomia-money, stareconomia-cash)
+#    STARECONOMIA          -> mesma coisa, com a moeda na chave "Moeda"
+#    VAULT                 -> economia registrada no Vault (Essentials, CMI, ...)
+#    PLAYERPOINTS          -> plugin PlayerPoints
+#    EXP                   -> experiencia do proprio jogador
+#    ITEM                  -> paga com um item (ex: diamantes)
+#
+#  Cada item da loja escolhe a moeda pelo id configurado aqui, nas chaves
+#  Compra.Economia e Venda.Economia.
+#
+#  Nenhum plugin de economia e obrigatorio: as moedas sao buscadas sob demanda,
+#  entao se o StarEconomia (ou o Vault) habilitar depois do StarLoja,
+#  a moeda passa a funcionar sozinha, sem reload.
+# ============================================================================
+
+# Moeda usada quando o item nao especifica nenhuma.
+Padrao: 'money'
+
+Economias:
+
+  # -------------------------------------------------------------------------
+  #  StarEconomia
+  # -------------------------------------------------------------------------
+  money:
+    # Atalho: o texto depois do tracinho e o id da moeda no StarEconomia.
+    Provedor: 'stareconomia-money'
+    # Nome e simbolo: deixe vazio para herdar os do StarEconomia.
+    Nome: ''
+    Simbolo: ''
+    Sufixo: ''
+    # Mostrar valores grandes abreviados (1,2M em vez de 1.200.000,00).
+    Abreviar: false
+    # Texto que aparece no historico do StarEconomia ("onde foi gasto").
+    Origem: 'Loja'
+    # Permissao para poder usar essa moeda (deixe '' para liberar).
+    Permissao: ''
+
+  # Cash: moeda secundaria da loja.
+  # O id aqui ('cash') e o que aparece em {saldo_cash} e no campo Economia
+  # dos itens; o Provedor aponta para a moeda cash do StarEconomia
+  # (arquivo economies/cash.yml la no plugin dele).
+  cash:
+    Provedor: 'stareconomia-cash'
+    Nome: 'Cash'
+    Simbolo: ''
+    Sufixo: ' cash'
+    Abreviar: false
+    Origem: 'Loja'
+    Permissao: ''
+
+  # Forma explicita, equivalente ao atalho acima.
+  # cristais:
+  #   Provedor: STARECONOMIA
+  #   Moeda: 'cristais'
+  #   Origem: 'Loja'
+
+  # -------------------------------------------------------------------------
+  #  Vault (use se o servidor nao tem StarEconomia)
+  #
+  #  Obs: o StarEconomia tambem se registra no Vault, mas o Vault so enxerga
+  #  UMA moeda. Para separar as moedas, use os provedores stareconomia-*.
+  # -------------------------------------------------------------------------
+  # vault:
+  #   Provedor: VAULT
+  #   Nome: 'Dinheiro'
+  #   Simbolo: '$'
+  #   Abreviar: false
+  #   Permissao: ''
+
+  # -------------------------------------------------------------------------
+  #  PlayerPoints
+  # -------------------------------------------------------------------------
+  # pontos:
+  #   Provedor: PLAYERPOINTS
+  #   Nome: 'Pontos'
+  #   Simbolo: ''
+  #   Sufixo: ' pontos'
+  #   Permissao: ''
+
+  # -------------------------------------------------------------------------
+  #  Experiencia do jogador
+  # -------------------------------------------------------------------------
+  xp:
+    Provedor: EXP
+    Nome: 'XP'
+    Simbolo: ''
+    Sufixo: ' xp'
+    # Com true trabalha em niveis inteiros; com false em pontos de XP.
+    Usar-niveis: false
+    Permissao: ''
+
+  # -------------------------------------------------------------------------
+  #  Item como moeda
+  # -------------------------------------------------------------------------
+  diamante:
+    Provedor: ITEM
+    Material: DIAMOND
+    Nome: 'Diamantes'
+    Simbolo: ''
+    Sufixo: ' diamantes'
+    # Com true so aceita diamantes sem nome customizado.
+    Item-limpo: true
+    Permissao: ''

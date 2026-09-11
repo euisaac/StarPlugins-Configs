@@ -1,0 +1,56 @@
+# ============================================================================
+#  Boosts rotativos
+#
+#  De tempos em tempos o plugin sorteia UM item para valorizar (boost) e OUTRO
+#  para desvalorizar (debuff), por periodo. Serve para movimentar a economia
+#  e dar motivo pro jogador voltar na loja todo dia.
+#
+#  Só entram no sorteio itens com venda ativa. Para tirar um item do sorteio,
+#  coloque "Sorteio: false" nele no arquivo da categoria.
+#
+#  As informacoes aparecem no item de Boosts do menu, com as variaveis:
+#    {boost_<periodo>_nome}    nome do periodo
+#    {boost_<periodo>_item}    item valorizado
+#    {boost_<periodo>_valor}   percentual (+49,3%)
+#    {boost_<periodo>_tempo}   quanto falta para trocar
+#    {debuff_<periodo>_item}   item desvalorizado
+#    {debuff_<periodo>_valor}  percentual (-26,5%)
+#
+#  Trocando <periodo> pelo id configurado abaixo (diario, semanal, ...).
+# ============================================================================
+
+Ativar: true
+
+# Quais precos o boost mexe: VENDA, COMPRA ou AMBOS.
+# VENDA e o mais comum: o jogador corre atras de vender o item valorizado.
+Afetar: VENDA
+
+# Categorias que nunca entram no sorteio (por id ou loja/id).
+Ignorar-categorias:
+  - 'cash/tags'
+  - 'cash/kits'
+
+Periodos:
+
+  semanal:
+    Nome: '&e&lBOOST SEMANAL'
+    # Duracao em segundos (604800 = 7 dias).
+    Duracao: 604800
+    # Faixa do sorteio, em porcentagem.
+    Boost:
+      Min: 10.0
+      Max: 30.0
+    Debuff:
+      Min: 15.0
+      Max: 30.0
+
+  diario:
+    Nome: '&6&lBOOST DIÁRIO'
+    # 86400 = 24 horas.
+    Duracao: 86400
+    Boost:
+      Min: 20.0
+      Max: 60.0
+    Debuff:
+      Min: 15.0
+      Max: 40.0

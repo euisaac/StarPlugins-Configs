@@ -1,0 +1,209 @@
+# ============================================================================
+#  Categoria: diversos  (loja principal)
+#
+#  O formato completo de um item esta comentado em minerios.yml.
+#  Em jogo: /starloja editor e depois Shift + clique num item.
+# ============================================================================
+
+Nome: '&8DIVERSOS'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+# Posicao desta categoria no menu principal (/loja).
+Slot: 25
+Icone:
+  material: CHEST
+  nome: '&d&lDIVERSOS'
+  lore:
+    - '&r'
+    - '&7O que nao coube nas outras'
+    - '&7categorias.'
+    - '&r'
+    - '&8| &7Itens: &f{itens}'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+
+Dinamico:
+  Ativar: false
+
+Dinamico-categoria:
+  Ativar: false
+
+Itens:
+
+  bau:
+    Item:
+      material: CHEST
+    Compra:
+      Ativar: true
+      Preco: 40.0
+    Venda:
+      Ativar: true
+      Preco: 13.0
+
+  bau-do-ender:
+    Item:
+      material: ENDER_CHEST
+    Compra:
+      Ativar: true
+      Preco: 800.0
+    Venda:
+      Ativar: true
+      Preco: 260.0
+
+  fornalha:
+    Item:
+      material: FURNACE
+    Compra:
+      Ativar: true
+      Preco: 40.0
+    Venda:
+      Ativar: true
+      Preco: 13.0
+
+  bancada:
+    Item:
+      material: CRAFTING_TABLE
+    Compra:
+      Ativar: true
+      Preco: 25.0
+    Venda:
+      Ativar: true
+      Preco: 8.0
+
+  mesa-de-encantamento:
+    Item:
+      material: ENCHANTING_TABLE
+    Compra:
+      Ativar: true
+      Preco: 900.0
+    Venda:
+      Ativar: true
+      Preco: 300.0
+
+  estante:
+    Item:
+      material: BOOKSHELF
+    Compra:
+      Ativar: true
+      Preco: 40.0
+    Venda:
+      Ativar: true
+      Preco: 14.0
+
+  livro:
+    Item:
+      material: BOOK
+    Compra:
+      Ativar: true
+      Preco: 30.0
+    Venda:
+      Ativar: true
+      Preco: 10.0
+
+  papel:
+    Item:
+      material: PAPER
+    Compra:
+      Ativar: true
+      Preco: 6.0
+    Venda:
+      Ativar: true
+      Preco: 1.8
+
+  tocha:
+    Item:
+      material: TORCH
+    Compra:
+      Ativar: true
+      Preco: 2.0
+    Venda:
+      Ativar: true
+      Preco: 0.5
+
+  escada:
+    Item:
+      material: LADDER
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 2.5
+
+  placa:
+    Item:
+      material: OAK_SIGN
+    Compra:
+      Ativar: true
+      Preco: 12.0
+    Venda:
+      Ativar: true
+      Preco: 4.0
+
+  cama:
+    Item:
+      material: RED_BED
+    Compra:
+      Ativar: true
+      Preco: 60.0
+    Venda:
+      Ativar: true
+      Preco: 20.0
+
+  barco:
+    Item:
+      material: OAK_BOAT
+    Compra:
+      Ativar: true
+      Preco: 45.0
+    Venda:
+      Ativar: true
+      Preco: 15.0
+
+  relogio:
+    Item:
+      material: CLOCK
+    Compra:
+      Ativar: true
+      Preco: 180.0
+    Venda:
+      Ativar: true
+      Preco: 60.0
+
+  bussola:
+    Item:
+      material: COMPASS
+    Compra:
+      Ativar: true
+      Preco: 120.0
+    Venda:
+      Ativar: true
+      Preco: 40.0
+
+  garrafa-de-exp:
+    Item:
+      material: EXPERIENCE_BOTTLE
+    Compra:
+      Ativar: true
+      Preco: 250.0
+    Venda:
+      Ativar: true
+      Preco: 80.0
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

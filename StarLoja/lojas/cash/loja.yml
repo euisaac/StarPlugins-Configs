@@ -1,0 +1,171 @@
+# ============================================================================
+#  Loja: cash   ->   /lojacash
+#
+#  Loja paga com o Cash, a moeda secundaria definida em economias.yml.
+#  As categorias dela ficam em categorias/.
+#
+#  A chave "Comandos" abaixo cria os comandos DE VERDADE: depois de ligar o
+#  servidor, /lojacash e /cash ja funcionam. Para adicionar outro
+#  atalho, e so colocar mais um nome na lista.
+# ============================================================================
+
+Nome: '&8LOJA CASH'
+Tamanho: 54
+Permissao: ''
+Som: 'NOTA'
+
+Comandos:
+  - 'lojacash'
+  - 'cash'
+
+Abrir-categoria-unica: false
+
+# Posicao e icone desta loja no menu /loja lojas.
+Slot: 15
+Icone:
+  material: GOLD_INGOT
+  nome: '&6&lLOJA CASH'
+  lore:
+    - '&r'
+    - '&7Itens raros e exclusivos.'
+    - '&r'
+    - '&8| &7Você tem: &e{saldo_cash}'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+  brilho: true
+
+# Nesta loja o clique abre o menu do item, para o jogador conferir o preço
+# antes de gastar Cash.
+Cliques:
+  LEFT_CLICK: MENU
+  RIGHT_CLICK: NEGOCIAR
+  SHIFT_LEFT_CLICK: MENU
+  SHIFT_RIGHT_CLICK: NEGOCIAR_INVENTARIO
+  MIDDLE_CLICK: NENHUMA
+  DROP: COMPRAR_QUANTIA
+
+Lore-formato:
+  - '&r'
+  - '&e&lPreços'
+  - '{se_compra} &a&lCOMPRAR: &f{preco_compra}'
+  - '{nao_compra} &a&lCOMPRAR: &7Não é possível'
+  - '{se_venda} &c&lVENDER: &f{preco_venda}'
+  - '{nao_venda} &c&lVENDER: &7Não é possível'
+  - '{se_dinamico} &7Mercado: {tendencia} &8({variacao})'
+  - '&r'
+  - '&e&lAções'
+  - ' &a&lCLIQUE ESQUERDO &7para abrir o menu'
+  - '{se_venda} &c&lCLIQUE DIREITO &7para vender'
+  - '{nao_venda} &a&lCLIQUE DIREITO &7para comprar'
+  - '{se_venda} &c&lSHIFT + DIREITO &7para vender tudo'
+  - '{nao_venda} &a&lSHIFT + DIREITO &7para encher o inventário'
+  - '{se_editor}&r'
+  - '{se_editor} &6&lSHIFT + CLIQUE &7para editar'
+
+Dinamico:
+  Ativar: false
+
+# ---------------------------------------------------------------------------
+#  DECORACAO EXTRA DAS CATEGORIAS DESTA LOJA
+#
+#  O que fica na pagina de itens das categorias (voltar, saldo, venda rapida,
+#  fechar) vem de menus/categoria.yml e vale para TODAS as lojas. O bloco
+#  abaixo e a camada desta loja: o que voce escrever aqui se soma naquele
+#  padrao, em todas as categorias desta loja.
+#
+#  Mesma chave substitui a padrao, entao da para mover, trocar o icone ou
+#  desligar um item padrao com "Slot: -1". A categoria ainda pode sobrescrever
+#  isto de novo, no "Decoracao" do arquivo dela.
+#
+#  Descomente para ver funcionando:
+#
+# Decoracao-categorias:
+#   venda-rapida:
+#     Slot: -1              # a loja de cash nao compra itens de volta
+#   saldo:
+#     Slot: 47              # so o cash importa aqui
+#     Acao: NENHUMA
+#     Item:
+#       material: SUNFLOWER
+#       nome: '&e&lSEU CASH'
+#       lore:
+#         - '&r'
+#         - '&8| &7Cash: &e{saldo_cash}'
+#       brilho: true
+# ---------------------------------------------------------------------------
+
+Decoracao:
+
+  # --- Item informativo do Cash (print: barra de ouro) ---------------------
+  cash:
+    Slot: 14
+    Acao: NENHUMA
+    Item:
+      material: GOLD_INGOT
+      nome: '&6&lCASH'
+      lore:
+        - '&r'
+        - '&7O Cash é uma moeda secundária'
+        - '&7que pode ser usada para comprar itens'
+        - '&7nesta loja e em diversos outros sistemas!'
+        - '&r'
+        - '&7Adquirindo &6Cash &7você contribui'
+        - '&7para que o servidor permaneça &aonline&7!'
+        - '&r'
+        - '&8| &7Você tem: &e{saldo_cash}'
+        - '&8| &7Adquira em: &bloja.seuservidor.com.br'
+      brilho: true
+
+  # --- Espacos reservados (print: blocos vermelhos) ------------------------
+  em-breve-1:
+    Slot: 31
+    Acao: NENHUMA
+    Item:
+      material: BARRIER
+      nome: '&c&lEM BREVE'
+      lore:
+        - '&r'
+        - '&7Uma categoria nova vai aparecer aqui.'
+
+  em-breve-2:
+    Slot: 32
+    Acao: NENHUMA
+    Item:
+      material: BARRIER
+      nome: '&c&lEM BREVE'
+      lore:
+        - '&r'
+        - '&7Uma categoria nova vai aparecer aqui.'
+
+  # --- Saldo ---------------------------------------------------------------
+  saldo:
+    Slot: 49
+    Acao: NENHUMA
+    Item:
+      material: GOLD_NUGGET
+      nome: '&6&lSEU SALDO'
+      lore:
+        - '&r'
+        - '&8| &7Cash: &e{saldo_cash}'
+        - '&8| &7Dinheiro: &a{saldo_money}'
+        - '&r'
+        - '&7Seu desconto na compra: &b{desconto}'
+      brilho: true
+
+  # --- Voltar --------------------------------------------------------------
+  voltar:
+    Slot: 45
+    Acao: 'ABRIR_LOJA:principal'
+    Item:
+      material: ARROW
+      nome: '&c&lVOLTAR'
+      lore:
+        - '&r'
+        - '&7Voltar ao menu principal.'
+
+  fechar:
+    Slot: 53
+    Acao: FECHAR
+    Item:
+      material: BARRIER
+      nome: '&c&lFECHAR'

@@ -1,0 +1,40 @@
+# ============================================================================
+#  Menu de confirmacao
+#
+#  Usado quando Geral.Confirmar-compra ou Geral.Confirmar-venda
+#  estao com true no config.yml.
+#
+#  Variaveis: {item} {quantia} {total} {acao} e as variaveis de preco.
+# ============================================================================
+
+Nome: '&8Confirmar {acao}'
+Tamanho: 27
+Slot-item: 13
+
+Confirmar:
+  Slot: 11
+  Item:
+    material: LIME_STAINED_GLASS_PANE
+    nome: '&a&lCONFIRMAR'
+    lore:
+      - '&7Quantidade: &f{quantia}'
+      - '&7Total: &f{total}'
+      - ''
+      - '&eClique para confirmar.'
+
+Cancelar:
+  Slot: 15
+  Item:
+    material: RED_STAINED_GLASS_PANE
+    nome: '&c&lCANCELAR'
+    lore:
+      - '&7Nada será comercializado.'
+      - ''
+      - '&eClique para cancelar.'
+
+Decoracao:
+  borda:
+    Slots: '0-8,9,10,12,14,16,17,18-26'
+    Item:
+      material: GRAY_STAINED_GLASS_PANE
+      nome: ' '

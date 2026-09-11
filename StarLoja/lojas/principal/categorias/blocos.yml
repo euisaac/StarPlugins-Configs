@@ -1,0 +1,217 @@
+# ============================================================================
+#  Categoria: blocos  (loja principal)
+#
+#  O formato completo de um item esta comentado em minerios.yml.
+#  Aqui os itens usam Slot automatico (nao definido), entao o plugin
+#  distribui nos slots livres e cria paginas se precisar.
+# ============================================================================
+
+Nome: '&8Blocos'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+Slot: 12
+Icone:
+  material: GRASS_BLOCK
+  nome: '&aBlocos'
+  lore:
+    - '&7Blocos de construção em geral.'
+    - ''
+    - '&7Itens: &f{itens}'
+    - ''
+    - '&eClique para abrir.'
+
+# Nesta categoria o clique direito abre o menu do item em vez de vender direto.
+Cliques:
+  LEFT_CLICK: MENU
+  RIGHT_CLICK: NEGOCIAR
+  SHIFT_LEFT_CLICK: MENU
+  SHIFT_RIGHT_CLICK: NEGOCIAR_INVENTARIO
+  MIDDLE_CLICK: NENHUMA
+  DROP: COMPRAR_QUANTIA
+
+# Preco fixo nesta categoria.
+Dinamico:
+  Ativar: false
+
+Dinamico-categoria:
+  Ativar: false
+
+Itens:
+
+  pedra:
+    Item:
+      material: STONE
+    Compra:
+      Ativar: true
+      Preco: 2.0
+    Venda:
+      Ativar: true
+      Preco: 0.6
+
+  pedregulho:
+    Item:
+      material: COBBLESTONE
+    Compra:
+      Ativar: true
+      Preco: 1.5
+    Venda:
+      Ativar: true
+      Preco: 0.4
+
+  terra:
+    Item:
+      material: DIRT
+    Compra:
+      Ativar: true
+      Preco: 1.0
+    Venda:
+      Ativar: true
+      Preco: 0.2
+
+  areia:
+    Item:
+      material: SAND
+    Compra:
+      Ativar: true
+      Preco: 2.0
+    Venda:
+      Ativar: true
+      Preco: 0.5
+
+  cascalho:
+    Item:
+      material: GRAVEL
+    Compra:
+      Ativar: true
+      Preco: 2.0
+    Venda:
+      Ativar: true
+      Preco: 0.5
+
+  vidro:
+    Item:
+      material: GLASS
+    Compra:
+      Ativar: true
+      Preco: 4.0
+    Venda:
+      Ativar: true
+      Preco: 1.2
+
+  tijolos:
+    Item:
+      material: BRICKS
+    Compra:
+      Ativar: true
+      Preco: 12.0
+    Venda:
+      Ativar: true
+      Preco: 4.0
+
+  tijolos-de-pedra:
+    Item:
+      material: STONE_BRICKS
+    Compra:
+      Ativar: true
+      Preco: 5.0
+    Venda:
+      Ativar: true
+      Preco: 1.5
+
+  madeira-carvalho:
+    Item:
+      material: OAK_LOG
+    Compra:
+      Ativar: true
+      Preco: 6.0
+    Venda:
+      Ativar: true
+      Preco: 2.0
+
+  tabuas-carvalho:
+    Item:
+      material: OAK_PLANKS
+    Compra:
+      Ativar: true
+      Preco: 2.0
+    Venda:
+      Ativar: true
+      Preco: 0.5
+
+  obsidiana:
+    Item:
+      material: OBSIDIAN
+    Compra:
+      Ativar: true
+      Preco: 90.0
+    Venda:
+      Ativar: true
+      Preco: 30.0
+
+  netherrack:
+    Item:
+      material: NETHERRACK
+    Compra:
+      Ativar: true
+      Preco: 2.0
+    Venda:
+      Ativar: true
+      Preco: 0.5
+
+  pedra-do-fim:
+    Item:
+      material: END_STONE
+    Compra:
+      Ativar: true
+      Preco: 8.0
+    Venda:
+      Ativar: true
+      Preco: 2.5
+
+  bloco-de-quartzo:
+    Item:
+      material: QUARTZ_BLOCK
+    Compra:
+      Ativar: true
+      Preco: 75.0
+    Venda:
+      Ativar: true
+      Preco: 26.0
+
+  arenito:
+    Item:
+      material: SANDSTONE
+    Compra:
+      Ativar: true
+      Preco: 9.0
+    Venda:
+      Ativar: true
+      Preco: 3.0
+
+  bloco-de-neve:
+    Item:
+      material: SNOW_BLOCK
+    Compra:
+      Ativar: true
+      Preco: 5.0
+    Venda:
+      Ativar: true
+      Preco: 1.5
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

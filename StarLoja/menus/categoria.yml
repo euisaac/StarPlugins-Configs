@@ -1,0 +1,156 @@
+# ============================================================================
+#  Página de itens de uma categoria
+#
+#  Este arquivo manda no layout de TODAS as categorias de TODAS as lojas: o
+#  tamanho do menu, em quais slots os itens caem e quais itens fixos (voltar,
+#  saldo, venda rápida, fechar, bordas) aparecem na página.
+#
+#  Por padrão (Usar-ordem: true) os arquivos das lojas NÃO falam de slot: cada
+#  item de uma categoria tem só uma "Ordem". A ordem 1 cai na primeira slot de
+#  "Slots-itens", a 2 na segunda, e assim por diante. Então:
+#
+#    - mudar a lista "Slots-itens" aqui reposiciona os itens de todas as
+#      categorias de uma vez;
+#    - tirar uma slot da lista tira aquele buraco do menu inteiro, e os itens
+#      seguintes andam para trás sozinhos;
+#    - acrescentar decoração aqui já reserva a slot: ela sai da área de itens
+#      automaticamente, sem você precisar mexer em mais nada.
+#
+#  Uma categoria que prefira montar o próprio menu na mão declara
+#  "Usar-ordem: false" no arquivo dela: aí cada item usa a própria "Slot", e
+#  o "Slots-itens" daqui só recebe os itens que ficarem sem Slot.
+#
+#  ---------------------------------------------------------------------------
+#  AS TRÊS CAMADAS
+#  ---------------------------------------------------------------------------
+#  A decoração é montada de cima para baixo, e a camada de baixo vence:
+#
+#    1. este arquivo                       -> toda categoria de toda loja
+#    2. "Decoracao-categorias" do loja.yml -> só as categorias daquela loja
+#    3. "Decoracao" do arquivo da categoria -> só aquela categoria
+#
+#  A mesma chave repetida numa camada de baixo substitui a de cima. Isso é o
+#  que permite:
+#
+#    - TIRAR um item padrão (o saldo, a venda rápida...) declarando a chave
+#      dele com "Slot: -1" na loja ou na categoria;
+#    - MOVER ou trocar o ícone dele sem repetir o resto do menu;
+#    - ACRESCENTAR enfeites só numa loja, pelo "Decoracao-categorias" do
+#      loja.yml dela.
+#
+#  Exemplo, no arquivo de uma categoria:
+#
+#    Tamanho: 45           <- mesma chave, vence a daqui
+#    Slots-itens: '0-35'   <- mesma chave, vence a daqui
+#    Decoracao:
+#      venda-rapida:
+#        Slot: -1          <- some com a venda rápida só nesta categoria
+#      fechar:
+#        Slot: 44          <- muda de lugar só nesta categoria
+#
+#  ATENÇÃO ao mudar "Tamanho" numa categoria: os slots do rodapé daqui (45, 47,
+#  49, 53) só existem num menu de 54. Se você diminuir o tamanho lá, declare
+#  também a "Decoracao" da categoria com slots que caibam.
+# ============================================================================
+
+# Tamanho padrão do menu (múltiplo de 9, até 54).
+Tamanho: 54
+
+# ---------------------------------------------------------------------------
+#  ONDE OS ITENS APARECEM
+#
+#  Slots que recebem os itens das categorias, NA ORDEM EM QUE ESTÃO ESCRITOS
+#  aqui. Aceita faixas e lista: '0-8,18-26' ou [0,1,2].
+#
+#  O item de Ordem 1 vai para a primeira slot desta lista, o de Ordem 2 para a
+#  segunda, e assim por diante. Quem não tem Ordem entra depois, na ordem do
+#  arquivo. Quando acabam as slots, o menu cria outra página.
+#
+#  Como a lista é lida na ordem, '0-8,18-26' e '18-26,0-8' dão layouts
+#  diferentes: no segundo, os primeiros itens começam na terceira linha.
+#
+#  Deixe '' (vazio) para usar todo slot que sobrar, ou seja, tudo que não for
+#  ocupado por decoração.
+#
+#  O padrão abaixo deixa as 5 primeiras linhas para os itens e reserva a última
+#  para os botões. Se você quiser a página cheia como no print, use '0-53' e
+#  tire a decoração, ou mande os botões para slots que você não vá usar.
+# ---------------------------------------------------------------------------
+Slots-itens: '0-44'
+
+# Padrão de "Usar-ordem" para as categorias que não declararem o seu.
+#   true  = os itens seguem a "Ordem" e caem em "Slots-itens" (acima)
+#   false = cada item usa a própria "Slot" (posição fixa na categoria)
+Usar-ordem: true
+
+# Quando os itens não couberem nos slots acima, criar páginas.
+# As setas de página (ícone e slot) ficam em config.yml, seção "Navegacao".
+Paginar: true
+
+# ---------------------------------------------------------------------------
+#  ITENS FIXOS DA PÁGINA
+#
+#  Ações: NENHUMA, VOLTAR, FECHAR, ABRIR_LOJA, ABRIR_CATEGORIA,
+#         VENDER_INVENTARIO, COMANDO, COMANDO_CONSOLE,
+#         PROXIMA_PAGINA, PAGINA_ANTERIOR
+#
+#  Aceita "Slot: 45" ou "Slots: '45-53'" para ocupar várias casas.
+#  Slot: -1 desliga o item (aqui, ou numa das camadas de baixo).
+#
+#  Tudo que ocupar slot aqui é descontado da área de itens acima: você pode
+#  colocar decoração no meio de "Slots-itens" sem quebrar a contagem.
+#
+#  Variáveis: {saldo}, {saldo_money}, {saldo_cash}, {desconto}, {bonus},
+#             {categoria}, {loja}, {pagina} e as de boost/meta.
+# ---------------------------------------------------------------------------
+Decoracao:
+
+  voltar:
+    Slot: 45
+    Acao: VOLTAR
+    Item:
+      material: ARROW
+      nome: '&c&lVOLTAR'
+      lore:
+        - '&r'
+        - '&7Volta para o menu principal.'
+
+  saldo:
+    Slot: 47
+    Acao: NENHUMA
+    Item:
+      material: GOLD_NUGGET
+      nome: '&6&lSEU SALDO'
+      lore:
+        - '&r'
+        - '&8| &7Dinheiro: &a{saldo_money}'
+        - '&8| &7Cash: &e{saldo_cash}'
+        - '&r'
+        - '&7Desconto: &b{desconto} &8| &7Bônus: &b{bonus}'
+      brilho: true
+
+  venda-rapida:
+    Slot: 49
+    Acao: VENDER_INVENTARIO
+    Item:
+      material: HOPPER
+      nome: '&6&lVENDA RÁPIDA'
+      lore:
+        - '&r'
+        - '&7Jogue os itens no baú e feche para vender.'
+        - '&r'
+        - '&a&lCLIQUE PARA ACESSAR'
+
+  fechar:
+    Slot: 53
+    Acao: FECHAR
+    Item:
+      material: BARRIER
+      nome: '&c&lFECHAR'
+
+  # Exemplo de borda, desligada por padrão. Troque o Slot por Slots para ligar.
+  # borda:
+  #   Slots: '46,48,50,51,52'
+  #   Item:
+  #     material: GRAY_STAINED_GLASS_PANE
+  #     nome: ' '

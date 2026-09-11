@@ -1,0 +1,102 @@
+# ============================================================================
+#  Categoria: pvp  (loja cash)
+#
+#  Todos os itens aqui usam a moeda 'cash' (economias.yml) e executam
+#  comandos no lugar de entregar um item fisico.
+# ============================================================================
+
+Nome: '&8ITENS PVP'
+Permissao: ''
+Som: 'NOTA'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+Slot: 22
+Icone:
+  material: DIAMOND_SWORD
+  nome: '&c&lITENS PVP'
+  lore:
+    - '&r'
+    - '&7Equipamento pronto para a arena.'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+
+Dinamico:
+  Ativar: false
+
+Itens:
+
+  espada-afiada:
+    Item:
+      material: DIAMOND_SWORD
+      nome: '&c&lEspada Afiada'
+      lore:
+        - '&r'
+        - '&7Espada de diamante Afiacao V.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 500.0
+      Economia: cash
+      Comandos:
+        - 'give {jogador} diamond_sword 1'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+  pocao-forca:
+    Item:
+      material: POTION
+      nome: '&d&lPocao de Forca'
+      lore:
+        - '&r'
+        - '&7Uma pocao de forca II.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 120.0
+      Economia: cash
+      Comandos:
+        - 'give {jogador} potion 1'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+  macas-douradas:
+    Item:
+      material: GOLDEN_APPLE
+      nome: '&6&lMacas Douradas'
+      lore:
+        - '&r'
+        - '&78 macas douradas.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 200.0
+      Economia: cash
+      Comandos:
+        - 'give {jogador} golden_apple 8'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.

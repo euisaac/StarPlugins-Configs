@@ -1,0 +1,50 @@
+# ============================================================================
+#  Meta de venda coletiva
+#
+#  O servidor inteiro colabora vendendo um item sorteado. Quando a meta e
+#  batida, TODOS os itens da loja ganham um boost de venda por um tempo.
+#
+#  Variaveis para usar na lore do item informativo:
+#    {meta_status}        Ativa / Inativa
+#    {meta_item}          item da meta
+#    {meta_alvo}          quantidade necessaria
+#    {meta_progresso}     quanto ja foi vendido
+#    {meta_porcentagem}   progresso em %
+#    {meta_barra}         barra de progresso pronta
+#    {meta_tempo}         quanto falta para a meta acabar
+#    {meta_boost_status}  se o boost da meta esta valendo
+#    {meta_boost_valor}   percentual do boost
+#    {meta_boost_tempo}   quanto falta do boost
+# ============================================================================
+
+Ativar: true
+
+# Duracao de cada meta em segundos (86400 = 24 horas).
+Duracao: 86400
+
+# Item da meta. Use ALEATORIO para sortear, ou fixe um item
+# no formato loja/categoria/item (ex: 'principal/minerios/carvao').
+Item: ALEATORIO
+
+# Quantidade sorteada como alvo da meta.
+Quantidade:
+  Min: 2000
+  Max: 10000
+
+# O que o servidor ganha ao bater a meta.
+Recompensa:
+  # Boost de venda aplicado em TODOS os itens da loja.
+  Boost: 10.0
+  # Por quanto tempo, em segundos (7200 = 2 horas).
+  Duracao: 7200
+
+# Aparencia da barra de progresso.
+Barra:
+  Tamanho: 30
+  Cheia: '&a▌'
+  Vazia: '&8▌'
+
+# Categorias que nunca entram no sorteio da meta (por id ou loja/id).
+Ignorar-categorias:
+  - 'cash/tags'
+  - 'cash/kits'

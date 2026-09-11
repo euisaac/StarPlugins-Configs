@@ -1,0 +1,102 @@
+# ============================================================================
+#  Categoria: kits  (loja cash)
+#
+#  Todos os itens aqui usam a moeda 'cash' (economias.yml) e executam
+#  comandos no lugar de entregar um item fisico.
+# ============================================================================
+
+Nome: '&8KITS'
+Permissao: ''
+Som: 'NOTA'
+Paginar: true
+
+# Como os itens desta categoria sao posicionados:
+#   true  = pela "Ordem" de cada item, nas "Slots-itens" de menus/categoria.yml
+#           (mudar o layout la muda aqui junto)
+#   false = pela "Slot" de cada item, posicao fixa so nesta categoria;
+#           quem nao tiver Slot preenche o que sobrar de Slots-itens
+Usar-ordem: true
+
+Slot: 21
+Icone:
+  material: CHEST
+  nome: '&e&lKITS'
+  lore:
+    - '&r'
+    - '&7Kits prontos entregues na hora.'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+
+Dinamico:
+  Ativar: false
+
+Itens:
+
+  kit-inicial:
+    Item:
+      material: IRON_CHESTPLATE
+      nome: '&f&lKit Inicial'
+      lore:
+        - '&r'
+        - '&7Equipamento de ferro completo.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 100.0
+      Economia: cash
+      Comandos:
+        - 'kit dar {jogador} inicial'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+  kit-guerreiro:
+    Item:
+      material: DIAMOND_CHESTPLATE
+      nome: '&b&lKit Guerreiro'
+      lore:
+        - '&r'
+        - '&7Equipamento de diamante encantado.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 350.0
+      Economia: cash
+      Comandos:
+        - 'kit dar {jogador} guerreiro'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+  kit-construtor:
+    Item:
+      material: BRICKS
+      nome: '&6&lKit Construtor'
+      lore:
+        - '&r'
+        - '&7Blocos variados para construir.'
+      brilho: true
+    Compra:
+      Ativar: true
+      Preco: 250.0
+      Economia: cash
+      Comandos:
+        - 'kit dar {jogador} construtor'
+    Venda:
+      Ativar: false
+      Preco: 0.0
+    # Itens de Cash nao entram no sorteio de boosts nem na meta.
+    Sorteio: false
+
+# O layout (tamanho, quais slots recebem item, decoracao) vem de
+# menus/categoria.yml e vale para todas as categorias de todas as lojas.
+# Com Usar-ordem: true, os itens so dizem a Ordem em que entram nesse layout;
+# sem Ordem, entram na ordem em que estao escritos neste arquivo.
+# Com Usar-ordem: false, cada item diz a propria Slot.
+#
+# Para mudar so nesta categoria, declare Tamanho, Slots-itens ou Decoracao
+# abaixo. Para mudar em toda esta loja, use "Decoracao-categorias" no loja.yml.
