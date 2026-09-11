@@ -1,0 +1,161 @@
+# ==========================================================================
+#  StarPedidos - configuracao geral
+#
+#  Como funciona: um jogador que QUER um item cria um pedido ("quero 64
+#  diamantes a 100 cada"). O dinheiro do pedido inteiro sai da conta dele
+#  na hora e fica guardado no plugin. Qualquer outro jogador que tenha o
+#  item abre o /pedidos, entrega quantos quiser e recebe o dinheiro na hora.
+#  O dono do pedido coleta os itens entregues quando quiser.
+#
+#  Os precos sugeridos ficam no precos.yml, as categorias do filtro no
+#  categorias.yml, os nomes dos itens no itens.yml, os textos no
+#  mensagens.yml e a aparencia das telas no menus.yml.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console cada operacao. Ligue so para achar problema.
+  Debug: false
+
+  # Avisa o servidor inteiro quando alguem cria um pedido (texto em
+  # Pedido.Anuncio do mensagens.yml).
+  Anunciar novo pedido: true
+
+  # /pedidos <texto> abre a lista ja pesquisando o texto. Com false o texto
+  # e ignorado e o menu abre normal.
+  Busca rapida: true
+
+  # Item que aceita encantamento abre a tela de escolher encantamentos antes
+  # do pedido. true pula essa tela e pede sempre o item sem encantamento.
+  Pular encantamentos: false
+
+  # So aceita entrega de ferramenta/armadura com a durabilidade cheia. Com
+  # false, item gasto serve -- e o dono do pedido recebe o item como pediu
+  # (inteiro), o que na pratica vira um conserto gratis. Pense antes de mudar.
+  Exigir durabilidade cheia: true
+
+  # Milissegundos entre dois cliques no mesmo menu (evita spam e dupe).
+  Intervalo entre cliques: 100
+
+  # Tranca a criacao de pedidos novos (entregas e coletas continuam). O
+  # painel admin (/starpedidos) liga e desliga isto tambem.
+  Pedidos trancados: false
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores). Para os pedidos valerem em varios servidores use MYSQL e
+  # ligue Rede.Ativar.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starpedidos_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Rede:
+  # true quando VARIOS servidores dividem o mesmo MySQL: a lista de pedidos
+  # e relida do banco antes de abrir o menu e a cada 'Sincronizar a cada'
+  # segundos, e as notificacoes atravessam os servidores pelo banco. Com
+  # SQLite esta opcao e ignorada.
+  Ativar: false
+
+  # Segundos entre cada sincronizacao com o banco (so com Rede ligada).
+  Sincronizar a cada: 30
+
+  # Como este servidor aparece no historico (vazio = "porta <porta>").
+  Nome deste servidor: ''
+
+Economia:
+  # VAULT   = qualquer economia registrada no Vault.
+  # COMANDO = saldo lido por placeholder e dinheiro movido por comando de
+  #           console (para as economias que nao usam Vault).
+  Tipo: VAULT
+
+  Simbolo: '$'
+
+  # So usados no modo COMANDO. {jogador}, {uuid} e {valor} sao trocados.
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Precos:
+  # Limites do pedido novo. -1 desliga o limite.
+  Total:
+    # quantidade x preco por item
+    Minimo: 100.0
+    Maximo: 999999999.0
+  Por item:
+    Minimo: -1
+    Maximo: -1
+
+  # Maior quantidade de itens que um pedido pode ter.
+  Quantidade maxima: 100000
+
+Duracao:
+  # Dias que o pedido fica na lista publica recebendo entregas. Depois
+  # disso ele expira: o dinheiro que sobrou volta para o dono e so resta
+  # coletar o que ja foi entregue.
+  Publico: 7
+
+  # Dias, contados da criacao, ate um pedido expirado ser apagado de vez --
+  # MESMO que o dono nao tenha coletado os itens (eles se perdem). O dono e
+  # avisado a cada entrada no servidor enquanto tiver item para coletar.
+  Expiracao: 60
+
+Limites:
+  # Quantos pedidos abertos cada jogador pode ter. Vale o MAIOR numero entre
+  # o padrao e as permissoes que ele tiver. O teto e 45 (a tela de pedidos).
+  Padrao: 3
+  Por permissao:
+    starpedidos.vip: 5
+    starpedidos.mvp: 8
+    starpedidos.admin: 26
+
+Notificacoes:
+  # Aviso ao entrar de pedidos com itens para coletar e aviso de entrega
+  # recebida (na hora se o dono estiver online, na proxima entrada se nao).
+  Ativar: true
+
+  # Deixa o jogador desligar as proprias notificacoes (/pedidos notificacoes).
+  Permitir desligar: true
+
+# Materiais que ninguem pode pedir. Aceita curinga: *SPAWN_EGG*, BEDROCK.
+Itens bloqueados:
+  - BEDROCK
+  - COMMAND_BLOCK
+  - BARRIER
+  - '*SPAWN_EGG*'
+  - '*COMMAND_BLOCK*'
+  - STRUCTURE_BLOCK
+  - STRUCTURE_VOID
+  - JIGSAW
+  - LIGHT
+  - DEBUG_STICK
+  - KNOWLEDGE_BOOK
+
+Webhook:
+  # Manda cada movimentacao para um canal do Discord (bom para vigiar
+  # atividade suspeita). Crie o webhook em: Configuracoes do canal ->
+  # Integracoes -> Webhooks.
+  Ativar: false
+  URL: ''
+  Nome: 'Pedidos'
+  Eventos:
+    Criar: true
+    Entregar: true
+    Coletar: true
+    Expirar: true
+    Cancelar: true
+
+Sons:
+  # Formato: SOM;volume;tom. Deixe vazio ('') para nao tocar nada.
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Dinheiro: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'

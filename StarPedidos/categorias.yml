@@ -1,0 +1,265 @@
+# ------------------------------------------------------------------------
+#  Categorias do filtro de pedidos e da tela de escolher item.
+#
+#  A categoria de um pedido e decidida UMA VEZ, quando ele e criado, e fica
+#  guardada com o pedido -- mexer nesta lista nao mexe no que ja existe.
+#
+#  A ordem manda: vale a PRIMEIRA categoria cuja lista casar com o material.
+#  Os nomes aceitam curinga: *_LOG, DIAMOND_*, *SWORD*. E @BLOCO casa com
+#  qualquer material que seja bloco.
+#  O nome de cada categoria e o que aparece no botao de filtro.
+# ------------------------------------------------------------------------
+
+# Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
+# tras depois de uma atualizacao.
+Versao do modelo: 1
+
+# Categoria de sobra: recebe tudo que nao casar com nenhuma lista.
+Categoria padrao: OUTROS
+
+Categorias:
+
+  LIVROS:
+    Nome: 'Livros'
+    Materiais:
+      - ENCHANTED_BOOK
+      - BOOK
+      - WRITABLE_BOOK
+      - BOOK_AND_QUILL
+      - WRITTEN_BOOK
+      - EXPERIENCE_BOTTLE
+      - EXP_BOTTLE
+
+  COMBATE:
+    Nome: 'Combate'
+    Materiais:
+      - '*SWORD*'
+      - '*_AXE'
+      - BOW
+      - CROSSBOW
+      - ARROW
+      - SPECTRAL_ARROW
+      - TIPPED_ARROW
+      - TRIDENT
+      - SHIELD
+      - MACE
+      - '*HELMET*'
+      - '*CHESTPLATE*'
+      - '*LEGGINGS*'
+      - '*BOOTS*'
+      - '*HORSE_ARMOR*'
+      - '*BARDING*'
+      - TOTEM_OF_UNDYING
+      - TOTEM
+      - ELYTRA
+
+  FERRAMENTAS:
+    Nome: 'Ferramentas'
+    Materiais:
+      - '*PICKAXE*'
+      - '*SHOVEL*'
+      - '*SPADE*'
+      - '*_HOE'
+      - SHEARS
+      - FISHING_ROD
+      - FLINT_AND_STEEL
+      - BUCKET
+      - '*_BUCKET'
+      - COMPASS
+      - CLOCK
+      - WATCH
+      - LEAD
+      - LEASH
+      - NAME_TAG
+      - SADDLE
+      - BRUSH
+      - SPYGLASS
+
+  COMIDAS:
+    Nome: 'Comidas'
+    Materiais:
+      - '*BEEF*'
+      - '*PORKCHOP*'
+      - '*PORK'
+      - '*CHICKEN*'
+      - '*MUTTON*'
+      - '*RABBIT'
+      - '*COD*'
+      - '*SALMON*'
+      - '*FISH*'
+      - BREAD
+      - '*APPLE*'
+      - CAKE
+      - COOKIE
+      - '*MELON*'
+      - '*CARROT*'
+      - '*POTATO*'
+      - '*BEETROOT*'
+      - PUMPKIN_PIE
+      - '*STEW*'
+      - '*SOUP*'
+      - HONEY_BOTTLE
+      - SWEET_BERRIES
+      - GLOW_BERRIES
+      - CHORUS_FRUIT
+      - DRIED_KELP
+      - ROTTEN_FLESH
+      - SPIDER_EYE
+      - TROPICAL_FISH
+      - PUFFERFISH
+      - EGG
+      - MILK_BUCKET
+
+  POCOES:
+    Nome: 'Pocoes'
+    Materiais:
+      - '*POTION*'
+      - GLASS_BOTTLE
+      - BREWING_STAND
+      - DRAGON_BREATH
+      - DRAGONS_BREATH
+      - NETHER_WART
+      - BLAZE_POWDER
+      - FERMENTED_SPIDER_EYE
+      - GHAST_TEAR
+      - MAGMA_CREAM
+      - PHANTOM_MEMBRANE
+      - GLISTERING_MELON_SLICE
+      - SPECKLED_MELON
+      - RABBIT_FOOT
+      - TURTLE_HELMET
+
+  INGREDIENTES:
+    Nome: 'Ingredientes'
+    Materiais:
+      - '*_INGOT'
+      - '*_NUGGET'
+      - DIAMOND
+      - EMERALD
+      - COAL
+      - CHARCOAL
+      - REDSTONE
+      - '*LAPIS*'
+      - '*QUARTZ'
+      - AMETHYST_SHARD
+      - NETHERITE_SCRAP
+      - RAW_IRON
+      - RAW_GOLD
+      - RAW_COPPER
+      - NETHER_STAR
+      - ENDER_PEARL
+      - ENDER_EYE
+      - EYE_OF_ENDER
+      - BLAZE_ROD
+      - SLIME_BALL
+      - GUNPOWDER
+      - SULPHUR
+      - STRING
+      - LEATHER
+      - FEATHER
+      - BONE
+      - PAPER
+      - SUGAR
+      - WHEAT
+      - '*SEEDS'
+      - FLINT
+      - CLAY_BALL
+      - '*_DYE'
+      - INK_SACK
+      - INK_SAC
+      - GLOWSTONE_DUST
+      - PRISMARINE_SHARD
+      - PRISMARINE_CRYSTALS
+      - SHULKER_SHELL
+      - HONEYCOMB
+      - STICK
+      - BOWL
+      - BRICK
+      - NETHER_BRICK
+      - '*_DISC*'
+      - '*_SHERD'
+      - '*_TEMPLATE'
+      - ECHO_SHARD
+      - BREEZE_ROD
+      - HEAVY_CORE
+      - SCUTE
+      - ARMADILLO_SCUTE
+
+  UTILIDADES:
+    Nome: 'Utilidades'
+    Materiais:
+      - '*REDSTONE*'
+      - '*PISTON*'
+      - '*REPEATER*'
+      - '*COMPARATOR*'
+      - HOPPER
+      - DISPENSER
+      - DROPPER
+      - OBSERVER
+      - LEVER
+      - '*BUTTON*'
+      - '*PRESSURE_PLATE*'
+      - '*RAIL*'
+      - '*TRIPWIRE*'
+      - '*DAYLIGHT*'
+      - NOTE_BLOCK
+      - TARGET
+      - TNT
+      - CHEST
+      - TRAPPED_CHEST
+      - ENDER_CHEST
+      - BARREL
+      - '*SHULKER_BOX'
+      - FURNACE
+      - BLAST_FURNACE
+      - SMOKER
+      - '*TABLE*'
+      - '*WORKBENCH*'
+      - ANVIL
+      - GRINDSTONE
+      - STONECUTTER
+      - LOOM
+      - COMPOSTER
+      - CAULDRON
+      - BEACON
+      - CONDUIT
+      - LODESTONE
+      - RESPAWN_ANCHOR
+      - '*BED'
+      - LANTERN
+      - SOUL_LANTERN
+      - '*TORCH*'
+      - '*CAMPFIRE*'
+      - '*_SIGN'
+      - ITEM_FRAME
+      - GLOW_ITEM_FRAME
+      - PAINTING
+      - ARMOR_STAND
+      - FLOWER_POT
+      - '*BOAT*'
+      - '*MINECART*'
+      - FIREWORK_ROCKET
+      - FIREWORK
+      - FIREWORK_STAR
+      - MAP
+      - EMPTY_MAP
+      - '*BANNER*'
+      - SCAFFOLDING
+      - LADDER
+      - '*_DOOR'
+      - '*TRAPDOOR*'
+      - '*FENCE_GATE'
+      - SPONGE
+      - WET_SPONGE
+
+  # @BLOCO e um padrao especial: casa com todo material que pode ser
+  # colocado no mundo. Sem ele seria preciso listar centenas de nomes.
+  BLOCOS:
+    Nome: 'Blocos'
+    Materiais:
+      - '@BLOCO'
+
+  OUTROS:
+    Nome: 'Outros'
+    Materiais:
+      - '*'
