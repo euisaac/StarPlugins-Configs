@@ -1,0 +1,349 @@
+#   ____  _              ____                                       _
+#  / ___|| |_ __ _ _ __ / ___|__ _ ___  __ _ _ __ ___   ___ _ __ | |_ ___
+#  \___ \| __/ _` | '__| |   / _` / __|/ _` | '_ ` _ \ / _ \ '_ \| __/ _ \
+#   ___) | || (_| | |  | |__| (_| \__ \ (_| | | | | | |  __/ | | | || (_) |
+#  |____/ \__\__,_|_|   \____\__,_|___/\__,_|_| |_| |_|\___|_| |_|\__\___/
+#
+#  Sistema de casamento completo, todo em portugues.
+#  Site: https://starplugins.com.br
+#
+#  Os itens e as telas do menu ficam em menu.yml
+#  Os textos ficam em mensagens.yml
+#  Os nomes dos comandos ficam em comandos.yml
+#
+#  Vindo do MarriageMaster? Rode:
+#      /starcasamento migrar marriagemaster confirmar
+#  Ele le a pasta plugins/MarriageMaster e traz casais, casas, padres e a
+#  permissao de mochila. Nada e apagado la, e rodar duas vezes nao duplica nada.
+
+# Liga mensagens extras no console para investigar problemas.
+Debug: false
+
+#
+# ─────────────────────────── Banco de dados ───────────────────────────
+#
+# Onde ficam os casamentos, as casas dos casais e os dados por jogador.
+#
+#   SQLITE - salva em dados/starcasamento.db (padrao, nao precisa de servidor externo)
+#   MYSQL  - servidor MySQL/MariaDB (use quando tiver varios servidores no mesmo BungeeCord)
+#
+# Os drivers sao baixados pelo loader StarPlugins, entao os dois funcionam em
+# qualquer servidor. Se o MYSQL nao conectar, o plugin cai para SQLITE em vez de
+# perder os dados dos jogadores.
+#
+Banco de dados:
+  Tipo: SQLITE
+  IP: localhost
+  Porta: 3306
+  Banco: starcasamento
+  Usuario: root
+  Senha: ''
+  # Prefixo das tabelas criadas (SQLITE/MYSQL).
+  Prefixo: 'starcasamento_'
+  # Salva os dados em disco a cada X segundos (0 desliga o salvamento automatico).
+  Salvar a cada: 300
+
+#
+# ────────────────────────────  Casamento  ─────────────────────────────
+#
+Casamento:
+
+  # true  - so um padre pode celebrar (/casamento casar <jogador1> <jogador2>)
+  # false - os proprios jogadores se casam (/casamento casar <jogador>)
+  Exigir padre: true
+
+  # Se o divorcio tambem precisa de padre.
+  # Aceita true, false ou auto (auto copia o "Exigir padre").
+  Divorcio exige padre: auto
+
+  # Maximo de parceiros por jogador. Use 0 ou menos para liberar sem limite.
+  Maximo de parceiros: 1
+
+  # Desliga o /casamento definirpadre. Com ele desligado, padre so por permissao
+  # (starcasamento.padre).
+  Desativar comando definirpadre: false
+
+  # Avisa o servidor inteiro quando alguem casa.
+  Anunciar casamento: true
+  # Aceita true, false ou auto (auto copia o "Anunciar casamento").
+  Anunciar divorcio: auto
+
+  # Solta fogos de artificio em cima dos noivos.
+  Fogos no casamento: true
+
+  Confirmacao:
+    # Com false o casamento e o divorcio saem na hora, sem perguntar nada.
+    Ativar: true
+    # Exige que os dois confirmem o divorcio feito por um padre.
+    Ambos no divorcio: false
+    # Exige que o parceiro confirme quando o divorcio parte de um dos dois.
+    Outro no auto divorcio: true
+    # Tempo que um pedido fica de pe esperando resposta.
+    Segundos para expirar: 60
+
+  # Sobrenome do casal, usado no menu, no /casamento info e no prefixo do chat.
+  Sobrenome:
+    Ativar: false
+    # Exige um sobrenome para casar (so faz sentido com "Ativar: true").
+    Obrigatorio: false
+    Permitir cores: false
+    # Expressao de caracteres aceitos (o que vai dentro de [ ] numa regex).
+    Caracteres permitidos: 'A-Za-z0-9_'
+    # Valores abaixo de 3 sao elevados para 3.
+    Tamanho minimo: 3
+    Tamanho maximo: 16
+    Proibidos:
+      - 'admin'
+      - 'staff'
+    # Quem precisa confirmar a troca:
+    #   NENHUMA - troca direto
+    #   JOGADOR - o outro lado do casal confirma
+    #   AMBOS   - os dois confirmam quando quem pediu foi um padre
+    Confirmacao: JOGADOR
+
+  Coracao:
+    # Permite o /casamento cor e o menu de cores.
+    Permitir trocar cor: true
+    # ALEATORIA sorteia uma cor fixa por casal; ou escreva uma cor
+    # (RED, LIGHT_PURPLE, AQUA, ...) para todos ficarem iguais.
+    Cor padrao: ALEATORIA
+    Simbolo: '❤'
+    Simbolo pequeno: '♥'
+
+#
+# ────────────────────────  Entrada e saida  ───────────────────────────
+#
+Avisar entrada e saida:
+  Ativar: true
+  # Segundos de espera antes de avisar quem acabou de entrar (0 = na hora).
+  # Util quando o servidor manda muita coisa no login.
+  Atraso em segundos: 2
+
+#
+# ───────────────────────  Coracao no chat publico  ────────────────────
+#
+# Depende do plugin de chat do servidor. Se o seu chat suporta PlaceholderAPI,
+# prefira usar os placeholders (%starcasamento_coracao%, %starcasamento_parceiro%).
+#
+Prefixo no chat:
+  Ativar: false
+  # Aceita <coracao>, {coracao}, {parceiro} e {sobrenome}.
+  Texto: '<coracao> '
+
+Sufixo no chat:
+  Ativar: false
+  Texto: ' &7[{sobrenome}&7]'
+
+#
+# ─────────────────────────────  Presente  ─────────────────────────────
+#
+# O jogador da o item que esta segurando para o parceiro.
+#
+Presente:
+  Ativar: true
+  # Modos de jogo em que da para enviar e receber. Lista vazia libera todos.
+  Modos permitidos para enviar: [ SURVIVAL ]
+  Modos permitidos para receber: [ SURVIVAL ]
+  # Mundos onde o parceiro nao pode receber presente.
+  Mundos bloqueados: []
+  # Com true o parceiro precisa aceitar o presente antes de recebe-lo.
+  Exigir confirmacao: false
+
+  Filtro de itens:
+    Ativar: false
+    # 'lista negra' bloqueia o que casar; 'lista branca' libera so o que casar.
+    Modo: 'lista negra'
+    Materiais:
+      - 'BEDROCK'
+      - 'BARRIER'
+    # Precisa bater com o nome exibido do item (as cores com & sao convertidas).
+    Nomes: []
+    # Basta a linha aparecer em qualquer parte da lore.
+    Lore: []
+
+#
+# ──────────────────────────  Beijo e abraco  ──────────────────────────
+#
+Beijo:
+  Ativar: true
+  # Beijar agachado + botao direito no parceiro, sem digitar comando.
+  Ativar interacao: true
+  # Segundos entre um beijo e outro (0 desliga a espera).
+  Espera em segundos: 10
+  Quantidade de coracoes: 30
+  Particula: HEART
+
+Abraco:
+  Ativar: true
+  Espera em segundos: 10
+  Quantidade de particulas: 25
+  Particula: VILLAGER_HAPPY
+
+#
+# ─────────────────────────  Lista de casais  ──────────────────────────
+#
+Lista:
+  # Quantos casais por pagina na versao em texto.
+  Itens por pagina: 8
+  # Com true, /casamento lista e /casamento padres abrem o menu no lugar do texto.
+  Abrir menu: true
+
+#
+# ───────────────────────────────  PvP  ────────────────────────────────
+#
+PvP:
+  # Permite o casal desligar o dano entre eles.
+  Permitir bloquear: true
+  # Estado do PvP quando o casamento nasce (false = os dois nao se machucam).
+  Padrao: false
+
+#
+# ────────────────────────  Bonus de estar junto  ──────────────────────
+#
+Bonus de XP:
+  Ativar: true
+  # 1.0 ou menos desliga o bonus, mas ainda permite dividir a experiencia.
+  Multiplicador: 2.0
+  # Divide a experiencia coletada entre os dois.
+  Dividir ao coletar: true
+  # Com varios parceiros por perto, divide entre todos eles.
+  Dividir com todos os parceiros: false
+
+Regeneracao de vida:
+  Ativar: true
+  Multiplicador: 2.0
+  Mundos bloqueados: []
+
+Coracoes de particula:
+  # Coracoes que aparecem sozinhos quando o casal esta lado a lado.
+  Ativar: true
+  Particula: HEART
+  # 0 desliga.
+  Quantidade: 2
+  # Intervalo entre uma leva e outra, em ticks (20 ticks = 1 segundo).
+  Intervalo em ticks: 60
+  # Distancia maxima entre os dois para os coracoes aparecerem.
+  Alcance do casal: 5
+
+#
+# ────────────────────────────  Chat privado  ──────────────────────────
+#
+Chat privado:
+  Ativar: true
+  # Permite que quem tem starcasamento.chat.ouvir acompanhe as conversas.
+  Permitir espionar: false
+  # Aceita {coracao}, {remetente}, {destinatario}, {sobrenome} e {mensagem}.
+  Formato: '{coracao} &f{remetente} &6-> &f{destinatario}&7: &r{mensagem}'
+
+#
+# ─────────────────────────────  Alcances  ─────────────────────────────
+#
+# Distancia maxima de cada acao, em blocos:
+#   -1  sem limite nenhum, ate entre mundos diferentes
+#    0  sem limite de distancia, mas os dois no mesmo mundo
+#   >=1 limite em blocos
+#
+Alcance:
+  Casar: 25
+  Divorciar: 25
+  Mochila: 5
+  Presente: 0
+  Beijo: 2
+  Beijo por interacao: 5
+  Abraco: 2
+  # Ate onde os outros jogadores enxergam os coracoes.
+  Coracoes visiveis: 128
+  Bonus de XP: 10
+  Regeneracao: 3
+
+#
+# ────────────────────────────  Teleportes  ────────────────────────────
+#
+# Vale para o /casamento tp e para o /casamento casa.
+#
+Teleporte:
+  # Contagem regressiva antes de teleportar; andar cancela.
+  Atraso: false
+  Segundos de atraso: 3
+  # Mundos filtrados pelo "Modo do filtro" abaixo.
+  Mundos filtrados: []
+  # 'bloquear' proibe os mundos da lista; 'permitir' libera somente eles.
+  Modo do filtro: 'bloquear'
+  # Recusa o teleporte quando o destino mataria o jogador.
+  Checar seguranca: true
+  # Com true, procura um lugar seguro por perto em vez de recusar.
+  Procurar local seguro: false
+  Raio da busca: 5
+  # Com true o parceiro precisa aceitar antes de alguem se teleportar ate ele.
+  Exigir confirmacao: false
+  # Espera entre um teleporte e outro (0 desliga).
+  Cooldown em segundos: 0
+
+Casa:
+  Ativar: true
+  Cooldown em segundos: 0
+
+#
+# ───────────────────────  Mochila compartilhada  ──────────────────────
+#
+# Nao existe uma API unica de mochila entre os plugins, entao aqui voce escreve
+# o comando do plugin que o seu servidor usa. {parceiro} vira o nick do parceiro.
+#
+# Exemplos:
+#   StarMochila -> 'mochila ver {parceiro}'
+#   Minepacks   -> 'backpack {parceiro}'
+#
+# Independente deste comando: com o StarMochila, o parceiro pode abrir a sua
+# mochila clicando nela quando ela esta no chao como cosmetico (modo pet) --
+# desde que voce esteja compartilhando (item do menu ou /casamento compartilhar).
+#
+Mochila compartilhada:
+  Ativar: false
+  Comando: 'mochila ver {parceiro}'
+  # Com true o comando roda pelo console (util quando ele exige permissao de admin).
+  Executar no console: false
+
+#
+# ────────────────────────────  Economia  ──────────────────────────────
+#
+# Precisa do Vault + um plugin de economia. Casar e divorciar cobram metade de
+# cada um dos dois; o resto cobra so de quem usou o comando.
+#
+Economia:
+  Ativar: false
+  Nome da moeda: 'moedas'
+  Casar: 100.0
+  Divorciar: 100.0
+  Teleporte: 25.0
+  Presente: 10.0
+  Teleporte para casa: 25.0
+  Definir casa: 100.0
+  Trocar sobrenome: 0.0
+
+#
+# ─────────────────────  Comandos em eventos  ──────────────────────────
+#
+# Rodam pelo console. Aceitam {jogador1}, {jogador2} e {padre}.
+#
+Comandos em eventos:
+  Ativar: false
+  Ao casar: []
+  Ao casar com padre: []
+  Ao divorciar: []
+  Ao divorciar com padre: []
+
+#
+# ──────────────────────────────  Sons  ────────────────────────────────
+#
+# Formato: SOM, SOM;volume ou SOM;volume;tom. Deixe '' para nao tocar nada.
+# Os nomes passam por uma tabela de compatibilidade, entao o mesmo nome funciona
+# da 1.8 a 1.21.
+#
+Sons:
+  Ativar: true
+  Casar: 'ENTITY_PLAYER_LEVELUP;1;1'
+  Divorciar: 'ENTITY_VILLAGER_NO;1;1'
+  Beijo: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.6'
+  Abraco: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+  Clique no menu: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'

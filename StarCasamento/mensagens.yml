@@ -1,0 +1,353 @@
+#  Mensagens do StarCasamento.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB.
+#  Deixe '' (vazio) para nao enviar a mensagem.
+#
+#  "Versao do modelo" e o numero deste arquivo dentro do jar. Quando ele sobe
+#  numa atualizacao, o plugin guarda o seu arquivo como mensagens-antigo-vX.yml
+#  e escreve o modelo novo no lugar -- e assim que as mensagens novas chegam.
+Versao do modelo: 1
+
+Prefixo: '&d&lStarCasamento &8» &r'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Somente jogador: '&cApenas jogadores in-game podem fazer isso.'
+  Jogador nao encontrado: '&cO jogador &f{jogador}&c nao foi encontrado.'
+  Jogador offline: '&cO jogador &f{jogador}&c nao esta online.'
+  Parceiro offline: '&cSeu parceiro nao esta online.'
+  Parceiro nao encontrado: '&cVoce nao e casado com &f{jogador}&c.'
+  Nao e casado: '&cVoce nao e casado.'
+  Casal nao encontrado: '&f{jogador}&c e &f{parceiro}&c nao sao casados.'
+  Comando desconhecido: '&cO subcomando &f{comando}&c nao existe.'
+  Recarregado: '&aConfiguracoes recarregadas com sucesso.'
+  Versao: '&7StarCasamento &fv{versao} &8| &7Banco: &f{banco} &8| &7Casais: &f{casamentos}'
+
+# Textos curtos usados dentro do menu, das mensagens e dos placeholders.
+Etiquetas:
+  Nao definido: '&7Nao definido'
+  Sem sobrenome: '&7Nenhum'
+  Online: '&aOnline'
+  Offline: '&cOffline'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+  Agora: '&aAgora mesmo'
+  Cor atual: '&aEsta e a cor do seu coracao'
+  Cor disponivel: '&7Clique para usar esta cor'
+
+Casar:
+  Uso: '&cUse &f/casamento casar <jogador>&c ou, sendo padre, &f/casamento casar <jogador1> <jogador2>&c.'
+  Precisa de padre: '&cVoces precisam de um padre para casar. Veja quem esta online com &f/casamento padres&c.'
+  Nao com voce mesmo: '&cVoce nao pode casar com voce mesmo.'
+  Nao consigo mesmo: '&cVoce nao pode casar &f{jogador}&c com ele mesmo.'
+  Ja sao casados: '&f{jogador}&c e &f{parceiro}&c ja sao casados.'
+  Limite atingido: '&f{jogador}&c ja atingiu o limite de &f{maximo}&c parceiro(s).'
+  Longe demais: '&cVoces precisam estar a no maximo &f{alcance}&c blocos um do outro.'
+  Pedido enviado: '&aPedido de casamento enviado para &f{jogador}&a.'
+  Pedido recebido: |
+    &f{jogador}&a quer casar com voce!
+    &aUse &f/casamento aceitar&a para aceitar ou &f/casamento negar&a para recusar.
+    &7Voce tem {segundos} segundos para responder.
+  Pedido do padre: |
+    &fO padre {padre}&a quer casar voce com &f{jogador}&a!
+    &aUse &f/casamento aceitar&a para aceitar ou &f/casamento negar&a para recusar.
+    &7Voce tem {segundos} segundos para responder.
+  Recusado: '&f{jogador}&c recusou o casamento.'
+  Voce recusou: '&aVoce recusou o casamento com &f{jogador}&a.'
+  Voce cancelou: '&aVoce cancelou o pedido de casamento para &f{jogador}&a.'
+  Cancelado: '&f{jogador}&c cancelou o pedido de casamento.'
+  Alguem saiu: '&cA cerimonia foi cancelada: um dos noivos saiu do servidor.'
+  Casados: '&aVoces estao casados! {coracao} &aParabens a voce e a &f{parceiro}&a!'
+  Casados pelo padre: '&aO padre &f{padre}&a casou voce com &f{parceiro}&a! {coracao}'
+  Padre casou: '&aVoce casou &f{jogador}&a com &f{parceiro}&a.'
+  Anuncio: '&d&l❤ &f{jogador}&d e &f{parceiro}&d se casaram! &d&l❤'
+  Anuncio com padre: '&d&l❤ &fO padre {padre}&d casou &f{jogador}&d com &f{parceiro}&d! &d&l❤'
+  Forcado: '&aVoce casou &f{jogador}&a com &f{parceiro}&a pela administracao.'
+
+Divorciar:
+  Precisa de padre: '&cSo um padre pode desfazer um casamento neste servidor.'
+  Precisa dos dois: '&cOs dois precisam estar online para o divorcio.'
+  Longe demais: '&cVoces precisam estar a no maximo &f{alcance}&c blocos um do outro.'
+  Pedido enviado: '&aPedido de divorcio enviado para &f{jogador}&a.'
+  Pedido recebido: |
+    &f{jogador}&c quer se divorciar de voce.
+    &aUse &f/casamento aceitar&a para aceitar ou &f/casamento negar&a para recusar.
+    &7Voce tem {segundos} segundos para responder.
+  Pedido do padre: |
+    &fO padre {padre}&c quer divorciar voce de &f{jogador}&c.
+    &aUse &f/casamento aceitar&a para aceitar ou &f/casamento negar&a para recusar.
+    &7Voce tem {segundos} segundos para responder.
+  Recusado: '&f{jogador}&c recusou o divorcio.'
+  Voce recusou: '&aVoce recusou o divorcio pedido por &f{jogador}&a.'
+  Voce cancelou: '&aVoce cancelou o pedido de divorcio para &f{jogador}&a.'
+  Cancelado: '&f{jogador}&c cancelou o pedido de divorcio.'
+  Voce divorciou: '&aVoce se divorciou de &f{parceiro}&a.'
+  Foi divorciado: '&c{parceiro}&c se divorciou de voce.'
+  Padre divorciou: '&aVoce divorciou &f{jogador}&a de &f{parceiro}&a.'
+  Divorciado pelo padre: '&cO padre &f{padre}&c desfez o seu casamento com &f{parceiro}&c.'
+  Anuncio: '&7&l✖ &f{jogador}&7 e &f{parceiro}&7 se divorciaram.'
+  Anuncio com padre: '&7&l✖ &fO padre {padre}&7 divorciou &f{jogador}&7 de &f{parceiro}&7.'
+  Forcado: '&aVoce desfez o casamento de &f{jogador}&a e &f{parceiro}&a.'
+  Forcado pelo admin: '&cA administracao desfez o seu casamento com &f{parceiro}&c.'
+
+Pedido:
+  Alvo ocupado: '&f{jogador}&c ja tem um pedido esperando resposta. Aguarde um pouco.'
+  Ja tem um aberto: '&cVoce ja tem um pedido em aberto. Use &f/casamento cancelar&c antes.'
+  Expirou: '&cO pedido expirou sem resposta.'
+  Outro saiu: '&cO pedido foi cancelado: &f{jogador}&c saiu do servidor.'
+  Nada para aceitar: '&cVoce nao tem nenhum pedido para aceitar.'
+  Nada para negar: '&cVoce nao tem nenhum pedido para recusar.'
+  Nada para cancelar: '&cVoce nao tem nenhum pedido em aberto.'
+
+Padre:
+  Nao e padre: '&cVoce nao e um padre.'
+  Comando desativado: '&cO comando de definir padre esta desativado neste servidor.'
+  Uso: '&cUse &f/casamento definirpadre <jogador> [ligar|desligar]&c.'
+  Promoveu: '&f{jogador}&a agora e um padre.'
+  Removeu: '&f{jogador}&a nao e mais um padre.'
+  Foi promovido: '&f{jogador}&a tornou voce um padre.'
+  Foi removido: '&c{jogador}&c tirou o seu cargo de padre.'
+  Padre por permissao: '&f{jogador}&c e padre por permissao e nao pode ser removido por comando.'
+  Nenhum online: '&cNao ha nenhum padre online agora.'
+  Lista: '&aPadres online &7({total})&a: &f{padres}'
+  Selecionado: '&aFale com o padre &f{padre}&a, que esta no mundo &f{mundo}&a.'
+
+Teleporte:
+  Bloqueado na origem: '&cVoce nao pode se teleportar a partir daqui.'
+  Bloqueado no destino: '&cVoce nao pode se teleportar para onde o seu parceiro esta.'
+  Indo ate o parceiro: '&aTeleportando ate o seu parceiro...'
+  Parceiro vindo: '&f{jogador}&a esta se teleportando ate voce.'
+  Aguardando confirmacao: '&aAguarde &f{jogador}&a aceitar o teleporte.'
+  Pedido recebido: |
+    &f{jogador}&a quer se teleportar ate voce.
+    &aUse &f/casamento aceitar&a para aceitar ou &f/casamento negar&a para recusar.
+    &7Voce tem {segundos} segundos para responder.
+  Recusado: '&f{jogador}&c recusou o seu teleporte.'
+  Voce recusou: '&aVoce recusou o teleporte de &f{jogador}&a.'
+  Voce cancelou: '&aVoce cancelou o pedido de teleporte.'
+  Cancelado: '&f{jogador}&c cancelou o pedido de teleporte.'
+  Nao se mova: '&eTeleportando em &f{segundos}s&e. Nao se mova!'
+  Voce se moveu: '&cTeleporte cancelado: voce se moveu.'
+  Local inseguro: '&cTeleporte cancelado: o destino nao e seguro.'
+  Aguarde: '&cAguarde &f{segundos}s&c para se teleportar de novo.'
+
+Casa:
+  Desativada: '&cA casa do casal esta desativada neste servidor.'
+  Sem casa: '&cVoces ainda nao definiram uma casa. Use &f/casamento definircasa&c.'
+  Mundo sumiu: '&cO mundo &f{mundo}&c da sua casa nao existe mais neste servidor.'
+  Bloqueado na origem: '&cVoce nao pode ir para casa a partir daqui.'
+  Bloqueado no destino: '&cVoce nao pode se teleportar para a sua casa. Mude ela de lugar.'
+  Teleportado: '&aVoce foi teleportado para a casa do casal.'
+  Definida: '&aCasa do casal definida em &f{local}&a.'
+  Parceiro definiu: '&f{jogador}&a definiu a casa do casal em &f{local}&a.'
+  Removida: '&aA casa do casal foi removida.'
+  Parceiro removeu: '&f{jogador}&c removeu a casa do casal.'
+
+Beijo:
+  Desativado: '&cOs beijos estao desativados neste servidor.'
+  Longe demais: '&cVoce esta longe demais para beijar. (maximo de {alcance} blocos)'
+  Aguarde: '&cAguarde &f{segundos}s&c para beijar de novo.'
+  Voce beijou: '&dVoce beijou &f{parceiro}&d! ❤'
+  Foi beijado: '&d{jogador}&d beijou voce! ❤'
+
+Abraco:
+  Desativado: '&cOs abracos estao desativados neste servidor.'
+  Longe demais: '&cVoce esta longe demais para abracar. (maximo de {alcance} blocos)'
+  Aguarde: '&cAguarde &f{segundos}s&c para abracar de novo.'
+  Voce abracou: '&eVoce abracou &f{parceiro}&e!'
+  Foi abracado: '&e{jogador}&e abracou voce!'
+
+Presente:
+  Desativado: '&cOs presentes estao desativados neste servidor.'
+  Longe demais: '&cVoce esta longe demais para presentear. (maximo de {alcance} blocos)'
+  Seu modo bloqueado: '&cVoce nao pode enviar presentes no modo &f{modo}&c.'
+  Modo do parceiro bloqueado: '&cSeu parceiro nao pode receber presentes no modo &f{modo}&c.'
+  Mundo bloqueado: '&cSeu parceiro esta num mundo onde nao da para receber presentes.'
+  Mao vazia: '&cVoce nao esta segurando nenhum item.'
+  Item bloqueado: '&cVoce nao pode presentear &f{item}&c.'
+  Inventario cheio: '&cO inventario do seu parceiro esta cheio.'
+  Aguardando confirmacao: '&aPresente enviado. Aguarde &f{jogador}&a aceitar.'
+  Pedido recebido: |
+    &f{jogador}&a quer te dar &f{quantidade}x {item}&a.
+    &aUse &f/casamento aceitar&a para aceitar ou &f/casamento negar&a para recusar.
+    &7Voce tem {segundos} segundos para responder.
+  Enviado: '&aVoce enviou &f{quantidade}x {item}&a para &f{jogador}&a.'
+  Recebido: '&aVoce recebeu &f{quantidade}x {item}&a de &f{jogador}&a.'
+  Caiu no chao: '&eSeu inventario estava cheio; parte do presente caiu no chao.'
+  Recusado: '&f{jogador}&c recusou o seu presente. O item voltou para voce.'
+  Voce recusou: '&aVoce recusou o presente.'
+  Voce cancelou: '&aVoce cancelou o presente. O item voltou para voce.'
+  Cancelado: '&f{jogador}&c cancelou o presente.'
+  Devolvido no chao: '&eSeu inventario estava cheio; o item devolvido caiu no chao.'
+
+Mochila:
+  Desativada: '&cA mochila compartilhada esta desativada neste servidor.'
+  Sem permissao do parceiro: '&f{parceiro}&c nao esta compartilhando a mochila com voce.'
+  Longe demais: '&cVoce esta longe demais. (maximo de {alcance} blocos)'
+  Parceiro abriu: '&e{jogador}&e abriu a sua mochila.'
+  Compartilhando: '&aAgora o seu parceiro pode abrir a sua mochila.'
+  Nao compartilhando: '&cO seu parceiro nao pode mais abrir a sua mochila.'
+
+PvP:
+  Bloqueio desativado: '&cO bloqueio de PvP entre casais esta desativado neste servidor.'
+  Ligado: '&aPvP com &f{parceiro}&a ligado.'
+  Desligado: '&aPvP com &f{parceiro}&a desligado.'
+  Parceiro ligou: '&e{jogador}&e ligou o PvP entre voces.'
+  Parceiro desligou: '&e{jogador}&e desligou o PvP entre voces.'
+  Esta desligado: '&cVoce nao pode machucar &f{parceiro}&c com o PvP do casal desligado.'
+
+Chat:
+  Desativado: '&cO chat privado esta desativado neste servidor.'
+  Entrou: '&aTudo que voce digitar agora vai para o chat do casal. Use &f/casamento chat&a para sair.'
+  Saiu: '&aVoce voltou para o chat publico.'
+  Alvo todos: '&aSuas mensagens agora vao para todos os seus parceiros.'
+  Alvo definido: '&aSuas mensagens agora vao so para &f{parceiro}&a.'
+  Escuta desativada: '&cA escuta dos chats privados esta desativada neste servidor.'
+  Ouvindo: '&aVoce esta ouvindo os chats privados.'
+  Nao ouvindo: '&aVoce parou de ouvir os chats privados.'
+  Parceiro offline: '&7{parceiro} esta offline e vai ler quando entrar.'
+  Prefixo da escuta: '&8[&7escuta&8] &r'
+
+Sobrenome:
+  Desativado: '&cOs sobrenomes estao desativados neste servidor.'
+  Uso: '&cUse &f/casamento sobrenome <nome>&c ou &f/casamento sobrenome remover&c.'
+  Vazio: '&cInforme um sobrenome.'
+  Curto: '&cO sobrenome precisa ter pelo menos &f{minimo}&c caracteres.'
+  Longo: '&cO sobrenome pode ter no maximo &f{maximo}&c caracteres.'
+  Caracteres invalidos: '&cO sobrenome so pode usar estes caracteres: &f{caracteres}&c.'
+  Proibido: '&cEsse sobrenome nao e permitido.'
+  Em uso: '&cEsse sobrenome ja pertence a outro casal.'
+  Nao tem: '&cVoces ainda nao tem um sobrenome.'
+  Obrigatorio: '&cO sobrenome e obrigatorio e nao pode ser removido.'
+  Parceiro offline: '&cSeu parceiro precisa estar online para confirmar a troca.'
+  Aguardando confirmacao: '&aAguarde &f{jogador}&a confirmar o sobrenome &f{sobrenome}&a.'
+  Pedido recebido: |
+    &f{jogador}&a quer mudar o sobrenome do casal de &f{atual}&a para &f{sobrenome}&a.
+    &aUse &f/casamento aceitar&a para aceitar ou &f/casamento negar&a para recusar.
+    &7Voce tem {segundos} segundos para responder.
+  Recusado: '&f{jogador}&c recusou a troca de sobrenome.'
+  Voce recusou: '&aVoce recusou o sobrenome &f{sobrenome}&a.'
+  Voce cancelou: '&aVoce cancelou a troca para &f{sobrenome}&a.'
+  Cancelado: '&f{jogador}&c cancelou a troca de sobrenome.'
+  Definido: '&aO sobrenome do casal agora e &f{sobrenome}&a.'
+  Removido: '&aO sobrenome do casal foi removido.'
+
+Cor:
+  Desativada: '&cA troca de cor do coracao esta desativada neste servidor.'
+  Desconhecida: '&cA cor &f{cor}&c nao existe. Use &f/casamento cor&c para escolher no menu.'
+  Definida: '&aO coracao do casal agora e {coracao} &a({cor}&a).'
+
+# Nomes amigaveis das cores, usados no menu.
+Cores:
+  DARK_RED: 'Vermelho escuro'
+  RED: 'Vermelho'
+  GOLD: 'Dourado'
+  YELLOW: 'Amarelo'
+  DARK_GREEN: 'Verde escuro'
+  GREEN: 'Verde'
+  AQUA: 'Ciano'
+  DARK_AQUA: 'Ciano escuro'
+  DARK_BLUE: 'Azul escuro'
+  BLUE: 'Azul'
+  LIGHT_PURPLE: 'Rosa'
+  DARK_PURPLE: 'Roxo'
+  WHITE: 'Branco'
+  GRAY: 'Cinza'
+  DARK_GRAY: 'Cinza escuro'
+  BLACK: 'Preto'
+
+Economia:
+  Sem dinheiro: '&cVoce precisa de &f{custo} {moeda}&c para isso.'
+  Sem dinheiro no casal: '&cCada um de voces precisa de &f{custo} {moeda}&c para isso.'
+  Pagou: '&7Voce pagou &f{custo} {moeda}&7. Saldo: &f{restante} {moeda}&7.'
+
+Info:
+  Cabecalho: '&d&m                    &r &d&l❤ Casamento &d&m                    '
+  Parceiro 1: '&7Parceiro 1: &f{jogador1}'
+  Parceiro 2: '&7Parceiro 2: &f{jogador2}'
+  Sobrenome: '&7Sobrenome: &f{sobrenome}'
+  Data: '&7Casados desde: &f{data}'
+  Tempo: '&7Tempo de casamento: &f{tempo}'
+  Padre: '&7Padre: &f{padre}'
+  Casa: '&7Casa do casal: &f{casa}'
+  PvP: '&7PvP entre o casal: &f{pvp}'
+  Coracao: '&7Coracao: {coracao}'
+  Rodape: '&d&m                                                        '
+  Nao e casado: '&f{jogador}&c nao e casado.'
+
+Visto:
+  Online: '&f{parceiro}&a esta online agora.'
+  Offline: '&7{parceiro} foi visto pela ultima vez em &f{data}&7 (ha {tempo}).'
+  Desconhecido: '&7Nao ha registro de quando {parceiro} entrou pela ultima vez.'
+
+Lista:
+  Vazia: '&cNao ha nenhum casal no servidor ainda.'
+  Cabecalho: '&d&lCasais do servidor &7- pagina {pagina}/{paginas} &8({total} no total)'
+  Linha: '&7{posicao}. &f{jogador1} {coracao} &f{jogador2} &8- &7{data}'
+  Rodape: '&7Use &f/casamento lista <pagina>&7 para ver as outras paginas.'
+
+Parceiros:
+  Nao e casado: '&f{jogador}&c nao e casado.'
+  Cabecalho: '&d&lParceiros de {jogador} &7({total})'
+  Linha: '&7- &f{parceiro} {coracao} &8casados desde &7{data}'
+  Rodape: ''
+
+Aviso:
+  Parceiro entrou: '&a{jogador} entrou no servidor. ❤'
+  Parceiro saiu: '&7{jogador} saiu do servidor.'
+  Parceiro online: '&aSeu parceiro &f{parceiro}&a esta online.'
+  Parceiro offline: '&7Seu parceiro {parceiro} esta offline.'
+  Todos offline: '&7Todos os seus parceiros estao offline.'
+  Parceiros online: '&aParceiros online: &f{parceiros}'
+
+Migracao:
+  Uso: '&cUse &f/starcasamento migrar marriagemaster confirmar&c.'
+  Confirme: |
+    &eIsto vai importar os casamentos do MarriageMaster para o StarCasamento.
+    &7Nada e apagado la, e casais que ja existem aqui sao pulados.
+    &aConfirme com &f/starcasamento migrar marriagemaster confirmar&a.
+  Iniciando: '&7Lendo o banco do MarriageMaster...'
+  Falhou: '&cA migracao falhou: &f{erro}'
+  Pronta: |
+    &aMigracao concluida!
+    &7Casamentos lidos: &f{lidos}
+    &7Importados: &f{importados}
+    &7Ja existiam aqui: &f{repetidos}
+    &7Casas importadas: &f{casas}
+    &7Padres importados: &f{padres}
+
+Ajuda:
+  Comandos: |
+    &d&lSTARCASAMENTO &7- &fComandos
+    &f/casamento &7Abre o menu do casamento.
+    &f/casamento casar <jogador> &7Pede alguem em casamento.
+    &f/casamento aceitar &7Aceita o pedido aberto.
+    &f/casamento negar &7Recusa o pedido aberto.
+    &f/casamento cancelar &7Cancela o pedido que voce fez.
+    &f/casamento divorciar &7Desfaz o seu casamento.
+    &f/casamento tp &7Teleporta ate o seu parceiro.
+    &f/casamento casa &7Vai para a casa do casal.
+    &f/casamento definircasa &7Define a casa do casal aqui.
+    &f/casamento removercasa &7Apaga a casa do casal.
+    &f/casamento chat [mensagem] &7Conversa em particular com o parceiro.
+    &f/casamento presente &7Da o item da sua mao para o parceiro.
+    &f/casamento beijo &7Beija o seu parceiro.
+    &f/casamento abraco &7Abraca o seu parceiro.
+    &f/casamento pvp &7Liga ou desliga o dano entre voces.
+    &f/casamento mochila &7Abre a mochila do parceiro.
+    &f/casamento compartilhar &7Deixa o parceiro abrir a sua mochila.
+    &f/casamento sobrenome <nome> &7Define o sobrenome do casal.
+    &f/casamento cor &7Escolhe a cor do coracao.
+    &f/casamento visto &7Mostra quando o parceiro entrou pela ultima vez.
+    &f/casamento info [jogador] &7Mostra os dados de um casamento.
+    &f/casamento lista &7Lista os casais do servidor.
+    &f/casamento parceiros &7Lista os seus parceiros.
+    &f/casamento padres &7Mostra os padres online.
+  Admin: |
+    &d&lSTARCASAMENTO &7- &fAdministracao
+    &f/starcasamento recarregar &7Recarrega os arquivos de configuracao.
+    &f/starcasamento versao &7Mostra a versao e o banco em uso.
+    &f/starcasamento casar <jogador1> <jogador2> &7Casa dois jogadores na forca.
+    &f/starcasamento divorciar <jogador1> <jogador2> &7Desfaz um casamento na forca.
+    &f/starcasamento migrar marriagemaster confirmar &7Importa os dados do MarriageMaster.
+  Uso divorciar admin: '&cUse &f/starcasamento divorciar <jogador1> <jogador2>&c.'
+  Uso casar admin: '&cUse &f/starcasamento casar <jogador1> <jogador2>&c.'

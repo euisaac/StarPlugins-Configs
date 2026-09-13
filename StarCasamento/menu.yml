@@ -1,0 +1,530 @@
+#  Menus do StarCasamento.
+#
+#  "Versao do modelo" e o numero deste arquivo dentro do jar. Quando ele sobe
+#  numa atualizacao, o plugin guarda o seu arquivo como menu-antigo-vX.yml e
+#  escreve o modelo novo no lugar -- e assim que os itens novos chegam.
+Versao do modelo: 1
+
+#  ─────────────────────────  Como configurar um item  ─────────────────────────
+#
+#  Slot / Slots      Onde o item aparece (0 e o canto superior esquerdo).
+#  Material          Nome moderno (PLAYER_HEAD, RED_BED...). Funciona da 1.8 a 1.21.
+#  Dono              Nick de quem empresta a skin, quando o material e uma cabeca.
+#  Textura           Base64, URL ou hash de textura; tem prioridade sobre o Dono.
+#  Quantidade        Tamanho da pilha.
+#  Nome / Lore       Textos com cores &a e &#RRGGBB.
+#  Encantamentos     Lista no formato ENCANTAMENTO:NIVEL.
+#  Brilho            true deixa o item brilhando sem mostrar encantamento.
+#  Permissao         Permissao necessaria para usar o item.
+#  Esconder sem permissao   true esconde de quem nao tem a permissao acima.
+#  Acoes             O que acontece ao clicar (lista, executada de cima para baixo).
+#
+#  Condicoes (todas opcionais -- ausentes, nao sao testadas):
+#      Somente casado, Somente com casa, Somente padre, Somente com sobrenome,
+#      Somente com pvp, Somente parceiro online, Somente com chat privado,
+#      Somente compartilhando mochila
+#  Use true para exigir e false para exigir o contrario.
+#
+#  ────────────────────────────────  Acoes  ────────────────────────────────────
+#
+#  Do casamento:
+#      tp, casa, definircasa, removercasa, beijo, abraco, presente, mochila,
+#      compartilharmochila [ligar|desligar], chat [ligar|desligar],
+#      pvp [ligar|desligar], divorciar, cor, lista, parceiros, padres,
+#      info, visto
+#  Gerais:
+#      fechar, atualizar, voltar, comando: <cmd>, console: <cmd>,
+#      mensagem: <texto>, anuncio: <texto>, titulo: <texto<nl>subtitulo>,
+#      actionbar: <texto>, som: <SOM;volume;tom>
+#
+#  ─────────────────────────────  Substituicoes  ───────────────────────────────
+#
+#      {jogador}  {parceiro}  {jogador1}  {jogador2}  {coracao}  {cor}
+#      {sobrenome}  {data}  {tempo}  {padre}  {casa}  {pvp}  {status}
+#      {visto}  {parceiros}  {mochila}  (se VOCE esta compartilhando a mochila)
+#  Nos menus de lista tambem valem {pagina}, {paginas} e {total}.
+#  Placeholders do PlaceholderAPI funcionam em todos os textos.
+
+# Formato das datas mostradas nos menus e no /casamento info.
+Formato da data: 'dd/MM/yyyy'
+
+#
+# ═══════════════════════════  Menu principal  ═══════════════════════════
+#
+Menu principal:
+  Titulo: '&8Casamento'
+  Linhas: 5
+
+  Preencher:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+
+    parceiro:
+      Slot: 13
+      Material: PLAYER_HEAD
+      Dono: '{parceiro}'
+      Nome: '{coracao} &f{parceiro}'
+      Lore:
+        - '&7Status: {status}'
+        - '&7Casados desde: &f{data}'
+        - '&7Ha &f{tempo}'
+        - '&7Sobrenome: &f{sobrenome}'
+        - ''
+        - '&7Visto por ultimo: &f{visto}'
+      Somente casado: true
+      Acoes:
+        - 'atualizar'
+
+    solteiro:
+      Slot: 13
+      Material: BARRIER
+      Nome: '&cVoce ainda nao e casado'
+      Lore:
+        - '&7Use &f/casamento casar <jogador>&7 para'
+        - '&7pedir alguem em casamento.'
+        - ''
+        - '&7Clique para ver os padres online.'
+      Somente casado: false
+      Acoes:
+        - 'padres'
+
+    info:
+      Slot: 11
+      Material: BOOK
+      Nome: '&bInformacoes do casamento'
+      Lore:
+        - '&7Veja todos os dados do casal.'
+      Somente casado: true
+      Permissao: starcasamento.info
+      Esconder sem permissao: false
+      Acoes:
+        - 'info'
+
+    visto:
+      Slot: 15
+      Material: CLOCK
+      Nome: '&bVisto por ultimo'
+      Lore:
+        - '&7{parceiro}: &f{visto}'
+      Somente casado: true
+      Permissao: starcasamento.visto
+      Esconder sem permissao: false
+      Acoes:
+        - 'visto'
+
+    teleporte:
+      Slot: 19
+      Material: ENDER_PEARL
+      Nome: '&aIr ate o parceiro'
+      Lore:
+        - '&7Teleporta voce ate &f{parceiro}&7.'
+        - ''
+        - '&eClique para viajar'
+      Somente casado: true
+      Somente parceiro online: true
+      Permissao: starcasamento.tp
+      Esconder sem permissao: false
+      Acoes:
+        - 'tp'
+
+    casa:
+      Slot: 20
+      Material: RED_BED
+      Nome: '&aCasa do casal'
+      Lore:
+        - '&7Local: &f{casa}'
+        - ''
+        - '&eClique para ir para casa'
+      Somente casado: true
+      Somente com casa: true
+      Permissao: starcasamento.casa
+      Esconder sem permissao: false
+      Acoes:
+        - 'casa'
+
+    definir casa:
+      Slot: 21
+      Material: OAK_DOOR
+      Nome: '&aDefinir a casa aqui'
+      Lore:
+        - '&7Marca este lugar como a casa'
+        - '&7de voces dois.'
+        - ''
+        - '&eClique para definir'
+      Somente casado: true
+      Permissao: starcasamento.casa.definir
+      Esconder sem permissao: false
+      Acoes:
+        - 'definircasa'
+
+    mochila:
+      Slot: 22
+      Material: CHEST
+      Nome: '&aMochila do parceiro'
+      Lore:
+        - '&7Abre a mochila de &f{parceiro}&7.'
+        - ''
+        - '&eClique para abrir'
+      Somente casado: true
+      Permissao: starcasamento.mochila
+      Esconder sem permissao: true
+      Acoes:
+        - 'mochila'
+
+    sobrenome:
+      Slot: 23
+      Material: NAME_TAG
+      Nome: '&aSobrenome do casal'
+      Lore:
+        - '&7Atual: &f{sobrenome}'
+        - ''
+        - '&7Use &f/casamento sobrenome <nome>'
+      Somente casado: true
+      Permissao: starcasamento.sobrenome
+      Esconder sem permissao: true
+      Acoes:
+        - 'mensagem: &7Use &f/casamento sobrenome <nome>&7 para definir.'
+        - 'fechar'
+
+    cor:
+      Slot: 24
+      Material: RED_DYE
+      Nome: '&aCor do coracao'
+      Lore:
+        - '&7Atual: {coracao} &7({cor}&7)'
+        - ''
+        - '&eClique para escolher'
+      Somente casado: true
+      Permissao: starcasamento.cor
+      Esconder sem permissao: false
+      Acoes:
+        - 'cor'
+
+    pvp:
+      Slot: 25
+      Material: IRON_SWORD
+      Nome: '&aPvP com o parceiro'
+      Lore:
+        - '&7Estado: {pvp}'
+        - ''
+        - '&eClique para alternar'
+      Somente casado: true
+      Permissao: starcasamento.pvp
+      Esconder sem permissao: false
+      Acoes:
+        - 'pvp'
+
+    beijo:
+      Slot: 28
+      Material: RED_TULIP
+      Nome: '&dBeijar'
+      Lore:
+        - '&7Da um beijo em &f{parceiro}&7.'
+        - ''
+        - '&eClique para beijar'
+      Somente casado: true
+      Somente parceiro online: true
+      Permissao: starcasamento.beijo
+      Esconder sem permissao: false
+      Acoes:
+        - 'beijo'
+
+    abraco:
+      Slot: 29
+      Material: SUNFLOWER
+      Nome: '&eAbracar'
+      Lore:
+        - '&7Da um abraco em &f{parceiro}&7.'
+        - ''
+        - '&eClique para abracar'
+      Somente casado: true
+      Somente parceiro online: true
+      Permissao: starcasamento.abraco
+      Esconder sem permissao: false
+      Acoes:
+        - 'abraco'
+
+    presente:
+      Slot: 30
+      Material: CAKE
+      Nome: '&aPresentear'
+      Lore:
+        - '&7Da o item da sua mao para &f{parceiro}&7.'
+        - ''
+        - '&eClique para presentear'
+      Somente casado: true
+      Somente parceiro online: true
+      Permissao: starcasamento.presente
+      Esconder sem permissao: false
+      Acoes:
+        - 'presente'
+
+    chat:
+      Slot: 31
+      Material: PAPER
+      Nome: '&aChat do casal'
+      Lore:
+        - '&7Conversa so entre voces dois.'
+        - ''
+        - '&eClique para alternar'
+      Somente casado: true
+      Permissao: starcasamento.chat
+      Esconder sem permissao: false
+      Acoes:
+        - 'chat'
+
+    divorciar:
+      Slot: 32
+      Material: SHEARS
+      Nome: '&cDivorciar'
+      Lore:
+        - '&7Desfaz o seu casamento com &f{parceiro}&7.'
+        - ''
+        - '&cIsso nao tem volta!'
+      Somente casado: true
+      Permissao: starcasamento.divorciar
+      Esconder sem permissao: false
+      Acoes:
+        - 'divorciar'
+
+    compartilharmochila:
+      Slot: 33
+      Material: ENDER_CHEST
+      Nome: '&aCompartilhar minha mochila'
+      Lore:
+        - '&7Deixa &f{parceiro}&7 abrir a sua mochila'
+        - '&7(clicando nela quando esta no chao).'
+        - ''
+        - '&7Atual: {mochila}'
+        - ''
+        - '&eClique para alternar'
+      Somente casado: true
+      Permissao: starcasamento.mochila
+      Esconder sem permissao: true
+      Acoes:
+        - 'compartilharmochila'
+        - 'atualizar'
+
+    padres:
+      Slot: 38
+      Material: GOLDEN_HELMET
+      Nome: '&6Padres online'
+      Lore:
+        - '&7Veja com quem falar para casar.'
+      Permissao: starcasamento.padres
+      Esconder sem permissao: false
+      Acoes:
+        - 'padres'
+
+    lista:
+      Slot: 40
+      Material: BOOKSHELF
+      Nome: '&6Casais do servidor'
+      Lore:
+        - '&7Veja todos os casais.'
+      Permissao: starcasamento.lista
+      Esconder sem permissao: false
+      Acoes:
+        - 'lista'
+
+    parceiros:
+      Slot: 42
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&6Seus parceiros &7({parceiros})'
+      Lore:
+        - '&7Escolha em qual casamento mexer.'
+      Somente casado: true
+      Permissao: starcasamento.parceiros
+      Esconder sem permissao: false
+      Acoes:
+        - 'parceiros'
+
+    fechar:
+      Slot: 44
+      Material: BARRIER
+      Nome: '&cFechar'
+      Acoes:
+        - 'fechar'
+
+#
+# ═════════════════════════  Lista de casais  ════════════════════════════
+#
+Menu da lista:
+  Titulo: '&8Casais &7({pagina}/{paginas})'
+  Linhas: 6
+
+  # Onde os casais sao desenhados. Apague a lista para usar tudo menos a
+  # ultima linha.
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Preencher:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+
+    # Modelo usado para cada casal da pagina.
+    casal:
+      Material: PLAYER_HEAD
+      Dono: '{jogador1}'
+      Nome: '&f{jogador1} {coracao} &f{jogador2}'
+      Lore:
+        - '&7Casados desde: &f{data}'
+        - '&7Ha &f{tempo}'
+        - '&7Sobrenome: &f{sobrenome}'
+        - ''
+        - '&eClique para ver os detalhes'
+
+    anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&aPagina anterior'
+      Lore:
+        - '&7Pagina {anterior}'
+      Acoes:
+        - 'pagina: anterior'
+
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+    proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&aProxima pagina'
+      Lore:
+        - '&7Pagina {proxima}'
+      Acoes:
+        - 'pagina: proxima'
+
+#
+# ═══════════════════════════  Seus parceiros  ═══════════════════════════
+#
+Menu de parceiros:
+  Titulo: '&8Seus parceiros'
+  Linhas: 3
+
+  Preencher:
+    Ativar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+
+    # Modelo usado para cada parceiro.
+    parceiro:
+      Material: PLAYER_HEAD
+      Dono: '{parceiro}'
+      Nome: '{coracao} &f{parceiro}'
+      Lore:
+        - '&7Status: {status}'
+        - '&7Casados desde: &f{data}'
+        - ''
+        - '&eClique para abrir este casamento'
+
+    voltar:
+      Slot: 26
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+#
+# ═══════════════════════════  Padres online  ════════════════════════════
+#
+Menu de padres:
+  Titulo: '&8Padres online &7({total})'
+  Linhas: 3
+
+  Preencher:
+    Ativar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+
+    # Modelo usado para cada padre online.
+    padre:
+      Material: PLAYER_HEAD
+      Dono: '{padre}'
+      Nome: '&6{padre}'
+      Lore:
+        - '&7Mundo: &f{mundo}'
+        - ''
+        - '&7Fale com ele para marcar a cerimonia.'
+
+    voltar:
+      Slot: 26
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+#
+# ══════════════════════════  Cor do coracao  ════════════════════════════
+#
+Menu de cores:
+  Titulo: '&8Cor do coracao'
+  Linhas: 3
+
+  Preencher:
+    Ativar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+
+    # Modelo usado para cada cor. {material} vira o vidro da cor certa.
+    cor:
+      Material: '{material}'
+      Nome: '{coracao} &f{cor_amigavel}'
+      Lore:
+        - '{atual}'
+
+    voltar:
+      Slot: 26
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+#
+# ═════════════════════════  Confirmar divorcio  ═════════════════════════
+#
+Menu de confirmacao:
+  Titulo: '&8Divorciar de {parceiro}?'
+  Linhas: 3
+
+  Preencher:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+
+    confirmar:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&aSim, quero me divorciar'
+      Lore:
+        - '&7Desfaz o casamento com &f{parceiro}&7.'
+        - ''
+        - '&cIsso nao tem volta!'
+
+    cancelar:
+      Slot: 15
+      Material: RED_WOOL
+      Nome: '&cNao, mudei de ideia'
+      Lore:
+        - '&7Volta para o menu do casamento.'
