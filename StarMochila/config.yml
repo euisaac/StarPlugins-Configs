@@ -71,41 +71,35 @@ upgrades:
 gui:
   cosmetics-menu:
     title: "&7Menu de Cosméticos da Mochila"
-    size: 27
+    # O menu tem 54 slots: o livro do modo de uso fica no 4 (topo, meio), as skins
+    # ocupam as 4 fileiras do meio (36 por página, a padrão é sempre a primeira) e
+    # embaixo ficam página anterior (45), voltar (49) e próxima página (53).
     modo-de-uso:
       material: "BOOK"
-      slot: 10
+      slot: 4
       name: "&eModo de Uso"
-      lore:
-        - "&7Escolha como você quer usar o cosmético da mochila."
-        - "&7Clique para alternar entre nas costas ou como pet."
-        - ""
-        - "&aAtualmente: &f%current-mode%" # Cosmético nas costas, pet ou Desativado.
-        - ""
     skin-padrao:
       material: "PLAYER_HEAD"
       skull_data: "%skull_data%"
-      slot: 12
       name: "&8Skin Padrão"
       lore:
         - ""
         - "&7Essa é a skin padrão da sua mochila."
         - ""
-        - "&e%skin-status%" # Status de skin em uso ou clique para selecionar.
+        - "&e%skin-status%" # "Skin em uso" ou "Clique para usar esta skin"
         - ""
     skins-menu:
       material: "PLAYER_HEAD"
-      slot: [13,14,15,16]
       name: "&a%nome-da-skin%"
       lore:
         - ""
         - "&7%descricao-da-skin%"
         - ""
-        - "&e%skin-status%" # Status de skin em uso ou clique para selecionar.
+        - "&e%skin-status%" # "Skin em uso" ou "Clique para usar esta skin"
         - ""
     voltar:
-      material: "ARROW"
-      slot: 18
+      material: "BARRIER"
+      slot: 49
       name: "&cVoltar"
       lore:
         - "&7Clique para voltar a mochila."
@@ -206,9 +200,10 @@ settings:
     mode: "desativado"
     # Modo que liga sozinho quando o jogador compra o upgrade (ele troca depois no menu se quiser).
     mode-ao-comprar: "back"
-    # Como o PRÓPRIO jogador vê a mochila (precisa do ProtocolLib). Os outros sempre
-    # veem o stand normal. Sem isso a mochila "corre atrás" do dono no F5.
+    # Como o PRÓPRIO jogador vê a mochila (um display montado nele, sem atraso). Os
+    # outros sempre veem o stand normal. Desligado, a mochila "corre atrás" do dono no F5.
     visao-propria:
+      enabled: true
       # true: gira junto com a câmera, zero atraso (em F5 de frente ela aparece no peito)
       # false: gira com o corpo, leve atraso só ao virar
       acompanhar-camera: true
@@ -342,4 +337,154 @@ backpack-skins:
     skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTIwOGY1ODk3ZjEyZTVmY2IyZThiNDM4MWY1NDQ1YTc3MTFlODQ3MjFlYzRhN2ZjMTAxZDViNzQwYjg2ZjhmYSJ9fX0="
     name: "&6Gucci"
     description: "&7Uma skin gucci estilosa para a mochila."
-    permission: "starmochila.skin.gucci"    
+    permission: "starmochila.skin.gucci"
+  preta:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTUwNjBlZjU3ZmY0Y2UwYTg1NDgyZWQwNDU0YzdmZTAzOGFhNDU1ZDNjMjY3NTM0ZTI5ZWRjODE0MWM1YjVjZSJ9fX0="
+    name: "&8Preta"
+    description: "&7Uma mochila preta, discreta."
+    permission: "starmochila.skin.preta"
+  branca:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWJkZjhkNTNiZGI5MzJjMjIzYzYyN2JiYjhjMWUwYzVlMzUxYTYxNmNkODA1NjkyOWM2NmU2ZGNlNDQ0MzNkYiJ9fX0="
+    name: "&fBranca"
+    description: "&7Uma mochila branca, limpinha."
+    permission: "starmochila.skin.branca"
+  cinza:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGM3NjU0OTU1ODdiYjFhNDMwMjNiYTI3YTJiYzFiMTRkZWJmMjM3NDg0ODA2Nzc5NDI0N2Q4YjhmMWE2ZTI5ZSJ9fX0="
+    name: "&7Cinza"
+    description: "&7Uma mochila cinza, pra todo dia."
+    permission: "starmochila.skin.cinza"
+  azul:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzZhMTBlZTIxNTVmYzAxMzRkOTM5MjAwMGE5ZWI5ZWJjYmE4NTI2ZWZmMzg5M2U1NDQzNGU4MjVlNTU4ZmI1NSJ9fX0="
+    name: "&9Azul"
+    description: "&7Uma mochila azul."
+    permission: "starmochila.skin.azul"
+  azul-claro:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTNjMTUzYzM5MWMzNGUyZDMyOGE2MDgzOWU2ODNhOWY4MmFkMzA0ODI5OWQ4YmM2YTM5ZTZmOTE1Y2M1YSJ9fX0="
+    name: "&bAzul Claro"
+    description: "&7Uma mochila azul clarinha."
+    permission: "starmochila.skin.azul-claro"
+  ciano:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGY3MGZhYjMyNDZmZTAyN2NlMGJiYTg4NWE3M2M2ZTgyZDhmZjhmMzU4MjMxZTg0NjFmOTU2NTYwY2ZhNThmIn19fQ=="
+    name: "&3Ciano"
+    description: "&7Uma mochila ciano."
+    permission: "starmochila.skin.ciano"
+  vermelha:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODVlNGY5ZGE2OGM4MWZhNDgxZWVjZGNhNDhhMTM4Y2VjZGUyY2RkZmZlZWFlODRhYjFhZmQyNGEzNjNlMDI4In19fQ=="
+    name: "&cVermelha"
+    description: "&7Uma mochila vermelha."
+    permission: "starmochila.skin.vermelha"
+  laranja:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjcwYjU2MjJiN2QwNjhmNTc4OGJmMTlhODM5ODM5MzdiMTZjNTk3MmM5MWY1ZWU3YmY1NGJjYzM2MzhmOWEzNiJ9fX0="
+    name: "&6Laranja"
+    description: "&7Uma mochila laranja."
+    permission: "starmochila.skin.laranja"
+  roxa:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmMwNWYwNjlhYjkyYWU1ZTEwOWNhMDRlZDdhZGRlMDFlZDQ4MDIxMDc5ZWVjMTYyYjU4M2UzYTc3NGVlYjZhMiJ9fX0="
+    name: "&5Roxa"
+    description: "&7Uma mochila roxa."
+    permission: "starmochila.skin.roxa"
+  magenta:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzY1NzVmY2NjYWRhZTg3YzA4NDJmNTNkZTVlMGZmYTc1ODUxNjk2ODY2ZDgxZTFiNzI4MjgzNDhkYjUyNTYifX19"
+    name: "&dMagenta"
+    description: "&7Uma mochila magenta."
+    permission: "starmochila.skin.magenta"
+  marrom:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjMwOGJmNWNjM2U5ZGVjYWYwNzcwYzNmZGFkMWUwNDIxMjFjZjM5Y2MyNTA1YmJiODY2ZTE4YzZkMjNjY2QwYyJ9fX0="
+    name: "&6Marrom"
+    description: "&7Uma mochila marrom de viagem."
+    permission: "starmochila.skin.marrom"
+  couro:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDBiMWI1MzY3NDkxODM5MWEwN2E5ZDAwNTgyYzA1OGY5MjgwYmM1MjZhNzE2Yzc5NmVlNWVhYjRiZTEwYTc2MCJ9fX0="
+    name: "&6Couro"
+    description: "&7Uma mochila de couro, bem resistente."
+    permission: "starmochila.skin.couro"
+  camuflada:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjhjMTVhYTc5MmVjOTFmYzJkYWY1N2RiZjI3ZjM3YTg4NjUzODU0MWExODBhZjg4YjE0MTVlZTM3ZDEyYTcifX19"
+    name: "&2Camuflada"
+    description: "&7Uma mochila camuflada, estilo militar."
+    permission: "starmochila.skin.camuflada"
+  listrada:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWNlODMzYWE5YTI4YmNmMjA3ZTViMzZhNTkxY2VmMWY5OTdkZDJmNGE0YTIzNmFmNTBkZDA4MWYzYTVkOWM0YyJ9fX0="
+    name: "&cListrada"
+    description: "&7Uma mochila listrada de vermelho e branco."
+    permission: "starmochila.skin.listrada"
+  cobre:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWU1ODNjYjc3MTU4MWQzYjI3YjIzZjYxN2M3YjhhNDNkY2Q3MjIwNDQ3ZmY5NWZmMTk2MDQxNGQyMzUwYmRiOSJ9fX0="
+    name: "&6Cobre"
+    description: "&7Uma mochila de cobre."
+    permission: "starmochila.skin.cobre"
+  ferro:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGRhZjhlZGMzMmFmYjQ2MWFlZTA3MTMwNTgwMjMxMDFmOTI0ZTJhN2VmYTg4M2RhZTcyZDVkNTdkNGMwNTNkNyJ9fX0="
+    name: "&fFerro"
+    description: "&7Uma mochila de ferro."
+    permission: "starmochila.skin.ferro"
+  ouro:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2Y4NzUyNWFkODRlZmQxNjgwNmEyNmNhMDE5ODRiMjgwZTViYTY0MDM1MDViNmY2Yzk4MDNjMjQ2NDJhYmZjNyJ9fX0="
+    name: "&eOuro"
+    description: "&7Uma mochila de ouro, pra quem tem."
+    permission: "starmochila.skin.ouro"
+  diamante:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTBkMWIwNzMyYmY3YTcwZGU0ZGMwMTU1OWNjNWM5ODExMDY4ZWY3YjYwOTUwMTAzODI3MDlmOTQwOTM5MjdmNiJ9fX0="
+    name: "&bDiamante"
+    description: "&7Uma mochila de diamante."
+    permission: "starmochila.skin.diamante"
+  netherite:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODM1ZDdjYzA5ZmZmYmNhM2UxYzAwZDQyMWFmYWE0MzJjZjcxZmNiMDk1NTVmNTQ1MjNlNTIyMGQxYWYwZjk3ZCJ9fX0="
+    name: "&8Netherite"
+    description: "&7Uma mochila de netherite, a mais forte."
+    permission: "starmochila.skin.netherite"
+  end:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjEyYzBhMzljZjQ2YTcyYzE4ZmJhMzA3YjgxNTQ2MmQxOTk3NGZlZWU3YTA3ODY0MzU2OWRlY2JmNWI3In19fQ=="
+    name: "&5End"
+    description: "&7Uma mochila com a cara do End."
+    permission: "starmochila.skin.end"
+  ovo-de-dragao:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0="
+    name: "&5Ovo de Dragão"
+    description: "&7Uma mochila em forma de ovo de dragão."
+    permission: "starmochila.skin.ovo-de-dragao"
+  olho-desperto:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGQ1OWY0ZGRiYjJhMDk0YzFkYTc2NTRjMWViZjlkODUxNWEyYjc1YTIyMGZkNzNhNjUxMzUwNzJlMzhkNGY2MCJ9fX0="
+    name: "&dOlho Desperto"
+    description: "&7Uma mochila com um olho que te observa."
+    permission: "starmochila.skin.olho-desperto"
+  foca:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNzdkY2JiYTNlYmY1ZmMxM2I3MzEzOTA3MDkyMjk0YTU4ZTlmM2E4MzllNWJiYTZkYWFlOGQ4NjM4ZGFmYmQ2YyJ9fX0="
+    name: "&fFoquinha"
+    description: "&7Uma mochila de foca bebê."
+    permission: "starmochila.skin.foca"
+  presente-vermelho:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTc4NjY4MDVmODc1MzM5ZWZiOTRlNjY3ODM3YzE5M2YyYTFiY2VkZWM4YjQxYmFiYmJmMGJiN2E3YzhmNjE0OCJ9fX0="
+    name: "&cPresente Vermelho"
+    description: "&7Uma mochila embrulhada de presente."
+    permission: "starmochila.skin.presente-vermelho"
+  presente-azul:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmIwOWRmOGYzODc1Yjk1YzlkMDU3NzI4MTUyZjlmNDRlNTQwZmQ3YWY4MjVkZjQ0YjNkYjQxNTVjY2VlYzQyOSJ9fX0="
+    name: "&9Presente Azul"
+    description: "&7Uma mochila embrulhada de presente."
+    permission: "starmochila.skin.presente-azul"
+  presente-dourado:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWQ1YzM4ZmI1NjMyMGZhMTM2MzdhY2ZlODIwNzdiNmQ3ODBiODg5Zjc3NDJkNjliY2M2ZTVhZTAzNWVhZmQyNyJ9fX0="
+    name: "&ePresente Dourado"
+    description: "&7Uma mochila embrulhada de presente."
+    permission: "starmochila.skin.presente-dourado"
+  presente-preto:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjQyNWZmODA2NmU2OTlkNTE1MDU2Zjc4MjcxNTQ2YmFhODhkNzgxZjFhODk0NjUzYTBmNDAxOWU4YjE0YmNiNCJ9fX0="
+    name: "&8Presente Preto"
+    description: "&7Uma mochila embrulhada de presente."
+    permission: "starmochila.skin.presente-preto"
+  ovo-azul:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWUxY2Q2N2Q5Y2NmZTU3NWQ3OGI3ZGMxOTgzNThjYmI1ZWMzZjNlNDFkYjgyNDU4YzA3NWQ1ZjgxM2JiZjBmOSJ9fX0="
+    name: "&bOvo Azul"
+    description: "&7Uma mochila de Páscoa azul."
+    permission: "starmochila.skin.ovo-azul"
+  ovo-verde:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGI4OGU4NGRkMjNlOTUxNTNjOWE3YzIxYWU5YmEzM2ZiZWY4NWNiNzcwNGY5NzYxNmNkMTIyNjgxNjRjNjA4ZSJ9fX0="
+    name: "&aOvo Verde"
+    description: "&7Uma mochila de Páscoa verde."
+    permission: "starmochila.skin.ovo-verde"
+  ovo-roxo:
+    skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjg2MDIzNTA4ZjZmYTRmZWI4YmU0YmI4MTUzZjRhMjZmZTI2ZWRkNmYxMzA3YzZmODA0NGNkMmM2NTNhMDhiZSJ9fX0="
+    name: "&5Ovo Roxo"
+    description: "&7Uma mochila de Páscoa roxa."
+    permission: "starmochila.skin.ovo-roxo"
