@@ -59,6 +59,13 @@ upgrades:
     cost: 400000  # 400k: custo do UPGRADE (ja vem com 1 fornalha)
     cost-por-fornalha: 100000  # 100k: custo de cada fornalha extra
     max: 5  # maximo de fornalhas por mochila (limite 5)
+  paginas:
+    material: "BOOK"
+    slot: 11
+    name: "&bPáginas Extras"
+    description: "&7Compra mais páginas para a mochila."
+    cost-por-pagina: 200000  # 200k por página comprada (cada tipo pode ter o seu em backpacks.<tipo>.custo-por-pagina)
+    # O máximo de páginas de cada tipo fica em backpacks.<tipo>.max-pages
 
 # Configuração da interface gráfica (GUI)
 gui:
@@ -194,7 +201,20 @@ settings:
   # Configuração do cosmético da mochila
   cosmetic-backpack:
     enabled: true  # true/false para ativar ou desativar o cosmético
-    mode: "back"  # "back" para nas costas, "pet" para pet seguindo no chão
+    # Modo de quem nunca escolheu: "desativado", "back" (nas costas) ou "pet" (seguindo no chão).
+    # O cosmético só aparece em mochila com o upgrade "Cosméticos de Mochila" comprado.
+    mode: "desativado"
+    # Modo que liga sozinho quando o jogador compra o upgrade (ele troca depois no menu se quiser).
+    mode-ao-comprar: "back"
+    # Como o PRÓPRIO jogador vê a mochila (precisa do ProtocolLib). Os outros sempre
+    # veem o stand normal. Sem isso a mochila "corre atrás" do dono no F5.
+    visao-propria:
+      # true: gira junto com a câmera, zero atraso (em F5 de frente ela aparece no peito)
+      # false: gira com o corpo, leve atraso só ao virar
+      acompanhar-camera: true
+      altura: 1.05     # centro da mochila em blocos acima dos pés
+      distancia: 0.35  # quanto pra trás do jogador
+      escala: 0.7      # tamanho (1.0 = cabeça inteira)
     back-position:
       offset-x: 0.6  # Ajuste horizontal da posição nas costas
       offset-y: 0.1  # Ajuste vertical da posição nas costas
@@ -216,6 +236,7 @@ settings:
       fluid-storage-lava: true  # Armazenamento de Lava
       bancada: true  # Bancada de Trabalho
       fornalha: true  # Fornalhas
+      paginas: true  # Páginas Extras
 
 # Tipos de mochilas
 backpacks:
@@ -225,6 +246,7 @@ backpacks:
     skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjliMThiMDI0NTNkYjFiYTI1NjRjMWY5Yzk2N2ZkYWE0ZjNmOGY5NWQ2OTcyNjVkNGJkZTY2MjBkNjhkZWVhYiJ9fX0=" # Deixar caso não seja uma cabeça personalizada.
     slots: 45
     pages: 1
+    max-pages: 3  # até quantas páginas dá pra comprar no upgrade "Páginas Extras"
     max-lava: 10
     max-water: 10
     name: "&8Mochila Basica &f(&7%id%&f)"
@@ -250,6 +272,7 @@ backpacks:
     skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGJmOTI4N2E0YWFhMDA2MjhmMmQ0Yjc5ZTcwZDk4MWRlODEyMjg5NzU5ZTlkOTA3MzM0YjYxNWVhMTQ2YmFkOCJ9fX0="
     slots: 45
     pages: 2
+    max-pages: 6  # até quantas páginas dá pra comprar no upgrade "Páginas Extras"
     max-lava: 20
     max-water: 20
     name: "&fMochila Média &f(&7%id%&f)"
@@ -275,6 +298,7 @@ backpacks:
     skull_data: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmI4MGE4NzFlOTkzOWViMWRlM2I0MGM5YzFmMDVjY2NhODlkYzk2NTQ3YzZlNjZjNjVhNTFiYWU3YTM1NWY4OSJ9fX0="
     slots: 45
     pages: 3
+    max-pages: 10  # até quantas páginas dá pra comprar no upgrade "Páginas Extras"
     max-lava: 50
     max-water: 50
     name: "&cMochila Grande &f(&7%id%&f)"
