@@ -7,7 +7,7 @@
 #
 #  Cada tela tem:
 #    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
-#    Enfeite               O vidro do fundo (Ativar: false deixa vazio).
+#    Enfeite               O vidro do fundo (desligado por padrao; Ativar: true liga).
 #    Slots                 Onde o conteudo paginado entra (trabalhos, niveis, top).
 #    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
 #                          Nome, Lore, Brilho, Permissao, Esconder sem
@@ -21,23 +21,73 @@
 #                   som: <SOM;volume;tom>
 #
 #  Substituicoes em qualquer texto: {jogador} {pontos} {pontos_raw}
-#  {pontos_abreviado} {posicao} {ativos} {vagas} {meus_trabalhos} {trabalhos}
-#  {rotacao_tempo} {pagina} {paginas}. Placeholders do PlaceholderAPI tambem
-#  funcionam.
+#  {pontos_abreviado} {posicao} {ativos} {vagas} {vagas_livres} {meus_trabalhos}
+#  {trabalhos} {rotacao_tempo} {impulso_progresso} {impulso_pontos}
+#  {impulso_recompensas} {pagina} {paginas}. Placeholders do PlaceholderAPI
+#  tambem funcionam.
+#
+#  Um botao pode ter 'Condicao: rotacao' (so aparece com a rotacao ligada) ou
+#  'Condicao: impulso' (so aparece quando o jogador tem algum impulso).
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 # ---------------------------------------------------------------------------
 #  /trabalhos
+#
+#  Os trabalhos ATIVOS do jogador aparecem nos 'Slots' de 'Meus trabalhos', com
+#  o mesmo desenho da lista (Trabalhos.Trabalho). As vagas que sobram mostram
+#  o item 'Vaga livre' (clicar abre a lista para escolher). Vaga que o jogador
+#  nao tem mostra 'Vaga bloqueada' (ou nada, com Mostrar: false).
 # ---------------------------------------------------------------------------
 Principal:
   Titulo: '&8Trabalhos'
-  Linhas: 4
+  Linhas: 5
   Enfeite:
-    Ativar: true
+    Ativar: false
     Material: BLACK_STAINED_GLASS_PANE
     Nome: ' '
+
+  Meus trabalhos:
+    Slots: [ 19, 20, 21, 22, 23, 24, 25 ]
+    # Como cada trabalho ativo e desenhado aqui (mesmas substituicoes de
+    # Trabalhos.Trabalho). Clique esquerdo abre os niveis; direito sai dele.
+    Trabalho ativo:
+      Nome: '{trabalho} &7[Nv. {nivel}]'
+      Lore:
+        - '&7{descricao}'
+        - ''
+        - '&fNivel: &a{nivel} &7/ {nivel_maximo}'
+        - '&fProgresso: {barra}'
+        - '&7{progresso}/{necessario} &8({porcentagem}%)'
+        - '&fProxima recompensa: &a{recompensas}'
+        - '{impulso}'
+        - ''
+        - '&eClique esquerdo para ver os niveis.'
+        - '&cClique direito para sair.'
+      Brilho quando ativo: true
+      Impulso linha: '&d✦ +{porcentagem}% de {tipo}'
+    Vaga livre:
+      Material: LIME_DYE
+      Nome: '&a&lVAGA LIVRE'
+      Lore:
+        - ''
+        - '&7Voce ainda tem uma vaga para'
+        - '&7escolher um trabalho.'
+        - ''
+        - '&aCLIQUE &7para ver os trabalhos.'
+      Acoes:
+        - 'trabalhos gratuitos'
+    Vaga bloqueada:
+      Mostrar: true
+      Material: GRAY_DYE
+      Nome: '&8&lVAGA BLOQUEADA'
+      Lore:
+        - ''
+        - '&7Voce tem &f{vagas} &7vaga(s).'
+        - '&7Mais vagas com a permissao'
+        - '&8startrabalhos.vagas.<n>'
+      Acoes: []
 
   Itens:
     perfil:
@@ -49,67 +99,83 @@ Principal:
         - ''
         - '&fPontos de trabalho: &6{pontos}'
         - '&fPosicao no top: &6{posicao}'
-        - '&fVagas: &6{ativos}&7/&6{vagas}'
+        - '&fVagas em uso: &6{ativos}&7/&6{vagas}'
         - ''
-        - '&fSeus trabalhos:'
-        - '&7{meus_trabalhos}'
-        - ''
+        - '&7Seus trabalhos ficam na fileira'
+        - '&7do meio: clique para ver os niveis.'
 
     gratuitos:
-      Slot: 11
+      Slot: 10
       Material: CHEST
       Nome: '&a&lTRABALHOS GRATUITOS'
       Lore:
         - ''
-        - '&7Trabalhos abertos para'
-        - '&7todos os jogadores.'
+        - '&7Abertos para todos os jogadores.'
         - ''
         - '&aCLIQUE &7para ver.'
       Acoes:
         - 'trabalhos gratuitos'
 
     premium:
-      Slot: 13
+      Slot: 12
       Material: ENDER_CHEST
       Nome: '&d&lTRABALHOS PREMIUM'
       Lore:
         - ''
-        - '&7Trabalhos exclusivos para'
-        - '&7quem tem o passe premium.'
+        - '&7Exclusivos para quem tem'
+        - '&7o passe premium.'
         - ''
         - '&aCLIQUE &7para ver.'
       Acoes:
         - 'trabalhos premium'
 
-    meus:
-      Slot: 15
-      Material: BOOK
-      Nome: '&e&lMEUS TRABALHOS'
+    todos:
+      Slot: 14
+      Material: BOOKSHELF
+      Nome: '&f&lTODOS OS TRABALHOS'
       Lore:
         - ''
-        - '&7Os trabalhos em que voce'
-        - '&7esta agora: &f{ativos}&7/&f{vagas}'
+        - '&7Os &f{trabalhos} &7trabalhos do servidor,'
+        - '&7gratuitos e premium juntos.'
         - ''
         - '&aCLIQUE &7para ver.'
       Acoes:
-        - 'trabalhos meus'
+        - 'trabalhos todos'
 
     top:
-      Slot: 22
+      Slot: 16
       Material: GOLDEN_HELMET
       Nome: '&6&lTOP'
       Lore:
         - ''
-        - '&7Quem tem mais pontos'
-        - '&7de trabalho no servidor.'
+        - '&7Quem tem mais pontos de'
+        - '&7trabalho no servidor.'
+        - '&7Sua posicao: &6{posicao}'
         - ''
         - '&aCLIQUE &7para ver.'
       Acoes:
         - 'top'
 
+    impulsos:
+      Slot: 30
+      Material: NETHER_STAR
+      Nome: '&d&lIMPULSOS'
+      Brilho: true
+      Lore:
+        - ''
+        - '&7Progresso: &d+{impulso_progresso}%'
+        - '&7Pontos: &d+{impulso_pontos}%'
+        - '&7Recompensas: &d+{impulso_recompensas}%'
+        - ''
+        - '&aCLIQUE &7para ver os detalhes.'
+      Acoes:
+        - 'comando: trabalhos impulsos'
+        - 'fechar'
+
     rotacao:
-      Slot: 31
+      Slot: 32
       Material: CLOCK
+      Condicao: rotacao
       Nome: '&b&lROTACAO DE HOJE'
       Lore:
         - ''
@@ -121,7 +187,7 @@ Principal:
         - 'trabalhos disponiveis'
 
     fechar:
-      Slot: 35
+      Slot: 40
       Material: BARRIER
       Nome: '&cFechar'
       Acoes:
@@ -140,7 +206,7 @@ Trabalhos:
   Titulo: '&8Trabalhos: {categoria}'
   Linhas: 6
   Enfeite:
-    Ativar: true
+    Ativar: false
     Material: BLACK_STAINED_GLASS_PANE
     Nome: ' '
 
@@ -236,7 +302,7 @@ Niveis:
   Titulo: '&8Niveis: {trabalho}'
   Linhas: 6
   Enfeite:
-    Ativar: true
+    Ativar: false
     Material: BLACK_STAINED_GLASS_PANE
     Nome: ' '
 
@@ -314,7 +380,7 @@ Top:
   Titulo: '&8Top {tipo}'
   Linhas: 6
   Enfeite:
-    Ativar: true
+    Ativar: false
     Material: BLACK_STAINED_GLASS_PANE
     Nome: ' '
 
