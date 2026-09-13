@@ -206,6 +206,7 @@ Holograma:
     - '&fBlocos: &e{atual} &7/ &e{total}'
     - '{barra}'
     - '&fNivel: &a{nivel}'
+    - '&fTamanho: &b{barreira}'
     - '&d&lIMPULSO {impulso}'
 
 Compatibilidade:
@@ -226,6 +227,20 @@ Sons:
   Clique: 'UI_BUTTON_CLICK;0.6;1.2'
   Bau: 'BLOCK_CHEST_OPEN;1;1'
   Nivel: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+Barreira:
+  # A borda que o jogador ve nos limites da ilha -- uma borda de mundo so
+  # dele, que cresce junto com a melhoria de tamanho.
+  #
+  # Precisa de Paper 1.18.2 ou derivado (Purpur, Leaf...). Em Spigot ou em
+  # versao mais antiga a borda nao existe, e a ilha e marcada com particulas
+  # quando o jogador chega perto do limite.
+  Ativar: true
+  # AZUL (a normal), VERDE ou VERMELHA
+  Cor: AZUL
+  # As particulas no limite quando o jogador chega a 3 blocos dele. Valem com
+  # ou sem a borda; desligue se a borda ja basta para voce.
+  Particulas no limite: true
 
 Loja:
   # Desligada, a loja some do menu do /ilha e o /ilha loja avisa que ela nao
