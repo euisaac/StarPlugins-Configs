@@ -15,9 +15,9 @@
 #   %stareconomia_almas_magnata_simbolo%   -> magnata.simbolo, mesma regra acima
 #   O magnata tambem esta disponivel como TAG GLOBAL do nChat (requer nChat instalado, sistema
 #   separado do PlaceholderAPI -- ver docs.nickuc.com/pt/nchat/development/usage), pra colar
-#   direto no "format" de um canal:
-#   {magnata_almas}            -> nome
-#   {magnata_almas_tag}        -> magnata.tag
+#   direto no "format" de um canal (igual {clan_tag}, {vip_tag_vips} etc):
+#   {magnata_almas}            -> magnata.tag
+#   {magnata_almas_nome}       -> nome de quem esta em 1o lugar
 #   {magnata_almas_simbolo}    -> magnata.simbolo
 #   %stareconomia_almas_top_1_jogador%     -> nome de quem esta na posicao 1 (troque o numero)
 #   %stareconomia_almas_top_1_saldo%       -> saldo formatado da posicao 1
@@ -35,6 +35,10 @@ provider-id: 'stareconomia-almas'
 command:
   command: 'almas'
   aliases: ['alma', 'souls']
+  # Comando extra, separado (nao um subcomando), que funciona como atalho direto pro "pagar"
+  # desta moeda -- ex: 'pix' registra "/pix <jogador> <valor>" fazendo a mesma coisa que
+  # "/almas pagar <jogador> <valor>". Vazio desliga o recurso (nao registra nada).
+  atalho-pagar: ''
   # Apelidos de subcomando: o nome da esquerda e o subcomando de verdade e a
   # lista e como voce tambem quer poder escrever. Ex.: com "add" abaixo, tanto
   # /{comando} adicionar quanto /{comando} add funcionam.
@@ -60,6 +64,8 @@ permission:
   npc: 'stareconomia.almas.npc'
   cheque: 'stareconomia.almas.cheque'
   cheque-admin: 'stareconomia.almas.cheque.admin'
+  loja: 'stareconomia.almas.loja'
+  loja-editor: 'stareconomia.almas.loja.editor'
 
 general:
   default-balance: 0.0
@@ -74,6 +80,10 @@ general:
   offline-pay: true
   toggle-receive: true
   main-menu: true
+  # "/almas top" existe (o comando E o botao no menu principal). O top por NPC (setnpc) nao
+  # depende disto -- continua funcionando mesmo com "top-enabled: false".
+  top-enabled: true
+  # Com "top-enabled: true": "/almas top" abre o menu (true) ou lista os 10 primeiros no chat (false).
   top-menu: true
 
 history:
@@ -138,7 +148,9 @@ abate:
 # titulo final (efeito de contador/odometro). Desative se preferir o valor final direto.
 titulo:
   ganho:
-    enabled: true
+    # Desativado por padrao aqui (diferente das outras moedas): almas costuma vir de abate,
+    # que acontece toda hora -- um titulo por kill vira spam na tela rapido. Ative se quiser.
+    enabled: false
     titulo: '&5&l+ &f{valor} &5{simbolo}'
     subtitulo: ''
     fade-in: 2
@@ -207,6 +219,29 @@ cheques:
         - ''
         - '&7Clique com botao direito para ativar'
 
+# Loja desta moeda ("/almas loja" pra comprar, "/almas loja editor" pra staff editar -- arrasta o
+# item num slot vazio e o preco/quantidade/categoria sao pedidos no chat). Vem LIGADA por padrao
+# aqui, com um "Mercado Negro" (armadura/ferramentas de netherite, maca e totem de exemplo) --
+# os itens ficam em Lojas/almas.yml (criado no primeiro "/almas loja"/"loja editor" com esse
+# exemplo ja preenchido), num YAML legivel: da pra editar na mao (material, nome, lore, encantos,
+# preco, quantidade, categoria) ou pelo editor visual, os dois mexem no mesmo arquivo.
+# "slots-borda" e so decoracao (nao aceita item no editor); qualquer slot fora dela e onde a
+# staff pode colocar item. "lore-info" e o que se soma ao lore de cada item na hora de EXIBIR na
+# loja (categoria/quantidade/preco).
+loja:
+  enabled: true
+  titulo: '&8Mercado Negro'
+  size: 36
+  slots-borda: [0,1,2,3,4,5,6,7,8,9,17,18,26,27,28,29,30,31,32,33,34,35]
+  borda:
+    material: BLACK_STAINED_GLASS_PANE
+    nome: ' '
+  lore-info:
+    - ''
+    - '&fCategoria: &d{categoria}'
+    - '&fQuantidade: &d{quantidade}'
+    - '&fPreco: &d{preco}'
+
 # NPCs de top: /almas setnpc <armorstand|npc> <posicao> (na sua localizacao) cria um "boneco"
 # com a cabeca do jogador daquela posicao do /almas top + um holograma acima dele.
 # "armorstand" nao precisa de nada extra; "npc" usa um NPC de verdade do Citizens (precisa do
@@ -238,6 +273,8 @@ menu:
           - '&7acesse o restante do menu.'
           - ''
           - '&fSaldo atual: &a{valor} {unidade}&f.'
+          - '{meta_status}'
+          - '{booster_status}'
           - ''
       top:
         slot: 13
@@ -370,6 +407,7 @@ messages:
     alternar-ativado: '&aVoce ativou o recebimento de almas.'
     alternar-desativado: '&cVoce desativou o recebimento de almas.'
     top-vazio: '&cAinda nao ha ranking para esta moeda.'
+    top-desativado: '&cO top desta moeda esta desativado.'
     historico-vazio: '&cO historico desta moeda esta desativado ou vazio.'
     formatar: '&a{entrada} &7-> &a{saida}&7.'
     npc-setado: '&aNPC de top da posicao &f{posicao}&a criado/movido para a sua localizacao.'
@@ -397,6 +435,7 @@ messages:
     &f > &a/almas cheque &f<quantia> &8- &7Sacar um cheque com essa quantia.
     &f > &a/almas alternar &8- &7Ativar/desativar o recebimento de almas.
     &f > &a/almas formatar &f<quantia> &8- &7Converte numeros <-> abreviacoes (1000 <-> 1K).
+    &f > &a/almas loja &8- &7Abre o Mercado Negro (compra itens com almas).
   help-staff: |
     &a<--> Comandos de almas &7(STAFF)&a <-->
     &f > &a/almas &8- &7Ver suas informacoes.
@@ -412,6 +451,8 @@ messages:
     &f > &a/almas cheque &f<quantia> admin &8- &7Gera um cheque sem sacar de ninguem.
     &f > &a/almas setnpc &f<armorstand|npc> <posicao> &8- &7Cria/move o NPC de top na sua localizacao.
     &f > &a/almas delnpc &f<posicao> &8- &7Remove o NPC de top.
+    &f > &a/almas loja &8- &7Abre o Mercado Negro (compra itens com almas).
+    &f > &a/almas loja editor &8- &7Edita a loja (arraste item + preco no chat).
     &f > &a/almas reload &8- &7Recarrega esta moeda.
   # Usado por "/almas top" quando o menu esta desativado (general.top-menu: false). Alem de
   # {formato} (expande pra uma linha por jogador, via formato-jogador), as linhas de "mensagem"

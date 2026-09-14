@@ -1,0 +1,67 @@
+# boosters.yml -- multiplicadores de saldo (boosters), por moeda especifica ou "geral" (todas).
+#
+# Um booster fica ATIVO para um jogador de tres formas (podem valer ao mesmo tempo):
+#   1) Permissao ("permissao" abaixo) -- enquanto o jogador tiver a permissao, o booster fica
+#      ligado o tempo todo, sem prazo (ex: perk de um rank VIP no permissions.yml/LuckPerms).
+#   2) Comando -- "/stareconomia booster dar <jogador> <id> [segundos]" liga o booster por um
+#      tempo (usa "duracao-padrao-segundos" se voce omitir os segundos).
+#   3) Item -- com "item.habilitado: true", "/stareconomia booster item <jogador> <id>
+#      [quantidade]" da um item fisico pro jogador; clicar nele com o botao direito consome 1
+#      unidade e liga o booster por "item.duracao-segundos". O item guarda o id do booster nele
+#      mesmo (NBT), entao pode ser vendido/negociado/dropado normalmente ate ser usado.
+#
+# "moeda" filtra em qual moeda o booster vale -- vazio ("") = booster GERAL, vale pra qualquer
+# moeda habilitada. "tipos" filtra que TIPO de credito e afetado (ADICIONAR, GANHO, RECEBER,
+# GASTO, REMOVER, SETAR, ENVIAR -- vazio = todos); "GANHO" cobre tanto abate (ver "abate:" em
+# Economias/<id>.yml) quanto qualquer plugin de loja que credite pelo Vault (EconomyShopGUI-
+# Premium, StarLoja etc). "origens" filtra pelo NOME DO PLUGIN de origem do credito (o mesmo nome
+# que aparece no historico/log como "Plugin: X", ver history.track-spent) -- vazio = qualquer
+# origem, inclusive abate (que nao tem uma origem detectada). Combine "tipos: ['GANHO']" +
+# "origens: []" pra um booster que so afeta abate, ou "origens: ['EconomyShopGUI-Premium',
+# 'StarLoja']" pra um booster que so afeta vendas dessas lojas especificamente.
+#
+# Boosters aplicaveis ao mesmo credito SOMAM o "bonus-percentual" entre si (nao multiplicam) --
+# dois boosters de +100% ativos ao mesmo tempo dao +200% (x3 no total), nao x4. Only afeta
+# CREDITOS de verdade (deposito) -- pix entre jogadores (/moeda pagar) nunca e multiplicado.
+#
+# Boosters concedidos por comando ou item NAO sobrevivem a um restart do servidor (ficam so em
+# memoria, de proposito -- sao temporarios por natureza); os concedidos por permissao (VIP) nao
+# dependem disso, voltam sozinhos.
+#
+# Exemplos abaixo desativados ("ativo: false") -- ajuste, ative e rode "/stareconomia reload".
+boosters:
+  vip-almas:
+    ativo: false
+    nome: '&d2x Almas (VIP)'
+    moeda: 'almas'
+    bonus-percentual: 100.0
+    tipos: ['GANHO']
+    origens: []
+    permissao: 'stareconomia.booster.vip-almas'
+    duracao-padrao-segundos: 3600
+    item:
+      habilitado: true
+      material: NETHER_STAR
+      nome: '&d&lBooster: 2x Almas &7(1h)'
+      lore:
+        - ''
+        - '&7Clique com o botao direito para'
+        - '&7ativar 2x almas por 1 hora.'
+        - ''
+      duracao-segundos: 3600
+
+  vendas-em-dobro:
+    ativo: false
+    nome: '&62x em vendas'
+    moeda: ''
+    bonus-percentual: 100.0
+    tipos: ['GANHO']
+    origens: ['EconomyShopGUI-Premium', 'StarLoja']
+    permissao: ''
+    duracao-padrao-segundos: 1800
+    item:
+      habilitado: false
+      material: GOLD_NUGGET
+      nome: '&6Booster: 2x Vendas &7(30min)'
+      lore: []
+      duracao-segundos: 1800

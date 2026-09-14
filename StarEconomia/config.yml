@@ -34,6 +34,23 @@ general:
   # Intervalo (em segundos) entre atualizacoes do ranking (top) de cada moeda.
   top-atualizar-segundos: 300
 
+# Linhas usadas pelos placeholders {meta_status} e {booster_status}, disponiveis no lore do item
+# "informacoes" de QUALQUER moeda (menu.main.itens.informacoes.lore em Economias/<id>.yml) --
+# coloque o placeholder onde quiser dentro daquele lore (ou nem use, se nao quiser mostrar).
+# Cada um vira uma linha em branco quando nao se aplica (sem meta ativa pra aquela moeda / sem
+# booster ativo pro jogador naquela moeda) -- nao precisa remover o placeholder condicionalmente,
+# ele so fica vazio sozinho.
+menu-status:
+  # Mostrada quando ha uma meta ativa (metas.yml) para a moeda deste menu.
+  # Placeholders: {meta} {progresso} {alvo} {restante} {porcentagem}
+  meta-linha: '&e✦ Meta &f{meta}&e: &f{progresso}&7/&f{alvo} &7({porcentagem}%)'
+  # Mostrada quando o jogador que abriu o menu tem booster ativo (boosters.yml) para a moeda
+  # deste menu. "booster-linha" quando o booster tem prazo (comando/item), "booster-linha-
+  # permanente" quando e so por permissao (sem prazo -- ex: perk de VIP).
+  # Placeholders: {bonus} (soma de todos os boosters ativos aplicaveis) {tempo} (ex: "12m 30s")
+  booster-linha: '&d✦ Booster: &f+{bonus}% &7({tempo} restante)'
+  booster-linha-permanente: '&d✦ Booster: &f+{bonus}% &7(permanente)'
+
 log:
   # Log estendido em arquivo (plugins/StarEconomia/logs/transacoes-AAAA-MM-DD.log), com
   # rotacao diaria, independente do historico exibido no menu.

@@ -16,10 +16,10 @@
 #   %stareconomia_<id>_magnata_simbolo%   -> magnata.simbolo, mesma regra acima
 #   O magnata tambem esta disponivel como TAG GLOBAL do nChat (requer nChat instalado, sistema
 #   separado do PlaceholderAPI -- ver docs.nickuc.com/pt/nchat/development/usage), pra colar
-#   direto no "format" de um canal:
-#   {magnata}                  -> nome (moeda primaria, sem id)
-#   {magnata_<id>}             -> nome (qualquer moeda)
-#   {magnata_<id>_tag}         -> magnata.tag da moeda <id>
+#   direto no "format" de um canal (igual {clan_tag}, {vip_tag_vips} etc):
+#   {magnata}                  -> magnata.tag (moeda primaria, sem id)
+#   {magnata_<id>}             -> magnata.tag (qualquer moeda)
+#   {magnata_<id>_nome}        -> nome de quem esta em 1o lugar na moeda <id>
 #   {magnata_<id>_simbolo}     -> magnata.simbolo da moeda <id>
 #   %stareconomia_<id>_top_1_jogador%     -> nome de quem esta na posicao 1 (troque o numero)
 #   %stareconomia_<id>_top_1_saldo%       -> saldo formatado da posicao 1
@@ -37,6 +37,10 @@ provider-id: 'stareconomia-nova-moeda'
 command:
   command: 'nova-moeda'
   aliases: []
+  # Comando extra, separado (nao um subcomando), que funciona como atalho direto pro "pagar"
+  # desta moeda -- ex: 'pix' registra "/pix <jogador> <valor>" fazendo a mesma coisa que
+  # "/{comando} pagar <jogador> <valor>". Vazio desliga o recurso (nao registra nada).
+  atalho-pagar: ''
   # Apelidos de subcomando: o nome da esquerda e o subcomando de verdade e a
   # lista e como voce tambem quer poder escrever. Ex.: com "add" abaixo, tanto
   # /{comando} adicionar quanto /{comando} add funcionam.
@@ -65,6 +69,10 @@ general:
   offline-pay: true
   toggle-receive: true
   main-menu: true
+  # "/{comando} top" existe (o comando E o botao no menu principal). O top por NPC (setnpc)
+  # nao depende disto -- continua funcionando mesmo com "top-enabled: false".
+  top-enabled: true
+  # Com "top-enabled: true": "/{comando} top" abre o menu (true) ou lista os 10 primeiros no chat (false).
   top-menu: true
 
 history:
@@ -168,6 +176,29 @@ cheques:
         - ''
         - '&7Clique com botao direito para ativar'
 
+# Loja desta moeda ("/{comando} loja" pra comprar, "/{comando} loja editor" pra staff editar --
+# arrasta o item num slot vazio e o preco/quantidade/categoria sao pedidos no chat). Desativada
+# por padrao aqui -- a moeda "almas" ja vem com a dela ("Mercado Negro") ligada, de exemplo. Os
+# itens em si (material, nome, lore, encantos, preco, quantidade, categoria) ficam na pasta
+# Lojas/<id>.yml, num YAML legivel -- da pra editar na mao ou pelo editor visual, os dois mexem
+# no mesmo arquivo. Aqui embaixo e so a APARENCIA da tela (titulo/tamanho/borda/lore extra).
+# "slots-borda" e so decoracao (nao aceita item no editor);
+# qualquer slot fora dela e onde a staff pode colocar item. "lore-info" e o que se soma ao lore
+# de cada item na hora de EXIBIR na loja (categoria/quantidade/preco).
+loja:
+  enabled: false
+  titulo: '&8Loja'
+  size: 54
+  slots-borda: [0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
+  borda:
+    material: GRAY_STAINED_GLASS_PANE
+    nome: ' '
+  lore-info:
+    - ''
+    - '&fCategoria: &d{categoria}'
+    - '&fQuantidade: &d{quantidade}'
+    - '&fPreco: &d{preco}'
+
 # NPCs de top: /<seu-comando> setnpc <armorstand|npc> <posicao> cria um "boneco" com a cabeca do
 # jogador daquela posicao do top + um holograma acima dele. "npc" usa o Citizens (se instalado).
 # /<seu-comando> delnpc <posicao> remove.
@@ -197,6 +228,8 @@ menu:
           - '&7acesse o restante do menu.'
           - ''
           - '&fSaldo atual: &a{valor} {unidade}&f.'
+          - '{meta_status}'
+          - '{booster_status}'
           - ''
       top:
         slot: 13
@@ -284,6 +317,7 @@ messages:
     alternar-ativado: '&aVoce ativou o recebimento desta moeda.'
     alternar-desativado: '&cVoce desativou o recebimento desta moeda.'
     top-vazio: '&cAinda nao ha ranking para esta moeda.'
+    top-desativado: '&cO top desta moeda esta desativado.'
     historico-vazio: '&cO historico desta moeda esta desativado ou vazio.'
     formatar: '&a{entrada} &7-> &a{saida}&7.'
     npc-setado: '&aNPC de top da posicao &f{posicao}&a criado/movido para a sua localizacao.'
@@ -311,6 +345,7 @@ messages:
     &f > &a/{comando} cheque &f<quantia> &8- &7Sacar um cheque com essa quantia.
     &f > &a/{comando} alternar &8- &7Ativar/desativar o recebimento.
     &f > &a/{comando} formatar &f<quantia> &8- &7Converte numeros <-> abreviacoes.
+    &f > &a/{comando} loja &8- &7Abre a loja desta moeda (se ativada).
   help-staff: |
     &a<--> Comandos de {comando} &7(STAFF)&a <-->
     &f > &a/{comando} &8- &7Ver suas informacoes.
@@ -325,6 +360,8 @@ messages:
     &f > &a/{comando} cheque &f<quantia> admin &8- &7Gera um cheque sem sacar de ninguem.
     &f > &a/{comando} setnpc &f<armorstand|npc> <posicao> &8- &7Cria/move o NPC de top na sua localizacao.
     &f > &a/{comando} delnpc &f<posicao> &8- &7Remove o NPC de top.
+    &f > &a/{comando} loja &8- &7Abre a loja desta moeda (se ativada).
+    &f > &a/{comando} loja editor &8- &7Edita a loja (arraste item + preco no chat).
     &f > &a/{comando} reload &8- &7Recarrega esta moeda.
   # Usado por "/{comando} top" quando o menu esta desativado (general.top-menu: false). Alem
   # de {formato} (expande pra uma linha por jogador, via formato-jogador), as linhas de

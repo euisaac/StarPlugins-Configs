@@ -15,9 +15,9 @@
 #   %stareconomia_cash_magnata_simbolo%   -> magnata.simbolo, mesma regra acima
 #   O magnata tambem esta disponivel como TAG GLOBAL do nChat (requer nChat instalado, sistema
 #   separado do PlaceholderAPI -- ver docs.nickuc.com/pt/nchat/development/usage), pra colar
-#   direto no "format" de um canal:
-#   {magnata_cash}             -> nome
-#   {magnata_cash_tag}         -> magnata.tag
+#   direto no "format" de um canal (igual {clan_tag}, {vip_tag_vips} etc):
+#   {magnata_cash}             -> magnata.tag
+#   {magnata_cash_nome}        -> nome de quem esta em 1o lugar
 #   {magnata_cash_simbolo}     -> magnata.simbolo
 #   %stareconomia_cash_top_1_jogador%     -> nome de quem esta na posicao 1 (troque o numero)
 #   %stareconomia_cash_top_1_saldo%       -> saldo formatado da posicao 1
@@ -35,6 +35,10 @@ provider-id: 'stareconomia-cash'
 command:
   command: 'cash'
   aliases: ['caixa']
+  # Comando extra, separado (nao um subcomando), que funciona como atalho direto pro "pagar"
+  # desta moeda -- ex: 'pix' registra "/pix <jogador> <valor>" fazendo a mesma coisa que
+  # "/cash pagar <jogador> <valor>". Vazio desliga o recurso (nao registra nada).
+  atalho-pagar: ''
   # Apelidos de subcomando: o nome da esquerda e o subcomando de verdade e a
   # lista e como voce tambem quer poder escrever. Ex.: com "add" abaixo, tanto
   # /{comando} adicionar quanto /{comando} add funcionam.
@@ -60,6 +64,8 @@ permission:
   npc: 'stareconomia.cash.npc'
   cheque: 'stareconomia.cash.cheque'
   cheque-admin: 'stareconomia.cash.cheque.admin'
+  loja: 'stareconomia.cash.loja'
+  loja-editor: 'stareconomia.cash.loja.editor'
 
 general:
   default-balance: 0.0
@@ -75,6 +81,10 @@ general:
   offline-pay: true
   toggle-receive: true
   main-menu: true
+  # "/cash top" existe (o comando E o botao no menu principal). O top por NPC (setnpc) nao
+  # depende disto -- continua funcionando mesmo com "top-enabled: false".
+  top-enabled: true
+  # Com "top-enabled: true": "/cash top" abre o menu (true) ou lista os 10 primeiros no chat (false).
   top-menu: true
 
 history:
@@ -176,6 +186,25 @@ cheques:
         - ''
         - '&7Clique com botao direito para ativar'
 
+# Loja desta moeda ("/cash loja" pra comprar, "/cash loja editor" pra staff editar -- arrasta o
+# item num slot vazio e o preco/quantidade/categoria sao pedidos no chat). Desativada por padrao
+# aqui -- a moeda "almas" ja vem com a dela ("Mercado Negro") ligada, de exemplo. Os itens
+# (material, nome, lore, encantos, preco, quantidade, categoria) ficam em Lojas/cash.yml, num
+# YAML legivel -- da pra editar na mao ou pelo editor visual, os dois mexem no mesmo arquivo.
+loja:
+  enabled: false
+  titulo: '&8Loja - cash'
+  size: 54
+  slots-borda: [0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
+  borda:
+    material: GRAY_STAINED_GLASS_PANE
+    nome: ' '
+  lore-info:
+    - ''
+    - '&fCategoria: &d{categoria}'
+    - '&fQuantidade: &d{quantidade}'
+    - '&fPreco: &d{preco}'
+
 # NPCs de top: /cash setnpc <armorstand|npc> <posicao> (na sua localizacao) cria um "boneco"
 # com a cabeca do jogador daquela posicao do /cash top + um holograma acima dele.
 # "armorstand" nao precisa de nada extra; "npc" usa um NPC de verdade do Citizens (precisa do
@@ -207,6 +236,8 @@ menu:
           - '&7acesse o restante do menu.'
           - ''
           - '&fSaldo atual: &a{valor} {unidade}&f.'
+          - '{meta_status}'
+          - '{booster_status}'
           - ''
       top:
         slot: 13
@@ -340,6 +371,7 @@ messages:
     alternar-ativado: '&aVoce ativou o recebimento de cash.'
     alternar-desativado: '&cVoce desativou o recebimento de cash.'
     top-vazio: '&cAinda nao ha ranking para esta moeda.'
+    top-desativado: '&cO top desta moeda esta desativado.'
     historico-vazio: '&cO historico desta moeda esta desativado ou vazio.'
     formatar: '&a{entrada} &7-> &a{saida}&7.'
     npc-setado: '&aNPC de top da posicao &f{posicao}&a criado/movido para a sua localizacao.'
@@ -367,6 +399,7 @@ messages:
     &f > &a/cash cheque &f<quantia> &8- &7Sacar um cheque com essa quantia.
     &f > &a/cash alternar &8- &7Ativar/desativar o recebimento de cash.
     &f > &a/cash formatar &f<quantia> &8- &7Converte numeros <-> abreviacoes (1000 <-> 1K).
+    &f > &a/cash loja &8- &7Abre a loja desta moeda (se ativada).
   help-staff: |
     &a<--> Comandos de cash &7(STAFF)&a <-->
     &f > &a/cash &8- &7Ver suas informacoes.
@@ -382,6 +415,8 @@ messages:
     &f > &a/cash cheque &f<quantia> admin &8- &7Gera um cheque sem sacar de ninguem.
     &f > &a/cash setnpc &f<armorstand|npc> <posicao> &8- &7Cria/move o NPC de top na sua localizacao.
     &f > &a/cash delnpc &f<posicao> &8- &7Remove o NPC de top.
+    &f > &a/cash loja &8- &7Abre a loja desta moeda (se ativada).
+    &f > &a/cash loja editor &8- &7Edita a loja (arraste item + preco no chat).
     &f > &a/cash reload &8- &7Recarrega esta moeda.
   # Usado por "/cash top" quando o menu esta desativado (general.top-menu: false). Alem de
   # {formato} (expande pra uma linha por jogador, via formato-jogador), as linhas de "mensagem"

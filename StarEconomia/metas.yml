@@ -1,0 +1,51 @@
+# metas.yml -- metas de arrecadacao para qualquer moeda do StarEconomia.
+#
+# Como funciona: toda vez que um comando "/<moeda> adicionar <jogador> <quantia>" (ou "add") e
+# usado SEM o "-s" no fim -- por exemplo, uma loja rodando "cash add %player_name% 1000" quando
+# alguem compra cash -- a quantia soma no "progresso" de TODA meta ATIVA daquela moeda. Uma
+# mensagem de contribuicao e mandada no chat avisando que o jogador ajudou a meta, e quando
+# "progresso" bate o "alvo" os "comandos-recompensa" rodam pelo console (uma vez so, ou uma vez
+# POR JOGADOR ONLINE se o comando tiver "%player_name%") e a meta e concluida.
+#
+# "-s" no fim do add (ex: "cash add euisaac 1000 -s") continua funcionando como sempre (o
+# jogador nao e avisado do credito) e ADICIONALMENTE nao conta para nenhuma meta -- use para
+# corrigir saldo, testes, migracao etc sem inflar a meta.
+#
+# Pode existir mais de uma meta por moeda (todas ativas somam juntas) e metas de moedas
+# diferentes ao mesmo tempo -- cada bloco abaixo e independente, identificado pela chave dele
+# (ex: "Cash"). O nome da chave nao aparece pra ninguem -- e so o "nome" que entra no
+# placeholder {meta}.
+#
+# "reiniciar-ao-concluir: true" zera o progresso automaticamente apos a recompensa, deixando a
+# meta pronta pra comecar a contar de novo na hora. "false" (padrao) trava a meta em concluida
+# -- ela para de contar contribuicoes -- ate um staff rodar "/stareconomia meta resetar <id>".
+#
+# "progresso" e "concluida" sao atualizados e salvos automaticamente pelo proprio plugin a cada
+# contribuicao -- nao precisa mexer neles na mao, so nos campos de configuracao (ativa, moeda,
+# alvo, mensagens, comandos-recompensa). Comandos uteis: "/stareconomia meta listar" (ve o
+# progresso de todas) e "/stareconomia meta resetar <id>" (zera uma na mao).
+#
+# Placeholders das mensagens: {jogador} {valor} {meta} {moeda} {progresso} {alvo} {restante} {porcentagem}
+# Placeholder dos comandos-recompensa: %player_name% -- com ele, o comando roda uma vez POR
+# JOGADOR ONLINE (substituindo pelo nome de cada um); sem ele, o comando roda uma unica vez.
+#
+# Exemplo abaixo desativado ("ativa: false") -- ajuste os campos, ative e rode
+# "/stareconomia reload" (ou "/stareconomia meta resetar Cash" se ja tiver testado).
+metas:
+  cash:
+    ativa: false
+    nome: 'Cash'
+    moeda: 'cash'
+    alvo: 500000.0
+    progresso: 0.0
+    concluida: false
+    reiniciar-ao-concluir: false
+    mensagem-contribuicao: '&a{jogador} &7contribuiu com &a{valor} &7para a meta &6{meta}&7! &f({progresso}/{alvo} &7- &f{porcentagem}%&f)'
+    mensagem-concluida:
+      - ''
+      - '&6&l✦ &6&lMETA {meta} CONCLUIDA! &6&l✦'
+      - '&7Todos os jogadores online receberam a recompensa.'
+      - ''
+    comandos-recompensa:
+      - 'caixas chave add basica todos'
+      - 'cash add %player_name% 1000'
