@@ -1,0 +1,704 @@
+# ==========================================================================
+#  StarPesca - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick;
+#  {jogador} e o proprio).
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo (Ativar: false deixa vazio; 'So fora
+#                          do conteudo: false' enche os slots de conteudo tambem).
+#    Slots                 Onde o conteudo paginado aparece (peixes, varas...).
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao e Acoes.
+#
+#  Acoes comuns:    menu | vara | evoluir | sacola | vender-tudo | top | loja |
+#                   iscas | classes | colecao | missoes | torneio | ir | sair |
+#                   voltar | anterior | proxima | fechar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
+#                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
+#                   som: <SOM;volume;tom>
+#  Cada tela tem as suas acoes, listadas antes dela.
+#
+#  Substituicoes em qualquer texto: {jogador} {nivel} {vara_nome}
+#  {peso_suportado} {intervalo} {pescados} {maior_peso} {tempo} {perolas}
+#  {classe} {sacola} {limite} {sacola_nivel} {booster} {isca} {isca_usos}
+#  {colecao} {colecao_total} {torneio_estado} {torneio_tipo} {torneio_tempo}
+#  {torneio_1_nome} {torneio_1_valor} (ate 3) {na_area} {auto_venda}
+#  {pagina} {paginas}. Placeholders do PlaceholderAPI tambem funcionam.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  Menu principal (/pesca).
+#  Os botoes 'ir' e 'sair' so aparecem no estado certo (fora/dentro da area);
+#  no modo LIVRE nenhum dos dois aparece.
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Pescaria'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    perfil:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&b{jogador}'
+      Lore:
+        - ''
+        - ' &7Vara: &f{vara_nome} &7(L.{nivel})'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Peixes pescados: &f{pescados}'
+        - ' &7Maior peso: &f{maior_peso}g'
+        - ' &7Tempo pescando: &f{tempo}'
+        - ''
+        - ' &7Perolas: &b{perolas}'
+        - ' &7Classe: {classe}'
+        - ' &7Colecao: &f{colecao}&7/&f{colecao_total}'
+        - ''
+    vara:
+      Slot: 10
+      Material: FISHING_ROD
+      Nome: '&aSua vara'
+      Lore:
+        - ''
+        - ' &7Vara: &f{vara_nome}'
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - '&eClique para gerenciar a vara'
+      Acoes: [ 'vara' ]
+    sacola:
+      Slot: 11
+      Material: CHEST
+      Nome: '&aSacola de peixes'
+      Lore:
+        - ''
+        - ' &7Peixes guardados: &f{sacola}&7/&f{limite}'
+        - ' &7Nivel da sacola: &f{sacola_nivel}'
+        - ' &7Auto-venda: {auto_venda}'
+        - ''
+        - '&eClique para ver e vender'
+      Acoes: [ 'sacola' ]
+    top:
+      Slot: 12
+      Material: WRITABLE_BOOK
+      Nome: '&aRanking'
+      Lore:
+        - '&7Os pescadores que se destacam.'
+        - ''
+        - '&eClique para ver'
+      Acoes: [ 'top' ]
+    loja:
+      Slot: 13
+      Material: EMERALD
+      Nome: '&bLoja de perolas'
+      Lore:
+        - '&7Troque suas perolas por itens.'
+        - ''
+        - ' &7Suas perolas: &b{perolas}'
+        - ''
+        - '&eClique para abrir'
+      Acoes: [ 'loja' ]
+    iscas:
+      Slot: 14
+      Material: STRING
+      Nome: '&aIscas'
+      Lore:
+        - '&7Iscas melhoram a sua pescaria.'
+        - ''
+        - ' &7Isca ativa: {isca} &7({isca_usos})'
+        - ''
+        - '&eClique para ver as iscas'
+      Acoes: [ 'iscas' ]
+    classes:
+      Slot: 15
+      Material: LEATHER_CHESTPLATE
+      Nome: '&bClasses'
+      Lore:
+        - '&7Classes dao bonus permanentes.'
+        - ''
+        - ' &7Sua classe: {classe}'
+        - ''
+        - '&eClique para ver as classes'
+      Acoes: [ 'classes' ]
+    ir:
+      Slot: 16
+      Material: PLAYER_HEAD
+      Textura: '22d145c93e5eac48a661c6f27fdaff5922cf433dd627bf23eec378b9956197'
+      Nome: '&aIr pescar'
+      Lore:
+        - '&7Clique para ir para a'
+        - '&7area de pesca.'
+      Acoes: [ 'ir' ]
+    sair:
+      Slot: 16
+      Material: PLAYER_HEAD
+      Textura: '5fde3bfce2d8cb724de8556e5ec21b7f15f584684ab785214add164be7624b'
+      Nome: '&cSair da pesca'
+      Lore:
+        - '&7Clique para sair da'
+        - '&7area de pesca.'
+      Acoes: [ 'sair' ]
+    colecao:
+      Slot: 29
+      Material: BOOK
+      Nome: '&aColecao de peixes'
+      Lore:
+        - '&7Todos os peixes que voce ja pescou.'
+        - ''
+        - ' &7Progresso: &f{colecao}&7/&f{colecao_total}'
+        - ''
+        - '&eClique para ver'
+      Acoes: [ 'colecao' ]
+    missoes:
+      Slot: 30
+      Material: PAPER
+      Nome: '&eMissoes do dia'
+      Lore:
+        - '&7Complete e ganhe perolas.'
+        - ''
+        - ' &7Concluidas hoje: &f{missoes_concluidas}&7/&f{missoes_total}'
+        - ''
+        - '&eClique para ver'
+      Acoes: [ 'missoes' ]
+    booster:
+      Slot: 31
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&dBooster'
+      Lore:
+        - ''
+        - ' &7Seu booster: {booster}'
+        - ' &7Booster global: {booster_global}'
+        - ''
+    torneio:
+      Slot: 32
+      Material: GOLD_INGOT
+      Nome: '&6Torneio'
+      Brilho: true
+      Lore:
+        - ''
+        - ' &7Torneio atual: {torneio_estado}'
+        - ''
+        - ' &e1o &f{torneio_1_nome} &7- &f{torneio_1_valor}'
+        - ' &72o &f{torneio_2_nome} &7- &f{torneio_2_valor}'
+        - ' &63o &f{torneio_3_nome} &7- &f{torneio_3_valor}'
+        - ''
+        - '&eClique para ver o torneio'
+      Acoes: [ 'torneio' ]
+    perolas:
+      Slot: 33
+      Material: ENDER_PEARL
+      Nome: '&bPerolas'
+      Lore:
+        - ''
+        - ' &7Voce tem &b{perolas} &7perolas.'
+        - ''
+        - '&eClique para enviar perolas'
+      Acoes: [ 'enviar-perolas' ]
+
+# ---------------------------------------------------------------------------
+#  Sua vara: os encantamentos (Slots) e os botoes evoluir/reparar.
+#  Acoes proprias: evoluir | reparar. 'reparar' so aparece com a vara quebrada.
+# ---------------------------------------------------------------------------
+Vara:
+  Titulo: '&8Sua vara'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Itens:
+    vara:
+      Slot: 4
+      Material: FISHING_ROD
+      Nome: '&a{vara_nome} &7(L.{nivel})'
+      Lore:
+        - ''
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Estado: {vara_estado}'
+        - ''
+        - ' &7Perolas: &b{perolas}'
+        - ''
+    evoluir:
+      Slot: 30
+      Material: DIAMOND
+      Nome: '&aEvoluir vara'
+      Lore:
+        - '&7Varas melhores aguentam peixes'
+        - '&7mais pesados e pescam mais rapido.'
+        - ''
+        - ' &7Proxima: &f{proxima_vara} &7(L.{proximo_nivel})'
+        - ' &7Custo: &f{proximo_custo}'
+        - ''
+        - '&eClique para ver as varas'
+      Acoes: [ 'evoluir' ]
+    reparar:
+      Slot: 32
+      Material: ANVIL
+      Nome: '&cReparar vara'
+      Lore:
+        - '&7Sua vara esta quebrada e nao pesca.'
+        - ''
+        - ' &7Custo: &f{custo_reparo}'
+        - ''
+        - '&eClique para reparar'
+      Acoes: [ 'reparar' ]
+    pegar:
+      Slot: 31
+      Material: FISHING_ROD
+      Nome: '&bPegar a vara'
+      Lore:
+        - '&7Recebe o item da sua vara, se'
+        - '&7voce nao estiver com ele.'
+        - ''
+        - '&eClique para pegar'
+      Acoes: [ 'comando: pesca vara' ]
+    voltar:
+      Slot: 40
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Loja de varas: uma vara por slot, na ordem dos niveis.
+# ---------------------------------------------------------------------------
+Loja de varas:
+  Titulo: '&8Evoluir vara &7({pagina}/{paginas})'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Itens:
+    anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Sacola de peixes. Clique num peixe vende aquele (shift vende so um).
+#  Acoes proprias: vender-tudo | melhorar | auto-venda
+# ---------------------------------------------------------------------------
+Sacola:
+  Titulo: '&8Sacola &7({sacola}/{limite})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  # Item mostrado quando a sacola esta vazia (no primeiro slot).
+  Vazia:
+    Material: BARRIER
+    Nome: '&cSacola vazia'
+    Lore: [ '&7Va pescar!' ]
+  Itens:
+    vender-tudo:
+      Slot: 49
+      Material: PLAYER_HEAD
+      Textura: '209299a117bee88d3262f6ab98211fba344ecae39b47ec848129706dedc81e4f'
+      Nome: '&aVender tudo'
+      Lore:
+        - '&7Vende todos os peixes da sacola.'
+        - ''
+        - ' &7Peixes: &f{sacola}'
+        - ' &7Valor total: &a{valor_total}'
+        - ''
+        - '&eClique para vender tudo'
+      Acoes: [ 'vender-tudo' ]
+    melhorar:
+      Slot: 47
+      Material: ENDER_CHEST
+      Nome: '&bMelhorar sacola'
+      Lore:
+        - ''
+        - ' &7Limite: &f{sacola}&7/&f{limite}'
+        - ' &7Nivel: &f{sacola_nivel}'
+        - ''
+        - ' &7Proximo nivel: &f+{sacola_proximo_bonus} &7de limite'
+        - ' &7Custo: &f{sacola_custo}'
+        - ''
+        - '&eClique para melhorar'
+      Acoes: [ 'melhorar' ]
+    auto-venda:
+      Slot: 51
+      Material: GOLD_INGOT
+      Nome: '&aAuto-venda'
+      Lore:
+        - '&7Vende cada peixe na hora em'
+        - '&7que voce pesca.'
+        - ''
+        - ' &7Estado: {auto_venda}'
+        - ''
+        - '&eClique para alternar'
+      Acoes: [ 'auto-venda' ]
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 48
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Ranking. Tipos: pescados | perolas | peso | tempo.
+#  Acoes proprias: tipo: <tipo>. Na lore do seletor, {opcoes} vira a lista.
+#  Nos itens das posicoes: {posicao} {nome} {valor}.
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8Ranking &7- {tipo_nome}'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21 ]
+  Tipos:
+    pescados: 'Peixes pescados'
+    perolas: 'Perolas'
+    peso: 'Peixe mais pesado'
+    tempo: 'Tempo pescando'
+  Opcoes:
+    Selecionada: ' &f▪ &a{nome}'
+    Outra: ' &f▪ &7{nome}'
+  Posicao:
+    Material: PLAYER_HEAD
+    Dono: '{nome}'
+    Nome: '&b{posicao}o &f{nome}'
+    Lore:
+      - ''
+      - ' &7{tipo_nome}: &f{valor}'
+      - ''
+  Vazio:
+    Material: GRAY_DYE
+    Nome: '&7{posicao}o &8---'
+    Lore: [ '&7Ninguem ainda.' ]
+  Itens:
+    seletor:
+      Slot: 31
+      Material: COMPASS
+      Nome: '&aTipo de ranking'
+      Lore:
+        - '{opcoes}'
+        - ''
+        - '&eClique para alternar'
+      Acoes: [ 'alternar' ]
+    voltar:
+      Slot: 27
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Loja de perolas: cada item de 'Produtos' custa 'Preco' perolas e roda os
+#  Comandos (console, {jogador}). 'Item' e o que o jogador ve. A compra abre
+#  a confirmacao. Permissao (opcional) esconde o produto.
+# ---------------------------------------------------------------------------
+Loja:
+  Titulo: '&8Loja de perolas'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Produtos:
+    chave:
+      Slot: 11
+      Preco: 150
+      Item:
+        Material: TRIPWIRE_HOOK
+        Nome: '&6Chave de caixa'
+        Lore:
+          - '&7Uma chave para abrir caixas.'
+          - ''
+          - ' &7Preco: &b{preco} perolas'
+          - ''
+          - '&eClique para comprar'
+      Comandos: [ 'give {jogador} tripwire_hook 1' ]
+    diamantes:
+      Slot: 13
+      Preco: 500
+      Item:
+        Material: DIAMOND
+        Quantidade: 16
+        Nome: '&b16 Diamantes'
+        Lore:
+          - ''
+          - ' &7Preco: &b{preco} perolas'
+          - ''
+          - '&eClique para comprar'
+      Comandos: [ 'give {jogador} diamond 16' ]
+    booster:
+      Slot: 15
+      Preco: 800
+      Item:
+        Material: EXPERIENCE_BOTTLE
+        Nome: '&dBooster de pesca &7(+50%, 30 min)'
+        Lore:
+          - ''
+          - ' &7Preco: &b{preco} perolas'
+          - ''
+          - '&eClique para comprar'
+      Comandos: [ 'starpesca givebooster {jogador} 50 30' ]
+  Itens:
+    perfil:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&b{jogador}'
+      Lore: [ '', ' &7Suas perolas: &b{perolas}', '' ]
+    voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Loja de iscas: as iscas do iscas.yml com Loja: true, uma por slot.
+#  Clique compra uma; shift + clique compra 8.
+# ---------------------------------------------------------------------------
+Iscas:
+  Titulo: '&8Iscas'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  # Linhas acrescentadas na lore da isca na loja ({custo}).
+  Rodape:
+    - ''
+    - ' &7Preco: &f{custo}'
+    - ''
+    - '&eClique para comprar (shift: 8)'
+  Itens:
+    ativa:
+      Slot: 4
+      Material: STRING
+      Nome: '&aIsca ativa'
+      Lore:
+        - ''
+        - ' &7Isca: {isca}'
+        - ' &7Usos restantes: &f{isca_usos}'
+        - ''
+    voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Classes: uma por slot, na ordem. Clique compra ou equipa.
+# ---------------------------------------------------------------------------
+Classes:
+  Titulo: '&8Classes'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Itens:
+    atual:
+      Slot: 4
+      Material: LEATHER_CHESTPLATE
+      Nome: '&bSua classe'
+      Lore:
+        - ''
+        - ' &7Classe: {classe}'
+        - ''
+    voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Colecao: todos os peixes, na ordem de nivel. Acoes proprias: filtro
+#  (alterna o nivel mostrado: todos, 1, 2...).
+# ---------------------------------------------------------------------------
+Colecao:
+  Titulo: '&8Colecao &7({colecao}/{colecao_total})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Itens:
+    filtro:
+      Slot: 49
+      Material: HOPPER
+      Nome: '&aFiltro por nivel'
+      Lore:
+        - ''
+        - ' &7Mostrando: &f{filtro}'
+        - ''
+        - '&eClique para alternar'
+      Acoes: [ 'filtro' ]
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 48
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Missoes do dia: uma por slot. Nos itens: {nome} {descricao} {progresso}
+#  {meta} {porcentagem} {barra} {perolas} {estado}
+# ---------------------------------------------------------------------------
+Missoes:
+  Titulo: '&8Missoes do dia'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 11, 13, 15 ]
+  Missao:
+    Em andamento:
+      Material: PAPER
+      Nome: '{nome}'
+      Lore:
+        - ''
+        - '{descricao}'
+        - ''
+        - ' &7Progresso: &f{progresso}&7/&f{meta} &8({porcentagem}%)'
+        - ' {barra}'
+        - ''
+        - ' &7Recompensa: &b{perolas} perolas'
+        - ''
+        - ' {estado}'
+    Concluida:
+      Material: MAP
+      Brilho: true
+      Nome: '{nome}'
+      Lore:
+        - ''
+        - '{descricao}'
+        - ''
+        - ' &7Progresso: &f{progresso}&7/&f{meta}'
+        - ' {barra}'
+        - ''
+        - ' {estado}'
+  Itens:
+    info:
+      Slot: 4
+      Material: CLOCK
+      Nome: '&eRenova em &f{missoes_renova}'
+      Lore:
+        - ''
+        - ' &7Concluidas: &f{missoes_concluidas}&7/&f{missoes_total}'
+        - ''
+    voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Torneio atual: as 10 posicoes nos Slots.
+# ---------------------------------------------------------------------------
+Torneio:
+  Titulo: '&8Torneio'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21 ]
+  Posicao:
+    Material: PLAYER_HEAD
+    Dono: '{nome}'
+    Nome: '&b{posicao}o &f{nome}'
+    Lore:
+      - ''
+      - ' &7{unidade}: &f{valor}'
+      - ''
+  Vazio:
+    Material: GRAY_DYE
+    Nome: '&7{posicao}o &8---'
+    Lore: [ '&7Ninguem ainda.' ]
+  Itens:
+    info:
+      Slot: 4
+      Material: GOLD_INGOT
+      Brilho: true
+      Nome: '&6Torneio: {torneio_estado}'
+      Lore:
+        - ''
+        - ' &7{torneio_descricao}'
+        - ''
+        - ' &7Tempo restante: &f{torneio_tempo}'
+        - ' &7Premio do 1o: &f{torneio_premio}'
+        - ' {torneio_sua_posicao}'
+        - ''
+    voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Confirmacao de compra (loja de perolas).
+# ---------------------------------------------------------------------------
+Confirmar:
+  Titulo: '&8Confirmar compra'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Produto:
+    Slot: 13
+  Itens:
+    confirmar:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&aConfirmar'
+      Lore: [ '&7Comprar por &b{preco} perolas&7.' ]
+      Acoes: [ 'confirmar' ]
+    cancelar:
+      Slot: 15
+      Material: RED_WOOL
+      Nome: '&cCancelar'
+      Acoes: [ 'voltar' ]

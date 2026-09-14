@@ -1,0 +1,151 @@
+# ==========================================================================
+#  StarPesca - iscas
+#
+#  A isca e um item: o jogador clica com o botao direito para ativar e ela
+#  vale pelos proximos 'Usos' peixes pescados. So uma isca ativa por vez.
+#
+#  Bonus (em %): Chance (raridade melhor), Perolas, Peso, Valor.
+#  Nivel extra: quantos niveis acima da vara a isca deixa pescar.
+#  Raridade minima: a raridade mais baixa que vem com a isca (vazio = nenhuma).
+#  Peixes: se preenchido, so estes peixes vem com a isca ativa (se algum for
+#          possivel na hora; senao vale o sorteio normal).
+#  Custo: preco na loja de iscas (por economia). 'Loja: false' tira da loja.
+#
+#  Nos itens: {nome} {usos} {usos_restantes} {bonus_chance} {bonus_perolas}
+#  {bonus_peso} {bonus_valor} {nivel_extra} {raridade_minima} {custo}
+# ==========================================================================
+
+Versao do modelo: 1
+
+Iscas:
+  minhoca:
+    Nome: '&aMinhoca'
+    Usos: 20
+    Loja: true
+    Custo:
+      money: 500.0
+    Bonus:
+      Chance: 3.0
+      Perolas: 0.0
+      Peso: 0.0
+      Valor: 0.0
+    Nivel extra: 0
+    Raridade minima: ''
+    Peixes: [ ]
+    Item:
+      Material: STRING
+      Nome: '&aIsca: Minhoca'
+      Lore:
+        - '&7A isca mais simples.'
+        - ''
+        - ' &fUsos: &b{usos}'
+        - ' &fRaridade: &b+{bonus_chance}%'
+        - ''
+        - '&eClique com o botao direito para ativar.'
+  camarao:
+    Nome: '&cCamarao'
+    Usos: 20
+    Loja: true
+    Custo:
+      money: 2500.0
+    Bonus:
+      Chance: 6.0
+      Perolas: 5.0
+      Peso: 0.0
+      Valor: 0.0
+    Nivel extra: 0
+    Raridade minima: ''
+    Peixes: [ ]
+    Item:
+      Material: COOKED_COD
+      Nome: '&cIsca: Camarao'
+      Lore:
+        - '&7Os peixes adoram.'
+        - ''
+        - ' &fUsos: &b{usos}'
+        - ' &fRaridade: &b+{bonus_chance}%'
+        - ' &fPerolas: &b+{bonus_perolas}%'
+        - ''
+        - '&eClique com o botao direito para ativar.'
+  pesada:
+    Nome: '&7Isca pesada'
+    Usos: 15
+    Loja: true
+    Custo:
+      money: 6000.0
+      perolas: 50.0
+    Bonus:
+      Chance: 0.0
+      Perolas: 0.0
+      Peso: 25.0
+      Valor: 5.0
+    Nivel extra: 0
+    Raridade minima: ''
+    Peixes: [ ]
+    Item:
+      Material: IRON_NUGGET
+      Nome: '&7Isca pesada'
+      Lore:
+        - '&7Atrai os peixes maiores.'
+        - ''
+        - ' &fUsos: &b{usos}'
+        - ' &fPeso: &b+{bonus_peso}%'
+        - ' &fValor: &b+{bonus_valor}%'
+        - ''
+        - '&eClique com o botao direito para ativar.'
+  brilhante:
+    Nome: '&eIsca brilhante'
+    Usos: 10
+    Loja: true
+    Custo:
+      money: 15000.0
+      perolas: 150.0
+    Bonus:
+      Chance: 15.0
+      Perolas: 10.0
+      Peso: 0.0
+      Valor: 0.0
+    Nivel extra: 1
+    Raridade minima: 'incomum'
+    Peixes: [ ]
+    Item:
+      Material: GLOWSTONE_DUST
+      Nome: '&eIsca brilhante'
+      Lore:
+        - '&7Chama peixes de um nivel acima'
+        - '&7da sua vara.'
+        - ''
+        - ' &fUsos: &b{usos}'
+        - ' &fRaridade: &b+{bonus_chance}%'
+        - ' &fRaridade minima: {raridade_minima}'
+        - ' &fNivel extra: &b+{nivel_extra}'
+        - ''
+        - '&eClique com o botao direito para ativar.'
+  abissal:
+    Nome: '&5Isca abissal'
+    Usos: 5
+    Loja: true
+    Custo:
+      perolas: 600.0
+    Bonus:
+      Chance: 30.0
+      Perolas: 20.0
+      Peso: 10.0
+      Valor: 10.0
+    Nivel extra: 2
+    Raridade minima: 'raro'
+    Peixes: [ ]
+    Item:
+      Material: ENDER_PEARL
+      Nome: '&5Isca abissal'
+      Brilho: true
+      Lore:
+        - '&7Desperta o que vive no fundo.'
+        - ''
+        - ' &fUsos: &b{usos}'
+        - ' &fRaridade: &b+{bonus_chance}%'
+        - ' &fRaridade minima: {raridade_minima}'
+        - ' &fNivel extra: &b+{nivel_extra}'
+        - ' &fPerolas: &b+{bonus_perolas}%'
+        - ''
+        - '&eClique com o botao direito para ativar.'

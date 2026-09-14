@@ -1,0 +1,1330 @@
+# ==========================================================================
+#  StarPesca - peixes e raridades
+#
+#  Cada peixe tem um Nivel: so aparece para quem tem vara daquele nivel ou
+#  maior (config.yml -> Pesca.Peixes acima do nivel muda isso). Dentro dos
+#  peixes disponiveis, a Chance decide qual vem (e um peso relativo, nao uma
+#  porcentagem) -- e os peixes do nivel da vara pesam mais que os de baixo.
+#
+#  Peso em gramas, sorteado entre Minimo e Maximo. Um peixe mais pesado do
+#  que a vara suporta escapa (ou quebra a vara, conforme a vara).
+#
+#  Valor de venda = Base + (Por grama x peso), multiplicado pela raridade e
+#  pelos bonus do jogador. 'Precos' e por economia do economias.yml -- um
+#  peixe pode ser vendido em mais de uma (o jogador recebe todas).
+#
+#  Condicoes (opcional): o peixe so aparece quando todas valem.
+#    Noite: true      so a noite (13000 a 23000 do relogio do mundo)
+#    Dia: true        so de dia
+#    Chuva: true      so chovendo
+#    Biomas: [...]    so nos biomas da lista (nome do jogo, ex. OCEAN)
+#    Mundos: [...]    so nos mundos da lista
+#
+#  Raridades (opcional, por peixe): lista 'chance,raridade' que troca as
+#  chances gerais. Ex.: [ '90,comum', '10,raro' ].
+#
+#  Item: como o peixe aparece nos menus (sacola, colecao). A linha {lore}
+#  vira a 'Lore da sacola' ou a 'Lore da colecao'. Substituicoes:
+#    {nome} {nivel} {raridade} {peso} {quantidade} {valor} {valor_unitario}
+#    {peso_minimo} {peso_maximo} {perolas_minimo} {perolas_maximo}
+#    {pescados} {maior_peso} {raridades} {dica}
+#
+#  Raridades gerais: Chance e a porcentagem base; Multiplicador multiplica o
+#  valor; Pontos contam no torneio de raridade. Mensagens vazias nao saem.
+#  Nas mensagens: {jogador} {peixe} {peso} {raridade} {nivel} {perolas}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Raridades:
+  comum:
+    Nome: '&fComum'
+    Chance: 60.0
+    Multiplicador: 1.0
+    Pontos: 1
+    Mensagens:
+      Titulo: ''
+      Actionbar: '&fVoce pescou um {peixe} &7comum &fde &7{peso}g&f.'
+      Chat: ''
+    Anuncio:
+      Chat: ''
+      Titulo: ''
+    Som: ''
+  incomum:
+    Nome: '&aIncomum'
+    Chance: 25.0
+    Multiplicador: 1.3
+    Pontos: 2
+    Mensagens:
+      Titulo: ''
+      Actionbar: '&aVoce pescou um {peixe} &2incomum &ade &2{peso}g&a!'
+      Chat: ''
+    Anuncio:
+      Chat: ''
+      Titulo: ''
+    Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1'
+  raro:
+    Nome: '&9Raro'
+    Chance: 10.0
+    Multiplicador: 1.8
+    Pontos: 5
+    Mensagens:
+      Titulo: '&9RARO!<nl>&7{peixe} &7de &f{peso}g'
+      Actionbar: ''
+      Chat: '&9&lRARO &7Voce pescou um {peixe} &9raro &7de &f{peso}g&7!'
+    Anuncio:
+      Chat: ''
+      Titulo: ''
+    Som: 'ENTITY_PLAYER_LEVELUP;1;1.5'
+  epico:
+    Nome: '&5Epico'
+    Chance: 3.5
+    Multiplicador: 2.5
+    Pontos: 12
+    Mensagens:
+      Titulo: '&5EPICO!<nl>&7{peixe} &7de &f{peso}g'
+      Actionbar: ''
+      Chat: '&5&lEPICO &7Voce pescou um {peixe} &5epico &7de &f{peso}g&7!'
+    Anuncio:
+      Chat: '&5&lEPICO &f{jogador} &7pescou um {peixe} &5epico &7de &f{peso}g&7!'
+      Titulo: ''
+    Som: 'ENTITY_PLAYER_LEVELUP;1;2'
+  lendario:
+    Nome: '&6Lendario'
+    Chance: 1.2
+    Multiplicador: 4.0
+    Pontos: 30
+    Mensagens:
+      Titulo: '&6&lLENDARIO!<nl>&7{peixe} &7de &f{peso}g'
+      Actionbar: ''
+      Chat: '&6&lLENDARIO &7Voce pescou um {peixe} &6lendario &7de &f{peso}g&7!'
+    Anuncio:
+      Chat: '&6&lLENDARIO &f{jogador} &7pescou um {peixe} &6lendario &7de &f{peso}g&7!'
+      Titulo: ''
+    Som: 'ENTITY_ENDER_DRAGON_GROWL;0.6;1.5'
+  mitico:
+    Nome: '&c&lMitico'
+    Chance: 0.3
+    Multiplicador: 8.0
+    Pontos: 100
+    Mensagens:
+      Titulo: '&c&lMITICO!<nl>&7{peixe} &7de &f{peso}g'
+      Actionbar: ''
+      Chat: '&c&lMITICO &7Voce pescou um {peixe} &c&lMITICO &7de &f{peso}g&7!'
+    Anuncio:
+      Chat: '&c&lMITICO &f{jogador} &7pescou um {peixe} &c&lMITICO &7de &f{peso}g&7!'
+      Titulo: '&c&lMITICO<nl>&f{jogador} &7pescou um {peixe}'
+    Som: 'ENTITY_WITHER_SPAWN;0.5;1.8'
+
+# Entra no lugar da linha {lore} do Item quando o peixe esta na sacola.
+Lore da sacola:
+  - ''
+  - ' &7Nivel: &f{nivel}'
+  - ' &7Raridade: {raridade}'
+  - ' &7Peso: &f{peso}g'
+  - ' &7Quantidade: &f{quantidade}'
+  - ''
+  - ' &7Valor unitario: &f{valor_unitario}'
+  - ' &7Valor total: &a{valor}'
+  - ''
+  - '&aClique para vender'
+
+# Entra no lugar da linha {lore} do Item na colecao.
+Lore da colecao:
+  Pescado:
+    - ''
+    - ' &7Nivel: &f{nivel}'
+    - ' &7Peso: &f{peso_minimo}g a {peso_maximo}g'
+    - ' &7Perolas: &f{perolas_minimo} a {perolas_maximo}'
+    - ''
+    - ' &aPescados: &f{pescados}'
+    - ' &aMaior peso: &f{maior_peso}g'
+    - ' &aRaridades: &f{raridades}'
+  Nao pescado:
+    - ''
+    - ' &7Nivel: &f{nivel}'
+    - ' &7Peso: &f{peso_minimo}g a {peso_maximo}g'
+    - ''
+    - ' &cVoce ainda nao pescou este peixe.'
+    - ' &7Dica: &f{dica}'
+  # Item mostrado no lugar do peixe que ainda nao foi pescado (vazio = o
+  # proprio item do peixe, com a lore de 'Nao pescado').
+  Material nao pescado: 'GRAY_DYE'
+
+Peixes:
+  lambari:
+    Nome: '&fLambari'
+    Nivel: 1
+    Chance: 30
+    Peso:
+      Minimo: 0.05
+      Maximo: 0.3
+    Precos:
+      money:
+        Base: 6.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 1
+      Maximo: 2
+    Mcmmo:
+      Minimo: 5
+      Maximo: 12
+    Dica: 'Aparece em qualquer lugar da area.'
+    Item:
+      Material: COD
+      Nome: '&fLambari &7[&fL.1&7]'
+      Lore:
+        - '{lore}'
+  sardinha:
+    Nome: '&fSardinha'
+    Nivel: 1
+    Chance: 25
+    Peso:
+      Minimo: 0.1
+      Maximo: 0.4
+    Precos:
+      money:
+        Base: 8.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 1
+      Maximo: 2
+    Mcmmo:
+      Minimo: 5
+      Maximo: 12
+    Dica: 'Aparece em qualquer lugar da area.'
+    Item:
+      Material: COD
+      Nome: '&fSardinha &7[&fL.1&7]'
+      Lore:
+        - '{lore}'
+  tilapia:
+    Nome: '&fTilapia'
+    Nivel: 1
+    Chance: 20
+    Peso:
+      Minimo: 0.5
+      Maximo: 2.5
+    Precos:
+      money:
+        Base: 12.0
+        Por grama: 0.06
+    Perolas:
+      Minimo: 1
+      Maximo: 3
+    Mcmmo:
+      Minimo: 5
+      Maximo: 12
+    Dica: 'Aparece em qualquer lugar da area.'
+    Item:
+      Material: SALMON
+      Nome: '&fTilapia &7[&fL.1&7]'
+      Lore:
+        - '{lore}'
+  carpa:
+    Nome: '&fCarpa'
+    Nivel: 1
+    Chance: 15
+    Peso:
+      Minimo: 1
+      Maximo: 8
+    Precos:
+      money:
+        Base: 15.0
+        Por grama: 0.05
+    Perolas:
+      Minimo: 1
+      Maximo: 3
+    Mcmmo:
+      Minimo: 5
+      Maximo: 12
+    Dica: 'Aparece em qualquer lugar da area.'
+    Item:
+      Material: SALMON
+      Nome: '&fCarpa &7[&fL.1&7]'
+      Lore:
+        - '{lore}'
+  bagre:
+    Nome: '&fBagre'
+    Nivel: 1
+    Chance: 10
+    Peso:
+      Minimo: 1
+      Maximo: 6
+    Precos:
+      money:
+        Base: 18.0
+        Por grama: 0.05
+    Perolas:
+      Minimo: 2
+      Maximo: 3
+    Mcmmo:
+      Minimo: 5
+      Maximo: 12
+    Condicoes:
+      Noite: true
+    Dica: 'So aparece a noite.'
+    Item:
+      Material: COD
+      Nome: '&fBagre &7[&fL.1&7]'
+      Lore:
+        - '{lore}'
+  traira:
+    Nome: '&aTraira'
+    Nivel: 2
+    Chance: 30
+    Peso:
+      Minimo: 0.5
+      Maximo: 4
+    Precos:
+      money:
+        Base: 25.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 2
+      Maximo: 4
+    Mcmmo:
+      Minimo: 10
+      Maximo: 24
+    Dica: 'Precisa de vara nivel 2.'
+    Item:
+      Material: SALMON
+      Nome: '&aTraira &7[&fL.2&7]'
+      Lore:
+        - '{lore}'
+  piau:
+    Nome: '&aPiau'
+    Nivel: 2
+    Chance: 25
+    Peso:
+      Minimo: 0.3
+      Maximo: 2
+    Precos:
+      money:
+        Base: 22.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 2
+      Maximo: 4
+    Mcmmo:
+      Minimo: 10
+      Maximo: 24
+    Dica: 'Precisa de vara nivel 2.'
+    Item:
+      Material: COD
+      Nome: '&aPiau &7[&fL.2&7]'
+      Lore:
+        - '{lore}'
+  pacu:
+    Nome: '&aPacu'
+    Nivel: 2
+    Chance: 20
+    Peso:
+      Minimo: 2
+      Maximo: 12
+    Precos:
+      money:
+        Base: 30.0
+        Por grama: 0.06
+    Perolas:
+      Minimo: 2
+      Maximo: 5
+    Mcmmo:
+      Minimo: 10
+      Maximo: 24
+    Dica: 'Precisa de vara nivel 2.'
+    Item:
+      Material: TROPICAL_FISH
+      Nome: '&aPacu &7[&fL.2&7]'
+      Lore:
+        - '{lore}'
+  curimbata:
+    Nome: '&aCurimbata'
+    Nivel: 2
+    Chance: 15
+    Peso:
+      Minimo: 1
+      Maximo: 5
+    Precos:
+      money:
+        Base: 28.0
+        Por grama: 0.07
+    Perolas:
+      Minimo: 2
+      Maximo: 5
+    Mcmmo:
+      Minimo: 10
+      Maximo: 24
+    Dica: 'Precisa de vara nivel 2.'
+    Item:
+      Material: COD
+      Nome: '&aCurimbata &7[&fL.2&7]'
+      Lore:
+        - '{lore}'
+  cascudo:
+    Nome: '&aCascudo'
+    Nivel: 2
+    Chance: 10
+    Peso:
+      Minimo: 0.5
+      Maximo: 3
+    Precos:
+      money:
+        Base: 35.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 3
+      Maximo: 5
+    Mcmmo:
+      Minimo: 10
+      Maximo: 24
+    Condicoes:
+      Chuva: true
+    Dica: 'So aparece na chuva.'
+    Item:
+      Material: PUFFERFISH
+      Nome: '&aCascudo &7[&fL.2&7]'
+      Lore:
+        - '{lore}'
+  tucunare:
+    Nome: '&eTucunare'
+    Nivel: 3
+    Chance: 30
+    Peso:
+      Minimo: 1
+      Maximo: 10
+    Precos:
+      money:
+        Base: 45.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 3
+      Maximo: 6
+    Mcmmo:
+      Minimo: 15
+      Maximo: 36
+    Dica: 'Precisa de vara nivel 3.'
+    Item:
+      Material: TROPICAL_FISH
+      Nome: '&eTucunare &7[&fL.3&7]'
+      Lore:
+        - '{lore}'
+  dourado:
+    Nome: '&eDourado'
+    Nivel: 3
+    Chance: 20
+    Peso:
+      Minimo: 3
+      Maximo: 20
+    Precos:
+      money:
+        Base: 60.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 4
+      Maximo: 7
+    Mcmmo:
+      Minimo: 15
+      Maximo: 36
+    Dica: 'Precisa de vara nivel 3.'
+    Item:
+      Material: GOLD_INGOT
+      Nome: '&eDourado &7[&fL.3&7]'
+      Lore:
+        - '{lore}'
+  pintado:
+    Nome: '&ePintado'
+    Nivel: 3
+    Chance: 20
+    Peso:
+      Minimo: 5
+      Maximo: 40
+    Precos:
+      money:
+        Base: 55.0
+        Por grama: 0.06
+    Perolas:
+      Minimo: 3
+      Maximo: 6
+    Mcmmo:
+      Minimo: 15
+      Maximo: 36
+    Dica: 'Precisa de vara nivel 3.'
+    Item:
+      Material: COD
+      Nome: '&ePintado &7[&fL.3&7]'
+      Lore:
+        - '{lore}'
+  tambaqui:
+    Nome: '&eTambaqui'
+    Nivel: 3
+    Chance: 20
+    Peso:
+      Minimo: 5
+      Maximo: 30
+    Precos:
+      money:
+        Base: 50.0
+        Por grama: 0.07
+    Perolas:
+      Minimo: 3
+      Maximo: 6
+    Mcmmo:
+      Minimo: 15
+      Maximo: 36
+    Dica: 'Precisa de vara nivel 3.'
+    Item:
+      Material: SALMON
+      Nome: '&eTambaqui &7[&fL.3&7]'
+      Lore:
+        - '{lore}'
+  piranha:
+    Nome: '&ePiranha'
+    Nivel: 3
+    Chance: 10
+    Peso:
+      Minimo: 0.5
+      Maximo: 3
+    Precos:
+      money:
+        Base: 70.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 4
+      Maximo: 8
+    Mcmmo:
+      Minimo: 15
+      Maximo: 36
+    Condicoes:
+      Chuva: true
+    Dica: 'So aparece na chuva.'
+    Item:
+      Material: PUFFERFISH
+      Nome: '&ePiranha &7[&fL.3&7]'
+      Lore:
+        - '{lore}'
+  robalo:
+    Nome: '&6Robalo'
+    Nivel: 4
+    Chance: 30
+    Peso:
+      Minimo: 2
+      Maximo: 15
+    Precos:
+      money:
+        Base: 80.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 5
+      Maximo: 9
+    Mcmmo:
+      Minimo: 20
+      Maximo: 48
+    Dica: 'Precisa de vara nivel 4.'
+    Item:
+      Material: COD
+      Nome: '&6Robalo &7[&fL.4&7]'
+      Lore:
+        - '{lore}'
+  corvina:
+    Nome: '&6Corvina'
+    Nivel: 4
+    Chance: 25
+    Peso:
+      Minimo: 1
+      Maximo: 10
+    Precos:
+      money:
+        Base: 75.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 5
+      Maximo: 9
+    Mcmmo:
+      Minimo: 20
+      Maximo: 48
+    Dica: 'Precisa de vara nivel 4.'
+    Item:
+      Material: SALMON
+      Nome: '&6Corvina &7[&fL.4&7]'
+      Lore:
+        - '{lore}'
+  pescada:
+    Nome: '&6Pescada'
+    Nivel: 4
+    Chance: 20
+    Peso:
+      Minimo: 1
+      Maximo: 8
+    Precos:
+      money:
+        Base: 85.0
+        Por grama: 0.12
+    Perolas:
+      Minimo: 5
+      Maximo: 9
+    Mcmmo:
+      Minimo: 20
+      Maximo: 48
+    Dica: 'Precisa de vara nivel 4.'
+    Item:
+      Material: COD
+      Nome: '&6Pescada &7[&fL.4&7]'
+      Lore:
+        - '{lore}'
+  linguado:
+    Nome: '&6Linguado'
+    Nivel: 4
+    Chance: 15
+    Peso:
+      Minimo: 1
+      Maximo: 5
+    Precos:
+      money:
+        Base: 95.0
+        Por grama: 0.14
+    Perolas:
+      Minimo: 6
+      Maximo: 10
+    Mcmmo:
+      Minimo: 20
+      Maximo: 48
+    Dica: 'Precisa de vara nivel 4.'
+    Item:
+      Material: PRISMARINE_SHARD
+      Nome: '&6Linguado &7[&fL.4&7]'
+      Lore:
+        - '{lore}'
+  enguia:
+    Nome: '&6Enguia'
+    Nivel: 4
+    Chance: 10
+    Peso:
+      Minimo: 1
+      Maximo: 6
+    Precos:
+      money:
+        Base: 110.0
+        Por grama: 0.15
+    Perolas:
+      Minimo: 6
+      Maximo: 11
+    Mcmmo:
+      Minimo: 20
+      Maximo: 48
+    Condicoes:
+      Noite: true
+    Dica: 'So aparece a noite.'
+    Item:
+      Material: INK_SAC
+      Nome: '&6Enguia &7[&fL.4&7]'
+      Lore:
+        - '{lore}'
+  garoupa:
+    Nome: '&bGaroupa'
+    Nivel: 5
+    Chance: 30
+    Peso:
+      Minimo: 5
+      Maximo: 60
+    Precos:
+      money:
+        Base: 130.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 7
+      Maximo: 12
+    Mcmmo:
+      Minimo: 25
+      Maximo: 60
+    Dica: 'Precisa de vara nivel 5.'
+    Item:
+      Material: SALMON
+      Nome: '&bGaroupa &7[&fL.5&7]'
+      Lore:
+        - '{lore}'
+  atum:
+    Nome: '&bAtum'
+    Nivel: 5
+    Chance: 25
+    Peso:
+      Minimo: 20
+      Maximo: 150
+    Precos:
+      money:
+        Base: 150.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 7
+      Maximo: 12
+    Mcmmo:
+      Minimo: 25
+      Maximo: 60
+    Dica: 'Precisa de vara nivel 5.'
+    Item:
+      Material: COD
+      Nome: '&bAtum &7[&fL.5&7]'
+      Lore:
+        - '{lore}'
+  salmao_do_atlantico:
+    Nome: '&bSalmao do Atlantico'
+    Nivel: 5
+    Chance: 20
+    Peso:
+      Minimo: 3
+      Maximo: 25
+    Precos:
+      money:
+        Base: 160.0
+        Por grama: 0.12
+    Perolas:
+      Minimo: 8
+      Maximo: 13
+    Mcmmo:
+      Minimo: 25
+      Maximo: 60
+    Dica: 'Precisa de vara nivel 5.'
+    Item:
+      Material: SALMON
+      Nome: '&bSalmao do Atlantico &7[&fL.5&7]'
+      Lore:
+        - '{lore}'
+  cavala:
+    Nome: '&bCavala'
+    Nivel: 5
+    Chance: 15
+    Peso:
+      Minimo: 1
+      Maximo: 10
+    Precos:
+      money:
+        Base: 170.0
+        Por grama: 0.14
+    Perolas:
+      Minimo: 8
+      Maximo: 13
+    Mcmmo:
+      Minimo: 25
+      Maximo: 60
+    Dica: 'Precisa de vara nivel 5.'
+    Item:
+      Material: TROPICAL_FISH
+      Nome: '&bCavala &7[&fL.5&7]'
+      Lore:
+        - '{lore}'
+  baiacu:
+    Nome: '&bBaiacu'
+    Nivel: 5
+    Chance: 10
+    Peso:
+      Minimo: 0.5
+      Maximo: 4
+    Precos:
+      money:
+        Base: 220.0
+        Por grama: 0.18
+    Perolas:
+      Minimo: 9
+      Maximo: 15
+    Mcmmo:
+      Minimo: 25
+      Maximo: 60
+    Condicoes:
+      Noite: true
+    Dica: 'So aparece a noite.'
+    Item:
+      Material: PUFFERFISH
+      Nome: '&bBaiacu &7[&fL.5&7]'
+      Lore:
+        - '{lore}'
+  peixe_espada:
+    Nome: '&3Peixe-espada'
+    Nivel: 6
+    Chance: 30
+    Peso:
+      Minimo: 30
+      Maximo: 200
+    Precos:
+      money:
+        Base: 260.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 10
+      Maximo: 16
+    Mcmmo:
+      Minimo: 30
+      Maximo: 72
+    Dica: 'Precisa de vara nivel 6.'
+    Item:
+      Material: IRON_SWORD
+      Nome: '&3Peixe-espada &7[&fL.6&7]'
+      Lore:
+        - '{lore}'
+  dourado_do_mar:
+    Nome: '&3Dourado-do-mar'
+    Nivel: 6
+    Chance: 25
+    Peso:
+      Minimo: 5
+      Maximo: 40
+    Precos:
+      money:
+        Base: 280.0
+        Por grama: 0.12
+    Perolas:
+      Minimo: 10
+      Maximo: 17
+    Mcmmo:
+      Minimo: 30
+      Maximo: 72
+    Dica: 'Precisa de vara nivel 6.'
+    Item:
+      Material: GOLD_INGOT
+      Nome: '&3Dourado-do-mar &7[&fL.6&7]'
+      Lore:
+        - '{lore}'
+  barracuda:
+    Nome: '&3Barracuda'
+    Nivel: 6
+    Chance: 20
+    Peso:
+      Minimo: 5
+      Maximo: 50
+    Precos:
+      money:
+        Base: 300.0
+        Por grama: 0.12
+    Perolas:
+      Minimo: 11
+      Maximo: 18
+    Mcmmo:
+      Minimo: 30
+      Maximo: 72
+    Dica: 'Precisa de vara nivel 6.'
+    Item:
+      Material: COD
+      Nome: '&3Barracuda &7[&fL.6&7]'
+      Lore:
+        - '{lore}'
+  arraia:
+    Nome: '&3Arraia'
+    Nivel: 6
+    Chance: 15
+    Peso:
+      Minimo: 10
+      Maximo: 90
+    Precos:
+      money:
+        Base: 330.0
+        Por grama: 0.11
+    Perolas:
+      Minimo: 11
+      Maximo: 18
+    Mcmmo:
+      Minimo: 30
+      Maximo: 72
+    Dica: 'Precisa de vara nivel 6.'
+    Item:
+      Material: PRISMARINE_CRYSTALS
+      Nome: '&3Arraia &7[&fL.6&7]'
+      Lore:
+        - '{lore}'
+  lula:
+    Nome: '&3Lula'
+    Nivel: 6
+    Chance: 10
+    Peso:
+      Minimo: 1
+      Maximo: 15
+    Precos:
+      money:
+        Base: 380.0
+        Por grama: 0.20
+    Perolas:
+      Minimo: 12
+      Maximo: 20
+    Mcmmo:
+      Minimo: 30
+      Maximo: 72
+    Condicoes:
+      Noite: true
+    Dica: 'So aparece a noite.'
+    Item:
+      Material: INK_SAC
+      Nome: '&3Lula &7[&fL.6&7]'
+      Lore:
+        - '{lore}'
+  tubarao:
+    Nome: '&9Tubarao'
+    Nivel: 7
+    Chance: 30
+    Peso:
+      Minimo: 100
+      Maximo: 400
+    Precos:
+      money:
+        Base: 450.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 14
+      Maximo: 22
+    Mcmmo:
+      Minimo: 35
+      Maximo: 84
+    Dica: 'Precisa de vara nivel 7.'
+    Item:
+      Material: COD
+      Nome: '&9Tubarao &7[&fL.7&7]'
+      Lore:
+        - '{lore}'
+  polvo:
+    Nome: '&9Polvo'
+    Nivel: 7
+    Chance: 25
+    Peso:
+      Minimo: 2
+      Maximo: 30
+    Precos:
+      money:
+        Base: 480.0
+        Por grama: 0.15
+    Perolas:
+      Minimo: 14
+      Maximo: 22
+    Mcmmo:
+      Minimo: 35
+      Maximo: 84
+    Dica: 'Precisa de vara nivel 7.'
+    Item:
+      Material: INK_SAC
+      Nome: '&9Polvo &7[&fL.7&7]'
+      Lore:
+        - '{lore}'
+  peixe_lua:
+    Nome: '&9Peixe-lua'
+    Nivel: 7
+    Chance: 20
+    Peso:
+      Minimo: 200
+      Maximo: 1000
+    Precos:
+      money:
+        Base: 520.0
+        Por grama: 0.04
+    Perolas:
+      Minimo: 15
+      Maximo: 24
+    Mcmmo:
+      Minimo: 35
+      Maximo: 84
+    Dica: 'Precisa de vara nivel 7.'
+    Item:
+      Material: SUNFLOWER
+      Nome: '&9Peixe-lua &7[&fL.7&7]'
+      Lore:
+        - '{lore}'
+  pirarucu:
+    Nome: '&9Pirarucu'
+    Nivel: 7
+    Chance: 15
+    Peso:
+      Minimo: 50
+      Maximo: 200
+    Precos:
+      money:
+        Base: 560.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 15
+      Maximo: 24
+    Mcmmo:
+      Minimo: 35
+      Maximo: 84
+    Condicoes:
+      Chuva: true
+    Dica: 'So aparece na chuva.'
+    Item:
+      Material: SALMON
+      Nome: '&9Pirarucu &7[&fL.7&7]'
+      Lore:
+        - '{lore}'
+  marlim:
+    Nome: '&9Marlim'
+    Nivel: 7
+    Chance: 10
+    Peso:
+      Minimo: 100
+      Maximo: 500
+    Precos:
+      money:
+        Base: 650.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 16
+      Maximo: 26
+    Mcmmo:
+      Minimo: 35
+      Maximo: 84
+    Dica: 'Precisa de vara nivel 7.'
+    Item:
+      Material: TROPICAL_FISH
+      Nome: '&9Marlim &7[&fL.7&7]'
+      Lore:
+        - '{lore}'
+  peixe_lanterna:
+    Nome: '&5Peixe-lanterna'
+    Nivel: 8
+    Chance: 30
+    Peso:
+      Minimo: 0.5
+      Maximo: 5
+    Precos:
+      money:
+        Base: 800.0
+        Por grama: 0.40
+    Perolas:
+      Minimo: 18
+      Maximo: 30
+    Mcmmo:
+      Minimo: 40
+      Maximo: 96
+    Condicoes:
+      Noite: true
+    Dica: 'So aparece a noite.'
+    Item:
+      Material: GLOWSTONE_DUST
+      Nome: '&5Peixe-lanterna &7[&fL.8&7]'
+      Lore:
+        - '{lore}'
+  peixe_diabo:
+    Nome: '&5Peixe-diabo'
+    Nivel: 8
+    Chance: 25
+    Peso:
+      Minimo: 20
+      Maximo: 120
+    Precos:
+      money:
+        Base: 850.0
+        Por grama: 0.18
+    Perolas:
+      Minimo: 18
+      Maximo: 30
+    Mcmmo:
+      Minimo: 40
+      Maximo: 96
+    Dica: 'Precisa de vara nivel 8.'
+    Item:
+      Material: BLAZE_POWDER
+      Nome: '&5Peixe-diabo &7[&fL.8&7]'
+      Lore:
+        - '{lore}'
+  tubarao_martelo:
+    Nome: '&5Tubarao-martelo'
+    Nivel: 8
+    Chance: 20
+    Peso:
+      Minimo: 150
+      Maximo: 450
+    Precos:
+      money:
+        Base: 900.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 19
+      Maximo: 32
+    Mcmmo:
+      Minimo: 40
+      Maximo: 96
+    Dica: 'Precisa de vara nivel 8.'
+    Item:
+      Material: COD
+      Nome: '&5Tubarao-martelo &7[&fL.8&7]'
+      Lore:
+        - '{lore}'
+  tubarao_tigre:
+    Nome: '&5Tubarao-tigre'
+    Nivel: 8
+    Chance: 15
+    Peso:
+      Minimo: 300
+      Maximo: 600
+    Precos:
+      money:
+        Base: 980.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 20
+      Maximo: 33
+    Mcmmo:
+      Minimo: 40
+      Maximo: 96
+    Dica: 'Precisa de vara nivel 8.'
+    Item:
+      Material: SALMON
+      Nome: '&5Tubarao-tigre &7[&fL.8&7]'
+      Lore:
+        - '{lore}'
+  atum_azul:
+    Nome: '&5Atum-azul'
+    Nivel: 8
+    Chance: 10
+    Peso:
+      Minimo: 100
+      Maximo: 450
+    Precos:
+      money:
+        Base: 1100.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 21
+      Maximo: 35
+    Mcmmo:
+      Minimo: 40
+      Maximo: 96
+    Dica: 'Precisa de vara nivel 8.'
+    Item:
+      Material: LAPIS_LAZULI
+      Nome: '&5Atum-azul &7[&fL.8&7]'
+      Lore:
+        - '{lore}'
+  peixe_remo:
+    Nome: '&dPeixe-remo'
+    Nivel: 9
+    Chance: 30
+    Peso:
+      Minimo: 50
+      Maximo: 270
+    Precos:
+      money:
+        Base: 1400.0
+        Por grama: 0.10
+    Perolas:
+      Minimo: 24
+      Maximo: 40
+    Mcmmo:
+      Minimo: 45
+      Maximo: 108
+    Condicoes:
+      Noite: true
+    Dica: 'So aparece a noite.'
+    Item:
+      Material: BLAZE_ROD
+      Nome: '&dPeixe-remo &7[&fL.9&7]'
+      Lore:
+        - '{lore}'
+  tubarao_branco:
+    Nome: '&dTubarao-branco'
+    Nivel: 9
+    Chance: 25
+    Peso:
+      Minimo: 600
+      Maximo: 1900
+    Precos:
+      money:
+        Base: 1500.0
+        Por grama: 0.06
+    Perolas:
+      Minimo: 25
+      Maximo: 42
+    Mcmmo:
+      Minimo: 45
+      Maximo: 108
+    Dica: 'Precisa de vara nivel 9.'
+    Item:
+      Material: BONE
+      Nome: '&dTubarao-branco &7[&fL.9&7]'
+      Lore:
+        - '{lore}'
+  lula_gigante:
+    Nome: '&dLula-gigante'
+    Nivel: 9
+    Chance: 20
+    Peso:
+      Minimo: 150
+      Maximo: 500
+    Precos:
+      money:
+        Base: 1650.0
+        Por grama: 0.08
+    Perolas:
+      Minimo: 26
+      Maximo: 44
+    Mcmmo:
+      Minimo: 45
+      Maximo: 108
+    Condicoes:
+      Noite: true
+    Dica: 'So aparece a noite.'
+    Item:
+      Material: INK_SAC
+      Nome: '&dLula-gigante &7[&fL.9&7]'
+      Lore:
+        - '{lore}'
+  peixe_dragao:
+    Nome: '&dPeixe-dragao'
+    Nivel: 9
+    Chance: 15
+    Peso:
+      Minimo: 10
+      Maximo: 60
+    Precos:
+      money:
+        Base: 1800.0
+        Por grama: 0.20
+    Perolas:
+      Minimo: 28
+      Maximo: 46
+    Mcmmo:
+      Minimo: 45
+      Maximo: 108
+    Condicoes:
+      Chuva: true
+    Dica: 'So aparece na chuva.'
+    Item:
+      Material: DRAGON_BREATH
+      Nome: '&dPeixe-dragao &7[&fL.9&7]'
+      Lore:
+        - '{lore}'
+  celacanto:
+    Nome: '&dCelacanto'
+    Nivel: 9
+    Chance: 10
+    Peso:
+      Minimo: 30
+      Maximo: 90
+    Precos:
+      money:
+        Base: 2000.0
+        Por grama: 0.22
+    Perolas:
+      Minimo: 30
+      Maximo: 50
+    Mcmmo:
+      Minimo: 45
+      Maximo: 108
+    Dica: 'Precisa de vara nivel 9.'
+    Item:
+      Material: PRISMARINE_SHARD
+      Nome: '&dCelacanto &7[&fL.9&7]'
+      Lore:
+        - '{lore}'
+  kraken:
+    Nome: '&cKraken'
+    Nivel: 10
+    Chance: 30
+    Peso:
+      Minimo: 1000
+      Maximo: 5000
+    Precos:
+      money:
+        Base: 3200.0
+        Por grama: 0.06
+    Perolas:
+      Minimo: 40
+      Maximo: 70
+    Mcmmo:
+      Minimo: 50
+      Maximo: 120
+    Condicoes:
+      Noite: true
+    Dica: 'So aparece a noite, com a vara maxima.'
+    Item:
+      Material: INK_SAC
+      Nome: '&cKraken &7[&fL.10&7]'
+      Lore:
+        - '{lore}'
+  leviata:
+    Nome: '&cLeviata'
+    Nivel: 10
+    Chance: 25
+    Peso:
+      Minimo: 2000
+      Maximo: 9000
+    Precos:
+      money:
+        Base: 3600.0
+        Por grama: 0.05
+    Perolas:
+      Minimo: 45
+      Maximo: 75
+    Mcmmo:
+      Minimo: 50
+      Maximo: 120
+    Condicoes:
+      Chuva: true
+    Dica: 'So aparece na chuva, com a vara maxima.'
+    Item:
+      Material: PRISMARINE_CRYSTALS
+      Nome: '&cLeviata &7[&fL.10&7]'
+      Lore:
+        - '{lore}'
+  serpente_marinha:
+    Nome: '&cSerpente-marinha'
+    Nivel: 10
+    Chance: 20
+    Peso:
+      Minimo: 500
+      Maximo: 3000
+    Precos:
+      money:
+        Base: 4000.0
+        Por grama: 0.07
+    Perolas:
+      Minimo: 48
+      Maximo: 80
+    Mcmmo:
+      Minimo: 50
+      Maximo: 120
+    Dica: 'Precisa da vara maxima.'
+    Item:
+      Material: BLAZE_ROD
+      Nome: '&cSerpente-marinha &7[&fL.10&7]'
+      Lore:
+        - '{lore}'
+  peixe_dourado_ancestral:
+    Nome: '&cPeixe Dourado Ancestral'
+    Nivel: 10
+    Chance: 15
+    Peso:
+      Minimo: 1
+      Maximo: 10
+    Precos:
+      money:
+        Base: 5000.0
+        Por grama: 1.00
+    Perolas:
+      Minimo: 60
+      Maximo: 100
+    Mcmmo:
+      Minimo: 50
+      Maximo: 120
+    Dica: 'Precisa da vara maxima.'
+    Item:
+      Material: GOLD_BLOCK
+      Nome: '&cPeixe Dourado Ancestral &7[&fL.10&7]'
+      Lore:
+        - '{lore}'
+  megalodonte:
+    Nome: '&cMegalodonte'
+    Nivel: 10
+    Chance: 10
+    Peso:
+      Minimo: 5000
+      Maximo: 20000
+    Precos:
+      money:
+        Base: 6500.0
+        Por grama: 0.04
+    Perolas:
+      Minimo: 80
+      Maximo: 130
+    Mcmmo:
+      Minimo: 50
+      Maximo: 120
+    Dica: 'Precisa da vara maxima.'
+    Item:
+      Material: NETHER_STAR
+      Nome: '&cMegalodonte &7[&fL.10&7]'
+      Lore:
+        - '{lore}'

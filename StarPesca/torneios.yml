@@ -1,0 +1,74 @@
+# ==========================================================================
+#  StarPesca - torneios
+#
+#  Um torneio por vez. Comeca pelo /starpesca torneio iniciar <tipo> ou
+#  sozinho, pela agenda abaixo. Ao terminar, os tres primeiros recebem as
+#  recompensas das Posicoes; sem participante nao ha vencedor.
+#
+#  Tipos:
+#    PESO        vence quem pescar o peixe mais pesado
+#    QUANTIDADE  vence quem pescar mais peixes
+#    RARIDADE    vence quem somar mais pontos de raridade (peixes.yml)
+#    VALOR       vence quem pescar peixes que somem mais valor de venda
+#
+#  Recompensas: Perolas, Economias (por economia do economias.yml) e
+#  Comandos ({jogador}). Duracao em minutos.
+#  Nas mensagens: {tipo} {tempo} {premio} {jogador} {valor} e
+#  {1_nome} {1_valor} ... {3_nome} {3_valor}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Nome de cada tipo nas mensagens e menus.
+Tipos:
+  PESO:
+    Nome: 'Peixe mais pesado'
+    Descricao: 'Vence quem pescar o peixe mais pesado.'
+    Unidade: 'g'
+  QUANTIDADE:
+    Nome: 'Mais peixes'
+    Descricao: 'Vence quem pescar mais peixes.'
+    Unidade: ' peixes'
+  RARIDADE:
+    Nome: 'Raridade'
+    Descricao: 'Vence quem somar mais pontos de raridade.'
+    Unidade: ' pontos'
+  VALOR:
+    Nome: 'Maior valor'
+    Descricao: 'Vence quem somar mais valor em peixes.'
+    Unidade: ''
+
+# Duracao padrao (minutos) quando o comando nao diz.
+Duracao: 30
+
+# Posicao -> recompensa. {premio} nas mensagens e a soma em money do 1o lugar.
+Posicoes:
+  1:
+    Perolas: 300.0
+    Economias:
+      money: 25000.0
+    Comandos: [ ]
+  2:
+    Perolas: 150.0
+    Economias:
+      money: 10000.0
+    Comandos: [ ]
+  3:
+    Perolas: 75.0
+    Economias:
+      money: 5000.0
+    Comandos: [ ]
+
+# Agenda: comeca torneios sozinho.
+Agenda:
+  Ativar: true
+  # Intervalo entre um torneio e o proximo (minutos), contado do fim do anterior.
+  A cada: 180
+  # Tipos sorteados (vazio = todos).
+  Tipos: [ PESO, QUANTIDADE, RARIDADE, VALOR ]
+  Duracao: 30
+  # So comeca com pelo menos tantos jogadores online.
+  Minimo de jogadores: 2
+
+# Avisos de tempo restante (minutos antes do fim).
+Avisos: [ 15, 5, 1 ]

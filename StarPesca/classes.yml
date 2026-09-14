@@ -1,0 +1,195 @@
+# ==========================================================================
+#  StarPesca - classes de pescador
+#
+#  As classes sao compradas em ordem (Ordem 0, 1, 2...): so da para evoluir
+#  para a proxima depois de ter a anterior. Uma vez comprada, o jogador pode
+#  equipar qualquer classe que tenha.
+#
+#  Bonus (em %): Chance (raridade melhor), Perolas, Peso, Valor de venda.
+#  Efeitos: 'EFEITO:nivel', aplicados enquanto a classe esta equipada
+#  (config.yml -> Classes.Efeitos so na area).
+#  Custo: por economia do economias.yml (money, perolas...).
+#  Permissao: vazio = qualquer um pode comprar.
+#  Cor: cor da armadura de couro (R:G:B) vestida na area.
+#
+#  Nos itens: {nome} {ordem} {bonus_chance} {bonus_perolas} {bonus_peso}
+#  {bonus_valor} {custo} {efeitos}
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Nome mostrado para quem nao tem classe.
+Sem classe: '&7Nenhuma'
+
+Classes:
+  quartzo:
+    Ordem: 0
+    Nome: '&fQuartzo'
+    Cor: '255:255:255'
+    Permissao: ''
+    Efeitos: [ ]
+    Bonus:
+      Chance: 2.0
+      Perolas: 5.0
+      Peso: 0.0
+      Valor: 0.0
+    Custo:
+      money: 5000.0
+      perolas: 100.0
+    Item:
+      Material: LEATHER_CHESTPLATE
+      Nome: '&fClasse Quartzo'
+      Lore:
+        - ''
+        - ' &7A primeira classe de pescador.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{rodape}'
+  esmeralda:
+    Ordem: 1
+    Nome: '&aEsmeralda'
+    Cor: '85:255:85'
+    Permissao: ''
+    Efeitos: [ 'SPEED:1' ]
+    Bonus:
+      Chance: 5.0
+      Perolas: 10.0
+      Peso: 3.0
+      Valor: 3.0
+    Custo:
+      money: 20000.0
+      perolas: 400.0
+    Item:
+      Material: LEATHER_CHESTPLATE
+      Nome: '&aClasse Esmeralda'
+      Lore:
+        - ''
+        - ' &7Pescadores com experiencia.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{rodape}'
+  diamante:
+    Ordem: 2
+    Nome: '&bDiamante'
+    Cor: '85:255:255'
+    Permissao: ''
+    Efeitos: [ 'SPEED:1', 'NIGHT_VISION:1' ]
+    Bonus:
+      Chance: 8.0
+      Perolas: 18.0
+      Peso: 6.0
+      Valor: 6.0
+    Custo:
+      money: 75000.0
+      perolas: 1200.0
+    Item:
+      Material: LEATHER_CHESTPLATE
+      Nome: '&bClasse Diamante'
+      Lore:
+        - ''
+        - ' &7Os mestres da pescaria.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{rodape}'
+  netherita:
+    Ordem: 3
+    Nome: '&8Netherita'
+    Cor: '60:60:60'
+    Permissao: ''
+    Efeitos: [ 'SPEED:2', 'NIGHT_VISION:1', 'WATER_BREATHING:1' ]
+    Bonus:
+      Chance: 12.0
+      Perolas: 30.0
+      Peso: 10.0
+      Valor: 10.0
+    Custo:
+      money: 250000.0
+      perolas: 3500.0
+    Item:
+      Material: LEATHER_CHESTPLATE
+      Nome: '&8Classe Netherita'
+      Lore:
+        - ''
+        - ' &7Poucos chegam ate aqui.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{rodape}'
+  lendaria:
+    Ordem: 4
+    Nome: '&6Lendaria'
+    Cor: '255:170:0'
+    Permissao: ''
+    Efeitos: [ 'SPEED:2', 'NIGHT_VISION:1', 'WATER_BREATHING:1', 'LUCK:1' ]
+    Bonus:
+      Chance: 18.0
+      Perolas: 50.0
+      Peso: 15.0
+      Valor: 15.0
+    Custo:
+      money: 1000000.0
+      perolas: 10000.0
+    Item:
+      Material: LEATHER_CHESTPLATE
+      Nome: '&6Classe Lendaria'
+      Brilho: true
+      Lore:
+        - ''
+        - ' &7A lenda viva da pescaria.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{rodape}'
+
+# Rodape do item da classe no menu, conforme a situacao.
+Rodape:
+  Comprar: '&aClique para evoluir por {custo}&a.'
+  Sem saldo: '&cVoce precisa de {custo}&c.'
+  Anterior: '&cVoce precisa da classe anterior.'
+  Permissao: '&cVoce nao tem permissao para esta classe.'
+  Equipar: '&eClique para equipar.'
+  Equipada: '&aClasse equipada.'
+
+# Armadura vestida na area de pesca (config.yml -> Classes.Vestir armadura).
+# A cor vem da classe. {classe} e o nome dela.
+Armadura:
+  Capacete:
+    Material: LEATHER_HELMET
+    Nome: '&fCapacete de pescador &7({classe}&7)'
+  Peitoral:
+    Material: LEATHER_CHESTPLATE
+    Nome: '&fColete de pescador &7({classe}&7)'
+  Calca:
+    Material: LEATHER_LEGGINGS
+    Nome: '&fCalca de pescador &7({classe}&7)'
+  Botas:
+    Material: LEATHER_BOOTS
+    Nome: '&fBotas de pescador &7({classe}&7)'

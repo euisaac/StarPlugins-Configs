@@ -1,0 +1,41 @@
+# ==========================================================================
+#  StarPesca - recompensas
+#
+#  Sorteadas a cada peixe pescado, conforme a lista 'Recompensas' da vara
+#  (varas.yml -> 'chance,recompensa'). Item vai para o inventario (ou cai no
+#  chao se estiver cheio); Comandos rodam no console ({jogador}).
+#  Mensagem vazia nao e enviada.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Recompensas:
+  pedra:
+    Item:
+      Material: COBBLESTONE
+      Quantidade: 8
+      Nome: '&7Pedregulho do fundo'
+      Lore: [ '&8Veio preso no anzol.' ]
+    Comandos: [ ]
+    Mensagem: '&7Voce achou &f8x Pedregulho&7 preso no anzol.'
+  ferro:
+    Item:
+      Material: IRON_INGOT
+      Quantidade: 2
+      Nome: ''
+      Lore: [ ]
+    Comandos: [ ]
+    Mensagem: '&7Voce achou &f2x Ferro&7 preso no anzol.'
+  diamante:
+    Item:
+      Material: DIAMOND
+      Quantidade: 1
+      Nome: ''
+      Lore: [ ]
+    Comandos: [ ]
+    Mensagem: '&bVoce achou um &fDiamante&b preso no anzol!'
+  tesouro:
+    Item:
+      Material: AIR
+    Comandos: [ 'give {jogador} emerald 3' ]
+    Mensagem: '&aVoce achou um &fbau de tesouro&a afundado!'

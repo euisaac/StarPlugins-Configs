@@ -1,0 +1,177 @@
+# ==========================================================================
+#  StarPesca - encantamentos da vara
+#
+#  Comprados com perolas no menu da vara. Cada nivel soma o 'Por nivel' do
+#  encantamento. Custo = Base + (Por nivel de custo x nivel atual).
+#
+#  Tipos (o Tipo diz o que o encantamento faz; o nome da secao e livre):
+#    SORTUDO        + % de chance de raridade melhor
+#    MULTIPLICADOR  + % de perolas por peixe
+#    PESO           + % no peso do peixe (vale mais)
+#    VELOCIDADE     - % no intervalo entre peixes e no tempo de mordida
+#    DUPLICADOR     % de chance de pescar dois peixes de uma vez
+#    VALOR          + % no valor de venda
+#    EXPERIENCIA    + % no XP do mcMMO
+#    CHAVEIRO       % de chance por nivel de rodar um dos Comandos
+#    COMANDO        igual ao CHAVEIRO (varios podem existir)
+#
+#  Maximo: -1 = sem limite. Nos itens: {nome} {nivel} {maximo} {valor}
+#  (o bonus atual), {proximo} (o bonus do proximo nivel), {custo}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Encantamentos:
+  sortudo:
+    Tipo: SORTUDO
+    Nome: 'Sortudo'
+    Maximo: 10
+    Por nivel: 2.0
+    Custo:
+      Base: 100.0
+      Por nivel: 150.0
+    Item:
+      Material: RABBIT_FOOT
+      Nome: '&aSortudo'
+      Lore:
+        - '&7Aumenta a chance de pescar'
+        - '&7peixes de raridade maior.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fBonus atual: &b+{valor}%'
+        - ' &fProximo nivel: &b+{proximo}%'
+        - ''
+        - '{rodape}'
+  multiplicador:
+    Tipo: MULTIPLICADOR
+    Nome: 'Multiplicador'
+    Maximo: 10
+    Por nivel: 5.0
+    Custo:
+      Base: 100.0
+      Por nivel: 150.0
+    Item:
+      Material: GOLD_NUGGET
+      Nome: '&eMultiplicador'
+      Lore:
+        - '&7Aumenta as perolas ganhas'
+        - '&7em cada peixe.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fBonus atual: &b+{valor}%'
+        - ' &fProximo nivel: &b+{proximo}%'
+        - ''
+        - '{rodape}'
+  peso:
+    Tipo: PESO
+    Nome: 'Peso'
+    Maximo: 5
+    Por nivel: 4.0
+    Custo:
+      Base: 150.0
+      Por nivel: 200.0
+    Item:
+      Material: ANVIL
+      Nome: '&7Peso'
+      Lore:
+        - '&7Os peixes pescados vem mais'
+        - '&7pesados (e valem mais).'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fBonus atual: &b+{valor}%'
+        - ' &fProximo nivel: &b+{proximo}%'
+        - ''
+        - '{rodape}'
+  velocidade:
+    Tipo: VELOCIDADE
+    Nome: 'Velocidade'
+    Maximo: 5
+    Por nivel: 8.0
+    Custo:
+      Base: 150.0
+      Por nivel: 200.0
+    Item:
+      Material: SUGAR
+      Nome: '&fVelocidade'
+      Lore:
+        - '&7Diminui o intervalo entre'
+        - '&7um peixe e outro.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fReducao atual: &b-{valor}%'
+        - ' &fProximo nivel: &b-{proximo}%'
+        - ''
+        - '{rodape}'
+  duplicador:
+    Tipo: DUPLICADOR
+    Nome: 'Duplicador'
+    Maximo: 5
+    Por nivel: 3.0
+    Custo:
+      Base: 250.0
+      Por nivel: 300.0
+    Item:
+      Material: TROPICAL_FISH
+      Nome: '&bDuplicador'
+      Lore:
+        - '&7Chance de fisgar dois peixes'
+        - '&7de uma vez.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fChance atual: &b{valor}%'
+        - ' &fProximo nivel: &b{proximo}%'
+        - ''
+        - '{rodape}'
+  valor:
+    Tipo: VALOR
+    Nome: 'Negociante'
+    Maximo: 10
+    Por nivel: 3.0
+    Custo:
+      Base: 200.0
+      Por nivel: 250.0
+    Item:
+      Material: EMERALD
+      Nome: '&2Negociante'
+      Lore:
+        - '&7Seus peixes valem mais'
+        - '&7na hora de vender.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fBonus atual: &b+{valor}%'
+        - ' &fProximo nivel: &b+{proximo}%'
+        - ''
+        - '{rodape}'
+  chaveiro:
+    Tipo: CHAVEIRO
+    Nome: 'Chaveiro'
+    Maximo: -1
+    Por nivel: 1.0
+    Custo:
+      Base: 300.0
+      Por nivel: 400.0
+    # 'chance,comando': a chance e multiplicada pelo bonus atual. {jogador}.
+    Comandos:
+      - '100,give {jogador} tripwire_hook 1'
+    Mensagens:
+      Titulo: '&aChave encontrada!<nl>&7Havia algo preso no anzol'
+      Actionbar: ''
+      Chat: ''
+    Item:
+      Material: TRIPWIRE_HOOK
+      Nome: '&6Chaveiro'
+      Lore:
+        - '&7Chance de encontrar chaves'
+        - '&7presas no anzol.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fChance atual: &b{valor}%'
+        - ' &fProximo nivel: &b{proximo}%'
+        - ''
+        - '{rodape}'
+
+# Rodape do item de cada encantamento ({rodape}), conforme a situacao.
+Rodape:
+  Pode: '&aClique para evoluir por &f{custo} perolas&a.'
+  Sem perolas: '&cVoce precisa de &f{custo} perolas&c.'
+  Maximo: '&cNivel maximo alcancado.'

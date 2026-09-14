@@ -1,0 +1,689 @@
+# ==========================================================================
+#  StarPesca - varas de pesca
+#
+#  A vara do jogador e um item do plugin (dado pelo /pesca vara ou ao entrar
+#  na area). O nivel dela fica no perfil: perder o item nao perde a vara.
+#
+#  Cada nivel:
+#    Peso suportado    Peixe mais pesado escapa (ou quebra a vara).
+#    Quebra com peso   true: o peixe pesado quebra a vara (precisa reparar).
+#    Intervalo         Segundos entre um peixe e outro.
+#    Mordida           Tempo de espera pela mordida (Paper 1.16+), min e max.
+#    Auto venda        A vara deixa usar a auto-venda (com a permissao).
+#    Bonus             Bonus proprios da vara: chance de raridade (%), perolas
+#                      (%) e peso (%).
+#    Reparo            Custo para consertar (por economia do economias.yml).
+#    Evoluir           Custo para chegar NESTE nivel vindo do anterior.
+#    Recompensas       'chance,recompensa' do recompensas.yml, sorteadas a
+#                      cada peixe pescado.
+#    Item              Nome e lore da vara. {nivel} {peso_suportado} {intervalo}
+#                      {encantamentos} (uma linha por encantamento, ou nada)
+#                      {perolas} {proximo_custo_perolas} {barra} {dono}
+#    Loja              Como a vara aparece na loja de varas (Evoluir, Tem e
+#                      Bloqueada = precisa da anterior).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Item mostrado na loja no lugar de uma vara que o jogador ainda nao alcanca.
+Bloqueada:
+  Material: BARRIER
+  Nome: '&c{nome}'
+  Lore:
+    - ''
+    - '&7Nivel: &f{nivel}'
+    - '&7Peso suportado: &f{peso_suportado}g'
+    - ''
+    - '&cVoce precisa da vara anterior.'
+
+# Formato de cada linha de {encantamentos} na lore da vara.
+Linha de encantamento: ' &7▪ &b{nome} &f{nivel}'
+Sem encantamentos: ' &7▪ &8Nenhum encantamento'
+
+# Barra de progresso ({barra}) das perolas ate a proxima vara.
+Barra:
+  Tamanho: 20
+  Cheio: '&b|'
+  Vazio: '&8|'
+
+Varas:
+  iniciante:
+    Nivel: 1
+    Nome: '&fVara de Iniciante'
+    Peso suportado: 8
+    Quebra com peso: false
+    Intervalo: 8
+    Mordida:
+      Minimo: 8
+      Maximo: 30
+    Auto venda: false
+    Bonus:
+      Chance: 0.0
+      Perolas: 0.0
+      Peso: 0.0
+    Reparo:
+      money: 100.0
+      perolas: 0.0
+    Evoluir:
+      money: 0.0
+      perolas: 0.0
+    Recompensas:
+      - '4.0,pedra'
+      - '1.0,ferro'
+      - '0.3,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&fVara de Iniciante &7[&fL.{nivel}&7]'
+      Brilho: false
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&fVara de Iniciante &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&fVara de Iniciante &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  madeira:
+    Nivel: 2
+    Nome: '&aVara de Madeira'
+    Peso suportado: 30
+    Quebra com peso: true
+    Intervalo: 7
+    Mordida:
+      Minimo: 7
+      Maximo: 28
+    Auto venda: false
+    Bonus:
+      Chance: 2.0
+      Perolas: 5.0
+      Peso: 0.0
+    Reparo:
+      money: 200.0
+      perolas: 10.0
+    Evoluir:
+      money: 1500.0
+      perolas: 50.0
+    Recompensas:
+      - '5.0,pedra'
+      - '2.0,ferro'
+      - '0.6,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&aVara de Madeira &7[&fL.{nivel}&7]'
+      Brilho: false
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&aVara de Madeira &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&aVara de Madeira &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  bambu:
+    Nivel: 3
+    Nome: '&eVara de Bambu'
+    Peso suportado: 60
+    Quebra com peso: true
+    Intervalo: 6
+    Mordida:
+      Minimo: 7
+      Maximo: 26
+    Auto venda: false
+    Bonus:
+      Chance: 4.0
+      Perolas: 10.0
+      Peso: 0.0
+    Reparo:
+      money: 400.0
+      perolas: 25.0
+    Evoluir:
+      money: 4000.0
+      perolas: 120.0
+    Recompensas:
+      - '6.0,pedra'
+      - '3.0,ferro'
+      - '0.9,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&eVara de Bambu &7[&fL.{nivel}&7]'
+      Brilho: false
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&eVara de Bambu &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&eVara de Bambu &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  ferro:
+    Nivel: 4
+    Nome: '&6Vara de Ferro'
+    Peso suportado: 160
+    Quebra com peso: true
+    Intervalo: 6
+    Mordida:
+      Minimo: 6
+      Maximo: 24
+    Auto venda: true
+    Bonus:
+      Chance: 6.0
+      Perolas: 15.0
+      Peso: 0.0
+    Reparo:
+      money: 800.0
+      perolas: 50.0
+    Evoluir:
+      money: 9000.0
+      perolas: 250.0
+    Recompensas:
+      - '7.0,pedra'
+      - '4.0,ferro'
+      - '1.2,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&6Vara de Ferro &7[&fL.{nivel}&7]'
+      Brilho: false
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&6Vara de Ferro &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&6Vara de Ferro &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  prata:
+    Nivel: 5
+    Nome: '&bVara de Prata'
+    Peso suportado: 300
+    Quebra com peso: true
+    Intervalo: 5
+    Mordida:
+      Minimo: 6
+      Maximo: 22
+    Auto venda: true
+    Bonus:
+      Chance: 8.0
+      Perolas: 20.0
+      Peso: 0.0
+    Reparo:
+      money: 1500.0
+      perolas: 90.0
+    Evoluir:
+      money: 18000.0
+      perolas: 450.0
+    Recompensas:
+      - '8.0,pedra'
+      - '5.0,ferro'
+      - '1.5,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&bVara de Prata &7[&fL.{nivel}&7]'
+      Brilho: false
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&bVara de Prata &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&bVara de Prata &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  ouro:
+    Nivel: 6
+    Nome: '&3Vara de Ouro'
+    Peso suportado: 600
+    Quebra com peso: true
+    Intervalo: 5
+    Mordida:
+      Minimo: 5
+      Maximo: 20
+    Auto venda: true
+    Bonus:
+      Chance: 10.0
+      Perolas: 25.0
+      Peso: 0.0
+    Reparo:
+      money: 2500.0
+      perolas: 150.0
+    Evoluir:
+      money: 35000.0
+      perolas: 800.0
+    Recompensas:
+      - '9.0,pedra'
+      - '6.0,ferro'
+      - '1.8,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&3Vara de Ouro &7[&fL.{nivel}&7]'
+      Brilho: false
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&3Vara de Ouro &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&3Vara de Ouro &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  esmeralda:
+    Nivel: 7
+    Nome: '&9Vara de Esmeralda'
+    Peso suportado: 1200
+    Quebra com peso: true
+    Intervalo: 4
+    Mordida:
+      Minimo: 5
+      Maximo: 18
+    Auto venda: true
+    Bonus:
+      Chance: 12.0
+      Perolas: 30.0
+      Peso: 0.0
+    Reparo:
+      money: 4000.0
+      perolas: 250.0
+    Evoluir:
+      money: 65000.0
+      perolas: 1400.0
+    Recompensas:
+      - '10.0,pedra'
+      - '7.0,ferro'
+      - '2.1,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&9Vara de Esmeralda &7[&fL.{nivel}&7]'
+      Brilho: true
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&9Vara de Esmeralda &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&9Vara de Esmeralda &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  diamante:
+    Nivel: 8
+    Nome: '&5Vara de Diamante'
+    Peso suportado: 2000
+    Quebra com peso: true
+    Intervalo: 4
+    Mordida:
+      Minimo: 4
+      Maximo: 16
+    Auto venda: true
+    Bonus:
+      Chance: 14.0
+      Perolas: 35.0
+      Peso: 0.0
+    Reparo:
+      money: 6000.0
+      perolas: 400.0
+    Evoluir:
+      money: 120000.0
+      perolas: 2500.0
+    Recompensas:
+      - '11.0,pedra'
+      - '8.0,ferro'
+      - '2.4,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&5Vara de Diamante &7[&fL.{nivel}&7]'
+      Brilho: true
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&5Vara de Diamante &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&5Vara de Diamante &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  abissal:
+    Nivel: 9
+    Nome: '&dVara Abissal'
+    Peso suportado: 5000
+    Quebra com peso: true
+    Intervalo: 3
+    Mordida:
+      Minimo: 4
+      Maximo: 14
+    Auto venda: true
+    Bonus:
+      Chance: 16.0
+      Perolas: 40.0
+      Peso: 0.0
+    Reparo:
+      money: 9000.0
+      perolas: 600.0
+    Evoluir:
+      money: 220000.0
+      perolas: 4000.0
+    Recompensas:
+      - '12.0,pedra'
+      - '9.0,ferro'
+      - '2.7,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&dVara Abissal &7[&fL.{nivel}&7]'
+      Brilho: true
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&dVara Abissal &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&dVara Abissal &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'
+  lendaria:
+    Nivel: 10
+    Nome: '&cVara Lendaria'
+    Peso suportado: 25000
+    Quebra com peso: false
+    Intervalo: 2
+    Mordida:
+      Minimo: 3
+      Maximo: 12
+    Auto venda: true
+    Bonus:
+      Chance: 18.0
+      Perolas: 45.0
+      Peso: 0.0
+    Reparo:
+      money: 15000.0
+      perolas: 1000.0
+    Evoluir:
+      money: 400000.0
+      perolas: 7000.0
+    Recompensas:
+      - '13.0,pedra'
+      - '10.0,ferro'
+      - '3.0,diamante'
+    Item:
+      Material: FISHING_ROD
+      Nome: '&cVara Lendaria &7[&fL.{nivel}&7]'
+      Brilho: true
+      Lore:
+        - '&7Dono: &f{dono}'
+        - ''
+        - ' &7Nivel: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}g'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
+        - ''
+        - ' &7Perolas: &b{perolas}&7/&b{proximo_custo_perolas} &f{barra}'
+    Loja:
+      Evoluir:
+        Material: FISHING_ROD
+        Nome: '&cVara Lendaria &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ' &7Bonus de raridade: &f+{bonus_chance}%'
+          - ' &7Bonus de perolas: &f+{bonus_perolas}%'
+          - ''
+          - ' &7Custo: &f{custo}'
+          - ''
+          - '&aClique para evoluir'
+      Tem:
+        Material: FISHING_ROD
+        Nome: '&cVara Lendaria &7[&fL.{nivel}&7]'
+        Lore:
+          - ''
+          - ' &7Nivel: &f{nivel}'
+          - ' &7Peso suportado: &f{peso_suportado}g'
+          - ' &7Intervalo: &f{intervalo}s'
+          - ''
+          - '&aVoce ja tem esta vara (ou melhor).'

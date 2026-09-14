@@ -1,0 +1,150 @@
+# ==========================================================================
+#  StarPesca - missoes diarias
+#
+#  Todo dia cada jogador recebe 'Por dia' (config.yml) missoes sorteadas
+#  desta lista. O sorteio e o mesmo para o jogador o dia inteiro, mesmo
+#  depois de um restart. Ao virar o dia, o progresso zera e vem outras.
+#
+#  Tipos:
+#    PESCAR              pescar {meta} peixes
+#    PESCAR_RARIDADE     pescar {meta} peixes da Raridade
+#    PESCAR_PEIXE        pescar {meta} vezes o Peixe
+#    PESCAR_NIVEL        pescar {meta} peixes do Nivel (ou acima)
+#    PESO                pescar {meta} gramas no total
+#    PESO_UNICO          pescar um peixe com pelo menos {meta} gramas
+#    VENDER              vender peixes por {meta} (na economia Economia)
+#    PEROLAS             ganhar {meta} perolas pescando
+#    TEMPO               ficar {meta} minutos pescando
+#
+#  Recompensa: Perolas e Comandos ({jogador}). Peso: chance no sorteio.
+#  Nos itens: {nome} {descricao} {progresso} {meta} {porcentagem} {barra}
+#  {perolas} {estado}
+# ==========================================================================
+
+Versao do modelo: 1
+
+Missoes:
+  pescar_20:
+    Nome: '&aPescador do dia'
+    Descricao: '&7Pesque &f{meta}&7 peixes.'
+    Tipo: PESCAR
+    Meta: 20
+    Peso: 10
+    Recompensa:
+      Perolas: 20.0
+      Comandos: [ ]
+  pescar_60:
+    Nome: '&aMaratona'
+    Descricao: '&7Pesque &f{meta}&7 peixes.'
+    Tipo: PESCAR
+    Meta: 60
+    Peso: 5
+    Recompensa:
+      Perolas: 60.0
+      Comandos: [ ]
+  raros_3:
+    Nome: '&9Olho para o raro'
+    Descricao: '&7Pesque &f{meta}&7 peixes raros.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: raro
+    Meta: 3
+    Peso: 6
+    Recompensa:
+      Perolas: 50.0
+      Comandos: [ ]
+  incomuns_10:
+    Nome: '&aFora do comum'
+    Descricao: '&7Pesque &f{meta}&7 peixes incomuns.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: incomum
+    Meta: 10
+    Peso: 8
+    Recompensa:
+      Perolas: 35.0
+      Comandos: [ ]
+  epico_1:
+    Nome: '&5Um epico'
+    Descricao: '&7Pesque &f{meta}&7 peixe epico.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: epico
+    Meta: 1
+    Peso: 3
+    Recompensa:
+      Perolas: 80.0
+      Comandos: [ ]
+  tilapias:
+    Nome: '&fTilapias'
+    Descricao: '&7Pesque &f{meta}&7 tilapias.'
+    Tipo: PESCAR_PEIXE
+    Peixe: tilapia
+    Meta: 8
+    Peso: 6
+    Recompensa:
+      Perolas: 25.0
+      Comandos: [ ]
+  nivel_3:
+    Nome: '&eAguas mais fundas'
+    Descricao: '&7Pesque &f{meta}&7 peixes de nivel 3 ou mais.'
+    Tipo: PESCAR_NIVEL
+    Nivel: 3
+    Meta: 10
+    Peso: 6
+    Recompensa:
+      Perolas: 40.0
+      Comandos: [ ]
+  peso_500:
+    Nome: '&7Carga pesada'
+    Descricao: '&7Pesque &f{meta}g&7 no total.'
+    Tipo: PESO
+    Meta: 500
+    Peso: 6
+    Recompensa:
+      Perolas: 40.0
+      Comandos: [ ]
+  peso_unico_50:
+    Nome: '&7O grandao'
+    Descricao: '&7Pesque um peixe de pelo menos &f{meta}g&7.'
+    Tipo: PESO_UNICO
+    Meta: 50
+    Peso: 5
+    Recompensa:
+      Perolas: 45.0
+      Comandos: [ ]
+  vender_5000:
+    Nome: '&2Bom negocio'
+    Descricao: '&7Venda &f{meta}&7 em peixes.'
+    Tipo: VENDER
+    Economia: money
+    Meta: 5000
+    Peso: 6
+    Recompensa:
+      Perolas: 40.0
+      Comandos: [ ]
+  perolas_100:
+    Nome: '&bColecionador'
+    Descricao: '&7Ganhe &f{meta}&7 perolas pescando.'
+    Tipo: PEROLAS
+    Meta: 100
+    Peso: 6
+    Recompensa:
+      Perolas: 30.0
+      Comandos: [ ]
+  tempo_30:
+    Nome: '&ePaciencia'
+    Descricao: '&7Fique &f{meta}&7 minutos pescando.'
+    Tipo: TEMPO
+    Meta: 30
+    Peso: 6
+    Recompensa:
+      Perolas: 35.0
+      Comandos: [ ]
+
+# Barra de progresso ({barra}) das missoes.
+Barra:
+  Tamanho: 15
+  Cheio: '&a|'
+  Vazio: '&8|'
+
+Estado:
+  Em andamento: '&eEm andamento'
+  Concluida: '&aConcluida'

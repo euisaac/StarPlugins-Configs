@@ -1,0 +1,54 @@
+# ==========================================================================
+#  StarPesca - economias
+#
+#  As chaves daqui (money, perolas, pontos...) sao as que aparecem nos
+#  precos do peixes.yml, nos custos das varas, classes, iscas e sacola.
+#  Nao renomeie uma chave que ja esta em uso nos outros arquivos.
+#
+#  Provedor:
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' e o id dela (vazio =
+#                  a principal)
+#    PEROLAS       as perolas do proprio StarPesca (nao apague esta)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro entra e sai por comando de console
+#                  ({jogador} {uuid} {valor})
+#
+#  Simbolo entra na frente do valor nas mensagens ({custo}, {valor}...).
+# ==========================================================================
+
+Versao do modelo: 1
+
+Economias:
+  money:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Abreviacao: 'coins'
+    Simbolo: '$'
+    Valores inteiros: false
+  perolas:
+    Provedor: PEROLAS
+    Nome: 'Perolas'
+    Abreviacao: 'perolas'
+    Simbolo: '&b✦ '
+    Valores inteiros: true
+
+  # Exemplo com PlayerPoints. Tire o # para usar.
+  # pontos:
+  #   Provedor: PLAYERPOINTS
+  #   Nome: 'Pontos'
+  #   Abreviacao: 'pts'
+  #   Simbolo: ''
+  #   Valores inteiros: true
+
+  # Exemplo por COMANDO, para economias sem API. Tire o # para usar.
+  # cash:
+  #   Provedor: COMANDO
+  #   Nome: 'Cash'
+  #   Abreviacao: 'cash'
+  #   Simbolo: ''
+  #   Valores inteiros: true
+  #   Placeholder de saldo: '%meucash_saldo%'
+  #   Comando de retirar: 'cash remover {jogador} {valor}'
+  #   Comando de dar: 'cash adicionar {jogador} {valor}'

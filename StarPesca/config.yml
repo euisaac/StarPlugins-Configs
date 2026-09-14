@@ -1,0 +1,352 @@
+# ==========================================================================
+#  StarPesca - configuracao
+#
+#  Pesca com progressao: varas por nivel, peixes por nivel e raridade, peso,
+#  perolas (a moeda da pesca), encantamentos da vara, classes, iscas, sacola
+#  de peixes, torneios, boosters, colecao, missoes diarias e ranking.
+#
+#  Cores: &a etc. e &#RRGGBB (1.16+). Materiais pelo nome moderno (o plugin
+#  traduz para as versoes antigas). Sons: NOME;volume;tom.
+#
+#  Mudar este arquivo pede /starpesca recarregar (banco de dados nao: esse so
+#  muda com restart).
+# ==========================================================================
+
+# Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
+# tras depois de uma atualizacao.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o que o plugin esta fazendo.
+  Debug: false
+  # Milissegundos entre dois cliques do mesmo jogador nos menus.
+  Intervalo entre cliques: 150
+  # Atualiza o menu principal e o da sacola sozinho enquanto estao abertos
+  # (torneio, booster e tempo pescando ao vivo). Em segundos; 0 desliga.
+  Atualizar menus a cada: 2
+  # Formata numeros grandes em letras (1.5K, 2M) nos menus e mensagens.
+  Formato em letras: false
+  # Casas decimais do dinheiro nas mensagens.
+  Casas decimais: 2
+  # Salva os perfis alterados de tempo em tempo (em minutos); tudo e salvo
+  # tambem ao sair do servidor e no desligamento.
+  Salvar a cada: 5
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL. Com MySQL o perfil, a sacola e o ranking
+  # sao compartilhados entre servidores (servidor de lobby + servidor de pesca).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starpesca_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+# --------------------------------------------------------------------------
+#  Onde da para pescar
+# --------------------------------------------------------------------------
+Area:
+  # LIVRE: pesca em qualquer lugar (nao existe "entrar" nem "sair" da area).
+  # REGIAO: so dentro da regiao marcada com /starpesca pos1 e pos2 (ou com a
+  #         varinha do /starpesca varinha). O /pesca ir leva ate o spawn dela.
+  # MUNDO: os mundos da lista abaixo inteiros sao a area de pesca.
+  Modo: REGIAO
+  Mundos: [ 'pesca' ]
+  # Fora da area a vara do plugin nao pesca nada (so o peixe normal do jogo).
+  Pescar fora da area: false
+  # Ao entrar na area (por /pesca ir ou andando), o jogador recebe a vara
+  # dele se nao estiver com ela.
+  Dar vara ao entrar: true
+  # Exige o inventario vazio para o /pesca ir (a sacola guarda os peixes,
+  # entao o inventario nao precisa de espaco).
+  Exigir inventario vazio: false
+  # Ao sair da area (por /pesca sair, teleporte ou andando) a vara do plugin
+  # e recolhida do inventario -- ela volta ao entrar.
+  Recolher vara ao sair: true
+  # Comandos que nao podem ser usados dentro da area (sem a barra). Lista
+  # vazia libera tudo. Quem tem starpesca.admin ignora.
+  Comandos bloqueados: [ 'tpa', 'tpahere', 'home', 'sethome', 'warp' ]
+  # Bloqueia quebrar e colocar blocos dentro da area (staff ignora).
+  Proteger blocos: true
+  # Bloqueia PvP dentro da area.
+  Bloquear pvp: true
+  # Bloqueia dano por queda, fogo, afogamento etc. dentro da area.
+  Bloquear dano: true
+  # Bloqueia a fome dentro da area.
+  Bloquear fome: true
+  # Horario em que a pesca funciona (hora do servidor, 24h). Vazio = sempre.
+  # Quem estiver na area fora do horario e levado para a saida.
+  Horario:
+    Ativar: false
+    De: '06:00'
+    Ate: '22:00'
+  # Itens que aparecem na barra de itens de quem esta na area. Um clique
+  # executa a acao. Acoes: visibilidade | menu | sacola | sair | vender |
+  # comando: <cmd>. Slot de 0 a 8.
+  Itens da barra:
+    visibilidade:
+      Ativar: true
+      Slot: 8
+      Ligado:
+        Material: LIME_DYE
+        Nome: '&aJogadores visiveis'
+        Lore: [ '&7Clique para esconder os outros pescadores.' ]
+      Desligado:
+        Material: GRAY_DYE
+        Nome: '&cJogadores escondidos'
+        Lore: [ '&7Clique para mostrar os outros pescadores.' ]
+    menu:
+      Ativar: true
+      Slot: 7
+      Material: NETHER_STAR
+      Nome: '&bMenu da pesca'
+      Lore: [ '&7Clique para abrir o menu.' ]
+      Acao: 'menu'
+    sacola:
+      Ativar: true
+      Slot: 6
+      Material: CHEST
+      Nome: '&eSacola de peixes &7({sacola}/{limite})'
+      Lore: [ '&7Clique para ver e vender seus peixes.' ]
+      Acao: 'sacola'
+    sair:
+      Ativar: true
+      Slot: 0
+      Material: RED_BED
+      Nome: '&cSair da pesca'
+      Lore: [ '&7Clique para voltar para a saida.' ]
+      Acao: 'sair'
+
+# Placar lateral de quem esta na area. Aceita as substituicoes do jogador
+# ({nivel}, {peso_suportado}, {pescados}, {perolas}, {sacola}, {limite},
+# {tempo}, {classe}, {booster}, {torneio_tipo}, {torneio_tempo},
+# {torneio_1_nome}...) e os do PlaceholderAPI.
+Placar:
+  Ativar: true
+  # Em segundos.
+  Atualizar a cada: 2
+  Titulo: '&b&lPESCARIA'
+  Linhas:
+    - '&7'
+    - '&fVara: &b{vara_nome} &7(L.{nivel})'
+    - '&fPeixes pescados: &b{pescados}'
+    - '&fSacola: &b{sacola}&7/&b{limite}'
+    - '&fPerolas: &b{perolas}'
+    - '&7'
+    - '&fTorneio: &e{torneio_estado}'
+    - '&fBooster: &e{booster}'
+    - '&7'
+    - '&bstarplugins.com.br'
+
+# --------------------------------------------------------------------------
+#  A pesca em si
+# --------------------------------------------------------------------------
+Pesca:
+  # A vara precisa ser a do plugin (dada pelo /pesca vara ou ao entrar na
+  # area). false: qualquer vara pesca, com a vara registrada no perfil.
+  Exigir vara do plugin: true
+  # O jogador so usa a propria vara: a vara de outro jogador nao pesca e
+  # e recolhida ao ser segurada.
+  Vara so do dono: true
+  # A vara e inquebravel (a durabilidade do jogo nao desce).
+  Vara inquebravel: true
+  # Se true, o peixe de verdade do jogo (bacalhau, salmao...) nao cai: so
+  # os peixes do plugin contam.
+  Cancelar peixe do jogo: true
+  # Peixes de nivel maior que o da vara podem aparecer? (false: so ate o
+  # nivel da vara; true: qualquer peixe, e o pesado pode escapar/quebrar).
+  Peixes acima do nivel: false
+  # Tempo de espera pela mordida, em segundos (min e max). Funciona em Paper
+  # 1.16+ (em outros servidores vale o tempo do jogo). Os valores da vara
+  # (varas.yml -> Mordida) ganham destes.
+  Mordida:
+    Ativar: true
+    Minimo: 5
+    Maximo: 30
+  # O clima e a hora mudam a pesca (peixes com Condicoes no peixes.yml).
+  Condicoes:
+    Ativar: true
+    # Bonus geral de chance de raridade quando esta chovendo (%).
+    Bonus na chuva: 10.0
+  # Enquanto pesca, o jogador ve na actionbar (vazio desliga).
+  Actionbar: '&bPescando... &7Peixes: &f{pescados} &8| &7Sacola: &f{sacola}&8/&f{limite}'
+  # Segundos parado sem lancar a vara para contar como "parou de pescar"
+  # (tempo pescando para de contar e sai a mensagem de parou).
+  Parou apos: 30
+  # Ao pescar, XP do mcMMO na habilidade Fishing (se o mcMMO existir).
+  Mcmmo: true
+  # Efeitos visuais ao pescar
+  Efeitos:
+    # Particulas no anzol ao fisgar (nome da particula do jogo; vazio desliga).
+    Particula: 'VILLAGER_HAPPY'
+    Quantidade: 12
+    # Raio da mensagem "X pescou um peixe LENDARIO" nas raridades que tem
+    # anuncio proximo (0 = servidor inteiro).
+    Raio do anuncio: 0
+
+# --------------------------------------------------------------------------
+#  Perolas: a moeda da pesca
+# --------------------------------------------------------------------------
+Perolas:
+  # Como a moeda se chama nas mensagens e menus.
+  Nome: 'Perolas'
+  Singular: 'Perola'
+  Simbolo: '&b✦ '
+  # Aceita casas decimais? false: sempre inteiro.
+  Decimais: false
+  # Valor maximo que um jogador pode enviar por vez (0 = sem limite).
+  Maximo por envio: 0
+  # Taxa (%) descontada ao enviar perolas para outro jogador.
+  Taxa de envio: 0.0
+
+# --------------------------------------------------------------------------
+#  Sacola de peixes
+# --------------------------------------------------------------------------
+Sacola:
+  # Limite de peixes no nivel 1 da sacola.
+  Limite inicial: 100
+  # Quanto o limite sobe por nivel comprado.
+  Por nivel: 50
+  # true: o aumento e multiplicado pelo nivel (nivel 3 sobe 3x 'Por nivel').
+  Multiplicar por nivel: false
+  # Nivel maximo da sacola (0 = sem limite).
+  Nivel maximo: 10
+  # Custo para subir de nivel: economia (economias.yml) e valor. O valor e
+  # multiplicado pelo nivel atual quando 'Multiplicar custo' e true.
+  Custo:
+    money: 2500.0
+    perolas: 100.0
+  Multiplicar custo: true
+  # Limites por permissao (starpesca.sacola.<chave>): o maior vale, somado
+  # aos niveis comprados.
+  Por permissao:
+    vip: 200
+    mvp: 400
+  # Auto-venda: quem tem starpesca.autovenda e uma vara que permite vende
+  # cada peixe na hora em que pesca.
+  Auto venda:
+    Ativar: true
+    # Avisa cada venda automatica na actionbar (vazio desliga).
+    Aviso: '&aVendido: &f{peixe} &7({peso}g) &apor &f{valor}'
+  # Sacola cheia: o peixe escapa (true) ou e vendido automaticamente na hora
+  # se o jogador tiver auto-venda ligada (false = so escapa).
+  Cheia escapa: true
+
+# --------------------------------------------------------------------------
+#  Boosters (multiplicador de perolas e chance por tempo)
+# --------------------------------------------------------------------------
+Boosters:
+  Item:
+    Material: EXPERIENCE_BOTTLE
+    Nome: '&dBooster de pesca &7(+{bonus}%)'
+    Lore:
+      - '&7Multiplica as perolas e a chance de'
+      - '&7raridade por &f{tempo}&7.'
+      - ''
+      - '&fBonus: &d+{bonus}%'
+      - '&fDuracao: &d{tempo}'
+      - ''
+      - '&aClique com o botao direito para ativar.'
+    Brilho: true
+  # Booster global (para o servidor inteiro) via /starpesca booster global.
+  Global:
+    Aviso: '&d&lBOOSTER GLOBAL &7Um booster de &f+{bonus}%&7 esta ativo por &f{tempo}&7!'
+
+# --------------------------------------------------------------------------
+#  Classes (bonus permanentes; menu /pesca classes)
+# --------------------------------------------------------------------------
+Classes:
+  Ativar: true
+  # Os efeitos da classe (classes.yml -> Efeitos) valem so dentro da area
+  # de pesca (true) ou sempre (false).
+  Efeitos so na area: true
+  # Ao entrar na area, o jogador veste a armadura da classe (a dele e guardada
+  # e devolvida ao sair).
+  Vestir armadura: true
+
+# --------------------------------------------------------------------------
+#  Colecao de peixes (/pesca colecao)
+# --------------------------------------------------------------------------
+Colecao:
+  Ativar: true
+  # Recompensas por completar a colecao de um nivel (todos os peixes daquele
+  # nivel pescados ao menos uma vez) e a colecao inteira. Comandos do console;
+  # {jogador} e o nick.
+  Recompensas:
+    Nivel:
+      Perolas: 50.0
+      Comandos: [ ]
+      Mensagem: '&a&lCOLECAO &7Voce completou a colecao do nivel &f{nivel}&7 e ganhou &f{perolas} perolas&7!'
+    Completa:
+      Perolas: 1000.0
+      Comandos: [ 'give {jogador} diamond 16' ]
+      Mensagem: '&a&lCOLECAO &7Voce completou a &f&lCOLECAO INTEIRA&7 e ganhou &f{perolas} perolas&7!'
+      Anuncio: '&a&lCOLECAO &f{jogador}&7 completou a colecao de peixes inteira!'
+
+# --------------------------------------------------------------------------
+#  Missoes diarias (/pesca missoes)
+# --------------------------------------------------------------------------
+Missoes:
+  Ativar: true
+  # Quantas missoes cada jogador recebe por dia (sorteadas do missoes.yml).
+  Por dia: 3
+  # Fuso horario da virada do dia (ex.: America/Sao_Paulo). Vazio = o do servidor.
+  Fuso: 'America/Sao_Paulo'
+  # Recompensa extra por completar todas as missoes do dia.
+  Todas:
+    Perolas: 100.0
+    Comandos: [ ]
+    Mensagem: '&e&lMISSOES &7Voce completou todas as missoes de hoje e ganhou &f{perolas} perolas&7!'
+
+# --------------------------------------------------------------------------
+#  Ranking (/pesca top)
+# --------------------------------------------------------------------------
+Ranking:
+  # Quantas posicoes cada top guarda.
+  Posicoes: 10
+  # Em segundos.
+  Atualizar a cada: 60
+  Vazio: '---'
+
+# --------------------------------------------------------------------------
+#  Rede (BungeeCord/Velocity)
+# --------------------------------------------------------------------------
+Rede:
+  Ativar: false
+  # LOBBY: este servidor manda o jogador para o servidor da pesca no /pesca ir.
+  # PESCA: este e o servidor da pesca; quem chega vai para o spawn da area e
+  #        o /pesca sair manda de volta.
+  Modo: LOBBY
+  # Nome do servidor da pesca (no config do proxy).
+  Servidor da pesca: 'pesca'
+  # Nome do servidor de volta.
+  Servidor de saida: 'lobby'
+  # No modo PESCA: quem entra no servidor vai direto para a area (ticks).
+  Entrar na area ao chegar: true
+  Atraso ao chegar: 10
+
+# --------------------------------------------------------------------------
+#  Webhook do Discord (torneios e peixes raros)
+# --------------------------------------------------------------------------
+Webhook:
+  Ativar: false
+  Url: ''
+  Nome: 'Pesca'
+  Eventos:
+    Torneio iniciado: true
+    Torneio terminado: true
+    Peixe raro: true
+    Recorde: true
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Dinheiro: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+  Pescou: 'ENTITY_FISHING_BOBBER_SPLASH;1;1'
+  Escapou: 'ENTITY_ITEM_BREAK;1;0.8'
+  Quebrou: 'ENTITY_ITEM_BREAK;1;0.5'
+  Evoluiu: 'ENTITY_PLAYER_LEVELUP;1;1'

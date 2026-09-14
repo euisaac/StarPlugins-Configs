@@ -1,0 +1,332 @@
+# ==========================================================================
+#  StarPesca - mensagens
+#
+#  Cores: &a etc. e &#RRGGBB (1.16+). Mensagem vazia ('') nao e enviada.
+#  Mensagem de varias linhas (bloco |) sai linha por linha, sem prefixo.
+#  {prefixo} e o prefixo abaixo; quando a mensagem nao o menciona, ele vai
+#  na frente sozinho.
+#
+#  Substituicoes do jogador (valem em quase tudo): {jogador} {nivel}
+#  {vara_nome} {peso_suportado} {intervalo} {pescados} {maior_peso}
+#  {tempo} {perolas} {classe} {sacola} {limite} {booster} {isca}
+#  Num peixe: {peixe} {raridade} {peso} {valor} {quantidade} {perolas_ganhas}
+#  Em titulos, <nl> separa o titulo do subtitulo.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&8[&bPesca&8] &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar isso.'
+  Plugin inativo: '&cO plugin esta inativo: o banco de dados nao subiu. Avise um administrador.'
+  Perfil carregando: '&cSeu perfil ainda esta carregando, tente de novo em instantes.'
+  Uso: '&cUse: &f{uso}'
+  Jogador desconhecido: '&cNao conheco o jogador &f{jogador}&c.'
+  Jogador offline: '&cO jogador &f{jogador}&c nao esta online.'
+  Numero invalido: '&cIsso nao e um numero valido.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Sem saldo: '&cVoce nao tem &f{custo}&c.'
+  Economia indisponivel: '&cA economia &f{moeda_nome}&c nao esta disponivel neste servidor.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+
+Ajuda:
+  Jogador: |
+    <nl>
+    &b&lPESCA &7- Comandos
+    &f/pesca &8- &7Abre o menu da pesca.
+    &f/pesca ir &8- &7Vai para a area de pesca.
+    &f/pesca sair &8- &7Sai da area de pesca.
+    &f/pesca vara &8- &7Pega a sua vara.
+    &f/pesca sacola &8- &7Abre a sacola de peixes.
+    &f/pesca vender &8- &7Vende todos os peixes da sacola.
+    &f/pesca top &8- &7Ranking dos pescadores.
+    &f/pesca loja &8- &7Loja de perolas.
+    &f/pesca iscas &8- &7Loja de iscas.
+    &f/pesca classes &8- &7Classes de pescador.
+    &f/pesca colecao &8- &7Sua colecao de peixes.
+    &f/pesca missoes &8- &7Missoes do dia.
+    &f/pesca torneio &8- &7O torneio atual.
+    &f/perolas &8- &7Suas perolas.
+    <nl>
+  Perolas: |
+    <nl>
+    &b&lPEROLAS &7- Comandos
+    &f/perolas &8- &7Ver suas perolas.
+    &f/perolas ver <jogador> &8- &7Ver as perolas de alguem.
+    &f/perolas enviar <jogador> <quantia> &8- &7Envia perolas.
+    &f/perolas top &8- &7Ranking de perolas.
+    <nl>
+  Admin: |
+    <nl>
+    &b&lSTARPESCA &7- Comandos administrativos
+    &f/starpesca recarregar &8- &7Recarrega os arquivos.
+    &f/starpesca setspawn &8- &7Define o spawn da area de pesca.
+    &f/starpesca setsaida &8- &7Define para onde o /pesca sair leva.
+    &f/starpesca pos1 &7| &fpos2 &8- &7Marca os cantos da regiao (modo REGIAO).
+    &f/starpesca varinha &8- &7Varinha para marcar os cantos.
+    &f/starpesca info [jogador] &8- &7Perfil de pesca de alguem.
+    &f/starpesca vara <jogador> <vara|reset> &8- &7Define a vara.
+    &f/starpesca reparar <jogador> &8- &7Repara a vara.
+    &f/starpesca encantamento <jogador> <encantamento> <nivel> &8- &7Define um encantamento.
+    &f/starpesca classe <jogador> <classe|reset> &8- &7Define a classe.
+    &f/starpesca sacola <jogador> <nivel> &8- &7Define o nivel da sacola.
+    &f/starpesca givepeixe <jogador> <peixe> <raridade> [peso] [quantidade] &8- &7Da um peixe.
+    &f/starpesca givebooster <jogador> <bonus%> <minutos> [quantidade] &8- &7Da um booster.
+    &f/starpesca giveisca <jogador> <isca> [quantidade] &8- &7Da uma isca.
+    &f/starpesca booster global <bonus%> <minutos> &8- &7Booster para todos.
+    &f/starpesca torneio iniciar <tipo> [minutos] &7| &fparar &8- &7Torneios.
+    &f/starpesca npc definir|remover &8- &7NPC que abre o menu.
+    &f/starpesca perolas dar|tirar|definir <jogador|todos> <quantia> &8- &7Perolas.
+    &f/starpesca listar peixes|varas|classes|iscas|raridades &8- &7Listas.
+    <nl>
+
+Area:
+  Entrou:
+    Titulo: '&bPescaria<nl>&7Bem-vindo a area de pesca'
+    Actionbar: ''
+    Chat: '&bVoce entrou na area de pesca. Boa pescaria!'
+    Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1'
+  Saiu:
+    Titulo: ''
+    Actionbar: ''
+    Chat: '&7Voce saiu da area de pesca.'
+    Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;0.8'
+  Sem spawn: '&cO spawn da area de pesca ainda nao foi definido.'
+  Sem saida: '&cA saida da area de pesca ainda nao foi definida.'
+  Sem regiao: '&cA regiao da pesca ainda nao foi marcada (pos1 e pos2).'
+  Nao esta na area: '&cVoce nao esta na area de pesca.'
+  Ja esta na area: '&cVoce ja esta na area de pesca.'
+  Fora da area: '&cVoce so pesca dentro da area de pesca. Use &f/pesca ir&c.'
+  Inventario cheio: '&cEsvazie o seu inventario antes de ir pescar.'
+  Comando bloqueado: '&cEsse comando nao pode ser usado na area de pesca. Use &f/pesca sair&c.'
+  Horario: '&cA pesca so funciona das &f{de}&c as &f{ate}&c.'
+  Horario removido: '&cA pesca fechou (funciona das &f{de}&c as &f{ate}&c). Voce foi levado para a saida.'
+  Bloco protegido: '&cVoce nao pode mexer nos blocos da area de pesca.'
+  Spawn definido: '&aSpawn da pesca definido onde voce esta.'
+  Saida definida: '&aSaida da pesca definida onde voce esta.'
+  Pos definida: '&aPosicao &f{pos}&a marcada em &f{x}, {y}, {z}&a.'
+  Varinha: '&aVoce recebeu a varinha: clique esquerdo marca a pos1 e clique direito a pos2.'
+  Visibilidade ligada: '&aOs outros pescadores estao visiveis.'
+  Visibilidade desligada: '&7Os outros pescadores estao escondidos.'
+  Rede enviando: '&7Enviando voce para a pesca...'
+  Rede voltando: '&7Voltando...'
+
+Pesca:
+  Comecou:
+    Titulo: ''
+    Actionbar: '&aVoce comecou a pescar.'
+    Chat: ''
+    Som: ''
+  Parou:
+    Titulo: ''
+    Actionbar: '&cVoce parou de pescar.'
+    Chat: ''
+    Som: ''
+  Sem vara: '&cVoce nao esta com a sua vara. Use &f/pesca vara&c.'
+  Vara de outro: '&cEssa vara e de &f{dono}&c, nao sua. Ela foi recolhida.'
+  Vara entregue: '&aVoce recebeu a sua vara.'
+  Vara ja tem: '&cVoce ja esta com a sua vara.'
+  Vara quebrada: '&cSua vara esta quebrada! Repare no menu da vara.'
+  Intervalo: '&cEspere &f{tempo}&c para pescar de novo.'
+  Escapou: '&cO peixe era mais pesado do que sua vara suporta (&f{peso}g&c) e escapou!'
+  Quebrou: '&cO peixe (&f{peso}g&c) era pesado demais e &lQUEBROU&c a sua vara!'
+  Sacola cheia: '&cSua sacola esta cheia! Venda os peixes antes de pescar de novo.'
+  Sacola cheia escapou: '&cSua sacola esta cheia e o &f{peixe}&c escapou!'
+  Duplicou: '&bDuplicador! &7Voce fisgou dois peixes de uma vez.'
+  Recorde: '&6&lRECORDE PESSOAL &7Seu peixe mais pesado agora e um {peixe} &7de &f{peso}g&7!'
+  Recorde servidor: '&6&lRECORDE DO SERVIDOR &f{jogador} &7pescou o peixe mais pesado ja visto: {peixe} &7de &f{peso}g&7!'
+  Auto venda: '&aVendido automaticamente: {peixe} &7({peso}g) &apor &f{valor}&a.'
+
+Sacola:
+  Vendido: '&aVoce vendeu &fx{quantidade} {peixe} &apor &f{valor}&a.'
+  Vendido tudo: '&aVoce vendeu &f{quantidade}&a peixe(s) por &f{valor}&a.'
+  Vazia: '&cSua sacola esta vazia.'
+  Nada para vender: '&cNao ha nada para vender.'
+  Melhorada: '&aSacola melhorada! Novo limite: &f{limite}&a.'
+  Limite maximo: '&cSua sacola ja esta no nivel maximo.'
+  Auto venda ligada: '&aAuto-venda ligada: os peixes serao vendidos na hora.'
+  Auto venda desligada: '&7Auto-venda desligada.'
+  Auto venda sem permissao: '&cVoce nao tem permissao para a auto-venda.'
+  Auto venda vara: '&cSua vara nao permite a auto-venda. Evolua a vara.'
+
+Vara:
+  Evoluida: '&aVoce evoluiu para a &f{vara_nome} &7(L.{nivel})&a!'
+  Precisa anterior: '&cVoce precisa da vara anterior para evoluir para esta.'
+  Ja tem: '&cVoce ja tem esta vara (ou melhor).'
+  Reparada: '&aSua vara foi reparada.'
+  Nao quebrada: '&cSua vara nao esta quebrada.'
+  Encantamento evoluido: '&aEncantamento &f{encantamento}&a evoluido para o nivel &f{nivel}&a.'
+  Encantamento maximo: '&cEsse encantamento ja esta no maximo.'
+  Encantamento sem perolas: '&cVoce precisa de &f{custo} perolas&c para evoluir esse encantamento.'
+  Definida: '&aA vara de &f{jogador}&a agora e a &f{vara_nome}&a.'
+  Resetada: '&aA vara de &f{jogador}&a foi resetada.'
+  Reparada admin: '&aA vara de &f{jogador}&a foi reparada.'
+  Nao existe: |
+    &cEssa vara nao existe.
+    &cDisponiveis: &7{lista}
+  Encantamento definido: '&aEncantamento &f{encantamento}&a de &f{jogador}&a definido para o nivel &f{nivel}&a.'
+  Encantamento nao existe: |
+    &cEsse encantamento nao existe.
+    &cDisponiveis: &7{lista}
+
+Perolas:
+  Saldo: '&bVoce tem &f{perolas} {moeda}&b.'
+  Saldo de: '&bO jogador &f{jogador}&b tem &f{perolas} {moeda}&b.'
+  Enviou: '&bVoce enviou &f{perolas} {moeda}&b para &f{jogador}&b.'
+  Recebeu: '&bVoce recebeu &f{perolas} {moeda}&b de &f{jogador}&b.'
+  Sem saldo: '&cVoce nao tem &f{perolas} {moeda}&c.'
+  Para si: '&cVoce nao pode enviar perolas para si mesmo.'
+  Maximo por envio: '&cVoce so pode enviar ate &f{maximo} {moeda}&c por vez.'
+  Quantia invalida: '&cQuantia invalida.'
+  Deu: '&bVoce deu &f{perolas} {moeda}&b para &f{jogador}&b.'
+  Deu todos: '&bVoce deu &f{perolas} {moeda}&b para todos os jogadores online.'
+  Ganhou: '&bVoce ganhou &f{perolas} {moeda}&b.'
+  Tirou: '&bVoce tirou &f{perolas} {moeda}&b de &f{jogador}&b.'
+  Definiu: '&bAs perolas de &f{jogador}&b agora sao &f{perolas}&b.'
+  Top: |
+    <nl>
+    &b&lTOP PEROLAS
+    {linhas}
+    <nl>
+  Top linha: '&f{posicao}. &b{jogador} &7- &f{valor}'
+
+Classes:
+  Comprada: '&aVoce evoluiu para a classe {classe}&a!'
+  Equipada: '&aClasse {classe}&a equipada.'
+  Ja equipada: '&cEssa classe ja esta equipada.'
+  Precisa anterior: '&cVoce precisa da classe anterior primeiro.'
+  Sem permissao: '&cVoce nao tem permissao para essa classe.'
+  Desativado: '&cAs classes estao desativadas.'
+  Definida: '&aA classe de &f{jogador}&a agora e {classe}&a.'
+  Resetada: '&aAs classes de &f{jogador}&a foram resetadas.'
+  Nao existe: |
+    &cEssa classe nao existe.
+    &cDisponiveis: &7{lista}
+
+Iscas:
+  Ativada: '&aIsca {isca}&a ativada por &f{usos}&a peixes.'
+  Ja ativa: '&cVoce ja esta com a isca {isca}&c ativa (&f{usos}&c usos restantes).'
+  Acabou: '&7Sua isca {isca}&7 acabou.'
+  Comprada: '&aVoce comprou &fx{quantidade} {isca}&a por &f{custo}&a.'
+  Recebeu: '&aVoce recebeu &fx{quantidade} {isca}&a.'
+  Deu: '&aVoce deu &fx{quantidade} {isca}&a para &f{jogador}&a.'
+  Nao existe: |
+    &cEssa isca nao existe.
+    &cDisponiveis: &7{lista}
+
+Boosters:
+  Ativado: '&dBooster ativado! &f+{bonus}%&d por &f{tempo}&d.'
+  Ja ativo: '&cVoce ja tem um booster ativo (&f{tempo}&c restantes).'
+  Acabou: '&7Seu booster de pesca acabou.'
+  Recebeu: '&dVoce recebeu &fx{quantidade}&d booster(s) de &f+{bonus}%&d.'
+  Deu: '&dVoce deu &fx{quantidade}&d booster(s) de &f+{bonus}%&d para &f{jogador}&d.'
+  Global ativado: '&dBooster global de &f+{bonus}%&d ativado por &f{tempo}&d.'
+  Global acabou: '&7O booster global acabou.'
+  Nenhum: '&7Nenhum'
+  Ativo: '&d+{bonus}% &7({tempo})'
+
+Torneio:
+  Iniciado: |
+    <nl>
+    &b&lTORNEIO DE PESCA
+    &7Um torneio comecou: &f{tipo}
+    &7{descricao}
+    <nl>
+    &7Duracao: &f{tempo}
+    &7Premio do 1o lugar: &f{premio}
+    <nl>
+  Terminado: |
+    <nl>
+    &b&lTORNEIO DE PESCA
+    &7O torneio &f{tipo}&7 terminou!
+    <nl>
+    &e1o &f{1_nome} &7- &f{1_valor}
+    &72o &f{2_nome} &7- &f{2_valor}
+    &63o &f{3_nome} &7- &f{3_valor}
+    <nl>
+  Sem vencedor: |
+    <nl>
+    &b&lTORNEIO DE PESCA
+    &7O torneio &f{tipo}&7 terminou sem participantes.
+    <nl>
+  Cancelado: |
+    <nl>
+    &b&lTORNEIO DE PESCA
+    &cO torneio foi cancelado por um administrador.
+    <nl>
+  Aviso tempo: '&b&lTORNEIO &7Faltam &f{tempo}&7 para o fim do torneio &f{tipo}&7!'
+  Premiado: '&aVoce ficou em &f{posicao}o&a no torneio e ganhou &f{premio}&a!'
+  Ja existe: '&cJa ha um torneio acontecendo.'
+  Nenhum: '&cNao ha nenhum torneio acontecendo.'
+  Tipo invalido: '&cTipos: &f{tipos}'
+  Parado: '&aTorneio encerrado.'
+  Estado nenhum: '&7Nenhum'
+  Estado ativo: '&e{tipo} &7({tempo})'
+  Posicao vazia: '&7---'
+  Sua posicao: '&7Sua posicao: &f{posicao}o &7({valor})'
+  Sem posicao: '&7Voce ainda nao participou.'
+
+Colecao:
+  Desativada: '&cA colecao esta desativada.'
+  Novo peixe: '&a&lNOVO! &7Voce adicionou o {peixe} &7a sua colecao (&f{total}&7/&f{de}&7).'
+
+Missoes:
+  Desativadas: '&cAs missoes estao desativadas.'
+  Concluida: '&e&lMISSAO &7Voce concluiu &f{nome}&7 e ganhou &f{perolas} perolas&7!'
+  Progresso: '&e{nome}&7: &f{progresso}&7/&f{meta}'
+
+Admin:
+  Perfil: |
+    <nl>
+    &b&lPERFIL DE PESCA &7- &f{jogador}
+    &7Vara: &f{vara_nome} &7(L.{nivel}) {quebrada}
+    &7Encantamentos: &f{encantamentos}
+    &7Perolas: &f{perolas}
+    &7Peixes pescados: &f{pescados}
+    &7Maior peso: &f{maior_peso}g
+    &7Tempo pescando: &f{tempo}
+    &7Classe: &f{classe}
+    &7Sacola: &f{sacola}&7/&f{limite} &7(nivel {sacola_nivel})
+    &7Booster: &f{booster}
+    &7Isca: &f{isca}
+    &7Colecao: &f{colecao}
+    <nl>
+  Quebrada: '&c(quebrada)'
+  Sacola definida: '&aA sacola de &f{jogador}&a agora e nivel &f{nivel}&a.'
+  Peixe dado: '&aVoce deu &fx{quantidade} {peixe} &7({raridade}&7, {peso}g) &apara &f{jogador}&a.'
+  Peixe recebido: '&aVoce recebeu &fx{quantidade} {peixe} &7({raridade}&7, {peso}g)&a.'
+  Peixe nao existe: |
+    &cEsse peixe nao existe.
+    &cDisponiveis: &7{lista}
+  Raridade nao existe: |
+    &cEssa raridade nao existe.
+    &cDisponiveis: &7{lista}
+  Npc definido: '&aNPC da pesca definido onde voce esta.'
+  Npc removido: '&aNPC da pesca removido.'
+  Npc nenhum: '&cNao ha NPC definido.'
+  Lista: '&b{tipo}: &f{lista}'
+  Perfil nao encontrado: '&cNao achei o perfil de &f{jogador}&c.'
+
+Entrada:
+  Como cancelar: '&7Digite &ccancelar&7 para desistir.'
+  Cancelado: '&cAcao cancelada.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+  Quantia: '&eDigite no chat a quantia de perolas para enviar:'
+  Jogador: '&eDigite no chat o nome do jogador:'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'm'
+  Segundo: 's'
+  Infinito: '∞'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+  Nenhum: '&7Nenhum'
+  Nenhuma: '&7Nenhuma'
+  Gratis: '&aGratis'
+  Separador: '&7, '
