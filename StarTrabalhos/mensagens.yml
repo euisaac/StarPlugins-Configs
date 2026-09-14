@@ -6,7 +6,7 @@
 #  Cores: &a, &c, ... e hex no formato &#RRGGBB.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Prefixo: '&6&lTRABALHOS &8- &7'
 
@@ -37,6 +37,10 @@ Etiquetas:
   Pontos: 'pontos'
   Nivel: 'nivel'
   Top geral: '&6Pontos'
+  Top semanal: '&eSemana'
+  Estrela: '&6✫'
+  # Quando o prestigio passa de 5, as estrelas viram isto.
+  Estrelas resumidas: '{estrela}&6x{prestigio}'
   Rotacao desligada: '&7--'
   Separador de lista: '&7, '
   Separador de recompensas: '&7, '
@@ -116,6 +120,61 @@ Progresso:
 Nivel:
   Subiu: '&aVoce subiu para o nivel &f{nivel} &aem {trabalho}&a! &7(+{pontos} pontos) &8| &7Recompensas: {recompensas}'
   Nivel maximo: '&6Voce chegou ao nivel maximo (&f{nivel}&6) em {trabalho}&6! &7(+{pontos} pontos) &8| &7Recompensas: {recompensas}'
+  # Para o servidor inteiro, nos niveis de 'Anunciar niveis' do config.
+  Anuncio: '&e{jogador} &7chegou ao nivel &e{nivel} &7em {trabalho}&7!'
+
+Prestigio:
+  Prestigiou: '&6Voce prestigiou {trabalho}&6! Prestigio &f{prestigio} {estrelas} &7(+{bonus}% de progresso para sempre).'
+  Anuncio: '&6✫ &e{jogador} &7prestigiou {trabalho} &7pela &e{prestigio}a &7vez!'
+  Nao pode: '&cVoce nao pode prestigiar {trabalho} &cagora: {motivo}&c.'
+  Situacao:
+    OK: '&aCLIQUE para prestigiar!'
+    DESLIGADO: '&cO prestigio esta desligado.'
+    SEM_TETO: '&7Este trabalho nao tem nivel maximo.'
+    NAO_ESTA_NO_MAXIMO: '&cChegue ao nivel maximo primeiro.'
+    LIMITE: '&cVoce ja prestigiou o maximo de vezes.'
+    PONTOS: '&cVoce nao tem pontos suficientes.'
+    CARREGANDO: '&cSeus dados ainda estao carregando.'
+
+Salario:
+  # {detalhes} lista cada trabalho ("Minerador: $50, Pescador: $20").
+  Pago: '&aSalario: &f{valor} &apelos ultimos &f{minutos} &aminutos. &7({detalhes})'
+  Parte: '{trabalho}&7: &f{valor}'
+  Sem salario: '&7--'
+
+Missao:
+  # Como a missao do dia aparece nas lores.
+  Andamento: '&e{progresso}&7/&e{meta} &8({porcentagem}%)'
+  Feita: '&aConcluida!'
+  Sem missao: '&7--'
+  Concluida: '&a&lMISSAO DO DIA! &7Voce completou a missao de {trabalho}&7: &f{meta}&7. Recompensas: {recompensas}'
+  # Acoes ao concluir (titulo, som...).
+  Acoes:
+    - 'titulo: &a&lMISSAO DO DIA!<nl>&f{trabalho}'
+    - 'som: ENTITY_PLAYER_LEVELUP;1;1.4'
+
+Top semanal:
+  Cabecalho: '&8&m--------&r &e&lTOP DA SEMANA &8&m--------'
+  Linha: '&e#{posicao} &f{jogador} &7- &6{pontos} pontos'
+  Ninguem: '&7Ninguem pontuou nesta semana.'
+  Rodape: '&7A semana virou: os pontos da semana voltaram a zero. Boa sorte!'
+  Desligado: '&cO top semanal esta desligado no config.yml.'
+  Ver: '&fSemana atual: &e{semana}&f. Virada em &e{tempo}&f.'
+
+Loja:
+  Comprou: '{prefixo}&aVoce comprou &f{produto} &apor &6{preco} pontos&a. Restam &6{pontos}&a.'
+  Pontos insuficientes: '&cVoce precisa de &6{preco} pontos &cpara isso (tem &6{pontos}&c).'
+  Sem permissao do produto: '&cVoce nao tem permissao para comprar este produto.'
+  Vagas no maximo: '&cVoce ja comprou todas as vagas extras (&f{vagas_compraveis}&c).'
+  Sem espaco: '&cLibere espaco no inventario antes de comprar.'
+  Desligada: '&cA loja de pontos esta desligada.'
+  Produto invalido: '&cEste produto esta mal configurado; avise a equipe.'
+  Trabalho a escolher: '&eum trabalho a sua escolha'
+  Acao comprar: '&aCLIQUE para comprar.'
+  Acao sem pontos: '&cVoce nao tem pontos suficientes.'
+  Acao sem permissao: '&cVoce nao tem permissao.'
+  Acao vagas no maximo: '&cVagas extras no maximo.'
+  Acao indisponivel: '&cIndisponivel.'
 
 Entrar:
   Entrou: '&aVoce entrou no trabalho {trabalho}&a. &7(Nv. {nivel})'
@@ -161,6 +220,8 @@ Impulsos:
   Servidor terminou: '&dImpulso: &7O impulso de +{porcentagem}% de {tipo} em {afeta} acabou.'
   Jogador comecou: '&dImpulso: &7Voce ganhou +{porcentagem}% de {tipo} em {afeta} por &f{tempo}&7!'
   Jogador terminou: '&dImpulso: &7Seu impulso de +{porcentagem}% de {tipo} em {afeta} acabou.'
+  Item ativado: '&dImpulso: &7Voce ativou +{porcentagem}% de {tipo} em {afeta} por &f{tempo}&7!'
+  Item recebido: '&dImpulso: &7Voce recebeu &f{quantidade} &7item(ns) de impulso. Clique direito para ativar.'
 
 Top:
   Atualizando: '&7Carregando o top...'
@@ -202,6 +263,12 @@ Administracao:
   Tipo de impulso invalido: '{prefixo}&cTipo &f{tipo} &cinvalido. Use PROGRESSO, PONTOS ou RECOMPENSAS.'
   Tempo invalido: '{prefixo}&cTempo &f{tempo} &cinvalido. Exemplos: 30m, 2h, 1d, permanente.'
   Rotacao sorteada: '{prefixo}&aRotacao sorteada agora.'
+  Item de impulso dado: '{prefixo}&aVoce deu &f{quantidade} &aitem(ns) de impulso para &f{jogador}&a.'
+  NPC criado: '{prefixo}&aNPC &f{id} &acriado aqui. Clique nele para abrir os trabalhos.'
+  NPC removido: '{prefixo}&aNPC removido.'
+  NPC nao encontrado: '{prefixo}&cNenhum NPC de trabalhos por perto (ate 6 blocos).'
+  NPC lista: '&8&m--------&r &6&lNPCS DE TRABALHOS ({quantidade}) &8&m--------'
+  Semana virada: '{prefixo}&aSemana virada: top premiado e pontos da semana zerados.'
 
 Ajuda:
   Cabecalho: '&8&m--------&r &6&lTRABALHOS &8&m--------'

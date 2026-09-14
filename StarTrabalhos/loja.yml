@@ -1,0 +1,191 @@
+# ==========================================================================
+#  StarTrabalhos - loja de pontos
+#
+#  Os pontos de trabalho compram o que estiver aqui. Cada produto tem:
+#    Tipo      impulso | vaga | comandos | itens
+#    Preco     pontos cobrados
+#    Slot      posicao fixa no menu (sem Slot, entra nos Slots paginados do
+#              menus.yml, na ordem do arquivo)
+#    Permissao permissao para comprar (vazio = todos); 'Esconder sem
+#              permissao: true' some com o produto de quem nao tem
+#    Confirmar false pula a tela de confirmacao so neste produto
+#    Item      como o produto aparece (Material, Nome, Lore, Brilho, Textura,
+#              Dono). Na lore valem {preco} {pontos} {porcentagem} {tipo}
+#              {afeta} {tempo} {vagas_compradas} {vagas_compraveis} {acao}.
+#
+#  Tipo impulso:
+#    Impulso:
+#      Tipo: PROGRESSO | PONTOS | RECOMPENSAS
+#      Porcentagem: 25
+#      Duracao: 1h            (30m, 2h, 1d, permanente)
+#      Afeta: todos | gratuitos | premium | escolher | <id do trabalho>
+#             'escolher' abre a lista para o jogador escolher o trabalho.
+#      Como item: false       true entrega o ITEM de impulso (o jogador ativa
+#                             quando quiser ou troca com outro jogador)
+#  Tipo vaga: uma vaga extra permanente (teto em 'Vagas compraveis' do config).
+#  Tipo comandos: 'Comandos' de console ({jogador} e os outros valores acima).
+#  Tipo itens: 'Itens' como 'MATERIAL:quantidade'.
+# ==========================================================================
+
+Produtos:
+  impulso-progresso-1h:
+    Tipo: impulso
+    Preco: 150
+    Impulso:
+      Tipo: PROGRESSO
+      Porcentagem: 25
+      Duracao: 1h
+      Afeta: todos
+      Como item: false
+    Item:
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&d+25% de progresso &7(1 hora)'
+      Lore:
+        - ''
+        - '&7Ativa na hora, em todos os'
+        - '&7seus trabalhos.'
+        - ''
+        - '&fPreco: &6{preco} pontos'
+        - '&fVoce tem: &6{pontos}'
+        - ''
+        - '{acao}'
+
+  impulso-trabalho-3h:
+    Tipo: impulso
+    Preco: 300
+    Impulso:
+      Tipo: PROGRESSO
+      Porcentagem: 50
+      Duracao: 3h
+      Afeta: escolher
+      Como item: false
+    Item:
+      Material: BLAZE_POWDER
+      Nome: '&d+50% de progresso num trabalho &7(3 horas)'
+      Lore:
+        - ''
+        - '&7Voce escolhe o trabalho'
+        - '&7na hora da compra.'
+        - ''
+        - '&fPreco: &6{preco} pontos'
+        - '&fVoce tem: &6{pontos}'
+        - ''
+        - '{acao}'
+
+  impulso-pontos-2h:
+    Tipo: impulso
+    Preco: 250
+    Impulso:
+      Tipo: PONTOS
+      Porcentagem: 50
+      Duracao: 2h
+      Afeta: todos
+      Como item: false
+    Item:
+      Material: GOLD_INGOT
+      Nome: '&6+50% de pontos &7(2 horas)'
+      Lore:
+        - ''
+        - '&7Cada nivel fechado paga'
+        - '&7metade a mais de pontos.'
+        - ''
+        - '&fPreco: &6{preco} pontos'
+        - '&fVoce tem: &6{pontos}'
+        - ''
+        - '{acao}'
+
+  item-impulso-recompensas:
+    Tipo: impulso
+    Preco: 400
+    Impulso:
+      Tipo: RECOMPENSAS
+      Porcentagem: 100
+      Duracao: 1h
+      Afeta: todos
+      Como item: true
+    Item:
+      Material: NETHER_STAR
+      Brilho: true
+      Nome: '&d&lITEM: &d+100% de recompensas &7(1 hora)'
+      Lore:
+        - ''
+        - '&7Vem como ITEM: ative quando'
+        - '&7quiser ou venda para outro jogador.'
+        - ''
+        - '&fPreco: &6{preco} pontos'
+        - '&fVoce tem: &6{pontos}'
+        - ''
+        - '{acao}'
+
+  item-impulso-trabalho:
+    Tipo: impulso
+    Preco: 500
+    Impulso:
+      Tipo: PROGRESSO
+      Porcentagem: 100
+      Duracao: 2h
+      Afeta: escolher
+      Como item: true
+    Item:
+      Material: NETHER_STAR
+      Brilho: true
+      Nome: '&d&lITEM: &d+100% de progresso num trabalho &7(2 horas)'
+      Lore:
+        - ''
+        - '&7Voce escolhe o trabalho e recebe'
+        - '&7o item: ative quando quiser ou'
+        - '&7venda para outro jogador.'
+        - ''
+        - '&fPreco: &6{preco} pontos'
+        - '&fVoce tem: &6{pontos}'
+        - ''
+        - '{acao}'
+
+  vaga-extra:
+    Tipo: vaga
+    Preco: 1000
+    Item:
+      Material: LIME_DYE
+      Nome: '&a&lVAGA EXTRA'
+      Lore:
+        - ''
+        - '&7Mais um trabalho ativo ao'
+        - '&7mesmo tempo, para sempre.'
+        - ''
+        - '&fCompradas: &a{vagas_compradas}&7/&a{vagas_compraveis}'
+        - '&fPreco: &6{preco} pontos'
+        - '&fVoce tem: &6{pontos}'
+        - ''
+        - '{acao}'
+
+  diamantes:
+    Tipo: itens
+    Preco: 200
+    Itens:
+      - 'DIAMOND:8'
+    Item:
+      Material: DIAMOND
+      Nome: '&b8 diamantes'
+      Lore:
+        - ''
+        - '&fPreco: &6{preco} pontos'
+        - '&fVoce tem: &6{pontos}'
+        - ''
+        - '{acao}'
+
+  chave-de-caixa:
+    Tipo: comandos
+    Preco: 350
+    Comandos:
+      # Troque pelo comando da sua caixa. Exemplo com o StarCaixas:
+      # - 'console: starcaixas dar {jogador} comum 1'
+      - 'mensagem: &dVoce ganhou uma chave de caixa! (configure em loja.yml)'
+    Item:
+      Material: TRIPWIRE_HOOK
+      Nome: '&e1 chave de caixa'
+      Lore:
+        - ''
+        - '&fPreco: &6{preco} pontos'
+        - '&fVoce tem: &6{pontos}'
+        - ''
+        - '{acao}'

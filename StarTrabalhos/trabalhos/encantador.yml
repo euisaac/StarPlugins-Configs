@@ -40,6 +40,17 @@ Progresso necessario: '3 * ({nivel} ^ 2)'
 # Pontos pagos ao concluir cada nivel.
 Pontos por nivel: '1 * {nivel}'
 
+# Salario por hora online com o trabalho ativo (dinheiro da economia).
+# Formula com {nivel}; '0' desliga. Pago em partes, de tantos em tantos
+# minutos (Salario.Pagar a cada do config.yml).
+Salario por hora: 'round(60 + 12 * {nivel})'
+
+# Missao do dia: acumule esta quantidade de progresso hoje e ganhe as
+# recompensas (ids do recompensas.yml). Quantidade '0' desliga.
+Missao diaria:
+  Quantidade: '3 * (3 * ({nivel} ^ 2))'
+  Recompensas: [ pontos-extras, dinheiro-grande ]
+
 # Ids do recompensas.yml.
 Recompensas:
   Padrao: [ xp, dinheiro ]

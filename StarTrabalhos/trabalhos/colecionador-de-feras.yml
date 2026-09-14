@@ -1,5 +1,5 @@
 # ==========================================================================
-#  StarTrabalhos - trabalho 'exterminador'
+#  StarTrabalhos - trabalho 'colecionador-de-feras'
 #
 #  O id do trabalho e o nome deste arquivo. Apague o arquivo para tirar o
 #  trabalho; copie e renomeie para criar outro.
@@ -13,21 +13,21 @@
 #  Lista vazia aceita qualquer alvo.
 # ==========================================================================
 
-Nome: '&2&lExterminador'
+Nome: '&2&lColecionador de Feras'
 Descricao:
-  - '&7Elimine mortos-vivos:'
-  - '&7zumbis, esqueletos e afins.'
+  - '&7Dome e procrie os bichos'
+  - '&7mais raros do mundo.'
 
 # O item que representa o trabalho nos menus (Material, Nome e Lore vem do
 # menus.yml; aqui tambem cabem Textura/Dono para cabeca e Brilho).
 Icone:
-  Material: ROTTEN_FLESH
+  Material: LEAD
 
 # Posicao nas listas (menor primeiro).
-Ordem: 11
+Ordem: 55
 
 # Trabalho premium exige a permissao startrabalhos.premium.
-Premium: false
+Premium: true
 # Permissao extra para entrar (vazio = nenhuma).
 Permissao: ''
 # Pontos de trabalho necessarios para entrar.
@@ -36,26 +36,27 @@ Pontos para entrar: 0
 Nivel maximo: -1
 
 # Quanto progresso cada nivel pede para ser concluido.
-Progresso necessario: '8 * {nivel}'
+Progresso necessario: '4 * {nivel}'
 # Pontos pagos ao concluir cada nivel.
-Pontos por nivel: '1 * {nivel}'
+Pontos por nivel: '3 * {nivel}'
 
 # Salario por hora online com o trabalho ativo (dinheiro da economia).
 # Formula com {nivel}; '0' desliga. Pago em partes, de tantos em tantos
 # minutos (Salario.Pagar a cada do config.yml).
-Salario por hora: 'round(60 + 12 * {nivel})'
+Salario por hora: 'round(120 + 20 * {nivel})'
 
 # Missao do dia: acumule esta quantidade de progresso hoje e ganhe as
 # recompensas (ids do recompensas.yml). Quantidade '0' desliga.
 Missao diaria:
-  Quantidade: '3 * (8 * {nivel})'
+  Quantidade: '3 * (4 * {nivel})'
   Recompensas: [ pontos-extras, dinheiro-grande ]
 
 # Ids do recompensas.yml.
 Recompensas:
-  Padrao: [ dinheiro ]
+  Padrao: [ dinheiro-premium ]
   Por nivel:
     10: [ dinheiro-grande ]
+    20: [ dinheiro-grande, esmeraldas ]
   # true paga o padrao E o do nivel; false paga so o do nivel quando ele existe.
   Somar padrao com nivel: false
 
@@ -68,23 +69,37 @@ Avisar em: [ 25, 50, 75 ]
 #        TOSQUIAR ORDENHAR NEGOCIAR COLETAR MEL ANDAR CORRER AGACHAR NADAR
 #        PLANAR VOAR PULAR TEMPO_JOGADO
 Acoes:
-  matar:
-    Tipo: MATAR
+  domar:
+    Tipo: DOMAR
     Alvos:
-      - 'ZOMBIE'
-      - 'ZOMBIE_VILLAGER 2'
-      - 'HUSK'
-      - 'DROWNED'
-      - 'SKELETON'
-      - 'STRAY'
-      - 'BOGGED'
-      - 'WITHER_SKELETON 3'
-      - 'ZOMBIFIED_PIGLIN'
-      - 'ZOGLIN 2'
-      - 'PHANTOM 2'
-      - 'ZOMBIE_HORSE'
-      - 'SKELETON_HORSE'
-      - 'WITHER 30'
+      - '*'
+      - 'HORSE 2'
+      - 'SKELETON_HORSE 5'
+      - 'PARROT 2'
+      - 'LLAMA 2'
+    Multiplicador: 2
+  procriar:
+    Tipo: PROCRIAR
+    Alvos:
+      - 'HORSE 2'
+      - 'DONKEY 2'
+      - 'MULE 3'
+      - 'LLAMA 2'
+      - 'TURTLE 3'
+      - 'PANDA 5'
+      - 'FOX 3'
+      - 'AXOLOTL 3'
+      - 'GOAT 2'
+      - 'FROG 3'
+      - 'SNIFFER 8'
+      - 'CAMEL 4'
+      - 'ARMADILLO 4'
+      - 'STRIDER 3'
+      - 'HOGLIN 3'
+      - 'BEE 2'
+      - 'WOLF 2'
+      - 'CAT 2'
+      - 'OCELOT 3'
     Multiplicador: 1.0
 
 # Comandos de console rodados ao subir de nivel. Substituicoes: {jogador}

@@ -14,8 +14,9 @@
 #                          permissao e Acoes.
 #
 #  Acoes proprias:  principal | trabalhos <todos|gratuitos|premium|meus|disponiveis>
-#                   niveis <trabalho> | top | top <trabalho> | entrar <trabalho>
-#                   sair <trabalho> | alternar | anterior | proxima | voltar | fechar
+#                   niveis <trabalho> | top | top <trabalho> | top semanal | impulsos
+#                   loja | prestigiar | entrar <trabalho> | sair <trabalho> | alternar
+#                   anterior | proxima | voltar | fechar
 #  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
 #                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
 #                   som: <SOM;volume;tom>
@@ -26,11 +27,13 @@
 #  {impulso_recompensas} {pagina} {paginas}. Placeholders do PlaceholderAPI
 #  tambem funcionam.
 #
-#  Um botao pode ter 'Condicao: rotacao' (so aparece com a rotacao ligada) ou
-#  'Condicao: impulso' (so aparece quando o jogador tem algum impulso).
+#  Um botao pode ter 'Condicao: rotacao' (so aparece com a rotacao ligada),
+#  'Condicao: impulso' (quando o jogador tem algum impulso), 'Condicao: semanal'
+#  (top semanal ligado), 'Condicao: loja' (loja ligada) ou 'Condicao: prestigio'
+#  (prestigio ligado, so no menu de niveis).
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 4
 
 # ---------------------------------------------------------------------------
 #  /trabalhos
@@ -53,7 +56,7 @@ Principal:
     # Como cada trabalho ativo e desenhado aqui (mesmas substituicoes de
     # Trabalhos.Trabalho). Clique esquerdo abre os niveis; direito sai dele.
     Trabalho ativo:
-      Nome: '{trabalho} &7[Nv. {nivel}]'
+      Nome: '{trabalho} &7[Nv. {nivel}] {estrelas}'
       Lore:
         - '&7{descricao}'
         - ''
@@ -61,6 +64,8 @@ Principal:
         - '&fProgresso: {barra}'
         - '&7{progresso}/{necessario} &8({porcentagem}%)'
         - '&fProxima recompensa: &a{recompensas}'
+        - '&fMissao do dia: {missao}'
+        - '&fSalario: &a{salario}&7/h'
         - '{impulso}'
         - ''
         - '&eClique esquerdo para ver os niveis.'
@@ -156,6 +161,21 @@ Principal:
       Acoes:
         - 'top'
 
+    loja:
+      Slot: 28
+      Material: EMERALD
+      Condicao: loja
+      Nome: '&a&lLOJA DE PONTOS'
+      Lore:
+        - ''
+        - '&7Troque seus pontos por impulsos,'
+        - '&7vagas extras, itens e mais.'
+        - '&7Voce tem: &6{pontos} pontos'
+        - ''
+        - '&aCLIQUE &7para abrir.'
+      Acoes:
+        - 'loja'
+
     impulsos:
       Slot: 30
       Material: NETHER_STAR
@@ -169,8 +189,23 @@ Principal:
         - ''
         - '&aCLIQUE &7para ver os detalhes.'
       Acoes:
-        - 'comando: trabalhos impulsos'
-        - 'fechar'
+        - 'impulsos'
+
+    semanal:
+      Slot: 34
+      Material: PAPER
+      Condicao: semanal
+      Nome: '&e&lTOP DA SEMANA'
+      Lore:
+        - ''
+        - '&7Quem mais pontuou nesta semana.'
+        - '&7Seus pontos na semana: &6{pontos_semana}'
+        - '&7Sua posicao: &6{posicao_semana}'
+        - '&7Virada em: &f{semana_tempo}'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'top semanal'
 
     rotacao:
       Slot: 32
@@ -200,7 +235,9 @@ Principal:
 #  Em cada trabalho: {trabalho} {trabalho_id} {nivel} {nivel_maximo}
 #  {progresso} {necessario} {porcentagem} {barra} {ativo} {premium}
 #  {pontos_necessarios} {pontos_por_nivel} {recompensas} {acoes} {acao}
-#  {detalhes} {impulso} {descricao}.
+#  {detalhes} {impulso} {descricao} {prestigio} {estrelas} {bonus_prestigio}
+#  {missao} {salario}. As linhas com {estrelas}, {missao}, {salario} e
+#  {impulso} somem quando nao ha o que mostrar.
 # ---------------------------------------------------------------------------
 Trabalhos:
   Titulo: '&8Trabalhos: {categoria}'
@@ -214,7 +251,7 @@ Trabalhos:
 
   # Como cada trabalho e desenhado. O material vem do Icone do arquivo dele.
   Trabalho:
-    Nome: '{trabalho} &7[Nv. {nivel}]'
+    Nome: '{trabalho} &7[Nv. {nivel}] {estrelas}'
     Lore:
       - '&7{descricao}'
       - ''
@@ -223,8 +260,11 @@ Trabalhos:
       - '&fAtivo: {ativo}'
       - '&fPontos por nivel: &6{pontos_por_nivel}'
       - '&fRecompensas: &a{recompensas}'
+      - '&fSalario: &a{salario}&7/h'
+      - '&fPrestigio: &6{estrelas} &7(+{bonus_prestigio}%)'
       - ''
       - '&fProgresso: {barra} &7({progresso}/{necessario})'
+      - '&fMissao do dia: {missao}'
       - '{impulso}'
       - ''
       - '{acao}'
@@ -370,6 +410,25 @@ Niveis:
         - '&7Quem tem o nivel mais alto.'
       Acoes:
         - 'top {trabalho_id}'
+    prestigio:
+      Slot: 45
+      Material: NETHER_STAR
+      Condicao: prestigio
+      Nome: '&6&l✫ PRESTIGIO'
+      Lore:
+        - ''
+        - '&7Chegou ao nivel maximo? Prestigie:'
+        - '&7volta ao nivel 1 com um bonus'
+        - '&7permanente de progresso.'
+        - ''
+        - '&fPrestigios: &6{prestigio}&7/&6{prestigio_maximo} {estrelas}'
+        - '&fBonus atual: &a+{bonus_prestigio}%'
+        - '&fProximo bonus: &a+{proximo_bonus}%'
+        - '&fCusto: &6{custo_prestigio} pontos'
+        - ''
+        - '{prestigio_situacao}'
+      Acoes:
+        - 'prestigiar'
 
 # ---------------------------------------------------------------------------
 #  Top (pontos ou nivel de um trabalho). Extras: {tipo}, {unidade},
@@ -410,6 +469,23 @@ Top:
       Lore:
         - '&fSua posicao: &6{minha_posicao}'
         - '&fSeus {unidade}: &6{minha_quantidade}'
+    geral:
+      Slot: 45
+      Material: GOLDEN_HELMET
+      Nome: '&6Top geral'
+      Lore:
+        - '&7Pontos de todos os tempos.'
+      Acoes:
+        - 'top'
+    semanal:
+      Slot: 53
+      Material: PAPER
+      Condicao: semanal
+      Nome: '&eTop da semana'
+      Lore:
+        - '&7Zera em: &f{semana_tempo}'
+      Acoes:
+        - 'top semanal'
     anterior:
       Slot: 48
       Material: ARROW
@@ -426,5 +502,197 @@ Top:
       Slot: 49
       Material: BARRIER
       Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# ---------------------------------------------------------------------------
+#  Impulsos em vigor. Um item por impulso nos Slots; em cada um: {porcentagem}
+#  {tipo} {afeta} {tempo} {id}. Extras: {quantidade}, {impulso_progresso},
+#  {impulso_pontos}, {impulso_recompensas}.
+# ---------------------------------------------------------------------------
+Impulsos:
+  Titulo: '&8Impulsos'
+  Linhas: 5
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: [ 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Servidor:
+    Material: BEACON
+    Nome: '&b&lIMPULSO DO SERVIDOR'
+    Lore:
+      - ''
+      - '&d+{porcentagem}% &fde {tipo}'
+      - '&7Vale para: &f{afeta}'
+      - '&7Tempo restante: &f{tempo}'
+  Jogador:
+    Material: NETHER_STAR
+    Brilho: true
+    Nome: '&d&lSEU IMPULSO'
+    Lore:
+      - ''
+      - '&d+{porcentagem}% &fde {tipo}'
+      - '&7Vale para: &f{afeta}'
+      - '&7Tempo restante: &f{tempo}'
+  Permissao:
+    Material: NAME_TAG
+    Nome: '&e&lIMPULSO DE CARGO'
+    Lore:
+      - ''
+      - '&d+{porcentagem}% &fde {tipo}'
+      - '&7Vale para: &f{afeta}'
+      - '&7Enquanto voce tiver o cargo.'
+  Nenhum:
+    Mostrar: true
+    Material: GRAY_DYE
+    Nome: '&7Nenhum impulso em vigor'
+    Lore:
+      - '&8Fique de olho nos eventos do servidor.'
+
+  Itens:
+    resumo:
+      Slot: 4
+      Material: NETHER_STAR
+      Brilho: true
+      Nome: '&d&lSEUS IMPULSOS'
+      Lore:
+        - ''
+        - '&7Progresso: &d+{impulso_progresso}%'
+        - '&7Pontos: &d+{impulso_pontos}%'
+        - '&7Recompensas: &d+{impulso_recompensas}%'
+        - ''
+        - '&7Impulsos em vigor: &f{quantidade}'
+    anterior:
+      Slot: 39
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 41
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes:
+        - 'proxima'
+    voltar:
+      Slot: 40
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# ---------------------------------------------------------------------------
+#  Loja de pontos. Os produtos do loja.yml entram nos Slots (ou no Slot
+#  proprio de cada um). Extras: {produtos}.
+# ---------------------------------------------------------------------------
+Loja:
+  Titulo: '&8Loja de pontos'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Itens:
+    saldo:
+      Slot: 4
+      Material: GOLD_NUGGET
+      Nome: '&6&lSEUS PONTOS: {pontos}'
+      Lore:
+        - '&7Ganhe pontos subindo de nivel'
+        - '&7nos seus trabalhos.'
+    anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes:
+        - 'proxima'
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# ---------------------------------------------------------------------------
+#  Confirmacao de compra (e de prestigio). Extras: os do produto ({preco},
+#  {tipo}, {afeta}, {tempo}...) ou do prestigio ({trabalho}, {prestigio},
+#  {bonus}, {custo}).
+# ---------------------------------------------------------------------------
+Confirmacao:
+  Titulo: '&8Confirmar?'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Informacao:
+    Slot: 13
+  Confirmar:
+    Slot: 11
+    Material: LIME_WOOL
+    Nome: '&a&lCONFIRMAR'
+    Lore:
+      - '&7Custa &6{preco} pontos&7.'
+      - '&7Voce tem &6{pontos}&7.'
+  Cancelar:
+    Slot: 15
+    Material: RED_WOOL
+    Nome: '&c&lCANCELAR'
+    Lore:
+      - '&7Voltar sem gastar nada.'
+
+# ---------------------------------------------------------------------------
+#  Escolha de trabalho (impulso da loja com 'Afeta: escolher'). Os ativos
+#  aparecem primeiro. Sem 'Trabalho' proprio, usa o desenho de Trabalhos.
+# ---------------------------------------------------------------------------
+Escolher trabalho:
+  Titulo: '&8Para qual trabalho?'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Trabalho:
+    Nome: '{trabalho} &7[Nv. {nivel}]'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&fAtivo: {ativo}'
+      - ''
+      - '&aCLIQUE &7para escolher este trabalho.'
+    Brilho quando ativo: true
+
+  Itens:
+    anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes:
+        - 'proxima'
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cCancelar'
       Acoes:
         - 'voltar'

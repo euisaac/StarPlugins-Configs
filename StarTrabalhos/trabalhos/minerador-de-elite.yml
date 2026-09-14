@@ -1,5 +1,5 @@
 # ==========================================================================
-#  StarTrabalhos - trabalho 'exterminador'
+#  StarTrabalhos - trabalho 'minerador-de-elite'
 #
 #  O id do trabalho e o nome deste arquivo. Apague o arquivo para tirar o
 #  trabalho; copie e renomeie para criar outro.
@@ -13,49 +13,50 @@
 #  Lista vazia aceita qualquer alvo.
 # ==========================================================================
 
-Nome: '&2&lExterminador'
+Nome: '&b&lMinerador de Elite'
 Descricao:
-  - '&7Elimine mortos-vivos:'
-  - '&7zumbis, esqueletos e afins.'
+  - '&7So o que e raro conta: diamante,'
+  - '&7esmeralda e detritos antigos.'
 
 # O item que representa o trabalho nos menus (Material, Nome e Lore vem do
 # menus.yml; aqui tambem cabem Textura/Dono para cabeca e Brilho).
 Icone:
-  Material: ROTTEN_FLESH
+  Material: NETHERITE_PICKAXE
 
 # Posicao nas listas (menor primeiro).
-Ordem: 11
+Ordem: 54
 
 # Trabalho premium exige a permissao startrabalhos.premium.
-Premium: false
+Premium: true
 # Permissao extra para entrar (vazio = nenhuma).
 Permissao: ''
 # Pontos de trabalho necessarios para entrar.
-Pontos para entrar: 0
+Pontos para entrar: 100
 # Nivel mais alto neste trabalho; -1 usa o do config.yml.
 Nivel maximo: -1
 
 # Quanto progresso cada nivel pede para ser concluido.
-Progresso necessario: '8 * {nivel}'
+Progresso necessario: '3 * {nivel}'
 # Pontos pagos ao concluir cada nivel.
-Pontos por nivel: '1 * {nivel}'
+Pontos por nivel: '4 * {nivel}'
 
 # Salario por hora online com o trabalho ativo (dinheiro da economia).
 # Formula com {nivel}; '0' desliga. Pago em partes, de tantos em tantos
 # minutos (Salario.Pagar a cada do config.yml).
-Salario por hora: 'round(60 + 12 * {nivel})'
+Salario por hora: 'round(120 + 20 * {nivel})'
 
 # Missao do dia: acumule esta quantidade de progresso hoje e ganhe as
 # recompensas (ids do recompensas.yml). Quantidade '0' desliga.
 Missao diaria:
-  Quantidade: '3 * (8 * {nivel})'
+  Quantidade: '3 * (3 * {nivel})'
   Recompensas: [ pontos-extras, dinheiro-grande ]
 
 # Ids do recompensas.yml.
 Recompensas:
-  Padrao: [ dinheiro ]
+  Padrao: [ dinheiro-grande ]
   Por nivel:
-    10: [ dinheiro-grande ]
+    5: [ diamantes ]
+    10: [ dinheiro-grande, diamantes ]
   # true paga o padrao E o do nivel; false paga so o do nivel quando ele existe.
   Somar padrao com nivel: false
 
@@ -68,23 +69,18 @@ Avisar em: [ 25, 50, 75 ]
 #        TOSQUIAR ORDENHAR NEGOCIAR COLETAR MEL ANDAR CORRER AGACHAR NADAR
 #        PLANAR VOAR PULAR TEMPO_JOGADO
 Acoes:
-  matar:
-    Tipo: MATAR
+  minerar:
+    Tipo: QUEBRAR
     Alvos:
-      - 'ZOMBIE'
-      - 'ZOMBIE_VILLAGER 2'
-      - 'HUSK'
-      - 'DROWNED'
-      - 'SKELETON'
-      - 'STRAY'
-      - 'BOGGED'
-      - 'WITHER_SKELETON 3'
-      - 'ZOMBIFIED_PIGLIN'
-      - 'ZOGLIN 2'
-      - 'PHANTOM 2'
-      - 'ZOMBIE_HORSE'
-      - 'SKELETON_HORSE'
-      - 'WITHER 30'
+      - 'DIAMOND_ORE'
+      - 'DEEPSLATE_DIAMOND_ORE'
+      - 'EMERALD_ORE 2'
+      - 'DEEPSLATE_EMERALD_ORE 2'
+      - 'ANCIENT_DEBRIS 3'
+      - 'LAPIS_ORE 0.5'
+      - 'DEEPSLATE_LAPIS_ORE 0.5'
+      - 'GOLD_ORE 0.5'
+      - 'DEEPSLATE_GOLD_ORE 0.5'
     Multiplicador: 1.0
 
 # Comandos de console rodados ao subir de nivel. Substituicoes: {jogador}

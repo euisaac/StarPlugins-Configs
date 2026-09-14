@@ -1,5 +1,5 @@
 # ==========================================================================
-#  StarTrabalhos - trabalho 'exterminador'
+#  StarTrabalhos - trabalho 'aquanauta'
 #
 #  O id do trabalho e o nome deste arquivo. Apague o arquivo para tirar o
 #  trabalho; copie e renomeie para criar outro.
@@ -13,21 +13,21 @@
 #  Lista vazia aceita qualquer alvo.
 # ==========================================================================
 
-Nome: '&2&lExterminador'
+Nome: '&3&lAquanauta'
 Descricao:
-  - '&7Elimine mortos-vivos:'
-  - '&7zumbis, esqueletos e afins.'
+  - '&7Domine o oceano: guardioes,'
+  - '&7afogados e prismarinho.'
 
 # O item que representa o trabalho nos menus (Material, Nome e Lore vem do
 # menus.yml; aqui tambem cabem Textura/Dono para cabeca e Brilho).
 Icone:
-  Material: ROTTEN_FLESH
+  Material: HEART_OF_THE_SEA
 
 # Posicao nas listas (menor primeiro).
-Ordem: 11
+Ordem: 59
 
 # Trabalho premium exige a permissao startrabalhos.premium.
-Premium: false
+Premium: true
 # Permissao extra para entrar (vazio = nenhuma).
 Permissao: ''
 # Pontos de trabalho necessarios para entrar.
@@ -38,12 +38,12 @@ Nivel maximo: -1
 # Quanto progresso cada nivel pede para ser concluido.
 Progresso necessario: '8 * {nivel}'
 # Pontos pagos ao concluir cada nivel.
-Pontos por nivel: '1 * {nivel}'
+Pontos por nivel: '3 * {nivel}'
 
 # Salario por hora online com o trabalho ativo (dinheiro da economia).
 # Formula com {nivel}; '0' desliga. Pago em partes, de tantos em tantos
 # minutos (Salario.Pagar a cada do config.yml).
-Salario por hora: 'round(60 + 12 * {nivel})'
+Salario por hora: 'round(120 + 20 * {nivel})'
 
 # Missao do dia: acumule esta quantidade de progresso hoje e ganhe as
 # recompensas (ids do recompensas.yml). Quantidade '0' desliga.
@@ -53,9 +53,10 @@ Missao diaria:
 
 # Ids do recompensas.yml.
 Recompensas:
-  Padrao: [ dinheiro ]
+  Padrao: [ dinheiro-premium ]
   Por nivel:
     10: [ dinheiro-grande ]
+    20: [ dinheiro-grande, diamantes ]
   # true paga o padrao E o do nivel; false paga so o do nivel quando ele existe.
   Somar padrao com nivel: false
 
@@ -68,24 +69,37 @@ Avisar em: [ 25, 50, 75 ]
 #        TOSQUIAR ORDENHAR NEGOCIAR COLETAR MEL ANDAR CORRER AGACHAR NADAR
 #        PLANAR VOAR PULAR TEMPO_JOGADO
 Acoes:
-  matar:
+  cacar:
     Tipo: MATAR
     Alvos:
-      - 'ZOMBIE'
-      - 'ZOMBIE_VILLAGER 2'
-      - 'HUSK'
+      - 'GUARDIAN 2'
+      - 'ELDER_GUARDIAN 15'
       - 'DROWNED'
-      - 'SKELETON'
-      - 'STRAY'
-      - 'BOGGED'
-      - 'WITHER_SKELETON 3'
-      - 'ZOMBIFIED_PIGLIN'
-      - 'ZOGLIN 2'
-      - 'PHANTOM 2'
-      - 'ZOMBIE_HORSE'
-      - 'SKELETON_HORSE'
-      - 'WITHER 30'
+      - 'SQUID 0.5'
+      - 'GLOW_SQUID'
+      - 'PUFFERFISH 0.5'
+      - 'DOLPHIN 3'
     Multiplicador: 1.0
+  quebrar:
+    Tipo: QUEBRAR
+    Alvos:
+      - 'PRISMARINE 2'
+      - 'PRISMARINE_BRICKS 2'
+      - 'DARK_PRISMARINE 3'
+      - 'SEA_LANTERN 3'
+      - 'SPONGE 5'
+      - 'WET_SPONGE 5'
+      - '*_CORAL_BLOCK'
+      - 'TUBE_CORAL'
+      - 'BRAIN_CORAL'
+      - 'BUBBLE_CORAL'
+      - 'FIRE_CORAL'
+      - 'HORN_CORAL'
+    Multiplicador: 1.0
+  nadar:
+    Tipo: NADAR
+    Alvos: []
+    Multiplicador: 0.1
 
 # Comandos de console rodados ao subir de nivel. Substituicoes: {jogador}
 # {trabalho} {nivel} {pontos} {recompensas}

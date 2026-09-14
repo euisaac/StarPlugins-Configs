@@ -16,7 +16,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 1
+Versao do modelo: 2
 
 Geral:
   # Escreve no console o caminho de cada acao. Ligue so para achar problema.
@@ -81,6 +81,10 @@ Trabalhos:
   # Tela que o /trabalhos abre: principal, gratuitos, premium, todos ou meus.
   Menu padrao: principal
 
+  # Quantas vagas extras, alem das do padrao/permissao, o jogador pode
+  # comprar na loja de pontos (produto do tipo 'vaga'). 0 desliga a compra.
+  Vagas compraveis: 3
+
 Entrar:
   # Comandos de console rodados quando alguem entra num trabalho.
   # Substituicoes: {jogador} {trabalho} {trabalho_id}
@@ -102,6 +106,97 @@ Nivel:
   Acoes no nivel maximo:
     - 'titulo: &6&lNIVEL MAXIMO!<nl>&f{trabalho}'
     - 'som: UI_TOAST_CHALLENGE_COMPLETE;1;1'
+
+  # Niveis que sao anunciados para o servidor inteiro (mensagem Nivel.Anuncio
+  # do mensagens.yml). Lista vazia desliga.
+  Anunciar niveis: [ 10, 25, 50, 75, 100 ]
+
+Prestigio:
+  # Quem chega ao nivel maximo de um trabalho pode "prestigiar": volta ao
+  # nivel 1 com um bonus permanente de progresso e uma estrela no nome.
+  # Exige um nivel maximo (config ou do trabalho); sem teto nao ha prestigio.
+  Ativar: true
+  # Bonus de progresso por prestigio, em %. Com 10, o terceiro prestigio da +30%.
+  Bonus por prestigio: 10
+  # Quantas vezes da para prestigiar o mesmo trabalho. 0 = sem limite.
+  Maximo: 10
+  # Pontos cobrados para prestigiar. 0 = de graca.
+  Custo em pontos: 0
+  # O que acontece ao prestigiar. Substituicoes: {jogador} {trabalho} {prestigio} {bonus}
+  Acoes:
+    - 'titulo: &6&l✫ PRESTIGIO {prestigio}!<nl>&f{trabalho} &7(+{bonus}% de progresso)'
+    - 'som: UI_TOAST_CHALLENGE_COMPLETE;1;0.8'
+  # Anuncia o prestigio para o servidor inteiro (mensagem Prestigio.Anuncio).
+  Anunciar: true
+
+Salario:
+  # Cada trabalho pode pagar um salario por hora online ('Salario por hora'
+  # no arquivo do trabalho, formula com {nivel}). O pagamento sai de tantos em
+  # tantos minutos, proporcional ao tempo, somando todos os trabalhos ativos.
+  Ativar: true
+  # De quantos em quantos minutos o salario e pago.
+  Pagar a cada: 10
+  # So paga se o jogador se mexeu nos ultimos X minutos (nada de AFK rendendo).
+  Exigir atividade: true
+  Minutos de inatividade: 5
+
+Missao diaria:
+  # Cada trabalho pode ter uma missao do dia ('Missao diaria' no arquivo do
+  # trabalho): acumule tanto progresso hoje e ganhe recompensas extras. O dia
+  # vira a meia-noite do fuso abaixo.
+  Ativar: true
+  Fuso: 'America/Sao_Paulo'
+
+Top semanal:
+  # Alem do top geral, um top que zera toda semana e premia os primeiros.
+  Ativar: true
+  # Dia e hora da virada: SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA, SABADO, DOMINGO.
+  Dia da virada: SEGUNDA
+  Horario: '00:00'
+  Fuso: 'America/Sao_Paulo'
+  # Comandos de console por posicao na virada. Substituicoes: {jogador} {pontos} {posicao}
+  Premios:
+    1:
+      - 'eco give {jogador} 5000'
+    2:
+      - 'eco give {jogador} 2500'
+    3:
+      - 'eco give {jogador} 1000'
+  # Anuncia os vencedores para o servidor (mensagens Top semanal.* do mensagens.yml).
+  Anunciar: true
+
+Loja:
+  # A loja de pontos (loja.yml): impulsos, vagas, itens e comandos em troca
+  # de pontos de trabalho.
+  Ativar: true
+  # Abre uma tela de confirmacao antes de cobrar.
+  Confirmar compra: true
+  Som ao comprar: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+Item de impulso:
+  # O item que carrega um impulso (compravel na loja ou dado por comando) e que
+  # pode ser trocado entre jogadores. Clique direito com ele na mao ativa.
+  Material: NETHER_STAR
+  Nome: '&d&lIMPULSO &7+{porcentagem}% de {tipo}'
+  Lore:
+    - ''
+    - '&fTipo: &d{tipo}'
+    - '&fVale para: &f{afeta}'
+    - '&fDuracao: &f{tempo}'
+    - ''
+    - '&eClique direito para ativar.'
+    - '&7Pode ser trocado com outros jogadores.'
+  Brilho: true
+  Som ao ativar: 'ENTITY_PLAYER_LEVELUP;1;1.5'
+
+NPC:
+  # NPC que abre o menu de trabalhos (/startrabalhos npc criar). Usa Citizens
+  # ou FancyNpcs se o loader tiver um deles; senao um boneco comum.
+  # Tipo: JOGADOR (com a skin do nick abaixo) ou o nome de um mob (VILLAGER...).
+  Tipo: JOGADOR
+  Nome: '&6&lTrabalhos'
+  Skin: ''
+  Olhar para jogadores: true
 
 Notificacao:
   # Como o jogador e avisado do progresso: CHAT, ACTIONBAR, AMBOS ou NENHUM.
