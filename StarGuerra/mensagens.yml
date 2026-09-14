@@ -1,0 +1,304 @@
+# ==========================================================================
+#  StarGuerra - textos
+#
+#  Mensagem vazia ('') simplesmente nao e enviada: e assim que se desliga um
+#  aviso sem precisar de uma opcao "Ativar" para cada um.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB.
+#  {prefixo} no comeco de uma mensagem usa o prefixo de baixo.
+#  Um bloco com | (varias linhas) sai linha por linha, sem prefixo.
+#
+#  Qualquer mensagem daqui pode ser sobrescrita por um tipo de guerra:
+#  no arquivo dele, em Mensagens.<caminho> (ex.: Mensagens.Guerra.Comecou).
+#
+#  Variaveis que valem em toda mensagem de guerra:
+#   {guerra} {tipo} {estado} {tempo} {segundos} {tempo_jogo} {jogadores}
+#   {jogadores_total} {clans} {clans_total} {camarote} {apostas} {pvp}
+#   {minimo_clans} {minimo_jogadores} {top1} {top1_abates} {top1_vivos}
+#   {top2}... {matador1} {matador1_abates}... {rodada} {duelo} {duelo_tempo}
+#  Quando a mensagem e sobre um jogador/clan: {jogador} {clan} {clan_tag}
+#   {clan_nome} {vivos_clan} {membros_clan} {abates} {abates_clan}
+#   {sequencia} {posicao} {colocacao}
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&c&lGUERRA &8- &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnao foi encontrado.'
+  Numero invalido: '&cO valor &f{valor} &cnao e um numero valido.'
+  Comando desconhecido: '&cO subcomando &f{comando} &cnao existe. Use &f/guerra ajuda&c.'
+  Banco indisponivel: '&cO plugin esta inativo: o banco de dados nao subiu. Veja o console.'
+  Inventario devolvido: '&aSeu inventario da ultima guerra foi devolvido.'
+
+# Textos curtos usados nos menus, no placar e nos placeholders.
+Etiquetas:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Vazio: '&7-'
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Vivo: '&aVivo'
+  Eliminado: '&cEliminado'
+  Camarote: '&eCamarote'
+  Fora: '&7Fora'
+  Desconectado: '&7Desconectado'
+  Sem guerra: '&7Nenhuma guerra'
+  Estado Inscricoes: '&eInscricoes abertas'
+  Estado Espera: '&6Aguardando'
+  Estado Em andamento: '&cEm andamento'
+  Estado Deathmatch: '&4Deathmatch'
+  Estado Encerrando: '&7Encerrando'
+  Permanente: 'permanente'
+  Todos os tipos: 'todas as guerras'
+  Clan: 'Clan'
+  Jogador: 'Jogador'
+  Console: 'Console'
+  Motivo padrao: 'Removido pelo painel'
+  Sem duelo: '&7Aguardando'
+  Duelo: '&f{a} &7x &f{b}'
+  Top clans: 'Clans'
+  Top jogadores: 'Jogadores'
+  Por vitorias: 'Vitorias'
+  Por abates: 'Abates'
+  Modo clans: 'Guerra de clans'
+  Modo jogadores: 'Batalha solo'
+  Modo duelos: 'Torneio de clans'
+  Modo duelos solo: 'Torneio solo'
+  # Listas dos placeholders %starguerra_clans_abates% e %starguerra_clans_vivos%.
+  Separador da lista: '&7, '
+  Clan com abates: '&f{clan}&7: &c{abates}'
+  Clan com vivos: '&f{clan}&7: &a{vivos}'
+  # Unidades do tempo ("6d 3h", "45min").
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+
+# Titulos na tela (Titulo<nl>Subtitulo).
+Titulos:
+  Espera: '&6&l{segundos}<nl>&7A guerra vai comecar'
+  Comecou: '&c&lGUERRA<nl>&7Lutem!'
+  Deathmatch: '&4&lDEATHMATCH<nl>&7A borda esta fechando'
+  Eliminado: '&c&lELIMINADO<nl>&7Voce esta no camarote'
+  Venceu: '&6&lVITORIA<nl>&f{clan} &7venceu a guerra'
+  Perdeu: '&c&lFIM<nl>&f{clan} &7venceu a guerra'
+  Duelo comecou: '&c&lLUTEM!<nl>&7O duelo comecou'
+  Contagem do duelo: '&e&l{segundos}<nl>&7Prepare-se'
+  Morreu no duelo: '&c&lCAIU<nl>&7Espere o proximo duelo'
+
+Guerra:
+  # ---------------------------------------------------------------- inscricoes
+  Inscricoes abertas: |
+    &8&m----------------------------------------
+    &c&lGUERRA &7» &f{guerra}
+    &7As inscricoes estao abertas por &f{tempo}&7!
+    &7Minimo: &f{minimo_clans} clans &7e &f{minimo_jogadores} jogadores&7.
+    &7Entre com &e/guerra entrar &7ou pelo &e/guerra&7.
+    &7Aposte com &e/guerra apostar <clan> <valor>&7.
+    &8&m----------------------------------------
+  Inscricoes aviso: '&7As inscricoes da &f{guerra} &7fecham em &f{tempo}&7. Ja tem &f{jogadores_total} &7jogador(es) e &f{clans_total} &7clan(s). Entre com &e/guerra entrar&7.'
+  Inscricoes contagem: '&7As inscricoes fecham em &f{segundos}s&7!'
+  Inscricoes encerradas: '&7Inscricoes encerradas: &f{jogadores} &7jogador(es) em &f{clans} &7clan(s). O PvP liga em instantes!'
+  Cancelada sem clans: '&cA guerra foi cancelada: eram necessarios pelo menos &f{minimo} &cclans e &f{minimo_jogadores} &cjogadores.'
+  Cancelada sem jogadores: '&cA guerra foi cancelada: eram necessarios pelo menos &f{minimo} &cjogadores.'
+  Clan insuficiente: '&cSeu clan nao juntou o minimo de &f{minimo} &cmembro(s) e ficou de fora.'
+  Inscricoes fechadas: '&cAs inscricoes desta guerra ja fecharam.'
+  Nenhuma guerra: '&cNao ha nenhuma guerra acontecendo agora.'
+
+  # ------------------------------------------------------------------ entrada
+  Entrou: '&aVoce entrou na guerra! Espere as inscricoes fecharem.'
+  Entrou anuncio: '&f{jogador} &7({clan}&7) entrou na guerra. &8[{jogadores} jogadores, {clans} clans]'
+  Saiu: '&cVoce saiu da guerra.'
+  Saiu anuncio: '&f{jogador} &7saiu da guerra.'
+  Expulso: '&cVoce foi removido da guerra por um administrador.'
+  Ja participando: '&cVoce ja esta nesta guerra.'
+  Nao esta participando: '&cVoce nao esta em nenhuma guerra.'
+  Sem permissao para o tipo: '&cVoce nao tem permissao para entrar nesta guerra.'
+  Sem clan: '&cVoce precisa estar em um clan para entrar nesta guerra.'
+  Sem plugin de clans: '&cEsta guerra precisa de um plugin de clans, e nenhum foi encontrado.'
+  Jogador banido: '&cVoce esta banido das guerras por &f{tempo}&c. Motivo: &f{motivo}'
+  Clan banido: '&cSeu clan esta banido das guerras por &f{tempo}&c. Motivo: &f{motivo}'
+  Voce foi banido: '&cVoce foi banido de {tipo} por &f{tempo}&c. Motivo: &f{motivo}'
+  Guerra cheia: '&cA guerra ja esta cheia.'
+  Clan cheio: '&cSeu clan ja tem o maximo de membros nesta guerra.'
+  Sem saldo para entrar: '&cVoce precisa de &f{custo} &cpara entrar nesta guerra.'
+  Custo cobrado: '&7Foram cobrados &f{custo} &7pela inscricao.'
+
+  # ------------------------------------------------------------------- espera
+  Espera contagem: '&7A guerra comeca em &f{segundos}s&7!'
+  Comecou: '&c&lA GUERRA COMECOU! &7O PvP esta ligado. Boa sorte!'
+  PvP ligado: '&aO PvP da guerra foi ligado.'
+  PvP desligado: '&cO PvP da guerra foi desligado.'
+  Tempo restante: '&7Restam &f{tempo} &7de guerra. &8[{clans} clans, {jogadores} jogadores vivos]'
+
+  # ------------------------------------------------------------------ combate
+  Abate: '&f{matador} &7({clan_matador}&7) eliminou &f{jogador} &7({clan}&7). &8[{abates} abates]'
+  Sequencia: '&6{jogador} &7esta com uma sequencia de &f{sequencia} &7abates!'
+  Morte natural: '&f{jogador} &7({clan}&7) morreu e foi eliminado.'
+  Morte no void: '&f{jogador} &7({clan}&7) caiu no void e foi eliminado.'
+  AFK aviso: '&cVoce esta parado! Mexa-se em &f{segundos}s &cou sera eliminado.'
+  AFK eliminado: '&f{jogador} &7({clan}&7) foi eliminado por ficar parado.'
+  Desconectou: '&f{jogador} &7({clan}&7) desconectou e tem &f{tempo} &7para voltar.'
+  Desconectou eliminado: '&f{jogador} &7({clan}&7) nao voltou a tempo e foi eliminado.'
+  Reconectou: '&f{jogador} &7({clan}&7) voltou para a guerra.'
+  Eliminado: '&cVoce foi eliminado! Assista o resto do camarote ou use &f/guerra sair&c.'
+  Clan eliminado: '&c&lCLAN ELIMINADO! &f{clan} &7caiu. &8[{clans} clans restantes]'
+  Fora da borda: '&c&lVOLTE PARA A ARENA!'
+  Teleporte bloqueado: '&cVoce nao pode se teleportar durante a guerra.'
+  Comando bloqueado: '&cEsse comando esta bloqueado durante a guerra.'
+
+  # --------------------------------------------------------------- deathmatch
+  Deathmatch aviso: '&7O &4&lDEATHMATCH &7comeca em &f{tempo}&7!'
+  Deathmatch iniciado: '&4&lDEATHMATCH! &7Todos foram puxados para o centro e a borda esta fechando.'
+
+  # ------------------------------------------------------------------- duelos
+  Rodada iniciada: '&6&lRODADA {rodada} &7» &f{duelos} &7duelo(s). Aguardem a chamada.'
+  Duelo folga: '&7O clan &f{clan} &7avancou direto nesta rodada (numero impar).'
+  Duelo wo: '&7O clan &f{clan} &7avancou por W.O.'
+  Duelo comecando: '&e&lDUELO &7» &f{a} &7x &f{b}&7. Comeca em &f{segundos}s&7!'
+  Duelo terminou: '&a{vencedor} &7venceu o duelo contra &c{perdedor}&7!'
+  Duelo venceu: '&aSeu clan venceu o duelo e avancou! Aguarde a proxima rodada.'
+  Duelo perdeu: '&cSeu clan perdeu o duelo e foi eliminado do torneio.'
+
+  # ---------------------------------------------------------------------- fim
+  Vencedor: |
+    &8&m----------------------------------------
+    &6&lVITORIA &7» &f{clan} &7venceu a &f{guerra}&7!
+    &7Abates do clan: &f{abates_clan} &8| &7Sobreviventes: &f{vivos_clan}
+    &7Maior matador: &f{matador1} &7com &f{matador1_abates} &7abates
+    &8&m----------------------------------------
+  Sem vencedor: '&7A guerra terminou sem um campeao.'
+  Colocacoes cabecalho: '&7Colocacoes finais:'
+  Colocacao Primeiro: '&6 1º &f{clan} &8- &7{abates_clan} abates'
+  Colocacao Segundo: '&7 2º &f{clan} &8- &7{abates_clan} abates'
+  Colocacao Terceiro: '&c 3º &f{clan} &8- &7{abates_clan} abates'
+  Parada pelo admin: '&cA guerra foi encerrada por um administrador. Todo mundo foi devolvido.'
+  Cancelada: 'A guerra foi cancelada.'
+
+  # ---------------------------------------------------------------- camarote
+  Camarote entrou: '&aVoce esta no camarote. Use o item vermelho ou &f/guerra sair &apara voltar.'
+  Camarote saiu: '&7Voce saiu do camarote.'
+  Camarote indisponivel: '&cO camarote desta guerra nao foi definido.'
+  Camarote so no combate: '&cO camarote so abre quando a guerra comecar.'
+
+  # ------------------------------------------------------------------ apostas
+  Apostas desativadas: '&cAs apostas estao desativadas.'
+  Apostas fechadas: '&cAs apostas desta guerra ja fecharam.'
+  Alvo invalido: '&cO clan &f{alvo} &cnao esta nesta guerra.'
+  Numero invalido: '&cValor invalido.'
+  Aposta minima: '&cA aposta minima e &f{valor}&c.'
+  Aposta maxima: '&cVoce pode apostar no maximo &f{valor}&c.'
+  Aposta em si mesmo: '&cVoce nao pode apostar no proprio clan.'
+  Limite de apostas: '&cVoce so pode apostar em &f{limite} &cclan(s) por guerra.'
+  Sem saldo para apostar: '&cVoce nao tem &f{valor} &cpara apostar.'
+  Aposta feita: '&aVoce apostou &f{valor} &aem &f{alvo}&a. Total apostado: &f{total}&a.'
+  Aposta anuncio: '&e{jogador} &7apostou &f{valor} &7em &f{alvo}&7. Bolo: &f{apostas}&7.'
+  Aposta ganhou: '&a&lVOCE GANHOU! &7Sua aposta de &f{valor} &7em &f{alvo} &7rendeu &f{premio}&7.'
+  Aposta perdeu: '&cVoce perdeu a aposta de &f{valor} &cem &f{alvo}&c.'
+  Aposta devolvida: '&7Sua aposta de &f{valor} &7em &f{alvo} &7foi devolvida.'
+  Apostas liquidadas: '&7Bolo de &f{bolo} &7dividido entre &f{vencedores} &7apostador(es).'
+
+Admin:
+  Recarregado: '&aConfiguracoes, mensagens, menus e tipos recarregados.'
+  Tipo inexistente: '&cO tipo &f{tipo} &cnao existe. Tipos: &f{tipos}'
+  Ja existe guerra: '&cJa existe uma guerra acontecendo. Pare-a antes com &f/starguerra parar&c.'
+  Tipo desativado: '&cO tipo &f{tipo} &cesta desativado (Ativado: false).'
+  Locais faltando: '&cFaltam definir os locais &f{locais} &cde &f{tipo}&c. Use &f/starguerra setlocal {tipo} <local>&c.'
+  Sem plugin de clans: '&cEsse tipo precisa de um plugin de clans, e nenhum foi encontrado (veja Clans.Provedor no config.yml).'
+  Iniciada: '&aGuerra &f{tipo} &aaberta!'
+  Parada: '&aGuerra encerrada e todos devolvidos.'
+  Ja comecou: '&cO combate ja comecou.'
+  Inicio forcado: '&aInscricoes/espera puladas.'
+  Ainda nao comecou: '&cO combate ainda nao comecou.'
+  Sem deathmatch em duelos: '&cTorneio nao tem deathmatch.'
+  Deathmatch ja feito: '&cO deathmatch ja aconteceu.'
+  Deathmatch forcado: '&aDeathmatch iniciado.'
+  Nao esta na guerra: '&cO jogador &f{jogador} &cnao esta na guerra.'
+  Expulso: '&a{jogador} &7foi removido da guerra.'
+  Clan nao esta na guerra: '&cO clan &f{clan} &cnao esta na guerra.'
+  Clan expulso: '&aO clan &f{clan} &afoi removido da guerra (&f{jogadores} &ajogador(es)).'
+  Adicionado: '&a{jogador} &7foi adicionado a guerra.'
+  Puxado: '&a{jogador} &7foi puxado ate voce.'
+  Tempo invalido: '&cTempo invalido: &f{tempo}&c. Use 30m, 2h, 7d ou perm.'
+  Jogador banido: '&a{jogador} &7banido de &f{tipo} &7por &f{tempo}&7.'
+  Clan inexistente: '&cO clan &f{clan} &cnao existe.'
+  Clan banido: '&aO clan &f{clan} &7foi banido de &f{tipo} &7por &f{tempo}&7.'
+  Jogador desbanido: '&a{alvo} &7foi desbanido.'
+  Clan desbanido: '&aO clan &f{alvo} &7foi desbanido.'
+  Uso iniciar: '&cUse: /starguerra iniciar <tipo>. Tipos: &f{tipos}'
+  Uso kick: '&cUse: /starguerra kick <jogador>'
+  Uso kickclan: '&cUse: /starguerra kickclan <tag>'
+  Uso banir: '&cUse: /starguerra banir <jogador> [tempo] [tipo|*] [motivo]'
+  Uso banirclan: '&cUse: /starguerra banirclan <tag> [tempo] [tipo|*] [motivo]'
+  Uso desbanir: '&cUse: /starguerra desbanir <jogador>'
+  Uso desbanirclan: '&cUse: /starguerra desbanirclan <tag>'
+  Uso add: '&cUse: /starguerra add <jogador>'
+  Uso puxar: '&cUse: /starguerra puxar <jogador>'
+  Uso setlocal: '&cUse: /starguerra setlocal <tipo> <Entrada|Espera|Camarote|Saida|Deathmatch|Time_1|Time_2|Borda_centro>'
+  Local inexistente: '&cO local &f{local} &cnao existe. Locais: &f{locais}'
+  Local definido: '&aLocal &f{local} &ade &f{tipo} &adefinido onde voce esta.'
+  Uso setkit: '&cUse: /starguerra setkit <tipo> &7(salva o seu inventario e armadura atuais como kit)'
+  Kit definido: '&aKit de &f{tipo} &asalvo a partir do seu inventario.'
+  Uso criar: '&cUse: /starguerra criar <nome> [modelo]. Modelos: &f{modelos}'
+  Tipo ja existe: '&cJa existe um tipo chamado &f{tipo}&c.'
+  Modelo inexistente: '&cO modelo &f{modelo} &cnao existe. Modelos: &f{modelos}'
+  Tipo criado: '&aTipo &f{tipo} &acriado a partir de &f{modelo}&a. Edite guerras/{tipo}.yml e defina os locais.'
+
+Entrada:
+  Valor da aposta: '&eDigite no chat o &fvalor &eda aposta em {clan}&e (de &f{minimo} &ea &f{maximo}&e). Aceita &f1.5k&e, &f2m&e.'
+  Como cancelar: '&7Digite &ccancelar &7para desistir.'
+  Cancelado: '&7Cancelado.'
+  Tempo esgotado: '&7O tempo para responder acabou.'
+
+Ajuda:
+  Jogador:
+    - '&8&m----------------------------------------'
+    - '&c&lGUERRA &7» Comandos'
+    - '&e/guerra &7- abre o menu'
+    - '&e/guerra entrar &7- entra na guerra aberta'
+    - '&e/guerra sair &7- sai da guerra ou do camarote'
+    - '&e/guerra apostar <clan> <valor> &7- aposta num clan'
+    - '&e/guerra camarote &7- assiste a guerra'
+    - '&e/guerra info &7- situacao da guerra atual'
+    - '&e/guerra top [clans|jogadores|abates] &7- rankings'
+    - '&e/guerra historico &7- ultimas guerras'
+    - '&e/guerra tipos &7- os tipos de guerra'
+    - '&8&m----------------------------------------'
+  Admin:
+    - '&c&lGUERRA &7» Administracao'
+    - '&e/starguerra &7- painel do admin'
+    - '&e/starguerra iniciar <tipo> &7| &eparar &7| &eforcestart &7| &eforcardm &7| &epvp'
+    - '&e/starguerra kick <jogador> &7| &ekickclan <tag> &7| &eadd <jogador> &7| &epuxar <jogador>'
+    - '&e/starguerra banir <jogador> [tempo] [tipo] [motivo] &7| &edesbanir <jogador>'
+    - '&e/starguerra banirclan <tag> [tempo] [tipo] [motivo] &7| &edesbanirclan <tag>'
+    - '&e/starguerra setlocal <tipo> <local> &7| &esetkit <tipo> &7| &ecriar <nome> [modelo]'
+    - '&e/starguerra banimentos &7| &erecarregar'
+
+Informativo:
+  Sem guerra:
+    - '&8&m----------------------------------------'
+    - '&c&lGUERRA &7» Nenhuma guerra acontecendo agora.'
+    - '&7Veja os tipos e horarios em &e/guerra tipos&7.'
+    - '&8&m----------------------------------------'
+  Com guerra:
+    - '&8&m----------------------------------------'
+    - '&c&lGUERRA &7» &f{guerra}'
+    - '&7Estado: {estado} &8| &7Tempo: &f{tempo}'
+    - '&7Jogadores vivos: &f{jogadores}&7/&f{jogadores_total} &8| &7Clans vivos: &f{clans}&7/&f{clans_total}'
+    - '&7PvP: {pvp} &8| &7Bolo das apostas: &f{apostas} &8| &7Camarote: &f{camarote}'
+    - '&7Seu clan: {clan} &8| &7Seus abates: &f{abates}'
+    - '&7Clans vivos:'
+  # Uma linha por clan vivo, depois do informativo.
+  Linha do clan: ' &f{clan} &8- &a{vivos_clan} &7vivo(s), &c{abates_clan} &7abate(s)'
+  Tipo:
+    - '&8&m----------------------------------------'
+    - '&c&lGUERRA &7» &f{nome} &8({chave})'
+    - '&7Modo: &f{modo}'
+    - '&7Minimo: &f{minimo_clans} &7clans, &f{minimo_jogadores} &7jogadores'
+    - '&7Duracao: &f{duracao} &8| &7Custo: &f{custo}'
+    - '&7Inicio automatico: &f{horarios}'
+    - '&7Campeao atual: &f{campeao}'
+    - '&8&m----------------------------------------'

@@ -1,0 +1,526 @@
+# ==========================================================================
+#  StarGuerra - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo.
+#    Slots                 Onde o conteudo paginado aparece (tipos, clans...).
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao e Acoes.
+#
+#  Acoes proprias:  principal | entrar | sair | camarote | apostar | tipos
+#                   top [clans|jogadores|abates] | historico | info | ajuda
+#                   admin | iniciar [tipo] | parar | pvp | forcardm | forcestart
+#                   participantes | banimentos | recarregar | voltar | atualizar
+#                   anterior | proxima | alternar | ordenar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
+#                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
+#                   som: <SOM;volume;tom> | fechar
+#
+#  Substituicoes em qualquer texto: {jogador} {pagina} {paginas} e todas as
+#  variaveis da guerra atual ({guerra} {estado} {tempo} {jogadores} {clans}
+#  {apostas} {pvp} {clan} {abates} {top1}...). Placeholders do PlaceholderAPI
+#  tambem funcionam nos botoes.
+#
+#  No menu Principal e no Admin, os botoes com estas chaves so aparecem
+#  quando fazem sentido: entrar, sair, camarote, apostar, iniciar, parar,
+#  pvp, forcardm, forcestart, participantes.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  /guerra
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Guerra'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+    So fora do conteudo: true
+  Itens:
+    situacao:
+      Slot: 4
+      Material: DIAMOND_SWORD
+      Nome: '&c&l{guerra}'
+      Lore:
+        - '&7Estado: {estado}'
+        - '&7Tempo: &f{tempo}'
+        - '&7Jogadores vivos: &f{jogadores}'
+        - '&7Clans vivos: &f{clans}'
+        - '&7Bolo das apostas: &f{apostas}'
+        - ''
+        - '&eClique para ver o informativo.'
+      Acoes: [ 'info' ]
+    entrar:
+      Slot: 11
+      Material: IRON_SWORD
+      Nome: '&a&lEntrar na guerra'
+      Lore:
+        - '&7Inscreva-se na guerra aberta.'
+        - ''
+        - '&eClique para entrar.'
+      Acoes: [ 'entrar' ]
+    sair:
+      Slot: 11
+      Material: BARRIER
+      Nome: '&c&lSair'
+      Lore:
+        - '&7Sai da guerra ou do camarote.'
+        - ''
+        - '&eClique para sair.'
+      Acoes: [ 'sair' ]
+    apostar:
+      Slot: 13
+      Material: GOLD_INGOT
+      Nome: '&6&lApostar'
+      Lore:
+        - '&7Aposte no clan que vai vencer.'
+        - '&7Bolo atual: &f{apostas}'
+        - ''
+        - '&eClique para escolher o clan.'
+      Acoes: [ 'apostar' ]
+    camarote:
+      Slot: 15
+      Material: ENDER_EYE
+      Nome: '&d&lCamarote'
+      Lore:
+        - '&7Assista a guerra de perto,'
+        - '&7invisivel e voando.'
+        - ''
+        - '&eClique para assistir.'
+      Acoes: [ 'camarote' ]
+    tipos:
+      Slot: 20
+      Material: BOOK
+      Nome: '&e&lTipos de guerra'
+      Lore:
+        - '&7Veja os modos, horarios'
+        - '&7e campeoes de cada guerra.'
+        - ''
+        - '&eClique para ver.'
+      Acoes: [ 'tipos' ]
+    top:
+      Slot: 22
+      Material: NETHER_STAR
+      Nome: '&b&lRankings'
+      Lore:
+        - '&7Clans e jogadores com mais'
+        - '&7vitorias e abates.'
+        - ''
+        - '&eClique para ver.'
+      Acoes: [ 'top' ]
+    historico:
+      Slot: 24
+      Material: CLOCK
+      Nome: '&7&lHistorico'
+      Lore:
+        - '&7As ultimas guerras e quem venceu.'
+        - ''
+        - '&eClique para ver.'
+      Acoes: [ 'historico' ]
+    admin:
+      Slot: 40
+      Material: COMMAND_BLOCK
+      Nome: '&4&lPainel do admin'
+      Lore:
+        - '&7Iniciar, parar, PvP, deathmatch,'
+        - '&7participantes e banimentos.'
+      Permissao: 'starguerra.admin'
+      Esconder sem permissao: true
+      Acoes: [ 'admin' ]
+
+# ---------------------------------------------------------------------------
+#  Tipos de guerra. Extras por tipo: {nome} {chave} {modo} {ativado}
+#  {minimo_clans} {minimo_jogadores} {duracao} {inscricoes} {custo} {auto}
+#  {campeao} {kit}. As linhas {descricao}, {horarios} e {acao} da lore viram
+#  a descricao do tipo, a lista de horarios e o texto de acao.
+# ---------------------------------------------------------------------------
+Tipos:
+  Titulo: '&8Tipos de guerra'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Tipo:
+    Nome: '&c&l{nome}'
+    Lore:
+      - '&7Modo: &f{modo}'
+      - '{descricao}'
+      - ''
+      - '&7Minimo: &f{minimo_clans} &7clans, &f{minimo_jogadores} &7jogadores'
+      - '&7Duracao: &f{duracao} &8| &7Custo: &f{custo}'
+      - '&7Campeao atual: &f{campeao}'
+      - '&7Inicio automatico: {auto}'
+      - '{horarios}'
+      - ''
+      - '{acao}'
+    Horario: '&7 - &f{horario}'
+    Acao jogador: '&eClique para ver os detalhes.'
+    Acao admin: '&aClique para iniciar esta guerra.'
+  Itens:
+    anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&6Pagina anterior'
+      Acoes: [ 'anterior' ]
+    voltar:
+      Slot: 31
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&6Proxima pagina'
+      Acoes: [ 'proxima' ]
+
+# ---------------------------------------------------------------------------
+#  Apostas. Extras: {bolo} {taxa} {minimo} {maximo}. Por equipe: {clan}
+#  {clan_tag} {membros} {vivos} {abates} {apostado} {minha_aposta} {cotacao}.
+# ---------------------------------------------------------------------------
+Apostas:
+  Titulo: '&8Apostas - bolo {bolo}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Equipe:
+    Material: WHITE_BANNER
+    Nome: '&e&l{clan}'
+    Lore:
+      - '&7Membros: &f{membros} &8| &7Vivos: &f{vivos}'
+      - '&7Abates: &f{abates}'
+      - ''
+      - '&7Apostado neste clan: &f{apostado}'
+      - '&7Sua aposta: &f{minha_aposta}'
+      - '&7Cotacao: &f{cotacao}'
+      - ''
+      - '&eClique para apostar neste clan.'
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhum clan na guerra ainda.'
+  Itens:
+    info:
+      Slot: 4
+      Material: GOLD_INGOT
+      Nome: '&6&lComo funciona'
+      Lore:
+        - '&7O bolo (menos &f{taxa}%&7 de taxa) e dividido'
+        - '&7entre quem apostou no clan campeao, na'
+        - '&7proporcao do que cada um apostou.'
+        - ''
+        - '&7Minimo: &f{minimo} &8| &7Maximo: &f{maximo}'
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&6Pagina anterior'
+      Acoes: [ 'anterior' ]
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&6Proxima pagina'
+      Acoes: [ 'proxima' ]
+
+# ---------------------------------------------------------------------------
+#  Rankings. Extras: {lista} {ordem}. Por clan: {posicao} {clan} {clan_tag}
+#  {vitorias} {abates} {participacoes} {ultima_vitoria}. Por jogador:
+#  {posicao} {jogador} {vitorias} {abates} {mortes} {kdr} {participacoes}
+#  {ultima_vitoria}.
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8Top {lista} - {ordem}'
+  Linhas: 6
+  Quantidade: 45
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+           27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]
+  Clan:
+    Material: WHITE_BANNER
+    Nome: '&e#{posicao} &f{clan}'
+    Lore:
+      - '&7Vitorias: &f{vitorias}'
+      - '&7Abates: &f{abates}'
+      - '&7Participacoes: &f{participacoes}'
+      - '&7Ultima vitoria: &f{ultima_vitoria}'
+    Brilho no podio: true
+  Jogador:
+    Nome: '&e#{posicao} &f{jogador}'
+    Lore:
+      - '&7Vitorias: &f{vitorias}'
+      - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes} &8| &7KDR: &f{kdr}'
+      - '&7Participacoes: &f{participacoes}'
+      - '&7Ultima vitoria: &f{ultima_vitoria}'
+    Brilho no podio: true
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNinguem no ranking ainda.'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&6Pagina anterior'
+      Acoes: [ 'anterior' ]
+    alternar:
+      Slot: 47
+      Material: WHITE_BANNER
+      Nome: '&6&lClans / Jogadores'
+      Lore:
+        - '&7Mostrando: &f{lista}'
+        - ''
+        - '&eClique para alternar.'
+      Acoes: [ 'alternar' ]
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    ordenar:
+      Slot: 51
+      Material: HOPPER
+      Nome: '&6&lOrdenar'
+      Lore:
+        - '&7Por: &f{ordem}'
+        - ''
+        - '&eClique para alternar.'
+      Acoes: [ 'ordenar' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&6Proxima pagina'
+      Acoes: [ 'proxima' ]
+
+# ---------------------------------------------------------------------------
+#  Historico. Por registro: {guerra} {tipo} {data} {duracao} {vencedor}
+#  {segundo} {terceiro} {participantes} {clans} {abates} {apostas} {servidor}.
+# ---------------------------------------------------------------------------
+Historico:
+  Titulo: '&8Historico de guerras'
+  Linhas: 6
+  Quantidade: 45
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+           27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]
+  Registro:
+    Nome: '&e{guerra} &7- {data}'
+    Lore:
+      - '&6Campeao: &f{vencedor}'
+      - '&7Segundo: &f{segundo} &8| &7Terceiro: &f{terceiro}'
+      - ''
+      - '&7Participantes: &f{participantes} &8| &7Clans: &f{clans}'
+      - '&7Abates: &f{abates} &8| &7Duracao: &f{duracao}'
+      - '&7Apostado: &f{apostas}'
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhuma guerra registrada.'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&6Pagina anterior'
+      Acoes: [ 'anterior' ]
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&6Proxima pagina'
+      Acoes: [ 'proxima' ]
+
+# ---------------------------------------------------------------------------
+#  /starguerra (painel). Extras: {banimentos} {tipos} {clans_provedor}
+#  {deathmatch}.
+# ---------------------------------------------------------------------------
+Admin:
+  Titulo: '&8Guerra - painel'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: RED_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    situacao:
+      Slot: 4
+      Material: DIAMOND_SWORD
+      Nome: '&c&l{guerra}'
+      Lore:
+        - '&7Estado: {estado} &8| &7Tempo: &f{tempo}'
+        - '&7Jogadores: &f{jogadores}&7/&f{jogadores_total} &8| &7Clans: &f{clans}&7/&f{clans_total}'
+        - '&7PvP: {pvp} &8| &7Deathmatch: {deathmatch}'
+        - '&7Bolo: &f{apostas} &8| &7Camarote: &f{camarote}'
+        - ''
+        - '&7Provedor de clans: &f{clans_provedor}'
+        - '&7Tipos configurados: &f{tipos}'
+      Acoes: [ 'atualizar' ]
+    iniciar:
+      Slot: 10
+      Material: LIME_DYE
+      Nome: '&a&lIniciar guerra'
+      Lore:
+        - '&7Escolhe o tipo e abre as inscricoes.'
+      Acoes: [ 'iniciar' ]
+    parar:
+      Slot: 10
+      Material: RED_DYE
+      Nome: '&c&lParar guerra'
+      Lore:
+        - '&7Encerra agora, devolve todo mundo'
+        - '&7e devolve as apostas.'
+      Acoes: [ 'parar' ]
+    forcestart:
+      Slot: 12
+      Material: CLOCK
+      Nome: '&e&lForcar inicio'
+      Lore:
+        - '&7Pula o resto das inscricoes/espera.'
+      Acoes: [ 'forcestart' ]
+    pvp:
+      Slot: 14
+      Material: IRON_SWORD
+      Nome: '&6&lPvP: {pvp}'
+      Lore:
+        - '&7Liga ou desliga o PvP da guerra.'
+      Acoes: [ 'pvp' ]
+    forcardm:
+      Slot: 16
+      Material: TNT
+      Nome: '&4&lForcar deathmatch'
+      Lore:
+        - '&7Puxa todos para o centro e fecha a borda.'
+      Acoes: [ 'forcardm' ]
+    participantes:
+      Slot: 20
+      Material: PLAYER_HEAD
+      Textura: 'a2f0425d64fdc8992928d608109810c1251fe243d60d175bed427c651cbe'
+      Nome: '&b&lParticipantes'
+      Lore:
+        - '&7Esquerdo: expulsa. Direito: puxa.'
+        - '&7Shift + esquerdo: bane por 1 dia.'
+      Acoes: [ 'participantes' ]
+    banimentos:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&c&lBanimentos &7({banimentos})'
+      Lore:
+        - '&7Clique num banimento para remove-lo.'
+      Acoes: [ 'banimentos' ]
+    tipos:
+      Slot: 24
+      Material: BOOK
+      Nome: '&e&lTipos de guerra'
+      Lore:
+        - '&7Direito num tipo inicia a guerra dele.'
+      Acoes: [ 'tipos' ]
+    recarregar:
+      Slot: 40
+      Material: COMPARATOR
+      Nome: '&7&lRecarregar'
+      Lore:
+        - '&7Rele config, mensagens, menus e tipos.'
+      Acoes: [ 'recarregar' ]
+
+Participantes:
+  Titulo: '&8Participantes ({total})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+           27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]
+  Participante:
+    Nome: '&e{jogador}'
+    Lore:
+      - '&7Clan: {clan}'
+      - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes}'
+      - '&7Estado: {estado}'
+      - ''
+      - '&eEsquerdo: &7expulsar &8| &eDireito: &7puxar'
+      - '&eShift + esquerdo: &7banir por 1 dia'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&6Pagina anterior'
+      Acoes: [ 'anterior' ]
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&6Proxima pagina'
+      Acoes: [ 'proxima' ]
+
+Banimentos:
+  Titulo: '&8Banimentos ({total})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+           27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]
+  Banimento:
+    Material do clan: RED_BANNER
+    Nome: '&c{alvo} &7({tipo_alvo})'
+    Lore:
+      - '&7Guerra: &f{tipo}'
+      - '&7Restante: &f{restante}'
+      - '&7Motivo: &f{motivo}'
+      - '&7Por: &f{por} &8- {data}'
+      - ''
+      - '&eClique para desbanir.'
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&aNenhum banimento ativo.'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&6Pagina anterior'
+      Acoes: [ 'anterior' ]
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&6Proxima pagina'
+      Acoes: [ 'proxima' ]

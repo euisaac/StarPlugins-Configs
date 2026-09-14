@@ -1,0 +1,183 @@
+# ==========================================================================
+#  StarGuerra - tipo de guerra: TORNEIO POR CHAVEAMENTO
+#
+#  Os clans (ou jogadores, com 'Por clan: false') sao sorteados em pares e
+#  se enfrentam um duelo de cada vez na arena (Time 1 x Time 2). Quem perde
+#  esta fora; quem ganha espera a proxima rodada. Numero impar de equipes
+#  deixa uma avancar direto. O ultimo de pe e o campeao.
+#
+#  Locais obrigatorios: Entrada, Saida, Time_1 e Time_2. A Espera e para
+#  onde os times voltam entre um duelo e outro (vazio = Entrada).
+#
+#  As demais opcoes sao as do guerra.yml (sem deathmatch e sem borda).
+# ==========================================================================
+
+Nome: '&6&lTorneio de Clans'
+Modo: DUELOS
+Ativado: true
+Icone: GOLDEN_APPLE
+Descricao:
+  - '&7Chaveamento: os clans se enfrentam em'
+  - '&7duelos sucessivos ate sobrar um campeao.'
+
+Permissao para entrar: ''
+Custo de entrada: 0
+
+Duelos:
+  # false faz um torneio solo (cada jogador e uma equipe).
+  Por clan: true
+  # Quantos membros de cada clan entram em cada duelo (1 = 1x1).
+  Jogadores por duelo: 3
+  # Segundos de contagem antes de liberar o duelo, duracao maxima de cada
+  # duelo (estourou: vence quem tem mais vivos, depois mais abates) e a
+  # pausa entre um duelo e outro.
+  Contagem antes do duelo: 5
+  Tempo do duelo: 180
+  Tempo entre duelos: 10
+
+Requisitos:
+  Minimo de clans: 2
+  Minimo de jogadores: 2
+  Maximo de jogadores: -1
+  Maximo por clan: -1
+  Minimo de membros no clan: 1
+
+Tempos:
+  Inscricoes: 180
+  Avisar a cada: 30
+  Contagem regressiva: 10
+  Espera: 15
+  Congelar na espera: false
+  # Duracao maxima do torneio inteiro.
+  Duracao: 3600
+  Encerramento: 8
+
+Locais:
+  Entrada: ''
+  Espera: ''
+  Camarote: ''
+  Saida: ''
+  Time 1: ''
+  Time 2: ''
+
+Kit:
+  Ativar: true
+  Limpar inventario: true
+  Devolver inventario ao sair: true
+  Itens: ''
+  Armadura: ''
+  Efeitos: []
+
+Sopa:
+  Ativar: false
+  Item: MUSHROOM_STEW
+  Vida: 7
+  Fome: 0
+  Devolver tigela: false
+
+Bloqueios:
+  Dropar itens: true
+  Pegar itens: false
+  Quebrar blocos: true
+  Colocar blocos: true
+  Perolas: true
+  Fome: true
+  Dano de queda: false
+  Teleporte externo: true
+  Dano de fora: true
+  Comandos: []
+  Comandos permitidos: []
+
+Fogo amigo: false
+
+Void:
+  Desclassificar: true
+  Altura: 0
+
+Abates:
+  Anunciar: true
+  Sequencias: [ 3, 5 ]
+  Recompensa por abate: []
+
+Recompensas:
+  Primeiro:
+    Lider:
+      - 'eco give {jogador} 8000'
+    Membro:
+      - 'eco give {jogador} 4000'
+    Clan: []
+  Segundo:
+    Lider:
+      - 'eco give {jogador} 3000'
+    Membro:
+      - 'eco give {jogador} 1500'
+    Clan: []
+  Terceiro:
+    Lider:
+      - 'eco give {jogador} 1000'
+    Membro:
+      - 'eco give {jogador} 500'
+    Clan: []
+  Participacao:
+    Ativar: false
+    So para quem ficou ate o fim: false
+    Comandos: []
+  Tags:
+    Lider: '&6&l[Campeao]'
+    Membro: '&6[Campeao]'
+    Jogador: '&6[Campeao]'
+
+Fogos ao vencer: true
+Eliminado vai para o camarote: true
+
+Chat:
+  Prefixo dos participantes: '&6[Torneio] '
+  Tag do evento: '&6[Torneio]'
+
+Placar:
+  Ativar: true
+  Titulo: '&6&lTORNEIO'
+  Formato do clan: '&f{clan} &7- &a{vivos}'
+  Formato do jogador: '&f{clan} &7- &c{abates}'
+  Maximo de clans na lista: 6
+  Mais clans: '&7... e mais {restantes}'
+  Sem clans: '&7Ninguem ainda'
+  Inscricoes:
+    - '&7'
+    - '&fFecha em: &e{tempo}'
+    - '&fClans: &a{clans_total}'
+    - '&fJogadores: &a{jogadores_total}'
+    - '&fBolo: &6{apostas_abreviado}'
+    - '&7'
+    - '&e/guerra entrar'
+  Espera:
+    - '&7'
+    - '&fComeca em: &e{tempo}'
+    - '&fSeu clan: {clan}'
+    - '&fClans: &a{clans}'
+  Em andamento:
+    - '&7'
+    - '&fRodada: &e{rodada}'
+    - '&fDuelo: {duelo}'
+    - '&fTempo: &e{duelo_tempo}'
+    - '&7'
+    - '&fSeu clan: {clan}'
+    - '&fSeus abates: &c{abates}'
+    - '&fClans vivos: &a{clans}'
+  Camarote:
+    - '&7'
+    - '&fRodada: &e{rodada}'
+    - '&fDuelo: {duelo}'
+    - '&fTempo: &e{duelo_tempo}'
+    - '&fClans vivos: &a{clans}'
+    - '{clans_vivos}'
+
+Auto iniciar:
+  Ativar: false
+  Horarios: [ '21:00' ]
+  Dias: [ 'SAB', 'DOM' ]
+
+Discord:
+  Webhook: ''
+
+Mensagens: {}

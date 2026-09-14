@@ -1,0 +1,178 @@
+# ==========================================================================
+#  StarGuerra - tipo de guerra: BATALHA SOLO (cada um por si)
+#
+#  Nao precisa de plugin de clans: cada jogador e um time. O ultimo vivo
+#  vence. Chave do tipo: solo (/starguerra iniciar solo).
+#
+#  As opcoes sao as mesmas do guerra.yml; abra-o para ver os comentarios.
+#  Nas recompensas o cargo nao existe: vale a lista 'Jogador'.
+# ==========================================================================
+
+Nome: '&e&lBatalha Solo'
+Modo: JOGADORES
+Ativado: true
+Icone: GOLDEN_SWORD
+Descricao:
+  - '&7Cada um por si. Nao precisa de clan:'
+  - '&7o ultimo jogador vivo leva tudo.'
+
+Permissao para entrar: ''
+Custo de entrada: 0
+
+Requisitos:
+  Minimo de jogadores: 4
+  Maximo de jogadores: -1
+
+Tempos:
+  Inscricoes: 120
+  Avisar a cada: 30
+  Contagem regressiva: 10
+  Espera: 20
+  Congelar na espera: false
+  Duracao: 900
+  Desempatar por sorteio: true
+  Encerramento: 8
+
+Locais:
+  Entrada: ''
+  Espera: ''
+  Camarote: ''
+  Saida: ''
+  Deathmatch: ''
+
+Kit:
+  Ativar: true
+  Limpar inventario: true
+  Devolver inventario ao sair: true
+  Itens: ''
+  Armadura: ''
+  Efeitos: []
+
+Sopa:
+  Ativar: false
+  Item: MUSHROOM_STEW
+  Vida: 7
+  Fome: 0
+  Devolver tigela: false
+
+Bloqueios:
+  Dropar itens: true
+  Pegar itens: false
+  Quebrar blocos: true
+  Colocar blocos: true
+  Perolas: false
+  Fome: true
+  Dano de queda: false
+  Teleporte externo: true
+  Dano de fora: true
+  Comandos: []
+  Comandos permitidos: []
+
+Void:
+  Desclassificar: true
+  Altura: 0
+
+Borda:
+  Ativar: false
+  Tipo: MUNDO
+  Centro: ''
+  Tamanho: 120
+  Dano por segundo: 1.0
+  Segundos para fechar: 10
+
+Deathmatch:
+  Ativar: true
+  Apos minutos: 10
+  Local: ''
+  Fechar borda: true
+  Tamanho da borda: 30
+  Avisar: true
+
+Abates:
+  Anunciar: true
+  Sequencias: [ 3, 5, 10 ]
+  Recompensa por abate: []
+
+Recompensas:
+  Primeiro:
+    Jogador:
+      - 'eco give {jogador} 3000'
+  Segundo:
+    Jogador:
+      - 'eco give {jogador} 1500'
+  Terceiro:
+    Jogador:
+      - 'eco give {jogador} 500'
+  Participacao:
+    Ativar: false
+    So para quem ficou ate o fim: false
+    Comandos:
+      - 'eco give {jogador} 100'
+  Tags:
+    Jogador: '&e[Sobrevivente]'
+
+Fogos ao vencer: true
+Eliminado vai para o camarote: true
+
+Chat:
+  Prefixo dos participantes: '&e[Solo] '
+  Tag do evento: '&e[Solo]'
+
+Placar:
+  Ativar: true
+  Titulo: '&e&lBATALHA SOLO'
+  Formato do clan: '&f{clan} &7- &a{vivos}'
+  Formato do jogador: '&f{clan} &7- &c{abates}'
+  Maximo de clans na lista: 6
+  Mais clans: '&7... e mais {restantes}'
+  Sem clans: '&7Ninguem ainda'
+  Inscricoes:
+    - '&7'
+    - '&fFecha em: &e{tempo}'
+    - '&fInscritos: &a{jogadores_total}'
+    - '&fBolo: &6{apostas_abreviado}'
+    - '&7'
+    - '&e/guerra entrar'
+  Espera:
+    - '&7'
+    - '&fComeca em: &e{tempo}'
+    - '&fJogadores: &a{jogadores}'
+  Em andamento:
+    - '&7'
+    - '&fTempo: &e{tempo}'
+    - '&fSeus abates: &c{abates}'
+    - '&fVivos: &a{jogadores}'
+    - '&7'
+    - '&fTop abates:'
+    - '{clans_vivos}'
+  Deathmatch:
+    - '&7'
+    - '&4&lDEATHMATCH'
+    - '&fTempo: &e{tempo}'
+    - '&fSeus abates: &c{abates}'
+    - '&fVivos: &a{jogadores}'
+  Camarote:
+    - '&7'
+    - '&fEstado: {estado}'
+    - '&fTempo: &e{tempo}'
+    - '&fVivos: &a{jogadores}'
+    - '{clans_vivos}'
+
+Auto iniciar:
+  Ativar: false
+  Horarios: [ '18:00' ]
+  Dias: [ 'TODOS' ]
+
+Discord:
+  Webhook: ''
+
+Mensagens:
+  Guerra:
+    Inscricoes abertas: |
+      &8&m----------------------------------------
+      &e&lBATALHA SOLO &7» &f{guerra}
+      &7Cada um por si! Inscricoes abertas por &f{tempo}&7.
+      &7Minimo: &f{minimo_jogadores} jogadores&7. Entre com &e/guerra entrar&7.
+      &7Aposte com &e/guerra apostar <jogador> <valor>&7.
+      &8&m----------------------------------------
+    Sem clan: ''

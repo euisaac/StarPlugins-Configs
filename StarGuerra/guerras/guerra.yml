@@ -1,0 +1,262 @@
+# ==========================================================================
+#  StarGuerra - tipo de guerra: GUERRA DE CLANS
+#
+#  O nome deste arquivo (sem .yml) e a chave do tipo: /starguerra iniciar
+#  guerra. Copie e renomeie para criar outro tipo, ou use
+#  /starguerra criar <nome> guerra.
+#
+#  Passos para colocar no ar:
+#   1. /starguerra setlocal guerra Entrada   (onde os inscritos aparecem)
+#   2. /starguerra setlocal guerra Saida     (para onde voltam no fim)
+#   3. opcionais: Espera, Camarote, Deathmatch, Borda_centro
+#   4. monte o inventario do kit e use /starguerra setkit guerra
+#   5. /starguerra iniciar guerra
+#
+#  Locais sao mundo;x;y;z;yaw;pitch (o setlocal preenche sozinho).
+# ==========================================================================
+
+Nome: '&c&lGuerra de Clans'
+
+# CLANS      = o ultimo clan com alguem vivo vence.
+# JOGADORES  = cada um por si; nao precisa de plugin de clans.
+# DUELOS     = torneio por chaveamento (veja o modelo torneio.yml).
+Modo: CLANS
+
+# false tira o tipo do menu e do inicio automatico.
+Ativado: true
+
+# Icone e descricao no menu de tipos.
+Icone: DIAMOND_SWORD
+Descricao:
+  - '&7A guerra classica: os clans se enfrentam'
+  - '&7ate sobrar um. Quem morre vai para o'
+  - '&7camarote; o ultimo clan de pe vence.'
+
+# Vazio = qualquer um entra. Ex.: starguerra.guerra.vip
+Permissao para entrar: ''
+
+# Dinheiro cobrado na inscricao (0 = gratis).
+Custo de entrada: 0
+
+Requisitos:
+  Minimo de clans: 2
+  Minimo de jogadores: 4
+  # -1 = sem limite.
+  Maximo de jogadores: -1
+  Maximo por clan: -1
+  # Quantos membros o clan precisa ter inscritos para contar; quem nao
+  # chegar sai inteiro quando as inscricoes fecham.
+  Minimo de membros no clan: 1
+
+Tempos:
+  # Segundos de inscricao, de quanto em quanto tempo avisar e a contagem
+  # final (um aviso por segundo).
+  Inscricoes: 180
+  Avisar a cada: 30
+  Contagem regressiva: 10
+  # Segundos com todo mundo na arena e o PvP desligado.
+  Espera: 30
+  # Prende os jogadores no lugar durante a espera.
+  Congelar na espera: false
+  # Duracao maxima do combate, em segundos. Estourou: vence quem tem mais
+  # abates (empate total = sem campeao, a menos que sorteie).
+  Duracao: 1800
+  Desempatar por sorteio: false
+  # Segundos entre o anuncio do campeao e a devolucao de todos.
+  Encerramento: 8
+
+Locais:
+  Entrada: ''
+  Espera: ''
+  Camarote: ''
+  Saida: ''
+  Deathmatch: ''
+
+Kit:
+  # true troca o inventario pelo kit (o original volta no fim). Monte o kit
+  # com /starguerra setkit guerra (salva o seu inventario e armadura).
+  Ativar: false
+  Limpar inventario: true
+  Devolver inventario ao sair: true
+  Itens: ''
+  Armadura: ''
+  # EFEITO:nivel-segundos; sem tempo dura a guerra inteira.
+  Efeitos: []
+
+Sopa:
+  # Clique direito com o item cura na hora (estilo sopa).
+  Ativar: false
+  Item: MUSHROOM_STEW
+  # Coracoes recuperados (7 = 3.5 coracoes) e pontos de fome (0 = nenhum).
+  Vida: 7
+  Fome: 0
+  Devolver tigela: false
+
+# O que os participantes podem fazer na arena. true = bloqueado.
+Bloqueios:
+  Dropar itens: true
+  Pegar itens: false
+  Quebrar blocos: true
+  Colocar blocos: true
+  Perolas: false
+  Fome: true
+  Dano de queda: false
+  # Teleportes por comando de outros plugins (/home, /spawn, /tpa).
+  Teleporte externo: true
+  # Jogador de fora nao bate nem apanha de participante.
+  Dano de fora: true
+  # Vazio usa a lista do config.yml. '*' = todos menos os permitidos.
+  Comandos: []
+  Comandos permitidos: []
+
+# Membros do mesmo clan se machucam?
+Fogo amigo: false
+
+Void:
+  # Cair abaixo da altura elimina sem morrer.
+  Desclassificar: true
+  Altura: 0
+
+Borda:
+  Ativar: false
+  # MUNDO = borda de verdade do mundo (restaurada no fim).
+  # VIRTUAL = o plugin empurra de volta e da dano (nao mexe na borda).
+  Tipo: MUNDO
+  # Vazio = a Entrada. Ou use /starguerra setlocal guerra Borda_centro.
+  Centro: ''
+  Tamanho: 200
+  Dano por segundo: 1.0
+  Segundos para fechar: 10
+
+Deathmatch:
+  Ativar: true
+  Apos minutos: 20
+  # Vazio = a Entrada.
+  Local: ''
+  Fechar borda: true
+  Tamanho da borda: 50
+  Avisar: true
+
+Abates:
+  Anunciar: true
+  # Sequencias de abates que ganham anuncio proprio.
+  Sequencias: [ 3, 5, 10 ]
+  # Comandos por abate ({jogador} = quem matou, {vitima}, {clan}).
+  Recompensa por abate: []
+
+# Comandos rodados pelo console no fim. {jogador} {clan} = tag, {clan_nome}
+# {abates} {abates_clan} {colocacao}. Lider/Membro = por cargo no clan;
+# Clan = uma vez por clan; Jogador = usado quando nao ha cargo (modo solo).
+Recompensas:
+  Primeiro:
+    Lider:
+      - 'eco give {jogador} 5000'
+    Membro:
+      - 'eco give {jogador} 2500'
+    Clan: []
+  Segundo:
+    Lider:
+      - 'eco give {jogador} 2000'
+    Membro:
+      - 'eco give {jogador} 1000'
+    Clan: []
+  Terceiro:
+    Lider:
+      - 'eco give {jogador} 1000'
+    Membro:
+      - 'eco give {jogador} 500'
+    Clan: []
+  Participacao:
+    Ativar: false
+    So para quem ficou ate o fim: false
+    Comandos:
+      - 'eco give {jogador} 100'
+  # Tags de campeao por cargo, lidas pelos placeholders %starguerra_tag% e
+  # %starguerra_tag_guerra%. Vazio desliga.
+  Tags:
+    Lider: '&6&l[Rei]'
+    Membro: '&6[Campeao]'
+
+# Fogos de artificio no campeao ao terminar.
+Fogos ao vencer: true
+
+# Eliminado vai para o camarote (true) ou direto para a saida (false).
+Eliminado vai para o camarote: true
+
+Chat:
+  # Prefixo no chat dos participantes enquanto a guerra rola. Vazio desliga.
+  # {clan} {guerra}.
+  Prefixo dos participantes: '&c[Guerra] '
+  # Texto que o placeholder %starguerra_evento_guerra% devolve para quem
+  # esta participando desta guerra.
+  Tag do evento: '&c[Guerra]'
+
+Placar:
+  Ativar: true
+  Titulo: '&c&lGUERRA'
+  # A linha {clans_vivos} vira uma lista, uma linha por clan vivo.
+  Formato do clan: '&f{clan} &7- &a{vivos}'
+  Formato do jogador: '&f{clan} &7- &c{abates}'
+  Maximo de clans na lista: 6
+  Mais clans: '&7... e mais {restantes}'
+  Sem clans: '&7Ninguem ainda'
+  Inscricoes:
+    - '&7'
+    - '&fFecha em: &e{tempo}'
+    - '&7'
+    - '&fJogadores: &a{jogadores_total}'
+    - '&fClans: &a{clans_total}'
+    - '&fBolo: &6{apostas_abreviado}'
+    - '&7'
+    - '&e/guerra entrar'
+  Espera:
+    - '&7'
+    - '&fComeca em: &e{tempo}'
+    - '&7'
+    - '&fSeu clan: {clan}'
+    - '&fMembros: &a{vivos_clan}'
+    - '&7'
+    - '&fClans: &a{clans}'
+    - '&fJogadores: &a{jogadores}'
+  Em andamento:
+    - '&7'
+    - '&fTempo: &e{tempo}'
+    - '&fSeus abates: &c{abates}'
+    - '&fSeu clan: {clan} &7({vivos_clan})'
+    - '&7'
+    - '&fClans vivos: &a{clans}'
+    - '{clans_vivos}'
+  Deathmatch:
+    - '&7'
+    - '&4&lDEATHMATCH'
+    - '&fTempo: &e{tempo}'
+    - '&fSeus abates: &c{abates}'
+    - '&7'
+    - '&fJogadores: &a{jogadores}'
+    - '{clans_vivos}'
+  Camarote:
+    - '&7'
+    - '&fEstado: {estado}'
+    - '&fTempo: &e{tempo}'
+    - '&7'
+    - '&fJogadores: &a{jogadores}'
+    - '{clans_vivos}'
+    - '&7'
+    - '&fTop: &e{matador1} &7({matador1_abates})'
+
+Auto iniciar:
+  Ativar: false
+  # HH:mm, hora do servidor.
+  Horarios: [ '20:00' ]
+  # TODOS, ou SEG TER QUA QUI SEX SAB DOM.
+  Dias: [ 'TODOS' ]
+
+Discord:
+  # Webhook so desta guerra; vazio usa o do config.yml.
+  Webhook: ''
+
+# Mensagens proprias deste tipo: qualquer caminho do mensagens.yml. Ex.:
+# Mensagens:
+#   Guerra:
+#     Comecou: '&c&lA GUERRA DE CLANS COMECOU!'
+Mensagens: {}

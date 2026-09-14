@@ -1,0 +1,205 @@
+# ==========================================================================
+#  StarGuerra - configuracao geral
+#
+#  Como funciona: um administrador (ou o inicio automatico) abre uma guerra
+#  de um TIPO. Os jogadores entram durante as inscricoes, esperam na arena
+#  com o PvP desligado e, quando a espera acaba, lutam ate sobrar um clan
+#  (ou um jogador, ou um campeao do torneio). Quem cai vai para o camarote.
+#
+#  Cada tipo de guerra e um arquivo em guerras/ (modo, locais, tempos, kit,
+#  bloqueios, borda, deathmatch, recompensas, placar, horarios e mensagens
+#  proprias). Aqui fica o que vale para o plugin inteiro.
+#
+#  Comandos: /guerra (menu) e /starguerra (admin). Comece definindo os
+#  locais: /starguerra setlocal <tipo> Entrada|Espera|Camarote|Saida|...
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console cada operacao. Ligue so para achar problema.
+  Debug: false
+
+  # Milissegundos entre dois cliques no mesmo menu (evita spam).
+  Intervalo entre cliques: 100
+
+  # Como este servidor aparece no historico (vazio = "porta <porta>").
+  Nome deste servidor: ''
+
+  # Quantas guerras ficam guardadas no historico.
+  Historico guardado: 500
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (para dividir rankings e
+  # banimentos entre servidores).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starguerra_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Clans:
+  # De onde vem o clan de cada jogador:
+  #   AUTO        = procura nesta ordem: StarClans, SimpleClans, PLACEHOLDER.
+  #   STARCLANS   = o StarClans (produto da StarPlugins).
+  #   SIMPLECLANS = o SimpleClans.
+  #   PLACEHOLDER = qualquer plugin de clans/factions que exponha a tag por
+  #                 placeholder do PlaceholderAPI (preencha abaixo).
+  #   NENHUM      = sem clans; so os tipos no modo JOGADORES funcionam.
+  Provedor: AUTO
+
+  # So para o provedor PLACEHOLDER. A tag e obrigatoria; o resto e opcional.
+  # O jogador sem clan precisa devolver vazio (ou "none", "nenhum", "-").
+  Placeholder:
+    Tag: '%clan_tag%'
+    Tag colorida: ''
+    Nome: ''
+    # Placeholder do cargo e o texto que identifica o lider (para a
+    # recompensa e a tag de lider). Vazio = ninguem e tratado como lider.
+    Cargo: ''
+    Valor de lider: 'LIDER'
+
+Economia:
+  # VAULT   = qualquer economia registrada no Vault.
+  # COMANDO = saldo lido por placeholder e dinheiro movido por comando de
+  #           console (para as economias que nao usam Vault).
+  Tipo: VAULT
+  Simbolo: '$'
+
+  # So usados no modo COMANDO. {jogador}, {uuid} e {valor} sao trocados.
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Apostas:
+  Ativar: true
+
+  # O dinheiro sai na hora da aposta e vai para o bolo. No fim, o bolo (menos
+  # a taxa) e dividido entre quem apostou na campea, na proporcao do que cada
+  # um pos.
+  Minimo: 100.0
+  Maximo: 100000.0
+
+  # Limites maiores por permissao (a maior que o jogador tiver vale).
+  Por permissao:
+    starguerra.aposta.vip: 500000.0
+
+  # Percentual do bolo que fica com a casa.
+  Taxa: 5.0
+
+  # Ate quando da para apostar: INSCRICOES (fecha junto com as inscricoes)
+  # ou ESPERA (fecha quando o PvP liga).
+  Ate: ESPERA
+
+  # Se ninguem apostou na campea: true devolve todo mundo; false a casa fica.
+  Devolver se ninguem acertou: true
+
+  # O participante pode apostar no proprio clan?
+  Permitir apostar em si mesmo: false
+
+  # Em quantas equipes diferentes cada jogador pode apostar por guerra.
+  Apostas por jogador: 1
+
+  # Avisa o servidor de cada aposta e do resultado.
+  Anunciar: true
+
+Reconexao:
+  # Quem cai do servidor no meio do combate tem este tempo para voltar; se
+  # voltar, continua de onde estava. Depois disso e eliminado.
+  Ativar: true
+  Segundos: 60
+
+Anti AFK:
+  # Elimina quem ficar parado no combate (nao vale na espera nem no camarote).
+  Ativar: false
+  Segundos parado: 90
+  Avisar faltando: 15
+
+Camarote:
+  # Como o espectador fica: invisivel para os participantes, voando, com o
+  # item de sair na mao. 'Modo espectador' usa o gamemode espectador de
+  # verdade (1.8+), que ignora as duas opcoes de cima.
+  Invisivel: true
+  Voar: true
+  Modo espectador: false
+
+  # Pode entrar no camarote ja durante as inscricoes?
+  Permitir durante as inscricoes: true
+
+  Item de sair:
+    Slot: 8
+    Material: RED_BED
+    Nome: '&c&lSair do camarote'
+    Lore:
+      - '&7Clique para voltar ao servidor.'
+
+Anuncios:
+  # true manda os avisos da guerra (abates, eliminacoes, deathmatch...) so
+  # para quem esta participando ou assistindo. As inscricoes vao para todos
+  # de qualquer jeito.
+  So para os envolvidos: false
+
+Tags:
+  # A tag de campeao (Recompensas.Tags no arquivo do tipo) sai pelos
+  # placeholders %starguerra_tag% e %starguerra_tag_<tipo>%. Ela vale ate a
+  # proxima guerra do mesmo tipo com campeao ou por este numero de dias, o
+  # que vier antes (0 = so ate a proxima guerra).
+  Duracao em dias: 0
+
+Placar:
+  Ativar: true
+  # Ticks entre cada redesenho (20 = 1 segundo).
+  Atualizar a cada: 20
+
+Bloqueios:
+  # Comandos bloqueados para quem esta na guerra, quando o tipo nao define os
+  # dele. '*' bloqueia todos menos os permitidos. Quem tem starguerra.bypass
+  # ignora.
+  Comandos:
+    - '*'
+  Comandos permitidos:
+    - 'guerra'
+    - 'g'
+    - 'clan chat'
+    - 'clan c'
+    - '.'
+    - 'tell'
+    - 'msg'
+    - 'r'
+    - 'reply'
+
+Webhook:
+  # Manda os avisos da guerra para um canal do Discord. Crie o webhook em:
+  # Configuracoes do canal -> Integracoes -> Webhooks. Cada tipo pode ter o
+  # seu em Discord.Webhook no arquivo dele.
+  Ativar: false
+  URL: ''
+  Nome: 'Guerra'
+  Cor: '#e74c3c'
+  Eventos:
+    Inscricoes: true
+    Inicio: true
+    Deathmatch: true
+    Fim: true
+    Cancelada: true
+
+# Sons: NOME, NOME;volume ou NOME;volume;tom. Nomes modernos (o plugin
+# traduz para a versao do servidor). Vazio desliga.
+Sons:
+  Clique: 'UI_BUTTON_CLICK;0.6;1.2'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Inscricoes: 'ENTITY_ENDER_DRAGON_GROWL;0.6;1'
+  Contagem: 'BLOCK_NOTE_BLOCK_PLING;1;1.4'
+  Inicio: 'ENTITY_WITHER_SPAWN;0.7;1.2'
+  Entrar: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1'
+  Abate: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+  Eliminado: 'ENTITY_WITHER_HURT;0.8;0.8'
+  Deathmatch: 'ENTITY_ENDER_DRAGON_GROWL;1;0.8'
+  Vitoria: 'UI_TOAST_CHALLENGE_COMPLETE;1;1'
+  Aposta: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.4'
