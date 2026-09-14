@@ -1,0 +1,98 @@
+# ==========================================================================
+#  StarSkills - skill: Herbalismo
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: WHEAT
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+# Plantas que rendem XP ao serem colhidas.
+XP:
+  # So plantacao MADURA conta (trigo, cenoura, batata, beterraba, fungo)
+  WHEAT: 50
+  CARROTS: 50
+  POTATOES: 50
+  BEETROOTS: 50
+  NETHER_WART: 50
+  # (na 1.8 o bloco de cenoura/batata chega com o nome do item)
+  CARROT: 50
+  POTATO: 50
+  MELON: 20
+  PUMPKIN: 20
+  SUGAR_CANE: 30
+  CACTUS: 30
+  COCOA: 30
+  SWEET_BERRY_BUSH: 50
+  BAMBOO: 10
+  KELP: 3
+  KELP_PLANT: 3
+  CHORUS_PLANT: 25
+  CHORUS_FLOWER: 25
+  BROWN_MUSHROOM: 150
+  RED_MUSHROOM: 150
+  CRIMSON_FUNGUS: 50
+  WARPED_FUNGUS: 50
+  GLOW_BERRIES: 50
+  CAVE_VINES: 10
+  CAVE_VINES_PLANT: 10
+  TORCHFLOWER_CROP: 80
+  PITCHER_CROP: 80
+  VINE: 10
+  LILY_PAD: 100
+  SEA_PICKLE: 50
+  SEAGRASS: 10
+  '*_SAPLING': 30
+  MANGROVE_PROPAGULE: 30
+
+Habilidades:
+  # Drops extras e replantio garantido por alguns segundos.
+  terra_verde:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Duracao base: 2
+    Bonus de duracao a cada niveis: 50
+    Duracao maxima: 30
+    Cooldown: 240
+  # Chance de replantar sozinho, gastando uma semente.
+  mao_verde:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1500
+  # Chance de a colheita dropar em dobro.
+  colheita_farta:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Pontos de fome extras ao comer vegetais (fixo).
+  dieta_verde:
+    Ativar: true
+    Nivel para desbloquear: 100
+    Maximo: 5
+    Nivel para o maximo: 1000
+
+Extras:
+  Terra verde:
+    # Quantas vezes A MAIS a colheita dropa enquanto ligada (2 = triplo).
+    Drops extras: 2
+  Dieta verde:
+    # O que conta como comida "verde".
+    Itens: [ BREAD, CARROT, POTATO, BAKED_POTATO, MELON_SLICE, APPLE, BEETROOT, BEETROOT_SOUP, MUSHROOM_STEW,
+             PUMPKIN_PIE, COOKIE, SWEET_BERRIES, GLOW_BERRIES, DRIED_KELP, GOLDEN_CARROT, GOLDEN_APPLE ]

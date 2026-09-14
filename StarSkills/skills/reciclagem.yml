@@ -1,0 +1,96 @@
+# ==========================================================================
+#  StarSkills - skill: Reciclagem
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: GOLD_BLOCK
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+XP:
+  # XP por material recuperado, por familia do item
+  WOOD: 20
+  STONE: 25
+  LEATHER: 30
+  IRON: 60
+  CHAINMAIL: 60
+  GOLD: 50
+  DIAMOND: 150
+  NETHERITE: 300
+  STRING: 20
+  TURTLE: 80
+  ELYTRA: 200
+  TRIDENT: 200
+  MACE: 200
+
+Habilidades:
+  # Eficiencia: quanto do material volta, em %.
+  reciclagem:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Chance de salvar os encantamentos num livro.
+  reciclagem_arcana:
+    Ativar: true
+    Nivel para desbloquear: 100
+    Maximo: 100
+    Nivel para o maximo: 1000
+
+Extras:
+  # O bloco onde se recicla (clique direito com o item na mao).
+  Bloco: GOLD_BLOCK
+  # Eficiencia usada antes de a habilidade render alguma coisa.
+  Eficiencia minima: 10
+  # Aceita item gasto (o que volta e proporcional a durabilidade que sobrou).
+  Aceitar danificado: true
+  Som: 'BLOCK_ANVIL_LAND;1;1.2'
+  Materiais:
+    WOOD: OAK_PLANKS
+    STONE: COBBLESTONE
+    LEATHER: LEATHER
+    IRON: IRON_INGOT
+    CHAINMAIL: IRON_INGOT
+    GOLD: GOLD_INGOT
+    DIAMOND: DIAMOND
+    NETHERITE: NETHERITE_INGOT
+    STRING: STRING
+    TURTLE: SCUTE
+    ELYTRA: PHANTOM_MEMBRANE
+    TRIDENT: PRISMARINE_SHARD
+    MACE: BREEZE_ROD
+  # Quantos materiais cada tipo de item vale inteiro (pela terminacao do nome).
+  Quantidade por item:
+    PICKAXE: 3
+    AXE: 3
+    SHOVEL: 1
+    SPADE: 1
+    HOE: 2
+    SWORD: 2
+    HELMET: 5
+    CHESTPLATE: 8
+    LEGGINGS: 7
+    BOOTS: 4
+    BOW: 3
+    CROSSBOW: 3
+    FISHING_ROD: 2
+    SHEARS: 2
+    SHIELD: 6
+    ELYTRA: 2
+    TRIDENT: 3
+    MACE: 1

@@ -1,0 +1,147 @@
+# ==========================================================================
+#  StarSkills - skill: Desarmado
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: LEATHER_HELMET
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+# XP por ponto de dano de mao vazia.
+XP:
+  # XP por ponto de dano causado, por tipo de alvo (PLAYER = jogador)
+  PLAYER: 20
+  ZOMBIE: 20
+  ZOMBIE_VILLAGER: 20
+  HUSK: 25
+  DROWNED: 25
+  SKELETON: 30
+  STRAY: 30
+  BOGGED: 30
+  WITHER_SKELETON: 40
+  CREEPER: 40
+  SPIDER: 30
+  CAVE_SPIDER: 40
+  ENDERMAN: 30
+  ENDERMITE: 20
+  SILVERFISH: 30
+  SLIME: 20
+  MAGMA_CUBE: 20
+  BLAZE: 30
+  GHAST: 30
+  ZOMBIFIED_PIGLIN: 30
+  PIGLIN: 30
+  PIGLIN_BRUTE: 50
+  HOGLIN: 30
+  ZOGLIN: 35
+  WITCH: 30
+  GUARDIAN: 40
+  ELDER_GUARDIAN: 60
+  SHULKER: 40
+  PHANTOM: 30
+  VEX: 30
+  VINDICATOR: 40
+  EVOKER: 50
+  PILLAGER: 30
+  RAVAGER: 60
+  WARDEN: 100
+  BREEZE: 40
+  IRON_GOLEM: 20
+  WITHER: 80
+  ENDER_DRAGON: 80
+  # Animais
+  COW: 10
+  PIG: 10
+  SHEEP: 10
+  CHICKEN: 10
+  RABBIT: 10
+  HORSE: 10
+  DONKEY: 10
+  MULE: 10
+  LLAMA: 10
+  WOLF: 10
+  CAT: 10
+  OCELOT: 10
+  FOX: 10
+  PANDA: 10
+  POLAR_BEAR: 20
+  GOAT: 10
+  BEE: 10
+  SQUID: 10
+  GLOW_SQUID: 10
+  DOLPHIN: 10
+  TURTLE: 10
+  BAT: 10
+  PARROT: 10
+  MOOSHROOM: 10
+  STRIDER: 10
+  AXOLOTL: 10
+  FROG: 10
+  ALLAY: 10
+  CAMEL: 10
+  SNIFFER: 10
+  ARMADILLO: 10
+  VILLAGER: 0
+  WANDERING_TRADER: 0
+  # Qualquer outro
+  '*': 15
+  # Acoes proprias
+  DESVIAR: 40
+
+Habilidades:
+  # Socos mais fortes e blocos fracos quebram na hora.
+  furia:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Duracao base: 2
+    Bonus de duracao a cada niveis: 50
+    Duracao maxima: 30
+    Cooldown: 240
+  # Dano extra fixo (8 = 4 coracoes no teto).
+  punho_de_ferro:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 8
+    Nivel para o maximo: 500
+  # Chance de derrubar a arma de um jogador.
+  desarmar:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 33
+    Nivel para o maximo: 1000
+  # Chance de uma flecha nao acertar.
+  desviar_flechas:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 50
+    Nivel para o maximo: 1000
+  # Chance de resistir a um desarme.
+  punhos_de_aco:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+
+Extras:
+  Furia:
+    Bonus de dano em porcentagem: 50
+    # Preparar a furia exige agachar (senao todo clique direito de mao vazia prepararia).
+    Preparar so agachado: true
+    # Blocos que quebram com um soco enquanto a furia esta ligada.
+    Blocos fracos: [ DIRT, GRASS_BLOCK, SAND, RED_SAND, GRAVEL, CLAY, SNOW_BLOCK, SNOW, SOUL_SAND, SOUL_SOIL,
+                     MYCELIUM, PODZOL, COARSE_DIRT, MUD, '*_LEAVES' ]

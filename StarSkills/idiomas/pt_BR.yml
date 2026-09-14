@@ -1,0 +1,728 @@
+# ==========================================================================
+#  StarSkills - idioma: Português (Brasil)
+#
+#  Tudo que o jogador lê sai daqui: mensagens, nomes e descrições das skills,
+#  das habilidades e das categorias. Para outro idioma, copie este arquivo
+#  com outro nome (ex.: es_ES.yml), traduza e aponte em Idioma no config.yml.
+#  Chave que faltar num idioma cai no pt_BR do jar.
+#
+#  Mensagem vazia ('') simplesmente não é enviada: é assim que se desliga um
+#  aviso sem precisar de uma opção "Ativar" para cada um.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&6&lSKILLS &8- &7'
+
+Geral:
+  Sem permissao: '&cVocê não tem permissão para isso.'
+  So jogador: '&cEste comando só funciona dentro do jogo.'
+  Inativo: '&cO plugin de skills está inativo (sem banco de dados). Avise a equipe.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Carregando: '&cSuas skills ainda estão carregando; tente de novo em instantes.'
+  Numero invalido: '&cO número &f{valor} &cnão vale.'
+  Tempo invalido: '&cO tempo &f{valor} &cnão vale. Use 30m, 2h, 1d ou permanente.'
+  Skill invalida: '&cNão existe uma skill chamada &f{skill}&c. Veja &f/skills lista&c.'
+  Comando desconhecido: '&cO subcomando &f{comando} &cnão existe. Use &f/skills ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+
+# Textos curtos usados nos menus, nas listagens e nos placeholders.
+Etiquetas:
+  Sim: '&aSim'
+  Nao: '&cNão'
+  Sem posicao: '&7--'
+  Ninguem: '&7Ninguém'
+  Nenhuma: '&7Nenhuma'
+  Sem limite: '&7sem limite'
+  Maximo: '&6MÁX'
+  Estrela: '&6✫'
+  # Quando o prestígio passa de 5, as estrelas viram isto.
+  Estrelas resumidas: '{estrela}&6x{prestigio}'
+  Separador de lista: '&7, '
+  Liberada: '&aLiberada'
+  Bloqueada: '&cBloqueada'
+  Libera no nivel: '&cLibera no nível {nivel}'
+  Desligada: '&8Desligada no servidor'
+  Ligada: '&a&lLIGADA &7({tempo})'
+  Em recarga: '&cRecarga: {tempo}'
+  Pronta: '&aPronta para usar'
+  Ativa: '&dAtiva'
+  Passiva: '&bPassiva'
+  Todas: '&fTodas'
+  Poder: '&6Poder'
+  Permanente: '&apermanente'
+  Sem impulso: '&7sem impulso'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+  Sem nome: '&7sem nome'
+
+# A linha de "valor atual" de cada habilidade no menu, por formato. Uma
+# habilidade pode ter a própria em Habilidades.<id>.Detalhe.
+Formatos:
+  CHANCE: '&fChance: &a{valor} &7(máx. {maximo} no nível {nivel_maximo})'
+  BONUS_PORCENTAGEM: '&fBônus: &a{valor} &7(máx. {maximo} no nível {nivel_maximo})'
+  BONUS_FIXO: '&fBônus: &a{valor} &7(máx. {maximo} no nível {nivel_maximo})'
+  DURACAO: '&fDuração: &a{duracao}s &7(máx. {duracao_maxima}s) &8| &fRecarga: &c{cooldown}'
+  DESBLOQUEIO: '&fLibera no nível: &a{desbloqueio}'
+
+Tempo:
+  Dias: 'd'
+  Horas: 'h'
+  Minutos: 'm'
+  Segundos: 's'
+
+Categorias:
+  COLETA: '&aColeta'
+  COMBATE: '&cCombate'
+  OFICIO: '&eOfício'
+  AVENTURA: '&bAventura'
+
+Ferramentas:
+  PICARETA: 'picareta'
+  PA: 'pá'
+  MACHADO: 'machado'
+  ENXADA: 'enxada'
+  VARA: 'vara de pescar'
+  ESPADA: 'espada'
+  ARCO: 'arco'
+  MAO_VAZIA: 'punhos'
+  NENHUMA: 'ferramenta'
+
+Bichos:
+  LOBO: 'um lobo'
+  GATO: 'um gato'
+  CAVALO: 'um cavalo'
+
+# ---------------------------------------------------------------------------
+#  Ganho de XP. {skill} {xp} {nivel} {atual} {necessario} {porcentagem} {barra}
+# ---------------------------------------------------------------------------
+XP:
+  Chat: '&a+{xp} XP &7em &f{skill} &7({porcentagem}%)'
+  Actionbar: '&a+{xp} XP &8| &f{skill} &7Nv. {nivel} &8[{barra}&8] &7{porcentagem}%'
+  Barra de chefe: '&f{skill} &7Nv. &e{nivel} &8| &a+{xp} XP &8| &7{atual}/{necessario}'
+
+Nivel:
+  Subiu: '&aVocê subiu para o nível &e{nivel} &aem &e{skill}&a! &7(poder: {poder})'
+  Maximo: '&6Você chegou ao &lNÍVEL MÁXIMO &6de &e{skill}&6! Veja o prestígio no menu.'
+  Recompensa: '&aVocê recebeu as recompensas do nível &e{nivel}&a!'
+  Anuncio: '&e{jogador} &fchegou ao nível &e{nivel} &fem &e{skill}&f!'
+  Anuncio maximo: '&6&l✫ &e{jogador} &fchegou ao &6&lNÍVEL MÁXIMO &fem &e{skill}&f!'
+  Desbloqueou: '&d&l+ &fVocê desbloqueou &d{habilidade} &fem &e{skill}&f!'
+
+Prestigio:
+  Feito: '&6&l✫ &fVocê prestigiou &e{skill}&f! Prestígio &6{prestigio} &7(+{bonus}% de XP para sempre).'
+  Anuncio: '&6&l✫ &e{jogador} &fprestigiou &e{skill} &fpela &6{prestigio}ª &fvez!'
+  DESLIGADO: '&cO prestígio está desligado neste servidor.'
+  SEM_TETO: '&cEsta skill não tem nível máximo, então não dá para prestigiar.'
+  NIVEL_INSUFICIENTE: '&cVocê precisa chegar ao nível máximo de &f{skill} &cpara prestigiar.'
+  MAXIMO: '&cVocê já está no prestígio máximo de &f{skill}&c.'
+  SEM_DINHEIRO: '&cPrestigiar custa &f{custo} &ce você não tem esse valor.'
+  SEM_PERMISSAO: '&cVocê não tem permissão para prestigiar.'
+  PODE: ''
+
+Impulso:
+  Anuncio: '&d&l⚡ &fImpulso de XP ligado: &d+{porcentagem}% &fem &d{skill} &fpor &d{tempo}&f!'
+  Acabou: '&d&l⚡ &fO impulso de XP acabou.'
+
+# ---------------------------------------------------------------------------
+#  Avisos das habilidades ativas e passivas.
+# ---------------------------------------------------------------------------
+Avisos:
+  Preparou: '&7Você preparou sua &f{ferramenta}&7... &8({tempo}s)'
+  Preparo acabou: '&7Você baixou a &f{ferramenta}&7.'
+  Ativou: '&d&l» &d{habilidade} &fLIGADA por &d{duracao}s&f!'
+  Ativou perto: '&d{jogador} &7usou &d{habilidade}&7!'
+  Acabou: '&7{habilidade} &7acabou.'
+  Em recarga: '&c{habilidade} &cestá em recarga: &f{tempo}&c.'
+  Pronta: '&a{habilidade} &aestá pronta de novo!'
+  Ferramenta quebrou: '&cSua ferramenta quebrou no meio do serviço!'
+  Mao firme: '&a&l+ &7Mão firme: o bloco não foi gasto.'
+  Faro de minerio: '&b&l+ &7Faro de minério: você achou &f{item} &7x{quantidade}!'
+  Caca tesouros: '&e&l+ &7Tesouro! Você desenterrou &f{item} &7x{quantidade}.'
+  Tesouro do mar: '&b&l+ &7Tesouro do mar! Você fisgou &f{item} &7x{quantidade}.'
+  Sacudir: '&b&l+ &7Você sacudiu o bicho e caiu &f{item}&7.'
+  Pesca no gelo: '&bVocê abriu um buraco no gelo para pescar.'
+  Sangrando: '&c&l✖ &cVocê está sangrando!'
+  Parou de sangrar: '&aVocê parou de sangrar.'
+  Sangramento aplicado: '&c&l✖ &7Inimigo sangrando!'
+  Golpe critico: '&c&l✖ &7GOLPE CRÍTICO!'
+  Desarmado: '&cVocê foi desarmado!'
+  Desarmou: '&aVocê desarmou &f{jogador}&a!'
+  Desarme falhou: '&7O inimigo segurou a arma com punhos de aço.'
+  Punhos de aco: '&aSeus punhos de aço seguraram a arma!'
+  Atordoado: '&cVocê foi atordoado por uma flecha!'
+  Atordoou: '&e&l+ &7Você atordoou o alvo!'
+  Desviou flecha: '&a&l+ &7Você desviou a flecha!'
+  Esquivou: '&a&l+ &7Você esquivou de metade do golpe!'
+  Contra ataque: '&a&l+ &7Contra-ataque!'
+  Contra atacado: '&cVocê foi contra-atacado!'
+  Rolamento: '&a&l+ &7Você rolou e amorteceu a queda.'
+  Rolamento perfeito: '&a&l+ &7ROLAMENTO PERFEITO! Quase nada de dano.'
+  Chamado: '&aVocê chamou {bicho} da natureza!'
+  Chamado bloqueado: '&cO Chamado da Natureza libera no nível &f{nivel} &cde Domar.'
+  Chamado sem itens: '&cVocê precisa de &f{quantidade}x {item} &cna mão para chamar.'
+  Chamado demais: '&cVocê já tem &f{maximo} &cbichos deste tipo por perto.'
+  Conhecimento animal: '&e&l✎ &f{tipo} &7de &f{dono} &8| &fNome: &7{nome} &8| &fVida: &a{vida}&7/&a{vida_maxima}'
+  Ingrediente poupado: '&a&l+ &7Ingrediente poupado!'
+  Sorte arcana: '&d&l+ &7Sorte arcana: XP em dobro!'
+  Reembolso arcano: '&d&l+ &7Reembolso arcano: &f{niveis} &7nível(is) de volta!'
+  Cartografo: '&b&l+ &7Bioma novo no mapa: &f{bioma}&7.'
+
+Reparo:
+  Intacto: '&cEste item não precisa de reparo.'
+  Nao reparavel: '&cEste item não pode ser reparado aqui.'
+  Nivel insuficiente: '&cVocê precisa do nível &f{nivel} &cde Reparo para reparar este item.'
+  Sem material: '&cVocê precisa de &f{material} &cno inventário para reparar.'
+  Feito: '&aVocê reparou &f{item} &7(+{restaurado} pontos, agora em {porcentagem}%)&a.'
+  Encantamentos mantidos: '&d&l✔ &7Reparo arcano: os encantamentos foram mantidos!'
+  Encantamentos rebaixados: '&e&l! &7Os encantamentos foram rebaixados no reparo.'
+  Encantamentos parcialmente: '&e&l! &7Alguns encantamentos se perderam e outros foram rebaixados.'
+  Encantamentos perdidos: '&c&l✖ &7Os encantamentos se perderam no reparo.'
+
+Reciclagem:
+  Nao reciclavel: '&cEste item não pode ser reciclado aqui.'
+  Um por vez: '&cRecicle um item de cada vez.'
+  So inteiro: '&cSó itens sem desgaste podem ser reciclados.'
+  Nada: '&cEste item está gasto demais para render alguma coisa.'
+  Feita: '&aVocê reciclou &f{item} &ae recebeu &f{quantidade}x {material}&a.'
+  Livro: '&d&l✔ &7Reciclagem arcana: os encantamentos foram para um livro!'
+  Encantamentos perdidos: '&c&l✖ &7Os encantamentos se perderam na reciclagem.'
+
+Top:
+  Carregando: '&7Carregando o ranking...'
+
+Configuracoes:
+  XP ligado: '&aAvisos de XP ligados.'
+  XP desligado: '&cAvisos de XP desligados.'
+  Habilidades ligado: '&aAvisos de habilidades ligados.'
+  Habilidades desligado: '&cAvisos de habilidades desligados.'
+  Barra ligada: '&aBarra de progresso ligada.'
+  Barra desligada: '&cBarra de progresso desligada.'
+
+Lista:
+  Cabecalho: '&6&lSKILLS &fde &e{jogador} &7(poder {poder})'
+  Linha: ' &8- &f{skill} &7Nv. &e{nivel} &8({xp}/{necessario} XP) {estrelas}'
+  Rodape: ''
+
+Info:
+  Cabecalho: '&6&l{skill} &7(você: nível {nivel})'
+  Habilidade: ' &8- &f{habilidade} &8[{tipo}&8] &7{estado} &8| &7{valor}'
+
+Ajuda:
+  Jogador: |-
+    &6&lSKILLS &8- &fComandos
+     &e/skills &7- abre o menu
+     &e/skills <skill> &7- abre uma skill (ex.: /skills mineracao)
+     &e/skills top [skill] &7- o ranking de poder ou de uma skill
+     &e/skills ativas &7- suas habilidades ativas e recargas
+     &e/skills config &7- seus avisos e barra
+     &e/skills lista &7- seus níveis no chat
+     &e/skills info <skill> &7- as habilidades de uma skill no chat
+     &7Clique direito com a ferramenta prepara a habilidade ativa dela.
+  Admin: |-
+    &6&lSTARSKILLS &8- &fAdministração
+     &e/starskills recarregar
+     &e/starskills nivel <setar|dar|tirar> <jogador> <skill|todas> <n>
+     &e/starskills xp <dar|setar|tirar> <jogador> <skill> <n>
+     &e/starskills prestigio setar <jogador> <skill> <n>
+     &e/starskills resetar <jogador> [skill]
+     &e/starskills impulso <porcentagem> <tempo|permanente> [skill]
+     &e/starskills impulso parar
+     &e/starskills ver <jogador>
+     &e/starskills info
+
+Admin:
+  Recarregado: '&aStarSkills recarregado.'
+  Info: |-
+    &6&lSTARSKILLS &f{versao}
+     &fSkills ligadas: &e{skills} &8| &fBanco: &e{banco} &8| &fIdioma: &e{idioma}
+     &fFórmula: &e{formula} &8| &fImpulso: &e{impulso} &8| &fJogadores em memória: &e{online}
+  Impulso ligado: '&aImpulso de &f+{porcentagem}% &aligado em &f{skill} &apor &f{tempo}&a.'
+  Impulso parado: '&aImpulso desligado.'
+  Nivel ajustado: '&aNível de &f{jogador} &aem &f{skill} &aajustado (&f{valor}&a).'
+  XP ajustado: '&aXP de &f{jogador} &aem &f{skill} &aajustado (&f{valor}&a).'
+  Prestigio ajustado: '&aPrestígio de &f{jogador} &aem &f{skill} &aagora é &f{valor}&a.'
+  Resetado: '&aAs skills de &f{jogador} &a(&f{skill}&a) foram zeradas.'
+  Aviso ao jogador: '&eSuas skills foram ajustadas por um administrador.'
+
+# ---------------------------------------------------------------------------
+#  As skills: nome, descrição (lore do menu) e o que rende XP.
+# ---------------------------------------------------------------------------
+Skills:
+  MINERACAO:
+    Nome: '&bMineração'
+    Descricao:
+      - '&7Quebre pedras e minérios com'
+      - '&7a picareta para evoluir.'
+    Ganha XP:
+      - '&7Minérios, pedra, netherrack,'
+      - '&7obsidiana e blocos do fim.'
+  ESCAVACAO:
+    Nome: '&6Escavação'
+    Descricao:
+      - '&7Cave terra, areia, cascalho e'
+      - '&7argila com a pá.'
+    Ganha XP:
+      - '&7Terra, grama, areia, cascalho,'
+      - '&7argila, neve, micélio, lama.'
+  LENHADOR:
+    Nome: '&2Lenhador'
+    Descricao:
+      - '&7Corte toras de qualquer árvore.'
+    Ganha XP:
+      - '&7Toras, madeiras e caules.'
+  HERBALISMO:
+    Nome: '&aHerbalismo'
+    Descricao:
+      - '&7Colha plantações maduras,'
+      - '&7flores, cogumelos e frutas.'
+    Ganha XP:
+      - '&7Trigo, cenoura, batata, beterraba,'
+      - '&7fungo, melancia, abóbora, cana...'
+  PESCA:
+    Nome: '&3Pesca'
+    Descricao:
+      - '&7Pesque peixes e tesouros'
+      - '&7com a vara de pescar.'
+    Ganha XP:
+      - '&7Cada peixe fisgado, cada tesouro'
+      - '&7e cada bicho sacudido.'
+  ESPADAS:
+    Nome: '&cEspadas'
+    Descricao:
+      - '&7Lute com espadas: sangramento,'
+      - '&7contra-ataque e lâminas serrilhadas.'
+    Ganha XP:
+      - '&7Dano causado com uma espada'
+      - '&7(mobs hostis rendem mais).'
+  MACHADOS:
+    Nome: '&4Machados'
+    Descricao:
+      - '&7Lute com machados: golpes'
+      - '&7críticos e o racha-crânios.'
+    Ganha XP:
+      - '&7Dano causado com um machado.'
+  DESARMADO:
+    Nome: '&eDesarmado'
+    Descricao:
+      - '&7Lute com os punhos: desarme,'
+      - '&7desvie flechas e entre em fúria.'
+    Ganha XP:
+      - '&7Dano causado de mão vazia.'
+  ARQUEARIA:
+    Nome: '&dArquearia'
+    Descricao:
+      - '&7Atire com o arco: tiros certeiros,'
+      - '&7atordoar e recuperar flechas.'
+    Ganha XP:
+      - '&7Dano causado com flechas.'
+  DOMAR:
+    Nome: '&6Domar'
+    Descricao:
+      - '&7Seus bichos domados lutam por'
+      - '&7você e ficam mais fortes.'
+    Ganha XP:
+      - '&7Dano causado pelos seus lobos'
+      - '&7e o chamado da natureza.'
+  REPARO:
+    Nome: '&7Reparo'
+    Descricao:
+      - '&7Repare ferramentas e armaduras'
+      - '&7num bloco de ferro, gastando o'
+      - '&7material do item.'
+    Ganha XP:
+      - '&7Cada reparo feito (materiais'
+      - '&7raros rendem mais).'
+  RECICLAGEM:
+    Nome: '&eReciclagem'
+    Descricao:
+      - '&7Desmonte itens num bloco de'
+      - '&7ouro e recupere o material.'
+    Ganha XP:
+      - '&7Cada material recuperado.'
+  FUNDICAO:
+    Nome: '&cFundição'
+    Descricao:
+      - '&7Funda minérios no forno: dobra'
+      - '&7o resultado e poupa combustível.'
+    Ganha XP:
+      - '&7Minérios e blocos fundidos nos'
+      - '&7fornos que você usa.'
+  ALQUIMIA:
+    Nome: '&5Alquimia'
+    Descricao:
+      - '&7Fermente poções mais rápido e'
+      - '&7poupe ingredientes.'
+    Ganha XP:
+      - '&7Cada fornada de poções nos'
+      - '&7suportes que você usa.'
+  ENCANTAMENTO:
+    Nome: '&dEncantamento'
+    Descricao:
+      - '&7Encante na mesa: reembolso de'
+      - '&7níveis e sorte arcana.'
+    Ganha XP:
+      - '&7Cada encantamento feito na mesa'
+      - '&7(quanto mais níveis, mais XP).'
+  CULINARIA:
+    Nome: '&6Culinária'
+    Descricao:
+      - '&7Cozinhe e coma: refeições'
+      - '&7fartas e o dobro de comida.'
+    Ganha XP:
+      - '&7Comida assada nos seus fornos'
+      - '&7e cada refeição.'
+  CONSTRUCAO:
+    Nome: '&fConstrução'
+    Descricao:
+      - '&7Construa: chance de não gastar'
+      - '&7o bloco colocado.'
+    Ganha XP:
+      - '&7Blocos colocados (os de'
+      - '&7construção rendem mais).'
+  ACROBACIA:
+    Nome: '&bAcrobacia'
+    Descricao:
+      - '&7Role nas quedas e esquive'
+      - '&7dos golpes.'
+    Ganha XP:
+      - '&7Dano de queda sofrido, rolamentos'
+      - '&7e esquivas.'
+  EXPLORACAO:
+    Nome: '&aExploração'
+    Descricao:
+      - '&7Descubra terras e biomas novos;'
+      - '&7a fome demora mais para bater.'
+    Ganha XP:
+      - '&7Cada chunk e cada bioma novo'
+      - '&7que você visita.'
+  NATACAO:
+    Nome: '&9Natação'
+    Descricao:
+      - '&7Nade e mergulhe: mais fôlego'
+      - '&7e nadadeiras.'
+    Ganha XP:
+      - '&7Tempo nadando.'
+
+# ---------------------------------------------------------------------------
+#  As habilidades: nome, descrição e (opcional) a linha de detalhe.
+#  Substituições: {valor} {maximo} {nivel_maximo} {duracao} {duracao_base}
+#  {duracao_maxima} {bonus_a_cada} {cooldown} {desbloqueio} {skill} {nivel}
+# ---------------------------------------------------------------------------
+Habilidades:
+  # Mineração
+  super_britadeira:
+    Nome: '&bSuper Britadeira'
+    Descricao:
+      - '&7Prepare a picareta com o clique direito:'
+      - '&7por {duracao}s os blocos quebram na hora'
+      - '&7e dropam o triplo.'
+  veio_rico:
+    Nome: '&bVeio Rico'
+    Descricao:
+      - '&7Chance de o minério dropar em dobro.'
+  faro_de_minerio:
+    Nome: '&bFaro de Minério'
+    Descricao:
+      - '&7Chance de achar um minério escondido'
+      - '&7numa pedra comum.'
+
+  # Escavação
+  giga_broca:
+    Nome: '&6Giga Broca'
+    Descricao:
+      - '&7Prepare a pá com o clique direito:'
+      - '&7por {duracao}s cava na hora e rola o'
+      - '&7tesouro três vezes.'
+  caca_tesouros:
+    Nome: '&6Caça-Tesouros'
+    Descricao:
+      - '&7Chance de desenterrar um tesouro ao'
+      - '&7cavar (níveis altos liberam raros).'
+
+  # Lenhador
+  derrubador:
+    Nome: '&2Derrubador de Árvores'
+    Descricao:
+      - '&7Prepare o machado com o clique direito:'
+      - '&7a próxima tora derruba a árvore inteira.'
+  toras_extras:
+    Nome: '&2Toras Extras'
+    Descricao:
+      - '&7Chance de a tora dropar em dobro.'
+  soprador_de_folhas:
+    Nome: '&2Soprador de Folhas'
+    Descricao:
+      - '&7Folhas quebram na hora com o machado.'
+
+  # Herbalismo
+  terra_verde:
+    Nome: '&aTerra Verde'
+    Descricao:
+      - '&7Prepare a enxada com o clique direito:'
+      - '&7por {duracao}s as colheitas dropam o'
+      - '&7triplo e replantam sozinhas.'
+  mao_verde:
+    Nome: '&aMão Verde'
+    Descricao:
+      - '&7Chance de replantar sozinho ao colher,'
+      - '&7usando uma semente do inventário.'
+  colheita_farta:
+    Nome: '&aColheita Farta'
+    Descricao:
+      - '&7Chance de a colheita dropar em dobro.'
+  dieta_verde:
+    Nome: '&aDieta Verde'
+    Descricao:
+      - '&7Pão, vegetais e frutas matam mais fome.'
+
+  # Pesca
+  tesouro_do_mar:
+    Nome: '&3Tesouro do Mar'
+    Descricao:
+      - '&7Chance de fisgar um tesouro no lugar'
+      - '&7do peixe (níveis altos liberam raros).'
+  pesca_no_gelo:
+    Nome: '&3Pesca no Gelo'
+    Descricao:
+      - '&7Clique direito no gelo com a vara abre'
+      - '&7um buraco para pescar.'
+  sacudir:
+    Nome: '&3Sacudir'
+    Descricao:
+      - '&7Fisgar um bicho arranca um item dele.'
+  isca_mestre:
+    Nome: '&3Isca Mestre'
+    Descricao:
+      - '&7Os peixes mordem mais rápido.'
+  dieta_do_pescador:
+    Nome: '&3Dieta do Pescador'
+    Descricao:
+      - '&7Peixes matam mais fome.'
+
+  # Espadas
+  laminas_serrilhadas:
+    Nome: '&cLâminas Serrilhadas'
+    Descricao:
+      - '&7Prepare a espada com o clique direito:'
+      - '&7por {duracao}s cada golpe atinge quem'
+      - '&7está em volta e faz sangrar.'
+  sangramento:
+    Nome: '&cSangramento'
+    Descricao:
+      - '&7Chance de o golpe fazer o alvo sangrar'
+      - '&7(dano por alguns segundos).'
+  contra_ataque:
+    Nome: '&cContra-Ataque'
+    Descricao:
+      - '&7Bloqueando com a espada, chance de'
+      - '&7devolver parte do dano recebido.'
+
+  # Machados
+  racha_cranios:
+    Nome: '&4Racha-Crânios'
+    Descricao:
+      - '&7Prepare o machado com o clique direito:'
+      - '&7por {duracao}s cada golpe atinge quem'
+      - '&7está em volta com metade do dano.'
+  mestre_do_machado:
+    Nome: '&4Mestre do Machado'
+    Descricao:
+      - '&7Dano extra em todo golpe de machado.'
+  golpe_critico:
+    Nome: '&4Golpe Crítico'
+    Descricao:
+      - '&7Chance de o golpe dar dano dobrado'
+      - '&7(1,5x contra jogadores).'
+  impacto:
+    Nome: '&4Impacto'
+    Descricao:
+      - '&7Cada golpe gasta a armadura do alvo.'
+
+  # Desarmado
+  furia:
+    Nome: '&eFúria'
+    Descricao:
+      - '&7Agachado e de mão vazia, clique direito:'
+      - '&7por {duracao}s seus socos dão +50% de dano'
+      - '&7e quebram blocos fracos na hora.'
+  punho_de_ferro:
+    Nome: '&ePunho de Ferro'
+    Descricao:
+      - '&7Dano extra em todo soco.'
+  desarmar:
+    Nome: '&eDesarmar'
+    Descricao:
+      - '&7Chance de derrubar a arma da mão'
+      - '&7de um jogador.'
+  desviar_flechas:
+    Nome: '&eDesviar Flechas'
+    Descricao:
+      - '&7Chance de uma flecha não te acertar.'
+  punhos_de_aco:
+    Nome: '&ePunhos de Aço'
+    Descricao:
+      - '&7Chance de resistir a um desarme.'
+
+  # Arquearia
+  olho_de_aguia:
+    Nome: '&dOlho de Águia'
+    Descricao:
+      - '&7Agachado com o arco, clique direito:'
+      - '&7por {duracao}s as flechas dão +50% de'
+      - '&7dano e sempre voltam.'
+  tiro_certeiro:
+    Nome: '&dTiro Certeiro'
+    Descricao:
+      - '&7Dano extra em toda flecha.'
+  atordoar:
+    Nome: '&dAtordoar'
+    Descricao:
+      - '&7Chance de a flecha deixar o alvo'
+      - '&7tonto e dar dano extra.'
+  recuperar_flechas:
+    Nome: '&dRecuperar Flechas'
+    Descricao:
+      - '&7Chance de a flecha voltar para o'
+      - '&7inventário ao acertar.'
+
+  # Domar
+  chamado_da_natureza:
+    Nome: '&6Chamado da Natureza'
+    Descricao:
+      - '&7Agachado, clique direito com ossos'
+      - '&7chama um lobo; com peixe, um gato.'
+  presas_afiadas:
+    Nome: '&6Presas Afiadas'
+    Descricao:
+      - '&7Seus bichos dão dano extra.'
+  pele_grossa:
+    Nome: '&6Pele Grossa'
+    Descricao:
+      - '&7Seus bichos sofrem menos dano.'
+  refeicao_rapida:
+    Nome: '&6Refeição Rápida'
+    Descricao:
+      - '&7Chance de o bicho se curar ao morder.'
+  conhecimento_animal:
+    Nome: '&6Conhecimento Animal'
+    Descricao:
+      - '&7Clique direito com um osso num bicho'
+      - '&7domado mostra a vida e o dono dele.'
+
+  # Reparo
+  reparo:
+    Nome: '&7Reparo'
+    Descricao:
+      - '&7Quanto cada material recupera de'
+      - '&7durabilidade (bônus sobre a base).'
+  reparo_arcano:
+    Nome: '&7Reparo Arcano'
+    Descricao:
+      - '&7Chance de manter os encantamentos'
+      - '&7no reparo; senão podem cair de nível.'
+
+  # Reciclagem
+  reciclagem:
+    Nome: '&eReciclagem'
+    Descricao:
+      - '&7Quanto do material do item volta'
+      - '&7(proporcional à durabilidade).'
+  reciclagem_arcana:
+    Nome: '&eReciclagem Arcana'
+    Descricao:
+      - '&7Chance de salvar os encantamentos'
+      - '&7num livro encantado.'
+
+  # Fundição
+  combustivel_eficiente:
+    Nome: '&cCombustível Eficiente'
+    Descricao:
+      - '&7O combustível dos seus fornos'
+      - '&7dura mais.'
+  fundicao_dupla:
+    Nome: '&cFundição Dupla'
+    Descricao:
+      - '&7Chance de o forno render o dobro.'
+  fornalha_experiente:
+    Nome: '&cFornalha Experiente'
+    Descricao:
+      - '&7XP vanilla extra ao tirar do forno.'
+
+  # Alquimia
+  catalise:
+    Nome: '&5Catálise'
+    Descricao:
+      - '&7Seus suportes fermentam mais rápido.'
+  ingrediente_poupado:
+    Nome: '&5Ingrediente Poupado'
+    Descricao:
+      - '&7Chance de o ingrediente não ser gasto.'
+
+  # Encantamento
+  reembolso_arcano:
+    Nome: '&dReembolso Arcano'
+    Descricao:
+      - '&7Chance de receber de volta os níveis'
+      - '&7gastos na mesa.'
+  sorte_arcana:
+    Nome: '&dSorte Arcana'
+    Descricao:
+      - '&7Chance de ganhar o dobro de XP de'
+      - '&7Encantamento.'
+
+  # Culinária
+  refeicao_farta:
+    Nome: '&6Refeição Farta'
+    Descricao:
+      - '&7Toda comida mata mais fome.'
+  chef:
+    Nome: '&6Chef'
+    Descricao:
+      - '&7Chance de a comida assar em dobro.'
+
+  # Construção
+  mao_firme:
+    Nome: '&fMão Firme'
+    Descricao:
+      - '&7Chance de o bloco colocado não'
+      - '&7ser gasto.'
+  mestre_de_obras:
+    Nome: '&fMestre de Obras'
+    Descricao:
+      - '&7XP extra de construção.'
+
+  # Acrobacia
+  rolamento:
+    Nome: '&bRolamento'
+    Descricao:
+      - '&7Chance de amortecer a queda.'
+      - '&7Agachado: rolamento perfeito, com'
+      - '&7o dobro de chance e quase sem dano.'
+  esquiva:
+    Nome: '&bEsquiva'
+    Descricao:
+      - '&7Chance de receber metade do dano'
+      - '&7de um golpe.'
+
+  # Exploração
+  racao_de_viagem:
+    Nome: '&aRação de Viagem'
+    Descricao:
+      - '&7Chance de a fome não baixar.'
+  cartografo:
+    Nome: '&aCartógrafo'
+    Descricao:
+      - '&7XP extra ao descobrir um bioma novo.'
+
+  # Natação
+  folego:
+    Nome: '&9Fôlego'
+    Descricao:
+      - '&7Chance por segundo de recuperar ar'
+      - '&7debaixo d''água.'
+  nadadeiras:
+    Nome: '&9Nadadeiras'
+    Descricao:
+      - '&7Você nada mais rápido.'

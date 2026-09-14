@@ -1,0 +1,205 @@
+# ==========================================================================
+#  StarSkills - configuracao geral
+#
+#  As skills ficam na pasta skills/ (um arquivo por skill: o que rende XP e
+#  como cada habilidade cresce), as recompensas por nivel no recompensas.yml,
+#  os textos em idiomas/<idioma>.yml e a aparencia das telas no menus.yml.
+#
+#  Como funciona: o jogador sobe de nivel em 20 skills fazendo o que cada
+#  uma pede -- minerar, cavar, cortar, plantar, pescar, lutar de espada,
+#  machado, punho e arco, domar, reparar, reciclar, fundir, fermentar,
+#  encantar, cozinhar, construir, cair, explorar e nadar. Cada nivel deixa as
+#  habilidades da skill mais fortes: as passivas rolam sozinhas (chance de
+#  drop duplo, de sangrar, de esquivar...) e as ativas se preparam com o
+#  clique direito e disparam na proxima acao (super britadeira, derrubador de
+#  arvores, laminas serrilhadas...). No nivel maximo da para prestigiar: volta
+#  ao zero com um bonus permanente de XP.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+# Idioma dos textos: um arquivo de idiomas/ (pt_BR e en_US vem no plugin;
+# para outro idioma, copie um deles com o nome novo e traduza).
+Idioma: pt_BR
+
+Geral:
+  # Escreve no console cada ganho de XP. Ligue so para achar problema.
+  Debug: false
+
+  # Mundos onde nenhuma skill ganha XP nem roda habilidade.
+  Mundos bloqueados:
+    - lobby
+
+  # Bloco que um jogador colocou nao rende XP ao ser quebrado. Sem isto,
+  # colocar e quebrar a mesma pedra viraria uma maquina de nivel. Nao vale
+  # para plantacao: ela e plantada de proposito, e o que conta e estar madura.
+  Ignorar blocos colocados por jogadores: true
+
+  # Jogador no criativo nao ganha XP.
+  Ignorar criativo: true
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores). Com MYSQL varios servidores somam no mesmo lugar e o top e o
+  # da rede inteira.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starskills_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  # De quanto em quanto tempo o que esta em memoria vai para o banco, em
+  # segundos. Sair do servidor grava na hora, independente disto.
+  Salvar a cada: 60
+
+Niveis:
+  # Quanto XP cada nivel pede.
+  #   LINEAR:       Base + nivel * Multiplicador           (1040, 1060, 1080...)
+  #   EXPONENCIAL:  Base * nivel^Expoente * Multiplicador / 100
+  Formula: LINEAR
+  Base: 1020
+  Multiplicador: 20
+  Expoente: 2.0
+
+  # Nivel mais alto que da para chegar em cada skill. 0 = sem limite (mas
+  # sem limite nao ha prestigio). Cada skill pode ter o proprio teto no
+  # arquivo dela.
+  Nivel maximo: 1000
+  # A permissao starskills.nivelmaximo.<n> libera um teto maior. Aqui vai o
+  # maior n procurado; -1 desliga a permissao.
+  Nivel maximo por permissao: -1
+
+  # Multiplica todo XP do servidor (2.0 = o dobro).
+  Multiplicador global de XP: 1.0
+  # A permissao starskills.multiplicador.<n> multiplica o XP de quem tem
+  # (n em %: 150 = +50%). Aqui vai o maior n procurado, em passos de 5.
+  Multiplicador maximo por permissao: 500
+
+  # O que acontece ao subir de nivel, alem das recompensas.
+  # Acoes: titulo: <t<nl>sub> | actionbar: <texto> | som: <SOM;vol;tom>
+  #        mensagem: <texto> | comando: <cmd> | console: <cmd> | anuncio: <texto>
+  # Substituicoes: {jogador} {skill} {nivel} {poder} {prestigio}
+  Acoes ao subir:
+    - 'titulo: &e&lNIVEL {nivel}!<nl>&f{skill}'
+
+  # Ao chegar no nivel maximo.
+  Acoes no nivel maximo:
+    - 'titulo: &6&lNIVEL MAXIMO!<nl>&f{skill}'
+    - 'som: UI_TOAST_CHALLENGE_COMPLETE;1;1'
+
+  # Niveis anunciados para o servidor inteiro (mensagem Nivel.Anuncio do
+  # idioma). Lista vazia desliga.
+  Anunciar niveis: [ 100, 250, 500, 750, 1000 ]
+
+XP:
+  # Fracao do XP que um mob nascido de spawner rende (0 = nada, 1 = tudo).
+  Mobs de spawner: 0.0
+  # Bater em jogador rende XP de combate?
+  PvP: true
+  # Bater em bicho domado (de qualquer um) rende XP?
+  Mobs domesticados: false
+  # Teto de XP por golpe de combate. 0 = sem teto.
+  Maximo por golpe: 0
+
+Prestigio:
+  # Quem chega ao nivel maximo de uma skill pode "prestigiar": volta ao
+  # nivel 0 com um bonus permanente de XP e uma estrela no nome.
+  Ativar: true
+  # Bonus de XP por prestigio, em %. Com 10, o terceiro prestigio da +30%.
+  Bonus por prestigio: 10
+  # Quantas vezes da para prestigiar a mesma skill. 0 = sem limite.
+  Maximo: 10
+  # Dinheiro cobrado para prestigiar (pela economia abaixo). 0 = de graca.
+  Custo em dinheiro: 0
+  # O que acontece ao prestigiar. Substituicoes: {jogador} {skill} {prestigio} {bonus}
+  Acoes:
+    - 'titulo: &6&l✫ PRESTIGIO {prestigio}!<nl>&f{skill} &7(+{bonus}% de XP)'
+    - 'som: UI_TOAST_CHALLENGE_COMPLETE;1;0.8'
+  # Anuncia o prestigio para o servidor inteiro (mensagem Prestigio.Anuncio).
+  Anunciar: true
+
+Habilidades ativas:
+  # Clique direito com a ferramenta prepara a habilidade ativa da skill
+  # (picareta: super britadeira; pa: giga broca; machado: derrubador e
+  # racha-cranios; enxada: terra verde; espada: laminas serrilhadas; arco
+  # agachado: olho de aguia; mao vazia agachado: furia). A proxima acao
+  # daquela skill liga a habilidade.
+  Preparar ao clicar direito: true
+  # Exige estar agachado para preparar com qualquer ferramenta.
+  Exigir agachar: false
+  # Segundos que o preparo dura esperando a acao.
+  Tempo de preparo: 4
+  # Avisa quem esta perto quando alguem liga uma habilidade.
+  Anunciar para quem esta perto: true
+  Raio do anuncio: 20
+  # Avisa o jogador quando a recarga de uma habilidade termina.
+  Avisar quando a recarga terminar: true
+  # A super britadeira, a giga broca e o derrubador gastam a ferramenta a
+  # mais (1 ponto por bloco).
+  Desgaste extra da ferramenta: true
+
+Combate:
+  Sangramento:
+    # Dano por tique (2 = um coracao).
+    Dano por tique: 1
+    # Segundos entre um tique e outro.
+    Intervalo em segundos: 2
+    # Quantos tiques um sangramento novo da (+1 a cada 250 niveis de espada).
+    Tiques base: 2
+    Tiques maximos: 5
+
+Notificacao:
+  # Como o jogador ve o XP ganho: CHAT, ACTIONBAR, AMBOS ou NENHUM. O jogador
+  # pode desligar o dele no /skills config.
+  Modo: ACTIONBAR
+  Mostrar ganho de XP: true
+
+  # Barra no alto da tela com o progresso do nivel (1.9+; ignorada na 1.8).
+  Barra de chefe:
+    Ativar: true
+    # Segundos que a barra fica depois do ultimo XP.
+    Esconder apos: 4
+    # Cores: PINK BLUE RED GREEN YELLOW PURPLE WHITE
+    Cor: GREEN
+    # Estilos: SOLID SEGMENTED_6 SEGMENTED_10 SEGMENTED_12 SEGMENTED_20
+    Estilo: SEGMENTED_10
+
+Economia:
+  # Usada pelo custo do prestigio e pelas recompensas em dinheiro.
+  # VAULT usa a economia registrada no Vault. COMANDO roda os comandos abaixo.
+  Tipo: VAULT
+  # {jogador} e {valor} sao trocados; rodam no console.
+  Comando de dar: 'eco give {jogador} {valor}'
+  Comando de tirar: 'eco take {jogador} {valor}'
+  # Placeholder que devolve o saldo (so no modo COMANDO; precisa do PlaceholderAPI).
+  Placeholder de saldo: '%vault_eco_balance%'
+  Simbolo da moeda: '$'
+
+Top:
+  # Quantos jogadores o top guarda no total (as paginas saem daqui).
+  Limite: 45
+  # De quanto em quanto tempo o top de poder e relido do banco, em segundos.
+  # E ele que alimenta os placeholders e a posicao mostrada no menu.
+  Atualizar a cada: 60
+  # O top de UMA skill e lido quando alguem abre e fica guardado por estes
+  # segundos antes de ser lido de novo.
+  Guardar top de skill por: 60
+
+Menu:
+  # Tela que o /skills abre: principal, todas, ou uma categoria (coleta,
+  # combate, oficio, aventura).
+  Tela padrao: principal
+  # De quantos em quantos ticks o menu aberto e redesenhado, para o XP e as
+  # recargas andarem na tela. 0 desliga.
+  Atualizar a cada: 20
+
+  Som ao clicar: 'UI_BUTTON_CLICK;1;1'
+  Som ao errar: 'ENTITY_VILLAGER_NO;1;1'
+  Som ao trocar de pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Som ao subir de nivel: 'ENTITY_PLAYER_LEVELUP;1;1.2'
+  Som ao ativar habilidade: 'ENTITY_ENDER_DRAGON_FLAP;1;1'

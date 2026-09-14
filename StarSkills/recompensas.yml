@@ -1,0 +1,56 @@
+# ==========================================================================
+#  StarSkills - recompensas por nivel
+#
+#  Cada secao e uma skill (pelo id: mineracao, escavacao, lenhador,
+#  herbalismo, pesca, espadas, machados, desarmado, arquearia, domar, reparo,
+#  reciclagem, fundicao, alquimia, encantamento, culinaria, construcao,
+#  acrobacia, exploracao, natacao) ou 'todas' (vale para qualquer skill).
+#
+#  Dentro dela:
+#    Niveis.<n>   - roda ao chegar EXATAMENTE no nivel n
+#    A cada.<n>   - roda a cada n niveis (10, 20, 30...)
+#
+#  As linhas sao acoes: console: <cmd> | comando: <cmd> | op: <cmd>
+#                       mensagem: <texto> | titulo: <t<nl>sub> | som: <SOM;vol;tom>
+#                       actionbar: <texto> | anuncio: <texto>
+#  Substituicoes: {jogador} {skill} {skill_id} {nivel} {prestigio}
+#
+#  O menu mostra o "proximo nivel com recompensa" e um resumo das linhas de
+#  comando (as de mensagem/titulo/som ficam de fora do resumo).
+# ==========================================================================
+
+Versao do modelo: 1
+
+todas:
+  A cada:
+    10:
+      - 'console: eco give {jogador} 100'
+    50:
+      - 'console: eco give {jogador} 500'
+      - 'mensagem: &a&l+ &fVoce ganhou &a$500 &fpor chegar ao nivel &e{nivel} &fem &e{skill}&f!'
+    100:
+      - 'console: eco give {jogador} 2000'
+      - 'titulo: &6&l{nivel} NIVEIS!<nl>&f{skill}'
+      - 'som: UI_TOAST_CHALLENGE_COMPLETE;1;1'
+  Niveis:
+    1000:
+      - 'console: eco give {jogador} 25000'
+      - 'anuncio: &6&l✫ &e{jogador} &fchegou ao &6nivel 1000 &fem &e{skill}&f!'
+
+mineracao:
+  Niveis:
+    250:
+      - 'console: give {jogador} diamond 8'
+      - 'mensagem: &b&l+ &fVoce recebeu &b8 diamantes &fpor chegar ao nivel &e250 &fde &eMineracao&f!'
+    500:
+      - 'console: give {jogador} diamond_pickaxe 1'
+
+lenhador:
+  Niveis:
+    250:
+      - 'console: give {jogador} diamond_axe 1'
+
+pesca:
+  Niveis:
+    250:
+      - 'console: give {jogador} fishing_rod 1'

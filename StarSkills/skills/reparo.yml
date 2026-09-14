@@ -1,0 +1,88 @@
+# ==========================================================================
+#  StarSkills - skill: Reparo
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: ANVIL
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+XP:
+  # XP a cada 100 pontos de durabilidade restaurados, por familia do item
+  WOOD: 60
+  STONE: 70
+  LEATHER: 80
+  IRON: 120
+  CHAINMAIL: 120
+  GOLD: 100
+  DIAMOND: 250
+  NETHERITE: 400
+  STRING: 60
+  TURTLE: 150
+  ELYTRA: 300
+  TRIDENT: 300
+  MACE: 300
+
+Habilidades:
+  # Bonus sobre a 'Porcentagem base' (100 = dobro no teto).
+  reparo:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Chance de manter os encantamentos.
+  reparo_arcano:
+    Ativar: true
+    Nivel para desbloquear: 100
+    Maximo: 100
+    Nivel para o maximo: 1000
+
+Extras:
+  # O bloco onde se repara (clique direito com o item na mao).
+  Bloco: IRON_BLOCK
+  # Quanto UM material recupera, em % da durabilidade total (antes do bonus).
+  Porcentagem base: 25
+  Som: 'BLOCK_ANVIL_USE;1;1'
+  # O material que cada familia gasta.
+  Materiais:
+    WOOD: OAK_PLANKS
+    STONE: COBBLESTONE
+    LEATHER: LEATHER
+    IRON: IRON_INGOT
+    CHAINMAIL: IRON_INGOT
+    GOLD: GOLD_INGOT
+    DIAMOND: DIAMOND
+    NETHERITE: NETHERITE_INGOT
+    STRING: STRING
+    TURTLE: SCUTE
+    ELYTRA: PHANTOM_MEMBRANE
+    TRIDENT: PRISMARINE_SHARD
+    MACE: BREEZE_ROD
+  # Nivel minimo de Reparo para cada familia (0 = qualquer um).
+  Nivel minimo:
+    DIAMOND: 50
+    NETHERITE: 150
+    ELYTRA: 100
+    TRIDENT: 100
+    MACE: 100
+  Reparo arcano:
+    # Sem a habilidade liberada, os encantamentos se perdem no reparo.
+    Perder sem a habilidade: true
+    # Quando a chance de manter falha: chance de so REBAIXAR cada encantamento
+    # (o resto se perde).
+    Chance de rebaixar: 50

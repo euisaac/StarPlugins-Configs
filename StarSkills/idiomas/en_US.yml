@@ -1,0 +1,686 @@
+# ==========================================================================
+#  StarSkills - language: English (US)
+#
+#  Everything the player reads comes from here: messages, skill, ability and
+#  category names and descriptions. To add another language, copy this file
+#  under a new name (e.g. es_ES.yml), translate it and set Idioma in
+#  config.yml. Any key missing from a language falls back to pt_BR.
+#
+#  An empty message ('') is simply not sent.
+#  Colors: &a, &c, ... and hex as &#RRGGBB.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&6&lSKILLS &8- &7'
+
+Geral:
+  Sem permissao: '&cYou do not have permission for that.'
+  So jogador: '&cThis command only works in game.'
+  Inativo: '&cThe skills plugin is inactive (no database). Tell the staff.'
+  Jogador nao encontrado: '&cThe player &f{jogador} &chas never joined this server.'
+  Carregando: '&cYour skills are still loading; try again in a moment.'
+  Numero invalido: '&cThe number &f{valor} &cis not valid.'
+  Tempo invalido: '&cThe time &f{valor} &cis not valid. Use 30m, 2h, 1d or permanente.'
+  Skill invalida: '&cThere is no skill called &f{skill}&c. See &f/skills lista&c.'
+  Comando desconhecido: '&cThe subcommand &f{comando} &cdoes not exist. Use &f/skills ajuda&c.'
+  Uso: '&cUsage: &f{uso}'
+
+Etiquetas:
+  Sim: '&aYes'
+  Nao: '&cNo'
+  Sem posicao: '&7--'
+  Ninguem: '&7Nobody'
+  Nenhuma: '&7None'
+  Sem limite: '&7no limit'
+  Maximo: '&6MAX'
+  Estrela: '&6✫'
+  Estrelas resumidas: '{estrela}&6x{prestigio}'
+  Separador de lista: '&7, '
+  Liberada: '&aUnlocked'
+  Bloqueada: '&cLocked'
+  Libera no nivel: '&cUnlocks at level {nivel}'
+  Desligada: '&8Disabled on this server'
+  Ligada: '&a&lACTIVE &7({tempo})'
+  Em recarga: '&cCooldown: {tempo}'
+  Pronta: '&aReady to use'
+  Ativa: '&dActive'
+  Passiva: '&bPassive'
+  Todas: '&fAll'
+  Poder: '&6Power'
+  Permanente: '&apermanent'
+  Sem impulso: '&7no boost'
+  Ligado: '&aOn'
+  Desligado: '&cOff'
+  Sem nome: '&7unnamed'
+
+Formatos:
+  CHANCE: '&fChance: &a{valor} &7(max. {maximo} at level {nivel_maximo})'
+  BONUS_PORCENTAGEM: '&fBonus: &a{valor} &7(max. {maximo} at level {nivel_maximo})'
+  BONUS_FIXO: '&fBonus: &a{valor} &7(max. {maximo} at level {nivel_maximo})'
+  DURACAO: '&fDuration: &a{duracao}s &7(max. {duracao_maxima}s) &8| &fCooldown: &c{cooldown}'
+  DESBLOQUEIO: '&fUnlocks at level: &a{desbloqueio}'
+
+Tempo:
+  Dias: 'd'
+  Horas: 'h'
+  Minutos: 'm'
+  Segundos: 's'
+
+Categorias:
+  COLETA: '&aGathering'
+  COMBATE: '&cCombat'
+  OFICIO: '&eCrafting'
+  AVENTURA: '&bAdventure'
+
+Ferramentas:
+  PICARETA: 'pickaxe'
+  PA: 'shovel'
+  MACHADO: 'axe'
+  ENXADA: 'hoe'
+  VARA: 'fishing rod'
+  ESPADA: 'sword'
+  ARCO: 'bow'
+  MAO_VAZIA: 'fists'
+  NENHUMA: 'tool'
+
+Bichos:
+  LOBO: 'a wolf'
+  GATO: 'a cat'
+  CAVALO: 'a horse'
+
+XP:
+  Chat: '&a+{xp} XP &7in &f{skill} &7({porcentagem}%)'
+  Actionbar: '&a+{xp} XP &8| &f{skill} &7Lv. {nivel} &8[{barra}&8] &7{porcentagem}%'
+  Barra de chefe: '&f{skill} &7Lv. &e{nivel} &8| &a+{xp} XP &8| &7{atual}/{necessario}'
+
+Nivel:
+  Subiu: '&aYou reached level &e{nivel} &ain &e{skill}&a! &7(power: {poder})'
+  Maximo: '&6You reached the &lMAX LEVEL &6of &e{skill}&6! Check prestige in the menu.'
+  Recompensa: '&aYou received the level &e{nivel} &arewards!'
+  Anuncio: '&e{jogador} &freached level &e{nivel} &fin &e{skill}&f!'
+  Anuncio maximo: '&6&l✫ &e{jogador} &freached the &6&lMAX LEVEL &fin &e{skill}&f!'
+  Desbloqueou: '&d&l+ &fYou unlocked &d{habilidade} &fin &e{skill}&f!'
+
+Prestigio:
+  Feito: '&6&l✫ &fYou prestiged &e{skill}&f! Prestige &6{prestigio} &7(+{bonus}% XP forever).'
+  Anuncio: '&6&l✫ &e{jogador} &fprestiged &e{skill} &ffor the &6{prestigio}th &ftime!'
+  DESLIGADO: '&cPrestige is disabled on this server.'
+  SEM_TETO: '&cThis skill has no max level, so it cannot be prestiged.'
+  NIVEL_INSUFICIENTE: '&cYou need to reach the max level of &f{skill} &cto prestige.'
+  MAXIMO: '&cYou are already at the max prestige of &f{skill}&c.'
+  SEM_DINHEIRO: '&cPrestige costs &f{custo} &cand you do not have it.'
+  SEM_PERMISSAO: '&cYou do not have permission to prestige.'
+  PODE: ''
+
+Impulso:
+  Anuncio: '&d&l⚡ &fXP boost on: &d+{porcentagem}% &fin &d{skill} &ffor &d{tempo}&f!'
+  Acabou: '&d&l⚡ &fThe XP boost is over.'
+
+Avisos:
+  Preparou: '&7You readied your &f{ferramenta}&7... &8({tempo}s)'
+  Preparo acabou: '&7You lowered your &f{ferramenta}&7.'
+  Ativou: '&d&l» &d{habilidade} &fACTIVATED for &d{duracao}s&f!'
+  Ativou perto: '&d{jogador} &7used &d{habilidade}&7!'
+  Acabou: '&7{habilidade} &7has worn off.'
+  Em recarga: '&c{habilidade} &cis on cooldown: &f{tempo}&c.'
+  Pronta: '&a{habilidade} &ais ready again!'
+  Ferramenta quebrou: '&cYour tool broke mid-job!'
+  Mao firme: '&a&l+ &7Steady hand: the block was not used up.'
+  Faro de minerio: '&b&l+ &7Ore sense: you found &f{item} &7x{quantidade}!'
+  Caca tesouros: '&e&l+ &7Treasure! You dug up &f{item} &7x{quantidade}.'
+  Tesouro do mar: '&b&l+ &7Sea treasure! You reeled in &f{item} &7x{quantidade}.'
+  Sacudir: '&b&l+ &7You shook the mob and &f{item} &7fell off.'
+  Pesca no gelo: '&bYou opened a hole in the ice to fish.'
+  Sangrando: '&c&l✖ &cYou are bleeding!'
+  Parou de sangrar: '&aYou stopped bleeding.'
+  Sangramento aplicado: '&c&l✖ &7Enemy bleeding!'
+  Golpe critico: '&c&l✖ &7CRITICAL HIT!'
+  Desarmado: '&cYou were disarmed!'
+  Desarmou: '&aYou disarmed &f{jogador}&a!'
+  Desarme falhou: '&7The enemy held on with iron grip.'
+  Punhos de aco: '&aYour iron grip held your weapon!'
+  Atordoado: '&cYou were dazed by an arrow!'
+  Atordoou: '&e&l+ &7You dazed the target!'
+  Desviou flecha: '&a&l+ &7You deflected the arrow!'
+  Esquivou: '&a&l+ &7You dodged half the hit!'
+  Contra ataque: '&a&l+ &7Counter-attack!'
+  Contra atacado: '&cYou were counter-attacked!'
+  Rolamento: '&a&l+ &7You rolled and softened the fall.'
+  Rolamento perfeito: '&a&l+ &7GRACEFUL ROLL! Almost no damage.'
+  Chamado: '&aYou called {bicho} from the wild!'
+  Chamado bloqueado: '&cCall of the Wild unlocks at Taming level &f{nivel}&c.'
+  Chamado sem itens: '&cYou need &f{quantidade}x {item} &cin hand to call.'
+  Chamado demais: '&cYou already have &f{maximo} &cof these animals nearby.'
+  Conhecimento animal: '&e&l✎ &f{tipo} &7owned by &f{dono} &8| &fName: &7{nome} &8| &fHealth: &a{vida}&7/&a{vida_maxima}'
+  Ingrediente poupado: '&a&l+ &7Ingredient saved!'
+  Sorte arcana: '&d&l+ &7Arcane luck: double XP!'
+  Reembolso arcano: '&d&l+ &7Arcane refund: &f{niveis} &7level(s) back!'
+  Cartografo: '&b&l+ &7New biome on the map: &f{bioma}&7.'
+
+Reparo:
+  Intacto: '&cThis item does not need repairing.'
+  Nao reparavel: '&cThis item cannot be repaired here.'
+  Nivel insuficiente: '&cYou need Repair level &f{nivel} &cto repair this item.'
+  Sem material: '&cYou need &f{material} &cin your inventory to repair.'
+  Feito: '&aYou repaired &f{item} &7(+{restaurado} points, now at {porcentagem}%)&a.'
+  Encantamentos mantidos: '&d&l✔ &7Arcane forging: the enchantments were kept!'
+  Encantamentos rebaixados: '&e&l! &7The enchantments were downgraded in the repair.'
+  Encantamentos parcialmente: '&e&l! &7Some enchantments were lost and others downgraded.'
+  Encantamentos perdidos: '&c&l✖ &7The enchantments were lost in the repair.'
+
+Reciclagem:
+  Nao reciclavel: '&cThis item cannot be salvaged here.'
+  Um por vez: '&cSalvage one item at a time.'
+  So inteiro: '&cOnly undamaged items can be salvaged.'
+  Nada: '&cThis item is too worn to yield anything.'
+  Feita: '&aYou salvaged &f{item} &aand got &f{quantidade}x {material}&a.'
+  Livro: '&d&l✔ &7Arcane salvage: the enchantments went into a book!'
+  Encantamentos perdidos: '&c&l✖ &7The enchantments were lost in the salvage.'
+
+Top:
+  Carregando: '&7Loading the leaderboard...'
+
+Configuracoes:
+  XP ligado: '&aXP notifications on.'
+  XP desligado: '&cXP notifications off.'
+  Habilidades ligado: '&aAbility notifications on.'
+  Habilidades desligado: '&cAbility notifications off.'
+  Barra ligada: '&aProgress bar on.'
+  Barra desligada: '&cProgress bar off.'
+
+Lista:
+  Cabecalho: '&6&lSKILLS &fof &e{jogador} &7(power {poder})'
+  Linha: ' &8- &f{skill} &7Lv. &e{nivel} &8({xp}/{necessario} XP) {estrelas}'
+  Rodape: ''
+
+Info:
+  Cabecalho: '&6&l{skill} &7(you: level {nivel})'
+  Habilidade: ' &8- &f{habilidade} &8[{tipo}&8] &7{estado} &8| &7{valor}'
+
+Ajuda:
+  Jogador: |-
+    &6&lSKILLS &8- &fCommands
+     &e/skills &7- opens the menu
+     &e/skills <skill> &7- opens a skill (e.g. /skills mining)
+     &e/skills top [skill] &7- the power or skill leaderboard
+     &e/skills ativas &7- your active abilities and cooldowns
+     &e/skills config &7- your notifications and bar
+     &e/skills lista &7- your levels in chat
+     &e/skills info <skill> &7- a skill's abilities in chat
+     &7Right-click with the tool to ready its active ability.
+  Admin: |-
+    &6&lSTARSKILLS &8- &fAdministration
+     &e/starskills recarregar
+     &e/starskills nivel <setar|dar|tirar> <player> <skill|todas> <n>
+     &e/starskills xp <dar|setar|tirar> <player> <skill> <n>
+     &e/starskills prestigio setar <player> <skill> <n>
+     &e/starskills resetar <player> [skill]
+     &e/starskills impulso <percent> <time|permanente> [skill]
+     &e/starskills impulso parar
+     &e/starskills ver <player>
+     &e/starskills info
+
+Admin:
+  Recarregado: '&aStarSkills reloaded.'
+  Info: |-
+    &6&lSTARSKILLS &f{versao}
+     &fEnabled skills: &e{skills} &8| &fDatabase: &e{banco} &8| &fLanguage: &e{idioma}
+     &fFormula: &e{formula} &8| &fBoost: &e{impulso} &8| &fPlayers in memory: &e{online}
+  Impulso ligado: '&aBoost of &f+{porcentagem}% &aenabled in &f{skill} &afor &f{tempo}&a.'
+  Impulso parado: '&aBoost disabled.'
+  Nivel ajustado: '&aLevel of &f{jogador} &ain &f{skill} &aadjusted (&f{valor}&a).'
+  XP ajustado: '&aXP of &f{jogador} &ain &f{skill} &aadjusted (&f{valor}&a).'
+  Prestigio ajustado: '&aPrestige of &f{jogador} &ain &f{skill} &ais now &f{valor}&a.'
+  Resetado: '&aThe skills of &f{jogador} &a(&f{skill}&a) were reset.'
+  Aviso ao jogador: '&eYour skills were adjusted by an administrator.'
+
+Skills:
+  MINERACAO:
+    Nome: '&bMining'
+    Descricao:
+      - '&7Break stone and ores with a'
+      - '&7pickaxe to level up.'
+    Ganha XP:
+      - '&7Ores, stone, netherrack,'
+      - '&7obsidian and end blocks.'
+  ESCAVACAO:
+    Nome: '&6Excavation'
+    Descricao:
+      - '&7Dig dirt, sand, gravel and'
+      - '&7clay with a shovel.'
+    Ganha XP:
+      - '&7Dirt, grass, sand, gravel,'
+      - '&7clay, snow, mycelium, mud.'
+  LENHADOR:
+    Nome: '&2Woodcutting'
+    Descricao:
+      - '&7Chop logs from any tree.'
+    Ganha XP:
+      - '&7Logs, wood and stems.'
+  HERBALISMO:
+    Nome: '&aHerbalism'
+    Descricao:
+      - '&7Harvest ripe crops, flowers,'
+      - '&7mushrooms and fruit.'
+    Ganha XP:
+      - '&7Wheat, carrots, potatoes, beetroot,'
+      - '&7nether wart, melon, pumpkin, cane...'
+  PESCA:
+    Nome: '&3Fishing'
+    Descricao:
+      - '&7Catch fish and treasure with'
+      - '&7a fishing rod.'
+    Ganha XP:
+      - '&7Every fish, every treasure and'
+      - '&7every shaken mob.'
+  ESPADAS:
+    Nome: '&cSwords'
+    Descricao:
+      - '&7Fight with swords: bleed,'
+      - '&7counter-attack and serrated strikes.'
+    Ganha XP:
+      - '&7Damage dealt with a sword'
+      - '&7(hostile mobs give more).'
+  MACHADOS:
+    Nome: '&4Axes'
+    Descricao:
+      - '&7Fight with axes: critical hits'
+      - '&7and the skull splitter.'
+    Ganha XP:
+      - '&7Damage dealt with an axe.'
+  DESARMADO:
+    Nome: '&eUnarmed'
+    Descricao:
+      - '&7Fight with your fists: disarm,'
+      - '&7deflect arrows and go berserk.'
+    Ganha XP:
+      - '&7Damage dealt bare-handed.'
+  ARQUEARIA:
+    Nome: '&dArchery'
+    Descricao:
+      - '&7Shoot with the bow: skill shots,'
+      - '&7daze and arrow retrieval.'
+    Ganha XP:
+      - '&7Damage dealt with arrows.'
+  DOMAR:
+    Nome: '&6Taming'
+    Descricao:
+      - '&7Your tamed animals fight for'
+      - '&7you and grow stronger.'
+    Ganha XP:
+      - '&7Damage dealt by your wolves'
+      - '&7and the call of the wild.'
+  REPARO:
+    Nome: '&7Repair'
+    Descricao:
+      - '&7Repair tools and armor on an'
+      - '&7iron block, spending the item''s'
+      - '&7material.'
+    Ganha XP:
+      - '&7Every repair (rarer materials'
+      - '&7give more).'
+  RECICLAGEM:
+    Nome: '&eSalvage'
+    Descricao:
+      - '&7Break items down on a gold'
+      - '&7block and get the material back.'
+    Ganha XP:
+      - '&7Every material recovered.'
+  FUNDICAO:
+    Nome: '&cSmelting'
+    Descricao:
+      - '&7Smelt ores in furnaces: double'
+      - '&7output and save fuel.'
+    Ganha XP:
+      - '&7Ores and blocks smelted in the'
+      - '&7furnaces you use.'
+  ALQUIMIA:
+    Nome: '&5Alchemy'
+    Descricao:
+      - '&7Brew potions faster and save'
+      - '&7ingredients.'
+    Ganha XP:
+      - '&7Every batch of potions in the'
+      - '&7stands you use.'
+  ENCANTAMENTO:
+    Nome: '&dEnchanting'
+    Descricao:
+      - '&7Enchant at the table: level'
+      - '&7refunds and arcane luck.'
+    Ganha XP:
+      - '&7Every enchantment at the table'
+      - '&7(more levels, more XP).'
+  CULINARIA:
+    Nome: '&6Cooking'
+    Descricao:
+      - '&7Cook and eat: hearty meals and'
+      - '&7double food.'
+    Ganha XP:
+      - '&7Food cooked in your furnaces'
+      - '&7and every meal.'
+  CONSTRUCAO:
+    Nome: '&fBuilding'
+    Descricao:
+      - '&7Build: a chance of not using'
+      - '&7up the placed block.'
+    Ganha XP:
+      - '&7Blocks placed (building blocks'
+      - '&7give more).'
+  ACROBACIA:
+    Nome: '&bAcrobatics'
+    Descricao:
+      - '&7Roll on falls and dodge hits.'
+    Ganha XP:
+      - '&7Fall damage taken, rolls and'
+      - '&7dodges.'
+  EXPLORACAO:
+    Nome: '&aExploration'
+    Descricao:
+      - '&7Discover new lands and biomes;'
+      - '&7hunger takes longer to hit.'
+    Ganha XP:
+      - '&7Every new chunk and biome'
+      - '&7you visit.'
+  NATACAO:
+    Nome: '&9Swimming'
+    Descricao:
+      - '&7Swim and dive: more breath'
+      - '&7and flippers.'
+    Ganha XP:
+      - '&7Time spent swimming.'
+
+Habilidades:
+  super_britadeira:
+    Nome: '&bSuper Breaker'
+    Descricao:
+      - '&7Ready the pickaxe with right-click:'
+      - '&7for {duracao}s blocks break instantly'
+      - '&7and drop triple.'
+  veio_rico:
+    Nome: '&bRich Vein'
+    Descricao:
+      - '&7Chance of the ore dropping double.'
+  faro_de_minerio:
+    Nome: '&bOre Sense'
+    Descricao:
+      - '&7Chance of finding a hidden ore'
+      - '&7inside plain stone.'
+
+  giga_broca:
+    Nome: '&6Giga Drill'
+    Descricao:
+      - '&7Ready the shovel with right-click:'
+      - '&7for {duracao}s digs instantly and rolls'
+      - '&7treasure three times.'
+  caca_tesouros:
+    Nome: '&6Treasure Hunter'
+    Descricao:
+      - '&7Chance of digging up a treasure'
+      - '&7(higher levels unlock rare ones).'
+
+  derrubador:
+    Nome: '&2Tree Feller'
+    Descricao:
+      - '&7Ready the axe with right-click: the'
+      - '&7next log fells the whole tree.'
+  toras_extras:
+    Nome: '&2Extra Logs'
+    Descricao:
+      - '&7Chance of the log dropping double.'
+  soprador_de_folhas:
+    Nome: '&2Leaf Blower'
+    Descricao:
+      - '&7Leaves break instantly with an axe.'
+
+  terra_verde:
+    Nome: '&aGreen Terra'
+    Descricao:
+      - '&7Ready the hoe with right-click:'
+      - '&7for {duracao}s harvests drop triple'
+      - '&7and replant themselves.'
+  mao_verde:
+    Nome: '&aGreen Thumb'
+    Descricao:
+      - '&7Chance of replanting on harvest,'
+      - '&7using a seed from your inventory.'
+  colheita_farta:
+    Nome: '&aBountiful Harvest'
+    Descricao:
+      - '&7Chance of the harvest dropping double.'
+  dieta_verde:
+    Nome: '&aGreen Diet'
+    Descricao:
+      - '&7Bread, vegetables and fruit fill more.'
+
+  tesouro_do_mar:
+    Nome: '&3Sea Treasure'
+    Descricao:
+      - '&7Chance of reeling in a treasure instead'
+      - '&7of a fish (higher levels unlock rare ones).'
+  pesca_no_gelo:
+    Nome: '&3Ice Fishing'
+    Descricao:
+      - '&7Right-click ice with the rod to open'
+      - '&7a fishing hole.'
+  sacudir:
+    Nome: '&3Shake'
+    Descricao:
+      - '&7Hooking a mob shakes an item off it.'
+  isca_mestre:
+    Nome: '&3Master Bait'
+    Descricao:
+      - '&7Fish bite faster.'
+  dieta_do_pescador:
+    Nome: '&3Fisherman''s Diet'
+    Descricao:
+      - '&7Fish fill more.'
+
+  laminas_serrilhadas:
+    Nome: '&cSerrated Strikes'
+    Descricao:
+      - '&7Ready the sword with right-click:'
+      - '&7for {duracao}s every hit strikes those'
+      - '&7around and makes them bleed.'
+  sangramento:
+    Nome: '&cBleed'
+    Descricao:
+      - '&7Chance of the hit making the target'
+      - '&7bleed (damage over a few seconds).'
+  contra_ataque:
+    Nome: '&cCounter-Attack'
+    Descricao:
+      - '&7While blocking with the sword, chance'
+      - '&7of returning part of the damage taken.'
+
+  racha_cranios:
+    Nome: '&4Skull Splitter'
+    Descricao:
+      - '&7Ready the axe with right-click:'
+      - '&7for {duracao}s every hit strikes those'
+      - '&7around for half the damage.'
+  mestre_do_machado:
+    Nome: '&4Axe Mastery'
+    Descricao:
+      - '&7Extra damage on every axe hit.'
+  golpe_critico:
+    Nome: '&4Critical Strike'
+    Descricao:
+      - '&7Chance of the hit dealing double'
+      - '&7damage (1.5x against players).'
+  impacto:
+    Nome: '&4Impact'
+    Descricao:
+      - '&7Every hit wears the target''s armor.'
+
+  furia:
+    Nome: '&eBerserk'
+    Descricao:
+      - '&7Sneaking and bare-handed, right-click:'
+      - '&7for {duracao}s your punches deal +50%'
+      - '&7and break weak blocks instantly.'
+  punho_de_ferro:
+    Nome: '&eIron Fist'
+    Descricao:
+      - '&7Extra damage on every punch.'
+  desarmar:
+    Nome: '&eDisarm'
+    Descricao:
+      - '&7Chance of knocking the weapon out'
+      - '&7of a player''s hand.'
+  desviar_flechas:
+    Nome: '&eArrow Deflect'
+    Descricao:
+      - '&7Chance of an arrow missing you.'
+  punhos_de_aco:
+    Nome: '&eIron Grip'
+    Descricao:
+      - '&7Chance of resisting a disarm.'
+
+  olho_de_aguia:
+    Nome: '&dEagle Eye'
+    Descricao:
+      - '&7Sneaking with the bow, right-click:'
+      - '&7for {duracao}s arrows deal +50% damage'
+      - '&7and always come back.'
+  tiro_certeiro:
+    Nome: '&dSkill Shot'
+    Descricao:
+      - '&7Extra damage on every arrow.'
+  atordoar:
+    Nome: '&dDaze'
+    Descricao:
+      - '&7Chance of the arrow dazing the target'
+      - '&7and dealing extra damage.'
+  recuperar_flechas:
+    Nome: '&dArrow Retrieval'
+    Descricao:
+      - '&7Chance of the arrow returning to'
+      - '&7your inventory on hit.'
+
+  chamado_da_natureza:
+    Nome: '&6Call of the Wild'
+    Descricao:
+      - '&7Sneaking, right-click with bones calls'
+      - '&7a wolf; with fish, a cat.'
+  presas_afiadas:
+    Nome: '&6Sharpened Claws'
+    Descricao:
+      - '&7Your animals deal extra damage.'
+  pele_grossa:
+    Nome: '&6Thick Fur'
+    Descricao:
+      - '&7Your animals take less damage.'
+  refeicao_rapida:
+    Nome: '&6Fast Food'
+    Descricao:
+      - '&7Chance of the animal healing on bite.'
+  conhecimento_animal:
+    Nome: '&6Beast Lore'
+    Descricao:
+      - '&7Right-click a tamed animal with a bone'
+      - '&7to see its health and owner.'
+
+  reparo:
+    Nome: '&7Repair'
+    Descricao:
+      - '&7How much durability each material'
+      - '&7restores (bonus over the base).'
+  reparo_arcano:
+    Nome: '&7Arcane Forging'
+    Descricao:
+      - '&7Chance of keeping enchantments on'
+      - '&7repair; otherwise they may downgrade.'
+
+  reciclagem:
+    Nome: '&eSalvage'
+    Descricao:
+      - '&7How much of the item''s material comes'
+      - '&7back (proportional to durability).'
+  reciclagem_arcana:
+    Nome: '&eArcane Salvage'
+    Descricao:
+      - '&7Chance of saving the enchantments'
+      - '&7into an enchanted book.'
+
+  combustivel_eficiente:
+    Nome: '&cFuel Efficiency'
+    Descricao:
+      - '&7Fuel in your furnaces lasts longer.'
+  fundicao_dupla:
+    Nome: '&cSecond Smelt'
+    Descricao:
+      - '&7Chance of the furnace yielding double.'
+  fornalha_experiente:
+    Nome: '&cFlux Mining'
+    Descricao:
+      - '&7Extra vanilla XP when emptying a furnace.'
+
+  catalise:
+    Nome: '&5Catalysis'
+    Descricao:
+      - '&7Your brewing stands brew faster.'
+  ingrediente_poupado:
+    Nome: '&5Spared Ingredient'
+    Descricao:
+      - '&7Chance of not using up the ingredient.'
+
+  reembolso_arcano:
+    Nome: '&dArcane Refund'
+    Descricao:
+      - '&7Chance of getting back the levels'
+      - '&7spent at the table.'
+  sorte_arcana:
+    Nome: '&dArcane Luck'
+    Descricao:
+      - '&7Chance of double Enchanting XP.'
+
+  refeicao_farta:
+    Nome: '&6Hearty Meal'
+    Descricao:
+      - '&7All food fills more.'
+  chef:
+    Nome: '&6Chef'
+    Descricao:
+      - '&7Chance of food cooking double.'
+
+  mao_firme:
+    Nome: '&fSteady Hand'
+    Descricao:
+      - '&7Chance of the placed block not'
+      - '&7being used up.'
+  mestre_de_obras:
+    Nome: '&fMaster Builder'
+    Descricao:
+      - '&7Extra building XP.'
+
+  rolamento:
+    Nome: '&bRoll'
+    Descricao:
+      - '&7Chance of softening a fall.'
+      - '&7Sneaking: graceful roll, with double'
+      - '&7chance and almost no damage.'
+  esquiva:
+    Nome: '&bDodge'
+    Descricao:
+      - '&7Chance of taking half the damage'
+      - '&7from a hit.'
+
+  racao_de_viagem:
+    Nome: '&aTravel Rations'
+    Descricao:
+      - '&7Chance of hunger not dropping.'
+  cartografo:
+    Nome: '&aCartographer'
+    Descricao:
+      - '&7Extra XP when discovering a new biome.'
+
+  folego:
+    Nome: '&9Breath'
+    Descricao:
+      - '&7Chance per second of regaining air'
+      - '&7underwater.'
+  nadadeiras:
+    Nome: '&9Flippers'
+    Descricao:
+      - '&7You swim faster.'

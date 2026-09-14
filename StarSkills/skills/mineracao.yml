@@ -1,0 +1,158 @@
+# ==========================================================================
+#  StarSkills - skill: Mineracao
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: DIAMOND_PICKAXE
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+# Blocos que rendem XP com a picareta (bloco colocado por jogador nao conta).
+XP:
+  # Pedras
+  STONE: 30
+  COBBLESTONE: 0
+  GRANITE: 30
+  DIORITE: 30
+  ANDESITE: 30
+  DEEPSLATE: 40
+  TUFF: 30
+  CALCITE: 30
+  DRIPSTONE_BLOCK: 40
+  BASALT: 40
+  BLACKSTONE: 40
+  NETHERRACK: 30
+  END_STONE: 150
+  OBSIDIAN: 150
+  CRYING_OBSIDIAN: 200
+  SANDSTONE: 30
+  RED_SANDSTONE: 30
+  MAGMA_BLOCK: 30
+  GLOWSTONE: 30
+  MOSSY_COBBLESTONE: 30
+  TERRACOTTA: 30
+  PACKED_ICE: 50
+  BLUE_ICE: 80
+  AMETHYST_BLOCK: 60
+  BUDDING_AMETHYST: 0
+  AMETHYST_CLUSTER: 150
+  # Minerios
+  COAL_ORE: 100
+  DEEPSLATE_COAL_ORE: 120
+  IRON_ORE: 250
+  DEEPSLATE_IRON_ORE: 280
+  COPPER_ORE: 150
+  DEEPSLATE_COPPER_ORE: 170
+  GOLD_ORE: 350
+  DEEPSLATE_GOLD_ORE: 380
+  NETHER_GOLD_ORE: 150
+  REDSTONE_ORE: 150
+  DEEPSLATE_REDSTONE_ORE: 170
+  LAPIS_ORE: 400
+  DEEPSLATE_LAPIS_ORE: 430
+  DIAMOND_ORE: 750
+  DEEPSLATE_DIAMOND_ORE: 800
+  EMERALD_ORE: 1000
+  DEEPSLATE_EMERALD_ORE: 1050
+  NETHER_QUARTZ_ORE: 100
+  ANCIENT_DEBRIS: 1000
+  RAW_IRON_BLOCK: 200
+  RAW_COPPER_BLOCK: 150
+  RAW_GOLD_BLOCK: 300
+
+Habilidades:
+  # Quebra instantanea + drops extras por alguns segundos.
+  super_britadeira:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Duracao base: 2
+    Bonus de duracao a cada niveis: 50
+    Duracao maxima: 30
+    Cooldown: 240
+  # Chance de drop duplo (nao vale com toque suave).
+  veio_rico:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Chance de achar um minerio ao quebrar pedra comum.
+  faro_de_minerio:
+    Ativar: true
+    Nivel para desbloquear: 50
+    Maximo: 5
+    Nivel para o maximo: 1000
+
+Extras:
+  Super britadeira:
+    # Quantas vezes A MAIS o bloco dropa enquanto ligada (2 = triplo).
+    Drops extras: 2
+  Faro de minerio:
+    # Em quais blocos o faro rola.
+    Blocos: [ STONE, DEEPSLATE, GRANITE, DIORITE, ANDESITE, TUFF, NETHERRACK, END_STONE, BLACKSTONE ]
+  Som ao achar tesouro: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.5'
+  # O que o faro pode achar: Item, Quantidade, Peso (quanto maior, mais sai),
+  # Nivel (minimo para sair), XP (bonus ao achar).
+  Tesouros:
+    carvao:
+      Item: COAL
+      Quantidade: 1
+      Peso: 40
+      Nivel: 50
+      XP: 50
+    ferro:
+      Item: RAW_IRON
+      Quantidade: 1
+      Peso: 25
+      Nivel: 100
+      XP: 100
+    cobre:
+      Item: RAW_COPPER
+      Quantidade: 2
+      Peso: 20
+      Nivel: 100
+      XP: 60
+    redstone:
+      Item: REDSTONE
+      Quantidade: 3
+      Peso: 15
+      Nivel: 200
+      XP: 80
+    ouro:
+      Item: RAW_GOLD
+      Quantidade: 1
+      Peso: 10
+      Nivel: 300
+      XP: 150
+    lapis:
+      Item: LAPIS_LAZULI
+      Quantidade: 3
+      Peso: 8
+      Nivel: 400
+      XP: 150
+    diamante:
+      Item: DIAMOND
+      Quantidade: 1
+      Peso: 3
+      Nivel: 600
+      XP: 400
+    esmeralda:
+      Item: EMERALD
+      Quantidade: 1
+      Peso: 1
+      Nivel: 800
+      XP: 600

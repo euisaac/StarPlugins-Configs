@@ -1,0 +1,572 @@
+# ==========================================================================
+#  StarSkills - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#  {jogador} no Dono vira o nick de quem esta olhando.
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo (desligado por padrao; Ativar: true liga).
+#    Slots                 Onde o conteudo paginado entra (skills, habilidades, top).
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao, Condicao e Acoes.
+#
+#  Acoes proprias:  principal | skills <todas|coleta|combate|oficio|aventura>
+#                   skill <id> | top | top poder | top <id> | ativas | config
+#                   prestigiar | alternar <xp|habilidades|barra>
+#                   anterior | proxima | voltar | fechar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
+#                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
+#                   som: <SOM;volume;tom>
+#
+#  Substituicoes em qualquer texto: {jogador} {poder} {posicao} {skills}
+#  {impulso} {impulso_tempo} {notificar_xp} {notificar_habilidades} {barra}
+#  {idioma} {nivel_<skill>} {pagina} {paginas}. Placeholders do PlaceholderAPI
+#  tambem funcionam.
+#
+#  Um botao pode ter 'Condicao: impulso' (so aparece com impulso ligado),
+#  'Condicao: prestigio' (prestigio ligado), 'Condicao: prestigio_pode' (o
+#  jogador pode prestigiar a skill da tela) ou 'Condicao: ativa' (a skill da
+#  tela tem habilidade ativa).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# A barrinha de progresso ({barra}) nos itens das skills.
+Barra:
+  Tamanho: 20
+  Cheio: '|'
+  Vazio: '|'
+  Cor cheia: '&a'
+  Cor vazia: '&8'
+
+# ---------------------------------------------------------------------------
+#  /skills -- a tela inicial.
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Skills'
+  Linhas: 5
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    perfil:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&6&l{jogador}'
+      Lore:
+        - ''
+        - '&fNível de poder: &6{poder}'
+        - '&fPosição no top: &6{posicao}'
+        - ''
+        - '&fMineração &7{nivel_mineracao} &8| &fEscavação &7{nivel_escavacao}'
+        - '&fLenhador &7{nivel_lenhador} &8| &fHerbalismo &7{nivel_herbalismo}'
+        - '&fPesca &7{nivel_pesca} &8| &fEspadas &7{nivel_espadas}'
+        - '&fMachados &7{nivel_machados} &8| &fDesarmado &7{nivel_desarmado}'
+        - '&fArquearia &7{nivel_arquearia} &8| &fDomar &7{nivel_domar}'
+        - ''
+        - '&aCLIQUE &7para ver todas as skills.'
+      Acoes:
+        - 'skills todas'
+
+    coleta:
+      Slot: 19
+      Material: DIAMOND_PICKAXE
+      Nome: '&a&lCOLETA'
+      Lore:
+        - ''
+        - '&7Mineração, Escavação, Lenhador,'
+        - '&7Herbalismo e Pesca.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'skills coleta'
+
+    combate:
+      Slot: 21
+      Material: DIAMOND_SWORD
+      Nome: '&c&lCOMBATE'
+      Lore:
+        - ''
+        - '&7Espadas, Machados, Desarmado,'
+        - '&7Arquearia e Domar.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'skills combate'
+
+    oficio:
+      Slot: 23
+      Material: ANVIL
+      Nome: '&e&lOFÍCIO'
+      Lore:
+        - ''
+        - '&7Reparo, Reciclagem, Fundição,'
+        - '&7Alquimia, Encantamento, Culinária'
+        - '&7e Construção.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'skills oficio'
+
+    aventura:
+      Slot: 25
+      Material: COMPASS
+      Nome: '&b&lAVENTURA'
+      Lore:
+        - ''
+        - '&7Acrobacia, Exploração e Natação.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'skills aventura'
+
+    top:
+      Slot: 38
+      Material: GOLDEN_HELMET
+      Nome: '&6&lTOP'
+      Lore:
+        - ''
+        - '&7Quem tem o maior nível de poder'
+        - '&7do servidor. Sua posição: &6{posicao}'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'top poder'
+
+    ativas:
+      Slot: 40
+      Material: BLAZE_POWDER
+      Nome: '&d&lHABILIDADES ATIVAS'
+      Lore:
+        - ''
+        - '&7Suas habilidades ativas, o que'
+        - '&7está ligado e as recargas.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'ativas'
+
+    impulso:
+      Slot: 31
+      Material: NETHER_STAR
+      Condicao: impulso
+      Brilho: true
+      Nome: '&d&lIMPULSO DE XP'
+      Lore:
+        - ''
+        - '&7O servidor está com &d+{impulso}% &7de XP'
+        - '&7por &d{impulso_tempo}&7!'
+
+    config:
+      Slot: 42
+      Material: COMPARATOR
+      Nome: '&7&lCONFIGURAÇÕES'
+      Lore:
+        - ''
+        - '&7Avisos de XP, de habilidades'
+        - '&7e a barra de progresso.'
+        - ''
+        - '&aCLIQUE &7para abrir.'
+      Acoes:
+        - 'config'
+
+    fechar:
+      Slot: 44
+      Material: BARRIER
+      Nome: '&c&lFECHAR'
+      Acoes:
+        - 'fechar'
+
+# ---------------------------------------------------------------------------
+#  A lista de skills (todas ou de uma categoria).
+# ---------------------------------------------------------------------------
+Skills:
+  Titulo: '&8Skills - {categoria}'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  # Como cada skill aparece. Material '{icone}' usa o Icone do arquivo da
+  # skill. Uma linha so com {descricao}, {ganha_xp} ou {habilidades} vira
+  # varias linhas (vem do idioma).
+  # Substituicoes: {skill} {categoria} {nivel} {nivel_maximo} {xp} {necessario}
+  # {porcentagem} {barra} {prestigio} {estrelas} {bonus_prestigio}
+  # {posicao_skill} {estado} {proxima_recompensa} {proxima_recompensa_resumo}
+  Item:
+    Material: '{icone}'
+    Nome: '{skill} &7Nv. &e{nivel} {estrelas}'
+    Quantidade pelo nivel: false
+    Lore:
+      - ''
+      - '{descricao}'
+      - ''
+      - '&fNível: &e{nivel}&7/{nivel_maximo}'
+      - '&fXP: &e{xp}&7/{necessario} &8({porcentagem}%)'
+      - '&8[{barra}&8]'
+      - '&fPosição no top: &e{posicao_skill}'
+      - ''
+      - '&fHabilidades:'
+      - '{habilidades}'
+      - ''
+      - '&aCLIQUE &7para ver os detalhes.'
+  # Como cada habilidade aparece na lore acima ({habilidades}).
+  Linha de habilidade: '&8- &f{habilidade} &7{estado}'
+
+  Itens:
+    voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    anterior:
+      Slot: 48
+      Material: PAPER
+      Nome: '&e&lPÁGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 50
+      Material: PAPER
+      Nome: '&e&lPRÓXIMA PÁGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  Uma skill de perto: icone + habilidades.
+# ---------------------------------------------------------------------------
+Skill:
+  Titulo: '&8{skill}'
+  Linhas: 5
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  # Onde as habilidades entram (ate 7 por skill).
+  Slots: [ 19, 20, 21, 22, 23, 24, 25 ]
+  # Mostra tambem as habilidades desligadas no servidor.
+  Mostrar desligadas: false
+
+  # O icone da skill, com o resumo.
+  Icone:
+    Slot: 4
+    Material: '{icone}'
+    Nome: '{skill} &7Nv. &e{nivel} {estrelas}'
+    Lore:
+      - ''
+      - '{descricao}'
+      - ''
+      - '&fGanha XP com:'
+      - '{ganha_xp}'
+      - ''
+      - '&fNível: &e{nivel}&7/{nivel_maximo}'
+      - '&fXP: &e{xp}&7/{necessario} &8({porcentagem}%)'
+      - '&8[{barra}&8]'
+      - '&fPrestígio: &6{prestigio} &7(+{bonus_prestigio}% de XP)'
+      - '&fPosição no top: &e{posicao_skill}'
+      - '&fPróxima recompensa: &enível {proxima_recompensa}'
+      - '&7{proxima_recompensa_resumo}'
+
+  # Cada habilidade. Material vem de "Icones das habilidades" la embaixo;
+  # 'Material bloqueado' e usado enquanto ela nao esta liberada.
+  # Substituicoes: {habilidade} {tipo} {estado} {valor} {maximo} {nivel_maximo}
+  # {duracao} {duracao_base} {duracao_maxima} {bonus_a_cada} {cooldown}
+  # {desbloqueio} {skill} {nivel}. Uma linha so com {descricao} ou {detalhe}
+  # vira o texto do idioma.
+  Habilidade:
+    Material bloqueado: GRAY_DYE
+    Nome: '{habilidade} &8[{tipo}&8]'
+    Lore:
+      - ''
+      - '{descricao}'
+      - ''
+      - '{detalhe}'
+      - '&7{estado}'
+
+  Itens:
+    top:
+      Slot: 38
+      Material: GOLDEN_HELMET
+      Nome: '&6&lTOP DA SKILL'
+      Lore:
+        - ''
+        - '&7Os maiores níveis em {skill}&7.'
+        - '&7Sua posição: &6{posicao_skill}'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'top skill'
+    prestigiar:
+      Slot: 42
+      Material: NETHER_STAR
+      Condicao: prestigio
+      Nome: '&6&lPRESTIGIAR'
+      Lore:
+        - ''
+        - '&7No nível máximo, prestigie: volta'
+        - '&7ao nível 0 com &6+10% de XP &7para'
+        - '&7sempre (soma a cada prestígio).'
+        - ''
+        - '&fSeu prestígio: &6{prestigio} &7(+{bonus_prestigio}%)'
+        - ''
+        - '&aCLIQUE &7para prestigiar.'
+      Acoes:
+        - 'prestigiar'
+    voltar:
+      Slot: 40
+      Material: ARROW
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+
+# ---------------------------------------------------------------------------
+#  O top (de poder ou de uma skill).
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8Top {tipo_top}'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+
+  # Substituicoes por linha: {nome} {posicao_top} {valor} {valor_abreviado}
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{nome}'
+    Nome: '&e#{posicao_top} &f{nome}'
+    Lore:
+      - ''
+      - '&f{tipo_top}: &e{valor}'
+  Vazio:
+    Material: GRAY_DYE
+    Nome: '&7Ninguém aqui ainda'
+    Lore:
+      - ''
+      - '&7Seja o primeiro!'
+
+  Itens:
+    minha:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&6&l{jogador}'
+      Lore:
+        - ''
+        - '&fSua posição: &6{minha_posicao}'
+    voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    anterior:
+      Slot: 48
+      Material: PAPER
+      Nome: '&e&lPÁGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 50
+      Material: PAPER
+      Nome: '&e&lPRÓXIMA PÁGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  As habilidades ativas do jogador.
+# ---------------------------------------------------------------------------
+Ativas:
+  Titulo: '&8Habilidades ativas'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+
+  Item:
+    Material bloqueado: GRAY_DYE
+    Nome: '{habilidade}'
+    Lore:
+      - ''
+      - '&f{skill} &7Nv. {nivel}'
+      - '{detalhe}'
+      - ''
+      - '&7{estado}'
+      - ''
+      - '&aCLIQUE &7para abrir a skill.'
+
+  Itens:
+    voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+
+# ---------------------------------------------------------------------------
+#  As configuracoes do jogador.
+# ---------------------------------------------------------------------------
+Configuracoes:
+  Titulo: '&8Configuracoes'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    xp:
+      Slot: 11
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&a&lAVISOS DE XP'
+      Lore:
+        - ''
+        - '&7Mostra o XP ganho na tela.'
+        - ''
+        - '&fAgora: {notificar_xp}'
+        - ''
+        - '&aCLIQUE &7para alternar.'
+      Acoes:
+        - 'alternar xp'
+    habilidades:
+      Slot: 13
+      Material: BLAZE_POWDER
+      Nome: '&d&lAVISOS DE HABILIDADES'
+      Lore:
+        - ''
+        - '&7Avisos de preparo, ativação,'
+        - '&7recarga e das passivas.'
+        - ''
+        - '&fAgora: {notificar_habilidades}'
+        - ''
+        - '&aCLIQUE &7para alternar.'
+      Acoes:
+        - 'alternar habilidades'
+    barra:
+      Slot: 15
+      Material: DRAGON_BREATH
+      Nome: '&6&lBARRA DE PROGRESSO'
+      Lore:
+        - ''
+        - '&7A barra no alto da tela com o'
+        - '&7progresso do nível (1.9+).'
+        - ''
+        - '&fAgora: {barra}'
+        - ''
+        - '&aCLIQUE &7para alternar.'
+      Acoes:
+        - 'alternar barra'
+    voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+
+# ---------------------------------------------------------------------------
+#  "Tem certeza?" do prestigio.
+#  Substituicoes: as da skill + {custo} {proximo_prestigio} {proximo_bonus}
+# ---------------------------------------------------------------------------
+Confirmacao:
+  Titulo: '&8Prestigiar {skill}&8?'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Informacao:
+    Slot: 13
+  Confirmar:
+    Slot: 11
+    Material: LIME_WOOL
+    Nome: '&a&lCONFIRMAR'
+    Lore:
+      - ''
+      - '&7Você volta ao nível 0 de {skill}'
+      - '&7e ganha &6+{proximo_bonus}% de XP &7para sempre.'
+      - '&7Custo: &e{custo}'
+      - ''
+      - '&aCLIQUE &7para prestigiar.'
+  Cancelar:
+    Slot: 15
+    Material: RED_WOOL
+    Nome: '&c&lCANCELAR'
+    Lore:
+      - ''
+      - '&7Volta sem mudar nada.'
+
+# ---------------------------------------------------------------------------
+#  O icone de cada habilidade (sem entrada, usa o icone da skill).
+# ---------------------------------------------------------------------------
+Icones das habilidades:
+  super_britadeira: DIAMOND_PICKAXE
+  veio_rico: GOLD_ORE
+  faro_de_minerio: IRON_ORE
+  giga_broca: DIAMOND_SHOVEL
+  caca_tesouros: CHEST
+  derrubador: DIAMOND_AXE
+  toras_extras: OAK_LOG
+  soprador_de_folhas: OAK_LEAVES
+  terra_verde: DIAMOND_HOE
+  mao_verde: WHEAT_SEEDS
+  colheita_farta: WHEAT
+  dieta_verde: BREAD
+  tesouro_do_mar: PRISMARINE_SHARD
+  pesca_no_gelo: ICE
+  sacudir: LEAD
+  isca_mestre: FISHING_ROD
+  dieta_do_pescador: COOKED_COD
+  laminas_serrilhadas: DIAMOND_SWORD
+  sangramento: REDSTONE
+  contra_ataque: SHIELD
+  racha_cranios: DIAMOND_AXE
+  mestre_do_machado: IRON_AXE
+  golpe_critico: BLAZE_POWDER
+  impacto: IRON_CHESTPLATE
+  furia: BLAZE_ROD
+  punho_de_ferro: IRON_INGOT
+  desarmar: STICK
+  desviar_flechas: ARROW
+  punhos_de_aco: IRON_BARS
+  olho_de_aguia: ENDER_EYE
+  tiro_certeiro: BOW
+  atordoar: FERMENTED_SPIDER_EYE
+  recuperar_flechas: ARROW
+  chamado_da_natureza: BONE
+  presas_afiadas: BONE
+  pele_grossa: LEATHER
+  refeicao_rapida: COOKED_BEEF
+  conhecimento_animal: BOOK
+  reparo: ANVIL
+  reparo_arcano: ENCHANTED_BOOK
+  reciclagem: GOLD_BLOCK
+  reciclagem_arcana: ENCHANTED_BOOK
+  combustivel_eficiente: COAL
+  fundicao_dupla: IRON_INGOT
+  fornalha_experiente: EXPERIENCE_BOTTLE
+  catalise: BLAZE_POWDER
+  ingrediente_poupado: NETHER_WART
+  reembolso_arcano: EXPERIENCE_BOTTLE
+  sorte_arcana: LAPIS_LAZULI
+  refeicao_farta: COOKED_BEEF
+  chef: FURNACE
+  mao_firme: BRICKS
+  mestre_de_obras: STONE_BRICKS
+  rolamento: FEATHER
+  esquiva: LEATHER_BOOTS
+  racao_de_viagem: APPLE
+  cartografo: MAP
+  folego: GLASS_BOTTLE
+  nadadeiras: WATER_BUCKET

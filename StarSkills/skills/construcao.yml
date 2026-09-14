@@ -1,0 +1,98 @@
+# ==========================================================================
+#  StarSkills - skill: Construcao
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: BRICKS
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+XP:
+  # XP por bloco colocado
+  BRICKS: 15
+  STONE_BRICKS: 12
+  '*_STONE_BRICKS': 12
+  QUARTZ_BLOCK: 15
+  '*_QUARTZ_*': 15
+  '*_PLANKS': 8
+  '*_STAIRS': 10
+  '*_SLAB': 8
+  '*_WALL': 10
+  '*_FENCE': 8
+  GLASS: 10
+  '*_STAINED_GLASS': 12
+  '*_GLASS_PANE': 8
+  '*_TERRACOTTA': 12
+  '*_CONCRETE': 12
+  '*_WOOL': 8
+  '*_LOG': 6
+  '*_WOOD': 6
+  STONE: 4
+  COBBLESTONE: 4
+  SANDSTONE: 8
+  '*_SANDSTONE': 8
+  PRISMARINE: 15
+  '*_PRISMARINE': 15
+  PURPUR_BLOCK: 15
+  END_STONE_BRICKS: 15
+  NETHER_BRICKS: 12
+  '*_NETHER_BRICKS': 12
+  BLACKSTONE: 8
+  '*_BLACKSTONE': 10
+  'DEEPSLATE_*': 10
+  '*_COPPER': 15
+  MUD_BRICKS: 12
+  'BAMBOO_*': 8
+  '*_CANDLE': 5
+  '*_BED': 20
+  '*': 3
+  # Blocos que nao rendem nada (0 = nada)
+  DIRT: 0
+  GRASS_BLOCK: 0
+  SAND: 0
+  GRAVEL: 0
+  NETHERRACK: 0
+  TNT: 0
+  '*_SAPLING': 0
+  WHEAT: 0
+  CARROTS: 0
+  POTATOES: 0
+  BEETROOTS: 0
+  NETHER_WART: 0
+  SUGAR_CANE: 0
+  CACTUS: 0
+  TORCH: 0
+  WALL_TORCH: 0
+  LADDER: 0
+  SCAFFOLDING: 0
+
+Habilidades:
+  # Chance de o bloco nao ser gasto.
+  mao_firme:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 25
+    Nivel para o maximo: 1000
+  # Bonus de XP, em %.
+  mestre_de_obras:
+    Ativar: true
+    Nivel para desbloquear: 100
+    Maximo: 50
+    Nivel para o maximo: 1000
+
+Extras: {}

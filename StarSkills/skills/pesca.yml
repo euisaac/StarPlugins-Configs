@@ -1,0 +1,171 @@
+# ==========================================================================
+#  StarSkills - skill: Pesca
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: FISHING_ROD
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+# O que rende XP ao ser fisgado (nome do XSeries do item; * pega o resto).
+XP:
+  COD: 100
+  SALMON: 120
+  TROPICAL_FISH: 200
+  PUFFERFISH: 150
+  # Itens de lixo e tesouro vanilla
+  '*': 80
+  # Acoes proprias
+  SACUDIR: 50
+
+Habilidades:
+  # Chance de fisgar um tesouro no lugar do peixe.
+  tesouro_do_mar:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 25
+    Nivel para o maximo: 1000
+  # Vara no gelo abre um buraco.
+  pesca_no_gelo:
+    Ativar: true
+    Nivel para desbloquear: 50
+  # Fisgar um bicho arranca um item dele.
+  sacudir:
+    Ativar: true
+    Nivel para desbloquear: 150
+    Maximo: 75
+    Nivel para o maximo: 1000
+  # Mordida mais rapida (bonus em %).
+  isca_mestre:
+    Ativar: true
+    Nivel para desbloquear: 100
+    Maximo: 50
+    Nivel para o maximo: 1000
+  # Pontos de fome extras ao comer peixe (fixo).
+  dieta_do_pescador:
+    Ativar: true
+    Nivel para desbloquear: 100
+    Maximo: 5
+    Nivel para o maximo: 1000
+
+Extras:
+  Som ao achar tesouro: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+  Dieta do pescador:
+    Itens: [ COD, SALMON, COOKED_COD, COOKED_SALMON, TROPICAL_FISH, PUFFERFISH ]
+  # O que cada bicho solta ao ser sacudido (um da lista, ao acaso). * = qualquer outro.
+  Sacudir:
+    Dano: 1
+    COW: [ LEATHER, BEEF ]
+    SHEEP: [ WHITE_WOOL, MUTTON ]
+    PIG: [ PORKCHOP ]
+    CHICKEN: [ FEATHER, EGG ]
+    ZOMBIE: [ ROTTEN_FLESH, CARROT, POTATO ]
+    SKELETON: [ BONE, ARROW ]
+    CREEPER: [ GUNPOWDER ]
+    SPIDER: [ STRING, SPIDER_EYE ]
+    ENDERMAN: [ ENDER_PEARL ]
+    SLIME: [ SLIME_BALL ]
+    WITCH: [ GLASS_BOTTLE, REDSTONE, GLOWSTONE_DUST ]
+    SQUID: [ INK_SAC ]
+    IRON_GOLEM: [ IRON_INGOT, POPPY ]
+    BLAZE: [ BLAZE_ROD ]
+    GHAST: [ GHAST_TEAR, GUNPOWDER ]
+    HORSE: [ LEATHER ]
+    MOOSHROOM: [ RED_MUSHROOM, LEATHER ]
+    PLAYER: [ ]
+    '*': [ STRING ]
+  # Os tesouros: Item, Quantidade, Peso, Nivel (minimo), XP (bonus).
+  Tesouros:
+    garrafa:
+      Item: GLASS_BOTTLE
+      Quantidade: 1
+      Peso: 30
+      Nivel: 0
+      XP: 40
+    tinta:
+      Item: INK_SAC
+      Quantidade: 2
+      Peso: 25
+      Nivel: 0
+      XP: 40
+    corda:
+      Item: STRING
+      Quantidade: 3
+      Peso: 25
+      Nivel: 0
+      XP: 40
+    couro:
+      Item: LEATHER
+      Quantidade: 1
+      Peso: 20
+      Nivel: 50
+      XP: 60
+    nenufar:
+      Item: LILY_PAD
+      Quantidade: 1
+      Peso: 15
+      Nivel: 100
+      XP: 80
+    concha:
+      Item: NAUTILUS_SHELL
+      Quantidade: 1
+      Peso: 6
+      Nivel: 250
+      XP: 200
+    prismarinho:
+      Item: PRISMARINE_SHARD
+      Quantidade: 2
+      Peso: 10
+      Nivel: 200
+      XP: 100
+    ferro:
+      Item: IRON_INGOT
+      Quantidade: 1
+      Peso: 10
+      Nivel: 250
+      XP: 100
+    sela:
+      Item: SADDLE
+      Quantidade: 1
+      Peso: 3
+      Nivel: 400
+      XP: 400
+    ouro:
+      Item: GOLD_INGOT
+      Quantidade: 1
+      Peso: 6
+      Nivel: 400
+      XP: 200
+    livro:
+      Item: ENCHANTED_BOOK
+      Quantidade: 1
+      Peso: 2
+      Nivel: 500
+      XP: 500
+    diamante:
+      Item: DIAMOND
+      Quantidade: 1
+      Peso: 3
+      Nivel: 600
+      XP: 500
+    coracao_do_mar:
+      Item: HEART_OF_THE_SEA
+      Quantidade: 1
+      Peso: 1
+      Nivel: 850
+      XP: 1000

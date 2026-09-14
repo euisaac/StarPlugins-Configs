@@ -1,0 +1,137 @@
+# ==========================================================================
+#  StarSkills - skill: Arquearia
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: BOW
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+# XP por ponto de dano com flecha.
+XP:
+  # XP por ponto de dano causado, por tipo de alvo (PLAYER = jogador)
+  PLAYER: 20
+  ZOMBIE: 20
+  ZOMBIE_VILLAGER: 20
+  HUSK: 25
+  DROWNED: 25
+  SKELETON: 30
+  STRAY: 30
+  BOGGED: 30
+  WITHER_SKELETON: 40
+  CREEPER: 40
+  SPIDER: 30
+  CAVE_SPIDER: 40
+  ENDERMAN: 30
+  ENDERMITE: 20
+  SILVERFISH: 30
+  SLIME: 20
+  MAGMA_CUBE: 20
+  BLAZE: 30
+  GHAST: 30
+  ZOMBIFIED_PIGLIN: 30
+  PIGLIN: 30
+  PIGLIN_BRUTE: 50
+  HOGLIN: 30
+  ZOGLIN: 35
+  WITCH: 30
+  GUARDIAN: 40
+  ELDER_GUARDIAN: 60
+  SHULKER: 40
+  PHANTOM: 30
+  VEX: 30
+  VINDICATOR: 40
+  EVOKER: 50
+  PILLAGER: 30
+  RAVAGER: 60
+  WARDEN: 100
+  BREEZE: 40
+  IRON_GOLEM: 20
+  WITHER: 80
+  ENDER_DRAGON: 80
+  # Animais
+  COW: 10
+  PIG: 10
+  SHEEP: 10
+  CHICKEN: 10
+  RABBIT: 10
+  HORSE: 10
+  DONKEY: 10
+  MULE: 10
+  LLAMA: 10
+  WOLF: 10
+  CAT: 10
+  OCELOT: 10
+  FOX: 10
+  PANDA: 10
+  POLAR_BEAR: 20
+  GOAT: 10
+  BEE: 10
+  SQUID: 10
+  GLOW_SQUID: 10
+  DOLPHIN: 10
+  TURTLE: 10
+  BAT: 10
+  PARROT: 10
+  MOOSHROOM: 10
+  STRIDER: 10
+  AXOLOTL: 10
+  FROG: 10
+  ALLAY: 10
+  CAMEL: 10
+  SNIFFER: 10
+  ARMADILLO: 10
+  VILLAGER: 0
+  WANDERING_TRADER: 0
+  # Qualquer outro
+  '*': 15
+
+Habilidades:
+  # Flechas mais fortes que sempre voltam (prepara agachado).
+  olho_de_aguia:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Duracao base: 5
+    Bonus de duracao a cada niveis: 50
+    Duracao maxima: 30
+    Cooldown: 180
+  # Bonus de dano em % (100 = dobro no teto).
+  tiro_certeiro:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Chance de deixar o alvo tonto e dar dano extra.
+  atordoar:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 50
+    Nivel para o maximo: 1000
+  # Chance de a flecha voltar ao inventario.
+  recuperar_flechas:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+
+Extras:
+  Olho de aguia:
+    Bonus de dano em porcentagem: 50
+  Atordoar:
+    Dano extra: 4
+    Duracao em ticks: 200

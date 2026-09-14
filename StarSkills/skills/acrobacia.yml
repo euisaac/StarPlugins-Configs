@@ -1,0 +1,52 @@
+# ==========================================================================
+#  StarSkills - skill: Acrobacia
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: FEATHER
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+XP:
+  # QUEDA: XP por ponto de dano de queda; as outras sao XP fixo por acao
+  QUEDA: 120
+  ROLAMENTO: 80
+  ROLAMENTO_PERFEITO: 160
+  ESQUIVA: 120
+
+Habilidades:
+  # Chance de amortecer a queda.
+  rolamento:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Chance de receber metade do dano.
+  esquiva:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 20
+    Nivel para o maximo: 800
+
+Extras:
+  Rolamento:
+    # Quanto de dano o rolamento tira (7 = 3,5 coracoes).
+    Reducao: 7
+    # Rolamento perfeito (agachado): chance multiplicada e reducao maior.
+    Multiplicador agachado: 2.0
+    Reducao agachado: 14

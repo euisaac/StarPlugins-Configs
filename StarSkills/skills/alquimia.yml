@@ -1,0 +1,64 @@
+# ==========================================================================
+#  StarSkills - skill: Alquimia
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: BREWING_STAND
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+XP:
+  # XP por fornada, pelo ingrediente usado (x quantidade de pocoes)
+  NETHER_WART: 40
+  REDSTONE: 30
+  GLOWSTONE_DUST: 30
+  GUNPOWDER: 30
+  DRAGON_BREATH: 200
+  FERMENTED_SPIDER_EYE: 60
+  SUGAR: 50
+  RABBIT_FOOT: 80
+  GLISTERING_MELON_SLICE: 60
+  SPIDER_EYE: 50
+  PUFFERFISH: 80
+  MAGMA_CREAM: 60
+  GOLDEN_CARROT: 60
+  BLAZE_POWDER: 60
+  GHAST_TEAR: 100
+  TURTLE_HELMET: 120
+  PHANTOM_MEMBRANE: 100
+  BREEZE_ROD: 120
+  COBWEB: 80
+  SLIME_BLOCK: 80
+  STONE: 40
+  '*': 40
+
+Habilidades:
+  # Velocidade extra da fermentacao, em % (300 = 4x).
+  catalise:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 300
+    Nivel para o maximo: 1000
+  # Chance de nao gastar o ingrediente.
+  ingrediente_poupado:
+    Ativar: true
+    Nivel para desbloquear: 100
+    Maximo: 25
+    Nivel para o maximo: 1000
+
+Extras: {}

@@ -1,0 +1,70 @@
+# ==========================================================================
+#  StarSkills - skill: Lenhador
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: DIAMOND_AXE
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+# Toras que rendem XP (com qualquer coisa na mao; o derrubador exige machado).
+XP:
+  OAK_LOG: 70
+  SPRUCE_LOG: 80
+  BIRCH_LOG: 90
+  JUNGLE_LOG: 100
+  ACACIA_LOG: 90
+  DARK_OAK_LOG: 90
+  MANGROVE_LOG: 100
+  CHERRY_LOG: 110
+  PALE_OAK_LOG: 110
+  CRIMSON_STEM: 120
+  WARPED_STEM: 120
+  MANGROVE_ROOTS: 20
+  '*_LOG': 80
+  '*_WOOD': 80
+  '*_STEM': 120
+  '*_HYPHAE': 120
+
+Habilidades:
+  # A proxima tora derruba a arvore inteira.
+  derrubador:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Duracao base: 2
+    Bonus de duracao a cada niveis: 50
+    Duracao maxima: 30
+    Cooldown: 240
+  # Chance de a tora dropar em dobro.
+  toras_extras:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Folhas quebram na hora com o machado.
+  soprador_de_folhas:
+    Ativar: true
+    Nivel para desbloquear: 100
+
+Extras:
+  Derrubador:
+    # Teto de toras por arvore (uma floresta colada nao pode virar lag).
+    Maximo de toras: 100
+    # Quebra as folhas junto (elas dropam mudas e macas normalmente).
+    Quebrar folhas: true
+    Som: 'ENTITY_ITEM_BREAK;1;0.6'

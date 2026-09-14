@@ -1,0 +1,71 @@
+# ==========================================================================
+#  StarSkills - skill: Culinaria
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: COOKED_BEEF
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+XP:
+  # XP por comida assada no forno (pelo que entrou) e por comida comida
+  BEEF: 30
+  PORKCHOP: 30
+  CHICKEN: 25
+  MUTTON: 25
+  RABBIT: 25
+  COD: 25
+  SALMON: 25
+  POTATO: 15
+  KELP: 5
+  COOKED_BEEF: 20
+  COOKED_PORKCHOP: 20
+  COOKED_CHICKEN: 15
+  COOKED_MUTTON: 15
+  COOKED_RABBIT: 15
+  COOKED_COD: 15
+  COOKED_SALMON: 15
+  BAKED_POTATO: 10
+  BREAD: 10
+  CAKE: 50
+  PUMPKIN_PIE: 30
+  COOKIE: 5
+  MUSHROOM_STEW: 20
+  RABBIT_STEW: 40
+  BEETROOT_SOUP: 20
+  SUSPICIOUS_STEW: 30
+  GOLDEN_APPLE: 60
+  GOLDEN_CARROT: 40
+  ENCHANTED_GOLDEN_APPLE: 200
+  '*': 8
+
+Habilidades:
+  # Pontos de fome extras em toda comida (fixo).
+  refeicao_farta:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 4
+    Nivel para o maximo: 1000
+  # Chance de a comida assar em dobro.
+  chef:
+    Ativar: true
+    Nivel para desbloquear: 50
+    Maximo: 100
+    Nivel para o maximo: 1000
+
+Extras: {}

@@ -1,0 +1,74 @@
+# ==========================================================================
+#  StarSkills - skill: Fundicao
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: FURNACE
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+XP:
+  # XP por item fundido, pelo que entrou no forno
+  COAL_ORE: 10
+  IRON_ORE: 25
+  RAW_IRON: 25
+  COPPER_ORE: 15
+  RAW_COPPER: 15
+  GOLD_ORE: 35
+  RAW_GOLD: 35
+  NETHER_GOLD_ORE: 20
+  REDSTONE_ORE: 15
+  LAPIS_ORE: 40
+  DIAMOND_ORE: 75
+  EMERALD_ORE: 100
+  NETHER_QUARTZ_ORE: 25
+  ANCIENT_DEBRIS: 200
+  'DEEPSLATE_*': 30
+  SAND: 5
+  RED_SAND: 5
+  COBBLESTONE: 5
+  STONE: 5
+  CLAY_BALL: 5
+  CLAY: 10
+  NETHERRACK: 5
+  CACTUS: 5
+  '*_LOG': 8
+  '*_WOOD': 8
+  '*': 5
+
+Habilidades:
+  # Bonus de tempo do combustivel, em %.
+  combustivel_eficiente:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Chance de render o dobro.
+  fundicao_dupla:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 100
+    Nivel para o maximo: 1000
+  # Bonus de XP vanilla ao retirar, em %.
+  fornalha_experiente:
+    Ativar: true
+    Nivel para desbloquear: 50
+    Maximo: 100
+    Nivel para o maximo: 1000
+
+Extras: {}

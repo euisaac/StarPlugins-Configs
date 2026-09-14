@@ -1,0 +1,51 @@
+# ==========================================================================
+#  StarSkills - skill: Natacao
+#
+#  XP:            o que rende XP nesta skill (nome do XSeries do bloco/item ou
+#                 da entidade -> XP). Aceita curinga: *_ORE, OAK_*, *.
+#  Habilidades:   como cada habilidade cresce com o nivel.
+#    Passiva:  Maximo (chance/bonus no teto) e Nivel para o maximo (onde
+#              chega la; antes disso cresce em linha reta a partir do zero).
+#              Nivel para desbloquear: antes dele a habilidade nao existe.
+#    Ativa:    Duracao base (s) + 1s a cada 'Bonus de duracao a cada niveis'
+#              niveis, ate Duracao maxima; Cooldown (s) depois que acaba.
+#  Extras:        os ajustes finos de cada habilidade.
+#
+#  O nome, a descricao e os textos ficam no idioma (idiomas/<idioma>.yml).
+# ==========================================================================
+
+Ativar: true
+# Material do icone no menu.
+Icone: WATER_BUCKET
+# Teto de nivel so desta skill; 0 usa o "Niveis.Nivel maximo" do config.
+Nivel maximo: 0
+# Multiplica todo XP desta skill.
+Multiplicador de XP: 1.0
+
+XP:
+  # XP por segundo nadando (se deslocando na agua)
+  NADAR: 30
+
+Habilidades:
+  # Chance por segundo de recuperar ar.
+  folego:
+    Ativar: true
+    Nivel para desbloquear: 0
+    Maximo: 60
+    Nivel para o maximo: 1000
+  # Empurrao extra na direcao do nado, em %.
+  nadadeiras:
+    Ativar: true
+    Nivel para desbloquear: 100
+    Maximo: 40
+    Nivel para o maximo: 1000
+
+Extras:
+  Folego:
+    # Ticks de ar recuperados por vez (20 = 1 segundo; o maximo e 300).
+    Ar recuperado: 60
+  Nadadeiras:
+    # Forca do empurrao por movimento (multiplicada pelo bonus).
+    Forca: 0.05
+    # Nao empurra alem desta velocidade horizontal.
+    Velocidade maxima: 0.6
