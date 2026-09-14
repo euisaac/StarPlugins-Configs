@@ -14,7 +14,7 @@
 
 # Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
 # tras depois de uma atualizacao.
-Versao do modelo: 1
+Versao do modelo: 2
 
 Geral:
   # Escreve no console o que o plugin esta fazendo.
@@ -56,6 +56,13 @@ Area:
   Mundos: [ 'pesca' ]
   # Fora da area a vara do plugin nao pesca nada (so o peixe normal do jogo).
   Pescar fora da area: false
+  # Inventario separado: ao entrar na area o inventario do jogador e guardado
+  # (em memoria e em inventarios.yml) e ele recebe um inventario de pesca so
+  # com a vara, os itens da barra e a armadura da classe. Ao sair, ao
+  # desconectar ou ao desligar o plugin o inventario original volta -- e o que
+  # ele ganhou pescando (recompensas) vai junto. Se o servidor cair, o
+  # inventario guardado e devolvido na proxima entrada.
+  Inventario separado: true
   # Ao entrar na area (por /pesca ir ou andando), o jogador recebe a vara
   # dele se nao estiver com ela.
   Dar vara ao entrar: true
@@ -119,10 +126,14 @@ Area:
       Lore: [ '&7Clique para voltar para a saida.' ]
       Acao: 'sair'
 
-# Placar lateral de quem esta na area. Aceita as substituicoes do jogador
-# ({nivel}, {peso_suportado}, {pescados}, {perolas}, {sacola}, {limite},
-# {tempo}, {classe}, {booster}, {torneio_tipo}, {torneio_tempo},
-# {torneio_1_nome}...) e os do PlaceholderAPI.
+# Placar lateral de quem esta na area (ate 15 linhas). Aceita as substituicoes
+# do jogador: {vara_nome} {nivel} {peso_suportado} {intervalo} {pescados}
+# {maior_peso} {tempo} {perolas} {proximo_custo_perolas} {proxima_vara}
+# {sacola} {limite} {sacola_nivel} {classe} {booster} {booster_global} {isca}
+# {isca_usos} {colecao} {colecao_total} {missoes_concluidas} {missoes_total}
+# {torneio_estado} {torneio_tipo} {torneio_tempo} {torneio_1_nome}
+# {torneio_1_valor} (ate 3) e os do PlaceholderAPI. Linha de ate 40
+# caracteres (contando as cores) fica inteira em qualquer versao.
 Placar:
   Ativar: true
   # Em segundos.
@@ -130,10 +141,15 @@ Placar:
   Titulo: '&b&lPESCARIA'
   Linhas:
     - '&7'
-    - '&fVara: &b{vara_nome} &7(L.{nivel})'
-    - '&fPeixes pescados: &b{pescados}'
+    - '&fVara: &b{vara_nome}'
+    - '&fNivel: &b{nivel} &7| &fPeso: &b{peso_suportado}g'
+    - '&fProxima: &b{perolas}&7/&b{proximo_custo_perolas}'
+    - '&7'
+    - '&fPescados: &b{pescados}'
+    - '&fMaior peso: &b{maior_peso}g'
     - '&fSacola: &b{sacola}&7/&b{limite}'
-    - '&fPerolas: &b{perolas}'
+    - '&fClasse: {classe}'
+    - '&fMissoes: &b{missoes_concluidas}&7/&b{missoes_total}'
     - '&7'
     - '&fTorneio: &e{torneio_estado}'
     - '&fBooster: &e{booster}'
