@@ -105,12 +105,16 @@ Spawn:
   # Nao nasce dentro de casa; false deixa nascer em qualquer lugar escuro.
   Somente a ceu aberto: false
 
-  # SIMULTANEO: a horda cerca todos os jogadores do mundo ao mesmo tempo.
+  # SIMULTANEO: a horda cerca todos os jogadores do mundo ao mesmo tempo, e a
+  #             lua dura o que esta em "Duracao" la em cima.
   # POR_JOGADOR: a leva inteira cai em cima de um jogador por vez e, passado o
-  # tempo abaixo, vai para o proximo da fila -- ate o ultimo, e recomeca
-  # enquanto a lua durar. Quem sai do mundo e pulado na hora.
+  #             "Tempo por jogador", vai para o proximo da fila ate o ultimo.
+  #             Depois da ultima horda o chefe desperta, e a lua acaba quando
+  #             ele cai -- ou em "Duracao maxima", mesmo com ele vivo. Neste
+  #             modo a "Duracao" e a porcentagem do chefe nao valem.
   Modo: SIMULTANEO
   Tempo por jogador: 5m
+  Duracao maxima: 15m
 
   # Quais mobs do mobs.yml podem nascer aqui. Vazio usa todos.
   Mobs:
