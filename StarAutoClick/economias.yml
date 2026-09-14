@@ -1,0 +1,61 @@
+# ==========================================================================
+#  StarAutoClick - as moedas
+#
+#  Cada moeda daqui pode ser usada nos precos do config.yml e do mobs.yml,
+#  no formato 'moeda:valor' (ex.: 'pontos:50'). Um numero solto usa a
+#  'Compras.Economia padrao' do config.yml.
+#
+#  Provedores:
+#    VAULT          qualquer plugin de dinheiro registrado no Vault
+#    STARECONOMIA   uma moeda do StarEconomia ('Moeda' = id dela)
+#    PLAYERPOINTS   os pontos do PlayerPoints
+#    COMANDO        economia sem API: o saldo e lido por um placeholder do
+#                   PlaceholderAPI e a cobranca sai por comando de console
+#
+#  Cada moeda:
+#    Nome, Simbolo, Sufixo   como o preco aparece: Simbolo + numero + Sufixo
+#    Abreviar                1500 vira 1.5K
+#    Permissao               so quem tem pode pagar com esta moeda (vazio = todos)
+# ==========================================================================
+
+Versao do modelo: 1
+
+Moedas:
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Simbolo: '$'
+    Sufixo: ''
+    Abreviar: false
+    Permissao: ''
+
+  # Exemplo com o StarEconomia (apague se nao usar).
+  cash:
+    Provedor: STARECONOMIA
+    Moeda: cash
+    Nome: 'Cash'
+    Simbolo: ''
+    Sufixo: ' cash'
+    Abreviar: false
+    Permissao: ''
+
+  # Exemplo com o PlayerPoints (apague se nao usar).
+  pontos:
+    Provedor: PLAYERPOINTS
+    Nome: 'Pontos'
+    Simbolo: ''
+    Sufixo: ' pontos'
+    Abreviar: false
+    Permissao: ''
+
+  # Exemplo de economia por comando (apague se nao usar).
+  # {jogador} e {valor} sao trocados; o comando roda pelo console.
+  almas:
+    Provedor: COMANDO
+    Nome: 'Almas'
+    Simbolo: ''
+    Sufixo: ' almas'
+    Placeholder de saldo: '%almas_saldo%'
+    Comando de retirar: 'almas remover {jogador} {valor}'
+    Abreviar: false
+    Permissao: ''

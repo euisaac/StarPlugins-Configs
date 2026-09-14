@@ -1,0 +1,240 @@
+# ==========================================================================
+#  StarAutoClick - configuracao geral
+#
+#  O jogador liga o auto-click e passa a atacar sozinho os mobs ao redor,
+#  sem precisar clicar. Cada mob precisa ser desbloqueado (comprado ou
+#  liberado por permissao), o tempo de uso e comprado em pacotes, e o
+#  numero de mobs atingidos por vez (alvos) evolui com upgrades.
+#
+#  Os mobs ficam no mobs.yml, as moedas no economias.yml, os textos no
+#  mensagens.yml e a aparencia das telas no menus.yml.
+#
+#  Tempos aceitam 30s, 10m, 2h, 1d, 1h30m. Precos aceitam um numero solto
+#  (moeda padrao) ou 'moeda:valor' com uma moeda do economias.yml; uma lista
+#  cobra todas ao mesmo tempo.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console cada decisao do motor. Ligue so para achar problema.
+  Debug: false
+
+  # Mundos onde o auto-click nao funciona (ele continua ligado, so nao ataca).
+  Mundos bloqueados:
+    - lobby
+
+  # Regioes do WorldGuard onde o auto-click nao funciona. Sem WorldGuard a
+  # lista e ignorada.
+  Regioes bloqueadas: []
+
+  # Jogador no criativo ou espectador nao ataca.
+  Ignorar criativo: true
+
+  # Funciona so dentro de um terreno do proprio jogador (ou onde ele e
+  # membro). Provedores reconhecidos, nesta ordem: GriefDefender,
+  # PlotSquared e WorldGuard (regiao em que o jogador e dono ou membro).
+  # Sem nenhum deles instalado o auto-click funciona em qualquer lugar.
+  Somente no proprio terreno: false
+
+  # Ticks de espera depois do login para carregar os dados do banco. Vale
+  # para rede com MySQL compartilhado, onde o servidor anterior ainda pode
+  # estar gravando. 20 ticks = 1 segundo.
+  Atraso ao entrar: 20
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores: o tempo e os mobs valem na rede inteira).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starautoclick_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  # De quanto em quanto tempo o que esta em memoria vai para o banco, em
+  # segundos. Sair do servidor grava na hora, independente disto.
+  Salvar a cada: 60
+
+Clique:
+  # De quantos em quantos ticks o auto-click ataca. 20 ticks = 1 segundo.
+  # Menos que 10 vira spam de dano e pesa no servidor.
+  Intervalo em ticks: 30
+
+  # Ate que distancia o jogador enxerga os mobs, em blocos, por eixo.
+  Raio:
+    X: 3
+    Y: 3
+    Z: 3
+
+  # Como escolher quem apanha quando ha mais mobs do que alvos:
+  #   MAIS_PERTO   os mais proximos do jogador
+  #   MENOS_VIDA   os que estao quase morrendo (termina os mobs mais rapido)
+  #   ALEATORIO    sorteio
+  Prioridade: MAIS_PERTO
+
+  Dano:
+    # ARMA   o dano da arma que o jogador segura (tabela abaixo + Afiar)
+    # FIXO   sempre o valor de 'Valor'
+    # MATAR  mata o mob de uma vez
+    Modo: ARMA
+    # Usado no modo FIXO. 1 = meio coracao.
+    Valor: 4.0
+    # Multiplica o dano final nos modos ARMA e FIXO.
+    Multiplicador: 1.0
+    # Dano de quem ataca de mao vazia no modo ARMA.
+    Mao vazia: 1.0
+    # Dano base por arma no modo ARMA (o mesmo do jogo). O nome e o final do
+    # material: qualquer *_SWORD casa com SWORD, *_AXE com AXE.
+    Armas:
+      WOODEN_SWORD: 4
+      GOLDEN_SWORD: 4
+      STONE_SWORD: 5
+      IRON_SWORD: 6
+      DIAMOND_SWORD: 7
+      NETHERITE_SWORD: 8
+      WOODEN_AXE: 7
+      GOLDEN_AXE: 7
+      STONE_AXE: 9
+      IRON_AXE: 9
+      DIAMOND_AXE: 9
+      NETHERITE_AXE: 10
+      TRIDENT: 9
+      MACE: 6
+    # Cada nivel de Afiar (Sharpness) soma este tanto ao dano.
+    Afiar por nivel: 0.5
+    # A arma perde durabilidade a cada ataque, como num golpe normal.
+    Desgastar a arma: false
+    # Exige uma arma da tabela na mao para atacar. Sem arma, o auto-click
+    # fica ligado mas nao bate.
+    Exigir arma: false
+
+  # O tempo comprado so e descontado quando o auto-click atingiu alguem.
+  # false: desconta enquanto estiver ligado, mesmo sem mob por perto.
+  Descontar tempo so ao atacar: true
+
+  # Nao ataca mobs com nome personalizado (pets, mobs de evento).
+  Ignorar mobs com nome: false
+  # Nao ataca animais domesticados por outro jogador (lobos, gatos, cavalos).
+  Ignorar domesticados de outros: true
+  # Nao ataca mobs marcados com estas metadatas (NPCs do Citizens, lojas...).
+  Metadados ignorados:
+    - NPC
+    - shopkeeper
+
+  # Efeitos a cada ataque. Deixe vazio para desligar.
+  Som ao atacar: ''
+  # Particula do XSeries/Bukkit, ex.: CRIT, DAMAGE_INDICATOR. Vazio desliga.
+  Particula ao atacar: ''
+
+  # Avisos do motor.
+  Aviso:
+    # Actionbar repetida enquanto o auto-click esta atacando.
+    Actionbar enquanto ativo: true
+    # Manda a actionbar mesmo sem mob por perto.
+    Actionbar sem alvo: false
+
+XP:
+  # Da o XP vanilla configurado em cada mob (mobs.yml) quando ele morre pelo
+  # auto-click. Isso soma ao XP natural do mob.
+  Dar XP vanilla: true
+  # Tira o XP natural do mob morto pelo auto-click (fica so o do mobs.yml).
+  Cancelar XP natural: false
+
+  # Skills do mcMMO que recebem o XP de cada mob, conforme a arma na mao.
+  mcMMO:
+    Ativar: true
+    Espadas: SWORDS
+    Machados: AXES
+    Desarmado: UNARMED
+
+Tempo:
+  # Tempo que um jogador novo ja ganha para experimentar. 0 desliga.
+  Inicial: 10m
+  # Maximo que da para acumular comprando. 0 = sem limite.
+  Maximo acumulado: 0
+
+  # Tempo gratis todo dia, entregue no primeiro login do dia. O jogador
+  # recebe o MAIOR entre o padrao e os que tem por permissao
+  # (starautoclick.diario.<id>).
+  Diario:
+    Ativar: true
+    Padrao: 5m
+    Por permissao:
+      vip: 30m
+      mvp: 1h
+    # Fuso para decidir quando "vira o dia".
+    Fuso: America/Sao_Paulo
+
+  # Pacotes a venda no menu de tempo. Ordem = posicao na tela.
+  Pacotes:
+    1min:
+      Ordem: 1
+      Nome: '&e+1 minuto'
+      Tempo: 1m
+      Precos:
+        - 1000
+      Icone:
+        Material: PAPER
+    10min:
+      Ordem: 2
+      Nome: '&e+10 minutos'
+      Tempo: 10m
+      Precos:
+        - 9000
+      Icone:
+        Material: PAPER
+    1h:
+      Ordem: 3
+      Nome: '&e+1 hora'
+      Tempo: 1h
+      Precos:
+        - 50000
+      Icone:
+        Material: BOOK
+    6h:
+      Ordem: 4
+      Nome: '&e+6 horas'
+      Tempo: 6h
+      Precos:
+        - 250000
+      Icone:
+        Material: BOOK
+        Brilho: true
+
+Alvos:
+  # Quantos mobs o auto-click atinge por vez, para quem nunca evoluiu.
+  Padrao: 1
+  # Ate onde da para evoluir comprando. A permissao starautoclick.alvos.<n>
+  # libera um teto maior (vale o maior n encontrado, ate o limite abaixo).
+  Maximo: 3
+  Maximo por permissao: 10
+  # Preco de cada nivel (o nivel que o jogador vai ALCANCAR). Nivel sem preco
+  # aqui usa 'Preco padrao'.
+  Precos por nivel:
+    2:
+      - 5000
+    3:
+      - 25000
+  Preco padrao:
+    - 100000
+
+Compras:
+  # Abre uma tela de confirmacao antes de cobrar.
+  Confirmar: true
+  # Moeda do economias.yml usada quando o preco e so um numero.
+  Economia padrao: dinheiro
+
+Sons:
+  # Formato: SOM, SOM;volume ou SOM;volume;tom (nomes do XSeries).
+  Ligar: ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2
+  Desligar: BLOCK_NOTE_BLOCK_BASS;1;0.8
+  Comprar: ENTITY_PLAYER_LEVELUP;1;1.4
+  Erro: ENTITY_VILLAGER_NO;1;1
+  Clique: UI_BUTTON_CLICK;0.6;1
+  Pagina: ITEM_BOOK_PAGE_TURN;1;1
+  Tempo acabou: BLOCK_ANVIL_LAND;0.7;0.6

@@ -1,0 +1,313 @@
+# ==========================================================================
+#  StarAutoClick - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#  {jogador} no Dono vira o nick de quem esta olhando.
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo (Ativar: true liga).
+#    Slots                 Onde o conteudo paginado entra (mobs, pacotes).
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao, Condicao e Acoes.
+#
+#  Acoes proprias:  principal | mobs | tempos | alvos | alternar
+#                   anterior | proxima | voltar | fechar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | mensagem: <texto>
+#                   actionbar: <texto> | som: <SOM;volume;tom>
+#
+#  Condicoes de um botao (so aparece quando vale):
+#    ligado | desligado | tempo_infinito | tempo_finito | alvos_maximo |
+#    alvos_evoluivel
+#
+#  Substituicoes em qualquer texto: {jogador} {status} {tempo} {tempo_segundos}
+#  {alvos} {alvos_maximo} {alvos_proximo} {alvos_preco} {mobs} {mobs_total}
+#  {mortes} {tempo_usado} {pagina} {paginas}. Placeholders do PlaceholderAPI
+#  tambem funcionam.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  /autoclick -- a tela inicial.
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Auto-Click'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    perfil:
+      Slot: 10
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&6&l{jogador}'
+      Lore:
+        - '&7Suas informacoes no auto-click.'
+        - ''
+        - '&fStatus: {status}'
+        - '&fTempo disponivel: &e{tempo}'
+        - '&fAlvos simultaneos: &e{alvos}'
+        - '&fMobs desbloqueados: &e{mobs}&7/&e{mobs_total}'
+        - '&fMortes pelo auto-click: &e{mortes}'
+
+    tempo:
+      Slot: 12
+      Condicao: tempo_finito
+      Material: PLAYER_HEAD
+      Textura: '4347fed1c5f8f91c90e56e7a0a0744b7dc8c4850f745d6faa017a69b43b05421'
+      Nome: '&6&lTempo'
+      Lore:
+        - '&7Gerencie quanto tempo voce ainda'
+        - '&7pode usar o auto-click.'
+        - ''
+        - '&fTempo disponivel: &e{tempo}'
+        - ''
+        - '&aClique para comprar mais tempo.'
+      Acoes:
+        - tempos
+
+    tempo_infinito:
+      Slot: 12
+      Condicao: tempo_infinito
+      Material: PLAYER_HEAD
+      Textura: '437f617c73e805cea2e736241e1343ca1a6d11c6216bf16f35287ff68ddefd40'
+      Nome: '&6&lTempo'
+      Lore:
+        - '&7Gerencie quanto tempo voce ainda'
+        - '&7pode usar o auto-click.'
+        - ''
+        - '&fTempo disponivel: &bInfinito'
+        - ''
+        - '&bVoce tem tempo infinito!'
+
+    mobs:
+      Slot: 13
+      Material: PLAYER_HEAD
+      Textura: '1fb4bfddc135298d19985e901cd9b9eed17cb52943a04266a5efcac62c916d9f'
+      Nome: '&6&lMobs'
+      Lore:
+        - '&7Escolha quais mobs o seu'
+        - '&7auto-click ataca.'
+        - ''
+        - '&fMobs desbloqueados: &e{mobs}&7/&e{mobs_total}'
+        - ''
+        - '&aClique para gerenciar.'
+      Acoes:
+        - mobs
+
+    alvos:
+      Slot: 14
+      Condicao: alvos_evoluivel
+      Material: PLAYER_HEAD
+      Textura: '7ae9116e5a43fbc52e17f250f2f59826fb0554b15ec279ee186db321398fedde'
+      Nome: '&6&lAlvos simultaneos'
+      Lore:
+        - '&7Quantos mobs o seu auto-click'
+        - '&7atinge de uma vez.'
+        - ''
+        - '&fAtual: &e{alvos}'
+        - '&fProximo nivel: &e{alvos_proximo} &7por &e{alvos_preco}'
+        - ''
+        - '&aClique para evoluir.'
+      Acoes:
+        - alvos
+
+    alvos_maximo:
+      Slot: 14
+      Condicao: alvos_maximo
+      Material: PLAYER_HEAD
+      Textura: '7ae9116e5a43fbc52e17f250f2f59826fb0554b15ec279ee186db321398fedde'
+      Nome: '&6&lAlvos simultaneos'
+      Lore:
+        - '&7Quantos mobs o seu auto-click'
+        - '&7atinge de uma vez.'
+        - ''
+        - '&fAtual: &e{alvos}'
+        - ''
+        - '&cVoce ja esta no nivel maximo.'
+
+    ligado:
+      Slot: 16
+      Condicao: ligado
+      Material: LIME_DYE
+      Nome: '&6&lAuto-Click'
+      Lore:
+        - '&7Liga ou desliga o seu auto-click.'
+        - ''
+        - '&fStatus: &aLigado'
+        - ''
+        - '&cClique para desligar.'
+      Acoes:
+        - alternar
+
+    desligado:
+      Slot: 16
+      Condicao: desligado
+      Material: GRAY_DYE
+      Nome: '&6&lAuto-Click'
+      Lore:
+        - '&7Liga ou desliga o seu auto-click.'
+        - ''
+        - '&fStatus: &cDesligado'
+        - ''
+        - '&aClique para ligar.'
+      Acoes:
+        - alternar
+
+# ---------------------------------------------------------------------------
+#  Mobs -- um por slot, paginado.
+# ---------------------------------------------------------------------------
+Mobs:
+  Titulo: '&8Auto-Click » Mobs'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+
+  # Variaveis do mob: {mob} {mob_id} {categoria} {xp} {mcmmo_espadas}
+  # {mcmmo_machados} {mcmmo_desarmado} {precos} {estado} {ativo} {alternar}
+  # {mortes_mob}
+  Modelo desbloqueado:
+    Material: PLAYER_HEAD
+    Nome: '{mob}'
+    Lore:
+      - '&7Categoria: &f{categoria}'
+      - ''
+      - '&fRecompensas por morte:'
+      - '&7 » XP: &b{xp}'
+      - '&7 » mcMMO espadas: &b{mcmmo_espadas}'
+      - '&7 » mcMMO machados: &b{mcmmo_machados}'
+      - '&7 » mcMMO desarmado: &b{mcmmo_desarmado}'
+      - ''
+      - '&fMortes: &e{mortes_mob}'
+      - '&fEstado: {estado}'
+      - '&fNo auto-click: {ativo}'
+      - ''
+      - '{alternar}'
+  Modelo bloqueado:
+    Material: PLAYER_HEAD
+    Nome: '{mob}'
+    Lore:
+      - '&7Categoria: &f{categoria}'
+      - ''
+      - '&fRecompensas por morte:'
+      - '&7 » XP: &b{xp}'
+      - '&7 » mcMMO espadas: &b{mcmmo_espadas}'
+      - '&7 » mcMMO machados: &b{mcmmo_machados}'
+      - '&7 » mcMMO desarmado: &b{mcmmo_desarmado}'
+      - ''
+      - '&fPreco: &e{precos}'
+      - ''
+      - '&aClique para desbloquear.'
+
+  Itens:
+    anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&cPagina anterior'
+      Acoes:
+        - anterior
+    proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&aProxima pagina'
+      Acoes:
+        - proxima
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - voltar
+
+# ---------------------------------------------------------------------------
+#  Tempos -- os pacotes do config.yml, paginados.
+# ---------------------------------------------------------------------------
+Tempos:
+  Titulo: '&8Auto-Click » Tempo'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+
+  # Variaveis do pacote: {pacote} {pacote_tempo} {precos}. O Material, o Brilho
+  # e a Textura vem do 'Icone' de cada pacote; Nome e Lore daqui valem quando o
+  # pacote nao escreve os seus.
+  Modelo:
+    Nome: '{pacote}'
+    Lore:
+      - '&7Compre mais tempo para continuar'
+      - '&7usando o auto-click.'
+      - ''
+      - '&fTempo: &e{pacote_tempo}'
+      - '&fPreco: &e{precos}'
+      - ''
+      - '&fVoce tem: &e{tempo}'
+      - ''
+      - '&aClique para comprar.'
+
+  Itens:
+    anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&cPagina anterior'
+      Acoes:
+        - anterior
+    proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&aProxima pagina'
+      Acoes:
+        - proxima
+    voltar:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - voltar
+
+# ---------------------------------------------------------------------------
+#  Confirmar -- antes de cobrar (config: Compras.Confirmar).
+#  Variaveis: {item} {precos}
+# ---------------------------------------------------------------------------
+Confirmar:
+  Titulo: '&8Confirmar compra'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    resumo:
+      Slot: 13
+      Material: PAPER
+      Nome: '&6&lResumo'
+      Lore:
+        - '&fItem: {item}'
+        - '&fPreco: &e{precos}'
+    confirmar:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&a&lConfirmar'
+      Lore:
+        - '&7Clique para concluir a compra.'
+      Acoes:
+        - confirmar
+    cancelar:
+      Slot: 15
+      Material: RED_WOOL
+      Nome: '&c&lCancelar'
+      Lore:
+        - '&7Clique para desistir.'
+      Acoes:
+        - cancelar

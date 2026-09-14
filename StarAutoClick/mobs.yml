@@ -1,0 +1,1260 @@
+# ==========================================================================
+#  StarAutoClick - os mobs
+#
+#  Todos os mobs da 1.8 ate a 1.21 ja vem cadastrados. Mob que nao existe
+#  na versao do seu servidor e pulado em silencio (o Tatu numa 1.8, por
+#  exemplo). Apague o que nao quiser vender, ou ponha 'Ativo: false'.
+#
+#  Cada mob:
+#    Ordem                  posicao no menu (menor primeiro)
+#    Entidade               tipo do Bukkit; aceita o nome antigo e o novo
+#                           (PIG_ZOMBIE ou ZOMBIFIED_PIGLIN, SNOWMAN ou SNOW_GOLEM)
+#    Nome                   como aparece nas telas e mensagens
+#    Categoria              texto livre para a lore ({categoria})
+#    Textura                hash da cabeca (minecraft-heads) ou base64
+#    Permissao              quem tem ataca sem comprar (vazio = ninguem)
+#    Permissao para comprar exigida para comprar (vazio = todos podem)
+#    XP                     XP vanilla por morte (config: XP.Dar XP vanilla)
+#    mcMMO                  XP de mcMMO por morte, conforme a arma na mao
+#    Precos                 lista; numero solto = moeda padrao, ou 'moeda:valor'
+#    Ativo                  false esconde o mob sem apagar
+#    Icone                  (opcional) troca o modelo do menus.yml so para
+#                           este mob:
+#                             Icone:
+#                               Desbloqueado: {Material, Textura, Nome, Lore}
+#                               Bloqueado:    {Material, Textura, Nome, Lore}
+#
+#  Sem 'Permissao', a permissao de liberar sem comprar e starautoclick.mob.<id>.
+# ==========================================================================
+
+Mobs:
+  galinha:
+    Ordem: 1
+    Entidade: CHICKEN
+    Nome: '&aGalinha'
+    Categoria: 'Passivo'
+    Textura: 'c64d623d30c278e2ec44cbc6dce6780268d50526d6a496d266b21e90ef107dca'
+    Permissao: 'starautoclick.mob.galinha'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 100
+  porco:
+    Ordem: 2
+    Entidade: PIG
+    Nome: '&aPorco'
+    Categoria: 'Passivo'
+    Textura: 'dd7af9e0392c2cea5a9def3317457a0f871b044c45ca85a61838076c551973e5'
+    Permissao: 'starautoclick.mob.porco'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 150
+  ovelha:
+    Ordem: 3
+    Entidade: SHEEP
+    Nome: '&aOvelha'
+    Categoria: 'Passivo'
+    Textura: 'e068d332aabe9b87740b3fadf5572452bef679f7aa57e8ec1e017678971ae807'
+    Permissao: 'starautoclick.mob.ovelha'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 150
+  vaca:
+    Ordem: 4
+    Entidade: COW
+    Nome: '&aVaca'
+    Categoria: 'Passivo'
+    Textura: 'ddc48b0a654b0be4f22c7b9859df1744d8af22a7a80637fd7bd82bec232c792e'
+    Permissao: 'starautoclick.mob.vaca'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 200
+  coelho:
+    Ordem: 5
+    Entidade: RABBIT
+    Nome: '&aCoelho'
+    Categoria: 'Passivo'
+    Textura: 'ffecc6b5e6ea5ced74c46e7627be3f0826327fba26386c6cc7863372e9bc'
+    Permissao: 'starautoclick.mob.coelho'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 200
+  mooshroom:
+    Ordem: 6
+    Entidade: MUSHROOM_COW
+    Nome: '&aMooshroom'
+    Categoria: 'Passivo'
+    Textura: '3d597f77cde32c9ac9b06f82fcf7c9cb500facc14bff166222b24be39962f0ef'
+    Permissao: 'starautoclick.mob.mooshroom'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 300
+  lula:
+    Ordem: 7
+    Entidade: SQUID
+    Nome: '&aLula'
+    Categoria: 'Passivo'
+    Textura: 'd8705624daa2956aa45956c81bab5f4fdb2c74a596051e24192039aea3a8b8'
+    Permissao: 'starautoclick.mob.lula'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 300
+  lula_brilhante:
+    Ordem: 8
+    Entidade: GLOW_SQUID
+    Nome: '&aLula Brilhante'
+    Categoria: 'Passivo'
+    Textura: 'e51ec3996fbcba0eb74c55a36a924ac0c0b15a75c8d82cd3e0e375b97e2b5fb5'
+    Permissao: 'starautoclick.mob.lula_brilhante'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 400
+  morcego:
+    Ordem: 9
+    Entidade: BAT
+    Nome: '&aMorcego'
+    Categoria: 'Passivo'
+    Textura: 'f8c32b88443a29b55f167ff54af425c147afa5febf630f1a5d408908d1df5b7f'
+    Permissao: 'starautoclick.mob.morcego'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 300
+  cavalo:
+    Ordem: 10
+    Entidade: HORSE
+    Nome: '&aCavalo'
+    Categoria: 'Passivo'
+    Textura: '7bb4b288991efb8ca0743beccef31258b31d39f24951efb1c9c18a417ba48f9'
+    Permissao: 'starautoclick.mob.cavalo'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 400
+  burro:
+    Ordem: 11
+    Entidade: DONKEY
+    Nome: '&aBurro'
+    Categoria: 'Passivo'
+    Textura: 'dfb6c3c052cf787d236a2915f8072b77c547497715d1d2f8cbc9d241d88a'
+    Permissao: 'starautoclick.mob.burro'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 400
+  mula:
+    Ordem: 12
+    Entidade: MULE
+    Nome: '&aMula'
+    Categoria: 'Passivo'
+    Textura: 'a0486a742e7dda0bae61ce2f55fa13527f1c3b334c57c034bb4cf132fb5f5f'
+    Permissao: 'starautoclick.mob.mula'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 400
+  cavalo_esqueleto:
+    Ordem: 13
+    Entidade: SKELETON_HORSE
+    Nome: '&aCavalo Esqueleto'
+    Categoria: 'Passivo'
+    Textura: 'ac7d8a16d3f0f98b598df93f2c2d34e75171cd52dbf4a1211d7b84c019416a40'
+    Permissao: 'starautoclick.mob.cavalo_esqueleto'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  cavalo_zumbi:
+    Ordem: 14
+    Entidade: ZOMBIE_HORSE
+    Nome: '&aCavalo Zumbi'
+    Categoria: 'Passivo'
+    Textura: 'f896a1dbde1a19540ce7336c6c94f59652aa98bb1068b2ef8c8fa6ef85804f57'
+    Permissao: 'starautoclick.mob.cavalo_zumbi'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  jaguatirica:
+    Ordem: 15
+    Entidade: OCELOT
+    Nome: '&aJaguatirica'
+    Categoria: 'Passivo'
+    Textura: '15852d265d960da3e06b8b3a91632253f4a107febfb7069c9e46e5f73a4de9b4'
+    Permissao: 'starautoclick.mob.jaguatirica'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 500
+  gato:
+    Ordem: 16
+    Entidade: CAT
+    Nome: '&aGato'
+    Categoria: 'Passivo'
+    Textura: '2390047dc2014b33dfaa8913c2f9f0d0cb00af84b3c7e5d338673f7a55d5f749'
+    Permissao: 'starautoclick.mob.gato'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 500
+  papagaio:
+    Ordem: 17
+    Entidade: PARROT
+    Nome: '&aPapagaio'
+    Categoria: 'Passivo'
+    Textura: '2b94f236c4a642eb2bcdc3589b9c3c4a0b5bd5df9cd5d68f37f8c83f8e3f1'
+    Permissao: 'starautoclick.mob.papagaio'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 600
+  tartaruga:
+    Ordem: 18
+    Entidade: TURTLE
+    Nome: '&aTartaruga'
+    Categoria: 'Passivo'
+    Textura: '48957b505a21e33aa092e2aa47d81e8815eda5803d14b33990f24effb7417198'
+    Permissao: 'starautoclick.mob.tartaruga'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 600
+  bacalhau:
+    Ordem: 19
+    Entidade: COD
+    Nome: '&aBacalhau'
+    Categoria: 'Passivo'
+    Textura: '4feeff4b7fcfce68b0f74df0db0ad0c01f7301d0c6d893699b402bd50bb376b0'
+    Permissao: 'starautoclick.mob.bacalhau'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 200
+  salmao:
+    Ordem: 20
+    Entidade: SALMON
+    Nome: '&aSalmao'
+    Categoria: 'Passivo'
+    Textura: '8aeb21a25e46806ce8537fbd6668281cf176ceafe95af90e94a5fd84924878'
+    Permissao: 'starautoclick.mob.salmao'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 200
+  baiacu:
+    Ordem: 21
+    Entidade: PUFFERFISH
+    Nome: '&aBaiacu'
+    Categoria: 'Passivo'
+    Textura: '17152876bc3a96dd2a2299245edb3beef647c8a56ac8853a687c3e7b5d8bb'
+    Permissao: 'starautoclick.mob.baiacu'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 300
+  peixe_tropical:
+    Ordem: 22
+    Entidade: TROPICAL_FISH
+    Nome: '&aPeixe Tropical'
+    Categoria: 'Passivo'
+    Textura: '4b953e4d3dfa1c622f30c4482d9a726ea12592134f1e3bc79e0c0c5d84c36'
+    Permissao: 'starautoclick.mob.peixe_tropical'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 300
+  golfinho:
+    Ordem: 23
+    Entidade: DOLPHIN
+    Nome: '&eGolfinho'
+    Categoria: 'Neutro'
+    Textura: 'fa598af8c48573ad794fd7e25818a355a9793c2a4c791cb3a29a15206a8cbdc3'
+    Permissao: 'starautoclick.mob.golfinho'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 800
+  axolote:
+    Ordem: 24
+    Entidade: AXOLOTL
+    Nome: '&aAxolote'
+    Categoria: 'Passivo'
+    Textura: 'e8a8a2d7ccf0c3746e23ab5491070e0923f05b235f9a2f5d53d384353853bddc'
+    Permissao: 'starautoclick.mob.axolote'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 800
+  raposa:
+    Ordem: 25
+    Entidade: FOX
+    Nome: '&aRaposa'
+    Categoria: 'Passivo'
+    Textura: '27464ca518b002fa99275d3c981fb19b41b445adb19e758430cb28d515600037'
+    Permissao: 'starautoclick.mob.raposa'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 700
+  abelha:
+    Ordem: 26
+    Entidade: BEE
+    Nome: '&eAbelha'
+    Categoria: 'Neutro'
+    Textura: '67cc18d2fa7c7a0e6b4eb824a7e6b8531bf322a659a5cbad583e50149f3b05c5'
+    Permissao: 'starautoclick.mob.abelha'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 700
+  cabra:
+    Ordem: 27
+    Entidade: GOAT
+    Nome: '&eCabra'
+    Categoria: 'Neutro'
+    Textura: 'aae36512d9e4168fb22985fe9447d435c0e921acfa0fa86138f846551e7b4d82'
+    Permissao: 'starautoclick.mob.cabra'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 700
+  ra:
+    Ordem: 28
+    Entidade: FROG
+    Nome: '&aRa'
+    Categoria: 'Passivo'
+    Textura: 'f2237ac7fe396daa5e3c7fa91c44cae8fbd9a19c2115f615edb4d01f445c303c'
+    Permissao: 'starautoclick.mob.ra'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 500
+  girino:
+    Ordem: 29
+    Entidade: TADPOLE
+    Nome: '&aGirino'
+    Categoria: 'Passivo'
+    Textura: 'b23ebf26b7a441e10a86fb5c2a5f3b519258a5c5dddd6a1a75549f517332815b'
+    Permissao: 'starautoclick.mob.girino'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 300
+  allay:
+    Ordem: 30
+    Entidade: ALLAY
+    Nome: '&aAllay'
+    Categoria: 'Passivo'
+    Textura: 'beea845cc0b58ff763decffe11cd1c845c5d09c3b04fe80b0663da5c7c699eb3'
+    Permissao: 'starautoclick.mob.allay'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 2000
+  camelo:
+    Ordem: 31
+    Entidade: CAMEL
+    Nome: '&aCamelo'
+    Categoria: 'Passivo'
+    Textura: '3642c9f71131b5df4a8c21c8c6f10684f22abafb8cd68a1d55ac4bf263a53a31'
+    Permissao: 'starautoclick.mob.camelo'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 1000
+  farejador:
+    Ordem: 32
+    Entidade: SNIFFER
+    Nome: '&aFarejador'
+    Categoria: 'Passivo'
+    Textura: '3d6c9f43510cb90d24493e07b7cf8ca9f54132d09a257f20b7048022e3b1b707'
+    Permissao: 'starautoclick.mob.farejador'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 3000
+  tatu:
+    Ordem: 33
+    Entidade: ARMADILLO
+    Nome: '&aTatu'
+    Categoria: 'Passivo'
+    Textura: 'c9c1e96ce985725e22ed6ccf0f4c4810c729a2538b97bda06faeb3b92799c878'
+    Permissao: 'starautoclick.mob.tatu'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 800
+  lhama:
+    Ordem: 34
+    Entidade: LLAMA
+    Nome: '&eLhama'
+    Categoria: 'Neutro'
+    Textura: '9f7d90b305aa64313c8d4404d8d652a96eba8a754b67f4347dcccdd5a6a63398'
+    Permissao: 'starautoclick.mob.lhama'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 700
+  lhama_mercador:
+    Ordem: 35
+    Entidade: TRADER_LLAMA
+    Nome: '&eLhama de Mercador'
+    Categoria: 'Neutro'
+    Textura: '9f7d90b305aa64313c8d4404d8d652a96eba8a754b67f4347dcccdd5a6a63398'
+    Permissao: 'starautoclick.mob.lhama_mercador'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 900
+  panda:
+    Ordem: 36
+    Entidade: PANDA
+    Nome: '&ePanda'
+    Categoria: 'Neutro'
+    Textura: 'c5d80d20d21e2ca37f68df91aff9974cb51a9d590c0fa141b544d7ef90568232'
+    Permissao: 'starautoclick.mob.panda'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 1500
+  urso_polar:
+    Ordem: 37
+    Entidade: POLAR_BEAR
+    Nome: '&eUrso Polar'
+    Categoria: 'Neutro'
+    Textura: 'cd5d60a4d70ec136a658507ce82e3443cdaa3958d7fca3d9376517c7db4e695d'
+    Permissao: 'starautoclick.mob.urso_polar'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  lobo:
+    Ordem: 38
+    Entidade: WOLF
+    Nome: '&eLobo'
+    Categoria: 'Neutro'
+    Textura: '9fc1232ba3c9e95fc8295e9978d165cf528cea4a2b1846fa32403caaea53820c'
+    Permissao: 'starautoclick.mob.lobo'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 800
+  aldeao:
+    Ordem: 39
+    Entidade: VILLAGER
+    Nome: '&aAldeao'
+    Categoria: 'Passivo'
+    Textura: '822d8e751c8f2fd4c8942c44bdb2f5ca4d8ae8e575ed3eb34c18a86e93b'
+    Permissao: 'starautoclick.mob.aldeao'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 1000
+  mercador:
+    Ordem: 40
+    Entidade: WANDERING_TRADER
+    Nome: '&aMercador Ambulante'
+    Categoria: 'Passivo'
+    Textura: '499d585a9abf59fae277bb684d24070cef21e35609a3e18a9bd5dcf73a46ab93'
+    Permissao: 'starautoclick.mob.mercador'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 1500
+  golem_de_neve:
+    Ordem: 41
+    Entidade: SNOWMAN
+    Nome: '&aGolem de Neve'
+    Categoria: 'Passivo'
+    Textura: 'e6f20aec528c3968dd8164f9d9336b081b3a2c7ecf189cf73df6f925e5a4ed14'
+    Permissao: 'starautoclick.mob.golem_de_neve'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  golem_de_ferro:
+    Ordem: 42
+    Entidade: IRON_GOLEM
+    Nome: '&eGolem de Ferro'
+    Categoria: 'Neutro'
+    Textura: '89091d79ea0f59ef7ef94d7bba6e5f17f2f7d4572c44f90f76c4819a714'
+    Permissao: 'starautoclick.mob.golem_de_ferro'
+    Permissao para comprar: ''
+    XP: 5
+    mcMMO:
+      Espadas: 5
+      Machados: 5
+      Desarmado: 5
+    Precos:
+      - 8000
+  strider:
+    Ordem: 43
+    Entidade: STRIDER
+    Nome: '&aStrider'
+    Categoria: 'Passivo'
+    Textura: '406b3ae64ff87afc9ac9e3967031fadbbcd661426060ae1ffc2a52a5417c95b9'
+    Permissao: 'starautoclick.mob.strider'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 1200
+  ghast_feliz:
+    Ordem: 44
+    Entidade: HAPPY_GHAST
+    Nome: '&aGhast Feliz'
+    Categoria: 'Passivo'
+    Textura: 'a1a36cb93d01675c4622dd5c8d872110911ec12c372e89afa8ba03862867f6fb'
+    Permissao: 'starautoclick.mob.ghast_feliz'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 5000
+  zumbi:
+    Ordem: 45
+    Entidade: ZOMBIE
+    Nome: '&cZumbi'
+    Categoria: 'Hostil'
+    Textura: '5fb5dca7a579b466092703c9845e2fe6eb67529d48d461af3c23b64e43bd3634'
+    Permissao: 'starautoclick.mob.zumbi'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1000
+  esqueleto:
+    Ordem: 46
+    Entidade: SKELETON
+    Nome: '&cEsqueleto'
+    Categoria: 'Hostil'
+    Textura: '301268e9c492da1f0d88271cb492a4b302395f515a7bbf77f4a20b95fc02eb2'
+    Permissao: 'starautoclick.mob.esqueleto'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1000
+  aranha:
+    Ordem: 47
+    Entidade: SPIDER
+    Nome: '&eAranha'
+    Categoria: 'Neutro'
+    Textura: '7388173f4f82a14153e086bf137907256e512b21731f0470047bf2d453545d21'
+    Permissao: 'starautoclick.mob.aranha'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1000
+  creeper:
+    Ordem: 48
+    Entidade: CREEPER
+    Nome: '&cCreeper'
+    Categoria: 'Hostil'
+    Textura: 'c9dd803d1d8404a9a276e5e98a0ce3cdf303f82658129c9c803e725638952a43'
+    Permissao: 'starautoclick.mob.creeper'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  aranha_da_caverna:
+    Ordem: 49
+    Entidade: CAVE_SPIDER
+    Nome: '&cAranha da Caverna'
+    Categoria: 'Hostil'
+    Textura: '41645dfd77d09923107b3496e94eeb5c30329f97efc96ed76e226e98224'
+    Permissao: 'starautoclick.mob.aranha_da_caverna'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  slime:
+    Ordem: 50
+    Entidade: SLIME
+    Nome: '&cSlime'
+    Categoria: 'Hostil'
+    Textura: '6061f98aaff1e406e06f6f13ffe06005873f3d1eaddb1b59e19dda0ed9ffb270'
+    Permissao: 'starautoclick.mob.slime'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  zumbi_aldeao:
+    Ordem: 51
+    Entidade: ZOMBIE_VILLAGER
+    Nome: '&cZumbi Aldeao'
+    Categoria: 'Hostil'
+    Textura: '5de1fbe711a6812e53fd56280a8f7d9c3a5c9506678fdef8893418b0efac590a'
+    Permissao: 'starautoclick.mob.zumbi_aldeao'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  husk:
+    Ordem: 52
+    Entidade: HUSK
+    Nome: '&cHusk'
+    Categoria: 'Hostil'
+    Textura: '9b9da6b8d06cd28d441398b96766c3b4f370de85c7898205e5c429f178a24597'
+    Permissao: 'starautoclick.mob.husk'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  stray:
+    Ordem: 53
+    Entidade: STRAY
+    Nome: '&cStray'
+    Categoria: 'Hostil'
+    Textura: '78ddf76e555dd5c4aa8a0a5fc584520cd63d489c253de969f7f22f85a9a2d56'
+    Permissao: 'starautoclick.mob.stray'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  bogged:
+    Ordem: 54
+    Entidade: BOGGED
+    Nome: '&cBogged'
+    Categoria: 'Hostil'
+    Textura: 'a3b9003ba2d05562c75119b8a62185c67130e9282f7acbac4bc2824c21eb95d9'
+    Permissao: 'starautoclick.mob.bogged'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 1500
+  afogado:
+    Ordem: 55
+    Entidade: DROWNED
+    Nome: '&cAfogado'
+    Categoria: 'Hostil'
+    Textura: 'c3f7ccf61dbc3f9fe9a6333cde0c0e14399eb2eea71d34cf223b3ace22051'
+    Permissao: 'starautoclick.mob.afogado'
+    Permissao para comprar: ''
+    XP: 2
+    mcMMO:
+      Espadas: 2
+      Machados: 2
+      Desarmado: 2
+    Precos:
+      - 2000
+  traca:
+    Ordem: 56
+    Entidade: SILVERFISH
+    Nome: '&cTraca'
+    Categoria: 'Hostil'
+    Textura: 'a28e10609c7449fc7abc832b30caa4a0cd9de6f2586097c96c1c8c6e5c9508f7'
+    Permissao: 'starautoclick.mob.traca'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 1000
+  endermite:
+    Ordem: 57
+    Entidade: ENDERMITE
+    Nome: '&cEndermite'
+    Categoria: 'Hostil'
+    Textura: '5a1a0831aa03afb4212adcbb24e5dfaa7f476a1173fce259ef75a85855'
+    Permissao: 'starautoclick.mob.endermite'
+    Permissao para comprar: ''
+    XP: 1
+    mcMMO:
+      Espadas: 1
+      Machados: 1
+      Desarmado: 1
+    Precos:
+      - 1500
+  bruxa:
+    Ordem: 58
+    Entidade: WITCH
+    Nome: '&cBruxa'
+    Categoria: 'Hostil'
+    Textura: 'baf818b04d6ae98a69ad8d9463d8d0379921d3eb79222e1c6272f65372d80775'
+    Permissao: 'starautoclick.mob.bruxa'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 3000
+  enderman:
+    Ordem: 59
+    Entidade: ENDERMAN
+    Nome: '&eEnderman'
+    Categoria: 'Neutro'
+    Textura: '7a59bb0a7a32965b3d90d8eafa899d1835f424509eadd4e6b709ada50b9cf'
+    Permissao: 'starautoclick.mob.enderman'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 3000
+  fantasma:
+    Ordem: 60
+    Entidade: PHANTOM
+    Nome: '&cFantasma'
+    Categoria: 'Hostil'
+    Textura: 'e31cc7118e4c40b398ff80d23f5ee50797fc4c2609fed903fe5eb7528baba110'
+    Permissao: 'starautoclick.mob.fantasma'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 3000
+  guardiao:
+    Ordem: 61
+    Entidade: GUARDIAN
+    Nome: '&cGuardiao'
+    Categoria: 'Hostil'
+    Textura: '18d2a7fea7f2e0d916c7c6d7914937bb8dd3fbfd7f9483a4a3912f5a0fc63d3'
+    Permissao: 'starautoclick.mob.guardiao'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 4000
+  saqueador:
+    Ordem: 62
+    Entidade: PILLAGER
+    Nome: '&cSaqueador'
+    Categoria: 'Hostil'
+    Textura: '4aee6bb37cbfc92b0d86db5ada4790c64ff4468d68b84942fde04405e8ef5333'
+    Permissao: 'starautoclick.mob.saqueador'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 4000
+  vingador:
+    Ordem: 63
+    Entidade: VINDICATOR
+    Nome: '&cVingador'
+    Categoria: 'Hostil'
+    Textura: '4f6fb89d1c631bd7e79fe185ba1a6705425f5c31a5ff626521e395d4a6f7e2'
+    Permissao: 'starautoclick.mob.vingador'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 5000
+  vex:
+    Ordem: 64
+    Entidade: VEX
+    Nome: '&cVex'
+    Categoria: 'Hostil'
+    Textura: '77d36eb1dffc6d1533178de865b4bd2f98dc92c60dd936c5624d75883b4591d6'
+    Permissao: 'starautoclick.mob.vex'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 4000
+  invocador:
+    Ordem: 65
+    Entidade: EVOKER
+    Nome: '&cInvocador'
+    Categoria: 'Hostil'
+    Textura: '3433322e2ccbd9c55ef41d96f38dbc666c803045b24391ac9391dccad7cd'
+    Permissao: 'starautoclick.mob.invocador'
+    Permissao para comprar: ''
+    XP: 5
+    mcMMO:
+      Espadas: 5
+      Machados: 5
+      Desarmado: 5
+    Precos:
+      - 8000
+  devastador:
+    Ordem: 66
+    Entidade: RAVAGER
+    Nome: '&cDevastador'
+    Categoria: 'Hostil'
+    Textura: '5c73e16fa2926899cf18434360e2144f84ef1eb981f996148912148dd87e0b2a'
+    Permissao: 'starautoclick.mob.devastador'
+    Permissao para comprar: ''
+    XP: 6
+    mcMMO:
+      Espadas: 6
+      Machados: 6
+      Desarmado: 6
+    Precos:
+      - 12000
+  creaking:
+    Ordem: 67
+    Entidade: CREAKING
+    Nome: '&cCreaking'
+    Categoria: 'Hostil'
+    Textura: 'c84cd8cf6416a7985857d0fef98a5e7108cd34de2692bc3e9c334383dc984f82'
+    Permissao: 'starautoclick.mob.creaking'
+    Permissao para comprar: ''
+    XP: 4
+    mcMMO:
+      Espadas: 4
+      Machados: 4
+      Desarmado: 4
+    Precos:
+      - 6000
+  brisa:
+    Ordem: 68
+    Entidade: BREEZE
+    Nome: '&cBrisa'
+    Categoria: 'Hostil'
+    Textura: 'a275728af7e6a29c88125b675a39d88ae9919bb61fdc200337fed6ab0c49d65c'
+    Permissao: 'starautoclick.mob.brisa'
+    Permissao para comprar: ''
+    XP: 5
+    mcMMO:
+      Espadas: 5
+      Machados: 5
+      Desarmado: 5
+    Precos:
+      - 8000
+  warden:
+    Ordem: 69
+    Entidade: WARDEN
+    Nome: '&cWarden'
+    Categoria: 'Hostil'
+    Textura: 'cf6481c7c435c34f21dff1043a4c7034c445a383a5435fa1f2a503a348afd62f'
+    Permissao: 'starautoclick.mob.warden'
+    Permissao para comprar: ''
+    XP: 20
+    mcMMO:
+      Espadas: 20
+      Machados: 20
+      Desarmado: 20
+    Precos:
+      - 150000
+  porco_zumbi:
+    Ordem: 70
+    Entidade: PIG_ZOMBIE
+    Nome: '&ePiglin Zumbificado'
+    Categoria: 'Neutro'
+    Textura: 'e8f47087762154796ba7512201b6d90dafebce6cfdc651e341473c7b8672c570'
+    Permissao: 'starautoclick.mob.porco_zumbi'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 5000
+  cubo_de_magma:
+    Ordem: 71
+    Entidade: MAGMA_CUBE
+    Nome: '&cCubo de Magma'
+    Categoria: 'Hostil'
+    Textura: '38957d5023c937c4c41aa2412d43410bda23cf79a9f6ab36b76fef2d7c429'
+    Permissao: 'starautoclick.mob.cubo_de_magma'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 5000
+  blaze:
+    Ordem: 72
+    Entidade: BLAZE
+    Nome: '&cBlaze'
+    Categoria: 'Hostil'
+    Textura: '3d2a5b4b109bd788edba0171d0aab8a55305ac2f56184df70a319cd488a36c3e'
+    Permissao: 'starautoclick.mob.blaze'
+    Permissao para comprar: ''
+    XP: 4
+    mcMMO:
+      Espadas: 4
+      Machados: 4
+      Desarmado: 4
+    Precos:
+      - 8000
+  ghast:
+    Ordem: 73
+    Entidade: GHAST
+    Nome: '&cGhast'
+    Categoria: 'Hostil'
+    Textura: 'de8a38e9afbd3da10d19b577c55c7bfd6b4f2e407e44d4017b23be9167abff02'
+    Permissao: 'starautoclick.mob.ghast'
+    Permissao para comprar: ''
+    XP: 5
+    mcMMO:
+      Espadas: 5
+      Machados: 5
+      Desarmado: 5
+    Precos:
+      - 10000
+  esqueleto_wither:
+    Ordem: 74
+    Entidade: WITHER_SKELETON
+    Nome: '&cEsqueleto Wither'
+    Categoria: 'Hostil'
+    Textura: '886dc0cfcaeecfe1ab69146e4d4f1190837076a67dec135fabda6271f375d01f'
+    Permissao: 'starautoclick.mob.esqueleto_wither'
+    Permissao para comprar: ''
+    XP: 5
+    mcMMO:
+      Espadas: 5
+      Machados: 5
+      Desarmado: 5
+    Precos:
+      - 10000
+  piglin:
+    Ordem: 75
+    Entidade: PIGLIN
+    Nome: '&ePiglin'
+    Categoria: 'Neutro'
+    Textura: '5081a1239fffe135cbfa4a98a6aa6cc5b0787ad0790f56a16bf07f86374606c5'
+    Permissao: 'starautoclick.mob.piglin'
+    Permissao para comprar: ''
+    XP: 3
+    mcMMO:
+      Espadas: 3
+      Machados: 3
+      Desarmado: 3
+    Precos:
+      - 6000
+  piglin_bruto:
+    Ordem: 76
+    Entidade: PIGLIN_BRUTE
+    Nome: '&cPiglin Bruto'
+    Categoria: 'Hostil'
+    Textura: '3e300e9027349c4907497438bac29e3a4c87a848c50b34c21242727b57f4e1cf'
+    Permissao: 'starautoclick.mob.piglin_bruto'
+    Permissao para comprar: ''
+    XP: 6
+    mcMMO:
+      Espadas: 6
+      Machados: 6
+      Desarmado: 6
+    Precos:
+      - 12000
+  hoglin:
+    Ordem: 77
+    Entidade: HOGLIN
+    Nome: '&cHoglin'
+    Categoria: 'Hostil'
+    Textura: '7ad7b5aeb220c079e319cd70ac8800e80774a9313c22f38e77afb89999e6ec87'
+    Permissao: 'starautoclick.mob.hoglin'
+    Permissao para comprar: ''
+    XP: 4
+    mcMMO:
+      Espadas: 4
+      Machados: 4
+      Desarmado: 4
+    Precos:
+      - 8000
+  zoglin:
+    Ordem: 78
+    Entidade: ZOGLIN
+    Nome: '&cZoglin'
+    Categoria: 'Hostil'
+    Textura: 'e67e18602e03035ad68967ce090235d8996663fb9ea47578d3a7ebbc42a5ccf9'
+    Permissao: 'starautoclick.mob.zoglin'
+    Permissao para comprar: ''
+    XP: 4
+    mcMMO:
+      Espadas: 4
+      Machados: 4
+      Desarmado: 4
+    Precos:
+      - 8000
+  shulker:
+    Ordem: 79
+    Entidade: SHULKER
+    Nome: '&cShulker'
+    Categoria: 'Hostil'
+    Textura: 'f2c642cfe33814767d692d27599c8bef4f5a306fc210d4b50a580b7040f02b18'
+    Permissao: 'starautoclick.mob.shulker'
+    Permissao para comprar: ''
+    XP: 6
+    mcMMO:
+      Espadas: 6
+      Machados: 6
+      Desarmado: 6
+    Precos:
+      - 15000
+  guardiao_anciao:
+    Ordem: 80
+    Entidade: ELDER_GUARDIAN
+    Nome: '&5Guardiao Anciao'
+    Categoria: 'Chefe'
+    Textura: '4340a268f25fd5cc276ca147a8446b2630a55867a2349f7ca107c26eb58991'
+    Permissao: 'starautoclick.mob.guardiao_anciao'
+    Permissao para comprar: ''
+    XP: 10
+    mcMMO:
+      Espadas: 10
+      Machados: 10
+      Desarmado: 10
+    Precos:
+      - 50000
+  wither:
+    Ordem: 81
+    Entidade: WITHER
+    Nome: '&5Wither'
+    Categoria: 'Chefe'
+    Textura: '63b6bb53e33db2c19ae88b5ce7e24e8b5f3137c411b4f704f0aebd5deee15694'
+    Permissao: 'starautoclick.mob.wither'
+    Permissao para comprar: ''
+    XP: 50
+    mcMMO:
+      Espadas: 50
+      Machados: 50
+      Desarmado: 50
+    Precos:
+      - 500000
+  dragao:
+    Ordem: 82
+    Entidade: ENDER_DRAGON
+    Nome: '&5Dragao do Fim'
+    Categoria: 'Chefe'
+    Textura: 'f8aa3c53e467523c6c3d833bbbee37a66fc14f30530f39a6a9c0457ffe805c25'
+    Permissao: 'starautoclick.mob.dragao'
+    Permissao para comprar: ''
+    XP: 100
+    mcMMO:
+      Espadas: 100
+      Machados: 100
+      Desarmado: 100
+    Precos:
+      - 1000000
