@@ -1,0 +1,277 @@
+# ==========================================================================
+#  StarBedWars - kits
+#
+#  Um kit e aplicado na entrada de cada vida (nasce e renasce com ele).
+#  Kits.<modo> vale para aquele modo (solo, dupla, trio, quarteto, ranqueado);
+#  Kits.todos vale para todos os modos de uma vez.
+#
+#  Campos:
+#    Nome, Material (icone), Raridade (COMUM, RARO, EPICO, LENDARIO),
+#    Permissao (opcional: quem tem ja possui), Descricao (linhas da lore),
+#    Niveis.<n>: Coins e Cash (0 e 0 = so pela caixa misteriosa), Itens,
+#    Comandos (console, {jogador}) e Descricao propria do nivel.
+#
+#  Formato de item: "MATERIAL : quantidade : enchant=NOME:nivel : name=&aNome
+#  : effect=EFEITO:nivel:segundos : cor=equipe". "cor=equipe" tinge la,
+#  argila, vidro e couro com a cor da equipe.
+#  Permissao para ter todos os kits: starbedwars.kit.*
+# ==========================================================================
+
+Versao do modelo: 1
+
+Kits:
+  todos:
+    construtor:
+      Nome: 'Construtor'
+      Material: OAK_PLANKS
+      Raridade: COMUM
+      Descricao:
+        - '&7Comece com blocos para'
+        - '&7sair rushando'
+      Niveis:
+        1:
+          Coins: 5000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 8x tabuas de carvalho'
+          Itens:
+            - 'OAK_PLANKS : 8'
+        2:
+          Coins: 10000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 16x tabuas de carvalho'
+          Itens:
+            - 'OAK_PLANKS : 16'
+        3:
+          Coins: 20000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 16x tabuas e 8x la'
+          Itens:
+            - 'OAK_PLANKS : 16'
+            - 'WHITE_WOOL : 8 : cor=equipe'
+    flash:
+      Nome: 'Flash'
+      Material: GOLDEN_BOOTS
+      Raridade: COMUM
+      Descricao:
+        - '&7As vezes fugir e a melhor'
+        - '&7estrategia'
+      Niveis:
+        1:
+          Coins: 5000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x pocao de velocidade I (1:00)'
+          Itens:
+            - 'POTION : 1 : effect=SPEED:1:60 : name=&bVelocidade'
+        2:
+          Coins: 12000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 2x pocao de velocidade II (0:45)'
+          Itens:
+            - 'POTION : 2 : effect=SPEED:2:45 : name=&bVelocidade II'
+    minerador:
+      Nome: 'Minerador'
+      Material: STONE_PICKAXE
+      Raridade: COMUM
+      Descricao:
+        - '&7Uma picareta para abrir'
+        - '&7caminho pelas defesas'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x picareta de madeira'
+          Itens:
+            - 'WOODEN_PICKAXE : 1 : enchant=EFFICIENCY:1'
+        2:
+          Coins: 16000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x picareta de pedra (eficiencia I)'
+          Itens:
+            - 'STONE_PICKAXE : 1 : enchant=EFFICIENCY:1'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Material: BOW
+      Raridade: RARO
+      Descricao:
+        - '&7Comece atirando de longe'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x arco e 4x flechas'
+          Itens:
+            - 'BOW : 1'
+            - 'ARROW : 4'
+        2:
+          Coins: 30000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x arco (forca I) e 8x flechas'
+          Itens:
+            - 'BOW : 1 : enchant=POWER:1'
+            - 'ARROW : 8'
+    guerreiro:
+      Nome: 'Guerreiro'
+      Material: STONE_SWORD
+      Raridade: RARO
+      Descricao:
+        - '&7Uma espada melhor desde o'
+        - '&7primeiro segundo'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x espada de pedra'
+          Itens:
+            - 'STONE_SWORD : 1'
+        2:
+          Coins: 45000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x espada de pedra (afiacao I)'
+          Itens:
+            - 'STONE_SWORD : 1 : enchant=SHARPNESS:1'
+    curandeiro:
+      Nome: 'Curandeiro'
+      Material: GOLDEN_APPLE
+      Raridade: RARO
+      Descricao:
+        - '&7Uma segunda chance no'
+        - '&7meio da luta'
+      Niveis:
+        1:
+          Coins: 18000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x maca dourada'
+          Itens:
+            - 'GOLDEN_APPLE : 1'
+        2:
+          Coins: 36000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 2x maca dourada'
+          Itens:
+            - 'GOLDEN_APPLE : 2'
+    engenheiro:
+      Nome: 'Engenheiro'
+      Material: TNT
+      Raridade: EPICO
+      Descricao:
+        - '&7Explosivos desde o comeco'
+      Niveis:
+        1:
+          Coins: 40000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x TNT'
+          Itens:
+            - 'TNT : 1'
+        2:
+          Coins: 80000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x TNT e 1x bola de fogo'
+          Itens:
+            - 'TNT : 1'
+            - 'FIRE_CHARGE : 1 : name=&cBola de fogo'
+    piromaniaco:
+      Nome: 'Piromaniaco'
+      Material: FIRE_CHARGE
+      Raridade: EPICO
+      Descricao:
+        - '&7Bolas de fogo para derrubar'
+        - '&7quem cruza a ponte'
+      Niveis:
+        1:
+          Coins: 45000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 2x bola de fogo'
+          Itens:
+            - 'FIRE_CHARGE : 2 : name=&cBola de fogo'
+    fantasma:
+      Nome: 'Fantasma'
+      Material: ENDER_PEARL
+      Raridade: LENDARIO
+      Descricao:
+        - '&7Teleporte-se para a ilha'
+        - '&7inimiga sem ninguem ver'
+      Niveis:
+        1:
+          Coins: 120000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x perola do fim'
+          Itens:
+            - 'ENDER_PEARL : 1'
+        2:
+          Coins: 250000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x perola e 1x pocao de invisibilidade'
+          Itens:
+            - 'ENDER_PEARL : 1'
+            - 'POTION : 1 : effect=INVISIBILITY:1:30 : name=&7Invisibilidade'
+    blindado:
+      Nome: 'Blindado'
+      Material: CHAINMAIL_CHESTPLATE
+      Raridade: LENDARIO
+      Descricao:
+        - '&7Nasce com a armadura de'
+        - '&7malha ja vestida'
+      Niveis:
+        1:
+          Coins: 0
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- botas e calca de malha'
+          Itens:
+            - 'CHAINMAIL_BOOTS : 1'
+            - 'CHAINMAIL_LEGGINGS : 1'
+  ranqueado:
+    veterano:
+      Nome: 'Veterano'
+      Material: DIAMOND_SWORD
+      Raridade: LENDARIO
+      Descricao:
+        - '&7Exclusivo do ranqueado'
+      Niveis:
+        1:
+          Coins: 150000
+          Cash: 0
+          Descricao:
+            - ' &fItens:'
+            - '  &7- 1x espada de ferro'
+            - '  &7- 16x la'
+          Itens:
+            - 'IRON_SWORD : 1'
+            - 'WHITE_WOOL : 16 : cor=equipe'

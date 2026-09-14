@@ -1,0 +1,923 @@
+# ==========================================================================
+#  StarBedWars - missoes
+#
+#  Cada missao conta um tipo de estatistica a partir do momento em que o
+#  jogador comeca a jogar (o progresso e proprio da missao, nao o total).
+#  Modo: TODOS ou solo, dupla, trio, quarteto, ranqueado.
+#  Tipos: VITORIAS, ABATES, ELIMINACOES, CAMAS, PARTIDAS, EQUIPES_ELIMINADAS,
+#         ASSISTENCIAS, MORTES, PRIMEIRO_SANGUE.
+#  Recompensas: "coins : n", "xp : n", "caixa : <caixa> : n",
+#               "booster : <modelo>", "comando : <comando com {jogador}>".
+#  "Recompensas texto" e o que aparece na lore.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Missoes:
+  vencedor_1:
+    Nome: "Vencedor I"
+    Modo: TODOS
+    Tipo: VITORIAS
+    Quantidade: 10
+    Descricao:
+      - "&7Venca 10 partidas"
+    Recompensas:
+      - "coins : 200"
+      - "xp : 100"
+    Recompensas texto:
+      - "  &8- &6200 coins"
+      - "  &8- &b100 xp"
+  vencedor_2:
+    Nome: "Vencedor II"
+    Modo: TODOS
+    Tipo: VITORIAS
+    Quantidade: 25
+    Descricao:
+      - "&7Venca 25 partidas"
+    Recompensas:
+      - "coins : 800"
+      - "xp : 400"
+    Recompensas texto:
+      - "  &8- &6800 coins"
+      - "  &8- &b400 xp"
+  vencedor_3:
+    Nome: "Vencedor III"
+    Modo: TODOS
+    Tipo: VITORIAS
+    Quantidade: 50
+    Descricao:
+      - "&7Venca 50 partidas"
+    Recompensas:
+      - "coins : 1800"
+      - "xp : 900"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &61800 coins"
+      - "  &8- &b900 xp"
+      - "  &8- &b1 caixa especial"
+  vencedor_4:
+    Nome: "Vencedor IV"
+    Modo: TODOS
+    Tipo: VITORIAS
+    Quantidade: 100
+    Descricao:
+      - "&7Venca 100 partidas"
+    Recompensas:
+      - "coins : 3200"
+      - "xp : 1600"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &63200 coins"
+      - "  &8- &b1600 xp"
+      - "  &8- &b1 caixa especial"
+  vencedor_5:
+    Nome: "Vencedor V"
+    Modo: TODOS
+    Tipo: VITORIAS
+    Quantidade: 250
+    Descricao:
+      - "&7Venca 250 partidas"
+    Recompensas:
+      - "coins : 5000"
+      - "xp : 2500"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &65000 coins"
+      - "  &8- &b2500 xp"
+      - "  &8- &b1 caixa especial"
+  cacador_1:
+    Nome: "Cacador I"
+    Modo: TODOS
+    Tipo: ABATES
+    Quantidade: 50
+    Descricao:
+      - "&7Mate 50 jogadores"
+    Recompensas:
+      - "coins : 200"
+      - "xp : 100"
+    Recompensas texto:
+      - "  &8- &6200 coins"
+      - "  &8- &b100 xp"
+  cacador_2:
+    Nome: "Cacador II"
+    Modo: TODOS
+    Tipo: ABATES
+    Quantidade: 150
+    Descricao:
+      - "&7Mate 150 jogadores"
+    Recompensas:
+      - "coins : 800"
+      - "xp : 400"
+    Recompensas texto:
+      - "  &8- &6800 coins"
+      - "  &8- &b400 xp"
+  cacador_3:
+    Nome: "Cacador III"
+    Modo: TODOS
+    Tipo: ABATES
+    Quantidade: 400
+    Descricao:
+      - "&7Mate 400 jogadores"
+    Recompensas:
+      - "coins : 1800"
+      - "xp : 900"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &61800 coins"
+      - "  &8- &b900 xp"
+      - "  &8- &b1 caixa especial"
+  cacador_4:
+    Nome: "Cacador IV"
+    Modo: TODOS
+    Tipo: ABATES
+    Quantidade: 1000
+    Descricao:
+      - "&7Mate 1000 jogadores"
+    Recompensas:
+      - "coins : 3200"
+      - "xp : 1600"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &63200 coins"
+      - "  &8- &b1600 xp"
+      - "  &8- &b1 caixa especial"
+  cacador_5:
+    Nome: "Cacador V"
+    Modo: TODOS
+    Tipo: ABATES
+    Quantidade: 2500
+    Descricao:
+      - "&7Mate 2500 jogadores"
+    Recompensas:
+      - "coins : 5000"
+      - "xp : 2500"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &65000 coins"
+      - "  &8- &b2500 xp"
+      - "  &8- &b1 caixa especial"
+  finalizador_1:
+    Nome: "Finalizador I"
+    Modo: TODOS
+    Tipo: ELIMINACOES
+    Quantidade: 25
+    Descricao:
+      - "&7De 25 abates finais"
+    Recompensas:
+      - "coins : 200"
+      - "xp : 100"
+    Recompensas texto:
+      - "  &8- &6200 coins"
+      - "  &8- &b100 xp"
+  finalizador_2:
+    Nome: "Finalizador II"
+    Modo: TODOS
+    Tipo: ELIMINACOES
+    Quantidade: 75
+    Descricao:
+      - "&7De 75 abates finais"
+    Recompensas:
+      - "coins : 800"
+      - "xp : 400"
+    Recompensas texto:
+      - "  &8- &6800 coins"
+      - "  &8- &b400 xp"
+  finalizador_3:
+    Nome: "Finalizador III"
+    Modo: TODOS
+    Tipo: ELIMINACOES
+    Quantidade: 200
+    Descricao:
+      - "&7De 200 abates finais"
+    Recompensas:
+      - "coins : 1800"
+      - "xp : 900"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &61800 coins"
+      - "  &8- &b900 xp"
+      - "  &8- &b1 caixa especial"
+  finalizador_4:
+    Nome: "Finalizador IV"
+    Modo: TODOS
+    Tipo: ELIMINACOES
+    Quantidade: 500
+    Descricao:
+      - "&7De 500 abates finais"
+    Recompensas:
+      - "coins : 3200"
+      - "xp : 1600"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &63200 coins"
+      - "  &8- &b1600 xp"
+      - "  &8- &b1 caixa especial"
+  finalizador_5:
+    Nome: "Finalizador V"
+    Modo: TODOS
+    Tipo: ELIMINACOES
+    Quantidade: 1200
+    Descricao:
+      - "&7De 1200 abates finais"
+    Recompensas:
+      - "coins : 5000"
+      - "xp : 2500"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &65000 coins"
+      - "  &8- &b2500 xp"
+      - "  &8- &b1 caixa especial"
+  destruidor_1:
+    Nome: "Destruidor I"
+    Modo: TODOS
+    Tipo: CAMAS
+    Quantidade: 10
+    Descricao:
+      - "&7Destrua 10 camas"
+    Recompensas:
+      - "coins : 200"
+      - "xp : 100"
+    Recompensas texto:
+      - "  &8- &6200 coins"
+      - "  &8- &b100 xp"
+  destruidor_2:
+    Nome: "Destruidor II"
+    Modo: TODOS
+    Tipo: CAMAS
+    Quantidade: 30
+    Descricao:
+      - "&7Destrua 30 camas"
+    Recompensas:
+      - "coins : 800"
+      - "xp : 400"
+    Recompensas texto:
+      - "  &8- &6800 coins"
+      - "  &8- &b400 xp"
+  destruidor_3:
+    Nome: "Destruidor III"
+    Modo: TODOS
+    Tipo: CAMAS
+    Quantidade: 80
+    Descricao:
+      - "&7Destrua 80 camas"
+    Recompensas:
+      - "coins : 1800"
+      - "xp : 900"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &61800 coins"
+      - "  &8- &b900 xp"
+      - "  &8- &b1 caixa especial"
+  destruidor_4:
+    Nome: "Destruidor IV"
+    Modo: TODOS
+    Tipo: CAMAS
+    Quantidade: 200
+    Descricao:
+      - "&7Destrua 200 camas"
+    Recompensas:
+      - "coins : 3200"
+      - "xp : 1600"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &63200 coins"
+      - "  &8- &b1600 xp"
+      - "  &8- &b1 caixa especial"
+  destruidor_5:
+    Nome: "Destruidor V"
+    Modo: TODOS
+    Tipo: CAMAS
+    Quantidade: 500
+    Descricao:
+      - "&7Destrua 500 camas"
+    Recompensas:
+      - "coins : 5000"
+      - "xp : 2500"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &65000 coins"
+      - "  &8- &b2500 xp"
+      - "  &8- &b1 caixa especial"
+  veterano_1:
+    Nome: "Veterano I"
+    Modo: TODOS
+    Tipo: PARTIDAS
+    Quantidade: 25
+    Descricao:
+      - "&7Jogue 25 partidas"
+    Recompensas:
+      - "coins : 200"
+      - "xp : 100"
+    Recompensas texto:
+      - "  &8- &6200 coins"
+      - "  &8- &b100 xp"
+  veterano_2:
+    Nome: "Veterano II"
+    Modo: TODOS
+    Tipo: PARTIDAS
+    Quantidade: 75
+    Descricao:
+      - "&7Jogue 75 partidas"
+    Recompensas:
+      - "coins : 800"
+      - "xp : 400"
+    Recompensas texto:
+      - "  &8- &6800 coins"
+      - "  &8- &b400 xp"
+  veterano_3:
+    Nome: "Veterano III"
+    Modo: TODOS
+    Tipo: PARTIDAS
+    Quantidade: 200
+    Descricao:
+      - "&7Jogue 200 partidas"
+    Recompensas:
+      - "coins : 1800"
+      - "xp : 900"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &61800 coins"
+      - "  &8- &b900 xp"
+      - "  &8- &b1 caixa especial"
+  veterano_4:
+    Nome: "Veterano IV"
+    Modo: TODOS
+    Tipo: PARTIDAS
+    Quantidade: 500
+    Descricao:
+      - "&7Jogue 500 partidas"
+    Recompensas:
+      - "coins : 3200"
+      - "xp : 1600"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &63200 coins"
+      - "  &8- &b1600 xp"
+      - "  &8- &b1 caixa especial"
+  veterano_5:
+    Nome: "Veterano V"
+    Modo: TODOS
+    Tipo: PARTIDAS
+    Quantidade: 1000
+    Descricao:
+      - "&7Jogue 1000 partidas"
+    Recompensas:
+      - "coins : 5000"
+      - "xp : 2500"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &65000 coins"
+      - "  &8- &b2500 xp"
+      - "  &8- &b1 caixa especial"
+  exterminador_1:
+    Nome: "Exterminador I"
+    Modo: TODOS
+    Tipo: EQUIPES_ELIMINADAS
+    Quantidade: 10
+    Descricao:
+      - "&7Elimine 10 equipes"
+    Recompensas:
+      - "coins : 200"
+      - "xp : 100"
+    Recompensas texto:
+      - "  &8- &6200 coins"
+      - "  &8- &b100 xp"
+  exterminador_2:
+    Nome: "Exterminador II"
+    Modo: TODOS
+    Tipo: EQUIPES_ELIMINADAS
+    Quantidade: 30
+    Descricao:
+      - "&7Elimine 30 equipes"
+    Recompensas:
+      - "coins : 800"
+      - "xp : 400"
+    Recompensas texto:
+      - "  &8- &6800 coins"
+      - "  &8- &b400 xp"
+  exterminador_3:
+    Nome: "Exterminador III"
+    Modo: TODOS
+    Tipo: EQUIPES_ELIMINADAS
+    Quantidade: 80
+    Descricao:
+      - "&7Elimine 80 equipes"
+    Recompensas:
+      - "coins : 1800"
+      - "xp : 900"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &61800 coins"
+      - "  &8- &b900 xp"
+      - "  &8- &b1 caixa especial"
+  exterminador_4:
+    Nome: "Exterminador IV"
+    Modo: TODOS
+    Tipo: EQUIPES_ELIMINADAS
+    Quantidade: 200
+    Descricao:
+      - "&7Elimine 200 equipes"
+    Recompensas:
+      - "coins : 3200"
+      - "xp : 1600"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &63200 coins"
+      - "  &8- &b1600 xp"
+      - "  &8- &b1 caixa especial"
+  exterminador_5:
+    Nome: "Exterminador V"
+    Modo: TODOS
+    Tipo: EQUIPES_ELIMINADAS
+    Quantidade: 500
+    Descricao:
+      - "&7Elimine 500 equipes"
+    Recompensas:
+      - "coins : 5000"
+      - "xp : 2500"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &65000 coins"
+      - "  &8- &b2500 xp"
+      - "  &8- &b1 caixa especial"
+  parceiro_1:
+    Nome: "Parceiro I"
+    Modo: TODOS
+    Tipo: ASSISTENCIAS
+    Quantidade: 25
+    Descricao:
+      - "&7Faca 25 assistencias"
+    Recompensas:
+      - "coins : 200"
+      - "xp : 100"
+    Recompensas texto:
+      - "  &8- &6200 coins"
+      - "  &8- &b100 xp"
+  parceiro_2:
+    Nome: "Parceiro II"
+    Modo: TODOS
+    Tipo: ASSISTENCIAS
+    Quantidade: 75
+    Descricao:
+      - "&7Faca 75 assistencias"
+    Recompensas:
+      - "coins : 800"
+      - "xp : 400"
+    Recompensas texto:
+      - "  &8- &6800 coins"
+      - "  &8- &b400 xp"
+  parceiro_3:
+    Nome: "Parceiro III"
+    Modo: TODOS
+    Tipo: ASSISTENCIAS
+    Quantidade: 200
+    Descricao:
+      - "&7Faca 200 assistencias"
+    Recompensas:
+      - "coins : 1800"
+      - "xp : 900"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &61800 coins"
+      - "  &8- &b900 xp"
+      - "  &8- &b1 caixa especial"
+  parceiro_4:
+    Nome: "Parceiro IV"
+    Modo: TODOS
+    Tipo: ASSISTENCIAS
+    Quantidade: 500
+    Descricao:
+      - "&7Faca 500 assistencias"
+    Recompensas:
+      - "coins : 3200"
+      - "xp : 1600"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &63200 coins"
+      - "  &8- &b1600 xp"
+      - "  &8- &b1 caixa especial"
+  parceiro_5:
+    Nome: "Parceiro V"
+    Modo: TODOS
+    Tipo: ASSISTENCIAS
+    Quantidade: 1000
+    Descricao:
+      - "&7Faca 1000 assistencias"
+    Recompensas:
+      - "coins : 5000"
+      - "xp : 2500"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &65000 coins"
+      - "  &8- &b2500 xp"
+      - "  &8- &b1 caixa especial"
+  campeao_solo_1:
+    Nome: "Campeao I [Solo]"
+    Modo: solo
+    Tipo: VITORIAS
+    Quantidade: 5
+    Descricao:
+      - "&7Venca 5 partidas no modo Solo"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  campeao_solo_2:
+    Nome: "Campeao II [Solo]"
+    Modo: solo
+    Tipo: VITORIAS
+    Quantidade: 15
+    Descricao:
+      - "&7Venca 15 partidas no modo Solo"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  campeao_solo_3:
+    Nome: "Campeao III [Solo]"
+    Modo: solo
+    Tipo: VITORIAS
+    Quantidade: 40
+    Descricao:
+      - "&7Venca 40 partidas no modo Solo"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  assassino_solo_1:
+    Nome: "Assassino I [Solo]"
+    Modo: solo
+    Tipo: ABATES
+    Quantidade: 25
+    Descricao:
+      - "&7Mate 25 jogadores no modo Solo"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  assassino_solo_2:
+    Nome: "Assassino II [Solo]"
+    Modo: solo
+    Tipo: ABATES
+    Quantidade: 75
+    Descricao:
+      - "&7Mate 75 jogadores no modo Solo"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  assassino_solo_3:
+    Nome: "Assassino III [Solo]"
+    Modo: solo
+    Tipo: ABATES
+    Quantidade: 200
+    Descricao:
+      - "&7Mate 200 jogadores no modo Solo"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  campeao_dupla_1:
+    Nome: "Campeao I [Dupla]"
+    Modo: dupla
+    Tipo: VITORIAS
+    Quantidade: 5
+    Descricao:
+      - "&7Venca 5 partidas no modo Dupla"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  campeao_dupla_2:
+    Nome: "Campeao II [Dupla]"
+    Modo: dupla
+    Tipo: VITORIAS
+    Quantidade: 15
+    Descricao:
+      - "&7Venca 15 partidas no modo Dupla"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  campeao_dupla_3:
+    Nome: "Campeao III [Dupla]"
+    Modo: dupla
+    Tipo: VITORIAS
+    Quantidade: 40
+    Descricao:
+      - "&7Venca 40 partidas no modo Dupla"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  assassino_dupla_1:
+    Nome: "Assassino I [Dupla]"
+    Modo: dupla
+    Tipo: ABATES
+    Quantidade: 25
+    Descricao:
+      - "&7Mate 25 jogadores no modo Dupla"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  assassino_dupla_2:
+    Nome: "Assassino II [Dupla]"
+    Modo: dupla
+    Tipo: ABATES
+    Quantidade: 75
+    Descricao:
+      - "&7Mate 75 jogadores no modo Dupla"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  assassino_dupla_3:
+    Nome: "Assassino III [Dupla]"
+    Modo: dupla
+    Tipo: ABATES
+    Quantidade: 200
+    Descricao:
+      - "&7Mate 200 jogadores no modo Dupla"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  campeao_trio_1:
+    Nome: "Campeao I [Trio]"
+    Modo: trio
+    Tipo: VITORIAS
+    Quantidade: 5
+    Descricao:
+      - "&7Venca 5 partidas no modo Trio"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  campeao_trio_2:
+    Nome: "Campeao II [Trio]"
+    Modo: trio
+    Tipo: VITORIAS
+    Quantidade: 15
+    Descricao:
+      - "&7Venca 15 partidas no modo Trio"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  campeao_trio_3:
+    Nome: "Campeao III [Trio]"
+    Modo: trio
+    Tipo: VITORIAS
+    Quantidade: 40
+    Descricao:
+      - "&7Venca 40 partidas no modo Trio"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  assassino_trio_1:
+    Nome: "Assassino I [Trio]"
+    Modo: trio
+    Tipo: ABATES
+    Quantidade: 25
+    Descricao:
+      - "&7Mate 25 jogadores no modo Trio"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  assassino_trio_2:
+    Nome: "Assassino II [Trio]"
+    Modo: trio
+    Tipo: ABATES
+    Quantidade: 75
+    Descricao:
+      - "&7Mate 75 jogadores no modo Trio"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  assassino_trio_3:
+    Nome: "Assassino III [Trio]"
+    Modo: trio
+    Tipo: ABATES
+    Quantidade: 200
+    Descricao:
+      - "&7Mate 200 jogadores no modo Trio"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  campeao_quarteto_1:
+    Nome: "Campeao I [Quarteto]"
+    Modo: quarteto
+    Tipo: VITORIAS
+    Quantidade: 5
+    Descricao:
+      - "&7Venca 5 partidas no modo Quarteto"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  campeao_quarteto_2:
+    Nome: "Campeao II [Quarteto]"
+    Modo: quarteto
+    Tipo: VITORIAS
+    Quantidade: 15
+    Descricao:
+      - "&7Venca 15 partidas no modo Quarteto"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  campeao_quarteto_3:
+    Nome: "Campeao III [Quarteto]"
+    Modo: quarteto
+    Tipo: VITORIAS
+    Quantidade: 40
+    Descricao:
+      - "&7Venca 40 partidas no modo Quarteto"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  assassino_quarteto_1:
+    Nome: "Assassino I [Quarteto]"
+    Modo: quarteto
+    Tipo: ABATES
+    Quantidade: 25
+    Descricao:
+      - "&7Mate 25 jogadores no modo Quarteto"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  assassino_quarteto_2:
+    Nome: "Assassino II [Quarteto]"
+    Modo: quarteto
+    Tipo: ABATES
+    Quantidade: 75
+    Descricao:
+      - "&7Mate 75 jogadores no modo Quarteto"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  assassino_quarteto_3:
+    Nome: "Assassino III [Quarteto]"
+    Modo: quarteto
+    Tipo: ABATES
+    Quantidade: 200
+    Descricao:
+      - "&7Mate 200 jogadores no modo Quarteto"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  campeao_ranqueado_1:
+    Nome: "Campeao I [Ranqueado]"
+    Modo: ranqueado
+    Tipo: VITORIAS
+    Quantidade: 5
+    Descricao:
+      - "&7Venca 5 partidas no modo Ranqueado"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  campeao_ranqueado_2:
+    Nome: "Campeao II [Ranqueado]"
+    Modo: ranqueado
+    Tipo: VITORIAS
+    Quantidade: 15
+    Descricao:
+      - "&7Venca 15 partidas no modo Ranqueado"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  campeao_ranqueado_3:
+    Nome: "Campeao III [Ranqueado]"
+    Modo: ranqueado
+    Tipo: VITORIAS
+    Quantidade: 40
+    Descricao:
+      - "&7Venca 40 partidas no modo Ranqueado"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"
+  assassino_ranqueado_1:
+    Nome: "Assassino I [Ranqueado]"
+    Modo: ranqueado
+    Tipo: ABATES
+    Quantidade: 25
+    Descricao:
+      - "&7Mate 25 jogadores no modo Ranqueado"
+    Recompensas:
+      - "coins : 300"
+      - "xp : 150"
+    Recompensas texto:
+      - "  &8- &6300 coins"
+      - "  &8- &b150 xp"
+  assassino_ranqueado_2:
+    Nome: "Assassino II [Ranqueado]"
+    Modo: ranqueado
+    Tipo: ABATES
+    Quantidade: 75
+    Descricao:
+      - "&7Mate 75 jogadores no modo Ranqueado"
+    Recompensas:
+      - "coins : 600"
+      - "xp : 300"
+    Recompensas texto:
+      - "  &8- &6600 coins"
+      - "  &8- &b300 xp"
+  assassino_ranqueado_3:
+    Nome: "Assassino III [Ranqueado]"
+    Modo: ranqueado
+    Tipo: ABATES
+    Quantidade: 200
+    Descricao:
+      - "&7Mate 200 jogadores no modo Ranqueado"
+    Recompensas:
+      - "coins : 900"
+      - "xp : 450"
+      - "caixa : especiais : 1"
+    Recompensas texto:
+      - "  &8- &6900 coins"
+      - "  &8- &b450 xp"
+      - "  &8- &b1 caixa especial"

@@ -1,0 +1,580 @@
+# ==========================================================================
+#  StarBedWars - menus
+#
+#  Cada menu tem Titulo, Linhas e os Itens fixos (Slot -1 desliga o item).
+#  Menus de lista tem "Slots" (onde a lista e desenhada) e os botoes Voltar,
+#  Anterior e Proximo. Material aceita o nome moderno (RED_WOOL) ou o antigo
+#  (WOOL:14); uma cabeca aceita "Textura: <hash ou base64>" ou "Dono: {jogador}".
+#
+#  A lore de kits, habilidades e cosmeticos e montada assim: descricao do item
+#  (do arquivo dele) + o bloco de "Estados" abaixo, conforme a situacao.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Botoes:
+  Voltar:
+    Nome: '&cVoltar'
+    Material: ARROW
+  Anterior:
+    Nome: '&ePagina anterior'
+    Material: ARROW
+  Proximo:
+    Nome: '&eProxima pagina'
+    Material: ARROW
+  Fechar:
+    Nome: '&cFechar'
+    Material: BARRIER
+  Vidro:
+    Nome: ' '
+    Material: BLACK_STAINED_GLASS_PANE
+
+# Linhas acrescentadas na lore dos itens de kit/habilidade/cosmetico.
+# {raridade}, {nivel}, {proximo_nivel}, {preco_coins}, {preco_cash}, {encontrado}.
+Estados:
+  Selecionado:
+    - ''
+    - ' &fRaridade: {raridade}'
+    - ''
+    - '&eSelecionado'
+  Desbloqueado:
+    - ''
+    - ' &fRaridade: {raridade}'
+    - ' &fNivel: &7{nivel}'
+    - ''
+    - '&aClique para selecionar'
+  Evoluir:
+    - ''
+    - ' &fRaridade: {raridade}'
+    - ' &fNivel: &7{nivel} &8-> &7{proximo_nivel}'
+    - ' &fEvoluir: &6{preco_coins} coins {cash}'
+    - ''
+    - ' &eBotao esquerdo: &7selecionar'
+    - ' &eBotao direito: &7evoluir'
+  Comprar:
+    - ''
+    - ' &fRaridade: {raridade}'
+    - ' &fPreco: &6{preco_coins} coins {cash}'
+    - ''
+    - '&aClique para comprar'
+  Bloqueado:
+    - ''
+    - ' &fRaridade: {raridade}'
+    - ''
+    - '&cSo sai da caixa misteriosa'
+  Cash: '&fe &d{preco_cash} cash'
+  Nivel maximo: 'Maximo'
+  Limpar:
+    Nome: '&cRemover selecao'
+    Material: BARRIER
+    Slot: 49
+    Lore:
+      - '&7Volta a jogar sem esse item'
+
+# Lista padrao de 6 linhas: os itens ficam no miolo (28 por pagina).
+Lista:
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Voltar: 45
+  Anterior: 48
+  Proximo: 50
+
+Loja:
+  Titulo: '&8Loja - BedWars'
+  Linhas: 6
+  Itens:
+    Kits:
+      Slot: 10
+      Nome: '&aKits'
+      Material: IRON_SWORD
+      Lore:
+        - '&7Comece a partida com itens'
+        - ''
+        - ' &fDesbloqueados: &a{desbloqueados}/{total}'
+        - ''
+        - '&eClique para ver'
+    Habilidades:
+      Slot: 12
+      Nome: '&aHabilidades'
+      Material: EXPERIENCE_BOTTLE
+      Lore:
+        - '&7Vantagens passivas na partida'
+        - ''
+        - ' &fDesbloqueadas: &a{desbloqueados}/{total}'
+        - ''
+        - '&eClique para ver'
+    Jaulas:
+      Slot: 14
+      Nome: '&aJaulas'
+      Material: IRON_BARS
+      Lore:
+        - '&7A jaula onde voce espera o inicio'
+        - ''
+        - ' &fDesbloqueadas: &a{desbloqueados}/{total}'
+        - ''
+        - '&eClique para ver'
+    Comemoracoes:
+      Slot: 16
+      Nome: '&aComemoracoes de vitoria'
+      Material: DRAGON_EGG
+      Lore:
+        - '&7O show quando voce vence'
+        - ''
+        - ' &fDesbloqueadas: &a{desbloqueados}/{total}'
+        - ''
+        - '&eClique para ver'
+    Abate:
+      Slot: 28
+      Nome: '&aEfeitos de abate'
+      Material: BLAZE_POWDER
+      Lore:
+        - '&7O efeito quando voce mata alguem'
+        - ''
+        - ' &fDesbloqueados: &a{desbloqueados}/{total}'
+        - ''
+        - '&eClique para ver'
+    Grito:
+      Slot: 30
+      Nome: '&aGritos de morte'
+      Material: NOTE_BLOCK
+      Lore:
+        - '&7O som que voce faz ao morrer'
+        - ''
+        - ' &fDesbloqueados: &a{desbloqueados}/{total}'
+        - ''
+        - '&eClique para ver'
+    Cama:
+      Slot: 32
+      Nome: '&aDestruicao de cama'
+      Material: RED_BED
+      Lore:
+        - '&7A animacao ao destruir uma cama'
+        - ''
+        - ' &fDesbloqueadas: &a{desbloqueados}/{total}'
+        - ''
+        - '&eClique para ver'
+    Balao:
+      Slot: 34
+      Nome: '&aBaloes'
+      Material: PLAYER_HEAD
+      Textura: '5a5ab05ea254c32e3c48f3fdcf9fd9d77d3cba04e6b5ec2e68b3cbdcfac3fd'
+      Lore:
+        - '&7Um balao que te acompanha no lobby'
+        - ''
+        - ' &fDesbloqueados: &a{desbloqueados}/{total}'
+        - ''
+        - '&eClique para ver'
+    Boosters:
+      Slot: 48
+      Nome: '&dBoosters'
+      Material: NETHER_STAR
+      Lore:
+        - '&7Multiplique suas coins e xp'
+        - ''
+        - ' &fAtivo: {booster}'
+        - ''
+        - '&eClique para ver'
+    Caixas:
+      Slot: 50
+      Nome: '&bCaixas misteriosas'
+      Material: CHEST
+      Lore:
+        - '&7Suas caixas e fragmentos'
+        - ''
+        - ' &fCaixas: &a{caixas} &f/ Fragmentos: &b{fragmentos}'
+        - ''
+        - '&eClique para ver'
+
+Modos:
+  Titulo: '&8{categoria} - escolha o modo'
+  Linhas: 3
+  Itens:
+    solo:
+      Slot: 10
+      Material: WOODEN_SWORD
+    dupla:
+      Slot: 12
+      Material: STONE_SWORD
+    trio:
+      Slot: 14
+      Material: IRON_SWORD
+    quarteto:
+      Slot: 16
+      Material: GOLDEN_SWORD
+    ranqueado:
+      Slot: 22
+      Material: DIAMOND_SWORD
+  Nome: '&a{categoria} ({modo})'
+  Lore:
+    - ''
+    - ' &fDesbloqueados: &a{desbloqueados}/{total}'
+    - ''
+    - '&eClique para ver'
+
+Kits:
+  Titulo: '&8Kits - {modo}'
+Habilidades:
+  Titulo: '&8Habilidades - {modo}'
+Jaulas:
+  Titulo: '&8Jaulas'
+Comemoracoes:
+  Titulo: '&8Comemoracoes'
+Abate:
+  Titulo: '&8Efeitos de abate'
+Grito:
+  Titulo: '&8Gritos de morte'
+Cama:
+  Titulo: '&8Destruicao de cama'
+Balao:
+  Titulo: '&8Baloes'
+
+Boosters:
+  Titulo: '&8Boosters'
+  Booster:
+    Nome: '&dBooster {multiplicador}x'
+    Material: EXPERIENCE_BOTTLE
+    Lore:
+      - ''
+      - ' &fMultiplicador: &d{multiplicador}x'
+      - ' &fDuracao: &7{duracao}'
+      - ''
+      - '&aClique para ativar'
+  Itens:
+    Ativo:
+      Slot: 4
+      Nome: '&dBooster ativo'
+      Material: NETHER_STAR
+      Lore:
+        - ''
+        - ' &fMultiplicador: &d{multiplicador}x'
+        - ' &fAcaba em: &7{restante}'
+      Lore inativo:
+        - ''
+        - ' &7Nenhum booster ativo'
+    Vazio:
+      Slot: 22
+      Nome: '&cVoce nao tem boosters'
+      Material: COBWEB
+
+Caixas:
+  Titulo: '&8Caixas misteriosas'
+  Caixa:
+    Lore:
+      - ''
+      - ' &fQuantidade: &a{quantidade}'
+      - ''
+      - '&aClique para abrir'
+  Itens:
+    Info:
+      Slot: 49
+      Nome: '&bInformacoes'
+      Material: BOOK
+      Lore:
+        - ''
+        - ' &fFragmentos: &b{fragmentos}'
+        - ' &fUltimas recompensas:'
+        - '{recompensas}'
+    Fabricar:
+      Slot: 50
+      Nome: '&aFabricar caixas'
+      Material: ANVIL
+      Lore:
+        - ''
+        - ' &fFragmentos: &b{fragmentos}'
+        - ''
+        - '&eClique para fabricar'
+    Vazio:
+      Slot: 22
+      Nome: '&cVoce nao tem caixas'
+      Material: COBWEB
+
+Fabricar:
+  Titulo: '&8Fabricar caixas'
+  Linhas: 4
+  Voltar: 31
+  Pacote:
+    Nome: '&aPacote com {caixas} caixa(s)'
+    Material: CHEST
+    Lore:
+      - ''
+      - ' &fCusto: &b{fragmentos} fragmentos'
+      - ' &fVoce tem: &b{seus}'
+      - ''
+      - '{pode}'
+    Pode: '&aClique para fabricar'
+    Nao pode: '&cFragmentos insuficientes'
+  Slots: [ 12, 13, 14, 15, 16 ]
+
+Abrir:
+  Titulo: '&8Abrindo caixa...'
+  Linhas: 3
+  # Ticks de animacao (giro dos itens).
+  Duracao: 60
+  Slot final: 13
+
+Jogar:
+  Titulo: '&8BedWars - {modo}'
+  Linhas: 3
+  Itens:
+    Jogar:
+      Slot: 11
+      Nome: '&aJogar {modo}'
+      Material: ENDER_PEARL
+      Lore:
+        - ''
+        - ' &fEsperando: &7{esperando}'
+        - ' &fJogando: &7{jogando}'
+        - ''
+        - '&eClique para jogar'
+    Perfil:
+      Slot: 13
+      Nome: '&a{jogador}'
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Lore:
+        - ''
+        - ' &fNivel: {nivel_formatado}'
+        - ' &fLiga: {liga}'
+        - ' &fVitorias ({modo}): &a{vitorias_modo}'
+        - ' &fSequencia: &a{winstreak}'
+    Mapas:
+      Slot: 15
+      Nome: '&aEscolher mapa'
+      Material: FILLED_MAP
+      Lore:
+        - ''
+        - ' &fEscolhas restantes hoje: &7{restante}'
+        - ''
+        - '&eClique para escolher'
+
+Mapas:
+  Titulo: '&8Mapas - {modo}'
+  Mapa:
+    Nome: '&a{mapa}'
+    Material: MAP
+    Lore:
+      - ''
+      - ' &fModo: &7{modo}'
+      - ' &fJogadores: &7{jogadores}/{maximo}'
+      - ' &fEstado: &7{estado}'
+      - ''
+      - '{pode}'
+    Pode: '&aClique para jogar'
+    Nao pode: '&cLimite diario atingido'
+    Indisponivel: '&cIndisponivel agora'
+
+Equipes:
+  Titulo: '&8Escolha sua equipe'
+  Equipe:
+    Nome: '{cor}{equipe}'
+    Lore:
+      - ''
+      - ' &fJogadores: &7{jogadores}/{maximo}'
+      - '{membros}'
+      - ''
+      - '&eClique para entrar'
+    Membro: '  &7- {jogador}'
+
+Loja partida:
+  Titulo: '&8Loja - {categoria}'
+  Linhas: 6
+  # Categorias na primeira linha, itens a partir da terceira.
+  Slots categorias: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+  Slots itens: [ 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Separador: GRAY_STAINED_GLASS_PANE
+  Separador selecionado: GREEN_STAINED_GLASS_PANE
+  Item:
+    Lore:
+      - ''
+      - ' &fPreco: {cor_preco}{preco}'
+      - ' &fPerde ao morrer: {perde}'
+      - ''
+      - '{pode}'
+      - '&7Shift + clique: favoritar'
+    Pode: '&aClique para comprar'
+    Nao pode: '&cVoce nao tem {preco}'
+  Favoritos:
+    Nome: '&aCompra rapida'
+    Material: NETHER_STAR
+    Lore:
+      - '&7Seus itens favoritos'
+      - '&7(shift + clique num item para favoritar)'
+    Vazio:
+      Nome: '&7Espaco vazio'
+      Material: LIGHT_GRAY_STAINED_GLASS_PANE
+      Lore:
+        - '&7Shift + clique num item'
+        - '&7da loja para favoritar'
+    Maximo: 14
+
+Melhorias:
+  Titulo: '&8Melhorias da equipe'
+  Linhas: 5
+  Itens:
+    Armadilhas:
+      Slot: 31
+      Nome: '&aComprar armadilhas'
+      Material: TRIPWIRE_HOOK
+      Lore:
+        - ''
+        - ' &fFila: &7{fila}/{maximo}'
+        - ''
+        - '&eClique para ver'
+  Melhoria:
+    Lore:
+      - ''
+      - ' &fNivel atual: &7{nivel}'
+      - ' &fPreco: &b{preco}'
+      - ''
+      - '{pode}'
+    Pode: '&aClique para comprar'
+    Nao pode: '&cVoce nao tem {preco}'
+    Maximo: '&cNivel maximo'
+
+Armadilhas:
+  Titulo: '&8Armadilhas'
+  Linhas: 4
+  Voltar: 31
+  Armadilha:
+    Lore:
+      - ''
+      - ' &fPreco: &b{preco}'
+      - ' &fNa fila: &7{fila}/{maximo}'
+      - ''
+      - '{pode}'
+    Pode: '&aClique para comprar'
+    Nao pode: '&cVoce nao tem {preco}'
+    Cheia: '&cFila de armadilhas cheia'
+
+Rastreador:
+  Titulo: '&8Rastreador de equipes'
+  Linhas: 3
+  Preco: 'EMERALD : 2'
+  Slots: [ 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+  Equipe:
+    Nome: '{cor}{equipe}'
+    Lore:
+      - ''
+      - ' &fVivos: &7{vivos}'
+      - ' &fCusto: &22 esmeraldas'
+      - ''
+      - '&aClique para rastrear'
+
+Jogadores:
+  Titulo: '&8Jogadores'
+  Jogador:
+    Nome: '{cor}{jogador}'
+    Lore:
+      - ''
+      - ' &fEquipe: {cor}{equipe}'
+      - ' &fAbates: &a{abates}'
+      - ''
+      - '&eClique para teleportar'
+
+Grupo:
+  Titulo: '&8Seu grupo'
+  Linhas: 3
+  Itens:
+    Info:
+      Slot: 11
+      Nome: '&aSeu grupo'
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Lore:
+        - ''
+        - ' &fLider: &7{lider}'
+        - ' &fMembros: &7{membros}/{maximo}'
+      Lore sem grupo:
+        - ''
+        - ' &7Voce nao esta num grupo'
+    Membros:
+      Slot: 13
+      Nome: '&aMembros'
+      Material: BOOK
+      Lore:
+        - '&7Veja e gerencie os membros'
+    Convidar:
+      Slot: 15
+      Nome: '&aConvidar'
+      Material: PAPER
+      Lore:
+        - '&7Digite o nome no chat'
+    Criar:
+      Slot: 15
+      Nome: '&aCriar grupo'
+      Material: LIME_DYE
+    Sair:
+      Slot: 22
+      Nome: '&cSair do grupo'
+      Material: RED_DYE
+
+Grupo membros:
+  Titulo: '&8Membros do grupo'
+  Membro:
+    Nome: '&a{jogador}'
+    Lore:
+      - ''
+      - ' &fCargo: &7{cargo}'
+      - ''
+      - '&eEsquerdo: promover a lider'
+      - '&cDireito: expulsar'
+    Lider: 'Lider'
+    Comum: 'Membro'
+
+Missoes:
+  Titulo: '&8Missoes'
+  Missao:
+    Em progresso:
+      Nome: '&e{missao}'
+      Material: BOOK
+      Lore:
+        - '{descricao}'
+        - ''
+        - ' &fProgresso: &7{progresso}/{quantidade} &8({porcentagem}%)'
+        - ' {barra}'
+        - ''
+        - ' &fRecompensas:'
+        - '{recompensas}'
+        - ''
+        - '&eEm progresso'
+    Concluida:
+      Nome: '&a{missao}'
+      Material: ENCHANTED_BOOK
+      Lore:
+        - '{descricao}'
+        - ''
+        - '&aConcluida!'
+
+Estatisticas:
+  Titulo: '&8Estatisticas de {jogador}'
+  Linhas: 4
+  Itens:
+    Perfil:
+      Slot: 4
+      Nome: '&a{jogador}'
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Lore:
+        - ''
+        - ' &fNivel: {nivel_formatado}'
+        - ' {progresso} &7({xp}/{xp_proximo})'
+        - ' &fCoins: &6{coins} &f/ Fragmentos: &b{fragmentos}'
+        - ' &fLiga: {liga} &7({pontos_ranqueado} pontos)'
+  # Um item por modo (mais o geral).
+  Slots modos: [ 19, 20, 21, 22, 23, 24, 25 ]
+  Modo:
+    Nome: '&a{modo}'
+    Material: PAPER
+    Lore:
+      - ''
+      - ' &fPartidas: &a{jogos}'
+      - ' &fVitorias: &a{vitorias}'
+      - ' &fAbates: &a{abates}'
+      - ' &fAbates finais: &a{eliminacoes}'
+      - ' &fMortes: &a{mortes}'
+      - ' &fCamas: &a{camas}'
+      - ' &fEquipes eliminadas: &a{eliminacoes_equipe}'
+      - ' &fAssistencias: &a{assistencias}'
+      - ' &fSequencia: &a{winstreak} &7(maior: {maior_winstreak})'
+      - ''
+      - ' &7Mensal: {vitorias_mensal} vitorias, {abates_mensal} abates'

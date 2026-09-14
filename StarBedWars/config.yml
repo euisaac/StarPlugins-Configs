@@ -1,0 +1,553 @@
+# ==========================================================================
+#  StarBedWars - configuracao geral
+#
+#  Como funciona: cada arena e um MUNDO proprio (arenas/<nome>.yml guarda os
+#  locais). Os jogadores entram pela sala de espera, sao divididos em equipes,
+#  nascem dentro das jaulas e lutam ate sobrar uma equipe. Ao fim, o mundo da
+#  arena volta ao estado salvo e a sala reabre sozinha.
+#
+#  Primeiros passos (admin):
+#    1. /bw setlobby                       -> onde o jogador volta ao sair
+#    2. /bw arena criar <nome> <modo>      -> no mundo da arena (modos abaixo)
+#    3. /bw arena setespera / setespectador / pos1 / pos2 <nome>
+#    4. /bw arena equipe <nome> <Equipe> spawn|cama|gerador|loja|melhorias
+#    5. /bw arena gerador <nome> diamante|esmeralda
+#    6. /bw arena salvar <nome>            -> guarda o mundo e libera a arena
+#
+#  Cada arquivo desta pasta tem o proprio cabecalho explicando o que faz.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console cada operacao. Ligue so para achar problema.
+  Debug: false
+
+  # Milissegundos entre dois cliques no mesmo menu (evita spam).
+  Intervalo entre cliques: 100
+
+  # MULTIARENA   = todas as arenas neste servidor (o padrao).
+  # BUNGEE       = este servidor e UMA sala: quem entra ja cai na arena e, no
+  #                fim, e mandado para o "Lobby servidor".
+  # LOBBY_BUNGEE = este servidor e o lobby do BedWars: os NPCs e o menu de
+  #                jogar mandam o jogador para uma sala BUNGEE livre. Exige
+  #                MySQL compartilhado entre o lobby e as salas.
+  Modo: MULTIARENA
+
+  # Nome deste servidor no BungeeCord/Velocity (usado nos modos Bungee).
+  Nome deste servidor: 'bw1'
+
+  # Servidor de lobby para onde as salas BUNGEE mandam o jogador no fim.
+  Lobby servidor: 'lobby'
+
+  # Segundos sem atualizacao para uma sala sumir da lista do lobby.
+  Sala expira em: 15
+
+  # Comando rodado no CONSOLE quando o jogador sai da partida no modo
+  # MULTIARENA (vazio = so teleporta para o lobby do /bw setlobby).
+  # {jogador} e trocado.
+  Comando ao sair: ''
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (obrigatorio nos modos
+  # Bungee, para dividir estatisticas e salas entre servidores).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starbedwars_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+# As COINS do BedWars sao proprias do plugin (ganhas nas partidas). O CASH e
+# uma moeda externa, usada nos itens que tem preco em cash.
+Cash:
+  # VAULT   = qualquer economia registrada no Vault.
+  # COMANDO = saldo lido por placeholder e cobrado por comando de console.
+  # NENHUM  = ninguem tem cash; itens com preco em cash so saem da caixa.
+  Tipo: NENHUM
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Partida:
+  # Segundos na sala de espera depois de bater o minimo de jogadores.
+  Tempo de espera: 60
+  # Quando a sala lota, o contador cai para este valor.
+  Tempo de espera lotado: 10
+  # Segundos que os jogadores ficam presos na jaula antes do inicio.
+  Jaulas:
+    Ativar: true
+    Segundos: 10
+  # Segundos para renascer enquanto a cama existe.
+  Segundos para renascer: 5
+  # Segundos de invencibilidade ao renascer.
+  Invencibilidade ao renascer: 3
+  # Dano ao cair no vazio (999 = morte na hora).
+  Dano do vazio: 999.0
+  # Ferro, ouro, diamante e esmeralda de quem morre vao direto para quem
+  # matou (false = caem no chao).
+  Recursos para o assassino: true
+  # Permite craftar dentro da partida.
+  Permitir craft: false
+  # Segundos que a partida fica aberta depois do vencedor (comemoracao).
+  Segundos apos o fim: 10
+  # Blocos de distancia dos geradores e dos NPCs onde nao se pode construir.
+  Distancia protegida: 2
+  # Primeiro sangue (recompensa extra para o primeiro abate).
+  Primeiro sangue: true
+  # Ao morrer, a espada/picareta/machado comprados voltam um nivel.
+  Rebaixar ao morrer:
+    Espada: true
+    Picareta: true
+    Machado: true
+  # Rastreador (bussola) no inventario, tambem pelo /rastrear.
+  Rastreador: true
+  # O jogador pode escolher a equipe na sala de espera (permissao
+  # starbedwars.selecionar).
+  Selecionar equipe: true
+  # Limites de mobs por equipe ao mesmo tempo.
+  Limite de tracas: 3
+  Limite de golens: 2
+  # Segundos que golem e traca vivem.
+  Vida do golem: 240
+  Vida da traca: 15
+  # Comandos bloqueados durante a partida (starbedwars.comandos.bypass ignora).
+  Bloquear comandos:
+    Ativar: true
+    Permitidos:
+      - '/bw'
+      - '/bedwars'
+      - '/lobby'
+      - '/l'
+      - '/grupo'
+      - '/party'
+      - '/rastrear'
+      - '/reconectar'
+      - '/tell'
+      - '/msg'
+      - '/r'
+      - '/g'
+  # Linha do tempo da partida. Formato "EVENTO: segundos" contados do inicio.
+  # DIAMANTE / ESMERALDA sobem o nivel dos geradores do meio (II, III...).
+  # DESTRUICAO_CAMAS destroi todas as camas. MORTE_SUBITA solta os dragoes.
+  # FIM encerra em empate.
+  Eventos:
+    - 'DIAMANTE: 360'
+    - 'ESMERALDA: 720'
+    - 'DIAMANTE: 1080'
+    - 'ESMERALDA: 1440'
+    - 'DESTRUICAO_CAMAS: 1800'
+    - 'MORTE_SUBITA: 2400'
+    - 'FIM: 2700'
+  # Dragoes soltos na morte subita (um por equipe viva, mais estes extras
+  # para quem comprou a melhoria "Dragao extra").
+  Dragoes na morte subita: 1
+
+Geradores:
+  # Geradores de ilha: segundos entre cada item por nivel da melhoria
+  # "Gerador" (nivel 0 = sem melhoria). "Maximo" = itens no chao antes de parar.
+  Ilha:
+    Ferro:
+      Segundos: [ 2.0, 1.7, 1.4, 1.1, 0.8 ]
+      Quantidade: 1
+      Maximo: 48
+    Ouro:
+      Segundos: [ 8.0, 6.5, 5.0, 4.0, 3.0 ]
+      Quantidade: 1
+      Maximo: 12
+    # A esmeralda de ilha so liga no nivel maximo da melhoria.
+    Esmeralda:
+      Segundos: 60.0
+      Quantidade: 1
+      Maximo: 4
+  # Geradores do meio: segundos por nivel (I, II, III...) subidos pelos eventos.
+  Diamante:
+    Segundos: [ 30, 22, 15 ]
+    Maximo: 6
+    Nome: '&bDiamante'
+  Esmeralda:
+    Segundos: [ 60, 45, 30 ]
+    Maximo: 4
+    Nome: '&2Esmeralda'
+  # Holograma dos geradores do meio. {nivel}, {nome}, {tempo}.
+  Holograma:
+    Ativar: true
+    Linhas:
+      - '&eNivel &c{nivel}'
+      - '{nome}'
+      - '&eGera em &c{tempo}s'
+  # Bolinhas que juntam os drops perto (evita pilhas de 64 espalhadas).
+  Juntar drops: true
+
+Itens:
+  Bola de fogo:
+    Dano: 3.0
+    # Forca do empurrao (horizontal e vertical) em quem esta perto.
+    Empurrao horizontal: 1.0
+    Empurrao vertical: 0.65
+    Dano de queda: 3.0
+    Lancar com botao esquerdo: true
+    Lancar com botao direito: true
+    Explosao: 3.0
+    Cooldown: 2
+  TNT:
+    # Segundos ate explodir depois de colocada.
+    Fusivel: 3
+    Empurrao horizontal: 1.3
+    Empurrao vertical: 0.9
+    Explosao: 4.0
+    Cooldown: 1
+  Estilingue:
+    Empurrao horizontal: 3.0
+    Empurrao vertical: 0.85
+    Dano de queda: 3.0
+    Cooldown: 7
+  Ovo de ponte:
+    # Bloco colocado a cada tique de voo e distancia maxima.
+    Distancia maxima: 27
+  Torre:
+    # Altura da torre instantanea (blocos) e se tem escada no meio.
+    Altura: 5
+    Escada: true
+  Esponja:
+    Raio: 3
+
+Recompensas:
+  Coins:
+    Primeiro sangue: 15
+    Abate: 10
+    Eliminacao: 15
+    Cama: 20
+    Vitoria: 50
+    Participacao: 5
+  XP:
+    Primeiro sangue: 15
+    Abate: 10
+    Eliminacao: 15
+    Cama: 15
+    Vitoria: 100
+    Participacao: 10
+  Pontos ranqueados:
+    Abate: 10
+    Eliminacao: 20
+    Cama: 15
+    Vitoria: 60
+    # Perdidos na derrota (o saldo nunca fica negativo).
+    Derrota: 40
+  # Bonus por permissao. Formato "permissao;porcentagem;mensagem".
+  Bonus por permissao:
+    - 'starbedwars.bonus.vip;10;&a+10% por ser VIP'
+    - 'starbedwars.bonus.mvp;25;&6+25% por ser MVP'
+  # Mostra na actionbar o +coins e o +xp.
+  Actionbar coins: true
+  Actionbar xp: true
+  # Mostra o nivel no chat ao fim da partida.
+  Nivel no chat: true
+  # Vitorias totais necessarias para jogar o ranqueado.
+  Vitorias para o ranqueado: 0
+
+Nivel:
+  # Barra de progresso: {progresso} nas mensagens e no placar.
+  Formato: '&f[{barra}&f]'
+  Caractere: '■'
+  Cor cheia: '&a'
+  Cor vazia: '&7'
+  Tamanho: 10
+  # Caixa misteriosa dada a cada nivel (vazio = nenhuma).
+  Caixa ao subir: 'especiais'
+  # Comandos rodados no console a cada nivel ({jogador}, {nivel}).
+  Comandos ao subir: []
+
+Raridades:
+  COMUM:
+    Nome: 'Comum'
+    Cor: '&a'
+    # Chance relativa na caixa misteriosa.
+    Chance: 60
+    # Fragmentos ganhos quando o item ja e seu.
+    Fragmentos: 5
+  RARO:
+    Nome: 'Raro'
+    Cor: '&9'
+    Chance: 25
+    Fragmentos: 7
+  EPICO:
+    Nome: 'Epico'
+    Cor: '&5'
+    Chance: 12
+    Fragmentos: 10
+  LENDARIO:
+    Nome: 'Lendario'
+    Cor: '&6'
+    Chance: 3
+    Fragmentos: 15
+
+# Equipes disponiveis para as arenas. Formato "Nome : COR : R,G,B" onde COR e
+# a cor do Minecraft (la, vidro, argila e chat) e R,G,B a cor da armadura.
+Equipes:
+  - 'Vermelho : RED : 255,85,85'
+  - 'Azul : BLUE : 85,85,255'
+  - 'Verde : GREEN : 85,255,85'
+  - 'Amarelo : YELLOW : 255,255,85'
+  - 'Ciano : AQUA : 85,255,255'
+  - 'Branco : WHITE : 255,255,255'
+  - 'Rosa : PINK : 255,85,255'
+  - 'Cinza : GRAY : 170,170,170'
+  - 'Laranja : ORANGE : 255,170,0'
+  - 'Roxo : PURPLE : 170,0,170'
+
+Chat:
+  # Chat proprio dentro das partidas (o do lobby fica com o seu plugin de chat).
+  Ativar: true
+  # Prefixo que manda a mensagem para a partida inteira em vez da equipe.
+  Prefixo global: '!'
+  # {equipe} e a cor + nome, {tag} a tag da equipe, {jogador}, {mensagem}.
+  Formato equipe: '&8[&aEQUIPE&8] {cor}{jogador}&7: &f{mensagem}'
+  Formato global: '&8[&6GLOBAL&8] {cor}{jogador}&7: &f{mensagem}'
+  Formato espectador: '&8[&7ESPECTADOR&8] &7{jogador}&7: &7{mensagem}'
+  Formato espera: '&7{jogador}&7: &f{mensagem}'
+  # Tag da equipe no chat e no tab ({tag} = primeira letra).
+  Formato da tag: '&l{tag}'
+
+# Prefixo no tab (nome acima da cabeca) por situacao.
+Tags:
+  Esperando: '&7'
+  Espectador: '&8[ESP] &7'
+  Jogo: '{cor}{tag} '
+
+Placar:
+  Ativar: true
+  # Mostra o placar tambem no lobby (desligue se outro plugin cuida do lobby).
+  Mostrar no lobby: true
+  # Ticks entre as atualizacoes.
+  Intervalo: 20
+  # Titulos alternados (animacao). Um so = sem animacao.
+  Titulos:
+    - '&f&lBED WARS'
+    - '&6&lB&f&lED WARS'
+    - '&f&lB&6&lE&f&lD WARS'
+    - '&f&lBE&6&lD&f&l WARS'
+    - '&f&lBED &6&lW&f&lARS'
+    - '&f&lBED W&6&lA&f&lRS'
+    - '&f&lBED WA&6&lR&f&lS'
+    - '&f&lBED WAR&6&lS'
+    - '&f&lBED WARS'
+    - '&f&lBED WARS'
+    - '&6&lBED WARS'
+    - '&f&lBED WARS'
+  Linhas:
+    Lobby:
+      - ''
+      - ' &fNivel: {nivel_formatado}'
+      - ' {progresso} &7({xp}/{xp_proximo})'
+      - ''
+      - ' &fPartidas: &a{jogos}'
+      - ' &fVitorias: &a{vitorias}'
+      - ' &fAbates: &a{abates}'
+      - ' &fCamas: &a{camas}'
+      - ' &fSequencia: &a{winstreak}'
+      - ''
+      - ' &fCoins: &6{coins}'
+      - ' &fLiga: {liga}'
+      - ''
+      - '  &estarplugins.com.br'
+    Esperando:
+      - ''
+      - ' &fMapa: &a{mapa}'
+      - ' &fJogadores: &a{jogadores}/{maximo}'
+      - ''
+      - ' {contagem}'
+      - ''
+      - ' &fModo: &a{modo}'
+      - ''
+      - '  &estarplugins.com.br'
+    Jogo:
+      - ''
+      - ' &fProximo evento:'
+      - ' &a{evento} &7em &a{evento_tempo}'
+      - ''
+      - '{equipes}'
+      - ''
+      - ' &fAbates: &a{abates_partida}'
+      - ' &fCamas: &a{camas_partida}'
+      - ''
+      - '  &estarplugins.com.br'
+  # Cada equipe vira uma linha no lugar de {equipes}.
+  Formato da equipe: ' {cor}{tag} &f{nome}: {estado} {voce}'
+  Estado com cama: '&a✔'
+  Estado sem cama: '&a{vivos}'
+  Estado eliminada: '&c✘'
+  Marca da sua equipe: '&7(voce)'
+  Texto da contagem: '&fComeca em &a{tempo}s'
+  Texto esperando: '&fAguardando jogadores...'
+
+# Itens da barra de acoes. Slot -1 desliga o item.
+Hotbar:
+  Lobby:
+    Loja:
+      Nome: '&aLoja de cosmeticos'
+      Material: EMERALD
+      Slot: 4
+      Lore:
+        - '&7Kits, habilidades, jaulas e efeitos'
+  Esperando:
+    Kits:
+      Nome: '&aKits'
+      Material: BOW
+      Slot: 0
+    Habilidades:
+      Nome: '&aHabilidades'
+      Material: EXPERIENCE_BOTTLE
+      Slot: 1
+    Equipe:
+      Nome: '&aSelecionar equipe'
+      Material: WHITE_WOOL
+      Slot: 4
+    Sair:
+      Nome: '&cSair &7(voltar para o lobby)'
+      Material: RED_BED
+      Slot: 8
+  Espectador:
+    Jogar novamente:
+      Nome: '&bJogar novamente'
+      Material: PAPER
+      Slot: 2
+    Jogadores:
+      Nome: '&aJogadores'
+      Material: COMPASS
+      Slot: 4
+    Sair:
+      Nome: '&cSair &7(voltar para o lobby)'
+      Material: RED_BED
+      Slot: 6
+  Partida:
+    Rastreador:
+      Nome: '&aRastreador'
+      Material: COMPASS
+      Slot: 8
+
+Modos:
+  solo:
+    Ativo: true
+    Nome: 'Solo'
+    Jogadores por equipe: 1
+  dupla:
+    Ativo: true
+    Nome: 'Dupla'
+    Jogadores por equipe: 2
+  trio:
+    Ativo: true
+    Nome: 'Trio'
+    Jogadores por equipe: 3
+  quarteto:
+    Ativo: true
+    Nome: 'Quarteto'
+    Jogadores por equipe: 4
+  ranqueado:
+    Ativo: true
+    Nome: 'Ranqueado'
+    Jogadores por equipe: 1
+
+Estados:
+  Esperando: 'Esperando'
+  Iniciando: 'Iniciando'
+  Jogo: 'Em jogo'
+  Fim: 'Encerrando'
+  Resetando: 'Resetando'
+
+Seletor de mapas:
+  Ativar: true
+  # Mapas que um jogador comum pode escolher por dia (permissoes
+  # starbedwars.mapas.max.<n> e starbedwars.mapas.infinito mudam isso).
+  Limite diario: 1
+
+Reconexao:
+  Ativar: true
+  # Segundos que a vaga fica guardada depois de cair.
+  Segundos: 60
+  # Volta sozinho para a partida ao entrar de novo.
+  Automatica: true
+
+Grupo:
+  # Tamanho maximo padrao (starbedwars.grupo.<n> aumenta).
+  Maximo: 4
+  # Segundos que um convite vale.
+  Convite expira em: 60
+
+Boosters:
+  # Formato "multiplicador : minutos". Sao os boosters que o /bw booster dar
+  # e o comando de recompensa conhecem pelo numero (1, 2, 3...).
+  Modelos:
+    - '1.5 : 30'
+    - '2.0 : 30'
+    - '2.0 : 60'
+    - '3.0 : 60'
+
+Caixa misteriosa:
+  Holograma:
+    - '&b&lCaixa Misteriosa'
+    - '&7Clique com o botao direito'
+  # Pacotes fabricados com fragmentos.
+  Pacotes:
+    1:
+      Fragmentos: 40
+      Caixas: 1
+    2:
+      Fragmentos: 75
+      Caixas: 2
+    3:
+      Fragmentos: 150
+      Caixas: 3
+  # Caixa de que sai cada pacote fabricado.
+  Caixa dos pacotes: 'especiais'
+  # Caixas existentes. Recompensas: KIT, HABILIDADE, JAULA, COMEMORACAO,
+  # ABATE, GRITO, CAMA, BALAO.
+  Caixas:
+    kits:
+      Nome: '&bCaixa de Kits'
+      Material: CHEST
+      Lore:
+        - '&7Chance de ganhar kits de'
+        - '&7qualquer modo'
+      Recompensas: [ KIT ]
+    habilidades:
+      Nome: '&bCaixa de Habilidades'
+      Material: ENDER_CHEST
+      Lore:
+        - '&7Chance de ganhar habilidades'
+      Recompensas: [ HABILIDADE ]
+    especiais:
+      Nome: '&bCaixa Especial'
+      Material: TRAPPED_CHEST
+      Lore:
+        - '&7Jaulas, comemoracoes, efeitos'
+        - '&7de abate, gritos, animacoes'
+        - '&7de cama e baloes'
+      Recompensas: [ JAULA, COMEMORACAO, ABATE, GRITO, CAMA, BALAO ]
+
+Tops:
+  # Linhas dos hologramas de top ({tipo}, {modo}, {posicao}, {jogador}, {valor}).
+  Cabecalho:
+    - '&6&lTOP 10 {tipo}'
+    - '&7{modo}'
+  Linha: '&e{posicao}. &f{jogador} &7- &a{valor}'
+  Vazio: '&7---'
+  Quantidade: 10
+  # Minutos entre as atualizacoes dos tops.
+  Atualizar a cada: 5
+
+Sons:
+  Quebrar cama: 'ENDER_DRAGON_GROWL'
+  Eliminacao: 'WITHER_DEATH'
+  Comprar: 'NOTE_BLOCK_PLING'
+  Contagem: 'CLICK'
+  Inicio: 'ENDER_DRAGON_GROWL'
+  Vitoria: 'LEVEL_UP'
+  Derrota: 'WITHER_SPAWN'
+  Evento: 'NOTE_BLOCK_PLING'
+  Armadilha: 'WITHER_HURT'
+  Menu: 'CLICK'

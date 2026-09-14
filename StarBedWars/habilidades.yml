@@ -1,0 +1,177 @@
+# ==========================================================================
+#  StarBedWars - habilidades
+#
+#  Vantagens passivas escolhidas antes da partida (uma por modo). O que a
+#  habilidade FAZ vem do campo "Tipo"; o resto e visual e preco.
+#
+#  Tipos e o campo "Valor" de cada nivel:
+#    HEADSHOT        - flechada na cabeca da dano extra (Valor = multiplicador)
+#    ARMADURA        - comeca com a melhoria "Armadura reforcada" (Valor = nivel)
+#    RESSARCIMENTO   - ao morrer, devolve parte dos recursos (Valor = % de 0 a 100)
+#    VAMPIRISMO      - cura ao matar (Valor = coracoes)
+#    RENASCER_RAPIDO - renasce mais rapido (Valor = segundos a menos)
+#    BLOCOS          - cada vida comeca com la (Valor = quantidade)
+#    PES_DE_GATO     - dano de queda reduzido (Valor = % reduzida)
+#    MERCADOR        - desconto na loja da partida (Valor = % de desconto, so
+#                      em itens pagos com ferro ou ouro)
+#
+#  Habilidades.<modo> ou Habilidades.todos, como nos kits.
+#  Permissao para ter todas: starbedwars.habilidade.*
+# ==========================================================================
+
+Versao do modelo: 1
+
+Habilidades:
+  todos:
+    headshot:
+      Nome: 'Headshot'
+      Tipo: HEADSHOT
+      Material: GOLDEN_HELMET
+      Raridade: EPICO
+      Descricao:
+        - '&7Flechada na cabeca causa'
+        - '&7dano extra'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 0
+          Valor: 1.25
+          Descricao:
+            - ' &fDano extra: &7+25%'
+        2:
+          Coins: 40000
+          Cash: 0
+          Valor: 1.5
+          Descricao:
+            - ' &fDano extra: &7+50%'
+    armadura:
+      Nome: 'Armadura reforcada'
+      Tipo: ARMADURA
+      Material: DIAMOND_CHESTPLATE
+      Raridade: LENDARIO
+      Descricao:
+        - '&7Sua equipe comeca com a'
+        - '&7melhoria de armadura'
+      Niveis:
+        1:
+          Coins: 200000
+          Cash: 0
+          Valor: 1
+          Descricao:
+            - ' &fArmadura reforcada I ja ativa'
+    ressarcimento:
+      Nome: 'Ressarcimento'
+      Tipo: RESSARCIMENTO
+      Material: IRON_INGOT
+      Raridade: EPICO
+      Descricao:
+        - '&7Ao morrer, parte dos seus'
+        - '&7recursos volta para voce'
+      Niveis:
+        1:
+          Coins: 30000
+          Cash: 0
+          Valor: 25
+          Descricao:
+            - ' &fRecursos devolvidos: &725%'
+        2:
+          Coins: 60000
+          Cash: 0
+          Valor: 50
+          Descricao:
+            - ' &fRecursos devolvidos: &750%'
+    vampirismo:
+      Nome: 'Vampirismo'
+      Tipo: VAMPIRISMO
+      Material: REDSTONE
+      Raridade: RARO
+      Descricao:
+        - '&7Recupere vida ao matar'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 0
+          Valor: 2
+          Descricao:
+            - ' &fCura: &7+2 coracoes'
+        2:
+          Coins: 35000
+          Cash: 0
+          Valor: 4
+          Descricao:
+            - ' &fCura: &7+4 coracoes'
+    renascer:
+      Nome: 'Renascer rapido'
+      Tipo: RENASCER_RAPIDO
+      Material: FEATHER
+      Raridade: RARO
+      Descricao:
+        - '&7Volte mais rapido para a luta'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 0
+          Valor: 1
+          Descricao:
+            - ' &fRenasce: &71 segundo antes'
+        2:
+          Coins: 30000
+          Cash: 0
+          Valor: 2
+          Descricao:
+            - ' &fRenasce: &72 segundos antes'
+    blocos:
+      Nome: 'Reserva de blocos'
+      Tipo: BLOCOS
+      Material: WHITE_WOOL
+      Raridade: COMUM
+      Descricao:
+        - '&7Cada vida comeca com la'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 0
+          Valor: 8
+          Descricao:
+            - ' &fLa por vida: &78'
+        2:
+          Coins: 16000
+          Cash: 0
+          Valor: 16
+          Descricao:
+            - ' &fLa por vida: &716'
+    pes_de_gato:
+      Nome: 'Pes de gato'
+      Tipo: PES_DE_GATO
+      Material: LEATHER_BOOTS
+      Raridade: COMUM
+      Descricao:
+        - '&7Dano de queda reduzido'
+      Niveis:
+        1:
+          Coins: 10000
+          Cash: 0
+          Valor: 50
+          Descricao:
+            - ' &fReducao: &750%'
+        2:
+          Coins: 25000
+          Cash: 0
+          Valor: 100
+          Descricao:
+            - ' &fReducao: &7100%'
+    mercador:
+      Nome: 'Mercador'
+      Tipo: MERCADOR
+      Material: EMERALD
+      Raridade: LENDARIO
+      Descricao:
+        - '&7Desconto nos itens de'
+        - '&7ferro e ouro da loja'
+      Niveis:
+        1:
+          Coins: 0
+          Cash: 0
+          Valor: 10
+          Descricao:
+            - ' &fDesconto: &710%'
