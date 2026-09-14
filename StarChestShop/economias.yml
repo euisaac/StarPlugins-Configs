@@ -1,0 +1,115 @@
+# ==========================================================================
+#  StarChestShop - economias
+#
+#  Cada loja escolhe UMA economia daqui. Crie quantas quiser; a chave (ex.:
+#  'dinheiro') e o que fica gravado na loja, entao nao renomeie uma chave
+#  que ja esta em uso.
+#
+#  Provedor:
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' e o id dela (vazio =
+#                  a principal)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro entra e sai por comando de console
+#                  ({jogador} {uuid} {valor})
+#
+#  Permitir offline   negocia mesmo com o dono da loja offline (o dinheiro
+#                     vai/vem da conta dele). Economias por COMANDO em geral
+#                     so funcionam com o dono online.
+#  Bonus / Desconto   se os bonus e descontos do config.yml (loja admin)
+#                     valem nesta economia.
+#  Taxa               % descontada de quem RECEBE (o dono, quando compram
+#                     dele; o jogador, quando vende para a loja).
+#  Permissao          quem pode escolher esta economia para a propria loja
+#                     (vazio = todos).
+#  Item               como a economia aparece para quem negocia.
+#  Item configuracao  como aparece para o dono, no menu de configuracao.
+#
+#  Substituicoes nos itens: {moeda} {moeda_nome} {simbolo} {taxa} {selecao}
+#  {disponivel} e todas as da loja ({dono} {item} {preco_compra}...).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# A economia que vem marcada numa loja nova.
+Padrao: dinheiro
+
+Economias:
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Abreviacao: 'coins'
+    Simbolo: '$'
+    Permitir offline: true
+    Bonus: true
+    Desconto: true
+    Taxa: 0
+    Permissao: ''
+    Item:
+      Material: PLAYER_HEAD
+      Textura: '209299a117bee88d3262f6ab98211fba344ecae39b47ec848129706dedc81e4f'
+      Nome: '&aEconomia'
+      Lore:
+        - ''
+        - ' &7Esta loja negocia com &f{moeda_nome}&7.'
+        - ''
+    Item configuracao:
+      Material: PLAYER_HEAD
+      Textura: '209299a117bee88d3262f6ab98211fba344ecae39b47ec848129706dedc81e4f'
+      Nome: '&aEconomia'
+      Lore:
+        - ''
+        - ' &7Tipo de economia: &f{moeda_nome}&7.'
+        - ' &7Taxa sobre o que voce recebe: &f{taxa}%'
+        - ''
+        - '&aClique para trocar'
+
+  # Exemplo com PlayerPoints. Apague se nao usar: a moeda so aparece para
+  # quem tem a permissao, e o menu avisa quando o plugin nao esta instalado.
+  pontos:
+    Provedor: PLAYERPOINTS
+    Nome: 'Pontos'
+    Abreviacao: 'pts'
+    Simbolo: ''
+    Permitir offline: true
+    Bonus: false
+    Desconto: false
+    Taxa: 0
+    Permissao: 'starchestshop.economia.pontos'
+    Item:
+      Material: EMERALD
+      Nome: '&dPontos'
+      Lore:
+        - ''
+        - ' &7Esta loja negocia com &f{moeda_nome}&7.'
+        - ''
+    Item configuracao:
+      Material: EMERALD
+      Nome: '&dPontos'
+      Lore:
+        - ''
+        - ' &7Tipo de economia: &f{moeda_nome}&7.'
+        - ''
+        - '&aClique para trocar'
+
+  # Exemplo por COMANDO, para economias sem API. Tire o # para usar.
+  # cash:
+  #   Provedor: COMANDO
+  #   Nome: 'Cash'
+  #   Abreviacao: 'cash'
+  #   Simbolo: ''
+  #   Permitir offline: false
+  #   Valores inteiros: true
+  #   Placeholder de saldo: '%meucash_saldo%'
+  #   Comando de retirar: 'cash remover {jogador} {valor}'
+  #   Comando de dar: 'cash adicionar {jogador} {valor}'
+  #   Permissao: 'starchestshop.economia.cash'
+  #   Item:
+  #     Material: GOLD_INGOT
+  #     Nome: '&6Cash'
+  #     Lore: [ '', ' &7Esta loja negocia com &f{moeda_nome}&7.', '' ]
+  #   Item configuracao:
+  #     Material: GOLD_INGOT
+  #     Nome: '&6Cash'
+  #     Lore: [ '', ' &7Tipo de economia: &f{moeda_nome}&7.', '', '&aClique para trocar' ]

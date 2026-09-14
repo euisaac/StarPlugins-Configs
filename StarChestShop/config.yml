@@ -1,0 +1,278 @@
+# ==========================================================================
+#  StarChestShop - configuracao
+#
+#  Como funciona: o jogador prega uma placa num bau e escreve 'loja' na
+#  primeira linha. Abre o menu de configuracao, escolhe o item (clicando
+#  nele no proprio inventario), a moeda, o tipo e os precos -- pronto, a
+#  placa vira uma loja. Quem passa clica na placa e compra ou vende.
+#
+#  Cores: &a etc. e &#RRGGBB (1.16+). Materiais pelo nome moderno (o plugin
+#  traduz para as versoes antigas). Sons: NOME;volume;tom.
+#
+#  Mudar este arquivo pede /starchestshop recarregar (banco de dados nao:
+#  esse so muda com restart).
+# ==========================================================================
+
+# Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
+# tras depois de uma atualizacao.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o que o plugin esta fazendo.
+  Debug: false
+  # true: clicar na placa abre o menu de compra/venda. false: clique direito
+  # compra um lote e clique esquerdo vende um lote, sem menu.
+  Menu de negociacao: true
+  # Quando falta estoque, dinheiro ou espaco, negocia o que der em vez de
+  # recusar ("voce comprou 37 dos 64 pedidos").
+  Compra parcial: true
+  # Usa os nomes do itens.yml nas mensagens, placas e hologramas.
+  Traduzir nomes dos itens: true
+  # Sem menu de negociacao: shift + clique esquerdo vende tudo que o jogador
+  # carrega do item.
+  Vender tudo com shift: true
+  # Tamanho maximo do nome que o dono pode dar ao item da loja.
+  Maximo de caracteres do nome: 20
+  # Milissegundos entre dois cliques do mesmo jogador (placa e menus).
+  Intervalo entre cliques: 150
+  # Ao criar a loja, se o bau ja tem um unico tipo de item, ele vira o item
+  # da loja sem precisar clicar.
+  Detectar item do bau: true
+  # Na subida, lojas cuja placa ou bau nao existem mais (em chunk carregado)
+  # sao apagadas. O mesmo acontece quando um chunk carrega.
+  Limpar lojas invalidas ao iniciar: true
+  # O dono pode comprar e vender na propria loja.
+  Dono negocia na propria loja: false
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL. Com MySQL o ranking e o historico podem
+  # ser compartilhados entre servidores; as lojas em si sao por mundo.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starchestshop_'
+  # Aparece no historico quando varios servidores usam o mesmo banco.
+  Nome deste servidor: ''
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Placa:
+  # O que escrever na primeira linha da placa para criar a loja.
+  Palavras:
+    Jogador: [ 'loja', '[loja]', 'shop', '[shop]' ]
+    Admin: [ 'lojaadmin', '[lojaadmin]', '[admin]' ]
+  # Tipo que a loja nasce: COMPRA (jogadores compram do dono), VENDA
+  # (jogadores vendem para o dono) ou AMBOS.
+  Tipo padrao: COMPRA
+  # Loja admin (estoque infinito) pode ser so a placa, sem bau atras.
+  Loja admin sem bau: true
+  # Blocos que servem de bau para a loja.
+  Recipientes: [ CHEST, TRAPPED_CHEST, BARREL ]
+  Protecao:
+    # Funil e dropper nao tiram nem poem nada no bau da loja.
+    Funil: true
+    # Explosoes nao quebram placa nem bau de loja.
+    Explosao: true
+  # A linha de preco da placa. {preco_compra} e {preco_venda} vem abreviados
+  # (1.2K); {preco_compra_bruto} e {preco_venda_bruto} por extenso.
+  Formato:
+    Compra: '&2C &0{preco_compra}'
+    Venda: '&cV &0{preco_venda}'
+    Ambos: '&2C &0{preco_compra} &cV &0{preco_venda}'
+    Gratis: 'Gratis'
+  # As 4 linhas de cada estado da placa (15 caracteres visiveis por linha).
+  # Substituicoes: {dono} {item} {quantidade} {formato} {moeda} {simbolo}
+  # {estoque} {tipo} {estado} e as demais da loja.
+  Linhas:
+    Jogador:
+      - '&1[Loja]&0 {dono}'
+      - '{formato}'
+      - '&0{quantidade}x {item}'
+      - '&8Clique para ver'
+    Admin:
+      - '&4[Loja Admin]'
+      - '{formato}'
+      - '&0{quantidade}x {item}'
+      - '&8Clique para ver'
+    Configurando:
+      - '&1[Loja]&0 {dono}'
+      - '&cConfigurando'
+      - '&0Clique com o'
+      - '&0botao direito'
+    Fechada:
+      - '&1[Loja]&0 {dono}'
+      - '&cFECHADA'
+      - '&0{quantidade}x {item}'
+      - '&8Volte depois'
+    # O que fica na placa quando a loja e removida por comando ou limpeza.
+    Removida:
+      - ''
+      - '&8(loja removida)'
+      - ''
+      - ''
+
+Limites:
+  # Preco maximo por lote (0 = sem limite).
+  Preco maximo: 0
+  # Maximo de unidades numa compra ou venda so (0 = sem limite).
+  Quantidade maxima por operacao: 0
+  # Maximo de unidades por lote na configuracao da loja.
+  Lote maximo: 2304
+  # Amigos por loja (0 = nenhum).
+  Amigos por loja: 5
+  Lojas:
+    # Quantas lojas cada jogador pode ter (0 = sem limite). As permissoes
+    # abaixo sobem esse numero para quem as tem.
+    Padrao: 0
+    Por permissao:
+      starchestshop.limite.vip: 10
+      starchestshop.limite.mvp: 25
+
+Bloqueios:
+  # Materiais que nao podem ser vendidos em loja. Aceita curinga:
+  # *_SPAWN_EGG, DIAMOND_*, *SHULKER_BOX*.
+  Materiais: [ BEDROCK, COMMAND_BLOCK, CHAIN_COMMAND_BLOCK, REPEATING_COMMAND_BLOCK, STRUCTURE_BLOCK, BARRIER, '*_SPAWN_EGG' ]
+  # Item com nome personalizado nao pode ser vendido (admins podem).
+  Itens com nome personalizado: false
+  # Mundos onde nao se cria loja. Permissao starchestshop.mundo.bypass ignora.
+  Mundos: [ world_nether, world_the_end ]
+
+Holograma:
+  # Texto flutuante em cima do bau (usa o DecentHolograms se estiver
+  # instalado; senao, ArmorStands). O dono pode desligar por loja.
+  Ativar: true
+  # O item da loja girando em cima do texto.
+  Mostrar item: true
+  # Altura do texto acima do topo do bau.
+  Altura: 0.6
+  # As linhas por tipo de loja. Substituicoes: as da loja ({dono} {item}
+  # {quantidade} {preco_compra} {preco_venda} {moeda} {estoque} {espaco}
+  # {ajuste} {vendidos} {comprados}...). Linha vazia vira espaco.
+  Linhas:
+    Jogador:
+      COMPRA:
+        - '&f&l{item}'
+        - '&7Loja de &b{dono}'
+        - '&7Lote: &b{quantidade} &8| &7Estoque: &b{estoque}'
+        - '&aCompre por &f{preco_compra} &7({moeda})'
+      VENDA:
+        - '&f&l{item}'
+        - '&7Loja de &b{dono}'
+        - '&7Lote: &b{quantidade} &8| &7Espaco: &b{espaco}'
+        - '&cVenda por &f{preco_venda} &7({moeda})'
+      AMBOS:
+        - '&f&l{item}'
+        - '&7Loja de &b{dono}'
+        - '&7Lote: &b{quantidade} &8| &7Estoque: &b{estoque}'
+        - '&aCompre por &f{preco_compra} &7({moeda})'
+        - '&cVenda por &f{preco_venda} &7({moeda})'
+    Admin:
+      COMPRA:
+        - '&f&l{item}'
+        - '&6Loja do servidor'
+        - '&7Lote: &b{quantidade}'
+        - '&aCompre por &f{preco_compra} &7({moeda})'
+      VENDA:
+        - '&f&l{item}'
+        - '&6Loja do servidor'
+        - '&7Lote: &b{quantidade}'
+        - '&cVenda por &f{preco_venda} &7({moeda})'
+      AMBOS:
+        - '&f&l{item}'
+        - '&6Loja do servidor'
+        - '&7Lote: &b{quantidade}'
+        - '&aCompre por &f{preco_compra} &7({moeda})'
+        - '&cVenda por &f{preco_venda} &7({moeda})'
+
+# Bonus (%) ao VENDER para uma loja admin e desconto (%) ao COMPRAR de uma
+# loja admin, por permissao. Com 'Acumular bonus: false' vale so o de maior
+# prioridade que o jogador tiver; com true, somam.
+Acumular bonus: false
+Bonus:
+  vip:
+    Permissao: starchestshop.bonus.vip
+    Porcentagem: 10.0
+    Prioridade: 1
+Descontos:
+  vip:
+    Permissao: starchestshop.desconto.vip
+    Porcentagem: 10.0
+    Prioridade: 1
+
+# Preco dinamico: o preco base da loja nao muda, mas ganha um ajuste (%)
+# que sobe a cada compra e cai a cada venda, e volta para zero com o tempo.
+# O dono liga e desliga por loja no menu (permissao starchestshop.dinamico).
+Preco dinamico:
+  Ativar: false
+  # Loja nova ja nasce com o dinamico ligado.
+  Padrao nas lojas novas: false
+  # Quanto o preco pode subir (%) e cair (%, negativo) em relacao ao base.
+  Maximo subir: 100.0
+  Maximo cair: -90.0
+  # Quanto muda (%) a cada compra ou venda.
+  Ajuste por operacao: 5.0
+  # Segundos entre cada passo de volta ao preco base (0 = nao volta sozinho).
+  Normalizar a cada: 60
+  # Loja parada (sem negocio) sobe o preco sozinha: util para loja so de
+  # compra ou so de venda, que nunca recebe o empurrao contrario.
+  Subir sem transacoes:
+    # Segundos sem negocio para comecar a subir (0 = desligado).
+    Tempo: 3600
+    # Quanto sobe (%) a cada intervalo.
+    Porcentagem: 5.0
+  # Reescreve placa e holograma a cada mudanca de preco.
+  Atualizar placa: true
+
+Ranking:
+  # Quantas posicoes cada top tem (ate 45).
+  Posicoes: 10
+  # Segundos entre cada recalculo (sai do banco, em segundo plano).
+  Atualizar a cada: 300
+  # O que o placeholder mostra numa posicao vazia.
+  Vazio: '-'
+  # Transacoes mais velhas que isto (dias) sao apagadas; 0 = nunca.
+  Apagar historico apos dias: 90
+  # Quantas transacoes o menu de historico mostra.
+  Historico por loja: 45
+
+Formato de numeros:
+  # NUMERO (1.234,5) ou LETRA (1.2K) nas mensagens e menus. As placas usam
+  # sempre LETRA, para caber.
+  Tipo: NUMERO
+  Casas decimais: 2
+
+Avisos:
+  # Ao entrar, o dono recebe um resumo das lojas dele sem estoque ou sem
+  # espaco (so as de chunk carregado).
+  Dono ao entrar: true
+  # Alem do chat, os avisos de compra/venda vao na actionbar do dono.
+  Actionbar: true
+
+Busca:
+  # /chestshop buscar <item>: lista as lojas que negociam o item, da mais barata
+  # para a mais cara.
+  Ativar: true
+  # Clicar numa loja do menu de busca ou de "minhas lojas" teleporta ate ela
+  # (permissao starchestshop.teleporte).
+  Teleporte: true
+
+# Manda cada negociacao para um webhook do Discord.
+Webhook:
+  Ativar: false
+  URL: ''
+  Nome: 'Lojas'
+  Eventos:
+    COMPRA: true
+    VENDA: true
+    CRIAR: true
+    REMOVER: true
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Dinheiro: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+  Criar: 'BLOCK_ANVIL_USE;1;1.2'

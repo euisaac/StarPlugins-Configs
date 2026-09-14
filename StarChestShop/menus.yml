@@ -1,0 +1,942 @@
+# ==========================================================================
+#  StarChestShop - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo (Ativar: false deixa vazio; 'So fora
+#                          do conteudo: false' enche os slots de conteudo tambem).
+#    Slots                 Onde o conteudo paginado aparece (lojas, amigos...).
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao e Acoes.
+#
+#  Acoes comuns:    lojas | top | buscar | historico | voltar | anterior |
+#                   proxima | fechar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
+#                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
+#                   som: <SOM;volume;tom>
+#  Cada tela tem as suas acoes, listadas antes dela.
+#
+#  Substituicoes em qualquer texto: {jogador} {lojas} {limite} {pagina}
+#  {paginas}. Onde ha uma loja: {dono} {item} {quantidade} {preco_compra}
+#  {preco_venda} {preco_compra_unidade} {preco_venda_unidade} {moeda}
+#  {moeda_nome} {simbolo} {tipo} {estado} {estoque} {espaco} {id} {mundo}
+#  {x} {y} {z} {ajuste} {vendidos} {comprados} {amigos} {holograma} {avisos}
+#  {dinamico}. Placeholders do PlaceholderAPI tambem funcionam nos botoes.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  Configuracao da loja (clique direito do dono na placa).
+#  Acoes: item | economia | tipo | preco | preco-compra | preco-venda | nome
+#         quantidade | alternar aberta|holograma|avisos|dinamico | amigos
+#         estoque | historico-loja | remover
+#  Botoes com par ligar/desligar (abrir/fechar, holograma-ligar/-desligar,
+#  avisos-*, dinamico-*) so aparecem no estado certo. Na lore do 'tipo', a
+#  linha {opcoes_tipo} vira a lista dos tres tipos, com o atual marcado.
+# ---------------------------------------------------------------------------
+Configuracao:
+  Titulo: '&8Configurar loja'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # O item da loja (o proprio item, com esta lore embaixo da original).
+  Item:
+    Slot: 11
+    Nome: '&aItem da loja'
+    Lore:
+      - '&7Lote: &f{quantidade}x'
+      - '&7Estoque: &f{estoque}'
+      - ''
+      - '&eClique num item do seu inventario'
+      - '&epara trocar o item da loja.'
+    Vazio:
+      Material: BARRIER
+      Nome: '&cNenhum item'
+      Lore:
+        - '&7Com este menu aberto, clique no'
+        - '&7item do seu inventario que a loja'
+        - '&7vai negociar.'
+
+  # A moeda (desenha o 'Item configuracao' da economia).
+  Moeda:
+    Slot: 13
+    Sem moeda:
+      Material: BARRIER
+      Nome: '&cSem economia'
+      Lore: [ '&7Nenhuma economia disponivel para voce.' ]
+
+  Itens:
+    tipo:
+      Slot: 14
+      Material: HOPPER
+      Nome: '&aTipo da loja'
+      Lore:
+        - '&7O que a sua loja faz:'
+        - ''
+        - '{opcoes_tipo}'
+        - ''
+        - '&eClique para trocar'
+      Acoes: [ 'tipo' ]
+    preco-compra:
+      Slot: 15
+      Material: GOLD_INGOT
+      Nome: '&aPreco de venda'
+      Lore:
+        - '&7Quanto quem &fcompra&7 de voce paga'
+        - '&7por &f{quantidade}x {item}&7.'
+        - ''
+        - '&7Atual: &f{preco_compra_bruto}'
+        - ''
+        - '&eClique para alterar'
+      Acoes: [ 'preco-compra' ]
+    preco-venda:
+      Slot: 16
+      Material: IRON_INGOT
+      Nome: '&aPreco de compra'
+      Lore:
+        - '&7Quanto quem &fvende&7 para voce recebe'
+        - '&7por &f{quantidade}x {item}&7.'
+        - ''
+        - '&7Atual: &f{preco_venda_bruto}'
+        - ''
+        - '&eClique para alterar'
+      Acoes: [ 'preco-venda' ]
+    nome:
+      Slot: 20
+      Material: NAME_TAG
+      Nome: '&aNome do item'
+      Lore:
+        - '&7Como o item aparece na placa,'
+        - '&7no holograma e nas mensagens.'
+        - ''
+        - '&7Atual: &f{item}'
+        - ''
+        - '&eEsquerdo para alterar'
+        - '&eDireito para voltar ao original'
+      Acoes: [ 'nome' ]
+    quantidade:
+      Slot: 21
+      Material: CHEST
+      Nome: '&aQuantidade por lote'
+      Lore:
+        - '&7Quantas unidades cada lote tem;'
+        - '&7o preco e por lote.'
+        - ''
+        - '&7Atual: &f{quantidade}'
+        - ''
+        - '&eClique para alterar'
+      Acoes: [ 'quantidade' ]
+    abrir:
+      Slot: 22
+      Material: GRAY_DYE
+      Nome: '&cLoja fechada'
+      Lore:
+        - '&7Ninguem consegue negociar'
+        - '&7enquanto a loja esta fechada.'
+        - ''
+        - '&eClique para abrir'
+      Acoes: [ 'alternar aberta' ]
+    fechar:
+      Slot: 22
+      Material: LIME_DYE
+      Nome: '&aLoja aberta'
+      Lore:
+        - '&7Os jogadores podem negociar.'
+        - ''
+        - '&eClique para fechar'
+      Acoes: [ 'alternar aberta' ]
+    holograma-ligar:
+      Slot: 23
+      Material: GRAY_DYE
+      Nome: '&cHolograma desligado'
+      Lore:
+        - '&7Sem texto flutuante em cima do bau.'
+        - ''
+        - '&eClique para ligar'
+      Acoes: [ 'alternar holograma' ]
+    holograma-desligar:
+      Slot: 23
+      Material: LIME_DYE
+      Nome: '&aHolograma ligado'
+      Lore:
+        - '&7Texto flutuante em cima do bau.'
+        - ''
+        - '&eClique para desligar'
+      Acoes: [ 'alternar holograma' ]
+    avisos-ligar:
+      Slot: 24
+      Material: GRAY_DYE
+      Nome: '&cAvisos desligados'
+      Lore:
+        - '&7Voce nao e avisado das vendas'
+        - '&7nem do estoque que acabou.'
+        - ''
+        - '&eClique para ligar'
+      Acoes: [ 'alternar avisos' ]
+    avisos-desligar:
+      Slot: 24
+      Material: LIME_DYE
+      Nome: '&aAvisos ligados'
+      Lore:
+        - '&7Voce e avisado de cada negociacao'
+        - '&7e quando o estoque acaba.'
+        - ''
+        - '&eClique para desligar'
+      Acoes: [ 'alternar avisos' ]
+    amigos:
+      Slot: 25
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&aAmigos &7({amigos})'
+      Lore:
+        - '&7Quem pode abrir o bau desta'
+        - '&7loja alem de voce.'
+        - ''
+        - '&eClique para gerenciar'
+      Acoes: [ 'amigos' ]
+    dinamico-ligar:
+      Slot: 29
+      Material: GRAY_DYE
+      Nome: '&cPreco dinamico desligado'
+      Lore:
+        - '&7O preco sobe a cada compra, cai a'
+        - '&7cada venda e volta ao normal com o'
+        - '&7tempo.'
+        - ''
+        - '&eClique para ligar'
+      Acoes: [ 'alternar dinamico' ]
+    dinamico-desligar:
+      Slot: 29
+      Material: LIME_DYE
+      Nome: '&aPreco dinamico ligado'
+      Lore:
+        - '&7Ajuste atual: &f{ajuste}'
+        - '&7Compra por &f{preco_compra}&7, venda por &f{preco_venda}'
+        - ''
+        - '&eClique para desligar'
+      Acoes: [ 'alternar dinamico' ]
+    estoque:
+      Slot: 30
+      Material: ENDER_CHEST
+      Nome: '&aAbrir o bau'
+      Lore:
+        - '&7Estoque: &f{estoque}'
+        - '&7Espaco: &f{espaco}'
+        - ''
+        - '&eClique para abrir o bau daqui'
+      Acoes: [ 'estoque' ]
+    historico:
+      Slot: 31
+      Material: BOOK
+      Nome: '&aHistorico'
+      Lore:
+        - '&7Vendidos: &f{vendidos} &8| &7Comprados: &f{comprados}'
+        - ''
+        - '&eClique para ver as ultimas negociacoes'
+      Acoes: [ 'historico-loja' ]
+    remover:
+      Slot: 33
+      Material: TNT
+      Nome: '&cRemover loja'
+      Lore:
+        - '&7Apaga a loja. O que estiver no bau'
+        - '&7continua la.'
+        - ''
+        - '&eClique para remover'
+      Acoes: [ 'remover' ]
+    fechar-menu:
+      Slot: 40
+      Material: ARROW
+      Nome: '&cFechar'
+      Acoes: [ 'fechar' ]
+
+# ---------------------------------------------------------------------------
+#  Escolha da moeda. Cada moeda vem do economias.yml; 'Moeda' e o nome/lore
+#  por cima. Extras: {moeda} {moeda_nome} {simbolo} {taxa} {selecao}
+#  {disponivel}.
+# ---------------------------------------------------------------------------
+Economias:
+  Titulo: '&8Escolher moeda'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Moeda:
+    Nome: '&a{moeda_nome}'
+    Lore:
+      - '&7Taxa: &f{taxa}%'
+      - '&7Estado: {disponivel}'
+      - ''
+      - '{selecao}'
+  Itens:
+    anterior:
+      Slot: 9
+      Material: ARROW
+      Nome: '&cAnterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 17
+      Material: ARROW
+      Nome: '&aProxima'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 18
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Ver a loja (clique esquerdo na placa). Acoes: negociar
+# ---------------------------------------------------------------------------
+Visualizar:
+  Titulo: '&8Loja de {dono}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Moeda:
+    Slot: 11
+  Item:
+    Slot: 13
+    Lore:
+      - '&7Lote: &f{quantidade}x'
+      - '&7Compra: &f{preco_compra} &8| &7Venda: &f{preco_venda}'
+      - '&7Estoque: &f{estoque}'
+  Dono:
+    Slot: 15
+    Material: PLAYER_HEAD
+    Nome: '&a{dono}'
+    Lore:
+      - '&7Esta loja pertence a &f{dono}&7.'
+      - '&7Estado: {estado}'
+  Itens:
+    negociar:
+      Slot: 22
+      Material: EMERALD
+      Nome: '&aNegociar'
+      Lore: [ '&7Comprar ou vender aqui.' ]
+      Acoes: [ 'negociar' ]
+
+Visualizar admin:
+  Titulo: '&8Loja do servidor'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Moeda:
+    Slot: 11
+  Item:
+    Slot: 13
+    Lore:
+      - '&7Lote: &f{quantidade}x'
+      - '&7Compra: &f{preco_compra} &8| &7Venda: &f{preco_venda}'
+      - '&7Estoque: &f{estoque}'
+  Itens:
+    negociar:
+      Slot: 22
+      Material: EMERALD
+      Nome: '&aNegociar'
+      Lore: [ '&7Comprar ou vender aqui.' ]
+      Acoes: [ 'negociar' ]
+
+# ---------------------------------------------------------------------------
+#  Negociar (clique direito na placa). Tres telas, uma por tipo de loja.
+#  Extras: {qtd} (quantidade escolhida) {total_compra} {total_venda}
+#  {unidade_compra} {unidade_venda} {inventario_compra} {inventario_venda}
+#  {maximo_compra} {maximo_venda} {tem} {desconto} {bonus} {saldo}
+#  Acoes: comprar | vender | vender-tudo | somar <n> | subtrair <n>
+#         quantidade <n|lote|maximo|maximo-compra|maximo-venda|digitar>
+# ---------------------------------------------------------------------------
+Negociar compra:
+  Titulo: '&8Comprar de {dono}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Moeda:
+    Slot: 10
+  Item:
+    Slot: 12
+    Lore:
+      - '&7Estoque: &f{estoque}'
+  Itens:
+    comprar:
+      Slot: 14
+      Material: LIME_DYE
+      Nome: '&aComprar &f{qtd}x'
+      Lore:
+        - '&7Total: &f{total_compra} &7({moeda})'
+        - '&7Por unidade: &f{unidade_compra}'
+        - '&7Por lote de {quantidade}: &f{preco_compra}'
+        - '&7Um inventario (2304): &f{inventario_compra}'
+        - ''
+        - '&7Seu saldo: &f{saldo}'
+        - '&7Da para comprar ate: &f{maximo_compra}'
+        - ''
+        - '&eClique para comprar'
+      Acoes: [ 'comprar' ]
+    menos:
+      Slot: 15
+      Material: RED_DYE
+      Nome: '&c-1 &7/ &c-10'
+      Lore: [ '&7Esquerdo tira 1, direito tira 10.', '&7Atual: &f{qtd}' ]
+      Acoes: [ 'subtrair 1|10' ]
+    mais:
+      Slot: 16
+      Material: LIME_DYE
+      Nome: '&a+1 &7/ &a+10'
+      Lore: [ '&7Esquerdo poe 1, direito poe 10.', '&7Atual: &f{qtd}' ]
+      Acoes: [ 'somar 1|10' ]
+    quantidade:
+      Slot: 24
+      Material: PAPER
+      Nome: '&aQuantidade: &f{qtd}'
+      Lore:
+        - '&7Esquerdo: digitar'
+        - '&7Direito: um lote ({quantidade})'
+        - '&7Shift: o maximo que da'
+      Acoes: [ 'quantidade digitar' ]
+    voltar:
+      Slot: 18
+      Material: BARRIER
+      Nome: '&cFechar'
+      Acoes: [ 'fechar' ]
+
+Negociar venda:
+  Titulo: '&8Vender para {dono}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Moeda:
+    Slot: 10
+  Item:
+    Slot: 12
+    Lore:
+      - '&7Espaco no bau: &f{espaco}'
+      - '&7Voce tem: &f{tem}'
+  Itens:
+    vender:
+      Slot: 14
+      Material: ORANGE_DYE
+      Nome: '&6Vender &f{qtd}x'
+      Lore:
+        - '&7Total: &f{total_venda} &7({moeda})'
+        - '&7Por unidade: &f{unidade_venda}'
+        - '&7Por lote de {quantidade}: &f{preco_venda}'
+        - '&7Um inventario (2304): &f{inventario_venda}'
+        - ''
+        - '&7Da para vender ate: &f{maximo_venda}'
+        - ''
+        - '&eClique para vender'
+      Acoes: [ 'vender' ]
+    vender-tudo:
+      Slot: 23
+      Material: HOPPER
+      Nome: '&6Vender tudo'
+      Lore: [ '&7Vende todos os &f{tem}&7 que voce carrega.' ]
+      Acoes: [ 'vender-tudo' ]
+    menos:
+      Slot: 15
+      Material: RED_DYE
+      Nome: '&c-1 &7/ &c-10'
+      Lore: [ '&7Esquerdo tira 1, direito tira 10.', '&7Atual: &f{qtd}' ]
+      Acoes: [ 'subtrair 1|10' ]
+    mais:
+      Slot: 16
+      Material: LIME_DYE
+      Nome: '&a+1 &7/ &a+10'
+      Lore: [ '&7Esquerdo poe 1, direito poe 10.', '&7Atual: &f{qtd}' ]
+      Acoes: [ 'somar 1|10' ]
+    quantidade:
+      Slot: 24
+      Material: PAPER
+      Nome: '&aQuantidade: &f{qtd}'
+      Lore:
+        - '&7Esquerdo: digitar'
+        - '&7Direito: um lote ({quantidade})'
+        - '&7Shift: o maximo que da'
+      Acoes: [ 'quantidade digitar' ]
+    voltar:
+      Slot: 18
+      Material: BARRIER
+      Nome: '&cFechar'
+      Acoes: [ 'fechar' ]
+
+Negociar ambos:
+  Titulo: '&8Loja de {dono}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Moeda:
+    Slot: 10
+  Item:
+    Slot: 12
+    Lore:
+      - '&7Estoque: &f{estoque} &8| &7Espaco: &f{espaco}'
+      - '&7Voce tem: &f{tem}'
+  Itens:
+    comprar:
+      Slot: 14
+      Material: LIME_DYE
+      Nome: '&aComprar &f{qtd}x'
+      Lore:
+        - '&7Total: &f{total_compra} &7({moeda})'
+        - '&7Por unidade: &f{unidade_compra}'
+        - '&7Da para comprar ate: &f{maximo_compra}'
+        - ''
+        - '&eClique para comprar'
+      Acoes: [ 'comprar' ]
+    vender:
+      Slot: 15
+      Material: ORANGE_DYE
+      Nome: '&6Vender &f{qtd}x'
+      Lore:
+        - '&7Total: &f{total_venda} &7({moeda})'
+        - '&7Por unidade: &f{unidade_venda}'
+        - '&7Da para vender ate: &f{maximo_venda}'
+        - ''
+        - '&eClique para vender'
+      Acoes: [ 'vender' ]
+    menos:
+      Slot: 21
+      Material: RED_DYE
+      Nome: '&c-1 &7/ &c-10'
+      Lore: [ '&7Esquerdo tira 1, direito tira 10.', '&7Atual: &f{qtd}' ]
+      Acoes: [ 'subtrair 1|10' ]
+    mais:
+      Slot: 23
+      Material: LIME_DYE
+      Nome: '&a+1 &7/ &a+10'
+      Lore: [ '&7Esquerdo poe 1, direito poe 10.', '&7Atual: &f{qtd}' ]
+      Acoes: [ 'somar 1|10' ]
+    quantidade:
+      Slot: 22
+      Material: PAPER
+      Nome: '&aQuantidade: &f{qtd}'
+      Lore:
+        - '&7Esquerdo: digitar'
+        - '&7Direito: um lote ({quantidade})'
+      Acoes: [ 'quantidade digitar' ]
+    voltar:
+      Slot: 18
+      Material: BARRIER
+      Nome: '&cFechar'
+      Acoes: [ 'fechar' ]
+
+# ---------------------------------------------------------------------------
+#  Amigos da loja. Extras: {amigos} {maximo_amigos}; em cada cabeca {amigo}.
+#  Acoes: adicionar
+# ---------------------------------------------------------------------------
+Amigos:
+  Titulo: '&8Amigos ({amigos}/{maximo_amigos})'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Amigo:
+    Nome: '&a{amigo}'
+    Lore:
+      - '&7Pode abrir o bau desta loja.'
+      - ''
+      - '&cDireito para remover'
+  Vazio:
+    Mostrar: true
+    Slot: 13
+    Material: COBWEB
+    Nome: '&7Nenhum amigo'
+    Lore: [ '&7So voce abre o bau desta loja.' ]
+  Itens:
+    adicionar:
+      Slot: 31
+      Material: PLAYER_HEAD
+      Textura: '8e9b27fccd80921bd263c91dc511d09e9a746555e6c9cad52e8562ed0182a2f'
+      Nome: '&aAdicionar amigo'
+      Lore: [ '&7Digite o nick no chat.' ]
+      Acoes: [ 'adicionar' ]
+    anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&cAnterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&aProxima'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 30
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Listas de lojas (/chestshop, /starchestshop lojas <jogador>, busca).
+#  Cada loja e o item negociado. Na lore, {lore_teleporte} vira 'Lore
+#  teleporte' quando o jogador pode teleportar, e {lore_dono} vira 'Lore
+#  dono' quando ele pode configurar aquela loja. Extras: {total}, e na de
+#  outro jogador {dono_lista}; na busca {busca} {modo}.
+#  Esquerdo teleporta; direito configura; shift+direito abre/fecha.
+# ---------------------------------------------------------------------------
+Minhas lojas:
+  Titulo: '&8Minhas lojas ({lojas}/{limite})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Loja:
+    Nome: '&a{item} &7(#{id})'
+    Lore:
+      - '&7Tipo: &f{tipo} &8| &7Estado: {estado}'
+      - '&7Lote: &f{quantidade}x &8| &7Moeda: &f{moeda_nome}'
+      - '&7Compra: &f{preco_compra} &8| &7Venda: &f{preco_venda}'
+      - '&7Estoque: &f{estoque} &8| &7Espaco: &f{espaco}'
+      - '&7Vendidos: &f{vendidos} &8| &7Comprados: &f{comprados}'
+      - '&7Lugar: &f{mundo} {x}, {y}, {z}'
+      - ''
+      - '{lore_teleporte}'
+      - '{lore_dono}'
+    Lore teleporte:
+      - '&eEsquerdo para ir ate a loja'
+    Lore dono:
+      - '&eDireito para configurar'
+      - '&eShift + direito para abrir/fechar'
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cVoce nao tem lojas'
+    Lore:
+      - '&7Pregue uma placa num bau e escreva'
+      - '&floja&7 na primeira linha.'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&cAnterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima'
+      Acoes: [ 'proxima' ]
+    buscar:
+      Slot: 48
+      Material: COMPASS
+      Nome: '&aBuscar lojas'
+      Lore: [ '&7Onde comprar ou vender um item.' ]
+      Acoes: [ 'buscar' ]
+    top:
+      Slot: 49
+      Material: GOLD_INGOT
+      Nome: '&6Ranking'
+      Lore: [ '&7Maiores vendedores, compradores e itens.' ]
+      Acoes: [ 'top' ]
+    historico:
+      Slot: 50
+      Material: BOOK
+      Nome: '&aMeu historico'
+      Lore: [ '&7Suas ultimas negociacoes.' ]
+      Acoes: [ 'historico' ]
+    fechar:
+      Slot: 46
+      Material: BARRIER
+      Nome: '&cFechar'
+      Acoes: [ 'fechar' ]
+
+Lojas de outro:
+  Titulo: '&8Lojas de {dono_lista}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Loja:
+    Nome: '&a{item} &7(#{id})'
+    Lore:
+      - '&7Tipo: &f{tipo} &8| &7Estado: {estado}'
+      - '&7Lote: &f{quantidade}x &8| &7Moeda: &f{moeda_nome}'
+      - '&7Compra: &f{preco_compra} &8| &7Venda: &f{preco_venda}'
+      - '&7Estoque: &f{estoque} &8| &7Espaco: &f{espaco}'
+      - '&7Lugar: &f{mundo} {x}, {y}, {z}'
+      - ''
+      - '{lore_teleporte}'
+      - '{lore_dono}'
+    Lore teleporte:
+      - '&eEsquerdo para ir ate a loja'
+    Lore dono:
+      - '&eDireito para configurar'
+      - '&eShift + direito para abrir/fechar'
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhuma loja'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&cAnterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cFechar'
+      Acoes: [ 'voltar' ]
+
+# Acoes proprias: modo (alterna onde comprar/onde vender) | nova-busca
+Buscar:
+  Titulo: '&8Busca: {busca}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Loja:
+    Nome: '&a{item}'
+    Lore:
+      - '&7Loja de &f{dono}'
+      - '&7Compra: &f{preco_compra_unidade}&7/un &8| &7Venda: &f{preco_venda_unidade}&7/un'
+      - '&7Lote: &f{quantidade}x &8| &7Moeda: &f{moeda_nome}'
+      - '&7Estoque: &f{estoque} &8| &7Espaco: &f{espaco}'
+      - '&7Lugar: &f{mundo} {x}, {y}, {z}'
+      - ''
+      - '{lore_teleporte}'
+    Lore teleporte:
+      - '&eClique para ir ate a loja'
+    Lore dono: [ ]
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhuma loja encontrada'
+    Lore: [ '&7Nenhuma loja aberta negocia &f{busca}&7.' ]
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&cAnterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima'
+      Acoes: [ 'proxima' ]
+    modo-vender:
+      Slot: 49
+      Material: LIME_DYE
+      Nome: '&aMostrando: onde comprar'
+      Lore: [ '&7Lojas que vendem &f{busca}&7, da mais barata.', '', '&eClique para ver onde vender' ]
+      Acoes: [ 'modo' ]
+    modo-comprar:
+      Slot: 49
+      Material: ORANGE_DYE
+      Nome: '&6Mostrando: onde vender'
+      Lore: [ '&7Lojas que compram &f{busca}&7, da que paga mais.', '', '&eClique para ver onde comprar' ]
+      Acoes: [ 'modo' ]
+    nova-busca:
+      Slot: 48
+      Material: COMPASS
+      Nome: '&aNova busca'
+      Acoes: [ 'nova-busca' ]
+    voltar:
+      Slot: 50
+      Material: BARRIER
+      Nome: '&cFechar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Ranking. Botoes 'ranking <Vendedores|Compradores|Vendidos|Comprados>'
+#  trocam a lista; o botao do ranking atual some. Extras: {ranking}
+#  {atualizado}; em cada posicao {posicao} {nome} {valor} {valor_curto}
+#  {quantidade}.
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8{ranking}'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 9, 10, 11, 12, 13, 14, 15, 16, 17 ]
+  Jogador:
+    Nome: '&e{posicao}. &f{nome}'
+    Lore: [ '&7Movimentou &a{valor}' ]
+  Item:
+    Nome: '&e{posicao}. &f{nome}'
+    Lore: [ '&7{quantidade} unidades' ]
+  Vazio:
+    Mostrar: true
+    Slot: 13
+    Material: BARRIER
+    Nome: '&cAinda nao ha dados'
+  Itens:
+    vendedores:
+      Slot: 19
+      Material: GOLD_INGOT
+      Nome: '&6Maiores vendedores'
+      Acoes: [ 'ranking Vendedores' ]
+    compradores:
+      Slot: 20
+      Material: EMERALD
+      Nome: '&aMaiores compradores'
+      Acoes: [ 'ranking Compradores' ]
+    vendidos:
+      Slot: 21
+      Material: CHEST
+      Nome: '&eItens mais vendidos'
+      Lore: [ '&7O que os jogadores mais venderam as lojas.' ]
+      Acoes: [ 'ranking Vendidos' ]
+    comprados:
+      Slot: 22
+      Material: HOPPER
+      Nome: '&bItens mais comprados'
+      Lore: [ '&7O que os jogadores mais compraram das lojas.' ]
+      Acoes: [ 'ranking Comprados' ]
+    info:
+      Slot: 25
+      Material: CLOCK
+      Nome: '&7Atualizado em &f{atualizado}'
+    voltar:
+      Slot: 31
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Historico. Cada negociacao e o item negociado (ou o Material daqui, se
+#  houver). Extras: {alvo} {total}; por linha {comprador} {vendedor}
+#  {jogador_transacao} {item} {quantidade} {valor} {moeda} {quando} {servidor}
+# ---------------------------------------------------------------------------
+Historico da loja:
+  Titulo: '&8Historico: {alvo}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]
+  Compra:
+    Nome: '&a{comprador} comprou'
+    Lore:
+      - '&f{quantidade}x {item} &7por &f{valor}'
+      - '&7{quando}'
+  Venda:
+    Nome: '&6{vendedor} vendeu'
+    Lore:
+      - '&f{quantidade}x {item} &7por &f{valor}'
+      - '&7{quando}'
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhuma negociacao ainda'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&cAnterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+Historico do jogador:
+  Titulo: '&8Historico de {alvo}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44 ]
+  Compra:
+    Nome: '&a{comprador} comprou de {vendedor}'
+    Lore:
+      - '&f{quantidade}x {item} &7por &f{valor}'
+      - '&7{quando}'
+  Venda:
+    Nome: '&6{vendedor} vendeu para {comprador}'
+    Lore:
+      - '&f{quantidade}x {item} &7por &f{valor}'
+      - '&7{quando}'
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhuma negociacao ainda'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&cAnterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Confirmacoes. Acoes: confirmar | cancelar
+# ---------------------------------------------------------------------------
+Confirmar:
+  Remover loja:
+    Titulo: '&8Remover a loja?'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: BLACK_STAINED_GLASS_PANE
+      Nome: ' '
+    Itens:
+      confirmar:
+        Slot: 11
+        Material: LIME_WOOL
+        Nome: '&aSim, remover'
+        Lore:
+          - '&7A loja de &f{item}&7 sera apagada.'
+          - '&7O que estiver no bau continua la.'
+        Acoes: [ 'confirmar' ]
+      cancelar:
+        Slot: 15
+        Material: RED_WOOL
+        Nome: '&cNao, voltar'
+        Acoes: [ 'cancelar' ]

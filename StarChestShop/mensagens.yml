@@ -1,0 +1,300 @@
+# ==========================================================================
+#  StarChestShop - mensagens
+#
+#  Cores: &a etc. e &#RRGGBB (1.16+). Mensagem vazia ('') nao e enviada.
+#  Mensagem de varias linhas (bloco |) sai linha por linha, sem prefixo.
+#  {prefixo} e o prefixo abaixo; quando a mensagem nao o menciona, ele vai
+#  na frente sozinho.
+#
+#  Substituicoes de uma LOJA (valem onde uma loja esta envolvida):
+#    {dono} {item} {quantidade} {preco_compra} {preco_venda}
+#    {preco_compra_unidade} {preco_venda_unidade} {moeda} {moeda_nome}
+#    {simbolo} {tipo} {estado} {estoque} {espaco} {id} {mundo} {x} {y} {z}
+#    {ajuste} {vendidos} {comprados} {amigos}
+#  Numa negociacao, ainda: {jogador} {quantidade} {valor} (o que quem chegou
+#    na placa pagou ou recebeu) {pago} (o que o dono pagou/recebeu antes da
+#    taxa) {liquido} (o que o dono recebeu) {desconto} {bonus} {taxa}
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&8[&aLoja&8] &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar isso.'
+  Plugin inativo: '&cO plugin esta inativo: o banco de dados nao subiu. Avise um administrador.'
+  Uso: '&cUse: &f{uso}'
+  Jogador desconhecido: '&cNao conheco o jogador &f{jogador}&c.'
+  Loja nao existe mais: '&cEssa loja nao existe mais.'
+
+Criar:
+  Sem permissao: '&cVoce nao pode criar lojas.'
+  Sem permissao admin: '&cVoce nao pode criar lojas admin.'
+  Mundo bloqueado: '&cNao da para criar lojas neste mundo.'
+  Precisa de bau: '&cA placa precisa estar pregada num bau.'
+  Bau ja tem loja: '&cEsse bau ja e de uma loja.'
+  Limite de lojas: '&cVoce ja tem o maximo de lojas (&f{limite}&c).'
+  Criada: '&aLoja criada! Escolha o item, a moeda e os precos no menu. Clique com o botao direito na placa para abrir de novo.'
+  Criada admin: '&aLoja admin criada! Escolha o item, a moeda e os precos no menu.'
+
+Configurar:
+  Clique no item: '&eCom o menu aberto, clique no item do seu inventario que a loja vai negociar.'
+  Item definido: '&aA loja agora negocia &f{item}&a.'
+  Item bloqueado: '&cEsse item nao pode ser vendido em loja.'
+  Esvazie o bau antes: '&cTire do bau o item antigo antes de trocar o item da loja.'
+  Defina o item antes: '&cEscolha o item da loja primeiro.'
+  Economia definida: '&aA loja agora negocia em &f{moeda_nome}&a.'
+  Economia indisponivel: '&cA economia &f{moeda_nome}&c nao esta disponivel neste servidor.'
+  Preco de compra definido: '&aQuem comprar &f{quantidade}x {item}&a vai pagar &f{preco_compra}&a.'
+  Preco de venda definido: '&aQuem vender &f{quantidade}x {item}&a vai receber &f{preco_venda}&a.'
+  Preco alto: '&cO preco maximo e &f{maximo}&c.'
+  Nome definido: '&aO item agora se chama &f{item}&a.'
+  Nome removido: '&aO item voltou ao nome original.'
+  Nome longo: '&cO nome pode ter no maximo &f{maximo}&c caracteres.'
+  Quantidade definida: '&aCada lote agora tem &f{quantidade}&a unidade(s).'
+  Quantidade invalida: '&cDigite um numero de 1 a {maximo}.'
+  Loja aberta: '&aLoja aberta: os jogadores ja podem negociar.'
+  Loja fechada: '&eLoja fechada: ninguem negocia ate voce abrir de novo.'
+
+Negociacao:
+  Nao configurada: '&cEssa loja ainda nao foi configurada.'
+  Fechada: '&cEssa loja esta fechada no momento.'
+  Loja nao vende: '&cEssa loja so compra: ela nao vende nada.'
+  Loja nao compra: '&cEssa loja so vende: ela nao compra nada.'
+  Propria loja: '&cVoce nao pode negociar na propria loja.'
+  Economia invalida: '&cA economia dessa loja nao esta disponivel. Avise o dono.'
+  Sem permissao economia: '&cVoce nao pode negociar em &f{moeda_nome}&c.'
+  Dono offline: '&cO dono dessa loja precisa estar online para negociar nessa economia.'
+  Quantidade invalida: '&cQuantidade invalida.'
+  Quantidade maxima: '&cO maximo por vez e &f{maximo}&c.'
+  Sem estoque: '&cEssa loja esta sem estoque.'
+  Estoque insuficiente: '&cA loja so tem &f{estoque}&c no estoque.'
+  Sem espaco: '&cO bau dessa loja esta cheio.'
+  Espaco insuficiente: '&cSo cabem mais &f{espaco}&c no bau dessa loja.'
+  Sem saldo: '&cVoce nao tem {moeda_nome} suficiente. Saldo: &f{saldo}&c.'
+  Dono sem saldo: '&cO dono da loja nao tem {moeda_nome} suficiente para comprar. Saldo dele: &f{saldo}&c.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+  Voce nao tem o item: '&cVoce nao tem esse item para vender.'
+  Cobranca falhou: '&cNao foi possivel cobrar. Tente de novo.'
+  Parcial: '&eNao deu para negociar tudo: foi o que o estoque, o saldo ou o espaco permitiram.'
+  Comprou: '&aVoce comprou &f{quantidade}x {item}&a por &f{valor}&a na loja de &f{dono}&a.'
+  Comprou admin: '&aVoce comprou &f{quantidade}x {item}&a por &f{valor}&a. &7Desconto: {desconto}%'
+  Vendeu: '&aVoce vendeu &f{quantidade}x {item}&a por &f{valor}&a na loja de &f{dono}&a.'
+  Vendeu admin: '&aVoce vendeu &f{quantidade}x {item}&a por &f{valor}&a. &7Bonus: {bonus}%'
+
+# Avisos para o dono (chat). O dono desliga por loja no menu.
+Dono:
+  Compraram: '&a{jogador}&7 comprou &f{quantidade}x {item}&7 na sua loja por &f{valor}&7 (voce recebeu &f{liquido}&7).'
+  Venderam: '&a{jogador}&7 vendeu &f{quantidade}x {item}&7 para a sua loja por &f{pago}&7.'
+  Sem estoque: '&cSua loja de &f{item}&c ficou sem estoque.'
+  Sem espaco: '&cO bau da sua loja de &f{item}&c ficou cheio.'
+  Lojas sem estoque: '&eVoce tem &f{quantidade}&e loja(s) sem estoque. Veja em &f/chestshop&e.'
+  Lojas sem espaco: '&eVoce tem &f{quantidade}&e loja(s) com o bau cheio. Veja em &f/chestshop&e.'
+
+# Os mesmos avisos na actionbar (vazio = so no chat).
+Actionbar:
+  Compraram: '&a{jogador} comprou {quantidade}x {item} por {valor}'
+  Venderam: '&a{jogador} vendeu {quantidade}x {item} por {pago}'
+  Sem estoque: '&cSua loja de {item} esta sem estoque!'
+  Sem espaco: '&cO bau da sua loja de {item} esta cheio!'
+
+Protecao:
+  Placa protegida: '&cEssa placa e de uma loja de &f{dono}&c.'
+  Bau protegido: '&cEsse bau e da loja de &f{dono}&c.'
+  Agache para remover: '&eAgache e quebre a placa para remover a loja.'
+  Remova a placa primeiro: '&cRemova a loja (quebre a placa agachado) antes de mexer aqui.'
+
+Remover:
+  Removida: '&aA loja de &f{item}&a foi removida. O que estava no bau continua la.'
+
+Amigos:
+  Adicionado: '&a{amigo}&7 agora pode abrir o bau dessa loja.'
+  Removido: '&c{amigo}&7 nao pode mais abrir o bau dessa loja.'
+  Ja adicionado: '&c{amigo} ja e amigo dessa loja.'
+  Nao o dono: '&cO dono ja tem acesso ao bau.'
+  Limite: '&cEssa loja ja tem o maximo de amigos (&f{maximo}&c).'
+  Jogador desconhecido: '&cNao conheco &f{amigo}&c. Ele precisa estar online (ou ja ter entrado no servidor).'
+
+Busca:
+  Desligada: '&cA busca de lojas esta desligada.'
+
+Teleporte:
+  Teleportado: '&aVoce foi para a loja de &f{item}&a de &f{dono}&a.'
+  Mundo indisponivel: '&cO mundo dessa loja nao esta carregado.'
+
+# O "digite no chat" dos menus.
+Entrada:
+  Como cancelar: '&7Digite &fcancelar&7 para desistir.'
+  Cancelado: '&cAcao cancelada.'
+  Tempo esgotado: '&cO tempo acabou; a acao foi cancelada.'
+  Numero invalido: '&cIsso nao e um numero valido.'
+  Preco de compra: '&aDigite quanto quem comprar &f{quantidade}x {item}&a vai pagar. Aceita 1500, 1.5k, 2m...'
+  Preco de venda: '&aDigite quanto quem vender &f{quantidade}x {item}&a vai receber. Aceita 1500, 1.5k, 2m...'
+  Nome do item: '&aDigite o nome que o item vai ter na loja.'
+  Quantidade do lote: '&aDigite quantas unidades cada lote tem (ex.: 64).'
+  Quantidade para negociar: '&aDigite quantas unidades voce quer negociar.'
+  Nome do amigo: '&aDigite o nick de quem vai poder abrir o bau.'
+  Busca: '&aDigite o nome do item que voce procura.'
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Info: |
+    &8&m----------------------------------------
+    &aStarChestShop &f{versao}
+    &7Lojas: &f{lojas} &8(&f{admin}&8 admin, &f{configuradas}&8 configuradas, &f{dinamicas}&8 com preco dinamico)
+    &7Banco: &f{banco}
+    &7Economias: &f{economias}
+    &7Holograma: &f{holograma} &8| &7Preco dinamico: &f{dinamico}
+    &8&m----------------------------------------
+  Sem lojas: '&c{jogador} nao tem lojas.'
+  Lojas removidas: '&aAs &f{quantidade}&a loja(s) de &f{jogador}&a foram removidas.'
+  Olhe para uma loja: '&cOlhe para a placa ou o bau de uma loja.'
+  Loja admin sem dono: '&cLoja admin nao tem dono.'
+  Dono trocado: '&aA loja agora e de &f{jogador}&a.'
+  Loja nao encontrada: '&cNao ha loja com o id &f{id}&c.'
+  Limpeza: '&a{quantidade} loja(s) sem placa ou bau removida(s).'
+  Precos zerados: '&aPreco dinamico zerado em {quantidade} loja(s).'
+  Ranking atualizado: '&aO ranking esta sendo recalculado.'
+  Debug ligado: '&aDebug ligado.'
+  Debug desligado: '&cDebug desligado.'
+
+Ajuda:
+  Jogador: |
+    &8&m----------------------------------------
+    &a/{comando} &7- suas lojas
+    &a/{comando} buscar <item> &7- onde comprar ou vender um item
+    &a/{comando} top &7- ranking de vendedores, compradores e itens
+    &a/{comando} historico &7- suas ultimas negociacoes
+    &7Para criar uma loja, pregue uma placa num bau e escreva &floja&7 na primeira linha.
+    &8&m----------------------------------------
+  Admin: |
+    &8&m----------------------------------------
+    &a/{comando} recarregar &7- recarrega os arquivos
+    &a/{comando} info &7- resumo do plugin
+    &a/{comando} lojas <jogador> &7- as lojas de alguem
+    &a/{comando} remover <jogador> &7- apaga todas as lojas de alguem
+    &a/{comando} dono <jogador> &7- troca o dono da loja que voce olha
+    &a/{comando} editar &7- configura a loja que voce olha
+    &a/{comando} tp <id> &7- vai ate uma loja
+    &a/{comando} limpar &7- apaga lojas sem placa ou bau
+    &a/{comando} precos [id|todas] &7- zera o preco dinamico
+    &a/{comando} historico <jogador> &7- negociacoes de alguem
+    &a/{comando} ranking &7- recalcula o ranking agora
+    &a/{comando} debug &7- liga e desliga o debug
+    &8&m----------------------------------------
+
+# Formato das linhas dos placeholders %starchestshop_top_<tipo>_<n>%.
+# {posicao} {jogador} {valor} {valor_curto} para jogadores;
+# {posicao} {item} {material} {quantidade} para itens.
+Ranking:
+  Formato:
+    Vendedores: '&e{posicao}. &f{jogador} &7- &a{valor}'
+    Compradores: '&e{posicao}. &f{jogador} &7- &a{valor}'
+    Vendidos: '&e{posicao}. &f{item} &7- &a{quantidade} un.'
+    Comprados: '&e{posicao}. &f{item} &7- &a{quantidade} un.'
+
+# Palavras soltas que os menus e as mensagens usam.
+Etiquetas:
+  Loja admin: 'Servidor'
+  Sem item: 'nenhum item'
+  Infinito: 'infinito'
+  Tudo: 'tudo'
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Aberta: '&aaberta'
+  Fechada: '&cfechada'
+  Selecionada: '&aSelecionada'
+  Nao selecionada: '&7Clique para selecionar'
+  Disponivel: '&adisponivel'
+  Indisponivel: '&cindisponivel'
+  Onde comprar: 'onde comprar'
+  Onde vender: 'onde vender'
+  Tipo COMPRA: 'Vender itens'
+  Tipo VENDA: 'Comprar itens'
+  Tipo AMBOS: 'Comprar e vender'
+  Descricao COMPRA: 'os jogadores compram de voce'
+  Descricao VENDA: 'os jogadores vendem para voce'
+  Descricao AMBOS: 'compram e vendem'
+  # Como cada opcao aparece na lore do botao de tipo.
+  Opcao selecionada: ' &a> &f{opcao} &8({descricao})'
+  Opcao: ' &7- &7{opcao} &8({descricao})'
+  Ranking Vendedores: 'Maiores vendedores'
+  Ranking Compradores: 'Maiores compradores'
+  Ranking Vendidos: 'Itens mais vendidos'
+  Ranking Comprados: 'Itens mais comprados'
+  # Unidades do tempo ("6d 3h", "45min").
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  # Como o encantamento aparece no nome do item: "Espada de Diamante (Afiacao V, Inquebravel III)".
+  Formato do encantamento: '{encantamento} {nivel}'
+  Separador de encantamentos: ', '
+  Abre encantamentos: ' &7('
+  Fecha encantamentos: '&7)'
+
+# Nomes dos encantamentos nos nomes dos itens (chave moderna ou nome antigo).
+Encantamentos:
+  SHARPNESS: 'Afiacao'
+  DAMAGE_ALL: 'Afiacao'
+  SMITE: 'Julgamento'
+  DAMAGE_UNDEAD: 'Julgamento'
+  BANE_OF_ARTHROPODS: 'Ruina dos Artropodes'
+  DAMAGE_ARTHROPODS: 'Ruina dos Artropodes'
+  KNOCKBACK: 'Repulsao'
+  FIRE_ASPECT: 'Aspecto Flamejante'
+  LOOTING: 'Pilhagem'
+  LOOT_BONUS_MOBS: 'Pilhagem'
+  SWEEPING_EDGE: 'Alcance'
+  SWEEPING: 'Alcance'
+  EFFICIENCY: 'Eficiencia'
+  DIG_SPEED: 'Eficiencia'
+  SILK_TOUCH: 'Toque Suave'
+  UNBREAKING: 'Inquebravel'
+  DURABILITY: 'Inquebravel'
+  FORTUNE: 'Fortuna'
+  LOOT_BONUS_BLOCKS: 'Fortuna'
+  POWER: 'Forca'
+  ARROW_DAMAGE: 'Forca'
+  PUNCH: 'Impacto'
+  ARROW_KNOCKBACK: 'Impacto'
+  FLAME: 'Chama'
+  ARROW_FIRE: 'Chama'
+  INFINITY: 'Infinidade'
+  ARROW_INFINITE: 'Infinidade'
+  LUCK_OF_THE_SEA: 'Sorte do Mar'
+  LUCK: 'Sorte do Mar'
+  LURE: 'Isca'
+  PROTECTION: 'Protecao'
+  PROTECTION_ENVIRONMENTAL: 'Protecao'
+  FIRE_PROTECTION: 'Protecao contra Fogo'
+  PROTECTION_FIRE: 'Protecao contra Fogo'
+  FEATHER_FALLING: 'Peso Pluma'
+  PROTECTION_FALL: 'Peso Pluma'
+  BLAST_PROTECTION: 'Protecao contra Explosoes'
+  PROTECTION_EXPLOSIONS: 'Protecao contra Explosoes'
+  PROJECTILE_PROTECTION: 'Protecao contra Projeteis'
+  PROTECTION_PROJECTILE: 'Protecao contra Projeteis'
+  RESPIRATION: 'Respiracao'
+  OXYGEN: 'Respiracao'
+  AQUA_AFFINITY: 'Afinidade Aquatica'
+  WATER_WORKER: 'Afinidade Aquatica'
+  THORNS: 'Espinhos'
+  DEPTH_STRIDER: 'Passos Profundos'
+  FROST_WALKER: 'Passos Gelados'
+  BINDING_CURSE: 'Maldicao da Uniao'
+  VANISHING_CURSE: 'Maldicao do Desaparecimento'
+  MENDING: 'Remendo'
+  CHANNELING: 'Condutividade'
+  IMPALING: 'Perfuracao'
+  LOYALTY: 'Lealdade'
+  RIPTIDE: 'Correnteza'
+  MULTISHOT: 'Tiro Multiplo'
+  PIERCING: 'Perfuracao'
+  QUICK_CHARGE: 'Carga Rapida'
+  SOUL_SPEED: 'Velocidade das Almas'
+  SWIFT_SNEAK: 'Furtividade Veloz'
+  DENSITY: 'Densidade'
+  BREACH: 'Ruptura'
+  WIND_BURST: 'Rajada de Vento'
