@@ -1,0 +1,114 @@
+# ==========================================================================
+#  StarPasse - EVENTO de exemplo
+#
+#  Um arquivo por evento na pasta missoes/eventos/. O id do evento e o nome
+#  do arquivo (natal.yml = evento-natal). Mesmo formato de missoes do
+#  diarias.yml.
+#
+#  Evento:
+#    Nome, Inicio, Fim              Periodo (dd/MM/yyyy HH:mm, no fuso do config).
+#    Permissao                      So progride quem tem (opcional).
+#    Exigir concluidas              Ids de categorias que precisam estar 100%
+#                                   antes (ex.: [ semana-1, evento-halloween ]).
+#    Mostrar sem permissao          Aparece na lista mesmo sem a permissao?
+#    Ver missoes fora do periodo    Da para abrir e olhar antes/depois?
+#    Item                           Como aparece na lista de eventos.
+#                                   Substituicoes: {evento} {inicio} {fim}
+#                                   {tempo} {missoes} {concluidas} {status}
+# ==========================================================================
+
+Evento:
+  Nome: '&c&lNatal'
+  Inicio: '15/12/2026 00:00'
+  Fim: '31/12/2026 23:59'
+  Permissao: ''
+  Exigir concluidas: []
+  Mostrar sem permissao: true
+  Ver missoes fora do periodo: true
+  Item:
+    Material: SNOWBALL
+    Nome: '&c&lNATAL'
+    Lore:
+      - ''
+      - '&7Missoes especiais de fim de ano.'
+      - '&fDe &e{inicio} &fa &e{fim}'
+      - '&fMissoes: &e{concluidas}&7/&e{missoes}'
+      - ''
+      - '&fSituacao: {status}'
+      - ''
+      - '&aCLIQUE &7para ver as missoes.'
+
+Missoes:
+  neve:
+    Nome: 'Natal - Bolas de neve'
+    Tipo: LANCAR
+    Alvos: [ 'SNOWBALL' ]
+    Necessario: 200
+    Pontos: 60
+    Item:
+      Material: SNOWBALL
+      Nome: '&fBolas de neve'
+      Lore:
+        - '&7Lance &e200 &7bolas de neve.'
+
+  boneco:
+    Nome: 'Natal - Boneco de neve'
+    Tipo: COLOCAR
+    Alvos: [ 'SNOW_BLOCK', 'CARVED_PUMPKIN 5' ]
+    Necessario: 60
+    Pontos: 60
+    Item:
+      Material: CARVED_PUMPKIN
+      Nome: '&fBoneco de neve'
+      Lore:
+        - '&7Coloque &e60 &7blocos de neve.'
+        - '&7Abobora esculpida vale &e5&7.'
+
+  ceia:
+    Nome: 'Natal - Ceia'
+    Tipo: COMER
+    Alvos: [ 'COOKED_CHICKEN', 'COOKED_BEEF', 'COOKED_PORKCHOP', 'CAKE 5', 'PUMPKIN_PIE 2' ]
+    Necessario: 30
+    Pontos: 50
+    Item:
+      Material: CAKE
+      Nome: '&fCeia'
+      Lore:
+        - '&7Coma &e30 &7vezes.'
+
+  presentes:
+    Nome: 'Natal - Presentes'
+    Tipo: FABRICAR
+    Alvos: [ '*_SHULKER_BOX 10', 'CHEST' ]
+    Necessario: 40
+    Pontos: 60
+    Item:
+      Material: CHEST
+      Nome: '&fPresentes'
+      Lore:
+        - '&7Fabrique &e40 &7baus.'
+
+  boas-festas:
+    Nome: 'Natal - Boas festas'
+    Tipo: CHAT_CONTEM
+    Alvos: [ 'feliz natal', 'boas festas' ]
+    Necessario: 5
+    Pontos: 30
+    Item:
+      Material: PAPER
+      Nome: '&fBoas festas'
+      Lore:
+        - '&7Deseje feliz natal &e5 &7vezes no chat.'
+
+  premium-renas:
+    Nome: 'Natal - Renas'
+    Tipo: DOMAR
+    Alvos: [ 'HORSE', 'DONKEY', 'MULE' ]
+    Necessario: 5
+    Pontos: 100
+    Exclusiva: premium
+    Item:
+      Material: SADDLE
+      Nome: '&dRenas'
+      Lore:
+        - '&7Dome &e5 &7cavalos.'

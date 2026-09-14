@@ -1,0 +1,151 @@
+# ==========================================================================
+#  StarPasse - SEMANA 1
+#
+#  Um arquivo por semana: semana-1.yml, semana-2.yml... A semana abre
+#  'Temporada.Dias por semana' dias depois da anterior, contando de
+#  'Temporada.Inicio' (config.yml). O formato das missoes e o mesmo do
+#  diarias.yml (veja os comentarios de la).
+#
+#  A secao 'Semana' e opcional: Nome e o item da semana no menu de missoes
+#  (Item.Bloqueada / Aberta / Travada / Concluida, no formato do menus.yml).
+# ==========================================================================
+
+Semana:
+  Nome: 'Semana 1 - Primeiros passos'
+
+Missoes:
+  minerador:
+    Nome: 'Minerador iniciante'
+    Tipo: QUEBRAR
+    Alvos:
+      - 'COAL_ORE'
+      - 'DEEPSLATE_COAL_ORE'
+      - 'IRON_ORE 2'
+      - 'DEEPSLATE_IRON_ORE 2'
+    Necessario: 150
+    Pontos: 60
+    Item:
+      Material: IRON_PICKAXE
+      Nome: '&eMinerador iniciante'
+      Lore:
+        - '&7Minere &e150 &7minerios de carvao'
+        - '&7ou ferro. Ferro vale &e2&7.'
+
+  lenhador:
+    Nome: 'Lenhador'
+    Tipo: QUEBRAR
+    Alvos:
+      - '*_LOG'
+    Necessario: 250
+    Pontos: 50
+    Item:
+      Material: IRON_AXE
+      Nome: '&eLenhador'
+      Lore:
+        - '&7Corte &e250 &7troncos de qualquer arvore.'
+
+  fazendeiro:
+    Nome: 'Fazendeiro'
+    Tipo: COLHER
+    Alvos:
+      - 'WHEAT'
+      - 'CARROTS'
+      - 'POTATOES'
+    Necessario: 300
+    Pontos: 50
+    Item:
+      Material: GOLDEN_HOE
+      Nome: '&eFazendeiro'
+      Lore:
+        - '&7Colha &e300 &7trigos, cenouras ou batatas.'
+
+  cacador:
+    Nome: 'Cacador de monstros'
+    Tipo: MATAR
+    Alvos:
+      - 'ZOMBIE'
+      - 'SKELETON'
+      - 'SPIDER'
+      - 'CREEPER 2'
+      - 'ENDERMAN 3'
+    Necessario: 100
+    Pontos: 70
+    Item:
+      Material: IRON_SWORD
+      Nome: '&eCacador de monstros'
+      Lore:
+        - '&7Mate &e100 &7monstros.'
+        - '&7Creeper vale &e2&7, enderman vale &e3&7.'
+
+  construtor:
+    Nome: 'Construtor'
+    Tipo: COLOCAR
+    Alvos: []
+    Necessario: 500
+    Pontos: 50
+    Item:
+      Material: BRICKS
+      Nome: '&eConstrutor'
+      Lore:
+        - '&7Coloque &e500 &7blocos.'
+
+  presente:
+    Nome: 'Presente'
+    Tipo: ENTRAR
+    Necessario: 3
+    Pontos: 40
+    Item:
+      Material: CLOCK
+      Nome: '&ePresente'
+      Lore:
+        - '&7Entre no servidor &e3 &7vezes esta semana.'
+
+  social:
+    Nome: 'Social'
+    Tipo: CHAT
+    Necessario: 100
+    Pontos: 30
+    Item:
+      Material: PAPER
+      Nome: '&eSocial'
+      Lore:
+        - '&7Mande &e100 &7mensagens no chat.'
+
+  explorador:
+    Nome: 'Explorador'
+    Tipo: ANDAR
+    Necessario: 10000
+    Pontos: 60
+    Item:
+      Material: LEATHER_BOOTS
+      Nome: '&eExplorador'
+      Lore:
+        - '&7Ande &e10.000 &7blocos.'
+
+  premium-diamantes:
+    Nome: 'Brilho premium'
+    Tipo: QUEBRAR
+    Alvos:
+      - 'DIAMOND_ORE'
+      - 'DEEPSLATE_DIAMOND_ORE'
+    Necessario: 20
+    Pontos: 120
+    Exclusiva: premium
+    Item:
+      Material: DIAMOND
+      Nome: '&dBrilho premium'
+      Lore:
+        - '&7Minere &e20 &7minerios de diamante.'
+
+  premium-pescador:
+    Nome: 'Pescador premium'
+    Tipo: PESCAR
+    Alvos: []
+    Necessario: 50
+    Pontos: 100
+    Exclusiva: premium
+    Item:
+      Material: FISHING_ROD
+      Nome: '&dPescador premium'
+      Lore:
+        - '&7Pesque &e50 &7itens.'

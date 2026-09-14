@@ -1,0 +1,253 @@
+# ==========================================================================
+#  StarPasse - baralho para GERAR SEMANAS sozinho
+#
+#  Usado por /starpasse semanas gerar e por 'Temporada nova.Gerar semanas
+#  sozinho' (config.yml): o plugin sorteia daqui tantas missoes gratuitas e
+#  premium por semana e escreve os arquivos semana-1.yml, semana-2.yml...
+#  APAGANDO os que existem.
+#
+#  Mesmo formato do diarias.yml. {semana} nos textos vira o numero da semana.
+#  Missao com 'Exclusiva: premium' entra na cota premium; as outras na cota
+#  gratuita.
+# ==========================================================================
+
+Missoes:
+  minerador:
+    Nome: 'Semana {semana} - Minerador'
+    Tipo: QUEBRAR
+    Alvos: [ 'COAL_ORE', 'DEEPSLATE_COAL_ORE', 'IRON_ORE 2', 'DEEPSLATE_IRON_ORE 2' ]
+    Necessario: 150
+    Pontos: 60
+    Item:
+      Material: IRON_PICKAXE
+      Nome: '&eMinerador'
+      Lore:
+        - '&7Minere &e150 &7minerios de carvao ou ferro.'
+
+  lenhador:
+    Nome: 'Semana {semana} - Lenhador'
+    Tipo: QUEBRAR
+    Alvos: [ '*_LOG' ]
+    Necessario: 250
+    Pontos: 50
+    Item:
+      Material: IRON_AXE
+      Nome: '&eLenhador'
+      Lore:
+        - '&7Corte &e250 &7troncos.'
+
+  fazendeiro:
+    Nome: 'Semana {semana} - Fazendeiro'
+    Tipo: COLHER
+    Alvos: [ 'WHEAT', 'CARROTS', 'POTATOES', 'BEETROOTS' ]
+    Necessario: 300
+    Pontos: 50
+    Item:
+      Material: GOLDEN_HOE
+      Nome: '&eFazendeiro'
+      Lore:
+        - '&7Colha &e300 &7plantacoes.'
+
+  cacador:
+    Nome: 'Semana {semana} - Cacador'
+    Tipo: MATAR
+    Alvos: [ 'ZOMBIE', 'SKELETON', 'SPIDER', 'CREEPER 2', 'ENDERMAN 3' ]
+    Necessario: 100
+    Pontos: 70
+    Item:
+      Material: IRON_SWORD
+      Nome: '&eCacador'
+      Lore:
+        - '&7Mate &e100 &7monstros.'
+
+  construtor:
+    Nome: 'Semana {semana} - Construtor'
+    Tipo: COLOCAR
+    Alvos: []
+    Necessario: 500
+    Pontos: 50
+    Item:
+      Material: BRICKS
+      Nome: '&eConstrutor'
+      Lore:
+        - '&7Coloque &e500 &7blocos.'
+
+  ferreiro:
+    Nome: 'Semana {semana} - Ferreiro'
+    Tipo: FUNDIR
+    Alvos: [ 'IRON_INGOT', 'GOLD_INGOT 2' ]
+    Necessario: 128
+    Pontos: 70
+    Item:
+      Material: FURNACE
+      Nome: '&eFerreiro'
+      Lore:
+        - '&7Funda &e128 &7barras.'
+
+  artesao:
+    Nome: 'Semana {semana} - Artesao'
+    Tipo: FABRICAR
+    Alvos: []
+    Necessario: 200
+    Pontos: 50
+    Item:
+      Material: CRAFTING_TABLE
+      Nome: '&eArtesao'
+      Lore:
+        - '&7Fabrique &e200 &7itens.'
+
+  pescador:
+    Nome: 'Semana {semana} - Pescador'
+    Tipo: PESCAR
+    Alvos: []
+    Necessario: 40
+    Pontos: 60
+    Item:
+      Material: FISHING_ROD
+      Nome: '&ePescador'
+      Lore:
+        - '&7Pesque &e40 &7itens.'
+
+  arqueiro:
+    Nome: 'Semana {semana} - Arqueiro'
+    Tipo: FLECHAR
+    Alvos: []
+    Necessario: 400
+    Pontos: 70
+    Item:
+      Material: BOW
+      Nome: '&eArqueiro'
+      Lore:
+        - '&7Cause &e400 &7de dano com projeteis.'
+
+  guerreiro:
+    Nome: 'Semana {semana} - Guerreiro'
+    Tipo: DANO
+    Alvos: []
+    Necessario: 1000
+    Pontos: 70
+    Item:
+      Material: DIAMOND_SWORD
+      Nome: '&eGuerreiro'
+      Lore:
+        - '&7Cause &e1.000 &7de dano corpo a corpo.'
+
+  explorador:
+    Nome: 'Semana {semana} - Explorador'
+    Tipo: ANDAR
+    Necessario: 10000
+    Pontos: 60
+    Item:
+      Material: LEATHER_BOOTS
+      Nome: '&eExplorador'
+      Lore:
+        - '&7Ande &e10.000 &7blocos.'
+
+  social:
+    Nome: 'Semana {semana} - Social'
+    Tipo: CHAT
+    Necessario: 100
+    Pontos: 30
+    Item:
+      Material: PAPER
+      Nome: '&eSocial'
+      Lore:
+        - '&7Mande &e100 &7mensagens no chat.'
+
+  presente:
+    Nome: 'Semana {semana} - Presente'
+    Tipo: ENTRAR
+    Necessario: 4
+    Pontos: 40
+    Item:
+      Material: CLOCK
+      Nome: '&ePresente'
+      Lore:
+        - '&7Entre no servidor &e4 &7vezes.'
+
+  criador:
+    Nome: 'Semana {semana} - Criador'
+    Tipo: PROCRIAR
+    Alvos: [ 'COW', 'PIG', 'SHEEP', 'CHICKEN' ]
+    Necessario: 30
+    Pontos: 60
+    Item:
+      Material: WHEAT
+      Nome: '&eCriador de animais'
+      Lore:
+        - '&7Procrie &e30 &7animais.'
+
+  sobrevivente:
+    Nome: 'Semana {semana} - Sobrevivente'
+    Tipo: TEMPO_JOGADO
+    Necessario: 240
+    Pontos: 70
+    Item:
+      Material: TOTEM_OF_UNDYING
+      Nome: '&eSobrevivente'
+      Lore:
+        - '&7Fique &e4 horas &7online.'
+
+  premium-diamantes:
+    Nome: 'Semana {semana} - Brilho premium'
+    Tipo: QUEBRAR
+    Alvos: [ 'DIAMOND_ORE', 'DEEPSLATE_DIAMOND_ORE' ]
+    Necessario: 20
+    Pontos: 120
+    Exclusiva: premium
+    Item:
+      Material: DIAMOND
+      Nome: '&dBrilho premium'
+      Lore:
+        - '&7Minere &e20 &7diamantes.'
+
+  premium-alquimista:
+    Nome: 'Semana {semana} - Alquimista'
+    Tipo: POCAO
+    Alvos: []
+    Necessario: 24
+    Pontos: 120
+    Exclusiva: premium
+    Item:
+      Material: BREWING_STAND
+      Nome: '&dAlquimista premium'
+      Lore:
+        - '&7Faca &e24 &7pocoes.'
+
+  premium-encantador:
+    Nome: 'Semana {semana} - Encantador'
+    Tipo: ENCANTAR
+    Alvos: []
+    Necessario: 10
+    Pontos: 100
+    Exclusiva: premium
+    Item:
+      Material: ENCHANTING_TABLE
+      Nome: '&dEncantador premium'
+      Lore:
+        - '&7Encante &e10 &7itens.'
+
+  premium-nether:
+    Nome: 'Semana {semana} - Nether'
+    Tipo: MATAR
+    Alvos: [ 'BLAZE 2', 'ZOMBIFIED_PIGLIN', 'WITHER_SKELETON 3', 'GHAST 5', 'MAGMA_CUBE' ]
+    Necessario: 80
+    Pontos: 120
+    Exclusiva: premium
+    Item:
+      Material: NETHERRACK
+      Nome: '&dVisitante do Nether'
+      Lore:
+        - '&7Mate &e80 &7criaturas do Nether.'
+
+  premium-viagem:
+    Nome: 'Semana {semana} - Grande viagem'
+    Tipo: ANDAR
+    Necessario: 40000
+    Pontos: 120
+    Exclusiva: premium
+    Item:
+      Material: COMPASS
+      Nome: '&dGrande viagem'
+      Lore:
+        - '&7Ande &e40.000 &7blocos.'

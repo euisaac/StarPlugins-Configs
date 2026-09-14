@@ -1,0 +1,150 @@
+# StarPasse - SEMANA 4. Mesmo formato da semana-1.yml.
+
+Semana:
+  Nome: 'Semana 4 - Mestre'
+
+Missoes:
+  diamantes:
+    Nome: 'Minerador de diamantes'
+    Tipo: QUEBRAR
+    Alvos:
+      - 'DIAMOND_ORE'
+      - 'DEEPSLATE_DIAMOND_ORE'
+    Necessario: 30
+    Pontos: 120
+    Item:
+      Material: DIAMOND_PICKAXE
+      Nome: '&eMinerador de diamantes'
+      Lore:
+        - '&7Minere &e30 &7minerios de diamante.'
+
+  encantador:
+    Nome: 'Encantador'
+    Tipo: ENCANTAR
+    Alvos: []
+    Necessario: 10
+    Pontos: 80
+    Item:
+      Material: ENCHANTING_TABLE
+      Nome: '&eEncantador'
+      Lore:
+        - '&7Encante &e10 &7itens na mesa.'
+
+  reparador:
+    Nome: 'Reparador'
+    Tipo: REPARAR
+    Alvos: []
+    Necessario: 10
+    Pontos: 60
+    Item:
+      Material: ANVIL
+      Nome: '&eReparador'
+      Lore:
+        - '&7Use a bigorna &e10 &7vezes.'
+
+  guerreiro:
+    Nome: 'Guerreiro'
+    Tipo: DANO
+    Alvos: []
+    Necessario: 1500
+    Pontos: 80
+    Item:
+      Material: DIAMOND_SWORD
+      Nome: '&eGuerreiro'
+      Lore:
+        - '&7Cause &e1.500 &7de dano corpo a corpo.'
+
+  xp:
+    Nome: 'Sabio'
+    Tipo: XP
+    Necessario: 2000
+    Pontos: 60
+    Item:
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&eSabio'
+      Lore:
+        - '&7Ganhe &e2.000 &7de experiencia.'
+
+  apicultor:
+    Nome: 'Apicultor'
+    Tipo: MEL
+    Necessario: 10
+    Pontos: 60
+    Item:
+      Material: HONEY_BOTTLE
+      Nome: '&eApicultor'
+      Lore:
+        - '&7Colha mel de colmeias &e10 &7vezes.'
+
+  mestre-mineracao:
+    Nome: 'Mestre da mineracao'
+    Pontos: 100
+    Etapas:
+      1:
+        Tipo: QUEBRAR
+        Alvos: [ 'STONE', 'DEEPSLATE' ]
+        Necessario: 1000
+        Pontos: 20
+        Info:
+          - '&7Etapa 1: quebre &e1.000 &7pedras'
+      2:
+        Tipo: QUEBRAR
+        Alvos: [ 'IRON_ORE', 'DEEPSLATE_IRON_ORE' ]
+        Necessario: 100
+        Pontos: 30
+        Info:
+          - '&7Etapa 2: minere &e100 &7ferro'
+      3:
+        Tipo: QUEBRAR
+        Alvos: [ 'DIAMOND_ORE', 'DEEPSLATE_DIAMOND_ORE', 'EMERALD_ORE 2', 'DEEPSLATE_EMERALD_ORE 2' ]
+        Necessario: 20
+        Pontos: 50
+        Info:
+          - '&7Etapa 3: minere &e20 &7diamantes'
+          - '&7(esmeralda vale &e2&7)'
+    Item:
+      Material: NETHERITE_PICKAXE
+      Nome: '&eMestre da mineracao &7({etapa}/{etapas})'
+      Lore:
+        - '{info}'
+
+  pvp:
+    Nome: 'Duelista'
+    Tipo: MATAR_JOGADORES
+    Necessario: 10
+    Pontos: 80
+    Item:
+      Material: IRON_SWORD
+      Nome: '&eDuelista'
+      Lore:
+        - '&7Mate &e10 &7jogadores.'
+
+  premium-chefe:
+    Nome: 'Matador de chefes'
+    Tipo: MATAR
+    Alvos:
+      - 'WITHER 5'
+      - 'ENDER_DRAGON 10'
+      - 'ELDER_GUARDIAN 2'
+      - 'WARDEN 5'
+    Necessario: 10
+    Pontos: 200
+    Exclusiva: premium
+    Item:
+      Material: NETHER_STAR
+      Nome: '&dMatador de chefes'
+      Lore:
+        - '&7Acumule &e10 &7pontos matando chefes.'
+        - '&7Wither 5, Dragao 10, Guardiao anciao 2, Warden 5.'
+
+  premium-planador:
+    Nome: 'Aviador'
+    Tipo: PLANAR
+    Necessario: 5000
+    Pontos: 120
+    Exclusiva: premium
+    Item:
+      Material: ELYTRA
+      Nome: '&dAviador'
+      Lore:
+        - '&7Plane &e5.000 &7blocos de elytra.'

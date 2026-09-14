@@ -1,0 +1,321 @@
+# ==========================================================================
+#  StarPasse - textos
+#
+#  Mensagem vazia ('') simplesmente nao e enviada: e assim que se desliga um
+#  aviso sem precisar de uma opcao "Ativar" para cada um.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB.
+#  Mensagem com {prefixo} decide sozinha onde ele entra; as outras recebem o
+#  prefixo na frente.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&6&lPASSE &8- &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Inativo: '&cO passe de batalha esta inativo (sem banco de dados). Avise a equipe.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Carregando: '&cSeu passe ainda esta carregando; tente de novo em instantes.'
+  Numero invalido: '&cO numero &f{valor} &cnao vale.'
+  Comando desconhecido: '&cO subcomando &f{comando} &cnao existe. Use &f/passe ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+
+# Textos curtos usados nos menus, nas listagens e nos placeholders.
+Etiquetas:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Sem posicao: '&7--'
+  Ninguem: '&7Ninguem'
+  Nenhum: '&7Nenhum'
+  Sem recompensa: '&7Nenhuma'
+  Sem proxima: '&7--'
+  Ja abriu: '&aja aberta'
+  Temporada terminada: '&cterminada'
+  Separador de lista: '&7, '
+  Separador de recompensas: '&7, '
+  # Cada recompensa na lore dos niveis ({recompensa} e o Nome do recompensas.yml).
+  Linha de recompensa: '&8- {recompensa}'
+  # Como uma missao aparece nos placeholders ("Minerador (12/50)").
+  Missao com progresso: '{missao} &7({progresso}/{necessario})'
+  Exclusiva premium: '&dExclusiva do passe premium'
+  Exclusiva gratuito: '&aExclusiva do passe gratuito'
+  Dificuldades:
+    facil: '&aFacil'
+    media: '&eMedia'
+    dificil: '&cDificil'
+  Tops:
+    nivel: '&6Nivel'
+    missoes: '&eMissoes'
+    pontos: '&bPontos'
+
+# O nome de cada acao, para as lores ({tipo}).
+Acoes:
+  QUEBRAR: 'Quebrar blocos'
+  COLHER: 'Colher plantacoes'
+  PLANTAR: 'Plantar'
+  COLOCAR: 'Colocar blocos'
+  MATAR: 'Matar mobs'
+  MATAR_JOGADORES: 'Matar jogadores'
+  MORRER: 'Morrer'
+  DANO: 'Causar dano'
+  FLECHAR: 'Acertar projeteis'
+  LANCAR: 'Lancar projeteis'
+  PESCAR: 'Pescar'
+  FABRICAR: 'Fabricar itens'
+  FUNDIR: 'Fundir no forno'
+  ENCANTAR: 'Encantar itens'
+  POCAO: 'Fazer pocoes'
+  REPARAR: 'Usar a bigorna'
+  COMER: 'Comer'
+  DOMAR: 'Domar animais'
+  PROCRIAR: 'Procriar animais'
+  TOSQUIAR: 'Tosquiar ovelhas'
+  ORDENHAR: 'Ordenhar vacas'
+  NEGOCIAR: 'Negociar com aldeoes'
+  COLETAR: 'Coletar itens'
+  MEL: 'Colher mel'
+  ANDAR: 'Andar'
+  CORRER: 'Correr'
+  AGACHAR: 'Andar agachado'
+  NADAR: 'Nadar'
+  PLANAR: 'Planar de elytra'
+  VOAR: 'Voar'
+  PULAR: 'Pular'
+  TEMPO_JOGADO: 'Tempo jogado'
+  CHAT: 'Falar no chat'
+  CHAT_CONTEM: 'Dizer no chat'
+  XP: 'Ganhar experiencia'
+  ENTRAR: 'Entrar no servidor'
+  DORMIR: 'Dormir'
+  COMANDO: 'Usar um comando'
+  PLACEHOLDER: 'Alcancar um valor'
+  CONQUISTA: 'Concluir conquistas'
+
+# Unidades de tempo, curtas.
+Tempo:
+  Dias: 'd'
+  Horas: 'h'
+  Minutos: 'm'
+  Segundos: 's'
+
+# A barrinha de progresso das lores e do actionbar.
+Barra:
+  Tamanho: 20
+  Cheio: '|'
+  Vazio: '|'
+  Cor cheia: '&a'
+  Cor vazia: '&8'
+
+# O resumo do /passe status. Substituicoes: {jogador} {passe} {nivel}
+# {nivel_maximo} {pontos} {pontos_nivel} {pontos_necessarios} {barra_nivel}
+# {missoes_concluidas} {sequencia} {saldo} {pendentes} {abertas} {andamento}
+# {temporada} {semana} {semanas} {diarias_tempo}
+Status: |-
+  &8&m----------&r &6&lPASSE DE {jogador} &8&m----------
+  &fPasse: &e{passe}
+  &fNivel: &e{nivel}&7/&e{nivel_maximo} &8| &fPontos: &e{pontos}
+  &fProximo nivel: {barra_nivel} &7{pontos_nivel}/{pontos_necessarios}
+  &fMissoes concluidas: &e{missoes_concluidas} &8| &fSequencia diaria: &e{sequencia} dias
+  &fMissoes abertas: &e{abertas} &7({andamento} em andamento)
+  &fRecompensas para resgatar: &e{pendentes}
+  &fTemporada &e{temporada} &8| &fSemana &e{semana}&7/&e{semanas} &8| &fDiarias viram em &e{diarias_tempo}
+  &8&m------------------------------------
+
+# Aviso de progresso, nas porcentagens de 'Missoes.Avisar em' do config.
+# Substituicoes: {missao} {categoria} {progresso} {necessario} {porcentagem}
+# {barra} {etapa} {etapas} {pontos}
+Missoes:
+  Progresso chat: '&7Voce progrediu na missao &e{missao}&7: &f{progresso}&7/&f{necessario} &8({porcentagem}%)'
+  Progresso actionbar: '&e{missao} &8| {barra} &7{progresso}/{necessario}'
+  Barra de chefe: '&e{missao} &8- &f{progresso}&7/&f{necessario}'
+  Etapa concluida: '&aEtapa &f{etapa}&7/&f{etapas} &ada missao &e{missao} &aconcluida! &7(+{pontos} pontos)'
+  Concluida: '&a&lMISSAO CONCLUIDA! &e{missao} &7(+{pontos} pontos)'
+  Status:
+    Nao iniciada: '&7Nao iniciada'
+    Andamento: '&eEm andamento'
+    Concluida: '&aConcluida'
+  # Linhas acrescentadas no fim da lore da missao, conforme a situacao.
+  Lore:
+    Nao iniciada:
+      - ''
+      - '&7Progresso: {barra} &7{progresso}/{necessario}'
+      - '&fRecompensa: &e+{pontos} pontos'
+    Andamento:
+      - ''
+      - '&7Progresso: {barra} &7{progresso}/{necessario} &8({porcentagem}%)'
+      - '&fRecompensa: &e+{pontos} pontos'
+    Concluida:
+      - ''
+      - '&a&lCONCLUIDA'
+    Exclusiva premium:
+      - ''
+      - '&dExclusiva do passe premium.'
+      - '&7Compre o passe premium na loja.'
+    Exclusiva gratuito:
+      - ''
+      - '&aExclusiva do passe gratuito.'
+    Impulso:
+      - '&d+{impulso}% de progresso (impulso ativo)'
+
+Diarias:
+  Progresso chat: '&7Voce progrediu na missao diaria &e{missao}&7: &f{progresso}&7/&f{necessario} &8({porcentagem}%)'
+  Progresso actionbar: '&e{missao} &8| {barra} &7{progresso}/{necessario}'
+  Barra de chefe: '&e{missao} &8- &f{progresso}&7/&f{necessario}'
+  Concluida: '&a&lMISSAO DIARIA CONCLUIDA! &e{missao} &7(+{pontos} pontos)'
+  Todas concluidas: '&6&lDIARIAS COMPLETAS! &eVoce concluiu todas as &f{quantidade} &emissoes de hoje. &7(+{pontos} pontos)'
+  Sequencia: '&6Sequencia diaria: &e{sequencia} &6dia(s) seguido(s)!'
+  Sequencia com bonus: '&6Sequencia diaria: &e{sequencia} &6dia(s) seguido(s)! &7(+{pontos} pontos de bonus)'
+  # Para o servidor inteiro, na virada do dia.
+  Novas: '&eAs missoes diarias foram renovadas! Veja em &f/passe diarias&e.'
+  Desligadas: '&cAs missoes diarias estao desligadas.'
+
+Semanas:
+  Concluida: '&6&lSEMANA {semana} COMPLETA! &eVoce concluiu todas as missoes da semana. &7(+{pontos} pontos)'
+  Nova semana: '&eA &f{categoria} &edo passe de batalha abriu! Veja em &f/passe missoes&e.'
+  Bloqueada: '&cA semana {semana} ainda nao abriu.'
+  Nao existe: '&cNao existe a semana &f{semana}&c.'
+  Status:
+    Bloqueada: '&cBloqueada'
+    Aberta: '&aAberta'
+    Travada: '&7Encerrada'
+    Concluida: '&aConcluida'
+
+Eventos:
+  Concluida: '&a&lMISSAO DE EVENTO CONCLUIDA! &e{missao} &7(+{pontos} pontos)'
+  Fechado: '&cO evento &f{evento} &cnao esta aberto: {status}'
+  Nao existe: '&cNao existe o evento &f{evento}&c.'
+  Status:
+    Antes: '&eComeca em {tempo}'
+    Andamento: '&aEm andamento &7(termina em {tempo})'
+    Acabou: '&cJa acabou'
+    Concluido: '&aConcluido'
+    Sem permissao: '&cVoce nao tem acesso a este evento'
+    Exige: '&cConclua antes: {exigidas}'
+
+# Ao subir de nivel. Substituicoes: {nivel} {nivel_maximo} {passe} {pontos}
+Nivel:
+  Subiu: '&aVoce subiu para o nivel &f{nivel} &ado passe! &7Veja as recompensas em &f/passe recompensas&7.'
+  Maximo: '&6Voce chegou ao nivel maximo (&f{nivel}&6) do passe! Parabens!'
+  Excedente: '&e{pontos} &7pontos alem do nivel maximo viraram &e{valor}&7.'
+
+Recompensas:
+  Resgatada: '&aRecompensas do nivel &f{nivel} &7({passe}) &aresgatadas: {recompensas}'
+  Recebida: '&aVoce recebeu as recompensas do nivel &f{nivel} &7({passe})&a: {recompensas}'
+  Pendentes ao entrar: '&eVoce tem &f{quantidade} &erecompensa(s) para resgatar! Use &f/passe recompensas&e.'
+  Nada para resgatar: '&cVoce nao tem recompensas para resgatar.'
+  Bloqueada: '&cVoce ainda nao chegou ao nivel &f{nivel}&c.'
+  Ja resgatada: '&cVoce ja resgatou as recompensas do nivel &f{nivel}&c.'
+  Sem passe: '&cSo quem tem o passe &f{passe} &cpode resgatar isto.'
+  Sem recompensa: '&7Este nivel nao tem recompensa.'
+  Status:
+    Bloqueado: '&cBloqueado'
+    Disponivel: '&aCLIQUE para resgatar!'
+    Resgatado: '&7Ja resgatado'
+    Sem passe: '&cVoce nao tem este passe'
+    Vazio: '&7Sem recompensa'
+
+Passe:
+  Trocado: '&aSeu passe agora e o &f{passe}&a!'
+  Resetado: '&cSeu passe foi zerado por um administrador.'
+
+Temporada:
+  # Para o servidor inteiro, ao abrir uma temporada nova.
+  Nova: '&6&lNOVA TEMPORADA! &eA temporada &f{temporada} &edo passe de batalha comecou. Boa sorte!'
+
+Top:
+  Atualizando: '&7Atualizando o top, um instante...'
+
+Impulsos:
+  Permanente: 'permanente'
+  Tipos:
+    PROGRESSO: 'progresso'
+    PONTOS: 'pontos'
+    RECOMPENSAS: 'recompensas'
+  Afeta:
+    Todos: 'tudo'
+    Diarias: 'missoes diarias'
+    Semanais: 'missoes semanais'
+    Eventos: 'eventos'
+  Linha: '&8- &d+{porcentagem}% &fde {tipo} &7em {afeta} &8({tempo})'
+  Servidor comecou: '&d&lIMPULSO! &7O servidor ganhou &d+{porcentagem}% &7de {tipo} em {afeta} por &f{tempo}&7.'
+  Servidor terminou: '&7O impulso de &d+{porcentagem}% &7de {tipo} em {afeta} acabou.'
+  Jogador comecou: '&d&lIMPULSO! &7Voce ganhou &d+{porcentagem}% &7de {tipo} em {afeta} por &f{tempo}&7.'
+  Jogador terminou: '&7Seu impulso de &d+{porcentagem}% &7de {tipo} em {afeta} acabou.'
+  Lista servidor: '&dImpulsos do servidor:'
+  Lista jogador: '&dImpulsos de {jogador}:'
+  Adicionado: '&aImpulso dado a &f{jogador}&a.'
+  Removido: '&aImpulsos de &f{alvo} &aremovidos.'
+  Invalido: '&cImpulso invalido. Tipo: PROGRESSO, PONTOS ou RECOMPENSAS; porcentagem > 0; duracao como 1h, 2d ou permanente.'
+
+Admin:
+  Recarregado: '&aArquivos recarregados em &f{ms}ms&a.'
+  Pontos: '&aPontos de &f{jogador}&a: {modo} &f{pontos}&a.'
+  Pontos todos: '&a{pontos} pontos aplicados a todos os jogadores online.'
+  Nivel: '&aNivel de &f{jogador} &adefinido para &f{nivel}&a.'
+  Passe: '&aPasse de &f{jogador} &aagora e &f{passe}&a.'
+  Passe online: '&aTodos os jogadores online agora tem o passe &f{passe}&a.'
+  Passe todos: '&aTodos os jogadores (online e offline) agora tem o passe &f{passe}&a.'
+  Passe invalido: '&cO passe &f{passe} &cnao existe. Use gratuito ou premium.'
+  Categorias titulo: '&eCategorias de missoes:'
+  Categoria linha: '&8- &f{id} &7({nome}, {missoes} missoes)'
+  Categoria invalida: '&cA categoria &f{categoria} &cnao existe. Veja &f/starpasse missao lista&c.'
+  Missoes titulo: '&eMissoes de {categoria}:'
+  Missao linha: '&8- &f{id} &7({nome}, {pontos} pontos)'
+  Missao invalida: '&cNao existe a missao &f{missao} &cna categoria &f{categoria}&c.'
+  Missao progresso: '&a+{quantidade} de progresso em &f{missao} &apara &f{jogador}&a.'
+  Missao concluir: '&aMissao &f{missao} &aconcluida para &f{jogador}&a.'
+  Missao resetar: '&aMissao &f{missao} &azerada para &f{jogador}&a.'
+  Diarias sorteadas: '&a{quantidade} missoes diarias sorteadas de novo.'
+  Diarias info: '&eDiarias de hoje ({dia}), {quantidade} missoes; viram em &f{tempo}&e:'
+  Temporada info: |-
+    &eTemporada &f{temporada} &8| &eInicio: &f{inicio}
+    &eSemana &f{semana}&7/&f{semanas} &8| &eProxima semana em: &f{proxima_semana}
+    &eFim da temporada em: &f{fim} &8| &eTerminou: {terminou}
+    &eMissoes carregadas: &f{missoes} &8| &eBanco: &f{banco}
+  Temporada confirmar: '&cIsto zera pontos, niveis, missoes e resgates de TODO MUNDO. Repita o comando em 30 segundos para confirmar.'
+  Temporada nova: '&aTemporada &f{temporada} &aaberta! Todo mundo comecou do zero.'
+  Inicio definido: '&aInicio da temporada definido para &f{inicio}&a.'
+  Data invalida: '&cA data &f{valor} &cnao vale. Use dd/MM/yyyy HH:mm.'
+  Semanas geradas: '&a{quantidade} semana(s) geradas a partir do sorteio-semanal.yml.'
+  Sem baralho: '&cO arquivo missoes/sorteio-semanal.yml nao existe ou nao tem a secao Missoes.'
+  Saldo: '&aSaldo de &f{jogador}&a: {modo} &f{valor}&a.'
+  Resetado: '&aO passe de &f{jogador} &afoi apagado.'
+  Resgatado: '&a{quantidade} nivel(is) resgatados para &f{jogador}&a.'
+  Npc criado: '&aNPC &f{id} &acriado aqui.'
+  Npc removido: '&aNPC &f{id} &aremovido.'
+  Npc nenhum: '&cNenhum NPC do passe por perto.'
+  Mao vazia: '&cSegure um item na mao.'
+  Material: '&aItem na mao: &f{material} &7(nome no servidor: {cru})'
+
+Ajuda:
+  Jogador: |-
+    &8&m----------&r &6&lPASSE DE BATALHA &8&m----------
+    &e/{comando} &7- abre o passe
+    &e/{comando} recompensas &7- as recompensas de cada nivel
+    &e/{comando} missoes &7- as semanas de missoes
+    &e/{comando} semana <n> &7- as missoes de uma semana
+    &e/{comando} diarias &7- as missoes de hoje
+    &e/{comando} eventos &7- os eventos
+    &e/{comando} top [nivel|missoes|pontos] &7- o ranking
+    &e/{comando} impulsos &7- seus impulsos ativos
+    &e/{comando} status &7- seu resumo
+    &e/{comando} resgatar &7- resgata todas as recompensas pendentes
+    &8&m------------------------------------
+  Admin: |-
+    &8&m----------&r &6&lSTARPASSE ADMIN &8&m----------
+    &e/{comando} recarregar
+    &e/{comando} pontos <dar|remover|setar> <jogador|online> <n>
+    &e/{comando} nivel setar <jogador> <n>
+    &e/{comando} passe setar <jogador|online|todos> <gratuito|premium>
+    &e/{comando} missao <lista | ids <categoria> | progresso|concluir|resetar <jogador> <categoria> <id> [n]>
+    &e/{comando} diarias <info|sortear>
+    &e/{comando} temporada <info|nova|inicio <data>>
+    &e/{comando} semanas gerar [semanas] [gratuitas] [premium]
+    &e/{comando} impulso <adicionar|remover|lista> ...
+    &e/{comando} saldo <dar|remover|setar> <jogador> <valor>
+    &e/{comando} resetar <jogador> &8| &e/{comando} resgatar <jogador>
+    &e/{comando} ver <jogador> &8| &e/{comando} npc <criar|remover> &8| &e/{comando} material
+    &8&m------------------------------------

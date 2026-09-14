@@ -1,0 +1,125 @@
+# ==========================================================================
+#  StarPasse - passe GRATUITO
+#
+#  Todo jogador tem este passe. Os niveis abaixo valem para quem NAO tem o
+#  premium; quem tem o premium usa a tabela de pontos do premium.yml, mas
+#  continua recebendo as recompensas daqui (veja 'Premium recebe as gratuitas').
+#
+#  Niveis:
+#    <numero>:
+#      Recompensas: [ ids do recompensas.yml ]
+#      Pontos: quantos pontos para CHEGAR neste nivel (a partir do anterior).
+#              Sem esta chave vale 'Pontos por nivel'.
+#      Bloqueado / Disponivel / Resgatado / Sem passe / Vazio: item proprio
+#              deste nivel para cada estado (opcional; senao usa 'Itens').
+#
+#  O nivel maximo e o maior numero escrito em Niveis (ou 'Nivel maximo', se
+#  for maior). Niveis sem entrada existem, so nao tem recompensa.
+#
+#  Substituicoes nos itens: {nivel} {passe} {recompensas} {pontos_do_nivel}
+#  {pontos_acumulados} {status} e as gerais ({jogador}, {pontos}...).
+# ==========================================================================
+
+Nome: '&aGratuito'
+Pontos por nivel: 100
+Nivel maximo: 30
+# Quem tem o premium tambem recebe as recompensas deste passe?
+Premium recebe as gratuitas: true
+
+# O que acontece ao subir de nivel (alem da mensagem Nivel.Subiu).
+# Acoes: titulo: <t<nl>sub> | actionbar: | som: <SOM;vol;tom> | mensagem: | comando: | console:
+Acoes ao subir:
+  - 'titulo: &a&lNIVEL {nivel}!<nl>&fPasse de batalha'
+  - 'som: ENTITY_PLAYER_LEVELUP;1;1'
+
+Itens:
+  Bloqueado:
+    Material: MINECART
+    Nome: '&c&lNIVEL {nivel} &7(gratuito)'
+    Lore:
+      - ''
+      - '&fRecompensas:'
+      - '{recompensas}'
+      - ''
+      - '&fPontos para chegar: &e{pontos_acumulados}'
+      - '&fSituacao: {status}'
+  Disponivel:
+    Material: CHEST_MINECART
+    Nome: '&a&lNIVEL {nivel} &7(gratuito)'
+    Lore:
+      - ''
+      - '&fRecompensas:'
+      - '{recompensas}'
+      - ''
+      - '&fSituacao: {status}'
+  Resgatado:
+    Material: MINECART
+    Nome: '&7&lNIVEL {nivel} &7(gratuito)'
+    Lore:
+      - ''
+      - '&fRecompensas:'
+      - '{recompensas}'
+      - ''
+      - '&fSituacao: {status}'
+  Sem passe:
+    Material: MINECART
+    Nome: '&e&lNIVEL {nivel} &7(gratuito)'
+    Lore:
+      - ''
+      - '&fRecompensas:'
+      - '{recompensas}'
+      - ''
+      - '&cVoce so recebe recompensas premium.'
+  Vazio:
+    Material: MINECART
+    Nome: '&7&lNIVEL {nivel} &7(gratuito)'
+    Lore:
+      - ''
+      - '&7Este nivel nao tem recompensa gratuita.'
+
+Niveis:
+  1:
+    Recompensas: [ dinheiro ]
+    Pontos: 50
+  2:
+    Recompensas: [ xp ]
+  3:
+    Recompensas: [ dinheiro ]
+  4:
+    Recompensas: [ esmeraldas ]
+  5:
+    Recompensas: [ dinheiro, caixa ]
+    Pontos: 150
+  6:
+    Recompensas: [ xp ]
+  7:
+    Recompensas: [ dinheiro ]
+  8:
+    Recompensas: [ diamantes ]
+  9:
+    Recompensas: [ xp ]
+  10:
+    Recompensas: [ dinheiro, caixa, anuncio ]
+    Pontos: 200
+  12:
+    Recompensas: [ esmeraldas ]
+  14:
+    Recompensas: [ dinheiro ]
+  15:
+    Recompensas: [ diamantes, caixa ]
+    Pontos: 250
+  17:
+    Recompensas: [ xp ]
+  20:
+    Recompensas: [ dinheiro, caixa, anuncio ]
+    Pontos: 300
+  22:
+    Recompensas: [ esmeraldas ]
+  25:
+    Recompensas: [ diamantes, caixa ]
+    Pontos: 350
+  28:
+    Recompensas: [ dinheiro ]
+  30:
+    Recompensas: [ dinheiro, espada, caixa, anuncio ]
+    Pontos: 500

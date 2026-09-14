@@ -1,0 +1,134 @@
+# ==========================================================================
+#  StarPasse - passe PREMIUM
+#
+#  Quem tem o premium (por comando: /starpasse passe setar <jogador> premium,
+#  ou pela permissao starpasse.premium com 'Premium por permissao' ligado)
+#  usa esta tabela de pontos e recebe estas recompensas, alem das gratuitas.
+#
+#  Mesmo formato do gratuito.yml. 'Permissao' e uma permissao extra que
+#  tambem vale como premium (alem de starpasse.premium).
+# ==========================================================================
+
+Nome: '&dPremium'
+Pontos por nivel: 100
+Nivel maximo: 30
+Permissao: ''
+
+Acoes ao subir:
+  - 'titulo: &d&lNIVEL {nivel}!<nl>&fPasse premium'
+  - 'som: ENTITY_PLAYER_LEVELUP;1;1.3'
+
+Itens:
+  Sem passe:
+    Material: FURNACE_MINECART
+    Nome: '&d&lNIVEL {nivel} &7(premium)'
+    Lore:
+      - ''
+      - '&fRecompensas:'
+      - '{recompensas}'
+      - ''
+      - '&cVoce nao tem o passe premium.'
+      - '&7Compre na loja para liberar.'
+  Bloqueado:
+    Material: FURNACE_MINECART
+    Nome: '&c&lNIVEL {nivel} &7(premium)'
+    Lore:
+      - ''
+      - '&fRecompensas:'
+      - '{recompensas}'
+      - ''
+      - '&fPontos para chegar: &e{pontos_acumulados}'
+      - '&fSituacao: {status}'
+  Disponivel:
+    Material: CHEST_MINECART
+    Nome: '&d&lNIVEL {nivel} &7(premium)'
+    Lore:
+      - ''
+      - '&fRecompensas:'
+      - '{recompensas}'
+      - ''
+      - '&fSituacao: {status}'
+  Resgatado:
+    Material: FURNACE_MINECART
+    Nome: '&7&lNIVEL {nivel} &7(premium)'
+    Lore:
+      - ''
+      - '&fRecompensas:'
+      - '{recompensas}'
+      - ''
+      - '&fSituacao: {status}'
+  Vazio:
+    Material: FURNACE_MINECART
+    Nome: '&7&lNIVEL {nivel} &7(premium)'
+    Lore:
+      - ''
+      - '&7Este nivel nao tem recompensa premium.'
+
+Niveis:
+  1:
+    Recompensas: [ dinheiro-premium ]
+    Pontos: 50
+  2:
+    Recompensas: [ diamantes ]
+  3:
+    Recompensas: [ dinheiro-premium ]
+  4:
+    Recompensas: [ esmeraldas ]
+  5:
+    Recompensas: [ dinheiro-premium, caixa-premium ]
+    Pontos: 150
+  6:
+    Recompensas: [ xp ]
+  7:
+    Recompensas: [ diamantes ]
+  8:
+    Recompensas: [ dinheiro-premium ]
+  9:
+    Recompensas: [ esmeraldas ]
+  10:
+    Recompensas: [ dinheiro-premium, caixa-premium ]
+    Pontos: 200
+  11:
+    Recompensas: [ diamantes ]
+  12:
+    Recompensas: [ xp ]
+  13:
+    Recompensas: [ dinheiro-premium ]
+  14:
+    Recompensas: [ esmeraldas ]
+  15:
+    Recompensas: [ diamantes, caixa-premium ]
+    Pontos: 250
+  16:
+    Recompensas: [ dinheiro-premium ]
+  17:
+    Recompensas: [ xp ]
+  18:
+    Recompensas: [ diamantes ]
+  19:
+    Recompensas: [ esmeraldas ]
+  20:
+    Recompensas: [ dinheiro-premium, caixa-premium ]
+    Pontos: 300
+  21:
+    Recompensas: [ diamantes ]
+  22:
+    Recompensas: [ dinheiro-premium ]
+  23:
+    Recompensas: [ xp ]
+  24:
+    Recompensas: [ esmeraldas ]
+  25:
+    Recompensas: [ diamantes, caixa-premium ]
+    Pontos: 350
+  26:
+    Recompensas: [ dinheiro-premium ]
+  27:
+    Recompensas: [ diamantes ]
+  28:
+    Recompensas: [ xp ]
+  29:
+    Recompensas: [ esmeraldas ]
+  30:
+    Recompensas: [ dinheiro-premium, espada, caixa-premium ]
+    Pontos: 500

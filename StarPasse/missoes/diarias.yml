@@ -1,0 +1,366 @@
+# ==========================================================================
+#  StarPasse - missoes DIARIAS (o baralho)
+#
+#  Todo dia o plugin sorteia 'Diarias.Quantidade' (config.yml) missoes daqui.
+#  O sorteio e o mesmo em todos os servidores que compartilham o banco.
+#
+#  Cada missao:
+#    Nome          Como aparece nas mensagens.
+#    Tipo          A acao (lista no fim do arquivo).
+#    Alvos         O que conta. Nome do material/entidade, com curinga (*_ORE)
+#                  e peso opcional ('DIAMOND_ORE 5' = vale 5). Vazio ou '*'
+#                  conta tudo. Tipos de texto (CHAT_CONTEM, COMANDO,
+#                  CONQUISTA, PLACEHOLDER) comparam o texto.
+#    Necessario    Quanto e preciso.
+#    Pontos        Pontos de passe ao concluir.
+#    Dificuldade   facil, media ou dificil (usada no sorteio por dificuldade).
+#    Exclusiva     premium ou gratuito (opcional).
+#    Permissao     So aparece para quem tem (opcional).
+#    Item          Como aparece no menu. Substituicoes: {progresso}
+#                  {necessario} {porcentagem} {barra} {pontos} {status}
+#                  {etapa} {etapas} {info} {tipo} {dificuldade}
+#
+#  Missao em etapas: no lugar de Tipo/Alvos/Necessario, uma secao 'Etapas'
+#  com varias (1, 2, 3...), cada uma com Tipo, Alvos, Necessario, Pontos e
+#  Info (linhas mostradas por {info}). Veja a missao 'mineracao-completa'.
+#
+#  Tipos: QUEBRAR COLHER PLANTAR COLOCAR MATAR MATAR_JOGADORES MORRER DANO
+#  FLECHAR LANCAR PESCAR FABRICAR FUNDIR ENCANTAR POCAO REPARAR COMER DOMAR
+#  PROCRIAR TOSQUIAR ORDENHAR NEGOCIAR COLETAR MEL ANDAR CORRER AGACHAR NADAR
+#  PLANAR VOAR PULAR TEMPO_JOGADO CHAT CHAT_CONTEM XP ENTRAR DORMIR COMANDO
+#  PLACEHOLDER CONQUISTA
+# ==========================================================================
+
+Diarias:
+  Nome: 'Missoes diarias'
+
+Missoes:
+  minerador:
+    Nome: 'Minerador do dia'
+    Tipo: QUEBRAR
+    Alvos:
+      - 'STONE'
+      - 'COBBLESTONE'
+      - 'DEEPSLATE'
+    Necessario: 300
+    Pontos: 20
+    Dificuldade: facil
+    Item:
+      Material: STONE_PICKAXE
+      Nome: '&eMinerador do dia'
+      Lore:
+        - '&7Quebre &e300 &7blocos de pedra.'
+
+  carvoeiro:
+    Nome: 'Carvoeiro'
+    Tipo: QUEBRAR
+    Alvos:
+      - 'COAL_ORE'
+      - 'DEEPSLATE_COAL_ORE'
+    Necessario: 40
+    Pontos: 25
+    Dificuldade: facil
+    Item:
+      Material: COAL
+      Nome: '&eCarvoeiro'
+      Lore:
+        - '&7Minere &e40 &7minerios de carvao.'
+
+  ferreiro:
+    Nome: 'Ferreiro'
+    Tipo: FUNDIR
+    Alvos:
+      - 'IRON_INGOT'
+    Necessario: 32
+    Pontos: 30
+    Dificuldade: media
+    Item:
+      Material: IRON_INGOT
+      Nome: '&eFerreiro'
+      Lore:
+        - '&7Funda &e32 &7barras de ferro.'
+
+  cacador:
+    Nome: 'Cacador'
+    Tipo: MATAR
+    Alvos:
+      - 'ZOMBIE'
+      - 'SKELETON'
+      - 'SPIDER'
+      - 'CREEPER 2'
+    Necessario: 30
+    Pontos: 30
+    Dificuldade: media
+    Item:
+      Material: IRON_SWORD
+      Nome: '&eCacador'
+      Lore:
+        - '&7Mate &e30 &7monstros.'
+        - '&7Creeper vale &e2&7.'
+
+  fazendeiro:
+    Nome: 'Fazendeiro'
+    Tipo: COLHER
+    Alvos:
+      - 'WHEAT'
+      - 'CARROTS'
+      - 'POTATOES'
+      - 'BEETROOTS'
+    Necessario: 100
+    Pontos: 25
+    Dificuldade: facil
+    Item:
+      Material: WHEAT
+      Nome: '&eFazendeiro'
+      Lore:
+        - '&7Colha &e100 &7plantacoes maduras.'
+
+  lenhador:
+    Nome: 'Lenhador'
+    Tipo: QUEBRAR
+    Alvos:
+      - '*_LOG'
+    Necessario: 80
+    Pontos: 20
+    Dificuldade: facil
+    Item:
+      Material: OAK_LOG
+      Nome: '&eLenhador'
+      Lore:
+        - '&7Corte &e80 &7troncos.'
+
+  pescador:
+    Nome: 'Pescador'
+    Tipo: PESCAR
+    Alvos: []
+    Necessario: 15
+    Pontos: 30
+    Dificuldade: media
+    Item:
+      Material: FISHING_ROD
+      Nome: '&ePescador'
+      Lore:
+        - '&7Pesque &e15 &7itens.'
+
+  construtor:
+    Nome: 'Construtor'
+    Tipo: COLOCAR
+    Alvos: []
+    Necessario: 200
+    Pontos: 20
+    Dificuldade: facil
+    Item:
+      Material: BRICKS
+      Nome: '&eConstrutor'
+      Lore:
+        - '&7Coloque &e200 &7blocos.'
+
+  tagarela:
+    Nome: 'Tagarela'
+    Tipo: CHAT
+    Necessario: 30
+    Pontos: 10
+    Dificuldade: facil
+    Item:
+      Material: PAPER
+      Nome: '&eTagarela'
+      Lore:
+        - '&7Mande &e30 &7mensagens no chat.'
+
+  educado:
+    Nome: 'Educado'
+    Tipo: CHAT_CONTEM
+    Alvos:
+      - 'bom dia'
+      - 'boa tarde'
+      - 'boa noite'
+    Necessario: 3
+    Pontos: 10
+    Dificuldade: facil
+    Item:
+      Material: WRITABLE_BOOK
+      Nome: '&eEducado'
+      Lore:
+        - '&7Cumprimente o chat &e3 &7vezes'
+        - '&7(bom dia, boa tarde ou boa noite).'
+
+  andarilho:
+    Nome: 'Andarilho'
+    Tipo: ANDAR
+    Necessario: 2000
+    Pontos: 20
+    Dificuldade: facil
+    Item:
+      Material: LEATHER_BOOTS
+      Nome: '&eAndarilho'
+      Lore:
+        - '&7Ande &e2.000 &7blocos.'
+
+  maratonista:
+    Nome: 'Maratonista'
+    Tipo: CORRER
+    Necessario: 3000
+    Pontos: 30
+    Dificuldade: media
+    Item:
+      Material: GOLDEN_BOOTS
+      Nome: '&eMaratonista'
+      Lore:
+        - '&7Corra &e3.000 &7blocos.'
+
+  cozinheiro:
+    Nome: 'Cozinheiro'
+    Tipo: FUNDIR
+    Alvos:
+      - 'COOKED_BEEF'
+      - 'COOKED_PORKCHOP'
+      - 'COOKED_CHICKEN'
+      - 'COOKED_MUTTON'
+      - 'COOKED_COD'
+      - 'COOKED_SALMON'
+    Necessario: 32
+    Pontos: 25
+    Dificuldade: media
+    Item:
+      Material: COOKED_BEEF
+      Nome: '&eCozinheiro'
+      Lore:
+        - '&7Asse &e32 &7carnes.'
+
+  gourmet:
+    Nome: 'Gourmet'
+    Tipo: COMER
+    Alvos: []
+    Necessario: 10
+    Pontos: 10
+    Dificuldade: facil
+    Item:
+      Material: COOKED_CHICKEN
+      Nome: '&eGourmet'
+      Lore:
+        - '&7Coma &e10 &7vezes.'
+
+  arqueiro:
+    Nome: 'Arqueiro'
+    Tipo: FLECHAR
+    Alvos: []
+    Necessario: 100
+    Pontos: 35
+    Dificuldade: media
+    Item:
+      Material: BOW
+      Nome: '&eArqueiro'
+      Lore:
+        - '&7Cause &e100 &7de dano com'
+        - '&7flechas ou outros projeteis.'
+
+  guerreiro:
+    Nome: 'Guerreiro'
+    Tipo: DANO
+    Alvos: []
+    Necessario: 300
+    Pontos: 35
+    Dificuldade: media
+    Item:
+      Material: DIAMOND_SWORD
+      Nome: '&eGuerreiro'
+      Lore:
+        - '&7Cause &e300 &7de dano corpo a corpo.'
+
+  artesao:
+    Nome: 'Artesao'
+    Tipo: FABRICAR
+    Alvos: []
+    Necessario: 64
+    Pontos: 20
+    Dificuldade: facil
+    Item:
+      Material: CRAFTING_TABLE
+      Nome: '&eArtesao'
+      Lore:
+        - '&7Fabrique &e64 &7itens na bancada.'
+
+  alquimista:
+    Nome: 'Alquimista'
+    Tipo: POCAO
+    Alvos: []
+    Necessario: 6
+    Pontos: 40
+    Dificuldade: dificil
+    Item:
+      Material: BREWING_STAND
+      Nome: '&eAlquimista'
+      Lore:
+        - '&7Faca &e6 &7pocoes no alambique.'
+
+  encantador:
+    Nome: 'Encantador'
+    Tipo: ENCANTAR
+    Alvos: []
+    Necessario: 3
+    Pontos: 40
+    Dificuldade: dificil
+    Item:
+      Material: ENCHANTING_TABLE
+      Nome: '&eEncantador'
+      Lore:
+        - '&7Encante &e3 &7itens na mesa.'
+
+  diamantes:
+    Nome: 'Brilho no escuro'
+    Tipo: QUEBRAR
+    Alvos:
+      - 'DIAMOND_ORE'
+      - 'DEEPSLATE_DIAMOND_ORE'
+    Necessario: 8
+    Pontos: 50
+    Dificuldade: dificil
+    Item:
+      Material: DIAMOND
+      Nome: '&eBrilho no escuro'
+      Lore:
+        - '&7Minere &e8 &7minerios de diamante.'
+
+  presenca:
+    Nome: 'Presenca'
+    Tipo: TEMPO_JOGADO
+    Necessario: 60
+    Pontos: 25
+    Dificuldade: facil
+    Item:
+      Material: CLOCK
+      Nome: '&ePresenca'
+      Lore:
+        - '&7Fique &e60 &7minutos online hoje.'
+
+  mineracao-completa:
+    Nome: 'Mineracao completa'
+    Pontos: 30
+    Dificuldade: dificil
+    Etapas:
+      1:
+        Tipo: QUEBRAR
+        Alvos: [ 'COAL_ORE', 'DEEPSLATE_COAL_ORE' ]
+        Necessario: 20
+        Pontos: 5
+        Info:
+          - '&7Etapa 1: minere &e20 &7carvao'
+      2:
+        Tipo: QUEBRAR
+        Alvos: [ 'IRON_ORE', 'DEEPSLATE_IRON_ORE' ]
+        Necessario: 15
+        Pontos: 10
+        Info:
+          - '&7Etapa 2: minere &e15 &7ferro'
+      3:
+        Tipo: QUEBRAR
+        Alvos: [ 'GOLD_ORE', 'DEEPSLATE_GOLD_ORE' ]
+        Necessario: 8
+        Pontos: 15
+        Info:
+          - '&7Etapa 3: minere &e8 &7ouro'
+    Item:
+      Material: GOLDEN_PICKAXE
+      Nome: '&eMineracao completa &7({etapa}/{etapas})'
+      Lore:
+        - '{info}'

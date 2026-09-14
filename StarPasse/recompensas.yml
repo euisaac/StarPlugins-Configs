@@ -1,0 +1,79 @@
+# ==========================================================================
+#  StarPasse - recompensas
+#
+#  Cada recompensa tem um id (a chave) e e citada pelos niveis dos passes
+#  (passes/gratuito.yml e passes/premium.yml) na lista 'Recompensas'.
+#
+#  Campos:
+#    Nome        Como aparece na lore do nivel. Pode usar {valor} e as outras
+#                variaveis.
+#    Variaveis   Formulas com {nivel} e {impulso} (impulso de RECOMPENSAS, em
+#                %). Ex.: valor: '100 * {nivel} * (1 + {impulso} / 100)'
+#    Dinheiro    Formula; sai pela economia (Vault ou comando do config).
+#    Pontos      Formula; pontos de passe extras.
+#    Itens       Lista: 'MATERIAL:quantidade' ou item completo (Material,
+#                Nome, Lore, Quantidade, Encantamentos, Brilho, Base64).
+#    Comandos    Comandos de console. {jogador} {nivel} {passe} e as variaveis.
+#    Mensagem    Texto para o jogador ao receber.
+#
+#  Formulas aceitam + - * / % ^ parenteses e min max floor ceil round sqrt.
+# ==========================================================================
+
+dinheiro:
+  Nome: '&a${valor} em dinheiro'
+  Variaveis:
+    valor: 'floor((250 * {nivel}) * (1 + {impulso} / 100))'
+  Dinheiro: '{valor}'
+
+dinheiro-premium:
+  Nome: '&a${valor} em dinheiro'
+  Variaveis:
+    valor: 'floor((600 * {nivel}) * (1 + {impulso} / 100))'
+  Dinheiro: '{valor}'
+
+diamantes:
+  Nome: '&b{valor} diamante(s)'
+  Variaveis:
+    valor: 'ceil((2 + {nivel} / 2) * (1 + {impulso} / 100))'
+  Itens:
+    - 'DIAMOND:{valor}'
+
+esmeraldas:
+  Nome: '&a{valor} esmeralda(s)'
+  Variaveis:
+    valor: 'ceil((4 + {nivel}) * (1 + {impulso} / 100))'
+  Itens:
+    - 'EMERALD:{valor}'
+
+xp:
+  Nome: '&e{valor} niveis de XP'
+  Variaveis:
+    valor: 'floor(5 + {nivel} * 2)'
+  Comandos:
+    - 'xp give {jogador} {valor} levels'
+
+caixa:
+  Nome: '&6Uma chave de caixa'
+  Comandos:
+    - 'crates give {jogador} comum 1'
+
+caixa-premium:
+  Nome: '&dUma chave de caixa premium'
+  Comandos:
+    - 'crates give {jogador} premium 1'
+
+espada:
+  Nome: '&bEspada de diamante encantada'
+  Itens:
+    - Material: DIAMOND_SWORD
+      Nome: '&b&lEspada do Passe'
+      Lore:
+        - '&7Recompensa do passe de batalha'
+      Encantamentos:
+        - 'DAMAGE_ALL:3'
+        - 'DURABILITY:2'
+
+anuncio:
+  Nome: '&eAnuncio no chat'
+  Comandos:
+    - 'say &e{jogador} chegou ao nivel {nivel} do passe de batalha!'

@@ -1,0 +1,282 @@
+# ==========================================================================
+#  StarPasse - configuracao geral
+#
+#  Os passes ficam na pasta passes/ (gratuito.yml e premium.yml), as missoes
+#  na pasta missoes/ (semana-N.yml, diarias.yml, eventos/*.yml), as
+#  recompensas no recompensas.yml, os textos no mensagens.yml e a aparencia
+#  das telas no menus.yml.
+#
+#  Como funciona: a temporada comeca numa data e libera uma semana de missoes
+#  a cada X dias. Concluir missoes (semanais, diarias e de evento) rende
+#  pontos; os pontos sobem o nivel do passe e cada nivel tem recompensas para
+#  o passe gratuito e para o premium. Impulsos (boosters) do servidor, do
+#  jogador ou por permissao aumentam o progresso, os pontos ou as recompensas.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+  # Fuso horario de tudo que tem data e hora: temporada, virada das diarias,
+  # eventos. Lista: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  Fuso: 'America/Sao_Paulo'
+
+  # Mundos onde nenhuma missao progride. Lista vazia libera todos.
+  Mundos bloqueados:
+    - lobby
+
+  # Se preencher, SO estes mundos progridem (a lista de bloqueados continua valendo).
+  Mundos permitidos: []
+
+  # Bloco que um jogador colocou nao rende progresso ao ser quebrado. Sem
+  # isto, colocar e quebrar a mesma pedra viraria uma maquina de pontos. Nao
+  # vale para plantacao: ela e plantada de proposito, e o que conta e estar
+  # madura.
+  Ignorar blocos colocados por jogadores: true
+
+  # Jogador no criativo nao progride em nada.
+  Ignorar criativo: true
+
+  # Segundos depois de entrar no servidor para avisar das recompensas que
+  # ainda nao foram resgatadas. 0 desliga o aviso.
+  Avisar recompensas ao entrar: 5
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores). Com MYSQL varios servidores somam no mesmo passe e o top e o
+  # da rede inteira.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starpasse_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  # De quanto em quanto tempo o que esta em memoria vai para o banco, em
+  # segundos. Sair do servidor grava na hora, independente disto.
+  Salvar a cada: 60
+
+Temporada:
+  # Data e hora em que a temporada comecou (dd/MM/yyyy HH:mm). E a partir
+  # daqui que as semanas sao liberadas. O comando /starpasse temporada nova
+  # pode atualizar isto sozinho (veja "Temporada nova").
+  Inicio: '01/01/2026 00:00'
+  # Quantos dias dura cada semana de missoes.
+  Dias por semana: 7
+  # Quantas semanas a temporada tem. 0 = o numero de arquivos semana-N.yml.
+  Semanas: 0
+
+  Desbloqueio:
+    # O jogador precisa concluir todas as missoes da semana anterior para
+    # comecar a proxima?
+    Exigir semana anterior completa: false
+    # Quando uma semana nova abre, as anteriores fecham (nao progridem mais)?
+    Travar semanas anteriores: false
+
+  # Quando a temporada acaba (passou da ultima semana):
+  Ao terminar:
+    Parar missoes diarias: false
+    Parar missoes semanais: false
+    Parar eventos: false
+
+  # O que /starpasse temporada nova faz, alem de zerar pontos, niveis,
+  # missoes e resgates de todo mundo:
+  Temporada nova:
+    # Volta todo mundo para o passe gratuito.
+    Zerar passe: false
+    # Zera o saldo interno (so se "Pontos excedentes.Modo" for INTERNO).
+    Zerar saldo: false
+    # Troca "Temporada.Inicio" para a hora do comando.
+    Atualizar inicio: true
+    # Gera as semanas de novo a partir de missoes/sorteio-semanal.yml.
+    # ATENCAO: apaga os arquivos semana-N.yml que existem.
+    Gerar semanas sozinho: false
+    Semanas geradas: 4
+    Gratuitas por semana: 5
+    Premium por semana: 2
+    Permitir missao repetida entre semanas: false
+
+Passe:
+  # Quem tem a permissao starpasse.premium (ou a "Permissao" do premium.yml)
+  # conta como premium sem precisar de comando. Bom para vender pelo grupo.
+  Premium por permissao: true
+
+  # Entrega as recompensas na hora em que o nivel sobe. Se false, o jogador
+  # precisa clicar na recompensa no menu para resgatar.
+  Receber recompensas sozinho: false
+
+  # Mensagem no chat ao subir de nivel (alem das acoes do passe).
+  Avisar nivel no chat: true
+
+  # Pontos que passam do nivel maximo viram dinheiro:
+  Pontos excedentes:
+    # NENHUM (os pontos continuam contando, so nao dao nada), VAULT (viram
+    # dinheiro na economia) ou INTERNO (viram um saldo
+    # do proprio plugin, com placeholder %starpasse_saldo% e comandos de admin).
+    Modo: NENHUM
+    # Dinheiro por ponto excedente, por tipo de passe.
+    Por ponto:
+      Gratuito: 50
+      Premium: 100
+
+Diarias:
+  # Sorteia missoes do missoes/diarias.yml todo dia.
+  Ativar: true
+  # Quantas missoes ficam disponiveis por dia.
+  Quantidade: 5
+  # Hora da virada (HH:mm), no fuso de Geral.Fuso.
+  Horario de virada: '00:00'
+  # Ids de missoes do diarias.yml que aparecem TODO dia (entram antes do sorteio).
+  Fixas: []
+  # Sorteio por dificuldade (campo "Dificuldade" de cada missao: facil, media,
+  # dificil). Quando ativo, escolhe tantas de cada; o que faltar para
+  # "Quantidade" e sorteado entre todas.
+  Por dificuldade:
+    Ativar: false
+    Ordenar por dificuldade: true
+    Quantidade:
+      facil: 2
+      media: 2
+      dificil: 1
+
+  # Bonus ao concluir todas as diarias do dia.
+  Bonus ao concluir todas:
+    Pontos: 50
+    # Acoes: mensagem: | titulo: | actionbar: | som: | comando: | console:
+    Acoes:
+      - 'titulo: &a&lDIARIAS COMPLETAS!<nl>&f+{pontos} pontos'
+      - 'som: UI_TOAST_CHALLENGE_COMPLETE;1;1'
+
+  # Sequencia: dias seguidos concluindo todas as diarias. Quebra quando um
+  # dia passa sem concluir. As chaves sao o tamanho da sequencia e o valor os
+  # pontos de bonus (alem do bonus de cima). Uma chave 'cada' vale para todo
+  # multiplo (ex.: cada 7 dias).
+  Sequencia:
+    Ativar: true
+    Bonus:
+      3: 100
+      7: 300
+      cada: 7
+      cada pontos: 300
+    Acoes:
+      - 'mensagem: &6&lSEQUENCIA! &e{sequencia} dias seguidos &7(+{pontos} pontos)'
+
+Semanas:
+  # Bonus ao concluir todas as missoes de uma semana (contando so as que o
+  # jogador pode ver: premium nao entra para quem e gratuito).
+  Bonus ao concluir todas:
+    Pontos: 200
+    Acoes:
+      - 'titulo: &6&lSEMANA {semana} COMPLETA!<nl>&f+{pontos} pontos'
+      - 'som: UI_TOAST_CHALLENGE_COMPLETE;1;1'
+
+  # A quantidade do item das missoes semanais no menu mostra o numero da semana.
+  Quantidade do item mostra a semana: true
+
+Missoes:
+  # O que acontece ao concluir qualquer missao. Substituicoes: {missao}
+  # {categoria} {pontos} {jogador}
+  Acoes ao concluir:
+    - 'titulo: &e&lMISSAO CONCLUIDA!<nl>&f{missao}'
+    - 'som: ENTITY_PLAYER_LEVELUP;1;1.2'
+
+  # Porcentagens em que o jogador e avisado do progresso.
+  Avisar em: [ 25, 50, 75, 100 ]
+
+  # Missao concluida ganha brilho de encantamento no menu.
+  Brilho ao concluir: true
+  # Material que substitui o item da missao concluida. Vazio mantem o original.
+  Material ao concluir: ''
+
+  # Missoes do tipo PLACEHOLDER sao conferidas de tantos em tantos segundos.
+  Conferir placeholders a cada: 30
+
+Notificacao:
+  # Como o jogador e avisado do progresso: CHAT, ACTIONBAR, AMBOS ou NENHUM.
+  Modo: ACTIONBAR
+
+  # Barra no alto da tela (1.9+; ignorada em servidor 1.8).
+  Barra de chefe:
+    Ativar: false
+    # true deixa a barra sempre visivel; false mostra so depois de progredir.
+    Fixa: false
+    # Segundos que a barra fica depois de um progresso (quando nao e fixa).
+    Esconder apos: 5
+    # true mostra a barra so quando uma porcentagem de aviso e atingida.
+    So nas porcentagens: false
+    # Cores: PINK BLUE RED GREEN YELLOW PURPLE WHITE
+    Cor: YELLOW
+    # Estilos: SOLID SEGMENTED_6 SEGMENTED_10 SEGMENTED_12 SEGMENTED_20
+    Estilo: SEGMENTED_10
+    # Acoes que nao mexem na barra (as de deslocamento disparam o tempo todo).
+    Acoes sem barra: [ ANDAR, CORRER, AGACHAR, NADAR, PLANAR, VOAR, TEMPO_JOGADO ]
+
+Impulsos:
+  # Como varios impulsos do mesmo tipo se juntam:
+  #   SOMAR             - soma todos (servidor 10% + vip 7% + evento 5% = 22%)
+  #   SOMAR_DIFERENTES  - maior do servidor + maior do jogador (10% + 7% = 17%)
+  #   MAIOR             - so o maior de todos (10%)
+  Estrategia: SOMAR_DIFERENTES
+
+  # Mostra o impulso em vigor na lore das missoes.
+  Mostrar no menu: true
+
+  # Impulsos por permissao: quem tiver starpasse.impulso.<id> recebe.
+  # Tipo: PROGRESSO, PONTOS ou RECOMPENSAS. Afeta: todos, diarias, semanais,
+  # eventos, semana-<n> ou evento-<id>.
+  Por permissao:
+    vip:
+      Tipo: PONTOS
+      Porcentagem: 25
+      Afeta: todos
+
+  # De quanto em quanto tempo os impulsos vencidos sao retirados, em segundos.
+  Conferir a cada: 30
+
+Economia:
+  # VAULT usa a economia registrada no Vault. COMANDO roda o comando abaixo
+  # (para economias que nao se registram no Vault).
+  Tipo: VAULT
+  # {jogador} e {valor} sao trocados; roda no console.
+  Comando de dar: 'eco give {jogador} {valor}'
+  # Placeholder que devolve o saldo (so para mostrar; precisa do PlaceholderAPI).
+  Placeholder de saldo: '%vault_eco_balance%'
+  Simbolo da moeda: '$'
+
+NPC:
+  # NPC que abre o passe (/starpasse npc criar). Usa Citizens ou FancyNpcs se
+  # o loader tiver um deles; senao um boneco comum.
+  # Tipo: JOGADOR (com a skin do nick abaixo) ou o nome de um mob (VILLAGER...).
+  Tipo: JOGADOR
+  Nome: '&6&lPasse de Batalha'
+  Skin: ''
+  Olhar para jogadores: true
+
+Top:
+  # Quantos jogadores o top guarda no total (as paginas saem daqui).
+  Limite: 45
+  # De quanto em quanto tempo o top de nivel e relido do banco, em segundos.
+  # E ele que alimenta os placeholders e a posicao mostrada no menu.
+  Atualizar a cada: 60
+  # Os outros tops (missoes, pontos) sao lidos quando alguem abre e ficam
+  # guardados por estes segundos antes de serem lidos de novo.
+  Guardar outros tops por: 60
+
+Menu:
+  # De quantos em quantos ticks o menu aberto e redesenhado, para o
+  # progresso andar na tela. 0 desliga.
+  Atualizar a cada: 20
+
+  # Tela que o /passe abre: principal, recompensas, missoes ou diarias.
+  Padrao: principal
+
+  Som ao clicar: 'UI_BUTTON_CLICK;1;1'
+  Som ao errar: 'ENTITY_VILLAGER_NO;1;1'
+  Som ao trocar de pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Som ao resgatar: 'ENTITY_PLAYER_LEVELUP;1;1'

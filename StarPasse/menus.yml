@@ -1,0 +1,728 @@
+# ==========================================================================
+#  StarPasse - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#  {jogador} no Dono vira o nick de quem esta olhando.
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo (Ativar: true liga).
+#    Slots                 Onde o conteudo entra (missoes, semanas, top...).
+#                          Aceita numeros e faixas: [10, 11, 12] ou '10-16, 19-25'.
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao, Condicao e Acoes.
+#
+#  Acoes proprias:  principal | recompensas | missoes | semana <n> | diarias
+#                   eventos | evento <id> | top [nivel|missoes|pontos]
+#                   impulsos | resgatar | anterior | proxima | voltar | fechar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
+#                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
+#                   som: <SOM;volume;tom>
+#
+#  Substituicoes em qualquer texto: {jogador} {passe} {premium} {pontos}
+#  {pontos_raw} {pontos_abreviado} {nivel} {nivel_maximo} {pontos_nivel}
+#  {pontos_necessarios} {pontos_faltam} {porcentagem_nivel} {barra_nivel}
+#  {missoes_concluidas} {sequencia} {saldo} {pendentes} {posicao}
+#  {posicao_missoes} {posicao_pontos} {impulso_progresso} {impulso_pontos}
+#  {impulso_recompensas} {temporada} {semana} {semanas} {proxima_semana}
+#  {fim_temporada} {diarias_tempo} {diarias_concluidas} {diarias_total}
+#  {pagina} {paginas}. Placeholders do PlaceholderAPI tambem funcionam.
+#
+#  Um botao pode ter 'Condicao: premium' (so para quem tem o premium),
+#  'Condicao: gratuito' (so para quem nao tem), 'Condicao: diarias' (diarias
+#  ligadas), 'Condicao: eventos' (existe algum evento), 'Condicao: pendentes'
+#  (tem recompensa para resgatar), 'Condicao: impulso' (tem impulso ativo),
+#  'Condicao: andamento' / 'terminou' (temporada em curso / terminada).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  /passe -- a tela inicial.
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Passe de Batalha'
+  Linhas: 4
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    status:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&6&l{jogador}'
+      Lore:
+        - ''
+        - '&fPasse: &e{passe}'
+        - '&fNivel: &e{nivel}&7/&e{nivel_maximo}'
+        - '&fPontos: &e{pontos}'
+        - '&fProximo nivel: {barra_nivel}'
+        - '&7{pontos_nivel}/{pontos_necessarios} pontos'
+        - ''
+        - '&fMissoes concluidas: &e{missoes_concluidas}'
+        - '&fPosicao no top: &e{posicao}'
+        - ''
+        - '&fTemporada &e{temporada} &8| &fSemana &e{semana}&7/&e{semanas}'
+        - '&7Proxima semana em {proxima_semana}'
+      Acoes:
+        - 'recompensas'
+
+    recompensas:
+      Slot: 10
+      Material: CHEST
+      Nome: '&a&lRECOMPENSAS'
+      Lore:
+        - ''
+        - '&7As recompensas de cada nivel'
+        - '&7do passe gratuito e do premium.'
+        - ''
+        - '&fPara resgatar: &e{pendentes}'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'recompensas'
+
+    missoes:
+      Slot: 12
+      Material: ENCHANTED_BOOK
+      Nome: '&e&lMISSOES DA SEMANA'
+      Lore:
+        - ''
+        - '&7Conclua missoes para ganhar'
+        - '&7pontos e subir de nivel.'
+        - ''
+        - '&fSemana atual: &e{semana}&7/&e{semanas}'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'missoes'
+
+    diarias:
+      Slot: 14
+      Material: CLOCK
+      Nome: '&b&lMISSOES DIARIAS'
+      Condicao: diarias
+      Lore:
+        - ''
+        - '&7Missoes novas todo dia.'
+        - ''
+        - '&fHoje: &e{diarias_concluidas}&7/&e{diarias_total} &fconcluidas'
+        - '&fSequencia: &e{sequencia} dia(s)'
+        - '&fViram em: &e{diarias_tempo}'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'diarias'
+
+    eventos:
+      Slot: 16
+      Material: FIREWORK_ROCKET
+      Nome: '&d&lEVENTOS'
+      Condicao: eventos
+      Lore:
+        - ''
+        - '&7Missoes especiais por tempo'
+        - '&7limitado.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'eventos'
+
+    top:
+      Slot: 20
+      Material: GOLDEN_HELMET
+      Nome: '&6&lTOP'
+      Lore:
+        - ''
+        - '&7Quem esta mais alto no passe.'
+        - '&7Sua posicao: &6{posicao}'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'top'
+
+    impulsos:
+      Slot: 22
+      Material: NETHER_STAR
+      Nome: '&d&lIMPULSOS'
+      Lore:
+        - ''
+        - '&fProgresso: &d+{impulso_progresso}%'
+        - '&fPontos: &d+{impulso_pontos}%'
+        - '&fRecompensas: &d+{impulso_recompensas}%'
+        - ''
+        - '&aCLIQUE &7para ver os detalhes.'
+      Acoes:
+        - 'impulsos'
+
+    premium:
+      Slot: 24
+      Material: EMERALD
+      Nome: '&d&lPASSE PREMIUM'
+      Condicao: gratuito
+      Lore:
+        - ''
+        - '&7Compre o passe premium e'
+        - '&7libere recompensas extras'
+        - '&7em todos os niveis.'
+        - ''
+        - '&eCompre na loja do servidor.'
+      Acoes:
+        - 'mensagem: &eCompre o passe premium na loja do servidor!'
+
+    premium-ativo:
+      Slot: 24
+      Material: EMERALD
+      Nome: '&d&lPASSE PREMIUM &a(ATIVO)'
+      Condicao: premium
+      Brilho: true
+      Lore:
+        - ''
+        - '&aVoce tem o passe premium!'
+        - '&7Todas as recompensas estao'
+        - '&7liberadas para voce.'
+
+    fechar:
+      Slot: 31
+      Material: BARRIER
+      Nome: '&c&lFECHAR'
+      Acoes:
+        - 'fechar'
+
+# ---------------------------------------------------------------------------
+#  Recompensas: a fileira gratuita, a trilha de progresso e a fileira premium.
+#  Os itens de cada nivel vem de passes/gratuito.yml e passes/premium.yml.
+# ---------------------------------------------------------------------------
+Recompensas:
+  Titulo: '&8Recompensas &7(pag. {pagina}/{paginas})'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots gratuito: '0-8'
+  Slots trilha: '9-17'
+  Slots premium: '18-26'
+
+  # A quantidade do item mostra o numero do nivel (nivel 12 = pilha de 12).
+  Quantidade do item mostra o nivel: true
+  # Niveis sem recompensa somem da fileira (a trilha continua).
+  Esconder niveis sem recompensa: false
+  # Continua desenhando a trilha depois do ultimo nivel, ate completar a pagina.
+  Mostrar alem do nivel maximo: false
+  # Fecha o menu depois de resgatar.
+  Fechar ao resgatar: false
+
+  Trilha:
+    Desbloqueado:
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&a&lNIVEL {nivel}'
+      Lore:
+        - '&7Desbloqueado'
+    Bloqueado:
+      Material: RED_STAINED_GLASS_PANE
+      Nome: '&c&lNIVEL {nivel}'
+      Lore:
+        - '&7Bloqueado'
+
+  Itens:
+    anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    voltar:
+      Slot: 31
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    resgatar:
+      Slot: 29
+      Material: HOPPER
+      Nome: '&a&lRESGATAR TUDO'
+      Condicao: pendentes
+      Lore:
+        - ''
+        - '&7Resgata as &e{pendentes}'
+        - '&7recompensas pendentes de uma vez.'
+        - ''
+        - '&aCLIQUE &7para resgatar.'
+      Acoes:
+        - 'resgatar'
+    info:
+      Slot: 33
+      Material: BOOK
+      Nome: '&e&lSEU PASSE'
+      Lore:
+        - ''
+        - '&fPasse: &e{passe}'
+        - '&fNivel: &e{nivel}&7/&e{nivel_maximo}'
+        - '&fProximo nivel: {barra_nivel}'
+        - '&7{pontos_nivel}/{pontos_necessarios} pontos'
+    proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  Missoes: uma cabeca por semana. O item de cada semana pode ser trocado no
+#  proprio arquivo dela (secao Semana.Item.<Bloqueada|Aberta|Travada|Concluida>).
+# ---------------------------------------------------------------------------
+Missoes:
+  Titulo: '&8Missoes da temporada {temporada}'
+  Linhas: 5
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: '10-16, 19-25'
+
+  Semana:
+    Bloqueada:
+      Material: BARRIER
+      Nome: '&c&lSEMANA {semana}'
+      Lore:
+        - ''
+        - '&7{categoria}'
+        - '&fAbre em: &e{abre_em}'
+        - ''
+        - '&fSituacao: {status}'
+    Aberta:
+      Material: BOOK
+      Nome: '&e&lSEMANA {semana}'
+      Lore:
+        - ''
+        - '&7{categoria}'
+        - '&fMissoes: &e{concluidas}&7/&e{missoes}'
+        - '{barra} &7{porcentagem}%'
+        - ''
+        - '&fSituacao: {status}'
+        - ''
+        - '&aCLIQUE &7para ver as missoes.'
+    Travada:
+      Material: BOOK
+      Nome: '&7&lSEMANA {semana}'
+      Lore:
+        - ''
+        - '&7{categoria}'
+        - '&fMissoes: &e{concluidas}&7/&e{missoes}'
+        - ''
+        - '&fSituacao: {status}'
+        - ''
+        - '&aCLIQUE &7para ver as missoes.'
+    Concluida:
+      Material: ENCHANTED_BOOK
+      Nome: '&a&lSEMANA {semana}'
+      Brilho: true
+      Lore:
+        - ''
+        - '&7{categoria}'
+        - '&fMissoes: &e{concluidas}&7/&e{missoes}'
+        - ''
+        - '&fSituacao: {status}'
+        - ''
+        - '&aCLIQUE &7para ver as missoes.'
+
+  Itens:
+    diarias:
+      Slot: 38
+      Material: CLOCK
+      Nome: '&b&lMISSOES DIARIAS'
+      Condicao: diarias
+      Lore:
+        - ''
+        - '&fHoje: &e{diarias_concluidas}&7/&e{diarias_total}'
+        - '&fViram em: &e{diarias_tempo}'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'diarias'
+    voltar:
+      Slot: 40
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'principal'
+    eventos:
+      Slot: 42
+      Material: FIREWORK_ROCKET
+      Nome: '&d&lEVENTOS'
+      Condicao: eventos
+      Lore:
+        - ''
+        - '&7Missoes por tempo limitado.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'eventos'
+    anterior:
+      Slot: 36
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 44
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  As missoes de uma semana. Substituicoes extras: {categoria} {semana}
+#  {missoes} {concluidas} {porcentagem} {barra}
+# ---------------------------------------------------------------------------
+Semana:
+  Titulo: '&8{categoria}'
+  Linhas: 5
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: '10-16, 19-25'
+  # Mostra (sem progresso) as missoes exclusivas do outro passe.
+  Mostrar exclusivas do outro passe: true
+
+  Itens:
+    info:
+      Slot: 40
+      Material: BOOK
+      Nome: '&e&l{categoria}'
+      Lore:
+        - ''
+        - '&fMissoes: &e{concluidas}&7/&e{missoes}'
+        - '{barra} &7{porcentagem}%'
+        - ''
+        - '&7Conclua todas para ganhar'
+        - '&7o bonus da semana.'
+    voltar:
+      Slot: 36
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    anterior:
+      Slot: 38
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 42
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  As missoes diarias de hoje.
+# ---------------------------------------------------------------------------
+Diarias:
+  Titulo: '&8Missoes diarias'
+  Linhas: 4
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: '10-16'
+  Mostrar exclusivas do outro passe: true
+
+  Itens:
+    info:
+      Slot: 22
+      Material: CLOCK
+      Nome: '&b&lDIARIAS DE HOJE'
+      Lore:
+        - ''
+        - '&fConcluidas: &e{concluidas}&7/&e{missoes}'
+        - '&fSequencia: &e{sequencia} dia(s)'
+        - '&fMissoes novas em: &e{diarias_tempo}'
+        - ''
+        - '&7Conclua todas para ganhar o'
+        - '&7bonus do dia e manter a sequencia.'
+    voltar:
+      Slot: 27
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    anterior:
+      Slot: 30
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 32
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  A lista de eventos. O item de cada evento vem do arquivo dele
+#  (secao Evento.Item); este e o modelo usado quando o arquivo nao tem.
+#  Substituicoes: {evento} {inicio} {fim} {tempo} {missoes} {concluidas}
+#  {exigidas} {status}
+# ---------------------------------------------------------------------------
+Eventos:
+  Titulo: '&8Eventos'
+  Linhas: 4
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: '10-16'
+
+  Evento:
+    Material: FIREWORK_ROCKET
+    Nome: '&d&l{evento}'
+    Lore:
+      - ''
+      - '&fDe &e{inicio} &fa &e{fim}'
+      - '&fMissoes: &e{concluidas}&7/&e{missoes}'
+      - ''
+      - '&fSituacao: {status}'
+      - ''
+      - '&aCLIQUE &7para ver as missoes.'
+
+  Itens:
+    voltar:
+      Slot: 31
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  As missoes de um evento. Substituicoes extras: {categoria} {inicio} {fim}
+#  {tempo} {missoes} {concluidas} {porcentagem} {barra}
+# ---------------------------------------------------------------------------
+Evento:
+  Titulo: '&8{categoria}'
+  Linhas: 5
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: '10-16, 19-25'
+  Mostrar exclusivas do outro passe: true
+
+  Itens:
+    info:
+      Slot: 40
+      Material: FIREWORK_ROCKET
+      Nome: '&d&l{categoria}'
+      Lore:
+        - ''
+        - '&fDe &e{inicio} &fa &e{fim}'
+        - '&fTempo: &e{tempo}'
+        - '&fMissoes: &e{concluidas}&7/&e{missoes}'
+        - '{barra} &7{porcentagem}%'
+    voltar:
+      Slot: 36
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    anterior:
+      Slot: 38
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 42
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  O top. Substituicoes: {tipo} {minha_posicao} {minha_quantidade}; nos
+#  jogadores: {posicao} {jogador} {quantidade}
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8Top {tipo}'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: '10-16, 19-25, 28-34'
+
+  Jogador:
+    Material: PLAYER_HEAD
+    Usar a cabeca do jogador: true
+    Brilho no primeiro: true
+    Nome: '&e#{posicao} &f{jogador}'
+    Lore:
+      - ''
+      - '&f{tipo}: &e{quantidade}'
+  Vazio:
+    Mostrar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: '&7#{posicao}'
+    Lore:
+      - '&7Vago'
+
+  Itens:
+    nivel:
+      Slot: 47
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&6&lTOP NIVEL'
+      Lore:
+        - '&7Quem tem o nivel mais alto.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'top nivel'
+    missoes:
+      Slot: 49
+      Material: ENCHANTED_BOOK
+      Nome: '&e&lTOP MISSOES'
+      Lore:
+        - '&7Quem concluiu mais missoes.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'top missoes'
+    pontos:
+      Slot: 51
+      Material: GOLD_INGOT
+      Nome: '&b&lTOP PONTOS'
+      Lore:
+        - '&7Quem tem mais pontos.'
+        - ''
+        - '&aCLIQUE &7para ver.'
+      Acoes:
+        - 'top pontos'
+    eu:
+      Slot: 40
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&a&lVOCE'
+      Lore:
+        - ''
+        - '&fPosicao: &e{minha_posicao}'
+        - '&f{tipo}: &e{minha_quantidade}'
+    voltar:
+      Slot: 45
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    anterior:
+      Slot: 37
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 43
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  Impulsos ativos. Substituicoes nos itens: {porcentagem} {tipo} {afeta} {tempo}
+# ---------------------------------------------------------------------------
+Impulsos:
+  Titulo: '&8Impulsos'
+  Linhas: 5
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: '10-16, 19-25'
+
+  Servidor:
+    Material: BEACON
+    Nome: '&d&lIMPULSO DO SERVIDOR'
+    Lore:
+      - ''
+      - '&d+{porcentagem}% &fde {tipo}'
+      - '&fVale para: &7{afeta}'
+      - '&fTempo restante: &7{tempo}'
+  Jogador:
+    Material: NETHER_STAR
+    Nome: '&d&lSEU IMPULSO'
+    Lore:
+      - ''
+      - '&d+{porcentagem}% &fde {tipo}'
+      - '&fVale para: &7{afeta}'
+      - '&fTempo restante: &7{tempo}'
+  Permissao:
+    Material: EMERALD
+    Nome: '&a&lIMPULSO DE GRUPO'
+    Lore:
+      - ''
+      - '&d+{porcentagem}% &fde {tipo}'
+      - '&fVale para: &7{afeta}'
+      - '&fTempo restante: &7{tempo}'
+  Nenhum:
+    Mostrar: true
+    Material: GRAY_DYE
+    Nome: '&7Nenhum impulso ativo'
+    Lore:
+      - '&7Impulsos podem vir do servidor,'
+      - '&7de grupos VIP ou de eventos.'
+
+  Itens:
+    resumo:
+      Slot: 40
+      Material: BOOK
+      Nome: '&e&lRESUMO'
+      Lore:
+        - ''
+        - '&fProgresso: &d+{impulso_progresso}%'
+        - '&fPontos: &d+{impulso_pontos}%'
+        - '&fRecompensas: &d+{impulso_recompensas}%'
+    voltar:
+      Slot: 36
+      Material: BARRIER
+      Nome: '&c&lVOLTAR'
+      Acoes:
+        - 'voltar'
+    anterior:
+      Slot: 38
+      Material: ARROW
+      Nome: '&e&lPAGINA ANTERIOR'
+      Acoes:
+        - 'anterior'
+    proxima:
+      Slot: 42
+      Material: ARROW
+      Nome: '&e&lPROXIMA PAGINA'
+      Acoes:
+        - 'proxima'
