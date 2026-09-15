@@ -62,11 +62,10 @@ pegar:
   cooldown-soltar-ms: 1500 # Tempo mínimo carregado antes de poder soltar (evita soltar sem querer)
   modos:
     costas:
-      # Escala do assento invisível: quanto menor, mais colado ao carregador fica quem é
-      # carregado. Precisa de /starsentar reload depois de mudar.
-      escala-assento: 0.05
-    cabeca:
-      escala-assento: 0.15
+      # Onde quem é carregado fica em relação ao carregador: blocos atrás dele (na direção
+      # oposta ao corpo) e altura a partir dos pés. Ajuste fino sem precisar de restart.
+      atras: 0.4
+      altura: 0.9
 
 # Lista de animais permitidos para sentar na cabeça
 animal-whitelist:
@@ -241,6 +240,7 @@ messages:
   pegar-ja-sendo-carregado: "&cVocê está sendo carregado agora."
   pegar-nada-pra-soltar: "&cVocê não está carregando ninguém."
   pegar-espere: "&cEspere um instante antes de soltar."
+  pegar-falhou: "&cNão deu para carregar &e%player%&c agora, tente de novo."
   # %accept% e %deny% viram os botões clicáveis, igual no pedido de grab
   pegar-pedido-costas: "&e%player% &fquer te carregar nas costas. Use %accept% &fou %deny%&f."
   pegar-carregando: "&fVocê está carregando &e%player% &fnas costas."
