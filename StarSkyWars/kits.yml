@@ -1,0 +1,2364 @@
+# ==========================================================================
+#  StarSkyWars - kits
+#
+#  Kits.<modo>.<id>: Nome, Raridade (COMUM, RARO, EPICO, LENDARIO), Icone
+#  (material) ou Textura (cabeca), Descricao, Gratis (todo mundo tem),
+#  Na caixa (pode sair da caixa misteriosa), Permissao (quem tem a permissao
+#  tem o kit) e Niveis.
+#
+#  Cada nivel descreve o kit inteiro daquele nivel: Preco (por economia do
+#  economias.yml; vazio ou 0 no nivel 1 = so na caixa, a nao ser que seja
+#  Gratis), Itens, Capacete/Peitoral/Calca/Botas, Efeitos (EFEITO:nivel,
+#  duram a partida toda), Comandos (console, {jogador}) e Descricao.
+#
+#  Formato de item: 'MATERIAL : quantidade : enchant=NOME:nivel : name=&a...
+#  : lore=a|b : pocao=EFEITO:nivel:segundos : cor=R,G,B : inquebravel'
+#  Os nomes de material e encantamento sao os modernos (o plugin traduz).
+#
+#  Os mesmos kits valem para todos os modos; mude, tire ou acrescente a
+#  vontade em cada modo.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Kits:
+  # ---------------------------------------------------------------- SOLO
+  solo:
+    padrao:
+      Nome: 'Padrão'
+      Raridade: COMUM
+      Icone: 'WOODEN_PICKAXE'
+      Descricao:
+        - '&7Kit básico com ferramentas.'
+      Gratis: true
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Itens:
+            - 'WOODEN_PICKAXE : 1'
+            - 'WOODEN_AXE : 1'
+            - 'WOODEN_SHOVEL : 1'
+          Descricao:
+            - ' &b▎ &f1x picareta, machado e pá de madeira'
+    armeiro:
+      Nome: 'Armeiro'
+      Raridade: RARO
+      Icone: 'GOLDEN_CHESTPLATE'
+      Descricao:
+        - '&7Começa com uma armadura de ouro.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Itens: [ ]
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Calca: 'GOLDEN_LEGGINGS'
+          Botas: 'GOLDEN_BOOTS'
+          Descricao:
+            - ' &b▎ &fPeitoral, calça e botas de ouro'
+        2:
+          Preco:
+            coins: 40000
+          Itens: [ ]
+          Capacete: 'GOLDEN_HELMET'
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Calca: 'GOLDEN_LEGGINGS'
+          Botas: 'GOLDEN_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de ouro completa'
+        3:
+          Preco:
+            coins: 80000
+          Itens: [ ]
+          Capacete: 'CHAINMAIL_HELMET'
+          Peitoral: 'CHAINMAIL_CHESTPLATE'
+          Calca: 'CHAINMAIL_LEGGINGS'
+          Botas: 'CHAINMAIL_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de malha completa'
+    ferreiro:
+      Nome: 'Ferreiro'
+      Raridade: RARO
+      Icone: 'ANVIL'
+      Descricao:
+        - '&7Bigorna e uma espada para melhorar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'ANVIL : 1'
+            - 'STONE_SWORD : 1'
+            - 'EXPERIENCE_BOTTLE : 8'
+          Descricao:
+            - ' &b▎ &f1x bigorna, 1x espada de pedra, 8x frascos de xp'
+        2:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ANVIL : 1'
+            - 'IRON_SWORD : 1'
+            - 'EXPERIENCE_BOTTLE : 16'
+          Descricao:
+            - ' &b▎ &f1x bigorna, 1x espada de ferro, 16x frascos de xp'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Raridade: RARO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Arco e flechas desde o início.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'BOW : 1'
+            - 'ARROW : 16'
+          Descricao:
+            - ' &b▎ &f1x arco, 16x flechas'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'BOW : 1 : enchant=POWER:1'
+            - 'ARROW : 24'
+          Descricao:
+            - ' &b▎ &f1x arco Força I, 24x flechas'
+        3:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'BOW : 1 : enchant=POWER:2 : enchant=PUNCH:1'
+            - 'ARROW : 32'
+          Descricao:
+            - ' &b▎ &f1x arco Força II + Impacto I, 32x flechas'
+    canhoneiro:
+      Nome: 'Canhoneiro'
+      Raridade: EPICO
+      Icone: 'TNT'
+      Descricao:
+        - '&7TNT e redstone para explodir ilhas.'
+      Niveis:
+        1:
+          Preco:
+            coins: 25000
+          Itens:
+            - 'TNT : 8'
+            - 'REDSTONE_BLOCK : 2'
+            - 'LEVER : 2'
+            - 'FLINT_AND_STEEL : 1'
+          Descricao:
+            - ' &b▎ &f8x TNT, 2x blocos de redstone, 2x alavancas, 1x isqueiro'
+        2:
+          Preco:
+            coins: 50000
+          Itens:
+            - 'TNT : 16'
+            - 'REDSTONE_BLOCK : 4'
+            - 'LEVER : 2'
+            - 'FLINT_AND_STEEL : 1'
+          Descricao:
+            - ' &b▎ &f16x TNT, 4x blocos de redstone, 2x alavancas, 1x isqueiro'
+    ecologista:
+      Nome: 'Ecologista'
+      Raridade: COMUM
+      Icone: 'OAK_SAPLING'
+      Descricao:
+        - '&7Blocos e ferramentas para construir pontes.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'OAK_LOG : 32'
+            - 'OAK_LEAVES : 32'
+            - 'STONE_AXE : 1'
+          Descricao:
+            - ' &b▎ &f32x troncos, 32x folhas, 1x machado de pedra'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'OAK_LOG : 64'
+            - 'OAK_LEAVES : 64'
+            - 'IRON_AXE : 1 : enchant=EFFICIENCY:1'
+          Descricao:
+            - ' &b▎ &f64x troncos, 64x folhas, 1x machado de ferro Eficiência I'
+    encantador:
+      Nome: 'Encantador'
+      Raridade: EPICO
+      Icone: 'ENCHANTING_TABLE'
+      Descricao:
+        - '&7Mesa de encantamento com estantes e xp.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ENCHANTING_TABLE : 1'
+            - 'BOOKSHELF : 8'
+            - 'EXPERIENCE_BOTTLE : 32'
+          Descricao:
+            - ' &b▎ &f1x mesa de encantamento, 8x estantes, 32x frascos de xp'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'ENCHANTING_TABLE : 1'
+            - 'BOOKSHELF : 15'
+            - 'EXPERIENCE_BOTTLE : 64'
+          Descricao:
+            - ' &b▎ &f1x mesa de encantamento, 15x estantes, 64x frascos de xp'
+    enderman:
+      Nome: 'Enderman'
+      Raridade: EPICO
+      Icone: 'ENDER_PEARL'
+      Descricao:
+        - '&7Pérolas do fim para atravessar o mapa.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ENDER_PEARL : 2'
+          Descricao:
+            - ' &b▎ &f2x pérolas do fim'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'ENDER_PEARL : 4'
+          Descricao:
+            - ' &b▎ &f4x pérolas do fim'
+    fazendeiro:
+      Nome: 'Fazendeiro'
+      Raridade: COMUM
+      Icone: 'CARROT'
+      Descricao:
+        - '&7Comida para a partida inteira.'
+      Niveis:
+        1:
+          Preco:
+            coins: 5000
+          Itens:
+            - 'COOKED_BEEF : 16'
+            - 'GOLDEN_CARROT : 4'
+          Descricao:
+            - ' &b▎ &f16x bifes, 4x cenouras douradas'
+        2:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'COOKED_BEEF : 32'
+            - 'GOLDEN_CARROT : 8'
+            - 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f32x bifes, 8x cenouras douradas, 1x maçã dourada'
+    pescador:
+      Nome: 'Pescador'
+      Raridade: COMUM
+      Icone: 'FISHING_ROD'
+      Descricao:
+        - '&7Vara de pesca com repulsão para derrubar gente.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Itens:
+            - 'FISHING_ROD : 1 : enchant=KNOCKBACK:1'
+            - 'COOKED_COD : 8'
+          Descricao:
+            - ' &b▎ &f1x vara de pesca Repulsão I, 8x peixes'
+        2:
+          Preco:
+            coins: 25000
+          Itens:
+            - 'FISHING_ROD : 1 : enchant=KNOCKBACK:2 : enchant=UNBREAKING:3'
+            - 'COOKED_COD : 16'
+          Descricao:
+            - ' &b▎ &f1x vara de pesca Repulsão II, 16x peixes'
+    cacador:
+      Nome: 'Caçador'
+      Raridade: RARO
+      Icone: 'LEATHER_CHESTPLATE'
+      Descricao:
+        - '&7Armadura de couro e uma espada de pedra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'STONE_SWORD : 1'
+          Capacete: 'LEATHER_HELMET'
+          Peitoral: 'LEATHER_CHESTPLATE'
+          Calca: 'LEATHER_LEGGINGS'
+          Botas: 'LEATHER_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de couro completa, 1x espada de pedra'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'STONE_SWORD : 1 : enchant=SHARPNESS:1'
+          Capacete: 'LEATHER_HELMET : 1 : enchant=PROTECTION:1'
+          Peitoral: 'LEATHER_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Calca: 'LEATHER_LEGGINGS : 1 : enchant=PROTECTION:1'
+          Botas: 'LEATHER_BOOTS : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &fArmadura de couro Proteção I, 1x espada de pedra Afiada I'
+    cavaleiro:
+      Nome: 'Cavaleiro'
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Espada de ferro e escudo de ouro.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'IRON_SWORD : 1'
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Descricao:
+            - ' &b▎ &f1x espada de ferro, 1x peitoral de ouro'
+        2:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'IRON_SWORD : 1 : enchant=SHARPNESS:1'
+          Peitoral: 'GOLDEN_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &f1x espada de ferro Afiada I, 1x peitoral de ouro Proteção I'
+    pyro:
+      Nome: 'Piromaníaco'
+      Raridade: RARO
+      Icone: 'FLINT_AND_STEEL'
+      Descricao:
+        - '&7Fogo e lava para quem gosta de ver o mundo queimar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'FLINT_AND_STEEL : 1'
+            - 'LAVA_BUCKET : 1'
+            - 'FIRE_CHARGE : 4'
+          Descricao:
+            - ' &b▎ &f1x isqueiro, 1x balde de lava, 4x bolas de fogo'
+        2:
+          Preco:
+            coins: 45000
+          Itens:
+            - 'FLINT_AND_STEEL : 1 : enchant=UNBREAKING:3'
+            - 'LAVA_BUCKET : 2'
+            - 'FIRE_CHARGE : 8'
+          Descricao:
+            - ' &b▎ &f1x isqueiro, 2x baldes de lava, 8x bolas de fogo'
+    nadador:
+      Nome: 'Nadador'
+      Raridade: COMUM
+      Icone: 'WATER_BUCKET'
+      Descricao:
+        - '&7Baldes de água para descer e para apagar fogo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'WATER_BUCKET : 2'
+          Descricao:
+            - ' &b▎ &f2x baldes de água'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'WATER_BUCKET : 3'
+            - 'LEATHER_BOOTS : 1 : enchant=DEPTH_STRIDER:2'
+          Descricao:
+            - ' &b▎ &f3x baldes de água, 1x botas Passos Profundos II'
+    engenheiro:
+      Nome: 'Engenheiro'
+      Raridade: RARO
+      Icone: 'PISTON'
+      Descricao:
+        - '&7Pistões, redstone e blocos para armadilhas.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'PISTON : 4'
+            - 'REDSTONE : 16'
+            - 'REDSTONE_TORCH : 4'
+            - 'STONE : 32'
+          Descricao:
+            - ' &b▎ &f4x pistões, 16x redstone, 4x tochas de redstone, 32x pedras'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'STICKY_PISTON : 4'
+            - 'PISTON : 4'
+            - 'REDSTONE : 32'
+            - 'REDSTONE_TORCH : 8'
+            - 'STONE : 64'
+          Descricao:
+            - ' &b▎ &f4x pistões grudentos, 4x pistões, 32x redstone, 8x tochas, 64x pedras'
+    observador:
+      Nome: 'Observador'
+      Raridade: COMUM
+      Icone: 'COMPASS'
+      Descricao:
+        - '&7Bússola que aponta para o jogador mais próximo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 5000
+          Itens:
+            - 'COMPASS : 1'
+            - 'GLASS : 16'
+          Descricao:
+            - ' &b▎ &f1x bússola, 16x vidros'
+    homem_das_neves:
+      Nome: 'Homem das neves'
+      Raridade: COMUM
+      Icone: 'SNOWBALL'
+      Descricao:
+        - '&7Bolas de neve para derrubar quem está na beirada.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'SNOWBALL : 32'
+            - 'SNOW_BLOCK : 16'
+          Descricao:
+            - ' &b▎ &f32x bolas de neve, 16x blocos de neve'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'SNOWBALL : 64'
+            - 'SNOW_BLOCK : 32'
+            - 'IRON_SHOVEL : 1'
+          Descricao:
+            - ' &b▎ &f64x bolas de neve, 32x blocos de neve, 1x pá de ferro'
+    espeleologo:
+      Nome: 'Espeleólogo'
+      Raridade: RARO
+      Icone: 'IRON_PICKAXE'
+      Descricao:
+        - '&7Picareta rápida e blocos de sobra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'IRON_PICKAXE : 1 : enchant=EFFICIENCY:2'
+            - 'COBBLESTONE : 64'
+          Descricao:
+            - ' &b▎ &f1x picareta de ferro Eficiência II, 64x pedregulhos'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'DIAMOND_PICKAXE : 1 : enchant=EFFICIENCY:3'
+            - 'COBBLESTONE : 64'
+            - 'COBBLESTONE : 64'
+          Descricao:
+            - ' &b▎ &f1x picareta de diamante Eficiência III, 128x pedregulhos'
+    troll:
+      Nome: 'Troll'
+      Raridade: RARO
+      Icone: 'COBWEB'
+      Descricao:
+        - '&7Teias e ovos para atrapalhar todo mundo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 12000
+          Itens:
+            - 'COBWEB : 16'
+            - 'EGG : 32'
+          Descricao:
+            - ' &b▎ &f16x teias, 32x ovos'
+        2:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'COBWEB : 32'
+            - 'EGG : 64'
+            - 'SLIME_BLOCK : 8'
+          Descricao:
+            - ' &b▎ &f32x teias, 64x ovos, 8x blocos de slime'
+    homem_bomba:
+      Nome: 'Homem-bomba'
+      Raridade: EPICO
+      Icone: 'FIRE_CHARGE'
+      Descricao:
+        - '&7Poções de dano para jogar nos inimigos.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'SPLASH_POTION : 2 : pocao=INSTANT_DAMAGE:1:1'
+            - 'TNT : 4'
+          Descricao:
+            - ' &b▎ &f2x poções de dano, 4x TNT'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'SPLASH_POTION : 3 : pocao=INSTANT_DAMAGE:2:1'
+            - 'TNT : 8'
+          Descricao:
+            - ' &b▎ &f3x poções de dano II, 8x TNT'
+    medico:
+      Nome: 'Médico'
+      Raridade: RARO
+      Icone: 'POTION'
+      Descricao:
+        - '&7Poções de cura e regeneração.'
+      Niveis:
+        1:
+          Preco:
+            coins: 18000
+          Itens:
+            - 'POTION : 2 : pocao=INSTANT_HEALTH:1:1'
+            - 'POTION : 1 : pocao=REGENERATION:1:20'
+          Descricao:
+            - ' &b▎ &f2x poções de cura, 1x poção de regeneração'
+        2:
+          Preco:
+            coins: 40000
+          Itens:
+            - 'POTION : 3 : pocao=INSTANT_HEALTH:2:1'
+            - 'POTION : 2 : pocao=REGENERATION:2:20'
+            - 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f3x poções de cura II, 2x poções de regeneração II, 1x maçã dourada'
+    alquimista:
+      Nome: 'Alquimista'
+      Raridade: EPICO
+      Icone: 'BREWING_STAND'
+      Descricao:
+        - '&7Poções de força e velocidade.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'POTION : 1 : pocao=INCREASE_DAMAGE:1:60'
+            - 'POTION : 1 : pocao=SPEED:1:90'
+          Descricao:
+            - ' &b▎ &f1x poção de força (1 min), 1x poção de velocidade (1:30)'
+        2:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'POTION : 1 : pocao=INCREASE_DAMAGE:1:120'
+            - 'POTION : 1 : pocao=SPEED:2:90'
+            - 'POTION : 1 : pocao=FIRE_RESISTANCE:1:180'
+          Descricao:
+            - ' &b▎ &f1x força (2 min), 1x velocidade II, 1x resistência ao fogo'
+    protetor:
+      Nome: 'Protetor'
+      Raridade: LENDARIO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Armadura de ferro e espada de diamante.'
+      Niveis:
+        1:
+          Preco:
+            coins: 80000
+          Itens:
+            - 'DIAMOND_SWORD : 1'
+          Capacete: 'IRON_HELMET'
+          Peitoral: 'IRON_CHESTPLATE'
+          Calca: 'IRON_LEGGINGS'
+          Botas: 'IRON_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de ferro completa, 1x espada de diamante'
+        2:
+          Preco:
+            coins: 160000
+          Itens:
+            - 'DIAMOND_SWORD : 1 : enchant=SHARPNESS:1'
+          Capacete: 'IRON_HELMET : 1 : enchant=PROTECTION:1'
+          Peitoral: 'IRON_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Calca: 'IRON_LEGGINGS : 1 : enchant=PROTECTION:1'
+          Botas: 'IRON_BOOTS : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &fArmadura de ferro Proteção I, 1x espada de diamante Afiada I'
+    fantasma:
+      Nome: 'Fantasma'
+      Raridade: LENDARIO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Invisibilidade para começar escondido.'
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Itens:
+            - 'POTION : 1 : pocao=INVISIBILITY:1:60'
+            - 'STONE_SWORD : 1'
+          Descricao:
+            - ' &b▎ &f1x poção de invisibilidade (1 min), 1x espada de pedra'
+  # ---------------------------------------------------------------- DUPLA
+  dupla:
+    padrao:
+      Nome: 'Padrão'
+      Raridade: COMUM
+      Icone: 'WOODEN_PICKAXE'
+      Descricao:
+        - '&7Kit básico com ferramentas.'
+      Gratis: true
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Itens:
+            - 'WOODEN_PICKAXE : 1'
+            - 'WOODEN_AXE : 1'
+            - 'WOODEN_SHOVEL : 1'
+          Descricao:
+            - ' &b▎ &f1x picareta, machado e pá de madeira'
+    armeiro:
+      Nome: 'Armeiro'
+      Raridade: RARO
+      Icone: 'GOLDEN_CHESTPLATE'
+      Descricao:
+        - '&7Começa com uma armadura de ouro.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Itens: [ ]
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Calca: 'GOLDEN_LEGGINGS'
+          Botas: 'GOLDEN_BOOTS'
+          Descricao:
+            - ' &b▎ &fPeitoral, calça e botas de ouro'
+        2:
+          Preco:
+            coins: 40000
+          Itens: [ ]
+          Capacete: 'GOLDEN_HELMET'
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Calca: 'GOLDEN_LEGGINGS'
+          Botas: 'GOLDEN_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de ouro completa'
+        3:
+          Preco:
+            coins: 80000
+          Itens: [ ]
+          Capacete: 'CHAINMAIL_HELMET'
+          Peitoral: 'CHAINMAIL_CHESTPLATE'
+          Calca: 'CHAINMAIL_LEGGINGS'
+          Botas: 'CHAINMAIL_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de malha completa'
+    ferreiro:
+      Nome: 'Ferreiro'
+      Raridade: RARO
+      Icone: 'ANVIL'
+      Descricao:
+        - '&7Bigorna e uma espada para melhorar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'ANVIL : 1'
+            - 'STONE_SWORD : 1'
+            - 'EXPERIENCE_BOTTLE : 8'
+          Descricao:
+            - ' &b▎ &f1x bigorna, 1x espada de pedra, 8x frascos de xp'
+        2:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ANVIL : 1'
+            - 'IRON_SWORD : 1'
+            - 'EXPERIENCE_BOTTLE : 16'
+          Descricao:
+            - ' &b▎ &f1x bigorna, 1x espada de ferro, 16x frascos de xp'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Raridade: RARO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Arco e flechas desde o início.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'BOW : 1'
+            - 'ARROW : 16'
+          Descricao:
+            - ' &b▎ &f1x arco, 16x flechas'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'BOW : 1 : enchant=POWER:1'
+            - 'ARROW : 24'
+          Descricao:
+            - ' &b▎ &f1x arco Força I, 24x flechas'
+        3:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'BOW : 1 : enchant=POWER:2 : enchant=PUNCH:1'
+            - 'ARROW : 32'
+          Descricao:
+            - ' &b▎ &f1x arco Força II + Impacto I, 32x flechas'
+    canhoneiro:
+      Nome: 'Canhoneiro'
+      Raridade: EPICO
+      Icone: 'TNT'
+      Descricao:
+        - '&7TNT e redstone para explodir ilhas.'
+      Niveis:
+        1:
+          Preco:
+            coins: 25000
+          Itens:
+            - 'TNT : 8'
+            - 'REDSTONE_BLOCK : 2'
+            - 'LEVER : 2'
+            - 'FLINT_AND_STEEL : 1'
+          Descricao:
+            - ' &b▎ &f8x TNT, 2x blocos de redstone, 2x alavancas, 1x isqueiro'
+        2:
+          Preco:
+            coins: 50000
+          Itens:
+            - 'TNT : 16'
+            - 'REDSTONE_BLOCK : 4'
+            - 'LEVER : 2'
+            - 'FLINT_AND_STEEL : 1'
+          Descricao:
+            - ' &b▎ &f16x TNT, 4x blocos de redstone, 2x alavancas, 1x isqueiro'
+    ecologista:
+      Nome: 'Ecologista'
+      Raridade: COMUM
+      Icone: 'OAK_SAPLING'
+      Descricao:
+        - '&7Blocos e ferramentas para construir pontes.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'OAK_LOG : 32'
+            - 'OAK_LEAVES : 32'
+            - 'STONE_AXE : 1'
+          Descricao:
+            - ' &b▎ &f32x troncos, 32x folhas, 1x machado de pedra'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'OAK_LOG : 64'
+            - 'OAK_LEAVES : 64'
+            - 'IRON_AXE : 1 : enchant=EFFICIENCY:1'
+          Descricao:
+            - ' &b▎ &f64x troncos, 64x folhas, 1x machado de ferro Eficiência I'
+    encantador:
+      Nome: 'Encantador'
+      Raridade: EPICO
+      Icone: 'ENCHANTING_TABLE'
+      Descricao:
+        - '&7Mesa de encantamento com estantes e xp.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ENCHANTING_TABLE : 1'
+            - 'BOOKSHELF : 8'
+            - 'EXPERIENCE_BOTTLE : 32'
+          Descricao:
+            - ' &b▎ &f1x mesa de encantamento, 8x estantes, 32x frascos de xp'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'ENCHANTING_TABLE : 1'
+            - 'BOOKSHELF : 15'
+            - 'EXPERIENCE_BOTTLE : 64'
+          Descricao:
+            - ' &b▎ &f1x mesa de encantamento, 15x estantes, 64x frascos de xp'
+    enderman:
+      Nome: 'Enderman'
+      Raridade: EPICO
+      Icone: 'ENDER_PEARL'
+      Descricao:
+        - '&7Pérolas do fim para atravessar o mapa.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ENDER_PEARL : 2'
+          Descricao:
+            - ' &b▎ &f2x pérolas do fim'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'ENDER_PEARL : 4'
+          Descricao:
+            - ' &b▎ &f4x pérolas do fim'
+    fazendeiro:
+      Nome: 'Fazendeiro'
+      Raridade: COMUM
+      Icone: 'CARROT'
+      Descricao:
+        - '&7Comida para a partida inteira.'
+      Niveis:
+        1:
+          Preco:
+            coins: 5000
+          Itens:
+            - 'COOKED_BEEF : 16'
+            - 'GOLDEN_CARROT : 4'
+          Descricao:
+            - ' &b▎ &f16x bifes, 4x cenouras douradas'
+        2:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'COOKED_BEEF : 32'
+            - 'GOLDEN_CARROT : 8'
+            - 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f32x bifes, 8x cenouras douradas, 1x maçã dourada'
+    pescador:
+      Nome: 'Pescador'
+      Raridade: COMUM
+      Icone: 'FISHING_ROD'
+      Descricao:
+        - '&7Vara de pesca com repulsão para derrubar gente.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Itens:
+            - 'FISHING_ROD : 1 : enchant=KNOCKBACK:1'
+            - 'COOKED_COD : 8'
+          Descricao:
+            - ' &b▎ &f1x vara de pesca Repulsão I, 8x peixes'
+        2:
+          Preco:
+            coins: 25000
+          Itens:
+            - 'FISHING_ROD : 1 : enchant=KNOCKBACK:2 : enchant=UNBREAKING:3'
+            - 'COOKED_COD : 16'
+          Descricao:
+            - ' &b▎ &f1x vara de pesca Repulsão II, 16x peixes'
+    cacador:
+      Nome: 'Caçador'
+      Raridade: RARO
+      Icone: 'LEATHER_CHESTPLATE'
+      Descricao:
+        - '&7Armadura de couro e uma espada de pedra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'STONE_SWORD : 1'
+          Capacete: 'LEATHER_HELMET'
+          Peitoral: 'LEATHER_CHESTPLATE'
+          Calca: 'LEATHER_LEGGINGS'
+          Botas: 'LEATHER_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de couro completa, 1x espada de pedra'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'STONE_SWORD : 1 : enchant=SHARPNESS:1'
+          Capacete: 'LEATHER_HELMET : 1 : enchant=PROTECTION:1'
+          Peitoral: 'LEATHER_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Calca: 'LEATHER_LEGGINGS : 1 : enchant=PROTECTION:1'
+          Botas: 'LEATHER_BOOTS : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &fArmadura de couro Proteção I, 1x espada de pedra Afiada I'
+    cavaleiro:
+      Nome: 'Cavaleiro'
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Espada de ferro e escudo de ouro.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'IRON_SWORD : 1'
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Descricao:
+            - ' &b▎ &f1x espada de ferro, 1x peitoral de ouro'
+        2:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'IRON_SWORD : 1 : enchant=SHARPNESS:1'
+          Peitoral: 'GOLDEN_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &f1x espada de ferro Afiada I, 1x peitoral de ouro Proteção I'
+    pyro:
+      Nome: 'Piromaníaco'
+      Raridade: RARO
+      Icone: 'FLINT_AND_STEEL'
+      Descricao:
+        - '&7Fogo e lava para quem gosta de ver o mundo queimar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'FLINT_AND_STEEL : 1'
+            - 'LAVA_BUCKET : 1'
+            - 'FIRE_CHARGE : 4'
+          Descricao:
+            - ' &b▎ &f1x isqueiro, 1x balde de lava, 4x bolas de fogo'
+        2:
+          Preco:
+            coins: 45000
+          Itens:
+            - 'FLINT_AND_STEEL : 1 : enchant=UNBREAKING:3'
+            - 'LAVA_BUCKET : 2'
+            - 'FIRE_CHARGE : 8'
+          Descricao:
+            - ' &b▎ &f1x isqueiro, 2x baldes de lava, 8x bolas de fogo'
+    nadador:
+      Nome: 'Nadador'
+      Raridade: COMUM
+      Icone: 'WATER_BUCKET'
+      Descricao:
+        - '&7Baldes de água para descer e para apagar fogo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'WATER_BUCKET : 2'
+          Descricao:
+            - ' &b▎ &f2x baldes de água'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'WATER_BUCKET : 3'
+            - 'LEATHER_BOOTS : 1 : enchant=DEPTH_STRIDER:2'
+          Descricao:
+            - ' &b▎ &f3x baldes de água, 1x botas Passos Profundos II'
+    engenheiro:
+      Nome: 'Engenheiro'
+      Raridade: RARO
+      Icone: 'PISTON'
+      Descricao:
+        - '&7Pistões, redstone e blocos para armadilhas.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'PISTON : 4'
+            - 'REDSTONE : 16'
+            - 'REDSTONE_TORCH : 4'
+            - 'STONE : 32'
+          Descricao:
+            - ' &b▎ &f4x pistões, 16x redstone, 4x tochas de redstone, 32x pedras'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'STICKY_PISTON : 4'
+            - 'PISTON : 4'
+            - 'REDSTONE : 32'
+            - 'REDSTONE_TORCH : 8'
+            - 'STONE : 64'
+          Descricao:
+            - ' &b▎ &f4x pistões grudentos, 4x pistões, 32x redstone, 8x tochas, 64x pedras'
+    observador:
+      Nome: 'Observador'
+      Raridade: COMUM
+      Icone: 'COMPASS'
+      Descricao:
+        - '&7Bússola que aponta para o jogador mais próximo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 5000
+          Itens:
+            - 'COMPASS : 1'
+            - 'GLASS : 16'
+          Descricao:
+            - ' &b▎ &f1x bússola, 16x vidros'
+    homem_das_neves:
+      Nome: 'Homem das neves'
+      Raridade: COMUM
+      Icone: 'SNOWBALL'
+      Descricao:
+        - '&7Bolas de neve para derrubar quem está na beirada.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'SNOWBALL : 32'
+            - 'SNOW_BLOCK : 16'
+          Descricao:
+            - ' &b▎ &f32x bolas de neve, 16x blocos de neve'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'SNOWBALL : 64'
+            - 'SNOW_BLOCK : 32'
+            - 'IRON_SHOVEL : 1'
+          Descricao:
+            - ' &b▎ &f64x bolas de neve, 32x blocos de neve, 1x pá de ferro'
+    espeleologo:
+      Nome: 'Espeleólogo'
+      Raridade: RARO
+      Icone: 'IRON_PICKAXE'
+      Descricao:
+        - '&7Picareta rápida e blocos de sobra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'IRON_PICKAXE : 1 : enchant=EFFICIENCY:2'
+            - 'COBBLESTONE : 64'
+          Descricao:
+            - ' &b▎ &f1x picareta de ferro Eficiência II, 64x pedregulhos'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'DIAMOND_PICKAXE : 1 : enchant=EFFICIENCY:3'
+            - 'COBBLESTONE : 64'
+            - 'COBBLESTONE : 64'
+          Descricao:
+            - ' &b▎ &f1x picareta de diamante Eficiência III, 128x pedregulhos'
+    troll:
+      Nome: 'Troll'
+      Raridade: RARO
+      Icone: 'COBWEB'
+      Descricao:
+        - '&7Teias e ovos para atrapalhar todo mundo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 12000
+          Itens:
+            - 'COBWEB : 16'
+            - 'EGG : 32'
+          Descricao:
+            - ' &b▎ &f16x teias, 32x ovos'
+        2:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'COBWEB : 32'
+            - 'EGG : 64'
+            - 'SLIME_BLOCK : 8'
+          Descricao:
+            - ' &b▎ &f32x teias, 64x ovos, 8x blocos de slime'
+    homem_bomba:
+      Nome: 'Homem-bomba'
+      Raridade: EPICO
+      Icone: 'FIRE_CHARGE'
+      Descricao:
+        - '&7Poções de dano para jogar nos inimigos.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'SPLASH_POTION : 2 : pocao=INSTANT_DAMAGE:1:1'
+            - 'TNT : 4'
+          Descricao:
+            - ' &b▎ &f2x poções de dano, 4x TNT'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'SPLASH_POTION : 3 : pocao=INSTANT_DAMAGE:2:1'
+            - 'TNT : 8'
+          Descricao:
+            - ' &b▎ &f3x poções de dano II, 8x TNT'
+    medico:
+      Nome: 'Médico'
+      Raridade: RARO
+      Icone: 'POTION'
+      Descricao:
+        - '&7Poções de cura e regeneração.'
+      Niveis:
+        1:
+          Preco:
+            coins: 18000
+          Itens:
+            - 'POTION : 2 : pocao=INSTANT_HEALTH:1:1'
+            - 'POTION : 1 : pocao=REGENERATION:1:20'
+          Descricao:
+            - ' &b▎ &f2x poções de cura, 1x poção de regeneração'
+        2:
+          Preco:
+            coins: 40000
+          Itens:
+            - 'POTION : 3 : pocao=INSTANT_HEALTH:2:1'
+            - 'POTION : 2 : pocao=REGENERATION:2:20'
+            - 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f3x poções de cura II, 2x poções de regeneração II, 1x maçã dourada'
+    alquimista:
+      Nome: 'Alquimista'
+      Raridade: EPICO
+      Icone: 'BREWING_STAND'
+      Descricao:
+        - '&7Poções de força e velocidade.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'POTION : 1 : pocao=INCREASE_DAMAGE:1:60'
+            - 'POTION : 1 : pocao=SPEED:1:90'
+          Descricao:
+            - ' &b▎ &f1x poção de força (1 min), 1x poção de velocidade (1:30)'
+        2:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'POTION : 1 : pocao=INCREASE_DAMAGE:1:120'
+            - 'POTION : 1 : pocao=SPEED:2:90'
+            - 'POTION : 1 : pocao=FIRE_RESISTANCE:1:180'
+          Descricao:
+            - ' &b▎ &f1x força (2 min), 1x velocidade II, 1x resistência ao fogo'
+    protetor:
+      Nome: 'Protetor'
+      Raridade: LENDARIO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Armadura de ferro e espada de diamante.'
+      Niveis:
+        1:
+          Preco:
+            coins: 80000
+          Itens:
+            - 'DIAMOND_SWORD : 1'
+          Capacete: 'IRON_HELMET'
+          Peitoral: 'IRON_CHESTPLATE'
+          Calca: 'IRON_LEGGINGS'
+          Botas: 'IRON_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de ferro completa, 1x espada de diamante'
+        2:
+          Preco:
+            coins: 160000
+          Itens:
+            - 'DIAMOND_SWORD : 1 : enchant=SHARPNESS:1'
+          Capacete: 'IRON_HELMET : 1 : enchant=PROTECTION:1'
+          Peitoral: 'IRON_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Calca: 'IRON_LEGGINGS : 1 : enchant=PROTECTION:1'
+          Botas: 'IRON_BOOTS : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &fArmadura de ferro Proteção I, 1x espada de diamante Afiada I'
+    fantasma:
+      Nome: 'Fantasma'
+      Raridade: LENDARIO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Invisibilidade para começar escondido.'
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Itens:
+            - 'POTION : 1 : pocao=INVISIBILITY:1:60'
+            - 'STONE_SWORD : 1'
+          Descricao:
+            - ' &b▎ &f1x poção de invisibilidade (1 min), 1x espada de pedra'
+  # ---------------------------------------------------------------- MEGA
+  mega:
+    padrao:
+      Nome: 'Padrão'
+      Raridade: COMUM
+      Icone: 'WOODEN_PICKAXE'
+      Descricao:
+        - '&7Kit básico com ferramentas.'
+      Gratis: true
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Itens:
+            - 'WOODEN_PICKAXE : 1'
+            - 'WOODEN_AXE : 1'
+            - 'WOODEN_SHOVEL : 1'
+          Descricao:
+            - ' &b▎ &f1x picareta, machado e pá de madeira'
+    armeiro:
+      Nome: 'Armeiro'
+      Raridade: RARO
+      Icone: 'GOLDEN_CHESTPLATE'
+      Descricao:
+        - '&7Começa com uma armadura de ouro.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Itens: [ ]
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Calca: 'GOLDEN_LEGGINGS'
+          Botas: 'GOLDEN_BOOTS'
+          Descricao:
+            - ' &b▎ &fPeitoral, calça e botas de ouro'
+        2:
+          Preco:
+            coins: 40000
+          Itens: [ ]
+          Capacete: 'GOLDEN_HELMET'
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Calca: 'GOLDEN_LEGGINGS'
+          Botas: 'GOLDEN_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de ouro completa'
+        3:
+          Preco:
+            coins: 80000
+          Itens: [ ]
+          Capacete: 'CHAINMAIL_HELMET'
+          Peitoral: 'CHAINMAIL_CHESTPLATE'
+          Calca: 'CHAINMAIL_LEGGINGS'
+          Botas: 'CHAINMAIL_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de malha completa'
+    ferreiro:
+      Nome: 'Ferreiro'
+      Raridade: RARO
+      Icone: 'ANVIL'
+      Descricao:
+        - '&7Bigorna e uma espada para melhorar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'ANVIL : 1'
+            - 'STONE_SWORD : 1'
+            - 'EXPERIENCE_BOTTLE : 8'
+          Descricao:
+            - ' &b▎ &f1x bigorna, 1x espada de pedra, 8x frascos de xp'
+        2:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ANVIL : 1'
+            - 'IRON_SWORD : 1'
+            - 'EXPERIENCE_BOTTLE : 16'
+          Descricao:
+            - ' &b▎ &f1x bigorna, 1x espada de ferro, 16x frascos de xp'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Raridade: RARO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Arco e flechas desde o início.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'BOW : 1'
+            - 'ARROW : 16'
+          Descricao:
+            - ' &b▎ &f1x arco, 16x flechas'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'BOW : 1 : enchant=POWER:1'
+            - 'ARROW : 24'
+          Descricao:
+            - ' &b▎ &f1x arco Força I, 24x flechas'
+        3:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'BOW : 1 : enchant=POWER:2 : enchant=PUNCH:1'
+            - 'ARROW : 32'
+          Descricao:
+            - ' &b▎ &f1x arco Força II + Impacto I, 32x flechas'
+    canhoneiro:
+      Nome: 'Canhoneiro'
+      Raridade: EPICO
+      Icone: 'TNT'
+      Descricao:
+        - '&7TNT e redstone para explodir ilhas.'
+      Niveis:
+        1:
+          Preco:
+            coins: 25000
+          Itens:
+            - 'TNT : 8'
+            - 'REDSTONE_BLOCK : 2'
+            - 'LEVER : 2'
+            - 'FLINT_AND_STEEL : 1'
+          Descricao:
+            - ' &b▎ &f8x TNT, 2x blocos de redstone, 2x alavancas, 1x isqueiro'
+        2:
+          Preco:
+            coins: 50000
+          Itens:
+            - 'TNT : 16'
+            - 'REDSTONE_BLOCK : 4'
+            - 'LEVER : 2'
+            - 'FLINT_AND_STEEL : 1'
+          Descricao:
+            - ' &b▎ &f16x TNT, 4x blocos de redstone, 2x alavancas, 1x isqueiro'
+    ecologista:
+      Nome: 'Ecologista'
+      Raridade: COMUM
+      Icone: 'OAK_SAPLING'
+      Descricao:
+        - '&7Blocos e ferramentas para construir pontes.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'OAK_LOG : 32'
+            - 'OAK_LEAVES : 32'
+            - 'STONE_AXE : 1'
+          Descricao:
+            - ' &b▎ &f32x troncos, 32x folhas, 1x machado de pedra'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'OAK_LOG : 64'
+            - 'OAK_LEAVES : 64'
+            - 'IRON_AXE : 1 : enchant=EFFICIENCY:1'
+          Descricao:
+            - ' &b▎ &f64x troncos, 64x folhas, 1x machado de ferro Eficiência I'
+    encantador:
+      Nome: 'Encantador'
+      Raridade: EPICO
+      Icone: 'ENCHANTING_TABLE'
+      Descricao:
+        - '&7Mesa de encantamento com estantes e xp.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ENCHANTING_TABLE : 1'
+            - 'BOOKSHELF : 8'
+            - 'EXPERIENCE_BOTTLE : 32'
+          Descricao:
+            - ' &b▎ &f1x mesa de encantamento, 8x estantes, 32x frascos de xp'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'ENCHANTING_TABLE : 1'
+            - 'BOOKSHELF : 15'
+            - 'EXPERIENCE_BOTTLE : 64'
+          Descricao:
+            - ' &b▎ &f1x mesa de encantamento, 15x estantes, 64x frascos de xp'
+    enderman:
+      Nome: 'Enderman'
+      Raridade: EPICO
+      Icone: 'ENDER_PEARL'
+      Descricao:
+        - '&7Pérolas do fim para atravessar o mapa.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ENDER_PEARL : 2'
+          Descricao:
+            - ' &b▎ &f2x pérolas do fim'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'ENDER_PEARL : 4'
+          Descricao:
+            - ' &b▎ &f4x pérolas do fim'
+    fazendeiro:
+      Nome: 'Fazendeiro'
+      Raridade: COMUM
+      Icone: 'CARROT'
+      Descricao:
+        - '&7Comida para a partida inteira.'
+      Niveis:
+        1:
+          Preco:
+            coins: 5000
+          Itens:
+            - 'COOKED_BEEF : 16'
+            - 'GOLDEN_CARROT : 4'
+          Descricao:
+            - ' &b▎ &f16x bifes, 4x cenouras douradas'
+        2:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'COOKED_BEEF : 32'
+            - 'GOLDEN_CARROT : 8'
+            - 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f32x bifes, 8x cenouras douradas, 1x maçã dourada'
+    pescador:
+      Nome: 'Pescador'
+      Raridade: COMUM
+      Icone: 'FISHING_ROD'
+      Descricao:
+        - '&7Vara de pesca com repulsão para derrubar gente.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Itens:
+            - 'FISHING_ROD : 1 : enchant=KNOCKBACK:1'
+            - 'COOKED_COD : 8'
+          Descricao:
+            - ' &b▎ &f1x vara de pesca Repulsão I, 8x peixes'
+        2:
+          Preco:
+            coins: 25000
+          Itens:
+            - 'FISHING_ROD : 1 : enchant=KNOCKBACK:2 : enchant=UNBREAKING:3'
+            - 'COOKED_COD : 16'
+          Descricao:
+            - ' &b▎ &f1x vara de pesca Repulsão II, 16x peixes'
+    cacador:
+      Nome: 'Caçador'
+      Raridade: RARO
+      Icone: 'LEATHER_CHESTPLATE'
+      Descricao:
+        - '&7Armadura de couro e uma espada de pedra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'STONE_SWORD : 1'
+          Capacete: 'LEATHER_HELMET'
+          Peitoral: 'LEATHER_CHESTPLATE'
+          Calca: 'LEATHER_LEGGINGS'
+          Botas: 'LEATHER_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de couro completa, 1x espada de pedra'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'STONE_SWORD : 1 : enchant=SHARPNESS:1'
+          Capacete: 'LEATHER_HELMET : 1 : enchant=PROTECTION:1'
+          Peitoral: 'LEATHER_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Calca: 'LEATHER_LEGGINGS : 1 : enchant=PROTECTION:1'
+          Botas: 'LEATHER_BOOTS : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &fArmadura de couro Proteção I, 1x espada de pedra Afiada I'
+    cavaleiro:
+      Nome: 'Cavaleiro'
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Espada de ferro e escudo de ouro.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'IRON_SWORD : 1'
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Descricao:
+            - ' &b▎ &f1x espada de ferro, 1x peitoral de ouro'
+        2:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'IRON_SWORD : 1 : enchant=SHARPNESS:1'
+          Peitoral: 'GOLDEN_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &f1x espada de ferro Afiada I, 1x peitoral de ouro Proteção I'
+    pyro:
+      Nome: 'Piromaníaco'
+      Raridade: RARO
+      Icone: 'FLINT_AND_STEEL'
+      Descricao:
+        - '&7Fogo e lava para quem gosta de ver o mundo queimar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'FLINT_AND_STEEL : 1'
+            - 'LAVA_BUCKET : 1'
+            - 'FIRE_CHARGE : 4'
+          Descricao:
+            - ' &b▎ &f1x isqueiro, 1x balde de lava, 4x bolas de fogo'
+        2:
+          Preco:
+            coins: 45000
+          Itens:
+            - 'FLINT_AND_STEEL : 1 : enchant=UNBREAKING:3'
+            - 'LAVA_BUCKET : 2'
+            - 'FIRE_CHARGE : 8'
+          Descricao:
+            - ' &b▎ &f1x isqueiro, 2x baldes de lava, 8x bolas de fogo'
+    nadador:
+      Nome: 'Nadador'
+      Raridade: COMUM
+      Icone: 'WATER_BUCKET'
+      Descricao:
+        - '&7Baldes de água para descer e para apagar fogo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'WATER_BUCKET : 2'
+          Descricao:
+            - ' &b▎ &f2x baldes de água'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'WATER_BUCKET : 3'
+            - 'LEATHER_BOOTS : 1 : enchant=DEPTH_STRIDER:2'
+          Descricao:
+            - ' &b▎ &f3x baldes de água, 1x botas Passos Profundos II'
+    engenheiro:
+      Nome: 'Engenheiro'
+      Raridade: RARO
+      Icone: 'PISTON'
+      Descricao:
+        - '&7Pistões, redstone e blocos para armadilhas.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'PISTON : 4'
+            - 'REDSTONE : 16'
+            - 'REDSTONE_TORCH : 4'
+            - 'STONE : 32'
+          Descricao:
+            - ' &b▎ &f4x pistões, 16x redstone, 4x tochas de redstone, 32x pedras'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'STICKY_PISTON : 4'
+            - 'PISTON : 4'
+            - 'REDSTONE : 32'
+            - 'REDSTONE_TORCH : 8'
+            - 'STONE : 64'
+          Descricao:
+            - ' &b▎ &f4x pistões grudentos, 4x pistões, 32x redstone, 8x tochas, 64x pedras'
+    observador:
+      Nome: 'Observador'
+      Raridade: COMUM
+      Icone: 'COMPASS'
+      Descricao:
+        - '&7Bússola que aponta para o jogador mais próximo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 5000
+          Itens:
+            - 'COMPASS : 1'
+            - 'GLASS : 16'
+          Descricao:
+            - ' &b▎ &f1x bússola, 16x vidros'
+    homem_das_neves:
+      Nome: 'Homem das neves'
+      Raridade: COMUM
+      Icone: 'SNOWBALL'
+      Descricao:
+        - '&7Bolas de neve para derrubar quem está na beirada.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'SNOWBALL : 32'
+            - 'SNOW_BLOCK : 16'
+          Descricao:
+            - ' &b▎ &f32x bolas de neve, 16x blocos de neve'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'SNOWBALL : 64'
+            - 'SNOW_BLOCK : 32'
+            - 'IRON_SHOVEL : 1'
+          Descricao:
+            - ' &b▎ &f64x bolas de neve, 32x blocos de neve, 1x pá de ferro'
+    espeleologo:
+      Nome: 'Espeleólogo'
+      Raridade: RARO
+      Icone: 'IRON_PICKAXE'
+      Descricao:
+        - '&7Picareta rápida e blocos de sobra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'IRON_PICKAXE : 1 : enchant=EFFICIENCY:2'
+            - 'COBBLESTONE : 64'
+          Descricao:
+            - ' &b▎ &f1x picareta de ferro Eficiência II, 64x pedregulhos'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'DIAMOND_PICKAXE : 1 : enchant=EFFICIENCY:3'
+            - 'COBBLESTONE : 64'
+            - 'COBBLESTONE : 64'
+          Descricao:
+            - ' &b▎ &f1x picareta de diamante Eficiência III, 128x pedregulhos'
+    troll:
+      Nome: 'Troll'
+      Raridade: RARO
+      Icone: 'COBWEB'
+      Descricao:
+        - '&7Teias e ovos para atrapalhar todo mundo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 12000
+          Itens:
+            - 'COBWEB : 16'
+            - 'EGG : 32'
+          Descricao:
+            - ' &b▎ &f16x teias, 32x ovos'
+        2:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'COBWEB : 32'
+            - 'EGG : 64'
+            - 'SLIME_BLOCK : 8'
+          Descricao:
+            - ' &b▎ &f32x teias, 64x ovos, 8x blocos de slime'
+    homem_bomba:
+      Nome: 'Homem-bomba'
+      Raridade: EPICO
+      Icone: 'FIRE_CHARGE'
+      Descricao:
+        - '&7Poções de dano para jogar nos inimigos.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'SPLASH_POTION : 2 : pocao=INSTANT_DAMAGE:1:1'
+            - 'TNT : 4'
+          Descricao:
+            - ' &b▎ &f2x poções de dano, 4x TNT'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'SPLASH_POTION : 3 : pocao=INSTANT_DAMAGE:2:1'
+            - 'TNT : 8'
+          Descricao:
+            - ' &b▎ &f3x poções de dano II, 8x TNT'
+    medico:
+      Nome: 'Médico'
+      Raridade: RARO
+      Icone: 'POTION'
+      Descricao:
+        - '&7Poções de cura e regeneração.'
+      Niveis:
+        1:
+          Preco:
+            coins: 18000
+          Itens:
+            - 'POTION : 2 : pocao=INSTANT_HEALTH:1:1'
+            - 'POTION : 1 : pocao=REGENERATION:1:20'
+          Descricao:
+            - ' &b▎ &f2x poções de cura, 1x poção de regeneração'
+        2:
+          Preco:
+            coins: 40000
+          Itens:
+            - 'POTION : 3 : pocao=INSTANT_HEALTH:2:1'
+            - 'POTION : 2 : pocao=REGENERATION:2:20'
+            - 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f3x poções de cura II, 2x poções de regeneração II, 1x maçã dourada'
+    alquimista:
+      Nome: 'Alquimista'
+      Raridade: EPICO
+      Icone: 'BREWING_STAND'
+      Descricao:
+        - '&7Poções de força e velocidade.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'POTION : 1 : pocao=INCREASE_DAMAGE:1:60'
+            - 'POTION : 1 : pocao=SPEED:1:90'
+          Descricao:
+            - ' &b▎ &f1x poção de força (1 min), 1x poção de velocidade (1:30)'
+        2:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'POTION : 1 : pocao=INCREASE_DAMAGE:1:120'
+            - 'POTION : 1 : pocao=SPEED:2:90'
+            - 'POTION : 1 : pocao=FIRE_RESISTANCE:1:180'
+          Descricao:
+            - ' &b▎ &f1x força (2 min), 1x velocidade II, 1x resistência ao fogo'
+    protetor:
+      Nome: 'Protetor'
+      Raridade: LENDARIO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Armadura de ferro e espada de diamante.'
+      Niveis:
+        1:
+          Preco:
+            coins: 80000
+          Itens:
+            - 'DIAMOND_SWORD : 1'
+          Capacete: 'IRON_HELMET'
+          Peitoral: 'IRON_CHESTPLATE'
+          Calca: 'IRON_LEGGINGS'
+          Botas: 'IRON_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de ferro completa, 1x espada de diamante'
+        2:
+          Preco:
+            coins: 160000
+          Itens:
+            - 'DIAMOND_SWORD : 1 : enchant=SHARPNESS:1'
+          Capacete: 'IRON_HELMET : 1 : enchant=PROTECTION:1'
+          Peitoral: 'IRON_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Calca: 'IRON_LEGGINGS : 1 : enchant=PROTECTION:1'
+          Botas: 'IRON_BOOTS : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &fArmadura de ferro Proteção I, 1x espada de diamante Afiada I'
+    fantasma:
+      Nome: 'Fantasma'
+      Raridade: LENDARIO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Invisibilidade para começar escondido.'
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Itens:
+            - 'POTION : 1 : pocao=INVISIBILITY:1:60'
+            - 'STONE_SWORD : 1'
+          Descricao:
+            - ' &b▎ &f1x poção de invisibilidade (1 min), 1x espada de pedra'
+  # ---------------------------------------------------------------- RANQUEADO
+  ranqueado:
+    padrao:
+      Nome: 'Padrão'
+      Raridade: COMUM
+      Icone: 'WOODEN_PICKAXE'
+      Descricao:
+        - '&7Kit básico com ferramentas.'
+      Gratis: true
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Itens:
+            - 'WOODEN_PICKAXE : 1'
+            - 'WOODEN_AXE : 1'
+            - 'WOODEN_SHOVEL : 1'
+          Descricao:
+            - ' &b▎ &f1x picareta, machado e pá de madeira'
+    armeiro:
+      Nome: 'Armeiro'
+      Raridade: RARO
+      Icone: 'GOLDEN_CHESTPLATE'
+      Descricao:
+        - '&7Começa com uma armadura de ouro.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Itens: [ ]
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Calca: 'GOLDEN_LEGGINGS'
+          Botas: 'GOLDEN_BOOTS'
+          Descricao:
+            - ' &b▎ &fPeitoral, calça e botas de ouro'
+        2:
+          Preco:
+            coins: 40000
+          Itens: [ ]
+          Capacete: 'GOLDEN_HELMET'
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Calca: 'GOLDEN_LEGGINGS'
+          Botas: 'GOLDEN_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de ouro completa'
+        3:
+          Preco:
+            coins: 80000
+          Itens: [ ]
+          Capacete: 'CHAINMAIL_HELMET'
+          Peitoral: 'CHAINMAIL_CHESTPLATE'
+          Calca: 'CHAINMAIL_LEGGINGS'
+          Botas: 'CHAINMAIL_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de malha completa'
+    ferreiro:
+      Nome: 'Ferreiro'
+      Raridade: RARO
+      Icone: 'ANVIL'
+      Descricao:
+        - '&7Bigorna e uma espada para melhorar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'ANVIL : 1'
+            - 'STONE_SWORD : 1'
+            - 'EXPERIENCE_BOTTLE : 8'
+          Descricao:
+            - ' &b▎ &f1x bigorna, 1x espada de pedra, 8x frascos de xp'
+        2:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ANVIL : 1'
+            - 'IRON_SWORD : 1'
+            - 'EXPERIENCE_BOTTLE : 16'
+          Descricao:
+            - ' &b▎ &f1x bigorna, 1x espada de ferro, 16x frascos de xp'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Raridade: RARO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Arco e flechas desde o início.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'BOW : 1'
+            - 'ARROW : 16'
+          Descricao:
+            - ' &b▎ &f1x arco, 16x flechas'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'BOW : 1 : enchant=POWER:1'
+            - 'ARROW : 24'
+          Descricao:
+            - ' &b▎ &f1x arco Força I, 24x flechas'
+        3:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'BOW : 1 : enchant=POWER:2 : enchant=PUNCH:1'
+            - 'ARROW : 32'
+          Descricao:
+            - ' &b▎ &f1x arco Força II + Impacto I, 32x flechas'
+    canhoneiro:
+      Nome: 'Canhoneiro'
+      Raridade: EPICO
+      Icone: 'TNT'
+      Descricao:
+        - '&7TNT e redstone para explodir ilhas.'
+      Niveis:
+        1:
+          Preco:
+            coins: 25000
+          Itens:
+            - 'TNT : 8'
+            - 'REDSTONE_BLOCK : 2'
+            - 'LEVER : 2'
+            - 'FLINT_AND_STEEL : 1'
+          Descricao:
+            - ' &b▎ &f8x TNT, 2x blocos de redstone, 2x alavancas, 1x isqueiro'
+        2:
+          Preco:
+            coins: 50000
+          Itens:
+            - 'TNT : 16'
+            - 'REDSTONE_BLOCK : 4'
+            - 'LEVER : 2'
+            - 'FLINT_AND_STEEL : 1'
+          Descricao:
+            - ' &b▎ &f16x TNT, 4x blocos de redstone, 2x alavancas, 1x isqueiro'
+    ecologista:
+      Nome: 'Ecologista'
+      Raridade: COMUM
+      Icone: 'OAK_SAPLING'
+      Descricao:
+        - '&7Blocos e ferramentas para construir pontes.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'OAK_LOG : 32'
+            - 'OAK_LEAVES : 32'
+            - 'STONE_AXE : 1'
+          Descricao:
+            - ' &b▎ &f32x troncos, 32x folhas, 1x machado de pedra'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'OAK_LOG : 64'
+            - 'OAK_LEAVES : 64'
+            - 'IRON_AXE : 1 : enchant=EFFICIENCY:1'
+          Descricao:
+            - ' &b▎ &f64x troncos, 64x folhas, 1x machado de ferro Eficiência I'
+    encantador:
+      Nome: 'Encantador'
+      Raridade: EPICO
+      Icone: 'ENCHANTING_TABLE'
+      Descricao:
+        - '&7Mesa de encantamento com estantes e xp.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ENCHANTING_TABLE : 1'
+            - 'BOOKSHELF : 8'
+            - 'EXPERIENCE_BOTTLE : 32'
+          Descricao:
+            - ' &b▎ &f1x mesa de encantamento, 8x estantes, 32x frascos de xp'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'ENCHANTING_TABLE : 1'
+            - 'BOOKSHELF : 15'
+            - 'EXPERIENCE_BOTTLE : 64'
+          Descricao:
+            - ' &b▎ &f1x mesa de encantamento, 15x estantes, 64x frascos de xp'
+    enderman:
+      Nome: 'Enderman'
+      Raridade: EPICO
+      Icone: 'ENDER_PEARL'
+      Descricao:
+        - '&7Pérolas do fim para atravessar o mapa.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'ENDER_PEARL : 2'
+          Descricao:
+            - ' &b▎ &f2x pérolas do fim'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'ENDER_PEARL : 4'
+          Descricao:
+            - ' &b▎ &f4x pérolas do fim'
+    fazendeiro:
+      Nome: 'Fazendeiro'
+      Raridade: COMUM
+      Icone: 'CARROT'
+      Descricao:
+        - '&7Comida para a partida inteira.'
+      Niveis:
+        1:
+          Preco:
+            coins: 5000
+          Itens:
+            - 'COOKED_BEEF : 16'
+            - 'GOLDEN_CARROT : 4'
+          Descricao:
+            - ' &b▎ &f16x bifes, 4x cenouras douradas'
+        2:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'COOKED_BEEF : 32'
+            - 'GOLDEN_CARROT : 8'
+            - 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f32x bifes, 8x cenouras douradas, 1x maçã dourada'
+    pescador:
+      Nome: 'Pescador'
+      Raridade: COMUM
+      Icone: 'FISHING_ROD'
+      Descricao:
+        - '&7Vara de pesca com repulsão para derrubar gente.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Itens:
+            - 'FISHING_ROD : 1 : enchant=KNOCKBACK:1'
+            - 'COOKED_COD : 8'
+          Descricao:
+            - ' &b▎ &f1x vara de pesca Repulsão I, 8x peixes'
+        2:
+          Preco:
+            coins: 25000
+          Itens:
+            - 'FISHING_ROD : 1 : enchant=KNOCKBACK:2 : enchant=UNBREAKING:3'
+            - 'COOKED_COD : 16'
+          Descricao:
+            - ' &b▎ &f1x vara de pesca Repulsão II, 16x peixes'
+    cacador:
+      Nome: 'Caçador'
+      Raridade: RARO
+      Icone: 'LEATHER_CHESTPLATE'
+      Descricao:
+        - '&7Armadura de couro e uma espada de pedra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'STONE_SWORD : 1'
+          Capacete: 'LEATHER_HELMET'
+          Peitoral: 'LEATHER_CHESTPLATE'
+          Calca: 'LEATHER_LEGGINGS'
+          Botas: 'LEATHER_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de couro completa, 1x espada de pedra'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'STONE_SWORD : 1 : enchant=SHARPNESS:1'
+          Capacete: 'LEATHER_HELMET : 1 : enchant=PROTECTION:1'
+          Peitoral: 'LEATHER_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Calca: 'LEATHER_LEGGINGS : 1 : enchant=PROTECTION:1'
+          Botas: 'LEATHER_BOOTS : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &fArmadura de couro Proteção I, 1x espada de pedra Afiada I'
+    cavaleiro:
+      Nome: 'Cavaleiro'
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Espada de ferro e escudo de ouro.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'IRON_SWORD : 1'
+          Peitoral: 'GOLDEN_CHESTPLATE'
+          Descricao:
+            - ' &b▎ &f1x espada de ferro, 1x peitoral de ouro'
+        2:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'IRON_SWORD : 1 : enchant=SHARPNESS:1'
+          Peitoral: 'GOLDEN_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &f1x espada de ferro Afiada I, 1x peitoral de ouro Proteção I'
+    pyro:
+      Nome: 'Piromaníaco'
+      Raridade: RARO
+      Icone: 'FLINT_AND_STEEL'
+      Descricao:
+        - '&7Fogo e lava para quem gosta de ver o mundo queimar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'FLINT_AND_STEEL : 1'
+            - 'LAVA_BUCKET : 1'
+            - 'FIRE_CHARGE : 4'
+          Descricao:
+            - ' &b▎ &f1x isqueiro, 1x balde de lava, 4x bolas de fogo'
+        2:
+          Preco:
+            coins: 45000
+          Itens:
+            - 'FLINT_AND_STEEL : 1 : enchant=UNBREAKING:3'
+            - 'LAVA_BUCKET : 2'
+            - 'FIRE_CHARGE : 8'
+          Descricao:
+            - ' &b▎ &f1x isqueiro, 2x baldes de lava, 8x bolas de fogo'
+    nadador:
+      Nome: 'Nadador'
+      Raridade: COMUM
+      Icone: 'WATER_BUCKET'
+      Descricao:
+        - '&7Baldes de água para descer e para apagar fogo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'WATER_BUCKET : 2'
+          Descricao:
+            - ' &b▎ &f2x baldes de água'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'WATER_BUCKET : 3'
+            - 'LEATHER_BOOTS : 1 : enchant=DEPTH_STRIDER:2'
+          Descricao:
+            - ' &b▎ &f3x baldes de água, 1x botas Passos Profundos II'
+    engenheiro:
+      Nome: 'Engenheiro'
+      Raridade: RARO
+      Icone: 'PISTON'
+      Descricao:
+        - '&7Pistões, redstone e blocos para armadilhas.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'PISTON : 4'
+            - 'REDSTONE : 16'
+            - 'REDSTONE_TORCH : 4'
+            - 'STONE : 32'
+          Descricao:
+            - ' &b▎ &f4x pistões, 16x redstone, 4x tochas de redstone, 32x pedras'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'STICKY_PISTON : 4'
+            - 'PISTON : 4'
+            - 'REDSTONE : 32'
+            - 'REDSTONE_TORCH : 8'
+            - 'STONE : 64'
+          Descricao:
+            - ' &b▎ &f4x pistões grudentos, 4x pistões, 32x redstone, 8x tochas, 64x pedras'
+    observador:
+      Nome: 'Observador'
+      Raridade: COMUM
+      Icone: 'COMPASS'
+      Descricao:
+        - '&7Bússola que aponta para o jogador mais próximo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 5000
+          Itens:
+            - 'COMPASS : 1'
+            - 'GLASS : 16'
+          Descricao:
+            - ' &b▎ &f1x bússola, 16x vidros'
+    homem_das_neves:
+      Nome: 'Homem das neves'
+      Raridade: COMUM
+      Icone: 'SNOWBALL'
+      Descricao:
+        - '&7Bolas de neve para derrubar quem está na beirada.'
+      Niveis:
+        1:
+          Preco:
+            coins: 8000
+          Itens:
+            - 'SNOWBALL : 32'
+            - 'SNOW_BLOCK : 16'
+          Descricao:
+            - ' &b▎ &f32x bolas de neve, 16x blocos de neve'
+        2:
+          Preco:
+            coins: 20000
+          Itens:
+            - 'SNOWBALL : 64'
+            - 'SNOW_BLOCK : 32'
+            - 'IRON_SHOVEL : 1'
+          Descricao:
+            - ' &b▎ &f64x bolas de neve, 32x blocos de neve, 1x pá de ferro'
+    espeleologo:
+      Nome: 'Espeleólogo'
+      Raridade: RARO
+      Icone: 'IRON_PICKAXE'
+      Descricao:
+        - '&7Picareta rápida e blocos de sobra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Itens:
+            - 'IRON_PICKAXE : 1 : enchant=EFFICIENCY:2'
+            - 'COBBLESTONE : 64'
+          Descricao:
+            - ' &b▎ &f1x picareta de ferro Eficiência II, 64x pedregulhos'
+        2:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'DIAMOND_PICKAXE : 1 : enchant=EFFICIENCY:3'
+            - 'COBBLESTONE : 64'
+            - 'COBBLESTONE : 64'
+          Descricao:
+            - ' &b▎ &f1x picareta de diamante Eficiência III, 128x pedregulhos'
+    troll:
+      Nome: 'Troll'
+      Raridade: RARO
+      Icone: 'COBWEB'
+      Descricao:
+        - '&7Teias e ovos para atrapalhar todo mundo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 12000
+          Itens:
+            - 'COBWEB : 16'
+            - 'EGG : 32'
+          Descricao:
+            - ' &b▎ &f16x teias, 32x ovos'
+        2:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'COBWEB : 32'
+            - 'EGG : 64'
+            - 'SLIME_BLOCK : 8'
+          Descricao:
+            - ' &b▎ &f32x teias, 64x ovos, 8x blocos de slime'
+    homem_bomba:
+      Nome: 'Homem-bomba'
+      Raridade: EPICO
+      Icone: 'FIRE_CHARGE'
+      Descricao:
+        - '&7Poções de dano para jogar nos inimigos.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Itens:
+            - 'SPLASH_POTION : 2 : pocao=INSTANT_DAMAGE:1:1'
+            - 'TNT : 4'
+          Descricao:
+            - ' &b▎ &f2x poções de dano, 4x TNT'
+        2:
+          Preco:
+            coins: 60000
+          Itens:
+            - 'SPLASH_POTION : 3 : pocao=INSTANT_DAMAGE:2:1'
+            - 'TNT : 8'
+          Descricao:
+            - ' &b▎ &f3x poções de dano II, 8x TNT'
+    medico:
+      Nome: 'Médico'
+      Raridade: RARO
+      Icone: 'POTION'
+      Descricao:
+        - '&7Poções de cura e regeneração.'
+      Niveis:
+        1:
+          Preco:
+            coins: 18000
+          Itens:
+            - 'POTION : 2 : pocao=INSTANT_HEALTH:1:1'
+            - 'POTION : 1 : pocao=REGENERATION:1:20'
+          Descricao:
+            - ' &b▎ &f2x poções de cura, 1x poção de regeneração'
+        2:
+          Preco:
+            coins: 40000
+          Itens:
+            - 'POTION : 3 : pocao=INSTANT_HEALTH:2:1'
+            - 'POTION : 2 : pocao=REGENERATION:2:20'
+            - 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f3x poções de cura II, 2x poções de regeneração II, 1x maçã dourada'
+    alquimista:
+      Nome: 'Alquimista'
+      Raridade: EPICO
+      Icone: 'BREWING_STAND'
+      Descricao:
+        - '&7Poções de força e velocidade.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Itens:
+            - 'POTION : 1 : pocao=INCREASE_DAMAGE:1:60'
+            - 'POTION : 1 : pocao=SPEED:1:90'
+          Descricao:
+            - ' &b▎ &f1x poção de força (1 min), 1x poção de velocidade (1:30)'
+        2:
+          Preco:
+            coins: 70000
+          Itens:
+            - 'POTION : 1 : pocao=INCREASE_DAMAGE:1:120'
+            - 'POTION : 1 : pocao=SPEED:2:90'
+            - 'POTION : 1 : pocao=FIRE_RESISTANCE:1:180'
+          Descricao:
+            - ' &b▎ &f1x força (2 min), 1x velocidade II, 1x resistência ao fogo'
+    protetor:
+      Nome: 'Protetor'
+      Raridade: LENDARIO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Armadura de ferro e espada de diamante.'
+      Niveis:
+        1:
+          Preco:
+            coins: 80000
+          Itens:
+            - 'DIAMOND_SWORD : 1'
+          Capacete: 'IRON_HELMET'
+          Peitoral: 'IRON_CHESTPLATE'
+          Calca: 'IRON_LEGGINGS'
+          Botas: 'IRON_BOOTS'
+          Descricao:
+            - ' &b▎ &fArmadura de ferro completa, 1x espada de diamante'
+        2:
+          Preco:
+            coins: 160000
+          Itens:
+            - 'DIAMOND_SWORD : 1 : enchant=SHARPNESS:1'
+          Capacete: 'IRON_HELMET : 1 : enchant=PROTECTION:1'
+          Peitoral: 'IRON_CHESTPLATE : 1 : enchant=PROTECTION:1'
+          Calca: 'IRON_LEGGINGS : 1 : enchant=PROTECTION:1'
+          Botas: 'IRON_BOOTS : 1 : enchant=PROTECTION:1'
+          Descricao:
+            - ' &b▎ &fArmadura de ferro Proteção I, 1x espada de diamante Afiada I'
+    fantasma:
+      Nome: 'Fantasma'
+      Raridade: LENDARIO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Invisibilidade para começar escondido.'
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Itens:
+            - 'POTION : 1 : pocao=INVISIBILITY:1:60'
+            - 'STONE_SWORD : 1'
+          Descricao:
+            - ' &b▎ &f1x poção de invisibilidade (1 min), 1x espada de pedra'

@@ -1,0 +1,2177 @@
+# ==========================================================================
+#  StarSkyWars - habilidades
+#
+#  Habilidades.<modo>.<id>: Nome, Raridade, Icone/Textura, Descricao, Tipo,
+#  Gratis, Na caixa, Permissao e Niveis (Preco, Valor, Extra, Descricao).
+#
+#  O Tipo diz o que a habilidade faz; Valor e Extra mudam por nivel:
+#   SEM_DANO_DE_QUEDA        Valor = % do dano de queda anulado
+#   RECUPERAR_FLECHA         Valor = % de chance de a flecha voltar
+#   FLECHA_EXPLOSIVA         Valor = % de chance; Extra = poder da explosao
+#   FORCA_AO_ABATER          Valor = segundos; Extra = nivel do efeito
+#   REGENERACAO_AO_ABATER    Valor = segundos; Extra = nivel
+#   VELOCIDADE_AO_ABATER     Valor = segundos; Extra = nivel
+#   VELOCIDADE_COM_POUCA_VIDA Valor = segundos; Extra = coracoes que ativam
+#   EXPLOSAO_AO_MORRER       Valor = poder da explosao
+#   SEM_FOME                 (sem valor)
+#   DANO_DE_PEROLA           Valor = % do dano da perola anulado
+#   DANO_NA_CABECA           Valor = % de dano extra na cabeca
+#   RESISTENCIA_AO_FOGO      Valor = % do dano de fogo anulado
+#   VIDA_EXTRA               Valor = coracoes extras
+#   ROUBO_DE_VIDA            Valor = % do dano que vira vida
+#   DANO_A_DISTANCIA         Valor = % de dano extra com flechas
+#   RESISTENCIA_A_EXPLOSAO   Valor = % do dano de explosao anulado
+#   ESQUIVA                  Valor = % de chance de anular um golpe
+#   EFEITO_AO_INICIAR        Extra = EFEITO:nivel (a partida toda)
+#   ITEM_AO_ABATER           Extra = item (formato dos kits)
+#   SEGUNDA_CHANCE           Valor = % da vida ao sobreviver (1x por partida)
+#   GOLPE_DE_FOGO            Valor = % de chance; Extra = segundos
+#   GOLPE_CONGELANTE         Valor = % de chance; Extra = segundos
+#   DANO_EXTRA               Valor = % de dano extra corpo a corpo
+#   BLOCOS_INFINITOS         Valor = % de chance de nao gastar o bloco
+#   CURA_AO_ABATER           Valor = % da vida curada ao abater
+# ==========================================================================
+
+Versao do modelo: 1
+
+Habilidades:
+  # ---------------------------------------------------------------- SOLO
+  solo:
+    peso_pena:
+      Nome: 'Peso pena'
+      Raridade: COMUM
+      Icone: 'FEATHER'
+      Tipo: SEM_DANO_DE_QUEDA
+      Descricao:
+        - '&7Tome menos dano ao cair.'
+      Gratis: true
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano de queda'
+        2:
+          Preco:
+            coins: 15000
+          Valor: 75
+          Descricao:
+            - ' &b▎ &f-75% de dano de queda'
+        3:
+          Preco:
+            coins: 40000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fNenhum dano de queda'
+    flecha_leal:
+      Nome: 'Flecha leal'
+      Raridade: RARO
+      Icone: 'ARROW'
+      Tipo: RECUPERAR_FLECHA
+      Descricao:
+        - '&7Tenha uma chance de recuperar a flecha atirada.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 10
+          Descricao:
+            - ' &b▎ &f10% de chance'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        3:
+          Preco:
+            coins: 50000
+          Valor: 35
+          Descricao:
+            - ' &b▎ &f35% de chance'
+    flecha_explosiva:
+      Nome: 'Flecha explosiva'
+      Raridade: EPICO
+      Icone: 'TNT'
+      Tipo: FLECHA_EXPLOSIVA
+      Descricao:
+        - '&7Suas flechas têm chance de explodir onde acertam.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 10
+          Extra: '1.5'
+          Descricao:
+            - ' &b▎ &f10% de chance'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 20
+          Extra: '1.5'
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        3:
+          Preco:
+            coins: 100000
+          Valor: 30
+          Extra: '2.0'
+          Descricao:
+            - ' &b▎ &f30% de chance, explosão maior'
+    assassino:
+      Nome: 'Assassino'
+      Raridade: RARO
+      Icone: 'IRON_SWORD'
+      Tipo: FORCA_AO_ABATER
+      Descricao:
+        - '&7Ganhe força por alguns segundos ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 5
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fForça I por 5s'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 8
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fForça I por 8s'
+        3:
+          Preco:
+            coins: 90000
+          Valor: 8
+          Extra: '2'
+          Descricao:
+            - ' &b▎ &fForça II por 8s'
+    frio_no_combate:
+      Nome: 'Frio no combate'
+      Raridade: RARO
+      Icone: 'GOLDEN_APPLE'
+      Tipo: REGENERACAO_AO_ABATER
+      Descricao:
+        - '&7Regenere vida ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 5
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fRegeneração I por 5s'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 8
+          Extra: '2'
+          Descricao:
+            - ' &b▎ &fRegeneração II por 8s'
+    sedento:
+      Nome: 'Sedento'
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Tipo: ROUBO_DE_VIDA
+      Descricao:
+        - '&7Parte do dano que você causa volta como vida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 10
+          Descricao:
+            - ' &b▎ &f10% do dano'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% do dano'
+        3:
+          Preco:
+            coins: 120000
+          Valor: 30
+          Descricao:
+            - ' &b▎ &f30% do dano'
+    fujao:
+      Nome: 'Fujão'
+      Raridade: COMUM
+      Icone: 'SUGAR'
+      Tipo: VELOCIDADE_COM_POUCA_VIDA
+      Descricao:
+        - '&7Ganhe velocidade quando estiver com pouca vida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 5
+          Extra: '5'
+          Descricao:
+            - ' &b▎ &fVelocidade por 5s abaixo de 5 corações'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 8
+          Extra: '6'
+          Descricao:
+            - ' &b▎ &fVelocidade por 8s abaixo de 6 corações'
+    vinganca:
+      Nome: 'Vingança'
+      Raridade: EPICO
+      Icone: 'CREEPER_HEAD'
+      Tipo: EXPLOSAO_AO_MORRER
+      Descricao:
+        - '&7Exploda ao morrer, levando quem estiver perto.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 2
+          Descricao:
+            - ' &b▎ &fExplosão pequena'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 3
+          Descricao:
+            - ' &b▎ &fExplosão média'
+        3:
+          Preco:
+            coins: 120000
+          Valor: 4
+          Descricao:
+            - ' &b▎ &fExplosão grande'
+    oculista:
+      Nome: 'Oculista'
+      Raridade: RARO
+      Icone: 'SPYGLASS'
+      Tipo: DANO_NA_CABECA
+      Descricao:
+        - '&7Flechas na cabeça causam dano extra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 25
+          Descricao:
+            - ' &b▎ &f+25% de dano'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f+50% de dano'
+        3:
+          Preco:
+            coins: 90000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &f+100% de dano'
+    mestre_do_fim:
+      Nome: 'Mestre do fim'
+      Raridade: RARO
+      Icone: 'ENDER_PEARL'
+      Tipo: DANO_DE_PEROLA
+      Descricao:
+        - '&7Tome menos dano ao usar pérolas do fim.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano da pérola'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fNenhum dano da pérola'
+    sem_fome:
+      Nome: 'Estômago de ferro'
+      Raridade: COMUM
+      Icone: 'COOKED_BEEF'
+      Tipo: SEM_FOME
+      Descricao:
+        - '&7Nunca sinta fome durante a partida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 12000
+          Valor: 0
+          Descricao:
+            - ' &b▎ &fFome nunca cai'
+    pele_de_ferro:
+      Nome: 'Pele de ferro'
+      Raridade: RARO
+      Icone: 'MAGMA_CREAM'
+      Tipo: RESISTENCIA_AO_FOGO
+      Descricao:
+        - '&7Tome menos dano de fogo e lava.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano de fogo'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fImune a fogo e lava'
+    tanque:
+      Nome: 'Tanque'
+      Raridade: LENDARIO
+      Icone: 'GOLDEN_APPLE'
+      Tipo: VIDA_EXTRA
+      Descricao:
+        - '&7Comece com corações extras.'
+      Niveis:
+        1:
+          Preco:
+            coins: 60000
+          Valor: 1
+          Descricao:
+            - ' &b▎ &f+1 coração'
+        2:
+          Preco:
+            coins: 120000
+          Valor: 2
+          Descricao:
+            - ' &b▎ &f+2 corações'
+        3:
+          Preco:
+            coins: 240000
+          Valor: 3
+          Descricao:
+            - ' &b▎ &f+3 corações'
+    atirador:
+      Nome: 'Atirador de elite'
+      Raridade: EPICO
+      Icone: 'BOW'
+      Tipo: DANO_A_DISTANCIA
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 15
+          Descricao:
+            - ' &b▎ &f+15% de dano com flechas'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 30
+          Descricao:
+            - ' &b▎ &f+30% de dano com flechas'
+    blindado:
+      Nome: 'Blindado'
+      Raridade: RARO
+      Icone: 'OBSIDIAN'
+      Tipo: RESISTENCIA_A_EXPLOSAO
+      Descricao:
+        - '&7Tome menos dano de explosões.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 40
+          Descricao:
+            - ' &b▎ &f-40% de dano de explosão'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 80
+          Descricao:
+            - ' &b▎ &f-80% de dano de explosão'
+    ninja:
+      Nome: 'Ninja'
+      Raridade: EPICO
+      Icone: 'BLACK_DYE'
+      Tipo: ESQUIVA
+      Descricao:
+        - '&7Tenha uma chance de esquivar de golpes.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Valor: 8
+          Descricao:
+            - ' &b▎ &f8% de chance'
+        2:
+          Preco:
+            coins: 70000
+          Valor: 14
+          Descricao:
+            - ' &b▎ &f14% de chance'
+        3:
+          Preco:
+            coins: 140000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+    fenix:
+      Nome: 'Fênix'
+      Raridade: LENDARIO
+      Icone: 'BLAZE_POWDER'
+      Tipo: SEGUNDA_CHANCE
+      Descricao:
+        - '&7Uma vez por partida, sobreviva a um golpe letal.'
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Valor: 25
+          Descricao:
+            - ' &b▎ &fVolta com 25% da vida'
+        2:
+          Preco:
+            coins: 100000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &fVolta com 50% da vida'
+    incendiario:
+      Nome: 'Incendiário'
+      Raridade: RARO
+      Icone: 'FIRE_CHARGE'
+      Tipo: GOLPE_DE_FOGO
+      Descricao:
+        - '&7Seus golpes têm chance de incendiar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 15
+          Extra: '3'
+          Descricao:
+            - ' &b▎ &f15% de chance, 3s de fogo'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 30
+          Extra: '4'
+          Descricao:
+            - ' &b▎ &f30% de chance, 4s de fogo'
+    gelado:
+      Nome: 'Gelado'
+      Raridade: RARO
+      Icone: 'PACKED_ICE'
+      Tipo: GOLPE_CONGELANTE
+      Descricao:
+        - '&7Seus golpes têm chance de dar lentidão.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 15
+          Extra: '3'
+          Descricao:
+            - ' &b▎ &f15% de chance, 3s de lentidão'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 30
+          Extra: '4'
+          Descricao:
+            - ' &b▎ &f30% de chance, 4s de lentidão'
+    brutamontes:
+      Nome: 'Brutamontes'
+      Raridade: EPICO
+      Icone: 'DIAMOND_AXE'
+      Tipo: DANO_EXTRA
+      Descricao:
+        - '&7Cause mais dano corpo a corpo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 40000
+          Valor: 8
+          Descricao:
+            - ' &b▎ &f+8% de dano'
+        2:
+          Preco:
+            coins: 80000
+          Valor: 15
+          Descricao:
+            - ' &b▎ &f+15% de dano'
+    pedreiro:
+      Nome: 'Pedreiro'
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Tipo: BLOCOS_INFINITOS
+      Descricao:
+        - '&7Chance de não gastar o bloco ao colocar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 40
+          Descricao:
+            - ' &b▎ &f40% de chance'
+    vampiro:
+      Nome: 'Vampiro'
+      Raridade: RARO
+      Icone: 'REDSTONE'
+      Tipo: CURA_AO_ABATER
+      Descricao:
+        - '&7Cure parte da vida ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 25
+          Descricao:
+            - ' &b▎ &fCura 25% da vida'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &fCura 50% da vida'
+    saqueador:
+      Nome: 'Saqueador'
+      Raridade: EPICO
+      Icone: 'CHEST'
+      Tipo: ITEM_AO_ABATER
+      Descricao:
+        - '&7Receba uma maçã dourada a cada abate.'
+      Niveis:
+        1:
+          Preco:
+            coins: 40000
+          Valor: 0
+          Extra: 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f1x maçã dourada por abate'
+    veloz:
+      Nome: 'Veloz'
+      Raridade: RARO
+      Icone: 'LEATHER_BOOTS'
+      Tipo: EFEITO_AO_INICIAR
+      Descricao:
+        - '&7Comece a partida com velocidade.'
+      Niveis:
+        1:
+          Preco:
+            coins: 25000
+          Valor: 0
+          Extra: 'SPEED:1'
+          Descricao:
+            - ' &b▎ &fVelocidade I a partida toda'
+  # ---------------------------------------------------------------- DUPLA
+  dupla:
+    peso_pena:
+      Nome: 'Peso pena'
+      Raridade: COMUM
+      Icone: 'FEATHER'
+      Tipo: SEM_DANO_DE_QUEDA
+      Descricao:
+        - '&7Tome menos dano ao cair.'
+      Gratis: true
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano de queda'
+        2:
+          Preco:
+            coins: 15000
+          Valor: 75
+          Descricao:
+            - ' &b▎ &f-75% de dano de queda'
+        3:
+          Preco:
+            coins: 40000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fNenhum dano de queda'
+    flecha_leal:
+      Nome: 'Flecha leal'
+      Raridade: RARO
+      Icone: 'ARROW'
+      Tipo: RECUPERAR_FLECHA
+      Descricao:
+        - '&7Tenha uma chance de recuperar a flecha atirada.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 10
+          Descricao:
+            - ' &b▎ &f10% de chance'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        3:
+          Preco:
+            coins: 50000
+          Valor: 35
+          Descricao:
+            - ' &b▎ &f35% de chance'
+    flecha_explosiva:
+      Nome: 'Flecha explosiva'
+      Raridade: EPICO
+      Icone: 'TNT'
+      Tipo: FLECHA_EXPLOSIVA
+      Descricao:
+        - '&7Suas flechas têm chance de explodir onde acertam.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 10
+          Extra: '1.5'
+          Descricao:
+            - ' &b▎ &f10% de chance'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 20
+          Extra: '1.5'
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        3:
+          Preco:
+            coins: 100000
+          Valor: 30
+          Extra: '2.0'
+          Descricao:
+            - ' &b▎ &f30% de chance, explosão maior'
+    assassino:
+      Nome: 'Assassino'
+      Raridade: RARO
+      Icone: 'IRON_SWORD'
+      Tipo: FORCA_AO_ABATER
+      Descricao:
+        - '&7Ganhe força por alguns segundos ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 5
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fForça I por 5s'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 8
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fForça I por 8s'
+        3:
+          Preco:
+            coins: 90000
+          Valor: 8
+          Extra: '2'
+          Descricao:
+            - ' &b▎ &fForça II por 8s'
+    frio_no_combate:
+      Nome: 'Frio no combate'
+      Raridade: RARO
+      Icone: 'GOLDEN_APPLE'
+      Tipo: REGENERACAO_AO_ABATER
+      Descricao:
+        - '&7Regenere vida ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 5
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fRegeneração I por 5s'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 8
+          Extra: '2'
+          Descricao:
+            - ' &b▎ &fRegeneração II por 8s'
+    sedento:
+      Nome: 'Sedento'
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Tipo: ROUBO_DE_VIDA
+      Descricao:
+        - '&7Parte do dano que você causa volta como vida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 10
+          Descricao:
+            - ' &b▎ &f10% do dano'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% do dano'
+        3:
+          Preco:
+            coins: 120000
+          Valor: 30
+          Descricao:
+            - ' &b▎ &f30% do dano'
+    fujao:
+      Nome: 'Fujão'
+      Raridade: COMUM
+      Icone: 'SUGAR'
+      Tipo: VELOCIDADE_COM_POUCA_VIDA
+      Descricao:
+        - '&7Ganhe velocidade quando estiver com pouca vida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 5
+          Extra: '5'
+          Descricao:
+            - ' &b▎ &fVelocidade por 5s abaixo de 5 corações'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 8
+          Extra: '6'
+          Descricao:
+            - ' &b▎ &fVelocidade por 8s abaixo de 6 corações'
+    vinganca:
+      Nome: 'Vingança'
+      Raridade: EPICO
+      Icone: 'CREEPER_HEAD'
+      Tipo: EXPLOSAO_AO_MORRER
+      Descricao:
+        - '&7Exploda ao morrer, levando quem estiver perto.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 2
+          Descricao:
+            - ' &b▎ &fExplosão pequena'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 3
+          Descricao:
+            - ' &b▎ &fExplosão média'
+        3:
+          Preco:
+            coins: 120000
+          Valor: 4
+          Descricao:
+            - ' &b▎ &fExplosão grande'
+    oculista:
+      Nome: 'Oculista'
+      Raridade: RARO
+      Icone: 'SPYGLASS'
+      Tipo: DANO_NA_CABECA
+      Descricao:
+        - '&7Flechas na cabeça causam dano extra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 25
+          Descricao:
+            - ' &b▎ &f+25% de dano'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f+50% de dano'
+        3:
+          Preco:
+            coins: 90000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &f+100% de dano'
+    mestre_do_fim:
+      Nome: 'Mestre do fim'
+      Raridade: RARO
+      Icone: 'ENDER_PEARL'
+      Tipo: DANO_DE_PEROLA
+      Descricao:
+        - '&7Tome menos dano ao usar pérolas do fim.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano da pérola'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fNenhum dano da pérola'
+    sem_fome:
+      Nome: 'Estômago de ferro'
+      Raridade: COMUM
+      Icone: 'COOKED_BEEF'
+      Tipo: SEM_FOME
+      Descricao:
+        - '&7Nunca sinta fome durante a partida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 12000
+          Valor: 0
+          Descricao:
+            - ' &b▎ &fFome nunca cai'
+    pele_de_ferro:
+      Nome: 'Pele de ferro'
+      Raridade: RARO
+      Icone: 'MAGMA_CREAM'
+      Tipo: RESISTENCIA_AO_FOGO
+      Descricao:
+        - '&7Tome menos dano de fogo e lava.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano de fogo'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fImune a fogo e lava'
+    tanque:
+      Nome: 'Tanque'
+      Raridade: LENDARIO
+      Icone: 'GOLDEN_APPLE'
+      Tipo: VIDA_EXTRA
+      Descricao:
+        - '&7Comece com corações extras.'
+      Niveis:
+        1:
+          Preco:
+            coins: 60000
+          Valor: 1
+          Descricao:
+            - ' &b▎ &f+1 coração'
+        2:
+          Preco:
+            coins: 120000
+          Valor: 2
+          Descricao:
+            - ' &b▎ &f+2 corações'
+        3:
+          Preco:
+            coins: 240000
+          Valor: 3
+          Descricao:
+            - ' &b▎ &f+3 corações'
+    atirador:
+      Nome: 'Atirador de elite'
+      Raridade: EPICO
+      Icone: 'BOW'
+      Tipo: DANO_A_DISTANCIA
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 15
+          Descricao:
+            - ' &b▎ &f+15% de dano com flechas'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 30
+          Descricao:
+            - ' &b▎ &f+30% de dano com flechas'
+    blindado:
+      Nome: 'Blindado'
+      Raridade: RARO
+      Icone: 'OBSIDIAN'
+      Tipo: RESISTENCIA_A_EXPLOSAO
+      Descricao:
+        - '&7Tome menos dano de explosões.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 40
+          Descricao:
+            - ' &b▎ &f-40% de dano de explosão'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 80
+          Descricao:
+            - ' &b▎ &f-80% de dano de explosão'
+    ninja:
+      Nome: 'Ninja'
+      Raridade: EPICO
+      Icone: 'BLACK_DYE'
+      Tipo: ESQUIVA
+      Descricao:
+        - '&7Tenha uma chance de esquivar de golpes.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Valor: 8
+          Descricao:
+            - ' &b▎ &f8% de chance'
+        2:
+          Preco:
+            coins: 70000
+          Valor: 14
+          Descricao:
+            - ' &b▎ &f14% de chance'
+        3:
+          Preco:
+            coins: 140000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+    fenix:
+      Nome: 'Fênix'
+      Raridade: LENDARIO
+      Icone: 'BLAZE_POWDER'
+      Tipo: SEGUNDA_CHANCE
+      Descricao:
+        - '&7Uma vez por partida, sobreviva a um golpe letal.'
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Valor: 25
+          Descricao:
+            - ' &b▎ &fVolta com 25% da vida'
+        2:
+          Preco:
+            coins: 100000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &fVolta com 50% da vida'
+    incendiario:
+      Nome: 'Incendiário'
+      Raridade: RARO
+      Icone: 'FIRE_CHARGE'
+      Tipo: GOLPE_DE_FOGO
+      Descricao:
+        - '&7Seus golpes têm chance de incendiar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 15
+          Extra: '3'
+          Descricao:
+            - ' &b▎ &f15% de chance, 3s de fogo'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 30
+          Extra: '4'
+          Descricao:
+            - ' &b▎ &f30% de chance, 4s de fogo'
+    gelado:
+      Nome: 'Gelado'
+      Raridade: RARO
+      Icone: 'PACKED_ICE'
+      Tipo: GOLPE_CONGELANTE
+      Descricao:
+        - '&7Seus golpes têm chance de dar lentidão.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 15
+          Extra: '3'
+          Descricao:
+            - ' &b▎ &f15% de chance, 3s de lentidão'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 30
+          Extra: '4'
+          Descricao:
+            - ' &b▎ &f30% de chance, 4s de lentidão'
+    brutamontes:
+      Nome: 'Brutamontes'
+      Raridade: EPICO
+      Icone: 'DIAMOND_AXE'
+      Tipo: DANO_EXTRA
+      Descricao:
+        - '&7Cause mais dano corpo a corpo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 40000
+          Valor: 8
+          Descricao:
+            - ' &b▎ &f+8% de dano'
+        2:
+          Preco:
+            coins: 80000
+          Valor: 15
+          Descricao:
+            - ' &b▎ &f+15% de dano'
+    pedreiro:
+      Nome: 'Pedreiro'
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Tipo: BLOCOS_INFINITOS
+      Descricao:
+        - '&7Chance de não gastar o bloco ao colocar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 40
+          Descricao:
+            - ' &b▎ &f40% de chance'
+    vampiro:
+      Nome: 'Vampiro'
+      Raridade: RARO
+      Icone: 'REDSTONE'
+      Tipo: CURA_AO_ABATER
+      Descricao:
+        - '&7Cure parte da vida ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 25
+          Descricao:
+            - ' &b▎ &fCura 25% da vida'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &fCura 50% da vida'
+    saqueador:
+      Nome: 'Saqueador'
+      Raridade: EPICO
+      Icone: 'CHEST'
+      Tipo: ITEM_AO_ABATER
+      Descricao:
+        - '&7Receba uma maçã dourada a cada abate.'
+      Niveis:
+        1:
+          Preco:
+            coins: 40000
+          Valor: 0
+          Extra: 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f1x maçã dourada por abate'
+    veloz:
+      Nome: 'Veloz'
+      Raridade: RARO
+      Icone: 'LEATHER_BOOTS'
+      Tipo: EFEITO_AO_INICIAR
+      Descricao:
+        - '&7Comece a partida com velocidade.'
+      Niveis:
+        1:
+          Preco:
+            coins: 25000
+          Valor: 0
+          Extra: 'SPEED:1'
+          Descricao:
+            - ' &b▎ &fVelocidade I a partida toda'
+  # ---------------------------------------------------------------- MEGA
+  mega:
+    peso_pena:
+      Nome: 'Peso pena'
+      Raridade: COMUM
+      Icone: 'FEATHER'
+      Tipo: SEM_DANO_DE_QUEDA
+      Descricao:
+        - '&7Tome menos dano ao cair.'
+      Gratis: true
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano de queda'
+        2:
+          Preco:
+            coins: 15000
+          Valor: 75
+          Descricao:
+            - ' &b▎ &f-75% de dano de queda'
+        3:
+          Preco:
+            coins: 40000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fNenhum dano de queda'
+    flecha_leal:
+      Nome: 'Flecha leal'
+      Raridade: RARO
+      Icone: 'ARROW'
+      Tipo: RECUPERAR_FLECHA
+      Descricao:
+        - '&7Tenha uma chance de recuperar a flecha atirada.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 10
+          Descricao:
+            - ' &b▎ &f10% de chance'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        3:
+          Preco:
+            coins: 50000
+          Valor: 35
+          Descricao:
+            - ' &b▎ &f35% de chance'
+    flecha_explosiva:
+      Nome: 'Flecha explosiva'
+      Raridade: EPICO
+      Icone: 'TNT'
+      Tipo: FLECHA_EXPLOSIVA
+      Descricao:
+        - '&7Suas flechas têm chance de explodir onde acertam.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 10
+          Extra: '1.5'
+          Descricao:
+            - ' &b▎ &f10% de chance'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 20
+          Extra: '1.5'
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        3:
+          Preco:
+            coins: 100000
+          Valor: 30
+          Extra: '2.0'
+          Descricao:
+            - ' &b▎ &f30% de chance, explosão maior'
+    assassino:
+      Nome: 'Assassino'
+      Raridade: RARO
+      Icone: 'IRON_SWORD'
+      Tipo: FORCA_AO_ABATER
+      Descricao:
+        - '&7Ganhe força por alguns segundos ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 5
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fForça I por 5s'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 8
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fForça I por 8s'
+        3:
+          Preco:
+            coins: 90000
+          Valor: 8
+          Extra: '2'
+          Descricao:
+            - ' &b▎ &fForça II por 8s'
+    frio_no_combate:
+      Nome: 'Frio no combate'
+      Raridade: RARO
+      Icone: 'GOLDEN_APPLE'
+      Tipo: REGENERACAO_AO_ABATER
+      Descricao:
+        - '&7Regenere vida ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 5
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fRegeneração I por 5s'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 8
+          Extra: '2'
+          Descricao:
+            - ' &b▎ &fRegeneração II por 8s'
+    sedento:
+      Nome: 'Sedento'
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Tipo: ROUBO_DE_VIDA
+      Descricao:
+        - '&7Parte do dano que você causa volta como vida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 10
+          Descricao:
+            - ' &b▎ &f10% do dano'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% do dano'
+        3:
+          Preco:
+            coins: 120000
+          Valor: 30
+          Descricao:
+            - ' &b▎ &f30% do dano'
+    fujao:
+      Nome: 'Fujão'
+      Raridade: COMUM
+      Icone: 'SUGAR'
+      Tipo: VELOCIDADE_COM_POUCA_VIDA
+      Descricao:
+        - '&7Ganhe velocidade quando estiver com pouca vida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 5
+          Extra: '5'
+          Descricao:
+            - ' &b▎ &fVelocidade por 5s abaixo de 5 corações'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 8
+          Extra: '6'
+          Descricao:
+            - ' &b▎ &fVelocidade por 8s abaixo de 6 corações'
+    vinganca:
+      Nome: 'Vingança'
+      Raridade: EPICO
+      Icone: 'CREEPER_HEAD'
+      Tipo: EXPLOSAO_AO_MORRER
+      Descricao:
+        - '&7Exploda ao morrer, levando quem estiver perto.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 2
+          Descricao:
+            - ' &b▎ &fExplosão pequena'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 3
+          Descricao:
+            - ' &b▎ &fExplosão média'
+        3:
+          Preco:
+            coins: 120000
+          Valor: 4
+          Descricao:
+            - ' &b▎ &fExplosão grande'
+    oculista:
+      Nome: 'Oculista'
+      Raridade: RARO
+      Icone: 'SPYGLASS'
+      Tipo: DANO_NA_CABECA
+      Descricao:
+        - '&7Flechas na cabeça causam dano extra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 25
+          Descricao:
+            - ' &b▎ &f+25% de dano'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f+50% de dano'
+        3:
+          Preco:
+            coins: 90000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &f+100% de dano'
+    mestre_do_fim:
+      Nome: 'Mestre do fim'
+      Raridade: RARO
+      Icone: 'ENDER_PEARL'
+      Tipo: DANO_DE_PEROLA
+      Descricao:
+        - '&7Tome menos dano ao usar pérolas do fim.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano da pérola'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fNenhum dano da pérola'
+    sem_fome:
+      Nome: 'Estômago de ferro'
+      Raridade: COMUM
+      Icone: 'COOKED_BEEF'
+      Tipo: SEM_FOME
+      Descricao:
+        - '&7Nunca sinta fome durante a partida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 12000
+          Valor: 0
+          Descricao:
+            - ' &b▎ &fFome nunca cai'
+    pele_de_ferro:
+      Nome: 'Pele de ferro'
+      Raridade: RARO
+      Icone: 'MAGMA_CREAM'
+      Tipo: RESISTENCIA_AO_FOGO
+      Descricao:
+        - '&7Tome menos dano de fogo e lava.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano de fogo'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fImune a fogo e lava'
+    tanque:
+      Nome: 'Tanque'
+      Raridade: LENDARIO
+      Icone: 'GOLDEN_APPLE'
+      Tipo: VIDA_EXTRA
+      Descricao:
+        - '&7Comece com corações extras.'
+      Niveis:
+        1:
+          Preco:
+            coins: 60000
+          Valor: 1
+          Descricao:
+            - ' &b▎ &f+1 coração'
+        2:
+          Preco:
+            coins: 120000
+          Valor: 2
+          Descricao:
+            - ' &b▎ &f+2 corações'
+        3:
+          Preco:
+            coins: 240000
+          Valor: 3
+          Descricao:
+            - ' &b▎ &f+3 corações'
+    atirador:
+      Nome: 'Atirador de elite'
+      Raridade: EPICO
+      Icone: 'BOW'
+      Tipo: DANO_A_DISTANCIA
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 15
+          Descricao:
+            - ' &b▎ &f+15% de dano com flechas'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 30
+          Descricao:
+            - ' &b▎ &f+30% de dano com flechas'
+    blindado:
+      Nome: 'Blindado'
+      Raridade: RARO
+      Icone: 'OBSIDIAN'
+      Tipo: RESISTENCIA_A_EXPLOSAO
+      Descricao:
+        - '&7Tome menos dano de explosões.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 40
+          Descricao:
+            - ' &b▎ &f-40% de dano de explosão'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 80
+          Descricao:
+            - ' &b▎ &f-80% de dano de explosão'
+    ninja:
+      Nome: 'Ninja'
+      Raridade: EPICO
+      Icone: 'BLACK_DYE'
+      Tipo: ESQUIVA
+      Descricao:
+        - '&7Tenha uma chance de esquivar de golpes.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Valor: 8
+          Descricao:
+            - ' &b▎ &f8% de chance'
+        2:
+          Preco:
+            coins: 70000
+          Valor: 14
+          Descricao:
+            - ' &b▎ &f14% de chance'
+        3:
+          Preco:
+            coins: 140000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+    fenix:
+      Nome: 'Fênix'
+      Raridade: LENDARIO
+      Icone: 'BLAZE_POWDER'
+      Tipo: SEGUNDA_CHANCE
+      Descricao:
+        - '&7Uma vez por partida, sobreviva a um golpe letal.'
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Valor: 25
+          Descricao:
+            - ' &b▎ &fVolta com 25% da vida'
+        2:
+          Preco:
+            coins: 100000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &fVolta com 50% da vida'
+    incendiario:
+      Nome: 'Incendiário'
+      Raridade: RARO
+      Icone: 'FIRE_CHARGE'
+      Tipo: GOLPE_DE_FOGO
+      Descricao:
+        - '&7Seus golpes têm chance de incendiar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 15
+          Extra: '3'
+          Descricao:
+            - ' &b▎ &f15% de chance, 3s de fogo'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 30
+          Extra: '4'
+          Descricao:
+            - ' &b▎ &f30% de chance, 4s de fogo'
+    gelado:
+      Nome: 'Gelado'
+      Raridade: RARO
+      Icone: 'PACKED_ICE'
+      Tipo: GOLPE_CONGELANTE
+      Descricao:
+        - '&7Seus golpes têm chance de dar lentidão.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 15
+          Extra: '3'
+          Descricao:
+            - ' &b▎ &f15% de chance, 3s de lentidão'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 30
+          Extra: '4'
+          Descricao:
+            - ' &b▎ &f30% de chance, 4s de lentidão'
+    brutamontes:
+      Nome: 'Brutamontes'
+      Raridade: EPICO
+      Icone: 'DIAMOND_AXE'
+      Tipo: DANO_EXTRA
+      Descricao:
+        - '&7Cause mais dano corpo a corpo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 40000
+          Valor: 8
+          Descricao:
+            - ' &b▎ &f+8% de dano'
+        2:
+          Preco:
+            coins: 80000
+          Valor: 15
+          Descricao:
+            - ' &b▎ &f+15% de dano'
+    pedreiro:
+      Nome: 'Pedreiro'
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Tipo: BLOCOS_INFINITOS
+      Descricao:
+        - '&7Chance de não gastar o bloco ao colocar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 40
+          Descricao:
+            - ' &b▎ &f40% de chance'
+    vampiro:
+      Nome: 'Vampiro'
+      Raridade: RARO
+      Icone: 'REDSTONE'
+      Tipo: CURA_AO_ABATER
+      Descricao:
+        - '&7Cure parte da vida ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 25
+          Descricao:
+            - ' &b▎ &fCura 25% da vida'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &fCura 50% da vida'
+    saqueador:
+      Nome: 'Saqueador'
+      Raridade: EPICO
+      Icone: 'CHEST'
+      Tipo: ITEM_AO_ABATER
+      Descricao:
+        - '&7Receba uma maçã dourada a cada abate.'
+      Niveis:
+        1:
+          Preco:
+            coins: 40000
+          Valor: 0
+          Extra: 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f1x maçã dourada por abate'
+    veloz:
+      Nome: 'Veloz'
+      Raridade: RARO
+      Icone: 'LEATHER_BOOTS'
+      Tipo: EFEITO_AO_INICIAR
+      Descricao:
+        - '&7Comece a partida com velocidade.'
+      Niveis:
+        1:
+          Preco:
+            coins: 25000
+          Valor: 0
+          Extra: 'SPEED:1'
+          Descricao:
+            - ' &b▎ &fVelocidade I a partida toda'
+  # ---------------------------------------------------------------- RANQUEADO
+  ranqueado:
+    peso_pena:
+      Nome: 'Peso pena'
+      Raridade: COMUM
+      Icone: 'FEATHER'
+      Tipo: SEM_DANO_DE_QUEDA
+      Descricao:
+        - '&7Tome menos dano ao cair.'
+      Gratis: true
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano de queda'
+        2:
+          Preco:
+            coins: 15000
+          Valor: 75
+          Descricao:
+            - ' &b▎ &f-75% de dano de queda'
+        3:
+          Preco:
+            coins: 40000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fNenhum dano de queda'
+    flecha_leal:
+      Nome: 'Flecha leal'
+      Raridade: RARO
+      Icone: 'ARROW'
+      Tipo: RECUPERAR_FLECHA
+      Descricao:
+        - '&7Tenha uma chance de recuperar a flecha atirada.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 10
+          Descricao:
+            - ' &b▎ &f10% de chance'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        3:
+          Preco:
+            coins: 50000
+          Valor: 35
+          Descricao:
+            - ' &b▎ &f35% de chance'
+    flecha_explosiva:
+      Nome: 'Flecha explosiva'
+      Raridade: EPICO
+      Icone: 'TNT'
+      Tipo: FLECHA_EXPLOSIVA
+      Descricao:
+        - '&7Suas flechas têm chance de explodir onde acertam.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 10
+          Extra: '1.5'
+          Descricao:
+            - ' &b▎ &f10% de chance'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 20
+          Extra: '1.5'
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        3:
+          Preco:
+            coins: 100000
+          Valor: 30
+          Extra: '2.0'
+          Descricao:
+            - ' &b▎ &f30% de chance, explosão maior'
+    assassino:
+      Nome: 'Assassino'
+      Raridade: RARO
+      Icone: 'IRON_SWORD'
+      Tipo: FORCA_AO_ABATER
+      Descricao:
+        - '&7Ganhe força por alguns segundos ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 5
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fForça I por 5s'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 8
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fForça I por 8s'
+        3:
+          Preco:
+            coins: 90000
+          Valor: 8
+          Extra: '2'
+          Descricao:
+            - ' &b▎ &fForça II por 8s'
+    frio_no_combate:
+      Nome: 'Frio no combate'
+      Raridade: RARO
+      Icone: 'GOLDEN_APPLE'
+      Tipo: REGENERACAO_AO_ABATER
+      Descricao:
+        - '&7Regenere vida ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 5
+          Extra: '1'
+          Descricao:
+            - ' &b▎ &fRegeneração I por 5s'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 8
+          Extra: '2'
+          Descricao:
+            - ' &b▎ &fRegeneração II por 8s'
+    sedento:
+      Nome: 'Sedento'
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Tipo: ROUBO_DE_VIDA
+      Descricao:
+        - '&7Parte do dano que você causa volta como vida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 10
+          Descricao:
+            - ' &b▎ &f10% do dano'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% do dano'
+        3:
+          Preco:
+            coins: 120000
+          Valor: 30
+          Descricao:
+            - ' &b▎ &f30% do dano'
+    fujao:
+      Nome: 'Fujão'
+      Raridade: COMUM
+      Icone: 'SUGAR'
+      Tipo: VELOCIDADE_COM_POUCA_VIDA
+      Descricao:
+        - '&7Ganhe velocidade quando estiver com pouca vida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 5
+          Extra: '5'
+          Descricao:
+            - ' &b▎ &fVelocidade por 5s abaixo de 5 corações'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 8
+          Extra: '6'
+          Descricao:
+            - ' &b▎ &fVelocidade por 8s abaixo de 6 corações'
+    vinganca:
+      Nome: 'Vingança'
+      Raridade: EPICO
+      Icone: 'CREEPER_HEAD'
+      Tipo: EXPLOSAO_AO_MORRER
+      Descricao:
+        - '&7Exploda ao morrer, levando quem estiver perto.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 2
+          Descricao:
+            - ' &b▎ &fExplosão pequena'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 3
+          Descricao:
+            - ' &b▎ &fExplosão média'
+        3:
+          Preco:
+            coins: 120000
+          Valor: 4
+          Descricao:
+            - ' &b▎ &fExplosão grande'
+    oculista:
+      Nome: 'Oculista'
+      Raridade: RARO
+      Icone: 'SPYGLASS'
+      Tipo: DANO_NA_CABECA
+      Descricao:
+        - '&7Flechas na cabeça causam dano extra.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 25
+          Descricao:
+            - ' &b▎ &f+25% de dano'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f+50% de dano'
+        3:
+          Preco:
+            coins: 90000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &f+100% de dano'
+    mestre_do_fim:
+      Nome: 'Mestre do fim'
+      Raridade: RARO
+      Icone: 'ENDER_PEARL'
+      Tipo: DANO_DE_PEROLA
+      Descricao:
+        - '&7Tome menos dano ao usar pérolas do fim.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano da pérola'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fNenhum dano da pérola'
+    sem_fome:
+      Nome: 'Estômago de ferro'
+      Raridade: COMUM
+      Icone: 'COOKED_BEEF'
+      Tipo: SEM_FOME
+      Descricao:
+        - '&7Nunca sinta fome durante a partida.'
+      Niveis:
+        1:
+          Preco:
+            coins: 12000
+          Valor: 0
+          Descricao:
+            - ' &b▎ &fFome nunca cai'
+    pele_de_ferro:
+      Nome: 'Pele de ferro'
+      Raridade: RARO
+      Icone: 'MAGMA_CREAM'
+      Tipo: RESISTENCIA_AO_FOGO
+      Descricao:
+        - '&7Tome menos dano de fogo e lava.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &f-50% de dano de fogo'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 100
+          Descricao:
+            - ' &b▎ &fImune a fogo e lava'
+    tanque:
+      Nome: 'Tanque'
+      Raridade: LENDARIO
+      Icone: 'GOLDEN_APPLE'
+      Tipo: VIDA_EXTRA
+      Descricao:
+        - '&7Comece com corações extras.'
+      Niveis:
+        1:
+          Preco:
+            coins: 60000
+          Valor: 1
+          Descricao:
+            - ' &b▎ &f+1 coração'
+        2:
+          Preco:
+            coins: 120000
+          Valor: 2
+          Descricao:
+            - ' &b▎ &f+2 corações'
+        3:
+          Preco:
+            coins: 240000
+          Valor: 3
+          Descricao:
+            - ' &b▎ &f+3 corações'
+    atirador:
+      Nome: 'Atirador de elite'
+      Raridade: EPICO
+      Icone: 'BOW'
+      Tipo: DANO_A_DISTANCIA
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Preco:
+            coins: 30000
+          Valor: 15
+          Descricao:
+            - ' &b▎ &f+15% de dano com flechas'
+        2:
+          Preco:
+            coins: 60000
+          Valor: 30
+          Descricao:
+            - ' &b▎ &f+30% de dano com flechas'
+    blindado:
+      Nome: 'Blindado'
+      Raridade: RARO
+      Icone: 'OBSIDIAN'
+      Tipo: RESISTENCIA_A_EXPLOSAO
+      Descricao:
+        - '&7Tome menos dano de explosões.'
+      Niveis:
+        1:
+          Preco:
+            coins: 15000
+          Valor: 40
+          Descricao:
+            - ' &b▎ &f-40% de dano de explosão'
+        2:
+          Preco:
+            coins: 35000
+          Valor: 80
+          Descricao:
+            - ' &b▎ &f-80% de dano de explosão'
+    ninja:
+      Nome: 'Ninja'
+      Raridade: EPICO
+      Icone: 'BLACK_DYE'
+      Tipo: ESQUIVA
+      Descricao:
+        - '&7Tenha uma chance de esquivar de golpes.'
+      Niveis:
+        1:
+          Preco:
+            coins: 35000
+          Valor: 8
+          Descricao:
+            - ' &b▎ &f8% de chance'
+        2:
+          Preco:
+            coins: 70000
+          Valor: 14
+          Descricao:
+            - ' &b▎ &f14% de chance'
+        3:
+          Preco:
+            coins: 140000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+    fenix:
+      Nome: 'Fênix'
+      Raridade: LENDARIO
+      Icone: 'BLAZE_POWDER'
+      Tipo: SEGUNDA_CHANCE
+      Descricao:
+        - '&7Uma vez por partida, sobreviva a um golpe letal.'
+      Niveis:
+        1:
+          Preco:
+            coins: 0
+          Valor: 25
+          Descricao:
+            - ' &b▎ &fVolta com 25% da vida'
+        2:
+          Preco:
+            coins: 100000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &fVolta com 50% da vida'
+    incendiario:
+      Nome: 'Incendiário'
+      Raridade: RARO
+      Icone: 'FIRE_CHARGE'
+      Tipo: GOLPE_DE_FOGO
+      Descricao:
+        - '&7Seus golpes têm chance de incendiar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 15
+          Extra: '3'
+          Descricao:
+            - ' &b▎ &f15% de chance, 3s de fogo'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 30
+          Extra: '4'
+          Descricao:
+            - ' &b▎ &f30% de chance, 4s de fogo'
+    gelado:
+      Nome: 'Gelado'
+      Raridade: RARO
+      Icone: 'PACKED_ICE'
+      Tipo: GOLPE_CONGELANTE
+      Descricao:
+        - '&7Seus golpes têm chance de dar lentidão.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 15
+          Extra: '3'
+          Descricao:
+            - ' &b▎ &f15% de chance, 3s de lentidão'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 30
+          Extra: '4'
+          Descricao:
+            - ' &b▎ &f30% de chance, 4s de lentidão'
+    brutamontes:
+      Nome: 'Brutamontes'
+      Raridade: EPICO
+      Icone: 'DIAMOND_AXE'
+      Tipo: DANO_EXTRA
+      Descricao:
+        - '&7Cause mais dano corpo a corpo.'
+      Niveis:
+        1:
+          Preco:
+            coins: 40000
+          Valor: 8
+          Descricao:
+            - ' &b▎ &f+8% de dano'
+        2:
+          Preco:
+            coins: 80000
+          Valor: 15
+          Descricao:
+            - ' &b▎ &f+15% de dano'
+    pedreiro:
+      Nome: 'Pedreiro'
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Tipo: BLOCOS_INFINITOS
+      Descricao:
+        - '&7Chance de não gastar o bloco ao colocar.'
+      Niveis:
+        1:
+          Preco:
+            coins: 10000
+          Valor: 20
+          Descricao:
+            - ' &b▎ &f20% de chance'
+        2:
+          Preco:
+            coins: 25000
+          Valor: 40
+          Descricao:
+            - ' &b▎ &f40% de chance'
+    vampiro:
+      Nome: 'Vampiro'
+      Raridade: RARO
+      Icone: 'REDSTONE'
+      Tipo: CURA_AO_ABATER
+      Descricao:
+        - '&7Cure parte da vida ao abater.'
+      Niveis:
+        1:
+          Preco:
+            coins: 20000
+          Valor: 25
+          Descricao:
+            - ' &b▎ &fCura 25% da vida'
+        2:
+          Preco:
+            coins: 45000
+          Valor: 50
+          Descricao:
+            - ' &b▎ &fCura 50% da vida'
+    saqueador:
+      Nome: 'Saqueador'
+      Raridade: EPICO
+      Icone: 'CHEST'
+      Tipo: ITEM_AO_ABATER
+      Descricao:
+        - '&7Receba uma maçã dourada a cada abate.'
+      Niveis:
+        1:
+          Preco:
+            coins: 40000
+          Valor: 0
+          Extra: 'GOLDEN_APPLE : 1'
+          Descricao:
+            - ' &b▎ &f1x maçã dourada por abate'
+    veloz:
+      Nome: 'Veloz'
+      Raridade: RARO
+      Icone: 'LEATHER_BOOTS'
+      Tipo: EFEITO_AO_INICIAR
+      Descricao:
+        - '&7Comece a partida com velocidade.'
+      Niveis:
+        1:
+          Preco:
+            coins: 25000
+          Valor: 0
+          Extra: 'SPEED:1'
+          Descricao:
+            - ' &b▎ &fVelocidade I a partida toda'

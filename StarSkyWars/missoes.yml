@@ -1,0 +1,1184 @@
+# ==========================================================================
+#  StarSkyWars - missoes
+#
+#  Missoes.<id>: Nome, Modo (solo, dupla... ou TODOS), Tipo, Quantidade,
+#  Periodo (PERMANENTE, DIARIA, SEMANAL, MENSAL), Descricao, Icone/Textura,
+#  Requer (id de outra missao que precisa estar concluida), Recompensas e
+#  Recompensas texto (o que aparece no menu).
+#
+#  Tipos: VITORIAS, ABATES, ELIMINACOES, ASSISTENCIAS, JOGOS, FIRST_BLOOD,
+#  BAUS_ABERTOS, WINSTREAK, TEMPO_JOGADO (minutos), MORTES.
+#  Recompensas: 'coins: 100', 'xp: 50', 'fragmentos: 5', 'caixa: kits 2',
+#  'booster: 2;30', 'pontos: 10', 'comando: ...', 'mensagem: ...'.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Missoes:
+  # ------------------------------------------------------- DIARIAS
+  diaria_partidas:
+    Nome: 'Jogador do dia'
+    Modo: TODOS
+    Tipo: JOGOS
+    Quantidade: 3
+    Periodo: DIARIA
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue 3 partidas hoje.'
+    Recompensas:
+      - 'coins: 150'
+      - 'xp: 100'
+    Recompensas texto:
+      - '  &8- &6150 coins'
+      - '  &8- &b100 xp'
+  diaria_abates:
+    Nome: 'Caçador do dia'
+    Modo: TODOS
+    Tipo: ABATES
+    Quantidade: 5
+    Periodo: DIARIA
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 5 abates hoje.'
+    Recompensas:
+      - 'coins: 200'
+      - 'xp: 150'
+    Recompensas texto:
+      - '  &8- &6200 coins'
+      - '  &8- &b150 xp'
+  diaria_vitoria:
+    Nome: 'Vencedor do dia'
+    Modo: TODOS
+    Tipo: VITORIAS
+    Quantidade: 1
+    Periodo: DIARIA
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Vença 1 partida hoje.'
+    Recompensas:
+      - 'coins: 300'
+      - 'xp: 200'
+      - 'fragmentos: 5'
+    Recompensas texto:
+      - '  &8- &6300 coins'
+      - '  &8- &b200 xp'
+      - '  &8- &d5 fragmentos'
+  # ------------------------------------------------------- SEMANAIS
+  semanal_vitorias:
+    Nome: 'Semana vitoriosa'
+    Modo: TODOS
+    Tipo: VITORIAS
+    Quantidade: 10
+    Periodo: SEMANAL
+    Icone: 'DIAMOND'
+    Descricao:
+      - '&7Vença 10 partidas nesta semana.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+      - 'caixa: kits 1'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+      - '  &8- &d1 caixa de kits'
+  semanal_abates:
+    Nome: 'Máquina de abates'
+    Modo: TODOS
+    Tipo: ABATES
+    Quantidade: 50
+    Periodo: SEMANAL
+    Icone: 'DIAMOND_SWORD'
+    Descricao:
+      - '&7Faça 50 abates nesta semana.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+      - 'caixa: habilidades 1'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+      - '  &8- &d1 caixa de habilidades'
+  semanal_baus:
+    Nome: 'Saqueador'
+    Modo: TODOS
+    Tipo: BAUS_ABERTOS
+    Quantidade: 100
+    Periodo: SEMANAL
+    Icone: 'CHEST'
+    Descricao:
+      - '&7Abra 100 baús nesta semana.'
+    Recompensas:
+      - 'coins: 1000'
+      - 'fragmentos: 15'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &d15 fragmentos'
+  # ------------------------------------------------------- MENSAIS
+  mensal_partidas:
+    Nome: 'Maratonista'
+    Modo: TODOS
+    Tipo: JOGOS
+    Quantidade: 100
+    Periodo: MENSAL
+    Icone: 'BOOK'
+    Descricao:
+      - '&7Jogue 100 partidas neste mês.'
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 3000'
+      - 'caixa: especiais 1'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b3000 xp'
+      - '  &8- &d1 caixa especial'
+  mensal_winstreak:
+    Nome: 'Imparável'
+    Modo: TODOS
+    Tipo: WINSTREAK
+    Quantidade: 5
+    Periodo: MENSAL
+    Icone: 'BLAZE_POWDER'
+    Descricao:
+      - '&7Vença 5 partidas seguidas neste mês.'
+    Recompensas:
+      - 'coins: 5000'
+      - 'booster: 2;30'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &6booster 2x por 30 min'
+  # ------------------------------------------------------- PERMANENTES
+  vencedor_solo_1:
+    Nome: 'Vencedor I (Solo)'
+    Modo: solo
+    Tipo: VITORIAS
+    Quantidade: 50
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 50 partidas no modo Solo.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 250'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b250 xp'
+  vencedor_solo_2:
+    Nome: 'Vencedor II (Solo)'
+    Modo: solo
+    Tipo: VITORIAS
+    Quantidade: 100
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 100 partidas no modo Solo.'
+    Requer: vencedor_solo_1
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 500'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b500 xp'
+  vencedor_solo_3:
+    Nome: 'Vencedor III (Solo)'
+    Modo: solo
+    Tipo: VITORIAS
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 200 partidas no modo Solo.'
+    Requer: vencedor_solo_2
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+  vencedor_solo_4:
+    Nome: 'Vencedor IV (Solo)'
+    Modo: solo
+    Tipo: VITORIAS
+    Quantidade: 500
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 500 partidas no modo Solo.'
+    Requer: vencedor_solo_3
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 2500'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b2500 xp'
+  vencedor_solo_5:
+    Nome: 'Vencedor V (Solo)'
+    Modo: solo
+    Tipo: VITORIAS
+    Quantidade: 1000
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 1000 partidas no modo Solo.'
+    Requer: vencedor_solo_4
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 5000'
+    Recompensas texto:
+      - '  &8- &610000 coins'
+      - '  &8- &b5000 xp'
+  cacador_solo_1:
+    Nome: 'Caçador I (Solo)'
+    Modo: solo
+    Tipo: ABATES
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 200 abates no modo Solo.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 250'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b250 xp'
+  cacador_solo_2:
+    Nome: 'Caçador II (Solo)'
+    Modo: solo
+    Tipo: ABATES
+    Quantidade: 400
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 400 abates no modo Solo.'
+    Requer: cacador_solo_1
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 500'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b500 xp'
+  cacador_solo_3:
+    Nome: 'Caçador III (Solo)'
+    Modo: solo
+    Tipo: ABATES
+    Quantidade: 800
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 800 abates no modo Solo.'
+    Requer: cacador_solo_2
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+  cacador_solo_4:
+    Nome: 'Caçador IV (Solo)'
+    Modo: solo
+    Tipo: ABATES
+    Quantidade: 2000
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 2000 abates no modo Solo.'
+    Requer: cacador_solo_3
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 2500'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b2500 xp'
+  cacador_solo_5:
+    Nome: 'Caçador V (Solo)'
+    Modo: solo
+    Tipo: ABATES
+    Quantidade: 4000
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 4000 abates no modo Solo.'
+    Requer: cacador_solo_4
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 5000'
+    Recompensas texto:
+      - '  &8- &610000 coins'
+      - '  &8- &b5000 xp'
+  veterano_solo_1:
+    Nome: 'Veterano I (Solo)'
+    Modo: solo
+    Tipo: JOGOS
+    Quantidade: 100
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 100 partidas no modo Solo.'
+    Recompensas:
+      - 'coins: 250'
+      - 'xp: 250'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &6250 coins'
+      - '  &8- &b250 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_solo_2:
+    Nome: 'Veterano II (Solo)'
+    Modo: solo
+    Tipo: JOGOS
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 200 partidas no modo Solo.'
+    Requer: veterano_solo_1
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 500'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b500 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_solo_3:
+    Nome: 'Veterano III (Solo)'
+    Modo: solo
+    Tipo: JOGOS
+    Quantidade: 400
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 400 partidas no modo Solo.'
+    Requer: veterano_solo_2
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 1000'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b1000 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_solo_4:
+    Nome: 'Veterano IV (Solo)'
+    Modo: solo
+    Tipo: JOGOS
+    Quantidade: 1000
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 1000 partidas no modo Solo.'
+    Requer: veterano_solo_3
+    Recompensas:
+      - 'coins: 2500'
+      - 'xp: 2500'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &62500 coins'
+      - '  &8- &b2500 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_solo_5:
+    Nome: 'Veterano V (Solo)'
+    Modo: solo
+    Tipo: JOGOS
+    Quantidade: 2000
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 2000 partidas no modo Solo.'
+    Requer: veterano_solo_4
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 5000'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b5000 xp'
+      - '  &8- &d10 fragmentos'
+  vencedor_dupla_1:
+    Nome: 'Vencedor I (Dupla)'
+    Modo: dupla
+    Tipo: VITORIAS
+    Quantidade: 50
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 50 partidas no modo Dupla.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 250'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b250 xp'
+  vencedor_dupla_2:
+    Nome: 'Vencedor II (Dupla)'
+    Modo: dupla
+    Tipo: VITORIAS
+    Quantidade: 100
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 100 partidas no modo Dupla.'
+    Requer: vencedor_dupla_1
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 500'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b500 xp'
+  vencedor_dupla_3:
+    Nome: 'Vencedor III (Dupla)'
+    Modo: dupla
+    Tipo: VITORIAS
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 200 partidas no modo Dupla.'
+    Requer: vencedor_dupla_2
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+  vencedor_dupla_4:
+    Nome: 'Vencedor IV (Dupla)'
+    Modo: dupla
+    Tipo: VITORIAS
+    Quantidade: 500
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 500 partidas no modo Dupla.'
+    Requer: vencedor_dupla_3
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 2500'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b2500 xp'
+  vencedor_dupla_5:
+    Nome: 'Vencedor V (Dupla)'
+    Modo: dupla
+    Tipo: VITORIAS
+    Quantidade: 1000
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 1000 partidas no modo Dupla.'
+    Requer: vencedor_dupla_4
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 5000'
+    Recompensas texto:
+      - '  &8- &610000 coins'
+      - '  &8- &b5000 xp'
+  cacador_dupla_1:
+    Nome: 'Caçador I (Dupla)'
+    Modo: dupla
+    Tipo: ABATES
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 200 abates no modo Dupla.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 250'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b250 xp'
+  cacador_dupla_2:
+    Nome: 'Caçador II (Dupla)'
+    Modo: dupla
+    Tipo: ABATES
+    Quantidade: 400
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 400 abates no modo Dupla.'
+    Requer: cacador_dupla_1
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 500'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b500 xp'
+  cacador_dupla_3:
+    Nome: 'Caçador III (Dupla)'
+    Modo: dupla
+    Tipo: ABATES
+    Quantidade: 800
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 800 abates no modo Dupla.'
+    Requer: cacador_dupla_2
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+  cacador_dupla_4:
+    Nome: 'Caçador IV (Dupla)'
+    Modo: dupla
+    Tipo: ABATES
+    Quantidade: 2000
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 2000 abates no modo Dupla.'
+    Requer: cacador_dupla_3
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 2500'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b2500 xp'
+  cacador_dupla_5:
+    Nome: 'Caçador V (Dupla)'
+    Modo: dupla
+    Tipo: ABATES
+    Quantidade: 4000
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 4000 abates no modo Dupla.'
+    Requer: cacador_dupla_4
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 5000'
+    Recompensas texto:
+      - '  &8- &610000 coins'
+      - '  &8- &b5000 xp'
+  veterano_dupla_1:
+    Nome: 'Veterano I (Dupla)'
+    Modo: dupla
+    Tipo: JOGOS
+    Quantidade: 100
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 100 partidas no modo Dupla.'
+    Recompensas:
+      - 'coins: 250'
+      - 'xp: 250'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &6250 coins'
+      - '  &8- &b250 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_dupla_2:
+    Nome: 'Veterano II (Dupla)'
+    Modo: dupla
+    Tipo: JOGOS
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 200 partidas no modo Dupla.'
+    Requer: veterano_dupla_1
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 500'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b500 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_dupla_3:
+    Nome: 'Veterano III (Dupla)'
+    Modo: dupla
+    Tipo: JOGOS
+    Quantidade: 400
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 400 partidas no modo Dupla.'
+    Requer: veterano_dupla_2
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 1000'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b1000 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_dupla_4:
+    Nome: 'Veterano IV (Dupla)'
+    Modo: dupla
+    Tipo: JOGOS
+    Quantidade: 1000
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 1000 partidas no modo Dupla.'
+    Requer: veterano_dupla_3
+    Recompensas:
+      - 'coins: 2500'
+      - 'xp: 2500'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &62500 coins'
+      - '  &8- &b2500 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_dupla_5:
+    Nome: 'Veterano V (Dupla)'
+    Modo: dupla
+    Tipo: JOGOS
+    Quantidade: 2000
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 2000 partidas no modo Dupla.'
+    Requer: veterano_dupla_4
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 5000'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b5000 xp'
+      - '  &8- &d10 fragmentos'
+  vencedor_mega_1:
+    Nome: 'Vencedor I (Mega)'
+    Modo: mega
+    Tipo: VITORIAS
+    Quantidade: 50
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 50 partidas no modo Mega.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 250'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b250 xp'
+  vencedor_mega_2:
+    Nome: 'Vencedor II (Mega)'
+    Modo: mega
+    Tipo: VITORIAS
+    Quantidade: 100
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 100 partidas no modo Mega.'
+    Requer: vencedor_mega_1
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 500'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b500 xp'
+  vencedor_mega_3:
+    Nome: 'Vencedor III (Mega)'
+    Modo: mega
+    Tipo: VITORIAS
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 200 partidas no modo Mega.'
+    Requer: vencedor_mega_2
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+  vencedor_mega_4:
+    Nome: 'Vencedor IV (Mega)'
+    Modo: mega
+    Tipo: VITORIAS
+    Quantidade: 500
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 500 partidas no modo Mega.'
+    Requer: vencedor_mega_3
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 2500'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b2500 xp'
+  vencedor_mega_5:
+    Nome: 'Vencedor V (Mega)'
+    Modo: mega
+    Tipo: VITORIAS
+    Quantidade: 1000
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 1000 partidas no modo Mega.'
+    Requer: vencedor_mega_4
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 5000'
+    Recompensas texto:
+      - '  &8- &610000 coins'
+      - '  &8- &b5000 xp'
+  cacador_mega_1:
+    Nome: 'Caçador I (Mega)'
+    Modo: mega
+    Tipo: ABATES
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 200 abates no modo Mega.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 250'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b250 xp'
+  cacador_mega_2:
+    Nome: 'Caçador II (Mega)'
+    Modo: mega
+    Tipo: ABATES
+    Quantidade: 400
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 400 abates no modo Mega.'
+    Requer: cacador_mega_1
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 500'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b500 xp'
+  cacador_mega_3:
+    Nome: 'Caçador III (Mega)'
+    Modo: mega
+    Tipo: ABATES
+    Quantidade: 800
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 800 abates no modo Mega.'
+    Requer: cacador_mega_2
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+  cacador_mega_4:
+    Nome: 'Caçador IV (Mega)'
+    Modo: mega
+    Tipo: ABATES
+    Quantidade: 2000
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 2000 abates no modo Mega.'
+    Requer: cacador_mega_3
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 2500'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b2500 xp'
+  cacador_mega_5:
+    Nome: 'Caçador V (Mega)'
+    Modo: mega
+    Tipo: ABATES
+    Quantidade: 4000
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 4000 abates no modo Mega.'
+    Requer: cacador_mega_4
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 5000'
+    Recompensas texto:
+      - '  &8- &610000 coins'
+      - '  &8- &b5000 xp'
+  veterano_mega_1:
+    Nome: 'Veterano I (Mega)'
+    Modo: mega
+    Tipo: JOGOS
+    Quantidade: 100
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 100 partidas no modo Mega.'
+    Recompensas:
+      - 'coins: 250'
+      - 'xp: 250'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &6250 coins'
+      - '  &8- &b250 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_mega_2:
+    Nome: 'Veterano II (Mega)'
+    Modo: mega
+    Tipo: JOGOS
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 200 partidas no modo Mega.'
+    Requer: veterano_mega_1
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 500'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b500 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_mega_3:
+    Nome: 'Veterano III (Mega)'
+    Modo: mega
+    Tipo: JOGOS
+    Quantidade: 400
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 400 partidas no modo Mega.'
+    Requer: veterano_mega_2
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 1000'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b1000 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_mega_4:
+    Nome: 'Veterano IV (Mega)'
+    Modo: mega
+    Tipo: JOGOS
+    Quantidade: 1000
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 1000 partidas no modo Mega.'
+    Requer: veterano_mega_3
+    Recompensas:
+      - 'coins: 2500'
+      - 'xp: 2500'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &62500 coins'
+      - '  &8- &b2500 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_mega_5:
+    Nome: 'Veterano V (Mega)'
+    Modo: mega
+    Tipo: JOGOS
+    Quantidade: 2000
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 2000 partidas no modo Mega.'
+    Requer: veterano_mega_4
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 5000'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b5000 xp'
+      - '  &8- &d10 fragmentos'
+  vencedor_ranqueado_1:
+    Nome: 'Vencedor I (Ranqueado)'
+    Modo: ranqueado
+    Tipo: VITORIAS
+    Quantidade: 50
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 50 partidas no modo Ranqueado.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 250'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b250 xp'
+  vencedor_ranqueado_2:
+    Nome: 'Vencedor II (Ranqueado)'
+    Modo: ranqueado
+    Tipo: VITORIAS
+    Quantidade: 100
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 100 partidas no modo Ranqueado.'
+    Requer: vencedor_ranqueado_1
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 500'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b500 xp'
+  vencedor_ranqueado_3:
+    Nome: 'Vencedor III (Ranqueado)'
+    Modo: ranqueado
+    Tipo: VITORIAS
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 200 partidas no modo Ranqueado.'
+    Requer: vencedor_ranqueado_2
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+  vencedor_ranqueado_4:
+    Nome: 'Vencedor IV (Ranqueado)'
+    Modo: ranqueado
+    Tipo: VITORIAS
+    Quantidade: 500
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 500 partidas no modo Ranqueado.'
+    Requer: vencedor_ranqueado_3
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 2500'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b2500 xp'
+  vencedor_ranqueado_5:
+    Nome: 'Vencedor V (Ranqueado)'
+    Modo: ranqueado
+    Tipo: VITORIAS
+    Quantidade: 1000
+    Periodo: PERMANENTE
+    Icone: 'GOLDEN_SWORD'
+    Descricao:
+      - '&7Vença 1000 partidas no modo Ranqueado.'
+    Requer: vencedor_ranqueado_4
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 5000'
+    Recompensas texto:
+      - '  &8- &610000 coins'
+      - '  &8- &b5000 xp'
+  cacador_ranqueado_1:
+    Nome: 'Caçador I (Ranqueado)'
+    Modo: ranqueado
+    Tipo: ABATES
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 200 abates no modo Ranqueado.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 250'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b250 xp'
+  cacador_ranqueado_2:
+    Nome: 'Caçador II (Ranqueado)'
+    Modo: ranqueado
+    Tipo: ABATES
+    Quantidade: 400
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 400 abates no modo Ranqueado.'
+    Requer: cacador_ranqueado_1
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 500'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b500 xp'
+  cacador_ranqueado_3:
+    Nome: 'Caçador III (Ranqueado)'
+    Modo: ranqueado
+    Tipo: ABATES
+    Quantidade: 800
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 800 abates no modo Ranqueado.'
+    Requer: cacador_ranqueado_2
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+    Recompensas texto:
+      - '  &8- &62000 coins'
+      - '  &8- &b1000 xp'
+  cacador_ranqueado_4:
+    Nome: 'Caçador IV (Ranqueado)'
+    Modo: ranqueado
+    Tipo: ABATES
+    Quantidade: 2000
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 2000 abates no modo Ranqueado.'
+    Requer: cacador_ranqueado_3
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 2500'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b2500 xp'
+  cacador_ranqueado_5:
+    Nome: 'Caçador V (Ranqueado)'
+    Modo: ranqueado
+    Tipo: ABATES
+    Quantidade: 4000
+    Periodo: PERMANENTE
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Faça 4000 abates no modo Ranqueado.'
+    Requer: cacador_ranqueado_4
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 5000'
+    Recompensas texto:
+      - '  &8- &610000 coins'
+      - '  &8- &b5000 xp'
+  veterano_ranqueado_1:
+    Nome: 'Veterano I (Ranqueado)'
+    Modo: ranqueado
+    Tipo: JOGOS
+    Quantidade: 100
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 100 partidas no modo Ranqueado.'
+    Recompensas:
+      - 'coins: 250'
+      - 'xp: 250'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &6250 coins'
+      - '  &8- &b250 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_ranqueado_2:
+    Nome: 'Veterano II (Ranqueado)'
+    Modo: ranqueado
+    Tipo: JOGOS
+    Quantidade: 200
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 200 partidas no modo Ranqueado.'
+    Requer: veterano_ranqueado_1
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 500'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &6500 coins'
+      - '  &8- &b500 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_ranqueado_3:
+    Nome: 'Veterano III (Ranqueado)'
+    Modo: ranqueado
+    Tipo: JOGOS
+    Quantidade: 400
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 400 partidas no modo Ranqueado.'
+    Requer: veterano_ranqueado_2
+    Recompensas:
+      - 'coins: 1000'
+      - 'xp: 1000'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &61000 coins'
+      - '  &8- &b1000 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_ranqueado_4:
+    Nome: 'Veterano IV (Ranqueado)'
+    Modo: ranqueado
+    Tipo: JOGOS
+    Quantidade: 1000
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 1000 partidas no modo Ranqueado.'
+    Requer: veterano_ranqueado_3
+    Recompensas:
+      - 'coins: 2500'
+      - 'xp: 2500'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &62500 coins'
+      - '  &8- &b2500 xp'
+      - '  &8- &d10 fragmentos'
+  veterano_ranqueado_5:
+    Nome: 'Veterano V (Ranqueado)'
+    Modo: ranqueado
+    Tipo: JOGOS
+    Quantidade: 2000
+    Periodo: PERMANENTE
+    Icone: 'PAPER'
+    Descricao:
+      - '&7Jogue 2000 partidas no modo Ranqueado.'
+    Requer: veterano_ranqueado_4
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 5000'
+      - 'fragmentos: 10'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &b5000 xp'
+      - '  &8- &d10 fragmentos'
+  primeiro_sangue:
+    Nome: 'Primeiro sangue'
+    Modo: TODOS
+    Tipo: FIRST_BLOOD
+    Quantidade: 25
+    Periodo: PERMANENTE
+    Icone: 'REDSTONE'
+    Descricao:
+      - '&7Faça o primeiro abate de 25 partidas.'
+    Recompensas:
+      - 'coins: 1500'
+      - 'caixa: especiais 1'
+    Recompensas texto:
+      - '  &8- &61500 coins'
+      - '  &8- &d1 caixa especial'
+  ajudante:
+    Nome: 'Ajudante'
+    Modo: TODOS
+    Tipo: ASSISTENCIAS
+    Quantidade: 50
+    Periodo: PERMANENTE
+    Icone: 'BONE'
+    Descricao:
+      - '&7Consiga 50 assistências.'
+    Recompensas:
+      - 'coins: 1500'
+      - 'xp: 800'
+    Recompensas texto:
+      - '  &8- &61500 coins'
+      - '  &8- &b800 xp'
+  tempo_jogado:
+    Nome: 'Dedicado'
+    Modo: TODOS
+    Tipo: TEMPO_JOGADO
+    Quantidade: 600
+    Periodo: PERMANENTE
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue 10 horas de SkyWars.'
+    Recompensas:
+      - 'coins: 5000'
+      - 'caixa: kits 1'
+      - 'caixa: habilidades 1'
+    Recompensas texto:
+      - '  &8- &65000 coins'
+      - '  &8- &d1 caixa de kits'
+      - '  &8- &d1 caixa de habilidades'

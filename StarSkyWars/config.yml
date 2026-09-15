@@ -1,0 +1,577 @@
+# ==========================================================================
+#  StarSkyWars - configuracao
+#
+#  SkyWars completo: multi-arena e rede, modos solo/dupla/mega/ranqueado,
+#  salas automaticas, kits e habilidades evoluiveis, jaulas, cosmeticos,
+#  votacao de baus, eventos, grupos, reconexao, seletor de mapas, missoes,
+#  niveis, ligas, boosters, caixa misteriosa, tops, NPCs e placar.
+#
+#  Cores: &a etc. e &#RRGGBB (1.16+). Materiais pelo nome moderno (o plugin
+#  traduz para as versoes antigas). Sons: NOME;volume;tom.
+#
+#  Mudar este arquivo pede /sw recarregar (banco de dados e modo de rede nao:
+#  esses so mudam com restart).
+# ==========================================================================
+
+# Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
+# tras depois de uma atualizacao.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o que o plugin esta fazendo.
+  Debug: false
+  # Milissegundos entre dois cliques do mesmo jogador nos menus.
+  Intervalo entre cliques: 150
+  # Formata numeros grandes em letras (1.5K, 2M) nos menus e mensagens.
+  Formato em letras: false
+  # Salva os perfis alterados de tempo em tempo (em minutos); tudo e salvo
+  # tambem ao sair do servidor e no desligamento.
+  Salvar a cada: 5
+
+  # MULTIARENA: lobby e todas as salas neste mesmo servidor.
+  # LOBBY: este servidor e so o lobby do SkyWars; as partidas rodam em
+  #        outros servidores da rede (exige MySQL compartilhado).
+  # SALAS: este servidor so roda partidas; quem sai volta ao lobby da rede.
+  Modo: MULTIARENA
+  Rede:
+    # Nome deste servidor no proxy (BungeeCord/Velocity). Modo SALAS.
+    Nome deste servidor: 'sw1'
+    # Servidor de lobby da rede, para onde o jogador volta. Modo SALAS.
+    Servidor de lobby: 'lobby'
+    # Segundos que uma reserva de vaga vale (o tempo do jogador trocar de servidor).
+    Reserva: 20
+
+Lobby:
+  # Leva o jogador ao lobby do plugin (/sw setlobby) ao entrar no servidor.
+  Teleportar ao entrar: true
+  # Limpa o inventario e entrega a barra de itens do lobby.
+  Barra de itens: true
+  # /lobby precisa ser digitado duas vezes para sair da partida.
+  Confirmar saida: true
+  # Protege o lobby: sem dano, fome, quebra e colocacao de blocos.
+  Proteger: true
+  # Mundos do lobby (vazio = o mundo do local do lobby). Fora deles o plugin
+  # nao mexe no inventario nem no placar.
+  Mundos: [ ]
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL. Nos modos LOBBY e SALAS o MySQL e
+  # obrigatorio: e por ele que os servidores se enxergam.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starskywars_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+# --------------------------------------------------------------------------
+#  Modos de jogo. A chave (solo, dupla...) e a que as arenas usam.
+#  Tamanho do time: quantos jogadores dividem uma ilha.
+#  Vitorias necessarias: vitorias no total para poder jogar o modo.
+#  Ranqueado: conta pontos ranqueados e liga.
+# --------------------------------------------------------------------------
+Modos:
+  solo:
+    Ativo: true
+    Nome: 'Solo'
+    Tamanho do time: 1
+    Vitorias necessarias: 0
+    Ranqueado: false
+  dupla:
+    Ativo: true
+    Nome: 'Dupla'
+    Tamanho do time: 2
+    Vitorias necessarias: 0
+    Ranqueado: false
+  mega:
+    Ativo: true
+    Nome: 'Mega'
+    Tamanho do time: 4
+    Vitorias necessarias: 0
+    Ranqueado: false
+  ranqueado:
+    Ativo: true
+    Nome: 'Ranqueado'
+    Tamanho do time: 1
+    Vitorias necessarias: 10
+    Ranqueado: true
+
+Partida:
+  # Segundos de espera na sala depois de atingir o minimo.
+  Tempo de espera: 60
+  # Quando a sala lota, a contagem cai para este valor.
+  Tempo com sala cheia: 10
+  # Segundos que os jogadores ficam presos na jaula antes de abrir (0 = sem jaula).
+  Tempo na jaula: 10
+  # Segundos que a sala fica mostrando o vencedor antes de resetar.
+  Tempo de fim: 10
+  # Segundos de invencibilidade ao abrir as jaulas.
+  Invencibilidade inicial: 3
+  # Deixa criar itens na mesa de trabalho.
+  Permitir craft: true
+  # Pocao de invisibilidade esconde ate a armadura.
+  Invisibilidade total: false
+  # Anuncia e premia o primeiro abate.
+  First blood: true
+  # Dano ao cair no vazio (o jogador morre na hora com 999).
+  Dano no vazio: 999.0
+  # Altura abaixo da qual o jogador e considerado no vazio (se a arena nao definir).
+  Altura do vazio: 0
+  # Segundos de espera para usar a perola do fim de novo (0 desliga).
+  Cooldown da perola: 30
+  # Segundos apos o ultimo golpe em que um abate vale assistencia para quem ajudou.
+  Tempo de assistencia: 10
+  # Quem cai pode voltar com /reconectar dentro deste tempo (segundos); 0 desliga.
+  Reconectar em: 60
+  # Dano de queda dentro da partida.
+  Dano de queda: true
+  # Fome dentro da partida.
+  Fome: true
+  # Os itens caem ao morrer.
+  Dropar itens ao morrer: true
+  # Anuncia os eventos no chat e por titulo.
+  Anunciar eventos: true
+  # Linha do tempo dos eventos: 'EVENTO:segundos desde o inicio'.
+  # Eventos: REABASTECER (enche os baus de novo), SUPRIMENTOS (cai um bau
+  # cheio no centro), BORDA (a borda do mapa comeca a encolher),
+  # MORTE_SUBITA (todos brilham e nao regeneram), FIM (empate, todos perdem).
+  Eventos:
+    - 'REABASTECER:300'
+    - 'SUPRIMENTOS:420'
+    - 'BORDA:540'
+    - 'MORTE_SUBITA:660'
+    - 'FIM:780'
+  Borda:
+    # Raio que a borda alcanca no fim do encolhimento.
+    Raio final: 15
+    # Segundos que o encolhimento leva.
+    Duracao: 60
+    # Dano por segundo fora da borda.
+    Dano: 1.0
+  Suprimentos:
+    # Tipo de bau (baus.yml) que cai no centro.
+    Bau: 'suprimentos'
+    # Altura (blocos acima do centro) de onde o bau cai.
+    Altura: 30
+  Morte subita:
+    # Efeitos aplicados a todos (NOME:nivel).
+    Efeitos: [ 'GLOWING:1' ]
+    # Ninguem regenera vida.
+    Sem regeneracao: true
+  Bloquear comandos:
+    Ativar: true
+    # Quem tem starskywars.comandos.bypass ignora.
+    Permitidos: [ 'sw', 'skywars', 'lobby', 'l', 'leave', 'grupo', 'party', 'p', 'tell', 'msg', 'r', 'reply', 'assistir', 'reconectar' ]
+  # Comandos de console rodados quando alguem vence ({jogador} {modo} {mapa}).
+  Comandos ao vencer: [ ]
+
+Votacao:
+  # Os jogadores votam no tipo de bau na sala de espera (perfis do baus.yml).
+  Ativar: true
+  Opcoes: [ 'basico', 'normal', 'insano' ]
+  # Opcao usada em empate ou quando ninguem vota.
+  Padrao: 'normal'
+
+Recompensas:
+  Coins:
+    First blood: 15
+    Abate: 10
+    Assistencia: 5
+    Eliminacao: 15
+    Vitoria: 50
+    Participacao: 5
+  XP:
+    First blood: 15
+    Abate: 10
+    Assistencia: 5
+    Eliminacao: 15
+    Vitoria: 100
+    Participacao: 10
+  Pontos ranqueado:
+    Abate: 10
+    Eliminacao: 20
+    Vitoria: 60
+    # Pontos perdidos ao ser eliminado no ranqueado.
+    Derrota: 30
+  # 'permissao;porcentagem a mais;texto do bonus'
+  Bonus por permissao:
+    - 'starskywars.bonus.vip;10;&a+10% por ser VIP'
+    - 'starskywars.bonus.mvp;25;&b+25% por ser MVP'
+  Actionbar de coins: true
+  Actionbar de xp: true
+  # Mostra o nivel no chat ao terminar a partida.
+  Mensagem de nivel: true
+
+Nivel:
+  Formato do progresso: '&f[{progresso}&f]'
+  Caractere: '■'
+  Cor ativa: '&a'
+  Cor inativa: '&7'
+  Caracteres: 10
+
+# Raridades dos itens da loja e das caixas. Fragmentos: o que o jogador recebe
+# quando a caixa sorteia algo que ele ja tem.
+Raridades:
+  COMUM:
+    Nome: 'Comum'
+    Cor: '&a'
+    Fragmentos: 5
+    # Peso do sorteio nas caixas (quanto maior, mais sai).
+    Peso: 60
+  RARO:
+    Nome: 'Raro'
+    Cor: '&9'
+    Fragmentos: 7
+    Peso: 25
+  EPICO:
+    Nome: 'Épico'
+    Cor: '&5'
+    Fragmentos: 10
+    Peso: 10
+  LENDARIO:
+    Nome: 'Lendário'
+    Cor: '&6'
+    Fragmentos: 15
+    Peso: 5
+
+Chat:
+  # O plugin formata o chat de quem esta numa sala (espera, partida e espectador).
+  Proprio: true
+  # Formata tambem o chat do lobby.
+  Lobby: false
+  # {nivel} {jogador} {mensagem} {time_cor}; o PlaceholderAPI vale aqui.
+  Formato lobby: '{nivel} &7{jogador}&f: {mensagem}'
+  Formato espera: '{nivel} &7{jogador}&f: {mensagem}'
+  Formato partida: '{nivel} {time_cor}{jogador}&f: {mensagem}'
+  Formato time: '&a[TIME] {time_cor}{jogador}&f: {mensagem}'
+  Formato espectador: '&8[ESPECTADOR] &7{jogador}&f: {mensagem}'
+  # Em partida de times a mensagem vai so para o time; com este prefixo vai para a sala toda.
+  Prefixo global: '!'
+
+Placar:
+  Ativar: true
+  # Ticks entre atualizacoes.
+  Intervalo: 20
+  # Titulos que se alternam (animacao); um so para parado.
+  Titulos:
+    - '&f&lSKYWARS'
+    - '&6&lS&f&lKYWARS'
+    - '&f&lS&6&lK&f&lYWARS'
+    - '&f&lSK&6&lY&f&lWARS'
+    - '&f&lSKY&6&lW&f&lARS'
+    - '&f&lSKYW&6&lA&f&lRS'
+    - '&f&lSKYWA&6&lR&f&lS'
+    - '&f&lSKYWAR&6&lS'
+    - '&f&lSKYWARS'
+    - '&6&lSKYWARS'
+    - '&f&lSKYWARS'
+  Linhas:
+    Lobby:
+      - ''
+      - ' &fNível: {nivel}'
+      - ' {nivel_progresso} &7({xp}/{proximo_xp})'
+      - ''
+      - ' &fPartidas: &a{jogos}'
+      - ' &fVitórias: &a{vitorias}'
+      - ' &fAbates: &a{abates}'
+      - ' &fSequência: &a{winstreak}'
+      - ''
+      - ' &fCoins: &6{coins}'
+      - ' &fLiga: {liga}'
+      - ''
+      - ' &e{servidor}'
+    Espera:
+      - ''
+      - ' &fMapa: &a{mapa}'
+      - ' &fModo: &a{modo}'
+      - ' &fJogadores: &a{jogadores}/{maximo}'
+      - ''
+      - ' {contagem}'
+      - ''
+      - ' &fKit: &a{kit}'
+      - ' &fVoto: &a{voto}'
+      - ''
+      - ' &e{servidor}'
+    Jaula:
+      - ''
+      - ' &fMapa: &a{mapa}'
+      - ' &fJogadores: &a{jogadores}/{maximo}'
+      - ''
+      - ' &fJaulas abrem em &a{contagem}s'
+      - ''
+      - ' &fBaús: &a{voto}'
+      - ''
+      - ' &e{servidor}'
+    Partida solo:
+      - ''
+      - ' &fPróximo evento:'
+      - ' &a{evento} &7em {evento_tempo}'
+      - ''
+      - ' &fRestantes: &a{restantes}'
+      - ' &fAbates: &a{abates_partida}'
+      - ''
+      - ' &fRanking:'
+      - ' &7{top1_jogador} &8({top1_abates})'
+      - ' &7{top2_jogador} &8({top2_abates})'
+      - ' &7{top3_jogador} &8({top3_abates})'
+      - ''
+      - ' &e{servidor}'
+    Partida time:
+      - ''
+      - ' &fPróximo evento:'
+      - ' &a{evento} &7em {evento_tempo}'
+      - ''
+      - ' &fTimes restantes: &a{times}'
+      - ' &fSeu time: {time_cor}{time}'
+      - ' &fAbates: &a{abates_partida}'
+      - ''
+      - ' &fRanking:'
+      - ' &7{top1_jogador} &8({top1_abates})'
+      - ' &7{top2_jogador} &8({top2_abates})'
+      - ''
+      - ' &e{servidor}'
+    Espectador:
+      - ''
+      - ' &fMapa: &a{mapa}'
+      - ' &fRestantes: &a{restantes}'
+      - ' &fTempo: &a{tempo}'
+      - ''
+      - ' &7Você está assistindo'
+      - ''
+      - ' &e{servidor}'
+  # O {servidor} das linhas acima.
+  Servidor: 'seuservidor.com'
+
+# Prefixos do TAB. {time_cor} e a cor do time na partida.
+Tab:
+  Espera: '&a'
+  Partida: '{time_cor}'
+  Espectador: '&8[ESPEC] &7'
+
+# Itens da barra. Slot de 0 a 8; -1 desliga. Acao: 'menu: modos', 'menu: loja',
+# 'menu: kits', 'menu: habilidades', 'menu: grupo', 'menu: votacao',
+# 'menu: jogadores', 'menu: caixas', 'menu: estatisticas', 'menu: missoes',
+# 'jogar: <modo>', 'jogar-novamente', 'sair', 'comando: <comando>'.
+Barra de itens:
+  Lobby:
+    jogar:
+      Slot: 0
+      Material: 'DIAMOND_SWORD'
+      Nome: '&aJogar &7(clique direito)'
+      Lore: [ '&7Abre o seletor de modos.' ]
+      Acao: 'menu: modos'
+    loja:
+      Slot: 2
+      Material: 'EMERALD'
+      Nome: '&aLoja &7(clique direito)'
+      Lore: [ '&7Kits, habilidades e cosméticos.' ]
+      Acao: 'menu: loja'
+    estatisticas:
+      Slot: 4
+      Material: 'PAPER'
+      Nome: '&eEstatísticas &7(clique direito)'
+      Lore: [ ]
+      Acao: 'menu: estatisticas'
+    grupo:
+      Slot: 6
+      Material: 'PLAYER_HEAD'
+      Dono: '{jogador}'
+      Nome: '&bGrupo &7(clique direito)'
+      Lore: [ '&7Jogue com os seus amigos.' ]
+      Acao: 'menu: grupo'
+    caixas:
+      Slot: 8
+      Material: 'ENDER_CHEST'
+      Nome: '&dCaixas misteriosas &7(clique direito)'
+      Lore: [ ]
+      Acao: 'menu: caixas'
+  Espera:
+    kits:
+      Slot: 0
+      Material: 'BOW'
+      Nome: '&aKits &7(clique direito)'
+      Lore: [ ]
+      Acao: 'menu: kits'
+    habilidades:
+      Slot: 1
+      Material: 'EXPERIENCE_BOTTLE'
+      Nome: '&aHabilidades &7(clique direito)'
+      Lore: [ ]
+      Acao: 'menu: habilidades'
+    votacao:
+      Slot: 4
+      Material: 'CHEST'
+      Nome: '&eVotar nos baús &7(clique direito)'
+      Lore: [ ]
+      Acao: 'menu: votacao'
+    sair:
+      Slot: 8
+      Material: 'RED_BED'
+      Nome: '&cSair &7(voltar para o lobby)'
+      Lore: [ ]
+      Acao: 'sair'
+  Espectador:
+    jogar:
+      Slot: 2
+      Material: 'PAPER'
+      Nome: '&bJogar novamente &7(clique direito)'
+      Lore: [ ]
+      Acao: 'jogar-novamente'
+    jogadores:
+      Slot: 4
+      Material: 'COMPASS'
+      Nome: '&aJogadores &7(clique direito)'
+      Lore: [ '&7Teleporte até um jogador.' ]
+      Acao: 'menu: jogadores'
+    sair:
+      Slot: 6
+      Material: 'RED_BED'
+      Nome: '&cSair &7(voltar para o lobby)'
+      Lore: [ ]
+      Acao: 'sair'
+
+Caixa misteriosa:
+  Altura do holograma: 1.9
+  Holograma:
+    - '&d&lCaixa Misteriosa'
+    - '&7Clique direito para abrir'
+  # Ultimas recompensas guardadas no perfil.
+  Historico: 5
+  # Pacotes que o jogador fabrica com fragmentos: cada linha e uma caixa
+  # sorteada entre as chaves listadas.
+  Pacotes:
+    1:
+      Fragmentos: 40
+      Caixas:
+        - 'kits, habilidades, jaulas, especiais'
+    2:
+      Fragmentos: 75
+      Caixas:
+        - 'kits, habilidades, jaulas, especiais'
+        - 'kits, habilidades, jaulas, especiais'
+    3:
+      Fragmentos: 150
+      Caixas:
+        - 'kits, habilidades, jaulas, especiais'
+        - 'kits, habilidades, jaulas, especiais'
+        - 'kits, habilidades, jaulas, especiais'
+  # Recompensas: KIT, HABILIDADE, JAULA, COMEMORACAO, EFEITO_DE_ABATE,
+  # GRITO_DE_MORTE, BALAO.
+  Caixas:
+    kits:
+      Nome: 'Caixa de Kits'
+      Material: 'PLAYER_HEAD'
+      Textura: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+      Lore:
+        - '&7Sorteia um kit de qualquer modo.'
+      Recompensas: [ 'KIT' ]
+    habilidades:
+      Nome: 'Caixa de Habilidades'
+      Material: 'PLAYER_HEAD'
+      Textura: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+      Lore:
+        - '&7Sorteia uma habilidade de qualquer modo.'
+      Recompensas: [ 'HABILIDADE' ]
+    jaulas:
+      Nome: 'Caixa de Jaulas'
+      Material: 'PLAYER_HEAD'
+      Textura: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+      Lore:
+        - '&7Sorteia uma jaula.'
+      Recompensas: [ 'JAULA' ]
+    especiais:
+      Nome: 'Caixa Especial'
+      Material: 'PLAYER_HEAD'
+      Textura: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+      Lore:
+        - '&7Comemorações, efeitos de abate,'
+        - '&7gritos de morte e balões.'
+      Recompensas: [ 'COMEMORACAO', 'EFEITO_DE_ABATE', 'GRITO_DE_MORTE', 'BALAO' ]
+
+# NPCs do lobby (/sw npc <modo>). Skin: nick ou 'TEXTURA : ASSINATURA'.
+Npcs:
+  Altura do holograma: 2.3
+  # Um NPC por modo: a chave e o modo (solo, dupla...). O NPC 'estatisticas'
+  # abre as estatisticas de quem clicou.
+  Modos:
+    solo:
+      Skin: 'Steve'
+      Item na mao: 'IRON_SWORD'
+      Holograma:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&b{modo}'
+        - '&7{jogando} jogando'
+    dupla:
+      Skin: 'Alex'
+      Item na mao: 'IRON_SWORD'
+      Holograma:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&b{modo}'
+        - '&7{jogando} jogando'
+    mega:
+      Skin: 'Steve'
+      Item na mao: 'DIAMOND_SWORD'
+      Holograma:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&b{modo}'
+        - '&7{jogando} jogando'
+    ranqueado:
+      Skin: 'Alex'
+      Item na mao: 'DIAMOND_SWORD'
+      Holograma:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&6{modo}'
+        - '&7{jogando} jogando'
+  # O holograma e o mesmo para todos (nao aceita variaveis do jogador).
+  Estatisticas:
+    Skin: 'Steve'
+    Item na mao: 'PAPER'
+    Holograma:
+      - '&b&lESTATÍSTICAS'
+      - '&eClique para ver as suas'
+
+# Tops em holograma (/sw top <tipo> [modo]). O holograma alterna sozinho entre
+# os tipos listados em 'Tipos' quando 'Alternar a cada' e maior que 0.
+Tops:
+  Atualizar a cada: 60
+  Alternar a cada: 15
+  Posicoes: 10
+  Cabecalho:
+    - '&6&lTOP {tipo}'
+    - '&7{modo} &8- &7{periodo}'
+    - ''
+  Linha: '&e{posicao}. &f{jogador} &7- &a{valor}'
+  Linha vazia: '&e{posicao}. &7---'
+  Rodape:
+    - ''
+    - '&7Atualizado a cada minuto'
+  # Tipos que o holograma pode mostrar: abates, eliminacoes, vitorias, jogos,
+  # mortes, assistencias, winstreak, maior_winstreak, nivel, pontos_ranqueado
+  # (e as versoes _mensal).
+  Tipos: [ 'vitorias', 'abates', 'winstreak', 'vitorias_mensal' ]
+
+Mapas:
+  # Quantos mapas cada jogador pode escolher por dia (starskywars.mapas.max.N
+  # muda por jogador; starskywars.mapas.infinito libera).
+  Limite diario: 3
+  Favoritos: true
+
+Boosters:
+  # O booster multiplica coins e xp ganhos nas partidas.
+  Ativar: true
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'UI_BUTTON_CLICK;1;1.4'
+  Contagem: 'BLOCK_NOTE_BLOCK_PLING;1;1'
+  Iniciar: 'ENTITY_ENDER_DRAGON_GROWL;1;1'
+  Abate: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1'
+  Morte: 'ENTITY_ENDERMAN_DEATH;1;1'
+  Vitoria: 'UI_TOAST_CHALLENGE_COMPLETE;1;1'
+  Evento: 'ENTITY_WITHER_SPAWN;0.6;1.2'
+  Compra: 'ENTITY_PLAYER_LEVELUP;1;1'
+  Caixa: 'BLOCK_NOTE_BLOCK_PLING;1;1'
+  Caixa premio: 'ENTITY_PLAYER_LEVELUP;1;1.5'

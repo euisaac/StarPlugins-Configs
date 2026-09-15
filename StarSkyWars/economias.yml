@@ -1,0 +1,41 @@
+# ==========================================================================
+#  StarSkyWars - economias
+#
+#  As chaves daqui (coins, cash...) sao as que aparecem nos Precos dos
+#  kits, habilidades, jaulas e cosmeticos. Nao renomeie a chave 'coins':
+#  e nela que entram as recompensas das partidas.
+#
+#  Provedor:
+#    COINS         as coins do proprio SkyWars, guardadas no perfil
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' e o id dela
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro entra e sai por comando de console
+#                  ({jogador} {uuid} {valor})
+#
+#  Para as coins do SkyWars serem o dinheiro do servidor, troque o
+#  Provedor de 'coins' para VAULT.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Economias:
+  coins:
+    Provedor: COINS
+    Nome: 'Coins'
+    Abreviacao: 'coins'
+    Simbolo: ''
+    Valores inteiros: true
+
+  # Exemplo de cash por comando. Tire o # para usar e ponha 'cash: 100'
+  # nos precos.
+  # cash:
+  #   Provedor: COMANDO
+  #   Nome: 'Cash'
+  #   Abreviacao: 'cash'
+  #   Simbolo: ''
+  #   Valores inteiros: true
+  #   Placeholder de saldo: '%meucash_saldo%'
+  #   Comando de retirar: 'cash remover {jogador} {valor}'
+  #   Comando de dar: 'cash adicionar {jogador} {valor}'
