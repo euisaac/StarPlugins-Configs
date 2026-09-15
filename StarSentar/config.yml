@@ -62,8 +62,13 @@ pegar:
   cooldown-soltar-ms: 1500 # Tempo mínimo carregado antes de poder soltar (evita soltar sem querer)
   modos:
     costas:
-      # Onde quem é carregado fica em relação ao carregador: blocos atrás dele (na direção
-      # oposta ao corpo) e altura a partir dos pés. Ajuste fino sem precisar de restart.
+      # preso: true  -> o carregado vira passageiro do carregador, igual ao sentar na cabeça:
+      #                 acompanha sem nenhum atraso, mas fica sentado nos ombros (o Minecraft
+      #                 não sabe pôr passageiro atrás de ninguém).
+      # preso: false -> o assento é uma entidade solta que corre atrás do carregador na posição
+      #                 abaixo (atras = blocos atrás dele, altura = a partir dos pés). Fica nas
+      #                 costas de verdade, com um pequeno atraso ao andar.
+      preso: true
       atras: 0.4
       altura: 0.9
 
