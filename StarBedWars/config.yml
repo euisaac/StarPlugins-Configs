@@ -325,7 +325,8 @@ Placar:
   Mostrar no lobby: true
   # Ticks entre as atualizacoes.
   Intervalo: 20
-  # Titulos alternados (animacao). Um so = sem animacao.
+  # Titulos alternados (animacao). Um so = sem animacao. As animacoes do
+  # tab.yml tambem valem aqui e nas linhas: {animacao:nome}.
   Titulos:
     - '&f&lBED WARS'
     - '&6&lB&f&lED WARS'
@@ -504,6 +505,52 @@ Caixa misteriosa:
       Caixas: 3
   # Caixa de que sai cada pacote fabricado.
   Caixa dos pacotes: 'especiais'
+  # Animacoes de abertura (menu ao lado do livro). A primeira sem Permissao e
+  # a de todo mundo; as outras pedem a permissao indicada. Tipos: ROLETA (os
+  # itens giram na linha do meio), PISCAR (o menu inteiro pisca), CIRCULO (um
+  # cursor roda em volta do premio) e ONDA (o menu se preenche do centro para
+  # fora e revela). A particula e tocada no jogador ao revelar.
+  Animacoes:
+    roleta:
+      Nome: '&aRoleta'
+      Material: COMPARATOR
+      Tipo: ROLETA
+      Permissao: ''
+      Duracao: 60
+      Particula: VILLAGER_HAPPY
+      Descricao:
+        - '&7Os itens giram na linha do meio'
+        - '&7ate parar no premio'
+    piscar:
+      Nome: '&ePiscar'
+      Material: GLOWSTONE_DUST
+      Tipo: PISCAR
+      Permissao: 'starbedwars.animacao.piscar'
+      Duracao: 60
+      Particula: CRIT
+      Descricao:
+        - '&7O menu inteiro pisca de itens'
+        - '&7e o premio aparece no meio'
+    circulo:
+      Nome: '&bCirculo'
+      Material: ENDER_EYE
+      Tipo: CIRCULO
+      Permissao: 'starbedwars.animacao.circulo'
+      Duracao: 60
+      Particula: PORTAL
+      Descricao:
+        - '&7Um cursor roda em volta do'
+        - '&7premio ate ele se revelar'
+    onda:
+      Nome: '&dOnda'
+      Material: PRISMARINE_SHARD
+      Tipo: ONDA
+      Permissao: 'starbedwars.animacao.onda'
+      Duracao: 50
+      Particula: FIREWORKS_SPARK
+      Descricao:
+        - '&7O menu se preenche do centro'
+        - '&7para fora e revela o premio'
   # Caixas existentes. Recompensas: KIT, HABILIDADE, JAULA, COMEMORACAO,
   # ABATE, GRITO, CAMA, BALAO.
   Caixas:
@@ -528,6 +575,29 @@ Caixa misteriosa:
         - '&7de abate, gritos, animacoes'
         - '&7de cama e baloes'
       Recompensas: [ JAULA, COMEMORACAO, ABATE, GRITO, CAMA, BALAO ]
+
+Jumppad:
+  # Bloco de slime lanca o jogador para frente (na partida e, se quiser, no lobby).
+  Ativar: true
+  No lobby: true
+  Empurrao horizontal: 1.6
+  Empurrao vertical: 0.8
+  Particula: CLOUD
+  Som: 'ENTITY_FIREWORK_ROCKET_LAUNCH'
+
+Double jump:
+  # Fora da partida, quem tem starbedwars.doublejump pula duas vezes e e
+  # lancado para frente (nao vale dentro dos mundos de arena).
+  Ativar: true
+  Empurrao horizontal: 1.2
+  Empurrao vertical: 0.9
+  Particula: CLOUD
+  Som: 'ENTITY_BAT_TAKEOFF'
+
+Tab:
+  # Quem esta numa partida so ve (tab e mundo) quem esta na mesma partida;
+  # quem esta fora so ve quem esta fora.
+  Separar por partida: true
 
 Tops:
   # Linhas dos hologramas de top ({tipo}, {modo}, {posicao}, {jogador}, {valor}).
