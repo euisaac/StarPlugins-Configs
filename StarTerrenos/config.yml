@@ -143,10 +143,10 @@ Ferramenta:
 
   # Ate quantos blocos de distancia o clique NO AR marca.
   #
-  # Com isto o jogador nao precisa caminhar ate cada ponta: ele mira o bloco e
-  # clica no ar, e o canto cai onde a linha de visao encosta. Vale para as duas
-  # ferramentas. O maximo aceito e 100.
-  Alcance da mira: 15
+  # Com isto o jogador nao precisa caminhar ate cada ponta: ele mira o bloco de
+  # longe e clica, e o canto cai onde a linha de visao encosta. Vale para as
+  # duas ferramentas. O maximo aceito e 200.
+  Alcance da mira: 60
 
   # Da a ferramenta na entrada de quem ainda nao tem nenhuma no inventario.
   Dar na primeira entrada: false
@@ -281,6 +281,22 @@ Inatividade:
     Preco por bloco: 1.0
     Preco minimo: 500.0
     Dias em leilao: 7
+
+#
+# ═══════════════════════════  CONFIANCA POR GRUPO  ══════════════════════════
+#
+# Alem de confiar em jogadores, o dono pode confiar num GRUPO de permissao:
+# /terreno confiar #staff gerente, /terreno confiar #vip acesso. Todo mundo que
+# estiver no grupo entra com aquele nivel, sem precisar ser adicionado um a um.
+Confianca por grupo:
+  # Com o Vault no servidor, o plugin pergunta a ele se o jogador esta no grupo
+  # -- e a resposta do plugin de permissoes de verdade.
+  Usar Vault: true
+
+  # Sem Vault (ou se ele falhar), testa esta permissao, com {grupo} no lugar do
+  # nome. E o formato que LuckPerms, PEX e GroupManager dao a cada grupo.
+  # Atencao: quem tem * responde sim para qualquer grupo por este caminho.
+  No de permissao: 'group.{grupo}'
 
 #
 # ══════════════════════════════  ABANDONADOS  ═══════════════════════════════
