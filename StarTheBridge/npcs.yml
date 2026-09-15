@@ -1,0 +1,79 @@
+# ==========================================================================
+#  StarTheBridge - NPCs e tops do lobby
+#
+#  As posicoes ficam no locais.yml (/tb npc add, /tb tops add). Aqui e a
+#  aparencia. Skin: nick de um jogador ou 'textura : assinatura'.
+#  Holograma dos NPCs de modo: {modo} {esperando} {jogando} {total}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Modos:
+  1v1:
+    Skin: 'Technoblade'
+    Item na mao: 'IRON_SWORD'
+    Holograma:
+      Altura: 2.3
+      Linhas:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&b{modo}'
+        - '&7{total} jogando'
+  2v2:
+    Skin: 'Dream'
+    Item na mao: 'GOLDEN_SWORD'
+    Holograma:
+      Altura: 2.3
+      Linhas:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&b{modo}'
+        - '&7{total} jogando'
+  3v3:
+    Skin: 'Grian'
+    Item na mao: 'DIAMOND_SWORD'
+    Holograma:
+      Altura: 2.3
+      Linhas:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&b{modo}'
+        - '&7{total} jogando'
+  4v4:
+    Skin: 'Sapnap'
+    Item na mao: 'DIAMOND_SWORD'
+    Holograma:
+      Altura: 2.3
+      Linhas:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&b{modo}'
+        - '&7{total} jogando'
+  ranqueado:
+    Skin: 'Notch'
+    Item na mao: 'NETHER_STAR'
+    Holograma:
+      Altura: 2.3
+      Linhas:
+        - '&e&lCLIQUE PARA JOGAR'
+        - '&6{modo}'
+        - '&7{total} jogando'
+
+Estatisticas:
+  Skin: 'Steve'
+  Item na mao: 'BOOK'
+  Holograma:
+    Altura: 2.3
+    Linhas:
+      - '&b&lSUAS ESTATISTICAS'
+      - '&eClique para ver'
+
+Tops:
+  # Altura do holograma acima do ponto marcado.
+  Altura: 0.5
+  # Segundos entre uma estatistica e a proxima quando o top tem varias.
+  Rotacao: 30
+  Quantidade: 10
+  Linhas:
+    - '&6&lTOP {estatistica}'
+    - '&7{modo} &8- &7{periodo}'
+    - ''
+    - '{posicoes}'
+  Posicao: '&e{posicao}. &f{jogador} &7- &a{valor}'
+  Vazio: '&7Ninguem ainda'

@@ -1,0 +1,57 @@
+# ==========================================================================
+#  StarTheBridge - caixas misteriosas
+#
+#  Recompensas: quais tipos a caixa sorteia (bloco, habilidade, comemoracao,
+#  efeito_abate, grito, balao, jaula, trilha). A raridade sai das chances do
+#  config.yml; item repetido vira fragmentos.
+#  Pacotes: fragmentos -> caixas. Cada linha de Caixas sorteia UMA caixa entre
+#  as listadas (separadas por virgula).
+#  Icone: material ou textura de cabeca (hash/URL/base64).
+# ==========================================================================
+
+Caixas:
+  thebridge_blocos:
+    Nome: 'Caixa de Blocos'
+    Icone: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+    Descricao:
+      - '&7Blocos de construcao de todas'
+      - '&7as raridades.'
+    Recompensas:
+      - bloco
+  thebridge_habilidades:
+    Nome: 'Caixa de Habilidades'
+    Icone: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+    Descricao:
+      - '&7Habilidades de qualquer modo.'
+    Recompensas:
+      - habilidade
+  thebridge_especiais:
+    Nome: 'Caixa Especial'
+    Icone: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+    Descricao:
+      - '&7Comemoracoes, efeitos, gritos,'
+      - '&7baloes, jaulas e trilhas.'
+    Recompensas:
+      - comemoracao
+      - efeito_abate
+      - grito
+      - balao
+      - jaula
+      - trilha
+
+Pacotes:
+  1:
+    Fragmentos: 40
+    Caixas:
+      - 'thebridge_blocos, thebridge_habilidades, thebridge_especiais'
+  2:
+    Fragmentos: 75
+    Caixas:
+      - 'thebridge_blocos, thebridge_habilidades, thebridge_especiais'
+      - 'thebridge_blocos, thebridge_habilidades, thebridge_especiais'
+  3:
+    Fragmentos: 150
+    Caixas:
+      - 'thebridge_blocos, thebridge_habilidades, thebridge_especiais'
+      - 'thebridge_blocos, thebridge_habilidades, thebridge_especiais'
+      - 'thebridge_especiais'

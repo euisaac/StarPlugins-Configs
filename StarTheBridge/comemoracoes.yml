@@ -1,0 +1,201 @@
+# ==========================================================================
+#  StarTheBridge - comemoracoes de vitoria
+#
+#  Rodam em volta do vencedor no fim da partida. Efeito:
+#    FOGOS, RAIOS, CHUVA (Material, Altura), CAVALO, OVELHAS (Quantidade), DRAGAO,
+#    FOGO, BOLOS, EXPLOSOES, BIGORNAS, CORACOES, NOTAS, TOTEM, HELICE,
+#    PARTICULAS (Particula, Quantidade). Intervalo em ticks; Raio em blocos.
+#  Som opcional (SOM;volume;tom) e 'Intervalo do som' em ticks.
+#
+#  Preco 0 e sem Padrao: so sai das caixas misteriosas. Padrao: true = todo
+#  mundo tem. Raridades: COMUM, RARO, EPICO, LENDARIO.
+#  Permissao opcional: quem tem a permissao ja possui o item
+#  (starthebridge.<tipo>.<id> e starthebridge.<tipo>.* tambem funcionam).
+# ==========================================================================
+
+Comemoracoes:
+  fogos:
+    Nome: 'Fogos'
+    Raridade: COMUM
+    Padrao: true
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'FIREWORK_ROCKET'
+    Descricao:
+      - '&7Fogos de artificio em volta de voce.'
+    Efeito: FOGOS
+    Intervalo: 10
+    Raio: 3
+  raios:
+    Nome: 'Tempestade'
+    Raridade: LENDARIO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'LIGHTNING_ROD'
+    Descricao:
+      - '&7Raios caem em volta do vencedor.'
+    Efeito: RAIOS
+    Intervalo: 15
+    Raio: 4
+  chuva_de_las:
+    Nome: 'Chuva de las'
+    Raridade: LENDARIO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'PINK_WOOL'
+    Descricao:
+      - '&7Blocos de la coloridos caem do ceu.'
+    Efeito: CHUVA
+    Intervalo: 4
+    Raio: 4
+    Altura: 10
+    Material: 'WOOL'
+  cowboy:
+    Nome: 'Cowboy'
+    Raridade: COMUM
+    Preco:
+      Coins: 15000
+      Cash: 0
+    Icone: 'SADDLE'
+    Descricao:
+      - '&7Monte um cavalo e comemore.'
+    Efeito: CAVALO
+    Intervalo: 20
+  rebanho:
+    Nome: 'Rebanho-iris'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'WHITE_WOOL'
+    Descricao:
+      - '&7Ovelhas coloridas nascem em volta.'
+    Efeito: OVELHAS
+    Intervalo: 10
+    Quantidade: 6
+  dragao:
+    Nome: 'Dragao do fim'
+    Raridade: LENDARIO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'DRAGON_HEAD'
+    Descricao:
+      - '&7Um dragao paira sobre voce.'
+      - '&8(a partir da 1.9)'
+    Efeito: DRAGAO
+    Intervalo: 10
+  calor_da_vitoria:
+    Nome: 'Calor da vitoria'
+    Raridade: LENDARIO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'BLAZE_POWDER'
+    Descricao:
+      - '&7Chamas em volta do vencedor.'
+    Efeito: FOGO
+    Intervalo: 4
+    Raio: 2
+    Quantidade: 8
+  bolos:
+    Nome: 'Bolo da vitoria'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'CAKE'
+    Descricao:
+      - '&7Bolos caem do ceu.'
+    Efeito: BOLOS
+    Intervalo: 6
+    Raio: 3
+    Altura: 6
+  explosoes:
+    Nome: 'Explosoes'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'TNT'
+    Descricao:
+      - '&7Explosoes sem estrago.'
+    Efeito: EXPLOSOES
+    Intervalo: 12
+    Raio: 4
+    Som: 'ENTITY_GENERIC_EXPLODE'
+    Intervalo do som: 12
+  bigornas:
+    Nome: 'Bigornas'
+    Raridade: EPICO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'ANVIL'
+    Descricao:
+      - '&7Bigornas despencam em volta.'
+    Efeito: BIGORNAS
+    Intervalo: 8
+    Raio: 4
+    Altura: 8
+    Som: 'BLOCK_ANVIL_LAND'
+    Intervalo do som: 8
+  coracoes:
+    Nome: 'Coracoes'
+    Raridade: COMUM
+    Preco:
+      Coins: 10000
+      Cash: 0
+    Icone: 'POPPY'
+    Descricao:
+      - '&7Coracoes flutuando.'
+    Efeito: CORACOES
+    Intervalo: 5
+    Raio: 2
+    Quantidade: 8
+  notas:
+    Nome: 'Notas musicais'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'NOTE_BLOCK'
+    Descricao:
+      - '&7Notas musicais e um som festivo.'
+    Efeito: NOTAS
+    Intervalo: 5
+    Raio: 2
+    Quantidade: 8
+    Som: 'BLOCK_NOTE_BLOCK_PLING;1;1.4'
+    Intervalo do som: 10
+  helice:
+    Nome: 'Helice'
+    Raridade: EPICO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'FIREWORK_STAR'
+    Descricao:
+      - '&7Uma espiral de faiscas sobe'
+      - '&7em volta de voce.'
+    Efeito: HELICE
+    Intervalo: 1
+    Raio: 1.5
+    Particula: 'FIREWORKS_SPARK'
+  totem:
+    Nome: 'Totem'
+    Raridade: EPICO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'TOTEM_OF_UNDYING'
+    Descricao:
+      - '&7As particulas do totem da imortalidade.'
+      - '&8(a partir da 1.11)'
+    Efeito: TOTEM
+    Intervalo: 5
+    Raio: 1
+    Quantidade: 15

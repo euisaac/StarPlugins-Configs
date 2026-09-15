@@ -1,0 +1,393 @@
+# ==========================================================================
+#  StarTheBridge - configuracao geral
+#
+#  Arenas ficam em arenas/<nome>.yml (crie pelo jogo: /tb criar <nome> <modo>).
+#  Locais do lobby, NPCs, tops e caixas ficam no locais.yml (tambem pelo jogo).
+#  Cosmeticos: blocos.yml, habilidades.yml, comemoracoes.yml, efeitos-de-abate.yml,
+#  gritos-de-morte.yml, baloes.yml, jaulas.yml e trilhas.yml.
+#  Progressao: niveis.yml, ligas.yml, missoes.yml, caixas.yml.
+#  Textos: mensagens.yml e menus.yml. Moedas: economias.yml.
+#
+#  Cores usam & (e &#RRGGBB nas versoes 1.16+). Tempos sao em segundos.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Banco de dados:
+  # SQLITE (arquivo na pasta do plugin) ou MYSQL. O modo Bungee exige MYSQL,
+  # porque o lobby e as salas precisam ler o mesmo banco.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starthebridge_'
+  MySQL:
+    Host: 'localhost'
+    Porta: 3306
+    Banco: 'minecraft'
+    Usuario: 'root'
+    Senha: ''
+
+Modo do plugin:
+  # MULTIARENA: as arenas e o lobby ficam neste servidor.
+  # BUNGEE: este servidor so tem arenas; quem sai vai para o servidor de lobby.
+  # LOBBY_BUNGEE: este servidor e o lobby do TheBridge; os NPCs e o menu
+  #   procuram uma sala livre nos servidores BUNGEE e mandam o jogador para la.
+  Tipo: MULTIARENA
+  # Nome deste servidor no BungeeCord/Velocity (usado nos modos Bungee).
+  Nome deste servidor: 'thebridge-1'
+  # Servidor para onde os jogadores voltam ao sair de uma partida (modo BUNGEE).
+  Servidor de lobby: 'lobby'
+  # No modo BUNGEE, quem entra no servidor cai direto numa arena.
+  Entrar na arena ao conectar: true
+  # Segundos sem atualizacao para uma sala ser considerada fora do ar.
+  Sala expira em: 15
+
+Geral:
+  # Ao entrar no servidor (ou sair de uma partida), o jogador vai ao lobby do locais.yml.
+  Teleportar ao lobby ao entrar: true
+  # Limpa o inventario e da os itens da barra do lobby ao entrar no lobby.
+  Barra do lobby: true
+  # Intervalo minimo entre dois cliques num menu, em milissegundos.
+  Intervalo entre cliques: 250
+  # Quantos segundos entre cada atualizacao dos tops (hologramas e menus).
+  Intervalo dos tops: 60
+  # Quantas posicoes cada top guarda.
+  Tamanho dos tops: 10
+  # Autosave dos perfis alterados, em minutos.
+  Autosave: 5
+  # Comando executado no console quando alguem usa /lobby fora de partida
+  # (vazio = so teleporta ao lobby do locais.yml). {jogador} e o nick.
+  Comando do lobby: ''
+  Sons:
+    Clique: 'UI_BUTTON_CLICK'
+    Erro: 'ENTITY_VILLAGER_NO'
+    Pagina: 'ENTITY_ITEM_PICKUP'
+    Sucesso: 'ENTITY_PLAYER_LEVELUP'
+    Contagem: 'BLOCK_NOTE_BLOCK_PLING'
+    Inicio: 'ENTITY_ENDER_DRAGON_GROWL'
+    Ponto: 'ENTITY_PLAYER_LEVELUP;1;1.2'
+    Vitoria: 'UI_TOAST_CHALLENGE_COMPLETE'
+    Derrota: 'ENTITY_WITHER_SPAWN'
+    Abate: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+    Nivel: 'ENTITY_PLAYER_LEVELUP;1;1.5'
+    Caixa: 'BLOCK_CHEST_OPEN'
+
+Partida:
+  # Segundos na sala de espera quando o minimo de jogadores e atingido.
+  Contagem de espera: 20
+  # Segundos quando a arena enche (a contagem encurta para este valor).
+  Contagem cheia: 5
+  # Segundos dentro da jaula antes de abrir (no inicio e depois de cada ponto).
+  Contagem da jaula: 5
+  # Segundos de comemoracao no fim da partida antes de todos sairem.
+  Tempo de fim: 10
+  # Duracao maxima da partida em segundos (0 = sem limite).
+  Duracao: 900
+  # Se a partida termina empatada no tempo, quem marcar o proximo ponto vence
+  # (0 desliga o ponto de ouro e o empate fica).
+  Ponto de ouro: 120
+  # Pontos para vencer (pode ser trocado por arena).
+  Pontos para vencer: 5
+  # Segundos de protecao (sem dano) ao renascer.
+  Protecao ao renascer: 3
+  # Segundos que o jogador espera para renascer depois de morrer.
+  Tempo para renascer: 3
+  # Segundos que um jogador tem para voltar (/reconectar) depois de cair.
+  Reconectar em: 60
+  # Aceita quem cai no meio da partida de volta no lugar dele.
+  Reconectar: true
+  # Fome nunca desce durante a partida.
+  Sem fome: true
+  # Dano de queda desligado (o TheBridge classico nao tem).
+  Sem dano de queda: true
+  # Blocos abaixo desta altura em relacao ao Y minimo da arena matam na hora.
+  Distancia do vazio: 0
+  # Quem entra no proprio gol: IGNORAR (nada acontece) ou TELEPORTAR (volta ao spawn).
+  Gol proprio: IGNORAR
+  # Depois de um ponto os blocos colocados sao limpos?
+  Limpar blocos ao pontuar: false
+  # Um segundo golpe no mesmo alvo dentro deste tempo (segundos) conta como
+  # assistencia se outro jogador der o abate.
+  Janela de assistencia: 10
+  # Golpe recebido ha menos de X segundos: cair no vazio conta como eliminacao para quem bateu.
+  Janela de eliminacao: 8
+  # Os jogadores falam so com o time (no 1v1 e ranqueado o chat e da partida inteira).
+  Chat do time: true
+  # Prefixo que manda a mensagem para a partida inteira quando o chat e do time.
+  Prefixo do chat global: '!'
+  # Times com menos gente que os outros recebem os proximos a entrar.
+  Balancear times: true
+  # Vitorias necessarias (em qualquer modo) para entrar no ranqueado.
+  Vitorias para o ranqueado: 0
+  # O placar lateral durante a partida.
+  Placar: true
+  # Empurra quem tenta sair dos limites da arena (/tb setar <arena> limites)
+  # de volta para dentro. Sem limites definidos, nada acontece.
+  Barreira: true
+
+Blocos:
+  # Bloco de construcao padrao (colorido com a cor do time quando aceita cor).
+  Padrao: 'TERRACOTTA'
+  # Quantos blocos o jogador recebe (em pilhas de 64).
+  Pilhas: 2
+  # Blocos nunca acabam.
+  Infinitos: false
+  # Repoe as pilhas ao renascer.
+  Repor ao renascer: true
+  # Pode quebrar os blocos do mapa (os que ninguem colocou)?
+  Quebrar blocos do mapa: false
+  # Distancia minima (em blocos) dos spawns e dos gols para colocar bloco.
+  Distancia dos spawns: 3
+  Distancia dos gols: 2
+  # Altura maxima acima do Y do spawn onde ainda pode construir (0 = a area decide).
+  Altura maxima: 0
+
+Kit:
+  # Os itens da partida. Formato: MATERIAL;quantidade;encantamento:nivel;...
+  # {cor} vira a cor do time no couro. As chaves (espada, arco...) sao fixas
+  # porque o editor de layout do jogador usa elas; troque so o item.
+  Espada: 'IRON_SWORD;1'
+  Arco: 'BOW;1;ARROW_DAMAGE:1'
+  Picareta: 'DIAMOND_PICKAXE;1;DIG_SPEED:2'
+  Macas: 'GOLDEN_APPLE;8'
+  Flechas: 'ARROW;1'
+  # A flecha volta sozinha depois deste tempo (em ticks, 20 = 1 segundo).
+  Regenerar flecha: 70
+  # Quantas flechas o jogador pode ter ao mesmo tempo.
+  Maximo de flechas: 1
+  Armadura:
+    Capacete: 'LEATHER_HELMET;1'
+    Peitoral: 'LEATHER_CHESTPLATE;1'
+    Calca: 'LEATHER_LEGGINGS;1'
+    Botas: 'LEATHER_BOOTS;1'
+  # Itens indestrutiveis.
+  Inquebravel: true
+  # Slots padrao da barra (o jogador pode mudar no editor de layout).
+  Layout padrao:
+    espada: 0
+    arco: 1
+    picareta: 2
+    blocos: 3
+    blocos2: 4
+    macas: 5
+    flechas: 8
+
+Jaula:
+  # Material da jaula padrao (colorido com a cor do time quando aceita cor).
+  # O jogador pode ter uma jaula cosmetica (jaulas.yml).
+  Material: 'STAINED_GLASS'
+  # Espaco livre por dentro: raio 1 = 3x3 (as paredes ficam a 2 blocos do spawn).
+  Raio: 1
+  Altura: 3
+
+Recompensas:
+  # Coins entram pela economia 'coins' do economias.yml.
+  Coins:
+    Abate: 10
+    Eliminacao: 15
+    Assistencia: 5
+    Ponto: 10
+    Vitoria: 50
+    Participacao: 5
+  Xp:
+    Abate: 10
+    Eliminacao: 15
+    Assistencia: 5
+    Ponto: 15
+    Vitoria: 100
+    Participacao: 10
+  Pontos ranqueados:
+    Abate: 10
+    Eliminacao: 20
+    Ponto: 10
+    Vitoria: 60
+    # Perdidos na derrota.
+    Derrota: 40
+    # Os pontos ranqueados nunca ficam abaixo disso.
+    Minimo: 0
+  # Mostra +coins e +xp na actionbar durante a partida.
+  Actionbar: true
+  # Manda o resumo de recompensas no chat no fim da partida.
+  Resumo no chat: true
+  # Bonus por permissao (o maior que o jogador tiver). 'permissao: porcentagem'.
+  Bonus por permissao:
+    starthebridge.bonus.vip: 10
+    starthebridge.bonus.mvp: 25
+  # Comandos rodados no console ao atingir uma sequencia de vitorias. {jogador}.
+  Sequencia de vitorias:
+    3:
+      - 'tb caixa dar {jogador} thebridge_blocos 1'
+    5:
+      - 'tb caixa dar {jogador} thebridge_habilidades 1'
+    10:
+      - 'tb caixa dar {jogador} thebridge_especiais 1'
+
+Seletor de mapas:
+  Ativar: true
+  # Quantos mapas por dia o jogador pode escolher (starthebridge.mapas.infinito ignora).
+  # A permissao starthebridge.mapas.<n> aumenta o limite.
+  Limite diario: 3
+
+Grupos:
+  Ativar: true
+  # Tamanho padrao; a permissao starthebridge.grupo.<n> aumenta (n de 2 a 20).
+  Maximo padrao: 4
+  # Segundos ate um convite expirar.
+  Convite expira em: 60
+
+Bloquear comandos:
+  Ativar: true
+  # Liberados dentro da partida (starthebridge.comandos.bypass ignora o bloqueio).
+  Permitidos:
+    - '/tb'
+    - '/thebridge'
+    - '/lobby'
+    - '/l'
+    - '/sair'
+    - '/grupo'
+    - '/g'
+    - '/tell'
+    - '/r'
+    - '/msg'
+    - '/reconectar'
+    - '/assistir'
+    - '/chat'
+
+Tab:
+  # Cores no nome (nametag) e no tab durante a partida.
+  Ativar: true
+  Esperando: '&7'
+  Espectador: '&8[ESPEC] &7'
+  # {cor} e a cor do time, {tag} a tag do time.
+  Jogo: '{cor}{tag} '
+
+Placar:
+  # Titulos alternados (um por segundo) do placar em todos os estados.
+  Titulos:
+    - '&f&lTHE BRIDGE'
+    - '&6&lT&f&lHE BRIDGE'
+    - '&f&lT&6&lH&f&lE BRIDGE'
+    - '&f&lTH&6&lE&f&l BRIDGE'
+    - '&f&lTHE &6&lB&f&lRIDGE'
+    - '&f&lTHE B&6&lR&f&lIDGE'
+    - '&f&lTHE BR&6&lI&f&lDGE'
+    - '&f&lTHE BRI&6&lD&f&lGE'
+    - '&f&lTHE BRID&6&lG&f&lE'
+    - '&f&lTHE BRIDG&6&lE'
+    - '&f&lTHE BRIDGE'
+    - '&f&lTHE BRIDGE'
+    - '&6&lTHE BRIDGE'
+    - '&6&lTHE BRIDGE'
+    - '&f&lTHE BRIDGE'
+  Lobby:
+    Ativar: true
+    Linhas:
+      - ''
+      - ' &fNivel: {nivel_nome}'
+      - ' {nivel_progresso} &7({xp}/{xp_proximo})'
+      - ''
+      - ' &fCoins: &6{coins}'
+      - ' &fLiga: {liga}'
+      - ''
+      - ' &fPartidas: &7{partidas}'
+      - ' &fVitorias: &7{vitorias}'
+      - ' &fAbates: &7{abates}'
+      - ' &fPontos: &7{pontos}'
+      - ' &fWinstreak: &7{winstreak}'
+      - ''
+      - ' &estarplugins.com.br'
+  Esperando:
+    - ''
+    - ' &fArena: &7{arena}'
+    - ' &fModo: &7{modo}'
+    - ' &fJogadores: &7{jogadores}/{maximo}'
+    - ''
+    - ' {contagem}'
+    - ''
+    - ' &estarplugins.com.br'
+  Jaula:
+    - ''
+    - ' &fArena: &7{arena}'
+    - ' &fJogadores: &7{jogadores}/{maximo}'
+    - ''
+    - ' &eJaulas abrindo em &f{jaula}s'
+    - ''
+    - ' &estarplugins.com.br'
+  Jogo:
+    - ''
+    - '{times}'
+    - ''
+    - ' &fAbates: &7{abates_partida}'
+    - ' &fPontos: &7{pontos_partida}'
+    - ' &fTempo: &7{tempo}'
+    - ''
+    - ' &fArena: &7{arena}'
+    - ' &fHabilidade: &7{habilidade}'
+    - ''
+    - ' &estarplugins.com.br'
+  # Uma linha por time em {times}. {cor} {tag} {nome} {pontos} {barra}.
+  Linha do time: ' {cor}{tag} {nome}: {barra} &7({pontos})'
+  Barra do time:
+    Cheio: '{cor}●'
+    Vazio: '&7●'
+  Espectador:
+    - ''
+    - ' &fArena: &7{arena}'
+    - ''
+    - '{times}'
+    - ''
+    - ' &7Voce esta assistindo'
+    - ''
+    - ' &estarplugins.com.br'
+
+Chat:
+  # Formato do chat na partida. {cor} cor do time, {tag} tag, {nome}, {mensagem}, {nivel_nome}.
+  Time: '&8[TIME] {cor}{nome}&f: {mensagem}'
+  Partida: '{nivel_nome} {cor}{nome}&f: {mensagem}'
+  Espectador: '&8[ESPEC] &7{nome}&f: {mensagem}'
+  Espera: '{nivel_nome} &7{nome}&f: {mensagem}'
+  # Formato no lobby (vazio deixa o chat como esta).
+  Lobby: ''
+
+Caixas:
+  # Quantas ultimas recompensas o menu mostra.
+  Historico: 5
+  # Segundos da animacao de abertura.
+  Animacao: 3
+  # Chance de cada raridade (peso).
+  Chances:
+    COMUM: 60
+    RARO: 25
+    EPICO: 12
+    LENDARIO: 3
+
+Raridades:
+  COMUM:
+    Nome: 'Comum'
+    Cor: '&a'
+    # Fragmentos ganhos na caixa quando o item repetido e desta raridade.
+    Fragmentos: 5
+  RARO:
+    Nome: 'Raro'
+    Cor: '&9'
+    Fragmentos: 8
+  EPICO:
+    Nome: 'Epico'
+    Cor: '&5'
+    Fragmentos: 12
+  LENDARIO:
+    Nome: 'Lendario'
+    Cor: '&6'
+    Fragmentos: 20
+
+Nivel:
+  # Barra de progresso do nivel.
+  Formato: '&f[{barra}&f]'
+  Caractere: '■'
+  Cor ativa: '&a'
+  Cor inativa: '&7'
+  Tamanho: 8
+
+Espectador:
+  # Espectadores voam e ficam invisiveis para quem joga.
+  Voar: true
+  # Distancia maxima do centro da arena que o espectador pode ir (0 = livre).
+  Limite: 0

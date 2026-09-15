@@ -1,0 +1,436 @@
+# ==========================================================================
+#  StarTheBridge - mensagens
+#
+#  {prefixo} entra na frente de toda mensagem de uma linha; nas mensagens de
+#  varias linhas (blocos |) ele nao entra. Mensagem vazia ('') nao e enviada.
+#  Cores com & (e &#RRGGBB na 1.16+). <nl> quebra linha nos titulos.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&6&lTHE BRIDGE &8» &7'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'm'
+  Segundo: 's'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar este comando.'
+  Inativo: '&cO plugin esta inativo: o banco de dados nao subiu. Veja o console.'
+  Aguarde o perfil: '&cSeu perfil ainda esta carregando, tente de novo em instantes.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnao foi encontrado.'
+  Menu desconhecido: '&cMenu desconhecido: &f{menu}'
+  Nenhuma: 'Nenhuma'
+  Sem grupo: 'Sem grupo'
+  Liga maxima: 'Liga maxima'
+  E: ' &7e '
+  Gratis: 'Gratis'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Total: 'Total'
+  Mensal: 'Mensal'
+  Diaria: 'Diaria'
+
+Entrada:
+  Como cancelar: '&7Digite &ccancelar &7para desistir.'
+  Cancelado: '&cOperacao cancelada.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+
+# Nomes dos modos e estados (sem cor de preferencia; aparecem em placares e menus).
+Modos:
+  1v1: '1v1'
+  2v2: '2v2'
+  3v3: '3v3'
+  4v4: '4v4'
+  ranqueado: 'Ranqueado'
+  geral: 'Geral'
+
+Estados:
+  esperando: 'Esperando'
+  iniciando: 'Iniciando'
+  jaula: 'Nas jaulas'
+  jogo: 'Em jogo'
+  fim: 'Terminando'
+  resetando: 'Resetando'
+
+Tipos:
+  bloco: 'Blocos de construcao'
+  habilidade: 'Habilidades'
+  comemoracao: 'Comemoracoes de vitoria'
+  efeito_abate: 'Efeitos de abate'
+  grito: 'Gritos de morte'
+  balao: 'Baloes'
+  jaula: 'Jaulas'
+  trilha: 'Trilhas de flecha'
+
+Estatisticas:
+  abates: 'Abates'
+  eliminacoes: 'Eliminacoes'
+  vitorias: 'Vitorias'
+  derrotas: 'Derrotas'
+  partidas: 'Partidas'
+  pontos: 'Pontos marcados'
+  assistencias: 'Assistencias'
+  mortes: 'Mortes'
+  winstreak: 'Winstreak'
+  maior_winstreak: 'Maior winstreak'
+  pontos_ranqueado: 'Pontos ranqueados'
+  flechas_atiradas: 'Flechas atiradas'
+  flechas_acertadas: 'Flechas acertadas'
+  blocos_colocados: 'Blocos colocados'
+  tempo_jogado: 'Tempo jogado'
+
+Partida:
+  Entrou: '&a{jogador} &7entrou na partida &8({jogadores}/{maximo})&7.'
+  Saiu: '&c{jogador} &7saiu da partida &8({jogadores}/{maximo})&7.'
+  Desistiu: '&c{jogador} &7desistiu da partida.'
+  Desconectou: '&c{jogador} &7caiu. Ele tem um tempo para voltar com &f/reconectar&7.'
+  Reconectou: '&a{jogador} &7voltou para a partida!'
+  Comecando: '&eA partida comeca em &f{tempo}s&e.'
+  Contagem cancelada: '&cContagem cancelada: faltam jogadores.'
+  Inicio: |
+
+     &6&lTHE BRIDGE &7- &f{modo}
+     &7Arena: &f{arena}
+
+     &7Atravesse a ponte e pule no &6gol &7do adversario para marcar.
+     &7Cair no vazio te leva de volta a jaula.
+
+  Ponto marcado: |
+
+     &6&lPONTO MARCADO
+     &f{jogador} &7marcou para o time {time}&7! &8({pontos}/{meta})
+
+  Ponto de ouro: '&6&lPONTO DE OURO! &eEmpate no tempo: o proximo ponto vence. Mais &f{tempo}s&e.'
+  Morto: '&f{jogador} &7foi morto por &f{assassino}&7.'
+  Eliminado: '&f{jogador} &7foi derrubado no vazio por &f{assassino}&7.'
+  Caiu: '&f{jogador} &7caiu no vazio.'
+  Morreu: '&f{jogador} &7morreu.'
+  Assistencia: '&aAssistencia! &7Voce ajudou a derrubar &f{jogador}&7.'
+  Headshot: '&e&lHEADSHOT!'
+  Venceu: |
+
+     &6&lVITORIA
+     &f{jogador} &7venceu a partida!
+
+  Time venceu: |
+
+     &6&lVITORIA
+     &7O time {time} &7venceu a partida!
+
+  Empate: |
+
+     &e&lEMPATE
+     &7A partida terminou empatada.
+
+  Sequencia premiada: '&6Sequencia de &f{sequencia} &6vitorias! &7Voce ganhou uma recompensa.'
+  Ja esta em partida: '&cVoce ja esta em uma partida.'
+  Nao esta em partida: '&cVoce nao esta em nenhuma partida.'
+  Nenhuma partida: '&cNenhuma partida disponivel agora. Tente de novo em instantes.'
+  Encontrada: '&aPartida encontrada! &7Arena: &f{arena}'
+  Modo invalido: '&cModo invalido. Disponiveis: 1v1, 2v2, 3v3, 4v4 e ranqueado.'
+  Ranqueado bloqueado: '&cVoce precisa de &f{vitorias} &cvitorias para jogar o ranqueado.'
+  Assistir nao comecou: '&cEssa partida ainda nao comecou.'
+  Assistindo: '&7Voce esta assistindo a arena &f{arena}&7. Use &f/lobby &7para sair.'
+  Jogador nao esta jogando: '&c{jogador} nao esta em nenhuma partida.'
+  Teleportado: '&7Teleportado ate &f{jogador}&7.'
+  Nada para reconectar: '&cVoce nao tem nenhuma partida para voltar.'
+  Comando bloqueado: '&cVoce nao pode usar esse comando durante a partida.'
+  Nao pode construir: '&cVoce nao pode construir aqui.'
+  Confirmar saida: '&eUse &f/lobby &enovamente para confirmar a saida da partida.'
+  No lobby: '&7Voce voltou ao lobby.'
+  Voltando ao lobby: '&7Voltando ao lobby...'
+  Time escolhido: '&7Voce entrou no time {time}&7.'
+  Time cheio: '&cEsse time esta cheio.'
+  Linha do membro: '&7- &f{jogador}'
+
+Titulos:
+  Contagem: '&e{tempo}<nl>&7Prepare-se!'
+  Inicio: '&6&lTHE BRIDGE<nl>&7Boa sorte!'
+  Jaula: '&e{tempo}<nl>&7As jaulas abrem em breve'
+  Jaula aberta: '&a&lVAI!<nl>&7As jaulas abriram'
+  Ponto marcado: '&6&lPONTO MARCADO<nl>&fVoce marcou um ponto!'
+  Ponto do time: '&6&lPONTO MARCADO<nl>&f{jogador} &7marcou para o seu time'
+  Ponto sofrido: '&c&lPONTO SOFRIDO<nl>&f{jogador} &7marcou contra voce'
+  Morreu: '&c&lVOCE MORREU<nl>&7renascendo em {tempo}s'
+  Morreu por: '&c&lVOCE MORREU<nl>&7por {assassino} &8- &7renascendo em {tempo}s'
+  Renasceu: '&a&lRENASCEU<nl>&7protegido por alguns segundos'
+  Vitoria: '&6&lVITORIA<nl>&7voce venceu a partida'
+  Derrota: '&c&lDERROTA<nl>&7o time {time} &7venceu'
+  Empate: '&e&lEMPATE<nl>&7ninguem venceu'
+  Ponto de ouro: '&6&lPONTO DE OURO<nl>&7o proximo ponto vence'
+  Nivel: '&a&lNIVEL {nivel}<nl>&7voce subiu de nivel'
+  Liga: '&b&lNOVA LIGA<nl>{tag}'
+
+Actionbar:
+  Coins: '&6+{coins} coins'
+  Xp: '&b+{xp} xp'
+  Headshot: '&e&lHEADSHOT'
+
+Placar:
+  Contagem: '&eIniciando em &f{tempo}s'
+  Aguardando: '&7Aguardando jogadores...'
+  Ponto de ouro: '&6Ponto de ouro'
+
+Recompensas:
+  Resumo: |
+
+     &6&lRECOMPENSAS &7- {resultado}
+     &6+{coins} &7coins{bonus}{booster}
+     &b+{xp} &7xp
+     &7Abates: &f{abates} &8| &7Pontos: &f{pontos} &8| &7Assistencias: &f{assistencias}
+     {ranqueado}
+
+  Vitoria: '&aVitoria'
+  Derrota: '&cDerrota'
+  Com bonus: ' &8(+{bonus}% de bonus)'
+  Com booster: ' &8(booster {booster}x)'
+  Ranqueado ganho: '&a+{pontos} &7pontos ranqueados'
+  Ranqueado perdido: '&c-{pontos} &7pontos ranqueados'
+  Lista:
+    Coins: '&6{valor} coins'
+    Cash: '&b{valor} cash'
+    Xp: '&b{valor} xp'
+    Fragmentos: '&d{valor} fragmentos'
+    Caixa: '&e{valor}x {caixa}'
+    Booster: '&aBooster {valor}x por {duracao}'
+    Comando: '&7Recompensa especial'
+
+Nivel:
+  Subiu: '&aVoce subiu para o nivel &f{nivel} {nivel_nome}&a!'
+
+Liga:
+  Subiu: '&bVoce subiu para a liga {tag}&b!'
+  Desceu: '&cVoce caiu para a liga {tag}&c.'
+
+Booster:
+  Ativado: '&aBooster de &f{multiplicador}x &aativado por &f{duracao}&a!'
+  Ja ativo: '&cVoce ja tem um booster ativo.'
+  Recebeu: '&aVoce recebeu um booster de &f{multiplicador}x &apor &f{duracao}&a. Ative no menu de boosters.'
+  Global ativado: '&6&lBOOSTER GLOBAL &e{jogador} ativou um booster de &f{multiplicador}x &epor &f{duracao} &epara todos!'
+  Ativo curto: '&a{multiplicador}x &7({tempo})'
+  Global curto: '&6Global {multiplicador}x &7({tempo})'
+  Nenhum: '&7Nenhum'
+
+Cosmeticos:
+  Selecionado: '&aVoce selecionou &f{nome}&a.'
+  Comprado: '&aVoce comprou &f{nome} &apor &f{preco}&a!'
+  Limpo: '&7Voce removeu a selecao de {tipo}.'
+  So em caixas: '&cEsse item so pode ser encontrado nas caixas misteriosas.'
+  Na loja: '&7Disponivel na loja'
+  Nao existe: '&cO cosmetico &f{id} &cnao existe.'
+  Recebeu: '&aVoce recebeu o cosmetico &f{nome}&a!'
+
+Habilidades:
+  Selecionada: '&aHabilidade &f{nome} &aselecionada para o modo &f{modo}&a.'
+  Comprada: '&aVoce comprou a habilidade &f{nome} &ado modo &f{modo}&a!'
+  Evoluida: '&aHabilidade &f{nome} &a({modo}) evoluida para o nivel &f{nivel}&a!'
+  Limpa: '&7Voce removeu a habilidade selecionada.'
+  Nivel maximo: 'Maximo'
+  Nivel maximo aviso: '&cEssa habilidade ja esta no nivel maximo.'
+
+Loja:
+  Sem coins: '&cVoce nao tem coins suficientes.'
+  Sem cash: '&cVoce nao tem cash suficiente.'
+  Falha na cobranca: '&cNao foi possivel cobrar. Tente novamente.'
+
+Caixas:
+  Recebeu: '&aVoce recebeu &f{quantidade}x {caixa}&a! Abra com &f/tb caixas&a.'
+  Ganhou: '&aVoce ganhou &f{item} &8({raridade}&8) &ade {tipo}!'
+  Repetido: '&eVoce ja tinha &f{item} &8({raridade}&8)&e: recebeu &d{fragmentos} fragmentos&e.'
+  Anuncio lendario: '&6&lLENDARIO! &e{jogador} &7tirou &f{item} &7de uma caixa misteriosa!'
+  Fabricou: '&aVoce fabricou &f{quantidade} &acaixa(s) por &d{fragmentos} fragmentos&a.'
+  Sem fragmentos: '&cVoce precisa de &d{fragmentos} fragmentos &cpara isso.'
+  Tudo repetido: '&eVoce ja tem tudo dessa caixa: ela vai virar fragmentos.'
+  Vazia: '&cEssa caixa nao tem nada cadastrado para dar.'
+  Nao existe: '&cA caixa &f{caixa} &cnao existe.'
+  Linha da recompensa: '&8- &f{recompensa}'
+  Sem recompensas: '&8- &7Nenhuma ainda'
+  Tem novidade: '&aAinda ha itens novos aqui'
+  Sem novidade: '&eVoce ja tem tudo daqui'
+
+Missoes:
+  Concluida: |
+
+     &e&lMISSAO CONCLUIDA
+     &7Voce completou &f{missao}&7 e recebeu as recompensas.
+
+  Diaria concluida: |
+
+     &e&lDESAFIO DIARIO CONCLUIDO
+     &7Voce completou &f{missao}&7 e recebeu as recompensas.
+
+  Linha da recompensa: '&8- {recompensa}'
+
+Mapas:
+  Pode jogar: '&aClique para jogar aqui'
+  Limite atingido: '&cLimite diario de selecoes atingido'
+  Limite atingido aviso: '&cVoce ja usou suas &f{limite} &cselecoes de mapa de hoje.'
+  Sem salas: '&cSem salas livres agora'
+  Cor livre: '&a'
+  Cor cheia: '&c'
+  Infinito: '∞'
+  Favoritado: '&eVoce marcou &f{arena} &ecomo favorita.'
+  Desfavoritado: '&7Voce tirou &f{arena} &7das favoritas.'
+  Sem favoritos livres: '&cNenhuma arena favorita com sala livre agora.'
+
+Historico:
+  Vitoria: '&aVitoria'
+  Derrota: '&cDerrota'
+  Empate: '&eEmpate'
+  Linha do jogador: '&8- &f{jogador} &7({time}) &8| &7abates: &f{abates} &7pontos: &f{pontos}'
+
+Layout:
+  Salvo: '&aLayout salvo.'
+  Restaurado: '&aLayout restaurado para o padrao.'
+  Nada: '&7nada'
+  Slot vazio: '&7Slot vazio'
+  Lore item:
+    - '&7Clique para pegar este item'
+    - '&7e depois no lugar onde ele deve ficar.'
+  Lore segurando:
+    - '&eSegurando este item.'
+    - '&7Clique no slot de destino.'
+  Item:
+    espada: '&fEspada'
+    arco: '&fArco'
+    picareta: '&fPicareta'
+    blocos: '&fBlocos'
+    blocos2: '&fBlocos (2a pilha)'
+    macas: '&fMacas douradas'
+    flechas: '&fFlecha'
+
+Chat:
+  Ativado: '&aChat da partida ativado.'
+  Desativado: '&cChat da partida desativado.'
+
+Grupo:
+  Desativado: '&cOs grupos estao desativados.'
+  Uso: '&cUso: /grupo <criar|convidar|aceitar|negar|sair|expulsar|lider|lista|desfazer> [jogador]'
+  Criado: '&aGrupo criado! Convide alguem com &f/grupo convidar <jogador>&a.'
+  Ja esta: '&cVoce ja esta em um grupo.'
+  Nao esta: '&cVoce nao esta em nenhum grupo.'
+  So o lider: '&cSo o lider do grupo pode fazer isso.'
+  Convidar a si: '&cVoce nao pode convidar a si mesmo.'
+  Ja e membro: '&c{jogador} ja esta no seu grupo.'
+  Jogador ja tem grupo: '&c{jogador} ja esta em outro grupo.'
+  Cheio: '&cO grupo esta cheio.'
+  Convite pendente: '&c{jogador} ja tem um convite pendente.'
+  Convite enviado: '&aConvite enviado para &f{jogador}&a.'
+  Convite recebido: |
+
+     &e&lGRUPO
+     &f{jogador} &7convidou voce para o grupo dele.
+     &7Use &a/grupo aceitar {jogador} &7ou &c/grupo negar {jogador}&7.
+
+  Convite negado: '&7Voce recusou o convite de &f{jogador}&7.'
+  Jogador recusou: '&c{jogador} recusou o seu convite.'
+  Sem convites: '&cVoce nao tem convites pendentes.'
+  Entrou: '&a{jogador} &7entrou no grupo.'
+  Saiu: '&7Voce saiu do grupo.'
+  Membro saiu: '&c{jogador} &7saiu do grupo.'
+  Expulso: '&cVoce foi expulso do grupo por &f{jogador}&c.'
+  Membro nao encontrado: '&cEsse jogador nao esta no seu grupo.'
+  Novo lider: '&e{jogador} &7agora e o lider do grupo.'
+  Desfeito: '&cO grupo de &f{jogador} &cfoi desfeito.'
+  Membro ocupado: '&c{jogador} esta em uma partida e o grupo nao pode entrar agora.'
+  Digite o nick: '&eDigite no chat o nick de quem voce quer convidar.'
+  Lista: '&7Grupo de &f{lider} &8({membros}/{maximo})&7:'
+  Linha do lider: '&8- &e{jogador} &7(lider)'
+  Linha do membro: '&8- &f{jogador}'
+
+Ajuda:
+  Jogador: |
+
+     &6&lTHE BRIDGE &7- comandos
+     &e/tb jogar <modo> &8- &7entra numa partida
+     &e/tb loja &8- &7cosmeticos e habilidades
+     &e/tb estatisticas &8- &7suas estatisticas
+     &e/tb missoes &8- &7missoes e desafios diarios
+     &e/tb caixas &8- &7caixas misteriosas
+     &e/tb layout &8- &7editor de layout do kit
+     &e/tb boosters &8- &7seus boosters
+     &e/tb top &8- &7os melhores jogadores
+     &e/grupo &8- &7jogue com amigos
+     &e/lobby &8- &7sai da partida
+     &e/reconectar &8- &7volta para a partida
+
+  Admin: |
+     &c&lADMIN
+     &e/tb criar <arena> <modo> [mundo] &8- &7cria uma arena
+     &e/tb varinha &8- &7marca os cantos (esq = pos1, dir = pos2)
+     &e/tb setar <arena> <lobby|espectador|spawn <time>|gol <time>|area|limites|ymin|pontos|duracao|minimo|icone|nome|modo|time>
+     &e/tb info <arena> &8- &7o que ainda falta
+     &e/tb ativar|desativar|remover|tp|iniciar|finalizar <arena>
+     &e/tb arenas &8- &7lista as arenas
+     &e/tb setlobby &8- &7lobby principal
+     &e/tb npc add <id> <modo|estatisticas> &8| &e/tb npc remover <id>
+     &e/tb tops add <id> <modo> <total|mensal> <estatisticas,...> &8| &e/tb tops remover <id>
+     &e/tb caixa dar <jogador> <caixa> [qtd] &8| &e/tb caixa local
+     &e/tb fragmentos|xp dar|remover|definir <jogador> <valor>
+     &e/tb booster dar <jogador> <mult> [duracao] &8| &e/tb booster global <mult> <duracao>
+     &e/tb cosmetico dar|remover|todos <jogador> <tipo> [id]
+     &e/tb habilidade dar|remover <jogador> <modo> <id> [nivel]
+     &e/tb estatistica definir|somar <jogador> <estatistica> <valor> [modo]
+     &e/tb reload
+
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Uso criar: '&cUso: /tb criar <arena> <modo> [mundo]'
+  Uso setar: '&cUso: /tb setar <arena> <lobby|espectador|spawn <time>|gol <time>|area|limites|ymin [y]|pontos <n>|duracao <s>|minimo <n>|icone <material>|nome <texto>|modo <modo>|mundo <nome>|time add <id> [&cor] [TINTA] [tag]|time remover <id>>'
+  Uso time: '&cUso: /tb setar <arena> time add <id> [&cor] [TINTA] [tag] | time remover <id>'
+  Uso npc: '&cUso: /tb npc add <id> <modo|estatisticas> | /tb npc remover <id>'
+  Uso top: '&cUso: /tb tops add <id> <modo|geral> <total|mensal> <estatistica,estatistica> | /tb tops remover <id>'
+  Uso dar: '&cUso: /tb <caixa|fragmentos|xp|booster|cosmetico|habilidade|estatistica> <acao> <jogador> <valores...>'
+  Uso cosmetico: '&cUso: /tb cosmetico <dar|remover|todos> <jogador> <tipo> [id]'
+  Uso habilidade: '&cUso: /tb habilidade <dar|remover> <jogador> <modo> <id> [nivel]'
+  Uso estatistica: '&cUso: /tb estatistica <definir|somar> <jogador> <estatistica> <valor> [modo]'
+  Informe a arena: '&cInforme a arena.'
+  Arena ja existe: '&cA arena &f{arena} &cja existe.'
+  Arena nao existe: '&cA arena &f{arena} &cnao existe.'
+  Arena criada: '&aArena &f{arena} &acriada no modo &f{modo}&a. Agora marque os locais com &f/tb setar&a.'
+  Arena removida: '&aArena &f{arena} &aremovida.'
+  Arena ativada: '&aArena &f{arena} &aativada e aberta para partidas.'
+  Arena desativada: '&eArena &f{arena} &edesativada.'
+  Arena completa: '&aA arena esta completa. Use &f/tb ativar <arena> &apara abrir.'
+  Info da arena: |
+
+     &6&lARENA {arena}
+     &7Modo: &f{modo} &8| &7Mundo: &f{mundo} &8| &7Times: &f{times} &8| &7Ativa: {ativa}
+     &7Pontos para vencer: &f{pontos} &8| &7Duracao: &f{duracao}s &8| &7Minimo: &f{minimo}
+
+  Linha de pendencia: ' &c✘ &7Falta: &f{pendencia}'
+  Lista de arenas: '&7Arenas cadastradas &8({quantidade})&7:'
+  Linha da arena: '&8- &f{arena} &7({modo}) &8| &7{estado} &8| &7{jogadores} jogando'
+  Incompleta: '&cincompleta'
+  Desativada: '&7desativada'
+  Mundo nao existe: '&cO mundo &f{mundo} &cnao esta carregado.'
+  Time nao existe: '&cEsse time nao existe nessa arena.'
+  Marque as posicoes: '&cMarque as duas posicoes com a varinha primeiro (/tb varinha).'
+  Parte definida: '&a{parte} &7definido(a) na arena &f{arena}&7.'
+  Posicao marcada: '&aPosicao {posicao} &7marcada em &f{x}, {y}, {z}&7.'
+  Varinha dada: '&aVarinha recebida: botao esquerdo marca a posicao 1, direito a posicao 2.'
+  Varinha nome: '&6Varinha do TheBridge'
+  Varinha lore:
+    - '&7Esquerdo: posicao 1'
+    - '&7Direito: posicao 2'
+  Lobby definido: '&aLobby principal definido.'
+  Lobby nao definido: '&cO lobby ainda nao foi definido (/tb setlobby).'
+  Nao pode iniciar: '&cEssa partida nao pode ser iniciada agora (precisa de 2 jogadores esperando).'
+  Partida iniciada: '&aPartida da arena &f{arena} &ainiciada.'
+  Nao esta em jogo: '&cEssa arena nao esta em jogo.'
+  Npc criado: '&aNPC &f{id} &acriado aqui.'
+  Npc removido: '&aNPC removido.'
+  Npc nao existe: '&cEsse NPC nao existe.'
+  Top criado: '&aTop &f{id} &acriado aqui.'
+  Top removido: '&aTop removido.'
+  Top nao existe: '&cEsse top nao existe.'
+  Estatistica invalida: '&cNenhuma estatistica valida informada.'
+  Olhe para o bloco: '&cOlhe para o bloco que sera a caixa misteriosa.'
+  Caixa fisica criada: '&aEsse bloco agora abre as caixas misteriosas.'
+  Caixa fisica removida: '&eEsse bloco deixou de ser uma caixa misteriosa.'
+  Feito: '&aFeito para &f{jogador}&a.'

@@ -1,0 +1,1444 @@
+# ==========================================================================
+#  StarTheBridge - missoes e desafios diarios
+#
+#  O progresso de uma missao E a estatistica dela (Tipo) no Modo e Periodo
+#  escolhidos: nao ha nada para zerar. Periodo TOTAL conclui uma vez; MENSAL
+#  volta todo mes. Modo: 1v1, 2v2, 3v3, 4v4, ranqueado ou geral (todos).
+#  Tipos: abates, eliminacoes, vitorias, derrotas, partidas, pontos,
+#  assistencias, mortes, winstreak, maior_winstreak, pontos_ranqueado,
+#  flechas_atiradas, flechas_acertadas, blocos_colocados, tempo_jogado (s).
+#  Recompensas: 'coins: 100' 'cash: 5' 'xp: 50' 'fragmentos: 10'
+#  'caixa: <id> <qtd>' 'booster: <mult> <duracao>' 'comando: <cmd {jogador}>'
+#  Diarias: todo dia cada jogador recebe Quantidade desafios sorteados dos
+#  Modelos, contando so o que ele fizer naquele dia.
+# ==========================================================================
+
+Missoes:
+  vencedor_1v1_1:
+    Nome: 'Vencedor I [1v1]'
+    Modo: 1v1
+    Tipo: vitorias
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  vencedor_1v1_2:
+    Nome: 'Vencedor II [1v1]'
+    Modo: 1v1
+    Tipo: vitorias
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  vencedor_1v1_3:
+    Nome: 'Vencedor III [1v1]'
+    Modo: 1v1
+    Tipo: vitorias
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_1v1_4:
+    Nome: 'Vencedor IV [1v1]'
+    Modo: 1v1
+    Tipo: vitorias
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_1v1_5:
+    Nome: 'Vencedor V [1v1]'
+    Modo: 1v1
+    Tipo: vitorias
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  cacador_1v1_1:
+    Nome: 'Cacador I [1v1]'
+    Modo: 1v1
+    Tipo: abates
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  cacador_1v1_2:
+    Nome: 'Cacador II [1v1]'
+    Modo: 1v1
+    Tipo: abates
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  cacador_1v1_3:
+    Nome: 'Cacador III [1v1]'
+    Modo: 1v1
+    Tipo: abates
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_1v1_4:
+    Nome: 'Cacador IV [1v1]'
+    Modo: 1v1
+    Tipo: abates
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_1v1_5:
+    Nome: 'Cacador V [1v1]'
+    Modo: 1v1
+    Tipo: abates
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  artilheiro_1v1_1:
+    Nome: 'Artilheiro I [1v1]'
+    Modo: 1v1
+    Tipo: pontos
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 500'
+  artilheiro_1v1_2:
+    Nome: 'Artilheiro II [1v1]'
+    Modo: 1v1
+    Tipo: pontos
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 2000'
+  artilheiro_1v1_3:
+    Nome: 'Artilheiro III [1v1]'
+    Modo: 1v1
+    Tipo: pontos
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 6000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_1v1_4:
+    Nome: 'Artilheiro IV [1v1]'
+    Modo: 1v1
+    Tipo: pontos
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 15000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_1v1_5:
+    Nome: 'Artilheiro V [1v1]'
+    Modo: 1v1
+    Tipo: pontos
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 40000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  veterano_1v1_1:
+    Nome: 'Veterano I [1v1]'
+    Modo: 1v1
+    Tipo: partidas
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 10'
+  veterano_1v1_2:
+    Nome: 'Veterano II [1v1]'
+    Modo: 1v1
+    Tipo: partidas
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 25'
+  veterano_1v1_3:
+    Nome: 'Veterano III [1v1]'
+    Modo: 1v1
+    Tipo: partidas
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 50'
+      - 'caixa: thebridge_blocos 1'
+  veterano_1v1_4:
+    Nome: 'Veterano IV [1v1]'
+    Modo: 1v1
+    Tipo: partidas
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 100'
+      - 'caixa: thebridge_blocos 1'
+  veterano_1v1_5:
+    Nome: 'Veterano V [1v1]'
+    Modo: 1v1
+    Tipo: partidas
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 250'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  vencedor_2v2_1:
+    Nome: 'Vencedor I [2v2]'
+    Modo: 2v2
+    Tipo: vitorias
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  vencedor_2v2_2:
+    Nome: 'Vencedor II [2v2]'
+    Modo: 2v2
+    Tipo: vitorias
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  vencedor_2v2_3:
+    Nome: 'Vencedor III [2v2]'
+    Modo: 2v2
+    Tipo: vitorias
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_2v2_4:
+    Nome: 'Vencedor IV [2v2]'
+    Modo: 2v2
+    Tipo: vitorias
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_2v2_5:
+    Nome: 'Vencedor V [2v2]'
+    Modo: 2v2
+    Tipo: vitorias
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  cacador_2v2_1:
+    Nome: 'Cacador I [2v2]'
+    Modo: 2v2
+    Tipo: abates
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  cacador_2v2_2:
+    Nome: 'Cacador II [2v2]'
+    Modo: 2v2
+    Tipo: abates
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  cacador_2v2_3:
+    Nome: 'Cacador III [2v2]'
+    Modo: 2v2
+    Tipo: abates
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_2v2_4:
+    Nome: 'Cacador IV [2v2]'
+    Modo: 2v2
+    Tipo: abates
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_2v2_5:
+    Nome: 'Cacador V [2v2]'
+    Modo: 2v2
+    Tipo: abates
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  artilheiro_2v2_1:
+    Nome: 'Artilheiro I [2v2]'
+    Modo: 2v2
+    Tipo: pontos
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 500'
+  artilheiro_2v2_2:
+    Nome: 'Artilheiro II [2v2]'
+    Modo: 2v2
+    Tipo: pontos
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 2000'
+  artilheiro_2v2_3:
+    Nome: 'Artilheiro III [2v2]'
+    Modo: 2v2
+    Tipo: pontos
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 6000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_2v2_4:
+    Nome: 'Artilheiro IV [2v2]'
+    Modo: 2v2
+    Tipo: pontos
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 15000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_2v2_5:
+    Nome: 'Artilheiro V [2v2]'
+    Modo: 2v2
+    Tipo: pontos
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 40000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  veterano_2v2_1:
+    Nome: 'Veterano I [2v2]'
+    Modo: 2v2
+    Tipo: partidas
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 10'
+  veterano_2v2_2:
+    Nome: 'Veterano II [2v2]'
+    Modo: 2v2
+    Tipo: partidas
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 25'
+  veterano_2v2_3:
+    Nome: 'Veterano III [2v2]'
+    Modo: 2v2
+    Tipo: partidas
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 50'
+      - 'caixa: thebridge_blocos 1'
+  veterano_2v2_4:
+    Nome: 'Veterano IV [2v2]'
+    Modo: 2v2
+    Tipo: partidas
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 100'
+      - 'caixa: thebridge_blocos 1'
+  veterano_2v2_5:
+    Nome: 'Veterano V [2v2]'
+    Modo: 2v2
+    Tipo: partidas
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 250'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  vencedor_3v3_1:
+    Nome: 'Vencedor I [3v3]'
+    Modo: 3v3
+    Tipo: vitorias
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  vencedor_3v3_2:
+    Nome: 'Vencedor II [3v3]'
+    Modo: 3v3
+    Tipo: vitorias
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  vencedor_3v3_3:
+    Nome: 'Vencedor III [3v3]'
+    Modo: 3v3
+    Tipo: vitorias
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_3v3_4:
+    Nome: 'Vencedor IV [3v3]'
+    Modo: 3v3
+    Tipo: vitorias
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_3v3_5:
+    Nome: 'Vencedor V [3v3]'
+    Modo: 3v3
+    Tipo: vitorias
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  cacador_3v3_1:
+    Nome: 'Cacador I [3v3]'
+    Modo: 3v3
+    Tipo: abates
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  cacador_3v3_2:
+    Nome: 'Cacador II [3v3]'
+    Modo: 3v3
+    Tipo: abates
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  cacador_3v3_3:
+    Nome: 'Cacador III [3v3]'
+    Modo: 3v3
+    Tipo: abates
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_3v3_4:
+    Nome: 'Cacador IV [3v3]'
+    Modo: 3v3
+    Tipo: abates
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_3v3_5:
+    Nome: 'Cacador V [3v3]'
+    Modo: 3v3
+    Tipo: abates
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  artilheiro_3v3_1:
+    Nome: 'Artilheiro I [3v3]'
+    Modo: 3v3
+    Tipo: pontos
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 500'
+  artilheiro_3v3_2:
+    Nome: 'Artilheiro II [3v3]'
+    Modo: 3v3
+    Tipo: pontos
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 2000'
+  artilheiro_3v3_3:
+    Nome: 'Artilheiro III [3v3]'
+    Modo: 3v3
+    Tipo: pontos
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 6000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_3v3_4:
+    Nome: 'Artilheiro IV [3v3]'
+    Modo: 3v3
+    Tipo: pontos
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 15000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_3v3_5:
+    Nome: 'Artilheiro V [3v3]'
+    Modo: 3v3
+    Tipo: pontos
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 40000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  veterano_3v3_1:
+    Nome: 'Veterano I [3v3]'
+    Modo: 3v3
+    Tipo: partidas
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 10'
+  veterano_3v3_2:
+    Nome: 'Veterano II [3v3]'
+    Modo: 3v3
+    Tipo: partidas
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 25'
+  veterano_3v3_3:
+    Nome: 'Veterano III [3v3]'
+    Modo: 3v3
+    Tipo: partidas
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 50'
+      - 'caixa: thebridge_blocos 1'
+  veterano_3v3_4:
+    Nome: 'Veterano IV [3v3]'
+    Modo: 3v3
+    Tipo: partidas
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 100'
+      - 'caixa: thebridge_blocos 1'
+  veterano_3v3_5:
+    Nome: 'Veterano V [3v3]'
+    Modo: 3v3
+    Tipo: partidas
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 250'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  vencedor_4v4_1:
+    Nome: 'Vencedor I [4v4]'
+    Modo: 4v4
+    Tipo: vitorias
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  vencedor_4v4_2:
+    Nome: 'Vencedor II [4v4]'
+    Modo: 4v4
+    Tipo: vitorias
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  vencedor_4v4_3:
+    Nome: 'Vencedor III [4v4]'
+    Modo: 4v4
+    Tipo: vitorias
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_4v4_4:
+    Nome: 'Vencedor IV [4v4]'
+    Modo: 4v4
+    Tipo: vitorias
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_4v4_5:
+    Nome: 'Vencedor V [4v4]'
+    Modo: 4v4
+    Tipo: vitorias
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  cacador_4v4_1:
+    Nome: 'Cacador I [4v4]'
+    Modo: 4v4
+    Tipo: abates
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  cacador_4v4_2:
+    Nome: 'Cacador II [4v4]'
+    Modo: 4v4
+    Tipo: abates
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  cacador_4v4_3:
+    Nome: 'Cacador III [4v4]'
+    Modo: 4v4
+    Tipo: abates
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_4v4_4:
+    Nome: 'Cacador IV [4v4]'
+    Modo: 4v4
+    Tipo: abates
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_4v4_5:
+    Nome: 'Cacador V [4v4]'
+    Modo: 4v4
+    Tipo: abates
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  artilheiro_4v4_1:
+    Nome: 'Artilheiro I [4v4]'
+    Modo: 4v4
+    Tipo: pontos
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 500'
+  artilheiro_4v4_2:
+    Nome: 'Artilheiro II [4v4]'
+    Modo: 4v4
+    Tipo: pontos
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 2000'
+  artilheiro_4v4_3:
+    Nome: 'Artilheiro III [4v4]'
+    Modo: 4v4
+    Tipo: pontos
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 6000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_4v4_4:
+    Nome: 'Artilheiro IV [4v4]'
+    Modo: 4v4
+    Tipo: pontos
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 15000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_4v4_5:
+    Nome: 'Artilheiro V [4v4]'
+    Modo: 4v4
+    Tipo: pontos
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 40000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  veterano_4v4_1:
+    Nome: 'Veterano I [4v4]'
+    Modo: 4v4
+    Tipo: partidas
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 10'
+  veterano_4v4_2:
+    Nome: 'Veterano II [4v4]'
+    Modo: 4v4
+    Tipo: partidas
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 25'
+  veterano_4v4_3:
+    Nome: 'Veterano III [4v4]'
+    Modo: 4v4
+    Tipo: partidas
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 50'
+      - 'caixa: thebridge_blocos 1'
+  veterano_4v4_4:
+    Nome: 'Veterano IV [4v4]'
+    Modo: 4v4
+    Tipo: partidas
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 100'
+      - 'caixa: thebridge_blocos 1'
+  veterano_4v4_5:
+    Nome: 'Veterano V [4v4]'
+    Modo: 4v4
+    Tipo: partidas
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 250'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  vencedor_ranqueado_1:
+    Nome: 'Vencedor I [Ranqueado]'
+    Modo: ranqueado
+    Tipo: vitorias
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  vencedor_ranqueado_2:
+    Nome: 'Vencedor II [Ranqueado]'
+    Modo: ranqueado
+    Tipo: vitorias
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  vencedor_ranqueado_3:
+    Nome: 'Vencedor III [Ranqueado]'
+    Modo: ranqueado
+    Tipo: vitorias
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_ranqueado_4:
+    Nome: 'Vencedor IV [Ranqueado]'
+    Modo: ranqueado
+    Tipo: vitorias
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  vencedor_ranqueado_5:
+    Nome: 'Vencedor V [Ranqueado]'
+    Modo: ranqueado
+    Tipo: vitorias
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  cacador_ranqueado_1:
+    Nome: 'Cacador I [Ranqueado]'
+    Modo: ranqueado
+    Tipo: abates
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 500'
+  cacador_ranqueado_2:
+    Nome: 'Cacador II [Ranqueado]'
+    Modo: ranqueado
+    Tipo: abates
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 2500'
+  cacador_ranqueado_3:
+    Nome: 'Cacador III [Ranqueado]'
+    Modo: ranqueado
+    Tipo: abates
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_ranqueado_4:
+    Nome: 'Cacador IV [Ranqueado]'
+    Modo: ranqueado
+    Tipo: abates
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'caixa: thebridge_blocos 1'
+  cacador_ranqueado_5:
+    Nome: 'Cacador V [Ranqueado]'
+    Modo: ranqueado
+    Tipo: abates
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes no {modo}.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  artilheiro_ranqueado_1:
+    Nome: 'Artilheiro I [Ranqueado]'
+    Modo: ranqueado
+    Tipo: pontos
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 500'
+  artilheiro_ranqueado_2:
+    Nome: 'Artilheiro II [Ranqueado]'
+    Modo: ranqueado
+    Tipo: pontos
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 2000'
+  artilheiro_ranqueado_3:
+    Nome: 'Artilheiro III [Ranqueado]'
+    Modo: ranqueado
+    Tipo: pontos
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 6000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_ranqueado_4:
+    Nome: 'Artilheiro IV [Ranqueado]'
+    Modo: ranqueado
+    Tipo: pontos
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 15000'
+      - 'caixa: thebridge_blocos 1'
+  artilheiro_ranqueado_5:
+    Nome: 'Artilheiro V [Ranqueado]'
+    Modo: ranqueado
+    Tipo: pontos
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos no {modo}.'
+    Recompensas:
+      - 'xp: 40000'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  veterano_ranqueado_1:
+    Nome: 'Veterano I [Ranqueado]'
+    Modo: ranqueado
+    Tipo: partidas
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 10'
+  veterano_ranqueado_2:
+    Nome: 'Veterano II [Ranqueado]'
+    Modo: ranqueado
+    Tipo: partidas
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 25'
+  veterano_ranqueado_3:
+    Nome: 'Veterano III [Ranqueado]'
+    Modo: ranqueado
+    Tipo: partidas
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 50'
+      - 'caixa: thebridge_blocos 1'
+  veterano_ranqueado_4:
+    Nome: 'Veterano IV [Ranqueado]'
+    Modo: ranqueado
+    Tipo: partidas
+    Quantidade: 800
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 100'
+      - 'caixa: thebridge_blocos 1'
+  veterano_ranqueado_5:
+    Nome: 'Veterano V [Ranqueado]'
+    Modo: ranqueado
+    Tipo: partidas
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'fragmentos: 250'
+      - 'caixa: thebridge_blocos 1'
+      - 'caixa: thebridge_especiais 2'
+  arqueiro_1:
+    Nome: 'Arqueiro I'
+    Modo: geral
+    Tipo: flechas_acertadas
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'BOW'
+    Descricao:
+      - '&7Acerte {quantidade} flechas.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 1000'
+  arqueiro_2:
+    Nome: 'Arqueiro II'
+    Modo: geral
+    Tipo: flechas_acertadas
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'BOW'
+    Descricao:
+      - '&7Acerte {quantidade} flechas.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'caixa: thebridge_habilidades 1'
+  construtor_1:
+    Nome: 'Construtor I'
+    Modo: geral
+    Tipo: blocos_colocados
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'BRICKS'
+    Descricao:
+      - '&7Coloque {quantidade} blocos.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'caixa: thebridge_blocos 1'
+  construtor_2:
+    Nome: 'Construtor II'
+    Modo: geral
+    Tipo: blocos_colocados
+    Quantidade: 10000
+    Periodo: TOTAL
+    Icone: 'BRICKS'
+    Descricao:
+      - '&7Coloque {quantidade} blocos.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'caixa: thebridge_blocos 3'
+  imparavel:
+    Nome: 'Imparavel'
+    Modo: geral
+    Tipo: maior_winstreak
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'BLAZE_POWDER'
+    Descricao:
+      - '&7Alcance uma sequencia de {quantidade} vitorias.'
+    Recompensas:
+      - 'coins: 10000'
+      - 'caixa: thebridge_especiais 1'
+  lenda:
+    Nome: 'Lenda da ponte'
+    Modo: geral
+    Tipo: maior_winstreak
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Alcance uma sequencia de {quantidade} vitorias.'
+    Recompensas:
+      - 'coins: 50000'
+      - 'caixa: thebridge_especiais 3'
+      - 'booster: 2.0 1h'
+  dedicado:
+    Nome: 'Dedicado'
+    Modo: geral
+    Tipo: tempo_jogado
+    Quantidade: 36000
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue 10 horas de The Bridge.'
+    Recompensas:
+      - 'coins: 10000'
+      - 'fragmentos: 50'
+  ranqueado_1:
+    Nome: 'Competidor'
+    Modo: ranqueado
+    Tipo: pontos_ranqueado
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Alcance {quantidade} pontos ranqueados.'
+    Recompensas:
+      - 'caixa: thebridge_especiais 1'
+  ranqueado_2:
+    Nome: 'Elite'
+    Modo: ranqueado
+    Tipo: pontos_ranqueado
+    Quantidade: 6000
+    Periodo: TOTAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Alcance {quantidade} pontos ranqueados.'
+    Recompensas:
+      - 'caixa: thebridge_especiais 3'
+      - 'booster: 2.0 2h'
+  mensal_vitorias:
+    Nome: 'Vitorioso do mes'
+    Modo: geral
+    Tipo: vitorias
+    Quantidade: 50
+    Periodo: MENSAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas neste mes.'
+    Recompensas:
+      - 'coins: 10000'
+      - 'caixa: thebridge_especiais 1'
+  mensal_abates:
+    Nome: 'Cacador do mes'
+    Modo: geral
+    Tipo: abates
+    Quantidade: 200
+    Periodo: MENSAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Derrube {quantidade} oponentes neste mes.'
+    Recompensas:
+      - 'coins: 10000'
+      - 'caixa: thebridge_habilidades 1'
+  mensal_pontos:
+    Nome: 'Artilheiro do mes'
+    Modo: geral
+    Tipo: pontos
+    Quantidade: 100
+    Periodo: MENSAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Marque {quantidade} pontos neste mes.'
+    Recompensas:
+      - 'coins: 10000'
+      - 'caixa: thebridge_blocos 1'
+  mensal_partidas:
+    Nome: 'Presenca do mes'
+    Modo: geral
+    Tipo: partidas
+    Quantidade: 100
+    Periodo: MENSAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas neste mes.'
+    Recompensas:
+      - 'fragmentos: 40'
+      - 'booster: 1.5 30m'
+
+Diarias:
+  Quantidade: 3
+  Modelos:
+    d_vitorias:
+      Nome: 'Vencedor do dia'
+      Modo: geral
+      Tipo: vitorias
+      Quantidade: 3
+      Icone: 'GOLDEN_APPLE'
+      Descricao:
+        - '&7Venca {quantidade} partidas hoje.'
+      Recompensas:
+        - 'coins: 1500'
+        - 'xp: 500'
+    d_abates:
+      Nome: 'Cacador do dia'
+      Modo: geral
+      Tipo: abates
+      Quantidade: 10
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Derrube {quantidade} oponentes hoje.'
+      Recompensas:
+        - 'coins: 1500'
+        - 'xp: 500'
+    d_pontos:
+      Nome: 'Artilheiro do dia'
+      Modo: geral
+      Tipo: pontos
+      Quantidade: 5
+      Icone: 'ENDER_EYE'
+      Descricao:
+        - '&7Marque {quantidade} pontos hoje.'
+      Recompensas:
+        - 'coins: 1500'
+        - 'xp: 500'
+    d_partidas:
+      Nome: 'Presenca do dia'
+      Modo: geral
+      Tipo: partidas
+      Quantidade: 5
+      Icone: 'CLOCK'
+      Descricao:
+        - '&7Jogue {quantidade} partidas hoje.'
+      Recompensas:
+        - 'coins: 1000'
+        - 'fragmentos: 5'
+    d_flechas:
+      Nome: 'Pontaria do dia'
+      Modo: geral
+      Tipo: flechas_acertadas
+      Quantidade: 15
+      Icone: 'BOW'
+      Descricao:
+        - '&7Acerte {quantidade} flechas hoje.'
+      Recompensas:
+        - 'coins: 1500'
+        - 'xp: 500'
+    d_blocos:
+      Nome: 'Pedreiro do dia'
+      Modo: geral
+      Tipo: blocos_colocados
+      Quantidade: 200
+      Icone: 'BRICKS'
+      Descricao:
+        - '&7Coloque {quantidade} blocos hoje.'
+      Recompensas:
+        - 'coins: 1000'
+        - 'fragmentos: 5'
+    d_assistencias:
+      Nome: 'Parceiro do dia'
+      Modo: geral
+      Tipo: assistencias
+      Quantidade: 5
+      Icone: 'CAKE'
+      Descricao:
+        - '&7Faca {quantidade} assistencias hoje.'
+      Recompensas:
+        - 'coins: 1500'
+        - 'xp: 500'
+    d_ranqueado:
+      Nome: 'Competidor do dia'
+      Modo: ranqueado
+      Tipo: partidas
+      Quantidade: 3
+      Icone: 'NETHER_STAR'
+      Descricao:
+        - '&7Jogue {quantidade} partidas ranqueadas hoje.'
+      Recompensas:
+        - 'coins: 2000'
+        - 'fragmentos: 8'

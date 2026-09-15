@@ -1,0 +1,48 @@
+# ==========================================================================
+#  StarTheBridge - niveis
+#
+#  Xp: quanto custa sair daquele nivel. Uma chave pode ser um nivel (4) ou
+#  uma faixa (5-10); 'outros' vale para tudo que nao esta listado.
+#  Nome: como o nivel aparece ({nivel}).
+#  Recompensas ao subir: comandos de console ({jogador} {nivel}); 'Todos'
+#  roda em qualquer subida, o numero roda so naquele nivel.
+# ==========================================================================
+
+Niveis:
+  0:
+    Nome: '&7[{nivel}✩]'
+    Xp: 500
+  1-4:
+    Nome: '&7[{nivel}✩]'
+    Xp: 1000
+  5-9:
+    Nome: '&a[{nivel}✩]'
+    Xp: 2500
+  10-19:
+    Nome: '&e[{nivel}✩]'
+    Xp: 5000
+  20-29:
+    Nome: '&6[{nivel}✩]'
+    Xp: 7500
+  30-49:
+    Nome: '&c[{nivel}✩]'
+    Xp: 10000
+  50-99:
+    Nome: '&d[{nivel}✩]'
+    Xp: 15000
+  outros:
+    Nome: '&5[{nivel}✩]'
+    Xp: 20000
+
+Recompensas ao subir:
+  Todos:
+    - 'tb caixa dar {jogador} thebridge_blocos 1'
+  5:
+    - 'tb caixa dar {jogador} thebridge_habilidades 1'
+  10:
+    - 'tb caixa dar {jogador} thebridge_especiais 1'
+  25:
+    - 'tb caixa dar {jogador} thebridge_especiais 2'
+  50:
+    - 'tb caixa dar {jogador} thebridge_habilidades 2'
+    - 'tb caixa dar {jogador} thebridge_especiais 2'

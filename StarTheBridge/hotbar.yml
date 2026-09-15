@@ -1,0 +1,82 @@
+# ==========================================================================
+#  StarTheBridge - itens da barra
+#
+#  Lobby: dado ao entrar (quando 'Barra do lobby' esta ligada no config).
+#  Espera: na sala de espera. Espectador: assistindo ou no fim da partida.
+#  Slot de 0 a 8. Acao: menu:<nome> | jogar:<modo> | sair | jogar_novamente |
+#  comando:<cmd> | console:<cmd>. Permissao esconde o item de quem nao tem.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Lobby:
+  jogar:
+    Slot: 0
+    Material: IRON_SWORD
+    Nome: '&aJogar The Bridge'
+    Lore:
+      - '&7Escolha um modo e entre na fila.'
+    Acao: 'menu:modos'
+  loja:
+    Slot: 4
+    Material: EMERALD
+    Nome: '&aLoja'
+    Lore:
+      - '&7Cosmeticos, habilidades e caixas.'
+    Acao: 'menu:loja'
+  estatisticas:
+    Slot: 7
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '&aEstatisticas'
+    Lore:
+      - '&7Seus numeros e historico.'
+    Acao: 'menu:estatisticas'
+  grupo:
+    Slot: 8
+    Material: CAKE
+    Nome: '&aGrupo'
+    Lore:
+      - '&7Jogue com amigos.'
+    Acao: 'menu:grupo'
+
+Espera:
+  habilidades:
+    Slot: 0
+    Material: EXPERIENCE_BOTTLE
+    Nome: '&aHabilidades'
+    Lore:
+      - '&7Escolha a habilidade deste modo.'
+    Acao: 'menu:habilidades'
+  time:
+    Slot: 4
+    Material: WHITE_WOOL
+    Nome: '&aEscolher time'
+    Permissao: starthebridge.selecionar
+    Acao: 'menu:time'
+  sair:
+    Slot: 8
+    Material: RED_BED
+    Nome: '&cSair &7(voltar ao lobby)'
+    Acao: 'sair'
+
+Espectador:
+  jogar:
+    Slot: 2
+    Material: PAPER
+    Nome: '&bJogar novamente'
+    Lore:
+      - '&7Entra em outra partida do mesmo modo.'
+    Acao: 'jogar_novamente'
+  teleportar:
+    Slot: 4
+    Material: COMPASS
+    Nome: '&aTeleportar'
+    Lore:
+      - '&7Vai ate um jogador da partida.'
+    Acao: 'menu:assistir'
+  sair:
+    Slot: 6
+    Material: RED_BED
+    Nome: '&cSair &7(voltar ao lobby)'
+    Acao: 'sair'

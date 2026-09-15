@@ -1,0 +1,44 @@
+# ==========================================================================
+#  StarTheBridge - economias
+#
+#  'coins' e a moeda das recompensas de partida e das compras; 'cash' e a
+#  moeda premium (opcional: apague a secao se o servidor nao tiver).
+#
+#  Provedor:
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' e o id dela (vazio =
+#                  a principal)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro entra e sai por comando de console
+#                  ({jogador} {uuid} {valor})
+# ==========================================================================
+
+Versao do modelo: 1
+
+Padrao: coins
+
+Economias:
+  coins:
+    Provedor: VAULT
+    Nome: 'Coins'
+    Abreviacao: 'coins'
+    Simbolo: ''
+    Valores inteiros: true
+  cash:
+    Provedor: PLAYERPOINTS
+    Nome: 'Cash'
+    Abreviacao: 'cash'
+    Simbolo: ''
+    Valores inteiros: true
+
+  # Exemplo por COMANDO, para economias sem API. Tire o # para usar.
+  # cash:
+  #   Provedor: COMANDO
+  #   Nome: 'Cash'
+  #   Abreviacao: 'cash'
+  #   Simbolo: ''
+  #   Valores inteiros: true
+  #   Placeholder de saldo: '%meucash_saldo%'
+  #   Comando de retirar: 'cash remover {jogador} {valor}'
+  #   Comando de dar: 'cash adicionar {jogador} {valor}'

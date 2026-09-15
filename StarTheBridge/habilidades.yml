@@ -1,0 +1,1422 @@
+# ==========================================================================
+#  StarTheBridge - habilidades
+#
+#  Uma habilidade por modo (1v1, 2v2, 3v3, 4v4, ranqueado). O jogador seleciona
+#  uma por modo. Tipo decide o que ela faz; Valor de cada nivel e o quanto:
+#    HEADSHOT (multiplicador do dano na cabeca)   VIDA_EXTRA (coracoes)
+#    VELOCIDADE (nivel do efeito)  SALTO (nivel)  REGENERACAO (coracoes ao pontuar)
+#    FLECHA_RAPIDA (% mais rapido) BLOCOS_EXTRAS (pilhas)  MACAS_EXTRAS (macas)
+#    ARQUEIRO (% dano da flecha)   ESPADACHIM (% dano da espada)
+#    VAMPIRO (coracoes por abate)  ESCUDO (segundos de protecao a mais)
+#    FLECHA_DE_FOGO (segundos)     MINERADOR (nivel de pressa)  TANQUE (% dano a menos)
+#  Niveis: o 1 desbloqueia (Coins/Cash), os seguintes evoluem. Sem preco = so
+#  nas caixas. Raridades: COMUM, RARO, EPICO, LENDARIO.
+#  Permissao: starthebridge.habilidade.<modo>.<id> ou starthebridge.habilidade.*
+# ==========================================================================
+
+Habilidades:
+  1v1:
+    headshot:
+      Nome: 'Headshot'
+      Tipo: HEADSHOT
+      Raridade: EPICO
+      Icone: 'GOLDEN_HELMET'
+      Descricao:
+        - '&7Flechas na cabeca causam'
+        - '&7dano extra.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 1.5
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x1.5'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 2.0
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x2.0'
+    vida_extra:
+      Nome: 'Vida extra'
+      Tipo: VIDA_EXTRA
+      Raridade: LENDARIO
+      Icone: 'APPLE'
+      Descricao:
+        - '&7Coracoes a mais para'
+        - '&7aguentar a batalha.'
+      Niveis:
+        1:
+          Coins: 50000
+          Cash: 600
+          Valor: 1
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+1'
+        2:
+          Coins: 120000
+          Cash: 1200
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+2'
+    velocidade:
+      Nome: 'Velocidade'
+      Tipo: VELOCIDADE
+      Raridade: RARO
+      Icone: 'SUGAR'
+      Descricao:
+        - '&7Corra mais rapido pela ponte.'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 200
+          Valor: 1
+          Descricao:
+            - '&8▶ &fVelocidade: &7I'
+    salto:
+      Nome: 'Super pulo'
+      Tipo: SALTO
+      Raridade: RARO
+      Icone: 'RABBIT_FOOT'
+      Descricao:
+        - '&7Pule mais alto que todo mundo.'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 200
+          Valor: 1
+          Descricao:
+            - '&8▶ &fSalto: &7I'
+    regeneracao:
+      Nome: 'Regeneracao'
+      Tipo: REGENERACAO
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Recupere vida ao marcar'
+        - '&7um ponto.'
+      Niveis:
+        1:
+          Coins: 25000
+          Cash: 350
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &72 coracoes'
+        2:
+          Coins: 70000
+          Cash: 900
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &74 coracoes'
+    flecha_rapida:
+      Nome: 'Flecha rapida'
+      Tipo: FLECHA_RAPIDA
+      Raridade: RARO
+      Icone: 'SPECTRAL_ARROW'
+      Descricao:
+        - '&7A flecha volta mais rapido'
+        - '&7para o seu arco.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 25
+          Descricao:
+            - '&8▶ &fRegeneracao: &725% mais rapida'
+        2:
+          Coins: 40000
+          Cash: 500
+          Valor: 50
+          Descricao:
+            - '&8▶ &fRegeneracao: &750% mais rapida'
+    blocos_extras:
+      Nome: 'Blocos extras'
+      Tipo: BLOCOS_EXTRAS
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Descricao:
+        - '&7Uma pilha de blocos a mais.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPilhas extras: &7+1'
+    macas_extras:
+      Nome: 'Macas extras'
+      Tipo: MACAS_EXTRAS
+      Raridade: COMUM
+      Icone: 'GOLDEN_APPLE'
+      Descricao:
+        - '&7Macas douradas a mais no kit.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 4
+          Descricao:
+            - '&8▶ &fMacas extras: &7+4'
+        2:
+          Coins: 30000
+          Cash: 400
+          Valor: 8
+          Descricao:
+            - '&8▶ &fMacas extras: &7+8'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Tipo: ARQUEIRO
+      Raridade: EPICO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+15%'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+30%'
+    espadachim:
+      Nome: 'Espadachim'
+      Tipo: ESPADACHIM
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Sua espada causa mais dano.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da espada: &7+15%'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da espada: &7+30%'
+    vampiro:
+      Nome: 'Vampiro'
+      Tipo: VAMPIRO
+      Raridade: LENDARIO
+      Icone: 'REDSTONE'
+      Descricao:
+        - '&7Recupere vida a cada abate.'
+      Niveis:
+        1:
+          Coins: 45000
+          Cash: 600
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura por abate: &72 coracoes'
+        2:
+          Coins: 110000
+          Cash: 1200
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura por abate: &74 coracoes'
+    escudo:
+      Nome: 'Escudo'
+      Tipo: ESCUDO
+      Raridade: RARO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Protecao mais longa ao renascer.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 2
+          Descricao:
+            - '&8▶ &fProtecao extra: &7+2s'
+    flecha_de_fogo:
+      Nome: 'Flecha de fogo'
+      Tipo: FLECHA_DE_FOGO
+      Raridade: EPICO
+      Icone: 'BLAZE_POWDER'
+      Descricao:
+        - '&7Suas flechas incendeiam o alvo.'
+      Niveis:
+        1:
+          Coins: 25000
+          Cash: 350
+          Valor: 3
+          Descricao:
+            - '&8▶ &fFogo: &73s'
+        2:
+          Coins: 70000
+          Cash: 900
+          Valor: 5
+          Descricao:
+            - '&8▶ &fFogo: &75s'
+    minerador:
+      Nome: 'Minerador'
+      Tipo: MINERADOR
+      Raridade: COMUM
+      Icone: 'DIAMOND_PICKAXE'
+      Descricao:
+        - '&7Quebre blocos mais rapido.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPressa: &7I'
+        2:
+          Coins: 25000
+          Cash: 300
+          Valor: 2
+          Descricao:
+            - '&8▶ &fPressa: &7II'
+    tanque:
+      Nome: 'Tanque'
+      Tipo: TANQUE
+      Raridade: LENDARIO
+      Icone: 'DIAMOND_CHESTPLATE'
+      Descricao:
+        - '&7Receba menos dano de tudo.'
+      Niveis:
+        1:
+          Coins: 50000
+          Cash: 600
+          Valor: 10
+          Descricao:
+            - '&8▶ &fDano recebido: &7-10%'
+        2:
+          Coins: 120000
+          Cash: 1200
+          Valor: 20
+          Descricao:
+            - '&8▶ &fDano recebido: &7-20%'
+  2v2:
+    headshot:
+      Nome: 'Headshot'
+      Tipo: HEADSHOT
+      Raridade: EPICO
+      Icone: 'GOLDEN_HELMET'
+      Descricao:
+        - '&7Flechas na cabeca causam'
+        - '&7dano extra.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 1.5
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x1.5'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 2.0
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x2.0'
+    vida_extra:
+      Nome: 'Vida extra'
+      Tipo: VIDA_EXTRA
+      Raridade: LENDARIO
+      Icone: 'APPLE'
+      Descricao:
+        - '&7Coracoes a mais para'
+        - '&7aguentar a batalha.'
+      Niveis:
+        1:
+          Coins: 50000
+          Cash: 600
+          Valor: 1
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+1'
+        2:
+          Coins: 120000
+          Cash: 1200
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+2'
+    velocidade:
+      Nome: 'Velocidade'
+      Tipo: VELOCIDADE
+      Raridade: RARO
+      Icone: 'SUGAR'
+      Descricao:
+        - '&7Corra mais rapido pela ponte.'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 200
+          Valor: 1
+          Descricao:
+            - '&8▶ &fVelocidade: &7I'
+    salto:
+      Nome: 'Super pulo'
+      Tipo: SALTO
+      Raridade: RARO
+      Icone: 'RABBIT_FOOT'
+      Descricao:
+        - '&7Pule mais alto que todo mundo.'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 200
+          Valor: 1
+          Descricao:
+            - '&8▶ &fSalto: &7I'
+    regeneracao:
+      Nome: 'Regeneracao'
+      Tipo: REGENERACAO
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Recupere vida ao marcar'
+        - '&7um ponto.'
+      Niveis:
+        1:
+          Coins: 25000
+          Cash: 350
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &72 coracoes'
+        2:
+          Coins: 70000
+          Cash: 900
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &74 coracoes'
+    flecha_rapida:
+      Nome: 'Flecha rapida'
+      Tipo: FLECHA_RAPIDA
+      Raridade: RARO
+      Icone: 'SPECTRAL_ARROW'
+      Descricao:
+        - '&7A flecha volta mais rapido'
+        - '&7para o seu arco.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 25
+          Descricao:
+            - '&8▶ &fRegeneracao: &725% mais rapida'
+        2:
+          Coins: 40000
+          Cash: 500
+          Valor: 50
+          Descricao:
+            - '&8▶ &fRegeneracao: &750% mais rapida'
+    blocos_extras:
+      Nome: 'Blocos extras'
+      Tipo: BLOCOS_EXTRAS
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Descricao:
+        - '&7Uma pilha de blocos a mais.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPilhas extras: &7+1'
+    macas_extras:
+      Nome: 'Macas extras'
+      Tipo: MACAS_EXTRAS
+      Raridade: COMUM
+      Icone: 'GOLDEN_APPLE'
+      Descricao:
+        - '&7Macas douradas a mais no kit.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 4
+          Descricao:
+            - '&8▶ &fMacas extras: &7+4'
+        2:
+          Coins: 30000
+          Cash: 400
+          Valor: 8
+          Descricao:
+            - '&8▶ &fMacas extras: &7+8'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Tipo: ARQUEIRO
+      Raridade: EPICO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+15%'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+30%'
+    espadachim:
+      Nome: 'Espadachim'
+      Tipo: ESPADACHIM
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Sua espada causa mais dano.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da espada: &7+15%'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da espada: &7+30%'
+    vampiro:
+      Nome: 'Vampiro'
+      Tipo: VAMPIRO
+      Raridade: LENDARIO
+      Icone: 'REDSTONE'
+      Descricao:
+        - '&7Recupere vida a cada abate.'
+      Niveis:
+        1:
+          Coins: 45000
+          Cash: 600
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura por abate: &72 coracoes'
+        2:
+          Coins: 110000
+          Cash: 1200
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura por abate: &74 coracoes'
+    escudo:
+      Nome: 'Escudo'
+      Tipo: ESCUDO
+      Raridade: RARO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Protecao mais longa ao renascer.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 2
+          Descricao:
+            - '&8▶ &fProtecao extra: &7+2s'
+    flecha_de_fogo:
+      Nome: 'Flecha de fogo'
+      Tipo: FLECHA_DE_FOGO
+      Raridade: EPICO
+      Icone: 'BLAZE_POWDER'
+      Descricao:
+        - '&7Suas flechas incendeiam o alvo.'
+      Niveis:
+        1:
+          Coins: 25000
+          Cash: 350
+          Valor: 3
+          Descricao:
+            - '&8▶ &fFogo: &73s'
+        2:
+          Coins: 70000
+          Cash: 900
+          Valor: 5
+          Descricao:
+            - '&8▶ &fFogo: &75s'
+    minerador:
+      Nome: 'Minerador'
+      Tipo: MINERADOR
+      Raridade: COMUM
+      Icone: 'DIAMOND_PICKAXE'
+      Descricao:
+        - '&7Quebre blocos mais rapido.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPressa: &7I'
+        2:
+          Coins: 25000
+          Cash: 300
+          Valor: 2
+          Descricao:
+            - '&8▶ &fPressa: &7II'
+    tanque:
+      Nome: 'Tanque'
+      Tipo: TANQUE
+      Raridade: LENDARIO
+      Icone: 'DIAMOND_CHESTPLATE'
+      Descricao:
+        - '&7Receba menos dano de tudo.'
+      Niveis:
+        1:
+          Coins: 50000
+          Cash: 600
+          Valor: 10
+          Descricao:
+            - '&8▶ &fDano recebido: &7-10%'
+        2:
+          Coins: 120000
+          Cash: 1200
+          Valor: 20
+          Descricao:
+            - '&8▶ &fDano recebido: &7-20%'
+  3v3:
+    headshot:
+      Nome: 'Headshot'
+      Tipo: HEADSHOT
+      Raridade: EPICO
+      Icone: 'GOLDEN_HELMET'
+      Descricao:
+        - '&7Flechas na cabeca causam'
+        - '&7dano extra.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 1.5
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x1.5'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 2.0
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x2.0'
+    vida_extra:
+      Nome: 'Vida extra'
+      Tipo: VIDA_EXTRA
+      Raridade: LENDARIO
+      Icone: 'APPLE'
+      Descricao:
+        - '&7Coracoes a mais para'
+        - '&7aguentar a batalha.'
+      Niveis:
+        1:
+          Coins: 50000
+          Cash: 600
+          Valor: 1
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+1'
+        2:
+          Coins: 120000
+          Cash: 1200
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+2'
+    velocidade:
+      Nome: 'Velocidade'
+      Tipo: VELOCIDADE
+      Raridade: RARO
+      Icone: 'SUGAR'
+      Descricao:
+        - '&7Corra mais rapido pela ponte.'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 200
+          Valor: 1
+          Descricao:
+            - '&8▶ &fVelocidade: &7I'
+    salto:
+      Nome: 'Super pulo'
+      Tipo: SALTO
+      Raridade: RARO
+      Icone: 'RABBIT_FOOT'
+      Descricao:
+        - '&7Pule mais alto que todo mundo.'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 200
+          Valor: 1
+          Descricao:
+            - '&8▶ &fSalto: &7I'
+    regeneracao:
+      Nome: 'Regeneracao'
+      Tipo: REGENERACAO
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Recupere vida ao marcar'
+        - '&7um ponto.'
+      Niveis:
+        1:
+          Coins: 25000
+          Cash: 350
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &72 coracoes'
+        2:
+          Coins: 70000
+          Cash: 900
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &74 coracoes'
+    flecha_rapida:
+      Nome: 'Flecha rapida'
+      Tipo: FLECHA_RAPIDA
+      Raridade: RARO
+      Icone: 'SPECTRAL_ARROW'
+      Descricao:
+        - '&7A flecha volta mais rapido'
+        - '&7para o seu arco.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 25
+          Descricao:
+            - '&8▶ &fRegeneracao: &725% mais rapida'
+        2:
+          Coins: 40000
+          Cash: 500
+          Valor: 50
+          Descricao:
+            - '&8▶ &fRegeneracao: &750% mais rapida'
+    blocos_extras:
+      Nome: 'Blocos extras'
+      Tipo: BLOCOS_EXTRAS
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Descricao:
+        - '&7Uma pilha de blocos a mais.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPilhas extras: &7+1'
+    macas_extras:
+      Nome: 'Macas extras'
+      Tipo: MACAS_EXTRAS
+      Raridade: COMUM
+      Icone: 'GOLDEN_APPLE'
+      Descricao:
+        - '&7Macas douradas a mais no kit.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 4
+          Descricao:
+            - '&8▶ &fMacas extras: &7+4'
+        2:
+          Coins: 30000
+          Cash: 400
+          Valor: 8
+          Descricao:
+            - '&8▶ &fMacas extras: &7+8'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Tipo: ARQUEIRO
+      Raridade: EPICO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+15%'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+30%'
+    espadachim:
+      Nome: 'Espadachim'
+      Tipo: ESPADACHIM
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Sua espada causa mais dano.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da espada: &7+15%'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da espada: &7+30%'
+    vampiro:
+      Nome: 'Vampiro'
+      Tipo: VAMPIRO
+      Raridade: LENDARIO
+      Icone: 'REDSTONE'
+      Descricao:
+        - '&7Recupere vida a cada abate.'
+      Niveis:
+        1:
+          Coins: 45000
+          Cash: 600
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura por abate: &72 coracoes'
+        2:
+          Coins: 110000
+          Cash: 1200
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura por abate: &74 coracoes'
+    escudo:
+      Nome: 'Escudo'
+      Tipo: ESCUDO
+      Raridade: RARO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Protecao mais longa ao renascer.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 2
+          Descricao:
+            - '&8▶ &fProtecao extra: &7+2s'
+    flecha_de_fogo:
+      Nome: 'Flecha de fogo'
+      Tipo: FLECHA_DE_FOGO
+      Raridade: EPICO
+      Icone: 'BLAZE_POWDER'
+      Descricao:
+        - '&7Suas flechas incendeiam o alvo.'
+      Niveis:
+        1:
+          Coins: 25000
+          Cash: 350
+          Valor: 3
+          Descricao:
+            - '&8▶ &fFogo: &73s'
+        2:
+          Coins: 70000
+          Cash: 900
+          Valor: 5
+          Descricao:
+            - '&8▶ &fFogo: &75s'
+    minerador:
+      Nome: 'Minerador'
+      Tipo: MINERADOR
+      Raridade: COMUM
+      Icone: 'DIAMOND_PICKAXE'
+      Descricao:
+        - '&7Quebre blocos mais rapido.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPressa: &7I'
+        2:
+          Coins: 25000
+          Cash: 300
+          Valor: 2
+          Descricao:
+            - '&8▶ &fPressa: &7II'
+    tanque:
+      Nome: 'Tanque'
+      Tipo: TANQUE
+      Raridade: LENDARIO
+      Icone: 'DIAMOND_CHESTPLATE'
+      Descricao:
+        - '&7Receba menos dano de tudo.'
+      Niveis:
+        1:
+          Coins: 50000
+          Cash: 600
+          Valor: 10
+          Descricao:
+            - '&8▶ &fDano recebido: &7-10%'
+        2:
+          Coins: 120000
+          Cash: 1200
+          Valor: 20
+          Descricao:
+            - '&8▶ &fDano recebido: &7-20%'
+  4v4:
+    headshot:
+      Nome: 'Headshot'
+      Tipo: HEADSHOT
+      Raridade: EPICO
+      Icone: 'GOLDEN_HELMET'
+      Descricao:
+        - '&7Flechas na cabeca causam'
+        - '&7dano extra.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 1.5
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x1.5'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 2.0
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x2.0'
+    vida_extra:
+      Nome: 'Vida extra'
+      Tipo: VIDA_EXTRA
+      Raridade: LENDARIO
+      Icone: 'APPLE'
+      Descricao:
+        - '&7Coracoes a mais para'
+        - '&7aguentar a batalha.'
+      Niveis:
+        1:
+          Coins: 50000
+          Cash: 600
+          Valor: 1
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+1'
+        2:
+          Coins: 120000
+          Cash: 1200
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+2'
+    velocidade:
+      Nome: 'Velocidade'
+      Tipo: VELOCIDADE
+      Raridade: RARO
+      Icone: 'SUGAR'
+      Descricao:
+        - '&7Corra mais rapido pela ponte.'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 200
+          Valor: 1
+          Descricao:
+            - '&8▶ &fVelocidade: &7I'
+    salto:
+      Nome: 'Super pulo'
+      Tipo: SALTO
+      Raridade: RARO
+      Icone: 'RABBIT_FOOT'
+      Descricao:
+        - '&7Pule mais alto que todo mundo.'
+      Niveis:
+        1:
+          Coins: 15000
+          Cash: 200
+          Valor: 1
+          Descricao:
+            - '&8▶ &fSalto: &7I'
+    regeneracao:
+      Nome: 'Regeneracao'
+      Tipo: REGENERACAO
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Recupere vida ao marcar'
+        - '&7um ponto.'
+      Niveis:
+        1:
+          Coins: 25000
+          Cash: 350
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &72 coracoes'
+        2:
+          Coins: 70000
+          Cash: 900
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &74 coracoes'
+    flecha_rapida:
+      Nome: 'Flecha rapida'
+      Tipo: FLECHA_RAPIDA
+      Raridade: RARO
+      Icone: 'SPECTRAL_ARROW'
+      Descricao:
+        - '&7A flecha volta mais rapido'
+        - '&7para o seu arco.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 25
+          Descricao:
+            - '&8▶ &fRegeneracao: &725% mais rapida'
+        2:
+          Coins: 40000
+          Cash: 500
+          Valor: 50
+          Descricao:
+            - '&8▶ &fRegeneracao: &750% mais rapida'
+    blocos_extras:
+      Nome: 'Blocos extras'
+      Tipo: BLOCOS_EXTRAS
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Descricao:
+        - '&7Uma pilha de blocos a mais.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPilhas extras: &7+1'
+    macas_extras:
+      Nome: 'Macas extras'
+      Tipo: MACAS_EXTRAS
+      Raridade: COMUM
+      Icone: 'GOLDEN_APPLE'
+      Descricao:
+        - '&7Macas douradas a mais no kit.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 4
+          Descricao:
+            - '&8▶ &fMacas extras: &7+4'
+        2:
+          Coins: 30000
+          Cash: 400
+          Valor: 8
+          Descricao:
+            - '&8▶ &fMacas extras: &7+8'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Tipo: ARQUEIRO
+      Raridade: EPICO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+15%'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+30%'
+    espadachim:
+      Nome: 'Espadachim'
+      Tipo: ESPADACHIM
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Sua espada causa mais dano.'
+      Niveis:
+        1:
+          Coins: 20000
+          Cash: 300
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da espada: &7+15%'
+        2:
+          Coins: 60000
+          Cash: 800
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da espada: &7+30%'
+    vampiro:
+      Nome: 'Vampiro'
+      Tipo: VAMPIRO
+      Raridade: LENDARIO
+      Icone: 'REDSTONE'
+      Descricao:
+        - '&7Recupere vida a cada abate.'
+      Niveis:
+        1:
+          Coins: 45000
+          Cash: 600
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura por abate: &72 coracoes'
+        2:
+          Coins: 110000
+          Cash: 1200
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura por abate: &74 coracoes'
+    escudo:
+      Nome: 'Escudo'
+      Tipo: ESCUDO
+      Raridade: RARO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Protecao mais longa ao renascer.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 2
+          Descricao:
+            - '&8▶ &fProtecao extra: &7+2s'
+    flecha_de_fogo:
+      Nome: 'Flecha de fogo'
+      Tipo: FLECHA_DE_FOGO
+      Raridade: EPICO
+      Icone: 'BLAZE_POWDER'
+      Descricao:
+        - '&7Suas flechas incendeiam o alvo.'
+      Niveis:
+        1:
+          Coins: 25000
+          Cash: 350
+          Valor: 3
+          Descricao:
+            - '&8▶ &fFogo: &73s'
+        2:
+          Coins: 70000
+          Cash: 900
+          Valor: 5
+          Descricao:
+            - '&8▶ &fFogo: &75s'
+    minerador:
+      Nome: 'Minerador'
+      Tipo: MINERADOR
+      Raridade: COMUM
+      Icone: 'DIAMOND_PICKAXE'
+      Descricao:
+        - '&7Quebre blocos mais rapido.'
+      Niveis:
+        1:
+          Coins: 8000
+          Cash: 100
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPressa: &7I'
+        2:
+          Coins: 25000
+          Cash: 300
+          Valor: 2
+          Descricao:
+            - '&8▶ &fPressa: &7II'
+    tanque:
+      Nome: 'Tanque'
+      Tipo: TANQUE
+      Raridade: LENDARIO
+      Icone: 'DIAMOND_CHESTPLATE'
+      Descricao:
+        - '&7Receba menos dano de tudo.'
+      Niveis:
+        1:
+          Coins: 50000
+          Cash: 600
+          Valor: 10
+          Descricao:
+            - '&8▶ &fDano recebido: &7-10%'
+        2:
+          Coins: 120000
+          Cash: 1200
+          Valor: 20
+          Descricao:
+            - '&8▶ &fDano recebido: &7-20%'
+  ranqueado:
+    headshot:
+      Nome: 'Headshot'
+      Tipo: HEADSHOT
+      Raridade: EPICO
+      Icone: 'GOLDEN_HELMET'
+      Descricao:
+        - '&7Flechas na cabeca causam'
+        - '&7dano extra.'
+      Niveis:
+        1:
+          Coins: 30000
+          Cash: 450
+          Valor: 1.5
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x1.5'
+        2:
+          Coins: 90000
+          Cash: 1200
+          Valor: 2.0
+          Descricao:
+            - '&8▶ &fDano do headshot: &7x2.0'
+    vida_extra:
+      Nome: 'Vida extra'
+      Tipo: VIDA_EXTRA
+      Raridade: LENDARIO
+      Icone: 'APPLE'
+      Descricao:
+        - '&7Coracoes a mais para'
+        - '&7aguentar a batalha.'
+      Niveis:
+        1:
+          Coins: 75000
+          Cash: 900
+          Valor: 1
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+1'
+        2:
+          Coins: 180000
+          Cash: 1800
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCoracoes extras: &7+2'
+    velocidade:
+      Nome: 'Velocidade'
+      Tipo: VELOCIDADE
+      Raridade: RARO
+      Icone: 'SUGAR'
+      Descricao:
+        - '&7Corra mais rapido pela ponte.'
+      Niveis:
+        1:
+          Coins: 22500
+          Cash: 300
+          Valor: 1
+          Descricao:
+            - '&8▶ &fVelocidade: &7I'
+    salto:
+      Nome: 'Super pulo'
+      Tipo: SALTO
+      Raridade: RARO
+      Icone: 'RABBIT_FOOT'
+      Descricao:
+        - '&7Pule mais alto que todo mundo.'
+      Niveis:
+        1:
+          Coins: 22500
+          Cash: 300
+          Valor: 1
+          Descricao:
+            - '&8▶ &fSalto: &7I'
+    regeneracao:
+      Nome: 'Regeneracao'
+      Tipo: REGENERACAO
+      Raridade: EPICO
+      Icone: 'GHAST_TEAR'
+      Descricao:
+        - '&7Recupere vida ao marcar'
+        - '&7um ponto.'
+      Niveis:
+        1:
+          Coins: 37500
+          Cash: 525
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &72 coracoes'
+        2:
+          Coins: 105000
+          Cash: 1350
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura ao pontuar: &74 coracoes'
+    flecha_rapida:
+      Nome: 'Flecha rapida'
+      Tipo: FLECHA_RAPIDA
+      Raridade: RARO
+      Icone: 'SPECTRAL_ARROW'
+      Descricao:
+        - '&7A flecha volta mais rapido'
+        - '&7para o seu arco.'
+      Niveis:
+        1:
+          Coins: 18000
+          Cash: 225
+          Valor: 25
+          Descricao:
+            - '&8▶ &fRegeneracao: &725% mais rapida'
+        2:
+          Coins: 60000
+          Cash: 750
+          Valor: 50
+          Descricao:
+            - '&8▶ &fRegeneracao: &750% mais rapida'
+    blocos_extras:
+      Nome: 'Blocos extras'
+      Tipo: BLOCOS_EXTRAS
+      Raridade: COMUM
+      Icone: 'BRICKS'
+      Descricao:
+        - '&7Uma pilha de blocos a mais.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPilhas extras: &7+1'
+    macas_extras:
+      Nome: 'Macas extras'
+      Tipo: MACAS_EXTRAS
+      Raridade: COMUM
+      Icone: 'GOLDEN_APPLE'
+      Descricao:
+        - '&7Macas douradas a mais no kit.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 4
+          Descricao:
+            - '&8▶ &fMacas extras: &7+4'
+        2:
+          Coins: 45000
+          Cash: 600
+          Valor: 8
+          Descricao:
+            - '&8▶ &fMacas extras: &7+8'
+    arqueiro:
+      Nome: 'Arqueiro'
+      Tipo: ARQUEIRO
+      Raridade: EPICO
+      Icone: 'BOW'
+      Descricao:
+        - '&7Suas flechas causam mais dano.'
+      Niveis:
+        1:
+          Coins: 30000
+          Cash: 450
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+15%'
+        2:
+          Coins: 90000
+          Cash: 1200
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da flecha: &7+30%'
+    espadachim:
+      Nome: 'Espadachim'
+      Tipo: ESPADACHIM
+      Raridade: EPICO
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Sua espada causa mais dano.'
+      Niveis:
+        1:
+          Coins: 30000
+          Cash: 450
+          Valor: 15
+          Descricao:
+            - '&8▶ &fDano da espada: &7+15%'
+        2:
+          Coins: 90000
+          Cash: 1200
+          Valor: 30
+          Descricao:
+            - '&8▶ &fDano da espada: &7+30%'
+    vampiro:
+      Nome: 'Vampiro'
+      Tipo: VAMPIRO
+      Raridade: LENDARIO
+      Icone: 'REDSTONE'
+      Descricao:
+        - '&7Recupere vida a cada abate.'
+      Niveis:
+        1:
+          Coins: 67500
+          Cash: 900
+          Valor: 2
+          Descricao:
+            - '&8▶ &fCura por abate: &72 coracoes'
+        2:
+          Coins: 165000
+          Cash: 1800
+          Valor: 4
+          Descricao:
+            - '&8▶ &fCura por abate: &74 coracoes'
+    escudo:
+      Nome: 'Escudo'
+      Tipo: ESCUDO
+      Raridade: RARO
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Protecao mais longa ao renascer.'
+      Niveis:
+        1:
+          Coins: 18000
+          Cash: 225
+          Valor: 2
+          Descricao:
+            - '&8▶ &fProtecao extra: &7+2s'
+    flecha_de_fogo:
+      Nome: 'Flecha de fogo'
+      Tipo: FLECHA_DE_FOGO
+      Raridade: EPICO
+      Icone: 'BLAZE_POWDER'
+      Descricao:
+        - '&7Suas flechas incendeiam o alvo.'
+      Niveis:
+        1:
+          Coins: 37500
+          Cash: 525
+          Valor: 3
+          Descricao:
+            - '&8▶ &fFogo: &73s'
+        2:
+          Coins: 105000
+          Cash: 1350
+          Valor: 5
+          Descricao:
+            - '&8▶ &fFogo: &75s'
+    minerador:
+      Nome: 'Minerador'
+      Tipo: MINERADOR
+      Raridade: COMUM
+      Icone: 'DIAMOND_PICKAXE'
+      Descricao:
+        - '&7Quebre blocos mais rapido.'
+      Niveis:
+        1:
+          Coins: 12000
+          Cash: 150
+          Valor: 1
+          Descricao:
+            - '&8▶ &fPressa: &7I'
+        2:
+          Coins: 37500
+          Cash: 450
+          Valor: 2
+          Descricao:
+            - '&8▶ &fPressa: &7II'
+    tanque:
+      Nome: 'Tanque'
+      Tipo: TANQUE
+      Raridade: LENDARIO
+      Icone: 'DIAMOND_CHESTPLATE'
+      Descricao:
+        - '&7Receba menos dano de tudo.'
+      Niveis:
+        1:
+          Coins: 75000
+          Cash: 900
+          Valor: 10
+          Descricao:
+            - '&8▶ &fDano recebido: &7-10%'
+        2:
+          Coins: 180000
+          Cash: 1800
+          Valor: 20
+          Descricao:
+            - '&8▶ &fDano recebido: &7-20%'
