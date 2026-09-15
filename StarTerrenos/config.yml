@@ -214,6 +214,25 @@ Voo:
   Desligar ao sair do terreno: true
 
 #
+# ═══════════════════════════════  HOME  ═════════════════════════════════════
+#
+# A bandeira "home" (desligada por padrao) impede quem nao e membro de setar
+# home dentro do terreno, de ir para uma home que ja tinha la e de voltar com
+# /back. Teleporte por /tpa e por outros plugins continua livre.
+#
+# O plugin reconhece os comandos pelo nome: se o seu plugin de home usa outro,
+# acrescente aqui. Vale com ou sem o prefixo do plugin (/essentials:home).
+Home:
+  Comandos de setar: [ sethome, setarhome, criarhome, homeset ]
+  Comandos de ir: [ home, casa, homes, h ]
+  Comandos de voltar: [ back, voltar, retornar ]
+
+  # Segundos entre o comando e o teleporte que ele causa. Plugins de home com
+  # tempo de espera (Essentials, por exemplo) teleportam alguns segundos
+  # depois do comando; a janela precisa cobrir essa espera.
+  Janela em segundos: 10
+
+#
 # ═══════════════════════════  COMPRA E VENDA  ═══════════════════════════════
 #
 Venda:
