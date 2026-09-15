@@ -1,0 +1,73 @@
+# ------------------------------------------------------------------------
+#  StarPlots - os mundos de terrenos
+#
+#  Cada secao aqui dentro de "Mundos" e um mundo. O plugin CRIA o mundo
+#  sozinho, com o gerador de terrenos, na primeira vez que sobe.
+#
+#  NAO ponha o mundo no bukkit.yml nem num gerenciador de mundos: se outro
+#  plugin carregar o mundo antes, sem o nosso gerador, os pedacos novos
+#  nascem com terreno comum.
+#
+#  Para criar outro mundo sem abrir arquivo: /terrenoadmin mundos (botao
+#  de criar) ou /terrenoadmin mundo criar <nome> [tamanho] [rua] [altura].
+#
+#  Blocos aceitam um material (GRASS_BLOCK) ou uma mistura com pesos
+#  (STONE,COBBLESTONE:30,ANDESITE:10) -- cada posicao sorteia o seu.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Mundos:
+  terrenos:
+    Ativo: true
+
+    # Lado do terreno, em blocos (sem a rua).
+    Tamanho do terreno: 42
+
+    # Largura da faixa da rua, contando as duas paredes. Minimo 3.
+    Largura da rua: 7
+
+    # A altura do chao (o jogador pisa em Altura + 1).
+    Altura do chao: 64
+
+    # Bioma do mundo inteiro. O dono troca o do terreno dele pelo menu.
+    Bioma: PLAINS
+
+    Blocos:
+      # A camada mais funda do mundo.
+      Fundo: BEDROCK
+      # Do fundo ate um bloco abaixo do chao.
+      Preenchimento: DIRT
+      # O chao do terreno.
+      Chao: GRASS_BLOCK
+      # O piso da rua.
+      Rua: QUARTZ_BLOCK
+      # A linha que contorna o terreno, na altura do chao.
+      Parede: STONE
+      # A mesma linha, quando o terreno tem dono.
+      Parede reivindicada: STONE_BRICKS
+      # O que fica em cima da parede.
+      Borda: SMOOTH_STONE_SLAB
+
+    # Preco para pegar um terreno neste mundo. -1 usa o do config.yml.
+    Preco para reivindicar: -1
+
+    # Raio, em terrenos a partir do 0;0, ate onde o mundo cresce.
+    # Zero = sem limite.
+    Limite de celulas: 0
+
+    # Altura maxima e minima de construcao (0 = sem limite).
+    Altura maxima de construcao: 0
+    Altura minima de construcao: 0
+
+    # Para onde o /terrenoadmin mundo ir leva. Vazio = o cruzamento 0;0.
+    # Formato: mundo;x;y;z;yaw;pitch
+    Spawn: ''
+
+    # Modelos de rua: construa a rua que voce quer em cima de uma rua qualquer
+    # e capture com /terrenoadmin rua capturar reto (e cruzamento). Os
+    # arquivos ficam em ruas/ e o plugin liga isto sozinho.
+    Modelos de rua:
+      Ativar: false
+      Trecho reto: ''
+      Cruzamento: ''

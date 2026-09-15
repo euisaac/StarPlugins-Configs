@@ -1,0 +1,1812 @@
+# ------------------------------------------------------------------------
+#  StarPlots - o desenho de TODAS as telas
+#
+#  Cada tela tem:
+#
+#    Titulo    o texto do topo ('' usa o do mensagens.yml)
+#    Linhas    de 1 a 6 (cada linha tem 9 slots; eles comecam no 0)
+#    Enfeite   o vidro que fecha os buracos
+#    Slots     onde a lista aparece (so nas telas com lista)
+#    Itens     os botoes
+#    Modelos   como cada item da lista e escrito, por estado
+#
+#  Para TIRAR um botao, ponha  Slot: -1  (a configuracao dele fica guardada
+#  aqui, esperando o dia em que voce quiser de volta).
+#
+#  Para POR UM BOTAO SEU em qualquer tela, escreva mais um item com
+#  "Comandos" -- veja o exemplo "loja" no menu Principal.
+#
+#  Todo item aceita:
+#    Slot        onde ele fica (-1 desliga)
+#    Acao        o que o clique faz (a lista esta em cada tela)
+#    Material    o icone ('' deixa o menu escolher: a cabeca do dono, o
+#                icone do terreno, o bloco do catalogo...)
+#    Nome        o nome do item
+#    Lore        as linhas de baixo
+#    Brilho      true da o brilho de encantado
+#    Permissao   so quem tem ve o item ('' = todo mundo)
+#    Comandos    lista de comandos rodados no clique
+#    Fechar      true fecha o menu antes de rodar os comandos
+#
+#  Os comandos aceitam prefixos:
+#    jogador: loja          console: give {jogador} diamond 1
+#    op: gamemode creative  mensagem: &aOi!
+#    som: ENTITY_PLAYER_LEVELUP    titulo: &aTitulo<nl>&7Subtitulo
+#    link: seusite.com.br          espera: 20
+#
+#  Trocas de terreno (valem em toda tela que mostra um terreno):
+#    {terreno} {nome} {id} {x} {z} {mundo} {dono} {descricao} {status}
+#    {numero} {membros} {negados} {media} {estrelas} {notas} {visitas}
+#    {preco} {aluguel} {locatario} {aluguel_restante} {bioma} {mesclas}
+#    {grupo} {voo} {visitas_abertas} {criado} {cargo} {jogador} {favorito}
+#    {chao} {parede} {borda}
+#
+#  Tudo isto tambem pode ser editado por menu: /starplots config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Menus:
+
+  # ====================================================================
+  #  O menu do /terreno
+  #
+  #  Acoes: RETRATO MEUS_TERRENOS PAINEL PEGAR AUTO MERCADO ALUGUEIS
+  #         FAVORITOS EXPLORAR VAGAS AJUDA VOAR FECHAR NENHUMA
+  #  Trocas extras: {terrenos} {limite} {limite_membros} {limite_mescla}
+  #                 {favoritos} {a_venda} {para_alugar} {aqui}
+  # ====================================================================
+  Principal:
+    Titulo: '&8Terrenos'
+    Linhas: 5
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      retrato:
+        Slot: 4
+        Acao: RETRATO
+        Material: PLAYER_HEAD
+        Nome: '&a&l{jogador}'
+        Lore:
+          - '&7Terrenos: &f{terrenos}&7/&f{limite}'
+          - '&7Vagas de membro: &f{limite_membros}'
+          - '&7Mescla: ate &f{limite_mescla} &7terrenos'
+          - '&7Favoritos: &f{favoritos}'
+          - ''
+          - '&7Onde voce esta: &f{aqui}'
+      meus:
+        Slot: 19
+        Acao: MEUS_TERRENOS
+        Material: GRASS_BLOCK
+        Nome: '&a&lMeus terrenos'
+        Lore:
+          - '&7Veja, visite e gerencie'
+          - '&7os seus terrenos.'
+          - ''
+          - '&eClique para abrir.'
+      painel:
+        Slot: 20
+        Acao: PAINEL
+        Material: OAK_SIGN
+        Nome: '&e&lPainel daqui'
+        Lore:
+          - '&7O painel do terreno em que'
+          - '&7voce esta pisando.'
+          - ''
+          - '&eClique para abrir.'
+      auto:
+        Slot: 21
+        Acao: AUTO
+        Material: NETHER_STAR
+        Nome: '&b&lPegar um terreno'
+        Lore:
+          - '&7Encontra o proximo terreno'
+          - '&7livre e te leva ate ele.'
+          - ''
+          - '&eClique para pegar.'
+      mercado:
+        Slot: 23
+        Acao: MERCADO
+        Material: EMERALD
+        Nome: '&2&lMercado'
+        Lore:
+          - '&7Terrenos a venda: &f{a_venda}'
+          - ''
+          - '&eClique para abrir.'
+      alugueis:
+        Slot: 24
+        Acao: ALUGUEIS
+        Material: CLOCK
+        Nome: '&3&lPara alugar'
+        Lore:
+          - '&7Terrenos para alugar: &f{para_alugar}'
+          - ''
+          - '&eClique para abrir.'
+      explorar:
+        Slot: 25
+        Acao: EXPLORAR
+        Material: COMPASS
+        Nome: '&d&lExplorar'
+        Lore:
+          - '&7Os melhores, os mais visitados,'
+          - '&7os mais novos e um sorteado.'
+          - ''
+          - '&eClique para abrir.'
+      favoritos:
+        Slot: 30
+        Acao: FAVORITOS
+        Material: GOLD_INGOT
+        Nome: '&6&lFavoritos'
+        Lore:
+          - '&7Os terrenos que voce marcou.'
+          - ''
+          - '&eClique para abrir.'
+      vagas:
+        Slot: 31
+        Acao: VAGAS
+        Material: CHEST
+        Nome: '&e&lVagas'
+        Lore:
+          - '&7Compre mais vagas de membro'
+          - '&7e de mescla.'
+          - ''
+          - '&eClique para abrir.'
+      ajuda:
+        Slot: 32
+        Acao: AJUDA
+        Material: BOOK
+        Nome: '&f&lAjuda'
+        Lore:
+          - '&7Todos os comandos.'
+          - ''
+          - '&eClique para ver.'
+      # Exemplo de botao seu, desligado. Troque o Slot para ligar.
+      loja:
+        Slot: -1
+        Material: DIAMOND
+        Nome: '&b&lLoja'
+        Lore:
+          - '&7Abre a loja do servidor.'
+        Comandos:
+          - 'jogador: loja'
+        Fechar: true
+      fechar:
+        Slot: 40
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  O painel do terreno (para quem manda nele)
+  #
+  #  Acoes: RETRATO IR DEFINIR_CASA MEMBROS BANDEIRAS BIOMAS PERSONALIZAR
+  #         MODELOS BACKUPS VENDER CANCELAR_VENDA ALUGAR RENOMEAR DESCREVER
+  #         ICONE MESCLAR MESCLAR_TODOS DESMESCLAR VOAR COMPRAR_VOO
+  #         ABRIR_FECHAR LIMPAR LIMPAR_ACIMA APAGAR TRANSFERIR AVALIAR
+  #         FAVORITAR VOLTAR FECHAR
+  #  Trocas extras: {lado} {limite_membros} {limite_mescla} {preco_voo}
+  #                 {preco_mescla} {preco_limpar}
+  # ====================================================================
+  Painel:
+    Titulo: '&8{terreno}'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      retrato:
+        Slot: 4
+        Acao: RETRATO
+        Material: ''
+        Nome: '&a&l{terreno}'
+        Lore:
+          - '&7Terreno &f{id} &7de &f{dono}'
+          - '&7{descricao}'
+          - ''
+          - '&7Status: {status}'
+          - '&7Avaliacao: {estrelas} &8({notas})'
+          - '&7Visitas: &f{visitas}'
+          - '&7Membros: &f{membros}&7/&f{limite_membros}'
+          - '&7Grupo: &f{grupo} &7terreno(s)'
+          - '&7Bioma: &f{bioma}'
+          - '&7Criado em: &f{criado}'
+      ir:
+        Slot: 10
+        Acao: IR
+        Material: ENDER_PEARL
+        Nome: '&b&lIr para o terreno'
+        Lore:
+          - '&7Vai para a casa do terreno.'
+          - ''
+          - '&eClique para ir.'
+      casa:
+        Slot: 11
+        Acao: DEFINIR_CASA
+        Material: RED_BED
+        Nome: '&c&lDefinir casa'
+        Lore:
+          - '&7Marca onde voce esta como'
+          - '&7a casa do terreno.'
+          - ''
+          - '&eClique para marcar.'
+      membros:
+        Slot: 12
+        Acao: MEMBROS
+        Material: PLAYER_HEAD
+        Nome: '&a&lMembros'
+        Lore:
+          - '&7Quem constroi e quem nao entra.'
+          - '&7Agora: &f{membros}&7/&f{limite_membros}'
+          - ''
+          - '&eClique para abrir.'
+      bandeiras:
+        Slot: 13
+        Acao: BANDEIRAS
+        Material: WHITE_BANNER
+        Nome: '&e&lRegras'
+        Lore:
+          - '&7PvP, portas, baus, tempo,'
+          - '&7clima e muito mais.'
+          - ''
+          - '&eClique para abrir.'
+      biomas:
+        Slot: 14
+        Acao: BIOMAS
+        Material: OAK_SAPLING
+        Nome: '&2&lBioma'
+        Lore:
+          - '&7Agora: &f{bioma}'
+          - ''
+          - '&eClique para trocar.'
+      personalizar:
+        Slot: 15
+        Acao: PERSONALIZAR
+        Material: QUARTZ_BLOCK
+        Nome: '&f&lPersonalizar'
+        Lore:
+          - '&7Chao: &f{chao}'
+          - '&7Parede: &f{parede}'
+          - '&7Borda: &f{borda}'
+          - ''
+          - '&eClique para abrir.'
+      modelos:
+        Slot: 16
+        Acao: MODELOS
+        Material: FILLED_MAP
+        Nome: '&6&lModelos'
+        Lore:
+          - '&7Construcoes prontas para'
+          - '&7aplicar no terreno.'
+          - ''
+          - '&eClique para abrir.'
+      nome:
+        Slot: 19
+        Acao: RENOMEAR
+        Material: NAME_TAG
+        Nome: '&e&lNome'
+        Lore:
+          - '&7Agora: &f{terreno}'
+          - ''
+          - '&eClique para trocar.'
+      descricao:
+        Slot: 20
+        Acao: DESCREVER
+        Material: WRITABLE_BOOK
+        Nome: '&e&lDescricao'
+        Lore:
+          - '&7Agora: &f{descricao}'
+          - ''
+          - '&eClique para trocar.'
+      icone:
+        Slot: 21
+        Acao: ICONE
+        Material: ITEM_FRAME
+        Nome: '&e&lIcone'
+        Lore:
+          - '&7O item que representa o terreno'
+          - '&7nas listas.'
+          - ''
+          - '&eClique &7para usar o item da mao.'
+          - '&eClique direito &7para usar uma cabeca.'
+      mesclar:
+        Slot: 22
+        Acao: MESCLAR
+        Material: PISTON
+        Nome: '&d&lJuntar com o vizinho'
+        Lore:
+          - '&7Junta com o terreno para onde'
+          - '&7voce esta olhando: &f{lado}'
+          - '&7Preco: &f{preco_mescla}'
+          - '&7Grupo: &f{grupo}&7/&f{limite_mescla}'
+          - ''
+          - '&eClique para juntar.'
+      mesclar-todos:
+        Slot: 23
+        Acao: MESCLAR_TODOS
+        Material: STICKY_PISTON
+        Nome: '&d&lJuntar com todos'
+        Lore:
+          - '&7Junta com todos os vizinhos'
+          - '&7que sao seus.'
+          - ''
+          - '&eClique para juntar.'
+      desmesclar:
+        Slot: 24
+        Acao: DESMESCLAR
+        Material: SHEARS
+        Nome: '&c&lSeparar'
+        Lore:
+          - '&7Desfaz todas as mesclas e'
+          - '&7devolve as ruas.'
+          - ''
+          - '&eClique para separar.'
+      visitas:
+        Slot: 25
+        Acao: ABRIR_FECHAR
+        Material: OAK_FENCE_GATE
+        Nome: '&6&lVisitas'
+        Lore:
+          - '&7Agora: {visitas_abertas}'
+          - ''
+          - '&eClique para abrir ou fechar.'
+      vender:
+        Slot: 28
+        Acao: VENDER
+        Material: EMERALD
+        Nome: '&2&lVender'
+        Lore:
+          - '&7Anuncia o terreno no mercado.'
+          - ''
+          - '&eClique para abrir.'
+      cancelar-venda:
+        Slot: 28
+        Acao: CANCELAR_VENDA
+        Material: EMERALD_BLOCK
+        Nome: '&2&lA venda por {preco}'
+        Lore:
+          - '&7O terreno esta no mercado.'
+          - ''
+          - '&eClique para tirar do mercado.'
+      alugar:
+        Slot: 29
+        Acao: ALUGAR
+        Material: CLOCK
+        Nome: '&3&lAluguel'
+        Lore:
+          - '&7Preco por dia: &f{aluguel}'
+          - '&7Locatario: &f{locatario}'
+          - '&7Restante: &f{aluguel_restante}'
+          - ''
+          - '&eClique para abrir.'
+      voar:
+        Slot: 30
+        Acao: VOAR
+        Material: FEATHER
+        Nome: '&b&lVoar'
+        Lore:
+          - '&7Liga ou desliga o voo.'
+          - '&7Voo do terreno comprado: {voo}'
+          - ''
+          - '&eClique para alternar.'
+      comprar-voo:
+        Slot: 31
+        Acao: COMPRAR_VOO
+        Material: ELYTRA
+        Nome: '&b&lComprar voo'
+        Lore:
+          - '&7Libera o voo neste terreno'
+          - '&7para sempre.'
+          - '&7Preco: &f{preco_voo}'
+          - ''
+          - '&eClique para comprar.'
+      transferir:
+        Slot: 32
+        Acao: TRANSFERIR
+        Material: PAPER
+        Nome: '&e&lTransferir'
+        Lore:
+          - '&7Entrega o terreno a outra pessoa.'
+          - ''
+          - '&eClique para transferir.'
+      backups:
+        Slot: 33
+        Acao: BACKUPS
+        Material: ENDER_CHEST
+        Nome: '&5&lBackups'
+        Lore:
+          - '&7Copias do terreno feitas antes'
+          - '&7de limpar ou apagar.'
+          - ''
+          - '&eClique para abrir.'
+      favoritar:
+        Slot: 34
+        Acao: FAVORITAR
+        Material: GOLD_INGOT
+        Nome: '&6&lFavorito'
+        Lore:
+          - '&7Nos favoritos: {favorito}'
+          - ''
+          - '&eClique para alternar.'
+      limpar:
+        Slot: 47
+        Acao: LIMPAR
+        Material: LAVA_BUCKET
+        Nome: '&c&lLimpar'
+        Lore:
+          - '&7Apaga tudo e refaz o chao.'
+          - '&7Preco: &f{preco_limpar}'
+          - ''
+          - '&cClique para limpar.'
+      apagar:
+        Slot: 51
+        Acao: APAGAR
+        Material: TNT
+        Nome: '&4&lApagar'
+        Lore:
+          - '&7O terreno volta a ficar livre.'
+          - ''
+          - '&cClique para apagar.'
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  A ficha do terreno (para quem nao manda nele)
+  #
+  #  Acoes: RETRATO IR AVALIAR FAVORITAR COMPRAR ALUGAR MEMBROS PAINEL
+  #         VOLTAR FECHAR
+  #  Trocas extras: {minimo_dias} {maximo_dias}
+  # ====================================================================
+  Info:
+    Titulo: '&8{terreno}'
+    Linhas: 4
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      retrato:
+        Slot: 4
+        Acao: RETRATO
+        Material: ''
+        Nome: '&a&l{terreno}'
+        Lore:
+          - '&7Terreno &f{id} &7de &f{dono}'
+          - '&7{descricao}'
+          - ''
+          - '&7Status: {status}'
+          - '&7Avaliacao: {estrelas} &8({notas})'
+          - '&7Visitas: &f{visitas}'
+          - '&7Bioma: &f{bioma}'
+          - '&7Criado em: &f{criado}'
+          - ''
+          - '&7Voce aqui: &f{cargo}'
+      ir:
+        Slot: 10
+        Acao: IR
+        Material: ENDER_PEARL
+        Nome: '&b&lVisitar'
+        Lore:
+          - '&eClique para ir.'
+      avaliar:
+        Slot: 12
+        Acao: AVALIAR
+        Material: NETHER_STAR
+        Nome: '&e&lAvaliar'
+        Lore:
+          - '&7De uma nota de 1 a 5.'
+          - ''
+          - '&eClique para avaliar.'
+      favoritar:
+        Slot: 14
+        Acao: FAVORITAR
+        Material: GOLD_INGOT
+        Nome: '&6&lFavorito'
+        Lore:
+          - '&7Nos favoritos: {favorito}'
+          - ''
+          - '&eClique para alternar.'
+      membros:
+        Slot: 16
+        Acao: MEMBROS
+        Material: PLAYER_HEAD
+        Nome: '&a&lMembros'
+        Lore:
+          - '&7Quem faz parte do terreno.'
+          - ''
+          - '&eClique para ver.'
+      comprar:
+        Slot: 21
+        Acao: COMPRAR
+        Material: EMERALD
+        Nome: '&2&lComprar por {preco}'
+        Lore:
+          - '&7Este terreno esta a venda.'
+          - ''
+          - '&eClique para comprar.'
+      alugar:
+        Slot: 23
+        Acao: ALUGAR
+        Material: CLOCK
+        Nome: '&3&lAlugar por {aluguel}/dia'
+        Lore:
+          - '&7De {minimo_dias} a {maximo_dias} dias.'
+          - ''
+          - '&eClique para alugar.'
+      painel:
+        Slot: 26
+        Acao: PAINEL
+        Material: COMMAND_BLOCK
+        Nome: '&c&lPainel (staff)'
+        Lore:
+          - '&7Abre o painel do dono.'
+      voltar:
+        Slot: 27
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 31
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  Listas de terrenos: os meus, os de alguem
+  #  (Favoritos, Mercado, Alugueis e Ranking sao telas iguais, abaixo)
+  #
+  #  Modelos: terreno a-venda para-alugar
+  #  Trocas extras: {modo} {quantidade} {posicao}
+  # ====================================================================
+  Lista:
+    Titulo: '&8{modo}'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore:
+          - '&7Pagina {pagina} de {paginas}'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore:
+          - '&7Pagina {pagina} de {paginas}'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      terreno:
+        Material: ''
+        Nome: '&a{terreno}'
+        Lore:
+          - '&7Terreno &f{id} &7de &f{dono}'
+          - '&7{descricao}'
+          - '&7Status: {status}'
+          - '&7Avaliacao: {estrelas}'
+          - '&7Grupo: &f{grupo} &7terreno(s)'
+          - ''
+          - '&eClique &7para abrir.'
+          - '&eClique direito &7para ir.'
+
+  Favoritos:
+    Titulo: '&8Favoritos'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      terreno:
+        Material: ''
+        Nome: '&6{terreno}'
+        Lore:
+          - '&7Terreno &f{id} &7de &f{dono}'
+          - '&7Avaliacao: {estrelas}'
+          - ''
+          - '&eClique &7para abrir.'
+          - '&eClique direito &7para visitar.'
+
+  Mercado:
+    Titulo: '&8Mercado de terrenos'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      info:
+        Slot: 4
+        Material: EMERALD
+        Nome: '&2&lMercado'
+        Lore:
+          - '&7Terrenos a venda: &f{quantidade}'
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      terreno:
+        Material: ''
+        Nome: '&2{terreno}'
+        Lore:
+          - '&7Terreno &f{id} &7de &f{dono}'
+          - '&7{descricao}'
+          - '&7Grupo: &f{grupo} &7terreno(s)'
+          - '&7Avaliacao: {estrelas}'
+          - ''
+          - '&7Preco: &a{preco}'
+          - ''
+          - '&eClique &7para ver e comprar.'
+          - '&eClique direito &7para visitar.'
+
+  Alugueis:
+    Titulo: '&8Terrenos para alugar'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      terreno:
+        Material: ''
+        Nome: '&3{terreno}'
+        Lore:
+          - '&7Terreno &f{id} &7de &f{dono}'
+          - '&7{descricao}'
+          - ''
+          - '&7Por dia: &b{aluguel}'
+          - ''
+          - '&eClique &7para ver e alugar.'
+          - '&eClique direito &7para visitar.'
+
+  Ranking:
+    Titulo: '&8{modo}'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      terreno:
+        Material: ''
+        Nome: '&e#{posicao} &f{terreno}'
+        Lore:
+          - '&7Terreno &f{id} &7de &f{dono}'
+          - '&7{descricao}'
+          - '&7Avaliacao: {estrelas} &8({notas})'
+          - '&7Visitas: &f{visitas}'
+          - ''
+          - '&eClique &7para abrir.'
+          - '&eClique direito &7para visitar.'
+
+  # ====================================================================
+  #  Membros
+  #
+  #  Acoes: ADICIONAR CONFIAR NEGAR VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Modelos: dono locatario confiavel membro negado
+  #  Trocas extras: {membro} {cargo_membro} {online} {limite_membros}
+  # ====================================================================
+  Membros:
+    Titulo: '&8Membros de {terreno}'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+    Itens:
+      adicionar:
+        Slot: 39
+        Acao: ADICIONAR
+        Material: LIME_DYE
+        Nome: '&a&lAdicionar membro'
+        Lore:
+          - '&7Membro constroi enquanto'
+          - '&7voce esta online.'
+          - '&7Vagas: &f{membros}&7/&f{limite_membros}'
+          - ''
+          - '&eClique para digitar o nick.'
+      confiar:
+        Slot: 40
+        Acao: CONFIAR
+        Material: EMERALD
+        Nome: '&2&lAdicionar confiavel'
+        Lore:
+          - '&7Confiavel constroi sempre,'
+          - '&7mesmo com voce offline.'
+          - ''
+          - '&eClique para digitar o nick.'
+      negar:
+        Slot: 41
+        Acao: NEGAR
+        Material: RED_DYE
+        Nome: '&c&lBarrar alguem'
+        Lore:
+          - '&7Quem esta barrado nem entra.'
+          - ''
+          - '&eClique para digitar o nick.'
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      dono:
+        Material: ''
+        Nome: '&6{membro}'
+        Lore:
+          - '&7Cargo: &6Dono'
+          - '&7{online}'
+      locatario:
+        Material: ''
+        Nome: '&d{membro}'
+        Lore:
+          - '&7Cargo: &dLocatario'
+          - '&7Aluguel termina em: &f{aluguel_restante}'
+          - '&7{online}'
+      confiavel:
+        Material: ''
+        Nome: '&a{membro}'
+        Lore:
+          - '&7Cargo: &aConfiavel'
+          - '&7{online}'
+          - ''
+          - '&eClique para gerenciar.'
+      membro:
+        Material: ''
+        Nome: '&f{membro}'
+        Lore:
+          - '&7Cargo: &fMembro'
+          - '&7{online}'
+          - ''
+          - '&eClique para gerenciar.'
+      negado:
+        Material: ''
+        Nome: '&c{membro}'
+        Lore:
+          - '&7Cargo: &cBarrado'
+          - ''
+          - '&eClique para gerenciar.'
+
+  # ====================================================================
+  #  Gerenciar uma pessoa
+  #  Acoes: RETRATO PROMOVER REBAIXAR REMOVER NEGAR PERMITIR VOLTAR FECHAR
+  # ====================================================================
+  Membro:
+    Titulo: '&8{membro}'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      retrato:
+        Slot: 4
+        Acao: RETRATO
+        Material: ''
+        Nome: '&a{membro}'
+        Lore:
+          - '&7Cargo: &f{cargo_membro}'
+      promover:
+        Slot: 10
+        Acao: PROMOVER
+        Material: EMERALD
+        Nome: '&a&lPromover a confiavel'
+        Lore:
+          - '&7Passa a construir sempre.'
+      rebaixar:
+        Slot: 10
+        Acao: REBAIXAR
+        Material: IRON_INGOT
+        Nome: '&e&lRebaixar a membro'
+        Lore:
+          - '&7So constroi com voce online.'
+      remover:
+        Slot: 12
+        Acao: REMOVER
+        Material: BARRIER
+        Nome: '&c&lRemover do terreno'
+      negar:
+        Slot: 14
+        Acao: NEGAR
+        Material: RED_DYE
+        Nome: '&4&lBarrar'
+        Lore:
+          - '&7Nem entra mais.'
+      permitir:
+        Slot: 14
+        Acao: PERMITIR
+        Material: LIME_DYE
+        Nome: '&a&lDeixar entrar'
+      voltar:
+        Slot: 18
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 22
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  Regras (bandeiras)
+  #  Modelos: ligada desligada valor bloqueada
+  #  Trocas extras: {bandeira} {descricao_bandeira} {valor} {permissao}
+  # ====================================================================
+  Bandeiras:
+    Titulo: '&8Regras de {terreno}'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      ligada:
+        Material: ''
+        Nome: '&a{bandeira}'
+        Brilho: true
+        Lore:
+          - '&7{descricao_bandeira}'
+          - ''
+          - '&7Agora: {valor}'
+          - ''
+          - '&eClique para desligar.'
+      desligada:
+        Material: ''
+        Nome: '&c{bandeira}'
+        Lore:
+          - '&7{descricao_bandeira}'
+          - ''
+          - '&7Agora: {valor}'
+          - ''
+          - '&eClique para ligar.'
+      valor:
+        Material: ''
+        Nome: '&e{bandeira}'
+        Lore:
+          - '&7{descricao_bandeira}'
+          - ''
+          - '&7Agora: {valor}'
+          - ''
+          - '&eClique &7para trocar.'
+          - '&eClique direito &7para limpar (texto).'
+      bloqueada:
+        Material: GRAY_DYE
+        Nome: '&8{bandeira}'
+        Lore:
+          - '&7{descricao_bandeira}'
+          - ''
+          - '&7Agora: {valor}'
+          - ''
+          - '&cVoce nao pode mexer nesta regra.'
+
+  # ====================================================================
+  #  Biomas
+  #  Modelos: bioma selecionado bloqueado
+  #  Trocas extras: {bioma_nome} {bioma_chave} {preco_bioma} {permissao}
+  # ====================================================================
+  Biomas:
+    Titulo: '&8Bioma de {terreno}'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      bioma:
+        Material: ''
+        Nome: '{bioma_nome}'
+        Lore:
+          - '&7Preco: &f{preco_bioma}'
+          - ''
+          - '&eClique para escolher.'
+      selecionado:
+        Material: ''
+        Nome: '{bioma_nome}'
+        Brilho: true
+        Lore:
+          - '&aEste e o bioma atual.'
+      bloqueado:
+        Material: GRAY_DYE
+        Nome: '&8{bioma_nome}'
+        Lore:
+          - '&cVoce nao tem acesso a este bioma.'
+
+  # ====================================================================
+  #  Personalizar
+  #  Acoes: CATALOGO_CHAO CATALOGO_PAREDE CATALOGO_BORDA BLOCO_DA_MAO_CHAO
+  #         BLOCO_DA_MAO_PAREDE BLOCO_DA_MAO_BORDA DIGITAR_BLOCO_CHAO
+  #         DIGITAR_BLOCO_PAREDE DIGITAR_BLOCO_BORDA LIMPAR_ACIMA VOLTAR FECHAR
+  #  Trocas extras: {preco_mao}
+  # ====================================================================
+  Personalizar:
+    Titulo: '&8Personalizar {terreno}'
+    Linhas: 5
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      chao:
+        Slot: 11
+        Acao: CATALOGO_CHAO
+        Material: GRASS_BLOCK
+        Nome: '&a&lChao'
+        Lore:
+          - '&7Agora: &f{chao}'
+          - ''
+          - '&eClique para ver o catalogo.'
+      parede:
+        Slot: 13
+        Acao: CATALOGO_PAREDE
+        Material: STONE_BRICKS
+        Nome: '&7&lParede'
+        Lore:
+          - '&7Agora: &f{parede}'
+          - ''
+          - '&eClique para ver o catalogo.'
+      borda:
+        Slot: 15
+        Acao: CATALOGO_BORDA
+        Material: SMOOTH_STONE_SLAB
+        Nome: '&f&lBorda'
+        Lore:
+          - '&7Agora: &f{borda}'
+          - ''
+          - '&eClique para ver o catalogo.'
+      chao-mao:
+        Slot: 20
+        Acao: BLOCO_DA_MAO_CHAO
+        Material: BRICK
+        Nome: '&a&lChao: bloco da mao'
+        Lore:
+          - '&7Usa o bloco que voce segura.'
+          - '&7Preco: &f{preco_mao}'
+          - ''
+          - '&eClique para aplicar.'
+      parede-mao:
+        Slot: 22
+        Acao: BLOCO_DA_MAO_PAREDE
+        Material: BRICK
+        Nome: '&7&lParede: bloco da mao'
+        Lore:
+          - '&7Usa o bloco que voce segura.'
+          - '&7Preco: &f{preco_mao}'
+          - ''
+          - '&eClique para aplicar.'
+      borda-mao:
+        Slot: 24
+        Acao: BLOCO_DA_MAO_BORDA
+        Material: BRICK
+        Nome: '&f&lBorda: bloco da mao'
+        Lore:
+          - '&7Usa o bloco que voce segura.'
+          - '&7Preco: &f{preco_mao}'
+          - ''
+          - '&eClique para aplicar.'
+      chao-mistura:
+        Slot: 29
+        Acao: DIGITAR_BLOCO_CHAO
+        Material: PAPER
+        Nome: '&a&lChao: mistura'
+        Lore:
+          - '&7Digite varios blocos com pesos:'
+          - '&fSTONE,COBBLESTONE:30,ANDESITE'
+          - '&7Preco: &f{preco_mao}'
+          - ''
+          - '&eClique para digitar.'
+      parede-mistura:
+        Slot: 31
+        Acao: DIGITAR_BLOCO_PAREDE
+        Material: PAPER
+        Nome: '&7&lParede: mistura'
+        Lore:
+          - '&7Digite varios blocos com pesos.'
+          - '&7Preco: &f{preco_mao}'
+          - ''
+          - '&eClique para digitar.'
+      borda-mistura:
+        Slot: 33
+        Acao: DIGITAR_BLOCO_BORDA
+        Material: PAPER
+        Nome: '&f&lBorda: mistura'
+        Lore:
+          - '&7Digite varios blocos com pesos.'
+          - '&7Preco: &f{preco_mao}'
+          - ''
+          - '&eClique para digitar.'
+      limpar-acima:
+        Slot: 40
+        Acao: LIMPAR_ACIMA
+        Material: SPONGE
+        Nome: '&c&lLimpar acima do chao'
+        Lore:
+          - '&7Apaga tudo que esta em cima'
+          - '&7do chao, sem mexer no chao.'
+          - ''
+          - '&cClique para limpar.'
+      voltar:
+        Slot: 36
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 44
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  Catalogo de blocos
+  #  Modelos: desbloqueado bloqueado selecionado sem-permissao
+  #  Trocas extras: {parte} {cosmetico} {blocos} {preco_cosmetico} {permissao}
+  # ====================================================================
+  Catalogo:
+    Titulo: '&8{parte}'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      desbloqueado:
+        Material: ''
+        Nome: '{cosmetico}'
+        Lore:
+          - '&7Blocos na mistura: &f{blocos}'
+          - '&aDesbloqueado'
+          - ''
+          - '&eClique para aplicar.'
+      bloqueado:
+        Material: ''
+        Nome: '{cosmetico}'
+        Lore:
+          - '&7Blocos na mistura: &f{blocos}'
+          - '&7Preco: &f{preco_cosmetico}'
+          - ''
+          - '&eClique para comprar e aplicar.'
+      selecionado:
+        Material: ''
+        Nome: '{cosmetico}'
+        Brilho: true
+        Lore:
+          - '&aEste e o atual.'
+      sem-permissao:
+        Material: GRAY_DYE
+        Nome: '&8{cosmetico}'
+        Lore:
+          - '&cVoce nao tem acesso a este bloco.'
+
+  # ====================================================================
+  #  Explorar
+  #  Acoes: MELHORES MAIS_VISITADOS RECENTES ALEATORIO MERCADO ALUGUEIS
+  #         VOLTAR FECHAR
+  # ====================================================================
+  Explorar:
+    Titulo: '&8Explorar'
+    Linhas: 4
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      melhores:
+        Slot: 10
+        Acao: MELHORES
+        Material: NETHER_STAR
+        Nome: '&e&lMelhores avaliados'
+        Lore:
+          - '&7Os terrenos com as melhores notas.'
+          - ''
+          - '&eClique para ver.'
+      visitados:
+        Slot: 12
+        Acao: MAIS_VISITADOS
+        Material: ENDER_EYE
+        Nome: '&b&lMais visitados'
+        Lore:
+          - '&7Os terrenos por onde mais gente passou.'
+          - ''
+          - '&eClique para ver.'
+      recentes:
+        Slot: 14
+        Acao: RECENTES
+        Material: CLOCK
+        Nome: '&a&lMais novos'
+        Lore:
+          - '&7Os ultimos terrenos pegos.'
+          - ''
+          - '&eClique para ver.'
+      aleatorio:
+        Slot: 16
+        Acao: ALEATORIO
+        Material: ENDER_PEARL
+        Nome: '&d&lSorteado'
+        Lore:
+          - '&7Visita um terreno qualquer.'
+          - '&7Terrenos no servidor: &f{terrenos}'
+          - ''
+          - '&eClique para ir.'
+      voltar:
+        Slot: 27
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 31
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  Avaliar
+  #  Acoes: RETRATO NOTA_1 NOTA_2 NOTA_3 NOTA_4 NOTA_5 VOLTAR FECHAR
+  #  Trocas extras: {nota} {nota_estrelas}
+  # ====================================================================
+  Avaliar:
+    Titulo: '&8Avaliar {terreno}'
+    Linhas: 4
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      retrato:
+        Slot: 4
+        Acao: RETRATO
+        Material: ''
+        Nome: '&a&l{terreno}'
+        Lore:
+          - '&7de &f{dono}'
+          - '&7Media atual: {estrelas} &8({notas})'
+      nota1:
+        Slot: 11
+        Acao: NOTA_1
+        Material: NETHER_STAR
+        Nome: '{nota_estrelas}'
+        Lore:
+          - '&7Nota {nota}.'
+      nota2:
+        Slot: 12
+        Acao: NOTA_2
+        Material: NETHER_STAR
+        Nome: '{nota_estrelas}'
+        Lore:
+          - '&7Nota {nota}.'
+      nota3:
+        Slot: 13
+        Acao: NOTA_3
+        Material: NETHER_STAR
+        Nome: '{nota_estrelas}'
+        Lore:
+          - '&7Nota {nota}.'
+      nota4:
+        Slot: 14
+        Acao: NOTA_4
+        Material: NETHER_STAR
+        Nome: '{nota_estrelas}'
+        Lore:
+          - '&7Nota {nota}.'
+      nota5:
+        Slot: 15
+        Acao: NOTA_5
+        Material: NETHER_STAR
+        Nome: '{nota_estrelas}'
+        Lore:
+          - '&7Nota {nota}.'
+      voltar:
+        Slot: 27
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 31
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  Terreno livre: "quer este?"
+  #  Acoes: PEGAR AUTO CANCELAR FECHAR
+  #  Trocas: {id} {mundo} {jogador} {preco} {terrenos} {limite} {tamanho}
+  # ====================================================================
+  Reivindicar:
+    Titulo: '&8Terreno livre {id}'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      info:
+        Slot: 4
+        Material: GRASS_BLOCK
+        Nome: '&a&lTerreno {id}'
+        Lore:
+          - '&7Tamanho: &f{tamanho}'
+          - '&7Preco: &f{preco}'
+          - '&7Seus terrenos: &f{terrenos}&7/&f{limite}'
+      pegar:
+        Slot: 11
+        Acao: PEGAR
+        Material: LIME_WOOL
+        Nome: '&a&lPegar este terreno'
+        Lore:
+          - '&7Preco: &f{preco}'
+          - ''
+          - '&eClique para pegar.'
+      auto:
+        Slot: 13
+        Acao: AUTO
+        Material: NETHER_STAR
+        Nome: '&b&lPegar o proximo livre'
+        Lore:
+          - '&7Pega o terreno livre mais perto'
+          - '&7do centro e te leva ate ele.'
+      cancelar:
+        Slot: 15
+        Acao: CANCELAR
+        Material: RED_WOOL
+        Nome: '&c&lAgora nao'
+
+  # ====================================================================
+  #  Modelos
+  #  Modelos: modelo bloqueado
+  #  Trocas extras: {modelo} {tamanho_modelo} {blocos} {preco_modelo}
+  #                 {permissao} e a linha {descricao_modelo}
+  # ====================================================================
+  Modelos:
+    Titulo: '&8Modelos de terreno'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      modelo:
+        Material: ''
+        Nome: '{modelo}'
+        Lore:
+          - '{descricao_modelo}'
+          - ''
+          - '&7Tamanho: &f{tamanho_modelo}'
+          - '&7Blocos: &f{blocos}'
+          - '&7Preco: &f{preco_modelo}'
+          - ''
+          - '&eClique para aplicar.'
+          - '&cO terreno sera limpo antes.'
+      bloqueado:
+        Material: GRAY_DYE
+        Nome: '&8{modelo}'
+        Lore:
+          - '{descricao_modelo}'
+          - ''
+          - '&cVoce nao tem acesso a este modelo.'
+
+  # ====================================================================
+  #  Backups
+  #  Modelos: backup
+  #  Trocas extras: {data} {dono_backup} {posicao}
+  # ====================================================================
+  Backups:
+    Titulo: '&8Backups de {terreno}'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16]
+    Itens:
+      voltar:
+        Slot: 18
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 22
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      backup:
+        Material: ENDER_CHEST
+        Nome: '&5Backup #{posicao}'
+        Lore:
+          - '&7Feito em: &f{data}'
+          - '&7Dono na epoca: &f{dono_backup}'
+          - ''
+          - '&eClique para restaurar.'
+
+  # ====================================================================
+  #  Vender
+  #  Acoes: RETRATO DIGITAR_PRECO VENDER CANCELAR_VENDA VOLTAR FECHAR
+  #  Trocas extras: {taxa}
+  # ====================================================================
+  Vender:
+    Titulo: '&8Vender {terreno}'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      retrato:
+        Slot: 4
+        Acao: RETRATO
+        Material: ''
+        Nome: '&a&l{terreno}'
+        Lore:
+          - '&7Status: {status}'
+          - '&7Preco atual: &f{preco}'
+      preco:
+        Slot: 11
+        Acao: DIGITAR_PRECO
+        Material: EMERALD
+        Nome: '&2&lAnunciar'
+        Lore:
+          - '&7Digite o preco no chat.'
+          - '&7Taxa do servidor: &f{taxa}%'
+          - ''
+          - '&eClique para digitar.'
+      cancelar:
+        Slot: 15
+        Acao: CANCELAR_VENDA
+        Material: BARRIER
+        Nome: '&c&lTirar do mercado'
+      voltar:
+        Slot: 18
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 22
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  Aluguel
+  #  Acoes: RETRATO DEFINIR_ALUGUEL CANCELAR_ALUGUEL DIAS_1 DIAS_7 DIAS_30
+  #         DIGITAR_DIAS VOLTAR FECHAR
+  #  Trocas extras: {minimo_dias} {maximo_dias} {taxa} {total_1} {total_7} {total_30}
+  # ====================================================================
+  Aluguel:
+    Titulo: '&8Aluguel de {terreno}'
+    Linhas: 4
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      retrato:
+        Slot: 4
+        Acao: RETRATO
+        Material: ''
+        Nome: '&a&l{terreno}'
+        Lore:
+          - '&7Dono: &f{dono}'
+          - '&7Por dia: &f{aluguel}'
+          - '&7Locatario: &f{locatario}'
+          - '&7Restante: &f{aluguel_restante}'
+      definir:
+        Slot: 11
+        Acao: DEFINIR_ALUGUEL
+        Material: CLOCK
+        Nome: '&3&lDefinir preco por dia'
+        Lore:
+          - '&7Digite o preco no chat.'
+          - '&7Taxa do servidor: &f{taxa}%'
+          - ''
+          - '&eClique para digitar.'
+      cancelar:
+        Slot: 15
+        Acao: CANCELAR_ALUGUEL
+        Material: BARRIER
+        Nome: '&c&lTirar da lista'
+      dias1:
+        Slot: 11
+        Acao: DIAS_1
+        Material: PAPER
+        Nome: '&b&l1 dia'
+        Lore:
+          - '&7Total: &f{total_1}'
+      dias7:
+        Slot: 12
+        Acao: DIAS_7
+        Material: PAPER
+        Nome: '&b&l7 dias'
+        Lore:
+          - '&7Total: &f{total_7}'
+      dias30:
+        Slot: 13
+        Acao: DIAS_30
+        Material: PAPER
+        Nome: '&b&l30 dias'
+        Lore:
+          - '&7Total: &f{total_30}'
+      digitar:
+        Slot: 15
+        Acao: DIGITAR_DIAS
+        Material: NAME_TAG
+        Nome: '&e&lOutro prazo'
+        Lore:
+          - '&7De {minimo_dias} a {maximo_dias} dias.'
+          - ''
+          - '&eClique para digitar.'
+      voltar:
+        Slot: 27
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 31
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  Vagas
+  #  Acoes: VAGA_MEMBRO VAGA_MESCLA VOLTAR FECHAR
+  #  Trocas: {limite_membros} {limite_mescla} {vagas_membros} {vagas_mescla}
+  #          {teto_membros} {teto_mescla} {preco_vaga_membro} {preco_vaga_mescla}
+  # ====================================================================
+  Vagas:
+    Titulo: '&8Vagas'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      membro:
+        Slot: 11
+        Acao: VAGA_MEMBRO
+        Material: PLAYER_HEAD
+        Nome: '&a&lVaga de membro'
+        Lore:
+          - '&7Membros por terreno: &f{limite_membros}'
+          - '&7Teto: &f{teto_membros}'
+          - '&7Compradas: &f{vagas_membros}'
+          - ''
+          - '&7Preco: &f{preco_vaga_membro}'
+          - ''
+          - '&eClique para comprar +1.'
+      mescla:
+        Slot: 15
+        Acao: VAGA_MESCLA
+        Material: PISTON
+        Nome: '&d&lVaga de mescla'
+        Lore:
+          - '&7Terrenos por grupo: &f{limite_mescla}'
+          - '&7Teto: &f{teto_mescla}'
+          - '&7Compradas: &f{vagas_mescla}'
+          - ''
+          - '&7Preco: &f{preco_vaga_mescla}'
+          - ''
+          - '&eClique para comprar +1.'
+      voltar:
+        Slot: 18
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 22
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+
+  # ====================================================================
+  #  Mundos (staff)
+  #  Acoes: CRIAR_MUNDO VOLTAR FECHAR
+  #  Modelos: mundo fora-do-ar inativo
+  #  Trocas: {mundo} {tamanho} {rua} {altura} {bioma} {terrenos} {limite} {modelos_rua}
+  # ====================================================================
+  Mundos:
+    Titulo: '&8Mundos de terrenos'
+    Linhas: 4
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16]
+    Itens:
+      criar:
+        Slot: 22
+        Acao: CRIAR_MUNDO
+        Material: NETHER_STAR
+        Nome: '&a&lCriar um mundo'
+        Lore:
+          - '&7Um assistente no chat pergunta'
+          - '&7nome, tamanho, rua e altura.'
+          - ''
+          - '&eClique para comecar.'
+      voltar:
+        Slot: 27
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      fechar:
+        Slot: 31
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+    Modelos:
+      mundo:
+        Material: GRASS_BLOCK
+        Nome: '&a{mundo}'
+        Lore:
+          - '&7Terreno: &f{tamanho}x{tamanho} &8| &7Rua: &f{rua}'
+          - '&7Altura: &f{altura} &8| &7Bioma: &f{bioma}'
+          - '&7Terrenos com dono: &f{terrenos}'
+          - '&7Limite: &f{limite}'
+          - '&7Modelos de rua: {modelos_rua}'
+          - ''
+          - '&eClique &7para ir.'
+          - '&eClique direito &7para editar.'
+      fora-do-ar:
+        Material: BARRIER
+        Nome: '&c{mundo}'
+        Lore:
+          - '&7Este mundo nao esta carregado.'
+          - ''
+          - '&eClique direito &7para editar.'
+      inativo:
+        Material: GRAY_DYE
+        Nome: '&8{mundo}'
+        Lore:
+          - '&7Desativado no mundos.yml.'
+          - ''
+          - '&eClique direito &7para editar.'
+
+  # ====================================================================
+  #  Confirmar
+  #  Acoes: CONFIRMAR CANCELAR
+  #  Trocas: {pergunta} {jogador}
+  # ====================================================================
+  Confirmar:
+    Titulo: '&8Tem certeza?'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Itens:
+      pergunta:
+        Slot: 4
+        Material: PAPER
+        Nome: '&e&lTem certeza?'
+        Lore:
+          - '{pergunta}'
+      cancelar:
+        Slot: 11
+        Acao: CANCELAR
+        Material: RED_WOOL
+        Nome: '&c&lCancelar'
+      confirmar:
+        Slot: 15
+        Acao: CONFIRMAR
+        Material: LIME_WOOL
+        Nome: '&a&lConfirmar'
+
+  # ====================================================================
+  #  O editor de configuracao (/starplots config) usa esta tela para as
+  #  listas. So o rodape e configuravel; os itens sao do proprio editor.
+  # ====================================================================
+  Editor:
+    Titulo: ''
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'

@@ -1,0 +1,209 @@
+# ------------------------------------------------------------------------
+#  StarPlots - configuracao principal
+#
+#  Tudo aqui pode ser mexido pelo menu, sem abrir arquivo nenhum:
+#  /starplots config
+#
+#  Os mundos de terrenos ficam no mundos.yml; os blocos compraveis no
+#  cosmeticos.yml; os biomas no biomas.yml; os modelos no modelos.yml; o
+#  desenho dos menus no menus.yml; todo texto no mensagens.yml.
+#
+#  Suporte: https://starplugins.com.br
+# ------------------------------------------------------------------------
+
+# Nao mexa: e por este numero que o plugin sabe quando o modelo do arquivo
+# mudou e precisa ser atualizado (o seu antigo e guardado ao lado).
+Versao do modelo: 1
+
+# Escreve no console o que o plugin esta fazendo. So ligue para cacar problema.
+Debug: false
+
+# O mundo usado pelo /terreno auto de quem esta fora de um mundo de terrenos.
+Mundo principal: terrenos
+
+Terrenos:
+  # Quantos terrenos cada jogador pode ter. A permissao starplots.terrenos.N
+  # aumenta; starplots.terrenos.ilimitado tira o teto. Um grupo mesclado
+  # conta como UM terreno.
+  Limite por jogador: 1
+
+  # Preco para pegar um terreno livre. Zero = gratis. O mundos.yml pode
+  # sobrescrever por mundo.
+  Preco para reivindicar: 0
+
+  # Nome que o terreno recebe ao ser pego. Aceita {jogador}.
+  Nome padrao: 'Terreno de {jogador}'
+
+  # Abre o menu de "quer este terreno?" quando o jogador pisa num livre.
+  Menu ao entrar em terreno livre: true
+  Segundos entre menus de terreno livre: 30
+
+  # Como avisar quem entra e sai de um terreno:
+  # TITULO, ACTIONBAR, CHAT, TODOS ou NENHUM. Os textos ficam no mensagens.yml.
+  Aviso de entrada: TITULO
+
+  # Contagem antes de todo teleporte do plugin. Zero desliga.
+  Espera do teleporte: 3
+  Cancelar teleporte ao andar: true
+
+  # Poe um vidro sob os pes quando o destino nao tem chao.
+  Vidro sob os pes: true
+
+  # O MEMBRO so constroi com o dono online; o CONFIAVEL constroi sempre.
+  # Com true, membro tambem constroi com o dono offline.
+  Membro constroi com dono offline: false
+
+  # Vagas de membro (confiaveis + membros) por terreno. A permissao
+  # starplots.membros.N aumenta, e o jogador pode comprar vagas no menu.
+  # Teto: o maximo mesmo comprando (0 = sem teto).
+  Limite de membros: 3
+  Teto de membros: 0
+  Preco da vaga de membro: 2500
+
+  # Quantos terrenos cabem num grupo mesclado (starplots.mesclar.N aumenta).
+  Limite de mescla: 2
+  Teto de mescla: 0
+  Preco da vaga de mescla: 5000
+  Preco para mesclar: 1000
+
+  # Preco para limpar o terreno. Zero = gratis.
+  Preco para limpar: 0
+
+  # Porcentagem que o servidor fica numa venda (0 = sem taxa).
+  Taxa de venda: 5
+  # Ao vender, os membros e negados do terreno sao apagados.
+  Limpar membros na venda: true
+
+  # Voo dentro do terreno. Com preco zero basta a permissao starplots.voar;
+  # com preco, o dono compra o voo do terreno no painel (uma vez).
+  Voo liberado: true
+  Preco do voo: 5000
+
+  # Pede confirmacao antes de limpar e de apagar.
+  Confirmar limpar: true
+  Confirmar apagar: true
+
+  # Guarda uma copia do terreno antes de limpar, apagar ou aplicar modelo.
+  # O dono restaura pelo painel (Backups). Ficam so os ultimos N por terreno.
+  Backup antes de limpar: true
+  Backups por terreno: 3
+
+  # A mesma pessoa so conta como visita de novo depois deste tempo.
+  Segundos entre visitas contadas: 600
+
+  # Tamanho maximo do nome e da descricao (0 = sem limite).
+  Tamanho maximo do nome: 24
+  Tamanho maximo da descricao: 48
+
+  # Regras dos mundos de terrenos.
+  Spawn natural de mobs: false
+  Fogo no mundo: false
+  # PEACEFUL, EASY, NORMAL ou HARD.
+  Dificuldade: NORMAL
+
+  # Quantos blocos o plugin refaz por tique ao limpar, mesclar ou pintar.
+  # Numero alto termina mais rapido e pesa mais no servidor.
+  Blocos por tique: 4000
+
+  # Ate quantos blocos acima do chao o /terrenoadmin rua capturar olha.
+  Altura de captura da rua: 40
+
+  # Particulas em cima da parede quando alguem entra num terreno.
+  Particulas na borda: true
+  Particula da borda: VILLAGER_HAPPY
+
+  # O jogador pode usar o bloco que esta na mao (ou digitar uma mistura,
+  # tipo STONE,COBBLESTONE:30) como chao, parede ou borda.
+  Permitir bloco da mao: true
+  Preco do bloco da mao: 500
+
+  # Segundos entre um uso e outro de cada acao (0 = sem espera).
+  Esperas:
+    Pegar: 0
+    Limpar: 60
+    Cosmeticos: 10
+
+Aluguel:
+  # O dono oferece o terreno por um preco por dia; quem aluga manda no
+  # terreno ate o prazo vencer (nao vende, nao apaga, nao mescla).
+  Ativar: true
+  Minimo de dias: 1
+  Maximo de dias: 30
+  # Porcentagem que o servidor fica (0 = sem taxa).
+  Taxa: 5
+
+# O valor de cada bandeira num terreno que o dono ainda nao mexeu.
+# As de liga-desliga aceitam true/false; tempo e clima aceitam as opcoes
+# abaixo; as de texto aceitam qualquer frase.
+Bandeiras padrao:
+  interagir: false
+  portas: false
+  botoes: false
+  alavancas: false
+  baus: false
+  aldeoes: false
+  suportes: false
+  animais: false
+  baldes: false
+  veiculos: false
+  projeteis: false
+  dropar: true
+  coletar: true
+  visitas: true
+  voo: true
+  pvp: false
+  dano-de-mobs: true
+  explosoes: false
+  fogo: false
+  spawn-monstros: false
+  spawn-animais: false
+  redstone: true
+  liquidos: true
+  crescimento: true
+  queda-de-blocos: true
+  folhas: true
+  gelo-e-neve: true
+  mob-griefing: false
+  # PADRAO, DIA, MEIO_DIA, TARDE, NOITE ou MEIA_NOITE.
+  tempo: PADRAO
+  # PADRAO, SOL ou CHUVA.
+  clima: PADRAO
+  boas-vindas: ''
+  despedida: ''
+
+# Formato: SOM, SOM;volume ou SOM;volume;tom. Vazio desliga.
+Sons:
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Teleporte: 'ENTITY_ENDERMAN_TELEPORT;1;1'
+  Pegar: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+  Venda: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+Economia:
+  # VAULT, STARECONOMIA, PLACEHOLDER ou COMANDO.
+  Tipo: VAULT
+  Simbolo: '$'
+  Moeda do StarEconomia: 'coins'
+
+  # So para o tipo PLACEHOLDER: o placeholder que devolve o saldo.
+  Placeholder de saldo: ''
+
+  # So para o tipo COMANDO: rodados pelo console. Aceitam {jogador},
+  # {uuid} e {valor}.
+  Comando de retirar: ''
+  Comando de dar: ''
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite nao precisa de nada instalado.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starplots_'
+
+  Host: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+
+  # De quanto em quanto tempo o que mudou vai para o banco.
+  Salvar a cada segundos: 120

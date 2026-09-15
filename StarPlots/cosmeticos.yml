@@ -1,0 +1,155 @@
+# ------------------------------------------------------------------------
+#  StarPlots - os blocos que o dono compra para o terreno
+#
+#  Tres catalogos: Chao (o piso do terreno), Parede (a linha que contorna o
+#  terreno, na altura do chao) e Borda (o que fica em cima da parede).
+#
+#  Cada item tem:
+#    Nome        o que aparece no menu
+#    Bloco       um material ou uma mistura com pesos (STONE,COBBLESTONE:30)
+#    Preco       0 = gratis. O que e comprado fica desbloqueado para sempre
+#                no perfil do jogador, e vale em qualquer terreno dele.
+#    Permissao   '' = todo mundo
+#    Icone       o material do icone ('' usa o primeiro bloco da mistura)
+#
+#  Alem do catalogo, o jogador pode usar o bloco da mao ou digitar a
+#  propria mistura (ver "Permitir bloco da mao" no config.yml).
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Chao:
+  grama:
+    Nome: '&aGrama'
+    Bloco: GRASS_BLOCK
+    Preco: 0
+    Permissao: ''
+  terra:
+    Nome: '&6Terra'
+    Bloco: DIRT
+    Preco: 0
+    Permissao: ''
+  pedra:
+    Nome: '&7Pedra'
+    Bloco: STONE
+    Preco: 500
+    Permissao: ''
+  pedras-variadas:
+    Nome: '&7Pedras variadas'
+    Bloco: 'STONE:60,COBBLESTONE:25,ANDESITE:15'
+    Preco: 1500
+    Permissao: ''
+  areia:
+    Nome: '&eAreia'
+    Bloco: SAND
+    Preco: 800
+    Permissao: ''
+  neve:
+    Nome: '&fNeve'
+    Bloco: SNOW_BLOCK
+    Preco: 1200
+    Permissao: ''
+  quartzo:
+    Nome: '&fQuartzo'
+    Bloco: QUARTZ_BLOCK
+    Preco: 3000
+    Permissao: ''
+  la-colorida:
+    Nome: '&dLa colorida'
+    Bloco: 'WHITE_WOOL,LIGHT_BLUE_WOOL,PINK_WOOL,LIME_WOOL,YELLOW_WOOL'
+    Preco: 4000
+    Permissao: ''
+  esmeralda:
+    Nome: '&aBloco de esmeralda'
+    Bloco: EMERALD_BLOCK
+    Preco: 15000
+    Permissao: ''
+
+Parede:
+  pedra:
+    Nome: '&7Pedra'
+    Bloco: STONE
+    Preco: 0
+    Permissao: ''
+  tijolos-de-pedra:
+    Nome: '&7Tijolos de pedra'
+    Bloco: STONE_BRICKS
+    Preco: 0
+    Permissao: ''
+  tijolos-mistos:
+    Nome: '&7Tijolos mistos'
+    Bloco: 'STONE_BRICKS:60,CRACKED_STONE_BRICKS:25,MOSSY_STONE_BRICKS:15'
+    Preco: 2000
+    Permissao: ''
+  madeira:
+    Nome: '&6Madeira'
+    Bloco: OAK_PLANKS
+    Preco: 1000
+    Permissao: ''
+  quartzo:
+    Nome: '&fQuartzo'
+    Bloco: QUARTZ_BLOCK
+    Preco: 2500
+    Permissao: ''
+  ouro:
+    Nome: '&6Bloco de ouro'
+    Bloco: GOLD_BLOCK
+    Preco: 8000
+    Permissao: ''
+  diamante:
+    Nome: '&bBloco de diamante'
+    Bloco: DIAMOND_BLOCK
+    Preco: 20000
+    Permissao: ''
+  esmeralda:
+    Nome: '&aBloco de esmeralda'
+    Bloco: EMERALD_BLOCK
+    Preco: 30000
+    Permissao: ''
+
+Borda:
+  laje-de-pedra:
+    Nome: '&7Laje de pedra'
+    Bloco: SMOOTH_STONE_SLAB
+    Preco: 0
+    Permissao: ''
+  laje-de-madeira:
+    Nome: '&6Laje de madeira'
+    Bloco: OAK_SLAB
+    Preco: 500
+    Permissao: ''
+  cerca:
+    Nome: '&6Cerca'
+    Bloco: OAK_FENCE
+    Preco: 1000
+    Permissao: ''
+  vidro:
+    Nome: '&fVidro'
+    Bloco: GLASS
+    Preco: 1500
+    Permissao: ''
+  laje-de-quartzo:
+    Nome: '&fLaje de quartzo'
+    Bloco: QUARTZ_SLAB
+    Preco: 2500
+    Permissao: ''
+  lampada:
+    Nome: '&eLampada de redstone'
+    Bloco: REDSTONE_LAMP
+    Preco: 3000
+    Permissao: ''
+  pedra-luminosa:
+    Nome: '&ePedra luminosa'
+    Bloco: GLOWSTONE
+    Preco: 5000
+    Permissao: ''
+  ouro:
+    Nome: '&6Bloco de ouro'
+    Bloco: GOLD_BLOCK
+    Preco: 8000
+    Permissao: ''
+  diamante:
+    Nome: '&bBloco de diamante'
+    Bloco: DIAMOND_BLOCK
+    Preco: 20000
+    Permissao: ''

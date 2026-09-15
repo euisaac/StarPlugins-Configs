@@ -1,0 +1,493 @@
+# ------------------------------------------------------------------------
+#  StarPlots - todo texto que o plugin fala
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao para cada um.
+#
+#  Cores: use &a, &e, &c... e tambem &#RRGGBB nas versoes 1.16+.
+#  Em titulo, <nl> separa o titulo do subtitulo.
+#
+#  As trocas ({terreno}, {dono}, {id}...) sao as mesmas dos menus; veja a
+#  lista completa no topo do menus.yml.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&a&lTERRENOS &8| &f'
+
+Erros:
+  Sem permissao: '&cVoce nao pode fazer isso.'
+  So jogador: '&cEsse comando e para jogadores.'
+  Uso: '&cUse: &f{uso}'
+  Subcomando desconhecido: '&cNao conheco &f{sub}&c. Use &f/terreno ajuda&c.'
+  Nao e numero: '&cIsso nao e um numero.'
+  Valor invalido: '&cEscreva um valor maior que zero.'
+  Aguarde: '&cEspere &f{segundos}s &cpara fazer isso de novo.'
+  Sem dinheiro: '&cVoce nao tem &f{valor}&c.'
+  Jogador desconhecido: '&cNunca vi ninguem chamado &f{jogador}&c por aqui.'
+
+  Fora do mundo: '&cVoce nao esta num mundo de terrenos.'
+  Fora de terreno: '&cVoce nao esta num terreno.'
+  Na rua: '&cAqui e a rua. Ninguem constroi na rua.'
+  Na parede: '&cA parede do terreno so muda pelo menu de personalizar.'
+  Terreno livre: '&cEste terreno nao tem dono. Pegue com &f/terreno pegar&c.'
+  Ja tem dono: '&cEste terreno ja e de alguem.'
+  Fora do limite do mundo: '&cEste terreno esta fora do limite do mundo.'
+  Nenhum mundo: '&cNao ha nenhum mundo de terrenos ativo.'
+  Mundo lotado: '&cNao sobrou terreno livre neste mundo. Avise a administracao.'
+  Mundo fora do ar: '&cO mundo deste terreno nao esta carregado.'
+  Limite de terrenos: '&cVoce ja tem os seus &f{limite} &cterreno(s).'
+  Sem terrenos: '&cVoce nao tem nenhum terreno. Use &f/terreno auto&c.'
+  Sem terrenos outro: '&f{jogador} &cnao tem terrenos.'
+  Numero de terreno: '&cEscolha um numero de 1 a &f{quantidade}&c.'
+  So o dono: '&cSo quem manda no terreno pode fazer isso.'
+  Fora do proprio terreno: '&cVoce precisa estar dentro deste terreno.'
+  Sem permissao no terreno: '&cVoce nao pode construir no terreno de &f{dono}&c.'
+  Membro com dono offline: '&cVoce e membro, mas so constroi com o dono online.'
+  Negado no terreno: '&cVoce esta barrado no terreno &f{terreno}&c.'
+  Terreno fechado: '&cO terreno &f{terreno} &cnao esta aceitando visitas.'
+  Bandeira desligada: '&cA regra &f{bandeira} &cesta desligada aqui.'
+  PvP desligado: '&cO PvP esta desligado neste terreno.'
+  Altura: '&cAqui so da para construir entre as alturas &f{minimo} &ce &f{maximo}&c.'
+
+  Nome invalido: '&cNome invalido. Use ate &f{limite} &ccaracteres.'
+  Descricao longa: '&cDescricao longa demais. Use ate &f{limite} &ccaracteres.'
+  Material invalido: '&cEsse material nao existe.'
+
+  Adicionar a si mesmo: '&cVoce ja manda aqui.'
+  Ja e membro: '&f{jogador} &cja esta nesse cargo.'
+  Nao e membro: '&f{jogador} &cnao e do terreno.'
+  Nao esta negado: '&f{jogador} &cnao esta barrado aqui.'
+  Nao mexe no dono: '&cQuem manda no terreno nao pode ser barrado.'
+  Limite de membros: '&cO terreno ja tem as &f{limite} &cvagas ocupadas. Compre vagas no menu.'
+  Transferir a si mesmo: '&cO terreno ja e seu.'
+  Destino no limite: '&f{jogador} &cja esta no limite de terrenos.'
+
+  Sem permissao na bandeira: '&cVoce nao pode mexer na regra &f{bandeira}&c.'
+  Bandeira desconhecida: '&cNao existe a regra &f{bandeira}&c.'
+  Bioma desconhecido: '&cNao existe o bioma &f{bioma}&c.'
+  Sem permissao no bioma: '&cVoce nao pode usar o bioma &f{bioma}&c.'
+  Mesmo bioma: '&cO terreno ja esta com o bioma &f{bioma}&c.'
+  Sem permissao no cosmetico: '&cVoce nao pode usar &f{nome}&c.'
+  Bloco invalido: '&cNao entendi o bloco &f{bloco}&c. Use nomes como STONE ou STONE,COBBLESTONE:30.'
+  Sem bloco na mao: '&cSegure um bloco na mao.'
+
+  Ja mesclado: '&cJa esta mesclado desse lado.'
+  Vizinho sem dono: '&cO terreno ao lado ({lado}) nao tem dono.'
+  Vizinho de outro: '&cO terreno ao lado ({lado}) e de outra pessoa.'
+  Mesclar a venda: '&cTire o terreno do mercado antes de mesclar.'
+  Mesclar alugado: '&cTerreno alugado nao pode ser mesclado.'
+  Limite de mescla: '&cVoce so pode juntar ate &f{limite} &cterrenos. Compre vagas no menu.'
+  Nada para mesclar: '&cNenhum vizinho seu para juntar.'
+  Nao mesclado: '&cEste terreno nao esta mesclado.'
+  Nao mesclado nesse lado: '&cNao esta mesclado do lado {lado}.'
+
+  Nao esta a venda: '&cEste terreno nao esta a venda.'
+  Comprar o proprio: '&cVoce nao compra o proprio terreno.'
+  Aluguel desligado: '&cO aluguel esta desligado neste servidor.'
+  Nao esta para alugar: '&cEste terreno nao esta para alugar.'
+  Alugado agora: '&cEste terreno esta alugado agora. Espere o prazo acabar.'
+  Alugar o proprio: '&cVoce nao aluga o proprio terreno.'
+  Dias invalidos: '&cEscolha de &f{minimo} &ca &f{maximo} &cdias.'
+
+  Voo negado: '&cVoce nao pode voar neste terreno.'
+  Voo nao comprado: '&cO voo deste terreno ainda nao foi comprado. Veja o painel.'
+  Voo ja comprado: '&cO voo deste terreno ja esta liberado.'
+  Voo no criativo: '&cNo criativo voce ja voa.'
+
+  Avaliar o proprio: '&cVoce nao avalia o proprio terreno.'
+  Nota invalida: '&cA nota vai de 1 a 5.'
+  Nenhum terreno: '&cAinda nao existe nenhum terreno com dono.'
+  Vaga no teto: '&cVoce ja esta no teto de &f{limite}&c.'
+
+  Modelo desconhecido: '&cNao existe o modelo &f{modelo}&c.'
+  Modelo quebrado: '&cNao foi possivel ler esse modelo. Veja o console.'
+  Modelo nao cabe: '&cEsse modelo tem &f{tamanho} &ce nao cabe neste terreno.'
+  Modelo nao salvo: '&cNao foi possivel salvar o modelo. Veja o console.'
+  Sem permissao no modelo: '&cVoce nao pode usar o modelo &f{nome}&c.'
+
+  Nome de mundo invalido: '&cNome de mundo invalido: use letras, numeros, - e _.'
+  Mundo ja existe: '&cJa existe um mundo de terrenos chamado &f{mundo}&c.'
+  Mundo ja carregado: '&cJa existe um mundo chamado &f{mundo} &cno servidor.'
+  Mundo nao criado: '&cO servidor recusou criar o mundo &f{mundo}&c. Veja o console.'
+  Mundo desconhecido: '&cNao existe o mundo de terrenos &f{mundo}&c.'
+  Captura de rua: '&cNao deu para capturar: &f{motivo}&c. Fique em cima de um pedaco de rua do tipo pedido.'
+
+Terreno:
+  Reivindicado: |
+    &aTerreno &f{id} &apegue com sucesso!
+    &7Numero: &f{numero} &8| &7Mundo: &f{mundo} &8| &7Preco: &f{preco}
+    &7Abra o painel com &f/terreno painel&7.
+  Apagando: '&7Apagando o terreno...'
+  Apagado: '&aTerreno &f{id} &aapagado. Ele voltou a ficar livre.'
+  Limpando: '&7Limpando o terreno...'
+  Limpo: '&aTerreno &f{id} &alimpo!'
+  Casa definida: '&aA casa do terreno agora e aqui.'
+  Renomeado: '&aO terreno agora se chama &f{nome}&a.'
+  Descricao definida: '&aDescricao do terreno atualizada.'
+  Icone definido: '&aIcone do terreno atualizado.'
+  Bioma definido: '&aBioma do terreno trocado para &f{bioma}&a.'
+  Transferido: '&aTerreno transferido para &f{jogador}&a.'
+  Recebido: '&f{jogador} &ate deu o terreno &f{id}&a!'
+  Info livre: '&7Terreno livre &f{id}&7. Pegue com &f/terreno pegar&7.'
+  Info: |
+    &8&m-----------------------------
+    &a&lTerreno {id} &7- {terreno}
+    &8&m-----------------------------
+    &7Dono: &f{dono}
+    &7Descricao: &f{descricao}
+    &7Status: &f{status}
+    &7Bioma: &f{bioma}
+    &7Membros: &f{membros} &8| &7Negados: &f{negados}
+    &7Avaliacao: {estrelas} &7({notas} notas)
+    &7Visitas: &f{visitas}
+    &7Mesclado com: &f{mesclas} &7vizinho(s) &8| &7Grupo: &f{grupo}
+    &7Criado em: &f{criado}
+    &8&m-----------------------------
+
+Membros:
+  Adicionado: '&f{jogador} &aagora e &f{cargo} &ado terreno.'
+  Voce foi adicionado: '&aVoce agora e &f{cargo} &ano terreno &f{terreno} &ade &f{dono}&a.'
+  Removido: '&f{jogador} &cfoi tirado do terreno.'
+  Negado: '&f{jogador} &cfoi barrado do terreno.'
+  Permitido: '&f{jogador} &apode entrar de novo.'
+
+Bandeiras:
+  Definida: '&aRegra &f{bandeira}&a: &f{valor}&a.'
+  Ligada: '&aLigada'
+  Desligada: '&cDesligada'
+  Sem texto: '&7(sem texto)'
+  Opcoes:
+    PADRAO: '&7Padrao do mundo'
+    DIA: '&eDia'
+    MEIO_DIA: '&eMeio-dia'
+    TARDE: '&6Tarde'
+    NOITE: '&9Noite'
+    MEIA_NOITE: '&1Meia-noite'
+    SOL: '&eSol'
+    CHUVA: '&9Chuva'
+  # Nome e descricao de cada regra no menu. Deixe vazio para usar o padrao.
+  Nomes:
+    interagir: 'Interagir'
+    portas: 'Portas'
+    botoes: 'Botoes'
+    alavancas: 'Alavancas'
+    baus: 'Baus e fornalhas'
+    aldeoes: 'Aldeoes'
+    suportes: 'Suportes e quadros'
+    animais: 'Animais'
+    baldes: 'Baldes'
+    veiculos: 'Veiculos'
+    projeteis: 'Projeteis'
+    dropar: 'Dropar itens'
+    coletar: 'Coletar itens'
+    visitas: 'Visitas'
+    voo: 'Voo'
+    pvp: 'PvP'
+    dano-de-mobs: 'Dano de mobs'
+    explosoes: 'Explosoes'
+    fogo: 'Fogo'
+    spawn-monstros: 'Spawn de monstros'
+    spawn-animais: 'Spawn de animais'
+    redstone: 'Redstone'
+    liquidos: 'Agua e lava'
+    crescimento: 'Crescimento'
+    queda-de-blocos: 'Queda de blocos'
+    folhas: 'Folhas apodrecem'
+    gelo-e-neve: 'Gelo e neve'
+    mob-griefing: 'Mobs destroem'
+    tempo: 'Hora do dia'
+    clima: 'Clima'
+    boas-vindas: 'Boas-vindas'
+    despedida: 'Despedida'
+  Descricoes:
+    interagir: 'Visitante usa blocos em geral.'
+    portas: 'Visitante abre portas e alcapoes.'
+    botoes: 'Visitante aperta botoes.'
+    alavancas: 'Visitante puxa alavancas.'
+    baus: 'Visitante abre baus, fornalhas e funis.'
+    aldeoes: 'Visitante negocia com aldeoes.'
+    suportes: 'Visitante mexe em suportes e quadros.'
+    animais: 'Visitante monta, laca e bate em animais.'
+    baldes: 'Visitante usa baldes.'
+    veiculos: 'Visitante usa carrinhos e barcos.'
+    projeteis: 'Visitante atira flechas e afins.'
+    dropar: 'Visitante joga itens no chao.'
+    coletar: 'Visitante pega itens do chao.'
+    visitas: 'Desligada, so membros entram.'
+    voo: 'Quem tem o voo liberado voa aqui.'
+    pvp: 'Jogadores se batem aqui.'
+    dano-de-mobs: 'Mobs machucam jogadores.'
+    explosoes: 'TNT e creeper quebram blocos.'
+    fogo: 'O fogo se espalha e queima.'
+    spawn-monstros: 'Monstros nascem sozinhos.'
+    spawn-animais: 'Animais nascem sozinhos.'
+    redstone: 'Os circuitos funcionam.'
+    liquidos: 'Agua e lava escorrem.'
+    crescimento: 'Plantas e arvores crescem.'
+    queda-de-blocos: 'Areia e cascalho caem.'
+    folhas: 'Folhas soltas somem.'
+    gelo-e-neve: 'Gelo derrete e neve se forma.'
+    mob-griefing: 'Enderman e afins mexem nos blocos.'
+    tempo: 'Hora fixa para quem esta no terreno.'
+    clima: 'Clima fixo para quem esta no terreno.'
+    boas-vindas: 'Mensagem para quem entra.'
+    despedida: 'Mensagem para quem sai.'
+
+Cosmeticos:
+  Desbloqueado: '&aVoce desbloqueou &f{nome}&a!'
+  Aplicando: '&7Pintando a parte &f{parte}&7...'
+  Aplicado: '&aA parte &f{parte} &aagora e &f{nome}&a.'
+
+Mescla:
+  Juntando: '&7Juntando com o terreno do lado {lado}...'
+  Juntado: '&aTerrenos juntados! O grupo agora tem &f{quantidade} &aterreno(s).'
+  Separando: '&7Separando os terrenos e devolvendo a rua...'
+  Separado: '&aTerrenos separados.'
+
+Venda:
+  Anunciado: '&aTerreno &f{id} &aanunciado por &f{preco}&a. Cancele com &f/terreno vender cancelar&a.'
+  Cancelada: '&aO terreno saiu do mercado.'
+  Comprado: '&aVoce comprou o terreno &f{id} &ade &f{vendedor} &apor &f{preco}&a!'
+  Vendido: '&f{jogador} &acomprou o seu terreno &f{id}&a. Voce recebeu &f{preco}&a.'
+
+Aluguel:
+  Anunciado: '&aTerreno para alugar por &f{preco} &apor dia.'
+  Cancelado: '&aO terreno saiu da lista de aluguel.'
+  Alugado: '&aVoce alugou o terreno &f{id} &apor &f{dias} &adia(s), por &f{preco}&a.'
+  Alugaram: '&f{jogador} &aalugou o seu terreno &f{id} &apor &f{dias} &adia(s). Voce recebeu &f{preco}&a.'
+  Venceu: '&cO seu aluguel do terreno &f{id} &cvenceu.'
+  Venceu para o dono: '&7O aluguel do seu terreno &f{id} &7venceu; ele voltou para voce.'
+
+Voo:
+  Ligado: '&aVoo ligado.'
+  Desligado: '&cVoo desligado.'
+  Comprado: '&aVoo liberado neste terreno!'
+
+Avaliacao:
+  Feita: '&aVoce deu nota &f{nota} &apara este terreno. Media agora: &f{media}&a.'
+  Estrela cheia: '&e★'
+  Estrela vazia: '&7☆'
+
+Favoritos:
+  Adicionado: '&aTerreno &f{terreno} &aadicionado aos favoritos.'
+  Removido: '&cTerreno &f{terreno} &ctirado dos favoritos.'
+
+Vagas:
+  Membro comprada: '&aVaga comprada! Agora voce pode ter &f{limite} &amembros por terreno.'
+  Mescla comprada: '&aVaga comprada! Agora voce pode juntar ate &f{limite} &aterrenos.'
+
+Modelos:
+  Aplicando: '&7Aplicando o modelo &f{nome}&7...'
+  Aplicado: '&aModelo &f{nome} &aaplicado!'
+  Restaurando: '&7Restaurando o backup...'
+  Restaurado: '&aBackup restaurado!'
+
+Teleporte:
+  Contagem: '&7Teleportando em &f{segundos}s&7... nao se mexa.'
+  Cancelado: '&cTeleporte cancelado: voce se mexeu.'
+  Chegou: ''
+
+# Ao entrar e sair de um terreno (ver "Aviso de entrada" no config.yml).
+Entrada:
+  Proprio:
+    Titulo: '&aSeu terreno<nl>&7{terreno}'
+    Actionbar: '&aVoce entrou no seu terreno &f{terreno}'
+    Chat: '&aVoce entrou no seu terreno &f{terreno}&a.'
+  De outro:
+    Titulo: '&e{terreno}<nl>&7de {dono}'
+    Actionbar: '&eTerreno de &f{dono} &8({terreno})'
+    Chat: '&7Voce entrou no terreno &f{terreno} &7de &f{dono}&7.'
+  Livre:
+    Titulo: '&7Terreno livre<nl>&8{id}'
+    Actionbar: '&7Terreno livre &8({id}) &7- use o menu para pegar'
+    Chat: '&7Terreno livre &f{id}&7. Pegue com &f/terreno pegar&7.'
+  Boas-vindas do dono: '&8[&aRecado do dono&8] &f{mensagem}'
+
+  # O caminho "Digitar" dos menus.
+  Como cancelar: '&7Escreva &ccancelar &7para desistir.'
+  Cancelado: '&cCancelado.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+  Novo numero: '&eEscreva o novo numero no chat:'
+  Novo texto: '&eEscreva o novo texto no chat:'
+  Nova linha: '&eEscreva a linha no chat:'
+  Novo nome: '&eEscreva o novo nome do terreno no chat:'
+  Nova descricao: '&eEscreva a descricao do terreno no chat (ou "nenhuma"):'
+  Nick do icone: '&eEscreva o nick de quem vai virar o icone (cabeca):'
+  Nick para transferir: '&eEscreva o nick de quem vai receber o terreno:'
+  Nick do membro: '&eEscreva o nick de quem vai virar membro:'
+  Nick do confiavel: '&eEscreva o nick de quem vai virar confiavel:'
+  Nick do negado: '&eEscreva o nick de quem vai ser barrado:'
+  Texto da bandeira: '&eEscreva o texto da regra no chat:'
+  Mistura de blocos: '&eEscreva o bloco ou a mistura (ex.: STONE,COBBLESTONE:30):'
+  Preco de venda: '&eEscreva o preco de venda:'
+  Preco do aluguel: '&eEscreva o preco por dia do aluguel:'
+  Dias do aluguel: '&ePor quantos dias voce quer alugar?'
+  Nome do mundo: '&eEscreva o nome do mundo novo:'
+  Tamanho do terreno: '&eTamanho do terreno em blocos (ou "padrao" para 42):'
+  Largura da rua: '&eLargura da rua em blocos (ou "padrao" para 7):'
+  Altura do chao: '&eAltura do chao (ou "padrao" para 64):'
+
+Saida:
+  Proprio:
+    Titulo: ''
+    Actionbar: '&7Voce saiu do seu terreno'
+    Chat: ''
+  De outro:
+    Titulo: ''
+    Actionbar: '&7Voce saiu do terreno de &f{dono}'
+    Chat: ''
+  Despedida do dono: '&8[&aRecado do dono&8] &f{mensagem}'
+
+Titulos:
+  Reivindicado: '&a&lTerreno pegue!<nl>&7{id}'
+
+Status:
+  Livre: '&7Livre'
+  Reivindicado: '&aReivindicado'
+  A venda: '&eA venda'
+  Para alugar: '&bPara alugar'
+  Alugado: '&dAlugado'
+  Sem dono: 'ninguem'
+  Sem descricao: 'sem descricao'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Aberto: '&aAberto'
+  Fechado: '&cFechado'
+  Online: '&aonline'
+  Offline: '&7offline'
+  Gratis: '&aGratis'
+  Nenhum: 'nenhum'
+  Sem teto: 'sem teto'
+  Padrao do mundo: 'padrao do mundo'
+
+Listas:
+  MEUS: 'Meus terrenos'
+  DE_OUTRO: 'Terrenos de {jogador}'
+  FAVORITOS: 'Favoritos'
+  MERCADO: 'Mercado'
+  ALUGUEIS: 'Para alugar'
+  MELHORES: 'Melhores avaliados'
+  MAIS_VISITADOS: 'Mais visitados'
+  RECENTES: 'Mais recentes'
+
+Confirmar:
+  Limpar: '&7Limpar o terreno inteiro?'
+  Limpar acima: '&7Apagar tudo acima do chao?'
+  Apagar: '&cApagar o terreno? Ele volta a ficar livre.'
+  Comprar: '&7Comprar este terreno por &f{preco}&7?'
+  Alugar: '&7Alugar por &f{dias} &7dia(s) por &f{preco}&7?'
+  Transferir: '&cEntregar o terreno para &f{jogador}&c?'
+  Modelo: '&7Aplicar o modelo &f{modelo}&7? O terreno sera limpo.'
+  Restaurar: '&7Restaurar o backup de &f{data}&7?'
+
+Admin:
+  Dono definido: '&aO terreno &f{id} &aagora e de &f{jogador}&a.'
+  Criando mundo: '&7Criando o mundo &f{mundo}&7...'
+  Mundo criado: '&aMundo &f{mundo} &acriado! Va ate ele com &f/terrenoadmin mundo ir {mundo}&a.'
+  Mundo esquecido: '&aO mundo &f{mundo} &asaiu do mundos.yml (a pasta do mundo ficou no disco).'
+  Linha de mundo: '&7- &f{mundo} &8({estado}&8) &7terreno &f{tamanho} &7rua &f{rua}'
+  Purgando: '&7Apagando os &f{quantidade} &7terreno(s) de &f{jogador}&7...'
+  Purgado: '&a{quantidade} terreno(s) apagados.'
+  Rua capturada: '&aRua ({tipo}) capturada em &f{arquivo}&a. Os pedacos novos ja nascem com ela; use &f/terrenoadmin rua aplicar &anos que ja existem.'
+  Ruas recarregadas: '&aModelos de rua recarregados.'
+  Aplicando rua: '&7Refazendo a rua em volta...'
+  Rua aplicada: '&aRua refeita.'
+  Modelo salvo: '&aModelo &f{modelo} &asalvo. Ajuste nome, icone e preco no modelos.yml (ou pelo /starplots config).'
+  Modelo apagado: '&aModelo &f{modelo} &aapagado.'
+  Linha de modelo: '&7- &f{modelo} &7({nome}&7) &f{preco}'
+  Info: '&7Celula &f{celula} &8| &7tipo &f{tipo} &8| &7dono &f{dono} &8| &7mesclas &f{mesclas} &8| &7grupo &f{grupo}'
+
+Config:
+  Recarregado: '&aConfiguracao recarregada.'
+  Salvo: '&a{opcao} &7agora e &f{valor}&7.'
+  Versao: '&aStarPlots &f{versao} &7em &f{servidor} &8| &7{terrenos} terreno(s) em {mundos} mundo(s).'
+
+Ajuda:
+  Jogador: |
+    &8&m-----------------------------
+    &a&lTERRENOS &7- comandos
+    &8&m-----------------------------
+    &f/terreno &7- abre o menu
+    &f/terreno painel &7- o painel do terreno em que esta
+    &f/terreno pegar &7- pega o terreno livre em que esta
+    &f/terreno auto &7- pega o proximo terreno livre
+    &f/terreno ir [n] &7- vai para o seu terreno
+    &f/terreno definircasa &7- marca a casa do terreno
+    &f/terreno visitar <jogador> [n] &7- visita alguem
+    &f/terreno mesclar [lado|todos] &7- junta com o vizinho
+    &f/terreno desmesclar [lado|todos] &7- separa
+    &f/terreno adicionar|confiar|remover|negar|permitir <jogador>
+    &f/terreno bandeiras &7- as regras do terreno
+    &f/terreno bioma &7- o bioma do terreno
+    &f/terreno personalizar &7- chao, parede e borda
+    &f/terreno vender <preco|cancelar> &7- mercado
+    &f/terreno comprar &7- compra o terreno em que esta
+    &f/terreno alugar &7- aluguel
+    &f/terreno nome|descricao &7- nome e descricao
+    &f/terreno avaliar|favoritar|explorar
+    &f/terreno limpar|apagar|modelos|restaurar|voar
+    &8&m-----------------------------
+  Admin: |
+    &8&m-----------------------------
+    &a&lTERRENOS &7- administracao
+    &8&m-----------------------------
+    &f/terrenoadmin config &7- editor da configuracao
+    &f/terrenoadmin mundos &7- os mundos de terrenos
+    &f/terrenoadmin mundo criar <nome> [tamanho] [rua] [altura]
+    &f/terrenoadmin mundo apagar|lista|ir <nome>
+    &f/terrenoadmin dono <jogador> &7- define o dono do terreno
+    &f/terrenoadmin pegar|apagar|limpar &7- a forca
+    &f/terrenoadmin tp <x;z> [mundo] &7- vai ate uma celula
+    &f/terrenoadmin purgar <jogador> &7- apaga todos os terrenos dele
+    &f/terrenoadmin rua capturar reto|cruzamento &7- modelo de rua
+    &f/terrenoadmin rua aplicar|recarregar
+    &f/terrenoadmin modelo salvar|apagar|lista [nome]
+    &f/terrenoadmin restaurar &7- backups do terreno
+    &f/terrenoadmin info|recarregar
+    &8&m-----------------------------
+
+Placeholder:
+  Sem terreno: '&7Nenhum'
+  Sem terreno nos numeros: '0'
+
+# Titulos usados quando a tela do menus.yml esta sem Titulo.
+Menus:
+  Configuracao: '&8Configuracao do StarPlots'
+  Editor: '&8Editor'
+  Principal: '&8Terrenos'
+  Painel: '&8Painel do terreno'
+  Info: '&8Terreno'
+  Lista: '&8Terrenos'
+  Favoritos: '&8Favoritos'
+  Mercado: '&8Mercado de terrenos'
+  Alugueis: '&8Terrenos para alugar'
+  Ranking: '&8Explorar'
+  Membros: '&8Membros'
+  Membro: '&8Gerenciar membro'
+  Bandeiras: '&8Regras do terreno'
+  Biomas: '&8Biomas'
+  Personalizar: '&8Personalizar'
+  Catalogo: '&8Catalogo'
+  Explorar: '&8Explorar'
+  Avaliar: '&8Avaliar terreno'
+  Reivindicar: '&8Terreno livre'
+  Modelos: '&8Modelos de terreno'
+  Backups: '&8Backups'
+  Vender: '&8Vender terreno'
+  Aluguel: '&8Aluguel'
+  Vagas: '&8Vagas'
+  Mundos: '&8Mundos de terrenos'
+  Confirmar: '&8Tem certeza?'
+
+# O texto de ajuda de cada opcao no editor de configuracao (/starplots config).
+Ajuda de config:
+  Debug: 'Escreve no console o que o plugin faz.'
+  Mundo principal: 'O mundo do /terreno auto de quem esta fora.'
+  Terrenos.Limite por jogador: 'Terrenos por jogador (grupo conta como um).'
+  Terrenos.Preco para reivindicar: 'Preco para pegar um terreno livre.'
+  Terrenos.Aviso de entrada: 'TITULO, ACTIONBAR, CHAT, TODOS ou NENHUM.'
+  Terrenos.Limite de mescla: 'Quantos terrenos cabem num grupo.'
+  Terrenos.Blocos por tique: 'Mais rapido = mais peso no servidor.'
+  Economia.Tipo: 'VAULT, STARECONOMIA, PLACEHOLDER ou COMANDO.'
+  Banco de dados.Tipo: 'SQLITE ou MYSQL.'
