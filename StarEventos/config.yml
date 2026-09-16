@@ -146,17 +146,33 @@ Agendamento:
 
   # Formato: 'dia-hora:minuto:segundo'
   # O dia pode ser: todos, domingo, segunda, terca, quarta, quinta, sexta, sabado
-  # O evento e o nome do arquivo (sem o .yml), ou 'sorteio' para um aleatorio.
+  #
+  # O "Evento" pode ser:
+  #   o nome do arquivo (sem o .yml)   -> aquele evento
+  #   sorteio                           -> um aleatorio, entre todos os prontos
+  #   sorteio-<pasta>                   -> um aleatorio so daquela pasta de eventos/
+  #                                        (sorteio-chat, sorteio-pessoalmente,
+  #                                        sorteio-times, sorteio-customizados...
+  #                                        e qualquer pasta que voce criar)
+  #
+  # Um sorteio nunca cai num evento sem arena montada nem num que ja esta
+  # rodando.
   Horarios:
-    manha:
-      Evento: 'sorteio'
+    almoco:
+      # De tarde o pessoal esta minerando: um evento de chat nao tira ninguem
+      # do que estava fazendo.
+      Evento: 'sorteio-chat'
       Quando: [ 'todos-12:00:00' ]
     tarde:
-      Evento: 'sorteio'
+      Evento: 'sorteio-chat'
       Quando: [ 'todos-16:00:00' ]
     noite:
-      Evento: 'votacao'
+      # No horario nobre vale a arena.
+      Evento: 'sorteio-pessoalmente'
       Quando: [ 'todos-20:00:00' ]
+    fim_de_semana:
+      Evento: 'votacao'
+      Quando: [ 'sabado-21:00:00', 'domingo-21:00:00' ]
 
   Sorteio:
     # Eventos que nunca saem no sorteio (mas continuam podendo ser iniciados
