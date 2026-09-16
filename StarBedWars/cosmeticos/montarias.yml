@@ -4,12 +4,17 @@
 #  Ao escolher, o jogador ja aparece montado (e volta a montar quando entra
 #  no lobby). Descer (agachar) faz a montaria sumir: escolha de novo para
 #  montar. Ninguem mais sobe nela e ela nao toma dano.
-#  "Entidade": HORSE, DONKEY, MULE, SKELETON_HORSE, ZOMBIE_HORSE (na 1.8 a
-#  1.10 viram variantes do cavalo), PIG. So os cavalos sao dirigiveis.
+#  "Entidade": qualquer bicho (HORSE, DONKEY, MULE, SKELETON_HORSE,
+#  ZOMBIE_HORSE, PIG, COW, SHEEP, WOLF, POLAR_BEAR, CHICKEN...). Os cavalos
+#  usam a direcao do proprio jogo; os outros sao dirigidos pelo plugin (W/S
+#  na direcao do olhar, A/D de lado, espaco pula) e nao tem IA propria.
+#  Na 1.8-1.10 burro/mula/esqueleto/zumbi viram variantes do cavalo.
 #  "Cor" (cavalo): WHITE, CREAMY, CHESTNUT, BROWN, BLACK, GRAY, DARK_BROWN.
 #  "Estilo": NONE, WHITE, WHITEFIELD, WHITE_DOTS, BLACK_DOTS.
 #  "Armadura": IRON_HORSE_ARMOR, GOLDEN_HORSE_ARMOR, DIAMOND_HORSE_ARMOR.
-#  "Velocidade" (padrao do cavalo ~0.22) e "Pulo" (0 a 2).
+#  "Velocidade": cavalo = atributo do jogo (~0.22 padrao); os outros =
+#  blocos por tick (0.25 = anda como um jogador correndo). "Pulo": cavalo
+#  0 a 2; os outros = impulso do pulo (0.5 = um bloco, 0 = nao pula).
 #  Permissoes: starbedwars.montaria.<chave> / starbedwars.montaria.*
 # ==========================================================================
 
@@ -98,8 +103,64 @@ Montarias:
     Material: PORKCHOP
     Entidade: PIG
     Velocidade: 0.25
+    Pulo: 0.5
     Raridade: COMUM
     Coins: 4000
     Cash: 0
     Descricao:
-      - '&7Selado (so anda para onde quer)'
+      - '&7Selado e obediente'
+  vaca:
+    Nome: 'Vaca'
+    Material: MILK_BUCKET
+    Entidade: COW
+    Velocidade: 0.22
+    Pulo: 0.45
+    Raridade: COMUM
+    Coins: 4000
+    Cash: 0
+    Descricao:
+      - '&7Devagar, mas chega'
+  ovelha:
+    Nome: 'Ovelha'
+    Material: WHITE_WOOL
+    Entidade: SHEEP
+    Velocidade: 0.24
+    Pulo: 0.5
+    Raridade: COMUM
+    Coins: 4000
+    Cash: 0
+    Descricao:
+      - '&7Fofinha'
+  lobo:
+    Nome: 'Lobo'
+    Material: BONE
+    Entidade: WOLF
+    Velocidade: 0.32
+    Pulo: 0.55
+    Raridade: RARO
+    Coins: 9000
+    Cash: 0
+    Descricao:
+      - '&7Rapido e fiel'
+  galinha:
+    Nome: 'Galinha'
+    Material: FEATHER
+    Entidade: CHICKEN
+    Velocidade: 0.2
+    Pulo: 0.6
+    Raridade: RARO
+    Coins: 9000
+    Cash: 0
+    Descricao:
+      - '&7Pequena, mas aguenta'
+  urso_polar:
+    Nome: 'Urso polar'
+    Material: SNOWBALL
+    Entidade: POLAR_BEAR
+    Velocidade: 0.3
+    Pulo: 0.5
+    Raridade: EPICO
+    Coins: 18000
+    Cash: 0
+    Descricao:
+      - '&7Um urso de montaria (1.10+)'
