@@ -2,8 +2,9 @@
 #  StarTrabalhos - recompensas
 #
 #  Cada recompensa e uma RECEITA, nao um valor fixo: as Variaveis sao
-#  formulas com {nivel} (o nivel concluido) e {impulso} (a porcentagem do
-#  impulso de recompensas, 0 quando nao ha). O mesmo 'dinheiro' paga pouco no
+#  formulas com {nivel} (o nivel concluido), {impulso} (a porcentagem do
+#  impulso de recompensas, 0 quando nao ha) e {dificuldade} (o multiplicador
+#  de dinheiro do modo escolhido em Dificuldade no config.yml). O mesmo 'dinheiro' paga pouco no
 #  nivel 1 e muito no nivel 50 sem precisar de duas entradas.
 #
 #  Os trabalhos apontam para as recompensas pelo id (a chave de cada bloco):
@@ -30,19 +31,19 @@
 dinheiro:
   Nome: '&a${valor}'
   Variaveis:
-    valor: 'round(25 * ({nivel} ^ 1.6) * (1 + {impulso} / 100))'
+    valor: 'round(25 * ({nivel} ^ 1.6) * (1 + {impulso} / 100) * {dificuldade})'
   Dinheiro: '{valor}'
 
 dinheiro-premium:
   Nome: '&a${valor}'
   Variaveis:
-    valor: 'round(45 * ({nivel} ^ 1.6) * (1 + {impulso} / 100))'
+    valor: 'round(45 * ({nivel} ^ 1.6) * (1 + {impulso} / 100) * {dificuldade})'
   Dinheiro: '{valor}'
 
 dinheiro-grande:
   Nome: '&a&l${valor}'
   Variaveis:
-    valor: 'round(400 * {nivel} * (1 + {impulso} / 100))'
+    valor: 'round(400 * {nivel} * (1 + {impulso} / 100) * {dificuldade})'
   Dinheiro: '{valor}'
   Mensagem: '&a&lBONUS! &7Voce recebeu &a${valor} &7por chegar ao nivel {nivel}!'
 

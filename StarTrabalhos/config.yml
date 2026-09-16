@@ -16,7 +16,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 2
+Versao do modelo: 3
 
 Geral:
   # Escreve no console o caminho de cada acao. Ligue so para achar problema.
@@ -34,6 +34,41 @@ Geral:
 
   # Jogador no criativo nao progride em nada.
   Ignorar criativo: true
+
+Dificuldade:
+  # Quanto os trabalhos rendem. FACIL, NORMAL, MEDIO (padrao) ou DIFICIL --
+  # ou crie o seu em Modos e aponte o nome aqui. Cada modo tem quatro
+  # multiplicadores:
+  #   Dinheiro   entra nas formulas do recompensas.yml como {dificuldade}
+  #              (as de fabrica ja usam); 0.35 = paga 35% do valor
+  #   Salario    multiplica o salario por hora de todo trabalho
+  #   Progresso  multiplica o progresso que cada nivel pede (1.5 = 50% mais
+  #              blocos/mobs por nivel; o dinheiro por nivel demora mais)
+  #   Pontos     multiplica os pontos pagos por nivel
+  # Troque de modo com um restart: quem esta no meio de um nivel continua
+  # com o progresso que tinha.
+  Modo: MEDIO
+  Modos:
+    FACIL:
+      Dinheiro: 1.0
+      Salario: 1.0
+      Progresso: 1.0
+      Pontos: 1.0
+    NORMAL:
+      Dinheiro: 0.6
+      Salario: 0.6
+      Progresso: 1.25
+      Pontos: 1.0
+    MEDIO:
+      Dinheiro: 0.35
+      Salario: 0.4
+      Progresso: 1.5
+      Pontos: 1.0
+    DIFICIL:
+      Dinheiro: 0.2
+      Salario: 0.25
+      Progresso: 2.0
+      Pontos: 1.0
 
 Banco de dados:
   # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
