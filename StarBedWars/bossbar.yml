@@ -1,0 +1,59 @@
+# ==========================================================================
+#  StarBedWars - bossbar.yml - bossbar rotativa
+#
+#  Uma lista de barras para quem esta FORA de partida e outra para quem
+#  esta EM partida; aparecem uma apos a outra, trocando no delay. E uma
+#  barra por jogador, todas em sincronia. Precisa de servidor 1.9+ (na 1.8
+#  a bossbar nao existe e o sistema simplesmente nao liga).
+#
+#  Texto: cores com &, hex (&#ff8800), {animacao:nome} (animacoes.yml),
+#  {prefix-tag}/{suffix-tag} (tags.yml), placeholders do perfil
+#  ({jogador}, {nivel_formatado}, {coins}, {vitorias}...), da partida
+#  ({mapa}, {modo}, {jogadores}, {maximo}, {tempo}, {evento}...) e do
+#  PlaceholderAPI.
+#  Cor: PINK BLUE RED GREEN YELLOW PURPLE WHITE
+#  Estilo: SOLID SEGMENTED_6 SEGMENTED_10 SEGMENTED_12 SEGMENTED_20
+#  Progresso: 0.0 a 1.0 (quanto da barra fica cheio) - so com Animar false
+#  Delay e Animar de cada barra sao opcionais (valem os da secao).
+#  Ativar, Delay e "Animar progresso" sao de cada secao (Fora / Partida).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Ticks entre as atualizacoes do texto (vale para as duas).
+Intervalo: 5
+
+Fora:
+  Ativar: true
+  # Segundos ate trocar para a proxima barra.
+  Delay: 5
+  # true = a barra enche de 0 a 1 ao longo do delay (contagem visual).
+  Animar progresso: false
+  Barras:
+    - Texto: '&6&lBED WARS &7» &fBem-vindo, &e{jogador}&f!'
+      Cor: YELLOW
+      Estilo: SOLID
+      Progresso: 1.0
+    - Texto: '&a&lNIVEL &7» {nivel_formatado} &7| &6&lCOINS &7» &6{coins}'
+      Cor: GREEN
+      Estilo: SEGMENTED_10
+      Animar: true
+      Delay: 8
+    - Texto: '&b&lLOJA &7» &fstarplugins.com.br'
+      Cor: BLUE
+      Estilo: SOLID
+      Progresso: 1.0
+
+Partida:
+  Ativar: true
+  Delay: 6
+  Animar progresso: true
+  Barras:
+    - Texto: '&e&lMAPA &7» &f{mapa} &7| &e&lMODO &7» &f{modo}'
+      Cor: YELLOW
+      Estilo: SOLID
+      Progresso: 1.0
+    - Texto: '&c&lPROXIMO EVENTO &7» &f{evento} &7em &c{evento_tempo}'
+      Cor: RED
+      Estilo: SEGMENTED_10
+      Progresso: 1.0

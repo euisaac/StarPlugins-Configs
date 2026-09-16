@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 1
+Versao do modelo: 2
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -381,6 +381,25 @@ Placar:
       - ' &fCamas: &a{camas_partida}'
       - ''
       - '  &estarplugins.com.br'
+    # Placar de quem esta no modo de configuracao (/bw arena editar).
+    # {arena}, {modo}, {equipes}, {por_equipe}, {minimo}, {maximo},
+    # {diamantes}, {esmeraldas}, {espera}, {espectador}, {regiao},
+    # {mundo_guardado} (Feito/Falta), {pendencias} (quantas), {equipe_atual};
+    # {lista_equipes} vira uma linha por equipe (Editor.Equipe).
+    Editor:
+      - ''
+      - ' &fArena: &a{arena}'
+      - ' &fModo: &a{modo} &7({equipes} equipes)'
+      - ''
+      - ' &fEspera: {espera} &fEspec.: {espectador}'
+      - ' &fRegiao: {regiao} &fMundo: {mundo_guardado}'
+      - ' &fDiamante: &b{diamantes} &fEsmeralda: &2{esmeraldas}'
+      - ''
+      - '{lista_equipes}'
+      - ''
+      - ' &fPendencias: &c{pendencias}'
+      - ''
+      - '  &estarplugins.com.br'
   # Cada equipe vira uma linha no lugar de {equipes}.
   Formato da equipe: ' {cor}{tag} &f{nome}: {estado} {voce}'
   Estado com cama: '&a✔'
@@ -389,6 +408,13 @@ Placar:
   Marca da sua equipe: '&7(voce)'
   Texto da contagem: '&fComeca em &a{tempo}s'
   Texto esperando: '&fAguardando jogadores...'
+  # Placar do editor: a linha de cada equipe ({spawn} {cama} {gerador}
+  # {loja} {melhorias} viram Feito/Falta) e os simbolos.
+  Editor:
+    Equipe: ' {cor}{equipe}&7: {spawn}{cama}{gerador}{loja}{melhorias}'
+    Sem equipes: ' &7Nenhuma equipe ainda'
+    Feito: '&a✔'
+    Falta: '&c✘'
 
 # Itens da barra de acoes. Slot -1 desliga o item.
 Hotbar:
@@ -635,29 +661,39 @@ Tab:
   Separar por partida: true
 
 Tops:
-  # Linhas dos hologramas de top ({tipo}, {modo}, {posicao}, {jogador}, {valor}).
-  # Clicar no holograma troca o modo (geral, solo, dupla...) para todo mundo.
-  # No Rodape: {modo} = o atual, {proximo_modo} = o que vem no clique,
-  # {modos} = a lista inteira com o atual em destaque (Modo selecionado/normal).
+  # Linhas dos hologramas de top. O top mostra "Total" posicoes em paginas
+  # de "Quantidade": clicar na area dos NOMES passa a pagina; clicar no
+  # RODAPE troca o modo (geral, solo, dupla...). Vale para todo mundo.
+  # Placeholders (Cabecalho e Rodape): {tipo}, {modo}, {proximo_modo},
+  # {modos} (lista com o atual em destaque), {pagina}, {paginas},
+  # {proxima_pagina}, {quantidade} (por pagina), {total}.
+  # Na Linha: {posicao}, {jogador}, {valor}.
   Cabecalho:
-    - '&6&lTOP 10 {tipo}'
+    - '&6&lTOP {quantidade} {tipo} &7({pagina}/{paginas})'
     - '&7{modo}'
   Linha: '&e{posicao}. &f{jogador} &7- &a{valor}'
   Vazio: '&7---'
   Rodape:
     - ''
-    - '&7Clique para trocar para &a{proximo_modo}'
+    - '&7Clique nos nomes: &fpagina {proxima_pagina}/{paginas}'
+    - '&7Clique aqui: &a{proximo_modo}'
   Nome do geral: 'Geral'
   Modo selecionado: '&a{modo}'
   Modo normal: '&7{modo}'
   Separador dos modos: ' &8- '
+  # Posicoes por pagina (ate 15).
   Quantidade: 10
+  # Posicoes no total (10 por pagina + 100 no total = 10 paginas).
+  Total: 100
   # Minutos entre as atualizacoes dos tops.
   Atualizar a cada: 5
 
 # Mensagem de entrada no servidor por permissao: vale a PRIMEIRA da lista
 # cuja permissao o jogador tem (Permissao vazia = todo mundo). {jogador} e
 # placeholders do PlaceholderAPI funcionam; uma lista vira varias linhas.
+# Placeholders da Mensagem: {jogador}, {prefix} e {sufixo} (prefixo/sufixo
+# do tab, tab.yml > Fora, ja resolvidos), {prefixo} (o do plugin),
+# {animacao:nome} e os do PlaceholderAPI (%luckperms_prefix%...).
 Mensagens de entrada:
   Ativar: true
   # Esconde a mensagem padrao do servidor ("X entrou no jogo").

@@ -4,9 +4,11 @@
 #  Cosmeticos de interacao usados FORA da partida (no lobby). O escolhido
 #  aparece na barra (Hotbar.Lobby.Brinquedo no config.yml); clique direito
 #  usa. Tipos:
-#    PULA_PULA     - monta uma cama elastica (torre com escada e uma
-#                    plataforma de slime) por "Duracao" segundos; quem pisa e
-#                    lancado para cima ate andar para fora. Impulso = forca.
+#    PULA_PULA     - monta uma cama elastica por "Duracao" segundos: uma
+#                    plataforma 5x5 a um bloco do chao, com a Borda e o
+#                    Centro (3x3) nos blocos escolhidos e uma escada na
+#                    frente. Quem pisa no centro e lancado para cima ate
+#                    andar para fora. Impulso = forca.
 #    FOGUETE       - lanca o jogador para o alto (Impulso), sem dano de queda.
 #    BOLAS_DE_NEVE - da bolas de neve que empurram quem acerta (Empurrao).
 #    FOGOS         - solta fogos de artificio (Quantidade).
@@ -20,15 +22,15 @@ Brinquedos:
   pula_pula:
     Nome: 'Pula-pula'
     Tipo: PULA_PULA
-    Material: SLIME_BLOCK
+    Material: RED_WOOL
     Raridade: RARO
     Coins: 8000
     Cash: 0
     Cooldown: 30
     Duracao: 45
     Impulso: 1.4
-    Bloco: SLIME_BLOCK
-    Torre: WHITE_WOOL
+    Borda: RED_WOOL
+    Centro: BLACK_WOOL
     Descricao:
       - '&7Monta uma cama elastica com escada'
       - '&7para subir e ficar pulando'
