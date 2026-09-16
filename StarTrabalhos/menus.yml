@@ -33,7 +33,7 @@
 #  (prestigio ligado, so no menu de niveis).
 # ==========================================================================
 
-Versao do modelo: 5
+Versao do modelo: 6
 
 # ---------------------------------------------------------------------------
 #  /trabalhos -- a tela inicial. A cabeca abre "Meus trabalhos".
@@ -56,6 +56,7 @@ Principal:
         - ''
         - '&fPontos de trabalho: &6{pontos}'
         - '&fPosicao no top: &6{posicao}'
+        - '&fGanho total: &a{ganho_total}'
         - '&fVagas em uso: &6{ativos}&7/&6{vagas}'
         - ''
         - '&fSeus trabalhos:'
@@ -214,6 +215,7 @@ Meus trabalhos:
       - '&fProxima recompensa: &a{recompensas}'
       - '&fMissao do dia: {missao}'
       - '&fSalario: &a{salario}&7/h'
+      - '&fGanho neste trabalho: &a{ganho}'
       - '{impulso}'
       - ''
       - '&eClique esquerdo para ver os niveis.'
@@ -293,6 +295,7 @@ Trabalhos:
       - '&fPontos por nivel: &6{pontos_por_nivel}'
       - '&fRecompensas: &a{recompensas}'
       - '&fSalario: &a{salario}&7/h'
+      - '&fGanho neste trabalho: &a{ganho}'
       - '&fPrestigio: &6{estrelas} &7(+{bonus_prestigio}%)'
       - ''
       - '&fProgresso: {barra} &7({progresso}/{necessario})'
@@ -464,8 +467,9 @@ Niveis:
 
 # ---------------------------------------------------------------------------
 #  Top (pontos ou nivel de um trabalho). Extras: {tipo}, {unidade},
-#  {minha_posicao}, {minha_quantidade}. No item de cada jogador: {posicao},
-#  {jogador}, {quantidade}, {quantidade_raw}.
+#  {minha_posicao}, {minha_quantidade}, {meu_ganho}. No item de cada jogador:
+#  {posicao}, {jogador}, {quantidade}, {quantidade_raw}, {ganho} (dinheiro
+#  ganho no total ou naquele trabalho).
 # ---------------------------------------------------------------------------
 Top:
   Titulo: '&8Top {tipo}'
@@ -484,6 +488,7 @@ Top:
     Lore:
       - ''
       - '&f{unidade}: &6{quantidade}'
+      - '&fGanho: &a{ganho}'
     Brilho no primeiro: true
 
   Vazio:
@@ -501,6 +506,7 @@ Top:
       Lore:
         - '&fSua posicao: &6{minha_posicao}'
         - '&fSeus {unidade}: &6{minha_quantidade}'
+        - '&fSeu ganho: &a{meu_ganho}'
     geral:
       Slot: 45
       Material: GOLDEN_HELMET
@@ -518,6 +524,15 @@ Top:
         - '&7Zera em: &f{semana_tempo}'
       Acoes:
         - 'top semanal'
+    portrabalho:
+      Slot: 47
+      Material: COMPASS
+      Nome: '&bTop por trabalho'
+      Lore:
+        - '&7Escolha um trabalho e veja'
+        - '&7quem tem o nivel mais alto.'
+      Acoes:
+        - 'top escolher'
     anterior:
       Slot: 48
       Material: ARROW
