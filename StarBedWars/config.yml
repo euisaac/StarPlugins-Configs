@@ -316,7 +316,8 @@ Chat:
   # Tag da equipe no chat e no tab ({tag} = primeira letra).
   Formato da tag: '&l{tag}'
 
-# Prefixo no tab (nome acima da cabeca) por situacao.
+# (Legado: hoje o prefixo/sufixo do tab mora no tab.yml; isto so vale se
+# o tab.yml nao tiver as chaves.)
 Tags:
   Esperando: '&7'
   Espectador: '&8[ESP] &7'
@@ -406,6 +407,18 @@ Hotbar:
       Slot: 4
       Lore:
         - '&7Kits, habilidades, jaulas e efeitos'
+    Brinquedo:
+      # Sem brinquedo escolhido mostra este item (abre a lista); com um
+      # escolhido mostra o icone dele com "Nome selecionado".
+      Nome: '&aBrinquedos'
+      Material: SLIME_BALL
+      Slot: 7
+      Lore:
+        - '&7Escolha um brinquedo do spawn'
+      Nome selecionado: '&a{brinquedo}'
+      Lore selecionado:
+        - '&7Clique direito para usar'
+        - '&7(troque em /bw loja > Brinquedos)'
     Visibilidade:
       Nome: '&aJogadores visiveis'
       Material: LIME_DYE
@@ -623,8 +636,9 @@ Tab:
 
 Tops:
   # Linhas dos hologramas de top ({tipo}, {modo}, {posicao}, {jogador}, {valor}).
-  # Clicar no holograma troca o modo (geral, solo, dupla...) para todo mundo;
-  # a linha {modos} do rodape mostra a lista com o atual em destaque.
+  # Clicar no holograma troca o modo (geral, solo, dupla...) para todo mundo.
+  # No Rodape: {modo} = o atual, {proximo_modo} = o que vem no clique,
+  # {modos} = a lista inteira com o atual em destaque (Modo selecionado/normal).
   Cabecalho:
     - '&6&lTOP 10 {tipo}'
     - '&7{modo}'
@@ -632,8 +646,7 @@ Tops:
   Vazio: '&7---'
   Rodape:
     - ''
-    - '{modos}'
-    - '&7Clique para trocar o modo'
+    - '&7Clique para trocar para &a{proximo_modo}'
   Nome do geral: 'Geral'
   Modo selecionado: '&a{modo}'
   Modo normal: '&7{modo}'
