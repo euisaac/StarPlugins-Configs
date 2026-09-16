@@ -65,10 +65,13 @@ Banco de dados:
 # As COINS do BedWars sao proprias do plugin (ganhas nas partidas). O CASH e
 # uma moeda externa, usada nos itens que tem preco em cash.
 Cash:
-  # VAULT   = qualquer economia registrada no Vault.
-  # COMANDO = saldo lido por placeholder e cobrado por comando de console.
-  # NENHUM  = ninguem tem cash; itens com preco em cash so saem da caixa.
+  # VAULT        = qualquer economia registrada no Vault.
+  # STARECONOMIA = uma moeda do StarEconomia (produto da StarPlugins).
+  # COMANDO      = saldo lido por placeholder e cobrado por comando de console.
+  # NENHUM       = ninguem tem cash; itens com preco em cash so saem da caixa.
   Tipo: NENHUM
+  # So para STARECONOMIA: o id da moeda (vazio = a moeda principal).
+  Moeda do StarEconomia: ''
   Placeholder de saldo: '%vault_eco_balance%'
   Comando de retirar: 'eco take {jogador} {valor}'
   Comando de dar: 'eco give {jogador} {valor}'
@@ -389,12 +392,31 @@ Placar:
 # Itens da barra de acoes. Slot -1 desliga o item.
 Hotbar:
   Lobby:
+    Perfil:
+      Nome: '&aMeu perfil'
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Slot: 0
+      Lore:
+        - '&7Estatisticas, kits, cosmeticos,'
+        - '&7missoes, grupo e caixas'
     Loja:
       Nome: '&aLoja de cosmeticos'
       Material: EMERALD
       Slot: 4
       Lore:
         - '&7Kits, habilidades, jaulas e efeitos'
+    Visibilidade:
+      Nome: '&aJogadores visiveis'
+      Material: LIME_DYE
+      Slot: 8
+      Lore:
+        - '&7Clique para esconder os jogadores'
+      # Como o item fica quando os jogadores estao escondidos.
+      Nome oculto: '&cJogadores escondidos'
+      Material oculto: GRAY_DYE
+      Lore oculto:
+        - '&7Clique para mostrar os jogadores'
   Esperando:
     Kits:
       Nome: '&aKits'
@@ -601,14 +623,54 @@ Tab:
 
 Tops:
   # Linhas dos hologramas de top ({tipo}, {modo}, {posicao}, {jogador}, {valor}).
+  # Clicar no holograma troca o modo (geral, solo, dupla...) para todo mundo;
+  # a linha {modos} do rodape mostra a lista com o atual em destaque.
   Cabecalho:
     - '&6&lTOP 10 {tipo}'
     - '&7{modo}'
   Linha: '&e{posicao}. &f{jogador} &7- &a{valor}'
   Vazio: '&7---'
+  Rodape:
+    - ''
+    - '{modos}'
+    - '&7Clique para trocar o modo'
+  Nome do geral: 'Geral'
+  Modo selecionado: '&a{modo}'
+  Modo normal: '&7{modo}'
+  Separador dos modos: ' &8- '
   Quantidade: 10
   # Minutos entre as atualizacoes dos tops.
   Atualizar a cada: 5
+
+# Mensagem de entrada no servidor por permissao: vale a PRIMEIRA da lista
+# cuja permissao o jogador tem (Permissao vazia = todo mundo). {jogador} e
+# placeholders do PlaceholderAPI funcionam; uma lista vira varias linhas.
+Mensagens de entrada:
+  Ativar: true
+  # Esconde a mensagem padrao do servidor ("X entrou no jogo").
+  Esconder padrao: true
+  # Vazio = manda para todos; PARTIDA/FORA limita a quem esta la.
+  Para quem: FORA
+  Lista:
+    dono:
+      Permissao: 'starbedwars.entrada.dono'
+      Som: 'ENTITY_ENDER_DRAGON_GROWL'
+      Mensagem:
+        - ''
+        - ' &4&lDONO &f{jogador} &7entrou no servidor!'
+        - ''
+    mvp:
+      Permissao: 'starbedwars.entrada.mvp'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: ' &6&lMVP &f{jogador} &7entrou no servidor!'
+    vip:
+      Permissao: 'starbedwars.entrada.vip'
+      Som: ''
+      Mensagem: ' &a&lVIP &f{jogador} &7entrou no servidor!'
+    padrao:
+      Permissao: ''
+      Som: ''
+      Mensagem: ' &e{jogador} &7entrou.'
 
 Sons:
   Quebrar cama: 'ENDER_DRAGON_GROWL'

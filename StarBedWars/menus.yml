@@ -185,6 +185,109 @@ Loja:
         - ''
         - '&eClique para ver'
 
+# O menu do item "Meu perfil" da barra do lobby. Acoes: ESTATISTICAS,
+# LOJA, KITS, HABILIDADES, MISSOES, GRUPO, CAIXAS, BOOSTERS, JOGAR, MAPAS,
+# VISIBILIDADE, FECHAR.
+Perfil:
+  Titulo: '&8Meu perfil'
+  Linhas: 5
+  Itens:
+    Cabeca:
+      Slot: 4
+      Acao: ESTATISTICAS
+      Nome: '&a{jogador}'
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Lore:
+        - ''
+        - ' &fNivel: {nivel_formatado}'
+        - ' {progresso} &7({xp}/{xp_proximo})'
+        - ' &fCoins: &6{coins} &f/ Fragmentos: &b{fragmentos}'
+        - ' &fLiga: {liga}'
+        - ''
+        - ' &fVitorias: &a{vitorias} &f/ Abates: &a{abates}'
+        - ' &fCamas: &a{camas} &f/ Sequencia: &a{winstreak}'
+        - ''
+        - '&eClique para ver tudo'
+    Estatisticas:
+      Slot: 19
+      Acao: ESTATISTICAS
+      Nome: '&aEstatisticas'
+      Material: BOOK
+      Lore:
+        - '&7Geral e por modo'
+    Kits:
+      Slot: 20
+      Acao: KITS
+      Nome: '&aKits'
+      Material: IRON_SWORD
+      Lore:
+        - '&7Seus kits por modo'
+    Habilidades:
+      Slot: 21
+      Acao: HABILIDADES
+      Nome: '&aHabilidades'
+      Material: EXPERIENCE_BOTTLE
+      Lore:
+        - '&7Suas habilidades por modo'
+    Cosmeticos:
+      Slot: 22
+      Acao: LOJA
+      Nome: '&aCosmeticos'
+      Material: EMERALD
+      Lore:
+        - '&7Jaulas, comemoracoes, efeitos...'
+    Missoes:
+      Slot: 23
+      Acao: MISSOES
+      Nome: '&aMissoes'
+      Material: WRITABLE_BOOK
+      Lore:
+        - '&7Suas missoes'
+    Grupo:
+      Slot: 24
+      Acao: GRUPO
+      Nome: '&aGrupo'
+      Material: NAME_TAG
+      Lore:
+        - '&7Jogue com amigos'
+    Caixas:
+      Slot: 25
+      Acao: CAIXAS
+      Nome: '&bCaixas misteriosas'
+      Material: CHEST
+      Lore:
+        - ''
+        - ' &fCaixas: &a{caixas} &f/ Fragmentos: &b{fragmentos}'
+    Boosters:
+      Slot: 30
+      Acao: BOOSTERS
+      Nome: '&dBoosters'
+      Material: NETHER_STAR
+      Lore:
+        - ''
+        - ' &fAtivo: {booster}'
+    Jogar:
+      Slot: 31
+      Acao: JOGAR
+      Nome: '&aJogar'
+      Material: RED_BED
+      Lore:
+        - '&7Entra numa partida solo'
+    Visibilidade:
+      Slot: 32
+      Acao: VISIBILIDADE
+      Nome: '&aVisibilidade de jogadores'
+      Material: LIME_DYE
+      Lore:
+        - '&7Mostrar ou esconder os jogadores'
+        - '&7do lobby'
+    Fechar:
+      Slot: 40
+      Acao: FECHAR
+      Nome: '&cFechar'
+      Material: BARRIER
+
 Modos:
   Titulo: '&8{categoria} - escolha o modo'
   Linhas: 3
