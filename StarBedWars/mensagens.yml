@@ -6,7 +6,7 @@
 #  sem prefixo. Titulos usam <nl> para separar titulo e subtitulo.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Prefixo: '&6&lBedWars &8» &7'
 
@@ -59,6 +59,7 @@ Ajuda:
     - ' &6&lBedWars &7- administracao'
     - '  &e/bw setlobby &7- lobby principal'
     - '  &e/bw arena criar <nome> <modo> &7- cria a arena no mundo atual'
+    - '  &e/bw editor [arena] &7- volta a editar (sem nome: a ultima)'
     - '  &e/bw arena setespera|setespectador|pos1|pos2 <nome>'
     - '  &e/bw arena equipe <nome> <equipe> spawn|cama|gerador|loja|melhorias'
     - '  &e/bw arena gerador <nome> diamante|esmeralda &7- adiciona gerador'
@@ -438,7 +439,9 @@ Configurador:
     - ' &fUse os itens da barra. Cada clique ja salva.'
     - ' &fQuando terminar, clique no bloco de esmeralda para guardar o mundo.'
     - ''
-  Saiu: '&eVoce saiu do modo de configuracao da arena &f{arena}&e.'
+  Saiu: '&eVoce saiu do modo de configuracao da arena &f{arena}&e. &7(/bw editor volta de onde parou)'
+  Retomou: '&aVoltando a edicao da arena &f{arena}&a.'
+  Nada para retomar: '&cVoce ainda nao editou nenhuma arena. Use /bw editor <arena>.'
   Equipe: '&aFerramentas da equipe &f{equipe}&a. Clique na flecha para voltar.'
   Equipe removida: '&cEquipe &f{equipe} &cremovida da arena.'
   Nao e cama: '&cClique com o botao direito em cima da cama da equipe.'
