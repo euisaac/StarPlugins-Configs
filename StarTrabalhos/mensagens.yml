@@ -6,7 +6,7 @@
 #  Cores: &a, &c, ... e hex no formato &#RRGGBB.
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 Prefixo: '&6&lTRABALHOS &8- &7'
 
@@ -51,6 +51,11 @@ Etiquetas:
   Separador de recompensas: '&7, '
   # Como um trabalho aparece nas listas ("Minerador (Nv. 3)").
   Trabalho com nivel: '{trabalho} &7(Nv. {nivel})'
+  # Cada linha de {meus_trabalhos} na lore da cabeca ({trabalho} = o rotulo acima).
+  Linha de trabalho: '&8- {trabalho}'
+  # Quantos trabalhos cabem na lore antes do "...e mais N". 0 = todos.
+  Trabalhos na lore: 10
+  E mais: '&8- &7...e mais {quantidade}'
   Categorias:
     TODOS: '&fTodos'
     GRATUITOS: '&aGratuitos'
