@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 2
+Versao do modelo: 3
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -636,6 +636,28 @@ Caixa misteriosa:
         - '&7de abate, gritos, animacoes'
         - '&7de cama e baloes'
       Recompensas: [ JAULA, COMEMORACAO, ABATE, GRITO, CAMA, BALAO ]
+
+# Protecao do mundo do lobby, para nao depender de WorldGuard. Vale nos
+# mundos de "Mundos" (vazio = o mundo do /bw setlobby); nunca dentro de
+# arena. Cada "Permitir ..." em false BLOQUEIA aquilo. A permissao
+# starbedwars.lobby.bypass ignora as regras de blocos e itens (staff).
+# "Tempo fixo" em ticks (6000 = meio-dia, 18000 = meia-noite; -1 = nao mexe).
+Protecao do lobby:
+  Ativar: true
+  Mundos: []
+  Permitir quebrar: false
+  Permitir colocar: false
+  # Baus, fornalhas, portas, botoes, camas... (a caixa misteriosa e os NPCs nao entram)
+  Permitir usar blocos: false
+  Permitir dano: false
+  Permitir pvp: false
+  Permitir fome: false
+  Permitir spawn natural: false
+  Permitir dropar itens: false
+  Permitir pegar itens: false
+  Permitir chuva: false
+  Permitir fogo e explosoes: false
+  Tempo fixo: 6000
 
 Jumppad:
   # Bloco de slime lanca o jogador para frente (na partida e, se quiser, no lobby).
