@@ -13,6 +13,14 @@
 # o plugin, o StarEssentials cai de volta pro SQLITE automaticamente. Trocar
 # "storage-type" exige reiniciar o servidor - nao e alterado por
 # /staressentials reload.
+
+# O StarEssentials tem a propria whitelist (comando /whitelist, com mensagem
+# propria e a lista em whitelist.yml). Com isto ligado, ele ASSUME a whitelist:
+# desliga a whitelist NATIVA do Minecraft ao iniciar e nos /whitelist on|off,
+# para a do vanilla nao kickar por cima (ex.: white-list=true deixado pelo host).
+# Deixe false se voce quiser controlar a whitelist nativa por conta propria.
+whitelist-assumir-vanilla: true
+
 database:
   # SQLITE (padrao, sem configuracao extra) ou MYSQL.
   storage-type: SQLITE
@@ -225,8 +233,12 @@ vida:
 # O primeiro grupo (por "prioridade", menor primeiro) que o jogador tiver a
 # permissao correspondente e' o que vale. So mexe no nome exibido - o nick
 # (/nick) continua sendo a base usada nos dois casos.
+# ATENCAO: a tag acima da cabeca precisa ficar dona do placar (scoreboard) do
+# jogador pra funcionar - se voce usa outro plugin de scoreboard/sidebar,
+# deixe isso desativado (alem de "scoreboard.ativado: false" no scoreboard.yml),
+# senao os dois plugins vao brigar pelo mesmo placar e ele vai ficar piscando.
 tab-tags:
-  ativado: true
+  ativado: false
   grupos:
     exemplo-dono:
       prioridade: 1
