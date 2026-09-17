@@ -1,0 +1,1266 @@
+# ==========================================================================
+#  StarMurder - missoes e desafios diarios
+#
+#  O progresso de uma missao E a estatistica dela (Tipo) no Modo e Periodo
+#  escolhidos: nao ha nada para zerar. Periodo TOTAL conclui uma vez; MENSAL
+#  volta todo mes. Modo: classico, duplo, infeccao ou geral (todos).
+#  Tipos: vitorias, derrotas, partidas, abates, abates_assassino,
+#  assassinos_mortos, inocentes_mortos, mortes, pontuacao, maior_pontuacao,
+#  ouro, herois, vezes_assassino, vezes_detetive, vezes_inocente,
+#  vitorias_assassino, sobrevivencias, winstreak, maior_winstreak,
+#  flechas_atiradas, flechas_acertadas, facas_arremessadas, tempo_jogado (s).
+#  Recompensas: 'coins: 100' 'cash: 5' 'xp: 50' 'fragmentos: 10'
+#  'caixa: <id> <qtd>' 'booster: <mult> <duracao>' 'comando: <cmd {jogador}>'
+#  (passe: 'comando: murder passe dar {jogador} assassino 1')
+#  Diarias: todo dia cada jogador recebe Quantidade desafios sorteados dos
+#  Modelos, contando so o que ele fizer naquele dia.
+# ==========================================================================
+
+Missoes:
+  vencedor_1:
+    Nome: 'Vencedor I'
+    Modo: geral
+    Tipo: vitorias
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 100'
+  vencedor_2:
+    Nome: 'Vencedor II'
+    Modo: geral
+    Tipo: vitorias
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 2500'
+      - 'xp: 500'
+  vencedor_3:
+    Nome: 'Vencedor III'
+    Modo: geral
+    Tipo: vitorias
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'xp: 1600'
+      - 'caixa: murder_comum 1'
+  vencedor_4:
+    Nome: 'Vencedor IV'
+    Modo: geral
+    Tipo: vitorias
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'xp: 4000'
+      - 'caixa: murder_especial 1'
+  vencedor_5:
+    Nome: 'Vencedor V'
+    Modo: geral
+    Tipo: vitorias
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 50000'
+      - 'xp: 10000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  assassino_1:
+    Nome: 'Assassino I'
+    Modo: geral
+    Tipo: abates_assassino
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino.'
+    Recompensas:
+      - 'coins: 400'
+      - 'xp: 80'
+  assassino_2:
+    Nome: 'Assassino II'
+    Modo: geral
+    Tipo: abates_assassino
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 400'
+  assassino_3:
+    Nome: 'Assassino III'
+    Modo: geral
+    Tipo: abates_assassino
+    Quantidade: 200
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino.'
+    Recompensas:
+      - 'coins: 7000'
+      - 'xp: 1400'
+      - 'caixa: murder_comum 1'
+  assassino_4:
+    Nome: 'Assassino IV'
+    Modo: geral
+    Tipo: abates_assassino
+    Quantidade: 500
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino.'
+    Recompensas:
+      - 'coins: 18000'
+      - 'xp: 3600'
+      - 'caixa: murder_especial 1'
+  assassino_5:
+    Nome: 'Assassino V'
+    Modo: geral
+    Tipo: abates_assassino
+    Quantidade: 1500
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino.'
+    Recompensas:
+      - 'coins: 45000'
+      - 'xp: 9000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  cacador_1:
+    Nome: 'Cacador I'
+    Modo: geral
+    Tipo: assassinos_mortos
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'BOW'
+    Descricao:
+      - '&7Mate {quantidade} assassinos.'
+    Recompensas:
+      - 'coins: 600'
+      - 'xp: 120'
+  cacador_2:
+    Nome: 'Cacador II'
+    Modo: geral
+    Tipo: assassinos_mortos
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'BOW'
+    Descricao:
+      - '&7Mate {quantidade} assassinos.'
+    Recompensas:
+      - 'coins: 3000'
+      - 'xp: 600'
+  cacador_3:
+    Nome: 'Cacador III'
+    Modo: geral
+    Tipo: assassinos_mortos
+    Quantidade: 75
+    Periodo: TOTAL
+    Icone: 'BOW'
+    Descricao:
+      - '&7Mate {quantidade} assassinos.'
+    Recompensas:
+      - 'coins: 9000'
+      - 'xp: 1800'
+      - 'caixa: murder_comum 1'
+  cacador_4:
+    Nome: 'Cacador IV'
+    Modo: geral
+    Tipo: assassinos_mortos
+    Quantidade: 200
+    Periodo: TOTAL
+    Icone: 'BOW'
+    Descricao:
+      - '&7Mate {quantidade} assassinos.'
+    Recompensas:
+      - 'coins: 22000'
+      - 'xp: 4400'
+      - 'caixa: murder_especial 1'
+  cacador_5:
+    Nome: 'Cacador V'
+    Modo: geral
+    Tipo: assassinos_mortos
+    Quantidade: 500
+    Periodo: TOTAL
+    Icone: 'BOW'
+    Descricao:
+      - '&7Mate {quantidade} assassinos.'
+    Recompensas:
+      - 'coins: 55000'
+      - 'xp: 11000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  heroi_1:
+    Nome: 'Heroi I'
+    Modo: geral
+    Tipo: herois
+    Quantidade: 3
+    Periodo: TOTAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Seja o heroi da partida {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 800'
+      - 'xp: 160'
+  heroi_2:
+    Nome: 'Heroi II'
+    Modo: geral
+    Tipo: herois
+    Quantidade: 15
+    Periodo: TOTAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Seja o heroi da partida {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 3500'
+      - 'xp: 700'
+  heroi_3:
+    Nome: 'Heroi III'
+    Modo: geral
+    Tipo: herois
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Seja o heroi da partida {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 10000'
+      - 'xp: 2000'
+      - 'caixa: murder_comum 1'
+  heroi_4:
+    Nome: 'Heroi IV'
+    Modo: geral
+    Tipo: herois
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Seja o heroi da partida {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 25000'
+      - 'xp: 5000'
+      - 'caixa: murder_especial 1'
+  heroi_5:
+    Nome: 'Heroi V'
+    Modo: geral
+    Tipo: herois
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Seja o heroi da partida {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 60000'
+      - 'xp: 12000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  minerador_1:
+    Nome: 'Minerador de Ouro I'
+    Modo: geral
+    Tipo: ouro
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'GOLD_INGOT'
+    Descricao:
+      - '&7Colete {quantidade} lingotes de ouro.'
+    Recompensas:
+      - 'coins: 400'
+      - 'xp: 80'
+  minerador_2:
+    Nome: 'Minerador de Ouro II'
+    Modo: geral
+    Tipo: ouro
+    Quantidade: 500
+    Periodo: TOTAL
+    Icone: 'GOLD_INGOT'
+    Descricao:
+      - '&7Colete {quantidade} lingotes de ouro.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 400'
+  minerador_3:
+    Nome: 'Minerador de Ouro III'
+    Modo: geral
+    Tipo: ouro
+    Quantidade: 2000
+    Periodo: TOTAL
+    Icone: 'GOLD_INGOT'
+    Descricao:
+      - '&7Colete {quantidade} lingotes de ouro.'
+    Recompensas:
+      - 'coins: 6000'
+      - 'xp: 1200'
+      - 'caixa: murder_comum 1'
+  minerador_4:
+    Nome: 'Minerador de Ouro IV'
+    Modo: geral
+    Tipo: ouro
+    Quantidade: 6000
+    Periodo: TOTAL
+    Icone: 'GOLD_INGOT'
+    Descricao:
+      - '&7Colete {quantidade} lingotes de ouro.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'xp: 3000'
+      - 'caixa: murder_especial 1'
+  minerador_5:
+    Nome: 'Minerador de Ouro V'
+    Modo: geral
+    Tipo: ouro
+    Quantidade: 15000
+    Periodo: TOTAL
+    Icone: 'GOLD_INGOT'
+    Descricao:
+      - '&7Colete {quantidade} lingotes de ouro.'
+    Recompensas:
+      - 'coins: 40000'
+      - 'xp: 8000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  sobrevivente_1:
+    Nome: 'Sobrevivente I'
+    Modo: geral
+    Tipo: sobrevivencias
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'SHIELD'
+    Descricao:
+      - '&7Sobreviva ate o fim em {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 400'
+      - 'xp: 80'
+  sobrevivente_2:
+    Nome: 'Sobrevivente II'
+    Modo: geral
+    Tipo: sobrevivencias
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'SHIELD'
+    Descricao:
+      - '&7Sobreviva ate o fim em {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 400'
+  sobrevivente_3:
+    Nome: 'Sobrevivente III'
+    Modo: geral
+    Tipo: sobrevivencias
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'SHIELD'
+    Descricao:
+      - '&7Sobreviva ate o fim em {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 6000'
+      - 'xp: 1200'
+      - 'caixa: murder_comum 1'
+  sobrevivente_4:
+    Nome: 'Sobrevivente IV'
+    Modo: geral
+    Tipo: sobrevivencias
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'SHIELD'
+    Descricao:
+      - '&7Sobreviva ate o fim em {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'xp: 3000'
+      - 'caixa: murder_especial 1'
+  sobrevivente_5:
+    Nome: 'Sobrevivente V'
+    Modo: geral
+    Tipo: sobrevivencias
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'SHIELD'
+    Descricao:
+      - '&7Sobreviva ate o fim em {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 40000'
+      - 'xp: 8000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  veterano_1:
+    Nome: 'Veterano I'
+    Modo: geral
+    Tipo: partidas
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 300'
+      - 'xp: 60'
+  veterano_2:
+    Nome: 'Veterano II'
+    Modo: geral
+    Tipo: partidas
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 1500'
+      - 'xp: 300'
+  veterano_3:
+    Nome: 'Veterano III'
+    Modo: geral
+    Tipo: partidas
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 1000'
+      - 'caixa: murder_comum 1'
+  veterano_4:
+    Nome: 'Veterano IV'
+    Modo: geral
+    Tipo: partidas
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 12000'
+      - 'xp: 2400'
+      - 'caixa: murder_especial 1'
+  veterano_5:
+    Nome: 'Veterano V'
+    Modo: geral
+    Tipo: partidas
+    Quantidade: 2500
+    Periodo: TOTAL
+    Icone: 'CLOCK'
+    Descricao:
+      - '&7Jogue {quantidade} partidas.'
+    Recompensas:
+      - 'coins: 30000'
+      - 'xp: 6000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  pontuador_1:
+    Nome: 'Pontuador I'
+    Modo: geral
+    Tipo: pontuacao
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'EXPERIENCE_BOTTLE'
+    Descricao:
+      - '&7Acumule {quantidade} pontos.'
+    Recompensas:
+      - 'coins: 500'
+      - 'xp: 100'
+  pontuador_2:
+    Nome: 'Pontuador II'
+    Modo: geral
+    Tipo: pontuacao
+    Quantidade: 5000
+    Periodo: TOTAL
+    Icone: 'EXPERIENCE_BOTTLE'
+    Descricao:
+      - '&7Acumule {quantidade} pontos.'
+    Recompensas:
+      - 'coins: 2500'
+      - 'xp: 500'
+  pontuador_3:
+    Nome: 'Pontuador III'
+    Modo: geral
+    Tipo: pontuacao
+    Quantidade: 25000
+    Periodo: TOTAL
+    Icone: 'EXPERIENCE_BOTTLE'
+    Descricao:
+      - '&7Acumule {quantidade} pontos.'
+    Recompensas:
+      - 'coins: 8000'
+      - 'xp: 1600'
+      - 'caixa: murder_comum 1'
+  pontuador_4:
+    Nome: 'Pontuador IV'
+    Modo: geral
+    Tipo: pontuacao
+    Quantidade: 80000
+    Periodo: TOTAL
+    Icone: 'EXPERIENCE_BOTTLE'
+    Descricao:
+      - '&7Acumule {quantidade} pontos.'
+    Recompensas:
+      - 'coins: 20000'
+      - 'xp: 4000'
+      - 'caixa: murder_especial 1'
+  pontuador_5:
+    Nome: 'Pontuador V'
+    Modo: geral
+    Tipo: pontuacao
+    Quantidade: 200000
+    Periodo: TOTAL
+    Icone: 'EXPERIENCE_BOTTLE'
+    Descricao:
+      - '&7Acumule {quantidade} pontos.'
+    Recompensas:
+      - 'coins: 50000'
+      - 'xp: 10000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  implacavel_1:
+    Nome: 'Implacavel I'
+    Modo: geral
+    Tipo: vitorias_assassino
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'REDSTONE'
+    Descricao:
+      - '&7Venca {quantidade} partidas como assassino.'
+    Recompensas:
+      - 'coins: 700'
+      - 'xp: 140'
+  implacavel_2:
+    Nome: 'Implacavel II'
+    Modo: geral
+    Tipo: vitorias_assassino
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'REDSTONE'
+    Descricao:
+      - '&7Venca {quantidade} partidas como assassino.'
+    Recompensas:
+      - 'coins: 3000'
+      - 'xp: 600'
+  implacavel_3:
+    Nome: 'Implacavel III'
+    Modo: geral
+    Tipo: vitorias_assassino
+    Quantidade: 75
+    Periodo: TOTAL
+    Icone: 'REDSTONE'
+    Descricao:
+      - '&7Venca {quantidade} partidas como assassino.'
+    Recompensas:
+      - 'coins: 9000'
+      - 'xp: 1800'
+      - 'caixa: murder_comum 1'
+  implacavel_4:
+    Nome: 'Implacavel IV'
+    Modo: geral
+    Tipo: vitorias_assassino
+    Quantidade: 200
+    Periodo: TOTAL
+    Icone: 'REDSTONE'
+    Descricao:
+      - '&7Venca {quantidade} partidas como assassino.'
+    Recompensas:
+      - 'coins: 22000'
+      - 'xp: 4400'
+      - 'caixa: murder_especial 1'
+  implacavel_5:
+    Nome: 'Implacavel V'
+    Modo: geral
+    Tipo: vitorias_assassino
+    Quantidade: 500
+    Periodo: TOTAL
+    Icone: 'REDSTONE'
+    Descricao:
+      - '&7Venca {quantidade} partidas como assassino.'
+    Recompensas:
+      - 'coins: 55000'
+      - 'xp: 11000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  atirador_1:
+    Nome: 'Atirador I'
+    Modo: geral
+    Tipo: flechas_acertadas
+    Quantidade: 10
+    Periodo: TOTAL
+    Icone: 'ARROW'
+    Descricao:
+      - '&7Acerte {quantidade} flechas.'
+    Recompensas:
+      - 'coins: 400'
+      - 'xp: 80'
+  atirador_2:
+    Nome: 'Atirador II'
+    Modo: geral
+    Tipo: flechas_acertadas
+    Quantidade: 50
+    Periodo: TOTAL
+    Icone: 'ARROW'
+    Descricao:
+      - '&7Acerte {quantidade} flechas.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 400'
+  atirador_3:
+    Nome: 'Atirador III'
+    Modo: geral
+    Tipo: flechas_acertadas
+    Quantidade: 150
+    Periodo: TOTAL
+    Icone: 'ARROW'
+    Descricao:
+      - '&7Acerte {quantidade} flechas.'
+    Recompensas:
+      - 'coins: 6000'
+      - 'xp: 1200'
+      - 'caixa: murder_comum 1'
+  atirador_4:
+    Nome: 'Atirador IV'
+    Modo: geral
+    Tipo: flechas_acertadas
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'ARROW'
+    Descricao:
+      - '&7Acerte {quantidade} flechas.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'xp: 3000'
+      - 'caixa: murder_especial 1'
+  atirador_5:
+    Nome: 'Atirador V'
+    Modo: geral
+    Tipo: flechas_acertadas
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'ARROW'
+    Descricao:
+      - '&7Acerte {quantidade} flechas.'
+    Recompensas:
+      - 'coins: 40000'
+      - 'xp: 8000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  arremessador_1:
+    Nome: 'Arremessador I'
+    Modo: geral
+    Tipo: facas_arremessadas
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Arremesse a faca {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 300'
+      - 'xp: 60'
+  arremessador_2:
+    Nome: 'Arremessador II'
+    Modo: geral
+    Tipo: facas_arremessadas
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Arremesse a faca {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 1500'
+      - 'xp: 300'
+  arremessador_3:
+    Nome: 'Arremessador III'
+    Modo: geral
+    Tipo: facas_arremessadas
+    Quantidade: 400
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Arremesse a faca {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 1000'
+      - 'caixa: murder_comum 1'
+  arremessador_4:
+    Nome: 'Arremessador IV'
+    Modo: geral
+    Tipo: facas_arremessadas
+    Quantidade: 1000
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Arremesse a faca {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 12000'
+      - 'xp: 2400'
+      - 'caixa: murder_especial 1'
+  arremessador_5:
+    Nome: 'Arremessador V'
+    Modo: geral
+    Tipo: facas_arremessadas
+    Quantidade: 2500
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Arremesse a faca {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 30000'
+      - 'xp: 6000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  detetive_1:
+    Nome: 'Detetive de Carreira I'
+    Modo: geral
+    Tipo: vezes_detetive
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Seja o detetive {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 400'
+      - 'xp: 80'
+  detetive_2:
+    Nome: 'Detetive de Carreira II'
+    Modo: geral
+    Tipo: vezes_detetive
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Seja o detetive {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 400'
+  detetive_3:
+    Nome: 'Detetive de Carreira III'
+    Modo: geral
+    Tipo: vezes_detetive
+    Quantidade: 75
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Seja o detetive {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 6000'
+      - 'xp: 1200'
+      - 'caixa: murder_comum 1'
+  detetive_4:
+    Nome: 'Detetive de Carreira IV'
+    Modo: geral
+    Tipo: vezes_detetive
+    Quantidade: 200
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Seja o detetive {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'xp: 3000'
+      - 'caixa: murder_especial 1'
+  detetive_5:
+    Nome: 'Detetive de Carreira V'
+    Modo: geral
+    Tipo: vezes_detetive
+    Quantidade: 500
+    Periodo: TOTAL
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Seja o detetive {quantidade} vezes.'
+    Recompensas:
+      - 'coins: 40000'
+      - 'xp: 8000'
+      - 'caixa: murder_especial 2'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  vencedor_classico_1:
+    Nome: 'Vencedor I [Classico]'
+    Modo: classico
+    Tipo: vitorias
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 400'
+      - 'xp: 80'
+  vencedor_classico_2:
+    Nome: 'Vencedor II [Classico]'
+    Modo: classico
+    Tipo: vitorias
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 400'
+  vencedor_classico_3:
+    Nome: 'Vencedor III [Classico]'
+    Modo: classico
+    Tipo: vitorias
+    Quantidade: 75
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 6000'
+      - 'xp: 1200'
+  vencedor_classico_4:
+    Nome: 'Vencedor IV [Classico]'
+    Modo: classico
+    Tipo: vitorias
+    Quantidade: 200
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'xp: 3000'
+      - 'caixa: murder_especial 1'
+  assassino_classico_1:
+    Nome: 'Assassino I [Classico]'
+    Modo: classico
+    Tipo: abates_assassino
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 300'
+      - 'xp: 60'
+  assassino_classico_2:
+    Nome: 'Assassino II [Classico]'
+    Modo: classico
+    Tipo: abates_assassino
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 1500'
+      - 'xp: 300'
+  assassino_classico_3:
+    Nome: 'Assassino III [Classico]'
+    Modo: classico
+    Tipo: abates_assassino
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 1000'
+  assassino_classico_4:
+    Nome: 'Assassino IV [Classico]'
+    Modo: classico
+    Tipo: abates_assassino
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 12000'
+      - 'xp: 2400'
+      - 'caixa: murder_especial 1'
+  vencedor_duplo_1:
+    Nome: 'Vencedor I [Duplo]'
+    Modo: duplo
+    Tipo: vitorias
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 400'
+      - 'xp: 80'
+  vencedor_duplo_2:
+    Nome: 'Vencedor II [Duplo]'
+    Modo: duplo
+    Tipo: vitorias
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 400'
+  vencedor_duplo_3:
+    Nome: 'Vencedor III [Duplo]'
+    Modo: duplo
+    Tipo: vitorias
+    Quantidade: 75
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 6000'
+      - 'xp: 1200'
+  vencedor_duplo_4:
+    Nome: 'Vencedor IV [Duplo]'
+    Modo: duplo
+    Tipo: vitorias
+    Quantidade: 200
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'xp: 3000'
+      - 'caixa: murder_especial 1'
+  assassino_duplo_1:
+    Nome: 'Assassino I [Duplo]'
+    Modo: duplo
+    Tipo: abates_assassino
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 300'
+      - 'xp: 60'
+  assassino_duplo_2:
+    Nome: 'Assassino II [Duplo]'
+    Modo: duplo
+    Tipo: abates_assassino
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 1500'
+      - 'xp: 300'
+  assassino_duplo_3:
+    Nome: 'Assassino III [Duplo]'
+    Modo: duplo
+    Tipo: abates_assassino
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 1000'
+  assassino_duplo_4:
+    Nome: 'Assassino IV [Duplo]'
+    Modo: duplo
+    Tipo: abates_assassino
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 12000'
+      - 'xp: 2400'
+      - 'caixa: murder_especial 1'
+  vencedor_infeccao_1:
+    Nome: 'Vencedor I [Infeccao]'
+    Modo: infeccao
+    Tipo: vitorias
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 400'
+      - 'xp: 80'
+  vencedor_infeccao_2:
+    Nome: 'Vencedor II [Infeccao]'
+    Modo: infeccao
+    Tipo: vitorias
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 2000'
+      - 'xp: 400'
+  vencedor_infeccao_3:
+    Nome: 'Vencedor III [Infeccao]'
+    Modo: infeccao
+    Tipo: vitorias
+    Quantidade: 75
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 6000'
+      - 'xp: 1200'
+  vencedor_infeccao_4:
+    Nome: 'Vencedor IV [Infeccao]'
+    Modo: infeccao
+    Tipo: vitorias
+    Quantidade: 200
+    Periodo: TOTAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas no {modo}.'
+    Recompensas:
+      - 'coins: 15000'
+      - 'xp: 3000'
+      - 'caixa: murder_especial 1'
+  assassino_infeccao_1:
+    Nome: 'Assassino I [Infeccao]'
+    Modo: infeccao
+    Tipo: abates_assassino
+    Quantidade: 5
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 300'
+      - 'xp: 60'
+  assassino_infeccao_2:
+    Nome: 'Assassino II [Infeccao]'
+    Modo: infeccao
+    Tipo: abates_assassino
+    Quantidade: 25
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 1500'
+      - 'xp: 300'
+  assassino_infeccao_3:
+    Nome: 'Assassino III [Infeccao]'
+    Modo: infeccao
+    Tipo: abates_assassino
+    Quantidade: 100
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 5000'
+      - 'xp: 1000'
+  assassino_infeccao_4:
+    Nome: 'Assassino IV [Infeccao]'
+    Modo: infeccao
+    Tipo: abates_assassino
+    Quantidade: 300
+    Periodo: TOTAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino no {modo}.'
+    Recompensas:
+      - 'coins: 12000'
+      - 'xp: 2400'
+      - 'caixa: murder_especial 1'
+  mensal_vitorias:
+    Nome: 'Vencedor do Mes'
+    Modo: geral
+    Tipo: vitorias
+    Quantidade: 30
+    Periodo: MENSAL
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7Venca {quantidade} partidas neste mes.'
+    Recompensas:
+      - 'coins: 3000'
+      - 'caixa: murder_especial 1'
+  mensal_abates:
+    Nome: 'Assassino do Mes'
+    Modo: geral
+    Tipo: abates_assassino
+    Quantidade: 60
+    Periodo: MENSAL
+    Icone: 'IRON_SWORD'
+    Descricao:
+      - '&7Elimine {quantidade} jogadores como assassino neste mes.'
+    Recompensas:
+      - 'coins: 3000'
+      - 'comando: murder passe dar {jogador} assassino 1'
+  mensal_ouro:
+    Nome: 'Garimpeiro do Mes'
+    Modo: geral
+    Tipo: ouro
+    Quantidade: 500
+    Periodo: MENSAL
+    Icone: 'GOLD_INGOT'
+    Descricao:
+      - '&7Colete {quantidade} ouro neste mes.'
+    Recompensas:
+      - 'coins: 2500'
+      - 'caixa: murder_comum 2'
+  mensal_herois:
+    Nome: 'Heroi do Mes'
+    Modo: geral
+    Tipo: herois
+    Quantidade: 10
+    Periodo: MENSAL
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Seja o heroi {quantidade} vezes neste mes.'
+    Recompensas:
+      - 'coins: 4000'
+      - 'caixa: murder_especial 1'
+
+Diarias:
+  # Quantos desafios cada jogador recebe por dia.
+  Quantidade: 3
+  Modelos:
+    jogar_3:
+      Nome: 'Aquecimento'
+      Modo: geral
+      Tipo: partidas
+      Quantidade: 3
+      Icone: 'CLOCK'
+      Descricao:
+        - '&7Jogue {quantidade} partidas hoje.'
+      Recompensas:
+        - 'coins: 150'
+        - 'xp: 100'
+    vencer_2:
+      Nome: 'Vitoria do Dia'
+      Modo: geral
+      Tipo: vitorias
+      Quantidade: 2
+      Icone: 'GOLDEN_APPLE'
+      Descricao:
+        - '&7Venca {quantidade} partidas hoje.'
+      Recompensas:
+        - 'coins: 300'
+        - 'xp: 200'
+    ouro_30:
+      Nome: 'Bolso Cheio'
+      Modo: geral
+      Tipo: ouro
+      Quantidade: 30
+      Icone: 'GOLD_INGOT'
+      Descricao:
+        - '&7Colete {quantidade} ouro hoje.'
+      Recompensas:
+        - 'coins: 200'
+        - 'xp: 150'
+    sobreviver_2:
+      Nome: 'Vivo!'
+      Modo: geral
+      Tipo: sobrevivencias
+      Quantidade: 2
+      Icone: 'SHIELD'
+      Descricao:
+        - '&7Sobreviva ate o fim {quantidade} vezes hoje.'
+      Recompensas:
+        - 'coins: 200'
+        - 'xp: 150'
+    abates_5:
+      Nome: 'Trabalho Sujo'
+      Modo: geral
+      Tipo: abates_assassino
+      Quantidade: 5
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Elimine {quantidade} jogadores como assassino hoje.'
+      Recompensas:
+        - 'coins: 300'
+        - 'xp: 200'
+    cacar_1:
+      Nome: 'Justica'
+      Modo: geral
+      Tipo: assassinos_mortos
+      Quantidade: 1
+      Icone: 'BOW'
+      Descricao:
+        - '&7Mate {quantidade} assassino hoje.'
+      Recompensas:
+        - 'coins: 350'
+        - 'xp: 250'
+    pontos_300:
+      Nome: 'Pontuador do Dia'
+      Modo: geral
+      Tipo: pontuacao
+      Quantidade: 300
+      Icone: 'EXPERIENCE_BOTTLE'
+      Descricao:
+        - '&7Faca {quantidade} pontos hoje.'
+      Recompensas:
+        - 'coins: 250'
+        - 'xp: 200'
+    flechas_3:
+      Nome: 'Mira Fina'
+      Modo: geral
+      Tipo: flechas_acertadas
+      Quantidade: 3
+      Icone: 'ARROW'
+      Descricao:
+        - '&7Acerte {quantidade} flechas hoje.'
+      Recompensas:
+        - 'coins: 250'
+        - 'xp: 200'
+    arremessos_5:
+      Nome: 'Faca Voadora'
+      Modo: geral
+      Tipo: facas_arremessadas
+      Quantidade: 5
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Arremesse a faca {quantidade} vezes hoje.'
+      Recompensas:
+        - 'coins: 150'
+        - 'xp: 100'
+    heroi_1:
+      Nome: 'Heroi do Dia'
+      Modo: geral
+      Tipo: herois
+      Quantidade: 1
+      Icone: 'NETHER_STAR'
+      Descricao:
+        - '&7Seja o heroi {quantidade} vez hoje.'
+      Recompensas:
+        - 'coins: 400'
+        - 'caixa: murder_comum 1'
+    tempo_30:
+      Nome: 'Meia Hora'
+      Modo: geral
+      Tipo: tempo_jogado
+      Quantidade: 1800
+      Icone: 'CLOCK'
+      Descricao:
+        - '&7Jogue 30 minutos hoje.'
+      Recompensas:
+        - 'coins: 200'
+        - 'xp: 150'
+    classico_2:
+      Nome: 'Classico do Dia'
+      Modo: classico
+      Tipo: vitorias
+      Quantidade: 2
+      Icone: 'IRON_SWORD'
+      Descricao:
+        - '&7Venca {quantidade} partidas no {modo} hoje.'
+      Recompensas:
+        - 'coins: 300'
+        - 'xp: 200'

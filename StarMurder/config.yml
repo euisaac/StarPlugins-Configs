@@ -1,0 +1,532 @@
+# ==========================================================================
+#  StarMurder - configuracao geral
+#
+#  Arenas ficam em arenas/<nome>.yml (crie pelo jogo: /murder criar <nome>).
+#  Locais do lobby, NPCs, tops, caixas e placas ficam no locais.yml (pelo jogo).
+#  Cosmeticos: facas.yml, trilhas.yml, gritos-de-morte.yml, ultimas-palavras.yml,
+#  efeitos-de-abate.yml, comemoracoes.yml e baloes.yml.
+#  Poderes: poderes.yml. Progressao: niveis.yml, missoes.yml, caixas.yml.
+#  Textos: mensagens.yml e menus.yml. Moedas: economias.yml.
+#
+#  Cores usam & (e &#RRGGBB nas versoes 1.16+). Tempos sao em segundos.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Banco de dados:
+  # SQLITE (arquivo na pasta do plugin) ou MYSQL. O modo Bungee exige MYSQL,
+  # porque o lobby e as salas precisam ler o mesmo banco.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starmurder_'
+  MySQL:
+    Host: 'localhost'
+    Porta: 3306
+    Banco: 'minecraft'
+    Usuario: 'root'
+    Senha: ''
+
+Modo do plugin:
+  # MULTIARENA: as arenas e o lobby ficam neste servidor.
+  # BUNGEE: este servidor so tem arenas; quem sai vai para o servidor de lobby.
+  # LOBBY_BUNGEE: este servidor e o lobby do Murder; os NPCs e o menu
+  #   procuram uma sala livre nos servidores BUNGEE e mandam o jogador para la.
+  Tipo: MULTIARENA
+  # Nome deste servidor no BungeeCord/Velocity (usado nos modos Bungee).
+  Nome deste servidor: 'murder-1'
+  # Servidor para onde os jogadores voltam ao sair de uma partida (modo BUNGEE).
+  Servidor de lobby: 'lobby'
+  # No modo BUNGEE, quem entra no servidor cai direto numa arena.
+  Entrar na arena ao conectar: true
+  # Segundos sem atualizacao para uma sala ser considerada fora do ar.
+  Sala expira em: 15
+
+Geral:
+  # Ao entrar no servidor (ou sair de uma partida), o jogador vai ao lobby do locais.yml.
+  Teleportar ao lobby ao entrar: true
+  # Limpa o inventario e da os itens da barra do lobby ao entrar no lobby.
+  Barra do lobby: true
+  # Intervalo minimo entre dois cliques num menu, em milissegundos.
+  Intervalo entre cliques: 250
+  # Quantos segundos entre cada atualizacao dos tops (hologramas e menus).
+  Intervalo dos tops: 60
+  # Quantas posicoes cada top guarda.
+  Tamanho dos tops: 10
+  # Autosave dos perfis alterados, em minutos.
+  Autosave: 5
+  # Comando executado no console quando alguem usa /lobby fora de partida
+  # (vazio = so teleporta ao lobby do locais.yml). {jogador} e o nick.
+  Comando do lobby: ''
+  # Sons no formato SOM;volume;tom (nomes do XSeries; os antigos tambem valem).
+  Sons:
+    Clique: 'UI_BUTTON_CLICK'
+    Erro: 'ENTITY_VILLAGER_NO'
+    Pagina: 'ENTITY_ITEM_PICKUP'
+    Sucesso: 'ENTITY_PLAYER_LEVELUP'
+    Contagem: 'BLOCK_NOTE_BLOCK_PLING'
+    Inicio: 'ENTITY_ENDER_DRAGON_GROWL'
+    Faca: 'ITEM_ARMOR_EQUIP_IRON;1;0.6'
+    Arremesso: 'ENTITY_ARROW_SHOOT;1;0.5'
+    Faca no bloco: 'BLOCK_ANVIL_LAND;0.5;1.5'
+    Abate: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+    Morte: 'ENTITY_WITHER_HURT;1;0.7'
+    Ouro: 'ENTITY_ITEM_PICKUP;1;1.4'
+    Poder: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+    Pocao: 'ENTITY_GENERIC_DRINK'
+    Oracao: 'BLOCK_ENCHANTMENT_TABLE_USE'
+    Vitoria: 'UI_TOAST_CHALLENGE_COMPLETE'
+    Derrota: 'ENTITY_WITHER_SPAWN'
+    Nivel: 'ENTITY_PLAYER_LEVELUP;1;1.5'
+    Caixa: 'BLOCK_CHEST_OPEN'
+
+Partida:
+  # Segundos na sala de espera quando o minimo de jogadores e atingido.
+  Contagem de espera: 30
+  # Segundos quando a arena enche (a contagem encurta para este valor).
+  Contagem cheia: 10
+  # Segundos quando um admin forca o inicio (/murder iniciar).
+  Contagem forcada: 5
+  # Segundos de comemoracao no fim da partida antes de todos sairem.
+  Tempo de fim: 10
+  # Duracao da partida em segundos (0 = sem limite; pode ser trocada por arena).
+  # Quando o tempo acaba, os inocentes vencem.
+  Duracao: 300
+  # Segundos antes do fim em que aparece o aviso de "tempo acabando".
+  Aviso de fim: 30
+  # Fome nunca desce durante a partida.
+  Sem fome: true
+  # Dano de queda desligado.
+  Sem dano de queda: true
+  # O placar lateral durante a partida.
+  Placar: true
+  # Barreira: ninguem sai dos Limites da arena (quando marcados).
+  Barreira: true
+  # Esconde o nome na cabeca dos jogadores vivos durante o jogo (ninguem sabe quem e quem de longe).
+  Esconder nametags: true
+  # Mortes de inocentes so sao anunciadas para os mortos e espectadores; os vivos nao ficam sabendo.
+  # A morte do detetive e a do assassino sao sempre anunciadas.
+  Esconder mortes: true
+  # Fogos nos vencedores no fim.
+  Fogos no fim: true
+  # Corpos: onde alguem morre fica um suporte com a cabeca dele e as ultimas palavras.
+  Corpos:
+    Ativar: true
+    # Segundos ate o corpo sumir (0 = fica ate o fim da partida).
+    Duracao: 0
+  # Barra no topo da tela com o tempo e os vivos (1.9+).
+  Bossbar: true
+  # Mantem o clima limpo nos mundos das arenas.
+  Clima limpo: true
+  # Fixa a hora do dia nos mundos das arenas (-1 = nao mexe; 18000 = meia-noite).
+  Hora fixa: -1
+
+Assassino:
+  # Segundos depois do inicio ate o assassino receber a faca (ninguem morre antes disso).
+  Segundos para a faca: 10
+  # Material da faca quando o jogador nao selecionou uma skin (facas.yml).
+  Faca padrao: IRON_SWORD
+  # Nivel do efeito de velocidade do assassino (0 = sem velocidade; 1 = Velocidade I).
+  Velocidade: 1
+  Arremesso:
+    # O assassino pode arremessar a faca com o clique direito.
+    Ativar: true
+    # Blocos por tique que a faca voa (0.65 = ~13 blocos por segundo).
+    Velocidade: 0.65
+    # Distancia maxima do arremesso, em blocos.
+    Alcance: 20
+    # Raio (em blocos) em volta da faca que acerta um jogador.
+    Raio: 0.6
+    # Segundos entre um arremesso e outro.
+    Espera: 5
+    # Segundos depois do arremesso em que o golpe da faca nao funciona.
+    Espera do golpe: 1
+  Localizador:
+    # O assassino recebe uma bussola que aponta para o inocente mais proximo.
+    Ativar: true
+    # ...quando faltam estes segundos para o fim (ou quando sobra um so inocente).
+    Segundos finais: 30
+  # O assassino pode pegar ouro (so vale pontos; ele nunca ganha arco).
+  Coleta ouro: true
+  # O assassino pode pegar o arco caido para esconde-lo.
+  Pega o arco: false
+
+Detetive:
+  # Material do arco.
+  Arco: BOW
+  # Flechas que o detetive recebe no inicio.
+  Flechas: 10
+  # Flechas de quem pega o arco caido do detetive.
+  Flechas do arco caido: 3
+  # Segundos entre um tiro e outro (para qualquer um com arco).
+  Espera entre tiros: 5
+  # Quem acerta um inocente morre junto.
+  Morre ao matar inocente: true
+  # Avisa a partida (titulo) quando o arco cai.
+  Anunciar arco caido: true
+
+Ouro:
+  # Segundos entre uma queda de ouro e a proxima.
+  Intervalo: 8
+  # Cai ouro em TODOS os pontos de uma vez (false = um ponto sorteado por vez).
+  Em todos os pontos: false
+  # Nao cai ouro num ponto que ja tem ouro no chao.
+  Limitar aos pontos: true
+  # Quantos lingotes um ponto aguenta ao mesmo tempo (com 'Limitar aos pontos').
+  Maximo por ponto: 1
+  # Ouro que um inocente precisa juntar para ganhar um arco (0 desliga).
+  Para ganhar o arco: 10
+  # Flechas que vem com o arco de ouro.
+  Flechas do arco de ouro: 3
+  # Flechas que quem ja tem arco ganha a cada ouro.
+  Flechas por ouro com arco: 1
+
+Poderes:
+  # Poderes do poderes.yml podem cair no lugar do ouro.
+  Ativar: true
+  # Chance (%) de cada queda de ouro virar um poder.
+  Chance: 3
+
+Blocos especiais:
+  Caldeirao:
+    # Um bloco marcado como caldeirao (/murder setar <arena> caldeirao) vende uma pocao misteriosa.
+    Ativar: true
+    # Preco em ouro (do ouro coletado na partida).
+    Preco: 1
+    # Pocoes possiveis. Efeito no formato TIPO:nivel (nomes do Bukkit). Peso = chance relativa.
+    Pocoes:
+      velocidade:
+        Nome: '&bPocao de Velocidade'
+        Efeito: 'SPEED:1'
+        Duracao: 10
+        Peso: 30
+      salto:
+        Nome: '&aPocao de Salto'
+        Efeito: 'JUMP:1'
+        Duracao: 20
+        Peso: 20
+      invisibilidade:
+        Nome: '&7Pocao de Invisibilidade'
+        Efeito: 'INVISIBILITY:1'
+        Duracao: 10
+        Peso: 15
+      visao:
+        Nome: '&ePocao de Visao Noturna'
+        Efeito: 'NIGHT_VISION:1'
+        Duracao: 25
+        Peso: 15
+      lentidao:
+        Nome: '&8Pocao de Lentidao'
+        Efeito: 'SLOW:1'
+        Duracao: 10
+        Peso: 10
+      cegueira:
+        Nome: '&0Pocao de Cegueira'
+        Efeito: 'BLINDNESS:1'
+        Duracao: 5
+        Peso: 10
+  Altar:
+    # Um bloco marcado como altar (/murder setar <arena> altar) recebe oracoes.
+    Ativar: true
+    # Preco em ouro.
+    Preco: 2
+    # Chance (%) da oracao virar bencao; o resto vira maldicao.
+    # Bencaos: revelar o detetive, ouro triplo, 5 ouro, um arco, cura.
+    # Maldicoes: lentidao, cegueira, ouro banido, morte marcada.
+    Chance de bencao: 60
+    # Segundos ate a maldicao da morte cobrar (0 desliga essa maldicao).
+    Morte da maldicao em: 60
+
+Papeis:
+  # Passes de papel: garantem o papel na proxima partida (menu de passes / loja).
+  Passes: true
+  # Chance acumulada: a cada partida em que o jogador NAO e sorteado para o
+  # papel, ele ganha este tanto de "chance" -- e quem e sorteado volta a zero.
+  # O sorteio e por peso: Chance base + chance acumulada.
+  Chance por partida: 1
+  Chance base: 1
+
+# Pontos da partida por acao (a "pontuacao" das estatisticas e do placar).
+Pontuacao:
+  abate_assassino: 20
+  matar_assassino: 100
+  matar_inocente: -30
+  ouro: 5
+  sobreviver_30s: 5
+  sobreviver_fim: 30
+  vitoria: 50
+  vitoria_assassino: 80
+  heroi: 50
+  detetive_por_inocente: 10
+  participacao: 0
+  derrota: 0
+
+Recompensas:
+  # Coins por acao (moeda 'coins' do economias.yml). Pagas no fim da partida.
+  Coins:
+    abate_assassino: 10
+    matar_assassino: 40
+    matar_inocente: 0
+    ouro: 1
+    sobreviver_30s: 0
+    sobreviver_fim: 15
+    vitoria: 30
+    vitoria_assassino: 50
+    derrota: 0
+    participacao: 5
+    heroi: 25
+    detetive_por_inocente: 5
+  # Xp de nivel por acao.
+  Xp:
+    abate_assassino: 20
+    matar_assassino: 80
+    matar_inocente: 0
+    ouro: 2
+    sobreviver_30s: 2
+    sobreviver_fim: 30
+    vitoria: 60
+    vitoria_assassino: 100
+    derrota: 10
+    participacao: 10
+    heroi: 50
+    detetive_por_inocente: 10
+  # Mostra os ganhos na actionbar durante a partida.
+  Actionbar: true
+  # Resumo no chat no fim da partida.
+  Resumo no chat: true
+  # Bonus (%) nos coins por permissao; vale o maior que o jogador tiver.
+  Bonus por permissao:
+    starmurder.bonus.vip: 25
+    starmurder.bonus.mvp: 50
+  # Comandos de console ao atingir X vitorias seguidas ({jogador}).
+  Sequencia de vitorias:
+    3:
+      - 'murder caixa dar {jogador} murder_comum 1'
+    5:
+      - 'murder caixa dar {jogador} murder_especial 1'
+    10:
+      - 'murder caixa dar {jogador} murder_especial 2'
+  # Comandos de console por evento da partida ({jogador} {arena} {jogadores}).
+  # inicio e fim rodam uma vez; vitoria, derrota e morte rodam por jogador.
+  Comandos:
+    inicio: []
+    fim: []
+    vitoria: []
+    derrota: []
+    morte: []
+
+Seletor de mapas:
+  Ativar: true
+  # Quantos mapas por dia o jogador pode escolher (starmurder.mapas.infinito ignora).
+  # A permissao starmurder.mapas.<n> aumenta o limite.
+  Limite diario: 3
+
+Grupos:
+  Ativar: true
+  # Tamanho padrao; a permissao starmurder.grupo.<n> aumenta (n de 2 a 20).
+  Maximo padrao: 4
+  # Segundos ate um convite expirar.
+  Convite expira em: 60
+
+Bloquear comandos:
+  Ativar: true
+  # Liberados dentro da partida (starmurder.comandos.bypass ignora o bloqueio).
+  # Cuidado ao liberar /tell e /msg: um morto poderia contar aos vivos quem e o assassino.
+  Permitidos:
+    - '/murder'
+    - '/mm'
+    - '/lobby'
+    - '/l'
+    - '/sair'
+    - '/grupo'
+    - '/g'
+    - '/assistir'
+    - '/chat'
+
+Tab:
+  # Cores no nome (nametag) e no tab durante a partida.
+  Ativar: true
+  Esperando: '&7'
+  Espectador: '&8[ESPEC] &7'
+  # O que os VIVOS veem uns dos outros (todo mundo igual, sem papel).
+  Jogo: '&7'
+  # O que os mortos e espectadores veem (e todo mundo no fim): {cor} e {papel}.
+  Papel: '{cor}[{papel}] '
+  Morto: '&8[MORTO] &7'
+
+Placar:
+  # Titulos alternados (um por segundo) do placar em todos os estados.
+  Titulos:
+    - '&c&lMURDER'
+    - '&c&lMURDER'
+    - '&c&lMURDER'
+    - '&f&lM&c&lURDER'
+    - '&c&lM&f&lU&c&lRDER'
+    - '&c&lMU&f&lR&c&lDER'
+    - '&c&lMUR&f&lD&c&lER'
+    - '&c&lMURD&f&lE&c&lR'
+    - '&c&lMURDE&f&lR'
+    - '&c&lMURDER'
+    - '&c&lMURDER'
+    - '&f&lMURDER'
+    - '&c&lMURDER'
+  Lobby:
+    Ativar: true
+    Linhas:
+      - ''
+      - ' &fNivel: {nivel_nome}'
+      - ' {nivel_progresso} &7({xp}/{xp_proximo})'
+      - ''
+      - ' &fCoins: &6{coins}'
+      - ''
+      - ' &fPartidas: &7{partidas}'
+      - ' &fVitorias: &7{vitorias}'
+      - ' &fAbates: &7{abates}'
+      - ' &fPontuacao: &7{pontuacao}'
+      - ' &fWinstreak: &7{winstreak}'
+      - ''
+      - ' &estarplugins.com.br'
+  Esperando:
+    - ''
+    - ' &fArena: &7{arena}'
+    - ' &fModo: &7{modo}'
+    - ' &fJogadores: &7{jogadores}/{maximo}'
+    - ''
+    - ' {contagem}'
+    - ''
+    - ' &cAssassino: &7{chance_assassino_atual}'
+    - ' &bDetetive: &7{chance_detetive_atual}'
+    - ''
+    - ' &estarplugins.com.br'
+  # Placar do inocente (e de quem nao tem um placar proprio abaixo).
+  Jogo:
+    - ''
+    - ' &fPapel: {papel_cor}{papel}'
+    - ''
+    - ' &fInocentes: &a{inocentes}'
+    - ' &fTempo: &7{tempo}'
+    - ''
+    - ' {detetive_estado}'
+    - ''
+    - ' &fOuro: &6{ouro_partida}'
+    - ' &fPontos: &7{pontuacao_partida}'
+    - ''
+    - ' &estarplugins.com.br'
+  Assassino:
+    - ''
+    - ' &fPapel: {papel_cor}{papel}'
+    - ''
+    - ' &fInocentes: &a{inocentes}'
+    - ' &fTempo: &7{tempo}'
+    - ''
+    - ' {detetive_estado}'
+    - ''
+    - ' &fAbates: &c{abates_partida}'
+    - ' &fPontos: &7{pontuacao_partida}'
+    - ''
+    - ' &estarplugins.com.br'
+  Detetive:
+    - ''
+    - ' &fPapel: {papel_cor}{papel}'
+    - ''
+    - ' &fInocentes: &a{inocentes}'
+    - ' &fTempo: &7{tempo}'
+    - ''
+    - ' &fFlechas: &b{flechas}'
+    - ' &fOuro: &6{ouro_partida}'
+    - ' &fPontos: &7{pontuacao_partida}'
+    - ''
+    - ' &estarplugins.com.br'
+  Fim:
+    - ''
+    - ' &fVencedor: {vencedor}'
+    - ''
+    - ' &cAssassino: &7{assassinos_nomes}'
+    - ' &bDetetive: &7{detetives_nomes}'
+    - ' &aHeroi: &7{heroi}'
+    - ''
+    - ' &fPontos: &7{pontuacao_partida}'
+    - ''
+    - ' &estarplugins.com.br'
+  Espectador:
+    - ''
+    - ' &fArena: &7{arena}'
+    - ''
+    - ' &fInocentes: &a{inocentes}'
+    - ' &fAssassinos: &c{assassinos}'
+    - ' &fTempo: &7{tempo}'
+    - ''
+    - ' &7Voce esta assistindo'
+    - ''
+    - ' &estarplugins.com.br'
+
+Chat:
+  # Formato do chat. {nome}, {mensagem}, {nivel_nome}; nos mortos {cor} e {papel} sao o papel que o jogador tinha.
+  Vivos: '{nivel_nome} &7{nome}&f: {mensagem}'
+  Mortos: '&8[MORTO] {cor}{nome}&f: {mensagem}'
+  Espectador: '&8[ESPEC] &7{nome}&f: {mensagem}'
+  Espera: '{nivel_nome} &7{nome}&f: {mensagem}'
+  # Os mortos falam com os vivos? (false = so entre mortos e espectadores, o padrao do Murder)
+  Mortos falam com vivos: false
+  # Formato no lobby (vazio deixa o chat como esta).
+  Lobby: ''
+
+Placas:
+  # Placas de arena: [murder] na primeira linha e o nome da arena na segunda.
+  Ativar: true
+  # O bloco atras da placa (vidro, la, concreto ou terracota) muda de cor com o estado.
+  Colorir bloco de tras: true
+  # Cores (DyeColor) por estado.
+  Cores:
+    esperando: LIME
+    iniciando: YELLOW
+    cheia: ORANGE
+    preparando: RED
+    jogo: RED
+    fim: GRAY
+    resetando: BLACK
+    incompleta: BLACK
+    desativada: BLACK
+
+Caixas:
+  # Quantas ultimas recompensas o menu mostra.
+  Historico: 5
+  # Segundos da animacao de abertura.
+  Animacao: 3
+  # Chance de cada raridade (peso).
+  Chances:
+    COMUM: 60
+    RARO: 25
+    EPICO: 12
+    LENDARIO: 3
+
+Raridades:
+  COMUM:
+    Nome: 'Comum'
+    Cor: '&a'
+    # Fragmentos ganhos na caixa quando o item repetido e desta raridade.
+    Fragmentos: 5
+  RARO:
+    Nome: 'Raro'
+    Cor: '&9'
+    Fragmentos: 8
+  EPICO:
+    Nome: 'Epico'
+    Cor: '&5'
+    Fragmentos: 12
+  LENDARIO:
+    Nome: 'Lendario'
+    Cor: '&6'
+    Fragmentos: 20
+
+Nivel:
+  # Barra de progresso do nivel.
+  Formato: '&f[{barra}&f]'
+  Caractere: '■'
+  Cor ativa: '&a'
+  Cor inativa: '&7'
+  Tamanho: 8
+
+Espectador:
+  # Espectadores e mortos voam e ficam invisiveis para quem joga.
+  Voar: true
+  # Distancia maxima dos limites da arena que o espectador pode ir (0 = livre).
+  Limite: 0

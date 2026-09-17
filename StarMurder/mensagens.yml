@@ -1,0 +1,603 @@
+# ==========================================================================
+#  StarMurder - mensagens
+#
+#  {prefixo} entra na frente de toda mensagem de uma linha; nas mensagens de
+#  varias linhas (blocos |) ele nao entra. Mensagem vazia ('') nao e enviada.
+#  Cores com & (e &#RRGGBB na 1.16+). <nl> quebra linha nos titulos.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&c&lMURDER &8» &7'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'm'
+  Segundo: 's'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar este comando.'
+  Inativo: '&cO plugin esta inativo: o banco de dados nao subiu. Veja o console.'
+  Aguarde o perfil: '&cSeu perfil ainda esta carregando, tente de novo em instantes.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnao foi encontrado.'
+  Menu desconhecido: '&cMenu desconhecido: &f{menu}'
+  Sem saldo: '&cVoce nao tem saldo suficiente. Falta: &f{falta}'
+  Nenhuma: 'Nenhuma'
+  Nenhum: 'Nenhum'
+  Ninguem: 'Ninguem'
+  Padrao: 'Padrao'
+  Sem grupo: 'Sem grupo'
+  Separador: '&7, &f'
+  E: ' &7e '
+  Gratis: 'Gratis'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Total: 'Total'
+  Mensal: 'Mensal'
+  Diaria: 'Diaria'
+
+Entrada:
+  Como cancelar: '&7Digite &ccancelar &7para desistir.'
+  Cancelado: '&cOperacao cancelada.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+
+# Nomes dos modos e estados (aparecem em placares, placas e menus).
+Modos:
+  classico: 'Classico'
+  duplo: 'Duplo'
+  infeccao: 'Infeccao'
+  geral: 'Geral'
+
+Estados:
+  esperando: 'Esperando'
+  iniciando: 'Iniciando'
+  preparando: 'Comecando'
+  jogo: 'Em jogo'
+  fim: 'Terminando'
+  resetando: 'Resetando'
+
+# Os papeis. 'Cor <papel>' e a cor usada no tab, no chat e nos placares.
+Papeis:
+  inocente: 'Inocente'
+  detetive: 'Detetive'
+  assassino: 'Assassino'
+  arqueiro: 'Inocente com arco'
+  morto: 'Morto'
+  espectador: 'Espectador'
+  desconhecido: '???'
+  Cor inocente: '&a'
+  Cor detetive: '&b'
+  Cor assassino: '&c'
+  Explicacao inocente: |
+
+     &a&lVOCE E INOCENTE
+     &7Sobreviva ate o fim e junte &6ouro&7: com 10 lingotes
+     &7voce ganha um arco. So atire se tiver certeza --
+     &7matar um inocente mata voce tambem.
+
+  Explicacao detetive: |
+
+     &b&lVOCE E O DETETIVE
+     &7Voce tem o unico arco. Encontre o assassino e
+     &7acerte-o. Cuidado: acertar um inocente mata voce.
+     &7Se voce morrer, o arco cai no chao.
+
+  Explicacao assassino: |
+
+     &c&lVOCE E O ASSASSINO
+     &7Elimine todos sem ser descoberto. Sua faca chega em
+     &f{tempo}s&7. Clique direito com ela para arremessar.
+     &7Cuidado com o detetive e com quem tiver um arco.
+
+Tipos:
+  faca: 'Facas'
+  trilha: 'Trilhas'
+  grito: 'Gritos de morte'
+  ultimas_palavras: 'Ultimas palavras'
+  efeito_abate: 'Efeitos de abate'
+  comemoracao: 'Comemoracoes de vitoria'
+  balao: 'Baloes'
+
+Estatisticas:
+  vitorias: 'Vitorias'
+  derrotas: 'Derrotas'
+  partidas: 'Partidas'
+  abates: 'Abates'
+  abates_assassino: 'Abates como assassino'
+  assassinos_mortos: 'Assassinos mortos'
+  inocentes_mortos: 'Inocentes mortos por engano'
+  mortes: 'Mortes'
+  pontuacao: 'Pontuacao'
+  maior_pontuacao: 'Maior pontuacao'
+  ouro: 'Ouro coletado'
+  herois: 'Vezes heroi'
+  vezes_assassino: 'Vezes assassino'
+  vezes_detetive: 'Vezes detetive'
+  vezes_inocente: 'Vezes inocente'
+  vitorias_assassino: 'Vitorias como assassino'
+  sobrevivencias: 'Sobrevivencias'
+  winstreak: 'Winstreak'
+  maior_winstreak: 'Maior winstreak'
+  flechas_atiradas: 'Flechas atiradas'
+  flechas_acertadas: 'Flechas acertadas'
+  facas_arremessadas: 'Facas arremessadas'
+  tempo_jogado: 'Tempo jogado'
+  passes_assassino: 'Passes de assassino'
+  passes_detetive: 'Passes de detetive'
+  chance_assassino: 'Chance de assassino'
+  chance_detetive: 'Chance de detetive'
+
+# O motivo que aparece na actionbar ao ganhar pontos.
+Pontuacao:
+  abate_assassino: 'por eliminar um jogador'
+  matar_assassino: 'por matar o assassino'
+  matar_inocente: 'por matar um inocente'
+  ouro: 'por pegar ouro'
+  sobreviver_30s: 'por sobreviver 30 segundos'
+  sobreviver_fim: 'por sobreviver ate o fim'
+  vitoria: 'pela vitoria'
+  vitoria_assassino: 'pela vitoria'
+  derrota: 'pela derrota'
+  participacao: 'por jogar'
+  heroi: 'por ser o heroi'
+  detetive_por_inocente: 'por cada inocente vivo'
+
+Itens:
+  Faca: '&c&lFaca do Assassino'
+  Faca lore:
+    - '&7Clique esquerdo: golpeia'
+    - '&7Clique direito: arremessa'
+  Arco: '&b&lArco do Detetive'
+  Arco lore:
+    - '&7Uma flecha basta -- mas acertar'
+    - '&7um inocente custa a sua vida.'
+  Flecha: '&fFlecha'
+  Ouro: '&6Ouro'
+  Localizador: '&e&lLocalizador'
+  Localizador lore:
+    - '&7Aponta para o inocente mais proximo.'
+
+Partida:
+  Entrou: '&a{jogador} &7entrou na partida &8({jogadores}/{maximo})&7.'
+  Saiu: '&c{jogador} &7saiu da partida &8({jogadores}/{maximo})&7.'
+  Desistiu: '&c{jogador} &7saiu da partida.'
+  Jogadores suficientes: '&aJogadores suficientes! &7A contagem comecou.'
+  Comecando: '&eA partida comeca em &f{tempo}s&e.'
+  Sala cheia: '&eA sala encheu! A partida comeca em &f{tempo}s&e.'
+  Inicio forcado: '&eUm administrador forcou o inicio: &f{tempo}s&e.'
+  Contagem cancelada: '&cContagem cancelada: faltam jogadores.'
+  Inicio: |
+
+     &c&lMURDER MYSTERY &7- &f{modo}
+     &7Arena: &f{arena}
+
+     &7Um de voces e o &cassassino&7. Descubra quem -- ou
+     &7sobreviva ate o tempo acabar. Junte &6ouro &7para
+     &7ganhar um arco.
+
+  Faca em breve: '&7O assassino recebe a faca em &f{tempo}s&7...'
+  Faca entregue: '&c&lO ASSASSINO ESTA ARMADO. &7Cuidado.'
+  Voce matou: '&7Voce eliminou &f{jogador}&7.'
+  Voce matou arremesso: '&7Voce eliminou &f{jogador} &7com um arremesso!'
+  Voce matou o assassino: '&a&lVOCE MATOU O ASSASSINO! &7Era &f{jogador}&7.'
+  Voce matou inocente: '&c&lVOCE MATOU UM INOCENTE! &7{jogador} nao era o assassino.'
+  Voce morreu: '&cVoce morreu. Agora voce assiste ate o fim -- e pode falar so com os outros mortos.'
+  Alguem morreu: ''
+  Inocente morto: '&7{jogador} &8({papel}&8) &7morreu.'
+  Detetive morto: '&b&lO DETETIVE MORREU! &7Encontre o arco e vingue-o.'
+  Assassino morto: '&a&lO ASSASSINO FOI DERROTADO! &7{jogador} era o assassino.'
+  Arco caido: '&bO arco do detetive caiu! &7Encontre-o para ter uma chance contra o assassino.'
+  Arco pego: '&bAlguem pegou o arco do detetive.'
+  Voce pegou o arco: '&bVoce pegou o arco! &7Voce tem &f{flechas} &7flechas. Nao erre.'
+  Arco escondido: '&c{jogador} &7(assassino) escondeu o arco.'
+  Assassino escondeu o arco: '&7Voce escondeu o arco. Ninguem mais pode pega-lo.'
+  Arco de ouro: '&6&lARCO! &7Voce juntou ouro suficiente e ganhou um arco com &f{flechas} &7flechas.'
+  Arco do altar: '&d&lARCO! &7O altar te concedeu um arco com &f{flechas} &7flechas.'
+  Arco de poder: '&e&lARCO! &7O poder te deu um arco com &f{flechas} &7flechas.'
+  Flechas extras: '&a+{flechas} &7flecha(s).'
+  Localizador: '&c&lCUIDADO! &7O assassino agora consegue localizar os sobreviventes.'
+  Infectado: '&c&lVOCE FOI INFECTADO &7por &f{jogador}&7. Agora voce caca os sobreviventes!'
+  Alguem infectado: '&cMais um foi infectado! &7Restam &f{restantes} &7sobreviventes.'
+  Sequencia premiada: '&6Sequencia de &f{sequencia} &6vitorias! &7Voce ganhou uma recompensa.'
+  Ja esta em partida: '&cVoce ja esta em uma partida.'
+  Nao esta em partida: '&cVoce nao esta em nenhuma partida.'
+  Nenhuma partida: '&cNenhuma partida disponivel agora. Tente de novo em instantes.'
+  Encontrada: '&aPartida encontrada! &7Arena: &f{arena}'
+  Modo invalido: '&cModo invalido. Disponiveis: classico, duplo e infeccao.'
+  Assistir nao comecou: '&cEssa partida ainda nao comecou.'
+  Assistindo: '&7Voce esta assistindo a arena &f{arena}&7. Use &f/lobby &7para sair.'
+  Jogador nao esta jogando: '&c{jogador} nao esta em nenhuma partida.'
+  Teleportado: '&7Teleportado ate &f{jogador}&7.'
+  Comando bloqueado: '&cVoce nao pode usar esse comando durante a partida.'
+  Confirmar saida: '&eUse &f/lobby &enovamente para confirmar a saida da partida.'
+  No lobby: '&7Voce voltou ao lobby.'
+  Voltando ao lobby: '&7Voltando ao lobby...'
+
+Fim:
+  Inocentes: '&aOs Inocentes'
+  Sobreviventes: '&aOs Sobreviventes'
+  Assassinos: '&cO Assassino'
+  Motivo inocentes: 'o assassino foi derrotado'
+  Motivo tempo: 'o tempo acabou'
+  Motivo assassino: 'todos foram eliminados'
+  Motivo vazio: 'a partida esvaziou'
+  Resumo: |
+
+     &8&m----------------------------------------
+     &c&lMURDER MYSTERY &7- {vencedor} &7venceram!
+     &7Motivo: &f{motivo}
+
+     &cAssassino: &f{assassinos} &8({abates} abates)
+     &bDetetive: &f{detetives}
+     &aHeroi: &f{heroi}
+     &7Duracao: &f{tempo}
+     &8&m----------------------------------------
+
+Titulos:
+  Entrou: '&c&lMURDER<nl>&7{arena} &8({jogadores}/{maximo})'
+  Contagem: '&e{tempo}<nl>&7Prepare-se!'
+  Papel inocente: '&a&lINOCENTE<nl>&7sobreviva e junte ouro'
+  Papel detetive: '&b&lDETETIVE<nl>&7encontre e elimine o assassino'
+  Papel assassino: '&c&lASSASSINO<nl>&7elimine todos sem ser visto'
+  Faca em: '&c{tempo}<nl>&7sua faca chega em breve'
+  Faca entregue: '&c&lFACA RECEBIDA<nl>&7clique direito para arremessar'
+  Tempo acabando: '&e{tempo}s<nl>&7o tempo esta acabando'
+  Localizador: '&c&lLOCALIZADOR<nl>&7o assassino pode te encontrar'
+  Morreu: '&c&lVOCE MORREU<nl>&7agora voce assiste'
+  Morreu por: '&c&lVOCE MORREU<nl>&7por {assassino}'
+  Morreu por erro: '&c&lVOCE MATOU UM INOCENTE<nl>&7e pagou com a vida'
+  Morreu maldicao: '&5&lMALDICAO<nl>&7a hora chegou'
+  Arco caido: '&b&lO ARCO CAIU<nl>&7encontre-o!'
+  Pegou o arco: '&b&lVOCE PEGOU O ARCO<nl>&7nao erre o alvo'
+  Arco de ouro: '&6&lARCO<nl>&7voce juntou ouro suficiente'
+  Arco do altar: '&d&lARCO<nl>&7presente do altar'
+  Arco de poder: '&e&lARCO<nl>&7presente do poder'
+  Infectado: '&c&lINFECTADO<nl>&7agora voce e um deles'
+  Pocao: '&d{pocao}<nl>&7por {tempo}s'
+  Bencao: '&a&lBENCAO<nl>&7o altar te ouviu'
+  Maldicao: '&5&lMALDICAO<nl>&7o altar te castigou'
+  Poder: '&e&lPODER<nl>{poder}'
+  Vitoria: '&6&lVITORIA<nl>{vencedor} &7venceram'
+  Derrota: '&c&lDERROTA<nl>{vencedor} &7venceram'
+  Sem vencedor: '&e&lFIM<nl>&7a partida esvaziou'
+  Nivel: '&a&lNIVEL {nivel}<nl>&7voce subiu de nivel'
+
+Actionbar:
+  Coins: '&6+{coins} coins'
+  Xp: '&b+{xp} xp'
+  Pontos: '&a+{pontos} pontos &7{motivo}'
+  Pontos perdidos: '&c-{pontos} pontos &7{motivo}'
+  Ouro: '&6+{quantidade} ouro &7(total: {ouro})'
+  Ouro banido: '&5Voce esta amaldicoado e nao pode pegar ouro.'
+  Espera: '&c{item} &7disponivel em &f{tempo}s'
+  Chances: '&cAssassino: &f{assassino} &8| &bDetetive: &f{detetive}'
+
+Bossbar:
+  Cor: 'RED'
+  Preparo: '&7O assassino recebe a faca em &c{faca}s'
+  Jogo: '&7Tempo: &f{tempo} &8| &aInocentes: &f{inocentes} &8| &cAssassinos: &f{assassinos}'
+  Fim: '&7A partida terminou'
+
+Placar:
+  Contagem: '&eIniciando em &f{tempo}s'
+  Aguardando: '&7Aguardando jogadores...'
+  Detetive vivo: '&bDetetive &avivo'
+  Arco caido: '&bArco &ccaido'
+  Arco com inocente: '&bArco &ecom um inocente'
+  Detetive morto: '&bDetetive &cmorto'
+
+Hologramas:
+  Arco caido:
+    - '&b&lARCO DO DETETIVE'
+    - '&7Clique para pegar'
+  Caldeirao:
+    - '&d&lCALDEIRAO'
+    - '&7Pocao misteriosa: &6{preco} ouro'
+  Altar:
+    - '&5&lALTAR'
+    - '&7Reze por &6{preco} ouro'
+    - '&8bencao ou maldicao...'
+  Corpo:
+    - '&c&l✖ &f{jogador}'
+    - '&7"{frase}"'
+  Ultimas palavras padrao: 'Foi um prazer...'
+
+Blocos:
+  Sem ouro: '&cVoce precisa de &6{preco} ouro &c(voce tem {ouro}).'
+  Bebeu: '&dVoce bebeu &f{pocao} &d({tempo}s).'
+  Rezou: '&5Voce rezou no altar...'
+  Bencao detetive: '&aBencao! &7Voce descobriu: o detetive e &b{detetive}&7.'
+  Bencao arco: '&aBencao! &7Um arco surge nas suas maos.'
+  Bencao ouro triplo: '&aBencao! &7Cada ouro que voce pegar agora vale &63&7.'
+  Bencao ouro presente: '&aBencao! &7Voce recebeu &65 ouro&7.'
+  Bencao cura: '&aBencao! &7Voce se sente mais leve e forte.'
+  Maldicao lentidao: '&5Maldicao! &7Suas pernas ficaram pesadas.'
+  Maldicao cegueira: '&5Maldicao! &7Sua visao escureceu.'
+  Maldicao ouro banido: '&5Maldicao! &7Voce nao pode mais pegar ouro nesta partida.'
+  Maldicao morte: '&5Maldicao! &7Voce sente a morte chegando: &f{tempo}s&7.'
+
+Poderes:
+  Pegou: '&eVoce pegou o poder &f{poder}&e!'
+  Recebeu de outro: '&e{jogador} &7pegou &f{poder} &7e voce foi afetado.'
+  Anuncio: '&7{jogador} pegou o poder {poder}&7.'
+  Revelado: '&c&lREVELADO! &7Os assassinos estao brilhando por &f{tempo}s&7!'
+
+Passes:
+  Comprou: '&aVoce comprou um passe de &f{papel}&a! Agora tem &f{quantidade}&a.'
+  Recebeu: '&aVoce recebeu &f{quantidade} &apasse(s) de &f{papel}&a.'
+  Escolhido: '&aVoce vai ser &f{papel} &ana proxima partida (se houver vaga).'
+  Cancelado: '&7Passe cancelado. O sorteio decide o seu papel.'
+  Usado: '&aSeu passe de &f{papel} &afoi usado.'
+  Sem passe: '&cVoce nao tem passe de &f{papel}&c.'
+  So na espera: '&cUse o passe na sala de espera, antes da partida comecar.'
+  Sem detetive neste modo: '&cEste modo nao tem detetive.'
+  Nao esta a venda: '&cEsse passe nao esta a venda aqui.'
+  Pode usar: '&aClique para usar na proxima partida'
+  So na espera curto: '&7Use na sala de espera'
+
+Recompensas:
+  Resumo: |
+
+     &6&lRECOMPENSAS &7- {resultado} &8({papel}&8)
+     &a+{pontos} &7pontos
+     &6+{coins} &7coins{bonus}{booster}
+     &b+{xp} &7xp
+     &7Abates: &f{abates} &8| &7Ouro: &f{ouro}
+
+  Vitoria: '&aVitoria'
+  Derrota: '&cDerrota'
+  Sem resultado: '&eSem resultado'
+  Com bonus: ' &8(+{bonus}% de bonus)'
+  Com booster: ' &8(booster {booster}x)'
+  Lista:
+    Coins: '&6{valor} coins'
+    Cash: '&b{valor} cash'
+    Xp: '&b{valor} xp'
+    Fragmentos: '&d{valor} fragmentos'
+    Caixa: '&e{valor}x {caixa}'
+    Booster: '&aBooster {valor}x por {duracao}'
+    Comando: '&7Recompensa especial'
+
+Nivel:
+  Subiu: '&aVoce subiu para o nivel &f{nivel} {nivel_nome}&a!'
+
+Booster:
+  Ativado: '&aBooster de &f{multiplicador}x &aativado por &f{duracao}&a!'
+  Ja ativo: '&cVoce ja tem um booster ativo.'
+  Recebeu: '&aVoce recebeu um booster de &f{multiplicador}x &apor &f{duracao}&a. Ative no menu de boosters.'
+  Global ativado: '&6&lBOOSTER GLOBAL &e{jogador} ativou um booster de &f{multiplicador}x &epor &f{duracao} &epara todos!'
+  Ativo curto: '&a{multiplicador}x &7({tempo})'
+  Global curto: '&6Global {multiplicador}x &7({tempo})'
+  Nenhum: '&7Nenhum'
+
+Cosmeticos:
+  Selecionado: '&aVoce selecionou &f{nome}&a.'
+  Comprado: '&aVoce comprou &f{nome} &apor &f{preco}&a!'
+  Limpo: '&7Voce removeu a selecao de {tipo}.'
+  So em caixas: '&cEsse item so pode ser encontrado nas caixas misteriosas.'
+  Na loja: '&7Disponivel na loja'
+  Nao existe: '&cO cosmetico &f{id} &cnao existe.'
+  Recebeu: '&aVoce recebeu o cosmetico &f{nome}&a!'
+
+Loja:
+  Sem coins: '&cVoce nao tem coins suficientes.'
+  Sem cash: '&cVoce nao tem cash suficiente.'
+  Falha na cobranca: '&cNao foi possivel cobrar. Tente novamente.'
+
+Caixas:
+  Recebeu: '&aVoce recebeu &f{quantidade}x {caixa}&a! Abra com &f/murder caixas&a.'
+  Ganhou: '&aVoce ganhou &f{item} &8({raridade}&8) &ade {tipo}!'
+  Repetido: '&eVoce ja tinha &f{item} &8({raridade}&8)&e: recebeu &d{fragmentos} fragmentos&e.'
+  Anuncio lendario: '&6&lLENDARIO! &e{jogador} &7tirou &f{item} &7de uma caixa misteriosa!'
+  Fabricou: '&aVoce fabricou &f{quantidade} &acaixa(s) por &d{fragmentos} fragmentos&a.'
+  Sem fragmentos: '&cVoce precisa de &d{fragmentos} fragmentos &cpara isso.'
+  Tudo repetido: '&eVoce ja tem tudo dessa caixa: ela vai virar fragmentos.'
+  Vazia: '&cEssa caixa nao tem nada cadastrado para dar.'
+  Nao existe: '&cA caixa &f{caixa} &cnao existe.'
+  Linha da recompensa: '&8- &f{recompensa}'
+  Sem recompensas: '&8- &7Nenhuma ainda'
+  Tem novidade: '&aAinda ha itens novos aqui'
+  Sem novidade: '&eVoce ja tem tudo daqui'
+
+Missoes:
+  Concluida: |
+
+     &e&lMISSAO CONCLUIDA
+     &7Voce completou &f{missao}&7 e recebeu as recompensas.
+
+  Diaria concluida: |
+
+     &e&lDESAFIO DIARIO CONCLUIDO
+     &7Voce completou &f{missao}&7 e recebeu as recompensas.
+
+  Linha da recompensa: '&8- {recompensa}'
+
+Mapas:
+  Pode jogar: '&aClique para jogar aqui'
+  Limite atingido: '&cLimite diario de selecoes atingido'
+  Limite atingido aviso: '&cVoce ja usou suas &f{limite} &cselecoes de mapa de hoje.'
+  Sem salas: '&cSem salas livres agora'
+  Cor livre: '&a'
+  Cor cheia: '&c'
+  Infinito: '∞'
+  Favoritado: '&eVoce marcou &f{arena} &ecomo favorita.'
+  Desfavoritado: '&7Voce tirou &f{arena} &7das favoritas.'
+  Sem favoritos livres: '&cNenhuma arena favorita com sala livre agora.'
+
+Historico:
+  Vitoria: '&aVitoria'
+  Derrota: '&cDerrota'
+  Empate: '&eSem resultado'
+  Linha do jogador: '&8- &f{jogador} {cor}({papel}) &8| &7abates: &f{abates} &7pontos: &f{pontos}'
+
+Placas:
+  Criada: '&aPlaca da arena &f{arena} &acriada. Clique nela para entrar.'
+  Removida: '&ePlaca removida.'
+  Arena nao existe: '&cA arena &f{arena} &cnao existe. Escreva o nome dela na segunda linha.'
+  Linhas:
+    - '&c&l[MURDER]'
+    - '&f{arena}'
+    - '{estado}'
+    - '&8[&f{jogadores}&7/&f{maximo}&8]'
+  Estados:
+    esperando: '&aEsperando'
+    iniciando: '&eIniciando'
+    cheia: '&6Cheia'
+    preparando: '&cEm jogo'
+    jogo: '&cEm jogo'
+    fim: '&7Terminando'
+    resetando: '&8Resetando'
+    incompleta: '&cIncompleta'
+    desativada: '&8Desativada'
+
+Chat:
+  Ativado: '&aChat da partida ativado.'
+  Desativado: '&cChat da partida desativado.'
+
+Grupo:
+  Desativado: '&cOs grupos estao desativados.'
+  Uso: '&cUso: /grupo <criar|convidar|aceitar|negar|sair|expulsar|lider|lista|desfazer> [jogador]'
+  Criado: '&aGrupo criado! Convide alguem com &f/grupo convidar <jogador>&a.'
+  Ja esta: '&cVoce ja esta em um grupo.'
+  Nao esta: '&cVoce nao esta em nenhum grupo.'
+  So o lider: '&cSo o lider do grupo pode fazer isso.'
+  Convidar a si: '&cVoce nao pode convidar a si mesmo.'
+  Ja e membro: '&c{jogador} ja esta no seu grupo.'
+  Jogador ja tem grupo: '&c{jogador} ja esta em outro grupo.'
+  Cheio: '&cO grupo esta cheio.'
+  Convite pendente: '&c{jogador} ja tem um convite pendente.'
+  Convite enviado: '&aConvite enviado para &f{jogador}&a.'
+  Convite recebido: |
+
+     &e&lGRUPO
+     &f{jogador} &7convidou voce para o grupo dele.
+     &7Use &a/grupo aceitar {jogador} &7ou &c/grupo negar {jogador}&7.
+
+  Convite negado: '&7Voce recusou o convite de &f{jogador}&7.'
+  Jogador recusou: '&c{jogador} recusou o seu convite.'
+  Sem convites: '&cVoce nao tem convites pendentes.'
+  Entrou: '&a{jogador} &7entrou no grupo.'
+  Saiu: '&7Voce saiu do grupo.'
+  Membro saiu: '&c{jogador} &7saiu do grupo.'
+  Expulso: '&cVoce foi expulso do grupo por &f{jogador}&c.'
+  Membro nao encontrado: '&cEsse jogador nao esta no seu grupo.'
+  Novo lider: '&e{jogador} &7agora e o lider do grupo.'
+  Desfeito: '&cO grupo de &f{jogador} &cfoi desfeito.'
+  Membro ocupado: '&c{jogador} esta em uma partida e o grupo nao pode entrar agora.'
+  Digite o nick: '&eDigite no chat o nick de quem voce quer convidar.'
+  Lista: '&7Grupo de &f{lider} &8({membros}/{maximo})&7:'
+  Linha do lider: '&8- &e{jogador} &7(lider)'
+  Linha do membro: '&8- &f{jogador}'
+
+Ajuda:
+  Jogador: |
+
+     &c&lMURDER &7- comandos
+     &e/murder jogar [modo|arena] &8- &7entra numa partida
+     &e/murder rapido &8- &7entra na sala mais cheia
+     &e/murder loja &8- &7cosmeticos e passes
+     &e/murder passes &8- &7seus passes de papel
+     &e/murder estatisticas &8- &7suas estatisticas
+     &e/murder missoes &8- &7missoes e desafios diarios
+     &e/murder caixas &8- &7caixas misteriosas
+     &e/murder boosters &8- &7seus boosters
+     &e/murder top &8- &7os melhores jogadores
+     &e/grupo &8- &7jogue com amigos
+     &e/lobby &8- &7sai da partida
+
+  Admin: |
+     &c&lADMIN &7- monte a arena nesta ordem:
+     &e/murder criar <arena> [modo] [mundo] &8- &7cria a arena
+     &e/murder setar <arena> lobby &8- &7sala de espera (onde voce esta)
+     &e/murder setar <arena> espectador &8- &7ponto dos espectadores
+     &e/murder setar <arena> spawn &8- &7um spawn por jogador (repita em cada ponto)
+     &e/murder setar <arena> ouro &8- &7um ponto de ouro (repita)
+     &e/murder setar <arena> caldeirao|altar &8- &7o bloco que voce esta olhando
+     &e/murder setar <arena> limites &8- &7barreira (marque com /murder varinha)
+     &e/murder setar <arena> <duracao|minimo|maximo|assassinos|detetives|ymin|icone|nome|modo|mundo> <valor>
+     &e/murder setar <arena> <spawn|ouro|caldeirao|altar> remover|limpar
+     &e/murder info <arena> &8- &7o que ainda falta
+     &e/murder ativar|desativar|remover|tp|iniciar|finalizar <arena>
+     &e/murder arenas &8- &7lista as arenas
+     &e/murder setlobby &8- &7lobby principal
+     &ePlaca: &7escreva &f[murder] &7na 1a linha e a arena na 2a
+     &e/murder npc add <id> <modo|estatisticas> &8| &e/murder npc remover <id>
+     &e/murder tops add <id> <modo> <total|mensal> <estatisticas,...> &8| &e/murder tops remover <id>
+     &e/murder caixa dar <jogador> <caixa> [qtd] &8| &e/murder caixa local
+     &e/murder passe dar|remover|definir <jogador> <assassino|detetive> [qtd]
+     &e/murder fragmentos|xp dar|remover|definir <jogador> <valor>
+     &e/murder booster dar <jogador> <mult> [duracao] &8| &e/murder booster global <mult> <duracao>
+     &e/murder cosmetico dar|remover|todos <jogador> <tipo> [id]
+     &e/murder estatistica definir|somar <jogador> <estatistica> <valor> [modo]
+     &e/murder reload
+
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Uso criar: '&cUso: /murder criar <arena> [classico|duplo|infeccao] [mundo]'
+  Uso setar: '&cUso: /murder setar <arena> <lobby|espectador|spawn|ouro|caldeirao|altar|limites|ymin [y]|duracao <s>|minimo <n>|maximo <n>|assassinos <n>|detetives <n>|icone <material>|nome <texto>|modo <modo>|mundo <nome>> -- spawn/ouro/caldeirao/altar aceitam "remover" e "limpar"'
+  Uso npc: '&cUso: /murder npc add <id> <modo|estatisticas> | /murder npc remover <id>'
+  Uso top: '&cUso: /murder tops add <id> <modo|geral> <total|mensal> <estatistica,estatistica> | /murder tops remover <id>'
+  Uso dar: '&cUso: /murder <caixa|fragmentos|xp|booster|cosmetico|passe|estatistica> <acao> <jogador> <valores...>'
+  Uso cosmetico: '&cUso: /murder cosmetico <dar|remover|todos> <jogador> <tipo> [id]'
+  Uso passe: '&cUso: /murder passe <dar|remover|definir> <jogador> <assassino|detetive> [quantidade]'
+  Uso estatistica: '&cUso: /murder estatistica <definir|somar> <jogador> <estatistica> <valor> [modo]'
+  Informe a arena: '&cInforme a arena.'
+  Arena ja existe: '&cA arena &f{arena} &cja existe.'
+  Arena nao existe: '&cA arena &f{arena} &cnao existe.'
+  Arena criada: '&aArena &f{arena} &acriada no modo &f{modo}&a.'
+  Passo a passo: |
+     &7Agora marque os pontos, nesta ordem:
+     &e1. &f/murder setar {arena} lobby &7(fique na sala de espera)
+     &e2. &f/murder setar {arena} espectador
+     &e3. &f/murder setar {arena} spawn &7em cada ponto de nascimento (um por jogador)
+     &e4. &f/murder setar {arena} ouro &7em cada ponto onde o ouro deve cair
+     &e5. &7(opcional) &f/murder setar {arena} caldeirao|altar &7olhando para o bloco
+     &e6. &f/murder ativar {arena}
+  Arena removida: '&aArena &f{arena} &aremovida.'
+  Arena ativada: '&aArena &f{arena} &aativada e aberta para partidas.'
+  Arena desativada: '&eArena &f{arena} &edesativada.'
+  Arena completa: '&aA arena esta completa e ativa.'
+  Arena completa desativada: '&aA arena esta completa. Use &f/murder ativar <arena> &apara abrir.'
+  Info da arena: |
+
+     &c&lARENA {arena}
+     &7Modo: &f{modo} &8| &7Mundo: &f{mundo} &8| &7Ativa: {ativa}
+     &7Spawns: &f{spawns} &8| &7Pontos de ouro: &f{ouro} &8| &7Caldeiroes: &f{caldeiroes} &8| &7Altares: &f{altares}
+     &7Jogadores: &f{minimo}-{maximo} &8| &7Assassinos: &f{assassinos} &8| &7Detetives: &f{detetives} &8| &7Duracao: &f{duracao}s
+
+  Linha de pendencia: ' &c✘ &7Falta: &f{pendencia}'
+  Lista de arenas: '&7Arenas cadastradas &8({quantidade})&7:'
+  Linha da arena: '&8- &f{arena} &7({modo}) &8| &7{estado} &8| &7{jogadores}/{maximo}'
+  Incompleta: '&cincompleta'
+  Desativada: '&7desativada'
+  Mundo nao existe: '&cO mundo &f{mundo} &cnao esta carregado.'
+  Marque as posicoes: '&cMarque as duas posicoes com a varinha primeiro (/murder varinha).'
+  Nada por perto: '&cNao ha nenhum ponto desse tipo a ate 3 blocos de voce.'
+  Parte definida: '&a{parte} &7definido(a) na arena &f{arena}&7.'
+  Spawns: '&7A arena agora tem &f{quantidade} &7spawn(s): o maximo de jogadores acompanha esse numero.'
+  Pontos de ouro: '&7A arena agora tem &f{quantidade} &7ponto(s) de ouro.'
+  Posicao marcada: '&aPosicao {posicao} &7marcada em &f{x}, {y}, {z}&7.'
+  Varinha dada: '&aVarinha recebida: botao esquerdo marca a posicao 1, direito a posicao 2.'
+  Varinha nome: '&cVarinha do Murder'
+  Varinha lore:
+    - '&7Esquerdo: posicao 1'
+    - '&7Direito: posicao 2'
+  Lobby definido: '&aLobby principal definido.'
+  Lobby nao definido: '&cO lobby ainda nao foi definido (/murder setlobby).'
+  Nao pode iniciar: '&cEssa partida nao pode ser iniciada agora (precisa de 2 jogadores esperando).'
+  Partida iniciada: '&aPartida da arena &f{arena} &ainiciada.'
+  Nao esta em jogo: '&cEssa arena nao esta em jogo.'
+  Npc criado: '&aNPC &f{id} &acriado aqui.'
+  Npc removido: '&aNPC removido.'
+  Npc nao existe: '&cEsse NPC nao existe.'
+  Top criado: '&aTop &f{id} &acriado aqui.'
+  Top removido: '&aTop removido.'
+  Top nao existe: '&cEsse top nao existe.'
+  Estatistica invalida: '&cNenhuma estatistica valida informada.'
+  Olhe para o bloco: '&cOlhe para o bloco (ate 6 blocos de distancia).'
+  Caixa fisica criada: '&aEsse bloco agora abre as caixas misteriosas.'
+  Caixa fisica removida: '&eEsse bloco deixou de ser uma caixa misteriosa.'
+  Feito: '&aFeito para &f{jogador}&a.'

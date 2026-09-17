@@ -1,0 +1,51 @@
+# ==========================================================================
+#  StarMurder - caixas misteriosas
+#
+#  Recompensas: quais tipos a caixa sorteia (faca, trilha, grito,
+#  ultimas_palavras, efeito_abate, comemoracao, balao). A raridade sai das
+#  chances do config.yml; item repetido vira fragmentos.
+#  Pacotes: fragmentos -> caixas. Cada linha de Caixas sorteia UMA caixa entre
+#  as listadas (separadas por virgula).
+#  Icone: material ou textura de cabeca (hash/URL/base64).
+# ==========================================================================
+
+Caixas:
+  murder_comum:
+    Nome: 'Caixa Comum'
+    Icone: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+    Descricao:
+      - '&7Facas, trilhas, gritos e frases'
+      - '&7de todas as raridades.'
+    Recompensas:
+      - faca
+      - trilha
+      - grito
+      - ultimas_palavras
+  murder_especial:
+    Nome: 'Caixa Especial'
+    Icone: 'ddcc189633c789cb6d5e78d13a5043b26e7b40cdb7cfc4e23aa2279574967b4'
+    Descricao:
+      - '&7Efeitos de abate, comemoracoes,'
+      - '&7baloes e as facas mais raras.'
+    Recompensas:
+      - efeito_abate
+      - comemoracao
+      - balao
+      - faca
+
+Pacotes:
+  1:
+    Fragmentos: 40
+    Caixas:
+      - 'murder_comum'
+  2:
+    Fragmentos: 100
+    Caixas:
+      - 'murder_comum'
+      - 'murder_comum, murder_especial'
+  3:
+    Fragmentos: 220
+    Caixas:
+      - 'murder_comum'
+      - 'murder_comum, murder_especial'
+      - 'murder_especial'

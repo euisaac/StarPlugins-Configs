@@ -1,0 +1,95 @@
+# ==========================================================================
+#  StarMurder - itens da barra
+#
+#  Lobby: dado ao entrar (quando 'Barra do lobby' esta ligada no config).
+#  Espera: na sala de espera. Espectador: assistindo, morto ou no fim.
+#  Slot de 0 a 8. Acao: menu:<nome> | jogar:<modo> | jogar_rapido | sair |
+#  jogar_novamente | comando:<cmd> | console:<cmd>.
+#  Permissao esconde o item de quem nao tem.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Lobby:
+  jogar:
+    Slot: 0
+    Material: IRON_SWORD
+    Nome: '&cJogar Murder Mystery'
+    Lore:
+      - '&7Escolha um modo e entre na fila.'
+    Acao: 'menu:modos'
+  rapido:
+    Slot: 1
+    Material: PAPER
+    Nome: '&eJogar rapido'
+    Lore:
+      - '&7Entra na sala mais cheia.'
+    Acao: 'jogar_rapido'
+  loja:
+    Slot: 4
+    Material: EMERALD
+    Nome: '&aLoja'
+    Lore:
+      - '&7Facas, trilhas, passes e caixas.'
+    Acao: 'menu:loja'
+  estatisticas:
+    Slot: 7
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '&aEstatisticas'
+    Lore:
+      - '&7Seus numeros e historico.'
+    Acao: 'menu:estatisticas'
+  grupo:
+    Slot: 8
+    Material: CAKE
+    Nome: '&aGrupo'
+    Lore:
+      - '&7Jogue com amigos.'
+    Acao: 'menu:grupo'
+
+Espera:
+  passes:
+    Slot: 0
+    Material: NAME_TAG
+    Nome: '&ePasses de papel'
+    Lore:
+      - '&7Use um passe para garantir'
+      - '&7o papel nesta partida.'
+      - ''
+      - '&cAssassino: &f{passes_assassino}'
+      - '&bDetetive: &f{passes_detetive}'
+    Acao: 'menu:passes'
+  cosmeticos:
+    Slot: 4
+    Material: ENDER_CHEST
+    Nome: '&dCosmeticos'
+    Lore:
+      - '&7Escolha sua faca, trilha e frase.'
+    Acao: 'menu:loja'
+  sair:
+    Slot: 8
+    Material: RED_BED
+    Nome: '&cSair &7(voltar ao lobby)'
+    Acao: 'sair'
+
+Espectador:
+  jogar:
+    Slot: 2
+    Material: PAPER
+    Nome: '&bJogar novamente'
+    Lore:
+      - '&7Entra em outra partida do mesmo modo.'
+    Acao: 'jogar_novamente'
+  teleportar:
+    Slot: 4
+    Material: COMPASS
+    Nome: '&aTeleportar'
+    Lore:
+      - '&7Vai ate um jogador da partida.'
+    Acao: 'menu:assistir'
+  sair:
+    Slot: 6
+    Material: RED_BED
+    Nome: '&cSair &7(voltar ao lobby)'
+    Acao: 'sair'

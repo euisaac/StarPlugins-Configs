@@ -1,0 +1,121 @@
+# ==========================================================================
+#  StarMurder - poderes
+#
+#  Itens que de vez em quando caem no lugar do ouro (chance no config.yml).
+#  Quem pega recebe os Efeitos e as Acoes -- ou todo mundo, conforme o Alvo.
+#
+#  Alvo: JOGADOR (quem pegou) | TODOS (todos os vivos) | INOCENTES | ASSASSINOS
+#  Efeitos: 'TIPO:nivel:segundos' (nomes de efeito do Bukkit; nivel 1 = I)
+#  Acoes:   'ouro: N'      da N ouro
+#           'flechas: N'   da N flechas (so a quem tem arco)
+#           'arco: N'      da um arco com N flechas (inocentes)
+#           'revelar: N'   os assassinos brilham por N segundos (1.9+)
+#           'curar'        vida cheia
+#           'comando: cmd' comando de console ({jogador} {arena})
+#  Peso: chance relativa entre os poderes. Anunciar: avisa mortos/espectadores.
+#  Ativo: false desliga o poder sem apagar.
+# ==========================================================================
+
+Poderes:
+  velocidade:
+    Nome: '&b&lVELOCIDADE'
+    Material: FEATHER
+    Peso: 25
+    Alvo: JOGADOR
+    Efeitos:
+      - 'SPEED:2:15'
+    Acoes: []
+    Anunciar: false
+    Descricao:
+      - '&7Velocidade II por 15 segundos.'
+  velocidade_geral:
+    Nome: '&b&lVELOCIDADE PARA TODOS'
+    Material: SUGAR
+    Peso: 10
+    Alvo: TODOS
+    Efeitos:
+      - 'SPEED:1:15'
+    Acoes: []
+    Anunciar: true
+    Descricao:
+      - '&7Todo mundo corre por 15 segundos.'
+  salto:
+    Nome: '&a&lSALTO'
+    Material: RABBIT_FOOT
+    Peso: 20
+    Alvo: JOGADOR
+    Efeitos:
+      - 'JUMP:2:15'
+    Acoes: []
+    Anunciar: false
+    Descricao:
+      - '&7Pulo alto por 15 segundos.'
+  invisibilidade:
+    Nome: '&7&lINVISIBILIDADE'
+    Material: GLASS_BOTTLE
+    Peso: 10
+    Alvo: JOGADOR
+    Efeitos:
+      - 'INVISIBILITY:1:8'
+    Acoes: []
+    Anunciar: false
+    Descricao:
+      - '&7Some por 8 segundos.'
+  chuva_de_ouro:
+    Nome: '&6&lCHUVA DE OURO'
+    Material: GOLD_BLOCK
+    Peso: 15
+    Alvo: JOGADOR
+    Efeitos: []
+    Acoes:
+      - 'ouro: 3'
+    Anunciar: false
+    Descricao:
+      - '&7Tres lingotes de uma vez.'
+  aljava:
+    Nome: '&b&lALJAVA'
+    Material: ARROW
+    Peso: 10
+    Alvo: JOGADOR
+    Efeitos: []
+    Acoes:
+      - 'flechas: 2'
+    Anunciar: false
+    Descricao:
+      - '&7Duas flechas para quem tem arco.'
+  revelacao:
+    Nome: '&c&lREVELACAO'
+    Material: ENDER_EYE
+    Peso: 4
+    Alvo: JOGADOR
+    Efeitos: []
+    Acoes:
+      - 'revelar: 5'
+    Anunciar: true
+    Som: 'ENTITY_ENDER_DRAGON_GROWL;0.6;1.5'
+    Descricao:
+      - '&7Os assassinos brilham por 5 segundos.'
+  escuridao:
+    Nome: '&8&lESCURIDAO'
+    Material: COAL
+    Peso: 6
+    Alvo: ASSASSINOS
+    Efeitos:
+      - 'BLINDNESS:1:5'
+      - 'SLOW:1:5'
+    Acoes: []
+    Anunciar: true
+    Descricao:
+      - '&7Cega e retarda os assassinos por 5 segundos.'
+  cura:
+    Nome: '&d&lCURA'
+    Material: GOLDEN_APPLE
+    Peso: 10
+    Alvo: JOGADOR
+    Efeitos:
+      - 'REGENERATION:2:5'
+    Acoes:
+      - 'curar'
+    Anunciar: false
+    Descricao:
+      - '&7Vida cheia na hora.'

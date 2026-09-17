@@ -1,0 +1,178 @@
+# ==========================================================================
+#  StarMurder - efeitos de abate
+#
+#  Rodam no lugar onde a vitima caiu (do assassino e de quem mata o assassino). Efeito: FOGOS, RAIO, EXPLOSAO,
+#  CABECA_FOGUETE (Textura, Duracao), PORTAL, ESFERA, PARTICULAS
+#  (Particula, Quantidade, Raio). Som opcional (SOM;volume;tom).
+#
+#  Preco 0 e sem Padrao: so sai das caixas misteriosas. Padrao: true = todo
+#  mundo tem. Raridades: COMUM, RARO, EPICO, LENDARIO.
+#  Permissao opcional: quem tem a permissao ja possui o item
+#  (starmurder.<tipo>.<id> e starmurder.<tipo>.* tambem funcionam).
+# ==========================================================================
+
+Efeitos:
+  fogos:
+    Nome: 'Fogos'
+    Raridade: COMUM
+    Padrao: true
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'FIREWORK_ROCKET'
+    Descricao:
+      - '&7Fogos onde o oponente caiu.'
+    Efeito: FOGOS
+  explosao_sanguinaria:
+    Nome: 'Explosao sanguinaria'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'REDSTONE'
+    Descricao:
+      - '&7Uma explosao de particulas vermelhas.'
+    Efeito: PARTICULAS
+    Particula: 'REDSTONE'
+    Quantidade: 40
+    Raio: 1.2
+  explosao_de_neve:
+    Nome: 'Explosao de neve'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'SNOWBALL'
+    Descricao:
+      - '&7Flocos de neve para todo lado.'
+    Efeito: PARTICULAS
+    Particula: 'SNOWBALL'
+    Quantidade: 40
+    Raio: 1.2
+  explosao_de_coracoes:
+    Nome: 'Explosao de coracoes'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'POPPY'
+    Descricao:
+      - '&7Com carinho.'
+    Efeito: PARTICULAS
+    Particula: 'HEART'
+    Quantidade: 20
+    Raio: 1.2
+  explosao_de_diamantes:
+    Nome: 'Explosao de diamantes'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'DIAMOND'
+    Descricao:
+      - '&7Brilho de diamante.'
+    Efeito: PARTICULAS
+    Particula: 'VILLAGER_HAPPY'
+    Quantidade: 40
+    Raio: 1.2
+  cabeca_foguete:
+    Nome: 'Cabeca foguete'
+    Raridade: LENDARIO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'PLAYER_HEAD'
+    Descricao:
+      - '&7Uma cabeca sai voando'
+      - '&7com rastro de fogo.'
+    Efeito: CABECA_FOGUETE
+    Textura: 'PLAYER_HEAD'
+    Duracao: 40
+  fumaca:
+    Nome: 'Explosao de fumaca'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'GUNPOWDER'
+    Descricao:
+      - '&7Sumiu na fumaca.'
+    Efeito: PARTICULAS
+    Particula: 'SMOKE_LARGE'
+    Quantidade: 40
+    Raio: 1.2
+  ouro:
+    Nome: 'Explosao de ouro'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'GOLD_INGOT'
+    Descricao:
+      - '&7Chuva de ouro.'
+    Efeito: PARTICULAS
+    Particula: 'CRIT_MAGIC'
+    Quantidade: 40
+    Raio: 1.2
+  fogo_do_inferno:
+    Nome: 'Fogo do inferno'
+    Raridade: RARO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'FIRE_CHARGE'
+    Descricao:
+      - '&7Chamas no lugar da queda.'
+    Efeito: PARTICULAS
+    Particula: 'FLAME'
+    Quantidade: 40
+    Raio: 1.2
+    Som: 'ENTITY_BLAZE_SHOOT'
+  portal:
+    Nome: 'Portal mistico'
+    Raridade: EPICO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'ENDER_EYE'
+    Descricao:
+      - '&7Um portal se abre e fecha.'
+    Efeito: PORTAL
+    Particula: 'PORTAL'
+    Quantidade: 40
+    Som: 'ENTITY_ENDERMAN_TELEPORT'
+  raio:
+    Nome: 'Raio'
+    Raridade: LENDARIO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'LIGHTNING_ROD'
+    Descricao:
+      - '&7Um raio cai no oponente.'
+    Efeito: RAIO
+  explosao:
+    Nome: 'Explosao'
+    Raridade: EPICO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'TNT'
+    Descricao:
+      - '&7Kaboom (sem quebrar nada).'
+    Efeito: EXPLOSAO
+    Particula: 'EXPLOSION_LARGE'
+    Quantidade: 1
+  esfera:
+    Nome: 'Esfera de energia'
+    Raridade: EPICO
+    Preco:
+      Coins: 0
+      Cash: 0
+    Icone: 'ENDER_PEARL'
+    Descricao:
+      - '&7Uma esfera de particulas.'
+    Efeito: ESFERA
+    Particula: 'REDSTONE'
+    Quantidade: 40
+    Raio: 1.5
