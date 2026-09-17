@@ -1,0 +1,132 @@
+# ---------------------------------------------------------------------------
+#  StarMultiverse - configuracao
+#
+#  Os mundos e as propriedades de cada um ficam no mundos.yml (e sao alterados
+#  pelo /mv modificar ou pelo menu). O que esta aqui vale para o plugin todo.
+#
+#  Nomes de material aceitam o nome moderno (GRASS_BLOCK): o plugin resolve o
+#  certo para a versao do servidor.
+# ---------------------------------------------------------------------------
+
+Geral:
+  # Mundo para onde os jogadores vao quando o mundo em que estao e
+  # descarregado, deletado ou regenerado. Em branco usa o mundo principal do
+  # servidor.
+  Mundo de retorno: ''
+
+  # Onde o jogador aparece ao entrar no servidor. Em branco nao mexe.
+  #   Mundo do primeiro spawn: so quem nunca entrou
+  #   Sempre ao entrar: todo mundo, toda vez
+  Mundo do primeiro spawn: ''
+  Sempre ao entrar: false
+
+  # O jogador que morre renasce no spawn do mundo em que morreu (a menos que o
+  # mundo tenha um "Mundo de respawn" proprio ou o jogador tenha cama e o
+  # mundo permita respawn na cama).
+  Respawn no mundo da morte: true
+
+  # O plugin registra sozinho os mundos que o servidor ja tinha carregado
+  # (o mundo principal, o nether e o end).
+  Registrar mundos ja carregados: true
+
+  # Quantos segundos uma acao destrutiva (deletar, regenerar, restaurar)
+  # espera pelo /mv confirmar.
+  Segundos para confirmar: 30
+
+Teleporte:
+  # Antes de teleportar, procura um lugar seguro perto do destino (sem lava,
+  # sem cair no vazio, sem sufocar).
+  Seguro: true
+
+  # Ate quantos blocos o plugin procura um lugar seguro em volta do spawn.
+  Raio de busca: 6
+
+  # Quando nenhum lugar seguro existe (mundo vazio, spawn no ar), o plugin poe
+  # um bloco de apoio embaixo do spawn em vez de deixar o jogador cair.
+  Bloco de apoio:
+    Ativar: true
+    Material: 'GLASS'
+
+  # Depois de achar um lugar seguro, atualiza o spawn do mundo para ele.
+  Ajustar spawn inseguro: true
+
+  # Usa o teleporte assincrono do Paper quando existe (nao trava o servidor
+  # carregando o chunk do destino).
+  Assincrono: true
+
+Mundo vazio:
+  # Como nasce um mundo criado com o ambiente VAZIO.
+  # Altura em que o jogador aparece; a plataforma fica um bloco abaixo.
+  Altura do spawn: 64
+  # Raio da plataforma em volta do 0,0. 0 = so um bloco no 0,0.
+  Raio da plataforma: 0
+  Material da plataforma: 'GLASS'
+
+Descarregar quando vazio:
+  # A cada quantos minutos o plugin confere os mundos com a propriedade
+  # "Descarregar quando vazio" preenchida.
+  Conferir a cada minutos: 1
+
+Lixeira:
+  # Mundos deletados ou regenerados vao para plugins/StarMultiverse/lixeira e
+  # podem voltar com /mv lixeira restaurar. Depois de tantos dias sao apagados
+  # de verdade. 0 = nunca apaga.
+  Apagar depois de dias: 7
+
+Backups:
+  # Quantos backups de cada mundo ficam guardados (os mais velhos saem).
+  # 0 = sem limite.
+  Manter por mundo: 5
+
+Chat:
+  # Poe o alias do mundo na frente das mensagens do chat.
+  Prefixo do mundo: false
+  Formato: '&8[{alias}&8] &r'
+
+Entrada:
+  # Aviso ao trocar de mundo. Em branco desliga cada parte. Vale {mundo},
+  # {alias} e {jogadores}. Cada mundo pode ter a sua propria mensagem de
+  # entrada (propriedade "Mensagem de entrada"), que substitui a de chat.
+  Titulo: '{alias}'
+  Subtitulo: '&7Voce chegou em {alias}'
+  Actionbar: ''
+  Chat: ''
+  # Ticks: aparecer, permanecer, sumir.
+  Tempos: [ 10, 40, 10 ]
+
+Efeitos:
+  Sons:
+    Menu: 'UI_BUTTON_CLICK;0.6;1.2'
+    Teleporte: 'ENTITY_ENDERMAN_TELEPORT;0.8;1.0'
+    Sucesso: 'ENTITY_PLAYER_LEVELUP;0.7;1.4'
+    Erro: 'ENTITY_VILLAGER_NO;0.8;1.0'
+
+# Modelos de mundo: um conjunto de propriedades aplicado na criacao com
+# "/mv criar <nome> <ambiente> -m <modelo>" (ou no assistente do menu). As
+# chaves sao as mesmas do mundos.yml.
+Modelos:
+  lobby:
+    Ambiente: VAZIO
+    PvP: false
+    Monstros: false
+    Animais: false
+    Fome: false
+    Dificuldade: PACIFICO
+    Modo de jogo: AVENTURA
+    Tempo: MEIO_DIA
+    Clima: LIMPO
+    Manter spawn na memoria: true
+  survival:
+    Ambiente: NORMAL
+    PvP: true
+    Dificuldade: NORMAL
+    Modo de jogo: SOBREVIVENCIA
+  criativo:
+    Ambiente: PLANO
+    PvP: false
+    Monstros: false
+    Animais: false
+    Fome: false
+    Modo de jogo: CRIATIVO
+    Tempo: MEIO_DIA
+    Clima: LIMPO
