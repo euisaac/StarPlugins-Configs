@@ -1,0 +1,211 @@
+# ---------------------------------------------------------------------------
+#  StarReplantar - configuracao
+#
+#  O que cada jogador pode ligar e desligar por conta propria fica no
+#  /replantar (menu). O que esta aqui vale para o servidor inteiro.
+#
+#  Nomes de material aceitam o nome moderno (WHEAT_SEEDS) e o antigo (SEEDS),
+#  separados por | quando quiser dar as duas opcoes: o plugin resolve o certo
+#  para a versao do servidor.
+# ---------------------------------------------------------------------------
+
+Geral:
+  # Mundos onde o plugin nao faz nada.
+  Mundos bloqueados:
+    - 'exemplo_mundo'
+
+  # Prioridade do evento de quebra. Suba para HIGH ou HIGHEST se algum plugin
+  # de encantamentos limpar os drops antes de nos.
+  # Valores: LOWEST, LOW, NORMAL, HIGH, HIGHEST
+  Prioridade do evento: NORMAL
+
+  # Guarda as opcoes e estatisticas dos jogadores no jogadores.yml a cada
+  # tantos minutos (alem de na saida e no desligar).
+  Salvar a cada minutos: 5
+
+Replante:
+  Ativado: true
+
+  # Novos jogadores ja entram com o replante ligado.
+  Ligado por padrao: true
+
+  # Segundos entre a colheita e o replante. 0 replanta na hora.
+  Atraso: 1.0
+
+  # true = so replanta o que estava totalmente crescido. Com false a plantacao
+  # verde tambem e replantada (e o jogador perde o crescimento dela).
+  Apenas crescidas: false
+
+  # Impede de quebrar plantacao que ainda nao cresceu (protege contra a
+  # colheita sem querer). O jogador agachado quebra normalmente.
+  Bloquear colheita verde: false
+
+  # De onde sai a semente do replante:
+  #   DROPS      - tira uma semente do que a colheita dropou (igual ao vanilla,
+  #                nenhuma semente de graca); se a colheita nao dropou semente,
+  #                tira do inventario, e sem nenhuma replanta mesmo assim
+  #   INVENTARIO - tira uma semente do inventario do jogador; sem semente, nao
+  #                replanta
+  #   NENHUM     - replanta de graca
+  Custo: DROPS
+
+  # Quantas sementes o replante custa.
+  Quantidade do custo: 1
+
+  # Estagio em que a plantacao renasce. 0 e o vanilla; um valor maior faz a
+  # plantacao ja nascer parcialmente crescida.
+  Estagio inicial: 0
+
+  # true = so replanta se o jogador colheu com uma enxada.
+  Exige enxada: false
+
+  # true = so replanta o que foi colhido com o clique direito (veja abaixo).
+  Exige clique direito: false
+
+  # Quando os dois acima estao ligados: true = precisa de enxada E clique
+  # direito ao mesmo tempo; false = qualquer um dos dois basta.
+  Exige os dois: false
+
+Clique direito:
+  # Colher plantacao crescida com o clique direito, sem quebrar o bloco. Ela
+  # e replantada na hora. Funciona em toda versao, da 1.8 em diante.
+  Ativado: true
+
+  # Novos jogadores ja entram com a colheita por clique direito ligada.
+  Ligado por padrao: true
+
+  # true = so colhe com o clique direito segurando uma enxada.
+  Exige enxada: false
+
+  # Nao colhe quando o jogador esta com farinha de osso na mao: e assim que se
+  # corta o auto-clicker que planta e colhe sozinho.
+  Ignorar com farinha de osso: true
+
+  # Agachado, o clique direito faz o normal (colocar bloco, por exemplo).
+  Agachado ignora: true
+
+Colheita em area:
+  # Com uma enxada, colhe tambem as plantacoes crescidas em volta (raio em
+  # blocos, na mesma altura). Vale para a quebra e para o clique direito.
+  Ativado: true
+
+  # Raio por tipo de enxada. 0 desliga a area para aquela enxada.
+  Raio por enxada:
+    WOODEN_HOE|WOOD_HOE: 0
+    STONE_HOE: 0
+    IRON_HOE: 1
+    GOLDEN_HOE|GOLD_HOE: 1
+    DIAMOND_HOE: 1
+    NETHERITE_HOE: 2
+
+  # true = so colhe em area quando o jogador esta agachado.
+  Exige agachar: false
+
+  # Teto de blocos por golpe, para um raio grande nao travar o servidor.
+  Maximo por golpe: 100
+
+Inventario:
+  # Colheita direto no inventario, sem cair no chao. Cada jogador liga e
+  # desliga no /replantar.
+  Ativado: true
+
+  # Novos jogadores ja entram com isso ligado.
+  Ligado por padrao: false
+
+  # O que nao couber: DROPAR (cai no chao) ou PERDER.
+  Quando cheio: DROPAR
+
+Enxada:
+  # Colher (clique direito e area) gasta durabilidade da enxada, como se ela
+  # tivesse quebrado o bloco. O vanilla nao gasta.
+  Gastar durabilidade: false
+
+  # Quebrar plantacao so com enxada. Independe do replante.
+  Exigir para colher: false
+
+Mudas:
+  # Mudas caidas no chao se plantam sozinhas, quando o solo e o certo.
+  Ativado: true
+
+  # Segundos ate a muda se plantar (tempo para o jogador pegar de volta).
+  # Maximo de 300: depois disso o item some sozinho. 0 planta na hora.
+  Atraso: 120.0
+
+  # Mudas que o jogador jogou no chao (tecla Q) tambem se plantam.
+  Jogadas pelo jogador: true
+
+  # Muda sem dono conhecido (caida de folha, de outra fonte): true planta em
+  # qualquer lugar, false so planta o que tem dono, respeitando terreno.
+  Sem dono: true
+
+  # Sementes caidas em cima de terra arada tambem se plantam (trigo, cenoura,
+  # batata, beterraba...). O fungo do Nether em areia das almas.
+  Plantar sementes: true
+
+  # Se o lugar ja esta ocupado (pilha de mudas), procura um lugar por perto.
+  Procurar lugar perto: true
+
+  # Ate quantos blocos de distancia procurar.
+  Espalhar: 1
+
+  # Nao planta se ja houver mais mudas do que isto num raio de 2 blocos.
+  # 0 = sem limite.
+  Maximo de mudas perto: 0
+
+  # Chama um evento de colocar bloco em nome de quem jogou a muda, para os
+  # plugins de terreno poderem barrar. Desligue se o seu anti-cheat cancelar.
+  Chamar evento de colocar: true
+
+  # true = a lista abaixo e o que NAO se planta; false = so o que esta na
+  # lista se planta. Vale para mudas e para sementes.
+  Lista bloqueia: true
+  Lista:
+    - 'BAMBOO_SAPLING'
+
+Colunas:
+  # Quebrar a base de cana, cacto ou bambu derruba so o que esta em cima e a
+  # base fica de pe -- a plantacao nunca precisa ser refeita.
+  Manter a base: true
+
+  # Agachado, o jogador quebra a base normalmente.
+  Agachado quebra a base: true
+
+  Blocos:
+    - 'SUGAR_CANE|SUGAR_CANE_BLOCK'
+    - 'CACTUS'
+    - 'BAMBOO'
+
+Pisoteio:
+  # Ninguem pisoteia plantacoes (nem jogador, nem mob).
+  Ninguem pisoteia: false
+
+  # Mobs nunca pisoteiam (jogadores continuam pisoteando).
+  Mobs nao pisoteiam: true
+
+  # Armadura de couro evita o pisoteio.
+  Armadura de couro evita: false
+
+  # true = basta a bota de couro. false = cada peca de couro da 25% de chance
+  # de evitar, e a armadura completa evita sempre.
+  Apenas botas: true
+
+Protecao:
+  # Antes de colher em area ou com o clique direito, pergunta aos plugins de
+  # terreno (WorldGuard, GriefDefender, StarTerrenos...) se o jogador poderia
+  # quebrar aquele bloco. Desligue so se der problema com algum plugin.
+  Respeitar terreno: true
+
+Efeitos:
+  # Cada jogador liga e desliga os efeitos no /replantar.
+  Particulas:
+    Ativado: true
+    Replante: 'HAPPY_VILLAGER'
+    Muda: 'HAPPY_VILLAGER'
+    Quantidade: 8
+  Sons:
+    # Formato: SOM ou SOM;volume;tom
+    Colheita: 'BLOCK_CROP_BREAK;1;1'
+    Replante: 'ITEM_CROP_PLANT;0.8;1.2'
+    Muda: 'BLOCK_GRASS_PLACE;1;1'
+    Menu: 'UI_BUTTON_CLICK;0.6;1'
+    Erro: 'ENTITY_VILLAGER_NO;1;1'

@@ -1,0 +1,82 @@
+# ---------------------------------------------------------------------------
+#  StarReplantar - mensagens
+#
+#  Mensagem em branco nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao no config.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Prefixo: '&2&lREPLANTAR &8> &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Recurso desligado: '&cEste recurso esta desligado neste servidor.'
+  So jogador: '&cEste comando so funciona no jogo.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Uso: '&cUse &f/{comando} ajuda &cpara ver os comandos.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Opcao invalida: '&cOpcao invalida. Use: &f{opcoes}'
+
+Etiquetas:
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Sim: 'Sim'
+  Nao: 'Nao'
+
+Opcoes:
+  # {estado} vira a etiqueta Ligado/Desligado.
+  Plantacoes: '&7Replante das plantacoes: {estado}&7.'
+  Clique direito: '&7Colheita com o clique direito: {estado}&7.'
+  Inventario: '&7Colheita direto no inventario: {estado}&7.'
+  Efeitos: '&7Particulas e sons: {estado}&7.'
+  Alterado de outro: '&7A opcao &f{opcao} &7de &f{jogador} &7agora esta {estado}&7.'
+
+Colheita:
+  # Actionbar: aparece a cada colheita; em branco desliga.
+  Actionbar: '&a+{quantidade} {item}'
+  Sem semente: '&cVoce nao tem &f{semente} &cpara replantar.'
+  Precisa de enxada: '&cVoce precisa de uma enxada para colher isto.'
+  Ainda verde: '&cEsta plantacao ainda nao cresceu. Agache para quebrar mesmo assim.'
+  Inventario cheio: '&cSeu inventario esta cheio; a colheita caiu no chao.'
+
+Estatisticas:
+  Cabecalho: |-
+    &2&lSUAS ESTATISTICAS
+    &7Plantacoes colhidas: &f{colheitas}
+    &7Replantes feitos: &f{replantes}
+    &7Mudas que se plantaram: &f{mudas}
+    &7Colheitas em area: &f{area}
+  De outro: |-
+    &2&lESTATISTICAS DE {jogador}
+    &7Plantacoes colhidas: &f{colheitas}
+    &7Replantes feitos: &f{replantes}
+    &7Mudas que se plantaram: &f{mudas}
+    &7Colheitas em area: &f{area}
+    &7Replante: {plantacoes} &8| &7Clique direito: {cliquedireito}
+    &7Inventario: {inventario} &8| &7Efeitos: {efeitos}
+
+Ajuda:
+  Jogador: |-
+    &2&lREPLANTAR
+    &f/{comando} &7abre o menu
+    &f/{comando} {plantacoes} &7liga/desliga o replante
+    &f/{comando} {cliquedireito} &7liga/desliga a colheita com o clique direito
+    &f/{comando} {inventario} &7liga/desliga a colheita direto no inventario
+    &f/{comando} {efeitos} &7liga/desliga as particulas e os sons
+    &f/{comando} {estatisticas} &7mostra as suas estatisticas
+  Admin: |-
+    &2&lSTARREPLANTAR
+    &f/{comando} {recarregar} &7recarrega os arquivos
+    &f/{comando} {info} &7mostra o estado do plugin
+    &f/{comando} {ver} <jogador> &7mostra as opcoes e estatisticas de alguem
+    &f/{comando} {alternar} <jogador> <opcao> <on|off> &7muda a opcao de alguem
+    &7Opcoes: &fplantacoes, cliquedireito, inventario, efeitos
+
+Info: |-
+  &2&lSTARREPLANTAR &f{versao}
+  &7Servidor: &f{servidor}
+  &7Plantacoes conhecidas: &f{plantacoes}
+  &7Replante: {replante} &8| &7Clique direito: {cliquedireito}
+  &7Mudas: {mudas} &8| &7Colunas: {colunas}
+  &7Jogadores com dados: &f{jogadores}
+  &7Mudas aguardando plantio: &f{aguardando}

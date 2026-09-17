@@ -1,0 +1,89 @@
+# ---------------------------------------------------------------------------
+#  StarReplantar - a tela do /replantar
+#
+#  Slot -1 esconde o item: e assim que voce tira um botao do menu sem precisar
+#  de uma opcao "Ativar" para cada um.
+#
+#  Cada botao de opcao tem um material e um nome para quando esta ligado e
+#  outro para quando esta desligado. Na lore valem {estado}, {jogador},
+#  {colheitas}, {replantes}, {mudas} e {area}.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Principal:
+  Titulo: '&8Replantar'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+  Itens:
+    Plantacoes:
+      Slot: 10
+      Ligado:
+        Material: 'WHEAT'
+        Nome: '&aReplante das plantacoes'
+      Desligado:
+        Material: 'WHEAT_SEEDS'
+        Nome: '&cReplante das plantacoes'
+      Lore:
+        - '&7O que voce colhe e replantado'
+        - '&7sozinho, sem perder a semente.'
+        - ''
+        - '&7Estado: {estado}'
+        - ''
+        - '&eClique &7para alternar.'
+    Clique direito:
+      Slot: 12
+      Ligado:
+        Material: 'IRON_HOE'
+        Nome: '&aColheita com o clique direito'
+      Desligado:
+        Material: 'WOODEN_HOE'
+        Nome: '&cColheita com o clique direito'
+      Lore:
+        - '&7Colha a plantacao crescida com o'
+        - '&7clique direito, sem quebrar nada.'
+        - ''
+        - '&7Estado: {estado}'
+        - ''
+        - '&eClique &7para alternar.'
+    Inventario:
+      Slot: 14
+      Ligado:
+        Material: 'CHEST'
+        Nome: '&aColheita direto no inventario'
+      Desligado:
+        Material: 'ENDER_CHEST'
+        Nome: '&cColheita direto no inventario'
+      Lore:
+        - '&7A colheita vai direto para o seu'
+        - '&7inventario em vez de cair no chao.'
+        - ''
+        - '&7Estado: {estado}'
+        - ''
+        - '&eClique &7para alternar.'
+    Efeitos:
+      Slot: 16
+      Ligado:
+        Material: 'BLAZE_POWDER'
+        Nome: '&aParticulas e sons'
+      Desligado:
+        Material: 'GUNPOWDER'
+        Nome: '&cParticulas e sons'
+      Lore:
+        - '&7Os efeitos que aparecem quando'
+        - '&7algo e replantado ou plantado.'
+        - ''
+        - '&7Estado: {estado}'
+        - ''
+        - '&eClique &7para alternar.'
+    Estatisticas:
+      Slot: 22
+      Material: 'PLAYER_HEAD'
+      Nome: '&a{jogador}'
+      Lore:
+        - '&7Plantacoes colhidas: &f{colheitas}'
+        - '&7Replantes feitos: &f{replantes}'
+        - '&7Mudas que se plantaram: &f{mudas}'
+        - '&7Colheitas em area: &f{area}'

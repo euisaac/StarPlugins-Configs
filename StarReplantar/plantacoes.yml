@@ -1,0 +1,135 @@
+# ---------------------------------------------------------------------------
+#  StarReplantar - as plantacoes que o plugin conhece
+#
+#  Cada plantacao e uma secao. Apague uma para o plugin ignorar aquela planta,
+#  ou ponha Ativado: false. Nada aqui e reposto pelo "corrigir" do loader.
+#
+#  Nomes de material: 'MODERNO|ANTIGO'. Em servidor 1.8 -> 1.12 vale o nome
+#  antigo; da 1.13 em diante, o moderno. Um nome so serve quando ele nao mudou.
+#  Item antigo com dado: 'INK_SACK:3' (o cacau da 1.8).
+#
+#    Bloco            o bloco da plantacao no chao
+#    Bloco crescido   (opcional) o bloco que a planta vira quando termina de
+#                     crescer, quando e diferente do Bloco (a flor-tocha)
+#    Semente          o item que replanta (e que se planta sozinho quando cai)
+#    Solo             lista de blocos em que a semente caida pode ser plantada
+#    Apoio            BAIXO (o solo fica embaixo) ou LADO (a planta gruda na
+#                     lateral do solo, como o cacau no tronco)
+#    Estagio maximo   o ultimo estagio; so e usado em servidor 1.8 -> 1.12,
+#                     onde a API nao informa isso
+#    Clique direito   pode ser colhida com o clique direito
+#    Plantar caida    a semente caida no chao se planta sozinha
+# ---------------------------------------------------------------------------
+
+Plantacoes:
+  TRIGO:
+    Nome: '&eTrigo'
+    Ativado: true
+    Bloco: 'WHEAT|CROPS'
+    Semente: 'WHEAT_SEEDS|SEEDS'
+    Solo:
+      - 'FARMLAND|SOIL'
+    Estagio maximo: 7
+    Clique direito: true
+    Plantar caida: true
+
+  CENOURA:
+    Nome: '&6Cenoura'
+    Ativado: true
+    Bloco: 'CARROTS|CARROT'
+    Semente: 'CARROT|CARROT_ITEM'
+    Solo:
+      - 'FARMLAND|SOIL'
+    Estagio maximo: 7
+    Clique direito: true
+    Plantar caida: true
+
+  BATATA:
+    Nome: '&eBatata'
+    Ativado: true
+    Bloco: 'POTATOES|POTATO'
+    Semente: 'POTATO|POTATO_ITEM'
+    Solo:
+      - 'FARMLAND|SOIL'
+    Estagio maximo: 7
+    Clique direito: true
+    Plantar caida: true
+
+  BETERRABA:
+    Nome: '&cBeterraba'
+    Ativado: true
+    Bloco: 'BEETROOTS|BEETROOT_BLOCK'
+    Semente: 'BEETROOT_SEEDS'
+    Solo:
+      - 'FARMLAND|SOIL'
+    Estagio maximo: 3
+    Clique direito: true
+    Plantar caida: true
+
+  FUNGO_DO_NETHER:
+    Nome: '&4Fungo do Nether'
+    Ativado: true
+    Bloco: 'NETHER_WART|NETHER_WARTS'
+    Semente: 'NETHER_WART|NETHER_STALK'
+    Solo:
+      - 'SOUL_SAND'
+    Estagio maximo: 3
+    Clique direito: true
+    Plantar caida: true
+
+  CACAU:
+    Nome: '&6Cacau'
+    Ativado: true
+    Bloco: 'COCOA'
+    Semente: 'COCOA_BEANS|INK_SACK:3'
+    Apoio: LADO
+    Solo:
+      - 'JUNGLE_LOG|LOG'
+      - 'JUNGLE_WOOD|LOG'
+      - 'STRIPPED_JUNGLE_LOG'
+      - 'STRIPPED_JUNGLE_WOOD'
+    Estagio maximo: 2
+    Clique direito: true
+    Plantar caida: false
+
+  FLOR_TOCHA:
+    Nome: '&6Flor-tocha'
+    Ativado: true
+    Bloco: 'TORCHFLOWER_CROP'
+    Bloco crescido: 'TORCHFLOWER'
+    Semente: 'TORCHFLOWER_SEEDS'
+    Solo:
+      - 'FARMLAND'
+    Estagio maximo: 1
+    Clique direito: true
+    Plantar caida: true
+
+  JARRO:
+    Nome: '&bPlanta-jarro'
+    Ativado: true
+    Bloco: 'PITCHER_CROP'
+    Semente: 'PITCHER_POD'
+    Solo:
+      - 'FARMLAND'
+    Estagio maximo: 4
+    Clique direito: true
+    Plantar caida: true
+
+  ARBUSTO_DE_BAGAS:
+    Nome: '&cArbusto de bagas'
+    Ativado: true
+    Bloco: 'SWEET_BERRY_BUSH'
+    Semente: 'SWEET_BERRIES'
+    Solo:
+      - 'GRASS_BLOCK'
+      - 'DIRT'
+      - 'PODZOL'
+      - 'COARSE_DIRT'
+      - 'FARMLAND'
+      - 'MOSS_BLOCK'
+      - 'MUD'
+      - 'ROOTED_DIRT'
+    Estagio maximo: 3
+    # O proprio jogo ja colhe o arbusto com o clique direito.
+    Clique direito: false
+    Plantar caida: false
