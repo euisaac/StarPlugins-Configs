@@ -1,0 +1,145 @@
+# ==========================================================================
+#  StarEggWars - melhorias da equipe (NPC de melhorias)
+#
+#  Cada melhoria tem um "Tipo" que define o efeito e os niveis com preco
+#  ("MATERIAL : quantidade"). Tipos:
+#    GERADOR     - acelera os geradores que estao dentro da ilha da equipe
+#                  (Raio da ilha da arena, a partir do ovo; Valor = % mais
+#                  rapido, por cima do nivel que o gerador ja tem)
+#    PRESSA      - pressa para a equipe (Valor = nivel do efeito)
+#    AFIACAO     - afiacao nas espadas da equipe (Valor = nivel)
+#    PROTECAO    - protecao nas armaduras da equipe (Valor = nivel)
+#    REGENERACAO - cura quem esta na ilha (Valor = nivel)
+#    VIDA        - coracoes extras (Valor = coracoes)
+#    DRAGAO      - dragao extra na morte subita (Valor = quantidade)
+# ==========================================================================
+
+Versao do modelo: 1
+
+Melhorias:
+  gerador:
+    Slot: 11
+    Tipo: GERADOR
+    Nome: '&aGerador de minerios {nivel}'
+    Material: FURNACE
+    Descricao:
+      - '&7Acelera todos os geradores'
+      - '&7dentro da sua ilha'
+    Niveis:
+      1:
+        Preco: 'DIAMOND : 2'
+        Valor: 25
+        Descricao: '&7+25% mais rapido'
+      2:
+        Preco: 'DIAMOND : 4'
+        Valor: 50
+        Descricao: '&7+50% mais rapido'
+      3:
+        Preco: 'DIAMOND : 6'
+        Valor: 75
+        Descricao: '&7+75% mais rapido'
+      4:
+        Preco: 'DIAMOND : 8'
+        Valor: 100
+        Descricao: '&7+100% mais rapido'
+  pressa:
+    Slot: 12
+    Tipo: PRESSA
+    Nome: '&aMinerador maniaco {nivel}'
+    Material: GOLDEN_PICKAXE
+    Descricao:
+      - '&7Pressa permanente para'
+      - '&7toda a equipe'
+    Niveis:
+      1:
+        Preco: 'DIAMOND : 2'
+        Valor: 1
+        Descricao: '&7Pressa I'
+      2:
+        Preco: 'DIAMOND : 4'
+        Valor: 2
+        Descricao: '&7Pressa II'
+  afiacao:
+    Slot: 13
+    Tipo: AFIACAO
+    Nome: '&aEspadas afiadas {nivel}'
+    Material: IRON_SWORD
+    Descricao:
+      - '&7Afiacao nas espadas de'
+      - '&7toda a equipe'
+    Niveis:
+      1:
+        Preco: 'DIAMOND : 4'
+        Valor: 1
+        Descricao: '&7Afiacao I'
+      2:
+        Preco: 'DIAMOND : 8'
+        Valor: 2
+        Descricao: '&7Afiacao II'
+  protecao:
+    Slot: 14
+    Tipo: PROTECAO
+    Nome: '&aArmadura reforcada {nivel}'
+    Material: IRON_CHESTPLATE
+    Descricao:
+      - '&7Protecao nas armaduras de'
+      - '&7toda a equipe'
+    Niveis:
+      1:
+        Preco: 'DIAMOND : 2'
+        Valor: 1
+        Descricao: '&7Protecao I'
+      2:
+        Preco: 'DIAMOND : 4'
+        Valor: 2
+        Descricao: '&7Protecao II'
+      3:
+        Preco: 'DIAMOND : 8'
+        Valor: 3
+        Descricao: '&7Protecao III'
+      4:
+        Preco: 'DIAMOND : 16'
+        Valor: 4
+        Descricao: '&7Protecao IV'
+  regeneracao:
+    Slot: 15
+    Tipo: REGENERACAO
+    Nome: '&aCampo de cura {nivel}'
+    Material: BEACON
+    Descricao:
+      - '&7Regeneracao para quem esta'
+      - '&7na sua ilha'
+    Niveis:
+      1:
+        Preco: 'DIAMOND : 1'
+        Valor: 1
+        Descricao: '&7Regeneracao I na ilha'
+  vida:
+    Slot: 21
+    Tipo: VIDA
+    Nome: '&aCoracoes extras {nivel}'
+    Material: GOLDEN_APPLE
+    Descricao:
+      - '&7Vida extra para toda a equipe'
+    Niveis:
+      1:
+        Preco: 'DIAMOND : 2'
+        Valor: 2
+        Descricao: '&7+2 coracoes'
+      2:
+        Preco: 'DIAMOND : 4'
+        Valor: 4
+        Descricao: '&7+4 coracoes'
+  dragao:
+    Slot: 23
+    Tipo: DRAGAO
+    Nome: '&aDragao extra {nivel}'
+    Material: DRAGON_EGG
+    Descricao:
+      - '&7Um dragao a mais na morte'
+      - '&7subita para a sua equipe'
+    Niveis:
+      1:
+        Preco: 'EMERALD : 5'
+        Valor: 1
+        Descricao: '&7+1 dragao'

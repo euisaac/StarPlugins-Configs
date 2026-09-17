@@ -1,0 +1,53 @@
+# ==========================================================================
+#  StarEggWars - tags.yml - cargos (prefixo/sufixo e ordem no tab)
+#
+#  "Ordem" lista os cargos do MAIS ALTO ao mais baixo: o cargo de um jogador
+#  e o primeiro da lista que ele tem, e essa posicao ordena o tab fora da
+#  partida (master em cima, membro embaixo).
+#
+#  Cada cargo em "Tags" tem Permissao, Prefixo e Sufixo. Permissao vazia
+#  (ou cargo listado na Ordem sem entrada aqui) vale "group.<cargo>", que o
+#  LuckPerms da sozinho a quem esta no grupo -- assim, para usar o
+#  %luckperms_prefix% com o tab ordenado, basta escrever a Ordem com os
+#  nomes dos grupos e deixar o Prefixo com o placeholder.
+#  "Padrao" e o cargo de quem nao tem nenhum.
+#
+#  Onde usar: {prefix-tag}, {suffix-tag} e {cargo} valem no tab.yml
+#  (Prefixo/Sufixo/Cabecalho/Rodape), no placar, nas mensagens de entrada e
+#  no chat da partida; no PlaceholderAPI: %stareggwars_prefix_tag%,
+#  %stareggwars_suffix_tag% e %stareggwars_cargo%.
+#  Prefixo e Sufixo aceitam &cores, hex (&#ff8800), {animacao:nome}
+#  (animacoes.yml) e placeholders do PlaceholderAPI.
+#  Limite no tab/cabeca: 16 letras ate a 1.12, 64 da 1.13 em diante.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Ordem: 'master, admin, mod, mvp, vip, membro'
+Padrao: membro
+
+Tags:
+  master:
+    Permissao: 'stareggwars.tag.master'
+    Prefixo: '&4&lMASTER &f'
+    Sufixo: ''
+  admin:
+    Permissao: 'stareggwars.tag.admin'
+    Prefixo: '&c&lADMIN &f'
+    Sufixo: ''
+  mod:
+    Permissao: 'stareggwars.tag.mod'
+    Prefixo: '&2&lMOD &f'
+    Sufixo: ''
+  mvp:
+    Permissao: 'stareggwars.tag.mvp'
+    Prefixo: '&6&lMVP &f'
+    Sufixo: ''
+  vip:
+    Permissao: 'stareggwars.tag.vip'
+    Prefixo: '&a&lVIP &f'
+    Sufixo: ''
+  membro:
+    Permissao: ''
+    Prefixo: '&7'
+    Sufixo: ''

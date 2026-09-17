@@ -1,0 +1,387 @@
+# ==========================================================================
+#  StarEggWars - loja da partida (NPC de itens)
+#
+#  Categorias na primeira linha do menu, itens no miolo. Preco no formato
+#  "MATERIAL : quantidade" (IRON_INGOT, GOLD_INGOT, DIAMOND ou EMERALD).
+#  "Perde": true = o item some ao morrer; false = e permanente (armadura,
+#  espada, picareta e machado permanentes voltam a cada vida; picareta,
+#  machado e espada seguem a regra "Rebaixar ao morrer" do config.yml).
+#  "Nivel": itens com o mesmo Grupo e niveis crescentes (picareta de
+#  madeira -> pedra -> ferro) so mostram o proximo nivel para o jogador.
+#  Formato de item igual ao dos kits ("cor=equipe" tinge com a equipe).
+#  Itens especiais sao reconhecidos pelo material: FIRE_CHARGE (bola de
+#  fogo), TNT, EGG (ovo de ponte), CHEST (torre), MAGMA_CREAM (estilingue),
+#  IRON_GOLEM_SPAWN_EGG (golem), SILVERFISH_SPAWN_EGG (traca), SPONGE.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Categorias:
+  blocos:
+    Nome: 'Blocos'
+    Material: WHITE_WOOL
+    Lore:
+      - '&7La, argila, vidro, pedra do fim'
+      - '&7escadas, madeira e obsidian'
+    Itens:
+      la:
+        Preco: 'IRON_INGOT : 4'
+        Perde: true
+        Nome: '&fLa'
+        Material: WHITE_WOOL
+        Itens:
+          - 'WHITE_WOOL : 16 : cor=equipe'
+      argila:
+        Preco: 'IRON_INGOT : 12'
+        Perde: true
+        Nome: '&fArgila endurecida'
+        Material: TERRACOTTA
+        Itens:
+          - 'TERRACOTTA : 16 : cor=equipe'
+      vidro:
+        Preco: 'IRON_INGOT : 12'
+        Perde: true
+        Nome: '&fVidro anti-explosao'
+        Material: GLASS
+        Itens:
+          - 'GLASS : 4 : cor=equipe'
+      pedra_do_fim:
+        Preco: 'IRON_INGOT : 24'
+        Perde: true
+        Nome: '&fPedra do fim'
+        Material: END_STONE
+        Itens:
+          - 'END_STONE : 12'
+      escadas:
+        Preco: 'IRON_INGOT : 4'
+        Perde: true
+        Nome: '&fEscadas'
+        Material: LADDER
+        Itens:
+          - 'LADDER : 8'
+      madeira:
+        Preco: 'GOLD_INGOT : 4'
+        Perde: true
+        Nome: '&fTabuas'
+        Material: OAK_PLANKS
+        Itens:
+          - 'OAK_PLANKS : 16'
+      obsidian:
+        Preco: 'EMERALD : 4'
+        Perde: true
+        Nome: '&fObsidian'
+        Material: OBSIDIAN
+        Itens:
+          - 'OBSIDIAN : 4'
+  combate:
+    Nome: 'Combate'
+    Material: GOLDEN_SWORD
+    Lore:
+      - '&7Espadas e pena de repulsao'
+    Itens:
+      espada_pedra:
+        Preco: 'IRON_INGOT : 10'
+        Perde: false
+        Grupo: espada
+        Nivel: 1
+        Nome: '&fEspada de pedra'
+        Material: STONE_SWORD
+        Itens:
+          - 'STONE_SWORD : 1'
+      espada_ferro:
+        Preco: 'GOLD_INGOT : 7'
+        Perde: false
+        Grupo: espada
+        Nivel: 2
+        Nome: '&fEspada de ferro'
+        Material: IRON_SWORD
+        Itens:
+          - 'IRON_SWORD : 1'
+      espada_diamante:
+        Preco: 'EMERALD : 4'
+        Perde: false
+        Grupo: espada
+        Nivel: 3
+        Nome: '&fEspada de diamante'
+        Material: DIAMOND_SWORD
+        Itens:
+          - 'DIAMOND_SWORD : 1'
+      pena:
+        Preco: 'GOLD_INGOT : 5'
+        Perde: true
+        Nome: '&fPena de repulsao'
+        Material: STICK
+        Itens:
+          - 'STICK : 1 : enchant=KNOCKBACK:1 : name=&fPena de repulsao'
+  armaduras:
+    Nome: 'Armaduras'
+    Material: IRON_CHESTPLATE
+    Lore:
+      - '&7Armaduras permanentes'
+    Itens:
+      malha:
+        Preco: 'IRON_INGOT : 40'
+        Perde: false
+        Grupo: armadura
+        Nivel: 1
+        Nome: '&fArmadura de malha'
+        Material: CHAINMAIL_BOOTS
+        Itens:
+          - 'CHAINMAIL_LEGGINGS : 1'
+          - 'CHAINMAIL_BOOTS : 1'
+      ferro:
+        Preco: 'GOLD_INGOT : 12'
+        Perde: false
+        Grupo: armadura
+        Nivel: 2
+        Nome: '&fArmadura de ferro'
+        Material: IRON_BOOTS
+        Itens:
+          - 'IRON_LEGGINGS : 1'
+          - 'IRON_BOOTS : 1'
+      diamante:
+        Preco: 'EMERALD : 6'
+        Perde: false
+        Grupo: armadura
+        Nivel: 3
+        Nome: '&fArmadura de diamante'
+        Material: DIAMOND_BOOTS
+        Itens:
+          - 'DIAMOND_LEGGINGS : 1'
+          - 'DIAMOND_BOOTS : 1'
+  ferramentas:
+    Nome: 'Ferramentas'
+    Material: STONE_PICKAXE
+    Lore:
+      - '&7Tesoura, picaretas e machados'
+    Itens:
+      tesoura:
+        Preco: 'IRON_INGOT : 20'
+        Perde: false
+        Nome: '&fTesoura'
+        Material: SHEARS
+        Itens:
+          - 'SHEARS : 1'
+      picareta_madeira:
+        Preco: 'IRON_INGOT : 10'
+        Perde: false
+        Grupo: picareta
+        Nivel: 1
+        Nome: '&fPicareta de madeira'
+        Material: WOODEN_PICKAXE
+        Itens:
+          - 'WOODEN_PICKAXE : 1 : enchant=EFFICIENCY:1'
+      picareta_pedra:
+        Preco: 'IRON_INGOT : 20'
+        Perde: false
+        Grupo: picareta
+        Nivel: 2
+        Nome: '&fPicareta de pedra'
+        Material: STONE_PICKAXE
+        Itens:
+          - 'STONE_PICKAXE : 1 : enchant=EFFICIENCY:1'
+      picareta_ferro:
+        Preco: 'GOLD_INGOT : 8'
+        Perde: false
+        Grupo: picareta
+        Nivel: 3
+        Nome: '&fPicareta de ferro'
+        Material: IRON_PICKAXE
+        Itens:
+          - 'IRON_PICKAXE : 1 : enchant=EFFICIENCY:2'
+      picareta_diamante:
+        Preco: 'GOLD_INGOT : 12'
+        Perde: false
+        Grupo: picareta
+        Nivel: 4
+        Nome: '&fPicareta de diamante'
+        Material: DIAMOND_PICKAXE
+        Itens:
+          - 'DIAMOND_PICKAXE : 1 : enchant=EFFICIENCY:3'
+      machado_madeira:
+        Preco: 'IRON_INGOT : 10'
+        Perde: false
+        Grupo: machado
+        Nivel: 1
+        Nome: '&fMachado de madeira'
+        Material: WOODEN_AXE
+        Itens:
+          - 'WOODEN_AXE : 1 : enchant=EFFICIENCY:1'
+      machado_pedra:
+        Preco: 'IRON_INGOT : 20'
+        Perde: false
+        Grupo: machado
+        Nivel: 2
+        Nome: '&fMachado de pedra'
+        Material: STONE_AXE
+        Itens:
+          - 'STONE_AXE : 1 : enchant=EFFICIENCY:1'
+      machado_ferro:
+        Preco: 'GOLD_INGOT : 8'
+        Perde: false
+        Grupo: machado
+        Nivel: 3
+        Nome: '&fMachado de ferro'
+        Material: IRON_AXE
+        Itens:
+          - 'IRON_AXE : 1 : enchant=EFFICIENCY:2'
+      machado_diamante:
+        Preco: 'GOLD_INGOT : 12'
+        Perde: false
+        Grupo: machado
+        Nivel: 4
+        Nome: '&fMachado de diamante'
+        Material: DIAMOND_AXE
+        Itens:
+          - 'DIAMOND_AXE : 1 : enchant=EFFICIENCY:3'
+  arcos:
+    Nome: 'Arcos'
+    Material: BOW
+    Lore:
+      - '&7Arcos e flechas'
+    Itens:
+      flechas:
+        Preco: 'GOLD_INGOT : 2'
+        Perde: true
+        Nome: '&fFlechas'
+        Material: ARROW
+        Itens:
+          - 'ARROW : 6'
+      arco:
+        Preco: 'GOLD_INGOT : 12'
+        Perde: true
+        Nome: '&fArco'
+        Material: BOW
+        Itens:
+          - 'BOW : 1'
+      arco_forca:
+        Preco: 'GOLD_INGOT : 20'
+        Perde: true
+        Nome: '&fArco (forca I)'
+        Material: BOW
+        Itens:
+          - 'BOW : 1 : enchant=POWER:1'
+      arco_repulsao:
+        Preco: 'EMERALD : 6'
+        Perde: true
+        Nome: '&fArco (forca I, repulsao I)'
+        Material: BOW
+        Itens:
+          - 'BOW : 1 : enchant=POWER:1 : enchant=PUNCH:1'
+  pocoes:
+    Nome: 'Pocoes'
+    Material: BREWING_STAND
+    Lore:
+      - '&7Velocidade, pulo e invisibilidade'
+    Itens:
+      velocidade:
+        Preco: 'EMERALD : 1'
+        Perde: true
+        Nome: '&fPocao de velocidade II (0:45)'
+        Material: POTION
+        Itens:
+          - 'POTION : 1 : effect=SPEED:2:45 : name=&bVelocidade II'
+      pulo:
+        Preco: 'EMERALD : 1'
+        Perde: true
+        Nome: '&fPocao de super pulo V (0:45)'
+        Material: POTION
+        Itens:
+          - 'POTION : 1 : effect=JUMP_BOOST:5:45 : name=&aSuper pulo V'
+      invisibilidade:
+        Preco: 'EMERALD : 2'
+        Perde: true
+        Nome: '&fPocao de invisibilidade (0:30)'
+        Material: POTION
+        Itens:
+          - 'POTION : 1 : effect=INVISIBILITY:1:30 : name=&7Invisibilidade'
+  utilidades:
+    Nome: 'Utilidades'
+    Material: TNT
+    Lore:
+      - '&7Macas, explosivos, mobs e mais'
+    Itens:
+      maca:
+        Preco: 'GOLD_INGOT : 3'
+        Perde: true
+        Nome: '&fMaca dourada'
+        Material: GOLDEN_APPLE
+        Itens:
+          - 'GOLDEN_APPLE : 1'
+      bola_de_fogo:
+        Preco: 'IRON_INGOT : 40'
+        Perde: true
+        Nome: '&fBola de fogo'
+        Material: FIRE_CHARGE
+        Itens:
+          - 'FIRE_CHARGE : 1 : name=&cBola de fogo'
+      tnt:
+        Preco: 'GOLD_INGOT : 4'
+        Perde: true
+        Nome: '&fTNT'
+        Material: TNT
+        Itens:
+          - 'TNT : 1'
+      perola:
+        Preco: 'EMERALD : 4'
+        Perde: true
+        Nome: '&fPerola do fim'
+        Material: ENDER_PEARL
+        Itens:
+          - 'ENDER_PEARL : 1'
+      agua:
+        Preco: 'EMERALD : 1'
+        Perde: true
+        Nome: '&fBalde de agua'
+        Material: WATER_BUCKET
+        Itens:
+          - 'WATER_BUCKET : 1'
+      lava:
+        Preco: 'EMERALD : 2'
+        Perde: true
+        Nome: '&fBalde de lava'
+        Material: LAVA_BUCKET
+        Itens:
+          - 'LAVA_BUCKET : 1'
+      esponja:
+        Preco: 'GOLD_INGOT : 3'
+        Perde: true
+        Nome: '&fEsponja'
+        Material: SPONGE
+        Itens:
+          - 'SPONGE : 1'
+      golem:
+        Preco: 'IRON_INGOT : 120'
+        Perde: true
+        Nome: '&fGolem defensor'
+        Material: IRON_GOLEM_SPAWN_EGG
+        Itens:
+          - 'IRON_GOLEM_SPAWN_EGG : 1 : name=&aGolem defensor'
+      traca:
+        Preco: 'IRON_INGOT : 40'
+        Perde: true
+        Nome: '&fTraca defensora'
+        Material: SILVERFISH_SPAWN_EGG
+        Itens:
+          - 'SILVERFISH_SPAWN_EGG : 1 : name=&aTraca defensora'
+      ovo_de_ponte:
+        Preco: 'EMERALD : 2'
+        Perde: true
+        Nome: '&fOvo de ponte'
+        Material: EGG
+        Itens:
+          - 'EGG : 1 : name=&aOvo de ponte'
+      torre:
+        Preco: 'IRON_INGOT : 24'
+        Perde: true
+        Nome: '&fTorre instantanea'
+        Material: CHEST
+        Itens:
+          - 'CHEST : 1 : name=&aTorre instantanea'
+      estilingue:
+        Preco: 'GOLD_INGOT : 7'
+        Perde: true
+        Nome: '&fEstilingue'
+        Material: MAGMA_CREAM
+        Itens:
+          - 'MAGMA_CREAM : 1 : name=&aEstilingue'

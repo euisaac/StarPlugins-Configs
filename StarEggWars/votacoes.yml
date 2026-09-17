@@ -1,0 +1,140 @@
+# ==========================================================================
+#  StarEggWars - votacoes.yml - o que os jogadores votam antes da partida
+#
+#  Na sala de espera, o item "Votar" da barra abre as categorias daqui. Cada
+#  jogador vota uma opcao por categoria e pode trocar ate a partida comecar.
+#  Ao iniciar, a opcao mais votada de cada categoria vence (empate = a que
+#  vem primeiro no arquivo; ninguem votou = a "Padrao"), o resultado e
+#  anunciado e os "Efeitos" das vencedoras viram as regras da partida.
+#
+#  Efeitos (todos opcionais; os multiplicadores das categorias se multiplicam
+#  entre si e os valores absolutos ficam com o ultimo):
+#    Geradores           - velocidade dos geradores (2 = duas vezes mais rapido)
+#    Precos              - multiplica os precos da loja e das melhorias de
+#                          gerador (0.5 = metade, 2 = dobro)
+#    Renascer            - segundos para renascer (no lugar do config.yml)
+#    Vida                - vida maxima em pontos (20 = 10 coracoes)
+#    Dano recebido       - multiplica o dano que os jogadores recebem
+#    Dano de queda       - multiplica so o dano de queda
+#    Encantamentos extras- niveis somados nos itens comprados: afiacao em
+#                          espada, protecao em armadura, poder em arco e
+#                          eficiencia em ferramenta (o "modo OP")
+#    Regeneracao natural - true/false liga ou desliga a regeneracao por comida
+#
+#  Por opcao ainda ha "Permissao" (vazio = todo mundo pode votar nela).
+#  Peso do voto: stareggwars.voto.<n> (2..Peso maximo) faz o voto valer n.
+#
+#  Eh voce quem manda: crie, renomeie ou apague categorias e opcoes. Os
+#  placeholders {voto_<categoria>} e {meu_voto_<categoria>} do placar seguem
+#  a chave da categoria.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Ativar: true
+# Anuncia no chat quem votou e o resultado final.
+Anunciar resultado: true
+# Maior peso de voto por permissao (stareggwars.voto.2 ... .5).
+Peso maximo: 5
+
+Categorias:
+  dificuldade:
+    Nome: '&eDificuldade'
+    Material: DIAMOND_SWORD
+    Padrao: normal
+    Descricao:
+      - '&7Velocidade dos geradores, precos'
+      - '&7e tempo para renascer'
+    Opcoes:
+      facil:
+        Nome: '&aFacil'
+        Material: WOODEN_SWORD
+        Descricao:
+          - '&7Geradores 50% mais rapidos'
+          - '&7Precos 25% mais baratos'
+          - '&7Renasce em 3 segundos'
+        Efeitos:
+          Geradores: 1.5
+          Precos: 0.75
+          Renascer: 3
+          Dano recebido: 0.85
+      normal:
+        Nome: '&eNormal'
+        Material: IRON_SWORD
+        Descricao:
+          - '&7A partida como ela e'
+        Efeitos: {}
+      dificil:
+        Nome: '&cDificil'
+        Material: DIAMOND_SWORD
+        Descricao:
+          - '&7Geradores 30% mais lentos'
+          - '&7Precos 50% mais caros'
+          - '&7Renasce em 8 segundos'
+          - '&7Mais dano e sem regeneracao natural'
+        Efeitos:
+          Geradores: 0.7
+          Precos: 1.5
+          Renascer: 8
+          Dano recebido: 1.25
+          Regeneracao natural: false
+  itens:
+    Nome: '&bItens'
+    Material: CHEST
+    Padrao: normal
+    Descricao:
+      - '&7Como saem os itens da loja'
+    Opcoes:
+      normal:
+        Nome: '&aNormal'
+        Material: IRON_CHESTPLATE
+        Descricao:
+          - '&7Itens e precos normais'
+        Efeitos: {}
+      op:
+        Nome: '&dOP'
+        Material: DIAMOND_CHESTPLATE
+        Descricao:
+          - '&7Tudo sai encantado (+2 niveis)'
+          - '&7e pela metade do preco'
+        Efeitos:
+          Encantamentos extras: 2
+          Precos: 0.5
+      hardcore:
+        Nome: '&4Hardcore'
+        Material: LEATHER_CHESTPLATE
+        Descricao:
+          - '&7Precos em dobro, sem regeneracao'
+          - '&7natural e dano de queda dobrado'
+        Efeitos:
+          Precos: 2.0
+          Regeneracao natural: false
+          Dano de queda: 2.0
+  vida:
+    Nome: '&cVida'
+    Material: GOLDEN_APPLE
+    Padrao: normal
+    Descricao:
+      - '&7Quantos coracoes cada um tem'
+    Opcoes:
+      metade:
+        Nome: '&cMetade &7(5 coracoes)'
+        Material: APPLE
+        Descricao:
+          - '&7Partidas rapidas e mortais'
+        Efeitos:
+          Vida: 10
+      normal:
+        Nome: '&aNormal &7(10 coracoes)'
+        Material: GOLDEN_APPLE
+        Descricao:
+          - '&7A vida de sempre'
+        Efeitos:
+          Vida: 20
+      dobro:
+        Nome: '&6Dobro &7(20 coracoes)'
+        Material: ENCHANTED_GOLDEN_APPLE
+        Descricao:
+          - '&7Lutas longas'
+        Efeitos:
+          Vida: 40

@@ -1,0 +1,44 @@
+# ==========================================================================
+#  StarEggWars - niveis
+#
+#  O xp e acumulado para sempre; cada faixa diz quanto xp custa subir UM
+#  nivel dentro dela e como o nivel aparece ({nivel}). A ultima faixa
+#  ("outros") vale para todos os niveis acima. Recompensas: comandos rodados
+#  no console ao alcancar o nivel ({jogador}, {nivel}) -- alem da caixa e dos
+#  comandos gerais do config.yml.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Niveis:
+  1-4:
+    Nome: '&7[{nivel}✫]'
+    XP: 500
+  5-9:
+    Nome: '&f[{nivel}✫]'
+    XP: 1000
+  10-19:
+    Nome: '&e[{nivel}✫]'
+    XP: 2000
+  20-29:
+    Nome: '&a[{nivel}✫]'
+    XP: 3500
+  30-49:
+    Nome: '&b[{nivel}✫]'
+    XP: 5000
+  50-99:
+    Nome: '&d[{nivel}✫]'
+    XP: 7500
+  outros:
+    Nome: '&6[{nivel}✫]'
+    XP: 10000
+
+Recompensas:
+  5:
+    - 'ew coins dar {jogador} 1000'
+  10:
+    - 'ew caixa dar {jogador} kits 1'
+  25:
+    - 'ew caixa dar {jogador} habilidades 1'
+  50:
+    - 'ew booster dar {jogador} 2'

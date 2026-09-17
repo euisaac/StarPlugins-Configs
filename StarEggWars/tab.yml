@@ -1,0 +1,60 @@
+# ==========================================================================
+#  StarEggWars - tab (lista de jogadores)
+#
+#  Cabecalho e rodape do tab, um jogo de linhas para quem esta FORA de
+#  partida e outro para quem esta EM partida. Placeholders do perfil
+#  ({nivel_formatado}, {coins}, {vitorias}...), da partida ({mapa}, {modo},
+#  {jogadores}, {maximo}, {tempo}, {evento}...) e do PlaceholderAPI valem.
+#
+#  Animacoes: os quadros ficam no animacoes.yml; use {animacao:nome} em
+#  qualquer linha daqui, do placar (config.yml, Placar) ou das mensagens.
+#
+#  Quem aparece no tab e decidido pelo config.yml (Tab.Separar por partida):
+#  em partida, so os da mesma partida; fora, so quem esta fora.
+#
+#  Prefixo e Sufixo sao o texto antes e depois do nome no tab e acima da
+#  cabeca. {prefix-tag}/{suffix-tag} sao o cargo do tags.yml (que tambem
+#  ordena o tab); aceitam placeholders do PlaceholderAPI do JOGADOR mostrado
+#  (%luckperms_prefix%, %startags_tag%...). Na partida tambem {cor}, {tag} e
+#  {equipe}. Fora de partida, vazio = nao mexe (deixa para o plugin de tags).
+#  Limite: 16 letras ate a 1.12, 64 da 1.13 em diante.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Ativar: true
+
+# Ticks entre as atualizacoes do cabecalho/rodape.
+Intervalo: 10
+
+Fora:
+  Prefixo: '{prefix-tag}'
+  Sufixo: '{suffix-tag}'
+  Cabecalho:
+    - ''
+    - '{animacao:titulo}'
+    - '&7Bem-vindo, &f{jogador}'
+    - ''
+  Rodape:
+    - ''
+    - '&fNivel: {nivel_formatado} &7| &fCoins: &6{coins} &7| &fVitorias: &a{vitorias}'
+    - '{animacao:site}'
+    - ''
+
+Partida:
+  Prefixo: '{cor}{tag} '
+  Sufixo: ''
+  Prefixo espera: '&7'
+  Sufixo espera: ''
+  Prefixo espectador: '&8[ESP] &7'
+  Sufixo espectador: ''
+  Cabecalho:
+    - ''
+    - '{animacao:titulo}'
+    - '&7Mapa: &f{mapa} &7| &f{modo}'
+    - ''
+  Rodape:
+    - ''
+    - '&fJogadores: &a{jogadores}&7/&a{maximo} &7| &fTempo: &a{tempo}'
+    - '{animacao:site}'
+    - ''

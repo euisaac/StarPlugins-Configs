@@ -1,0 +1,69 @@
+# ==========================================================================
+#  StarEggWars - automensagens
+#
+#  Uma mensagem por vez, a cada "Intervalo" segundos, em ordem ou sorteada.
+#  Cada mensagem diz para quem vai (Onde): PARTIDA (so quem esta numa
+#  partida), FORA (so quem esta fora) ou TODOS. Som e opcional. Linhas
+#  aceitam cores, {prefixo}, {animacao:nome} (do tab.yml) e placeholders.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Ativar: true
+Intervalo: 150
+Aleatorio: false
+
+Mensagens:
+  vidro:
+    Onde: PARTIDA
+    Som: 'BLOCK_NOTE_BLOCK_PLING'
+    Linhas:
+      - ''
+      - ' &6&lDICA'
+      - ' &fVidro nao quebra com bola de fogo nem TNT: proteja o ovo com ele.'
+      - ''
+  rastreador:
+    Onde: PARTIDA
+    Som: 'BLOCK_NOTE_BLOCK_PLING'
+    Linhas:
+      - ''
+      - ' &6&lDICA'
+      - ' &fClique na bussola para rastrear a equipe que voce quiser.'
+      - ''
+  favoritos:
+    Onde: PARTIDA
+    Som: ''
+    Linhas:
+      - ''
+      - ' &6&lDICA'
+      - ' &fShift + clique num item da loja para por na Compra rapida.'
+      - ''
+  jogar:
+    Onde: FORA
+    Som: ''
+    Linhas:
+      - ''
+      - ' &e&lEGG WARS'
+      - ' &fClique no NPC ou use &a/ew jogar solo &fpara entrar numa partida.'
+      - ''
+  loja:
+    Onde: FORA
+    Som: ''
+    Linhas:
+      - ''
+      - ' &e&lLOJA'
+      - ' &fKits, habilidades, jaulas e efeitos em &a/ew loja&f.'
+      - ''
+  grupo:
+    Onde: FORA
+    Som: ''
+    Linhas:
+      - ''
+      - ' &e&lGRUPO'
+      - ' &fJogue com os amigos: &a/grupo convidar <jogador>&f.'
+      - ''
+  site:
+    Onde: TODOS
+    Som: ''
+    Linhas:
+      - '&7Visite nosso site: {animacao:site}'

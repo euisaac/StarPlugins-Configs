@@ -1,0 +1,70 @@
+# ==========================================================================
+#  StarEggWars - cosmeticos/brinquedos.yml - brinquedos do spawn
+#
+#  Cosmeticos de interacao usados FORA da partida (no lobby). O escolhido
+#  aparece na barra (Hotbar.Lobby.Brinquedo no config.yml); clique direito
+#  usa. Tipos:
+#    PULA_PULA     - monta uma cama elastica por "Duracao" segundos: uma
+#                    plataforma 5x5 a um bloco do chao, com a Borda e o
+#                    Centro (3x3) nos blocos escolhidos e uma escada na
+#                    frente. Quem pisa no centro e lancado para cima ate
+#                    andar para fora. Impulso = forca.
+#    FOGUETE       - lanca o jogador para o alto (Impulso), sem dano de queda.
+#    BOLAS_DE_NEVE - da bolas de neve que empurram quem acerta (Empurrao).
+#    FOGOS         - solta fogos de artificio (Quantidade).
+#  Cooldown em segundos. Permissoes: stareggwars.brinquedo.<chave> libera
+#  um; stareggwars.brinquedo.* libera todos.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Brinquedos:
+  pula_pula:
+    Nome: 'Pula-pula'
+    Tipo: PULA_PULA
+    Material: RED_WOOL
+    Raridade: RARO
+    Coins: 8000
+    Cash: 0
+    Cooldown: 30
+    Duracao: 45
+    Impulso: 1.4
+    Borda: RED_WOOL
+    Centro: BLACK_WOOL
+    Descricao:
+      - '&7Monta uma cama elastica com escada'
+      - '&7para subir e ficar pulando'
+  foguete:
+    Nome: 'Foguete'
+    Tipo: FOGUETE
+    Material: FIREWORK_ROCKET
+    Raridade: COMUM
+    Coins: 3000
+    Cash: 0
+    Cooldown: 8
+    Impulso: 2.2
+    Descricao:
+      - '&7Voce e lancado para o alto'
+      - '&7(sem dano de queda)'
+  bolas_de_neve:
+    Nome: 'Bolas de neve'
+    Tipo: BOLAS_DE_NEVE
+    Material: SNOWBALL
+    Raridade: COMUM
+    Coins: 3000
+    Cash: 0
+    Cooldown: 1
+    Empurrao: 1.0
+    Descricao:
+      - '&7Acerte alguem e veja voar'
+  fogos:
+    Nome: 'Canhao de fogos'
+    Tipo: FOGOS
+    Material: FIREWORK_STAR
+    Raridade: EPICO
+    Coins: 12000
+    Cash: 0
+    Cooldown: 6
+    Quantidade: 6
+    Descricao:
+      - '&7Um show de fogos onde voce esta'

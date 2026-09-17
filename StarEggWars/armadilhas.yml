@@ -1,0 +1,70 @@
+# ==========================================================================
+#  StarEggWars - armadilhas
+#
+#  Compradas no NPC de melhorias e guardadas numa fila (maximo abaixo);
+#  a primeira da fila dispara quando um inimigo entra na ilha da equipe.
+#  Tipos: CEGUEIRA (cegueira + lentidao no invasor), ALARME (revela quem
+#  esta invisivel e avisa), CONTRA_OFENSIVA (velocidade e pulo para a equipe
+#  na ilha), FADIGA (fadiga no invasor), TEIA (teias ao redor do invasor).
+#  Segundos = duracao do efeito.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Quantas armadilhas ficam guardadas por equipe.
+Maximo na fila: 3
+
+# Raio da ilha (blocos, a partir do ovo) onde a armadilha e a regeneracao
+# valem. Pode ser trocado por arena em arenas/<nome>.yml (Raio da ilha).
+Raio padrao: 16
+
+Armadilhas:
+  cegueira:
+    Slot: 11
+    Tipo: CEGUEIRA
+    Nome: '&aIsca'
+    Material: TRIPWIRE_HOOK
+    Preco: 'DIAMOND : 1'
+    Segundos: 8
+    Descricao:
+      - '&7Cegueira e lentidao por 8s'
+      - '&7no invasor'
+  alarme:
+    Slot: 12
+    Tipo: ALARME
+    Nome: '&aAlarme'
+    Material: REDSTONE_TORCH
+    Preco: 'DIAMOND : 2'
+    Segundos: 0
+    Descricao:
+      - '&7Revela invasores invisiveis'
+      - '&7e avisa a equipe'
+  contra_ofensiva:
+    Slot: 14
+    Tipo: CONTRA_OFENSIVA
+    Nome: '&aContra-ofensiva'
+    Material: FEATHER
+    Preco: 'DIAMOND : 3'
+    Segundos: 10
+    Descricao:
+      - '&7Velocidade I e pulo II por 10s'
+      - '&7para a equipe na ilha'
+  fadiga:
+    Slot: 15
+    Tipo: FADIGA
+    Nome: '&aCansaco'
+    Material: IRON_PICKAXE
+    Preco: 'DIAMOND : 4'
+    Segundos: 10
+    Descricao:
+      - '&7Fadiga I por 10s no invasor'
+  teia:
+    Slot: 22
+    Tipo: TEIA
+    Nome: '&aTeia'
+    Material: COBWEB
+    Preco: 'DIAMOND : 3'
+    Segundos: 6
+    Descricao:
+      - '&7Prende o invasor em teias'
+      - '&7por 6s'

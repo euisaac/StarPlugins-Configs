@@ -1,0 +1,172 @@
+# ==========================================================================
+#  StarEggWars - geradores.yml - tipos de gerador e os niveis deles
+#
+#  Um gerador e um ponto da arena (colocado no editor, ferramenta "Gerador",
+#  ou com /ew arena gerador <arena> <tipo> [nivel]) que solta um item de
+#  tempos em tempos. Os jogadores melhoram o gerador na hora, clicando no
+#  bloco dele (ou no holograma) e pagando o proximo nivel com os proprios
+#  recursos. O nivel 0 e um gerador DESLIGADO: so comeca a produzir quando
+#  alguem paga o nivel 1.
+#
+#  Por tipo:
+#    Nome           - como aparece no holograma e nos menus (cores com &)
+#    Item           - o item solto (IRON_INGOT, GOLD_INGOT, DIAMOND, EMERALD)
+#    Bloco          - o bloco que gira no holograma e o icone dos menus
+#    Maximo no chao - itens no chao ao redor antes de o gerador esperar
+#    Nivel inicial  - nivel com que a ferramenta do editor coloca esse tipo
+#    Niveis         - por nivel: Segundos entre drops, Quantidade por vez,
+#                     Preco para CHEGAR nesse nivel ("MATERIAL : quantidade";
+#                     vazio = gratis) e uma Descricao para o menu
+#
+#  A dificuldade votada (votacoes.yml) multiplica a velocidade e os precos;
+#  a melhoria "Gerador" da equipe (melhorias.yml) acelera os geradores que
+#  estao dentro da ilha dela (Raio da ilha da arena, a partir do ovo).
+#  Um evento "GERADOR_<tipo>: segundos" no config.yml sobe um nivel de
+#  graca em todo gerador do tipo.
+#
+#  Eh voce quem manda: crie quantos tipos quiser (a chave e livre).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Holograma acima de cada gerador. {nome}, {nivel}, {tempo} (segundos para
+# o proximo drop), {proximo} (proximo nivel), {preco} e {cor_preco}.
+Holograma:
+  Ativar: true
+  Linhas:
+    - '{nome} &7- &eNivel &c{nivel}'
+    - '&eGera em &c{tempo}s'
+    - '&7Melhorar: {cor_preco}{preco}'
+  Linhas nivel maximo:
+    - '{nome} &7- &eNivel &c{nivel}'
+    - '&eGera em &c{tempo}s'
+    - '&6Nivel maximo'
+  Linhas desligado:
+    - '{nome} &7- &cDesligado'
+    - '&7Ligar: {cor_preco}{preco}'
+    - '&7(clique para melhorar)'
+
+# Uma pilha do mesmo recurso ja no gerador so cresce (evita 64 itens espalhados).
+Juntar drops: true
+
+# Clique direito no bloco/holograma abre o menu de melhoria (false = os
+# geradores so sobem pelos eventos do config.yml).
+Melhorar no clique: true
+
+Geradores:
+  ferro:
+    Nome: '&f&lFERRO'
+    Item: IRON_INGOT
+    Bloco: IRON_BLOCK
+    Maximo no chao: 48
+    Nivel inicial: 1
+    Descricao:
+      - '&7O recurso basico: blocos,'
+      - '&7comida e ferramentas simples'
+    Niveis:
+      1:
+        Segundos: 2.0
+        Quantidade: 1
+        Preco: 'IRON_INGOT : 16'
+        Descricao: '&7Um ferro a cada 2s'
+      2:
+        Segundos: 1.5
+        Quantidade: 1
+        Preco: 'IRON_INGOT : 32'
+        Descricao: '&7Um ferro a cada 1,5s'
+      3:
+        Segundos: 1.0
+        Quantidade: 1
+        Preco: 'IRON_INGOT : 64'
+        Descricao: '&7Um ferro por segundo'
+      4:
+        Segundos: 1.0
+        Quantidade: 2
+        Preco: 'GOLD_INGOT : 24'
+        Descricao: '&7Dois ferros por segundo'
+      5:
+        Segundos: 0.5
+        Quantidade: 2
+        Preco: 'DIAMOND : 8'
+        Descricao: '&7Quatro ferros por segundo'
+  ouro:
+    Nome: '&6&lOURO'
+    Item: GOLD_INGOT
+    Bloco: GOLD_BLOCK
+    Maximo no chao: 24
+    Nivel inicial: 1
+    Descricao:
+      - '&7Armaduras, espadas e'
+      - '&7itens especiais'
+    Niveis:
+      1:
+        Segundos: 8.0
+        Quantidade: 1
+        Preco: 'IRON_INGOT : 32'
+        Descricao: '&7Um ouro a cada 8s'
+      2:
+        Segundos: 5.0
+        Quantidade: 1
+        Preco: 'GOLD_INGOT : 16'
+        Descricao: '&7Um ouro a cada 5s'
+      3:
+        Segundos: 3.0
+        Quantidade: 1
+        Preco: 'GOLD_INGOT : 32'
+        Descricao: '&7Um ouro a cada 3s'
+      4:
+        Segundos: 2.0
+        Quantidade: 1
+        Preco: 'DIAMOND : 6'
+        Descricao: '&7Um ouro a cada 2s'
+  diamante:
+    Nome: '&b&lDIAMANTE'
+    Item: DIAMOND
+    Bloco: DIAMOND_BLOCK
+    Maximo no chao: 8
+    # No meio do mapa costuma comecar desligado: a primeira equipe a chegar
+    # paga para ligar.
+    Nivel inicial: 0
+    Descricao:
+      - '&7O melhor equipamento e as'
+      - '&7melhorias da equipe'
+    Niveis:
+      1:
+        Segundos: 30.0
+        Quantidade: 1
+        Preco: 'GOLD_INGOT : 24'
+        Descricao: '&7Um diamante a cada 30s'
+      2:
+        Segundos: 20.0
+        Quantidade: 1
+        Preco: 'GOLD_INGOT : 48'
+        Descricao: '&7Um diamante a cada 20s'
+      3:
+        Segundos: 12.0
+        Quantidade: 1
+        Preco: 'DIAMOND : 12'
+        Descricao: '&7Um diamante a cada 12s'
+  esmeralda:
+    Nome: '&2&lESMERALDA'
+    Item: EMERALD
+    Bloco: EMERALD_BLOCK
+    Maximo no chao: 4
+    Nivel inicial: 0
+    Descricao:
+      - '&7Os itens mais raros da loja'
+    Niveis:
+      1:
+        Segundos: 60.0
+        Quantidade: 1
+        Preco: 'DIAMOND : 16'
+        Descricao: '&7Uma esmeralda por minuto'
+      2:
+        Segundos: 40.0
+        Quantidade: 1
+        Preco: 'DIAMOND : 32'
+        Descricao: '&7Uma esmeralda a cada 40s'
+      3:
+        Segundos: 25.0
+        Quantidade: 1
+        Preco: 'EMERALD : 8'
+        Descricao: '&7Uma esmeralda a cada 25s'

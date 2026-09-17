@@ -1,0 +1,790 @@
+# ==========================================================================
+#  StarEggWars - configuracao geral
+#
+#  Como funciona: cada arena e um MUNDO proprio (arenas/<nome>.yml guarda os
+#  locais). Os jogadores entram pela sala de espera, votam a dificuldade, os
+#  itens e a vida da partida (votacoes.yml), sao divididos em equipes e lutam
+#  ate sobrar uma equipe. Cada equipe tem um OVO DE DRAGAO: enquanto ele
+#  existe, quem morre renasce; destruido o ovo, a proxima morte elimina. Os
+#  geradores (geradores.yml) sao melhorados na hora pelos jogadores, pagando
+#  com os proprios recursos. Ao fim, o mundo da arena volta ao estado salvo e
+#  a sala reabre sozinha.
+#
+#  Primeiros passos (admin):
+#    1. /ew setlobby                       -> onde o jogador volta ao sair
+#    2. /ew arena criar <nome> <modo>      -> no mundo da arena (modos abaixo)
+#       (o editor em jogo abre sozinho: cada item da barra define um local)
+#    3. /ew arena setespera / setespectador / pos1 / pos2 <nome>
+#    4. /ew arena equipe <nome> <Equipe> spawn|ovo|loja|melhorias
+#    5. /ew arena gerador <nome> <tipo> [nivel]   -> gerador onde voce esta
+#    6. /ew arena salvar <nome>            -> guarda o mundo e libera a arena
+#
+#  Cada arquivo desta pasta tem o proprio cabecalho explicando o que faz.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console cada operacao. Ligue so para achar problema.
+  Debug: false
+
+  # Milissegundos entre dois cliques no mesmo menu (evita spam).
+  Intervalo entre cliques: 100
+
+  # true = barra, placar, tags e cosmeticos so existem no mundo do lobby
+  # (/ew setlobby) e nos de "Protecao do lobby > Mundos"; em mundo de outro
+  # plugin (treino de ponte, survival...) tudo some e volta ao retornar.
+  # false = valem em qualquer mundo que nao e arena.
+  So no mundo do lobby: true
+
+  # MULTIARENA   = todas as arenas neste servidor (o padrao).
+  # BUNGEE       = este servidor e UMA sala: quem entra ja cai na arena e, no
+  #                fim, e mandado para o "Lobby servidor".
+  # LOBBY_BUNGEE = este servidor e o lobby do EggWars: os NPCs e o menu de
+  #                jogar mandam o jogador para uma sala BUNGEE livre. Exige
+  #                MySQL compartilhado entre o lobby e as salas.
+  Modo: MULTIARENA
+
+  # Nome deste servidor no BungeeCord/Velocity (usado nos modos Bungee).
+  Nome deste servidor: 'ew1'
+
+  # Servidor de lobby para onde as salas BUNGEE mandam o jogador no fim.
+  Lobby servidor: 'lobby'
+
+  # Segundos sem atualizacao para uma sala sumir da lista do lobby.
+  Sala expira em: 15
+
+  # Comando rodado no CONSOLE quando o jogador sai da partida no modo
+  # MULTIARENA (vazio = so teleporta para o lobby do /ew setlobby).
+  # {jogador} e trocado.
+  Comando ao sair: ''
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (obrigatorio nos modos
+  # Bungee, para dividir estatisticas e salas entre servidores).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'stareggwars_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+# As COINS do EggWars sao proprias do plugin (ganhas nas partidas). O CASH e
+# uma moeda externa, usada nos itens que tem preco em cash.
+Cash:
+  # VAULT        = qualquer economia registrada no Vault.
+  # STARECONOMIA = uma moeda do StarEconomia (produto da StarPlugins).
+  # COMANDO      = saldo lido por placeholder e cobrado por comando de console.
+  # NENHUM       = ninguem tem cash; itens com preco em cash so saem da caixa.
+  Tipo: NENHUM
+  # So para STARECONOMIA: o id da moeda (vazio = a moeda principal).
+  Moeda do StarEconomia: ''
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Partida:
+  # Segundos na sala de espera depois de bater o minimo de jogadores.
+  Tempo de espera: 60
+  # Quando a sala lota, o contador cai para este valor.
+  Tempo de espera lotado: 10
+  # Segundos que os jogadores ficam presos na jaula antes do inicio.
+  Jaulas:
+    Ativar: true
+    Segundos: 10
+  # Segundos para renascer enquanto o ovo existe (a votacao pode mudar).
+  Segundos para renascer: 5
+  # Segundos desde o ultimo golpe (dado ou recebido) para alguem contar
+  # como "em combate" no teleporte do espectador.
+  Segundos de combate: 8
+  # Segundos de invencibilidade ao renascer.
+  Invencibilidade ao renascer: 3
+  # Dano ao cair no vazio (999 = morte na hora).
+  Dano do vazio: 999.0
+  # Ferro, ouro, diamante e esmeralda de quem morre vao direto para quem
+  # matou (false = caem no chao).
+  Recursos para o assassino: true
+  # Permite craftar dentro da partida.
+  Permitir craft: false
+  # Segundos que a partida fica aberta depois do vencedor (comemoracao).
+  Segundos apos o fim: 10
+  # Blocos de distancia dos geradores e dos NPCs onde nao se pode construir.
+  Distancia protegida: 2
+  # Primeiro sangue (recompensa extra para o primeiro abate).
+  Primeiro sangue: true
+  # Ao morrer, a espada/picareta/machado comprados voltam um nivel.
+  Rebaixar ao morrer:
+    Espada: true
+    Picareta: true
+    Machado: true
+  # Rastreador (bussola) no inventario, tambem pelo /rastrear.
+  Rastreador: true
+  # O jogador pode escolher a equipe na sala de espera (permissao
+  # stareggwars.selecionar).
+  Selecionar equipe: true
+  # Limites de mobs por equipe ao mesmo tempo.
+  Limite de tracas: 3
+  Limite de golens: 2
+  # Segundos que golem e traca vivem.
+  Vida do golem: 240
+  Vida da traca: 15
+  # Comandos bloqueados durante a partida (stareggwars.comandos.bypass ignora).
+  Bloquear comandos:
+    Ativar: true
+    Permitidos:
+      - '/ew'
+      - '/eggwars'
+      - '/lobby'
+      - '/l'
+      - '/grupo'
+      - '/party'
+      - '/rastrear'
+      - '/reconectar'
+      - '/tell'
+      - '/msg'
+      - '/r'
+      - '/g'
+  # Linha do tempo da partida. Formato "EVENTO: segundos" contados do inicio.
+  # GERADOR_<tipo> (ou so o tipo, ex.: DIAMANTE) sobe um nivel de graca em
+  # todo gerador daquele tipo do geradores.yml -- os jogadores continuam
+  # podendo melhorar pagando. DESTRUICAO_OVOS destroi todos os ovos.
+  # MORTE_SUBITA solta os dragoes. FIM encerra em empate.
+  Eventos:
+    - 'GERADOR_DIAMANTE: 900'
+    - 'DESTRUICAO_OVOS: 1800'
+    - 'MORTE_SUBITA: 2400'
+    - 'FIM: 2700'
+  # Dragoes soltos na morte subita (um por equipe viva, mais estes extras
+  # para quem comprou a melhoria "Dragao extra").
+  Dragoes na morte subita: 1
+
+# O ovo de dragao de cada equipe. Os geradores moram no geradores.yml.
+Ovo:
+  # Golpes (socos) que um inimigo precisa dar no ovo para destrui-lo. 1 =
+  # quebra no primeiro toque, como nas redes grandes.
+  Golpes para quebrar: 1
+  # Holograma acima do ovo. {cor}, {equipe}, {tag}.
+  Holograma:
+    Ativar: true
+    Linhas:
+      - '{cor}&lOVO {equipe}'
+      - '&7Proteja-o!'
+
+Itens:
+  Bola de fogo:
+    Dano: 3.0
+    # Forca do empurrao (horizontal e vertical) em quem esta perto.
+    Empurrao horizontal: 1.0
+    Empurrao vertical: 0.65
+    Dano de queda: 3.0
+    Lancar com botao esquerdo: true
+    Lancar com botao direito: true
+    Explosao: 3.0
+    Cooldown: 2
+  TNT:
+    # Segundos ate explodir depois de colocada.
+    Fusivel: 3
+    Empurrao horizontal: 1.3
+    Empurrao vertical: 0.9
+    Explosao: 4.0
+    Cooldown: 1
+  Estilingue:
+    Empurrao horizontal: 3.0
+    Empurrao vertical: 0.85
+    Dano de queda: 3.0
+    Cooldown: 7
+  Ovo de ponte:
+    # Bloco colocado a cada tique de voo e distancia maxima.
+    Distancia maxima: 27
+  Torre:
+    # Altura da torre instantanea (blocos) e se tem escada no meio.
+    Altura: 5
+    Escada: true
+  Esponja:
+    Raio: 3
+
+Recompensas:
+  Coins:
+    Primeiro sangue: 15
+    Abate: 10
+    Eliminacao: 15
+    Ovo: 20
+    Vitoria: 50
+    Participacao: 5
+  XP:
+    Primeiro sangue: 15
+    Abate: 10
+    Eliminacao: 15
+    Ovo: 15
+    Vitoria: 100
+    Participacao: 10
+  Pontos ranqueados:
+    Abate: 10
+    Eliminacao: 20
+    Ovo: 15
+    Vitoria: 60
+    # Perdidos na derrota (o saldo nunca fica negativo).
+    Derrota: 40
+  # Bonus por permissao. Formato "permissao;porcentagem;mensagem".
+  Bonus por permissao:
+    - 'stareggwars.bonus.vip;10;&a+10% por ser VIP'
+    - 'stareggwars.bonus.mvp;25;&6+25% por ser MVP'
+  # Mostra na actionbar o +coins e o +xp.
+  Actionbar coins: true
+  Actionbar xp: true
+  # Mostra o nivel no chat ao fim da partida.
+  Nivel no chat: true
+  # Vitorias totais necessarias para jogar o ranqueado.
+  Vitorias para o ranqueado: 0
+
+Nivel:
+  # Barra de progresso: {progresso} nas mensagens e no placar.
+  Formato: '&f[{barra}&f]'
+  Caractere: '■'
+  Cor cheia: '&a'
+  Cor vazia: '&7'
+  Tamanho: 10
+  # Caixa misteriosa dada a cada nivel (vazio = nenhuma).
+  Caixa ao subir: 'especiais'
+  # Comandos rodados no console a cada nivel ({jogador}, {nivel}).
+  Comandos ao subir: []
+
+Raridades:
+  COMUM:
+    Nome: 'Comum'
+    Cor: '&a'
+    # Chance relativa na caixa misteriosa.
+    Chance: 60
+    # Fragmentos ganhos quando o item ja e seu.
+    Fragmentos: 5
+  RARO:
+    Nome: 'Raro'
+    Cor: '&9'
+    Chance: 25
+    Fragmentos: 7
+  EPICO:
+    Nome: 'Epico'
+    Cor: '&5'
+    Chance: 12
+    Fragmentos: 10
+  LENDARIO:
+    Nome: 'Lendario'
+    Cor: '&6'
+    Chance: 3
+    Fragmentos: 15
+
+# Equipes disponiveis para as arenas. Formato "Nome : COR : R,G,B" onde COR e
+# a cor do Minecraft (la, vidro, argila e chat) e R,G,B a cor da armadura.
+Equipes:
+  - 'Vermelho : RED : 255,85,85'
+  - 'Azul : BLUE : 85,85,255'
+  - 'Verde : GREEN : 85,255,85'
+  - 'Amarelo : YELLOW : 255,255,85'
+  - 'Ciano : AQUA : 85,255,255'
+  - 'Branco : WHITE : 255,255,255'
+  - 'Rosa : PINK : 255,85,255'
+  - 'Cinza : GRAY : 170,170,170'
+  - 'Laranja : ORANGE : 255,170,0'
+  - 'Roxo : PURPLE : 170,0,170'
+
+Chat:
+  # Chat proprio dentro das partidas (o do lobby fica com o seu plugin de chat).
+  Ativar: true
+  # Prefixo que manda a mensagem para a partida inteira em vez da equipe.
+  Prefixo global: '!'
+  # {equipe} e a cor + nome, {tag} a tag da equipe, {jogador}, {mensagem}.
+  Formato equipe: '&8[&aEQUIPE&8] {cor}{jogador}&7: &f{mensagem}'
+  Formato global: '&8[&6GLOBAL&8] {cor}{jogador}&7: &f{mensagem}'
+  Formato espectador: '&8[&7ESPECTADOR&8] &7{jogador}&7: &7{mensagem}'
+  Formato espera: '&7{jogador}&7: &f{mensagem}'
+  # Tag da equipe no chat e no tab ({tag} = primeira letra).
+  Formato da tag: '&l{tag}'
+
+# (Legado: hoje o prefixo/sufixo do tab mora no tab.yml; isto so vale se
+# o tab.yml nao tiver as chaves.)
+Tags:
+  Esperando: '&7'
+  Espectador: '&8[ESP] &7'
+  Jogo: '{cor}{tag} '
+
+Placar:
+  Ativar: true
+  # Mostra o placar tambem no lobby (desligue se outro plugin cuida do lobby).
+  Mostrar no lobby: true
+  # Ticks entre as atualizacoes.
+  Intervalo: 20
+  # Titulos alternados (animacao). Um so = sem animacao. As animacoes do
+  # tab.yml tambem valem aqui e nas linhas: {animacao:nome}.
+  Titulos:
+    - '&f&lEGG WARS'
+    - '&6&lB&f&lED WARS'
+    - '&f&lB&6&lE&f&lD WARS'
+    - '&f&lBE&6&lD&f&l WARS'
+    - '&f&lBED &6&lW&f&lARS'
+    - '&f&lBED W&6&lA&f&lRS'
+    - '&f&lBED WA&6&lR&f&lS'
+    - '&f&lBED WAR&6&lS'
+    - '&f&lEGG WARS'
+    - '&f&lEGG WARS'
+    - '&6&lEGG WARS'
+    - '&f&lEGG WARS'
+  Linhas:
+    Lobby:
+      - ''
+      - ' &fNivel: {nivel_formatado}'
+      - ' {progresso} &7({xp}/{xp_proximo})'
+      - ''
+      - ' &fPartidas: &a{jogos}'
+      - ' &fVitorias: &a{vitorias}'
+      - ' &fAbates: &a{abates}'
+      - ' &fOvos: &a{ovos}'
+      - ' &fSequencia: &a{winstreak}'
+      - ''
+      - ' &fCoins: &6{coins}'
+      - ' &fLiga: {liga}'
+      - ''
+      - '  &estarplugins.com.br'
+    # {voto_<categoria>} = a opcao que esta ganhando na votacao (ex.:
+    # {voto_dificuldade}); {meu_voto_<categoria>} = o voto do jogador.
+    Esperando:
+      - ''
+      - ' &fMapa: &a{mapa}'
+      - ' &fJogadores: &a{jogadores}/{maximo}'
+      - ''
+      - ' {contagem}'
+      - ''
+      - ' &fModo: &a{modo}'
+      - ' &fDificuldade: &a{voto_dificuldade}'
+      - ' &fItens: &a{voto_itens}'
+      - ' &fVida: &a{voto_vida}'
+      - ''
+      - '  &estarplugins.com.br'
+    Jogo:
+      - ''
+      - ' &fProximo evento:'
+      - ' &a{evento} &7em &a{evento_tempo}'
+      - ''
+      - '{equipes}'
+      - ''
+      - ' &fAbates: &a{abates_partida}'
+      - ' &fOvos: &a{ovos_partida}'
+      - ''
+      - '  &estarplugins.com.br'
+    # Placar de quem esta no modo de configuracao (/ew arena editar).
+    # {arena}, {modo}, {equipes}, {por_equipe}, {minimo}, {maximo},
+    # {geradores} (quantos), {gerador_ferramenta} e {gerador_nivel} (o que a
+    # ferramenta esta colocando), {espera}, {espectador}, {regiao},
+    # {mundo_guardado} (Feito/Falta), {pendencias} (quantas), {equipe_atual};
+    # {lista_equipes} vira uma linha por equipe (Editor.Equipe).
+    Editor:
+      - ''
+      - ' &fArena: &a{arena}'
+      - ' &fModo: &a{modo} &7({equipes} equipes)'
+      - ''
+      - ' &fEspera: {espera} &fEspec.: {espectador}'
+      - ' &fRegiao: {regiao} &fMundo: {mundo_guardado}'
+      - ' &fGeradores: &b{geradores} &7({gerador_ferramenta} {gerador_nivel})'
+      - ''
+      - '{lista_equipes}'
+      - ''
+      - ' &fPendencias: &c{pendencias}'
+      - ''
+      - '  &estarplugins.com.br'
+  # Cada equipe vira uma linha no lugar de {equipes}.
+  Formato da equipe: ' {cor}{tag} &f{nome}: {estado} {voce}'
+  Estado com ovo: '&a✔'
+  Estado sem ovo: '&a{vivos}'
+  Estado eliminada: '&c✘'
+  Marca da sua equipe: '&7(voce)'
+  Texto da contagem: '&fComeca em &a{tempo}s'
+  Texto esperando: '&fAguardando jogadores...'
+  # Quando o jogador ainda nao votou numa categoria ({meu_voto_...}).
+  Sem voto: '&7-'
+  # Placar do editor: a linha de cada equipe ({spawn} {ovo} {loja}
+  # {melhorias} viram Feito/Falta) e os simbolos.
+  Editor:
+    Equipe: ' {cor}{equipe}&7: {spawn}{ovo}{loja}{melhorias}'
+    Sem equipes: ' &7Nenhuma equipe ainda'
+    Feito: '&a✔'
+    Falta: '&c✘'
+
+# Itens da barra de acoes. Slot -1 desliga o item.
+Hotbar:
+  Lobby:
+    Perfil:
+      Nome: '&aMeu perfil'
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Slot: 0
+      Lore:
+        - '&7Estatisticas, kits, cosmeticos,'
+        - '&7missoes, grupo e caixas'
+    Loja:
+      Nome: '&aLoja de cosmeticos'
+      Material: EMERALD
+      Slot: 4
+      Lore:
+        - '&7Kits, habilidades, jaulas e efeitos'
+    Brinquedo:
+      # Sem brinquedo escolhido mostra este item (abre a lista); com um
+      # escolhido mostra o icone dele com "Nome selecionado".
+      Nome: '&aBrinquedos'
+      Material: SLIME_BALL
+      Slot: 7
+      Lore:
+        - '&7Escolha um brinquedo do spawn'
+      Nome selecionado: '&a{brinquedo}'
+      Lore selecionado:
+        - '&7Clique direito para usar'
+        - '&7(troque em /ew loja > Brinquedos)'
+    Visibilidade:
+      Nome: '&aJogadores visiveis'
+      Material: LIME_DYE
+      Slot: 8
+      Lore:
+        - '&7Clique para esconder os jogadores'
+      # Como o item fica quando os jogadores estao escondidos.
+      Nome oculto: '&cJogadores escondidos'
+      Material oculto: GRAY_DYE
+      Lore oculto:
+        - '&7Clique para mostrar os jogadores'
+  Esperando:
+    Kits:
+      Nome: '&aKits'
+      Material: BOW
+      Slot: 0
+      Lore:
+        - '&7Escolha o kit desta partida'
+    Habilidades:
+      Nome: '&aHabilidades'
+      Material: EXPERIENCE_BOTTLE
+      Slot: 1
+    Votar:
+      Nome: '&eVotar &7(dificuldade, itens, vida)'
+      Material: PAPER
+      Slot: 2
+      Lore:
+        - '&7Escolha como sera a partida'
+    Equipe:
+      Nome: '&aSelecionar equipe'
+      Material: WHITE_WOOL
+      Slot: 4
+    Sair:
+      Nome: '&cSair &7(voltar para o lobby)'
+      Material: RED_BED
+      Slot: 8
+  # Quem morreu de vez (sem ovo) ou entrou para assistir.
+  Espectador:
+    Jogar novamente:
+      Nome: '&bJogar novamente'
+      Material: PAPER
+      Slot: 2
+    Jogadores:
+      Nome: '&aTeleportar por equipe'
+      Material: COMPASS
+      Slot: 4
+      Lore:
+        - '&7Os jogadores vivos de cada equipe'
+    Aleatorio:
+      Nome: '&dTeleporte aleatorio'
+      Material: ENDER_PEARL
+      Slot: 3
+      Lore:
+        - '&7Cai perto de um jogador vivo qualquer'
+    Combate:
+      Nome: '&cTeleporte para o combate'
+      Material: BLAZE_POWDER
+      Slot: 5
+      Lore:
+        - '&7Vai ate quem esta lutando agora'
+    Sair:
+      Nome: '&cSair &7(voltar para o lobby)'
+      Material: RED_BED
+      Slot: 6
+  # Quem morreu mas ainda vai renascer (o ovo existe): so os teleportes.
+  Renascendo:
+    Jogadores:
+      Nome: '&aTeleportar por equipe'
+      Material: COMPASS
+      Slot: 4
+    Aleatorio:
+      Nome: '&dTeleporte aleatorio'
+      Material: ENDER_PEARL
+      Slot: 3
+    Combate:
+      Nome: '&cTeleporte para o combate'
+      Material: BLAZE_POWDER
+      Slot: 5
+  Partida:
+    Rastreador:
+      Nome: '&aRastreador'
+      Material: COMPASS
+      Slot: 8
+
+Modos:
+  solo:
+    Ativo: true
+    Nome: 'Solo'
+    Jogadores por equipe: 1
+  dupla:
+    Ativo: true
+    Nome: 'Dupla'
+    Jogadores por equipe: 2
+  trio:
+    Ativo: true
+    Nome: 'Trio'
+    Jogadores por equipe: 3
+  quarteto:
+    Ativo: true
+    Nome: 'Quarteto'
+    Jogadores por equipe: 4
+  ranqueado:
+    Ativo: true
+    Nome: 'Ranqueado'
+    Jogadores por equipe: 1
+
+Estados:
+  Esperando: 'Esperando'
+  Iniciando: 'Iniciando'
+  Jogo: 'Em jogo'
+  Fim: 'Encerrando'
+  Resetando: 'Resetando'
+
+Seletor de mapas:
+  Ativar: true
+  # Mapas que um jogador comum pode escolher por dia (permissoes
+  # stareggwars.mapas.max.<n> e stareggwars.mapas.infinito mudam isso).
+  Limite diario: 1
+
+Reconexao:
+  Ativar: true
+  # Segundos que a vaga fica guardada depois de cair.
+  Segundos: 60
+  # Volta sozinho para a partida ao entrar de novo.
+  Automatica: true
+
+Grupo:
+  # Tamanho maximo padrao (stareggwars.grupo.<n> aumenta).
+  Maximo: 4
+  # Segundos que um convite vale.
+  Convite expira em: 60
+
+Boosters:
+  # Formato "multiplicador : minutos". Sao os boosters que o /ew booster dar
+  # e o comando de recompensa conhecem pelo numero (1, 2, 3...).
+  Modelos:
+    - '1.5 : 30'
+    - '2.0 : 30'
+    - '2.0 : 60'
+    - '3.0 : 60'
+
+Caixa misteriosa:
+  Holograma:
+    - '&b&lCaixa Misteriosa'
+    - '&7Clique com o botao direito'
+  # Pacotes fabricados com fragmentos.
+  Pacotes:
+    1:
+      Fragmentos: 40
+      Caixas: 1
+    2:
+      Fragmentos: 75
+      Caixas: 2
+    3:
+      Fragmentos: 150
+      Caixas: 3
+  # Caixa de que sai cada pacote fabricado.
+  Caixa dos pacotes: 'especiais'
+  # Animacoes de abertura (menu ao lado do livro). A primeira sem Permissao e
+  # a de todo mundo; as outras pedem a permissao indicada. Tipos: ROLETA (os
+  # itens giram na linha do meio), PISCAR (o menu inteiro pisca), CIRCULO (um
+  # cursor roda em volta do premio) e ONDA (o menu se preenche do centro para
+  # fora e revela). A particula e tocada no jogador ao revelar.
+  Animacoes:
+    roleta:
+      Nome: '&aRoleta'
+      Material: COMPARATOR
+      Tipo: ROLETA
+      Permissao: ''
+      Duracao: 60
+      Particula: VILLAGER_HAPPY
+      Descricao:
+        - '&7Os itens giram na linha do meio'
+        - '&7ate parar no premio'
+    piscar:
+      Nome: '&ePiscar'
+      Material: GLOWSTONE_DUST
+      Tipo: PISCAR
+      Permissao: 'stareggwars.animacao.piscar'
+      Duracao: 60
+      Particula: CRIT
+      Descricao:
+        - '&7O menu inteiro pisca de itens'
+        - '&7e o premio aparece no meio'
+    circulo:
+      Nome: '&bCirculo'
+      Material: ENDER_EYE
+      Tipo: CIRCULO
+      Permissao: 'stareggwars.animacao.circulo'
+      Duracao: 60
+      Particula: PORTAL
+      Descricao:
+        - '&7Um cursor roda em volta do'
+        - '&7premio ate ele se revelar'
+    onda:
+      Nome: '&dOnda'
+      Material: PRISMARINE_SHARD
+      Tipo: ONDA
+      Permissao: 'stareggwars.animacao.onda'
+      Duracao: 50
+      Particula: FIREWORKS_SPARK
+      Descricao:
+        - '&7O menu se preenche do centro'
+        - '&7para fora e revela o premio'
+  # Caixas existentes. Recompensas: KIT, HABILIDADE, JAULA, COMEMORACAO,
+  # ABATE, GRITO, OVO, BALAO.
+  Caixas:
+    kits:
+      Nome: '&bCaixa de Kits'
+      Material: CHEST
+      Lore:
+        - '&7Chance de ganhar kits de'
+        - '&7qualquer modo'
+      Recompensas: [ KIT ]
+    habilidades:
+      Nome: '&bCaixa de Habilidades'
+      Material: ENDER_CHEST
+      Lore:
+        - '&7Chance de ganhar habilidades'
+      Recompensas: [ HABILIDADE ]
+    especiais:
+      Nome: '&bCaixa Especial'
+      Material: TRAPPED_CHEST
+      Lore:
+        - '&7Jaulas, comemoracoes, efeitos'
+        - '&7de abate, gritos, animacoes'
+        - '&7de ovo e baloes'
+      Recompensas: [ JAULA, COMEMORACAO, ABATE, GRITO, OVO, BALAO ]
+
+# Protecao do mundo do lobby, para nao depender de WorldGuard. Vale nos
+# mundos de "Mundos" (vazio = o mundo do /ew setlobby); nunca dentro de
+# arena. Cada "Permitir ..." em false BLOQUEIA aquilo. A permissao
+# stareggwars.lobby.bypass ignora as regras de blocos e itens (staff).
+# "Tempo fixo" em ticks (6000 = meio-dia, 18000 = meia-noite; -1 = nao mexe).
+Protecao do lobby:
+  Ativar: true
+  Mundos: []
+  Permitir quebrar: false
+  Permitir colocar: false
+  # Baus, fornalhas, portas, botoes, camas... (a caixa misteriosa e os NPCs nao entram)
+  Permitir usar blocos: false
+  Permitir dano: false
+  Permitir pvp: false
+  Permitir fome: false
+  Permitir spawn natural: false
+  Permitir dropar itens: false
+  Permitir pegar itens: false
+  Permitir chuva: false
+  Permitir fogo e explosoes: false
+  Tempo fixo: 6000
+
+Jumppad:
+  # Bloco de slime lanca o jogador para frente (na partida e, se quiser, no lobby).
+  Ativar: true
+  No lobby: true
+  Empurrao horizontal: 1.6
+  Empurrao vertical: 0.8
+  Particula: CLOUD
+  Som: 'ENTITY_FIREWORK_ROCKET_LAUNCH'
+
+Double jump:
+  # Fora da partida, quem tem stareggwars.doublejump pula duas vezes e e
+  # lancado para frente (nao vale dentro dos mundos de arena).
+  Ativar: true
+  Empurrao horizontal: 1.2
+  Empurrao vertical: 0.9
+  Particula: CLOUD
+  Som: 'ENTITY_BAT_TAKEOFF'
+
+Tab:
+  # Quem esta numa partida so ve (tab e mundo) quem esta na mesma partida;
+  # quem esta fora so ve quem esta fora.
+  Separar por partida: true
+
+Tops:
+  # Linhas dos hologramas de top. O top mostra "Total" posicoes em paginas
+  # de "Quantidade": clicar na area dos NOMES passa a pagina; clicar no
+  # RODAPE troca o modo (geral, solo, dupla...). Vale para todo mundo.
+  # Placeholders (Cabecalho e Rodape): {tipo}, {modo}, {proximo_modo},
+  # {modos} (lista com o atual em destaque), {pagina}, {paginas},
+  # {proxima_pagina}, {quantidade} (por pagina), {total}.
+  # Na Linha: {posicao}, {jogador}, {valor}.
+  Cabecalho:
+    - '&6&lTOP {quantidade} {tipo} &7({pagina}/{paginas})'
+    - '&7{modo}'
+  Linha: '&e{posicao}. &f{jogador} &7- &a{valor}'
+  Vazio: '&7---'
+  Rodape:
+    - ''
+    - '&7Clique nos nomes: &fpagina {proxima_pagina}/{paginas}'
+    - '&7Clique aqui: &a{proximo_modo}'
+  Nome do geral: 'Geral'
+  Modo selecionado: '&a{modo}'
+  Modo normal: '&7{modo}'
+  Separador dos modos: ' &8- '
+  # Posicoes por pagina (ate 15).
+  Quantidade: 10
+  # Posicoes no total (10 por pagina + 100 no total = 10 paginas).
+  Total: 100
+  # Minutos entre as atualizacoes dos tops.
+  Atualizar a cada: 5
+
+# Mensagem de entrada no servidor por permissao: vale a PRIMEIRA da lista
+# cuja permissao o jogador tem (Permissao vazia = todo mundo). {jogador} e
+# placeholders do PlaceholderAPI funcionam; uma lista vira varias linhas.
+# Placeholders da Mensagem: {jogador}, {prefix} e {sufixo} (prefixo/sufixo
+# do tab, tab.yml > Fora, ja resolvidos), {prefixo} (o do plugin),
+# {animacao:nome} e os do PlaceholderAPI (%luckperms_prefix%...).
+Mensagens de entrada:
+  Ativar: true
+  # Esconde a mensagem padrao do servidor ("X entrou no jogo").
+  Esconder padrao: true
+  # Vazio = manda para todos; PARTIDA/FORA limita a quem esta la.
+  Para quem: FORA
+  Lista:
+    dono:
+      Permissao: 'stareggwars.entrada.dono'
+      Som: 'ENTITY_ENDER_DRAGON_GROWL'
+      Mensagem:
+        - ''
+        - ' &4&lDONO &f{jogador} &7entrou no servidor!'
+        - ''
+    mvp:
+      Permissao: 'stareggwars.entrada.mvp'
+      Som: 'ENTITY_PLAYER_LEVELUP'
+      Mensagem: ' &6&lMVP &f{jogador} &7entrou no servidor!'
+    vip:
+      Permissao: 'stareggwars.entrada.vip'
+      Som: ''
+      Mensagem: ' &a&lVIP &f{jogador} &7entrou no servidor!'
+    padrao:
+      Permissao: ''
+      Som: ''
+      Mensagem: ' &e{jogador} &7entrou.'
+
+Sons:
+  Quebrar ovo: 'ENDER_DRAGON_GROWL'
+  Golpe no ovo: 'ANVIL_LAND'
+  Eliminacao: 'WITHER_DEATH'
+  Comprar: 'NOTE_BLOCK_PLING'
+  Contagem: 'CLICK'
+  Inicio: 'ENDER_DRAGON_GROWL'
+  Vitoria: 'LEVEL_UP'
+  Derrota: 'WITHER_SPAWN'
+  Evento: 'NOTE_BLOCK_PLING'
+  Armadilha: 'WITHER_HURT'
+  Menu: 'CLICK'
