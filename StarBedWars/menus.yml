@@ -10,7 +10,7 @@
 #  (do arquivo dele) + o bloco de "Estados" abaixo, conforme a situacao.
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 Botoes:
   Voltar:
@@ -695,16 +695,33 @@ Rastreador:
       - ''
       - '&aClique para rastrear'
 
+# Bussola do espectador: primeiro as equipes vivas, depois os jogadores da
+# equipe clicada. Equipe: {cor}, {equipe}, {vivos}, {cama} (Sim/Nao) e
+# {membros} (uma linha por vivo, formato Membro). Jogador: {cor}, {jogador},
+# {equipe}, {abates}, {vida} (coracoes) e {combate} (Sim/Nao).
 Jogadores:
-  Titulo: '&8Jogadores'
+  Titulo: '&8Teleportar por equipe'
+  Equipe:
+    Nome: '{cor}{equipe}'
+    Membro: '  {cor}- {jogador}'
+    Lore:
+      - ''
+      - ' &fVivos: &a{vivos} &f/ Cama: {cama}'
+      - '{membros}'
+      - ''
+      - '&eClique para ver os jogadores'
   Jogador:
     Nome: '{cor}{jogador}'
     Lore:
       - ''
       - ' &fEquipe: {cor}{equipe}'
-      - ' &fAbates: &a{abates}'
+      - ' &fAbates: &a{abates} &f/ Vida: &c{vida} ❤'
+      - ' &fEm combate: {combate}'
       - ''
       - '&eClique para teleportar'
+
+Jogadores equipe:
+  Titulo: '&8Equipe {equipe}'
 
 Grupo:
   Titulo: '&8Seu grupo'

@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 4
+Versao do modelo: 5
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -95,6 +95,9 @@ Partida:
   Segundos para renascer: 5
   # Segundos de invencibilidade ao renascer.
   Invencibilidade ao renascer: 3
+  # Segundos desde o ultimo golpe (dado ou recebido) para alguem contar
+  # como "em combate" no teleporte do espectador.
+  Segundos de combate: 8
   # Dano ao cair no vazio (999 = morte na hora).
   Dano do vazio: 999.0
   # Ferro, ouro, diamante e esmeralda de quem morre vao direto para quem
@@ -479,19 +482,48 @@ Hotbar:
       Nome: '&cSair &7(voltar para o lobby)'
       Material: RED_BED
       Slot: 8
+  # Quem morreu de vez (sem cama) ou entrou para assistir.
   Espectador:
     Jogar novamente:
       Nome: '&bJogar novamente'
       Material: PAPER
       Slot: 2
     Jogadores:
-      Nome: '&aJogadores'
+      Nome: '&aTeleportar por equipe'
       Material: COMPASS
       Slot: 4
+      Lore:
+        - '&7Os jogadores vivos de cada equipe'
+    Aleatorio:
+      Nome: '&dTeleporte aleatorio'
+      Material: ENDER_PEARL
+      Slot: 3
+      Lore:
+        - '&7Cai perto de um jogador vivo qualquer'
+    Combate:
+      Nome: '&cTeleporte para o combate'
+      Material: BLAZE_POWDER
+      Slot: 5
+      Lore:
+        - '&7Vai ate quem esta lutando agora'
     Sair:
       Nome: '&cSair &7(voltar para o lobby)'
       Material: RED_BED
       Slot: 6
+  # Quem morreu mas ainda vai renascer (a cama existe): so os teleportes.
+  Renascendo:
+    Jogadores:
+      Nome: '&aTeleportar por equipe'
+      Material: COMPASS
+      Slot: 4
+    Aleatorio:
+      Nome: '&dTeleporte aleatorio'
+      Material: ENDER_PEARL
+      Slot: 3
+    Combate:
+      Nome: '&cTeleporte para o combate'
+      Material: BLAZE_POWDER
+      Slot: 5
   Partida:
     Rastreador:
       Nome: '&aRastreador'
