@@ -1,0 +1,396 @@
+# ==========================================================================
+#  StarReviver - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#  {jogador} no Dono vira o nick de quem esta olhando.
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo (Ativar: true liga).
+#    Slots                 Onde o conteudo paginado entra (ranking).
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao, Condicao e Acoes.
+#
+#  Acoes proprias:  principal | top | admin | confirmar_desistir | desistir |
+#                   socorro | levantar | soltar | ajuda | estatisticas |
+#                   confirmar | cancelar | anterior | proxima | voltar | fechar
+#                   alternar: <opcao>         (admin: liga/desliga ou gira)
+#                   somar: <opcao> <segundos> (admin: soma tempo; negativo tira)
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | mensagem: <texto>
+#                   actionbar: <texto> | som: <SOM;volume;tom>
+#
+#  Condicoes de um botao (so aparece quando vale):
+#    caido | de_pe | carregando | pode_levantar
+#
+#  Substituicoes em qualquer texto: {jogador} {status} {tempo} {quedas}
+#  {reanimou} {reanimado} {sangrou} {desistiu} {levantou} {executado}
+#  {tempo_caido} {pagina} {paginas}. Nas telas de admin, tambem
+#  {cfg_ativado} {cfg_executar} {cfg_mobs} {cfg_pose} {cfg_modo}
+#  {cfg_sangramento} {cfg_reanimacao} {cfg_quem_derrubou} {cfg_desconectar}
+#  {cfg_carregar} {cfg_socorro} {cfg_levantar} {cfg_varios} {cfg_protecao}.
+#  Placeholders do PlaceholderAPI tambem funcionam.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  /reviver -- a tela inicial.
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Reviver'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    perfil:
+      Slot: 10
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&c&l{jogador}'
+      Lore:
+        - '&7Suas estatisticas.'
+        - ''
+        - '&fStatus: {status}'
+        - '&fQuedas: &e{quedas}'
+        - '&fReanimou: &e{reanimou}'
+        - '&fFoi reanimado: &e{reanimado}'
+        - '&fSangrou ate a morte: &e{sangrou}'
+        - '&fTempo caido: &e{tempo_caido}'
+
+    socorro:
+      Slot: 12
+      Condicao: caido
+      Material: FIREWORK_ROCKET
+      Nome: '&c&lPedir socorro'
+      Lore:
+        - '&7Avisa quem esta por perto que'
+        - '&7voce esta caido, com a sua posicao.'
+        - ''
+        - '&aClique para pedir.'
+      Acoes:
+        - socorro
+
+    desistir:
+      Slot: 13
+      Condicao: caido
+      Material: BARRIER
+      Nome: '&4&lDesistir'
+      Lore:
+        - '&7Morre agora, sem esperar o'
+        - '&7sangramento acabar.'
+        - ''
+        - '&cClique para desistir.'
+      Acoes:
+        - confirmar_desistir
+
+    levantar:
+      Slot: 14
+      Condicao: pode_levantar
+      Material: BLAZE_POWDER
+      Nome: '&e&lLevantar sozinho'
+      Lore:
+        - '&7Voce tem permissao para se'
+        - '&7levantar sem ajuda.'
+        - ''
+        - '&aClique para levantar.'
+      Acoes:
+        - levantar
+
+    como_reanimar:
+      Slot: 12
+      Condicao: de_pe
+      Material: GOLDEN_APPLE
+      Nome: '&a&lComo reanimar'
+      Lore:
+        - '&7Quando alguem cair, chegue perto'
+        - '&7e segure &eSHIFT &7ate a barra encher.'
+        - ''
+        - '&7Com um &fKit Medico &7na mao'
+        - '&7a reanimacao e mais rapida.'
+        - ''
+        - '&7Clique direito com a mao vazia'
+        - '&7pega o caido nas costas.'
+
+    top:
+      Slot: 14
+      Condicao: de_pe
+      Material: GOLD_INGOT
+      Nome: '&6&lRanking'
+      Lore:
+        - '&7Quem mais reanimou no servidor.'
+        - ''
+        - '&aClique para ver.'
+      Acoes:
+        - top
+
+    soltar:
+      Slot: 16
+      Condicao: carregando
+      Material: LEAD
+      Nome: '&e&lSoltar'
+      Lore:
+        - '&7Solta o caido que voce esta'
+        - '&7carregando nas costas.'
+        - ''
+        - '&aClique para soltar.'
+      Acoes:
+        - soltar
+        - fechar
+
+    ajuda:
+      Slot: 26
+      Material: BOOK
+      Nome: '&f&lAjuda'
+      Lore:
+        - '&7Todos os comandos.'
+      Acoes:
+        - ajuda
+        - fechar
+
+# ---------------------------------------------------------------------------
+#  Ranking de reanimadores.
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8Top reanimadores'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [10, 11, 12, 13, 14, 15, 16]
+
+  # A cabeca de cada posicao. {posicao} {nome} {valor} valem aqui.
+  Cabeca:
+    Nome: '&e#{posicao} &f{nome}'
+    Lore:
+      - '&7Reanimacoes: &a{valor}'
+  Vazio:
+    Material: GRAY_DYE
+    Nome: '&7#{posicao}'
+    Lore:
+      - '&8Ninguem ainda.'
+
+  Itens:
+    voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&c&lVoltar'
+      Acoes:
+        - voltar
+
+# ---------------------------------------------------------------------------
+#  Confirmacao de desistir.
+# ---------------------------------------------------------------------------
+Confirmar:
+  Titulo: '&8Desistir?'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    sim:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&a&lSim, desistir'
+      Lore:
+        - '&7Voce vai morrer agora.'
+      Acoes:
+        - confirmar
+    nao:
+      Slot: 15
+      Material: RED_WOOL
+      Nome: '&c&lNao, continuar'
+      Lore:
+        - '&7Espera alguem te reanimar.'
+      Acoes:
+        - cancelar
+
+# ---------------------------------------------------------------------------
+#  /starreviver menu -- as opcoes principais, salvas direto no config.yml.
+# ---------------------------------------------------------------------------
+Admin:
+  Titulo: '&8Reviver - configuracao'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    ativado:
+      Slot: 10
+      Material: REDSTONE_TORCH
+      Nome: '&e&lSistema'
+      Lore:
+        - '&7Estado: {cfg_ativado}'
+        - ''
+        - '&aClique para alternar.'
+      Acoes:
+        - 'alternar: Geral.Ativado'
+
+    pose:
+      Slot: 11
+      Material: ARMOR_STAND
+      Nome: '&e&lPose do caido'
+      Lore:
+        - '&7Atual: &f{cfg_pose}'
+        - '&7DEITADO, SENTADO ou RASTEJAR.'
+        - ''
+        - '&aClique para girar.'
+      Acoes:
+        - 'alternar: Queda.Pose'
+
+    modo:
+      Slot: 12
+      Material: LEVER
+      Nome: '&e&lModo de reanimar'
+      Lore:
+        - '&7Atual: &f{cfg_modo}'
+        - '&7AGACHAR, CLIQUE ou AMBOS.'
+        - ''
+        - '&aClique para girar.'
+      Acoes:
+        - 'alternar: Reanimacao.Modo'
+
+    sangramento:
+      Slot: 13
+      Material: REDSTONE
+      Nome: '&c&lTempo de sangramento'
+      Lore:
+        - '&7Atual: &f{cfg_sangramento}'
+        - ''
+        - '&aEsquerdo: &f+5s'
+        - '&cDireito: &f-5s'
+      Acoes:
+        - 'somar: Sangramento.Tempo 5'
+
+    reanimacao:
+      Slot: 14
+      Material: GOLDEN_APPLE
+      Nome: '&a&lTempo de reanimacao'
+      Lore:
+        - '&7Atual: &f{cfg_reanimacao}'
+        - ''
+        - '&aEsquerdo: &f+1s'
+        - '&cDireito: &f-1s'
+      Acoes:
+        - 'somar: Reanimacao.Tempo 1'
+
+    protecao:
+      Slot: 15
+      Material: IRON_CHESTPLATE
+      Nome: '&b&lProtecao ao levantar'
+      Lore:
+        - '&7Atual: &f{cfg_protecao}'
+        - ''
+        - '&aEsquerdo: &f+1s'
+        - '&cDireito: &f-1s'
+      Acoes:
+        - 'somar: Reanimacao.Protecao 1'
+
+    executar:
+      Slot: 16
+      Material: IRON_SWORD
+      Nome: '&e&lExecutar caidos'
+      Lore:
+        - '&7Estado: {cfg_executar}'
+        - ''
+        - '&aClique para alternar.'
+      Acoes:
+        - 'alternar: Executar.Permitir'
+
+    mobs:
+      Slot: 19
+      Material: ZOMBIE_HEAD
+      Nome: '&e&lMobs atacam caidos'
+      Lore:
+        - '&7Estado: {cfg_mobs}'
+        - ''
+        - '&aClique para alternar.'
+      Acoes:
+        - 'alternar: Mobs.Atacam caidos'
+
+    quem_derrubou:
+      Slot: 20
+      Material: BOW
+      Nome: '&e&lQuem derrubou reanima'
+      Lore:
+        - '&7Estado: {cfg_quem_derrubou}'
+        - ''
+        - '&aClique para alternar.'
+      Acoes:
+        - 'alternar: Reanimacao.Quem derrubou pode reanimar'
+
+    varios:
+      Slot: 21
+      Material: NETHER_STAR
+      Nome: '&e&lVarios reanimadores'
+      Lore:
+        - '&7Estado: {cfg_varios}'
+        - ''
+        - '&aClique para alternar.'
+      Acoes:
+        - 'alternar: Reanimacao.Permitir varios'
+
+    desconectar:
+      Slot: 22
+      Material: OAK_DOOR
+      Nome: '&e&lAo desconectar'
+      Lore:
+        - '&7Atual: &f{cfg_desconectar}'
+        - '&7MORRER ou MANTER.'
+        - ''
+        - '&aClique para girar.'
+      Acoes:
+        - 'alternar: Queda.Ao desconectar'
+
+    carregar:
+      Slot: 23
+      Material: SADDLE
+      Nome: '&e&lCarregar nas costas'
+      Lore:
+        - '&7Estado: {cfg_carregar}'
+        - ''
+        - '&aClique para alternar.'
+      Acoes:
+        - 'alternar: Carregar.Ativar'
+
+    socorro:
+      Slot: 24
+      Material: FIREWORK_ROCKET
+      Nome: '&e&lPedido de socorro'
+      Lore:
+        - '&7Estado: {cfg_socorro}'
+        - ''
+        - '&aClique para alternar.'
+      Acoes:
+        - 'alternar: Socorro.Ativar'
+
+    levantar:
+      Slot: 25
+      Material: BLAZE_POWDER
+      Nome: '&e&lLevantar sozinho'
+      Lore:
+        - '&7Estado: {cfg_levantar}'
+        - '&7(precisa da permissao starreviver.levantar)'
+        - ''
+        - '&aClique para alternar.'
+      Acoes:
+        - 'alternar: Levantar.Ativar'
+
+    recarregar:
+      Slot: 40
+      Material: COMPARATOR
+      Nome: '&a&lRecarregar'
+      Lore:
+        - '&7Rele todos os arquivos.'
+      Acoes:
+        - 'comando: starreviver recarregar'
+        - fechar

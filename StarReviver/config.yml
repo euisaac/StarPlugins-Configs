@@ -1,0 +1,292 @@
+# ==========================================================================
+#  StarReviver - configuracao geral
+#
+#  Quando um golpe mataria o jogador, ele nao morre: cai no chao sangrando,
+#  com um tempo para alguem chegar e reanima-lo. Quem reanima segura o
+#  agachar ao lado do caido por alguns segundos. Se o tempo acaba, ninguem
+#  aparece ou o caido desiste, a morte acontece de verdade (com os drops e a
+#  mensagem de morte normais).
+#
+#  Os itens medicos ficam no itens.yml, os textos no mensagens.yml e a
+#  aparencia das telas no menus.yml.
+#
+#  Tempos aceitam 30s, 10m, 2h, 1d, 1h30m. Vida e em pontos: 1 = meio
+#  coracao, 20 = a barra inteira. Onde diz "ou %", aceita '50%' da vida
+#  maxima do jogador.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Desliga tudo sem remover o plugin (o /starreviver ativar liga de novo).
+  Ativado: true
+
+  # Escreve no console cada decisao do plugin. Ligue so para achar problema.
+  Debug: false
+
+  # Mundos onde ninguem cai: a morte acontece normalmente.
+  Mundos desativados:
+    - lobby
+
+  # Regioes do WorldGuard onde ninguem cai. Sem WorldGuard a lista e ignorada.
+  Regioes desativadas: []
+
+  # So cai quem esta nestes modos de jogo.
+  Modos de jogo:
+    - SURVIVAL
+    - ADVENTURE
+
+  # Jogador com totem da imortalidade na mao usa o totem em vez de cair.
+  Respeitar totem: true
+
+  # Causas de dano que matam direto, sem cair. Nomes do Bukkit (DamageCause):
+  # VOID (vazio), SUICIDE (/kill), LAVA, FIRE, DROWNING, FALL, EXPLOSION...
+  Causas que matam direto:
+    - VOID
+    - SUICIDE
+    - KILL
+
+  # Ticks de espera depois do login para carregar as estatisticas do banco.
+  # Vale para rede com MySQL compartilhado. 20 ticks = 1 segundo.
+  Atraso ao entrar: 20
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores: as estatisticas e o ranking valem na rede inteira).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starreviver_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  # De quanto em quanto tempo o que esta em memoria vai para o banco, em
+  # segundos. Sair do servidor grava na hora, independente disto.
+  Salvar a cada: 60
+
+Queda:
+  # Vida que o jogador fica enquanto esta caido.
+  Vida ao cair: 2.0
+
+  # Como o caido aparece:
+  #   DEITADO   preso no lugar, deitado no chao (a partir da 1.13; na 1.8 a
+  #             1.12 fica sentado, o jogo antigo nao tem a pose)
+  #   SENTADO   preso no lugar, sentado
+  #   RASTEJAR  solto, anda bem devagar e nao pula (para se arrastar ate um
+  #             canto seguro)
+  Pose: DEITADO
+
+  # Velocidade de andar no modo RASTEJAR (o normal do jogo e 0.2).
+  Velocidade ao rastejar: 0.05
+
+  # Efeitos de pocao enquanto esta caido: EFEITO:nivel (nivel 1 = I).
+  # Nomes do Bukkit: SLOWNESS, BLINDNESS, NAUSEA, WEAKNESS, DARKNESS (1.19+)...
+  Efeitos:
+    - 'SLOWNESS:5'
+    - 'WEAKNESS:3'
+
+  # Escurece a tela do caido (efeito de cegueira). Vale para DEITADO e SENTADO.
+  Escurecer a tela: true
+
+  # O que o caido NAO pode fazer.
+  Bloquear:
+    Comandos: true
+    # Estes continuam funcionando (sem a barra). Os do proprio plugin ja
+    # entram sozinhos.
+    Comandos permitidos:
+      - msg
+      - tell
+      - r
+      - reply
+      - g
+      - clan
+      - c
+    Inventario: true
+    Interagir: true
+    Comer: true
+    Soltar itens: true
+    Pegar itens: true
+    Atacar: true
+
+  # O que acontece se o caido desconectar:
+  #   MORRER   morre na hora (drops no lugar; evita fugir do combate)
+  #   MANTER   volta caido ao entrar, com o tempo que faltava (ate o servidor
+  #            reiniciar)
+  Ao desconectar: MORRER
+
+  # Mensagem de morte de quem sangrou ate o fim:
+  #   PERSONALIZADA  a do mensagens.yml (Morte.*)
+  #   VANILLA        a do jogo ("fulano foi morto por ciclano")
+  #   NENHUMA        nenhuma
+  Mensagem de morte: PERSONALIZADA
+
+  # Alguem que acabou de ser reanimado e cai de novo dentro deste tempo
+  # morre direto. Evita o loop de cair-reanimar-cair sem fim. 0 desliga.
+  Cair de novo em menos de: 10s
+
+  Limite:
+    # Quantas vezes o jogador pode cair dentro da janela; na seguinte morre
+    # direto. 0 = sem limite. A permissao starreviver.quedas.<n> ganha.
+    Maximo de quedas: 3
+    Janela: 10m
+
+Sangramento:
+  # Quanto tempo o caido aguenta antes de morrer. A permissao
+  # starreviver.sangramento.<segundos> ganha deste valor.
+  Tempo: 45s
+
+  # Tempo maximo que uma bandagem (itens.yml) pode empurrar o sangramento.
+  Tempo maximo: 3m
+
+  Bossbar:
+    # Barra no topo da tela do caido (a partir da 1.9; a 1.8 nao tem).
+    Ativar: true
+    # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+    Cor: RED
+    # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+    Estilo: SEGMENTED_10
+
+  # Texto repetido em cima da hotbar do caido (mensagens.yml: Caido.Actionbar).
+  Actionbar: true
+
+  Som:
+    # Batimento cardiaco repetido para o caido. Vazio desliga.
+    Batimento: 'BLOCK_NOTE_BLOCK_BASS;1;0.5'
+    # De quantos em quantos ticks. Fica mais rapido no fim.
+    A cada: 20
+
+  Particulas:
+    Ativar: true
+    # Particula do Bukkit sem dado extra (a 1.8 nao tem).
+    Tipo: DAMAGE_INDICATOR
+    Quantidade: 3
+    A cada: 10
+
+  Holograma:
+    # Linhas flutuando sobre o caido, para quem passa saber o que fazer.
+    Ativar: true
+    # Altura da primeira linha em relacao ao chao do caido.
+    Altura: 1.0
+    # Distancia entre as linhas.
+    Espacamento: 0.27
+    Linhas:
+      - '&c&l{jogador} &7esta caido!'
+      - '&fSegure &e&lSHIFT &fperto dele para reanimar'
+      - '&7Tempo restante: &c{tempo}'
+
+Reanimacao:
+  # Como se reanima:
+  #   AGACHAR   segura o agachar (shift) perto do caido
+  #   CLIQUE    clica com o botao direito no caido e fica perto ate o fim
+  #   AMBOS     os dois valem
+  Modo: AGACHAR
+
+  # Tempo segurando para reanimar. A permissao starreviver.reanimacao.<segundos>
+  # ganha deste valor. Os itens medicos podem encurtar (itens.yml).
+  Tempo: 5s
+
+  # Distancia maxima do caido, em blocos.
+  Distancia: 3.0
+
+  # Varios jogadores reanimando o mesmo caido ao mesmo tempo. Cada reanimador
+  # alem do primeiro contribui com esta fracao da velocidade dele (0.5 = 50%).
+  Permitir varios: true
+  Bonus por reanimador extra: 0.5
+
+  # Quem derrubou o jogador pode reanima-lo? (false evita farm de estatistica)
+  Quem derrubou pode reanimar: false
+
+  # A reanimacao e cancelada quando o reanimador leva dano.
+  Cancelar ao levar dano: true
+
+  # Exige um item do itens.yml na mao para reanimar (id do item). Vazio nao
+  # exige nada. O item e consumido conforme o itens.yml.
+  Exigir item: ''
+
+  # Vida com que o jogador levanta. Pontos ou % da vida maxima.
+  Vida ao reanimar: '50%'
+
+  # Efeitos de pocao ao levantar: EFEITO:nivel:segundos.
+  Efeitos ao reanimar:
+    - 'REGENERATION:2:5'
+    - 'RESISTANCE:1:5'
+
+  # Tempo em que o reanimado nao leva dano depois de levantar. 0 desliga.
+  Protecao: 4s
+
+  # Barra de progresso na actionbar dos dois enquanto reanima.
+  Mostrar progresso: true
+
+  Recompensas:
+    # Rodados pelo console quando alguem reanima outro jogador.
+    # {reanimador} e {caido} valem aqui. Exemplos:
+    #   - 'eco give {reanimador} 100'
+    #   - 'give {reanimador} golden_apple 1'
+    Comandos: []
+    # O mesmo par (reanimador -> caido) so ganha de novo depois deste tempo.
+    # Evita dois amigos se derrubando e reanimando para farmar. 0 desliga.
+    Anti-farm: 10m
+
+Executar:
+  # Um jogador caido pode ser executado (morto de vez) por outro jogador.
+  Permitir: true
+  # Como a execucao funciona:
+  #   GOLPE_UNICO   qualquer golpe de jogador mata o caido na hora
+  #   DANO          o caido tem a 'Vida ao cair' e morre quando ela acaba
+  Modo: GOLPE_UNICO
+  # Quem executa precisa da permissao starreviver.executar.
+  Exigir permissao: true
+
+Mobs:
+  # Mobs continuam atacando quem esta caido? (false: o caido fica invisivel
+  # para eles e o dano deles e cancelado)
+  Atacam caidos: false
+
+Levantar:
+  # Auto-reanimacao pela permissao starreviver.levantar (/reviver levantar).
+  Ativar: true
+  # Tempo canalizando antes de levantar.
+  Tempo: 3s
+  # Intervalo minimo entre dois usos, por jogador.
+  Cooldown: 30m
+  # Vida com que levanta. Pontos ou %.
+  Vida: 4
+
+Socorro:
+  # /reviver socorro: avisa os jogadores por perto com a posicao do caido.
+  Ativar: true
+  # Raio do aviso em blocos; 0 avisa o mundo inteiro.
+  Raio: 150
+  Cooldown: 20s
+  # Solta fogos no lugar do caido para marcar a posicao.
+  Fogos: true
+  # Mostra as coordenadas no aviso.
+  Coordenadas: true
+
+Carregar:
+  # Clique direito com a mao vazia (sem agachar) pega o caido nas costas
+  # para leva-lo a um lugar seguro; outro clique ou agachar solta.
+  Ativar: true
+  # O sangramento para enquanto o caido esta sendo carregado.
+  Pausar sangramento: false
+
+Top:
+  # Quantos aparecem no ranking e de quanto em quanto tempo ele e relido do
+  # banco, em segundos.
+  Tamanho: 10
+  Atualizar a cada: 60
+
+Sons:
+  # SOM, SOM;volume ou SOM;volume;tom. Vazio desliga.
+  Caiu: 'ENTITY_PLAYER_HURT;1;0.6'
+  Reanimando: 'BLOCK_NOTE_BLOCK_PLING;0.6;1.4'
+  Reanimado: 'ENTITY_PLAYER_LEVELUP;1;1.2'
+  Sangrou: 'ENTITY_WITHER_SPAWN;0.5;0.5'
+  Socorro: 'ENTITY_FIREWORK_ROCKET_LAUNCH;1;1'
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'

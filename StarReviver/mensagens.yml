@@ -1,0 +1,220 @@
+# ==========================================================================
+#  StarReviver - textos
+#
+#  Mensagem vazia ('') simplesmente nao e enviada: e assim que se desliga um
+#  aviso sem precisar de uma opcao "Ativar" para cada um.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB. Placeholders do
+#  PlaceholderAPI funcionam em qualquer texto. Titulos aceitam <nl> para
+#  separar titulo e subtitulo.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&c&lREVIVER &8- &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Inativo: '&cO StarReviver esta inativo (sem banco de dados). Avise a equipe.'
+  Desativado: '&cO sistema de reanimacao esta desativado no momento.'
+  Carregando: '&cSeus dados ainda estao carregando; tente de novo em instantes.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Jogador desconhecido: '&cNao achei ninguem chamado &f{jogador}&c.'
+  Numero invalido: '&cO numero &f{valor} &cnao vale.'
+  Comando desconhecido: '&cO subcomando &f{comando} &cnao existe. Use &f/reviver ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Nao esta caido: '&cVoce nao esta caido.'
+  Outro nao esta caido: '&f{jogador} &cnao esta caido.'
+  Ja esta caido: '&f{jogador} &cja esta caido.'
+
+# Textos curtos usados nos menus e nos placeholders.
+Etiquetas:
+  Caido: '&cCaido'
+  De pe: '&aDe pe'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ninguem: '&7ninguem'
+  Ambiente: '&7o ambiente'
+  Pausado: '&ePausado'
+  Nenhum: '&7Nenhum'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+
+Tempo:
+  Dias: 'd'
+  Horas: 'h'
+  Minutos: 'm'
+  Segundos: 's'
+
+Caido:
+  # Para quem caiu.
+  Caiu: '&cVoce caiu! Aguente firme: voce tem &f{tempo} &cpara alguem te reanimar.'
+  Caiu titulo: '&c&lVOCE CAIU!<nl>&7Espere alguem te reanimar ou use &f/reviver desistir'
+  Caiu por: '&7Derrubado por: &f{atacante}'
+  # Repetida em cima da hotbar (config: Sangramento.Actionbar).
+  Actionbar: '&c&l❤ &fSangrando... &c{tempo} &7restantes &8| &7{reanimadores} reanimando'
+  Actionbar pausado: '&e&l❤ &fVoce esta sendo carregado por &e{carregador}'
+  Bossbar: '&c&lSANGRANDO &f{tempo}'
+  Bossbar pausado: '&e&lCARREGADO &fpor {carregador}'
+  # Para quem esta por perto (raio da reanimacao x 5).
+  Perto: '&f{jogador} &7caiu perto de voce! Segure &eSHIFT &7ao lado dele para reanimar.'
+  # Para o servidor inteiro. Vazio desliga.
+  Anuncio: ''
+  Limite atingido: '&cVoce caiu vezes demais em pouco tempo e nao tem mais segunda chance por enquanto.'
+  Cair de novo: '&cVoce acabou de ser reanimado e caiu de novo: sem segunda chance desta vez.'
+  Bloqueado: '&cVoce nao pode fazer isso enquanto esta caido.'
+  Comando bloqueado: '&cVoce nao pode usar comandos enquanto esta caido. Use &f/reviver desistir &cou &f/reviver socorro&c.'
+
+Reanimacao:
+  Comecou reanimador: '&aVoce comecou a reanimar &f{caido}&a. Fique agachado ao lado dele.'
+  Comecou caido: '&f{reanimador} &aesta te reanimando! Aguente firme.'
+  Progresso: '&aReanimando {caido} &8[{barra}&8] &f{porcentagem}%'
+  Progresso caido: '&aSendo reanimado por {reanimador} &8[{barra}&8] &f{porcentagem}%'
+  Barra cheia: '&a|'
+  Barra vazia: '&7|'
+  Cancelou reanimador: '&cVoce parou de reanimar &f{caido}&c.'
+  Cancelou caido: '&f{reanimador} &cparou de te reanimar.'
+  Reanimado: '&aVoce foi reanimado por &f{reanimador}&a!'
+  Reanimado titulo: '&a&lREANIMADO!<nl>&7{reanimador} te salvou'
+  Reanimou: '&aVoce reanimou &f{caido}&a!'
+  Reanimou titulo: '&a&lSALVOU!<nl>&7Voce reanimou {caido}'
+  Recompensa: '&eVoce recebeu uma recompensa por reanimar &f{caido}&e.'
+  Anti-farm: '&7Voce ja reanimou &f{caido} &7ha pouco tempo; sem recompensa desta vez.'
+  Sem permissao: '&cVoce nao tem permissao para reanimar.'
+  Sem item: '&cVoce precisa de &f{item} &cna mao para reanimar.'
+  Quem derrubou: '&cVoce nao pode reanimar quem voce mesmo derrubou.'
+  Voce mesmo caido: '&cVoce esta caido e nao pode reanimar ninguem.'
+  Longe: '&cVoce se afastou demais do caido.'
+  Levou dano: '&cVoce levou dano e a reanimacao foi cancelada.'
+  Admin reanimou: '&aVoce reanimou &f{caido} &apela forca.'
+  Admin reanimado: '&aVoce foi reanimado pela equipe.'
+  Protegido: '&7Voce esta protegido por &f{tempo}&7.'
+
+Desistir:
+  Desistiu: '&cVoce desistiu.'
+  Confirmar: '&eTem certeza? Use &f/reviver desistir confirmar &epara morrer agora.'
+  Sem permissao: '&cVoce nao pode desistir.'
+
+Levantar:
+  Comecou: '&eVoce esta se levantando... fique parado por &f{tempo}&e.'
+  Levantou: '&aVoce se levantou sozinho!'
+  Levantou titulo: '&a&lDE PE!<nl>&7Voce se levantou sozinho'
+  Cooldown: '&cVoce so pode se levantar sozinho de novo em &f{tempo}&c.'
+  Desativado: '&cLevantar sozinho esta desativado.'
+  Sem permissao: '&cVoce nao pode se levantar sozinho.'
+  Cancelado: '&cVoce se mexeu e parou de se levantar.'
+
+Socorro:
+  Enviado: '&aPedido de socorro enviado! &f{avisados} &ajogador(es) foram avisados.'
+  Ninguem: '&cNinguem por perto para ouvir o seu pedido.'
+  Aviso: '&c&l⚠ &f{jogador} &cesta caido e pede socorro! &7({distancia} blocos)'
+  Aviso coordenadas: '&c&l⚠ &f{jogador} &cesta caido e pede socorro! &7({distancia} blocos, em {x} {y} {z})'
+  Aviso titulo: '&c&lSOCORRO!<nl>&f{jogador} &7precisa de voce'
+  Cooldown: '&cEspere &f{tempo} &cpara pedir socorro de novo.'
+  Desativado: '&cO pedido de socorro esta desativado.'
+
+Carregar:
+  Pegou: '&aVoce pegou &f{caido} &anas costas. Clique de novo ou agache para soltar.'
+  Foi pego: '&f{carregador} &aesta te carregando.'
+  Soltou: '&7Voce soltou &f{caido}&7.'
+  Foi solto: '&f{carregador} &7te soltou.'
+  Desativado: '&cCarregar caidos esta desativado.'
+  Ja carregando: '&cVoce ja esta carregando alguem.'
+  Ja carregado: '&cAlguem ja esta carregando este jogador.'
+  Sem permissao: '&cVoce nao tem permissao para carregar caidos.'
+  Nao carrega: '&cVoce nao esta carregando ninguem.'
+
+Executar:
+  Executou: '&cVoce executou &f{caido}&c.'
+  Foi executado: '&cVoce foi executado por &f{executor}&c.'
+  Sem permissao: '&cVoce nao pode executar jogadores caidos.'
+  Bloqueado: '&cJogadores caidos nao podem ser executados aqui.'
+
+Sangrou:
+  Morreu: '&cNinguem chegou a tempo. Voce sangrou ate a morte.'
+  Titulo: '&4&lVOCE MORREU<nl>&7ninguem chegou a tempo'
+
+# Mensagem de morte que o servidor inteiro ve (config: Queda.Mensagem de morte).
+Morte:
+  Sangrou: '&c{jogador} &7sangrou ate a morte depois de ser derrubado por &c{atacante}&7.'
+  Sangrou sem atacante: '&c{jogador} &7sangrou ate a morte.'
+  Desistiu: '&c{jogador} &7desistiu depois de ser derrubado por &c{atacante}&7.'
+  Desistiu sem atacante: '&c{jogador} &7desistiu de lutar.'
+  Executado: '&c{jogador} &7foi executado por &c{executor}&7.'
+  Desconectou: '&c{jogador} &7desconectou enquanto estava caido.'
+
+Itens:
+  Recebeu: '&aVoce recebeu &f{quantidade}x {item}&a.'
+  Deu: '&aVoce deu &f{quantidade}x {item} &apara &f{jogador}&a.'
+  Desconhecido: '&cNao existe um item chamado &f{item}&c. Use &f/starreviver itens&c.'
+  Lista cabecalho: '&eItens do StarReviver:'
+  Lista linha: '&7 - &f{id} &8({tipo})'
+  Bandagem usada: '&aVoce aplicou &f{item} &aem &f{caido}&a: +{tempo} de sangramento.'
+  Bandagem recebida: '&f{jogador} &aaplicou &f{item} &aem voce: +{tempo} de sangramento.'
+  Bandagem maximo: '&cO sangramento de &f{caido} &cja esta no maximo.'
+  Bandagem limite: '&cEste caido ja recebeu o maximo de bandagens.'
+  Adrenalina usada: '&eVoce usou &f{item}&e. Fique parado...'
+  Sinalizador usado: '&eVoce disparou &f{item}&e!'
+  Kit usado: '&7Voce gastou &f{item}&7.'
+  Inventario cheio: '&cO inventario de &f{jogador} &cesta cheio; o item caiu no chao.'
+
+Estatisticas:
+  Cabecalho: '&8&m----------&r &c&lREVIVER &f{jogador} &8&m----------'
+  Linhas: |
+    &7Quedas: &f{quedas}
+    &7Reanimou: &f{reanimou}
+    &7Foi reanimado: &f{reanimado}
+    &7Sangrou ate a morte: &f{sangrou}
+    &7Desistiu: &f{desistiu}
+    &7Levantou sozinho: &f{levantou}
+    &7Foi executado: &f{executado}
+    &7Tempo caido: &f{tempo_caido}
+  Rodape: '&8&m--------------------------------------'
+
+Top:
+  Cabecalho: '&8&m----------&r &c&lTOP REANIMADORES &8&m----------'
+  Linha: '&e#{posicao} &f{jogador} &8- &a{valor} reanimacoes'
+  Vazio: '&7Ninguem reanimou ninguem ainda.'
+
+Admin:
+  Derrubou: '&aVoce derrubou &f{jogador}&a.'
+  Foi derrubado: '&cVoce foi derrubado pela equipe.'
+  Matou: '&aVoce matou &f{jogador}&a.'
+  Resetou: '&aEstatisticas de &f{jogador} &azeradas.'
+  Ativou: '&aSistema de reanimacao ativado.'
+  Desativou: '&cSistema de reanimacao desativado.'
+  Nao pode cair: '&f{jogador} &cnao pode cair (modo de jogo, mundo ou permissao).'
+  Info: |
+    &8&m----------&r &c&lREVIVER &f{jogador} &8&m----------
+    &7Status: {status}
+    &7Tempo restante: &f{tempo}
+    &7Derrubado por: &f{atacante}
+    &7Reanimadores agora: &f{reanimadores}
+    &7Carregado por: &f{carregador}
+    &7Quedas na janela: &f{quedas_janela}
+  Salvo: '&aOpcao &f{opcao} &asalva: &f{valor}'
+
+Ajuda:
+  Jogador: |
+    &8&m----------&r &c&lREVIVER &8&m----------
+    &e/reviver &7- abre o menu
+    &e/reviver desistir &7- morre agora, sem esperar
+    &e/reviver socorro &7- avisa quem esta por perto
+    &e/reviver levantar &7- levanta sozinho (com permissao)
+    &e/reviver soltar &7- solta quem voce esta carregando
+    &e/reviver estatisticas [jogador] &7- suas estatisticas
+    &e/reviver top &7- ranking de reanimadores
+    &7Para reanimar alguem, segure &eSHIFT &7ao lado do caido.
+  Admin: |
+    &8&m----------&r &c&lREVIVER ADMIN &8&m----------
+    &e/starreviver recarregar
+    &e/starreviver reanimar <jogador>
+    &e/starreviver derrubar <jogador> [segundos]
+    &e/starreviver matar <jogador>
+    &e/starreviver info <jogador>
+    &e/starreviver resetar <jogador>
+    &e/starreviver item <id> [jogador] [quantidade]
+    &e/starreviver itens
+    &e/starreviver ativar | desativar
+    &e/starreviver menu

@@ -1,0 +1,119 @@
+# ==========================================================================
+#  StarReviver - itens medicos
+#
+#  Cada item tem um Tipo, que diz o que ele faz:
+#    KIT_MEDICO    na mao de quem reanima, encurta o tempo de reanimacao
+#                  (Multiplicador de tempo: 0.5 = metade). Tambem e o item
+#                  que 'Reanimacao.Exigir item' do config.yml pede.
+#    ADRENALINA    o proprio caido usa (clique direito segurando) e se
+#                  levanta sozinho depois de 'Tempo de uso'.
+#    BANDAGEM      um aliado clica no caido segurando: soma 'Tempo extra' ao
+#                  sangramento dele (ate 'Sangramento.Tempo maximo' do config).
+#    SINALIZADOR   o caido usa: dispara um pedido de socorro sem cooldown e
+#                  solta fogos.
+#
+#  Consumir: true gasta uma unidade ao usar.
+#  Item: Material (nome do XSeries, funciona na 1.8 e na 1.21), Nome, Lore,
+#  Brilho, Textura/Dono (para PLAYER_HEAD).
+#  Craft: Forma com 3 linhas de 3 letras e Ingredientes letra -> material.
+#  Espaco em branco na Forma e slot vazio.
+#
+#  /starreviver item <id> [jogador] [quantidade] entrega o item.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Itens:
+  kit_medico:
+    Tipo: KIT_MEDICO
+    Multiplicador de tempo: 0.5
+    Consumir: true
+    Item:
+      Material: PAPER
+      Nome: '&c&lKit Medico'
+      Lore:
+        - '&7Segure na mao enquanto reanima'
+        - '&7alguem: a reanimacao fica'
+        - '&fduas vezes mais rapida&7.'
+        - ''
+        - '&8Consumido ao usar.'
+      Brilho: true
+    Craft:
+      Ativar: true
+      Forma:
+        - 'LPL'
+        - 'PRP'
+        - 'LPL'
+      Ingredientes:
+        L: WHITE_WOOL
+        P: PAPER
+        R: REDSTONE
+
+  adrenalina:
+    Tipo: ADRENALINA
+    Tempo de uso: 3s
+    Vida ao levantar: 6
+    Consumir: true
+    Item:
+      Material: BLAZE_ROD
+      Nome: '&e&lAdrenalina'
+      Lore:
+        - '&7Use enquanto estiver caido para'
+        - '&7se levantar sozinho em &f3s&7.'
+        - ''
+        - '&8Consumido ao usar.'
+      Brilho: true
+    Craft:
+      Ativar: true
+      Forma:
+        - ' G '
+        - ' B '
+        - ' R '
+      Ingredientes:
+        G: GLOWSTONE_DUST
+        B: BLAZE_ROD
+        R: REDSTONE
+
+  bandagem:
+    Tipo: BANDAGEM
+    Tempo extra: 30s
+    # Quantas bandagens um mesmo caido aceita por queda.
+    Maximo por queda: 2
+    Consumir: true
+    Item:
+      Material: PAPER
+      Nome: '&f&lBandagem'
+      Lore:
+        - '&7Clique em um jogador caido para'
+        - '&7dar a ele mais &f30s &7de sangramento.'
+        - ''
+        - '&8Consumido ao usar.'
+    Craft:
+      Ativar: true
+      Forma:
+        - 'LL '
+        - 'LL '
+        - '   '
+      Ingredientes:
+        L: WHITE_WOOL
+
+  sinalizador:
+    Tipo: SINALIZADOR
+    Consumir: true
+    Item:
+      Material: FIREWORK_ROCKET
+      Nome: '&c&lSinalizador'
+      Lore:
+        - '&7Use enquanto estiver caido: solta'
+        - '&7fogos e avisa todo mundo por perto.'
+        - ''
+        - '&8Consumido ao usar.'
+    Craft:
+      Ativar: true
+      Forma:
+        - ' P '
+        - ' G '
+        - ' P '
+      Ingredientes:
+        P: PAPER
+        G: GUNPOWDER
