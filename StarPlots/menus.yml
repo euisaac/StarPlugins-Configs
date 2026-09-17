@@ -44,7 +44,7 @@
 #  Tudo isto tambem pode ser editado por menu: /starplots config
 # ------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Menus:
 
@@ -562,7 +562,8 @@ Menus:
   #  Listas de terrenos: os meus, os de alguem
   #  (Favoritos, Mercado, Alugueis e Ranking sao telas iguais, abaixo)
   #
-  #  Modelos: terreno a-venda para-alugar
+  #  Acoes: AUTO (so aparece quando voce nao tem terreno)
+#  Modelos: terreno a-venda para-alugar
   #  Trocas extras: {modo} {quantidade} {posicao}
   # ====================================================================
   Lista:
@@ -573,6 +574,17 @@ Menus:
       Material: GRAY_STAINED_GLASS_PANE
     Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
     Itens:
+      pegar:
+        Slot: 49
+        Acao: AUTO
+        Material: NETHER_STAR
+        Nome: '&b&lPegar um terreno'
+        Lore:
+          - '&7Voce ainda nao tem terreno.'
+          - '&7Encontra o proximo livre e'
+          - '&7te leva ate ele.'
+          - ''
+          - '&eClique para pegar.'
       voltar:
         Slot: 45
         Acao: VOLTAR
