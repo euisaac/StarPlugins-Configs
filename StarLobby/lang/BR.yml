@@ -107,11 +107,22 @@ chat:
   fila-servidor-invalido: '&cServidor ou lobby não encontrado.'
   fila-ja-conectado: '&cVocê já está conectado a este servidor/lobby.'
   fila-origem-invalida: '&cEste servidor não está disponível pelo proxy que você usou para entrar.'
-  fila-entrou: '&aVocê entrou na fila para o servidor &f{servidor}&a.'
-  fila-saiu: '&cVocê saiu da fila para o servidor &f{servidor}&c.'
-  fila-falha-removido: '&cNão foi possível conectar você ao servidor &f{servidor}&c depois de várias tentativas. Você foi removido da fila.'
-  fila-actionbar-conectando: '&a[Fila] &fConectando ao servidor &6{servidor}&f... &7(posição {posicao})'
-  fila-actionbar-reiniciando: '&c[Fila] &fServidor &6{servidor} &creiniciando... &7(posição {posicao})'
+  # ---- Fila para conectar a um servidor ----
+  # Placeholders (valem em TODAS as mensagens de fila, chat e actionbar):
+  #   {servidor}     nome de exibição do servidor (o display-name do
+  #                  servers.yml/lobbies.yml, com as cores dele)
+  #   {servidor_id}  chave interna do servidor (ex: survival, oneblock)
+  #   {posicao}      posição do jogador na fila
+  fila-entrou: '&aVocê está na fila do {servidor} &ana posição &e#{posicao}&a.'
+  # Segunda linha, CLICÁVEL: clicar roda /fila {servidor_id}, que tira o
+  # jogador da fila. Deixe vazia ('') para não mandar essa linha.
+  fila-entrou-sair: '&aClique &e&lAQUI &apara sair da fila.'
+  # Texto que aparece ao passar o mouse na linha de cima.
+  fila-entrou-sair-hover: '&7Sair da fila do {servidor}&7.'
+  fila-saiu: '&cVocê saiu da fila do {servidor}&c.'
+  fila-falha-removido: '&cNão foi possível conectar você ao servidor {servidor}&c depois de várias tentativas. Você foi removido da fila.'
+  fila-actionbar-conectando: '&aConectando ao servidor {servidor}&a... &7(posição {posicao})'
+  fila-actionbar-reiniciando: '&cServidor {servidor} &creiniciando... &7(posição {posicao})'
 
 kick:
   maintenance: '&c&lManutenção<nl><nl>&cEste servidor está em manutenção.<nl>&cVolte mais tarde.'

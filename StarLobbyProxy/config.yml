@@ -151,7 +151,23 @@ mensagens:
   autoreconectar-desativado: "&eAuto-reconectar para &6{servidor}&e desativado."
   autoreconectar-servidor-invalido: "&cServidor inválido. Use /autoreconectar para ver as opções disponíveis."
   autoreconectar-sem-gui: "&cO servidor atual não tem suporte a menu visual. Use &6/autoreconectar <servidor>&c diretamente."
-  fila-falha-removido: "&cNão foi possível conectar você ao servidor &6{servidor}&c depois de várias tentativas. Você foi removido da fila."
+  fila-falha-removido: "&cNão foi possível conectar você ao servidor {servidor}&c depois de várias tentativas. Você foi removido da fila."
+  # ---- Fila de auto-reconectar (chat e actionbar) ----
+  # Placeholders (valem em todas as mensagens de fila):
+  #   {servidor}     nome de exibição: o "nome" do servidor em
+  #                  autoreconectar-servidores (com as cores dele); se o
+  #                  servidor não estiver lá, usa a própria chave
+  #   {servidor_id}  nome real do servidor (o do velocity.toml)
+  #   {posicao}      posição do jogador na fila
+  fila-entrou: "&aVocê está na fila do {servidor} &ana posição &e#{posicao}&a."
+  # Segunda linha, CLICÁVEL. Deixe vazia ("") para não mandar.
+  fila-entrou-sair: "&aClique &e&lAQUI &apara sair da fila."
+  fila-entrou-sair-hover: "&7Sair da fila do {servidor}&7."
+  # Comando que o clique executa (sem a barra). Aceita {servidor_id}. O padrão
+  # desliga o auto-reconectar daquele servidor, o que tira o jogador da fila.
+  fila-comando-sair: "starlobbyproxy autoreconectar {servidor_id}"
+  fila-actionbar-conectando: "&aConectando ao servidor {servidor}&a... &7(posição {posicao})"
+  fila-actionbar-reiniciando: "&cServidor {servidor} &creiniciando... &7(posição {posicao})"
   # Quando um plugin do proxy veta a conexão (ex: banimento do StarPunicoes), a fila é
   # cancelada na hora em vez de insistir até o limite - esta é a mensagem desse caso.
   fila-cancelada-veto: "&cVocê não pode entrar em &6{servidor}&c no momento. Reconexão automática pausada."

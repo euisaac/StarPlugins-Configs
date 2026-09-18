@@ -107,11 +107,22 @@ chat:
   fila-servidor-invalido: '&cServer or lobby not found.'
   fila-ja-conectado: '&cYou are already connected to this server/lobby.'
   fila-origem-invalida: '&cThis server is not available through the proxy you connected from.'
-  fila-entrou: '&aYou joined the queue for server &f{servidor}&a.'
-  fila-saiu: '&cYou left the queue for server &f{servidor}&c.'
-  fila-falha-removido: '&cCould not connect you to server &f{servidor}&c after several attempts. You have been removed from the queue.'
-  fila-actionbar-conectando: '&a[Queue] &fConnecting to server &6{servidor}&f... &7(position {posicao})'
-  fila-actionbar-reiniciando: '&c[Queue] &fServer &6{servidor} &crestarting... &7(position {posicao})'
+  # ---- Server connection queue ----
+  # Placeholders (available in EVERY queue message, chat and actionbar):
+  #   {servidor}     server display name (the display-name from
+  #                  servers.yml/lobbies.yml, with its colors)
+  #   {servidor_id}  internal server key (e.g. survival, oneblock)
+  #   {posicao}      the player's position in the queue
+  fila-entrou: '&aYou are in the {servidor} &aqueue at position &e#{posicao}&a.'
+  # Second, CLICKABLE line: clicking runs /fila {servidor_id}, which leaves
+  # the queue. Leave empty ('') to not send this line.
+  fila-entrou-sair: '&aClick &e&lHERE &ato leave the queue.'
+  # Hover text for the line above.
+  fila-entrou-sair-hover: '&7Leave the {servidor} &7queue.'
+  fila-saiu: '&cYou left the {servidor} &cqueue.'
+  fila-falha-removido: '&cCould not connect you to server {servidor}&c after several attempts. You have been removed from the queue.'
+  fila-actionbar-conectando: '&aConnecting to server {servidor}&a... &7(position {posicao})'
+  fila-actionbar-reiniciando: '&cServer {servidor} &crestarting... &7(position {posicao})'
 
 kick:
   maintenance: '&c&lMaintenance<nl><nl>&cThis server is under maintenance.<nl>&cCome back later.'
