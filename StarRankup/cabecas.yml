@@ -1,0 +1,299 @@
+# ==========================================================================
+#  StarRankup - cabecas de mob
+#
+#  O jogador mata o mob, a cabeca cai (como item ou direto na conta), ele
+#  junta no /cabecas e usa como preco de rank ou vende por dinheiro.
+#
+#  Cada cabeca (secao Cabecas) tem:
+#    Ordem                    posicao no menu
+#    Nome                     como aparece nas mensagens
+#    Permissao                so quem tiver ganha e usa ('' = todos)
+#    Automatico               true: vai direto para a conta ao matar, sem item
+#    Entregar no inventario   true: o item vai para o inventario; false: cai
+#                             no chao onde o mob morreu
+#    Fortuna                  true: o nivel de Pilhagem (Looting) da arma
+#                             multiplica a quantidade
+#    Vender                   true: pode vender no menu
+#    Coletar                  true: pode retirar da conta como item
+#    Mundos bloqueados        onde ela nao cai
+#    Precos de venda          'economia: valor' por unidade; o jogador recebe
+#                             todas ao vender (economias do economias.yml)
+#    Espera para ativar       segundos entre uma ativacao e outra, por
+#                             permissao: a de MENOR ordem que o jogador tiver
+#    Item                     o item que cai / que e coletado. {quantidade} e
+#                             quantas unidades o item carrega
+#    Exibir                   o icone no /cabecas: {quantidade}, {valor_<eco>}
+#                             (por unidade), {total_<eco>} (tudo que ele tem)
+#
+#  Para usar a cabeca como preco de rank, crie no economias.yml uma economia
+#  com Provedor 'cabeca-<id>' (ja existem 'cabeca-porco' e 'cabeca-zumbi').
+#
+#  Mobs: quem dropa o que. Quantidade aceita faixa ('1-3').
+# ==========================================================================
+
+Versao do modelo: 1
+
+Cabecas:
+  porco:
+    Ordem: 1
+    Nome: '&dPorco'
+    Permissao: ''
+    Automatico: false
+    Entregar no inventario: true
+    Fortuna: false
+    Vender: true
+    Coletar: true
+    Mundos bloqueados: []
+    Precos de venda:
+      money: 100
+    Espera para ativar:
+      padrao:
+        Ordem: 1
+        Permissao: ''
+        Segundos: 3
+      vip:
+        Ordem: 0
+        Permissao: 'starrankup.vip'
+        Segundos: 1
+    Item:
+      Material: PLAYER_HEAD
+      Textura: '621668ef7cb79dd9c22ce3d1f3f4cb6e2559893b6df4a469514e667c16aa4'
+      Nome: '&dCabeca de Porco'
+      Lore:
+        - '&7Guarda &f{quantidade} &7cabeca(s) de porco.'
+        - ''
+        - '&7Clique com o botao direito para guardar na conta.'
+    Exibir:
+      Material: PLAYER_HEAD
+      Textura: '621668ef7cb79dd9c22ce3d1f3f4cb6e2559893b6df4a469514e667c16aa4'
+      Nome: '&dCabeca de Porco'
+      Lore:
+        - ''
+        - '&fVoce tem: &d{quantidade}'
+        - ''
+        - '&fVenda: &a${valor_money} &7por unidade'
+        - '&fTudo: &a${total_money}'
+        - ''
+        - '&eBotao esquerdo &7para vender tudo.'
+        - '&eBotao direito &7para retirar como item.'
+
+  vaca:
+    Ordem: 2
+    Nome: '&6Vaca'
+    Permissao: ''
+    Automatico: false
+    Entregar no inventario: true
+    Fortuna: false
+    Vender: true
+    Coletar: true
+    Mundos bloqueados: []
+    Precos de venda:
+      money: 120
+    Espera para ativar:
+      padrao:
+        Ordem: 1
+        Permissao: ''
+        Segundos: 3
+    Item:
+      Material: PLAYER_HEAD
+      Textura: '5d6c6eda942f7f5f71c3161c7306f4aed307d82895f9d2b07ab4525718edc5'
+      Nome: '&6Cabeca de Vaca'
+      Lore:
+        - '&7Guarda &f{quantidade} &7cabeca(s) de vaca.'
+        - ''
+        - '&7Clique com o botao direito para guardar na conta.'
+    Exibir:
+      Material: PLAYER_HEAD
+      Textura: '5d6c6eda942f7f5f71c3161c7306f4aed307d82895f9d2b07ab4525718edc5'
+      Nome: '&6Cabeca de Vaca'
+      Lore:
+        - ''
+        - '&fVoce tem: &6{quantidade}'
+        - ''
+        - '&fVenda: &a${valor_money} &7por unidade'
+        - '&fTudo: &a${total_money}'
+        - ''
+        - '&eBotao esquerdo &7para vender tudo.'
+        - '&eBotao direito &7para retirar como item.'
+
+  galinha:
+    Ordem: 3
+    Nome: '&fGalinha'
+    Permissao: ''
+    Automatico: false
+    Entregar no inventario: true
+    Fortuna: false
+    Vender: true
+    Coletar: true
+    Mundos bloqueados: []
+    Precos de venda:
+      money: 80
+    Espera para ativar:
+      padrao:
+        Ordem: 1
+        Permissao: ''
+        Segundos: 3
+    Item:
+      Material: PLAYER_HEAD
+      Textura: '1638469a599ceef7207537603248a9ab11ff591fd378bea4735b346a7fae893'
+      Nome: '&fCabeca de Galinha'
+      Lore:
+        - '&7Guarda &f{quantidade} &7cabeca(s) de galinha.'
+        - ''
+        - '&7Clique com o botao direito para guardar na conta.'
+    Exibir:
+      Material: PLAYER_HEAD
+      Textura: '1638469a599ceef7207537603248a9ab11ff591fd378bea4735b346a7fae893'
+      Nome: '&fCabeca de Galinha'
+      Lore:
+        - ''
+        - '&fVoce tem: &f{quantidade}'
+        - ''
+        - '&fVenda: &a${valor_money} &7por unidade'
+        - '&fTudo: &a${total_money}'
+        - ''
+        - '&eBotao esquerdo &7para vender tudo.'
+        - '&eBotao direito &7para retirar como item.'
+
+  zumbi:
+    Ordem: 4
+    Nome: '&2Zumbi'
+    Permissao: ''
+    Automatico: false
+    Entregar no inventario: true
+    Fortuna: false
+    Vender: true
+    Coletar: true
+    Mundos bloqueados: []
+    Precos de venda:
+      money: 250
+    Espera para ativar:
+      padrao:
+        Ordem: 1
+        Permissao: ''
+        Segundos: 3
+    Item:
+      Material: ZOMBIE_HEAD
+      Nome: '&2Cabeca de Zumbi'
+      Lore:
+        - '&7Guarda &f{quantidade} &7cabeca(s) de zumbi.'
+        - ''
+        - '&7Clique com o botao direito para guardar na conta.'
+    Exibir:
+      Material: ZOMBIE_HEAD
+      Nome: '&2Cabeca de Zumbi'
+      Lore:
+        - ''
+        - '&fVoce tem: &2{quantidade}'
+        - ''
+        - '&fVenda: &a${valor_money} &7por unidade'
+        - '&fTudo: &a${total_money}'
+        - ''
+        - '&eBotao esquerdo &7para vender tudo.'
+        - '&eBotao direito &7para retirar como item.'
+
+  esqueleto:
+    Ordem: 5
+    Nome: '&7Esqueleto'
+    Permissao: ''
+    Automatico: false
+    Entregar no inventario: true
+    Fortuna: false
+    Vender: true
+    Coletar: true
+    Mundos bloqueados: []
+    Precos de venda:
+      money: 250
+    Espera para ativar:
+      padrao:
+        Ordem: 1
+        Permissao: ''
+        Segundos: 3
+    Item:
+      Material: SKELETON_SKULL
+      Nome: '&7Cabeca de Esqueleto'
+      Lore:
+        - '&7Guarda &f{quantidade} &7cabeca(s) de esqueleto.'
+        - ''
+        - '&7Clique com o botao direito para guardar na conta.'
+    Exibir:
+      Material: SKELETON_SKULL
+      Nome: '&7Cabeca de Esqueleto'
+      Lore:
+        - ''
+        - '&fVoce tem: &7{quantidade}'
+        - ''
+        - '&fVenda: &a${valor_money} &7por unidade'
+        - '&fTudo: &a${total_money}'
+        - ''
+        - '&eBotao esquerdo &7para vender tudo.'
+        - '&eBotao direito &7para retirar como item.'
+
+  creeper:
+    Ordem: 6
+    Nome: '&aCreeper'
+    Permissao: ''
+    Automatico: false
+    Entregar no inventario: true
+    Fortuna: false
+    Vender: true
+    Coletar: true
+    Mundos bloqueados: []
+    Precos de venda:
+      money: 400
+    Espera para ativar:
+      padrao:
+        Ordem: 1
+        Permissao: ''
+        Segundos: 3
+    Item:
+      Material: CREEPER_HEAD
+      Nome: '&aCabeca de Creeper'
+      Lore:
+        - '&7Guarda &f{quantidade} &7cabeca(s) de creeper.'
+        - ''
+        - '&7Clique com o botao direito para guardar na conta.'
+    Exibir:
+      Material: CREEPER_HEAD
+      Nome: '&aCabeca de Creeper'
+      Lore:
+        - ''
+        - '&fVoce tem: &a{quantidade}'
+        - ''
+        - '&fVenda: &a${valor_money} &7por unidade'
+        - '&fTudo: &a${total_money}'
+        - ''
+        - '&eBotao esquerdo &7para vender tudo.'
+        - '&eBotao direito &7para retirar como item.'
+
+Mobs:
+  porco:
+    Mob: PIG
+    Cabeca: porco
+    Chance: 100.0
+    Quantidade: 1
+  vaca:
+    Mob: COW
+    Cabeca: vaca
+    Chance: 100.0
+    Quantidade: 1
+  galinha:
+    Mob: CHICKEN
+    Cabeca: galinha
+    Chance: 100.0
+    Quantidade: 1
+  zumbi:
+    Mob: ZOMBIE
+    Cabeca: zumbi
+    Chance: 50.0
+    Quantidade: 1
+  esqueleto:
+    Mob: SKELETON
+    Cabeca: esqueleto
+    Chance: 50.0
+    Quantidade: 1
+  creeper:
+    Mob: CREEPER
+    Cabeca: creeper
+    Chance: 40.0
+    Quantidade: 1

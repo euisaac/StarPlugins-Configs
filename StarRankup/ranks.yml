@@ -1,0 +1,193 @@
+# ==========================================================================
+#  StarRankup - os ranks
+#
+#  Cada rank tem:
+#    Ordem          posicao na escada (1 e o rank inicial; nao pode repetir)
+#    Tag            texto curto para chat, tab e placeholders
+#    Nome           nome completo
+#    Liberado em    data a partir da qual da para upar para ele, no formato
+#                   dd/MM/yyyy HH:mm. Vazio ('') = ja liberado. Antes da data o
+#                   menu mostra a contagem regressiva ({liberacao}).
+#    Permissao      so quem tiver consegue upar para ele ('' = todos)
+#    Precos         o que custa para CHEGAR neste rank: 'economia: valor', com
+#                   os ids do economias.yml. Varias linhas = cobra todas.
+#    Ao upar        o que acontece ao chegar neste rank:
+#      Comandos       rodados pelo console ({jogador}, {rank}, {tag}, {nome},
+#                     {prestigio}, {prestigio_tag}, {proximo_tag}, {proximo_nome})
+#      Itens          entregues ao jogador (Material/Nome/Lore/Quantidade ou
+#                     Base64 de um item real)
+#      Mensagens      avisos para TODOS: Chat, Actionbar e Titulo (<nl> quebra
+#                     o titulo em titulo/subtitulo; vazio nao envia)
+#      Mensagens privadas   os mesmos avisos, so para quem upou
+#      Som            SOM;volume;tom (vazio nao toca)
+#      Fogos          true solta fogos de artificio no jogador
+#    Ao perder      Comandos rodados quando o jogador SAI deste rank -- no
+#                   prestigio (que volta ao inicial) ou num setrank para baixo.
+#                   Serve para tirar o grupo do LuckPerms, por exemplo.
+#
+#  Os precos ficam mais caros a cada prestigio conforme o prestigios.yml, e
+#  mais baratos conforme os Descontos do config.yml.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Ranks:
+  membro:
+    Ordem: 1
+    Tag: '&7[Membro]'
+    Nome: 'Membro'
+    Liberado em: ''
+    Permissao: ''
+    Precos: {}
+    Ao upar:
+      Comandos: []
+      Itens: []
+      Mensagens:
+        Chat: ''
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&7Voce voltou ao rank &f{nome}&7.'
+        Actionbar: ''
+        Titulo: ''
+      Som: ''
+      Fogos: false
+    Ao perder:
+      Comandos: []
+
+  novato:
+    Ordem: 2
+    Tag: '&a[Novato]'
+    Nome: 'Novato'
+    Liberado em: ''
+    Permissao: ''
+    Precos:
+      money: 10000
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 3'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  aventureiro:
+    Ordem: 3
+    Tag: '&e[Aventureiro]'
+    Nome: 'Aventureiro'
+    Liberado em: ''
+    Permissao: ''
+    Precos:
+      money: 50000
+      fragmentos: 100
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 8'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  guerreiro:
+    Ordem: 4
+    Tag: '&6[Guerreiro]'
+    Nome: 'Guerreiro'
+    Liberado em: ''
+    Permissao: ''
+    Precos:
+      money: 150000
+      fragmentos: 300
+      cabeca-zumbi: 50
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 16'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  mestre:
+    Ordem: 5
+    Tag: '&b[Mestre]'
+    Nome: 'Mestre'
+    Liberado em: ''
+    Permissao: ''
+    Precos:
+      money: 500000
+      fragmentos: 800
+      cabeca-porco: 100
+      cabeca-zumbi: 150
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond_block 4'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  lenda:
+    Ordem: 6
+    Tag: '&d[Lenda]'
+    Nome: 'Lenda'
+    Liberado em: ''
+    Permissao: ''
+    Precos:
+      money: 2000000
+      fragmentos: 2500
+      cabeca-porco: 300
+      cabeca-zumbi: 500
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond_block 16'
+      Itens: []
+      Mensagens:
+        Chat: |-
+          &r
+          &d&l * &f{jogador} &7alcancou o rank {tag}&7, o ultimo da escada!
+          &r
+        Actionbar: '&d{jogador} &7agora e {tag}&7!'
+        Titulo: '&d&lLENDA<nl>&f{jogador}'
+      Mensagens privadas:
+        Chat: '&dVoce chegou ao topo. Agora pode dar prestigio com &f/prestigio&d.'
+        Actionbar: '&d&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&d&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_ENDER_DRAGON_GROWL;1;1.5'
+      Fogos: true
+    Ao perder:
+      Comandos: []

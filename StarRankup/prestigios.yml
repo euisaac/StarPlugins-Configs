@@ -1,0 +1,74 @@
+# ==========================================================================
+#  StarRankup - o prestigio
+#
+#  Quando chega ao rank exigido, o jogador pode dar prestigio: paga o preco,
+#  volta ao primeiro rank, ganha +1 no contador e uma tag nova. Em troca os
+#  ranks ficam mais caros e ele passa a ganhar mais fragmentos.
+#
+#  Substituicoes nos comandos e nas mensagens: {jogador}, {prestigio} (o
+#  novo nivel), {prestigio_anterior}, {prestigio_tag}, {maximo}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Desliga o prestigio inteiro (comando, menu e item).
+Ativar: true
+
+# Rank necessario para dar prestigio: o id de um rank do ranks.yml, ou
+# 'ultimo' para exigir o rank mais alto.
+Rank necessario: 'ultimo'
+
+# Prestigio maximo. -1 = sem limite.
+Maximo: 10
+
+# Tag do prestigio; {prestigio} e o nivel.
+Tag: '&c[&l{prestigio}&r&c]'
+# Tag de quem nunca prestigiou.
+Tag zero: ''
+
+# Acrescimo no preco dos ranks, em porcentagem por prestigio.
+#   Linear (Potencia: false): preco * (1 + acrescimo% * prestigio)
+#   Exponencial (Potencia: true): preco * (1 + acrescimo%) ^ prestigio
+Acrescimo por prestigio: 5.0
+Potencia: false
+
+# Bonus de fragmentos e cabecas, em porcentagem por prestigio (soma ao bonus
+# de permissao do config.yml). 0 desliga.
+Bonus de drops por prestigio: 2.0
+
+# Preco do prestigio, multiplicado por (prestigio atual + 1): o segundo
+# prestigio custa o dobro do primeiro, o terceiro o triplo...
+Precos:
+  money: 1000000
+
+# true: o jogador continua com os fragmentos e as cabecas depois de
+# prestigiar. false: zera os dois.
+Manter fragmentos e cabecas: true
+
+# Comandos rodados em TODO prestigio.
+Comandos:
+  - 'give {jogador} diamond_block 8'
+
+# Comandos rodados so ao alcancar um prestigio especifico.
+Recompensas especificas:
+  1:
+    - 'give {jogador} nether_star 1'
+  5:
+    - 'give {jogador} nether_star 5'
+  10:
+    - 'give {jogador} dragon_egg 1'
+
+# Avisos para TODOS.
+Mensagens:
+  Chat: '&c{jogador} &7alcancou o prestigio {prestigio_tag}&7!'
+  Actionbar: ''
+  Titulo: ''
+
+# Avisos so para quem prestigiou.
+Mensagens privadas:
+  Chat: '&cVoce alcancou o prestigio &f{prestigio}&c! Seu rank voltou ao inicio, mas agora voce ganha mais.'
+  Actionbar: '&c&lPRESTIGIO {prestigio}'
+  Titulo: '&c&lPRESTIGIO<nl>&f{prestigio}'
+
+Som: 'ENTITY_ENDER_DRAGON_GROWL;1;1'
+Fogos: true

@@ -1,0 +1,136 @@
+# ==========================================================================
+#  StarRankup - economias aceitas nos precos
+#
+#  Cada preco do ranks.yml e do prestigios.yml aponta para um id daqui.
+#  Um rank pode cobrar varias economias ao mesmo tempo: o jogador precisa
+#  ter todas.
+#
+#  Provedores:
+#    VAULT                  dinheiro do Vault (Essentials, CMI, StarEconomia...)
+#    STARECONOMIA           uma moeda do StarEconomia; a moeda vai em 'Moeda'
+#    stareconomia-<moeda>   atalho: 'stareconomia-cash' = moeda cash
+#    PLAYERPOINTS           pontos do PlayerPoints
+#    EXP                    experiencia do jogador (niveis ou pontos)
+#    ITEM                   um item do inventario (diamantes, por exemplo)
+#    FRAGMENTOS             os fragmentos deste plugin
+#    CABECA                 uma cabeca de mob deste plugin; o id vai em 'Cabeca'
+#    cabeca-<id>            atalho: 'cabeca-porco' = cabeca porco do cabecas.yml
+#    PLACEHOLDER            um numero de OUTRO plugin, lido pelo PlaceholderAPI
+#                           (kills, tempo online, nivel do mcMMO...). Serve de
+#                           REQUISITO: o plugin confere se o jogador tem, mas
+#                           nao consegue tirar -- por isso 'Consumir' e sempre
+#                           false nele.
+#
+#  Chaves comuns:
+#    Nome        como aparece nas mensagens ("Dinheiro")
+#    Abreviacao  nome curto para lore e barra ("coins")
+#    Simbolo     texto antes do valor ("$")
+#    Sufixo      texto depois do valor (" coins")
+#    Abreviar    true mostra 1,5K em vez de 1.500
+#    Consumir    false = so exige ter, nao cobra (util para kills e tempo)
+#    Permissao   quem nao tiver nao consegue pagar com esta economia ('' = todos)
+#
+#  Nenhum plugin de economia e obrigatorio: a economia e procurada quando e
+#  usada, entao pode subir depois do StarRankup.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Economias:
+  money:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Abreviacao: 'coins'
+    Simbolo: '$'
+    Sufixo: ''
+    Abreviar: false
+    Consumir: true
+    Permissao: ''
+
+  fragmentos:
+    Provedor: FRAGMENTOS
+    Nome: 'Fragmentos'
+    Abreviacao: 'frags'
+    Simbolo: ''
+    Sufixo: ' fragmentos'
+    Abreviar: false
+    Consumir: true
+    Permissao: ''
+
+  cabeca-porco:
+    Provedor: 'cabeca-porco'
+    Nome: 'Cabecas de Porco'
+    Abreviacao: 'porcos'
+    Simbolo: ''
+    Sufixo: ' cabecas de porco'
+    Abreviar: false
+    Consumir: true
+    Permissao: ''
+
+  cabeca-zumbi:
+    Provedor: 'cabeca-zumbi'
+    Nome: 'Cabecas de Zumbi'
+    Abreviacao: 'zumbis'
+    Simbolo: ''
+    Sufixo: ' cabecas de zumbi'
+    Abreviar: false
+    Consumir: true
+    Permissao: ''
+
+  # Exemplos prontos para ligar: tire o # da frente.
+
+  # cash:
+  #   Provedor: 'stareconomia-cash'
+  #   Nome: 'Cash'
+  #   Abreviacao: 'cash'
+  #   Simbolo: ''
+  #   Sufixo: ' cash'
+  #   Abreviar: false
+  #   Consumir: true
+  #   Permissao: ''
+
+  # pontos:
+  #   Provedor: PLAYERPOINTS
+  #   Nome: 'Pontos'
+  #   Abreviacao: 'pts'
+  #   Simbolo: ''
+  #   Sufixo: ' pontos'
+  #   Abreviar: false
+  #   Consumir: true
+  #   Permissao: ''
+
+  # xp:
+  #   Provedor: EXP
+  #   Nome: 'Niveis de XP'
+  #   Abreviacao: 'niveis'
+  #   Simbolo: ''
+  #   Sufixo: ' niveis'
+  #   # true cobra em niveis; false em pontos de experiencia.
+  #   Usar niveis: true
+  #   Consumir: true
+  #   Permissao: ''
+
+  # diamantes:
+  #   Provedor: ITEM
+  #   Material: DIAMOND
+  #   # true so aceita o item sem nome nem lore.
+  #   Item limpo: true
+  #   Nome: 'Diamantes'
+  #   Abreviacao: 'diamantes'
+  #   Simbolo: ''
+  #   Sufixo: ' diamantes'
+  #   Consumir: true
+  #   Permissao: ''
+
+  # Requisito que NAO e cobrado: o jogador precisa ter, por exemplo, 100
+  # abates para upar, e continua com eles depois. O placeholder precisa
+  # devolver um numero.
+  # abates:
+  #   Provedor: PLACEHOLDER
+  #   Placeholder: '%statistic_player_kills%'
+  #   Nome: 'Abates'
+  #   Abreviacao: 'abates'
+  #   Simbolo: ''
+  #   Sufixo: ' abates'
+  #   Consumir: false
+  #   Permissao: ''

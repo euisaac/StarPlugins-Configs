@@ -1,0 +1,257 @@
+# ==========================================================================
+#  StarRankup - configuracao geral
+#
+#  Os ranks ficam no ranks.yml, o prestigio no prestigios.yml, as economias
+#  aceitas no economias.yml, os drops de fragmento no fragmentos.yml, as
+#  cabecas de mob no cabecas.yml, os textos no mensagens.yml, as telas no
+#  menus.yml e os nomes dos comandos no comandos.yml.
+#
+#  Como funciona: o jogador paga o preco do proximo rank (em uma ou varias
+#  economias ao mesmo tempo) e evolui. No ultimo rank ele pode dar prestigio:
+#  volta ao primeiro rank, ganha uma tag de prestigio e os ranks ficam um
+#  pouco mais caros. Fragmentos e cabecas de mob sao economias proprias do
+#  plugin, que o jogador junta matando mobs e quebrando blocos.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+  # Ticks de espera antes de ler o jogador do banco depois que ele entra
+  # (20 ticks = 1 segundo). Numa rede BungeeCord/Velocity use 40 a 60.
+  Atraso de login: 20
+
+  # Mensagem de boas-vindas para a equipe (quem tem starrankup.admin) ao
+  # entrar: um resumo do plugin e dos comandos, alguns segundos depois do
+  # login. Desligue quando a equipe ja conhecer o plugin.
+  Boas-vindas para a staff: true
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores). Com MYSQL varios servidores dividem os mesmos ranks e o top e
+  # o da rede inteira.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starrankup_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+  # De quanto em quanto tempo o que esta em memoria vai para o banco, em
+  # segundos. Sair do servidor grava na hora, independente disto.
+  Salvar a cada: 60
+
+  # Quantos registros o historico de cada jogador guarda (rankups e
+  # prestigios). 0 desliga o historico.
+  Historico por jogador: 50
+
+Rankup:
+  # true: /rankup abre a tela de confirmacao mostrando o que falta.
+  # false: /rankup evolui na hora, sem perguntar.
+  Comando abre menu: true
+
+  # Segundos entre um rankup e o proximo. 0 = sem espera.
+  Espera entre rankups: 3
+
+  # Quem tiver QUALQUER uma destas permissoes nao evolui de rank nem aparece
+  # no top: serve para tirar a equipe da disputa. O plugin exige a permissao
+  # escrita de verdade -- o curinga '*' da staff nao conta, entao ninguem e
+  # bloqueado sem querer. Lista vazia libera todo mundo.
+  Bloquear quem tiver: []
+
+  # Aviso de "esta quase": quando o progresso para o proximo rank passa desta
+  # porcentagem, o jogador recebe UMA vez a mensagem 'Rankup.Quase la' do
+  # mensagens.yml. 0 desliga.
+  Avisar ao chegar em: 90
+
+  # Evolucao em massa (/rankup max): teto de ranks por vez. 0 = sem teto.
+  Maximo por vez: 0
+
+  # Como a barra de progresso e a porcentagem sao calculadas quando o rank
+  # tem mais de um preco:
+  #   MENOR - o requisito mais atrasado manda (100% so quando pode upar)
+  #   MEDIA - media de todos os requisitos
+  Calculo do progresso: MENOR
+
+Prestigio:
+  # true: /prestigio abre a tela de confirmacao (recomendado: o prestigio
+  # zera o rank). false: prestigia na hora.
+  Comando abre menu: true
+
+  # Segundos entre um prestigio e o proximo. 0 = sem espera.
+  Espera entre prestigios: 5
+
+Auto rankup:
+  # O jogador liga no menu ou no /autorankup e, de tempos em tempos, o plugin
+  # evolui ele sozinho quando der. Precisa da permissao starrankup.autorankup.
+  Ativar: true
+  # Ja vem ligado para quem nunca mexeu.
+  Ligado por padrao: false
+  # De quantos em quantos segundos o plugin confere quem pode upar.
+  Conferir a cada: 3
+
+Auto prestigio:
+  Ativar: true
+  Ligado por padrao: false
+  Conferir a cada: 3
+
+Fragmentos:
+  # Desliga o sistema de fragmentos inteiro (drops, item, comando e menu).
+  Ativar: true
+
+  # Nome do fragmento nas mensagens e nos menus.
+  Nome: '&bFragmentos'
+  Nome no singular: '&bFragmento'
+
+  # Mundos onde nada dropa fragmento.
+  Mundos bloqueados:
+    - lobby
+
+  # Integracao com plugins de stack de mobs: o nome da metadata que guarda o
+  # tamanho do stack na entidade. Vazio ('') ignora o stack.
+  Metadata do stack: ''
+  # Matando agachado, dropa so a quantidade de UM mob (nao multiplica pelo
+  # stack).
+  Agachado dropa um: true
+  # Matando em pe, dropa so a quantidade de UM mob.
+  Em pe dropa um: false
+
+  # Bloco que um jogador colocou nao rende fragmento ao ser quebrado. Sem
+  # isto, colocar e quebrar a mesma pedra viraria uma maquina de fragmento.
+  Ignorar blocos colocados por jogadores: true
+
+  # Multiplica a quantidade pelo nivel de Fortuna da picareta (so blocos).
+  Fortuna: false
+
+  # Som ao ganhar. Formato: SOM;volume;tom. Vazio ('') nao toca nada.
+  Som ao ganhar: 'ENTITY_EXPERIENCE_ORB_PICKUP;0.6;1.4'
+  Som ao ativar item: 'ENTITY_PLAYER_LEVELUP;0.8;1.5'
+
+Cabecas:
+  # Desliga o sistema de cabecas inteiro (drops, itens, comando e menu).
+  Ativar: true
+
+  Mundos bloqueados:
+    - lobby
+
+  Metadata do stack: ''
+  Agachado dropa um: true
+  Em pe dropa um: false
+
+  Som ao ganhar: 'ENTITY_ITEM_PICKUP;0.8;1.2'
+  Som ao vender: 'ENTITY_PLAYER_LEVELUP;1;1.2'
+  Som ao coletar: 'ENTITY_ITEM_PICKUP;1;1'
+
+# Itens especiais que a equipe entrega (/starrankup fragmentos item,
+# /starrankup darrankup, /starrankup darprestigio). Clicar com o botao
+# direito ativa; a identidade fica escondida no item, entao nome e lore
+# podem ser trocados a vontade.
+Itens:
+  Fragmento:
+    Material: PLAYER_HEAD
+    Textura: '1ba16c3890af39c3f2d576586cff443de07dad32b2315e2ff6f0d5d6a3c663dd'
+    Nome: '&b+{quantidade} Fragmentos'
+    Lore:
+      - ''
+      - '&fQuantidade: &b{quantidade}'
+      - ''
+      - '&7Clique com o botao direito para ativar.'
+      - '&7Agachado + botao direito junta todos os'
+      - '&7itens de fragmento do inventario em um so.'
+    Brilho: true
+  Rankup:
+    Material: PLAYER_HEAD
+    Textura: '1ad6c81f899a785ecf26be1dc48eae2bcfe777a862390f5785e95bd83bd14d'
+    Nome: '&a&lRANKUP'
+    Lore:
+      - ''
+      - '&7Este item vale &f+1 rank&7.'
+      - ''
+      - '&7Clique com o botao direito para ativar.'
+    Brilho: true
+  Prestigio:
+    Material: PLAYER_HEAD
+    Textura: '885620b88e0de9b34f76027c7f9c1def5e1de5ae542c6920b5f28693a54'
+    Nome: '&c&lPRESTIGIO'
+    Lore:
+      - ''
+      - '&7Este item vale &f+1 prestigio&7.'
+      - ''
+      - '&7Clique com o botao direito para ativar.'
+    Brilho: true
+
+# Desconto no preco dos ranks e do prestigio por permissao. Vale o desconto
+# de MENOR ordem que o jogador tiver (nao soma). Acrescente quantos quiser.
+Descontos:
+  vip:
+    Ordem: 1
+    Permissao: 'starrankup.vip'
+    Desconto: 10.0
+  vip_plus:
+    Ordem: 0
+    Permissao: 'starrankup.vip.plus'
+    Desconto: 20.0
+
+# Bonus na quantidade de fragmentos e cabecas dropadas, por permissao. Vale
+# o bonus de MENOR ordem que o jogador tiver.
+Bonus:
+  vip:
+    Ordem: 1
+    Permissao: 'starrankup.vip'
+    Bonus: 10.0
+  vip_plus:
+    Ordem: 0
+    Permissao: 'starrankup.vip.plus'
+    Bonus: 25.0
+
+# Barra de progresso mostrada nos menus, nas mensagens e nos placeholders.
+Barra de progresso:
+  Quantidade: 10
+  Simbolo: '|'
+  Cor feita: '&a'
+  Cor por fazer: '&7'
+
+# Textos usados quando nao ha o que mostrar.
+Formatos:
+  # Barra e porcentagem quando o jogador ja pode upar.
+  Barra completa: '&a/rankup &7({barra}&7)'
+  Porcentagem completa: '{porcentagem}'
+  # Quando nao existe proximo rank (ultimo rank).
+  Barra sem proximo: '&cUltimo'
+  Porcentagem sem proximo: '&c100%'
+  Proximo rank tag: '&cUltimo'
+  Proximo rank nome: '&cUltimo'
+  # Quando o jogador ainda nao carregou ou esta bloqueado (staff).
+  Sem rank tag: ''
+  Sem rank nome: ''
+  Bloqueado tag: ''
+  Bloqueado nome: ''
+  Bloqueado barra: ''
+  Bloqueado porcentagem: ''
+  # Tag escondida (/rank esconder).
+  Tag escondida: ''
+  # Como as datas sao escritas (historico e liberacao de rank).
+  Data: 'dd/MM/yyyy HH:mm'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+
+Menu:
+  # De quantos em quantos ticks o menu aberto e redesenhado, para a barra
+  # andar na tela enquanto o jogador junta o preco. 0 desliga.
+  Atualizar a cada: 20
+
+  Som ao clicar: 'UI_BUTTON_CLICK;1;1'
+  Som ao errar: 'ENTITY_VILLAGER_NO;1;1'
+  Som ao trocar de pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+
+Top:
+  # Quantos jogadores cada top guarda (as paginas saem daqui).
+  Limite: 45
+  # De quanto em quanto tempo os tops sao relidos do banco, em segundos.
+  Atualizar a cada: 60
