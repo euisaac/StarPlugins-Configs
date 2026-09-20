@@ -1,0 +1,69 @@
+# ==========================================================================
+#  StarPlayerWarps - categorias
+#
+#  Cada warp pertence a UMA categoria. A chave (ex.: 'lojas') e o que fica
+#  gravado na warp, entao nao renomeie uma chave que ja esta em uso -- mude
+#  so o Nome. Apagar uma categoria manda as warps dela para a 'Padrao'.
+#
+#  Slot no menu principal: onde a categoria aparece no /pw (o menu principal
+#  do menus.yml). Sem slot, ela so aparece no livro de categorias.
+#  Permissao: quem pode escolher a categoria para a propria warp (vazio =
+#  todos). A categoria continua visivel para todo mundo.
+#
+#  Substituicoes: {categoria} {warps} (quantas warps tem nela).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# A categoria das warps novas e das que ficarem sem categoria.
+Padrao: outras
+
+Categorias:
+  lojas:
+    Nome: '&aLojas'
+    Material: EMERALD
+    Slot no menu principal: 12
+    Permissao: ''
+    Lore:
+      - ''
+      - '&7Visite as warps com'
+      - '&7a categoria: &aLojas'
+      - '&7Warps: &f{warps}'
+      - ''
+      - '&eCLIQUE PARA ACESSAR'
+  farms:
+    Nome: '&dFarms'
+    Material: DIAMOND_HOE
+    Slot no menu principal: 13
+    Permissao: ''
+    Lore:
+      - ''
+      - '&7Visite as warps com'
+      - '&7a categoria: &dFarms'
+      - '&7Warps: &f{warps}'
+      - ''
+      - '&eCLIQUE PARA ACESSAR'
+  casas:
+    Nome: '&eCasas'
+    Material: OAK_LOG
+    Slot no menu principal: 14
+    Permissao: ''
+    Lore:
+      - ''
+      - '&7Visite as warps com'
+      - '&7a categoria: &eCasas'
+      - '&7Warps: &f{warps}'
+      - ''
+      - '&eCLIQUE PARA ACESSAR'
+  outras:
+    Nome: '&7Outras'
+    Material: FIREWORK_STAR
+    Slot no menu principal: 15
+    Permissao: ''
+    Lore:
+      - ''
+      - '&7Visite as warps com'
+      - '&7a categoria: &7Outras'
+      - '&7Warps: &f{warps}'
+      - ''
+      - '&eCLIQUE PARA ACESSAR'

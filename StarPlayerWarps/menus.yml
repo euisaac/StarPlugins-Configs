@@ -1,0 +1,838 @@
+# ==========================================================================
+#  StarPlayerWarps - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#
+#  Cada tela tem:
+#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite               O vidro do fundo (Ativar: false deixa vazio; 'So fora
+#                          do conteudo: false' enche os slots de conteudo tambem).
+#    Slots                 Onde o conteudo paginado aparece (warps, jogadores...).
+#    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                          Nome, Lore, Brilho, Permissao, Esconder sem
+#                          permissao e Acoes.
+#
+#  Acoes comuns:    principal | todas | favoritas | visitadas | minhas | top |
+#                   buscar | categorias | criar | voltar | anterior | proxima |
+#                   fechar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
+#                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
+#                   som: <SOM;volume;tom>
+#  Cada tela tem as suas acoes, listadas antes dela.
+#
+#  Substituicoes em qualquer texto: {jogador} {minhas} {limite} {pagina}
+#  {paginas} {total}. Onde ha uma warp: {warp} {dono} {categoria} {descricao}
+#  {custo} {visitas} {visitas_recentes} {visitantes} {avaliacao} {avaliacoes}
+#  {estrelas} {favoritos} {criada_em} {mundo} {x} {y} {z} {estado} {trancada}
+#  {senha} {permitidos} {banidos}. Placeholders do PlaceholderAPI tambem
+#  funcionam nos botoes.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  Menu principal (/pw). As categorias entram nos slots que cada uma define
+#  no categorias.yml ('Slot no menu principal').
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Warps de Jogadores'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    todas:
+      Slot: 11
+      Material: CHEST
+      Nome: '&aTodas as Warps'
+      Lore:
+        - ''
+        - '&7Veja todas as warps de jogadores.'
+        - '&7Warps: &f{total}'
+        - ''
+        - '&eCLIQUE PARA ACESSAR'
+      Acoes: [ 'todas' ]
+    favoritas:
+      Slot: 21
+      Material: NETHER_STAR
+      Nome: '&6Favoritas'
+      Lore:
+        - ''
+        - '&7Veja suas warps favoritas.'
+        - ''
+        - '&eCLIQUE PARA ACESSAR'
+      Acoes: [ 'favoritas' ]
+    visitadas:
+      Slot: 22
+      Material: ENDER_EYE
+      Nome: '&eWarps visitadas'
+      Lore:
+        - ''
+        - '&7Veja suas warps visitadas recentemente.'
+        - ''
+        - '&eCLIQUE PARA ACESSAR'
+      Acoes: [ 'visitadas' ]
+    minhas:
+      Slot: 23
+      Material: ENDER_PEARL
+      Nome: '&dMinhas warps'
+      Lore:
+        - ''
+        - '&7Veja suas warps criadas.'
+        - '&7Voce tem &f{minhas}&7/&f{limite}&7.'
+        - ''
+        - '&eCLIQUE PARA ACESSAR'
+      Acoes: [ 'minhas' ]
+
+# ---------------------------------------------------------------------------
+#  A lista de warps: Todas, uma categoria, Favoritas, Visitadas, Minhas e a
+#  Busca usam esta mesma tela. {lista} e o nome do que esta sendo listado.
+#  Acoes proprias: ordem | filtro | atualizar | nova-busca
+#  Na lore da warp, as linhas especiais viram varias linhas:
+#    {descricao}      a descricao do dono (ou 'Descricao vazia')
+#    {lore_anuncio}   as linhas de 'Lore anuncio', quando a warp esta num espaco
+#    {lore_dono}      as linhas de 'Lore dono', quando quem olha e o dono/admin
+#    {lore_custo}     as linhas de 'Lore custo', quando a warp cobra visita
+#    {lore_favorita}  as linhas de 'Lore favorita', quando ja e favorita
+#  Na lore do botao 'ordem', {opcoes_ordem} vira a lista das ordenacoes com a
+#  atual marcada; no 'filtro', {opcoes_filtro} faz o mesmo.
+# ---------------------------------------------------------------------------
+Lista:
+  Titulo: '&8Warps - {lista} ({pagina}/{paginas})'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Warp:
+    Nome: '&d{warp}'
+    Lore:
+      - ''
+      - ' &f| &7Avaliacoes: {estrelas} &7({avaliacoes})'
+      - ' &f| &7Visitas: &d{visitas}'
+      - ' &f| &7Dono: &f{dono}'
+      - ' &f| &7Categoria: &e{categoria}'
+      - ' &f| &7Criada em: &b{criada_em}'
+      - ' &f| &7Descricao:'
+      - '{descricao}'
+      - '{lore_custo}'
+      - '{lore_favorita}'
+      - '{lore_anuncio}'
+      - '{lore_dono}'
+      - ''
+      - '&aCLIQUE ESQUERDO &7para teleportar'
+      - '&eCLIQUE DIREITO &7para mais opcoes'
+    Descricao vazia: '&cNenhum'
+    Linha da descricao: ' &f{linha}'
+    Lore custo:
+      - ' &f| &7Custo de visita: &6{custo}'
+    Lore favorita:
+      - ' &f| &6★ Nas suas favoritas'
+    Lore anuncio:
+      - ' &f| &6Em destaque por mais &f{anuncio_restante}'
+    Lore dono:
+      - ' &f| &7Estado: {estado}'
+      - ' &f| &7Visitas recentes: &f{visitas_recentes}'
+
+  # O espaco de anuncio livre. Slots vem do config.yml (Anuncios.Slots).
+  Anuncio livre:
+    Material: YELLOW_CONCRETE
+    Nome: '&6Espaco de anuncio #{slot}'
+    Lore:
+      - ''
+      - '&7Alugue este espaco para'
+      - '&7colocar a warp em evidencia.'
+      - ''
+      - ' &f| &7Valor: &a{valor}'
+      - ' &f| &7Tempo: &a{tempo}'
+      - ''
+      - '&aCLIQUE PARA ALUGAR'
+
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhuma warp por aqui'
+    Lore:
+      - '&7Nao ha warps nesta lista.'
+
+  Itens:
+    anterior:
+      Slot: 18
+      Material: TIPPED_ARROW
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Clique para voltar uma pagina.' ]
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 26
+      Material: TIPPED_ARROW
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Clique para ir ate a proxima pagina.' ]
+      Acoes: [ 'proxima' ]
+    buscar:
+      Slot: 45
+      Material: OAK_SIGN
+      Nome: '&aProcurar'
+      Lore:
+        - '&7Procure uma warp pelo nome,'
+        - '&7pelo dono ou pela descricao.'
+        - ''
+        - '&eClique para procurar'
+      Acoes: [ 'nova-busca' ]
+    atualizar:
+      Slot: 46
+      Material: SUNFLOWER
+      Nome: '&aAtualizar'
+      Lore: [ '&7Clique para atualizar a pagina.' ]
+      Acoes: [ 'atualizar' ]
+    filtro:
+      Slot: 47
+      Material: LIGHT_BLUE_STAINED_GLASS_PANE
+      Nome: '&aFiltro'
+      Lore:
+        - '&7O que aparece na lista:'
+        - ''
+        - '{opcoes_filtro}'
+        - ''
+        - '&eClique para alternar'
+      Acoes: [ 'filtro' ]
+    criar:
+      Slot: 48
+      Material: NAME_TAG
+      Nome: '&aCriar warp'
+      Lore:
+        - '&7Cria uma warp onde voce esta.'
+        - '&7Voce tem &f{minhas}&7/&f{limite}&7.'
+        - ''
+        - '&eClique para criar'
+      Acoes: [ 'criar' ]
+    voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar ao menu'
+      Lore: [ '&7Clique para voltar ao menu.' ]
+      Acoes: [ 'voltar' ]
+    top:
+      Slot: 50
+      Material: GOLD_INGOT
+      Nome: '&6Ranking'
+      Lore:
+        - '&7As warps mais visitadas,'
+        - '&7melhor avaliadas e mais favoritadas.'
+        - ''
+        - '&eClique para ver'
+      Acoes: [ 'top' ]
+    categoria:
+      Slot: 51
+      Material: BOOK
+      Nome: '&aCategoria'
+      Lore:
+        - '&7Atual: &f{lista}'
+        - ''
+        - '&eClique para trocar de categoria'
+      Acoes: [ 'categorias' ]
+    ordem:
+      Slot: 52
+      Material: HOPPER
+      Nome: '&aOrdenar'
+      Lore:
+        - '&7A ordem das warps:'
+        - ''
+        - '{opcoes_ordem}'
+        - ''
+        - '&eClique para alternar'
+        - '&eShift + clique para voltar'
+      Acoes: [ 'ordem' ]
+    minhas:
+      Slot: 53
+      Material: ENDER_PEARL
+      Nome: '&dMinhas warps'
+      Lore:
+        - '&7Voce tem &f{minhas}&7/&f{limite}&7.'
+        - ''
+        - '&eClique para ver'
+      Acoes: [ 'minhas' ]
+
+  # Como as opcoes aparecem nas lores de ordem e filtro.
+  Opcao atual: ' &a▶ {opcao}'
+  Opcao: ' &7  {opcao}'
+
+# ---------------------------------------------------------------------------
+#  Clique direito numa warp. Acoes: teleportar | favoritar | avaliar | info |
+#  gerenciar. 'gerenciar' so aparece para o dono (ou admin); 'favoritar' e
+#  'desfavoritar' se alternam.
+# ---------------------------------------------------------------------------
+Opcoes:
+  Titulo: '&8{warp}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    teleportar:
+      Slot: 10
+      Material: ENDER_PEARL
+      Nome: '&aTeleportar'
+      Lore:
+        - '&7Vai ate a warp &f{warp}&7.'
+        - '{lore_custo}'
+        - ''
+        - '&eClique para ir'
+      Acoes: [ 'teleportar' ]
+    favoritar:
+      Slot: 12
+      Material: NETHER_STAR
+      Nome: '&6Favoritar'
+      Lore:
+        - '&7Guarda a warp nas suas favoritas.'
+        - ''
+        - '&eClique para favoritar'
+      Acoes: [ 'favoritar' ]
+    desfavoritar:
+      Slot: 12
+      Material: NETHER_STAR
+      Brilho: true
+      Nome: '&6Desfavoritar'
+      Lore:
+        - '&7Tira a warp das suas favoritas.'
+        - ''
+        - '&eClique para desfavoritar'
+      Acoes: [ 'favoritar' ]
+    avaliar:
+      Slot: 14
+      Material: GOLD_NUGGET
+      Nome: '&eAvaliar'
+      Lore:
+        - '&7Nota atual: {estrelas} &7({avaliacoes})'
+        - '&7A sua nota: &f{minha_nota}'
+        - ''
+        - '&eClique para avaliar'
+      Acoes: [ 'avaliar' ]
+    info:
+      Slot: 16
+      Material: PAPER
+      Nome: '&bInformacoes'
+      Lore:
+        - '&7Dono: &f{dono}'
+        - '&7Categoria: &f{categoria}'
+        - '&7Visitas: &f{visitas} &8(&f{visitas_recentes}&8 recentes)'
+        - '&7Visitantes diferentes: &f{visitantes}'
+        - '&7Favoritos: &f{favoritos}'
+        - '&7Criada em: &f{criada_em}'
+        - '&7Estado: {estado}'
+      Acoes: [ 'info' ]
+    gerenciar:
+      Slot: 22
+      Material: COMPARATOR
+      Nome: '&dGerenciar warp'
+      Lore:
+        - '&7Nome, descricao, icone, categoria,'
+        - '&7custo, senha, permitidos e mais.'
+        - ''
+        - '&eClique para gerenciar'
+      Acoes: [ 'gerenciar' ]
+    voltar:
+      Slot: 18
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  A tela do dono. Acoes: renomear | descricao | icone | categoria | custo |
+#  mover | anunciar | trancar | senha | permitidos | banidos | abrir |
+#  avisos | transferir | remover | teleportar
+#  Os pares trancar/destrancar, abrir/fechar e avisos-ligar/avisos-desligar
+#  so aparecem no estado certo. O 'icone' mostra o icone atual: clique com um
+#  item na mao para usa-lo, clique num item do seu inventario, ou shift +
+#  clique para voltar a sua cabeca.
+# ---------------------------------------------------------------------------
+Gerenciar:
+  Titulo: '&8Gerenciar: {warp}'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Icone:
+    Slot: 12
+    Nome: '&aIcone'
+    Lore:
+      - '&7Como a warp aparece no menu.'
+      - ''
+      - '&eClique com um item na mao para usa-lo'
+      - '&eou clique num item do seu inventario.'
+      - '&eShift + clique volta para a sua cabeca.'
+  Itens:
+    renomear:
+      Slot: 10
+      Material: NAME_TAG
+      Nome: '&aRenomear'
+      Lore:
+        - '&7Nome atual: &f{warp}'
+        - '&7Custo: &f{custo_renomear}'
+        - ''
+        - '&eClique para renomear'
+      Acoes: [ 'renomear' ]
+    descricao:
+      Slot: 11
+      Material: WRITABLE_BOOK
+      Nome: '&aDescricao'
+      Lore:
+        - '&7Atual:'
+        - '{descricao}'
+        - ''
+        - '&eClique para alterar'
+      Acoes: [ 'descricao' ]
+    categoria:
+      Slot: 13
+      Material: BOOK
+      Nome: '&aCategoria'
+      Lore:
+        - '&7Atual: &f{categoria}'
+        - ''
+        - '&eClique para trocar'
+      Acoes: [ 'categoria' ]
+    custo:
+      Slot: 14
+      Material: GOLD_INGOT
+      Nome: '&aCusto de visita'
+      Lore:
+        - '&7Quanto quem visita paga a voce.'
+        - '&7Atual: &f{custo}'
+        - '&7O servidor fica com &f{taxa}%&7.'
+        - ''
+        - '&eClique para alterar'
+      Permissao: starplayerwarps.custo
+      Acoes: [ 'custo' ]
+    mover:
+      Slot: 15
+      Material: COMPASS
+      Nome: '&aMover'
+      Lore:
+        - '&7Leva a warp para onde voce esta.'
+        - '&7Custo: &f{custo_mover}'
+        - ''
+        - '&eClique para mover'
+      Acoes: [ 'mover' ]
+    anunciar:
+      Slot: 16
+      Material: YELLOW_CONCRETE
+      Nome: '&6Anunciar'
+      Lore:
+        - '&7Poe a warp em destaque no topo'
+        - '&7da lista por &f{anuncio_tempo}&7.'
+        - '&7Valor: &f{anuncio_valor}'
+        - ''
+        - '&eClique para escolher o espaco'
+      Permissao: starplayerwarps.anunciar
+      Acoes: [ 'anunciar' ]
+    trancar:
+      Slot: 19
+      Material: IRON_DOOR
+      Nome: '&aTrancar'
+      Lore:
+        - '&7Trancada, so voce e os permitidos entram.'
+        - ''
+        - '&eClique para trancar'
+      Acoes: [ 'trancar' ]
+    destrancar:
+      Slot: 19
+      Material: OAK_DOOR
+      Nome: '&eDestrancar'
+      Lore:
+        - '&7A warp esta trancada: so os'
+        - '&7permitidos entram.'
+        - ''
+        - '&eClique para destrancar'
+      Acoes: [ 'trancar' ]
+    senha:
+      Slot: 20
+      Material: TRIPWIRE_HOOK
+      Nome: '&aSenha'
+      Lore:
+        - '&7Quem nao esta na lista de permitidos'
+        - '&7precisa digitar a senha para entrar.'
+        - '&7Atual: &f{senha}'
+        - ''
+        - '&eClique para alterar'
+      Acoes: [ 'senha' ]
+    permitidos:
+      Slot: 21
+      Material: PLAYER_HEAD
+      Textura: 'a3852bf616f31ed67c37de4b0baa2c5f8d8fca82e72dbcafcba66956a81c4'
+      Nome: '&aPermitidos'
+      Lore:
+        - '&7Entram mesmo com a warp trancada'
+        - '&7ou com senha. Sao &f{permitidos}&7.'
+        - ''
+        - '&eClique para ver'
+      Acoes: [ 'permitidos' ]
+    banidos:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&cBanidos'
+      Lore:
+        - '&7Nunca entram na warp.'
+        - '&7Sao &f{banidos}&7.'
+        - ''
+        - '&eClique para ver'
+      Acoes: [ 'banidos' ]
+    abrir:
+      Slot: 23
+      Material: LIME_DYE
+      Nome: '&aAbrir'
+      Lore:
+        - '&7A warp esta fechada: nao aparece'
+        - '&7no menu e ninguem entra.'
+        - ''
+        - '&eClique para abrir'
+      Acoes: [ 'abrir' ]
+    fechar:
+      Slot: 23
+      Material: GRAY_DYE
+      Nome: '&eFechar'
+      Lore:
+        - '&7Fechada, a warp some do menu e'
+        - '&7so voce entra.'
+        - ''
+        - '&eClique para fechar'
+      Acoes: [ 'abrir' ]
+    avisos-ligar:
+      Slot: 24
+      Material: BELL
+      Nome: '&aAvisos de visita'
+      Lore:
+        - '&7Voce &cnao&7 esta sendo avisado'
+        - '&7quando alguem visita.'
+        - ''
+        - '&eClique para ligar'
+      Acoes: [ 'avisos' ]
+    avisos-desligar:
+      Slot: 24
+      Material: BELL
+      Brilho: true
+      Nome: '&aAvisos de visita'
+      Lore:
+        - '&7Voce e avisado quando alguem visita.'
+        - ''
+        - '&eClique para desligar'
+      Acoes: [ 'avisos' ]
+    transferir:
+      Slot: 25
+      Material: PLAYER_HEAD
+      Textura: '2b5d1a8ffb3b1e15d6aa3b9b1a7a0dbd5d0b9dc4b4a5e9e1a8f4a1d2c1c6b8a3'
+      Nome: '&aTransferir'
+      Lore:
+        - '&7Passa a warp para outro jogador.'
+        - ''
+        - '&eClique para transferir'
+      Acoes: [ 'transferir' ]
+    voltar:
+      Slot: 36
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    remover:
+      Slot: 40
+      Material: TNT
+      Nome: '&cRemover warp'
+      Lore:
+        - '&7Apaga a warp de vez.'
+        - ''
+        - '&eClique para remover'
+      Acoes: [ 'remover' ]
+    teleportar:
+      Slot: 44
+      Material: ENDER_PEARL
+      Nome: '&aTeleportar'
+      Acoes: [ 'teleportar' ]
+
+# ---------------------------------------------------------------------------
+#  Escolha da nota. Os slots das estrelas sao 1 a 5, na ordem. A nota que o
+#  jogador ja deu aparece com brilho.
+# ---------------------------------------------------------------------------
+Avaliar:
+  Titulo: '&8Avaliar: {warp}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Estrelas:
+    Slots: [ 11, 12, 13, 14, 15 ]
+    Material: NETHER_STAR
+    Nome: '&e{nota} estrela(s)'
+    Lore:
+      - '&7Nota atual da warp: {estrelas} &7({avaliacoes})'
+      - ''
+      - '&eClique para dar {nota} estrela(s)'
+  Itens:
+    voltar:
+      Slot: 18
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  O livro de categorias. Quando aberto pelo dono (para trocar a categoria
+#  da warp) a escolha vai para a warp; aberto pela lista, filtra a lista.
+# ---------------------------------------------------------------------------
+Categorias:
+  Titulo: '&8Categorias'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Todas:
+    Slot: 10
+    Material: CHEST
+    Nome: '&aTodas'
+    Lore:
+      - '&7Warps de todas as categorias.'
+      - '&7Warps: &f{total}'
+      - ''
+      - '&eClique para ver'
+  Categoria:
+    Lore extra:
+      - ''
+      - '&eClique para escolher'
+  Itens:
+    voltar:
+      Slot: 27
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Escolha de qual warp vai para o espaco de anuncio.
+# ---------------------------------------------------------------------------
+Anunciar:
+  Titulo: '&8Anunciar no espaco #{slot}'
+  # Quando a warp ja foi escolhida (pelo gerenciamento) e falta o espaco.
+  Titulo espacos: '&8Espaco para: {warp}'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Warp:
+    Nome: '&d{warp}'
+    Lore:
+      - '&7Visitas: &f{visitas}'
+      - '&7Categoria: &f{categoria}'
+      - ''
+      - '&7Valor: &a{anuncio_valor}'
+      - '&7Tempo: &a{anuncio_tempo}'
+      - ''
+      - '&eClique para anunciar esta warp'
+  Itens:
+    voltar:
+      Slot: 27
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  Lista de permitidos ou banidos de uma warp. Acoes: adicionar
+# ---------------------------------------------------------------------------
+Jogadores:
+  Titulo: '&8{tipo}: {warp}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Jogador:
+    Nome: '&f{nome}'
+    Lore:
+      - ''
+      - '&cClique para tirar da lista'
+  Vazio:
+    Mostrar: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNinguem na lista'
+  Itens:
+    anterior:
+      Slot: 18
+      Material: TIPPED_ARROW
+      Nome: '&aPagina anterior'
+      Acoes: [ 'anterior' ]
+    proxima:
+      Slot: 26
+      Material: TIPPED_ARROW
+      Nome: '&aProxima pagina'
+      Acoes: [ 'proxima' ]
+    voltar:
+      Slot: 45
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    adicionar:
+      Slot: 49
+      Material: LIME_DYE
+      Nome: '&aAdicionar jogador'
+      Lore: [ '&7Digite o nick no chat.' ]
+      Acoes: [ 'adicionar' ]
+
+# ---------------------------------------------------------------------------
+#  O ranking. Acoes: alternar (visitas -> avaliacao -> favoritos)
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8Ranking - {ordem}'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Warp:
+    Nome: '&6#{posicao} &d{warp}'
+    Lore:
+      - '&7Dono: &f{dono}'
+      - '&7Visitas: &f{visitas}'
+      - '&7Avaliacao: {estrelas} &7({avaliacoes})'
+      - '&7Favoritos: &f{favoritos}'
+      - ''
+      - '&aCLIQUE ESQUERDO &7para teleportar'
+      - '&eCLIQUE DIREITO &7para mais opcoes'
+  Itens:
+    voltar:
+      Slot: 27
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    alternar:
+      Slot: 31
+      Material: HOPPER
+      Nome: '&aOrdenar por'
+      Lore:
+        - '&7Atual: &f{ordem}'
+        - ''
+        - '&eClique para alternar'
+      Acoes: [ 'alternar' ]
+
+# ---------------------------------------------------------------------------
+#  Sim ou nao. Acoes: confirmar | cancelar
+# ---------------------------------------------------------------------------
+Confirmar:
+  Remover:
+    Titulo: '&8Remover a warp?'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: BLACK_STAINED_GLASS_PANE
+      Nome: ' '
+    Itens:
+      confirmar:
+        Slot: 11
+        Material: LIME_WOOL
+        Nome: '&aSim, remover'
+        Lore:
+          - '&7A warp &f{warp}&7 vai ser apagada'
+          - '&7de vez, com visitas e avaliacoes.'
+        Acoes: [ 'confirmar' ]
+      informacao:
+        Slot: 13
+        Material: TNT
+        Nome: '&c{warp}'
+        Lore:
+          - '&7Visitas: &f{visitas}'
+          - '&7Avaliacoes: {estrelas} &7({avaliacoes})'
+      cancelar:
+        Slot: 15
+        Material: RED_WOOL
+        Nome: '&cNao, voltar'
+        Acoes: [ 'cancelar' ]
+  Anuncio:
+    Titulo: '&8Alugar o espaco #{slot}?'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: BLACK_STAINED_GLASS_PANE
+      Nome: ' '
+    Itens:
+      confirmar:
+        Slot: 11
+        Material: LIME_WOOL
+        Nome: '&aSim, alugar'
+        Lore:
+          - '&7A warp &f{warp}&7 fica em destaque'
+          - '&7por &f{anuncio_tempo}&7.'
+          - '&7Valor: &f{anuncio_valor}'
+        Acoes: [ 'confirmar' ]
+      informacao:
+        Slot: 13
+        Material: YELLOW_CONCRETE
+        Nome: '&6Espaco #{slot}'
+        Lore:
+          - '&7Warp: &f{warp}'
+      cancelar:
+        Slot: 15
+        Material: RED_WOOL
+        Nome: '&cNao, voltar'
+        Acoes: [ 'cancelar' ]
+  Transferir:
+    Titulo: '&8Transferir a warp?'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: BLACK_STAINED_GLASS_PANE
+      Nome: ' '
+    Itens:
+      confirmar:
+        Slot: 11
+        Material: LIME_WOOL
+        Nome: '&aSim, transferir'
+        Lore:
+          - '&7A warp &f{warp}&7 passa a ser de'
+          - '&f{jogador_alvo}&7. Nao da para desfazer.'
+        Acoes: [ 'confirmar' ]
+      informacao:
+        Slot: 13
+        Material: PLAYER_HEAD
+        Nome: '&f{jogador_alvo}'
+        Lore:
+          - '&7Novo dono da warp &f{warp}&7.'
+      cancelar:
+        Slot: 15
+        Material: RED_WOOL
+        Nome: '&cNao, voltar'
+        Acoes: [ 'cancelar' ]
+  Mover:
+    Titulo: '&8Mover a warp para aqui?'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: BLACK_STAINED_GLASS_PANE
+      Nome: ' '
+    Itens:
+      confirmar:
+        Slot: 11
+        Material: LIME_WOOL
+        Nome: '&aSim, mover'
+        Lore:
+          - '&7A warp &f{warp}&7 vem para onde'
+          - '&7voce esta agora.'
+          - '&7Custo: &f{custo_mover}'
+        Acoes: [ 'confirmar' ]
+      informacao:
+        Slot: 13
+        Material: COMPASS
+        Nome: '&a{warp}'
+        Lore:
+          - '&7Hoje em &f{mundo} {x}, {y}, {z}'
+      cancelar:
+        Slot: 15
+        Material: RED_WOOL
+        Nome: '&cNao, voltar'
+        Acoes: [ 'cancelar' ]

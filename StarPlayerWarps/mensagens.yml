@@ -1,0 +1,279 @@
+# ==========================================================================
+#  StarPlayerWarps - mensagens
+#
+#  Cores: &a etc. e &#RRGGBB (1.16+). Mensagem vazia ('') nao e enviada.
+#  Mensagem de varias linhas (bloco |) sai linha por linha, sem prefixo.
+#  {prefixo} e o prefixo abaixo; quando a mensagem nao o menciona, ele vai
+#  na frente sozinho.
+#
+#  Substituicoes de uma WARP (valem onde uma warp esta envolvida):
+#    {warp} {dono} {categoria} {descricao} {custo} {custo_bruto} {visitas}
+#    {visitas_recentes} {visitantes} {avaliacao} {avaliacoes} {estrelas}
+#    {favoritos} {criada_em} {mundo} {x} {y} {z} {estado} {trancada} {senha}
+#    {permitidos} {banidos} {id} {servidor}
+#  Onde ha um jogador: {jogador}. Onde ha dinheiro: {valor} {saldo}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&8[&dWarps&8] &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar isso.'
+  Plugin inativo: '&cO plugin esta inativo: o banco de dados nao subiu. Avise um administrador.'
+  Carregando: '&eAs warps ainda estao sendo carregadas, tente de novo em instantes.'
+  Uso: '&cUse: &f{uso}'
+  Jogador desconhecido: '&cNao conheco o jogador &f{jogador}&c.'
+  Warp desconhecida: '&cNao existe nenhuma warp chamada &f{warp}&c.'
+  Warp nao existe mais: '&cEssa warp nao existe mais.'
+  Nao e sua: '&cEssa warp nao e sua.'
+  Economia desligada: '&cO servidor esta sem economia: essa opcao nao esta disponivel.'
+  Sem saldo: '&cVoce precisa de &f{valor}&c e tem &f{saldo}&c.'
+  Cobranca falhou: '&cNao foi possivel cobrar. Tente de novo.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+
+Criar:
+  Sem permissao: '&cVoce nao pode criar warps.'
+  Limite: '&cVoce ja tem o maximo de warps (&f{limite}&c). Remova uma para criar outra.'
+  Nome em uso: '&cJa existe uma warp chamada &f{warp}&c.'
+  Nome invalido: '&cO nome precisa ter de {minimo} a {maximo} caracteres, so letras, numeros e _ .'
+  Nome proibido: '&cEsse nome nao pode ser usado.'
+  Mundo bloqueado: '&cNao da para criar warps neste mundo.'
+  Fora do terreno: '&cVoce so pode criar warp dentro de um terreno seu.'
+  Local inseguro: '&cEsse lugar nao e seguro para uma warp: fique num chao firme, longe de lava.'
+  Custo: '&eCriar uma warp custa &f{valor}&e. Use &f/{comando} criar {warp} confirmar&e para pagar e criar.'
+  Criada: '&aWarp &f{warp}&a criada! Use &f/{comando}&a para ve-la no menu e clique com o botao direito nela para configurar.'
+  Criada paga: '&aWarp &f{warp}&a criada por &f{valor}&a!'
+  Anuncio: '&d{dono}&7 criou a warp &f{warp}&7! Visite com &f/pw {warp}&7.'
+
+Remover:
+  Removida: '&aA warp &f{warp}&a foi removida.'
+  Removida pelo staff: '&cA sua warp &f{warp}&c foi removida pela equipe.'
+  Removidas: '&aForam removidas &f{quantidade}&a warp(s).'
+
+Renomear:
+  Custo: '&eRenomear custa &f{valor}&e.'
+  Renomeada: '&aA warp &f{antigo}&a agora se chama &f{warp}&a.'
+
+Descricao:
+  Definida: '&aDescricao da warp &f{warp}&a atualizada.'
+  Removida: '&aA warp &f{warp}&a ficou sem descricao.'
+  Longa: '&cA descricao pode ter no maximo &f{maximo}&c caracteres.'
+
+Icone:
+  Mao vazia: '&cSegure na mao o item que vai ser o icone da warp.'
+  Definido: '&aO icone da warp &f{warp}&a agora e &f{item}&a.'
+  Padrao: '&aA warp &f{warp}&a voltou a usar a sua cabeca como icone.'
+
+Categoria:
+  Desconhecida: '&cNao existe a categoria &f{categoria}&c.'
+  Sem permissao: '&cVoce nao pode usar a categoria &f{categoria}&c.'
+  Definida: '&aA warp &f{warp}&a agora esta em &f{categoria}&a.'
+
+Custo:
+  Sem permissao: '&cVoce nao pode cobrar pelas suas warps.'
+  Invalido: '&cDigite um valor de 0 a {maximo}.'
+  Definido: '&aVisitar a warp &f{warp}&a agora custa &f{custo}&a.'
+  Removido: '&aA warp &f{warp}&a agora e gratuita.'
+
+Mover:
+  Custo: '&eMover a warp custa &f{valor}&e.'
+  Movida: '&aA warp &f{warp}&a foi movida para onde voce esta.'
+
+Estado:
+  Aberta: '&aA warp &f{warp}&a esta aberta: aparece no menu e recebe visitas.'
+  Fechada: '&eA warp &f{warp}&a esta fechada: so voce a ve e usa.'
+  Trancada: '&eA warp &f{warp}&e esta trancada: so os permitidos entram.'
+  Destrancada: '&aA warp &f{warp}&a esta destrancada: todo mundo entra.'
+  Avisos ligados: '&aVoce vai ser avisado quando visitarem &f{warp}&a.'
+  Avisos desligados: '&eVoce nao vai mais ser avisado das visitas em &f{warp}&e.'
+
+Senha:
+  Definida: '&aA warp &f{warp}&a agora pede senha para entrar.'
+  Removida: '&aA warp &f{warp}&a nao pede mais senha.'
+  Curta: '&cA senha precisa ter de 3 a 20 caracteres, sem espacos.'
+  Pedir: '&eA warp &f{warp}&e pede senha. Digite a senha no chat.'
+  Errada: '&cSenha errada.'
+
+Permitidos:
+  Adicionado: '&f{jogador}&a agora pode entrar na warp &f{warp}&a mesmo trancada.'
+  Removido: '&f{jogador}&a saiu da lista de permitidos da warp &f{warp}&a.'
+  Ja esta: '&c{jogador} ja esta na lista.'
+  Nao esta: '&c{jogador} nao esta na lista.'
+  Limite: '&cA lista de permitidos so aceita &f{maximo}&c jogadores.'
+
+Banidos:
+  Adicionado: '&f{jogador}&c foi banido da warp &f{warp}&c.'
+  Removido: '&f{jogador}&a foi desbanido da warp &f{warp}&a.'
+  Ja esta: '&c{jogador} ja esta banido.'
+  Nao esta: '&c{jogador} nao esta banido.'
+  Voce mesmo: '&cVoce nao pode banir a si mesmo.'
+
+Transferir:
+  Transferida: '&aA warp &f{warp}&a agora e de &f{jogador}&a.'
+  Recebida: '&aVoce recebeu a warp &f{warp}&a de &f{dono}&a!'
+  Limite do outro: '&c{jogador} ja tem o maximo de warps.'
+  Para si: '&cA warp ja e sua.'
+
+Teleporte:
+  Fechada: '&cEssa warp esta fechada no momento.'
+  Trancada: '&cEssa warp esta trancada: so os permitidos entram.'
+  Banido: '&cVoce foi banido dessa warp.'
+  Mundo indisponivel: '&cO mundo dessa warp nao esta carregado.'
+  Inseguro: '&cO destino dessa warp nao e seguro (bloco, lava ou queda). O dono foi avisado.'
+  Inseguro dono: '&cA sua warp &f{warp}&c esta num lugar inseguro e os jogadores nao conseguem entrar. Use &f/pw mover {warp}&c num lugar melhor.'
+  Aquecimento: '&eTeleportando em &f{segundos}s&e... nao se mova!'
+  Cancelado: '&cTeleporte cancelado: voce se moveu ou tomou dano.'
+  Intervalo: '&cEspere &f{tempo}&c para teleportar de novo.'
+  Ja aguardando: '&cVoce ja esta esperando um teleporte.'
+  Custo: '&eEssa warp cobra &f{custo}&e por visita. Clique de novo (ou use &f/pw {warp} confirmar&e) para pagar e entrar.'
+  Pago: '&eVoce pagou &f{valor}&e para visitar &f{warp}&e.'
+  Recebido: '&aVoce recebeu &f{valor}&a da visita de &f{jogador}&a na warp &f{warp}&a.'
+  Teleportado: '&aVoce chegou na warp &f{warp}&a de &f{dono}&a.'
+  Titulo: '&d{warp}<nl>&7de {dono}'
+  Aviso ao dono: '&f{jogador}&7 visitou a sua warp &f{warp}&7.'
+  Resumo ao entrar: '&7Enquanto voce esteve fora, suas warps receberam &f{visitas}&7 visita(s).'
+
+Avaliar:
+  Sem permissao: '&cVoce nao pode avaliar warps.'
+  Propria: '&cVoce nao pode avaliar a propria warp.'
+  Nota invalida: '&cA nota vai de 1 a 5.'
+  Avaliada: '&aVoce deu &f{nota}&a estrela(s) para a warp &f{warp}&a.'
+  Precisa visitar: '&cVisite a warp antes de avaliar.'
+
+Favoritar:
+  Sem permissao: '&cVoce nao pode favoritar warps.'
+  Adicionada: '&aA warp &f{warp}&a entrou nas suas favoritas.'
+  Removida: '&eA warp &f{warp}&e saiu das suas favoritas.'
+
+Anuncio:
+  Desligado: '&cOs espacos de anuncio estao desligados.'
+  Sem permissao: '&cVoce nao pode alugar espacos de anuncio.'
+  Ocupado: '&cEsse espaco ja esta alugado.'
+  Limite: '&cVoce so pode ter &f{maximo}&c espaco(s) de anuncio ao mesmo tempo.'
+  Sem warps: '&cVoce nao tem nenhuma warp aberta para anunciar.'
+  Ja anunciada: '&cA warp &f{warp}&c ja esta num espaco de anuncio.'
+  Alugado: '&aVoce alugou o espaco &f#{slot}&a para a warp &f{warp}&a por &f{tempo}&a (&f{valor}&a).'
+  Expirou: '&eO anuncio da sua warp &f{warp}&e acabou. Alugue de novo pelo menu.'
+  Liberado: '&aO espaco &f#{slot}&a foi liberado.'
+
+Busca:
+  Nenhuma: '&cNenhuma warp encontrada para &f{busca}&c.'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar&7 para desistir.'
+  Cancelado: '&eOperacao cancelada.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+  Nome: '&eDigite no chat o nome da warp.'
+  Novo nome: '&eDigite no chat o novo nome da warp &f{warp}&e.'
+  Descricao: '&eDigite no chat a descricao da warp &f{warp}&e (&f|&e quebra a linha; &fremover&e tira a descricao).'
+  Custo: '&eDigite no chat o custo de visita da warp &f{warp}&e (0 = gratis).'
+  Senha: '&eDigite no chat a nova senha da warp &f{warp}&e (&fremover&e tira a senha).'
+  Jogador permitir: '&eDigite no chat o nick de quem pode entrar na warp &f{warp}&e.'
+  Jogador banir: '&eDigite no chat o nick de quem vai ser banido da warp &f{warp}&e.'
+  Jogador transferir: '&eDigite no chat o nick de quem vai receber a warp &f{warp}&e.'
+  Busca: '&eDigite no chat o que procurar: parte do nome da warp, do dono ou da descricao.'
+
+Admin:
+  Info: |
+    &8&m----------------------------------------
+    &d StarPlayerWarps &7v{versao}
+    &7 Banco: &f{banco} &8| &7Economia: &f{economia}
+    &7 Warps: &f{warps} &8| &7Donos: &f{donos} &8| &7Anuncios: &f{anuncios}
+    &7 Categorias: &f{categorias}
+    &7 Terrenos: &f{terrenos}
+    &8&m----------------------------------------
+  Lista: '&7Warps de &f{jogador}&7 (&f{quantidade}&7): &f{lista}'
+  Lista vazia: '&c{jogador} nao tem warps.'
+  Dono alterado: '&aA warp &f{warp}&a agora e de &f{jogador}&a.'
+  Limpeza: '&aLimpeza: &f{quantidade}&a warp(s) de jogadores inativos removida(s).'
+  Debug: '&7Debug: &f{estado}&7.'
+  Anuncios: '&7Espaco &f#{slot}&7: {estado}'
+  Anuncio livre: '&alivre'
+  Anuncio ocupado: '&f{warp}&7 de &f{dono}&7 ate &f{ate}'
+
+Ajuda:
+  Jogador: |
+    &8&m----------------------------------------
+    &d Warps de jogadores
+    &f /{comando} &7abre o menu
+    &f /{comando} <warp> &7teleporta para uma warp
+    &f /{comando} criar <nome> &7cria uma warp onde voce esta
+    &f /{comando} remover <warp> &7apaga uma warp sua
+    &f /{comando} minhas &7as suas warps
+    &f /{comando} favoritas &7as suas favoritas
+    &f /{comando} buscar <texto> &7procura warps
+    &f /{comando} avaliar <warp> <1-5> &7avalia uma warp
+    &f /{comando} favoritar <warp> &7favorita ou desfavorita
+    &f /{comando} top &7ranking das warps
+    &f /{comando} info <warp> &7detalhes de uma warp
+    &7 As outras opcoes (nome, descricao, icone, categoria, custo, senha,
+    &7 permitidos, banidos, mover, anunciar) ficam no menu da sua warp.
+    &8&m----------------------------------------
+  Admin: |
+    &8&m----------------------------------------
+    &d StarPlayerWarps &7- administracao
+    &f /{comando} recarregar &7recarrega as configuracoes
+    &f /{comando} info &7estado do plugin
+    &f /{comando} tp <warp> &7teleporta sem custo nem espera
+    &f /{comando} remover <warp> &7apaga uma warp de qualquer um
+    &f /{comando} dono <warp> <jogador> &7troca o dono
+    &f /{comando} lista <jogador> &7as warps de alguem
+    &f /{comando} anuncios [liberar <slot>] &7espacos de anuncio
+    &f /{comando} limpar &7remove warps de jogadores inativos
+    &f /{comando} debug &7liga ou desliga o debug
+    &8&m----------------------------------------
+
+Info:
+  Warp: |
+    &8&m----------------------------------------
+    &d {warp} &7de &f{dono}
+    &7 Categoria: &f{categoria} &8| &7Estado: {estado}
+    &7 Visitas: &f{visitas} &8| &7Recentes: &f{visitas_recentes} &8| &7Visitantes: &f{visitantes}
+    &7 Avaliacao: &e{estrelas} &7({avaliacoes}) &8| &7Favoritos: &f{favoritos}
+    &7 Custo: &f{custo} &8| &7Criada em: &f{criada_em}
+    &7 Descricao: &f{descricao}
+    &8&m----------------------------------------
+
+Etiquetas:
+  Infinito: 'ilimitado'
+  Gratis: 'Gratis'
+  Nenhum: 'Nenhum'
+  Sim: 'Sim'
+  Nao: 'Nao'
+  Aberta: '&aAberta'
+  Fechada: '&cFechada'
+  Trancada: '&eTrancada'
+  Com senha: '&eCom senha'
+  Tudo: 'tudo'
+  Todas: 'Todas'
+  Favoritas: 'Favoritas'
+  Visitadas: 'Visitadas'
+  Minhas warps: 'Minhas warps'
+  Busca: 'Busca: {busca}'
+  Permitidos: 'Permitidos'
+  Banidos: 'Banidos'
+  Estrela cheia: '&e★'
+  Estrela vazia: '&7★'
+  Sem economia: 'nenhuma'
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  Agora: 'agora'
+
+Ordenacao:
+  MAIS_VISITADAS: 'Mais visitadas'
+  EM_ALTA: 'Em alta'
+  MELHOR_AVALIADAS: 'Melhor avaliadas'
+  MAIS_FAVORITADAS: 'Mais favoritadas'
+  MAIS_RECENTES: 'Mais recentes'
+  MAIS_ANTIGAS: 'Mais antigas'
+  ALFABETICA: 'A - Z'
+
+Filtro:
+  TODAS: 'Todas'
+  GRATUITAS: 'So gratuitas'
+  ABERTAS_A_TODOS: 'Sem senha e sem tranca'
+  COM_AVALIACAO: 'So avaliadas'

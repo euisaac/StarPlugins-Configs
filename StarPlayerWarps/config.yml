@@ -1,0 +1,159 @@
+# ==========================================================================
+#  StarPlayerWarps - configuracao
+#
+#  Como funciona: o jogador para onde quer e usa /pw criar <nome>. A warp
+#  aparece no menu (/pw) com a cabeca dele, numa categoria, com descricao,
+#  avaliacoes e contador de visitas. Quem abre o menu escolhe uma categoria,
+#  ordena, filtra, procura, favorita e teleporta.
+#
+#  Cores: &a etc. e &#RRGGBB (1.16+). Materiais pelo nome moderno (o plugin
+#  traduz para as versoes antigas). Sons: NOME;volume;tom.
+#
+#  Mudar este arquivo pede /starplayerwarps recarregar (banco de dados nao:
+#  esse so muda com restart).
+# ==========================================================================
+
+# Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
+# tras depois de uma atualizacao.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o que o plugin esta fazendo.
+  Debug: false
+  # Milissegundos entre dois cliques do mesmo jogador nos menus.
+  Intervalo entre cliques: 150
+  # Anuncia no chat do servidor quando uma warp nova e criada
+  # (mensagem 'Criar.Anuncio' do mensagens.yml; vazia desliga).
+  Anunciar warp nova: true
+  # Avisa o dono no chat quando alguem visita a warp dele (cada warp tem um
+  # botao para desligar isso).
+  Avisar dono da visita: true
+  # Ao entrar no servidor, o dono recebe um resumo das visitas que teve
+  # enquanto esteve fora.
+  Resumo de visitas ao entrar: true
+  # Uma visita do mesmo jogador na mesma warp so conta de novo depois deste
+  # tempo (minutos). 0 conta todas. O dono nunca conta visita na propria warp.
+  Contar visita repetida apos minutos: 10
+  # Dias considerados no "em alta" (visitas recentes) da ordenacao.
+  Dias do em alta: 7
+  # Formato da data de criacao nos menus.
+  Formato de data: 'dd/MM/yyyy HH:mm:ss'
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starplayerwarps_'
+  # Aparece nas warps quando varios servidores usam o mesmo banco.
+  Nome deste servidor: ''
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Economia:
+  # VAULT (qualquer economia registrada no Vault), PLAYERPOINTS, STARECONOMIA
+  # (com 'Moeda' = id da moeda; vazio = a principal) ou COMANDO (saldo por
+  # placeholder, cobranca e deposito por comando de console; {jogador} {uuid}
+  # {valor}). NENHUMA desliga tudo que envolve dinheiro.
+  Provedor: VAULT
+  Moeda: ''
+  Simbolo: '$'
+  Nome: 'coins'
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+  # LETRAS abrevia (50K, 1.2M); NUMERO escreve por extenso (50.000).
+  Formato: NUMERO
+
+Custos:
+  # 0 = gratis. Quem tem starplayerwarps.semcusto nao paga nada disto.
+  Criar warp: 1000
+  Renomear warp: 500
+  Mover warp: 0
+  Trocar icone: 0
+  # Porcentagem do custo de visita que fica com o servidor; o resto vai
+  # para o dono da warp.
+  Taxa sobre a visita: 10
+  # Maior custo de visita que um dono pode cobrar (0 = sem limite).
+  Custo de visita maximo: 10000
+
+Limites:
+  # Quantas warps um jogador pode ter. 0 = sem limite.
+  Padrao: 1
+  # Quem tem a permissao fica com o maior valor entre os que tiver.
+  Por permissao:
+    starplayerwarps.limite.vip: 3
+    starplayerwarps.limite.mvp: 5
+
+Nomes:
+  Minimo de caracteres: 3
+  Maximo de caracteres: 16
+  # Letras, numeros e _ . Com false aceita qualquer coisa que nao seja espaco.
+  So letras e numeros: true
+  # Nomes que nao podem ser usados (aceita * como curinga: *admin*).
+  Palavras proibidas:
+    - 'admin'
+    - 'spawn'
+    - '*staff*'
+    - '*porn*'
+  Descricao:
+    # Tamanho maximo da descricao inteira.
+    Maximo de caracteres: 120
+    # Quantos caracteres por linha na lore; o texto e quebrado sozinho.
+    # Escreva | na descricao para forcar uma quebra.
+    Caracteres por linha: 30
+    Maximo de linhas: 4
+
+Mundos:
+  # Onde nao da para criar warp (quem tem starplayerwarps.mundo.bypass pode).
+  Bloqueados:
+    - 'world_nether_exemplo'
+  # true: alem dos mundos bloqueados, a warp so pode ser criada num terreno
+  # do proprio jogador (StarTerrenos, GriefDefender ou GriefPrevention).
+  Exigir terreno proprio: false
+
+Teleporte:
+  # Segundos parado antes de teleportar (0 = na hora). Mexer ou tomar dano
+  # cancela. Quem tem starplayerwarps.semaquecimento pula a espera.
+  Aquecimento: 3
+  # Segundos entre dois teleportes do mesmo jogador (0 = sem intervalo).
+  Intervalo: 5
+  # Nao teleporta para dentro de bloco, lava ou queda; quem visita recebe um
+  # aviso e o dono e avisado que a warp precisa de ajuste.
+  Teleporte seguro: true
+  # Mostra um titulo e toca um som ao chegar.
+  Titulo ao chegar: true
+  # Fecha o menu e olha para onde a warp foi criada olhando.
+  Manter direcao: true
+
+Anuncios:
+  # Espacos em destaque no topo da lista, alugados pelos donos por um tempo.
+  Ativar: true
+  # Quais slots da primeira fileira sao espacos de anuncio.
+  Slots: [ 2, 3, 4, 5, 6 ]
+  Valor: 50000
+  Tempo em dias: 2
+  # Quantos espacos um mesmo jogador pode alugar ao mesmo tempo.
+  Maximo por jogador: 1
+  # Em quais listas os anuncios aparecem: TODAS, CATEGORIAS, FAVORITAS,
+  # VISITADAS, MINHAS, BUSCA.
+  Mostrar em: [ TODAS, CATEGORIAS, BUSCA ]
+
+Expirar:
+  # Warps de quem nao entra ha tantos dias sao apagadas (0 desliga). A
+  # verificacao roda uma vez por hora.
+  Dias sem o dono entrar: 0
+
+Ranking:
+  Posicoes: 10
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Teleporte: 'ENTITY_ENDERMAN_TELEPORT;1;1'
+  Aquecimento: 'BLOCK_NOTE_BLOCK_PLING;1;1.5'
+  Dinheiro: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
