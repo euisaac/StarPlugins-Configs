@@ -1,0 +1,113 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - mobs
+#
+#  O que cada mob rende quando morre pela espada de farm. A chave e o tipo da
+#  entidade (ZOMBIE, SKELETON, ENDER_DRAGON...). Mob que nao esta na lista
+#  usa o "Padrao". Um mob com nome customizado pode ter uma regra propria em
+#  "Por nome" (o nome e comparado sem cores).
+#
+#  Campos:
+#    Nome                 como o mob aparece nas mensagens
+#    Chefe                true = vale o encantamento Cacador de Chefes
+#    Multiplicar drops    false = a pilhagem nao mexe nos drops dele
+#    Abates               quantos abates o mob vale (para o nivel e o top)
+#    Experiencia extra    experiencia somada a que o mob ja solta
+#    Recompensas          economia: valor, pago a cada abate
+#    Comandos             rodam pelo console a cada abate ({jogador} {mob})
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Padrao:
+  Nome: '{tipo}'
+  Chefe: false
+  Multiplicar drops: true
+  Abates: 1
+  Experiencia extra: 0
+  Recompensas:
+    dinheiro: 2.0
+  Comandos: []
+
+# Mobs que a espada ignora por completo: nao rendem nada e nao contam abate.
+Ignorados:
+  - 'ARMOR_STAND'
+  - 'VILLAGER'
+  - 'WANDERING_TRADER'
+  - 'ITEM_FRAME'
+  - 'PAINTING'
+  - 'PLAYER'
+
+Mobs:
+  ZOMBIE:
+    Nome: 'Zumbi'
+    Recompensas:
+      dinheiro: 5.0
+  SKELETON:
+    Nome: 'Esqueleto'
+    Recompensas:
+      dinheiro: 6.0
+  SPIDER:
+    Nome: 'Aranha'
+    Recompensas:
+      dinheiro: 4.0
+  CREEPER:
+    Nome: 'Creeper'
+    Recompensas:
+      dinheiro: 8.0
+  ENDERMAN:
+    Nome: 'Enderman'
+    Recompensas:
+      dinheiro: 12.0
+  BLAZE:
+    Nome: 'Blaze'
+    Recompensas:
+      dinheiro: 15.0
+  WITHER_SKELETON:
+    Nome: 'Esqueleto Wither'
+    Recompensas:
+      dinheiro: 20.0
+  COW:
+    Nome: 'Vaca'
+    Recompensas:
+      dinheiro: 3.0
+  PIG:
+    Nome: 'Porco'
+    Recompensas:
+      dinheiro: 3.0
+  SHEEP:
+    Nome: 'Ovelha'
+    Recompensas:
+      dinheiro: 3.0
+  CHICKEN:
+    Nome: 'Galinha'
+    Recompensas:
+      dinheiro: 2.0
+  IRON_GOLEM:
+    Nome: 'Golem de Ferro'
+    Abates: 5
+    Recompensas:
+      dinheiro: 50.0
+  WITHER:
+    Nome: 'Wither'
+    Chefe: true
+    Abates: 50
+    Experiencia extra: 100
+    Recompensas:
+      dinheiro: 5000.0
+    Comandos: []
+  ENDER_DRAGON:
+    Nome: 'Dragao do Fim'
+    Chefe: true
+    Abates: 100
+    Experiencia extra: 500
+    Recompensas:
+      dinheiro: 20000.0
+    Comandos: []
+
+# Regras por nome customizado; vencem a regra do tipo.
+Por nome:
+  'Zumbi Chefe':
+    Nome: 'Zumbi Chefe'
+    Chefe: true
+    Abates: 10
+    Recompensas:
+      dinheiro: 500.0

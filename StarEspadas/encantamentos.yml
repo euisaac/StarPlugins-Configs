@@ -1,0 +1,407 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - encantamentos pagos
+#
+#  Sao evoluidos pelo menu (shift + botao direito com a espada, ou /espadas
+#  evoluir) e pagos com as economias do economias.yml. Cada nivel custa
+#  "Precos padrao" + "Precos por nivel" x nivel atual.
+#
+#  Tipos disponiveis (Tipo:):
+#    SORTE             +Bonus% de drops por nivel, em todo mob
+#    SORTE_CHEFE       +Bonus% de drops por nivel, so nos mobs com Chefe: true (mobs.yml)
+#    RECOMPENSA_DUPLA  Bonus% de chance por nivel de dobrar o dinheiro do abate
+#    ACUMULO           Bonus% de chance por nivel de os drops irem direto ao inventario
+#    EXPERIENCIA       +Bonus% de experiencia do mob por nivel
+#    VAMPIRISMO        Bonus% de chance por nivel de curar "Cura" de vida ao abater
+#    CHAMA             Bonus% de chance por nivel de incendiar o alvo por "Segundos"
+#    VELOCIDADE        Bonus% de chance por nivel de ganhar Velocidade ao abater
+#    CABECA            Bonus% de chance por nivel de o mob soltar a propria cabeca
+#    RAIO              Bonus% de chance por nivel de um raio (so visual) cair no abate
+#    COMANDO           Bonus% de chance por nivel de rodar os "Comandos" no abate
+#
+#  Placeholders dos icones: {nome} {nivel} {maximo} {bonus} {proximo_bonus} {preco}
+#  Maximo -1 = sem limite. Slot e a posicao no menu de evolucao.
+#
+#  Os encantamentos que voce criar podem ficar no custom_encantamentos.yml,
+#  que e lido junto com este.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Encantamentos:
+  sorte:
+    Tipo: SORTE
+    Nome: 'Sortudo'
+    Padrao: 0
+    Maximo: -1
+    Bonus por nivel: 5.0
+    Permissao: ''
+    Slot: 19
+    Precos padrao:
+      dinheiro: 10000
+    Precos por nivel:
+      dinheiro: 5000
+    Icone:
+      Pode evoluir:
+        CustomSkull: true
+        URL: 'd8188345dc6a1bf08663385b99f2bd1551a49292a93b84e0a97b917b565bf41a'
+        Material: EMERALD
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Aumenta a quantidade de drops'
+          - '&7de todos os mobs.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - '&f > Proximo nivel: &b+{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        CustomSkull: true
+        URL: 'd8188345dc6a1bf08663385b99f2bd1551a49292a93b84e0a97b917b565bf41a'
+        Material: EMERALD
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Aumenta a quantidade de drops'
+          - '&7de todos os mobs.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - '&f > Proximo nivel: &b+{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        CustomSkull: true
+        URL: 'd8188345dc6a1bf08663385b99f2bd1551a49292a93b84e0a97b917b565bf41a'
+        Material: EMERALD
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Aumenta a quantidade de drops'
+          - '&7de todos os mobs.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  sorte_chefe:
+    Tipo: SORTE_CHEFE
+    Nome: 'Cacador de Chefes'
+    Padrao: 0
+    Maximo: -1
+    Bonus por nivel: 10.0
+    Permissao: ''
+    Slot: 20
+    Precos padrao:
+      dinheiro: 25000
+    Precos por nivel:
+      dinheiro: 10000
+    Icone:
+      Pode evoluir:
+        Material: DRAGON_EGG
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Aumenta os drops dos mobs marcados'
+          - '&7como chefe no mobs.yml.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - '&f > Proximo nivel: &b+{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: DRAGON_EGG
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Aumenta os drops dos mobs marcados'
+          - '&7como chefe no mobs.yml.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - '&f > Proximo nivel: &b+{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: DRAGON_EGG
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Aumenta os drops dos mobs marcados'
+          - '&7como chefe no mobs.yml.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  recompensa_dupla:
+    Tipo: RECOMPENSA_DUPLA
+    Nome: 'Recompensa Dupla'
+    Padrao: 0
+    Maximo: 20
+    Bonus por nivel: 5.0
+    Permissao: ''
+    Slot: 21
+    Precos padrao:
+      dinheiro: 20000
+    Precos por nivel:
+      dinheiro: 10000
+    Icone:
+      Pode evoluir:
+        Material: GOLD_INGOT
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Chance de o dinheiro do abate'
+          - '&7vir em dobro.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: GOLD_INGOT
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Chance de o dinheiro do abate'
+          - '&7vir em dobro.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: GOLD_INGOT
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Chance de o dinheiro do abate'
+          - '&7vir em dobro.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  acumulo:
+    Tipo: ACUMULO
+    Nome: 'Acumulo'
+    Padrao: 0
+    Maximo: 10
+    Bonus por nivel: 10.0
+    Permissao: ''
+    Slot: 22
+    Precos padrao:
+      dinheiro: 15000
+    Precos por nivel:
+      dinheiro: 7500
+    Icone:
+      Pode evoluir:
+        Material: HOPPER
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Chance de os drops irem direto'
+          - '&7para o seu inventario.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: HOPPER
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Chance de os drops irem direto'
+          - '&7para o seu inventario.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: HOPPER
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Chance de os drops irem direto'
+          - '&7para o seu inventario.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  experiencia:
+    Tipo: EXPERIENCIA
+    Nome: 'Sabedoria'
+    Padrao: 0
+    Maximo: 20
+    Bonus por nivel: 10.0
+    Permissao: ''
+    Slot: 23
+    Precos padrao:
+      dinheiro: 8000
+    Precos por nivel:
+      dinheiro: 4000
+    Icone:
+      Pode evoluir:
+        Material: EXPERIENCE_BOTTLE
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Aumenta a experiencia que'
+          - '&7os mobs soltam.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - '&f > Proximo nivel: &b+{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: EXPERIENCE_BOTTLE
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Aumenta a experiencia que'
+          - '&7os mobs soltam.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - '&f > Proximo nivel: &b+{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: EXPERIENCE_BOTTLE
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Aumenta a experiencia que'
+          - '&7os mobs soltam.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Bonus atual: &b+{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  vampirismo:
+    Tipo: VAMPIRISMO
+    Nome: 'Vampirismo'
+    Padrao: 0
+    Maximo: 10
+    Bonus por nivel: 5.0
+    # Vida recuperada (2 = um coracao).
+    Cura: 2.0
+    Permissao: ''
+    Slot: 24
+    Precos padrao:
+      dinheiro: 12000
+    Precos por nivel:
+      dinheiro: 6000
+    Icone:
+      Pode evoluir:
+        Material: REDSTONE
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Chance de recuperar vida'
+          - '&7a cada abate.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: REDSTONE
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Chance de recuperar vida'
+          - '&7a cada abate.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: REDSTONE
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Chance de recuperar vida'
+          - '&7a cada abate.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  cabeca:
+    Tipo: CABECA
+    Nome: 'Decapitador'
+    Padrao: 0
+    Maximo: 10
+    Bonus por nivel: 0.5
+    Permissao: ''
+    Slot: 25
+    Precos padrao:
+      dinheiro: 30000
+    Precos por nivel:
+      dinheiro: 15000
+    Icone:
+      Pode evoluir:
+        Material: ZOMBIE_HEAD
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Chance de o mob soltar a'
+          - '&7propria cabeca.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: ZOMBIE_HEAD
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Chance de o mob soltar a'
+          - '&7propria cabeca.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: ZOMBIE_HEAD
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Chance de o mob soltar a'
+          - '&7propria cabeca.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - ''
+          - '&6Nivel maximo.'

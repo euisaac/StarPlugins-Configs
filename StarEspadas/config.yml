@@ -1,0 +1,232 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - configuracao geral
+#
+#  Os arquivos de conteudo ficam separados:
+#    espadas.yml              as espadas a venda, na ordem de evolucao
+#    encantamentos.yml        os encantamentos pagos, evoluidos pelo menu
+#    custom_encantamentos.yml os encantamentos que o servidor inventa
+#    economias.yml            com o que se paga (Vault, pontos, moedas, sementes...)
+#    mobs.yml                 o que cada mob rende ao morrer pela espada
+#    niveis.yml               os niveis da espada, ganhos por abate
+#    menus.yml                titulos, linhas e itens das telas
+#    mensagens.yml            tudo que o jogador le
+#    comandos.yml             os nomes dos comandos e subcomandos
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+  # Nada do plugin funciona nestes mundos (a espada vira uma espada comum).
+  Mundos bloqueados: []
+
+  # Deixar a espada de farm bater em jogadores. Desligado, o golpe e cancelado
+  # e o jogador recebe um aviso.
+  Atacar jogadores: false
+
+  # Shift + botao direito com a espada na mao abre o menu de evolucao.
+  Abrir menu no clique: true
+
+  # Recusar a compra de quem ja tem uma espada de farm no inventario.
+  Uma por jogador: false
+
+  # Ao comprar a proxima espada da lista, a anterior e consumida.
+  Consumir espada anterior: true
+
+  # Se a anterior for consumida, a pilhagem que ela tinha ALEM da exigida vai
+  # junto para a nova (e os encantamentos e o nivel tambem).
+  Transferir progresso: true
+
+  # No modo criativo o plugin nao mexe nos drops.
+  Ignorar criativo: true
+
+# Somente quem segura uma espada de farm consegue matar mobs.
+Somente com espada:
+  Ativar: false
+  # Mobs que continuam morrendo normalmente (nome do tipo, ex.: ENDER_DRAGON).
+  Mobs ignorados:
+    - 'ENDER_DRAGON'
+    - 'WITHER'
+  # Mobs com um destes metadados tambem ficam de fora (chefes de outros
+  # plugins, mascotes, etc).
+  Metadados ignorados:
+    - 'chefe'
+    - 'boss'
+    - 'pet'
+  # Segundos entre um aviso e outro para o mesmo jogador.
+  Intervalo do aviso: 3
+
+# A pilhagem da espada e o que multiplica os drops. Ela nao tem teto de
+# encantamento como a do jogo: cada nivel soma o bonus abaixo.
+Pilhagem:
+  # Quanto cada nivel de pilhagem soma no multiplicador, em porcentagem.
+  # 1000 de pilhagem com 0.1 = +100% (drops em dobro).
+  Bonus por nivel: 0.1
+  # Teto do multiplicador de drops; 0 tira o limite.
+  Multiplicador maximo: 0
+  # A experiencia que o mob solta tambem e multiplicada.
+  Multiplica experiencia: true
+  # Drops com nome ou lore (equipamento raro, itens de outros plugins) nao
+  # sao multiplicados.
+  Ignorar itens com nome: true
+  # Materiais que nunca multiplicam, mesmo sem nome.
+  Materiais que nao multiplicam:
+    - 'NETHER_STAR'
+    - 'DRAGON_EGG'
+    - 'ELYTRA'
+    - 'TOTEM_OF_UNDYING'
+  # Um drop nunca vira mais do que isto de uma vez (evita pilhas absurdas).
+  Maximo por drop: 6400
+
+# Os quatro atributos que sobem por LIVRO (dados por comando, drop de outros
+# plugins, loja...). Clicar com o livro em cima da espada aplica. Livro em cima
+# de livro do mesmo tipo compacta os dois em um.
+Livros:
+  # A sobra do livro que passa do maximo volta para o jogador como um livro
+  # menor, em vez de ser recusada.
+  Devolver sobra: true
+  # So a ultima espada da lista (Ultima: true no espadas.yml) recebe livros.
+  So a ultima recebe: false
+
+  Pilhagem:
+    # Maximo de pilhagem que uma espada acumula; 0 tira o limite.
+    Maximo: 0
+    Item:
+      Material: ENCHANTED_BOOK
+      Nome: '&b+{valor} Pilhagem'
+      Lore:
+        - ''
+        - '&fPilhagem: &b{valor}'
+        - ''
+        - '&7Clique em uma espada para aplicar.'
+
+  Afiacao:
+    # A afiacao vira o encantamento Afiacao (Sharpness) de verdade no item.
+    # Maximo 0 tira o limite; o jogo aguenta valores bem altos.
+    Maximo: 1500
+    Item:
+      Material: ENCHANTED_BOOK
+      Nome: '&c+{valor} Afiacao'
+      Lore:
+        - ''
+        - '&fAfiacao: &c{valor}'
+        - ''
+        - '&7Clique em uma espada para aplicar.'
+
+  Divino:
+    Maximo: 1500
+    Item:
+      Material: ENCHANTED_BOOK
+      Nome: '&e+{valor} Divino'
+      Lore:
+        - ''
+        - '&fDivino: &e{valor}'
+        - ''
+        - '&7Clique em uma espada para aplicar.'
+
+  Sequencia:
+    Maximo: 5
+    Item:
+      Material: ENCHANTED_BOOK
+      Nome: '&6+{valor} Sequencia'
+      Lore:
+        - ''
+        - '&fSequencia: &6{valor}'
+        - ''
+        - '&7Clique em uma espada para aplicar.'
+
+# O Divino e um bonus temporario: a cada abate ha uma chance de ativar, e
+# enquanto dura os drops sao multiplicados de novo.
+Divino:
+  # Chance de ativar por nivel de Divino, em porcentagem (nivel 10 x 0.1 = 1%).
+  Chance por nivel: 0.1
+  # Chance maxima, em porcentagem.
+  Chance maxima: 25.0
+  # Segundos que o bonus dura.
+  Duracao: 30
+  # Multiplicador de drops enquanto ativo.
+  Multiplicador: 1.5
+  # Um abate durante o bonus renova o tempo em vez de ignorar.
+  Renovar ao abater: false
+  Titulo: '&e&lDIVINO<nl>&fAtivado por {duracao}s!'
+  Actionbar: '&eDivino ativo: &f{restante}s &7(drops x{multiplicador})'
+  Actionbar ao acabar: '&7O Divino acabou.'
+  Som: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+
+# A Sequencia e o combo de abates seguidos. Quanto maior, mais rendem as
+# recompensas em dinheiro e a experiencia do mob.
+Sequencia:
+  # Segundos sem abater para o combo zerar.
+  Tempo para perder: 10
+  # Bonus por abate do combo, em porcentagem (combo 20 x 1.5 = +30%).
+  Bonus por abate: 1.5
+  # Combo maximo que ainda soma bonus; 0 tira o limite.
+  Combo maximo: 100
+  # O nivel de Sequencia da espada (0 ate o maximo do livro) e a fracao do
+  # bonus que vale: nivel 5 de 5 = 100% do bonus, nivel 1 = 20%.
+  # Uma espada sem Sequencia nao faz combo.
+  Actionbar: '&6Sequencia &fx{combo} &7(+{bonus}%)'
+  # A cada tantos abates o chat recebe o aviso (0 desliga).
+  Avisar a cada: 25
+  Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.8'
+
+# Recompensas por abate vindas do mobs.yml.
+Recompensas:
+  # Avisar na actionbar o que o abate rendeu.
+  Actionbar: '&a+{valor} &7({mob})'
+  # Multiplicador de todas as recompensas por permissao. A maior vale.
+  # Formato: 'permissao: multiplicador'. Deixe vazio para desligar.
+  Multiplicadores:
+    'starespadas.bonus.vip': 1.25
+    'starespadas.bonus.mvp': 1.5
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/starespadas.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: starespadas_
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Ranking:
+  # Segundos entre as atualizacoes do top de abates.
+  Atualizar a cada: 300
+  # Quantos jogadores o top guarda.
+  Quantidade: 10
+  # Tag que o TOP 1 recebe no placeholder %starespadas_tag%.
+  Tag do top 1: '&c&l[MATADOR]'
+
+# Como os numeros grandes aparecem nas mensagens e menus.
+Formato:
+  # LETRA abrevia (1.5K, 2.3M); NUMERO escreve por extenso (1.500, 2.300.000).
+  Tipo: LETRA
+  # Casas decimais da forma abreviada.
+  Casas decimais: 2
+  # Sufixo de cada potencia de mil, na ordem: unidade, mil, milhao, bilhao...
+  Sufixos:
+    - ''
+    - 'K'
+    - 'M'
+    - 'B'
+    - 'T'
+    - 'Q'
+    - 'QQ'
+    - 'S'
+    - 'SS'
+    - 'O'
+    - 'N'
+    - 'D'
+
+Sons:
+  Comprar: 'ENTITY_PLAYER_LEVELUP;1;1.2'
+  Evoluir: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+  Subir de nivel: 'UI_TOAST_CHALLENGE_COMPLETE;1;1'
+  Livro: 'BLOCK_ENCHANTMENT_TABLE_USE;1;1.2'
+  Compactar: 'ENTITY_ITEM_PICKUP;1;0.8'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Clique: 'UI_BUTTON_CLICK;1;1'

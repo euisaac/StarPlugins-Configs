@@ -1,0 +1,231 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - encantamentos criados pelo servidor
+#
+#  Mesmo formato do encantamentos.yml; os dois arquivos sao lidos juntos.
+#  Uma chave repetida nos dois vale a do encantamentos.yml.
+#  Os exemplos abaixo mostram os tipos que ficaram de fora do arquivo principal.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Encantamentos:
+  chama:
+    Tipo: CHAMA
+    Nome: 'Chama Viva'
+    Padrao: 0
+    Maximo: 5
+    Bonus por nivel: 10.0
+    # Segundos de fogo por nivel.
+    Segundos: 2
+    Permissao: ''
+    Slot: 28
+    Precos padrao:
+      dinheiro: 10000
+    Precos por nivel:
+      dinheiro: 5000
+    Icone:
+      Pode evoluir:
+        Material: BLAZE_POWDER
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Chance de incendiar o alvo'
+          - '&7a cada golpe.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: BLAZE_POWDER
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Chance de incendiar o alvo'
+          - '&7a cada golpe.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: BLAZE_POWDER
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Chance de incendiar o alvo'
+          - '&7a cada golpe.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  velocidade:
+    Tipo: VELOCIDADE
+    Nome: 'Impulso'
+    Padrao: 0
+    Maximo: 5
+    Bonus por nivel: 10.0
+    # Duracao e forca da Velocidade (amplificador 0 = Velocidade I).
+    Segundos: 5
+    Amplificador: 1
+    Permissao: ''
+    Slot: 29
+    Precos padrao:
+      dinheiro: 10000
+    Precos por nivel:
+      dinheiro: 5000
+    Icone:
+      Pode evoluir:
+        Material: SUGAR
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Chance de ganhar Velocidade'
+          - '&7ao abater um mob.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: SUGAR
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Chance de ganhar Velocidade'
+          - '&7ao abater um mob.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: SUGAR
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Chance de ganhar Velocidade'
+          - '&7ao abater um mob.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  raio:
+    Tipo: RAIO
+    Nome: 'Trovao'
+    Padrao: 0
+    Maximo: 5
+    Bonus por nivel: 4.0
+    Permissao: ''
+    Slot: 30
+    Precos padrao:
+      dinheiro: 5000
+    Precos por nivel:
+      dinheiro: 2500
+    Icone:
+      Pode evoluir:
+        Material: NETHER_STAR
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Chance de um raio (so o efeito)'
+          - '&7cair onde o mob morreu.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: NETHER_STAR
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Chance de um raio (so o efeito)'
+          - '&7cair onde o mob morreu.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: NETHER_STAR
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Chance de um raio (so o efeito)'
+          - '&7cair onde o mob morreu.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - ''
+          - '&6Nivel maximo.'
+
+  premio:
+    Tipo: COMANDO
+    Nome: 'Premiado'
+    Padrao: 0
+    Maximo: 3
+    Bonus por nivel: 0.2
+    # Rodam pelo console quando a chance bate. {jogador} {mob} {nivel}
+    Comandos:
+      - 'give {jogador} diamond 1'
+    # Mensagem para o jogador quando o premio sai (vazio = nenhuma).
+    Mensagem: '&aO Premiado te deu um diamante!'
+    Permissao: ''
+    Slot: 31
+    Precos padrao:
+      dinheiro: 100000
+    Precos por nivel:
+      dinheiro: 100000
+    Icone:
+      Pode evoluir:
+        Material: DIAMOND
+        Nome: '&a{nome}'
+        Lore:
+          - '&7Chance de ganhar um diamante'
+          - '&7a cada abate.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&aClique para evoluir.'
+      Nao pode evoluir:
+        Material: DIAMOND
+        Nome: '&c{nome}'
+        Lore:
+          - '&7Chance de ganhar um diamante'
+          - '&7a cada abate.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - '&f > Proximo nivel: &b{proximo_bonus}%'
+          - ''
+          - '&f > Custo: &a{preco}'
+          - ''
+          - '&cVoce nao tem o suficiente.'
+      Maximo:
+        Material: DIAMOND
+        Nome: '&6{nome}'
+        Lore:
+          - '&7Chance de ganhar um diamante'
+          - '&7a cada abate.'
+          - ''
+          - '&f > Nivel: &b{nivel}&f/&b{maximo}'
+          - '&f > Chance atual: &b{bonus}%'
+          - ''
+          - '&6Nivel maximo.'

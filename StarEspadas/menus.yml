@@ -1,0 +1,211 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - menus
+#
+#  Cada botao tem Slot, Material (ou CustomSkull + URL), Nome e Lore.
+#  Slot -1 esconde o botao. Linhas define o tamanho (1 a 6).
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Principal:
+  Titulo: '&8Espadas de Farm'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Informacoes:
+    Slot: 10
+    Material: BOOK
+    Nome: '&aInformacoes'
+    Lore:
+      - '&7As espadas de farm multiplicam'
+      - '&7os drops dos mobs pela pilhagem.'
+      - ''
+      - '&7Aplique livros para subir a'
+      - '&7pilhagem, a afiacao, o Divino e'
+      - '&7a Sequencia. Evolua os encantamentos'
+      - '&7com shift + botao direito.'
+      - ''
+      - '&fEspadas cadastradas: &a{espadas}'
+      - '&fEncantamentos: &a{encantamentos}'
+  Perfil:
+    Slot: 11
+    Material: PLAYER_HEAD
+    Nome: '&aSeu perfil'
+    Lore:
+      - '&fAbates: &a{abates}'
+      - '&fMaior sequencia: &6{maior_sequencia}'
+      - '&fGanhos: &a{ganhos}'
+      - '&fPosicao no top: &b{posicao}'
+      - ''
+      - '&7Clique para ver mais.'
+  # A proxima espada que o jogador pode comprar. O item vem do espadas.yml
+  # (Menu.Pode comprar / Nao pode comprar).
+  Espada:
+    Slot: 13
+  # Mostrado quando nao ha mais espada para comprar.
+  Sem espada:
+    Material: BARRIER
+    Nome: '&eNenhuma espada disponivel'
+    Lore:
+      - ''
+      - '&7Voce ja tem a ultima espada'
+      - '&7desta lista.'
+      - ''
+  Todas:
+    Slot: 14
+    Material: CHEST
+    Nome: '&eTodas as espadas'
+    Lore:
+      - '&7Veja a lista completa e o'
+      - '&7que falta para cada uma.'
+  Evoluir:
+    Slot: 15
+    Material: ANVIL
+    Nome: '&bEvoluir espada'
+    Lore:
+      - '&7Abre os encantamentos da'
+      - '&7espada que esta na sua mao.'
+  Top:
+    Slot: 16
+    Material: GOLD_INGOT
+    Nome: '&6Top abates'
+    Lore:
+      - '&7Quem mais abateu com a espada.'
+
+Espadas:
+  Titulo: '&8Espadas ({pagina}/{paginas})'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  # Onde as espadas aparecem, na ordem.
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Voltar:
+    Slot: 18
+    Material: ARROW
+    Nome: '&cVoltar'
+  Anterior:
+    Slot: 21
+    Material: ARROW
+    Nome: '&ePagina anterior'
+  Proxima:
+    Slot: 23
+    Material: ARROW
+    Nome: '&eProxima pagina'
+
+Evoluir:
+  Titulo: '&8Evoluir espada'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  # A propria espada, com a lore atual.
+  Espada:
+    Slot: 4
+  # Os quatro atributos por livro. {valor} {maximo}
+  Pilhagem:
+    Slot: 10
+    Material: ENCHANTED_BOOK
+    Nome: '&bPilhagem'
+    Lore:
+      - '&7Multiplica os drops dos mobs.'
+      - ''
+      - '&fAtual: &b{valor}&f/&b{maximo}'
+      - '&fMultiplicador: &bx{multiplicador}'
+      - ''
+      - '&7Sobe com livros de pilhagem.'
+  Afiacao:
+    Slot: 11
+    Material: ENCHANTED_BOOK
+    Nome: '&cAfiacao'
+    Lore:
+      - '&7Dano extra em cada golpe.'
+      - ''
+      - '&fAtual: &c{valor}&f/&c{maximo}'
+      - ''
+      - '&7Sobe com livros de afiacao.'
+  Divino:
+    Slot: 12
+    Material: ENCHANTED_BOOK
+    Nome: '&eDivino'
+    Lore:
+      - '&7Chance de ativar um bonus de'
+      - '&7drops por alguns segundos.'
+      - ''
+      - '&fAtual: &e{valor}&f/&e{maximo}'
+      - '&fChance: &e{chance}%'
+      - ''
+      - '&7Sobe com livros de Divino.'
+  Sequencia:
+    Slot: 13
+    Material: ENCHANTED_BOOK
+    Nome: '&6Sequencia'
+    Lore:
+      - '&7Combo de abates seguidos que'
+      - '&7aumenta as recompensas.'
+      - ''
+      - '&fAtual: &6{valor}&f/&6{maximo}'
+      - '&fForca do combo: &6{forca}%'
+      - ''
+      - '&7Sobe com livros de Sequencia.'
+  Nivel:
+    Slot: 14
+    Material: EXPERIENCE_BOTTLE
+    Nome: '&aNivel {nivel}'
+    Lore:
+      - '&fAbates: &a{abates}'
+      - '&fProximo nivel: &a{proximo}'
+      - ''
+      - '&fBonus de pilhagem: &b+{bonus_pilhagem}%'
+      - '&fBonus de recompensa: &a+{bonus_recompensa}%'
+  Voltar:
+    Slot: 40
+    Material: ARROW
+    Nome: '&cVoltar'
+
+Top:
+  Titulo: '&8Top abates'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21 ]
+  # {posicao} {jogador} {abates}
+  Posicao:
+    Nome: '&e#{posicao} &f{jogador}'
+    Lore:
+      - '&fAbates: &a{abates}'
+  Vazio:
+    Material: BARRIER
+    Nome: '&cNinguem ainda'
+  Voltar:
+    Slot: 31
+    Material: ARROW
+    Nome: '&cVoltar'
+
+Perfil:
+  Titulo: '&8Perfil de {jogador}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Cabeca:
+    Slot: 13
+    Nome: '&a{jogador}'
+    Lore:
+      - '&fAbates: &a{abates}'
+      - '&fMaior sequencia: &6{maior_sequencia}'
+      - '&fGanhos com abates: &a{ganhos}'
+      - '&fPosicao no top: &b{posicao}'
+      - ''
+      - '&fEspada na mao: &e{espada}'
+      - '&fPilhagem: &b{pilhagem}'
+  Voltar:
+    Slot: 22
+    Material: ARROW
+    Nome: '&cVoltar'

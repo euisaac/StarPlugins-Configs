@@ -1,0 +1,202 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - as espadas
+#
+#  Cada secao e uma espada. A ORDEM define a evolucao: para comprar a segunda o
+#  jogador precisa ter a primeira no inventario com a "Pilhagem necessaria".
+#  Crie quantas quiser.
+#
+#  Placeholders da lore e do nome do item:
+#    {pilhagem} {afiacao} {divino} {sequencia}   os atributos por livro
+#    {nivel} {abates} {proximo}                  nivel da espada e abates
+#    {encantamentos}                             a lista de encantamentos (um por linha)
+#    {encantamento_<chave>}                      o nivel de um encantamento especifico
+#    {espada}                                    o Nome desta espada
+#    {preco}                                     o preco (so nos itens do menu)
+#    {pilhagem_necessaria}                       a pilhagem exigida da anterior
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Espadas:
+  inicial:
+    Ordem: 1
+    # A ultima da lista e a unica que recebe livros quando
+    # "Livros.So a ultima recebe" esta ligado no config.yml.
+    Ultima: false
+    # Pilhagem que a espada ANTERIOR precisa ter para comprar esta.
+    Pilhagem necessaria: 0
+    # Pilhagem com que ela nasce.
+    Pilhagem inicial: 50
+    # Vazio = todo mundo pode comprar.
+    Permissao: ''
+    Nome: '&aEspada de Farm I'
+    Inquebravel: true
+    # Economias do economias.yml e o valor de cada uma. Todas sao cobradas.
+    Precos:
+      dinheiro: 5000
+    Item:
+      Material: IRON_SWORD
+      # Valor de dado das versoes antigas (1.8 -> 1.12); nas novas deixe 0.
+      Data: 0
+      Brilho: true
+      Nome: '&aEspada de Farm I &7[{pilhagem}]'
+      Lore:
+        - '&7Inquebravel ∞'
+        - ''
+        - '&fPilhagem: &b{pilhagem}'
+        - '&fAfiacao: &c{afiacao}'
+        - '&fDivino: &e{divino}'
+        - '&fSequencia: &6{sequencia}'
+        - ''
+        - '{encantamentos}'
+        - ''
+        - '&fNivel: &a{nivel} &7({abates}/{proximo} abates)'
+      # Encantamentos fixos do jogo, alem da afiacao por livro.
+      Encantamentos:
+        - 'DAMAGE_ALL:3'
+    Menu:
+      Pode comprar:
+        Material: IRON_SWORD
+        Nome: '&aEspada de Farm I'
+        Lore:
+          - '&7A primeira espada de farm.'
+          - ''
+          - '&fPilhagem inicial: &b{pilhagem}'
+          - '&fPreco: &a{preco}'
+          - ''
+          - '&aClique para comprar.'
+      Nao pode comprar:
+        Material: IRON_SWORD
+        Nome: '&cEspada de Farm I'
+        Lore:
+          - '&7A primeira espada de farm.'
+          - ''
+          - '&fPilhagem inicial: &b{pilhagem}'
+          - '&fPreco: &a{preco}'
+          - ''
+          - '&cVoce nao pode comprar esta espada.'
+      Adquirida:
+        Material: IRON_SWORD
+        Nome: '&7Espada de Farm I'
+        Lore:
+          - '&7Voce ja passou desta espada.'
+
+  avancada:
+    Ordem: 2
+    Ultima: false
+    Pilhagem necessaria: 500
+    Pilhagem inicial: 500
+    Permissao: ''
+    Nome: '&bEspada de Farm II'
+    Inquebravel: true
+    Precos:
+      dinheiro: 50000
+    Item:
+      Material: DIAMOND_SWORD
+      Data: 0
+      Brilho: true
+      Nome: '&bEspada de Farm II &7[{pilhagem}]'
+      Lore:
+        - '&7Inquebravel ∞'
+        - ''
+        - '&fPilhagem: &b{pilhagem}'
+        - '&fAfiacao: &c{afiacao}'
+        - '&fDivino: &e{divino}'
+        - '&fSequencia: &6{sequencia}'
+        - ''
+        - '{encantamentos}'
+        - ''
+        - '&fNivel: &a{nivel} &7({abates}/{proximo} abates)'
+      Encantamentos:
+        - 'DAMAGE_ALL:5'
+    Menu:
+      Pode comprar:
+        Material: DIAMOND_SWORD
+        Nome: '&bEspada de Farm II'
+        Lore:
+          - '&7Precisa da Espada I com &b{pilhagem_necessaria} &7de pilhagem.'
+          - ''
+          - '&fPilhagem inicial: &b{pilhagem}'
+          - '&fPreco: &a{preco}'
+          - ''
+          - '&aClique para comprar.'
+      Nao pode comprar:
+        Material: DIAMOND_SWORD
+        Nome: '&cEspada de Farm II'
+        Lore:
+          - '&7Precisa da Espada I com &b{pilhagem_necessaria} &7de pilhagem.'
+          - ''
+          - '&fPilhagem inicial: &b{pilhagem}'
+          - '&fPreco: &a{preco}'
+          - ''
+          - '&cVoce nao pode comprar esta espada.'
+      Adquirida:
+        Material: DIAMOND_SWORD
+        Nome: '&7Espada de Farm II'
+        Lore:
+          - '&7Voce ja passou desta espada.'
+
+  suprema:
+    Ordem: 3
+    Ultima: true
+    Pilhagem necessaria: 2000
+    Pilhagem inicial: 2000
+    Permissao: ''
+    Nome: '&6Espada de Farm III'
+    Inquebravel: true
+    Precos:
+      dinheiro: 250000
+      cash: 50
+    Item:
+      Material: DIAMOND_SWORD
+      Data: 0
+      Brilho: true
+      Nome: '&6Espada de Farm III &7[{pilhagem}]'
+      Lore:
+        - '&7Inquebravel ∞'
+        - ''
+        - '&fPilhagem: &b{pilhagem}'
+        - '&fAfiacao: &c{afiacao}'
+        - '&fDivino: &e{divino}'
+        - '&fSequencia: &6{sequencia}'
+        - ''
+        - '{encantamentos}'
+        - ''
+        - '&fNivel: &a{nivel} &7({abates}/{proximo} abates)'
+      Encantamentos:
+        - 'DAMAGE_ALL:10'
+        - 'FIRE_ASPECT:2'
+    Menu:
+      Pode comprar:
+        Material: DIAMOND_SWORD
+        Nome: '&6Espada de Farm III'
+        Lore:
+          - '&7A espada definitiva: recebe livros sem limite.'
+          - '&7Precisa da Espada II com &b{pilhagem_necessaria} &7de pilhagem.'
+          - ''
+          - '&fPilhagem inicial: &b{pilhagem}'
+          - '&fPreco: &a{preco}'
+          - ''
+          - '&aClique para comprar.'
+      Nao pode comprar:
+        Material: DIAMOND_SWORD
+        Nome: '&cEspada de Farm III'
+        Lore:
+          - '&7A espada definitiva: recebe livros sem limite.'
+          - '&7Precisa da Espada II com &b{pilhagem_necessaria} &7de pilhagem.'
+          - ''
+          - '&fPilhagem inicial: &b{pilhagem}'
+          - '&fPreco: &a{preco}'
+          - ''
+          - '&cVoce nao pode comprar esta espada.'
+      Adquirida:
+        Material: DIAMOND_SWORD
+        Nome: '&7Espada de Farm III'
+        Lore:
+          - '&7Voce ja tem a ultima espada.'
+
+# Modelo de cada linha que a lista {encantamentos} gera.
+Linha do encantamento: ' &8- &7{nome} &f{nivel}'
+# Usado quando a espada ainda nao tem nenhum encantamento.
+Sem encantamentos: ' &8- &7Sem encantamentos'
+# O que aparece no {proximo} quando a espada esta no nivel maximo.
+Nivel maximo texto: 'MAX'

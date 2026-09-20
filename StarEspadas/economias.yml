@@ -1,0 +1,89 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - economias
+#
+#  Cada chave aqui e um id que os precos do espadas.yml, do encantamentos.yml
+#  e as recompensas do mobs.yml citam ("dinheiro: 5000").
+#
+#  Provedores (Provedor:):
+#    VAULT            o dinheiro registrado no Vault (Essentials, CMI, StarEconomia...)
+#    PLAYERPOINTS     os pontos do PlayerPoints
+#    STARECONOMIA     uma moeda do StarEconomia; diga qual em "Moeda:"
+#    STARPLANTACOES   as Sementes do StarPlantacoes
+#    EXP              a experiencia do jogador (niveis ou pontos)
+#    ITEM             um item do inventario (diamante, esmeralda...)
+#
+#  Uma economia cujo plugin nao esta no ar continua registrada: ela so responde
+#  "indisponivel", e o preco que a cita fica impossivel de pagar ate o plugin
+#  aparecer. As recompensas nessa economia sao ignoradas.
+#
+#  Campos de cada economia:
+#    Nome / Abreviacao   como aparece nas mensagens ("Dinheiro" / "coins")
+#    Simbolo / Sufixo    colados no numero ("$1.500" / "1.500 coins")
+#    Abreviar            true mostra 1.5K em vez de 1.500
+#    Permissao           vazio = todo mundo pode pagar com ela
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Economias:
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Abreviacao: 'coins'
+    Simbolo: '$'
+    Sufixo: ''
+    Abreviar: true
+    Permissao: ''
+
+  cash:
+    Provedor: PLAYERPOINTS
+    Nome: 'Cash'
+    Abreviacao: 'cash'
+    Simbolo: ''
+    Sufixo: ' cash'
+    Abreviar: false
+    Permissao: ''
+
+  moedas:
+    Provedor: STARECONOMIA
+    # O id da moeda no StarEconomia.
+    Moeda: 'moedas'
+    # Origem que aparece no historico do StarEconomia.
+    Origem: 'Espadas'
+    Nome: 'Moedas'
+    Abreviacao: 'moedas'
+    Simbolo: ''
+    Sufixo: ' moedas'
+    Abreviar: true
+    Permissao: ''
+
+  sementes:
+    Provedor: STARPLANTACOES
+    Nome: 'Sementes'
+    Abreviacao: 'sementes'
+    Simbolo: ''
+    Sufixo: ' sementes'
+    Abreviar: true
+    Permissao: ''
+
+  xp:
+    Provedor: EXP
+    # true cobra em niveis; false cobra em pontos de experiencia.
+    Usar niveis: true
+    Nome: 'Niveis de XP'
+    Abreviacao: 'niveis'
+    Simbolo: ''
+    Sufixo: ' niveis'
+    Abreviar: false
+    Permissao: ''
+
+  diamantes:
+    Provedor: ITEM
+    Material: DIAMOND
+    # So conta itens sem nome nem lore.
+    Item limpo: true
+    Nome: 'Diamantes'
+    Abreviacao: 'diamantes'
+    Simbolo: ''
+    Sufixo: ' diamantes'
+    Abreviar: false
+    Permissao: ''

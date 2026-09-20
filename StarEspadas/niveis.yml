@@ -1,0 +1,68 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - niveis da espada
+#
+#  A espada sobe de nivel com os abates que ela mesma fez. O nivel nao fica
+#  gravado no item, so os abates: mexer nesta tabela vale para as espadas que
+#  ja estao no mundo.
+#
+#  Cada nivel diz quantos abates acumulados exige e o que da:
+#    Bonus de pilhagem     % somado ao multiplicador de drops
+#    Bonus de recompensa   % somado ao dinheiro dos abates
+#    Comandos              rodam pelo console ao chegar no nivel ({jogador} {nivel})
+#
+#  O nivel 1 e o inicial (0 abates). Crie quantos quiser.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Niveis:
+  1:
+    Abates: 0
+    Bonus de pilhagem: 0.0
+    Bonus de recompensa: 0.0
+    Comandos: []
+  2:
+    Abates: 250
+    Bonus de pilhagem: 5.0
+    Bonus de recompensa: 5.0
+    Comandos: []
+  3:
+    Abates: 1000
+    Bonus de pilhagem: 10.0
+    Bonus de recompensa: 10.0
+    Comandos: []
+  4:
+    Abates: 2500
+    Bonus de pilhagem: 15.0
+    Bonus de recompensa: 15.0
+    Comandos: []
+  5:
+    Abates: 5000
+    Bonus de pilhagem: 20.0
+    Bonus de recompensa: 20.0
+    Comandos: []
+  6:
+    Abates: 10000
+    Bonus de pilhagem: 30.0
+    Bonus de recompensa: 30.0
+    Comandos: []
+  7:
+    Abates: 25000
+    Bonus de pilhagem: 40.0
+    Bonus de recompensa: 40.0
+    Comandos: []
+  8:
+    Abates: 50000
+    Bonus de pilhagem: 50.0
+    Bonus de recompensa: 50.0
+    Comandos: []
+  9:
+    Abates: 100000
+    Bonus de pilhagem: 75.0
+    Bonus de recompensa: 75.0
+    Comandos: []
+  10:
+    Abates: 250000
+    Bonus de pilhagem: 100.0
+    Bonus de recompensa: 100.0
+    Comandos:
+      - 'broadcast &6{jogador} &echegou ao nivel maximo da espada de farm!'

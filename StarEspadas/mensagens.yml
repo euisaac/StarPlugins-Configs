@@ -1,0 +1,148 @@
+# ---------------------------------------------------------------------------
+#  StarEspadas - mensagens
+#
+#  Mensagem em branco nao e enviada: e assim que voce desliga um aviso sem
+#  precisar de uma opcao no config.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Prefixo: '&c&lESPADAS &8> &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Carregando: '&cSeus dados ainda estao carregando. Tente de novo em instantes.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+  Mundo bloqueado: '&cAs espadas de farm nao funcionam neste mundo.'
+  So jogador: '&cEste comando so funciona no jogo.'
+  Numero invalido: '&c{valor} nao e um numero valido.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Uso: '&cUse &f/{comando} ajuda &cpara ver os comandos.'
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Ajuda:
+    - ''
+    - '&c&lESPADAS DE FARM'
+    - ''
+    - '&f/{comando} &7- abre o menu principal.'
+    - '&f/{comando} evoluir &7- evolui a espada na sua mao.'
+    - '&f/{comando} espadas &7- lista todas as espadas.'
+    - '&f/{comando} top &7- o top de abates.'
+    - '&f/{comando} perfil [jogador] &7- o seu perfil.'
+    - '&f/{comando} info &7- os dados da espada na sua mao.'
+    - ''
+  Ajuda admin:
+    - ''
+    - '&c&lESPADAS DE FARM &7- admin'
+    - ''
+    - '&f/{comando} recarregar &7- recarrega os arquivos.'
+    - '&f/{comando} dar <jogador> <espada> [pilhagem] &7- entrega uma espada.'
+    - '&f/{comando} darlivro <jogador> <pilhagem|afiacao|divino|sequencia> <valor> [quantidade] &7- entrega livros.'
+    - '&f/{comando} setar <pilhagem|afiacao|divino|sequencia|abates> <valor> [jogador] &7- muda a espada na mao.'
+    - '&f/{comando} encantar <encantamento> <nivel> [jogador] &7- muda um encantamento da espada na mao.'
+    - '&f/{comando} ver <jogador> &7- o perfil de alguem.'
+    - '&f/{comando} info &7- estado do plugin.'
+    - ''
+
+Etiquetas:
+  Nenhum: 'nenhum'
+  Maximo: 'MAX'
+  Sem limite: '∞'
+  Sem preco: 'gratis'
+  Formato do preco: '{valor_completo}'
+  Separador de preco: '&7, '
+  Espada desconhecida: 'espada de farm'
+
+Espada:
+  Sem espada: '&cVoce precisa estar segurando uma espada de farm.'
+  Nao encontrada: '&cA espada &f{espada} &cnao existe. Disponiveis: &f{lista}'
+  Sem permissao: '&cVoce nao tem permissao para comprar esta espada.'
+  Ja tem: '&cVoce ja tem uma espada de farm no inventario.'
+  Precisa da anterior: '&cVoce precisa da &f{anterior} &ccom &f{pilhagem} &cde pilhagem no inventario.'
+  Sem saldo: '&cVoce nao tem &f{faltando}&c.'
+  Economia indisponivel: '&cA economia &f{economia} &cnao esta disponivel agora.'
+  Comprou: '&aVoce comprou a &f{espada} &apor &f{preco}&a.'
+  Comprou transferindo: '&aVoce comprou a &f{espada} &apor &f{preco} &ae o progresso da anterior foi junto.'
+  Recebeu: '&aVoce recebeu a &f{espada}&a.'
+  Entregou: '&aVoce deu a &f{espada} &apara &f{jogador}&a.'
+  Ultima: '&cVoce ja tem a ultima espada disponivel.'
+  Nenhuma disponivel: '&cNao ha espada disponivel para voce comprar.'
+  Subiu de nivel: '&aSua espada subiu para o nivel &f{nivel}&a!'
+  Nivel maximo: '&aSua espada chegou ao nivel maximo.'
+  Atacar jogador: '&cVoce nao pode bater em jogadores com a espada de farm.'
+  Precisa da espada: '&cVoce precisa de uma espada de farm para matar este mob.'
+  Info:
+    - ''
+    - '&c&lSUA ESPADA'
+    - ''
+    - '&fEspada: &e{espada}'
+    - '&fPilhagem: &b{pilhagem} &7(x{multiplicador} nos drops)'
+    - '&fAfiacao: &c{afiacao}'
+    - '&fDivino: &e{divino} &7({chance}% de ativar)'
+    - '&fSequencia: &6{sequencia} &7({forca}% do combo)'
+    - '&fNivel: &a{nivel} &7({abates} abates, proximo em {proximo})'
+    - '&fEncantamentos: &7{encantamentos}'
+    - ''
+
+Livros:
+  Sem permissao: '&cVoce nao tem permissao para aplicar livros.'
+  Aplicou: '&aVoce aplicou &f+{valor} &ade {tipo} na espada. Agora: &f{total}&a.'
+  Aplicou com sobra: '&aVoce aplicou &f+{valor} &ade {tipo} na espada (agora {total}); a sobra de &f{sobra} &avoltou como livro.'
+  Maximo: '&cEsta espada ja esta no maximo de {tipo} ({maximo}).'
+  So a ultima: '&cSo a ultima espada da lista recebe livros.'
+  Compactou: '&aVoce juntou os livros: &f{valor} &ade {tipo} em um so.'
+  Entregou: '&aVoce deu &f{quantidade}x &alivro de {tipo} &f+{valor} &apara &f{jogador}&a.'
+  Recebeu: '&aVoce recebeu &f{quantidade}x &alivro de {tipo} &f+{valor}&a.'
+  Tipo invalido: '&cTipo de livro invalido. Use: pilhagem, afiacao, divino ou sequencia.'
+  Nomes:
+    Pilhagem: 'Pilhagem'
+    Afiacao: 'Afiacao'
+    Divino: 'Divino'
+    Sequencia: 'Sequencia'
+
+Encantamentos:
+  Nao encontrado: '&cEste encantamento nao existe.'
+  Sem permissao: '&cVoce nao tem permissao para usar este encantamento.'
+  No maximo: '&cEste encantamento ja esta no nivel maximo.'
+  Sem saldo: '&cVoce precisa de &f{faltando} &cpara evoluir isto.'
+  Evoluiu: '&aO encantamento &f{encantamento} &afoi para o nivel &f{nivel}&a.'
+  Setado: '&aO encantamento &f{encantamento} &ada espada de {jogador} agora e nivel &f{nivel}&a.'
+
+Abates:
+  # Chat a cada tantos abates do combo (config Sequencia.Avisar a cada).
+  Sequencia: '&6Sequencia de &f{combo} &6abates! &7(+{bonus}% nas recompensas)'
+  Sequencia perdida: '&7Voce perdeu a sequencia de &f{combo} &7abates.'
+  Premio: '&aVoce ganhou &f{valor}&a!'
+  Recompensa dupla: '&6Recompensa dupla! &f+{valor}'
+
+Admin:
+  Setou: '&aA espada de &f{jogador} &aagora tem &f{valor} &ade {atributo}.'
+  Atributo invalido: '&cAtributo invalido. Use: pilhagem, afiacao, divino, sequencia ou abates.'
+  Perfil:
+    - ''
+    - '&c&lPERFIL DE {jogador}'
+    - ''
+    - '&fAbates: &a{abates}'
+    - '&fMaior sequencia: &6{maior_sequencia}'
+    - '&fGanhos: &a{ganhos}'
+    - '&fPosicao no top: &b{posicao}'
+    - ''
+  Info:
+    - ''
+    - '&c&lSTAREESPADAS &7v{versao}'
+    - ''
+    - '&fBanco: &e{banco}'
+    - '&fEspadas: &e{espadas}'
+    - '&fEncantamentos: &e{encantamentos}'
+    - '&fEconomias: &e{economias} &7(indisponiveis: {indisponiveis})'
+    - '&fPerfis em memoria: &e{perfis}'
+    - '&fDivinos ativos: &e{divinos}'
+    - ''
+
+Top:
+  Vazio: '&cNinguem abateu nada ainda.'
+  Linha: '&f{posicao}. &a{jogador} &7- &f{abates} abates'
+  Cabecalho:
+    - ''
+    - '&c&lTOP ABATES'
+    - ''
+  Rodape:
+    - ''
