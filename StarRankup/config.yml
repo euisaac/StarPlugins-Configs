@@ -152,6 +152,10 @@ Cabecas:
 # /starrankup darrankup, /starrankup darprestigio). Clicar com o botao
 # direito ativa; a identidade fica escondida no item, entao nome e lore
 # podem ser trocados a vontade.
+#
+# Cabeca com textura: ponha Material: PLAYER_HEAD (ou SKULL_ITEM na 1.8) e
+# cole em Textura o "Value" do site minecraft-heads.com -- vale tambem a URL
+# da textura ou so o hash dela. Ou a cabeca de um jogador: Dono: 'Notch'.
 Itens:
   Fragmento:
     Material: PLAYER_HEAD
@@ -209,6 +213,20 @@ Bonus:
     Ordem: 0
     Permissao: 'starrankup.vip.plus'
     Bonus: 25.0
+
+# Como os numeros sao escritos: precos, saldos, fragmentos, cabecas.
+Formato de numeros:
+  # LETRA abrevia (1,5K, 2M, 430QN); NUMERO escreve por extenso (1.500.000).
+  Tipo: LETRA
+  # A partir de quanto o LETRA abrevia.
+  Abreviar a partir de: 1000
+  # Casas decimais (o zero a direita e cortado: 1,50K vira 1,5K).
+  Casas decimais: 2
+  Separador decimal: ','
+  Separador de milhar: '.'
+  # Os sufixos, do milhar em diante (K = mil, M = milhao...). Acrescente ou
+  # troque a vontade; passando do ultimo, o numero sai por extenso.
+  Sufixos: [ K, M, B, T, Q, QQ, S, SS, O, N, D, UN, DD, TR, QT, QN, SD ]
 
 # Barra de progresso mostrada nos menus, nas mensagens e nos placeholders.
 Barra de progresso:

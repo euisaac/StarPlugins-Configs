@@ -9,6 +9,9 @@
 #                   dd/MM/yyyy HH:mm. Vazio ('') = ja liberado. Antes da data o
 #                   menu mostra a contagem regressiva ({liberacao}).
 #    Permissao      so quem tiver consegue upar para ele ('' = todos)
+#    Icone          o item deste rank no /ranks (Material, Textura ou Dono).
+#                   Sem Icone, o menu usa o material do estado (concluido,
+#                   atual, proximo, futuro) do menus.yml.
 #    Precos         o que custa para CHEGAR neste rank: 'economia: valor', com
 #                   os ids do economias.yml. Varias linhas = cobra todas.
 #    Ao upar        o que acontece ao chegar neste rank:
@@ -27,6 +30,13 @@
 #
 #  Os precos ficam mais caros a cada prestigio conforme o prestigios.yml, e
 #  mais baratos conforme os Descontos do config.yml.
+#
+#  Cabeca com textura (em qualquer item destes arquivos): ponha
+#  Material: PLAYER_HEAD (ou SKULL_ITEM na 1.8) e cole em Textura o "Value"
+#  do site minecraft-heads.com -- vale tambem a URL da textura ou so o hash:
+#    Textura: 'ewogICJ0ZXh0dXJlcyIgOiB7ICJTS0lOIiA6IHsgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8uLi4iIH0gfSB9'
+#  Ou a cabeca de um jogador, pelo nick:
+#    Dono: 'Notch'
 # ==========================================================================
 
 Versao do modelo: 1
@@ -38,6 +48,9 @@ Ranks:
     Nome: 'Membro'
     Liberado em: ''
     Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: '1ad6c81f899a785ecf26be1dc48eae2bcfe777a862390f5785e95bd83bd14d'
     Precos: {}
     Ao upar:
       Comandos: []
@@ -61,6 +74,7 @@ Ranks:
     Nome: 'Novato'
     Liberado em: ''
     Permissao: ''
+    # Icone: { Material: DIAMOND_SWORD }
     Precos:
       money: 10000
     Ao upar:

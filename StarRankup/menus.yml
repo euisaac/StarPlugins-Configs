@@ -2,7 +2,13 @@
 #  StarRankup - as telas
 #
 #  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
-#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#
+#  Cabeca com textura (em qualquer item destes arquivos): ponha
+#  Material: PLAYER_HEAD (ou SKULL_ITEM na 1.8) e cole em Textura o "Value"
+#  do site minecraft-heads.com -- vale tambem a URL da textura ou so o hash:
+#    Textura: 'ewogICJ0ZXh0dXJlcyIgOiB7ICJTS0lOIiA6IHsgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8uLi4iIH0gfSB9'
+#  Ou a cabeca de um jogador, pelo nick:
+#    Dono: 'Notch'
 #  {jogador} no Dono vira o nick de quem esta olhando.
 #
 #  Cada tela tem:
@@ -305,7 +311,9 @@ Ranks:
   Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
 
   Rank:
-    # Material de cada estado. Uma cabeca com Textura tambem serve.
+    # Material de cada estado (Textura concluido/atual/proximo/futuro tambem
+    # serve, para cabecas). Um rank com Icone no ranks.yml usa o proprio
+    # icone em todos os estados.
     Material concluido: LIME_STAINED_GLASS_PANE
     Material atual: YELLOW_STAINED_GLASS_PANE
     Material proximo: ORANGE_STAINED_GLASS_PANE
