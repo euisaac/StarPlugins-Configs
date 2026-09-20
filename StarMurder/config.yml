@@ -460,6 +460,20 @@ Placar:
     - ''
     - ' &estarplugins.com.br'
 
+# Quem cai do servidor no meio do jogo tem a vaga (e o papel) guardados por
+# "Reconectar em" segundos (180 = 3 minutos); voltando nesse tempo, continua
+# de onde parou. Sem voltar, conta como morte por desconexao.
+Reconexao:
+  Ativar: true
+  Reconectar em: 180
+
+# Sequencia de vitorias ({winstreak}/{maior_winstreak} no placar e no PlaceholderAPI; top: winstreak).
+Winstreak:
+  # Avisa quando a sequencia chega a este numero (0 = nunca).
+  Anunciar a partir de: 3
+  # Avisa tambem os outros jogadores da partida.
+  Anunciar para a partida: true
+
 Chat:
   # O chat de quem esta FORA da partida nao aparece para quem esta jogando.
   Lobby separado: true

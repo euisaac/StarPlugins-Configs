@@ -127,8 +127,10 @@ Partida:
   Cooldown da perola: 30
   # Segundos apos o ultimo golpe em que um abate vale assistencia para quem ajudou.
   Tempo de assistencia: 10
-  # Quem cai pode voltar com /reconectar dentro deste tempo (segundos); 0 desliga.
-  Reconectar em: 60
+  # Quem cai pode voltar dentro deste tempo (segundos); 0 desliga (180 = 3 minutos).
+  Reconectar em: 180
+  # true = ao entrar de novo ja volta sozinho para a partida; false = so com /reconectar.
+  Reconectar automaticamente: true
   # Dano de queda dentro da partida.
   Dano de queda: true
   # Fome dentro da partida.
@@ -241,6 +243,13 @@ Raridades:
     Cor: '&6'
     Fragmentos: 15
     Peso: 5
+
+# Sequencia de vitorias ({winstreak}/{maior_winstreak} no placar e no PlaceholderAPI; top: winstreak).
+Winstreak:
+  # Avisa quando a sequencia chega a este numero (0 = nunca).
+  Anunciar a partir de: 3
+  # Avisa tambem os outros jogadores da sala.
+  Anunciar para a partida: true
 
 Chat:
   # O chat de quem esta FORA da sala nao aparece para quem esta jogando.
