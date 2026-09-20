@@ -41,6 +41,8 @@ Modo do plugin:
   Sala expira em: 15
 
 Geral:
+  # Esconde as mensagens padrao do servidor de entrada/saida ("X entrou no jogo").
+  Esconder entrada e saida padrao: true
   # Ao entrar no servidor (ou sair de uma partida), o jogador vai ao lobby do locais.yml.
   Teleportar ao lobby ao entrar: true
   # Limpa o inventario e da os itens da barra do lobby ao entrar no lobby.
@@ -459,6 +461,8 @@ Placar:
     - ' &estarplugins.com.br'
 
 Chat:
+  # O chat de quem esta FORA da partida nao aparece para quem esta jogando.
+  Lobby separado: true
   # Formato do chat. {nome}, {mensagem}, {nivel_nome}; nos mortos {cor} e {papel} sao o papel que o jogador tinha.
   Vivos: '{nivel_nome} &7{nome}&f: {mensagem}'
   Mortos: '&8[MORTO] {cor}{nome}&f: {mensagem}'

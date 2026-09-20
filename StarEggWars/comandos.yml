@@ -4,11 +4,14 @@
 #  Troque o nome ou as aliases de um comando sem mexer no jar. Formato
 #  "principal|alias|alias". Vazio = so os nomes padrao do plugin (os do
 #  plugin.yml). Com a linha preenchida, SO os nomes dela valem: o que nao
-#  estiver nela deixa de existir (ex.: "spawn|lobby" cria /spawn com /lobby
-#  de alias e libera /l, /leave e /sairew para outros plugins).
+#  estiver nela deixa de existir (ex.: spawn: "spawn|s" libera /l, /leave e
+#  /sairew para outros plugins).
+#    spawn - sai da partida e volta ao spawn deste servidor (/ew setlobby)
+#    lobby - manda para o lobby do proxy (config.yml > Geral > Lobby servidor;
+#            funciona sem plugin no proxy, pelo canal do BungeeCord)
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 comandos:
   ew: ''
@@ -16,4 +19,5 @@ comandos:
   reconectar: ''
   rastrear: ''
   missoes: ''
-  lobby: 'spawn|lobby'
+  spawn: ''
+  lobby: ''

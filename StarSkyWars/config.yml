@@ -20,6 +20,8 @@ Versao do modelo: 1
 Geral:
   # Escreve no console o que o plugin esta fazendo.
   Debug: false
+  # Esconde as mensagens padrao do servidor de entrada/saida ("X entrou no jogo").
+  Esconder entrada e saida padrao: true
   # Milissegundos entre dois cliques do mesmo jogador nos menus.
   Intervalo entre cliques: 150
   # Formata numeros grandes em letras (1.5K, 2M) nos menus e mensagens.
@@ -36,8 +38,10 @@ Geral:
   Rede:
     # Nome deste servidor no proxy (BungeeCord/Velocity). Modo SALAS.
     Nome deste servidor: 'sw1'
-    # Servidor de lobby da rede, para onde o jogador volta. Modo SALAS.
-    Servidor de lobby: 'lobby'
+    # Servidores de lobby do proxy (BungeeCord/Velocity). O /lobby manda o
+    # jogador para um deles (sorteado) mesmo sem plugin no proxy, e e para
+    # ca que o modo SALAS devolve quem sai da partida. Um so tambem vale.
+    Servidores de lobby: [ 'lobby', 'lobby1', 'lobby2' ]
     # Segundos que uma reserva de vaga vale (o tempo do jogador trocar de servidor).
     Reserva: 20
 
@@ -129,6 +133,8 @@ Partida:
   Dano de queda: true
   # Fome dentro da partida.
   Fome: true
+  # O ender chest do mapa fica fechado (ele e do jogador e atravessaria as partidas).
+  Bloquear ender chest: true
   # Os itens caem ao morrer.
   Dropar itens ao morrer: true
   # Anuncia os eventos no chat e por titulo.
@@ -237,6 +243,8 @@ Raridades:
     Peso: 5
 
 Chat:
+  # O chat de quem esta FORA da sala nao aparece para quem esta jogando.
+  Lobby separado: true
   # O plugin formata o chat de quem esta numa sala (espera, partida e espectador).
   Proprio: true
   # Formata tambem o chat do lobby.

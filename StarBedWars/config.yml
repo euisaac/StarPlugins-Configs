@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 7
+Versao do modelo: 8
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -33,6 +33,9 @@ Geral:
   # plugin (treino de ponte, survival...) tudo some e volta ao retornar.
   # false = valem em qualquer mundo que nao e arena.
   So no mundo do lobby: true
+
+  # Quem entra no servidor e levado para o spawn (/bw setlobby).
+  Teleportar ao entrar: true
 
   # MULTIARENA   = todas as arenas neste servidor (o padrao).
   # BUNGEE       = este servidor e UMA sala: quem entra ja cai na arena e, no
@@ -85,6 +88,10 @@ Cash:
   Comando de dar: 'eco give {jogador} {valor}'
 
 Partida:
+  # Fome durante a partida (false = a barra fica sempre cheia).
+  Fome: false
+  # Ender chest no mapa abre um bau compartilhado da equipe (some no fim).
+  Bau da equipe: true
   # Segundos na sala de espera depois de bater o minimo de jogadores.
   Tempo de espera: 60
   # Quando a sala lota, o contador cai para este valor.
@@ -319,6 +326,8 @@ Equipes:
 Chat:
   # Chat proprio dentro das partidas (o do lobby fica com o seu plugin de chat).
   Ativar: true
+  # O chat de quem esta FORA da partida nao aparece para quem esta jogando.
+  Lobby separado: true
   # Prefixo que manda a mensagem para a partida inteira em vez da equipe.
   Prefixo global: '!'
   # {equipe} e a cor + nome, {tag} a tag da equipe, {jogador}, {mensagem}.
@@ -569,10 +578,18 @@ Seletor de mapas:
   # starbedwars.mapas.max.<n> e starbedwars.mapas.infinito mudam isso).
   Limite diario: 1
 
+# Sequencia de vitorias ({winstreak} / {maior_winstreak} no placar, tab e
+# PlaceholderAPI: %starbedwars_winstreak%; top: /bw top criar winstreak).
+Winstreak:
+  # Avisa quando a sequencia chega a este numero (0 = nunca).
+  Anunciar a partir de: 3
+  # Avisa tambem os outros jogadores da partida.
+  Anunciar para a partida: true
+
 Reconexao:
   Ativar: true
-  # Segundos que a vaga fica guardada depois de cair.
-  Segundos: 60
+  # Segundos que a vaga fica guardada depois de cair (180 = 3 minutos).
+  Segundos: 180
   # Volta sozinho para a partida ao entrar de novo.
   Automatica: true
 
@@ -609,11 +626,26 @@ Caixa misteriosa:
   # Caixa de que sai cada pacote fabricado.
   Caixa dos pacotes: 'especiais'
   # Animacoes de abertura (menu ao lado do livro). A primeira sem Permissao e
-  # a de todo mundo; as outras pedem a permissao indicada. Tipos: ROLETA (os
-  # itens giram na linha do meio), PISCAR (o menu inteiro pisca), CIRCULO (um
-  # cursor roda em volta do premio) e ONDA (o menu se preenche do centro para
-  # fora e revela). A particula e tocada no jogador ao revelar.
+  # a de todo mundo; as outras pedem a permissao indicada. Tipos: CABECA (uma
+  # cabeca sai da caixa girando e sobe, e vira o premio -- acontece no mundo,
+  # em cima do bloco da caixa), ROLETA (os itens giram na linha do meio),
+  # PISCAR (o menu inteiro pisca), CIRCULO (um cursor roda em volta do premio)
+  # e ONDA (o menu se preenche do centro para fora e revela). A particula e
+  # tocada ao revelar.
   Animacoes:
+    cabeca:
+      Nome: '&aCabeca'
+      Material: PLAYER_HEAD
+      Tipo: CABECA
+      Permissao: ''
+      Duracao: 60
+      Particula: VILLAGER_HAPPY
+      # Altura que a cabeca sobe e quantos graus gira por tick.
+      Altura: 1.8
+      Giro: 15
+      Descricao:
+        - '&7Uma cabeca sai da caixa girando'
+        - '&7e sobe ate virar o premio'
     roleta:
       Nome: '&aRoleta'
       Material: COMPARATOR
