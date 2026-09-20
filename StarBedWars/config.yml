@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 9
+Versao do modelo: 10
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -337,6 +337,38 @@ Chat:
   Formato espera: '&7{jogador}&7: &f{mensagem}'
   # Tag da equipe no chat e no tab ({tag} = primeira letra).
   Formato da tag: '&l{tag}'
+  # Chat de quem esta FORA da partida (no mundo do lobby). Se um dos plugins
+  # de "Ceder para" estiver no servidor, o formato fica com ele e o nosso se
+  # cala. Cores com & e hex (&#ff8800); quem tem starbedwars.chat.cor pode usar
+  # cores na propria mensagem.
+  # Placeholders do Formato:
+  #   {jogador}          - nick
+  #   {mensagem}         - o texto enviado
+  #   {prefix-tag}       - prefixo do cargo (tags.yml)
+  #   {suffix-tag}       - sufixo do cargo (tags.yml)
+  #   {cargo}            - nome do cargo (tags.yml)
+  #   {nivel}            - numero do nivel
+  #   {nivel_formatado}  - nivel com o formato do niveis.yml
+  #   {liga}             - liga ranqueada
+  #   {coins} {xp}       - saldo e xp (xp abreviado: 1.2K)
+  #   {vitorias} {abates} {camas} {jogos} {winstreak} {maior_winstreak}
+  #   {animacao:nome}    - quadro atual de uma animacao do animacoes.yml
+  #   %placeholder%      - qualquer um do PlaceholderAPI
+  Lobby:
+    Ativar: true
+    Formato: '{nivel_formatado} {prefix-tag}{jogador}{suffix-tag}&7: &f{mensagem}'
+    Bloquear cores sem permissao: true
+    Ceder para:
+      - nChat
+      - LegendChat
+      - EssentialsChat
+      - VentureChat
+      - ChatControl
+      - ChatControlRed
+      - DeluxeChat
+      - CMI
+      - InteractiveChat
+      - StarChat
 
 # (Legado: hoje o prefixo/sufixo do tab mora no tab.yml; isto so vale se
 # o tab.yml nao tiver as chaves.)
