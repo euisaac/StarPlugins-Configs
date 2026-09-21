@@ -10,8 +10,9 @@
 #                   menu mostra a contagem regressiva ({liberacao}).
 #    Permissao      so quem tiver consegue upar para ele ('' = todos)
 #    Icone          o item deste rank no /ranks (Material, Textura ou Dono).
-#                   Sem Icone, o menu usa o material do estado (concluido,
-#                   atual, proximo, futuro) do menus.yml.
+#                   Os ranks de fabrica usam a cabeca do mob de cada um. Sem
+#                   Icone, o menu usa o material do estado (concluido, atual,
+#                   proximo, futuro) do menus.yml.
 #    Precos         o que custa para CHEGAR neste rank: 'economia: valor', com
 #                   os ids do economias.yml. Varias linhas = cobra todas.
 #    Ao upar        o que acontece ao chegar neste rank:
@@ -42,15 +43,15 @@
 Versao do modelo: 1
 
 Ranks:
-  membro:
+  galinha:
     Ordem: 1
-    Tag: '&7[Membro]'
-    Nome: 'Membro'
+    Tag: '&f[Galinha]'
+    Nome: 'Galinha'
     Liberado em: ''
     Permissao: ''
     Icone:
       Material: PLAYER_HEAD
-      Textura: '1ad6c81f899a785ecf26be1dc48eae2bcfe777a862390f5785e95bd83bd14d'
+      Textura: '1638469a599ceef7207537603248a9ab11ff591fd378bea4735b346a7fae893'
     Precos: {}
     Ao upar:
       Comandos: []
@@ -68,18 +69,20 @@ Ranks:
     Ao perder:
       Comandos: []
 
-  novato:
+  porco:
     Ordem: 2
-    Tag: '&a[Novato]'
-    Nome: 'Novato'
+    Tag: '&d[Porco]'
+    Nome: 'Porco'
     Liberado em: ''
     Permissao: ''
-    # Icone: { Material: DIAMOND_SWORD }
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: '621668ef7cb79dd9c22ce3d1f3f4cb6e2559893b6df4a469514e667c16aa4'
     Precos:
       money: 10000
     Ao upar:
       Comandos:
-        - 'give {jogador} diamond 3'
+        - 'give {jogador} diamond 2'
       Itens: []
       Mensagens:
         Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
@@ -94,15 +97,47 @@ Ranks:
     Ao perder:
       Comandos: []
 
-  aventureiro:
+  vaca:
     Ordem: 3
-    Tag: '&e[Aventureiro]'
-    Nome: 'Aventureiro'
+    Tag: '&6[Vaca]'
+    Nome: 'Vaca'
     Liberado em: ''
     Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: '5d6c6eda942f7f5f71c3161c7306f4aed307d82895f9d2b07ab4525718edc5'
+    Precos:
+      money: 25000
+      cabeca-porco: 20
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 4'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  ovelha:
+    Ordem: 4
+    Tag: '&f[Ovelha]'
+    Nome: 'Ovelha'
+    Liberado em: ''
+    Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: 'f31f9ccc6b3e32ecf13b8a11ac29cd33d18c95fc73db8a66c5d657ccb8be70'
     Precos:
       money: 50000
-      fragmentos: 100
+      fragmentos: 50
     Ao upar:
       Comandos:
         - 'give {jogador} diamond 8'
@@ -120,16 +155,18 @@ Ranks:
     Ao perder:
       Comandos: []
 
-  guerreiro:
-    Ordem: 4
-    Tag: '&6[Guerreiro]'
-    Nome: 'Guerreiro'
+  aranha:
+    Ordem: 5
+    Tag: '&8[Aranha]'
+    Nome: 'Aranha'
     Liberado em: ''
     Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: '7388173f4f82a14153e086bf137907256e512b21731f0470047bf2d453545d21'
     Precos:
-      money: 150000
-      fragmentos: 300
-      cabeca-zumbi: 50
+      money: 100000
+      fragmentos: 100
     Ao upar:
       Comandos:
         - 'give {jogador} diamond 16'
@@ -147,20 +184,22 @@ Ranks:
     Ao perder:
       Comandos: []
 
-  mestre:
-    Ordem: 5
-    Tag: '&b[Mestre]'
-    Nome: 'Mestre'
+  zumbi:
+    Ordem: 6
+    Tag: '&2[Zumbi]'
+    Nome: 'Zumbi'
     Liberado em: ''
     Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: '783aaaee22868cafdaa1f6f4a0e56b0fdb64cd0aeaabd6e83818c312ebe66437'
     Precos:
-      money: 500000
-      fragmentos: 800
-      cabeca-porco: 100
-      cabeca-zumbi: 150
+      money: 200000
+      fragmentos: 200
+      cabeca-zumbi: 50
     Ao upar:
       Comandos:
-        - 'give {jogador} diamond_block 4'
+        - 'give {jogador} diamond 32'
       Itens: []
       Mensagens:
         Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
@@ -175,17 +214,172 @@ Ranks:
     Ao perder:
       Comandos: []
 
-  lenda:
-    Ordem: 6
-    Tag: '&d[Lenda]'
-    Nome: 'Lenda'
+  esqueleto:
+    Ordem: 7
+    Tag: '&7[Esqueleto]'
+    Nome: 'Esqueleto'
     Liberado em: ''
     Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: '301268e9c492da1f0d88271cb492a4b302395f515a7bbf77f4a20b95fc02eb2'
+    Precos:
+      money: 350000
+      fragmentos: 350
+      cabeca-zumbi: 100
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 64'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  creeper:
+    Ordem: 8
+    Tag: '&a[Creeper]'
+    Nome: 'Creeper'
+    Liberado em: ''
+    Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: 'c9dd803d1d8404a9a276e5e98a0ce3cdf303f82658129c9c803e725638952a43'
+    Precos:
+      money: 600000
+      fragmentos: 500
+      cabeca-porco: 100
+      cabeca-zumbi: 150
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 64'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  enderman:
+    Ordem: 9
+    Tag: '&5[Enderman]'
+    Nome: 'Enderman'
+    Liberado em: ''
+    Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: '7a59bb0a7a32965b3d90d8eafa899d1835f424509eadd4e6b709ada50b9cf'
+    Precos:
+      money: 1000000
+      fragmentos: 800
+      cabeca-zumbi: 250
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 64'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  blaze:
+    Ordem: 10
+    Tag: '&e[Blaze]'
+    Nome: 'Blaze'
+    Liberado em: ''
+    Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: 'b78ef2e4cf2c41a2d14bfde9caff10219f5b1bf5b35a49eb51c6467882cb5f0'
     Precos:
       money: 2000000
-      fragmentos: 2500
+      fragmentos: 1200
       cabeca-porco: 300
+      cabeca-zumbi: 300
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 64'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  wither:
+    Ordem: 11
+    Tag: '&0[Wither]'
+    Nome: 'Wither'
+    Liberado em: ''
+    Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: '63b6bb53e33db2c19ae88b5ce7e24e8b5f3137c411b4f704f0aebd5deee15694'
+    Precos:
+      money: 5000000
+      fragmentos: 2000
       cabeca-zumbi: 500
+    Ao upar:
+      Comandos:
+        - 'give {jogador} diamond 64'
+      Itens: []
+      Mensagens:
+        Chat: '&a{jogador} &7evoluiu para o rank {tag}&7!'
+        Actionbar: ''
+        Titulo: ''
+      Mensagens privadas:
+        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Titulo: '&a&lRANKUP!<nl>{tag}'
+      Som: 'ENTITY_PLAYER_LEVELUP;1;1'
+      Fogos: true
+    Ao perder:
+      Comandos: []
+
+  dragao:
+    Ordem: 12
+    Tag: '&d[Dragao]'
+    Nome: 'Dragao'
+    Liberado em: ''
+    Permissao: ''
+    Icone:
+      Material: PLAYER_HEAD
+      Textura: 'f8aa3c53e467523c6c3d833bbbee37a66fc14f30530f39a6a9c0457ffe805c25'
+    Precos:
+      money: 10000000
+      fragmentos: 3500
+      cabeca-porco: 500
+      cabeca-zumbi: 800
     Ao upar:
       Comandos:
         - 'give {jogador} diamond_block 16'
@@ -196,7 +390,7 @@ Ranks:
           &d&l * &f{jogador} &7alcancou o rank {tag}&7, o ultimo da escada!
           &r
         Actionbar: '&d{jogador} &7agora e {tag}&7!'
-        Titulo: '&d&lLENDA<nl>&f{jogador}'
+        Titulo: '&d&lDRAGAO<nl>&f{jogador}'
       Mensagens privadas:
         Chat: '&dVoce chegou ao topo. Agora pode dar prestigio com &f/prestigio&d.'
         Actionbar: '&d&lRANKUP! &7Agora voce e {tag}'
