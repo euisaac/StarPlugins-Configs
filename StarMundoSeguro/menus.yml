@@ -1,0 +1,309 @@
+# ============================================================
+#  StarMundoSeguro - menus
+#  Material pelo nome moderno (vale da 1.8 a 1.21). Os slots dos botoes
+#  sao fixos no codigo; aqui muda o visual e o texto.
+#  Titulos com mais de 32 caracteres sao cortados nas versoes antigas.
+# ============================================================
+Versao do modelo: 1
+
+# Icone padrao da regiao na lista (cada regiao pode ter o seu pelo menu).
+Icones:
+  CUBOIDE: MAP
+  POLIGONO: FILLED_MAP
+  GLOBAL: GRASS_BLOCK
+
+Geral:
+  Anterior:
+    Material: ARROW
+    Nome: '&ePagina anterior'
+  Proxima:
+    Material: ARROW
+    Nome: '&eProxima pagina'
+  Voltar:
+    Material: DARK_OAK_DOOR
+    Nome: '&cVoltar'
+
+Principal:
+  Titulo: '&8Regioes: {mundo}'
+  Regiao:
+    Nome: '&a{regiao}'
+    Lore:
+      - '&7Tipo: &f{tipo}'
+      - '&7Prioridade: &f{prioridade}'
+      - '&7Tamanho: &f{tamanho}'
+      - '&7Bandeiras: &f{bandeiras}'
+      - '&7Donos: &f{donos} &8| &7Membros: &f{membros}'
+      - '&7Jogadores dentro: &f{jogadores}'
+      - ''
+      - '&eClique &7para configurar'
+      - '&eShift+clique &7para teleportar'
+  Vazio:
+    Material: BARRIER
+    Nome: '&cNenhuma regiao em {mundo}'
+    Lore:
+      - '&7Marque a area com a varinha e'
+      - '&7clique em &aCriar regiao&7.'
+  Info:
+    Material: BOOK
+    Nome: '&aStarMundoSeguro'
+    Lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Regioes: &f{total}'
+      - '&7Pagina: &f{pagina}/{paginas}'
+  Global:
+    Material: GRASS_BLOCK
+    Nome: '&2Regiao global de {mundo}'
+    Lore:
+      - '&7Bandeiras que valem no mundo inteiro,'
+      - '&7onde nenhuma outra regiao decide.'
+      - '&8Ex.: desligar PvP ou explosoes no mundo todo.'
+  Criar:
+    Material: EMERALD
+    Nome: '&aCriar regiao'
+    Lore:
+      - '&7Selecao: {selecao}'
+      - ''
+      - '&eClique &7e digite o nome no chat.'
+  Varinha:
+    Material: WOODEN_AXE
+    Nome: '&aVarinha de selecao'
+    Lore:
+      - '&7Modo: &f{modo}'
+      - ''
+      - '&eEsquerdo &7recebe a varinha'
+      - '&eDireito &7troca cuboide/poligono'
+  Mundo:
+    Material: COMPASS
+    Nome: '&bTrocar de mundo'
+    Lore:
+      - '&7Mostrando: &f{mundo}'
+      - '&eClique &7para o proximo mundo.'
+  Ignorando:
+    Material: LIME_DYE
+    Nome: '&eVoce esta ignorando a protecao'
+    Lore:
+      - '&7Clique para voltar a ser protegido.'
+  Protegido:
+    Material: GRAY_DYE
+    Nome: '&7Ignorar a protecao'
+    Lore:
+      - '&7Libera tudo so para voce ate'
+      - '&7desligar ou sair do servidor.'
+  Aqui:
+    Material: BEACON
+    Nome: '&aRegiao onde estou'
+    Lore:
+      - '&7Abre a regiao de maior prioridade'
+      - '&7do lugar em que voce esta.'
+
+Regiao:
+  Titulo: '&8Regiao: {regiao}'
+  Info:
+    Nome: '&a&l{regiao}'
+    Lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Tipo: &f{tipo}'
+      - '&7Area: &7{area}'
+      - '&7Tamanho: &f{tamanho} &8({volume} blocos)'
+      - '&7Prioridade: &f{prioridade}'
+      - '&7Pai: &f{pai}'
+      - '&7Jogadores dentro: &f{jogadores}'
+  Bandeiras:
+    Material: WHITE_BANNER
+    Nome: '&aBandeiras'
+    Lore:
+      - '&7Com valor: &f{bandeiras}'
+      - '&7Protecao, ambiente, entrada, efeitos,'
+      - '&7voo, elytra, comandos e mais.'
+      - ''
+      - '&eClique &7para editar'
+  Membros:
+    Material: PLAYER_HEAD
+    Nome: '&aMembros'
+    Lore:
+      - '&7Membros: &f{membros}'
+      - '&7Membros mexem na regiao quando'
+      - '&7a bandeira construir esta vazia.'
+  Donos:
+    Material: GOLDEN_HELMET
+    Nome: '&6Donos'
+    Lore:
+      - '&7Donos: &f{donos}'
+      - '&7Dono conta como membro e pode'
+      - '&7cuidar da regiao pelo /ms.'
+  Prioridade:
+    Material: ANVIL
+    Nome: '&ePrioridade: &f{prioridade}'
+    Lore:
+      - '&7Onde duas regioes se cruzam,'
+      - '&7a de maior prioridade decide.'
+      - ''
+      - '&eEsquerdo &7+1  &eDireito &7-1'
+      - '&eShift &7muda de 10 em 10'
+  Pai:
+    Material: LEAD
+    Nome: '&ePai: &f{pai}'
+    Lore:
+      - '&7A regiao herda membros e bandeiras'
+      - '&7que nao escrever por conta propria.'
+      - ''
+      - '&eEsquerdo &7escolhe  &eDireito &7remove'
+  Modelos:
+    Material: BOOKSHELF
+    Nome: '&dAplicar modelo'
+    Lore:
+      - '&7Conjuntos prontos de bandeiras:'
+      - '&7spawn, arena, loja, mina publica...'
+  Teleportar:
+    Material: ENDER_PEARL
+    Nome: '&bTeleportar'
+    Lore:
+      - '&7Vai para o ponto de teleporte'
+      - '&7(ou para o centro da regiao).'
+  Ponto:
+    Material: COMPASS
+    Nome: '&bPonto de teleporte'
+    Lore:
+      - '&7Atual: {ponto}'
+      - ''
+      - '&eEsquerdo &7define onde voce esta'
+      - '&eDireito &7remove'
+  Ver:
+    Material: GLOWSTONE_DUST
+    Nome: '&eVer a borda'
+    Lore:
+      - '&7Desenha a borda em particulas'
+      - '&7so para voce.'
+  Selecionar:
+    Material: WOODEN_AXE
+    Nome: '&eCarregar na selecao'
+    Lore:
+      - '&7Poe a area da regiao na sua'
+      - '&7selecao para ajustar e redefinir.'
+  Redefinir:
+    Material: PISTON
+    Nome: '&eRedefinir area'
+    Lore:
+      - '&7Troca a area pela sua selecao atual.'
+  Icone:
+    Material: ITEM_FRAME
+    Nome: '&eIcone da regiao'
+    Lore:
+      - '&eEsquerdo &7usa o item da sua mao'
+      - '&eDireito &7volta ao padrao'
+  Apagar:
+    Material: LAVA_BUCKET
+    Nome: '&cApagar regiao'
+    Lore:
+      - '&7Pede confirmacao antes.'
+
+Categorias:
+  Titulo: '&8Bandeiras: {regiao}'
+  Categoria:
+    Nome: '{categoria}'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&7Com valor: &f{definidas}&7/&f{total}'
+      - '&eClique &7para abrir'
+  Definidas:
+    Material: NETHER_STAR
+    Nome: '&aSo as que tem valor'
+    Lore:
+      - '&7{definidas} bandeiras com valor.'
+
+Bandeiras:
+  Titulo: '&8{categoria}'
+  Vazio:
+    Material: BARRIER
+    Nome: '&cNada por aqui'
+  Item:
+    Nome: '&e{nome}'
+    Lore:
+      - '&8{chave}'
+      - '{descricao}'
+      - ''
+      - '&7Valor: {valor}'
+      - '&7Vale para: &f{grupo}'
+      - '&7Tipo: &f{tipo}'
+      - ''
+      - '{acoes}'
+  # O texto de ajuda de cada jeito de editar (\n quebra a linha).
+  Acoes:
+    Ciclo: '&eEsquerdo &7troca o valor\n&eDireito &7limpa\n&eShift+direito &7muda para quem vale'
+    Chat: '&eEsquerdo &7digita no chat\n&eDireito &7limpa\n&eShift+direito &7muda para quem vale'
+    Lista: '&eEsquerdo &7digita no chat (+item soma, -item tira)\n&eDireito &7limpa\n&eShift+direito &7muda para quem vale'
+    Local: '&eEsquerdo &7usa onde voce esta\n&eShift+esquerdo &7digita no chat\n&eDireito &7limpa'
+    Efeitos: '&eEsquerdo &7escolhe os efeitos\n&eDireito &7limpa\n&eShift+direito &7muda para quem vale'
+
+Efeitos:
+  Titulo: '&8Efeitos: {regiao}'
+  Desligado:
+    Nome: '&7{efeito}'
+    Lore:
+      - '&8{chave}'
+      - '&eClique &7para ligar'
+  Ligado:
+    Nome: '&a{efeito}'
+    Lore:
+      - '&8{chave}'
+      - '&aLigado'
+      - '&eClique &7para desligar'
+  Com nivel:
+    Nome: '&a{efeito} {nivel}'
+    Lore:
+      - '&8{chave}'
+      - '&7Nivel: &f{nivel}'
+      - '&eEsquerdo &7sobe  &eDireito &7desce (0 tira)'
+  Limpar:
+    Material: MILK_BUCKET
+    Nome: '&cLimpar todos'
+
+Pessoas:
+  Titulo membros: '&8Membros: {regiao}'
+  Titulo donos: '&8Donos: {regiao}'
+  Jogador:
+    Nome: '&a{jogador}'
+    Lore:
+      - '&eDireito &7para remover'
+  Grupo:
+    Material: NAME_TAG
+    Nome: '&bGrupo {grupo}'
+    Lore:
+      - '&7Todos do grupo de permissao {grupo}.'
+      - '&eDireito &7para remover'
+  Vazio:
+    Material: BARRIER
+    Nome: '&7Ninguem por enquanto'
+  Adicionar:
+    Material: EMERALD
+    Nome: '&aAdicionar'
+    Lore:
+      - '&7Digite um nick, ou g:grupo'
+      - '&7para um grupo de permissao.'
+
+Modelos:
+  Titulo: '&8Modelos: {regiao}'
+  Modelo:
+    Nome: '{nome}'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '{bandeiras}'
+      - ''
+      - '&eClique &7para aplicar'
+  Vazio:
+    Material: BARRIER
+    Nome: '&cNenhum modelo no modelos.yml'
+
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Sim:
+    Material: LIME_WOOL
+    Nome: '&aSim, confirmar'
+  Nao:
+    Material: RED_WOOL
+    Nome: '&cNao, voltar'
+  Pergunta:
+    Material: PAPER
+    Nome: '{pergunta}'

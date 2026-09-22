@@ -1,0 +1,204 @@
+# ============================================================
+#  StarMundoSeguro - mensagens
+#  Cores: &a, &c... e hex &#RRGGBB (1.16+). Mensagem vazia ('') nao e enviada.
+#  Mensagens de varias linhas (bloco |) saem sem o prefixo.
+# ============================================================
+Versao do modelo: 1
+
+Prefixo: '&8[&aMundo Seguro&8] &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Somente jogador: '&cEste comando so pode ser usado dentro do jogo.'
+  Uso: '&cUso correto: &f{uso}'
+  Salvo: '&aRegioes gravadas no disco.'
+  Recarregado: '&aConfiguracoes e regioes recarregadas (&f{regioes} &aregioes).'
+  Mundo invalido: '&cO mundo &f{mundo} &cnao existe ou nao esta carregado.'
+  Mundo: 'mundo'
+  Mundo inteiro: 'Mundo inteiro'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Nenhum: 'nenhum'
+  Vazio: '&8(sem valor)'
+  Herdado: '&7herdado de &f{pai}&7: {valor}'
+  Definidas: '&fBandeiras com valor'
+  Dono: 'dono'
+  Membro: 'membro'
+  Selecao pronta: '&aPronta &7({volume} blocos)'
+  Selecao vazia: '&cMarque a area com a varinha primeiro'
+
+Ignorar:
+  Ligado: '&eVoce esta &lIGNORANDO &ea protecao. Tudo liberado para voce ate desligar (&f/ms ignorar&e) ou sair do servidor.'
+  Desligado: '&aProtecao ativa de novo para voce.'
+
+Selecao:
+  Varinha recebida: '&aVarinha recebida! &7Esquerdo marca o 1o canto, direito o 2o. &8(/ms modo troca para poligono)'
+  Canto 1: '&aPrimeiro canto em &f{local}&a. &7Volume: &f{volume}'
+  Canto 2: '&aSegundo canto em &f{local}&a. &7Volume: &f{volume}'
+  Ponto: '&aPonto &f#{numero} &aem &f{local}&a. &7Volume: &f{volume}'
+  Modo cuboide: '&aModo de selecao: &fcuboide &7(dois cantos).'
+  Modo poligono: '&aModo de selecao: &fpoligono &7(esquerdo recomeca, direito soma pontos).'
+  Incompleta: '&cMarque a area antes: &f/ms varinha&c, ou &f/ms pos1 &ce &f/ms pos2&c.'
+  Outro mundo: '&cA selecao esta em outro mundo.'
+  Limpa: '&aSelecao limpa.'
+  Expandida: '&aSelecao expandida. &7Volume: &f{volume}'
+  Nao expandiu: '&cNao foi possivel expandir (selecione primeiro; poligono so expande em altura).'
+  Carregada: '&aA area de &f{regiao} &afoi para a sua selecao. Ajuste e use &f/ms redefinir {regiao}&a.'
+
+Regiao:
+  Criada: '&aRegiao &f{regiao} &acriada! &7({volume} blocos, prioridade {prioridade}) &8Abra /ms para configurar.'
+  Ja existe: '&cJa existe uma regiao chamada &f{regiao} &cneste mundo.'
+  Nome invalido: '&cNome invalido: use so letras minusculas, numeros, - e _ (ate 40).'
+  Nao existe: '&cA regiao &f{regiao} &cnao existe no mundo &f{mundo}&c.'
+  Informe o mundo: '&cNo console, informe o mundo: &fmundo:regiao'
+  Apagada: '&aRegiao &f{regiao} &aapagada.'
+  Confirme apagar: '&eTem certeza? Use &f/ms apagar {regiao} confirmar&e.'
+  Redefinida: '&aArea de &f{regiao} &aatualizada &7({volume} blocos).'
+  Prioridade: '&aPrioridade de &f{regiao} &aagora e &f{prioridade}&a.'
+  Pai definido: '&aA regiao &f{regiao} &aagora herda de &f{pai}&a.'
+  Sem pai: '&aA regiao &f{regiao} &anao tem mais pai.'
+  Pai invalido: '&cEsse pai criaria um ciclo (ou e de outro mundo).'
+  Sobreposta: '&eAtencao: a regiao encosta em &f{regioes}&e. Quem tiver mais prioridade decide.'
+  Global sem area: '&cA regiao global cobre o mundo inteiro e nao tem area.'
+  Global sem pessoas: '&cA regiao global nao tem membros nem donos.'
+  Nenhuma aqui: '&7Voce nao esta em nenhuma regiao.'
+  Aqui: '&7Regioes aqui: &f{regioes}'
+  Teleportado: '&aTeleportado para &f{regiao}&a.'
+  Mundo descarregado: '&cO mundo dessa regiao nao esta carregado.'
+  Mostrando: '&aMostrando a borda de &f{regiao} &apor {segundos}s.'
+  Icone vazio: '&cSegure na mao o item que vai virar o icone.'
+
+Bandeira:
+  Definida: '&aBandeira &f{bandeira} &ade &f{regiao}&a: {valor} &8(vale para: {grupo})'
+  Limpa: '&aBandeira &f{bandeira} &alimpa em &f{regiao}&a.'
+  Nao existe: '&cBandeira &f{bandeira} &cnao existe. Veja &f/ms bandeiras&c.'
+  Sem permissao: '&cVoce nao pode mudar essa bandeira.'
+  Grupo invalido: '&cGrupo &f{grupo} &cinvalido. Use: todos, membros, donos, nao_membros, nao_donos.'
+  Grupo definido: '&aA bandeira &f{bandeira} &aagora vale para: &f{grupo}&a.'
+  Grupo sem valor: '&cDe um valor a bandeira antes de escolher para quem ela vale.'
+  Lista: '{categoria}&8: &7{bandeiras}'
+
+Valor:
+  Estado: '&cUse &fpermitir &cou &fnegar&c.'
+  Booleano: '&cUse &fsim &cou &fnao&c.'
+  Texto: '&cDigite um texto.'
+  Inteiro: '&cDigite um numero inteiro.'
+  Decimal: '&cDigite um numero (ex.: 0.3).'
+  Lista: '&cDigite os itens separados por virgula.'
+  Local: '&cUse &faqui &cou &fmundo x y z [yaw pitch]&c.'
+  Efeito: '&cDigite os efeitos separados por virgula (ex.: VELOCIDADE:2, VISAO_NOTURNA).'
+  Efeito desconhecido: '&cEfeito desconhecido. Exemplos: VELOCIDADE, VISAO_NOTURNA, REGENERACAO, SUPER_PULO.'
+  Modo de jogo: '&cUse sobrevivencia, criativo, aventura ou espectador.'
+  Clima: '&cUse limpo ou chuva.'
+  Hora: '&cUse dia, noite, manha, tarde ou um numero de 0 a 24000.'
+
+Pessoas:
+  Adicionado: '&f{jogador} &aagora e {papel} de &f{regiao}&a.'
+  Removido: '&f{jogador} &anao e mais {papel} de &f{regiao}&a.'
+  Ja estava: '&e{jogador} ja era {papel} de {regiao}.'
+  Nao estava: '&e{jogador} nao era {papel} de {regiao}.'
+  Nao encontrado: '&cNinguem com o nick &f{jogador} &cja entrou neste servidor.'
+
+Modelo:
+  Aplicado: '&aModelo &f{modelo} &aaplicado em &f{regiao} &7({quantidade} bandeiras).'
+  Nao existe: '&cO modelo &f{modelo} &cnao existe no modelos.yml.'
+  Lista: '&7Modelos: &f{modelos}'
+
+Confirmar:
+  Apagar: '&cApagar a regiao &f{regiao}&c? Nao tem volta.'
+  Modelo: '&eAplicar o modelo &f{modelo} &eem &f{regiao}&e?'
+
+# Mensagens de quem tenta entrar ou sair. A bandeira mensagem-entrada-negada
+# da regiao, quando preenchida, tem prioridade sobre estas.
+Acesso:
+  Negada: '&cVoce nao pode entrar em &f{regiao}&c.'
+  Saida negada: '&cVoce nao pode sair de &f{regiao}&c.'
+  Sem permissao: '&cVoce nao tem permissao para entrar em &f{regiao}&c.'
+  Nivel baixo: '&cVoce precisa de nivel &f{minimo} &cpara entrar em &f{regiao}&c.'
+  Nivel alto: '&cSo entra em &f{regiao} &cquem tem ate o nivel &f{maximo}&c.'
+  Lotada: '&c{regiao} esta lotada (&f{limite} &cjogadores).'
+
+Notificacoes:
+  Entrou: '&8[&e!&8] &f{jogador} &7entrou em &f{regiao}'
+  Saiu: '&8[&e!&8] &f{jogador} &7saiu de &f{regiao}'
+
+Protecao:
+  Negado:
+    # Uma linha por bandeira (pela chave) troca o aviso so dela; o resto usa o padrao.
+    padrao: '&cVoce nao pode fazer isso aqui &8({bandeira})&c.'
+    pvp: '&cO PvP esta desligado aqui.'
+    construir: '&cVoce nao pode construir em &f{regiao}&c.'
+    quebrar-blocos: '&cVoce nao pode quebrar blocos em &f{regiao}&c.'
+    colocar-blocos: '&cVoce nao pode colocar blocos em &f{regiao}&c.'
+    acessar-baus: '&cVoce nao pode abrir baus em &f{regiao}&c.'
+    voar: '&cO voo esta desligado aqui.'
+    elytra: '&cNao e possivel planar aqui.'
+    itens-bloqueados: '&cEsse item nao pode ser usado aqui.'
+    enderpearl: '&cPerolas do ender estao bloqueadas aqui.'
+  Elytra: '&cNao e possivel planar com elytra aqui.'
+  Comando bloqueado: '&cO comando &f{comando} &cnao pode ser usado aqui.'
+  Chat bloqueado: '&cO chat esta desligado aqui.'
+
+Importar:
+  Iniciando: '&aImportando as regioes de &f{pasta}&a...'
+  Pasta nao existe: '&cNao achei &f{pasta}&c.'
+  Ja rodando: '&cJa existe uma importacao em andamento.'
+  Concluido: '&aImportacao concluida: &f{criadas} &aregioes criadas, &f{puladas} &aja existiam, &f{avisos} &aavisos (veja o console).'
+
+Entrada:
+  Como cancelar: '&7Digite &ccancelar &7para desistir.'
+  Cancelado: '&cCancelado.'
+  Tempo esgotado: '&cTempo esgotado; nada foi alterado.'
+  Nome da regiao: '&aDigite no chat o &fnome &ada regiao &7(e, se quiser, a prioridade: &fspawn 10&7).'
+  Pai: '&aDigite o nome da regiao &fpai&a, ou &fnenhum&a.'
+  Pessoa: '&aDigite o &fnick &ado jogador ou &fg:grupo &apara um grupo de permissao.'
+  Valor: '&aDigite o valor no chat.'
+  Formato:
+    TEXTO: '&7{bandeira}: texto com cores (&a, &#RRGGBB). Use {jogador} e {regiao}; \n quebra linha.'
+    INTEIRO: '&7{bandeira}: um numero inteiro.'
+    DECIMAL: '&7{bandeira}: um numero, ex.: 0.3'
+    LISTA: '&7{bandeira}: itens separados por virgula. &f+item &7soma, &f-item &7tira.'
+    LOCAL: '&7{bandeira}: &faqui &7ou &fmundo x y z [yaw pitch]&7.'
+    EFEITOS: '&7{bandeira}: VELOCIDADE:2, VISAO_NOTURNA...'
+    TIPOS_EFEITO: '&7{bandeira}: VENENO, CEGUEIRA...'
+    HORA: '&7{bandeira}: dia, noite, manha, tarde ou 0-24000.'
+
+Info:
+  Cabecalho: |-
+    &8&m
+    &a&lRegiao &f{regiao} &8({mundo})
+    &7Tipo: &f{tipo} &8| &7Prioridade: &f{prioridade}
+    &7Area: &f{area}
+    &7Pai: &f{pai} &8| &7Jogadores dentro: &f{jogadores}
+    &7Donos: &f{donos}
+    &7Membros: &f{membros}
+    &7Bandeiras:
+  Bandeira: ' &8- &7{bandeira}: {valor}{grupo}'
+  Sem bandeiras: ' &8(nenhuma bandeira)'
+
+Lista:
+  Cabecalho: '&aRegioes ({total}) em &f{mundo} &7- pagina {pagina}/{paginas}'
+  Linha: ' &8- &f{regiao} &8({mundo}) &7prioridade {prioridade}, {bandeiras} bandeiras'
+
+Ajuda:
+  Staff: |-
+    &8&m
+    &a&lStarMundoSeguro &7- /{comando}
+    &f/{comando} &7abre o menu (faz tudo pelo inventario)
+    &f/{comando} varinha &7| &fmodo &7| &fpos1 &7| &fpos2 &7| &fexpandir <n> <dir>|vert
+    &f/{comando} criar <nome> [prioridade] [modelo]
+    &f/{comando} redefinir|apagar|selecionar|ver|tp <regiao>
+    &f/{comando} bandeira <regiao> <bandeira> [-g grupo] [valor]
+    &f/{comando} bandeiras [categoria] &7lista as bandeiras
+    &f/{comando} prioridade <regiao> <n> &7| &fpai <regiao> [pai]
+    &f/{comando} membro|dono add|rem <regiao> <nick|g:grupo>
+    &f/{comando} modelo <regiao> <modelo> &7| &fmodelos
+    &f/{comando} info [regiao] &7| &faqui &7| &flista [mundo|todos]
+    &f/{comando} global [mundo] &7| &fignorar &7| &fsalvar &7| &frecarregar
+    &f/{comando} importar <pasta> [substituir]
+  Jogador: |-
+    &8&m
+    &a&lStarMundoSeguro &7- /{comando}
+    &f/{comando} &7abre as suas regioes
+    &f/{comando} info [regiao] &7| &faqui
+    &f/{comando} membro add|rem <regiao> <nick>

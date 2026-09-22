@@ -1,0 +1,165 @@
+# ============================================================
+#  StarMundoSeguro - modelos
+#  Conjuntos prontos de bandeiras. No menu da regiao: "Aplicar modelo".
+#  Por comando: /ms modelo <regiao> <modelo>  ou  /ms criar <nome> <prioridade> <modelo>
+#
+#  Limpar antes: true apaga as bandeiras atuais antes de aplicar.
+#  Prioridade (opcional): muda a prioridade da regiao.
+#  Grupos (opcional): para quem cada bandeira vale (todos, membros, donos,
+#  nao_membros, nao_donos).
+#  Crie quantos quiser; a chave (spawn, arena...) e o nome usado no comando.
+# ============================================================
+
+Modelos:
+  spawn:
+    Nome: '&aSpawn protegido'
+    Icone: BEACON
+    Descricao:
+      - 'Ninguem constroi, apanha ou passa fome.'
+      - 'Sem mobs, sem explosoes, sem fogo.'
+    Prioridade: 10
+    Bandeiras:
+      construir: NEGAR
+      pvp: NEGAR
+      invencivel: PERMITIR
+      fome: NEGAR
+      dano-de-queda: NEGAR
+      spawn-mobs: NEGAR
+      tnt: NEGAR
+      explosao-creeper: NEGAR
+      outras-explosoes: NEGAR
+      fogo-espalhar: NEGAR
+      lava-fogo: NEGAR
+      soltar-itens: NEGAR
+      elytra: NEGAR
+      enderpearl: NEGAR
+      folhas-cair: NEGAR
+      titulo-entrada: '&a&lSPAWN<nl>&7Area protegida'
+
+  arena-pvp:
+    Nome: '&cArena PvP'
+    Icone: DIAMOND_SWORD
+    Descricao:
+      - 'PvP liberado, inventario mantido,'
+      - 'sem voo, sem elytra e sem comandos de fuga.'
+    Prioridade: 20
+    Limpar antes: true
+    Bandeiras:
+      construir: NEGAR
+      pvp: PERMITIR
+      voar: NEGAR
+      elytra: NEGAR
+      manter-inventario: sim
+      manter-xp: sim
+      enderpearl: NEGAR
+      comandos-bloqueados: ['/spawn', '/home', '/tpa', '/warp', '/back', '/fly']
+      titulo-entrada: '&c&lARENA<nl>&7PvP liberado!'
+      titulo-saida: '&a&lSEGURO<nl>&7Voce saiu da arena'
+
+  loja:
+    Nome: '&eArea de lojas'
+    Icone: EMERALD
+    Descricao:
+      - 'Jogadores usam portas e baus de venda,'
+      - 'mas nao quebram nada.'
+    Bandeiras:
+      construir: NEGAR
+      usar: PERMITIR
+      acessar-baus: PERMITIR
+      pvp: NEGAR
+      mensagem-entrada: '&eBem-vindo as lojas, {jogador}!'
+
+  mina-publica:
+    Nome: '&7Mina publica'
+    Icone: IRON_PICKAXE
+    Descricao:
+      - 'Qualquer um quebra minerio e pedra,'
+      - 'mas ninguem coloca bloco.'
+    Bandeiras:
+      construir: NEGAR
+      blocos-liberados-quebrar: ['*_ORE', STONE, COBBLESTONE, DEEPSLATE, '*ANDESITE', '*DIORITE', '*GRANITE']
+      blocos-negados-colocar: ['*']
+      pvp: NEGAR
+
+  zona-de-radiacao:
+    Nome: '&2Zona de radiacao'
+    Icone: POISONOUS_POTATO
+    Descricao:
+      - 'Quem entra toma dano e fica envenenado.'
+      - 'Nao da para curar com pocao nem voar.'
+    Bandeiras:
+      dano-periodico: 1.0
+      dano-intervalo: 2
+      efeitos-dar: ['VENENO:1', 'FOME:2']
+      efeitos-bloquear: [REGENERACAO, CURA_INSTANTANEA]
+      voar: NEGAR
+      elytra: NEGAR
+      titulo-entrada: '&2&lRADIACAO<nl>&7Saia o quanto antes!'
+      som-entrada: 'ENTITY_ELDER_GUARDIAN_CURSE;1;1'
+
+  area-vip:
+    Nome: '&6Area VIP'
+    Icone: GOLD_BLOCK
+    Descricao:
+      - 'So entra quem tem a permissao starmundoseguro.area.vip.'
+      - 'Dentro, voo e visao noturna liberados.'
+    Bandeiras:
+      permissao-entrada: 'starmundoseguro.area.vip'
+      mensagem-entrada-negada: '&cSomente VIPs podem entrar aqui!'
+      voar: PERMITIR
+      efeitos-dar: ['VISAO_NOTURNA:1']
+      titulo-entrada: '&6&lAREA VIP'
+
+  parkour:
+    Nome: '&bParkour'
+    Icone: FEATHER
+    Descricao:
+      - 'Sem voo, sem elytra, sem perola e sem dano de queda.'
+    Bandeiras:
+      construir: NEGAR
+      voar: NEGAR
+      elytra: NEGAR
+      foguete-elytra: NEGAR
+      enderpearl: NEGAR
+      fruta-chorus: NEGAR
+      dano-de-queda: NEGAR
+      pvp: NEGAR
+      efeitos-bloquear: [VELOCIDADE, SUPER_PULO, LEVITACAO, QUEDA_LENTA]
+      comandos-bloqueados: ['/fly', '/tp', '/tpa', '/back']
+
+  evento:
+    Nome: '&dEvento'
+    Icone: FIREWORK_ROCKET
+    Descricao:
+      - 'Area de evento com limite de jogadores,'
+      - 'modo aventura e aviso para a staff.'
+    Bandeiras:
+      construir: NEGAR
+      limite-jogadores: 30
+      modo-de-jogo: ADVENTURE
+      notificar-entrada: sim
+      notificar-saida: sim
+      soltar-itens: NEGAR
+      pegar-itens: NEGAR
+
+  cura:
+    Nome: '&aSala de cura'
+    Icone: GOLDEN_APPLE
+    Descricao:
+      - 'Recupera vida e fome devagar.'
+    Bandeiras:
+      pvp: NEGAR
+      cura-quantidade: 2.0
+      cura-intervalo: 2
+      alimentar-quantidade: 1
+      alimentar-intervalo: 3
+      efeitos-dar: ['REGENERACAO:1']
+
+  dia-eterno:
+    Nome: '&eDia eterno'
+    Icone: CLOCK
+    Descricao:
+      - 'Sempre de dia e sem chuva para quem esta dentro.'
+    Bandeiras:
+      hora: 6000
+      clima: LIMPO

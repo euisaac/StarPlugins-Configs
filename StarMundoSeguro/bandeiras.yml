@@ -1,0 +1,33 @@
+# ============================================================
+#  StarMundoSeguro - bandeiras
+#  Aqui voce so muda a APARENCIA das bandeiras no menu (nome, icone e
+#  descricao) e esconde do menu as que o seu servidor nao usa.
+#  O comportamento de cada bandeira e fixo no plugin.
+#
+#  Lista completa por comando: /ms bandeiras [categoria]
+#  Categorias: protecao, ambiente, mobs, jogador, movimento, entrada,
+#              comandos, efeitos, mundo
+#
+#  Grupos (para quem o valor vale, shift+direito no menu ou -g no comando):
+#    todos, membros, donos, nao_membros, nao_donos
+#  As bandeiras de construir/quebrar/colocar/interagir valem por padrao
+#  para "nao_membros": negar construir nao atrapalha os membros.
+# ============================================================
+
+# Chaves de bandeira que nao aparecem no menu (continuam valendo por comando).
+Esconder do menu: []
+#  - ancora-renascimento
+#  - coral-secar
+
+# Troque nome, icone ou descricao de qualquer bandeira pela chave dela.
+Bandeiras:
+  elytra:
+    Nome: 'Elytra'
+    Icone: ELYTRA
+    Descricao: 'NEGAR impede planar com elytra dentro da regiao (quem ja estava planando cai).'
+  efeitos-dar:
+    Nome: 'Efeitos recebidos'
+    Descricao: 'Efeitos que o jogador ganha enquanto esta aqui e perde ao sair.'
+  efeitos-bloquear:
+    Nome: 'Efeitos bloqueados'
+    Descricao: 'Efeitos tirados na entrada e que nao podem ser recebidos aqui (nem por pocao).'

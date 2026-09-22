@@ -1,0 +1,98 @@
+# ============================================================
+#  StarMundoSeguro - configuracao
+#  Regioes protegidas com bandeiras, em portugues.
+#
+#  Comando: /mundoseguro (ou /ms, /regiao, /rg). Sem argumento, abre o menu,
+#  que faz tudo sem precisar decorar comando.
+#
+#  As regioes ficam em regioes/<mundo>.yml (uma pasta por mundo nao, um
+#  arquivo por mundo). Podem ser editadas a mao com o servidor desligado.
+# ============================================================
+
+Debug: false
+
+# Nomes e apelidos extras para o comando principal, separados por |.
+# O /mundoseguro (e /ms, /regiao, /rg, /regioes) sempre funciona.
+Comandos:
+  mundoseguro: ''
+
+# Item que marca a area (esquerdo = 1o canto, direito = 2o canto).
+# Reconhecido pelo material e pelo nome.
+Varinha:
+  Material: WOODEN_AXE
+  Nome: '&aVarinha do Mundo Seguro'
+  Lore:
+    - '&7Esquerdo: primeiro canto'
+    - '&7Direito: segundo canto'
+    - '&8/ms modo troca para poligono'
+
+Avisos:
+  # Quando alguem e barrado (quebrar, PvP, entrar...), recebe um aviso.
+  Avisar quando negar: true
+  # Intervalo minimo entre dois avisos para o mesmo jogador (evita spam).
+  Intervalo em milissegundos: 1500
+
+Visualizacao:
+  # Por quanto tempo a borda fica desenhada no /ms ver.
+  Duracao em segundos: 15
+  # Cor das particulas da borda das regioes (a selecao e sempre dourada).
+  Cor: '#55FF55'
+  # Quanto maior, mais denso o desenho (e mais pacotes enviados).
+  Limite de particulas: 600
+
+Nova regiao:
+  # Prioridade de quem nao informa uma no /ms criar.
+  Prioridade: 0
+  # true: toda regiao nova vai do fundo ao topo do mundo, independente da
+  # altura dos cantos marcados. false: usa a altura da selecao.
+  Altura inteira do mundo: true
+  # Quem cria vira dono da regiao.
+  Criador vira dono: false
+  # Avisa quando a regiao nova encosta em outra.
+  Avisar sobreposicao: true
+  # Bandeiras que toda regiao nova ja nasce com. Deixe vazio ({}) para nenhuma.
+  # (Mesmo sem bandeira nenhuma, a regiao ja protege: so membros constroem.)
+  Bandeiras:
+    pvp: NEGAR
+
+Efeitos:
+  # Duracao de cada efeito dado pela bandeira efeitos-dar; ele e renovado
+  # sozinho enquanto o jogador esta na regiao e some quando ele sai.
+  Duracao em segundos: 30
+  # Particulas dos efeitos dados pela regiao.
+  Mostrar particulas: false
+
+Donos:
+  # Donos de regiao (com a permissao starmundoseguro.dono) podem abrir o menu
+  # das proprias regioes, mexer nos membros e nas bandeiras abaixo.
+  Podem gerenciar: true
+  Bandeiras liberadas:
+    - mensagem-entrada
+    - mensagem-saida
+    - titulo-entrada
+    - titulo-saida
+    - pvp
+    - acessar-baus
+    - usar
+    - interagir
+    - entrada
+    - voar
+
+Entrada:
+  # Quem e barrado na divisa volta para o ultimo lugar liberado (ate 10
+  # blocos atras). false: so desfaz o passo.
+  Empurrar de volta: true
+
+Notificacoes:
+  # Os avisos de notificar-entrada/saida vao para a barra de acao em vez do chat.
+  Actionbar: false
+
+Grupos:
+  # Membros por grupo (g:vip). Com Vault, a pergunta vai para ele; sem Vault,
+  # o plugin testa esta permissao.
+  Usar Vault: true
+  Formato da permissao: 'group.{grupo}'
+
+Placeholders:
+  # Texto de %starmundoseguro_regiao% fora de qualquer regiao.
+  Sem regiao: 'Nenhuma'
