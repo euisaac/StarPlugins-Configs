@@ -1,0 +1,115 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                    StarFactions - geradores                          ║
+#  ║   Armazem de geradores da facao e o valor de cada um no top.         ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Versao do modelo: 1
+
+# Como o gerador sai do armazem:
+#   ITEM    -> o proprio plugin entrega um gerador (spawner) do tipo certo.
+#   COMANDO -> roda um comando de console. Use com plugins de gerador que tem
+#              item proprio. Marcadores: {jogador} {tipo} {quantidade}
+Retirar como: ITEM
+Comando para dar: 'spawners give {jogador} {tipo} {quantidade}'
+
+# O item entregue no modo ITEM (e o que a picareta Silk 2 derruba).
+# Marcadores: {nome} {tipo}
+Item:
+  Nome: '&eGerador de {nome}'
+  Lore:
+    - '&7Tipo: &f{nome}'
+    - ''
+    - '&7Coloque para usar ou guarde'
+    - '&7no armazem da facao.'
+
+# Itens de gerador de outros plugins: quando o item nao traz o tipo por dentro,
+# o nome dele (sem cor) e comparado com o "Nome" de cada tipo abaixo.
+Reconhecer pelo nome: true
+
+# Valor de cada tipo no "valor da facao" (top) e o nome mostrado.
+# A chave e o nome do mob no Bukkit (ZOMBIE, SKELETON, IRON_GOLEM...).
+Tipos:
+  PIG:
+    Nome: 'Porco'
+    Valor: 5000
+    Icone: PORKCHOP
+  COW:
+    Nome: 'Vaca'
+    Valor: 5000
+    Icone: BEEF
+  CHICKEN:
+    Nome: 'Galinha'
+    Valor: 5000
+    Icone: FEATHER
+  SHEEP:
+    Nome: 'Ovelha'
+    Valor: 5000
+    Icone: WHITE_WOOL
+  ZOMBIE:
+    Nome: 'Zumbi'
+    Valor: 15000
+    Icone: ROTTEN_FLESH
+  SKELETON:
+    Nome: 'Esqueleto'
+    Valor: 15000
+    Icone: BONE
+  SPIDER:
+    Nome: 'Aranha'
+    Valor: 15000
+    Icone: STRING
+  CAVE_SPIDER:
+    Nome: 'Aranha da caverna'
+    Valor: 18000
+    Icone: SPIDER_EYE
+  CREEPER:
+    Nome: 'Creeper'
+    Valor: 25000
+    Icone: GUNPOWDER
+  ENDERMAN:
+    Nome: 'Enderman'
+    Valor: 40000
+    Icone: ENDER_PEARL
+  BLAZE:
+    Nome: 'Blaze'
+    Valor: 50000
+    Icone: BLAZE_ROD
+  MAGMA_CUBE:
+    Nome: 'Cubo de magma'
+    Valor: 35000
+    Icone: MAGMA_CREAM
+  SLIME:
+    Nome: 'Slime'
+    Valor: 35000
+    Icone: SLIME_BALL
+  WITCH:
+    Nome: 'Bruxa'
+    Valor: 45000
+    Icone: GLASS_BOTTLE
+  PIG_ZOMBIE:
+    Nome: 'Porco zumbi'
+    Valor: 40000
+    Icone: GOLD_NUGGET
+  ZOMBIFIED_PIGLIN:
+    Nome: 'Piglin zumbi'
+    Valor: 40000
+    Icone: GOLD_NUGGET
+  IRON_GOLEM:
+    Nome: 'Golem de ferro'
+    Valor: 100000
+    Icone: IRON_INGOT
+  VILLAGER:
+    Nome: 'Aldeao'
+    Valor: 60000
+    Icone: EMERALD
+  GUARDIAN:
+    Nome: 'Guardiao'
+    Valor: 70000
+    Icone: PRISMARINE_SHARD
+  MOOSHROOM:
+    Nome: 'Coguvaca'
+    Valor: 20000
+    Icone: RED_MUSHROOM
+  MUSHROOM_COW:
+    Nome: 'Coguvaca'
+    Valor: 20000
+    Icone: RED_MUSHROOM

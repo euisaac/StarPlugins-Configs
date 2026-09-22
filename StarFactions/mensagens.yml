@@ -1,0 +1,644 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarFactions - mensagens                         ║
+#  ║   Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso ║
+#  ║   sem precisar de uma opcao para cada um.                            ║
+#  ║   Aceita &a e tambem hex no formato &#RRGGBB (1.16+).                ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Prefixo: '&6&lFACCOES &8» &f'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar este comando.'
+  Uso: '&cUso: &f{uso}'
+  Subcomando desconhecido: '&cSubcomando desconhecido. Use &f/{comando} ajuda&c.'
+  Sem faccao: '&cVoce nao esta em nenhuma facao.'
+  Faccao nao existe: '&cNenhuma facao encontrada com &f{tag}&c.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Jogador nunca entrou: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Nao e membro: '&cO jogador &f{jogador} &cnao e membro da sua facao.'
+  Sem permissao na faccao: '&cO seu cargo nao permite: &f{permissao}&c.'
+  Somente lider: '&cSo o lider da facao pode fazer isso.'
+  Cargo acima: '&cVoce nao pode fazer isso com alguem do mesmo cargo ou acima.'
+  Sob ataque bloqueado: '&cA sua facao esta &4sob ataque&c! Isso fica bloqueado ate o ataque acabar.'
+  Espere para trocar: '&cVoce saiu de uma facao ha pouco. Espere &f{tempo} &cpara entrar em outra.'
+
+Etiquetas:
+  Sim: '&asim'
+  Nao: '&cnao'
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Ninguem: '&7ninguem'
+  Sem faccao: '&7Sem facao'
+  Sem cargo: '&7-'
+  Sem descricao: '&7sem descricao'
+  Sem base: '&cnao definida'
+  Com base: '&adefinida'
+  Online agora: '&aonline agora'
+  Nunca visto: '&7nunca visto'
+  Visto ha: '&7visto ha {tempo}'
+  Definitiva: '&adefinitiva'
+  Temporaria: '&etemporaria'
+  Liberado: '&aliberado'
+  Pronta: '&apronta'
+  Incompleta: '&cincompleta'
+
+Relacoes:
+  MEMBRO: '&aSua facao'
+  ALIADO: '&bAliada'
+  NEUTRO: '&fNeutra'
+  RIVAL: '&cRival'
+  SEM_FACCAO: '&7Sem facao'
+
+Linhas:
+  CAPITAO: 'Capitao'
+  MEMBRO: 'Membro'
+  RECRUTA: 'Recruta'
+  ALIADO: 'Aliados'
+  NEUTRO: 'Neutros'
+  RIVAL: 'Rivais'
+  SEM_FACCAO: 'Sem facao'
+
+# Nome e descricao de cada permissao no menu de permissoes.
+Permissoes:
+  CONSTRUIR:
+    Nome: 'Construir'
+    Descricao: 'Colocar blocos nas terras'
+  QUEBRAR:
+    Nome: 'Quebrar'
+    Descricao: 'Quebrar blocos nas terras'
+  CONTAINERS:
+    Nome: 'Abrir containers'
+    Descricao: 'Baus, fornalhas, funis...'
+  PORTAS:
+    Nome: 'Usar portas'
+    Descricao: 'Portas, alcapoes e portoes'
+  INTERAGIR:
+    Nome: 'Interagir'
+    Descricao: 'Botoes, alavancas e placas'
+  USAR_BASE:
+    Nome: 'Ir para a base'
+    Descricao: 'Usar o /f base'
+  CONVIDAR:
+    Nome: 'Convidar'
+    Descricao: 'Convidar e aceitar pedidos'
+  EXPULSAR:
+    Nome: 'Expulsar'
+    Descricao: 'Expulsar membros de cargo menor'
+  PROMOVER:
+    Nome: 'Promover'
+    Descricao: 'Promover e rebaixar membros'
+  DOMINAR:
+    Nome: 'Dominar terras'
+    Descricao: 'Dominar novas terras'
+  ABANDONAR:
+    Nome: 'Abandonar terras'
+    Descricao: 'Abandonar terras da facao'
+  DEFINIR_BASE:
+    Nome: 'Definir base'
+    Descricao: 'Mudar o lugar da base'
+  SACAR_BANCO:
+    Nome: 'Sacar do banco'
+    Descricao: 'Tirar dinheiro do banco'
+  BAU:
+    Nome: 'Bau da facao'
+    Descricao: 'Abrir o bau da facao'
+  ARMAZEM:
+    Nome: 'Armazem'
+    Descricao: 'Guardar e tirar geradores'
+  MELHORIAS:
+    Nome: 'Melhorias'
+    Descricao: 'Comprar melhorias'
+  RELACOES:
+    Nome: 'Relacoes'
+    Descricao: 'Aliancas e rivalidades'
+  BOLETINS:
+    Nome: 'Boletins'
+    Descricao: 'Publicar e apagar boletins'
+  EDITAR:
+    Nome: 'Editar facao'
+    Descricao: 'Nome, descricao, tag e brasao'
+  BATALHAS:
+    Nome: 'Batalhas'
+    Descricao: 'Desafiar e aceitar batalhas'
+  VOAR:
+    Nome: 'Voar'
+    Descricao: 'Usar o /f voar nas terras'
+  ESCUDO:
+    Nome: 'Escudo'
+    Descricao: 'Ligar o escudo da facao'
+
+Ajuda:
+  Jogador: |
+    &r
+    &6&lCOMANDOS DE FACAO
+    &r
+    &6› &f/{comando} &8- &7abre o menu da facao
+    &6› &f/{comando} criar <tag> <nome> &8- &7cria uma facao
+    &6› &f/{comando} info [tag/jogador] &8- &7informacoes de uma facao
+    &6› &f/{comando} convidar <jogador> &8- &7convida alguem
+    &6› &f/{comando} aceitar [tag] &8- &7aceita um convite
+    &6› &f/{comando} entrar <tag> &8- &7pede para entrar
+    &6› &f/{comando} sair &8- &7sai da facao
+    &6› &f/{comando} promover|rebaixar|expulsar <jogador>
+    &6› &f/{comando} mapa [auto|menu] &8- &7mapa das terras
+    &6› &f/{comando} dominar [raio] [temporaria] &8- &7domina terras
+    &6› &f/{comando} abandonar [todas] &8- &7abandona terras
+    &6› &f/{comando} verterras &8- &7mostra as bordas das terras
+    &6› &f/{comando} base | setbase &8- &7vai para / define a base
+    &6› &f/{comando} depositar|sacar <valor> &8- &7banco da facao
+    &6› &f/{comando} bau | armazem | melhorias
+    &6› &f/{comando} aliar|rival|neutro <tag> &8- &7relacoes
+    &6› &f/{comando} boletim <mensagem> &8- &7publica no mural
+    &6› &f/{comando} escudo [ativar] &8- &7escudo contra explosoes
+    &6› &f/{comando} voar &8- &7voa nas terras da facao
+    &6› &f/{comando} chat [faccao|aliados|global] &8- &7modo de chat
+    &6› &f/{comando} batalha &8- &7batalhas de arena
+    &6› &f/{comando} poder [jogador] &8- &7poder e abates
+    &6› &f/{comando} top | lista &8- &7ranking e lista de facoes
+    &6› &f/. <mensagem> &8- &7chat da facao  &6/ac &8- &7chat de aliados
+    &r
+  Admin: |
+    &r
+    &c&lSTAFF DE FACOES
+    &r
+    &c› &f/{comando} recarregar | salvar
+    &c› &f/{comando} bypass &8- &7ignora a protecao das terras
+    &c› &f/{comando} espiar &8- &7ve os chats das facoes
+    &c› &f/{comando} zona <protegida|guerra|livre> [raio]
+    &c› &f/{comando} deletar <tag>
+    &c› &f/{comando} info <tag> | nome <tag> <nome>
+    &c› &f/{comando} lider <tag> <jogador>
+    &c› &f/{comando} colocar <jogador> <tag> | tirar <jogador>
+    &c› &f/{comando} poder|podermax <jogador> <valor>
+    &c› &f/{comando} coins <tag> <dar|tirar|definir> <valor>
+    &c› &f/{comando} melhoria <tag> <tipo> <nivel>
+    &c› &f/{comando} escudo <tag> <remover|tempo>
+    &c› &f/{comando} item <tipo> <jogador> [quantidade]
+    &c› &f/{comando} arena <criar|remover|spawn1|spawn2|saida|canto1|canto2|lista> <nome>
+    &r
+
+Criar:
+  Uso: '&cUso: &f/{comando} criar <tag> <nome>'
+  Ja tem faccao: '&cVoce ja esta em uma facao.'
+  Tag tamanho: '&cA tag precisa ter entre &f{minimo} &ce &f{maximo} &cletras.'
+  Tag invalida: '&cA tag so pode ter letras e numeros.'
+  Tag proibida: '&cEssa tag nao pode ser usada.'
+  Tag em uso: '&cJa existe uma facao com a tag &f{tag}&c.'
+  Nome tamanho: '&cO nome precisa ter entre &f{minimo} &ce &f{maximo} &cletras.'
+  Nome invalido: '&cO nome so pode ter letras, numeros e espacos.'
+  Nome em uso: '&cJa existe uma facao chamada &f{nome}&c.'
+  Sem dinheiro: '&cVoce precisa de &f{custo} &cpara criar uma facao.'
+  Cancelado: '&cA criacao da facao foi bloqueada.'
+  Sucesso: '&aFacao {tag} &f{nome} &acriada! Use &f/f &apara abrir o menu.'
+  Anuncio: '&eA facao {tag} &f{nome} &efoi fundada por &f{jogador}&e!'
+
+Desfazer:
+  Confirme: '&cIsso apaga a facao, as terras e o bau! Digite &f/{comando} desfazer confirmar &cpara continuar.'
+  Sucesso: '&aA facao foi desfeita.'
+  Aviso membros: '&cA facao {tag} &cfoi desfeita.'
+  Anuncio: '&eA facao {tag} &f{nome} &efoi desfeita.'
+
+Convite:
+  Voce mesmo: '&cVoce nao pode convidar a si mesmo.'
+  Ja tem faccao: '&cO jogador &f{jogador} &cja esta em uma facao.'
+  Faccao cheia: '&cA facao ja esta com o maximo de membros.'
+  Enviado: '&aConvite enviado para &f{jogador}&a.'
+  Recebido: |
+    &eVoce foi convidado por &f{jogador} &epara a facao {tag} &f{nome}&e.
+    &eUse &f/f aceitar {tagpura} &epara entrar (vale por {tempo}).
+  Nenhum: '&cVoce nao tem nenhum convite.'
+  Escolha: '&cVoce tem mais de um convite. Use &f/f aceitar <tag>&c.'
+  Recusado: '&7Voce recusou o convite da facao {tag}&7.'
+  Recusado faccao: '&7{jogador} recusou o convite da facao.'
+  Pendentes: '&eVoce tem convites de facao pendentes. Use &f/f convites&e.'
+
+Pedido:
+  Ja pediu: '&cVoce ja pediu para entrar nessa facao.'
+  Enviado: '&aPedido enviado para a facao {tag}&a. Aguarde a resposta.'
+  Recebido: '&e{jogador} &equer entrar na facao. Veja em &f/f pedidos&e.'
+  Nao existe: '&cEsse pedido nao existe mais.'
+  Virou convite: '&a{jogador} esta offline: o pedido virou um convite.'
+  Recusado: '&7Pedido de {jogador} recusado.'
+  Recusado jogador: '&cO seu pedido para a facao {tag} &cfoi recusado.'
+
+Entrar:
+  Sucesso: '&aVoce entrou na facao {tag} &f{nome}&a!'
+  Aviso membros: '&a{jogador} &aentrou na facao!'
+
+Sair:
+  Confirme: '&cDigite &f/{comando} sair confirmar &cpara sair da facao.'
+  Lider: '&cO lider nao pode sair. Passe a lideranca com &f/f transferir <jogador> &cou desfaca a facao.'
+  Sucesso: '&7Voce saiu da facao {tag}&7.'
+  Aviso membros: '&c{jogador} &csaiu da facao.'
+
+Expulsar:
+  Voce mesmo: '&cVoce nao pode expulsar a si mesmo.'
+  Sucesso: '&a{jogador} foi expulso da facao.'
+  Aviso membros: '&c{jogador} &cfoi expulso por {autor}.'
+  Aviso alvo: '&cVoce foi expulso da facao {tag}&c.'
+
+Cargo:
+  Limite promover: '&cVoce nao pode promover esse membro alem disso.'
+  Limite rebaixar: '&cEsse membro ja esta no menor cargo.'
+  Promovido: '&a{jogador} agora e &f{cargo}&a.'
+  Rebaixado: '&e{jogador} agora e &f{cargo}&e.'
+  Voce promovido: '&aVoce foi promovido a &f{cargo}&a!'
+  Voce rebaixado: '&eVoce foi rebaixado a &f{cargo}&e.'
+
+Transferir:
+  Sucesso: '&aA lideranca agora e de &f{jogador}&a.'
+  Aviso membros: '&e{jogador} &eagora e o lider da facao!'
+
+Editar:
+  Nome: '&aO nome da facao agora e &f{nome}&a.'
+  Descricao: '&aDescricao atualizada.'
+  Descricao longa: '&cA descricao pode ter no maximo &f{maximo} &cletras.'
+  Aberta: '&aA facao agora e aberta: qualquer um pode entrar com /f entrar.'
+  Fechada: '&aA facao agora e fechada: so entra quem for convidado.'
+
+Tag:
+  Cor trocada: '&aA tag agora aparece assim: {tag}'
+  Sem permissao hex: '&cVoce nao tem permissao para usar essa cor.'
+  Exige permissao: '&c(exige permissao)'
+
+Brasao:
+  Segure: '&cSegure um estandarte na mao para usar como brasao.'
+  Definido: '&aBrasao da facao definido!'
+
+Fogo amigo:
+  Membros: '&eFogo amigo entre membros: {estado} &7(por {jogador})'
+  Aliados: '&eFogo amigo com aliados: {estado} &7(por {jogador})'
+
+Discord:
+  Desligado: '&cOs avisos no Discord estao desligados neste servidor.'
+  Removido: '&aWebhook do Discord removido.'
+  Sem webhook: '&cA facao nao tem webhook definido. Use &f/f discord <url>&c.'
+  Teste enviado: '&aMensagem de teste enviada para o Discord.'
+  Url invalida: '&cIsso nao e um webhook do Discord (https://discord.com/api/webhooks/...).'
+  Definido: '&aWebhook definido! A facao vai receber os avisos no Discord.'
+  Teste:
+    Titulo: 'Teste'
+    Texto: 'Webhook da facao {tag} ligado por {jogador}.'
+  Membro entrou:
+    Titulo: 'Novo membro'
+    Texto: '{jogador} entrou na facao.'
+  Membro saiu:
+    Titulo: 'Membro saiu'
+    Texto: '{jogador} saiu da facao.'
+  Membro expulso:
+    Titulo: 'Membro expulso'
+    Texto: '{jogador} foi expulso por {autor}.'
+  Sob ataque:
+    Titulo: 'SOB ATAQUE!'
+    Texto: 'As terras da facao estao sendo explodidas em {mundo} ({x}, {z})!'
+  Terra perdida:
+    Titulo: 'Terra perdida'
+    Texto: 'A facao {tag} dominou uma terra sua em {mundo} (chunk {x}, {z}).'
+  Alianca:
+    Titulo: 'Nova alianca'
+    Texto: 'A facao {tag} agora e aliada de {alvo}.'
+  Rivalidade:
+    Titulo: 'Rivalidade'
+    Texto: 'A facao {tag} agora e rival de {alvo}.'
+  Escudo:
+    Titulo: 'Escudo ligado'
+    Texto: '{jogador} ligou o escudo por {tempo}.'
+  Batalha vencida:
+    Titulo: 'Vitoria!'
+    Texto: 'A facao venceu a batalha contra {alvo} e levou {premio}.'
+  Batalha perdida:
+    Titulo: 'Derrota'
+    Texto: 'A facao perdeu a batalha para {alvo}.'
+
+Boletim:
+  Vazio: '&cEscreva alguma coisa no boletim.'
+  Publicado: '&aBoletim publicado no mural.'
+  Novo: '&6[Mural] &f{jogador}&7: &e{texto}'
+  Nao existe: '&cEsse boletim nao existe mais.'
+  Apagado: '&aBoletim apagado.'
+  Nao lidos: '&eHa &f{quantidade} &eboletim(ns) novo(s) no mural. Use &f/f boletins&e.'
+
+Membros:
+  Entrou: '&7[&a+&7] &f{jogador} &7entrou no servidor.'
+  Saiu: '&7[&c-&7] &f{jogador} &7saiu do servidor.'
+
+Base:
+  Definida: '&aBase da facao definida aqui.'
+  Fora da terra: '&cA base precisa ficar dentro das terras da facao.'
+  Nao definida: '&cA facao ainda nao tem base.'
+  Terra perdida: '&cA base ficou numa terra que a facao perdeu. Defina outra.'
+  Aguarde: '&eTeleportando para a base em &f{segundos}s&e. Nao se mexa!'
+  Contagem: '&eTeleportando em &f{segundos}s&e...'
+  Cancelado: '&cTeleporte cancelado.'
+  Teleportado: '&aVoce chegou na base da facao.'
+  Mundo sumiu: '&cO mundo da base nao existe mais.'
+
+Banco:
+  Valor invalido: '&cValor invalido.'
+  Sem dinheiro: '&cVoce nao tem dinheiro suficiente.'
+  Sem saldo faccao: '&cO banco da facao nao tem esse valor.'
+  Falhou: '&cNao foi possivel pagar agora. O dinheiro continua no banco da facao.'
+  Depositado: '&aVoce depositou &f{valor} &ano banco da facao.'
+  Sacado: '&aVoce sacou &f{valor} &ado banco da facao.'
+
+Bau:
+  Titulo: '&8Bau [{tag}] {pagina}/{paginas}'
+
+Armazem:
+  Nao e gerador: '&cEsse item nao e um gerador.'
+  Cheio: '&cO armazem esta cheio ({maximo} geradores). Compre a melhoria para guardar mais.'
+  Guardado: '&aVoce guardou &f{quantidade}x {tipo} &ano armazem.'
+  Retirado: '&aVoce retirou &f{quantidade}x {tipo} &ado armazem.'
+  Inventario cheio: '&cSem espaco no inventario.'
+
+Melhoria:
+  Nao existe: '&cEssa melhoria nao existe.'
+  Maxima: '&cEssa melhoria ja esta no nivel maximo.'
+  Sem dinheiro: '&cO banco da facao precisa de &f{custo}&c.'
+  Comprada: '&a{jogador} comprou &f{melhoria} &anivel &f{nivel}&a!'
+
+Relacao:
+  Propria: '&cEssa e a sua propria facao.'
+  Ja aliado: '&cVoces ja sao aliados de {tag}&c.'
+  Ja rival: '&cVoces ja sao rivais de {tag}&c.'
+  Ja neutro: '&cA relacao com {tag} &cja e neutra.'
+  Ja pediu: '&cVoces ja pediram alianca para {tag}&c.'
+  Limite aliados: '&cA sua facao ja tem o maximo de aliados.'
+  Limite aliados outra: '&cA facao {tag} &cja tem o maximo de aliados.'
+  Limite rivais: '&cA sua facao ja tem o maximo de rivais.'
+  Pedido enviado: '&aPedido de alianca enviado para {tag}&a.'
+  Pedido recebido: '&eA facao {tag} &equer ser sua aliada. Use &f/f aliar {tagpura} &epara aceitar.'
+  Sem pedido: '&cNao ha pedido de alianca dessa facao.'
+  Pedido recusado: '&7Pedido de alianca de {tag} &7recusado.'
+  Pedido recusado outra: '&cA facao {tag} &crecusou a alianca.'
+  Aliados agora: '&bAgora voces sao aliados de {tag}&b!'
+  Neutro agora: '&fA relacao com {tag} &fagora e neutra.'
+  Alianca desfeita: '&cA facao {tag} &cdesfez a alianca.'
+  Rivalidade encerrada: '&fA facao {tag} &fdeixou de ser rival.'
+  Rival agora: '&cAgora voces sao rivais de {tag}&c!'
+  Declarou rival: '&cA facao {tag} &cdeclarou voces como rivais!'
+  Anuncio rival: '&c{tag} &cdeclarou guerra contra {alvo}&c!'
+
+Escudo:
+  Desligado: '&cO escudo esta desligado neste servidor.'
+  Ja ativo: '&cO escudo ja esta ligado por mais &f{tempo}&c.'
+  Espera: '&cO escudo so pode ser ligado de novo em &f{tempo}&c.'
+  Sem dinheiro: '&cO banco da facao precisa de &f{custo} &cpara o escudo.'
+  Ativado: '&9Escudo ligado por &f{tempo}&9! As terras nao podem ser explodidas. &7(por {jogador})'
+  Info: |
+    &9&lESCUDO DA FACAO
+    &7Estado: &f{estado}
+    &7Duracao: &f{duracao}  &7Custo: &f{custo}
+    &7Proximo escudo: &f{espera}
+    &7Use &f/{comando} escudo ativar &7para ligar.
+
+Terras:
+  Mundo bloqueado: '&cNao da para dominar terras neste mundo.'
+  Arena: '&cEssa terra faz parte de uma arena de batalha.'
+  Zona: '&cEssa terra e uma zona do servidor.'
+  Ja e sua: '&cEssa terra ja e da sua facao.'
+  De outra faccao: '&cEssa terra pertence a outra facao.'
+  De aliado: '&cEssa terra e de uma facao aliada.'
+  Escudo: '&cEssa facao esta com o escudo ligado.'
+  Temporaria so livre: '&cTerras temporarias so podem ser dominadas em terra livre.'
+  Temporarias desligadas: '&cAs terras temporarias estao desligadas neste servidor.'
+  Limite temporarias: '&cA facao ja tem o maximo de terras temporarias.'
+  Temporaria sem dinheiro: '&cO banco da facao precisa de &f{custo} &cpara uma terra temporaria.'
+  Sem poder: '&cA facao nao tem poder para mais terras.'
+  Perto de outra: '&cMuito perto de outra facao (minimo de {distancia} chunk).'
+  Exige vizinha: '&cA terra nova precisa encostar em outra terra da facao.'
+  Cancelado: '&cA terra nao pode ser dominada.'
+  Longe demais: '&cNo mapa em menu so da para dominar ate {alcance} chunks de voce.'
+  Dominada: '&aTerra dominada! &7(chunk {x}, {z})'
+  Dominada temporaria: '&aTerra temporaria dominada por &f{tempo}&a! &7(chunk {x}, {z})'
+  Tomada de outra: '&a{jogador} tomou uma terra da facao {tag}&a!'
+  Perdida: '&4Uma terra da facao foi dominada por {tag}&4! &7(chunk {x}, {z})'
+  Nao e sua: '&cEssa terra nao e da sua facao.'
+  Nenhuma: '&cA facao nao tem terras.'
+  Abandonada: '&eTerra abandonada. &7(chunk {x}, {z})'
+  Abandonadas todas: '&eA facao abandonou &f{quantidade} &eterras.'
+  Temporaria expirou: '&eUma terra temporaria da facao expirou. &7(chunk {x}, {z})'
+  Raio invalido: '&cO raio vai de 0 a {maximo}.'
+  Raio resumo: '&7Dominadas: &a{dominadas} &7| Recusadas: &c{recusadas}'
+  Ver ligado: '&aAs bordas das terras agora aparecem em particulas.'
+  Ver desligado: '&7As bordas das terras nao aparecem mais.'
+  Nome livre: '&2Terra livre'
+  Nome protegida: '&6Zona protegida'
+  Nome guerra: '&4Zona de guerra'
+  Descricao livre: '&7Terra sem dono'
+  Descricao protegida: '&7Sem PvP e sem construcao'
+  Descricao guerra: '&7PvP livre, cuidado!'
+  Titulo: '{terra}<nl>&7{descricao}'
+  Actionbar: '{terra}'
+  Chat: '&7Voce entrou em {terra} &8- &7{descricao}'
+
+Mapa:
+  Cabecalho: '&8&m-----&r &6Mapa &7({x}, {z}) &e{direcao} &8- {terra} &8&m-----'
+  Legenda: '&7Legenda: {legenda}'
+  Auto ligado: '&aMapa automatico ligado: ele aparece a cada chunk.'
+  Auto desligado: '&7Mapa automatico desligado.'
+
+Protecao:
+  Negado: '&cVoce nao pode fazer isso em {terra}&c.'
+
+Sob ataque:
+  Titulo: '&4&lSOB ATAQUE!<nl>&cAs terras da facao estao sendo explodidas'
+  Aviso: '&4&lSOB ATAQUE! &cExplosao nas terras da facao em &f{mundo} {x}, {z}&c!'
+  Ao entrar: '&4A sua facao esta sob ataque!'
+
+Poder:
+  Perdeu: '&cVoce perdeu &f{perda} &cde poder. Poder: &f{poder}&7/&f{maximo}'
+  Recuperou: '&aVoce recuperou poder. Poder: &f{poder}&7/&f{maximo}'
+  Perfil: |
+    &r
+    &6&l{jogador} &7{tag} &8- &7{cargo}
+    &7Poder: &f{poder}&7/&f{poder_max}
+    &7Abates: &f{abates} &8(&cinimigos {abates_inimigo}&8, &7civis {abates_civil}&8, &fneutros {abates_neutro}&8)
+    &7Mortes: &f{mortes}  &7KDR: &f{kdr}
+    &r
+
+Combate:
+  Bloqueado: '&cVoce esta em combate! Espere &f{tempo}&c.'
+  Actionbar: '&cEm combate: &f{tempo}'
+  Zona protegida: '&cVoce nao pode atacar na zona protegida.'
+  Fogo amigo membro: '&cFogo amigo entre membros esta desligado.'
+  Fogo amigo aliado: '&cFogo amigo com aliados esta desligado.'
+  Saiu em combate: '&c{jogador} saiu do jogo em combate e morreu.'
+
+Voo:
+  Desativado: '&cO voo da facao esta desligado neste servidor.'
+  Sem permissao: '&cVoce nao pode voar. A facao precisa da melhoria de voo.'
+  Cargo: '&cO seu cargo nao pode voar.'
+  Fora da terra: '&cVoce so pode voar nas terras da sua facao.'
+  Inimigo perto: '&cHa inimigos por perto: o voo foi desligado.'
+  Em combate: '&cVoce nao pode voar em combate.'
+  Ligado: '&aVoo ligado.'
+  Desligado: '&7Voo desligado.'
+
+Chat:
+  Modo: '&7Modo de chat: {modo}'
+  GLOBAL: '&fglobal'
+  FACCAO: '&afacao'
+  ALIADOS: '&baliados'
+
+Itens:
+  Zona protegida: '&cVoce nao pode usar isso na zona protegida.'
+  Em batalha: '&cVoce nao pode usar itens especiais em batalha.'
+  Espere: '&cEspere &f{tempo} &cpara usar de novo.'
+  Sem alvo: '&cMire em um bloco.'
+  Clique num bloco: '&cClique em um bloco para soltar o creeper.'
+  Kdr zerado: '&aOs seus abates e mortes foram zerados.'
+  Poder cheio: '&cO seu poder ja esta no maximo.'
+  Poder recuperado: '&aPoder recuperado! Poder: &f{poder}&7/&f{maximo}'
+  Poder maximo no teto: '&cO seu poder maximo ja chegou no limite.'
+  Poder maximo aumentado: '&aO seu poder maximo agora e &f{maximo}&a!'
+  Olho vazio: '&7Nenhum inimigo num raio de {raio} blocos.'
+  Olho cabecalho: '&d&lOLHO DE DEUS &7- {quantidade} inimigo(s) por perto:'
+  Olho linha: '&8 - &f{jogador} {tag} &7a &f{distancia} &7blocos &8({x}, {y}, {z})'
+  Silk usou: '&aGerador coletado! Usos restantes: &f{usos}'
+  Silk quebrou: '&cA picareta Silk 2 quebrou.'
+  Recebeu: '&aVoce recebeu &f{quantidade}x {item}&a.'
+
+Top:
+  VALOR: 'Valor'
+  PODER: 'Poder'
+  KDR: 'KDR'
+  ABATES: 'Abates'
+  MEMBROS: 'Membros'
+  TERRAS: 'Terras'
+  BATALHAS: 'Batalhas'
+  Selecionada: '&a» Selecionada'
+  Nao selecionada: '&7Clique para ver'
+
+Confirmar:
+  Desfazer: '&cDesfazer a facao {tag}&c? Terras, bau e armazem serao perdidos.'
+  Sair: '&cSair da facao {tag}&c?'
+  Expulsar: '&cExpulsar {jogador} da facao?'
+  Transferir: '&ePassar a lideranca para {jogador}?'
+  Neutro: '&fVoltar a relacao com {tag} &fpara neutra?'
+  Escudo: '&9Ligar o escudo por {custo}?'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&7Cancelado.'
+  Tempo esgotado: '&7O tempo para responder acabou.'
+  Tag: '&eDigite no chat a &ftag &eda nova facao (so letras e numeros).'
+  Nome: '&eAgora digite o &fnome &eda facao.'
+  Nome novo: '&eDigite o novo nome da facao.'
+  Descricao: '&eDigite a nova descricao da facao.'
+  Discord: '&eCole a URL do webhook do Discord (ou &fremover&e).'
+  Convidar: '&eDigite o nick de quem voce quer convidar.'
+  Depositar: '&eDigite quanto quer depositar.'
+  Sacar: '&eDigite quanto quer sacar.'
+  Boletim: '&eDigite a mensagem do boletim.'
+  Aliar: '&eDigite a tag da facao para pedir alianca.'
+  Rival: '&eDigite a tag da facao rival.'
+
+Batalha:
+  Desligadas: '&cAs batalhas estao desligadas neste servidor.'
+  Ja em batalha: '&cUma das facoes ja esta em batalha.'
+  Faccao em batalha: '&cEssa facao esta em batalha agora.'
+  Voce em batalha: '&cVoce esta em uma batalha.'
+  Jogador em batalha: '&cEsse jogador esta em uma batalha.'
+  Aposta invalida: '&cA aposta vai de 0 a {maximo}.'
+  Sem dinheiro aposta: '&cO banco de uma das facoes nao cobre a aposta.'
+  Sem arena: '&cNao ha arena livre agora.'
+  Sem desafio: '&cNao ha desafio de batalha para a sua facao.'
+  Desafio enviado: '&eDesafio de batalha enviado para {tag} &e(aposta: &f{aposta}&e).'
+  Desafio recebido: |
+    &c&lDESAFIO! &eA facao {tag} &edesafiou voces para uma batalha na arena &f{arena}&e.
+    &eAposta: &f{aposta}&e. Use &f/f batalha aceitar &eou &f/f batalha recusar &e(vale por {tempo}).
+  Desafio recebido membro: '&eA facao {tag} &edesafiou a sua facao para uma batalha!'
+  Recusado: '&7Desafio recusado.'
+  Recusado outra: '&cA facao {tag} &crecusou o desafio.'
+  Anuncio: '&c&lBATALHA! &f{tag} &7x &f{alvo} &7na arena &f{arena} &7(aposta {aposta}). Comeca em {tempo}!'
+  Entre: '&eInscreva-se na batalha com &f/f batalha entrar &e(comeca em {tempo}).'
+  Nenhuma: '&cA sua facao nao esta em batalha.'
+  Ja comecou: '&cA batalha ja comecou.'
+  Ja inscrito: '&cVoce ja esta inscrito.'
+  Lado cheio: '&cO seu lado ja tem o maximo de {maximo} jogadores.'
+  Inscrito: '&a{jogador} entrou na batalha &7({quantidade} inscritos).'
+  Saiu: '&7Voce saiu da batalha.'
+  Comeca em: '&eA batalha comeca em &f{tempo}&e!'
+  Comecou: '&c&lLUTEM! &7Vence quem restar de pe.'
+  Titulo inicio: '&c&lBATALHA<nl>&7Vence quem restar de pe'
+  Placar: '&c{a} &7vivos x &c{b} &7vivos &8| &f{tempo}'
+  Eliminado: '&cVoce foi eliminado da batalha.'
+  Desistiu: '&cVoce saiu da batalha.'
+  Voce eliminou: '&aVoce eliminou &f{jogador}&a!'
+  Caiu: '&7{jogador} caiu! &8({a} x {b})'
+  Cancelada: '&7A batalha entre {tag} &7e {alvo} &7foi cancelada: ninguem apareceu.'
+  Empate: '&eA batalha entre {tag} &ee {alvo} &eterminou empatada. As apostas voltaram.'
+  Vitoria: '&6&lVITORIA! &f{tag} &avenceu a batalha contra {alvo} &ae levou &f{premio}&a!'
+  Vitoria wo: '&6&lVITORIA! &f{tag} &avenceu {alvo} &apor W.O. e levou &f{premio}&a!'
+  Comando bloqueado: '&cEsse comando nao pode ser usado em batalha.'
+  Arenas: '&7Arenas: &f{arenas}'
+  Estado PREPARACAO: '&epreparando'
+  Estado LUTA: '&cem luta'
+  Linha: '&8 - {tag} &7x {alvo} &8(&f{arena}&8) {estado}'
+  Ajuda: |
+    &r
+    &c&lBATALHAS DE FACAO
+    &c› &f/f batalha desafiar <tag> [aposta] [arena]
+    &c› &f/f batalha aceitar | recusar
+    &c› &f/f batalha entrar | sair
+    &c› &f/f batalha arenas
+    &7Em andamento:
+
+# Linhas do historico da facao (/f historico). Guardadas sem cor.
+Historico:
+  Criada: '{jogador} fundou a facao'
+  Entrou: '{jogador} entrou na facao'
+  Saiu: '{jogador} saiu da facao'
+  Expulso: '{jogador} foi expulso por {autor}'
+  Promovido: '{autor} promoveu {jogador} a {cargo}'
+  Rebaixado: '{autor} rebaixou {jogador} a {cargo}'
+  Lideranca: '{jogador} virou o lider'
+  Nome: '{autor} mudou o nome para {nome}'
+  Base: '{autor} definiu a base'
+  Deposito: '{jogador} depositou {valor}'
+  Saque: '{jogador} sacou {valor}'
+  Alianca: 'Alianca com {tag}'
+  Neutro: 'Relacao neutra com {tag}'
+  Rival: 'Declarou {tag} como rival'
+  Rival recebido: '{tag} declarou a facao como rival'
+  Escudo: '{jogador} ligou o escudo'
+  Melhoria: '{jogador} comprou {melhoria} nivel {nivel}'
+  Dominou: '{jogador} dominou a terra {x}, {z}'
+  Dominou temporaria: '{jogador} dominou a terra temporaria {x}, {z}'
+  Abandonou: '{jogador} abandonou a terra {x}, {z}'
+  Abandonou todas: '{jogador} abandonou {quantidade} terras'
+  Perdeu: 'A terra {x}, {z} foi tomada por {tag}'
+  Sob ataque: 'Sob ataque perto de {x}, {z}'
+  Armazem guardou: '{jogador} guardou {quantidade}x {tipo}'
+  Armazem retirou: '{jogador} retirou {quantidade}x {tipo}'
+  Batalha vencida: 'Venceu a batalha contra {tag}'
+  Batalha perdida: 'Perdeu a batalha para {tag}'
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Salvo: '&aTudo foi mandado para o banco.'
+  Deletada: '&aA facao {tag} foi apagada.'
+  Bypass ligado: '&aVoce agora ignora a protecao das terras.'
+  Bypass desligado: '&7Voce voltou a respeitar a protecao das terras.'
+  Espiao ligado: '&aVoce agora ve os chats das facoes.'
+  Espiao desligado: '&7Voce parou de ver os chats das facoes.'
+  Zona: '&a{quantidade} chunk(s) agora sao {zona}&a.'
+  Poder: '&a{jogador}: poder &f{poder}&7/&f{maximo}&a.'
+  Coins: '&aBanco da facao {tag}: &f{coins}&a.'
+  Feito: '&aFeito.'
+  Lider nao move: '&cO lider nao pode ser movido; passe a lideranca antes.'
+  Itens: '&7Itens: &f{itens}'
+  Item dado: '&aEntregue {quantidade}x {item} para {jogador}.'
+  Arena linha: '&8 - &f{arena} {estado}'
+  Arena nenhuma: '&7Nenhuma arena criada.'
+  Arena criada: '&aArena {arena} criada. Defina spawn1, spawn2 e os cantos.'
+  Arena existe: '&cJa existe uma arena {arena}.'
+  Arena removida: '&aArena {arena} removida.'
+  Arena ocupada: '&cA arena {arena} nao existe ou esta em uso.'
+  Arena ponto: '&aPonto {ponto} da arena {arena} definido aqui.'
+  Arena nao existe: '&cArena {arena} nao existe ou ponto invalido.'

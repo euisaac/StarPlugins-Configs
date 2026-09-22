@@ -1,0 +1,148 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                 StarObsidianDestroyer - materiais                    ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Cada bloco aqui ganha durabilidade contra explosoes. Qualquer bloco serve,
+# inclusive os que o vanilla ja deixa explodir (pedra com 3 de durabilidade,
+# por exemplo). O nome do material vale de 1.8 ate 1.21.
+#
+# Ativar             liga ou desliga o bloco sem apagar a secao
+# Durabilidade       quantos pontos de dano o bloco aguenta
+# Resetar            a durabilidade volta ao maximo sozinha?
+# Tempo para resetar depois da ultima explosao (s, m, h)
+# Chance de quebrar  % de a explosao conseguir tirar dano (100 = sempre)
+# Chance de dropar   % de o bloco cair como item quando quebrar
+# Protegido por liquido  com agua/lava encostada, o bloco nao toma dano
+# Explosoes          quais explosoes afetam o bloco (vazio = todas)
+# Dano               dano por tipo de explosao (OUTRO = as que nao estao listadas)
+
+Versao do modelo: 1
+
+Materiais:
+  OBSIDIAN:
+    Ativar: true
+    Durabilidade: 4
+    Resetar: true
+    Tempo para resetar: 10m
+    Chance de quebrar: 100
+    Chance de dropar: 70
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      PRIMED_TNT: 1
+      CREEPER: 1
+      WITHER: 2
+      ENDER_CRYSTAL: 2
+      OUTRO: 1
+
+  CRYING_OBSIDIAN:
+    Ativar: true
+    Durabilidade: 5
+    Resetar: true
+    Tempo para resetar: 10m
+    Chance de quebrar: 100
+    Chance de dropar: 70
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      OUTRO: 1
+
+  ENCHANTING_TABLE:
+    Ativar: true
+    Durabilidade: 6
+    Resetar: true
+    Tempo para resetar: 10m
+    Chance de quebrar: 100
+    Chance de dropar: 100
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      OUTRO: 1
+
+  ENDER_CHEST:
+    Ativar: true
+    Durabilidade: 5
+    Resetar: true
+    Tempo para resetar: 10m
+    Chance de quebrar: 100
+    Chance de dropar: 100
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      OUTRO: 1
+
+  ANVIL:
+    Ativar: true
+    Durabilidade: 3
+    Resetar: true
+    Tempo para resetar: 5m
+    Chance de quebrar: 100
+    Chance de dropar: 100
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      OUTRO: 1
+
+  ANCIENT_DEBRIS:
+    Ativar: true
+    Durabilidade: 6
+    Resetar: true
+    Tempo para resetar: 10m
+    Chance de quebrar: 100
+    Chance de dropar: 100
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      OUTRO: 1
+
+  NETHERITE_BLOCK:
+    Ativar: true
+    Durabilidade: 8
+    Resetar: true
+    Tempo para resetar: 15m
+    Chance de quebrar: 100
+    Chance de dropar: 100
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      OUTRO: 1
+
+  RESPAWN_ANCHOR:
+    Ativar: true
+    Durabilidade: 4
+    Resetar: true
+    Tempo para resetar: 10m
+    Chance de quebrar: 100
+    Chance de dropar: 100
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      OUTRO: 1
+
+  # Bedrock vem desligada: ligar deixa a base do mundo explodivel.
+  BEDROCK:
+    Ativar: false
+    Durabilidade: 20
+    Resetar: true
+    Tempo para resetar: 30m
+    Chance de quebrar: 100
+    Chance de dropar: 0
+    Protegido por liquido: true
+    Explosoes:
+      - PRIMED_TNT
+      - TNT
+    Dano:
+      OUTRO: 1
+
+  # Exemplo de bloco comum ficando mais resistente (desligado).
+  STONE_BRICKS:
+    Ativar: false
+    Durabilidade: 2
+    Resetar: true
+    Tempo para resetar: 5m
+    Chance de quebrar: 100
+    Chance de dropar: 100
+    Protegido por liquido: false
+    Explosoes: []
+    Dano:
+      OUTRO: 1

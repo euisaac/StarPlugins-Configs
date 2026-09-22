@@ -1,0 +1,524 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarFactions - configuracao                      ║
+#  ║   Facoes completas: poder, terras, mapa, base, bau, banco, armazem   ║
+#  ║   de geradores, melhorias, aliados, rivais, batalhas e Discord.      ║
+#  ║   Os nomes de material valem de 1.8 ate 1.21: escreva o nome novo    ║
+#  ║   que o plugin acha o equivalente antigo.                            ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Versao do modelo: 1
+
+# Manda no console o que o plugin esta fazendo por dentro. So ligue para
+# investigar algum problema.
+Depuracao: false
+
+#
+# ═════════════════════════════  BANCO DE DADOS  ═════════════════════════════
+#
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (varios servidores no mesmo
+  # banco).
+  Tipo: SQLITE
+  Endereco: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+  # Mude se voce roda mais de uma rede no mesmo banco.
+  Prefixo das tabelas: 'starfactions_'
+  # De quantos em quantos segundos o que mudou vai para o banco. As mudancas
+  # valem na hora; isto e so a gravacao.
+  Salvar a cada: 60
+
+#
+# ════════════════════════════════  ECONOMIA  ════════════════════════════════
+#
+Economia:
+  # VAULT usa a economia registrada no Vault.
+  # COMANDO serve para as economias que nao se registram no Vault: o saldo e
+  # lido por placeholder e o dinheiro entra e sai por comando de console.
+  Tipo: VAULT
+  Simbolo: '$'
+  # Mostrar 1.5M em vez de 1.500.000,00.
+  Numero abreviado: true
+  # So no modo COMANDO. Marcadores: {jogador} {uuid} {valor}
+  Placeholder do saldo: ''
+  Comando para dar: ''
+  Comando para retirar: ''
+
+#
+# ════════════════════════════════  FACCOES  ═════════════════════════════════
+#
+Faccoes:
+  # Mundos onde nao se domina terra nenhuma e onde o plugin nao protege nada.
+  Mundos bloqueados:
+    - 'lobby'
+
+  Tag:
+    Minimo: 3
+    Maximo: 4
+    # Tags que ninguem pode usar (aceita * como curinga).
+    Proibidas:
+      - 'adm*'
+      - 'staff'
+      - 'mod'
+  Nome:
+    Minimo: 3
+    Maximo: 16
+  Descricao maxima: 60
+
+  # Quanto custa criar uma facao (0 = de graca).
+  Custo para criar: 0
+  # Quantos membros cabem sem nenhuma melhoria.
+  Membros iniciais: 10
+  # Aliados e rivais sem melhoria.
+  Aliados iniciais: 2
+  Rivais maximos: 10
+  # Quanto tempo um convite fica valendo.
+  Validade do convite: 5m
+  # Tempo que quem saiu (ou foi expulso) espera para entrar em outra facao.
+  Espera para trocar de faccao: 0
+  # Linhas guardadas no historico da facao.
+  Historico maximo: 60
+  # Avisos guardados no mural.
+  Boletins maximos: 15
+
+  # Cor usada quando a facao ainda nao escolheu uma.
+  Cor padrao da tag: '&7'
+
+  # Como a tag aparece no chat e nos menus. {cor} {tag} {nome}
+  Formato da tag: '{cor}[{tag}]'
+
+#
+# ═══════════════════════════════  CARGOS  ═══════════════════════════════════
+#
+# Nome e simbolo de cada cargo. A hierarquia nao muda: Lider > Capitao > Membro
+# > Recruta.
+Cargos:
+  LIDER:
+    Nome: 'Lider'
+    Simbolo: '#'
+  CAPITAO:
+    Nome: 'Capitao'
+    Simbolo: '*'
+  MEMBRO:
+    Nome: 'Membro'
+    Simbolo: '+'
+  RECRUTA:
+    Nome: 'Recruta'
+    Simbolo: '-'
+
+#
+# ═════════════════════════════  PERMISSOES  ═════════════════════════════════
+#
+# O que cada cargo e cada relacao pode fazer quando a facao nunca mexeu no
+# menu de permissoes. O lider pode tudo, sempre. Depois que a facao muda algo
+# pelo menu, a escolha dela vale por cima desta tabela.
+#
+# Territoriais (valem nas terras da facao, para membros e relacoes):
+#   CONSTRUIR QUEBRAR CONTAINERS PORTAS INTERAGIR USAR_BASE
+# De gestao (so membros):
+#   CONVIDAR EXPULSAR PROMOVER DOMINAR ABANDONAR DEFINIR_BASE SACAR_BANCO BAU
+#   ARMAZEM MELHORIAS RELACOES BOLETINS EDITAR BATALHAS VOAR ESCUDO
+Permissoes padrao:
+  CAPITAO:
+    - CONSTRUIR
+    - QUEBRAR
+    - CONTAINERS
+    - PORTAS
+    - INTERAGIR
+    - USAR_BASE
+    - CONVIDAR
+    - EXPULSAR
+    - PROMOVER
+    - DOMINAR
+    - ABANDONAR
+    - DEFINIR_BASE
+    - BAU
+    - ARMAZEM
+    - RELACOES
+    - BOLETINS
+    - BATALHAS
+    - VOAR
+  MEMBRO:
+    - CONSTRUIR
+    - QUEBRAR
+    - CONTAINERS
+    - PORTAS
+    - INTERAGIR
+    - USAR_BASE
+    - DOMINAR
+    - BAU
+    - BOLETINS
+    - VOAR
+  RECRUTA:
+    - PORTAS
+    - INTERAGIR
+    - USAR_BASE
+  ALIADO:
+    - PORTAS
+  NEUTRO: []
+  RIVAL: []
+  SEM_FACCAO: []
+
+#
+# ═════════════════════════════════  PODER  ══════════════════════════════════
+#
+# Cada terra definitiva custa poder. Facao com mais terras do que poder fica
+# vulneravel: qualquer inimigo pode dominar as terras dela por cima.
+Poder:
+  Inicial: 5
+  Maximo: 10
+  # Teto do poder maximo que itens de poder conseguem somar.
+  Maximo com itens: 30
+  # Quanto se perde ao morrer (a morte para o ambiente tambem conta).
+  Perda ao morrer: 1
+  # Perder poder morrendo na zona de guerra.
+  Perder na zona de guerra: true
+  # Perder poder morrendo dentro de uma batalha de arena.
+  Perder em batalha: false
+  # Recuperacao por tempo online.
+  Recuperar:
+    A cada: 5m
+    Quantidade: 1
+  # Quantas terras cada ponto de poder paga.
+  Terras por poder: 1
+
+#
+# ═════════════════════════════════  TERRAS  ═════════════════════════════════
+#
+Terras:
+  # Maximo de terras dominadas de uma vez com /f dominar <raio>.
+  Raio maximo: 3
+  # No menu do mapa, ate quantos chunks do jogador da para dominar clicando.
+  Alcance do mapa em menu: 6
+  # Exigir que a terra nova encoste em outra da facao (a primeira e livre).
+  Exigir vizinha: false
+  # Distancia minima (em chunks) para a terra de outra facao. 0 desliga.
+  Distancia de outras facoes: 1
+  # Pode dominar por cima de facao vulneravel (mais terras que poder).
+  Dominar vulneraveis: true
+  # Proteger os blocos fora de qualquer terra (normalmente nao).
+  Proteger terras livres: false
+
+  Temporarias:
+    Ativar: true
+    # Por quanto tempo a terra temporaria fica dominada.
+    Duracao: 24h
+    # Pago do banco da facao.
+    Custo: 5000
+    # Quantas temporarias a facao tem sem melhoria.
+    Maximo inicial: 2
+
+  # Mapa no chat (/f mapa).
+  Mapa:
+    Largura: 39
+    Altura: 11
+    # Simbolos que viram letra de cada facao no mapa.
+    Simbolos: '\/#$%=&^ABCDEFGHJKMNOPQRSTUVWXYZ1234567890abcdeghjmnopqrsuvwxyz'
+    # Simbolo da terra livre e do proprio jogador no centro do mapa.
+    Livre: '-'
+    Jogador: '+'
+    Cores:
+      Livre: '&7'
+      Jogador: '&e'
+      Membro: '&a'
+      Aliado: '&b'
+      Neutro: '&f'
+      Rival: '&c'
+      Sem faccao: '&f'
+      Protegida: '&6'
+      Guerra: '&4'
+      Vulneravel: '&d'
+
+  # Contorno das terras em particulas (/f verterras).
+  Visualizacao:
+    # Ticks entre cada desenho.
+    Intervalo: 20
+    # Quantos chunks em volta do jogador sao desenhados.
+    Raio: 2
+    # Cores RGB por relacao.
+    Cores:
+      Membro: '0,255,0'
+      Aliado: '0,170,255'
+      Neutro: '255,255,255'
+      Rival: '255,0,0'
+      Sem faccao: '255,255,255'
+      Protegida: '255,170,0'
+      Guerra: '170,0,0'
+
+  # Aviso ao entrar em terras diferentes.
+  Aviso ao entrar:
+    Titulo: true
+    Actionbar: true
+    Chat: false
+
+#
+# ═══════════════════════════════  PROTECAO  ═════════════════════════════════
+#
+Protecao:
+  Zona protegida:
+    # Blocos que qualquer um pode usar na zona protegida (portas do spawn...).
+    Interacoes livres:
+      - '*_DOOR'
+      - '*_BUTTON'
+      - 'LEVER'
+      - 'ENDER_CHEST'
+      - 'CRAFTING_TABLE'
+      - 'WORKBENCH'
+      - 'ENCHANTING_TABLE'
+      - 'ENCHANTMENT_TABLE'
+      - 'ANVIL'
+  Zona de guerra:
+    Construir: false
+    Explosoes: false
+
+  # Explosoes em terra de facao.
+  Explosoes:
+    Terras livres: true
+    Terras de faccao: true
+    # Horario em que as terras de facao podem explodir. Vazio = sempre.
+    # Formato: 'HH:MM-HH:MM' (varios intervalos permitidos).
+    Horarios de raid: []
+
+  # Blocos que contam como container, porta e interacao para as permissoes.
+  Containers:
+    - 'CHEST'
+    - 'TRAPPED_CHEST'
+    - '*SHULKER_BOX'
+    - 'BARREL'
+    - 'FURNACE'
+    - 'BLAST_FURNACE'
+    - 'SMOKER'
+    - 'HOPPER'
+    - 'DISPENSER'
+    - 'DROPPER'
+    - 'BREWING_STAND'
+    - 'BEACON'
+    - '*ANVIL'
+    - 'JUKEBOX'
+    - 'BEE_NEST'
+    - 'BEEHIVE'
+  Portas:
+    - '*_DOOR'
+    - '*TRAP_DOOR'
+    - '*TRAPDOOR'
+    - '*FENCE_GATE'
+    - 'WOOD_DOOR'
+    - 'WOODEN_DOOR'
+  Interagir:
+    - '*_BUTTON'
+    - 'LEVER'
+    - '*PRESSURE_PLATE'
+    - '*PLATE'
+    - 'REPEATER'
+    - 'COMPARATOR'
+    - 'DIODE*'
+    - 'REDSTONE_COMPARATOR*'
+    - 'NOTE_BLOCK'
+    - 'DAYLIGHT_DETECTOR*'
+    - '*_BED'
+    - 'BED_BLOCK'
+    - 'CAKE*'
+
+#
+# ═══════════════════════════════  SOB ATAQUE  ═══════════════════════════════
+#
+Sob ataque:
+  # Quanto tempo a facao fica "sob ataque" depois da ultima explosao nas terras.
+  Duracao: 5m
+  # O que fica bloqueado enquanto a facao esta sob ataque.
+  Bloquear abandonar terras: true
+  Bloquear sair da faccao: true
+  Bloquear teleporte para a base: false
+  Bloquear desfazer: true
+  # Explosoes que colocam a facao sob ataque. Vazio = todas.
+  Causas:
+    - PRIMED_TNT
+    - TNT
+    - CREEPER
+    - FIREBALL
+    - WITHER_SKULL
+    - WITHER
+    - ENDER_CRYSTAL
+    - END_CRYSTAL
+    - MINECART_TNT
+    - TNT_MINECART
+
+#
+# ═════════════════════════════════  ESCUDO  ═════════════════════════════════
+#
+# Deixa as terras da facao imunes a explosoes por um tempo. Pago do banco.
+Escudo:
+  Ativar: true
+  Duracao: 6h
+  Custo: 25000
+  # Tempo entre um escudo e o proximo (contado a partir do fim do anterior).
+  Espera: 24h
+  # Nao pode ligar o escudo com a facao sob ataque.
+  Bloquear sob ataque: true
+
+#
+# ══════════════════════════════════  BASE  ══════════════════════════════════
+#
+Base:
+  # Segundos parado antes do teleporte. Melhoria TELEPORTE diminui.
+  Espera: 5
+  # Mexer, tomar dano ou entrar em combate cancela.
+  Cancelar ao mover: true
+  Cancelar ao tomar dano: true
+  # A base so pode ficar dentro das terras da propria facao.
+  Exigir terra propria: true
+
+#
+# ══════════════════════════════════  VOO  ═══════════════════════════════════
+#
+# /f voar: voa nas terras da facao. Liberado para quem tem a permissao
+# starfactions.voar ou para facoes com a melhoria VOO.
+Voo:
+  Ativar: true
+  # Voar tambem nas terras de aliados.
+  Terras de aliados: true
+  # Inimigo (sem ser membro nem aliado) a menos de X blocos derruba o voo.
+  Inimigo por perto: 16
+  # Segundos sem dano de queda depois que o voo cai.
+  Protecao de queda: 5
+
+#
+# ════════════════════════════════  COMBATE  ═════════════════════════════════
+#
+Combate:
+  # Segundos marcado em combate depois de bater ou apanhar de jogador.
+  Duracao: 15
+  # Comandos bloqueados em combate (so o comeco).
+  Comandos bloqueados:
+    - '/f base'
+    - '/faccao base'
+    - '/f voar'
+    - '/spawn'
+    - '/home'
+    - '/tpa'
+    - '/warp'
+  # Quem sair do jogo em combate morre.
+  Matar ao sair: false
+  # Aviso na barra de acao enquanto estiver em combate.
+  Actionbar: true
+
+  # Fogo amigo desligado por padrao (cada facao muda no menu).
+  Fogo amigo membros: false
+  Fogo amigo aliados: false
+  # PvP entre quem esta nas terras da propria facao e visitantes sem relacao.
+  PvP em terra livre: true
+
+#
+# ═════════════════════════════════  CHAT  ═══════════════════════════════════
+#
+Chat:
+  # Poe as tags no formato do chat do proprio servidor (sem plugin de chat).
+  # Os marcadores {faccao_tag} {faccao_colortag} {faccao_nome} {faccao_cargo}
+  # sao trocados no formato atual do chat.
+  Formatar chat do servidor: false
+  Formato padrao: '{faccao_colortag} &f{jogador}&7: &f{mensagem}'
+  Formato sem faccao: '&f{jogador}&7: &f{mensagem}'
+
+  # O que vira cada marcador quando o jogador nao tem facao.
+  Sem faccao:
+    Tag: ''
+    Tag colorida: ''
+    Nome: ''
+    Cargo: ''
+
+  # Os chats internos.
+  Faccao: '&a[F] {cargo_simbolo}{jogador}&7: &a{mensagem}'
+  Aliados: '&b[A] {colortag} {jogador}&7: &b{mensagem}'
+  Espiao: '&8[Espiao] {canal} {colortag} {jogador}&7: &f{mensagem}'
+
+  # Eventos de chat de plugins que usam tags ({faccao_tag}...). O produto
+  # procura um metodo que aceite (tag, valor) no evento e preenche as quatro.
+  Eventos de chat:
+    - 'br.com.devpaulo.legendchat.api.events.ChatMessageEvent'
+    - 'com.nickuc.chat.api.events.PublicMessageEvent'
+    - 'com.nickuc.chat.api.events.PrivateMessageEvent'
+
+#
+# ═══════════════════════════════  PLACEHOLDERS  ═════════════════════════════
+#
+Placeholders:
+  Com faccao: '{colortag} '
+  Sem faccao: '&7Sem Faccao'
+  Tag format: '{colortag} '
+  Nome format: '&7{nome}'
+  Sem tag: ''
+
+#
+# ════════════════════════════════  DISCORD  ═════════════════════════════════
+#
+# A facao pode ligar um webhook do Discord (/f discord <url>) para receber os
+# avisos importantes num canal dela.
+Discord:
+  Ativar: true
+  Nome do bot: 'StarFactions'
+  Avatar: ''
+  # Cor da barra lateral, em hex.
+  Cor: 'E67E22'
+  Avisos:
+    Sob ataque: true
+    Membro entrou: true
+    Membro saiu: true
+    Terra perdida: true
+    Relacoes: true
+    Batalhas: true
+    Escudo: true
+
+#
+# ════════════════════════════════  BATALHAS  ════════════════════════════════
+#
+# Facao contra facao numa arena (as arenas ficam no locais.yml e sao criadas
+# com /fadmin arena). Ninguem morre de verdade: o golpe final elimina, cura e
+# devolve o jogador com o inventario intacto.
+Batalhas:
+  Ativar: true
+  # Tempo que a facao desafiada tem para aceitar.
+  Tempo para aceitar: 1m
+  # Tempo para os membros se inscreverem (/f batalha entrar) depois do aceite.
+  Preparacao: 1m
+  Duracao maxima: 10m
+  Minimo por lado: 1
+  Maximo por lado: 10
+  # Pago pelo servidor a facao vencedora, alem das apostas.
+  Recompensa: 0
+  Aposta maxima: 1000000
+  Curar ao comecar: true
+  # Unicos comandos aceitos durante a batalha.
+  Comandos liberados:
+    - '/f batalha'
+    - '/faccao batalha'
+    - '/tell'
+    - '/r'
+    - '/.'
+
+#
+# ═════════════════════════════════  TOP  ════════════════════════════════════
+#
+Top:
+  # Segundos entre um calculo e o proximo.
+  Atualizar a cada: 60
+  # Somar ao "valor" da facao o dinheiro de cada membro (via economia).
+  Somar dinheiro dos membros: false
+
+#
+# ═════════════════════════════════  SONS  ═══════════════════════════════════
+#
+Sons:
+  Clique: 'UI_BUTTON_CLICK'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Erro: 'ENTITY_VILLAGER_NO'
+  Teleporte: 'ENTITY_ENDERMAN_TELEPORT'
+  Sob ataque: 'ENTITY_WITHER_SPAWN;0.6;1'
+
+#
+# ═══════════════════════════════  MENUS  ════════════════════════════════════
+#
+Menus:
+  # Segundos entre uma atualizacao e outra do menu principal aberto.
+  Atualizar a cada: 2

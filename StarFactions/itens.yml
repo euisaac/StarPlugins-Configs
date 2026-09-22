@@ -1,0 +1,121 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                   StarFactions - itens especiais                     ║
+#  ║   Entregues com /f item <tipo> <jogador> [quantidade].               ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# O efeito vem da chave (TNT_IMPULSAO, RAIO_MESTRE...). Nome, material, lore e
+# os numeros de cada um sao livres. "Espera" e em segundos, entre um uso e outro
+# do mesmo jogador. Nenhum item funciona na zona protegida.
+
+Versao do modelo: 1
+
+Itens:
+  TNT_IMPULSAO:
+    Material: TNT
+    Nome: '&cTNT de Impulsao'
+    Lore:
+      - '&7Clique direito para arremessar'
+      - '&7uma TNT acesa para onde olha.'
+    Brilho: true
+    # Forca do arremesso e ticks ate explodir.
+    Forca: 1.6
+    Pavio: 50
+    Espera: 1
+
+  RAIO_MESTRE:
+    Material: BLAZE_ROD
+    Nome: '&eRaio Mestre'
+    Lore:
+      - '&7Clique direito para lancar um'
+      - '&7raio no bloco que estiver mirando.'
+    Brilho: true
+    Alcance: 60
+    # Dano extra nos jogadores a ate 3 blocos do raio.
+    Dano extra: 6
+    Espera: 10
+    # Gastar o item a cada uso.
+    Consumir: true
+
+  SUPER_CREEPER:
+    Material: CREEPER_SPAWN_EGG
+    Nome: '&aSuper Creeper'
+    Lore:
+      - '&7Clique direito num bloco para'
+      - '&7soltar um creeper carregado.'
+    Brilho: true
+    # Raio da explosao (creeper comum = 3, carregado = 6).
+    Explosao: 6
+    Espera: 5
+
+  BOLA_DE_FOGO:
+    Material: FIRE_CHARGE
+    Nome: '&6Bola de Fogo'
+    Lore:
+      - '&7Clique direito para disparar'
+      - '&7uma bola de fogo explosiva.'
+    Brilho: true
+    Explosao: 2.5
+    Incendiaria: false
+    Espera: 2
+
+  PODER_INSTANTANEO:
+    Material: REDSTONE
+    Nome: '&cPoder Instantaneo'
+    Lore:
+      - '&7Clique direito para recuperar'
+      - '&f+{quantidade} &7de poder na hora.'
+    Brilho: true
+    Quantidade: 5
+
+  PODER_MAXIMO:
+    Material: NETHER_STAR
+    Nome: '&5Poder Maximo'
+    Lore:
+      - '&7Clique direito para aumentar'
+      - '&7o seu poder maximo em &f+{quantidade}&7.'
+    Brilho: true
+    Quantidade: 1
+
+  RESET_KDR:
+    Material: PAPER
+    Nome: '&fReset de KDR'
+    Lore:
+      - '&7Clique direito para zerar os seus'
+      - '&7abates e mortes.'
+    Brilho: true
+
+  OLHO_DE_DEUS:
+    Material: ENDER_EYE
+    Nome: '&dOlho de Deus'
+    Lore:
+      - '&7Clique direito para revelar os'
+      - '&7inimigos por perto.'
+    Brilho: true
+    Raio: 60
+    # Segundos que os inimigos ficam brilhando (1.9+). 0 desliga.
+    Brilho nos inimigos: 10
+    Espera: 30
+    Consumir: true
+
+  LANCADOR:
+    Material: FEATHER
+    Nome: '&bLancador'
+    Lore:
+      - '&7Clique direito para ser lancado'
+      - '&7para frente e para cima.'
+    Brilho: true
+    Forca: 2.2
+    Altura: 1.0
+    Espera: 3
+    Consumir: false
+
+  SILK_2:
+    Material: DIAMOND_PICKAXE
+    Nome: '&bPicareta Silk 2'
+    Lore:
+      - '&7Quebra geradores e devolve o'
+      - '&7gerador inteiro.'
+      - ''
+      - '&7Usos restantes: &f{usos}'
+    Brilho: true
+    Usos: 5

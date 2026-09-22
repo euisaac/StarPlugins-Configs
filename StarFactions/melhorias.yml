@@ -1,0 +1,137 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarFactions - melhorias                         ║
+#  ║   Compradas no menu da facao com o dinheiro do banco dela.           ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# O efeito de cada melhoria vem da chave (MEMBROS, BAU...), nao do nome: o
+# nome, o icone e os textos sao livres. Em cada nivel:
+#   Custo: quanto sai do banco da facao
+#   Valor: o que o nivel da (o significado muda por melhoria, veja abaixo)
+#
+# MEMBROS     -> membros a mais
+# BAU         -> paginas do bau (o nivel 0 ja tem 1 pagina)
+# PODER       -> poder extra da facao (conta para as terras)
+# ALIADOS     -> aliados a mais
+# TEMPORARIAS -> terras temporarias a mais
+# TELEPORTE   -> segundos a menos na espera do /f base
+# ARMAZEM     -> geradores a mais no armazem (o nivel 0 guarda o "Armazem inicial")
+# VOO         -> 1 libera o /f voar nas terras para todos os membros
+# ESCUDO      -> horas a mais em cada escudo
+
+Versao do modelo: 1
+
+# Quanto o armazem de geradores guarda sem melhoria nenhuma.
+Armazem inicial: 64
+# Linhas de cada pagina do bau (1 a 6).
+Linhas do bau: 6
+
+Melhorias:
+  MEMBROS:
+    Nome: '&aMembros'
+    Icone: PLAYER_HEAD
+    Descricao:
+      - '&7Aumenta o limite de membros.'
+    Niveis:
+      - Custo: 50000
+        Valor: 5
+      - Custo: 150000
+        Valor: 10
+      - Custo: 400000
+        Valor: 15
+
+  BAU:
+    Nome: '&6Bau da facao'
+    Icone: CHEST
+    Descricao:
+      - '&7Paginas extras no bau da facao.'
+    Niveis:
+      - Custo: 30000
+        Valor: 1
+      - Custo: 90000
+        Valor: 2
+      - Custo: 250000
+        Valor: 3
+
+  PODER:
+    Nome: '&cPoder extra'
+    Icone: BLAZE_POWDER
+    Descricao:
+      - '&7Poder extra para a facao, que'
+      - '&7vira mais terras dominadas.'
+    Niveis:
+      - Custo: 75000
+        Valor: 5
+      - Custo: 200000
+        Valor: 10
+      - Custo: 500000
+        Valor: 20
+
+  ALIADOS:
+    Nome: '&bAliados'
+    Icone: DIAMOND_CHESTPLATE
+    Descricao:
+      - '&7Aumenta o limite de aliados.'
+    Niveis:
+      - Custo: 40000
+        Valor: 1
+      - Custo: 120000
+        Valor: 2
+
+  TEMPORARIAS:
+    Nome: '&eTerras temporarias'
+    Icone: CLOCK
+    Descricao:
+      - '&7Mais terras temporarias ao'
+      - '&7mesmo tempo.'
+    Niveis:
+      - Custo: 30000
+        Valor: 2
+      - Custo: 100000
+        Valor: 4
+
+  TELEPORTE:
+    Nome: '&dTeleporte rapido'
+    Icone: ENDER_PEARL
+    Descricao:
+      - '&7Menos espera no /f base.'
+    Niveis:
+      - Custo: 20000
+        Valor: 1
+      - Custo: 60000
+        Valor: 2
+      - Custo: 150000
+        Valor: 3
+
+  ARMAZEM:
+    Nome: '&2Armazem de geradores'
+    Icone: SPAWNER
+    Descricao:
+      - '&7Mais geradores no armazem.'
+    Niveis:
+      - Custo: 50000
+        Valor: 64
+      - Custo: 150000
+        Valor: 192
+      - Custo: 400000
+        Valor: 448
+
+  VOO:
+    Nome: '&fVoo nas terras'
+    Icone: FEATHER
+    Descricao:
+      - '&7Libera o /f voar para todos'
+      - '&7os membros nas terras da facao.'
+    Niveis:
+      - Custo: 300000
+        Valor: 1
+
+  ESCUDO:
+    Nome: '&9Escudo reforcado'
+    Icone: SHIELD
+    Descricao:
+      - '&7Horas a mais em cada escudo.'
+    Niveis:
+      - Custo: 100000
+        Valor: 2
+      - Custo: 300000
+        Valor: 6

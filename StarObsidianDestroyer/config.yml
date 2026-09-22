@@ -1,0 +1,87 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                StarObsidianDestroyer - configuracao                  ║
+#  ║   Da durabilidade a qualquer bloco: cada explosao tira um pouco, e   ║
+#  ║   o bloco so cai quando a durabilidade acaba. Os blocos e os numeros ║
+#  ║   de cada um ficam no materiais.yml.                                 ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Versao do modelo: 1
+
+Depuracao: false
+
+# Mundos onde o plugin nao mexe em nada (explosao vanilla pura).
+Mundos desligados: []
+
+# Raio padrao de cada explosao quando o servidor nao informa o raio.
+# (TNT = 4, creeper = 3, creeper carregado = 6, bola de fogo do ghast = 1...)
+Raio padrao:
+  PRIMED_TNT: 4
+  TNT: 4
+  MINECART_TNT: 4
+  TNT_MINECART: 4
+  CREEPER: 3
+  FIREBALL: 1
+  SMALL_FIREBALL: 1
+  WITHER_SKULL: 1
+  WITHER: 7
+  ENDER_CRYSTAL: 6
+  END_CRYSTAL: 6
+  OUTRO: 3
+
+# Raio maximo aceito (explosoes enormes de outros plugins sao cortadas aqui
+# para nao varrer milhares de blocos).
+Raio maximo: 10
+
+# Quanto o raio da busca por blocos com durabilidade cresce alem do raio da
+# explosao. 0 = mesmo raio.
+Raio extra: 0
+
+# O dano cai com a distancia: no centro tira o dano inteiro, na borda tira
+# o minimo (1). Desligado, todo bloco no raio toma o dano inteiro.
+Dano pela distancia: false
+
+#
+# ════════════════════════════════  LIQUIDOS  ════════════════════════════════
+#
+Liquidos:
+  # Explosao que acontece dentro da agua/lava quebra blocos normalmente
+  # (o vanilla nao deixa: a agua amortece tudo).
+  Ignorar amortecimento: true
+  # Quantos blocos de liquido em volta do explosivo sao secados antes da
+  # explosao para ela funcionar. 1 = so os vizinhos.
+  Raio para secar: 1
+  # A explosao tambem apaga os liquidos no raio.
+  Destruir liquidos: false
+
+#
+# ═══════════════════════════════  CHECAR BLOCO  ═════════════════════════════
+#
+# Bater num bloco com este item mostra a durabilidade dele.
+Checar:
+  Ativar: true
+  Item: POTATO
+  # CHAT, ACTIONBAR ou TITULO.
+  Mostrar em: CHAT
+
+#
+# ════════════════════════════════  AVISOS  ══════════════════════════════════
+#
+# Mostra na barra de acao, para quem estiver perto, a durabilidade dos blocos
+# que a explosao acertou.
+Aviso ao danificar:
+  Ativar: true
+  Distancia: 16
+
+# Particula no bloco que tomou dano mas nao quebrou.
+Particula ao danificar: true
+
+# De quantos em quantos minutos a durabilidade guardada vai para o disco.
+Salvar a cada: 5
+
+#
+# ═══════════════════════════════  INTEGRACOES  ══════════════════════════════
+#
+# Com o StarFactions no servidor, as explosoes respeitam o escudo, as zonas e o
+# horario de raid das facoes, e a facao atingida fica "sob ataque" mesmo quando
+# so os blocos com durabilidade tomam dano.
+StarFactions: true

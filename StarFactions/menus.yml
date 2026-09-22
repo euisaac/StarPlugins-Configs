@@ -1,0 +1,957 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                       StarFactions - menus                           ║
+#  ║   Cada botao tem Slot, Material, Nome e Lore. Slot -1 esconde o      ║
+#  ║   botao. Material: '{jogador}' usa a cabeca do jogador da vez.       ║
+#  ║   Os nomes de material valem de 1.8 ate 1.21 (escreva o nome novo).  ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Marcadores da facao, validos em quase todo menu:
+#   {tag} {tagpura} {nome} {descricao} {lider} {membros} {membros_max} {online}
+#   {poder} {poder_max} {terras} {terras_max} {temporarias} {temporarias_max}
+#   {coins} {valor} {geradores} {geradores_armazenados} {geradores_colocados}
+#   {armazem_max} {kdr} {abates} {mortes} {aliados} {aliados_max} {rivais}
+#   {pedidos_alianca} {pedidos_entrada} {criada} {base} {escudo} {sob_ataque}
+#   {vulneravel} {aberta} {ff_membros} {ff_aliados} {vitorias} {derrotas}
+#   {discord} {boletins} {posicao} {moeda}
+# Do jogador: {jogador} {cargo} {cargo_simbolo} {poder_jogador}
+#   {poder_jogador_max} {abates_jogador} {mortes_jogador} {kdr_jogador} {visto}
+
+Versao do modelo: 1
+
+Menu da faccao:
+  Titulo: '&8Facao {tagpura}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Informacoes:
+      Slot: 4
+      Material: WHITE_BANNER
+      Nome: '{tag} &f{nome}'
+      Lore:
+        - '&7{descricao}'
+        - ''
+        - '&7Lider: &f{lider}'
+        - '&7Membros: &f{membros}/{membros_max} &8({online} online)'
+        - '&7Poder: &f{poder}/{poder_max}'
+        - '&7Terras: &f{terras}/{terras_max} &8(+{temporarias} temporarias)'
+        - '&7Valor: &f{valor} &8(#{posicao})'
+        - '&7KDR: &f{kdr} &8({abates}/{mortes})'
+        - ''
+        - '&7Vulneravel: {vulneravel}  &7Sob ataque: {sob_ataque}'
+        - '&7Escudo: {escudo}'
+        - '&7Criada em &f{criada}'
+    Jogador:
+      Slot: 49
+      Material: '{jogador}'
+      Nome: '&e{jogador} &7({cargo})'
+      Lore:
+        - '&7Poder: &f{poder_jogador}/{poder_jogador_max}'
+        - '&7Abates: &f{abates_jogador}  &7Mortes: &f{mortes_jogador}'
+        - '&7KDR: &f{kdr_jogador}'
+    Membros:
+      Slot: 19
+      Material: PLAYER_HEAD
+      Nome: '&aMembros'
+      Lore:
+        - '&7{membros}/{membros_max} membros, {online} online.'
+        - '&7Pedidos de entrada: &f{pedidos_entrada}'
+        - ''
+        - '&eClique para ver.'
+    Terras:
+      Slot: 20
+      Material: FILLED_MAP
+      Nome: '&2Terras'
+      Lore:
+        - '&7Definitivas: &f{terras}/{terras_max}'
+        - '&7Temporarias: &f{temporarias}/{temporarias_max}'
+        - ''
+        - '&eClique para abrir o mapa e'
+        - '&edominar clicando.'
+    Base:
+      Slot: 21
+      Material: RED_BED
+      Nome: '&dBase da facao'
+      Lore:
+        - '&7Base: {base}'
+        - ''
+        - '&eEsquerdo: &7ir para a base'
+        - '&eDireito: &7definir a base aqui'
+    Banco:
+      Slot: 22
+      Material: GOLD_INGOT
+      Nome: '&6Banco'
+      Lore:
+        - '&7Saldo: &f{coins}'
+        - ''
+        - '&eClique para depositar ou sacar.'
+    Bau:
+      Slot: 23
+      Material: CHEST
+      Nome: '&6Bau da facao'
+      Lore:
+        - '&7Um bau dividido com a facao.'
+        - ''
+        - '&eClique para abrir.'
+    Armazem:
+      Slot: 24
+      Material: SPAWNER
+      Nome: '&2Armazem de geradores'
+      Lore:
+        - '&7Guardados: &f{geradores_armazenados}/{armazem_max}'
+        - '&7Colocados nas terras: &f{geradores_colocados}'
+        - ''
+        - '&eClique para abrir.'
+    Melhorias:
+      Slot: 25
+      Material: ANVIL
+      Nome: '&bMelhorias'
+      Lore:
+        - '&7Mais membros, bau, poder,'
+        - '&7aliados, voo e muito mais.'
+        - ''
+        - '&eClique para ver.'
+    Relacoes:
+      Slot: 28
+      Material: IRON_SWORD
+      Nome: '&cRelacoes'
+      Lore:
+        - '&7Aliados: &f{aliados}/{aliados_max}'
+        - '&7Rivais: &f{rivais}'
+        - '&7Pedidos de alianca: &f{pedidos_alianca}'
+        - ''
+        - '&eClique para ver.'
+    Permissoes:
+      Slot: 29
+      Material: WRITABLE_BOOK
+      Nome: '&ePermissoes'
+      Lore:
+        - '&7O que cada cargo e cada'
+        - '&7relacao pode fazer.'
+        - ''
+        - '&eClique para editar.'
+    Boletins:
+      Slot: 30
+      Material: PAPER
+      Nome: '&fMural'
+      Lore:
+        - '&7{boletins} boletim(ns) no mural.'
+        - ''
+        - '&eClique para ver.'
+    Historico:
+      Slot: 31
+      Material: BOOK
+      Nome: '&fHistorico'
+      Lore:
+        - '&7Tudo o que aconteceu na facao.'
+        - ''
+        - '&eClique para ver.'
+    Configuracoes:
+      Slot: 32
+      Material: COMPARATOR
+      Nome: '&7Configuracoes'
+      Lore:
+        - '&7Cor da tag, brasao, fogo amigo,'
+        - '&7Discord, nome e descricao.'
+        - ''
+        - '&eClique para abrir.'
+    Top:
+      Slot: 33
+      Material: GOLD_BLOCK
+      Nome: '&6Top facoes'
+      Lore:
+        - '&7A sua facao: &f#{posicao}'
+        - ''
+        - '&eClique para ver o ranking.'
+    Escudo:
+      Slot: 34
+      Material: SHIELD
+      Nome: '&9Escudo'
+      Lore:
+        - '&7Terras imunes a explosoes.'
+        - '&7Estado: {escudo}'
+        - ''
+        - '&eClique para ligar.'
+    Batalha:
+      Slot: 40
+      Material: DIAMOND_SWORD
+      Nome: '&cBatalhas'
+      Lore:
+        - '&7Vitorias: &f{vitorias}  &7Derrotas: &f{derrotas}'
+        - ''
+        - '&eClique para ver os comandos.'
+    Sair:
+      Slot: 53
+      Material: BARRIER
+      Nome: '&cSair da facao'
+      Lore:
+        - '&7O lider desfaz a facao.'
+
+Menu sem faccao:
+  Titulo: '&8Facoes'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Criar:
+      Slot: 11
+      Material: WHITE_BANNER
+      Nome: '&aCriar facao'
+      Lore:
+        - '&7Custo: &f{custo}'
+        - ''
+        - '&eClique e digite a tag e o nome.'
+    Convites:
+      Slot: 12
+      Material: PAPER
+      Nome: '&eConvites'
+      Lore:
+        - '&7Voce tem &f{convites} &7convite(s).'
+        - ''
+        - '&eClique para ver.'
+    Faccoes:
+      Slot: 14
+      Material: BOOK
+      Nome: '&fFacoes do servidor'
+      Lore:
+        - '&7Veja as facoes e peca'
+        - '&7para entrar.'
+    Top:
+      Slot: 15
+      Material: GOLD_BLOCK
+      Nome: '&6Top facoes'
+      Lore:
+        - '&eClique para ver o ranking.'
+    Jogador:
+      Slot: 22
+      Material: '{jogador}'
+      Nome: '&e{jogador}'
+      Lore:
+        - '&7Poder: &f{poder_jogador}/{poder_jogador_max}'
+        - '&7KDR: &f{kdr_jogador}'
+
+Menu de membros:
+  Titulo: '&8Membros de {tagpura}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: '{jogador}'
+    Nome: '&f{cargo_simbolo}{jogador}'
+    Lore:
+      - '&7Cargo: &f{cargo}'
+      - '&7Poder: &f{poder_jogador}/{poder_jogador_max}'
+      - '&7KDR: &f{kdr_jogador}'
+      - '&7{visto}'
+      - ''
+      - '&eClique para gerenciar.'
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+    Convidar:
+      Slot: 47
+      Material: EMERALD
+      Nome: '&aConvidar jogador'
+      Lore:
+        - '&eClique e digite o nick.'
+    Pedidos:
+      Slot: 51
+      Material: PAPER
+      Nome: '&ePedidos de entrada'
+      Lore:
+        - '&7{pedidos_entrada} pedido(s).'
+
+Menu do membro:
+  Titulo: '&8Membro {jogador}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Cabeca:
+      Slot: 4
+      Material: '{jogador}'
+      Nome: '&f{jogador}'
+      Lore:
+        - '&7Cargo: &f{cargo}'
+        - '&7Poder: &f{poder_jogador}/{poder_jogador_max}'
+        - '&7Abates: &f{abates_jogador}  &7Mortes: &f{mortes_jogador}'
+        - '&7{visto}'
+    Promover:
+      Slot: 11
+      Material: LIME_DYE
+      Nome: '&aPromover'
+    Rebaixar:
+      Slot: 12
+      Material: ORANGE_DYE
+      Nome: '&6Rebaixar'
+    Expulsar:
+      Slot: 14
+      Material: RED_DYE
+      Nome: '&cExpulsar'
+    Transferir:
+      Slot: 15
+      Material: GOLDEN_HELMET
+      Nome: '&ePassar a lideranca'
+      Lore:
+        - '&7So o lider.'
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de pedidos:
+  Titulo: '&8Pedidos de entrada'
+  Linhas: 6
+  Item:
+    Material: '{jogador}'
+    Nome: '&f{jogador}'
+    Lore:
+      - '&7Poder: &f{poder_jogador}/{poder_jogador_max}'
+      - '&7KDR: &f{kdr_jogador}'
+      - '&7Pediu ha {tempo}'
+      - ''
+      - '&aEsquerdo: aceitar'
+      - '&cDireito: recusar'
+
+Menu de convites:
+  Titulo: '&8Convites'
+  Linhas: 6
+  Item:
+    Material: WHITE_BANNER
+    Nome: '{tag} &f{nome}'
+    Lore:
+      - '&7Lider: &f{lider}'
+      - '&7Membros: &f{membros}/{membros_max}'
+      - '&7Poder: &f{poder}'
+      - ''
+      - '&aEsquerdo: aceitar'
+      - '&cDireito: recusar'
+
+Menu de faccoes:
+  Titulo: '&8Facoes do servidor'
+  Linhas: 6
+  Item:
+    Material: WHITE_BANNER
+    Nome: '{tag} &f{nome}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&7Lider: &f{lider}'
+      - '&7Membros: &f{membros}/{membros_max} &8({online} online)'
+      - '&7Valor: &f{valor}'
+      - '&7Aberta: {aberta}'
+      - ''
+      - '&eClique para ver.'
+
+Menu de informacoes:
+  Titulo: '&8Facao {tagpura}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Informacoes:
+      Slot: 4
+      Material: WHITE_BANNER
+      Nome: '{tag} &f{nome}'
+      Lore:
+        - '&7{descricao}'
+        - ''
+        - '&7Relacao: {relacao}'
+        - '&7Lider: &f{lider}'
+        - '&7Membros: &f{membros}/{membros_max} &8({online} online)'
+        - '&7Poder: &f{poder}/{poder_max}'
+        - '&7Terras: &f{terras}'
+        - '&7Valor: &f{valor}'
+        - '&7KDR: &f{kdr}'
+        - '&7Batalhas: &f{vitorias}V / {derrotas}D'
+        - '&7Vulneravel: {vulneravel}'
+    Pedir entrada:
+      Slot: 13
+      Material: EMERALD
+      Nome: '&aPedir para entrar'
+    Aliar:
+      Slot: 11
+      Material: LIGHT_BLUE_DYE
+      Nome: '&bPedir alianca'
+    Rival:
+      Slot: 13
+      Material: RED_DYE
+      Nome: '&cDeclarar rival'
+    Neutro:
+      Slot: 15
+      Material: WHITE_DYE
+      Nome: '&fDeixar neutro'
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu do top:
+  Titulo: '&8Top facoes - {categoria}'
+  Linhas: 6
+  Item:
+    Material: WHITE_BANNER
+    Nome: '&e#{lugar} {tag} &f{nome}'
+    Lore:
+      - '&7Valor: &f{valor}'
+      - '&7Poder: &f{poder}'
+      - '&7KDR: &f{kdr} &8({abates} abates)'
+      - '&7Membros: &f{membros}'
+      - '&7Terras: &f{terras}'
+      - '&7Batalhas vencidas: &f{vitorias}'
+  Categorias:
+    Valor:
+      Slot: 1
+      Material: EMERALD
+      Nome: '&aValor'
+      Lore: ['{selecionada}']
+    Poder:
+      Slot: 2
+      Material: BLAZE_POWDER
+      Nome: '&cPoder'
+      Lore: ['{selecionada}']
+    Kdr:
+      Slot: 3
+      Material: DIAMOND_SWORD
+      Nome: '&bKDR'
+      Lore: ['{selecionada}']
+    Abates:
+      Slot: 4
+      Material: SKELETON_SKULL
+      Nome: '&fAbates'
+      Lore: ['{selecionada}']
+    Membros:
+      Slot: 5
+      Material: PLAYER_HEAD
+      Nome: '&eMembros'
+      Lore: ['{selecionada}']
+    Terras:
+      Slot: 6
+      Material: GRASS_BLOCK
+      Nome: '&2Terras'
+      Lore: ['{selecionada}']
+    Batalhas:
+      Slot: 7
+      Material: IRON_SWORD
+      Nome: '&6Batalhas'
+      Lore: ['{selecionada}']
+
+Menu de relacoes:
+  Titulo: '&8Relacoes'
+  Linhas: 6
+  Item aliado:
+    Material: LIGHT_BLUE_BANNER
+    Nome: '&b[ALIADA] {tag} &f{nome}'
+    Lore:
+      - '&7Membros: &f{membros} &8({online} online)'
+      - '&7Poder: &f{poder}'
+      - ''
+      - '&eEsquerdo: &7ver'
+      - '&eDireito: &7desfazer alianca'
+  Item rival:
+    Material: RED_BANNER
+    Nome: '&c[RIVAL] {tag} &f{nome}'
+    Lore:
+      - '&7Membros: &f{membros} &8({online} online)'
+      - '&7Poder: &f{poder}  &7Vulneravel: {vulneravel}'
+      - ''
+      - '&eEsquerdo: &7ver'
+      - '&eDireito: &7encerrar rivalidade'
+  Botoes:
+    Pedidos:
+      Slot: 47
+      Material: PAPER
+      Nome: '&ePedidos de alianca'
+      Lore:
+        - '&7{pedidos_alianca} pedido(s).'
+    Aliar:
+      Slot: 48
+      Material: LIGHT_BLUE_DYE
+      Nome: '&bPedir alianca'
+      Lore:
+        - '&eClique e digite a tag.'
+    Rival:
+      Slot: 50
+      Material: RED_DYE
+      Nome: '&cDeclarar rival'
+      Lore:
+        - '&eClique e digite a tag.'
+
+Menu de pedidos de alianca:
+  Titulo: '&8Pedidos de alianca'
+  Linhas: 6
+  Item:
+    Material: LIGHT_BLUE_BANNER
+    Nome: '{tag} &f{nome}'
+    Lore:
+      - '&7Membros: &f{membros}'
+      - '&7Poder: &f{poder}'
+      - ''
+      - '&aEsquerdo: aceitar'
+      - '&cDireito: recusar'
+
+Menu de permissoes:
+  Titulo: '&8Permissoes'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Capitao:
+      Slot: 10
+      Material: GOLDEN_HELMET
+      Nome: '&eCapitao'
+    Membro:
+      Slot: 11
+      Material: IRON_HELMET
+      Nome: '&fMembro'
+    Recruta:
+      Slot: 12
+      Material: LEATHER_HELMET
+      Nome: '&7Recruta'
+    Aliado:
+      Slot: 14
+      Material: LIGHT_BLUE_DYE
+      Nome: '&bAliados'
+      Lore: ['&7Nas terras da facao']
+    Neutro:
+      Slot: 15
+      Material: WHITE_DYE
+      Nome: '&fNeutros'
+      Lore: ['&7Nas terras da facao']
+    Rival:
+      Slot: 16
+      Material: RED_DYE
+      Nome: '&cRivais'
+      Lore: ['&7Nas terras da facao']
+    Sem faccao:
+      Slot: 13
+      Material: GRAY_DYE
+      Nome: '&7Sem facao'
+      Lore: ['&7Nas terras da facao']
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de permissoes da linha:
+  Titulo: '&8Permissoes: {linha}'
+  Linhas: 6
+  Item ligado:
+    Material: LIME_DYE
+    Nome: '&a{permissao}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&aPermitido'
+      - '&eClique para bloquear.'
+  Item desligado:
+    Material: GRAY_DYE
+    Nome: '&c{permissao}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&cBloqueado'
+      - '&eClique para permitir.'
+
+Menu do mapa:
+  Titulo: '&8Mapa ({x}, {z})'
+  # Material de cada tipo de terra no mapa.
+  Terras:
+    Voce: PLAYER_HEAD
+    Livre: GRAY_STAINED_GLASS_PANE
+    Membro: LIME_STAINED_GLASS_PANE
+    Aliado: LIGHT_BLUE_STAINED_GLASS_PANE
+    Neutro: WHITE_STAINED_GLASS_PANE
+    Rival: RED_STAINED_GLASS_PANE
+    Vulneravel: MAGENTA_STAINED_GLASS_PANE
+    Protegida: ORANGE_STAINED_GLASS_PANE
+    Guerra: BLACK_STAINED_GLASS_PANE
+  # Nome e lore de cada tipo. {terra} {x} {z} {bloco_x} {bloco_z} {expira}
+  Textos:
+    Voce:
+      Nome: '&eVoce esta aqui'
+      Lore:
+        - '&7{terra}'
+        - '&7Chunk {x}, {z}'
+        - ''
+        - '&aEsquerdo: dominar'
+        - '&cDireito: abandonar'
+    Livre:
+      Nome: '{terra}'
+      Lore:
+        - '&7Chunk {x}, {z} &8({bloco_x}, {bloco_z})'
+        - ''
+        - '&aClique para dominar.'
+    Membro:
+      Nome: '{terra}'
+      Lore:
+        - '&7Chunk {x}, {z}'
+        - '&7Tipo: {expira}'
+        - ''
+        - '&cDireito: abandonar'
+    Aliado:
+      Nome: '{terra}'
+      Lore:
+        - '&7Chunk {x}, {z}'
+    Neutro:
+      Nome: '{terra}'
+      Lore:
+        - '&7Chunk {x}, {z}'
+    Rival:
+      Nome: '{terra}'
+      Lore:
+        - '&7Chunk {x}, {z}'
+    Vulneravel:
+      Nome: '{terra} &d(vulneravel)'
+      Lore:
+        - '&7Chunk {x}, {z}'
+        - '&dMais terras do que poder!'
+        - ''
+        - '&aClique para dominar por cima.'
+    Protegida:
+      Nome: '{terra}'
+      Lore:
+        - '&7Chunk {x}, {z}'
+    Guerra:
+      Nome: '{terra}'
+      Lore:
+        - '&7Chunk {x}, {z}'
+  # Os botoes ficam na ultima linha (slots 45 a 53).
+  Botoes:
+    Oeste:
+      Slot: 45
+      Material: ARROW
+      Nome: '&fOeste'
+    Norte:
+      Slot: 46
+      Material: ARROW
+      Nome: '&fNorte'
+    Sul:
+      Slot: 47
+      Material: ARROW
+      Nome: '&fSul'
+    Leste:
+      Slot: 48
+      Material: ARROW
+      Nome: '&fLeste'
+    Modo:
+      Slot: 50
+      Material: CLOCK
+      Nome: '&eModo: {modo}'
+      Lore:
+        - '&7Temporaria custa {custo_temporaria}'
+        - '&7do banco e expira sozinha.'
+        - ''
+        - '&eClique para trocar.'
+    Ver terras:
+      Slot: 51
+      Material: ENDER_EYE
+      Nome: '&bBordas em particulas: {ver_terras}'
+    Informacoes:
+      Slot: 52
+      Material: BOOK
+      Nome: '&fTerras da facao'
+      Lore:
+        - '&7Definitivas: &f{terras}/{terras_max}'
+        - '&7Temporarias: &f{temporarias}/{temporarias_max}'
+        - '&7Poder: &f{poder}/{poder_max}'
+    Voltar:
+      Slot: 53
+      Material: BARRIER
+      Nome: '&cVoltar'
+
+Menu do banco:
+  Titulo: '&8Banco da facao'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Saldo:
+      Slot: 13
+      Material: GOLD_BLOCK
+      Nome: '&6Saldo: &f{coins}'
+      Lore:
+        - '&7O seu dinheiro: &f{saldo}'
+    Depositar:
+      Slot: 11
+      Material: LIME_DYE
+      Nome: '&aDepositar'
+      Lore:
+        - '&eClique e digite o valor.'
+    Sacar:
+      Slot: 15
+      Material: RED_DYE
+      Nome: '&cSacar'
+      Lore:
+        - '&eClique e digite o valor.'
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu do armazem:
+  Titulo: '&8Armazem de geradores'
+  Linhas: 6
+  Item:
+    Nome: '&e{tipo} &7x{quantidade}'
+    Lore:
+      - '&7Valor de cada: &f{valor}'
+      - '&7Valor total: &f{valor_total}'
+      - ''
+      - '&eEsquerdo: &7retirar 1'
+      - '&eDireito: &7retirar 64'
+      - '&eShift: &7retirar tudo'
+  Botoes:
+    Informacoes:
+      Slot: 4
+      Material: BOOK
+      Nome: '&2Armazem'
+      Lore:
+        - '&7Guardados: &f{geradores_armazenados}/{armazem_max}'
+        - ''
+        - '&7Clique num gerador do seu'
+        - '&7inventario para guardar.'
+
+Menu de melhorias:
+  Titulo: '&8Melhorias &7({coins})'
+  Linhas: 6
+  Item:
+    Nome: '{melhoria} &7(nivel {nivel}/{maximo})'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&7Atual: &f{atual}'
+      - '&7Proximo nivel: &f{proximo}'
+      - '&7Custo: &f{custo}'
+      - ''
+      - '&eClique para comprar.'
+  Item maximo:
+    Nome: '{melhoria} &a(maximo)'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&7Atual: &f{atual}'
+      - '&aNivel maximo!'
+
+Menu de boletins:
+  Titulo: '&8Mural'
+  Linhas: 6
+  Item:
+    Nome: '&e{autor} &7- ha {ha}'
+    Lore:
+      - '&f{texto}'
+      - ''
+      - '&7{data}'
+      - '&cDireito: apagar'
+  Botoes:
+    Novo:
+      Slot: 51
+      Material: WRITABLE_BOOK
+      Nome: '&aNovo boletim'
+      Lore:
+        - '&eClique e digite a mensagem.'
+
+Menu de historico:
+  Titulo: '&8Historico'
+  Linhas: 6
+  Item:
+    Nome: '&7{data}'
+    Lore:
+      - '&f{texto}'
+      - '&8ha {ha}'
+
+Menu de configuracoes:
+  Titulo: '&8Configuracoes'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Cor da tag:
+      Slot: 10
+      Material: CYAN_DYE
+      Nome: '&bCor da tag: {tag}'
+      Lore: ['&eClique para escolher.']
+    Nome:
+      Slot: 11
+      Material: NAME_TAG
+      Nome: '&fNome: {nome}'
+      Lore: ['&eClique e digite o novo nome.']
+    Descricao:
+      Slot: 12
+      Material: PAPER
+      Nome: '&fDescricao'
+      Lore: ['&7{descricao}', '', '&eClique e digite a nova.']
+    Brasao:
+      Slot: 13
+      Material: WHITE_BANNER
+      Nome: '&fBrasao'
+      Lore: ['&7Segure um estandarte e', '&eclique para usar como brasao.']
+    Aberta:
+      Slot: 14
+      Material: OAK_DOOR
+      Nome: '&fFacao aberta: {aberta}'
+      Lore: ['&7Aberta: qualquer um entra.', '&eClique para trocar.']
+    Fogo amigo membros:
+      Slot: 15
+      Material: IRON_SWORD
+      Nome: '&fFogo amigo (membros): {ff_membros}'
+      Lore: ['&eClique para trocar.']
+    Fogo amigo aliados:
+      Slot: 16
+      Material: GOLDEN_SWORD
+      Nome: '&fFogo amigo (aliados): {ff_aliados}'
+      Lore: ['&7Vale quando as duas facoes ligam.', '&eClique para trocar.']
+    Discord:
+      Slot: 20
+      Material: NOTE_BLOCK
+      Nome: '&9Discord: {discord}'
+      Lore: ['&7Avisos da facao num canal', '&7do Discord (webhook).', '&eClique e cole a URL.']
+    Ver terras:
+      Slot: 22
+      Material: ENDER_EYE
+      Nome: '&bBordas das terras: {ver_terras}'
+      Lore: ['&eClique para trocar.']
+    Mapa automatico:
+      Slot: 23
+      Material: MAP
+      Nome: '&fMapa automatico: {mapa_auto}'
+      Lore: ['&eClique para trocar.']
+    Modo de chat:
+      Slot: 24
+      Material: OAK_SIGN
+      Nome: '&fModo de chat: {modo_chat}'
+      Lore: ['&eClique para trocar.']
+    Voltar:
+      Slot: 40
+      Material: ARROW
+      Nome: '&cVoltar'
+
+# As cores da tag. "Codigo" e o que vai antes da tag: &c, &l&6, &#FF8800 ou
+# <g:FF0000:FFAA00>. Hex e gradiente (1.16+) exigem starfactions.tag.hex.
+Menu de cores:
+  Titulo: '&8Cor da tag'
+  Linhas: 6
+  Cores:
+    branco:
+      Codigo: '&f'
+      Material: WHITE_WOOL
+      Nome: '&fBranco &7- {previa}'
+    cinza:
+      Codigo: '&7'
+      Material: LIGHT_GRAY_WOOL
+      Nome: '&7Cinza &7- {previa}'
+    vermelho:
+      Codigo: '&c'
+      Material: RED_WOOL
+      Nome: '&cVermelho &7- {previa}'
+    vermelho_escuro:
+      Codigo: '&4'
+      Material: RED_WOOL
+      Nome: '&4Vermelho escuro &7- {previa}'
+    laranja:
+      Codigo: '&6'
+      Material: ORANGE_WOOL
+      Nome: '&6Dourado &7- {previa}'
+    amarelo:
+      Codigo: '&e'
+      Material: YELLOW_WOOL
+      Nome: '&eAmarelo &7- {previa}'
+    verde:
+      Codigo: '&a'
+      Material: LIME_WOOL
+      Nome: '&aVerde &7- {previa}'
+    verde_escuro:
+      Codigo: '&2'
+      Material: GREEN_WOOL
+      Nome: '&2Verde escuro &7- {previa}'
+    ciano:
+      Codigo: '&b'
+      Material: LIGHT_BLUE_WOOL
+      Nome: '&bCiano &7- {previa}'
+    azul:
+      Codigo: '&9'
+      Material: BLUE_WOOL
+      Nome: '&9Azul &7- {previa}'
+    roxo:
+      Codigo: '&5'
+      Material: PURPLE_WOOL
+      Nome: '&5Roxo &7- {previa}'
+    rosa:
+      Codigo: '&d'
+      Material: PINK_WOOL
+      Nome: '&dRosa &7- {previa}'
+    negrito_vermelho:
+      Codigo: '&c&l'
+      Material: RED_CONCRETE
+      Nome: '&c&lVermelho negrito &7- {previa}'
+    fogo:
+      Codigo: '<g:FF0000:FFAA00>'
+      Material: MAGMA_BLOCK
+      Nome: '&6Gradiente fogo &7- {previa}'
+      Lore: ['{bloqueio}']
+    oceano:
+      Codigo: '<g:00AAFF:00FFAA>'
+      Material: PRISMARINE
+      Nome: '&bGradiente oceano &7- {previa}'
+      Lore: ['{bloqueio}']
+    laranja_hex:
+      Codigo: '&#FF8800'
+      Material: ORANGE_CONCRETE
+      Nome: '&#FF8800Laranja &7- {previa}'
+      Lore: ['{bloqueio}']
+
+Menu do bau:
+  Titulo: '&8Bau da facao'
+  Linhas: 6
+  Item:
+    Material: CHEST
+    Nome: '&6Pagina {pagina}'
+    Lore:
+      - '&eClique para abrir.'
+
+Menu de confirmacao:
+  Titulo: '&8Tem certeza?'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Confirmar:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&aConfirmar'
+    Aviso:
+      Slot: 13
+      Material: PAPER
+      Nome: '{acao}'
+    Cancelar:
+      Slot: 15
+      Material: RED_WOOL
+      Nome: '&cCancelar'
