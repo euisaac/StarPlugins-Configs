@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 9
+Versao do modelo: 10
 
 Geral:
   Debug: false
@@ -95,6 +95,18 @@ Brilho:
   Lembrar: true
   # Liga sozinho quando o jogador equipa uma tag que tem brilho.
   Ligar automaticamente: false
+
+Tags:
+  # Por onde o /tags sem argumento leva o jogador.
+  #
+  # MENU -> abre o menu de tags (ou o de categorias, quando houver).
+  # CHAT -> lista as tags no proprio chat, uma por linha, com CLIQUE para
+  #         equipar e o desenho da tag aparecendo ao passar o mouse.
+  #
+  # O modo CHAT serve para servidor que prefere nao abrir inventario. Num
+  # servidor sem componente de chat a listagem ainda sai, so sem o clique -- e o
+  # jogador equipa digitando /tags <id>.
+  Escolher por: MENU
 
 Sufixos:
   Ativar: true

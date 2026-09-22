@@ -7,7 +7,7 @@
 #  O prefixo entra em toda mensagem simples. As listas (Ajuda, Admin.Ver,
 #  Admin.Info) saem sem prefixo, uma linha por vez.
 # ---------------------------------------------------------------------------
-Versao do modelo: 6
+Versao do modelo: 7
 
 Prefixo: '&6&lTAGS &8» &r'
 
@@ -38,6 +38,36 @@ Tag:
   Lista cabecalho: '&7Voce tem &f{quantidade} &7tag(s):'
   Lista item: '&f{tag}&7({id})'
   Lista separador: '&8, '
+
+  # A listagem do chat, usada com "Tags.Escolher por: CHAT" no config.yml.
+  # Cada linha e clicavel; "Dica ..." e o que aparece ao passar o mouse.
+  Chat:
+    Cabecalho:
+      - '&8&m----------------------------------------'
+      - '&6&lTAGS &7- clique numa para equipar'
+      - ''
+    Equipada: ' &a> {tag}&r &7{nome} &a(em uso)'
+    Item: ' &8> {tag}&r &7{nome}'
+    A venda: ' &8> {tag}&r &7{nome} &8- &e{preco}'
+    Bloqueada: ' &8> &8{nome} &8(sem acesso)'
+    Dica equipada:
+      - '{tag}&r&fSeuNick'
+      - ''
+      - '&eClique para tirar esta tag.'
+    Dica item:
+      - '{tag}&r&fSeuNick'
+      - ''
+      - '&eClique para equipar.'
+    Dica a venda:
+      - '{tag}&r&fSeuNick'
+      - ''
+      - '&7Preco: &f{preco}'
+      - '&eClique para comprar.'
+    Dica bloqueada:
+      - '&cVoce nao tem acesso a esta tag.'
+    Rodape:
+      - ''
+      - '&8&m----------------------------------------'
 
 Sufixo:
   Escolhido: '&aSufixo definido: {sufixo}&a.'
@@ -72,8 +102,8 @@ Loja:
 
 Editor:
   Aviso: |-
-    &7Editor aberto. Tudo que voce mudar aqui e gravado no &ftags.yml &7na hora.
-    &8Uma copia do arquivo de antes fica em tags-antes-do-editor.yml.
+    &7Editor aberto. Tudo que voce mudar aqui e gravado no arquivo na hora.
+    &8Uma copia de antes fica em tags-antes-do-editor.yml (e sufixos-antes-do-editor.yml).
   Digite: |-
     &eDigite no chat o novo valor de &f{campo}&e.
     &7Agora: &f{atual}
@@ -85,6 +115,8 @@ Editor:
   Id invalido: '&cO id &f{id} &cnao serve: use so letras minusculas, numeros, - e _.'
   Ja existe: '&cJa existe uma tag com o id &f{id}&c.'
   Criada: '&aTag &f{id} &acriada. Agora e so preencher os campos.'
+  Criado sufixo: '&aSufixo &f{id} &acriado. Poe um preco nele para ir para a loja.'
+  Apagado sufixo: '&aO sufixo &f{id} &afoi apagado.'
   Confirme apagar: '&cIsto apaga a tag &f{id} &cdo arquivo. Use &fShift + clique &cpara confirmar.'
   Apagada: '&aA tag &f{id} &afoi apagada.'
   Salvo: '&aSalvo: &f{campo}&a.'
