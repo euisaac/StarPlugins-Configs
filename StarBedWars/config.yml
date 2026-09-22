@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 10
+Versao do modelo: 11
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -133,6 +133,11 @@ Partida:
   # Limites de mobs por equipe ao mesmo tempo.
   Limite de tracas: 3
   Limite de golens: 2
+  Limite de zumbis: 2
+  # Segundos que o zumbinho vive, a velocidade dele e o nome no mundo.
+  Vida do zumbi: 60
+  Velocidade do zumbi: 0.35
+  Nome do zumbi: '{cor}Zumbinho {equipe} &7({tempo}s)'
   # Segundos que golem e traca vivem (o nome mostra a contagem; no fim, somem).
   Vida do golem: 240
   Vida da traca: 15
@@ -232,6 +237,17 @@ Itens:
   Ovo de ponte:
     # Bloco colocado a cada tique de voo e distancia maxima.
     Distancia maxima: 27
+  Leite magico:
+    # Segundos sem disparar nenhuma armadilha da ilha inimiga.
+    Segundos: 30
+  Asas:
+    # Segundos de voo e espera entre um uso e outro.
+    Segundos: 3
+    Cooldown: 10
+  Foguete:
+    Empurrao horizontal: 1.4
+    Empurrao vertical: 1.0
+    Cooldown: 5
   Torre:
     # Altura da torre instantanea (redonda, raio 2, com entrada na frente) e
     # se tem escada na parede de tras.
@@ -580,11 +596,18 @@ Hotbar:
       Material: COMPASS
       Slot: 8
 
+# Modos de jogo. Crie quantos quiser: a chave e o nome interno (usado em
+# /bw arena criar <arena> <modo>), "Jogadores por equipe" define o tamanho do
+# time e o NUMERO DE TIMES vem da arena (as equipes que voce criar no editor).
+# Ex.: MEGA = 4 equipes na arena x 5 por equipe = 20 jogadores.
+# "Icone" e "Slot" (opcionais) sao a aparencia do modo nos menus; sem Slot ele
+# entra no proximo lugar livre, entao um modo novo aparece sozinho.
 Modos:
   solo:
     Ativo: true
     Nome: 'Solo'
     Jogadores por equipe: 1
+    Icone: WOODEN_SWORD
   dupla:
     Ativo: true
     Nome: 'Dupla'
@@ -597,6 +620,11 @@ Modos:
     Ativo: true
     Nome: 'Quarteto'
     Jogadores por equipe: 4
+  mega:
+    Ativo: true
+    Nome: 'Mega'
+    Jogadores por equipe: 5
+    Icone: NETHER_STAR
   ranqueado:
     Ativo: true
     Nome: 'Ranqueado'

@@ -11,10 +11,13 @@
 #  Formato de item igual ao dos kits ("cor=equipe" tinge com a equipe).
 #  Itens especiais sao reconhecidos pelo material: FIRE_CHARGE (bola de
 #  fogo), TNT, EGG (ovo de ponte), CHEST (torre), MAGMA_CREAM (estilingue),
-#  IRON_GOLEM_SPAWN_EGG (golem), SILVERFISH_SPAWN_EGG (traca), SPONGE.
+#  IRON_GOLEM_SPAWN_EGG (golem), SILVERFISH_SPAWN_EGG (traca), SPONGE,
+#  ZOMBIE_SPAWN_EGG (zumbinho), MILK_BUCKET (leite magico), FEATHER (asas)
+#  e FIREWORK_ROCKET (foguete). Os numeros de cada um ficam no config.yml,
+#  em "Itens" e "Partida".
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Categorias:
   blocos:
@@ -385,3 +388,42 @@ Categorias:
         Material: MAGMA_CREAM
         Itens:
           - 'MAGMA_CREAM : 1 : name=&aEstilingue'
+      zumbinho:
+        Preco: 'IRON_INGOT : 24'
+        Perde: true
+        Nome: '&fZumbinho'
+        Material: ZOMBIE_SPAWN_EGG
+        Lore:
+          - '&7Atrapalha os inimigos: um zumbi'
+          - '&7rapido que persegue quem nao e do time'
+        Itens:
+          - 'ZOMBIE_SPAWN_EGG : 1 : name=&aZumbinho'
+      leite_magico:
+        Preco: 'GOLD_INGOT : 3'
+        Perde: true
+        Nome: '&fLeite magico'
+        Material: MILK_BUCKET
+        Lore:
+          - '&7Invada a ilha inimiga sem'
+          - '&7disparar as armadilhas por 30s'
+        Itens:
+          - 'MILK_BUCKET : 1 : name=&aLeite magico'
+      asas:
+        Preco: 'IRON_INGOT : 60'
+        Perde: true
+        Nome: '&fAsas'
+        Material: FEATHER
+        Lore:
+          - '&7Crie asas e voe por 3 segundos'
+        Itens:
+          - 'FEATHER : 1 : name=&aAsas'
+      foguete:
+        Preco: 'GOLD_INGOT : 6'
+        Perde: true
+        Nome: '&fFoguete'
+        Material: FIREWORK_ROCKET
+        Lore:
+          - '&7Um impulso para frente e para cima'
+          - '&7(sem dano de queda) - fuja do void'
+        Itens:
+          - 'FIREWORK_ROCKET : 1 : name=&aFoguete'
