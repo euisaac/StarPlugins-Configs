@@ -188,6 +188,52 @@ Visualizacao:
     Canto: 'GLOWSTONE'
     Borda: 'REDSTONE_BLOCK'
 
+  # ───────────────────────────  BORDAS EM PARTICULAS  ───────────────────────
+  #
+  # A divisa acende sozinha quando o jogador chega perto -- e o contorno que
+  # fica ligado o tempo todo, diferente da marcacao da ferramenta acima.
+  #
+  # Cada jogador liga e desliga o que quiser no /terreno visualizacao; o que
+  # esta em "Padrao" vale para quem ainda nao mexeu nessa tela.
+  Particulas:
+    Ativar: true
+
+    # A quantos blocos da divisa ela acende.
+    Distancia: 12
+
+    # Tiques entre uma atualizacao e outra (20 tiques = 1 segundo). Numero
+    # maior pesa menos no servidor e faz a borda piscar mais.
+    Intervalo: 10
+
+    # De quantos em quantos blocos nasce uma particula na linha.
+    Espacamento: 1.0
+
+    # Quantas fileiras de particulas, subindo a partir do chao.
+    Altura: 2
+
+    # Tamanho da particula (so da 1.13 para cima).
+    Tamanho: 1.0
+
+    # Teto de particulas por jogador em cada atualizacao. E o que segura o
+    # custo de quem esta no meio de um bairro cheio de terrenos.
+    Limite: 300
+
+    Padrao:
+      Ativar: true
+      Proprio: true
+      Membro: true
+      Subterreno: true
+      Outros: true
+      Administrativo: false
+
+    # Cor de cada tipo, em 'vermelho,verde,azul' (0 a 255).
+    Cores:
+      Proprio: '85,255,85'
+      Membro: '85,255,255'
+      Subterreno: '255,255,255'
+      Outros: '255,85,85'
+      Administrativo: '255,170,0'
+
 #
 # ══════════════════════════════════  AVISOS  ════════════════════════════════
 #

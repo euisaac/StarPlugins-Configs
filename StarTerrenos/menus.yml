@@ -57,6 +57,16 @@ Menu do terreno:
         - ''
         - '&aCLIQUE &fpara gerenciar'
 
+    Visualizacao:
+      Slot: 29
+      Material: 'ENDER_EYE'
+      Nome: '&a&lBORDAS'
+      Lore:
+        - '&7As divisas que acendem'
+        - '&7quando voce chega perto.'
+        - ''
+        - '&aCLIQUE &fpara escolher'
+
     Bandeiras:
       Slot: 13
       Material: 'REDSTONE_TORCH'
@@ -655,3 +665,95 @@ Menu de confirmar:
       Nome: '&c&lCANCELAR'
       Lore:
         - '&7Volta sem mudar nada.'
+
+#
+# ═════════════════════════════  MENU DE BORDAS  ══════════════════════════════
+#
+# O que cada jogador ve das divisas (o /terreno visualizacao). A escolha fica
+# guardada no banco, uma para cada jogador.
+Menu de visualizacao:
+  Titulo: '&8Bordas dos terrenos'
+  Linhas: 4
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Ativar:
+      Slot: 4
+      Material: 'ENDER_EYE'
+      Nome: '&a&lBORDAS DOS TERRENOS'
+      Lore:
+        - '&7A divisa acende sozinha'
+        - '&7quando voce chega perto.'
+        - ''
+        - '&7 ⤷ Estado: {estado}'
+        - ''
+        - '&aCLIQUE &fpara mudar'
+
+    Proprio:
+      Slot: 19
+      Material: 'LIME_WOOL'
+      Nome: '&a&lMEUS TERRENOS'
+      Lore:
+        - '&7A divisa dos terrenos'
+        - '&7que sao seus.'
+        - ''
+        - '&7 ⤷ Estado: {estado}'
+        - ''
+        - '&aCLIQUE &fpara mudar'
+
+    Membro:
+      Slot: 20
+      Material: 'LIGHT_BLUE_WOOL'
+      Nome: '&b&lONDE SOU MEMBRO'
+      Lore:
+        - '&7A divisa dos terrenos em'
+        - '&7que voce tem confianca.'
+        - ''
+        - '&7 ⤷ Estado: {estado}'
+        - ''
+        - '&aCLIQUE &fpara mudar'
+
+    Subterreno:
+      Slot: 21
+      Material: 'WHITE_WOOL'
+      Nome: '&f&lSUBTERRENOS'
+      Lore:
+        - '&7A divisa das subdivisoes'
+        - '&7dentro dos terrenos.'
+        - ''
+        - '&7 ⤷ Estado: {estado}'
+        - ''
+        - '&aCLIQUE &fpara mudar'
+
+    Outros:
+      Slot: 22
+      Material: 'RED_WOOL'
+      Nome: '&c&lTERRENOS DE OUTROS'
+      Lore:
+        - '&7A divisa dos terrenos'
+        - '&7das outras pessoas.'
+        - ''
+        - '&7 ⤷ Estado: {estado}'
+        - ''
+        - '&aCLIQUE &fpara mudar'
+
+    Administrativo:
+      Slot: 23
+      Material: 'ORANGE_WOOL'
+      Nome: '&6&lTERRENOS DO SERVIDOR'
+      Lore:
+        - '&7A divisa das areas'
+        - '&7protegidas do servidor.'
+        - ''
+        - '&7 ⤷ Estado: {estado}'
+        - ''
+        - '&aCLIQUE &fpara mudar'
+
+    Voltar:
+      Slot: 31
+      Material: 'BARRIER'
+      Nome: '&cVoltar'
