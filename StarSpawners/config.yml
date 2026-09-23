@@ -7,6 +7,12 @@ geral:
   # Idioma não é selecionável, o plugin é 100% em português.
   verificar-atualizacoes: true
   debug: false
+  # Esconde do console o log "Named entity ... died:" que o Paper cospe para
+  # cada mob NOMEADO que morre. Como o plugin põe o sufixo de contagem ("xN")
+  # no nome dos mobs empilhados, numa base com muitos geradores esse log inunda
+  # o console. Só esconde as mortes dos mobs de gerador (com "xN" no nome);
+  # mortes de mobs nomeados por outros plugins continuam aparecendo.
+  esconder-log-morte-mobs: true
   # Impede que mobs (zumbi, piglin, raposa, etc - o vanilla deixa vários tipos
   # pegarem item do chão) peguem item, spawner ou drop do chão. Spawner e item
   # de upgrade nunca podem ser pegos por mob, independente dessa opção. Sem
