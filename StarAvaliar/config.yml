@@ -1,0 +1,152 @@
+#  ____  _                 _                _ _
+# / ___|| |_ __ _ _ __   / \__   ____ _| (_) __ _ _ __
+# \___ \| __/ _` | '__| / _ \ \ / / _` | | |/ _` | '__|
+#  ___) | || (_| | |   / ___ \ V / (_| | | | (_| | |
+# |____/ \__\__,_|_|  /_/   \_\_/ \__,_|_|_|\__,_|_|
+#
+# Avaliacoes: onde o jogador conheceu o servidor, avaliacao do servidor com
+# sugestao de melhoria e avaliacao da equipe.
+# Opcoes da origem: origens.yml | Menus: menus.yml | Mensagens: mensagens.yml
+# Discord: discord.yml | Nomes dos comandos: comandos.yml
+#
+# Tempos: 30s, 10m, 2h, 1d, 1w (e combinados: 1d12h). 0 desliga.
+# Recompensas: comandos rodados pelo console. {jogador} = quem respondeu.
+
+Versao do modelo: 1
+
+# Nome deste servidor. Numa rede com o mesmo MySQL, diz onde cada resposta foi dada.
+Servidor: 'servidor'
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL (compartilhado pela rede: quem respondeu
+  # num servidor nao e perguntado de novo no outro).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'staravaliar_'
+  # Com MySQL, de quanto em quanto tempo as medias e contagens dos outros servidores chegam.
+  Sincronizar a cada segundos: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+# De onde sai o "tempo de jogo" que libera a avaliacao do servidor.
+Tempo jogado:
+  # ESTATISTICA: o tempo que o proprio Minecraft conta (inclui o que o jogador
+  #              jogou antes do plugin ser instalado; e por mundo/servidor).
+  # PLUGIN:      so o tempo que o StarAvaliar viu (vale para a rede inteira com MySQL).
+  Fonte: ESTATISTICA
+
+# ----------------------- Onde voce conheceu o servidor? ----------------------
+Origem:
+  Ativar: true
+  # true: pergunta so para quem entra pela primeira vez no servidor.
+  # false: pergunta para todo mundo que ainda nao respondeu (bom ao instalar
+  #        num servidor que ja tem jogadores).
+  Apenas novatos: false
+  # Espera antes de abrir o menu depois de entrar (segundos).
+  Atraso segundos: 3
+  # Fechar o menu sem responder reabre ele.
+  Obrigatorio: true
+  # Quantas vezes reabre na mesma sessao antes de desistir ate o proximo login.
+  Reabrir no maximo: 3
+  # Quem pulou (botao Pular) e perguntado de novo no proximo login?
+  Perguntar de novo quem pulou: false
+  # Rodadas quando o jogador responde (qualquer opcao). Cada opcao pode ter as suas no origens.yml.
+  Recompensas: []
+  # Avisa quem tem staravaliar.notificar quando alguem responde.
+  Avisar staff: false
+
+# Opcao com "Indicacao: true" no origens.yml: o jogador digita o nick de quem o chamou.
+Indicacao:
+  # O nick precisa ser de alguem que ja entrou no servidor.
+  Exigir jogador conhecido: true
+  # Nao aceita indicacao de alguem com o mesmo IP (conta alternativa).
+  Bloquear mesmo IP: true
+  # Quem indicou so ganha depois que o indicado jogar este tempo (evita conta fake).
+  Tempo minimo do indicado: 1h
+  # {indicador} = quem indicou, {jogador} = quem foi indicado.
+  Recompensas indicador:
+    - 'give {indicador} diamond 3'
+  Recompensas indicado: []
+
+# ------------------------- Avaliacao do servidor ----------------------------
+Avaliacao:
+  Ativar: true
+  # Tempo de jogo necessario para pedir a avaliacao.
+  Tempo necessario: 1d
+  # Pede de novo depois deste tempo (0 = so uma vez na vida).
+  Repetir a cada: 30d
+  # MENU: abre o menu de estrelas sozinho.
+  # MENSAGEM: manda um aviso clicavel no chat (a cada 'Lembrar a cada').
+  Modo: MENU
+  Lembrar a cada: 30m
+  # "Avaliar mais tarde" ou fechar o menu adia por este tempo de jogo.
+  Adiar: 2h
+  # O menu so abre sozinho se o jogador nao estiver com outro inventario aberto
+  # e nao tiver levado dano nestes segundos (nao atrapalha PvP).
+  Segundos sem combate: 10
+  Sugestao:
+    Pedir: true
+    # false: o jogador pode digitar 'pular'.
+    Obrigatoria: false
+    Minimo de letras: 5
+    Maximo de letras: 250
+    # So pede sugestao para notas ate este valor (5 = sempre pede).
+    Pedir ate estrelas: 5
+  Recompensas: []
+  # Extra para quem escreveu uma sugestao.
+  Recompensas por sugestao: []
+  # Avisa quem tem staravaliar.notificar. So avaliacoes ate esta nota (5 = todas).
+  Avisar staff ate estrelas: 5
+
+# ---------------------------- Avaliacao da equipe ---------------------------
+Staff:
+  Ativar: true
+  # Mostra no /avaliarstaff quem esta offline.
+  Mostrar offline: true
+  # Some da lista quem nao entra ha este tempo (0 = nunca some). Adicionados a mao nao somem.
+  Esconder depois de: 30d
+  # Tempo para o mesmo jogador avaliar o mesmo staff de novo (0 = so uma vez).
+  Intervalo por staff: 7d
+  # Tempo minimo de jogo para poder avaliar a equipe (0 = qualquer um).
+  Tempo minimo: 30m
+  Comentario:
+    Pedir: true
+    Obrigatorio: false
+    Minimo de letras: 3
+    Maximo de letras: 200
+  # O staff avaliado ve quem avaliou? (false = so a nota e o comentario)
+  Mostrar autor para o staff: false
+  # Avisa o staff quando ele recebe uma avaliacao (na hora ou no proximo login).
+  Avisar o staff: true
+  # Tempo que o staff espera para pedir avaliacao de novo ao mesmo jogador.
+  Intervalo do pedido: 5m
+  # Recompensas para quem avaliou. {staff} = staff avaliado.
+  Recompensas: []
+  # Cargo mostrado no menu. Com PlaceholderAPI, um placeholder resolve o cargo
+  # (ex.: '%luckperms_primary_group_name%'). Vazio = usa a lista 'Cargos'.
+  Cargo placeholder: ''
+  # permissao: nome do cargo -- a primeira que o staff tiver (concedida com o
+  # nome inteiro, nao pelo '*') vale.
+  Cargos:
+    staravaliar.cargo.dono: '&4Dono'
+    staravaliar.cargo.admin: '&cAdministrador'
+    staravaliar.cargo.moderador: '&2Moderador'
+    staravaliar.cargo.ajudante: '&eAjudante'
+  Cargo padrao: '&bEquipe'
+  # Peso da media ponderada do ranking: com poucos votos a media puxa para 3.
+  Peso do ranking: 5
+
+Menus:
+  # Milissegundos minimos entre dois cliques (evita clique duplo).
+  Intervalo entre cliques: 150
+
+# Sons (nome do som; vazio desliga). Funciona com nomes antigos e novos.
+Sons:
+  Abrir: 'BLOCK_NOTE_BLOCK_PLING'
+  Clique: 'UI_BUTTON_CLICK'
+  Estrela: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP'
+  Erro: 'ENTITY_VILLAGER_NO'

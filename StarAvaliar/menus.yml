@@ -1,0 +1,631 @@
+# Menus do StarAvaliar. (O menu "Onde voce conheceu o servidor?" fica no origens.yml.)
+# Itens: Slot, Material, Nome, Lore, Brilho, Quantidade, Dono (cabeca de um jogador) e Textura (hash, URL ou base64).
+# {barra} vira as estrelas desenhadas (cheias e vazias).
+Versao do modelo: 1
+
+# Vidro nos slots vazios dos menus dos jogadores (vazio = sem preenchimento).
+Preenchimento: 'BLACK_STAINED_GLASS_PANE'
+
+# Setas e botoes das listas.
+Navegacao:
+  Anterior:
+    Material: ARROW
+    Nome: '&aPagina anterior'
+    Lore:
+      - '&7Pagina {pagina} de {paginas}'
+  Proxima:
+    Material: ARROW
+    Nome: '&aProxima pagina'
+    Lore:
+      - '&7Pagina {pagina} de {paginas}'
+  Voltar:
+    Material: ARROW
+    Nome: '&cVoltar'
+  Fechar:
+    Material: BARRIER
+    Nome: '&cFechar'
+  Carregando:
+    Material: CLOCK
+    Nome: '&eCarregando...'
+  Vazio:
+    Material: BARRIER
+    Nome: '&cNada por aqui'
+    Lore:
+      - '&7Ainda nao ha nada para mostrar.'
+
+# ------------------------------ Estrelas ------------------------------------
+# Usado na avaliacao do servidor e na da equipe.
+Estrelas:
+  Servidor:
+    Titulo: '&8Avalie sua experiencia'
+    Linhas: 3
+  Staff:
+    Titulo: '&8Avaliar {staff}'
+    Linhas: 3
+  # Um slot por nota, da 1 a 5.
+  Slots: [11, 12, 13, 14, 15]
+  Estrela:
+    Material: PLAYER_HEAD
+    Textura: '717d7c2d526592f659ed97e9deafa35cccc523f58608601a212fa68bc3528626'
+    # A quantidade do item acompanha a nota (1 a 5).
+    Nome: '{barra} &f{nota}/5'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&eClique para dar {nota} estrela(s)!'
+  # Cor das estrelas cheias e vazias no {barra}.
+  Cor cheia: '&6'
+  Cor vazia: '&8'
+  Descricoes:
+    '1': '&cMuito ruim'
+    '2': '&6Ruim'
+    '3': '&eRegular'
+    '4': '&aBom'
+    '5': '&2Excelente!'
+  Info servidor:
+    Slot: 4
+    Material: BOOK
+    Nome: '&aComo esta sendo sua experiencia?'
+    Lore:
+      - '&7Voce ja jogou &f{tempo} &7aqui.'
+      - '&7De uma nota de 1 a 5 estrelas'
+      - '&7e depois conte o que podemos melhorar.'
+  Info staff:
+    Slot: 4
+    Material: PLAYER_HEAD
+    Dono: '{staff}'
+    Nome: '&a{staff}'
+    Lore:
+      - '&7Cargo: {cargo}'
+      - ''
+      - '&7Como foi o atendimento dele?'
+  Depois:
+    Slot: 22
+    Material: CLOCK
+    Nome: '&eAvaliar mais tarde'
+    Lore:
+      - '&7Pergunto de novo daqui a'
+      - '&f{adiar} &7de jogo.'
+  Voltar:
+    Slot: 18
+    Material: ARROW
+    Nome: '&cVoltar'
+
+# ------------------------------ /avaliar ------------------------------------
+# Acao: SERVIDOR, STAFF, ORIGEM, FECHAR. Item sem Acao = enfeite.
+Avaliar:
+  Titulo: '&8Avaliacoes'
+  Linhas: 3
+  Itens:
+    Servidor:
+      Slot: 11
+      Acao: SERVIDOR
+      Material: NETHER_STAR
+      Nome: '&eAvaliar o servidor'
+      Lore:
+        - '&7De sua nota e mande uma'
+        - '&7sugestao de melhoria.'
+        - ''
+        - '&7Media do servidor: &6{media} &7({total} avaliacoes)'
+        - ''
+        - '{situacao}'
+    Staff:
+      Slot: 13
+      Acao: STAFF
+      Material: PLAYER_HEAD
+      Textura: '717d7c2d526592f659ed97e9deafa35cccc523f58608601a212fa68bc3528626'
+      Nome: '&bAvaliar a equipe'
+      Lore:
+        - '&7Conte como foi o atendimento'
+        - '&7da nossa equipe.'
+        - ''
+        - '&eClique para ver a equipe!'
+    Origem:
+      Slot: 15
+      Acao: ORIGEM
+      Material: COMPASS
+      Nome: '&aOnde voce conheceu o servidor?'
+      Lore:
+        - '{situacao}'
+
+# --------------------------- /avaliarstaff ----------------------------------
+Staff lista:
+  Titulo: '&8Avaliar a equipe ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Membro:
+    Material: PLAYER_HEAD
+    Dono: '{staff}'
+    Nome: '{status_cor}{staff}'
+    Lore:
+      - '&7Cargo: {cargo}'
+      - '&7Status: {status}'
+      - '&7Media: &6{media} &7({total} avaliacoes)'
+      - ''
+      - '{situacao}'
+  Online: '&aOnline'
+  Offline: '&7Offline'
+
+# ============================ PAINEL DA STAFF ===============================
+# Acao: ORIGEM, SERVIDOR, SUGESTOES, RANKING, INDICACOES, EDITAR, AJUSTES, RECARREGAR, FECHAR.
+Painel:
+  Titulo: '&8StarAvaliar - Painel'
+  Linhas: 5
+  Itens:
+    Origem:
+      Slot: 11
+      Acao: ORIGEM
+      Material: COMPASS
+      Nome: '&aOnde conheceram o servidor'
+      Lore:
+        - '&7Respostas: &f{origens}'
+        - '&7Mais escolhida: &f{origem_top}'
+        - ''
+        - '&eClique para ver os numeros!'
+    Servidor:
+      Slot: 13
+      Acao: SERVIDOR
+      Material: NETHER_STAR
+      Nome: '&eAvaliacoes do servidor'
+      Lore:
+        - '&7Media: &6{media} &7{barra}'
+        - '&7Avaliacoes: &f{total}'
+        - ''
+        - '&eClique para ver a distribuicao!'
+    Sugestoes:
+      Slot: 15
+      Acao: SUGESTOES
+      Material: WRITABLE_BOOK
+      Nome: '&bSugestoes de melhoria'
+      Lore:
+        - '&7Aceite, recuse, responda e'
+        - '&7arquive as sugestoes.'
+        - ''
+        - '&eClique para ver!'
+    Ranking:
+      Slot: 29
+      Acao: RANKING
+      Material: GOLDEN_HELMET
+      Nome: '&6Ranking da equipe'
+      Lore:
+        - '&7Membros: &f{equipe}'
+        - '&7Melhor avaliado: &f{staff_top}'
+        - ''
+        - '&eClique para ver!'
+    Indicacoes:
+      Slot: 31
+      Acao: INDICACOES
+      Material: PLAYER_HEAD
+      Textura: 'd45f4d139c9e89262ec06b27aaad73fa488ab49290d2ccd685a2554725373c9b'
+      Nome: '&dQuem mais indicou'
+      Lore:
+        - '&7Jogadores que mais trouxeram'
+        - '&7amigos para o servidor.'
+    Editar:
+      Slot: 33
+      Acao: EDITAR
+      Material: ANVIL
+      Nome: '&aEditar opcoes da origem'
+      Lore:
+        - '&7Adicione, remova e edite as opcoes'
+        - '&7e subopcoes (YouTubers, sites...).'
+    Ajustes:
+      Slot: 40
+      Acao: AJUSTES
+      Material: COMPARATOR
+      Nome: '&7Ajustes'
+      Lore:
+        - '&7Liga e desliga os recursos e'
+        - '&7muda os tempos sem abrir arquivo.'
+    Recarregar:
+      Slot: 44
+      Acao: RECARREGAR
+      Material: SUNFLOWER
+      Nome: '&eRecarregar'
+      Lore:
+        - '&7Rele os arquivos de configuracao.'
+
+# Botao de periodo das estatisticas (clique troca: Tudo -> Hoje -> 7 dias -> 30 dias).
+Periodo:
+  Material: CLOCK
+  Nome: '&ePeriodo: &f{periodo}'
+  Lore:
+    - '&7Clique para trocar.'
+  Nomes:
+    TUDO: 'Desde o inicio'
+    HOJE: 'Ultimas 24 horas'
+    SEMANA: 'Ultimos 7 dias'
+    MES: 'Ultimos 30 dias'
+
+Origem estatisticas:
+  Titulo: '&8Onde conheceram o servidor'
+  Titulo sub: '&8{opcao}'
+  Linhas: 6
+  # A lore de cada opcao ganha estas linhas.
+  Lore extra:
+    - ''
+    - '&7Respostas: &f{quantidade} &8({porcento}%)'
+    - '{grafico}'
+  Lore subopcoes: '&eClique para ver as subopcoes!'
+  Lore respostas: '&eClique para ver o que escreveram!'
+  Total:
+    Slot: 4
+    Material: BOOK
+    Nome: '&aTotal de respostas: &f{total}'
+    Lore:
+      - '&7No periodo escolhido.'
+
+Respostas:
+  Titulo: '&8Respostas: {opcao}'
+  Resposta:
+    Material: PAPER
+    Nome: '&f{jogador}'
+    Lore:
+      - '&7Resposta: &f{texto}'
+      - '&7Escolha: &f{sub}'
+      - '&7Data: &f{data}'
+
+Servidor estatisticas:
+  Titulo: '&8Avaliacoes do servidor'
+  Linhas: 4
+  Media:
+    Slot: 4
+    Material: NETHER_STAR
+    Nome: '&eMedia: &6{media} {barra}'
+    Lore:
+      - '&7Avaliacoes: &f{total}'
+      - '&7Periodo: &f{periodo}'
+  # Slots das notas 1 a 5.
+  Slots notas: [20, 21, 22, 23, 24]
+  Nota:
+    Material: PLAYER_HEAD
+    Textura: '717d7c2d526592f659ed97e9deafa35cccc523f58608601a212fa68bc3528626'
+    Nome: '{barra}'
+    Lore:
+      - '&7Avaliacoes: &f{quantidade} &8({porcento}%)'
+      - '{grafico}'
+      - ''
+      - '&eClique para ver as sugestoes desta nota!'
+  Sugestoes:
+    Slot: 31
+    Material: WRITABLE_BOOK
+    Nome: '&bVer sugestoes'
+
+Sugestoes:
+  Titulo: '&8Sugestoes ({pagina}/{paginas})'
+  Item:
+    Material: PAPER
+    Nome: '&f{jogador} {barra}'
+    Lore:
+      - '&7Estado: {estado}'
+      - '&7Data: &f{data} &8| &7{servidor}'
+      - ''
+      - '&f{sugestao}'
+      - ''
+      - '&eClique para abrir!'
+  # Filtros (rodape).
+  Filtro estado:
+    Material: HOPPER
+    Nome: '&eEstado: &f{filtro}'
+    Lore:
+      - '&7Clique para trocar.'
+  Filtro nota:
+    Material: NETHER_STAR
+    Nome: '&eNota: &f{filtro}'
+    Lore:
+      - '&7Clique para trocar.'
+  Filtro texto:
+    Material: NAME_TAG
+    Nome: '&eSo com sugestao: &f{filtro}'
+    Lore:
+      - '&7Clique para trocar.'
+
+Sugestao:
+  Titulo: '&8Sugestao #{id}'
+  Linhas: 4
+  Info:
+    Slot: 4
+    Material: PAPER
+    Nome: '&f{jogador} {barra}'
+    Lore:
+      - '&7Estado: {estado}'
+      - '&7Data: &f{data} &8| &7{servidor}'
+      - '&7Resposta: &f{resposta}'
+      - ''
+      - '&f{sugestao}'
+  Aceitar:
+    Slot: 19
+    Material: LIME_DYE
+    Nome: '&aAceitar'
+    Lore:
+      - '&7Marca como aceita e avisa o jogador.'
+  Recusar:
+    Slot: 21
+    Material: RED_DYE
+    Nome: '&cRecusar'
+    Lore:
+      - '&7Marca como recusada e avisa o jogador.'
+  Responder:
+    Slot: 23
+    Material: WRITABLE_BOOK
+    Nome: '&bResponder'
+    Lore:
+      - '&7Escreva uma resposta no chat.'
+      - '&7O jogador recebe na hora ou no proximo login.'
+  Arquivar:
+    Slot: 25
+    Material: CHEST
+    Nome: '&7Arquivar'
+    Lore:
+      - '&7Tira da lista de novas.'
+  Apagar:
+    Slot: 35
+    Material: LAVA_BUCKET
+    Nome: '&4Apagar'
+    Lore:
+      - '&7Apaga a avaliacao do banco.'
+  Voltar:
+    Slot: 27
+    Material: ARROW
+    Nome: '&cVoltar'
+
+Ranking:
+  Titulo: '&8Ranking da equipe ({pagina}/{paginas})'
+  Membro:
+    Material: PLAYER_HEAD
+    Dono: '{staff}'
+    Nome: '&e#{posicao} &f{staff}'
+    Lore:
+      - '&7Cargo: {cargo}'
+      - '&7Media: &6{media} {barra}'
+      - '&7Avaliacoes: &f{total}'
+      - '&8{d5} x5  {d4} x4  {d3} x3  {d2} x2  {d1} x1'
+      - ''
+      - '&eClique para ver os comentarios!'
+  Adicionar:
+    Material: EMERALD
+    Nome: '&aAdicionar membro'
+    Lore:
+      - '&7Poe na lista alguem sem a'
+      - '&7permissao staravaliar.staff.'
+
+Staff detalhe:
+  Titulo: '&8{staff} ({pagina}/{paginas})'
+  Info:
+    Material: PLAYER_HEAD
+    Dono: '{staff}'
+    Nome: '&f{staff}'
+    Lore:
+      - '&7Cargo: {cargo}'
+      - '&7Media: &6{media} {barra}'
+      - '&7Avaliacoes: &f{total}'
+      - '&8{d5} x5  {d4} x4  {d3} x3  {d2} x2  {d1} x1'
+  Comentario:
+    Material: PAPER
+    Nome: '{barra} &7por &f{jogador}'
+    Lore:
+      - '&7Data: &f{data} {pedido}'
+      - ''
+      - '&f{comentario}'
+      - ''
+      - '&cShift + botao direito apaga.'
+  Zerar:
+    Material: TNT
+    Nome: '&cZerar avaliacoes'
+    Lore:
+      - '&7Apaga todas as avaliacoes deste staff.'
+  Remover:
+    Material: BARRIER
+    Nome: '&cTirar da lista'
+    Lore:
+      - '&7Tira da lista de avaliacao.'
+      - '&7(Volta se entrar com a permissao.)'
+
+Indicacoes:
+  Titulo: '&8Quem mais indicou'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '&e#{posicao} &f{jogador}'
+    Lore:
+      - '&7Amigos trazidos: &f{quantidade}'
+
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Sim:
+    Slot: 11
+    Material: LIME_WOOL
+    Nome: '&aConfirmar'
+    Lore:
+      - '&7{acao}'
+  Nao:
+    Slot: 15
+    Material: RED_WOOL
+    Nome: '&cCancelar'
+
+Editor:
+  Titulo lista: '&8Editar opcoes'
+  Titulo sub: '&8Subopcoes de {opcao}'
+  Titulo opcao: '&8Editar: {opcao}'
+  Lore lista:
+    - ''
+    - '&7Slot: &f{slot} &8| &7Ativa: {ativa}'
+    - '&7Digitar: {digitar} &8| &7Indicacao: {indicacao}'
+    - '&7Subopcoes: &f{subopcoes}'
+    - ''
+    - '&eEsquerdo: &7editar'
+    - '&eDireito: &7ligar/desligar'
+  Adicionar:
+    Material: EMERALD
+    Nome: '&aAdicionar opcao'
+    Lore:
+      - '&7Digite o nome da nova opcao no chat.'
+  Ver menu:
+    Material: ENDER_EYE
+    Nome: '&bVer como o jogador ve'
+    Lore:
+      - '&7Abre o menu de verdade (sem gravar resposta).'
+  # Botoes da tela de uma opcao (tela de 4 linhas). Indicacao, Subopcoes e
+  # Submenu so aparecem nas opcoes principais.
+  Botoes:
+    Nome:
+      Slot: 10
+      Material: NAME_TAG
+      Nome: '&eNome'
+      Lore:
+        - '&7Digite o nome no chat (aceita cores &).'
+    Lore:
+      Slot: 11
+      Material: PAPER
+      Nome: '&eDescricao (lore)'
+      Lore:
+        - '&7Digite as linhas separadas por |'
+        - '&7ou "limpar" para apagar.'
+    Icone:
+      Slot: 12
+      Material: PAINTING
+      Nome: '&eIcone'
+      Lore:
+        - '&7Clique num item do seu inventario'
+        - '&7(uma cabeca com textura vale!)'
+        - '&7ou clique aqui e digite:'
+        - '&f textura:<hash> &7| &fjogador:<nick> &7| &fMATERIAL'
+    Slot:
+      Slot: 13
+      Material: ITEM_FRAME
+      Nome: '&ePosicao no menu: &f{slot}'
+      Lore:
+        - '&7Digite o numero do slot (0 = primeiro).'
+    Digitar:
+      Slot: 14
+      Material: WRITABLE_BOOK
+      Nome: '&eEscrever resposta: &f{digitar}'
+      Lore:
+        - '&7Ligado: depois do clique o jogador'
+        - '&7escreve a resposta no chat.'
+    Pergunta:
+      Slot: 15
+      Material: OAK_SIGN
+      Nome: '&ePergunta do chat'
+      Lore:
+        - '&7Atual: &f{pergunta}'
+        - '&7Digite o texto ou "limpar".'
+    Indicacao:
+      Slot: 16
+      Material: PLAYER_HEAD
+      Textura: 'd45f4d139c9e89262ec06b27aaad73fa488ab49290d2ccd685a2554725373c9b'
+      Nome: '&eIndicacao de amigo: &f{indicacao}'
+      Lore:
+        - '&7Ligado: o jogador digita o nick de'
+        - '&7quem o chamou (recompensa no config.yml).'
+    Subopcoes:
+      Slot: 19
+      Material: CHEST
+      Nome: '&eSubopcoes: &f{subopcoes}'
+      Lore:
+        - '&7Com subopcoes, o clique abre um'
+        - '&7segundo menu (ex.: qual YouTuber).'
+    Submenu:
+      Slot: 20
+      Material: BOOK
+      Nome: '&eTitulo do submenu'
+      Lore:
+        - '&7Atual: &f{submenu}'
+    Recompensas:
+      Slot: 21
+      Material: GOLD_INGOT
+      Nome: '&eRecompensas: &f{recompensas}'
+      Lore:
+        - '&7Esquerdo: adicionar um comando'
+        - '&7Direito: limpar todos'
+        - '&7Use {jogador} para o nick.'
+    Ativar:
+      Slot: 22
+      Material: LEVER
+      Nome: '&eAtiva: &f{ativa}'
+      Lore:
+        - '&7Desligada some do menu, mas as'
+        - '&7respostas antigas continuam contando.'
+    Remover:
+      Slot: 26
+      Material: LAVA_BUCKET
+      Nome: '&cRemover'
+      Lore:
+        - '&7Apaga a opcao do arquivo.'
+    Voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Ajustes:
+  Titulo: '&8Ajustes'
+  Ligado:
+    Material: LIME_DYE
+    Nome: '&a{nome}: &f{valor}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&eClique para desligar.'
+  Desligado:
+    Material: GRAY_DYE
+    Nome: '&c{nome}: &f{valor}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&eClique para ligar.'
+  Tempo:
+    Material: CLOCK
+    Nome: '&e{nome}: &f{valor}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&eClique e digite o tempo (30m, 2h, 1d).'
+  Ciclo:
+    Material: HOPPER
+    Nome: '&e{nome}: &f{valor}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&eClique para trocar.'
+  Nomes:
+    origem: 'Pergunta da origem'
+    novatos: 'So para novatos'
+    obrigatorio: 'Origem obrigatoria'
+    pular: 'Botao Pular'
+    indicacao tempo: 'Tempo do indicado'
+    indicacao ip: 'Bloquear mesmo IP'
+    avaliacao: 'Avaliacao do servidor'
+    tempo necessario: 'Tempo para avaliar'
+    repetir: 'Pedir de novo a cada'
+    modo: 'Modo da avaliacao'
+    adiar: 'Adiar por'
+    sugestao: 'Pedir sugestao'
+    sugestao obrigatoria: 'Sugestao obrigatoria'
+    fonte: 'Fonte do tempo de jogo'
+    staff: 'Avaliacao da equipe'
+    staff intervalo: 'Intervalo por staff'
+    staff tempo: 'Tempo minimo p/ avaliar equipe'
+    comentario: 'Pedir comentario'
+    autor: 'Staff ve quem avaliou'
+    offline: 'Mostrar staff offline'
+  Descricoes:
+    origem: 'Pergunta onde o jogador conheceu o servidor.'
+    novatos: 'So quem entra pela 1a vez responde.'
+    obrigatorio: 'Fechar o menu reabre ele.'
+    pular: 'Mostra o botao para pular a pergunta.'
+    indicacao tempo: 'Quem indicou ganha depois deste tempo.'
+    indicacao ip: 'Recusa indicacao de alguem do mesmo IP.'
+    avaliacao: 'Pede nota de 1 a 5 e sugestao.'
+    tempo necessario: 'Tempo de jogo ate pedir a avaliacao.'
+    repetir: 'Pede de novo depois disto (0 = uma vez).'
+    modo: 'MENU abre sozinho; MENSAGEM manda aviso.'
+    adiar: 'Tempo de jogo ao clicar em "mais tarde".'
+    sugestao: 'Pede uma sugestao no chat depois da nota.'
+    sugestao obrigatoria: 'Nao deixa digitar pular.'
+    fonte: 'ESTATISTICA (Minecraft) ou PLUGIN.'
+    staff: 'Liga o /avaliarstaff.'
+    staff intervalo: 'Tempo para avaliar o mesmo staff de novo.'
+    staff tempo: 'Tempo de jogo minimo para avaliar a equipe.'
+    comentario: 'Pede um comentario depois da nota.'
+    autor: 'O staff avaliado ve o nick de quem avaliou.'
+    offline: 'Mostra no /avaliarstaff quem esta offline.'

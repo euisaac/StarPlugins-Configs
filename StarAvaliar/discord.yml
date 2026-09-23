@@ -1,0 +1,82 @@
+# Avisos no Discord por webhook.
+# Crie o webhook em: Configuracoes do canal -> Integracoes -> Webhooks -> Novo webhook -> Copiar URL.
+#
+# Cada acontecimento tem a propria mensagem (e pode ter o proprio webhook em URL:
+# por exemplo, sugestoes num canal e avaliacoes da equipe em outro, so da staff).
+# Conteudo: texto fora do embed (mencoes: @everyone, <@&ID_DO_CARGO>, <@ID_DO_USUARIO>).
+# Embed: Titulo, Descricao, Link, Cor (#RRGGBB ou {cor}), Miniatura, Imagem, Autor (Nome/Icone/Link),
+#        Rodape (Texto/Icone), Horario (true/false) e Campos (Nome, Valor, Em linha).
+# Campo com valor vazio nao aparece. \n quebra linha.
+# {cor} muda com a nota: vermelho para 1 estrela, verde para 5.
+
+Versao do modelo: 1
+
+Ativar: false
+URL: ''
+Usuario: 'StarAvaliar'
+Avatar: ''
+
+Eventos:
+  Avaliacao do servidor:
+    Ativar: true
+    URL: ''
+    Conteudo: ''
+    # {jogador} {id} {estrelas} {estrelas_emoji} {descricao} {sugestao} {media} {total} {servidor} {data} {cor}
+    Embed:
+      Titulo: 'Nova avaliacao do servidor'
+      Descricao: '**{jogador}** deu {estrelas_emoji} ({estrelas}/5 - {descricao})'
+      Cor: '{cor}'
+      Miniatura: 'https://mc-heads.net/avatar/{jogador}'
+      Horario: true
+      Rodape:
+        Texto: 'Servidor {servidor} - media {media} em {total} avaliacoes'
+      Campos:
+        - Nome: 'Sugestao de melhoria'
+          Valor: '{sugestao}'
+          Em linha: false
+  Avaliacao da equipe:
+    Ativar: true
+    URL: ''
+    Conteudo: ''
+    # {jogador} {staff} {cargo} {id} {estrelas} {estrelas_emoji} {comentario} {pedido} {media} {total} {servidor} {data} {cor}
+    Embed:
+      Titulo: 'Avaliacao da equipe: {staff}'
+      Descricao: '**{jogador}** avaliou **{staff}** ({cargo}) com {estrelas_emoji}'
+      Cor: '{cor}'
+      Miniatura: 'https://mc-heads.net/avatar/{staff}'
+      Horario: true
+      Rodape:
+        Texto: 'Media de {staff}: {media} em {total} avaliacoes'
+      Campos:
+        - Nome: 'Comentario'
+          Valor: '{comentario}'
+          Em linha: false
+        - Nome: 'Pedida pelo staff'
+          Valor: '{pedido}'
+          Em linha: true
+  Origem:
+    Ativar: false
+    URL: ''
+    Conteudo: ''
+    # {jogador} {opcao} {subopcao} {resposta} {texto} {servidor} {data} {total}
+    Embed:
+      Titulo: 'Novo jogador'
+      Descricao: '**{jogador}** conheceu o servidor por **{resposta}**'
+      Cor: '#55FF55'
+      Miniatura: 'https://mc-heads.net/avatar/{jogador}'
+      Horario: true
+      Campos:
+        - Nome: 'Escreveu'
+          Valor: '{texto}'
+          Em linha: false
+  Indicacao:
+    Ativar: true
+    URL: ''
+    Conteudo: ''
+    # {indicador} {jogador} {servidor}
+    Embed:
+      Titulo: 'Indicacao confirmada'
+      Descricao: '**{indicador}** trouxe **{jogador}** para o servidor!'
+      Cor: '#FF55FF'
+      Miniatura: 'https://mc-heads.net/avatar/{indicador}'
+      Horario: true

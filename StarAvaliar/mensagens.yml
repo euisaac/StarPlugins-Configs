@@ -1,0 +1,225 @@
+# Mensagens do StarAvaliar. Mensagem vazia ('') nao e enviada.
+# Mensagens com varias linhas (| do YAML) saem sem prefixo em cada linha.
+Versao do modelo: 1
+
+Prefixo: '&8[&6Avaliar&8] &7'
+
+Permissao: '&cVoce nao tem permissao para isto.'
+So jogador: '&cSo jogadores podem usar este comando.'
+Inativo: '&cO StarAvaliar esta sem banco de dados. Veja o console.'
+Carregando: '&7Seus dados ainda estao carregando, tente de novo em instantes.'
+Erro: '&cNao foi possivel salvar agora. Tente de novo.'
+Recarregado: '&aConfiguracoes recarregadas.'
+Offline: '&cO jogador &f{jogador} &cnao esta online.'
+Nunca entrou: '&cO jogador &f{jogador} &cnunca entrou no servidor.'
+Abriu: '&aMenu aberto para &f{jogador}&a.'
+Resetou: '&aRespostas de &f{jogador} &a({tipo}) apagadas: &f{quantidade}&a.'
+Sem texto: 'Sem texto'
+# Palavra que o jogador digita para pular a sugestao/comentario.
+Palavra pular: 'pular'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para voltar.'
+  Cancelado: '&7Cancelado.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Todas: 'Todas'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+
+Estados:
+  TODAS: 'Todas'
+  NOVA: '&eNova'
+  LIDA: '&7Lida'
+  ACEITA: '&aAceita'
+  RECUSADA: '&cRecusada'
+  ARQUIVADA: '&8Arquivada'
+
+# Linha {situacao} nas lores do /avaliar e /avaliarstaff.
+Situacao:
+  Servidor liberado: '&aClique para avaliar!'
+  Servidor falta tempo: '&7Disponivel em &f{tempo} &7de jogo.'
+  Servidor avaliou: '&aVoce ja avaliou o servidor. Obrigado!'
+  Servidor avaliou repetir: '&aVoce ja avaliou! &7De novo em &f{tempo}&7.'
+  Servidor desligado: '&7Indisponivel no momento.'
+  Origem pendente: '&eClique para responder!'
+  Origem respondida: '&7Voce respondeu: &f{resposta}'
+  Staff liberado: '&eClique para avaliar!'
+  Staff avaliou: '&7Voce deu {barra}&7. Obrigado!'
+  Staff avaliou espera: '&7Voce deu {barra}&7. De novo em &f{tempo}&7.'
+
+# ------------------------------- Origem --------------------------------------
+Origem:
+  Obrigado: '&aObrigado por contar! &7Voce respondeu: &f{opcao}'
+  Ja respondeu: '&7Voce ja respondeu onde conheceu o servidor. Obrigado!'
+  Responda: '&eResponda rapidinho, e so um clique! &7Isso ajuda muito o servidor.'
+  Depois: '&7Sem problemas! Voce pode responder depois com &f/avaliar origem&7.'
+  Pulou: '&7Tudo bem, pergunta pulada.'
+  Desligada: '&cEsta pergunta nao esta disponivel.'
+  Pergunta padrao: '&eEscreva sua resposta no chat:'
+  Texto curto: '&cResposta muito curta, escreva um pouco mais.'
+  Teste: '&b[Visualizacao] &7Resposta: &f{opcao} &7| texto: &f{texto} &8(nada foi salvo)'
+  Aviso staff: '&8[&6Avaliar&8] &f{jogador} &7conheceu o servidor por &f{opcao}&7.'
+  Aviso staff texto: '&8[&6Avaliar&8] &f{jogador} &7conheceu o servidor por &f{opcao}&7: &f{texto}'
+
+Indicacao:
+  Pergunta padrao: '&eDigite o nick de quem te chamou para o servidor:'
+  Nick invalido: '&cEsse nick nao e valido. Digite so o nick do jogador.'
+  Si mesmo: '&cVoce nao pode indicar a si mesmo.'
+  Desconhecido: '&cNinguem com o nick &f{nick} &centrou no servidor. Confira e digite de novo.'
+  Mesmo IP: '&cIndicacao recusada: &7a conta de quem indicou esta na mesma rede que a sua.'
+  Aguardando: '&aIndicacao registrada! &f{indicador} &aganha a recompensa quando voce jogar &f{tempo}&a.'
+  Premio indicador: '&d&lINDICACAO! &f{indicado} &7jogou no servidor por sua indicacao. Obrigado por trazer amigos!'
+  Premio indicado: '&dSua indicacao foi confirmada! &f{indicador} &7recebeu a recompensa.'
+
+# ------------------------- Avaliacao do servidor ----------------------------
+Avaliacao:
+  Desligada: '&cA avaliacao do servidor esta desligada.'
+  Falta tempo: '&cVoce podera avaliar o servidor depois de jogar mais &f{tempo}&c.'
+  Ja avaliou: '&7Voce ja avaliou o servidor. Obrigado!'
+  Ja avaliou repetir: '&7Voce ja avaliou o servidor. Podera avaliar de novo em &f{tempo}&7.'
+  Adiou: '&7Tudo bem! Pergunto de novo daqui a &f{tempo} &7de jogo.'
+  Fechou: '&7Sem problemas, pergunto de novo daqui a &f{tempo} &7de jogo. &8(/avaliar)'
+  Obrigado: '&aObrigado pela avaliacao! &7Voce deu {barra}&7.'
+  Sugestao: |-
+
+    &eO que podemos melhorar no servidor?
+    &7Escreva sua sugestao no chat ({minimo} a {maximo} letras).
+    &7Digite &f{pular} &7para enviar sem sugestao.
+  Sugestao obrigatoria: |-
+
+    &eO que podemos melhorar no servidor?
+    &7Escreva sua sugestao no chat ({minimo} a {maximo} letras).
+  Sugestao curta: '&cEscreva pelo menos &f{minimo} &cletras.'
+  Sugestao enviada: '&aSugestao enviada para a equipe. Valeu!'
+  Sem sugestao: '&7Avaliacao enviada sem sugestao.'
+  Lembrete: |-
+
+    &6&l* &eAjude o servidor! &7Voce ja pode avaliar sua experiencia.
+    &a&lCLIQUE AQUI &7ou digite &f/avaliar servidor&7.
+  Lembrete dica: '&eClique para avaliar'
+  Aviso staff: '&8[&6Avaliar&8] &f{jogador} &7avaliou o servidor: {barra}'
+  Aviso staff sugestao: '&8[&6Avaliar&8] &f{jogador} &7avaliou o servidor: {barra} &8- &f{sugestao}'
+
+# Avisos ao jogador sobre a sugestao dele (na hora ou no proximo login).
+Sugestao:
+  Aceita: '&a&lSUGESTAO ACEITA! &7A equipe aceitou a sua sugestao: &f"{sugestao}"'
+  Recusada: '&7A equipe analisou a sua sugestao &f"{sugestao}" &7e ela nao sera aplicada agora. Obrigado mesmo assim!'
+  Respondida: '&b&lRESPOSTA DA EQUIPE &7sobre &f"{sugestao}"&7: &f{resposta} &8- {staff}'
+
+# ---------------------------- Avaliacao da equipe ---------------------------
+Staff:
+  Desligado: '&cA avaliacao da equipe esta desligada.'
+  Pouco tempo: '&cJogue mais &f{tempo} &cpara poder avaliar a equipe.'
+  Si mesmo: '&cVoce nao pode avaliar a si mesmo.'
+  Nao e staff: '&f{staff} &cnao faz parte da equipe.'
+  Ja avaliou: '&7Voce ja avaliou &f{staff}&7. Obrigado!'
+  Ja avaliou espera: '&7Voce ja avaliou &f{staff}&7. Podera avaliar de novo em &f{tempo}&7.'
+  Obrigado: '&aVoce avaliou &f{staff} &acom {barra}&a.'
+  Comentario: |-
+
+    &eQuer deixar um comentario sobre o atendimento de &f{staff}&e?
+    &7Escreva no chat ou digite &f{pular}&7.
+  Comentario obrigatorio: |-
+
+    &eEscreva um comentario sobre o atendimento de &f{staff}&e:
+  Comentario curto: '&cEscreva pelo menos &f{minimo} &cletras.'
+  Comentario enviado: '&aComentario enviado. Obrigado!'
+  Sem comentario: '&7Avaliacao enviada sem comentario.'
+  Recebeu: '&6&lAVALIACAO! &7Voce recebeu {barra} &7de um jogador. &8Comentario: &f{comentario} &8| &7Sua media: &e{media}'
+  Recebeu com autor: '&6&lAVALIACAO! &f{jogador} &7te avaliou com {barra}&7. &8Comentario: &f{comentario} &8| &7Sua media: &e{media}'
+
+Pedido:
+  Nao e staff: '&cVoce precisa da permissao staravaliar.staff para pedir avaliacoes.'
+  Ja avaliou: '&f{jogador} &7ja te avaliou (&f{estrelas} estrelas&7).'
+  Ocupado: '&f{jogador} &7esta ocupado agora (em outro menu ou respondendo algo). Tente daqui a pouco.'
+  Aguarde: '&cAguarde &f{tempo} &cpara pedir de novo a este jogador.'
+  Nao pode: '&f{jogador} &cnao pode te avaliar agora.'
+  Enviado: '&aPedido de avaliacao enviado para &f{jogador}&a.'
+  Recebeu: '&e{staff} &7pediu para voce avaliar o atendimento dele. Leva so um clique!'
+
+# ------------------------------ Painel / editor -----------------------------
+Painel:
+  Opcao desligada: '&c(desligada)'
+  Foi pedido: '&8(pedida pelo staff)'
+  Digite resposta: '&eEscreva a resposta para &f{jogador} &eno chat:'
+  Respondeu: '&aResposta enviada para &f{jogador}&a.'
+  Apagou: '&aApagado.'
+  Confirmar apagar sugestao: 'Apagar esta avaliacao do banco'
+  Confirmar zerar: 'Apagar todas as avaliacoes de {staff}'
+  Confirmar remover: 'Tirar {staff} da lista da equipe'
+  Zerou: '&aAvaliacoes de &f{staff} &azeradas.'
+  Removeu: '&f{staff} &asaiu da lista da equipe.'
+  Digite staff: '&eDigite o nick de quem vai entrar na lista da equipe:'
+  Staff adicionado: '&f{staff} &aentrou na lista da equipe.'
+
+Editor:
+  Digite nome: '&eDigite o nome no chat (aceita cores com &):'
+  Digite lore: '&eDigite as linhas da descricao separadas por &f| &e(ou &flimpar&e):'
+  Digite icone: '&eDigite &ftextura:<hash>&e, &fjogador:<nick> &eou o nome de um material (ex.: DIAMOND):'
+  Digite slot: '&eDigite o numero do slot (0 = primeiro slot do menu):'
+  Digite pergunta: '&eDigite a pergunta que aparece no chat (ou &flimpar&e):'
+  Digite titulo: '&eDigite o titulo do submenu:'
+  Digite recompensa: '&eDigite o comando da recompensa (sem /, use {jogador}):'
+  Digite tempo: '&eDigite o novo valor de &f{nome} &e(ex.: 30m, 2h, 1d, 0 desliga):'
+  Nome invalido: '&cEsse nome nao serve, use letras ou numeros.'
+  Material invalido: '&cMaterial &f{material} &cnao existe nesta versao.'
+  Slot invalido: '&cDigite um numero de 0 a 53.'
+  Tempo invalido: '&cTempo invalido. Use por exemplo 30m, 2h ou 1d.'
+  Criou: '&aOpcao &f{opcao} &acriada.'
+  Salvo: '&aSalvo.'
+  Removeu: '&aOpcao removida.'
+  Confirmar remover: 'Remover a opcao {opcao}'
+
+# ------------------------------ Comandos ------------------------------------
+Uso:
+  Pedir: '&cUse: &f/{comando} pediravaliacao <jogador>'
+  Info: '&cUse: &f/{comando} info <jogador>'
+  Abrir: '&cUse: &f/{comando} abrir <origem|servidor> <jogador>'
+  Resetar: '&cUse: &f/{comando} resetar <jogador> <origem|servidor|staff|tudo>'
+  Staff: '&cUse: &f/{comando} staff <adicionar|remover> <jogador>'
+
+Info:
+  Sem origem: '&7nao respondeu'
+  Sem avaliacao: '&7nunca avaliou'
+  Offline: '&7(offline)'
+  Ja respondeu: '&f{jogador} &7ja respondeu a origem.'
+  Jogador: |-
+    &8&m------------------------------
+    &6{jogador}
+    &7Conheceu por: &f{origem}
+    &7Ultima avaliacao: {avaliacao}
+    &7Tempo de jogo: &f{tempo}
+    &7E da equipe: &f{staff}
+    &8&m------------------------------
+
+Top:
+  Cabecalho: '&6&lRanking da equipe'
+  Linha: '&e#{posicao} &f{staff} {cargo} &8- &6{media} {barra} &7({total})'
+  Vazio: '&7Ninguem da equipe foi avaliado ainda.'
+
+Placeholders:
+  Sem origem: 'Nao respondeu'
+  Ninguem: 'Ninguem'
+
+Ajuda: |-
+  &8&m------------------------------
+  &6&lStarAvaliar &7v{versao}
+  &f/{comando} &8- &7abre o painel
+  &f/{comando} pediravaliacao <jogador> &8- &7pede avaliacao do seu atendimento
+  &f/{comando} info <jogador> &8- &7o que o jogador respondeu
+  &f/{comando} abrir <origem|servidor> <jogador> &8- &7abre o menu para ele
+  &f/{comando} resetar <jogador> <origem|servidor|staff|tudo>
+  &f/{comando} staff <adicionar|remover> <jogador>
+  &f/{comando} top &8- &7ranking da equipe
+  &f/{comando} recarregar
+  &f/avaliar &8- &7avaliar o servidor e a equipe
+  &f/avaliarstaff [nick] &8- &7avaliar um membro da equipe
+  &8&m------------------------------

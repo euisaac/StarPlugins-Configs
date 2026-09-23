@@ -1,0 +1,150 @@
+# Menu "Onde voce conheceu o servidor?"
+#
+# Cada opcao e um item do menu. Chaves:
+#   Ativar: true/false
+#   Slot: posicao no menu (0 = primeiro slot)
+#   Material / Textura (cabeca por textura: hash, URL ou base64) / Dono (cabeca de um jogador)
+#   Nome, Lore, Brilho
+#   Digitar: true -> depois do clique o jogador escreve no chat (ex.: "Outros: conte onde foi")
+#   Pergunta: texto enviado no chat quando Digitar esta ligado
+#   Indicacao: true -> o jogador digita o nick de quem o chamou (recompensa em config.yml > Indicacao)
+#   Recompensas: comandos rodados pelo console ({jogador})
+#
+# Subopcoes: quando existem, o clique abre um segundo menu (ex.: YouTube -> qual YouTuber).
+# Sem subopcoes, a resposta conta so para a opcao.
+# As subopcoes aceitam as mesmas chaves (menos Subopcoes).
+#
+# Tudo isto tambem pode ser editado em jogo: /staravaliar -> Editar opcoes.
+
+Versao do modelo: 1
+
+Menu:
+  Titulo: '&aOnde voce conheceu o servidor?'
+  Linhas: 3
+  # Vidro nos slots vazios (vazio = sem preenchimento).
+  Preenchimento: 'BLACK_STAINED_GLASS_PANE'
+  # Botao para pular a pergunta. Ativar: false = o jogador tem que responder.
+  Pular:
+    Ativar: false
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cPular'
+    Lore:
+      - '&7Prefiro nao responder.'
+  # Botao de voltar dentro dos submenus.
+  Voltar:
+    Material: ARROW
+    Nome: '&cVoltar'
+    Lore:
+      - '&7Voltar para as opcoes.'
+
+Opcoes:
+  youtube:
+    Ativar: true
+    Slot: 11
+    Material: PLAYER_HEAD
+    Textura: 'd45586065f02e85530125f466df107c1c8d3e143101032c2b47807115bbda2f0'
+    Nome: '&cYouTube'
+    Lore:
+      - '&7Vi um video no YouTube.'
+      - ''
+      - '&eClique para escolher o canal!'
+    Submenu:
+      Titulo: '&cQual canal do YouTube?'
+      Linhas: 3
+    Subopcoes:
+      canal1:
+        Slot: 11
+        Material: PLAYER_HEAD
+        Dono: 'Notch'
+        Nome: '&fCanal 1'
+        Lore:
+          - '&7Troque pelo nome do YouTuber'
+          - '&7e o Dono pelo nick dele.'
+      canal2:
+        Slot: 13
+        Material: PLAYER_HEAD
+        Dono: 'jeb_'
+        Nome: '&fCanal 2'
+        Lore:
+          - '&7Troque pelo nome do YouTuber.'
+      outro:
+        Slot: 15
+        Material: PAPER
+        Nome: '&7Outro canal'
+        Lore:
+          - '&7Nao esta na lista? Digite o nome.'
+        Digitar: true
+        Pergunta: '&eDigite o nome do canal onde voce viu o servidor:'
+  tiktok:
+    Ativar: true
+    Slot: 12
+    Material: PLAYER_HEAD
+    Textura: '2786dc9d65c3b7983e8bb6af588fac92f33720c723e0d29f8b74151344a648a1'
+    Nome: '&dTikTok'
+    Lore:
+      - '&7Vi um video no TikTok.'
+      - ''
+      - '&eClique para escolher!'
+  votacao:
+    Ativar: true
+    Slot: 13
+    Material: PLAYER_HEAD
+    Textura: '1f88702bd5bce0293f30411ff43c72dfe2f756d7852fa25606e0fe50ee08ce87'
+    Nome: '&6Site de Voto'
+    Lore:
+      - '&7Achei o servidor numa lista'
+      - '&7de servidores.'
+      - ''
+      - '&eClique para escolher o site!'
+    Submenu:
+      Titulo: '&6Qual site de voto?'
+      Linhas: 3
+    Subopcoes:
+      site1:
+        Slot: 11
+        Material: PLAYER_HEAD
+        Textura: '7a514bcca8a049aadecd148ae04357ad0d5335db30033a7b3ddb571fd60d1758'
+        Nome: '&fSite de voto 1'
+        Lore:
+          - '&7Troque pelo nome do site.'
+      site2:
+        Slot: 13
+        Material: PLAYER_HEAD
+        Textura: '7a514bcca8a049aadecd148ae04357ad0d5335db30033a7b3ddb571fd60d1758'
+        Nome: '&fSite de voto 2'
+        Lore:
+          - '&7Troque pelo nome do site.'
+      outro:
+        Slot: 15
+        Material: PAPER
+        Nome: '&7Outro site'
+        Lore:
+          - '&7Nao esta na lista? Digite o nome.'
+        Digitar: true
+        Pergunta: '&eDigite o nome do site onde achou o servidor:'
+  amigo:
+    Ativar: true
+    Slot: 14
+    Material: PLAYER_HEAD
+    Textura: 'd45f4d139c9e89262ec06b27aaad73fa488ab49290d2ccd685a2554725373c9b'
+    Nome: '&aUm amigo me chamou'
+    Lore:
+      - '&7Diga quem te chamou e ele'
+      - '&7ganha uma recompensa!'
+      - ''
+      - '&eClique e digite o nick dele.'
+    Indicacao: true
+    Pergunta: '&eDigite o nick de quem te chamou para o servidor:'
+  outros:
+    Ativar: true
+    Slot: 15
+    Material: PLAYER_HEAD
+    Textura: 'badc048a7ce78f7dad72a07da27d85c0916881e5522eeed1e3daf217a38c1a'
+    Nome: '&7Outros'
+    Lore:
+      - '&7Foi de outro jeito.'
+      - ''
+      - '&eClique e conte pra gente!'
+    Digitar: true
+    Pergunta: '&eConte em poucas palavras onde voce conheceu o servidor:'
