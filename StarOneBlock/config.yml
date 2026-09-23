@@ -57,9 +57,15 @@ Mundo:
   Dificuldade: NORMAL
 
   # Os phantoms que caem do ceu em cima de quem passa noites sem dormir.
-  # Numa ilha nao tem cama no comeco e nao tem para onde correr: false os
-  # tira do mundo das ilhas (nascidos pelo jogo; os do ovo e do comando
-  # continuam valendo).
+  #
+  # false tira os phantoms do mundo das ilhas de vez: eles param de nascer
+  # (por qualquer caminho) e os que ja estavam voando somem.
+  #
+  # true deixa o jogo com eles -- e o plugin garante o que o jogo deveria
+  # fazer sozinho: de dia, a ceu aberto, o phantom queima. Ele morre pelo
+  # fogo, solta a membrana e conta como abate, entao farm de phantom
+  # continua funcionando; o que nao acontece mais e o bando eterno girando
+  # em cima de quem esta minerando.
   Phantoms: true
 
 Ilha:
@@ -250,6 +256,16 @@ Barreira:
   # As particulas no limite quando o jogador chega a 3 blocos dele. Valem com
   # ou sem a borda; desligue se a borda ja basta para voce.
   Particulas no limite: true
+
+Lobby:
+  # Para onde o /lobby manda o jogador: os nomes dos servidores no proxy
+  # (BungeeCord ou Velocity), como estao escritos na config do proxy.
+  #
+  # Nao precisa de plugin no proxy: o pedido vai pelo canal que todo proxy
+  # entende. Com mais de um na lista, o plugin reveza entre eles.
+  # Lista vazia desliga o comando.
+  Servidores:
+    - 'lobby'
 
 Loja:
   # Desligada, a loja some do menu do /ilha e o /ilha loja avisa que ela nao
