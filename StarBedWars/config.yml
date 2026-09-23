@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 16
+Versao do modelo: 17
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -120,6 +120,14 @@ Partida:
   Permitir craft: false
   # Segundos que a partida fica aberta depois do vencedor (comemoracao).
   Segundos apos o fim: 10
+  # Acabou a partida: o inventario da lugar a barra do fim (Hotbar.Fim), com
+  # "jogar novamente" e "sair".
+  Hotbar no fim: true
+  # As ilhas das equipes que ficaram SEM NINGUEM continuam funcionando:
+  # gerador rodando e NPCs de loja/melhorias de pe, para os outros jogadores
+  # irem usar. A ilha nao disputa a partida -- so funciona. A cama dela sempre
+  # some (nao ha quem renasca ali).
+  Ilhas sem participantes: false
   # Blocos de distancia dos geradores e dos NPCs onde nao se pode construir.
   Distancia protegida: 2
   # Primeiro sangue (recompensa extra para o primeiro abate).
@@ -141,6 +149,9 @@ Partida:
   # Segundos que o zumbinho vive, a velocidade dele e o nome no mundo.
   # "Zumbi bebe" deixa ele em forma de filhote (menor e mais rapido).
   Zumbi bebe: true
+  # Couro na cor da equipe no zumbinho: CAPACETE (so o capacete), COMPLETA
+  # (conjunto inteiro -- ele aguenta bem mais pancada) ou NENHUMA.
+  Armadura do zumbi: CAPACETE
   Vida do zumbi: 60
   Velocidade do zumbi: 0.35
   Nome do zumbi: '{cor}Zumbinho {equipe} &7({tempo}s)'
@@ -230,14 +241,17 @@ Geradores:
   Juntar drops: true
 
 Itens:
+  # "Botao" de cada item: com que clique ele e usado -- DIREITO, ESQUERDO ou
+  # AMBOS. "Cooldown" e a espera, em segundos, para usar o mesmo item de novo
+  # (0 = sem espera). A espera e por jogador e vale para o item, nao para o
+  # slot. Quem tem a permissao starbedwars.cooldown.bypass nao espera nada.
   Bola de fogo:
     Dano: 3.0
     # Forca do empurrao (horizontal e vertical) em quem esta perto.
     Empurrao horizontal: 1.0
     Empurrao vertical: 0.65
     Dano de queda: 3.0
-    Lancar com botao esquerdo: true
-    Lancar com botao direito: true
+    Botao: AMBOS
     Explosao: 3.0
     Cooldown: 2
   TNT:
@@ -251,6 +265,7 @@ Itens:
     Empurrao horizontal: 3.0
     Empurrao vertical: 0.85
     Dano de queda: 3.0
+    Botao: AMBOS
     Cooldown: 7
   Ovo de ponte:
     # Bloco colocado a cada tique de voo e distancia maxima.
@@ -258,21 +273,37 @@ Itens:
   Leite magico:
     # Segundos sem disparar nenhuma armadilha da ilha inimiga.
     Segundos: 30
+    Botao: DIREITO
+    Cooldown: 0
   Asas:
     # Segundos de voo e espera entre um uso e outro.
     Segundos: 3
+    Botao: AMBOS
     Cooldown: 10
   Foguete:
     Empurrao horizontal: 1.4
     Empurrao vertical: 1.0
+    Botao: AMBOS
     Cooldown: 5
   Torre:
     # Altura da torre instantanea (redonda, raio 2, com entrada na frente) e
     # se tem escada na parede de tras.
     Altura: 5
     Escada: true
+    Cooldown: 0
   Esponja:
     Raio: 3
+  # Os mobs invocados (o ovo de cada um). "Botao" aqui e o clique que os
+  # coloca no chao; as outras opcoes deles estao na secao Partida.
+  Golem:
+    Botao: DIREITO
+    Cooldown: 0
+  Traca:
+    Botao: DIREITO
+    Cooldown: 0
+  Zumbi:
+    Botao: DIREITO
+    Cooldown: 0
 
 Recompensas:
   Coins:
@@ -635,6 +666,19 @@ Hotbar:
       Nome: '&aRastreador'
       Material: COMPASS
       Slot: 8
+  # Barra que aparece para todo mundo quando a partida termina
+  # (Partida.Hotbar no fim).
+  Fim:
+    Jogar novamente:
+      Nome: '&bJogar novamente'
+      Material: PAPER
+      Slot: 3
+      Lore:
+        - '&7Entra na proxima partida deste modo'
+    Sair:
+      Nome: '&cSair &7(voltar para o lobby)'
+      Material: RED_BED
+      Slot: 5
 
 # Modos de jogo. Crie quantos quiser: a chave e o nome interno (usado em
 # /bw arena criar <arena> <modo>), "Jogadores por equipe" define o tamanho do
