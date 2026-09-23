@@ -1,0 +1,171 @@
+# Menus do StarReplay.
+# Itens: Material, Nome, Lore, Brilho, Dono (skin da cabeca), Textura, Slot.
+Versao do modelo: 1
+
+Replays:
+  Titulo: '&8Replays: {filtro} ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Jogadores na lore: 8
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Fechar:
+    Slot: 48
+    Material: BARRIER
+    Nome: '&cFechar'
+  Filtro:
+    Slot: 49
+    Material: HOPPER
+    Nome: '&eFiltro: &f{filtro}'
+    Lore:
+      - ''
+      - '{opcoes}'
+      - ''
+      - '&7Esquerdo: proximo &8| &7Direito: anterior'
+  Informacoes:
+    Slot: 4
+    Material: CLOCK
+    Nome: '&bReplays'
+    Lore:
+      - '&7Nesta lista: &f{total}'
+      - '&7Gravando agora: &f{gravando}'
+      - '&7Sendo assistidos: &f{assistindo}'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhum replay por aqui'
+    Lore:
+      - '&7Jogue uma partida e ela aparece aqui.'
+  Itens:
+    PARTIDA:
+      Material: FILLED_MAP
+      Nome: '&a{jogo} &8- &f{arena}'
+      Lore:
+        - '&7Modo: &f{modo}'
+        - '&7Data: &f{data}'
+        - '&7Duracao: &f{duracao}'
+        - '&7Vencedor: &f{vencedor}'
+        - '&7Jogadores (&f{quantidade}&7):'
+        - '{jogadores}'
+        - '&7Reportes: &c{reportes} &8| &7Protegido: {protegido}'
+        - ''
+        - '&eClique para assistir'
+        - '&7Direito: favoritar ({favorito}&7)'
+        - '&8Shift+direito: proteger | Q: apagar'
+        - '&8id {id}'
+    REPORTE:
+      Material: WRITABLE_BOOK
+      Nome: '&cReporte &8- &f{alvo}'
+      Lore:
+        - '&7Motivo: &f{motivo}'
+        - '&7Reportado por: &f{autor}'
+        - '&7Data: &f{data}'
+        - '&7Duracao: &f{duracao}'
+        - '&7Mundo: &f{arena}'
+        - '&7Quem aparece (&f{quantidade}&7):'
+        - '{jogadores}'
+        - ''
+        - '&eClique para assistir'
+        - '&7Direito: favoritar ({favorito}&7)'
+        - '&8Shift+direito: proteger | Q: apagar'
+        - '&8id {id}'
+    MANUAL:
+      Material: ENDER_EYE
+      Nome: '&bGravacao &8- &f{alvo}'
+      Lore:
+        - '&7Pedida por: &f{autor}'
+        - '&7Data: &f{data}'
+        - '&7Duracao: &f{duracao}'
+        - '&7Mundo: &f{arena}'
+        - '&7Quem aparece (&f{quantidade}&7):'
+        - '{jogadores}'
+        - ''
+        - '&eClique para assistir'
+        - '&7Direito: favoritar ({favorito}&7)'
+        - '&8Shift+direito: proteger | Q: apagar'
+        - '&8id {id}'
+
+Jogadores do replay:
+  Titulo: '&8Jogadores ({pagina}/{paginas})'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  Anterior:
+    Slot: 27
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 35
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '{exibicao} {marca}'
+    Lore:
+      - '&7Equipe: &f{equipe}'
+      - '&7Agora: {estado}'
+      - ''
+      - '&eEsquerdo: teleportar'
+      - '&eDireito: seguir em primeira pessoa'
+      - '&eShift: seguir em terceira pessoa'
+
+Linha do tempo:
+  Titulo: '&8Linha do tempo ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNada marcado neste replay'
+  Itens:
+    Morte:
+      Material: SKELETON_SKULL
+      Nome: '&f{tempo} &8- {texto}'
+      Lore:
+        - '{estado}'
+        - '&eClique para ir a este momento'
+    Evento:
+      Material: PAPER
+      Nome: '&f{tempo} &8- {texto}'
+      Lore:
+        - '{estado}'
+        - '&eClique para ir a este momento'
+    Reporte:
+      Material: REDSTONE_BLOCK
+      Brilho: true
+      Nome: '&f{tempo} &8- {texto}'
+      Lore:
+        - '{estado}'
+        - '&eClique para ir a este momento'
+
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Linhas: 3
+  Sim:
+    Slot: 11
+    Material: LIME_WOOL
+    Nome: '&aSim'
+    Lore:
+      - '&7{pergunta}'
+  Pergunta:
+    Slot: 13
+    Material: PAPER
+    Nome: '&f{pergunta}'
+  Nao:
+    Slot: 15
+    Material: RED_WOOL
+    Nome: '&cNao'

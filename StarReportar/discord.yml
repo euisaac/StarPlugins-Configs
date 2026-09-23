@@ -1,0 +1,131 @@
+# Avisos no Discord por webhook.
+# Crie o webhook em: Configuracoes do canal -> Integracoes -> Webhooks -> Novo webhook -> Copiar URL.
+#
+# Cada acontecimento tem a propria mensagem (e pode ter o proprio webhook em URL).
+# Conteudo: texto fora do embed (mencoes: @everyone, <@&ID_DO_CARGO>, <@ID_DO_USUARIO>).
+# Embed: Titulo, Descricao, Link, Cor (#RRGGBB), Miniatura, Imagem, Autor (Nome/Icone/Link),
+#        Rodape (Texto/Icone), Horario (true/false) e Campos (Nome, Valor, Em linha).
+# Campo com valor vazio nao aparece. \n quebra linha.
+#
+# Placeholders:
+#   {id} {reportado} {reportado_uuid} {reportador} {reportador_uuid} {motivo} {motivo_chave}
+#   {prova} {descricao} {servidor} {mundo} {local} {jogo} {arena} {modo} {partida}
+#   {replay} {replay_momento} {replay_comando} {tem_replay} {data} {hora} {estado}
+#   {staff} {punicao} {motivos} {quantidade} {avatar_reportado} {avatar_reportador} {acao}
+
+Versao do modelo: 1
+
+Ativar: false
+URL: ''
+Usuario: 'StarReportar'
+Avatar: ''
+
+Eventos:
+  Novo reporte:
+    Ativar: true
+    URL: ''
+    Conteudo: ''
+    Embed:
+      Titulo: 'Novo reporte #{id}'
+      Descricao: '**{reportado}** foi reportado por **{reportador}**.'
+      Cor: '#FF5555'
+      Miniatura: '{avatar_reportado}'
+      Horario: true
+      Rodape:
+        Texto: 'Servidor {servidor}'
+      Campos:
+        - Nome: 'Motivo'
+          Valor: '{motivo}'
+          Em linha: true
+        - Nome: 'Reportes em aberto'
+          Valor: '{quantidade}'
+          Em linha: true
+        - Nome: 'Partida'
+          Valor: '{jogo} - {arena} ({modo})'
+          Em linha: false
+        - Nome: 'Prova'
+          Valor: '{prova}'
+          Em linha: false
+        - Nome: 'Replay'
+          Valor: '{tem_replay} - {replay_comando}'
+          Em linha: false
+        - Nome: 'Local'
+          Valor: '{mundo} ({local})'
+          Em linha: true
+        - Nome: 'Data'
+          Valor: '{data} {hora}'
+          Em linha: true
+  Reportado novamente:
+    Ativar: true
+    URL: ''
+    Conteudo: ''
+    Embed:
+      Titulo: '{reportado} foi reportado de novo (#{id})'
+      Descricao: 'Agora sao **{quantidade}** reportes em aberto. Ultimo por **{reportador}**.'
+      Cor: '#FF9900'
+      Miniatura: '{avatar_reportado}'
+      Horario: true
+      Rodape:
+        Texto: 'Servidor {servidor}'
+      Campos:
+        - Nome: 'Motivo'
+          Valor: '{motivo}'
+          Em linha: true
+        - Nome: 'Partida'
+          Valor: '{jogo} - {arena}'
+          Em linha: true
+        - Nome: 'Prova'
+          Valor: '{prova}'
+          Em linha: false
+        - Nome: 'Replay'
+          Valor: '{tem_replay} - {replay_comando}'
+          Em linha: false
+  Assumido:
+    Ativar: false
+    URL: ''
+    Conteudo: ''
+    Embed:
+      Titulo: '{staff} assumiu os reportes de {reportado}'
+      Cor: '#55AAFF'
+      Horario: true
+  Punido:
+    Ativar: true
+    URL: ''
+    Conteudo: ''
+    Embed:
+      Titulo: '{reportado} foi punido'
+      Descricao: 'Punicao **{punicao}** aplicada por **{staff}**.'
+      Cor: '#55FF55'
+      Miniatura: '{avatar_reportado}'
+      Horario: true
+      Campos:
+        - Nome: 'Motivos'
+          Valor: '{motivos}'
+          Em linha: false
+  Negado:
+    Ativar: true
+    URL: ''
+    Conteudo: ''
+    Embed:
+      Titulo: 'Reporte contra {reportado} negado'
+      Descricao: '**{staff}** negou {quantidade} reporte(s). Ultimo de **{reportador}** ({motivo}).'
+      Cor: '#AAAAAA'
+      Horario: true
+  Deletado:
+    Ativar: false
+    URL: ''
+    Conteudo: ''
+    Embed:
+      Titulo: 'Reportes de {reportado} arquivados'
+      Descricao: '**{staff}** arquivou {quantidade} reporte(s).'
+      Cor: '#777777'
+      Horario: true
+  Acao automatica:
+    Ativar: true
+    URL: ''
+    Conteudo: ''
+    Embed:
+      Titulo: 'Acao automatica: {reportado}'
+      Descricao: '{quantidade} pessoas reportaram por **{motivo}**.\nComando: `{acao}`'
+      Cor: '#AA00AA'
+      Horario: true

@@ -1,0 +1,159 @@
+# Mensagens do StarReportar. Mensagem vazia ('') nao e enviada.
+# Titulos: 'Titulo<nl>Subtitulo'. Listas: uma linha por item.
+Versao do modelo: 1
+
+Prefixo: '&8[&cReportar&8] &7'
+
+Permissao: '&cVoce nao tem permissao para isto.'
+Nao encontrado: '&cJogador nao encontrado (nem online, nem nas suas ultimas partidas).'
+Carregando: '&7Carregando...'
+Recarregado: '&aConfiguracoes recarregadas.'
+Limpou: '&a{quantidade} registro(s) antigo(s) apagado(s).'
+Info: "&7StarReportar &f{versao}\n&7Banco: &f{banco} &8| &7Servidor: &f{servidor}\n&7Abertos: &f{abertos} &8| &7Motivos: &f{motivos} &8| &7Punicoes: &f{punicoes}\n&7StarReplay: {replay} &8| &7Partidas: {partidas} &8| &7Discord: {discord}"
+
+# --------------------------- quem reporta ---------------------------------
+Si mesmo: '&cVoce nao pode reportar a si mesmo.'
+Reportar staff: '&cVoce nao pode reportar membros da equipe.'
+Aguarde: '&cAguarde &f{tempo} &cpara reportar de novo.'
+Ja reportou: '&cVoce ja tem um reporte aberto contra &f{jogador}&c.'
+Limite por dia: '&cVoce ja fez &f{limite} &creportes hoje.'
+Bloqueado por abuso: '&cVoce teve &f{negados} &creportes negados nos ultimos {dias} dias e nao pode reportar por enquanto.'
+Motivo sem permissao: '&cVoce nao pode usar este motivo.'
+Motivo invalido: '&cMotivo nao encontrado; escolha no menu.'
+Cancelou: '&cVoce cancelou o reporte.'
+Erro ao reportar: '&cNao foi possivel registrar o reporte agora. Tente de novo.'
+Adicionar: "\n&aCole abaixo o link da prova (video ou print).\n&7Sites aceitos: YouTube, Imgur, Prnt.sc, Gyazo, Twitch, Medal, Discord.\n"
+Link nao: '&cEste link nao e aceito. Mande um link de um site permitido.'
+Descricao: "\n&aConte em poucas palavras o que aconteceu.\n&7Digite &fpular &7para reportar sem descricao.\n"
+Palavra pular: 'pular'
+Reportou: '&aVoce reportou &f{jogador} &apor &f{motivo}&a. Obrigado!'
+Reportou com replay: '&7O replay do momento foi anexado ao reporte.'
+Prova: '&7Prova: &b&n{prova}&7 (clique para abrir)'
+
+Aviso ao reportador:
+  Aceito: "{prefixo}&aSeu reporte contra &f{jogador} &afoi aceito e ele foi punido. Obrigado por ajudar!"
+  Negado: "{prefixo}&7Seu reporte contra &f{jogador} &7({motivo}) foi analisado e negado."
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Tempo esgotado: '&cO tempo acabou e o reporte foi cancelado.'
+  Cancelado: '&cReporte cancelado.'
+
+# ------------------------------ staff -------------------------------------
+Staff:
+  Novo reporte:
+    - ''
+    - '&c&lREPORTE &8#{id} &f{jogador} &7reportado por &f{reportador}'
+    - '&7Motivo: &f{motivo} &8| &7Jogo: &f{jogo} {arena}'
+    - '&7Reportes em aberto contra ele: &c{quantidade}'
+  Reportado novamente:
+    - ''
+    - '&c&lREPORTE &8#{id} &f{jogador} &7foi reportado &cde novo &7por &f{reportador}'
+    - '&7Motivo: &f{motivo} &8| &7Em aberto: &c{quantidade}'
+  Outro servidor:
+    - ''
+    - '&c&lREPORTE &8#{id} &7[&f{servidor}&7] &f{jogador} &7reportado por &f{reportador}'
+    - '&7Motivo: &f{motivo} &8| &7Em aberto: &c{quantidade}'
+  Reportado entrou:
+    - '&c&lREPORTE &f{jogador} &7(com &c{quantidade} &7reporte(s) em aberto) entrou no servidor.'
+  # Botoes clicaveis abaixo do aviso. Texto, Comando (roda como o staff) ou Link, Dica (ao passar o mouse).
+  Botoes:
+    Ver:
+      Texto: '&8[&eVer&8]'
+      Comando: '/reportes {jogador}'
+      Dica: '&7Ver os reportes de {jogador}'
+    Replay:
+      Texto: '&8[&dReplay&8]'
+      Comando: '/reportes replay {id}'
+      Dica: '&7Assistir o replay no momento do reporte'
+    Teleportar:
+      Texto: '&8[&bIr&8]'
+      Comando: '/reportes teleportar {jogador}'
+      Dica: '&7Teleportar ate {jogador}'
+    Prova:
+      Texto: '&8[&aProva&8]'
+      Link: '{prova}'
+      Dica: '&7Abrir {prova}'
+    Gerenciar:
+      Texto: '&8[&cGerenciar&8]'
+      Comando: '/reportes gerenciar {jogador}'
+      Dica: '&7Punir, negar, arquivar...'
+  Titulo: '&c&lREPORTE<nl>&f{jogador} &7- {motivo}'
+  Actionbar: '&cNovo reporte: &f{jogador} &7({motivo})'
+  Ao entrar: '&7Ha &c{quantidade} &7reporte(s) esperando. Use &f/reportes&7.'
+  Lembrete: '&7Lembrete: &c{quantidade} &7reporte(s) aberto(s) sem ninguem olhando. &f/reportes'
+  Lembrete actionbar: ''
+  Assumido: '&f{staff} &7assumiu os reportes de &f{jogador}&7.'
+
+Sem reportes: '&cEste jogador nao tem reportes em aberto.'
+Ja resolvido: '&cOutro membro da staff ja resolveu os reportes deste jogador.'
+Assumiu: '&aVoce assumiu os reportes de &f{jogador}&a.'
+Punicao permissao: '&cVoce nao tem permissao para aplicar esta punicao.'
+Puniu: '&aVoce puniu &f{jogador} &acom &f{punicao}&a.'
+Negou: '&7{quantidade} reporte(s) contra &f{jogador} &7negado(s).'
+Deletado: '&7{quantidade} reporte(s) contra &f{jogador} &7arquivado(s).'
+Confirmar negar: 'Negar todos os reportes de {jogador}?'
+Confirmar deletar: 'Arquivar todos os reportes de {jogador}?'
+Confirmar punir: 'Aplicar {punicao} em {jogador}?'
+Sem prova: '&cEste reporte nao tem prova.'
+Sem replay: '&cEste reporte nao tem replay.'
+Sem replay instalado: '&cO replay deste reporte e do StarReplay, que nao esta instalado aqui.'
+Replay em outro servidor: '&cO replay esta no servidor &f{servidor}&c.'
+Teleportado: '&aTeleportado ate &f{jogador}&a.'
+Espectando: '&aEspectando &f{jogador}&a. Use &f/reportes voltar &apara voltar.'
+Voltou: '&aVoce voltou.'
+Nao espectando: '&cVoce nao esta espectando ninguem.'
+Indo ao servidor: '&7Indo ao servidor &f{servidor}&7...'
+Outro servidor: '&cO jogador esta no servidor &f{servidor}&c.'
+Gravando: '&aGravando &f{jogador} &a(replay &f{id}&a).'
+Gravacao falhou: '&cNao foi possivel gravar agora.'
+Avisos ligados: '&aVoce voltou a receber os avisos de reporte.'
+Avisos desligados: '&7Voce nao vai receber avisos de reporte ate sair do servidor.'
+Uso replay: '&cUse: /reportes replay <id do reporte>'
+Abertos console: '&7Reportes em aberto: &f{quantidade}'
+
+Ajuda staff:
+  - ''
+  - '&c&lStarReportar &7- staff'
+  - '&f/{comando} &7- jogadores reportados'
+  - '&f/{comando} <jogador> &7- reportes dele (provas e replay)'
+  - '&f/{comando} gerenciar <jogador> &7- punir, negar, arquivar'
+  - '&f/{comando} historico <jogador> &7- todos os reportes, inclusive encerrados'
+  - '&f/{comando} teleportar|espectar <jogador> &8| &f/{comando} voltar'
+  - '&f/{comando} replay <id> &7- replay de um reporte'
+  - '&f/{comando} avisos &7- liga/desliga os avisos'
+  - '&f/{comando} top &7- staff que mais resolveu'
+  - ''
+
+Top:
+  Cabecalho: '&7Staff que mais resolveu reportes nos ultimos &f{dias} &7dias:'
+  Vazio: '&7Ninguem resolveu reportes ainda.'
+  Linha: ' &e{posicao}. &f{staff} &8- &a{quantidade}'
+
+Menu:
+  Jogador na lore: ' &8- &f{jogador} &7{equipe}'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  Nenhum: '&7-'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Online: '&aOnline'
+  Offline: '&7Offline'
+  Em partida: '&eEm partida'
+  Fora de partida: '&7Fora de partida'
+  Com replay: '&aVai com replay'
+  Sem replay: '&7Sem replay'
+  Estado ABERTO: '&eAberto'
+  Estado ANALISE: '&bEm analise'
+  Estado ACEITO: '&aAceito'
+  Estado NEGADO: '&cNegado'
+  Estado ARQUIVADO: '&7Arquivado'
+  Filtro TODOS: 'Todos'
+  Filtro ABERTO: 'Abertos'
+  Filtro ANALISE: 'Em analise'
+  Ordem quantidade: 'Mais reportes'
+  Ordem recente: 'Mais recente'

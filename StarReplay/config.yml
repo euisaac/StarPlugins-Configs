@@ -1,0 +1,167 @@
+#  ____  _             ____            _
+# / ___|| |_ __ _ _ __|  _ \ ___ _ __ | | __ _ _   _
+# \___ \| __/ _` | '__| |_) / _ \ '_ \| |/ _` | | | |
+#  ___) | || (_| | |  |  _ <  __/ |_) | | (_| | |_| |
+# |____/ \__\__,_|_|  |_| \_\___| .__/|_|\__,_|\__, |
+#                               |_|            |___/
+#
+# Replays de partidas, de reportes e gravacoes da staff.
+# O replay nao e um video: e a gravacao de onde cada jogador estava, do que
+# segurava, dos blocos que mudaram, das mortes e do chat. Na hora de assistir,
+# o mapa e remontado num mundo temporario com bonecos no lugar dos jogadores.
+
+Versao do modelo: 1
+
+# Nome deste servidor (aparece nos replays; numa rede, o replay so pode ser
+# assistido no servidor que gravou).
+Servidor: ''
+
+Gravacao:
+  # De quantos em quantos tiques a posicao de cada jogador e anotada.
+  # 2 = 10 vezes por segundo (liso). 1 = 20 vezes (mais liso, arquivo maior).
+  Intervalo: 2
+  Gravar chat: true
+
+# Partidas dos minigames da StarPlugins (BedWars, EggWars, Murder, SkyWars,
+# The Bridge...). O jogo avisa o StarReplay sozinho -- nao ha nada para ligar
+# no jogo.
+Partidas:
+  Gravar: true
+  # Nomes dos produtos que NAO devem ser gravados (ex.: StarMurder).
+  Jogos ignorados: []
+  # Partida mais curta que isso nao e guardada (a menos que tenha reporte).
+  Minimo de segundos: 20
+  # Seguranca: gravacao de partida que passar disso e fechada.
+  Duracao maxima em minutos: 60
+  # O jogo que nao guarda uma copia limpa do mapa ganha um retrato do cenario
+  # em volta dos jogadores no inicio da partida.
+  Cenario sem mapa: true
+  Raio do cenario: 6
+  Altura abaixo: 48
+  Altura acima: 64
+
+# Os ultimos segundos de todo mundo ficam na memoria (nada vai para o disco).
+# E o que permite o replay de um reporte mostrar o que JA aconteceu.
+Memoria:
+  Ativar: true
+  Segundos: 60
+  Limite de eventos: 60000
+  Mundos ignorados: []
+
+# Replay gerado quando alguem e reportado (StarReportar).
+# Se o reportado esta numa partida gravada, o momento e so marcado nela.
+Reportes:
+  Ativar: true
+  Segundos antes: 45
+  Segundos depois: 20
+  # Quem estiver a esta distancia do reportado entra no replay.
+  Raio: 32
+  # Tamanho do cenario retratado, em chunks em volta do reportado.
+  Raio do cenario: 3
+  # Blocos acima e abaixo do reportado no cenario.
+  Altura: 32
+
+# /replay gravar <jogador> [segundos]
+Manual:
+  Segundos padrao: 60
+  Maximo de segundos: 600
+  Segundos antes: 10
+  Raio: 32
+  Raio do cenario: 3
+  Altura: 32
+
+Guardar:
+  Partidas dias: 7
+  Reportes dias: 30
+  Manuais dias: 14
+  # Replays que passarem disso sao apagados, do mais velho ao mais novo.
+  # Protegidos e favoritos nunca sao apagados.
+  Maximo de arquivos: 500
+  # Replay de partida com reporte segue o prazo dos reportes (Reportes dias)
+  # em vez do das partidas. Para guardar para sempre, proteja pelo menu.
+  Proteger com reporte: true
+
+Reproducao:
+  Maximo simultaneos: 5
+  # Blocos do cenario colados por tique (cenario grande demora mais para abrir).
+  Blocos por tique: 15000
+  Visao noturna: true
+  # Quem assiste some para os jogadores de fora.
+  Esconder espectador: true
+  Mostrar eventos na tela: true
+  Sair no fim: false
+  Pulo em segundos: 10
+  Velocidades: [0.25, 0.5, 1, 2, 4, 8]
+  # Ao abrir no momento de um reporte, comeca estes segundos antes.
+  Segundos antes do momento: 5
+  # So quem abriu o replay mexe no tempo; quem entrou junto so assiste.
+  Somente o dono controla: true
+  Continuar sem o dono: true
+
+# Barra de ferramentas de quem assiste. Slot 0-8.
+# Clique: esquerdo/direito. Agachado multiplica o pulo por 3.
+Controles:
+  Jogadores:
+    Slot: 0
+    Material: PLAYER_HEAD
+    Nome: '&aJogadores'
+    Lore:
+      - '&7Teleportar ou seguir alguem.'
+  Voltar:
+    Slot: 1
+    Material: RED_DYE
+    Nome: '&cVoltar'
+    Lore:
+      - '&7Volta alguns segundos.'
+      - '&7Agachado: volta o triplo.'
+  Pausar:
+    Slot: 2
+    Material: LIME_DYE
+    Nome: '&ePausar'
+    Material pausado: GRAY_DYE
+    Nome pausado: '&aContinuar'
+    Lore:
+      - '&7Pausa ou continua o replay.'
+  Avancar:
+    Slot: 3
+    Material: LIGHT_BLUE_DYE
+    Nome: '&bAvancar'
+    Lore:
+      - '&7Avanca alguns segundos.'
+      - '&7Agachado: avanca o triplo.'
+  Velocidade:
+    Slot: 4
+    Material: CLOCK
+    Nome: '&6Velocidade'
+    Lore:
+      - '&7Direito: mais rapido.'
+      - '&7Esquerdo: mais devagar.'
+  Linha do tempo:
+    Slot: 5
+    Material: BOOK
+    Nome: '&dLinha do tempo'
+    Lore:
+      - '&7Mortes, eventos e reportes.'
+  Reporte:
+    Slot: 6
+    Material: REDSTONE
+    Nome: '&cIr ao reporte'
+    Lore:
+      - '&7Vai para o momento do reporte.'
+  Camera:
+    Slot: 7
+    Material: ENDER_EYE
+    Nome: '&3Camera'
+    Lore:
+      - '&7Livre, primeira ou terceira pessoa.'
+  Sair:
+    Slot: 8
+    Material: BARRIER
+    Nome: '&cSair do replay'
+
+Sons:
+  Controle: UI_BUTTON_CLICK
+  Reporte: BLOCK_NOTE_BLOCK_PLING
+
+Menus:
+  Intervalo entre cliques: 150

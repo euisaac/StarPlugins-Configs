@@ -1,0 +1,548 @@
+# Menus do StarReportar.
+# Itens: Slot, Material, Nome, Lore, Brilho, Dono (cabeca: nome do jogador ou placeholder), Textura.
+Versao do modelo: 1
+
+# ------------------------------ /reportar ---------------------------------
+Principal:
+  Titulo: '&8Reportar'
+  Linhas: 3
+  # Acao: ONLINE, PARTIDA, HISTORICO, MEUS, FECHAR. Item sem Acao = enfeite.
+  Itens:
+    Online:
+      Slot: 10
+      Acao: ONLINE
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&aJogadores online'
+      Lore:
+        - '&7Reportar alguem que esta no servidor.'
+        - '&7Online agora: &f{online}'
+    Partida:
+      Slot: 12
+      Acao: PARTIDA
+      Material: DIAMOND_SWORD
+      Brilho: true
+      Nome: '&eJogadores da partida'
+      Lore:
+        - '&7Voce esta em &f{jogo} &7({arena}).'
+        - '&7Reporte alguem desta partida;'
+        - '&7o replay do momento vai junto.'
+      Sem partida:
+        Material: IRON_SWORD
+        Nome: '&7Jogadores da partida'
+        Lore:
+          - '&7Voce nao esta em nenhuma partida.'
+          - '&7Use o historico para reportar alguem'
+          - '&7de uma partida que ja acabou.'
+    Historico:
+      Slot: 14
+      Acao: HISTORICO
+      Material: CLOCK
+      Nome: '&bHistorico de partidas'
+      Lore:
+        - '&7Suas ultimas partidas: escolha uma'
+        - '&7e reporte quem jogou com voce.'
+    Meus:
+      Slot: 16
+      Acao: MEUS
+      Material: BOOK
+      Nome: '&dMeus reportes'
+      Lore:
+        - '&7Veja o que aconteceu com os seus reportes.'
+        - '&7Em aberto: &f{meus}'
+
+Jogadores online:
+  Titulo: '&8Quem voce quer reportar? ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Voltar:
+    Slot: 49
+    Material: ARROW
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNinguem online para reportar'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '&f{jogador}'
+    Lore:
+      - '&7Clique para reportar.'
+
+Jogadores da partida:
+  Titulo: '&8{jogo} - {arena} ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Voltar:
+    Slot: 49
+    Material: ARROW
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNinguem mais nesta partida'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '&f{jogador}'
+    Lore:
+      - '&7Equipe: &f{equipe}'
+      - '&7Agora: {online}'
+      - ''
+      - '&eClique para reportar.'
+
+Historico de partidas:
+  Titulo: '&8Suas ultimas partidas ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Jogadores na lore: 8
+  # Icone por jogo (nome do produto). Sem entrada = o Material do Item.
+  Materiais:
+    StarBedWars: RED_BED
+    StarEggWars: DRAGON_EGG
+    StarSkyWars: FEATHER
+    StarMurder: IRON_SWORD
+    StarTheBridge: BLUE_TERRACOTTA
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Voltar:
+    Slot: 49
+    Material: ARROW
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhuma partida recente'
+    Lore:
+      - '&7Jogue e ela aparece aqui.'
+  Item:
+    Material: PAPER
+    Nome: '&a{jogo} &8- &f{arena}'
+    Lore:
+      - '&7Modo: &f{modo}'
+      - '&7Quando: &f{data} &8| &7Duracao: &f{duracao}'
+      - '&7Vencedor: &f{vencedor}'
+      - '&7Servidor: &f{servidor}'
+      - '&7Replay: {replay}'
+      - '&7Jogadores (&f{quantidade}&7):'
+      - '{jogadores}'
+      - ''
+      - '&eClique para escolher quem reportar.'
+  Item em andamento:
+    Material: PAPER
+    Brilho: true
+    Nome: '&e{jogo} &8- &f{arena} &a(agora)'
+    Lore:
+      - '&7Modo: &f{modo}'
+      - '&7Comecou: &f{data} &8| &7Ha: &f{duracao}'
+      - '&7Jogadores (&f{quantidade}&7):'
+      - '{jogadores}'
+      - ''
+      - '&eClique para escolher quem reportar.'
+
+Motivos:
+  Titulo: '&8Reportar &7{jogador}'
+  Linhas: 3
+  # Informacao do contexto (partida atual ou nao, com ou sem replay).
+  Info:
+    Slot: 4
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '&cReportando &f{jogador}'
+    Lore:
+      - '&7Onde: &f{contexto}'
+      - '{replay}'
+  # Enfeites
+  Itens: {}
+
+Prova:
+  Titulo: '&8Adicionar uma prova?'
+  Linhas: 3
+  Sim:
+    Slot: 11
+    Material: LIME_WOOL
+    Nome: '&aSim, mandar um link'
+    Lore:
+      - '&7Video ou print mostrando o que'
+      - '&f{jogador} &7fez ({motivo}).'
+  Info:
+    Slot: 13
+    Material: PAPER
+    Nome: '&fProva'
+    Lore:
+      - '&7Com prova a staff resolve mais rapido.'
+      - '{replay}'
+  Nao:
+    Slot: 15
+    Material: RED_WOOL
+    Nome: '&cNao, reportar assim'
+
+Meus reportes:
+  Titulo: '&8Meus reportes ({pagina}/{paginas})'
+  Linhas: 6
+  Limite: 45
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Voltar:
+    Slot: 49
+    Material: ARROW
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cVoce ainda nao reportou ninguem'
+  Item:
+    Material: PAPER
+    Nome: '&f{jogador} &8- {estado}'
+    Lore:
+      - '&7Motivo: &f{motivo}'
+      - '&7Em: &f{data} {hora}'
+  Estados:
+    ABERTO:
+      Material: YELLOW_DYE
+      Nome: '&f{jogador} &8- {estado}'
+      Lore:
+        - '&7Motivo: &f{motivo}'
+        - '&7Em: &f{data} {hora}'
+        - '&7Esperando a staff.'
+    ANALISE:
+      Material: LIGHT_BLUE_DYE
+      Nome: '&f{jogador} &8- {estado}'
+      Lore:
+        - '&7Motivo: &f{motivo}'
+        - '&7Em: &f{data} {hora}'
+        - '&7Um membro da staff esta olhando.'
+    ACEITO:
+      Material: LIME_DYE
+      Nome: '&f{jogador} &8- {estado}'
+      Lore:
+        - '&7Motivo: &f{motivo}'
+        - '&7Em: &f{data} {hora}'
+        - '&aO jogador foi punido. Obrigado!'
+    NEGADO:
+      Material: GRAY_DYE
+      Nome: '&f{jogador} &8- {estado}'
+      Lore:
+        - '&7Motivo: &f{motivo}'
+        - '&7Em: &f{data} {hora}'
+    ARQUIVADO:
+      Material: GRAY_DYE
+      Nome: '&f{jogador} &8- {estado}'
+      Lore:
+        - '&7Motivo: &f{motivo}'
+        - '&7Em: &f{data} {hora}'
+
+# ------------------------------ /reportes ---------------------------------
+Reportados:
+  Titulo: '&8Jogadores reportados ({quantidade})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  # Formato de cada motivo na lore ({motivos}).
+  Formato do motivo: '&f > {motivo}: &7{quantia}'
+  # Cor do nome pela quantidade de reportes ({cor}): a maior faixa que cabe.
+  Prioridade:
+    '1': '&a'
+    '3': '&e'
+    '5': '&6'
+    '10': '&c'
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Filtro:
+    Slot: 48
+    Material: HOPPER
+    Nome: '&eMostrar: &f{filtro}'
+    Lore:
+      - '&7Clique para trocar.'
+  Ordem:
+    Slot: 50
+    Material: COMPARATOR
+    Nome: '&eOrdem: &f{ordem}'
+    Lore:
+      - '&7Clique para trocar.'
+  Resumo:
+    Slot: 4
+    Material: BOOK
+    Nome: '&cReportes'
+    Lore:
+      - '&7Abertos: &e{abertos}'
+      - '&7Em analise: &b{analise}'
+      - '&7Jogadores: &f{reportados}'
+  Vazio:
+    Slot: 22
+    Material: LIME_DYE
+    Nome: '&aNenhum reporte em aberto!'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '{cor}{jogador} &8({quantia})'
+    Lore:
+      - '&7Situacao: {online} &8| &7Servidor: &f{servidor}'
+      - '&7Motivos:'
+      - '{motivos}'
+      - ''
+      - '&7Reportes: &c{quantia} &8| &7Replay: {tem_replay}'
+      - '&7Ultimo reporte: &b{data} &8- &b{hora}'
+      - ''
+      - '&fEsquerdo &8- &7teleportar'
+      - '&fDireito &8- &7quem reportou e as provas'
+      - '&fShift+esquerdo &8- &7assistir o replay'
+      - '&fShift+direito &8- &7espectar'
+      - '&fQ &8- &7gerenciar (punir, negar...)'
+  Item em analise:
+    Material: PLAYER_HEAD
+    Dono: '{jogador}'
+    Nome: '{cor}{jogador} &8({quantia}) &b[em analise]'
+    Lore:
+      - '&7Assumido por: &b{staff}'
+      - '&7Situacao: {online} &8| &7Servidor: &f{servidor}'
+      - '&7Motivos:'
+      - '{motivos}'
+      - ''
+      - '&fEsquerdo &8- &7teleportar'
+      - '&fDireito &8- &7quem reportou e as provas'
+      - '&fShift+esquerdo &8- &7assistir o replay'
+      - '&fShift+direito &8- &7espectar'
+      - '&fQ &8- &7gerenciar (punir, negar...)'
+
+Reportes do jogador:
+  Titulo: '&8Reportes de {jogador} ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Voltar:
+    Slot: 49
+    Material: ARROW
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhum reporte em aberto'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{reportador}'
+    Nome: '&aReportador: &f{reportador} &8#{id}'
+    Lore:
+      - ''
+      - '&fMotivo: &7{motivo}'
+      - '&fProva: &7{prova}'
+      - '&fDescricao: &7{descricao}'
+      - '&fOnde: &7{jogo} {arena} &8| &7{servidor} ({mundo})'
+      - '&fReplay: {tem_replay} &7{replay_momento}'
+      - '&fQuando: &7{data} {hora} &8| {estado}'
+      - ''
+      - '&fEsquerdo &8- &7abrir a prova'
+      - '&fDireito &8- &7assistir o replay'
+      - '&fShift+direito &8- &7negar este reporte'
+      - '&fQ &8- &7arquivar este reporte'
+
+Historico do jogador:
+  Titulo: '&8Historico de {jogador} ({pagina}/{paginas})'
+  Linhas: 6
+  Limite: 90
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&aPagina anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&aProxima pagina'
+  Voltar:
+    Slot: 49
+    Material: ARROW
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: LIME_DYE
+    Nome: '&aNenhum reporte no historico'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{reportador}'
+    Nome: '&f{reportador} &8#{id} &8- {estado}'
+    Lore:
+      - '&fMotivo: &7{motivo}'
+      - '&fProva: &7{prova}'
+      - '&fOnde: &7{jogo} {arena} &8| &7{servidor}'
+      - '&fQuando: &7{data} {hora}'
+      - ''
+      - '&fEsquerdo &8- &7prova &8| &fDireito &8- &7replay'
+  Item encerrado:
+    Material: PAPER
+    Nome: '&7{reportador} &8#{id} &8- {estado}'
+    Lore:
+      - '&fMotivo: &7{motivo}'
+      - '&fProva: &7{prova}'
+      - '&fOnde: &7{jogo} {arena} &8| &7{servidor}'
+      - '&fQuando: &7{data} {hora}'
+      - '&fDecidido por: &7{staff} &8| &fPunicao: &7{punicao}'
+      - ''
+      - '&fEsquerdo &8- &7prova &8| &fDireito &8- &7replay'
+
+Gerenciar:
+  Titulo: '&8Gerenciar {jogador}'
+  Linhas: 4
+  # Chaves com funcao propria: Voltar, Punir, Assumir, Negar, Deletar, Replay,
+  # Teleportar, Espectar, Reportes, Historico, Gravar. Permissao opcional por item.
+  Itens:
+    Voltar:
+      Slot: 27
+      Material: ARROW
+      Nome: '&cVoltar'
+    Punir:
+      Slot: 10
+      Material: DIAMOND_AXE
+      Nome: '&cPunir'
+      Lore:
+        - '&7Escolher a punicao de &f{jogador}&7.'
+        - '&7Motivos em aberto: &f{quantidade}'
+    Assumir:
+      Slot: 11
+      Material: NAME_TAG
+      Nome: '&bAssumir'
+      Lore:
+        - '&7Marca os reportes como seus'
+        - '&7(em analise) para a staff saber.'
+    Replay:
+      Slot: 12
+      Material: ENDER_EYE
+      Nome: '&dAssistir o replay'
+      Lore:
+        - '&7Replay do reporte mais recente,'
+        - '&7ja no momento em que aconteceu.'
+    Teleportar:
+      Slot: 13
+      Material: ENDER_PEARL
+      Nome: '&bTeleportar'
+      Lore:
+        - '&7Ir ate &f{jogador}&7.'
+    Espectar:
+      Slot: 14
+      Material: GLASS
+      Nome: '&fEspectar'
+      Lore:
+        - '&7Espectador em cima de &f{jogador}&7.'
+        - '&f/reportes voltar &7para voltar.'
+    Gravar:
+      Slot: 15
+      Material: REDSTONE
+      Nome: '&cGravar agora'
+      Lore:
+        - '&7Grava &f{jogador} &7e quem estiver'
+        - '&7perto pelos proximos segundos.'
+    Reportes:
+      Slot: 16
+      Material: PAPER
+      Nome: '&eQuem reportou'
+      Lore:
+        - '&7Provas, descricoes e replay de cada um.'
+    Negar:
+      Slot: 21
+      Material: RED_DYE
+      Nome: '&cNegar todos'
+      Lore:
+        - '&7Os reportes nao procedem.'
+        - '&7Conta contra quem reportou.'
+    Deletar:
+      Slot: 22
+      Material: HOPPER
+      Nome: '&7Arquivar todos'
+      Lore:
+        - '&7Tira da fila sem decidir.'
+    Historico:
+      Slot: 23
+      Material: BOOK
+      Nome: '&6Historico'
+      Lore:
+        - '&7Todos os reportes de &f{jogador}&7,'
+        - '&7inclusive os encerrados.'
+  # Itens customizados: quantos quiser. '[console],comando' ou '[player],comando'.
+  # Placeholders: {jogador} {staff} {motivo} {id} {servidor}...
+  Itens custom:
+    Prender:
+      Slot: 31
+      Material: IRON_BARS
+      Nome: '&cPrender'
+      Lore:
+        - '&7Manda &f{jogador} &7para a prisao.'
+      Comandos:
+        - '[player],prender {jogador}'
+
+Punir:
+  Titulo: '&8Punir {jogador}'
+  Linhas: 3
+  # Pede confirmacao antes de aplicar.
+  Confirmar: true
+  Esconder sem permissao: false
+  Voltar:
+    Slot: 18
+    Material: ARROW
+    Nome: '&cVoltar'
+  Sem permissao:
+    Material: GRAY_DYE
+    Nome: '&8{punicao}'
+    Lore:
+      - '&cVoce nao pode aplicar esta punicao.'
+  # Enfeites
+  Itens: {}
+
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Linhas: 3
+  Sim:
+    Slot: 11
+    Material: LIME_WOOL
+    Nome: '&aConfirmar'
+    Lore:
+      - '&7{pergunta}'
+  Pergunta:
+    Slot: 13
+    Material: PAPER
+    Nome: '&f{pergunta}'
+  Nao:
+    Slot: 15
+    Material: RED_WOOL
+    Nome: '&cCancelar'

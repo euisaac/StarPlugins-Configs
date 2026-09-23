@@ -1,0 +1,101 @@
+# Motivos de reporte. Crie quantos quiser; a chave (ex.: hack) e o que vai
+# no banco e no /reportar <jogador> <motivo>.
+#
+# Icone: Slot, Material, Nome, Lore, Brilho, Dono (cabeca de jogador), Textura.
+#   {jogador} = quem esta sendo reportado.
+# Motivo: o nome do motivo nas mensagens, no menu da staff e no Discord.
+# Permissao: vazio = todos podem usar.
+# Onde: TODOS, PARTIDA (so dentro de partida) ou FORA (so fora de partida).
+# Jogos: so aparece nestes minigames (ex.: [StarBedWars, StarEggWars]). Vazio = todos.
+# Exigir prova: true/false para mudar o do config.yml so neste motivo.
+# Acoes: 'quantidade,comando' -- roda pelo console quando o jogador chega a N
+#   pessoas diferentes reportando por ESTE motivo. {jogador} {motivo} {quantidade}.
+
+Motivos:
+  hack:
+    Motivo: 'Uso de hack'
+    Icone:
+      Slot: 10
+      Material: DIAMOND_SWORD
+      Nome: '&cUso de hack'
+      Lore:
+        - '&7Fly, kill aura, speed, reach,'
+        - '&7x-ray, auto-click...'
+        - ''
+        - '&eClique para reportar &f{jogador}'
+    Acoes:
+      - '3,broadcast &c{jogador} &7tem &c{quantidade} &7reportes por uso de hack. A staff foi avisada.'
+  ofensa:
+    Motivo: 'Ofensa a jogador'
+    Icone:
+      Slot: 11
+      Material: WRITABLE_BOOK
+      Nome: '&cOfensa a jogador'
+      Lore:
+        - '&7Xingamentos, preconceito,'
+        - '&7ameacas no chat.'
+        - ''
+        - '&eClique para reportar &f{jogador}'
+    Acoes: []
+  antijogo:
+    Motivo: 'Anti-jogo'
+    Onde: PARTIDA
+    Icone:
+      Slot: 12
+      Material: BARRIER
+      Nome: '&cAnti-jogo'
+      Lore:
+        - '&7Atrapalhar a propria equipe,'
+        - '&7desistir de proposito, entregar.'
+        - ''
+        - '&eClique para reportar &f{jogador}'
+    Acoes: []
+  time:
+    Motivo: 'Aliar-se a outra equipe'
+    Onde: PARTIDA
+    Icone:
+      Slot: 13
+      Material: IRON_CHESTPLATE
+      Nome: '&cTeaming'
+      Lore:
+        - '&7Combinar com outra equipe'
+        - '&7em modo solo.'
+        - ''
+        - '&eClique para reportar &f{jogador}'
+    Acoes: []
+  bug:
+    Motivo: 'Abuso de bug'
+    Icone:
+      Slot: 14
+      Material: SPIDER_EYE
+      Nome: '&cAbuso de bug'
+      Lore:
+        - '&7Usar falhas do servidor'
+        - '&7para levar vantagem.'
+        - ''
+        - '&eClique para reportar &f{jogador}'
+    Acoes: []
+  spam:
+    Motivo: 'Spam ou divulgacao'
+    Onde: FORA
+    Icone:
+      Slot: 15
+      Material: PAPER
+      Nome: '&cSpam ou divulgacao'
+      Lore:
+        - '&7Flood no chat ou divulgar'
+        - '&7outros servidores.'
+        - ''
+        - '&eClique para reportar &f{jogador}'
+    Acoes: []
+  nick:
+    Motivo: 'Nome ou skin inadequada'
+    Icone:
+      Slot: 16
+      Material: NAME_TAG
+      Nome: '&cNome ou skin inadequada'
+      Lore:
+        - '&7Nick ou skin ofensivos.'
+        - ''
+        - '&eClique para reportar &f{jogador}'
+    Acoes: []

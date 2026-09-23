@@ -1,0 +1,77 @@
+# Punicoes do menu de gerenciar (/reportes -> Q no jogador -> Punir).
+# Cada uma com a propria permissao e os comandos que o console roda.
+#
+# Placeholders dos comandos: {jogador} (reportado), {staff}, {motivos} (todos
+# os motivos em aberto contra ele), {motivo} (o ultimo), {punicao}, {id},
+# {servidor}, {prova}, {partida}, {replay}.
+#
+# Troque os comandos pelos do seu plugin de punicoes.
+
+Punicoes:
+  aviso:
+    Nome: '&eAvisar'
+    Permissao: 'starreportar.punicao.aviso'
+    Icone:
+      Slot: 10
+      Material: YELLOW_DYE
+      Nome: '&eAvisar &f{jogador}'
+      Lore:
+        - '&7Da um aviso formal.'
+    Comandos:
+      - 'warn {jogador} {motivos}'
+  mute:
+    Nome: '&6Silenciar 1 hora'
+    Permissao: 'starreportar.punicao.mute'
+    Icone:
+      Slot: 11
+      Material: ORANGE_DYE
+      Nome: '&6Silenciar &f{jogador} &7(1h)'
+      Lore:
+        - '&7Para ofensa e spam.'
+    Comandos:
+      - 'tempmute {jogador} 1h {motivos}'
+  expulsar:
+    Nome: '&cExpulsar'
+    Permissao: 'starreportar.punicao.expulsar'
+    Icone:
+      Slot: 12
+      Material: LEATHER_BOOTS
+      Nome: '&cExpulsar &f{jogador}'
+      Lore:
+        - '&7Tira do servidor agora.'
+    Comandos:
+      - 'kick {jogador} {motivos}'
+  banir7:
+    Nome: '&4Banir 7 dias'
+    Permissao: 'starreportar.punicao.banir7'
+    Icone:
+      Slot: 14
+      Material: IRON_AXE
+      Nome: '&4Banir &f{jogador} &7(7 dias)'
+      Lore:
+        - '&7Anti-jogo, bug, teaming.'
+    Comandos:
+      - 'tempban {jogador} 7d {motivos}'
+  banir30:
+    Nome: '&4Banir 30 dias'
+    Permissao: 'starreportar.punicao.banir30'
+    Icone:
+      Slot: 15
+      Material: DIAMOND_AXE
+      Nome: '&4Banir &f{jogador} &7(30 dias)'
+      Lore:
+        - '&7Uso de hack.'
+    Comandos:
+      - 'tempban {jogador} 30d {motivos}'
+  banir:
+    Nome: '&4&lBanir para sempre'
+    Permissao: 'starreportar.punicao.banir'
+    Icone:
+      Slot: 16
+      Material: DIAMOND_AXE
+      Nome: '&4&lBanir &f{jogador} &7(permanente)'
+      Brilho: true
+      Lore:
+        - '&7Reincidencia grave.'
+    Comandos:
+      - 'ban {jogador} {motivos}'

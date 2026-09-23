@@ -1,0 +1,148 @@
+#  ____  _             ____                       _
+# / ___|| |_ __ _ _ __|  _ \ ___ _ __   ___  _ __| |_ __ _ _ __
+# \___ \| __/ _` | '__| |_) / _ \ '_ \ / _ \| '__| __/ _` | '__|
+#  ___) | || (_| | |  |  _ <  __/ |_) | (_) | |  | || (_| | |
+# |____/ \__\__,_|_|  |_| \_\___| .__/ \___/|_|   \__\__,_|_|
+#                               |_|
+#
+# Reportes completos, com replay e historico de partidas.
+# Motivos: motivos.yml | Punicoes: punicoes.yml | Menus: menus.yml
+# Mensagens: mensagens.yml | Discord: discord.yml
+
+Versao do modelo: 1
+
+# Nome deste servidor. Numa rede com o mesmo MySQL, mostra onde o reporte
+# aconteceu e deixa a staff ir ate la (Rede.Ir ao servidor).
+Servidor: 'servidor'
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL (compartilhado pela rede).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starreportar_'
+  # Com MySQL, de quanto em quanto tempo os reportes dos outros servidores chegam.
+  Sincronizar a cada segundos: 15
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Opcoes:
+  # Ninguem reporta quem tem starreportar.staff (admin pode).
+  Bloquear staff: true
+  # Um reporte aberto por vez contra o mesmo jogador (por quem reporta).
+  Um reporte aberto por alvo: true
+  Segundos entre reportes: 30
+  # Reportes por dia por jogador (0 = sem limite).
+  Limite por dia: 0
+  # Esconde do menu o motivo que o jogador nao tem permissao de usar.
+  Esconder motivo sem permissao: true
+  # Punir tira os reportes da fila (ficam no historico como ACEITO).
+  Remover punido: true
+  # Alem de tirar da fila, apaga do banco ao punir.
+  Apagar do banco ao punir: false
+  # "Deletar" no menu apaga do banco (false = fica no historico como ARQUIVADO).
+  Deletar apaga do banco: false
+  # Avisa quem reportou quando o reporte e aceito ou negado (na hora ou no proximo login).
+  Avisar quem reportou: true
+
+# Quem tem muitos reportes NEGADOS fica sem reportar por um tempo.
+Anti abuso:
+  # 0 desliga.
+  Negados para bloquear: 5
+  # Janela contada (dias): o bloqueio acaba sozinho quando os negados saem dela.
+  Dias: 7
+
+Provas:
+  Ativar: true
+  # Pergunta "quer mandar uma prova?" (Sim/Nao) depois do motivo.
+  Perguntar: true
+  # Sempre exigir um link (cada motivo pode mudar com 'Exigir prova').
+  Exigir: false
+  # Quando o reporte vai com replay (StarReplay), a prova deixa de ser obrigatoria.
+  Replay dispensa prova: true
+  # Sites aceitos (comeco do link, sem https://). Vazio = qualquer link.
+  Links:
+    - 'youtu.be'
+    - 'youtube.com'
+    - 'imgur.com'
+    - 'i.imgur.com'
+    - 'prnt.sc'
+    - 'gyazo.com'
+    - 'streamable.com'
+    - 'medal.tv'
+    - 'twitch.tv'
+    - 'clips.twitch.tv'
+    - 'cdn.discordapp.com'
+    - 'media.discordapp.net'
+
+# Texto livre depois da prova ("o que aconteceu?").
+Descricao:
+  Ativar: false
+  Tamanho maximo: 120
+
+Replay:
+  # Com o StarReplay instalado, todo reporte ganha um replay:
+  # - dentro de partida gravada: o momento e marcado no replay da partida;
+  # - fora: um recorte dos ultimos segundos em volta do reportado.
+  # Sem o StarReplay, o reporte leva o replay proprio do minigame, quando ele tem.
+  Ativar: true
+  # Botao "Gravar agora" do menu de gerenciar.
+  Segundos da gravacao manual: 60
+
+# Minigames da StarPlugins (BedWars, EggWars, Murder, SkyWars, The Bridge...).
+Partidas:
+  # Guarda cada partida com os jogadores no banco (historico do /reportar).
+  Historico: true
+  # /reportar dentro de partida abre direto a lista de jogadores dela.
+  Abrir direto na partida: true
+  Mostrar no historico: 21
+  Dias no historico: 3
+
+Staff:
+  # Lembrete de reportes abertos (0 desliga).
+  Lembrete em minutos: 5
+  Avisar quando reportado entrar: true
+  Avisar reportes de outros servidores: true
+
+Rede:
+  # Teleportar ate alguem de outro servidor manda o staff para la (BungeeCord/Velocity).
+  Ir ao servidor: true
+
+# Recompensa para quem reportou quando o reportado e punido (reporte procedente).
+Recompensas:
+  Ativar: false
+  Somente online: true
+  Comandos:
+    - 'eco give {reportador} 100'
+
+# Acoes pelo total de pessoas diferentes que reportaram o jogador (qualquer motivo).
+# Formato: 'quantidade,comando' (roda pelo console uma vez, ao chegar na quantidade).
+# Cada motivo tambem tem as suas em motivos.yml.
+Acoes automaticas:
+  - '10,broadcast &c{jogador} &7foi reportado por &c10 &7jogadores diferentes.'
+
+Limpeza:
+  # Reportes ja encerrados (aceitos, negados, arquivados) mais velhos que isso saem do banco.
+  Reportes encerrados dias: 60
+  # Partidas do historico mais velhas que isso saem do banco.
+  Partidas dias: 7
+
+Top:
+  Dias: 30
+
+Formatos:
+  Data: 'dd/MM/yyyy'
+  Hora: 'HH:mm'
+  # Imagem da cabeca no Discord ({uuid} ou {nome}).
+  Avatar: 'https://mc-heads.net/avatar/{uuid}/64'
+
+Sons:
+  Reportou: ENTITY_EXPERIENCE_ORB_PICKUP
+  Novo reporte: BLOCK_NOTE_BLOCK_PLING
+  Reportado entrou: BLOCK_NOTE_BLOCK_BASS
+  Aviso ao reportador: ENTITY_PLAYER_LEVELUP
+
+Menus:
+  Intervalo entre cliques: 150
