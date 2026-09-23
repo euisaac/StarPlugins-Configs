@@ -1,0 +1,102 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                  StarBanco - bolsa de valores                        ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Cada acao tem um preco que muda sozinho a cada atualizacao (config.yml >
+# Investimentos.Bolsa.Atualizar a cada):
+#
+#   novo preco = preco x (1 + Tendencia% + sorteio entre -Volatilidade% e +Volatilidade%)
+#
+# e depois fica preso entre Preco minimo e Preco maximo. Com "Atracao" maior
+# que 0 o preco e puxado de volta para o Preco base aos poucos (0 = solto).
+#
+# Dividendos: % do preco pago por cota nos horarios de dividendos.
+#
+# Eventos: a cada atualizacao cada evento tem Chance% de acontecer com a acao,
+# mudando o preco em Variacao% de uma vez (negativo = queda).
+
+Versao do modelo: 1
+
+Acoes:
+  STAR3:
+    Nome: '&eStar Mineracao'
+    Setor: 'Mineracao'
+    Material: DIAMOND_PICKAXE
+    Preco base: 1000
+    Preco minimo: 100
+    Preco maximo: 20000
+    Volatilidade: 4.0
+    Tendencia: 0.1
+    Atracao: 2.0
+    Dividendos: 0.5
+    Descricao:
+      - '&7Extrai minerios nas profundezas'
+      - '&7do servidor. Lucro estavel.'
+  FARM4:
+    Nome: '&aAgro Farm'
+    Setor: 'Agronegocio'
+    Material: WHEAT
+    Preco base: 500
+    Preco minimo: 50
+    Preco maximo: 10000
+    Volatilidade: 3.0
+    Tendencia: 0.05
+    Atracao: 3.0
+    Dividendos: 1.0
+    Descricao:
+      - '&7Plantacoes e farms automaticas.'
+      - '&7Paga bons dividendos.'
+  PVP11:
+    Nome: '&cArena PvP S.A.'
+    Setor: 'Entretenimento'
+    Material: DIAMOND_SWORD
+    Preco base: 2500
+    Preco minimo: 200
+    Preco maximo: 50000
+    Volatilidade: 9.0
+    Tendencia: 0.0
+    Atracao: 1.0
+    Dividendos: 0.0
+    Descricao:
+      - '&7Guerras e eventos de PvP.'
+      - '&cMuito arriscada, muito lucrativa.'
+  NETH5:
+    Nome: '&4Nether Energia'
+    Setor: 'Energia'
+    Material: BLAZE_ROD
+    Preco base: 1800
+    Preco minimo: 150
+    Preco maximo: 30000
+    Volatilidade: 6.0
+    Tendencia: 0.08
+    Atracao: 1.5
+    Dividendos: 0.3
+    Descricao:
+      - '&7Combustivel direto do Nether.'
+  ENDR3:
+    Nome: '&5Ender Logistica'
+    Setor: 'Transporte'
+    Material: ENDER_PEARL
+    Preco base: 3000
+    Preco minimo: 300
+    Preco maximo: 60000
+    Volatilidade: 5.0
+    Tendencia: 0.06
+    Atracao: 2.0
+    Dividendos: 0.4
+    Descricao:
+      - '&7Teletransporte de cargas pelo End.'
+
+Eventos:
+  descoberta:
+    Chance: 1.5
+    Variacao: 15
+    Mensagem: '&a&l[BOLSA] &f{acao} &adisparou &f+{variacao}% &aapos uma grande descoberta!'
+  escandalo:
+    Chance: 1.5
+    Variacao: -18
+    Mensagem: '&c&l[BOLSA] &f{acao} &cdespencou &f{variacao}% &capos um escandalo!'
+  boato:
+    Chance: 4
+    Variacao: 6
+    Mensagem: '&e&l[BOLSA] &fBoatos de expansao fazem &f{acao} &esubir &f+{variacao}%&e.'

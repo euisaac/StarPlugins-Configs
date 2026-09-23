@@ -1,0 +1,334 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarBanco - mensagens                           ║
+#  ║  Mensagem vazia ('') nao e enviada. Mensagens de varias linhas (|)   ║
+#  ║  saem sem o prefixo. Aceita & e cores hex (&#rrggbb).                ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+Versao do modelo: 1
+
+Prefixo: '&6&lBANCO &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Somente jogadores: '&cSo jogadores podem usar este comando.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca passou pelo banco.'
+  Uso: '&cUse: &f{uso}'
+
+Conta:
+  Carregando: '&eSua conta ainda esta carregando, tente em um segundo.'
+  Aguarde: '&eAguarde a operacao anterior terminar.'
+
+Moeda:
+  Nenhuma: '&cNenhuma moeda configurada no banco.'
+  Nao existe: '&cA moeda &f{moeda} &cnao existe. Veja /banco moeda.'
+  Sem permissao: '&cVoce nao pode usar {moeda} &cno banco.'
+  Indisponivel: '&cA economia de {moeda} &cnao esta respondendo agora.'
+  Selecionada: '&aMoeda do banco trocada para {moeda}&a.'
+
+Erro:
+  Generico: '&cNao foi possivel concluir agora. Nada foi descontado; tente de novo.'
+  Economia recusou: '&cA economia recusou a operacao; o valor voltou para o seu banco.'
+  Valor invalido: '&cValor invalido: &f{texto}&c. Exemplos: &f1500&c, &f10k&c, &f2,5kk&c, &f1m&c.'
+  Quantidade invalida: '&cQuantidade invalida: &f{texto}&c. Use um numero inteiro.'
+
+Deposito:
+  Nada: '&cVoce nao tem nada para depositar.'
+  Minimo: '&cO deposito minimo e &f{minimo}&c.'
+  Sem saldo em maos: |
+
+    &cVoce nao tem esse valor em maos!
+    &7Em maos: &f{mao}  &7Necessario: &f{valor}
+
+  Saldo maximo: |
+
+    &cSeu nivel nao permite guardar esse valor!
+    &7Nivel: &f{nivel}  &7Saldo maximo: &f{maximo}
+    &7Saldo atual: &f{saldo}
+    &7Suba de nivel em &f/banco nivel&7.
+
+  Sucesso: |
+
+    &a&lDEPOSITO REALIZADO
+    &7Moeda: &f{moeda}
+    &7Valor: &f{valor}  &7Taxa: &f{taxa}% &8({taxa_valor})
+    &7Creditado: &a{creditado}
+    &7Saldo no banco: &a{saldo}
+
+
+Saque:
+  Nada: '&cVoce nao tem nada no banco para sacar.'
+  Minimo: '&cO saque minimo e &f{minimo}&c.'
+  Sem saldo: '&cSaldo insuficiente no banco. &7Saldo: &f{saldo} &7| Pedido: &f{valor}'
+  Limite: '&cVoce ja fez &f{usados}/{limite} &csaques neste ciclo. Libera em &f{tempo}&c.'
+  Sucesso: |
+
+    &a&lSAQUE REALIZADO
+    &7Moeda: &f{moeda}
+    &7Valor: &f{valor}  &7Taxa: &f{taxa}% &8({taxa_valor})
+    &7Recebido em maos: &a{recebido}
+    &7Saldo no banco: &a{saldo}
+
+
+Pix:
+  Desligado: '&cTransferencias de {moeda} &cestao desligadas.'
+  Si mesmo: '&cInforme outro jogador para transferir.'
+  Nada: '&cVoce nao tem saldo para transferir.'
+  Minimo: '&cA transferencia minima e &f{minimo}&c.'
+  Sem saldo: '&cSaldo insuficiente no banco. &7Saldo: &f{saldo} &7| Pedido: &f{valor}'
+  Limite: '&cVoce ja fez &f{usados}/{limite} &ctransferencias neste ciclo. Libera em &f{tempo}&c.'
+  Nao encontrado: '&cO jogador &f{jogador} &cnunca passou pelo banco.'
+  Saldo maximo do destino: '&cA conta de &f{jogador} &cja esta no saldo maximo do nivel dela.'
+  Enviado: |
+
+    &a&lPIX ENVIADO
+    &7Para: &f{jogador}
+    &7Valor: &f{valor}  &7Taxa: &f{taxa}% &8({taxa_valor})
+    &7{jogador} recebeu: &a{recebido}
+    &7Seu saldo no banco: &a{saldo}
+
+  Recebido: '&aVoce recebeu um pix de &f{valor} &ade &f{jogador}&a!'
+
+Cheque:
+  Desligado: '&cCheques de {moeda} &cestao desligados.'
+  Nada: '&cValor de cheque invalido.'
+  Minimo: '&cO cheque minimo e &f{minimo}&c.'
+  Sem saldo: '&cSaldo insuficiente no banco. &7Saldo: &f{saldo} &7| Pedido: &f{valor}'
+  Limite: '&cVoce ja criou &f{usados}/{limite} &ccheques neste ciclo. Libera em &f{tempo}&c.'
+  Criado: |
+
+    &a&lCHEQUE CRIADO
+    &7Moeda: &f{moeda}
+    &7Descontado do banco: &f{valor}  &7Taxa: &f{taxa}% &8({taxa_valor})
+    &7Valor do cheque: &a{valor_cheque}
+    &7Saldo no banco: &a{saldo}
+
+  Ativado: '&aCheque de &f{criador} &aativado: &f{valor} &a{destino}&a.'
+  Ja usado: '&cEste cheque ja foi usado por &f{jogador} &cem &f{data}&c. O papel nao vale mais nada.'
+  Invalido: '&cEste cheque nao existe no banco. O papel nao vale nada.'
+  Aviso staff: '&c[Banco] &f{jogador} &ctentou ativar o cheque &f#{id} &cque ja tinha sido usado (possivel dupe).'
+  Inventario cheio: '&eSeu inventario estava cheio: o cheque caiu aos seus pes.'
+  Agache para ativar: '&eAgache e clique com o botao direito para ativar o cheque.'
+
+Nivel:
+  Maximo: '&eSua conta ja esta no nivel maximo.'
+  Sem permissao: '&cVoce precisa de permissao para subir para {nivel}&c.'
+  Sem saldo: '&cVoce precisa de &f{custo} &cno banco para subir para {nivel}&c. Saldo: &f{saldo}'
+  Sucesso: '&aSua conta subiu para {nivel}&a! Custo: &f{custo}'
+  Anuncio: '&6&l[BANCO] &f{jogador} &7subiu a conta para {nivel}&7!'
+
+Rendimento:
+  Rendeu: |
+
+    &a&lSEU DINHEIRO RENDEU
+    &7Moeda: &f{moeda}  &7Nivel: {nivel}
+    &7Antes: &c{antes}
+    &7Rendimento: &e+{rendimento}
+    &7Agora: &a{saldo}
+
+
+Emprestimo:
+  Desligado: '&cOs emprestimos estao desligados neste servidor.'
+  Atrasado: '&cVoce tem emprestimo atrasado. Quite antes de pedir outro.'
+  Maximo abertos: '&cVoce ja tem &f{maximo} &cemprestimo(s) aberto(s). Quite antes de pedir outro.'
+  Minimo: '&cO emprestimo minimo e &f{minimo}&c.'
+  Sem limite: '&cSeu credito disponivel e &f{disponivel} &c(limite &f{limite}&c). Suba o nivel ou o score.'
+  Aprovado: |
+
+    &a&lEMPRESTIMO APROVADO
+    &7Recebido: &a{valor} &7{destino}
+    &7Juros: &f{juros}%  &7Prazo: &f{prazo}
+    &7Voce vai devolver: &c{total}
+    &7Vencimento: &f{vencimento}
+    &7O banco cobra sozinho do seu saldo no vencimento.
+
+  Nao encontrado: '&cEmprestimo nao encontrado ou ja quitado.'
+  Sem saldo para pagar: '&cVoce precisa de &f{valor} &cno banco para pagar. Saldo: &f{saldo}'
+  Quitado: '&aEmprestimo quitado! Pagamento: &f{valor}&a.'
+  Quitado em dia: '&aEmprestimo quitado em dia! Pagamento: &f{valor}&a. Score &e+{score}&a.'
+  Pago parte: '&aPagamento de &f{valor} &afeito. Ainda falta &f{falta}&a.'
+  Descontado do deposito: '&e{valor} &edo seu deposito foi para a divida atrasada.'
+  Cobrado e quitado: '&aSeu emprestimo venceu e foi pago com o saldo do banco (&f{valor}&a).'
+  Venceu: |
+
+    &c&lEMPRESTIMO ATRASADO
+    &7Cobrado do seu banco: &f{pago}
+    &7Ainda falta: &c{falta}
+    &7Cada dia de atraso gera multa e derruba seu score.
+    &7Pague em &f/banco emprestimo&7.
+
+  Multa: '&cMulta de atraso: &f+{multa}&c. Sua divida agora e &f{falta}&c.'
+  Calote: '&4&l[BANCO] &c{jogador} &cesta devendo &f{valor} &cao banco!'
+  Bloqueado: '&cVoce esta com emprestimo atrasado (&f{divida}&c) e nao pode {acao}&c.'
+
+Acoes bloqueadas:
+  Saque: 'sacar'
+  Cheque: 'criar cheques'
+  Transferencia: 'transferir'
+  Nivel: 'subir de nivel'
+  Investir: 'investir'
+
+Bolsa:
+  Desligada: '&cA bolsa de valores esta desligada.'
+  Acao nao existe: '&cA acao &f{id} &cnao existe.'
+  Quantidade invalida: '&cQuantidade invalida.'
+  Maximo de cotas: '&cVoce so pode ter &f{maximo} &ccotas desta acao.'
+  Sem saldo: '&cVoce precisa de &f{valor} &cno banco para essa compra. Saldo: &f{saldo}'
+  Sem cotas: '&cVoce nao tem cotas suficientes dessa acao.'
+  Comprou: '&aComprou &f{cotas}x {acao} &aa &f{preco} &7(total &f{total}&7, corretagem &f{corretagem}&7).'
+  Vendeu com lucro: '&aVendeu &f{cotas}x {acao} &aa &f{preco}&a: recebeu &f{total} &a(lucro &2+{lucro}&a).'
+  Vendeu com prejuizo: '&eVendeu &f{cotas}x {acao} &ea &f{preco}&e: recebeu &f{total} &e(prejuizo &c-{lucro}&e).'
+  Dividendos: '&aSuas acoes pagaram &f{valor} &ade dividendos!'
+  Lista cabecalho: '&6&lBOLSA DE VALORES &8- &7/bolsa ver <acao>'
+  Lista linha: ' &8» &f{id} {acao} &7{preco} {variacao} {grafico}'
+
+Renda fixa:
+  Desligada: '&cA renda fixa esta desligada.'
+  Nivel minimo: '&c{produto} &cexige conta {nivel}&c.'
+  Maximo: '&cVoce ja tem &f{maximo} &caplicacoes abertas.'
+  Minimo: '&cA aplicacao minima em {produto} &ce &f{minimo}&c.'
+  Maximo valor: '&cA aplicacao maxima em {produto} &ce &f{maximo_valor}&c.'
+  Sem saldo: '&cVoce precisa de &f{valor} &cno banco. Saldo: &f{saldo}'
+  Aplicou: '&aAplicou &f{valor} &aem {produto}&a. Recebe &f{final} &aem &f{vencimento}&a.'
+  Resgatou: '&aResgatou {produto}&a: &f{valor} &avoltou para o banco.'
+  Resgatou antes: '&eResgatou {produto} &eantes do prazo (multa &f{multa}%&e): &f{valor} &evoltou para o banco.'
+  Nao encontrada: '&cEssa aplicacao ja foi resgatada.'
+  Venceu: '&aSua aplicacao &f{detalhe} &avenceu: &f{valor} &acaiu no banco!'
+
+Morte:
+  Perdeu: |
+
+    &c&lVOCE PERDEU {porcentagem}% DO DINHEIRO EM MAOS
+    &7Antes: &f{antes}  &7Agora: &f{depois}
+    &7Perdido: &c{perdido}
+    &7Dinheiro guardado no &6/banco &7nunca e perdido!
+
+  Recebeu: '&aVoce pegou &f{valor} &ado dinheiro de &f{jogador}&a.'
+
+Saldo:
+  Cabecalho: |
+
+    &8&m----------------------------------
+    &6&lBANCO &7de &f{jogador} &8- &7nivel {nivel}
+  Linha: ' &8» {moeda}&7: &f{banco} &8(em maos: &7{mao}&8)'
+  Extra staff: ' &8» &7Score: &f{score}  &7Divida: &c{divida}  &7Aplicado: &f{aplicado}'
+  Rodape: '&8&m----------------------------------'
+
+Titulos:
+  Deposito: '&a&lDEPOSITO<nl>&f{valor} &7em {moeda}'
+  Saque: '&e&lSAQUE<nl>&f{valor} &7em {moeda}'
+  Pix: '&a&lPIX RECEBIDO<nl>&f{valor} &7de &f{jogador}'
+  Cheque: '&a&lCHEQUE<nl>&f{valor}'
+  Nivel: '&6&lNOVO NIVEL<nl>{nivel}'
+  Emprestimo: '&a&lEMPRESTIMO<nl>&f{valor}'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&7Operacao cancelada.'
+  Tempo esgotado: '&7O tempo para digitar acabou.'
+  Deposito: '&eDigite quanto de {moeda} &equer &fDEPOSITAR &7(ou &f{tudo}&7).'
+  Saque: '&eDigite quanto de {moeda} &equer &fSACAR &7(ou &f{tudo}&7). Taxa: &f{taxa}%'
+  Cheque: '&eDigite o valor do &fCHEQUE &eem {moeda} &7(ou &f{tudo}&7). Taxa: &f{taxa}%'
+  Pix jogador: '&eDigite o &fnick &ede quem vai receber o pix.'
+  Pix valor: '&eDigite quanto de {moeda} &equer enviar para &f{jogador} &7(ou &f{tudo}&7).'
+  Emprestimo: '&eDigite quanto quer pegar em {oferta} &7(disponivel: &f{disponivel}&7, ou &f{tudo}&7).'
+  Pagar emprestimo: '&eDigite quanto quer pagar &7(falta &f{falta}&7, ou &f{tudo}&7).'
+  Aplicar: '&eDigite quanto quer aplicar em {produto} &7(minimo &f{minimo}&7, ou &f{tudo}&7).'
+  Comprar cotas: '&eDigite quantas cotas de {acao} &equer &fCOMPRAR&e.'
+  Vender cotas: '&eDigite quantas cotas de {acao} &equer &fVENDER&e.'
+
+Confirmacoes:
+  Subir nivel: '&7Subir a conta para {nivel}'
+  Custo: '&7Custo: &f{valor}'
+  Quitar emprestimo: '&7Quitar o emprestimo &f#{id}'
+  Pegar emprestimo: '&7Pegar &f{valor} &7emprestado'
+  Devolver: '&7Devolver &c{total} &7em &f{prazo}'
+  Vender tudo: '&7Vender todas as cotas de &f{id}'
+  Preco atual: '&7Preco atual: &f{preco}'
+  Aplicar: '&7Aplicar &f{valor} &7em {produto}'
+  Receber: '&7Receber &a{valor} &7em &f{prazo}'
+  Resgatar: '&7Resgatar {produto}'
+  Resgatar antes: '&7Resgatar {produto} &cantes do prazo'
+  Receber resgate: '&7Receber &a{final}'
+  Receber antecipado: '&7Receber &e{resgate_antecipado} &8(multa {multa}%, sem rendimento)'
+
+Filtros:
+  Todos: '&fTodos'
+  Entradas: '&aEntradas'
+  Saidas: '&cSaidas'
+  Transferencias: '&bTransferencias'
+  Investimentos: '&eInvestimentos'
+  Emprestimos: '&6Emprestimos'
+  Todas as moedas: '&fTodas'
+
+Etiquetas:
+  Sim: '&asim'
+  Nao: '&cnao'
+  Desligado: '&cdesligado'
+  Ninguem: '&7ninguem'
+  Sem limite: '&7sem limite'
+  Sem taxa: '&7sem taxa'
+  Gratis: '&agratis'
+  Nivel maximo: '&6nivel maximo'
+  No banco: 'no banco'
+  Em maos: 'em maos'
+  Em dia: '&aem dia'
+  Devendo: '&edevendo'
+  Inadimplente: '&4inadimplente'
+
+Admin:
+  Recarregado: '&aConfiguracoes do banco recarregadas.'
+  Saldo alterado: '&aSaldo de &f{jogador} &aem {moeda} &aagora e &f{saldo}&a.'
+  Nivel alterado: '&aNivel de &f{jogador} &aalterado para {nivel}&a.'
+  Score alterado: '&aScore de &f{jogador} &aalterado para &f{score}&a.'
+  Divida perdoada: '&aTodas as dividas de &f{jogador} &aforam perdoadas.'
+  Rendimento forcado: '&ePagando o rendimento agora...'
+  Rendimento pago: '&aRendimento pago para &f{contas} &acontas (total &f{total}&a).'
+  Dividendos forcados: '&ePagando os dividendos agora...'
+  Preco alterado: '&aPreco de &f{id} &aalterado para &f{preco}&a.'
+  Top atualizado: '&aTop do banco atualizado.'
+  Npc criado: '&aNPC do banco criado na sua posicao.'
+  Npc removido: '&aNPC do banco removido.'
+  Npc nao encontrado: '&cNenhum NPC do banco a menos de 10 blocos.'
+
+Ajuda:
+  Jogador: |
+
+    &6&lBANCO &8- &7comandos
+    &8» &f/{comando} &7abre o banco
+    &8» &f/{comando} saldo &7mostra seus saldos
+    &8» &f/{comando} depositar <valor|tudo> [moeda]
+    &8» &f/{comando} sacar <valor|tudo> [moeda]
+    &8» &f/{comando} pix <jogador> <valor> [moeda]
+    &8» &f/{comando} cheque <valor> [moeda]
+    &8» &f/{comando} historico &7extrato completo
+    &8» &f/{comando} top [moeda] &7mais ricos
+    &8» &f/{comando} nivel &7niveis da conta
+    &8» &f/{comando} emprestimo &7pedir e pagar emprestimos
+    &8» &f/{comando} investir &7bolsa e renda fixa
+    &8» &f/{comando} moeda <moeda> &7troca a moeda do menu
+    &7Valores: &f1500&7, &f10k&7, &f2,5kk&7, &f1m&7, &f1b
+
+  Bolsa: |
+
+    &6&lBOLSA &8- &7comandos
+    &8» &f/{comando} &7abre os investimentos
+    &8» &f/{comando} lista &7precos de todas as acoes
+    &8» &f/{comando} ver <acao>
+    &8» &f/{comando} comprar <acao> <cotas>
+    &8» &f/{comando} vender <acao> <cotas|tudo>
+
+  Admin: |
+
+    &6&lBANCO ADMIN &8- &7comandos
+    &8» &f/{comando} recarregar
+    &8» &f/{comando} ver <jogador> &7saldos, score, divida
+    &8» &f/{comando} historico <jogador>
+    &8» &f/{comando} adicionar|remover|setar <jogador> <valor> [moeda]
+    &8» &f/{comando} nivel <jogador> <numero>
+    &8» &f/{comando} score <jogador> <valor>
+    &8» &f/{comando} perdoar <jogador> &7quita todas as dividas
+    &8» &f/{comando} rendimento &7paga os juros agora
+    &8» &f/{comando} dividendos &7paga os dividendos agora
+    &8» &f/{comando} preco <acao> <valor>
+    &8» &f/{comando} top &7refaz o top
+    &8» &f/{comando} setnpc | delnpc

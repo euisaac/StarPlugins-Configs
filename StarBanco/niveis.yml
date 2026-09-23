@@ -1,0 +1,133 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                        StarBanco - niveis                            ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Crie quantos niveis quiser, com chaves numericas em ordem (1, 2, 3...). O
+# primeiro e o de toda conta nova e deve ter Custo 0.
+#
+# Juros por faixa (regressivos): o saldo e dividido em faixas e cada faixa rende
+# a propria taxa. "Ate: -1" e o resto do saldo. Ex.: com as faixas abaixo,
+# 15M rendem 2% dos primeiros 10M + 1% dos 5M seguintes.
+#
+# Saldo maximo: 0 = sem limite. O rendimento para ao chegar nele.
+# Rendimento maximo: teto do que a conta rende por pagamento (0 = sem teto).
+# Desconto de taxa: pontos percentuais tirados da taxa de saque, cheque e
+#   transferencia (taxa 10% com desconto 3 = 7%).
+# Limite de credito: base do emprestimo (multiplicada pela faixa do score).
+# Limites extras: somados aos limites por ciclo da moeda.
+# Permissao: exigida para subir para o nivel (vazio = todos).
+
+Versao do modelo: 1
+
+Niveis:
+  '1':
+    Nome: '&7Conta Basica'
+    Permissao: ''
+    Custo: 0
+    Saldo maximo: 50000000
+    Rendimento maximo: 250000
+    Desconto de taxa: 0
+    Limite de credito: 100000
+    Limites extras:
+      Saques: 0
+      Cheques: 0
+      Transferencias: 0
+    Faixas:
+      - Ate: 10000000
+        Taxa: 2.0
+      - Ate: 15000000
+        Taxa: 1.0
+    Icone:
+      Material: IRON_INGOT
+
+  '2':
+    Nome: '&6Conta Ouro'
+    Permissao: ''
+    Custo: 5000000
+    Saldo maximo: 100000000
+    Rendimento maximo: 300000
+    Desconto de taxa: 1
+    Limite de credito: 500000
+    Limites extras:
+      Saques: 5
+      Cheques: 2
+      Transferencias: 5
+    Faixas:
+      - Ate: 10000000
+        Taxa: 2.0
+      - Ate: 20000000
+        Taxa: 1.0
+    Icone:
+      Material: GOLD_INGOT
+
+  '3':
+    Nome: '&bConta Diamante'
+    Permissao: ''
+    Custo: 15000000
+    Saldo maximo: 250000000
+    Rendimento maximo: 350000
+    Desconto de taxa: 2
+    Limite de credito: 2000000
+    Limites extras:
+      Saques: 10
+      Cheques: 5
+      Transferencias: 10
+    Faixas:
+      - Ate: 10000000
+        Taxa: 2.0
+      - Ate: 20000000
+        Taxa: 1.0
+      - Ate: 30000000
+        Taxa: 0.5
+    Icone:
+      Material: DIAMOND
+
+  '4':
+    Nome: '&3Conta Esmeralda'
+    Permissao: ''
+    Custo: 35000000
+    Saldo maximo: 500000000
+    Rendimento maximo: 400000
+    Desconto de taxa: 3
+    Limite de credito: 5000000
+    Limites extras:
+      Saques: 15
+      Cheques: 8
+      Transferencias: 15
+    Faixas:
+      - Ate: 10000000
+        Taxa: 2.0
+      - Ate: 20000000
+        Taxa: 1.0
+      - Ate: 30000000
+        Taxa: 0.5
+      - Ate: 50000000
+        Taxa: 0.2
+    Icone:
+      Material: EMERALD
+
+  '5':
+    Nome: '&d&lConta Black'
+    Permissao: ''
+    Custo: 75000000
+    Saldo maximo: 0
+    Rendimento maximo: 500000
+    Desconto de taxa: 5
+    Limite de credito: 15000000
+    Limites extras:
+      Saques: 30
+      Cheques: 15
+      Transferencias: 30
+    Faixas:
+      - Ate: 10000000
+        Taxa: 2.0
+      - Ate: 20000000
+        Taxa: 1.0
+      - Ate: 30000000
+        Taxa: 0.5
+      - Ate: 50000000
+        Taxa: 0.2
+      - Ate: -1
+        Taxa: 0.1
+    Icone:
+      Material: NETHER_STAR

@@ -1,0 +1,45 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarBanco - renda fixa                          ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# O jogador aplica um valor do banco e recebe de volta valor + Rendimento% no
+# fim do Prazo, direto no saldo do banco (mesmo offline).
+#
+# Resgatar antes do prazo devolve so o valor aplicado menos a Multa% -- sem
+# rendimento nenhum.
+#
+# Nivel minimo: nivel da conta (niveis.yml) exigido para aplicar.
+
+Versao do modelo: 1
+
+Produtos:
+  poupanca:
+    Nome: '&aPoupanca Relampago'
+    Material: CHEST
+    Prazo: 1d
+    Rendimento: 1.0
+    Minimo: 10000
+    Maximo: 5000000
+    Multa: 0
+    Nivel minimo: 1
+    Permissao: ''
+  cdb:
+    Nome: '&eCDB Semanal'
+    Material: GOLD_BLOCK
+    Prazo: 7d
+    Rendimento: 8.0
+    Minimo: 100000
+    Maximo: 50000000
+    Multa: 5
+    Nivel minimo: 2
+    Permissao: ''
+  tesouro:
+    Nome: '&bTesouro Estelar'
+    Material: BEACON
+    Prazo: 30d
+    Rendimento: 40.0
+    Minimo: 1000000
+    Maximo: 200000000
+    Multa: 10
+    Nivel minimo: 3
+    Permissao: ''

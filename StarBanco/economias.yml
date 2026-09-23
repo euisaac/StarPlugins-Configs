@@ -1,0 +1,108 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarBanco - economias                           ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Cada moeda tem o proprio saldo no banco, limites e taxas. A chave (money,
+# cash...) e o nome usado nos comandos: /banco depositar 10k cash
+#
+# Tipo:
+#   AUTO          -> usa a moeda principal do StarEconomia se ele estiver
+#                    instalado; senao, o Vault.
+#   VAULT         -> qualquer plugin de economia registrado no Vault.
+#   STARECONOMIA  -> uma moeda do StarEconomia (preencha "Moeda do
+#                    StarEconomia"). O deposito e o saque aparecem no
+#                    historico do StarEconomia com a origem "Banco".
+#   PLAYERPOINTS  -> pontos do PlayerPoints (so valores inteiros).
+#   COMANDO       -> economias sem Vault: o saldo em maos e lido por um
+#                    placeholder e o dinheiro entra/sai por comando do console
+#                    ({jogador}, {uuid} e {valor}).
+#
+# Taxas em %: -1 usa a taxa do grupo do jogador (taxas.yml). O desconto do
+# nivel (niveis.yml) vale nas duas.
+# Limites: quantas vezes por ciclo (config.yml > Ciclo dos limites); 0 = livre.
+
+Versao do modelo: 1
+
+Moedas:
+  money:
+    Tipo: AUTO
+    Moeda do StarEconomia: ''
+    Nome: '&aMoney'
+    Simbolo: '&a$'
+    # Permissao para usar esta moeda no banco (vazio = todos).
+    Permissao: ''
+    Icone:
+      Material: GOLD_INGOT
+      Nome: '&aMoney'
+      Lore:
+        - ''
+        - ' &7No banco: &a{banco}'
+        - ' &7Em maos: &a{mao}'
+        - ''
+        - ' &eClique para gerenciar.'
+    Minimos:
+      Deposito: 100
+      Saque: 100
+      Cheque: 1000
+      Transferencia: 100
+    Taxas:
+      Deposito: 0
+      Saque: -1
+      Cheque: -1
+      Transferencia: -1
+    Limites:
+      Saques: 20
+      Cheques: 10
+      Transferencias: 20
+    # Rende juros nos horarios do config.yml?
+    Rende juros: true
+    # Cheques e transferencias desta moeda ligados?
+    Cheques: true
+    Transferencias: true
+    # Esta moeda paga a subida de nivel da conta? (so uma deve ter true)
+    Paga niveis: true
+    # Tag do jogador mais rico desta moeda (%starbanco_tag_money% ou
+    # {starbanco_magnata} no chat). Vazio desliga.
+    Tag do mais rico: '&2[$] '
+
+  # Exemplo de moeda de cash por comando (desligada: Ativar false).
+  cash:
+    Ativar: false
+    Tipo: COMANDO
+    Nome: '&6Cash'
+    Simbolo: '&6✪'
+    Permissao: ''
+    Comando:
+      Placeholder do saldo: '%playerpoints_points%'
+      Dar: 'cash give {jogador} {valor}'
+      Tirar: 'cash take {jogador} {valor}'
+      # So valores inteiros?
+      Inteiro: true
+    Icone:
+      Material: EMERALD
+      Nome: '&6Cash'
+      Lore:
+        - ''
+        - ' &7No banco: &6{banco}'
+        - ' &7Em maos: &6{mao}'
+        - ''
+        - ' &eClique para gerenciar.'
+    Minimos:
+      Deposito: 1
+      Saque: 1
+      Cheque: 10
+      Transferencia: 1
+    Taxas:
+      Deposito: 0
+      Saque: 0
+      Cheque: 5
+      Transferencia: 0
+    Limites:
+      Saques: 0
+      Cheques: 5
+      Transferencias: 0
+    Rende juros: false
+    Cheques: true
+    Transferencias: true
+    Paga niveis: false
+    Tag do mais rico: '&6[✪] '

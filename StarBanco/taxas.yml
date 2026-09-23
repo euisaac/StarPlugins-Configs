@@ -1,0 +1,31 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                         StarBanco - taxas                            ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Taxa em % cobrada no saque, no cheque e na transferencia das moedas que
+# deixaram a taxa em -1 no economias.yml.
+#
+# Vale a MENOR taxa entre os grupos cujo jogador tem a permissao. Permissao
+# vazia = todo mundo, entao deixe sempre um grupo assim como base. Um VIP com
+# 'starbanco.taxa.vip' paga a taxa do grupo vip mesmo tendo tambem a do membro.
+#
+# O desconto do nivel (niveis.yml) e tirado depois.
+
+Versao do modelo: 1
+
+Grupos:
+  membro:
+    Permissao: ''
+    Saque: 10.0
+    Cheque: 10.0
+    Transferencia: 5.0
+  vip:
+    Permissao: 'starbanco.taxa.vip'
+    Saque: 5.0
+    Cheque: 5.0
+    Transferencia: 2.5
+  mvp:
+    Permissao: 'starbanco.taxa.mvp'
+    Saque: 2.0
+    Cheque: 2.0
+    Transferencia: 1.0

@@ -1,0 +1,221 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                        StarBanco - config                            ║
+#  ║  Banco com niveis, juros, cheques, transferencias, emprestimos,      ║
+#  ║  bolsa de valores, renda fixa e historico completo.                  ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Outros arquivos:
+#   economias.yml  -> as moedas que o banco guarda (Vault, PlayerPoints,
+#                     moedas do StarEconomia ou por comando)
+#   niveis.yml     -> niveis da conta, juros por faixa e limite de credito
+#   taxas.yml      -> taxa de saque/cheque/transferencia por grupo
+#   morte.yml      -> dinheiro em maos perdido ao morrer
+#   acoes.yml      -> as acoes da bolsa de valores
+#   rendafixa.yml  -> os produtos de renda fixa
+#   menus.yml / mensagens.yml / comandos.yml
+
+Debug: false
+
+#
+# ════════════════════════════════  BANCO DE DADOS  ══════════════════════════
+#
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL (MySQL/MariaDB). Para varios servidores
+  # dividirem as mesmas contas, use MYSQL em todos.
+  Tipo: SQLITE
+  Host: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+  Prefixo das tabelas: 'starbanco_'
+
+#
+# ═══════════════════════════════════  REDE  ═════════════════════════════════
+#
+Rede:
+  # Com varios servidores no mesmo MySQL, so UM deve ser o principal: e ele
+  # quem paga os juros, os dividendos e a renda fixa, cobra os emprestimos
+  # vencidos e mexe nos precos da bolsa. Os outros so leem.
+  # Com um servidor so, deixe true.
+  Servidor principal: true
+  # De quantos em quantos segundos os dados de quem esta online sao relidos do
+  # banco (mostra o que mudou em outro servidor ou pelas tarefas do principal).
+  Reler contas a cada: 30
+
+#
+# ══════════════════════════════════  GERAL  ═════════════════════════════════
+#
+Geral:
+  # Moeda aberta primeiro no menu (chave do economias.yml).
+  Moeda padrao: 'money'
+  # Segundos para digitar um valor no chat antes de cancelar sozinho.
+  Tempo para digitar: 30
+  # Palavras aceitas como "tudo" ao digitar um valor.
+  Palavras para tudo: ['tudo', 'all', 'max', 'total']
+  # Ciclo dos limites de saque, cheque e transferencia (1d = uma vez por dia).
+  Ciclo dos limites: 1d
+  # Quantas linhas o historico guarda por jogador (0 = sem limite). As mais
+  # velhas sao apagadas aos poucos pelo principal.
+  Historico maximo por jogador: 500
+  # Apaga do historico o que for mais velho que isto (0 = nunca).
+  Historico apagar apos: 60d
+  # Quem clica com o botao direito num cheque precisa estar agachado?
+  Cheque exige agachar: false
+  # Para onde vai o dinheiro do cheque ativado: MAO ou BANCO.
+  Cheque deposita em: MAO
+  # Transferencias entre contas (/banco pix) ligadas?
+  Transferencias: true
+  # Formato dos valores: ABREVIADO (1.5M) ou COMPLETO (1.500.000).
+  Formato dos valores: ABREVIADO
+
+#
+# ════════════════════════════════  RENDIMENTO  ══════════════════════════════
+#
+# Juros do dinheiro guardado no banco, pagos nos horarios abaixo, com as taxas
+# por faixa do niveis.yml (faixas altas rendem menos: juros regressivos).
+Rendimento:
+  Ativar: true
+  # dia-HH:MM. Dias: segunda, terca, quarta, quinta, sexta, sabado, domingo
+  # ou todos. Ex.: 'todos-09:00', 'sabado-20:30'.
+  Horarios:
+    - 'todos-09:00'
+  # Saldo minimo para render.
+  Saldo minimo: 1000
+  # Conta sem entrar ha mais tempo que isto nao rende (0 = rende sempre).
+  Parar apos inatividade: 15d
+  # Avisa quem esta online quanto rendeu.
+  Avisar: true
+
+#
+# ════════════════════════════════  EMPRESTIMOS  ═════════════════════════════
+#
+Emprestimos:
+  Ativar: true
+  # Moeda dos emprestimos (chave do economias.yml).
+  Moeda: 'money'
+  # Onde o dinheiro emprestado cai: BANCO ou MAO.
+  Creditar em: BANCO
+  # Quantos emprestimos abertos ao mesmo tempo.
+  Maximo abertos: 1
+  # Valor minimo de um pedido.
+  Valor minimo: 10000
+  # O limite vem do niveis.yml (Limite de credito) multiplicado pela faixa do
+  # score do jogador. Score vai de 0 a Score.Maximo.
+  Score:
+    Inicial: 500
+    Maximo: 1000
+    Ganho ao quitar em dia: 60
+    Perda ao atrasar: 150
+    Perda por dia de atraso: 20
+    # score minimo: multiplicador do limite
+    Faixas:
+      0: 0.0
+      200: 0.5
+      400: 1.0
+      700: 1.5
+      900: 2.0
+  # Prazos oferecidos. Juros e o total cobrado sobre o valor pedido.
+  Ofertas:
+    rapido:
+      Nome: '&eRapido'
+      Prazo: 1d
+      Juros: 5
+      Material: CLOCK
+    semanal:
+      Nome: '&6Semanal'
+      Prazo: 7d
+      Juros: 12
+      Material: GOLD_INGOT
+    mensal:
+      Nome: '&cMensal'
+      Prazo: 30d
+      Juros: 30
+      Material: DIAMOND
+  # No vencimento o banco cobra sozinho do saldo da conta.
+  Cobranca automatica: true
+  # Depositos de quem esta atrasado vao primeiro para a divida.
+  Descontar depositos de quem deve: true
+  # Multa sobre o que falta pagar, a cada dia de atraso (%).
+  Multa diaria: 2.0
+  # O que quem esta atrasado nao pode fazer.
+  Bloquear quando atrasado:
+    Saque: true
+    Cheque: true
+    Transferencia: true
+    Investir: true
+    Subir nivel: true
+  # Avisa o servidor quando alguem fica inadimplente (vazio desliga).
+  Anunciar calote: true
+
+#
+# ════════════════════════════════  INVESTIMENTOS  ═══════════════════════════
+#
+Investimentos:
+  # Moeda usada na bolsa e na renda fixa (sai e volta para o saldo do banco).
+  Moeda: 'money'
+  Bolsa:
+    Ativar: true
+    # De quanto em quanto tempo os precos mudam.
+    Atualizar a cada: 5m
+    # Quantos precos anteriores o grafico do menu mostra.
+    Pontos no grafico: 10
+    # Corretagem cobrada em cada compra e em cada venda (%).
+    Corretagem: 1.0
+    # Maximo de cotas de uma mesma acao por jogador (0 = sem limite).
+    Cotas maximas por acao: 0
+    # Dividendos: parte do preco da acao paga por cota nos horarios abaixo.
+    Dividendos:
+      Ativar: true
+      Horarios:
+        - 'domingo-18:00'
+    # Anuncia no chat os eventos de mercado (alta ou queda forte).
+    Anunciar eventos: true
+  Renda fixa:
+    Ativar: true
+    # Aplicacoes abertas ao mesmo tempo por jogador.
+    Maximo de aplicacoes: 5
+
+#
+# ═════════════════════════════════  TOP  ════════════════════════════════════
+#
+Top:
+  # Quantos aparecem no menu de top.
+  Tamanho: 10
+  # De quanto em quanto tempo o top e refeito.
+  Atualizar a cada: 5m
+
+#
+# ══════════════════════════════════  CHAT  ══════════════════════════════════
+#
+Chat:
+  # Poe a tag do mais rico no formato do chat onde tiver {starbanco_magnata}.
+  # Plugins de chat com tags ({starbanco_magnata}) sao preenchidos pelos
+  # eventos abaixo -- os que nao existirem no servidor sao ignorados.
+  Eventos de chat:
+    - 'br.com.devpaulo.legendchat.api.events.ChatMessageEvent'
+    - 'com.nickuc.chat.api.events.PublicMessageEvent'
+
+#
+# ══════════════════════════════════  NPC  ═══════════════════════════════════
+#
+# /bancoadmin setnpc cria um NPC que abre o banco. O tipo de NPC (Citizens,
+# FancyNpcs ou entidade) segue o config do loader StarPlugins.
+Npc:
+  Skin: 'Banker'
+  Olhar para jogadores: true
+  Altura do holograma: 2.4
+  Holograma:
+    - '&6&lBANCO'
+    - '&7Clique para abrir sua conta'
+
+#
+# ═════════════════════════════════  SONS  ═══════════════════════════════════
+#
+Sons:
+  Clique: 'UI_BUTTON_CLICK'
+  Sucesso: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+  Erro: 'ENTITY_VILLAGER_NO'
+  Nivel: 'ENTITY_PLAYER_LEVELUP'
+  Cheque: 'ENTITY_ITEM_PICKUP'
+  Rendimento: 'BLOCK_NOTE_BLOCK_PLING'

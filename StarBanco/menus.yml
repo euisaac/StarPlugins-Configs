@@ -1,0 +1,863 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                        StarBanco - menus                             ║
+#  ║  Cada botao tem Slot, Material, Nome e Lore. Slot -1 esconde o       ║
+#  ║  botao. Material: '{jogador}' usa a cabeca do jogador.               ║
+#  ║  Os nomes de material valem de 1.8 ate 1.21 (escreva o nome novo).   ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Marcadores da conta, validos em quase todo menu:
+#   {jogador} {nivel} {nivel_numero} {proximo_nivel} {custo_proximo} {desconto}
+#   {score} {score_maximo} {limite_credito} {credito_disponivel} {divida}
+#   {emprestimos} {situacao} {carteira} {aplicado} {aplicacoes}
+#   {proximo_rendimento}
+# Da moeda aberta no menu:
+#   {moeda} {moeda_id} {banco} {mao} {rendimento_previsto} {maximo} {posicao}
+#   {ciclo} e, para deposito/saque/cheque/transferencia:
+#   {minimo_saque} {taxa_saque} {usos_saque} {limite_saque} (troque "saque"
+#   por deposito, cheque ou transferencia)
+
+Versao do modelo: 1
+
+Menu principal:
+  Titulo: '&8Banco'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Perfil:
+      Slot: 4
+      Material: '{jogador}'
+      Nome: '&6&l{jogador}'
+      Lore:
+        - ''
+        - ' &7Conta: {nivel}'
+        - ' &7Moeda aberta: {moeda}'
+        - ''
+        - ' &7No banco: &a{banco}'
+        - ' &7Em maos: &f{mao}'
+        - ' &7Saldo maximo: &f{maximo}'
+        - ' &7Posicao no top: &e{posicao}'
+        - ''
+        - ' &7Proximo rendimento: &f{proximo_rendimento}'
+        - ' &7Previsto: &a+{rendimento_previsto}'
+        - ''
+        - ' &7Situacao: {situacao}'
+    Depositar:
+      Slot: 19
+      Material: CHEST
+      Nome: '&a&lDepositar'
+      Lore:
+        - ''
+        - ' &7Guarde {moeda} &7no banco: o dinheiro'
+        - ' &7guardado rende juros e nunca e perdido'
+        - ' &7ao morrer.'
+        - ''
+        - ' &7Em maos: &f{mao}'
+        - ' &7Minimo: &f{minimo_deposito}  &7Taxa: &f{taxa_deposito}%'
+        - ''
+        - ' &eEsquerdo &7digita o valor'
+        - ' &eDireito &7deposita tudo'
+    Sacar:
+      Slot: 21
+      Material: HOPPER
+      Nome: '&e&lSacar'
+      Lore:
+        - ''
+        - ' &7Tire {moeda} &7do banco para as maos.'
+        - ''
+        - ' &7No banco: &f{banco}'
+        - ' &7Minimo: &f{minimo_saque}  &7Taxa: &f{taxa_saque}%'
+        - ' &7Usados: &f{usos_saque}&7/&f{limite_saque} &8(renova em {ciclo})'
+        - ''
+        - ' &eEsquerdo &7digita o valor'
+        - ' &eDireito &7saca tudo'
+    Transferir:
+      Slot: 23
+      Material: ENDER_PEARL
+      Nome: '&b&lPix'
+      Lore:
+        - ''
+        - ' &7Envie {moeda} &7do seu banco direto'
+        - ' &7para o banco de outro jogador,'
+        - ' &7mesmo que ele esteja offline.'
+        - ''
+        - ' &7Minimo: &f{minimo_transferencia}  &7Taxa: &f{taxa_transferencia}%'
+        - ' &7Usados: &f{usos_transferencia}&7/&f{limite_transferencia}'
+        - ''
+        - ' &eClique para transferir'
+    Cheque:
+      Slot: 25
+      Material: PAPER
+      Nome: '&f&lCheque'
+      Lore:
+        - ''
+        - ' &7Transforme saldo do banco em um papel'
+        - ' &7que qualquer um pode ativar.'
+        - ''
+        - ' &7Minimo: &f{minimo_cheque}  &7Taxa: &f{taxa_cheque}%'
+        - ' &7Usados: &f{usos_cheque}&7/&f{limite_cheque}'
+        - ''
+        - ' &eClique para criar'
+    Historico:
+      Slot: 29
+      Material: BOOK
+      Nome: '&f&lExtrato'
+      Lore:
+        - ''
+        - ' &7Tudo o que entrou e saiu da sua conta:'
+        - ' &7depositos, saques, pix, cheques,'
+        - ' &7juros, emprestimos e investimentos.'
+        - ''
+        - ' &eClique para ver'
+    Nivel:
+      Slot: 31
+      Material: NETHER_STAR
+      Nome: '&6&lNivel da conta'
+      Lore:
+        - ''
+        - ' &7Atual: {nivel}'
+        - ' &7Proximo: {proximo_nivel}'
+        - ' &7Custo: &f{custo_proximo}'
+        - ''
+        - ' &7Niveis maiores guardam mais, rendem'
+        - ' &7mais e pagam menos taxa.'
+        - ''
+        - ' &eClique para ver os niveis'
+    Top:
+      Slot: 33
+      Material: DIAMOND
+      Nome: '&b&lMais ricos'
+      Lore:
+        - ''
+        - ' &7Os maiores saldos de {moeda}&7.'
+        - ' &7Sua posicao: &e{posicao}'
+        - ''
+        - ' &eClique para ver'
+    Emprestimos:
+      Slot: 39
+      Material: GOLD_INGOT
+      Nome: '&6&lEmprestimos'
+      Lore:
+        - ''
+        - ' &7Score: &f{score}&7/&f{score_maximo}'
+        - ' &7Limite de credito: &f{limite_credito}'
+        - ' &7Disponivel: &a{credito_disponivel}'
+        - ' &7Devendo: &c{divida}'
+        - ' &7Situacao: {situacao}'
+        - ''
+        - ' &eClique para abrir'
+    Investimentos:
+      Slot: 41
+      Material: EMERALD
+      Nome: '&a&lInvestimentos'
+      Lore:
+        - ''
+        - ' &7Bolsa de valores e renda fixa.'
+        - ''
+        - ' &7Carteira de acoes: &f{carteira}'
+        - ' &7Aplicado: &f{aplicado} &8({aplicacoes})'
+        - ''
+        - ' &eClique para investir'
+    Moeda:
+      Slot: 49
+      Material: GOLD_NUGGET
+      Nome: '&e&lMoeda: {moeda}'
+      Lore:
+        - ''
+        - ' &7O menu mostra e opera {moeda}&7.'
+        - ''
+        - ' &eClique para trocar a moeda'
+    Fechar:
+      Slot: 45
+      Material: BARRIER
+      Nome: '&cFechar'
+      Lore: []
+
+Menu de moedas:
+  Titulo: '&8Escolha a moeda'
+  Linhas: 3
+  Slots: [10, 11, 12, 13, 14, 15, 16]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Selecionada:
+    - ''
+    - ' &a&lABERTA NO MENU'
+  Clique para escolher:
+    - ''
+    - ' &eClique para escolher'
+  Botoes:
+    Anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de historico:
+  Titulo: '&8Extrato de {dono}'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  # Nome e lore de cada linha. Linhas com {contraparte}, {detalhe}, {taxa} ou
+  # {saldo} somem quando a informacao nao existe naquele movimento.
+  Nome: '{tipo}'
+  Lore:
+    - ''
+    - ' &7Moeda: &f{moeda}'
+    - ' &7Valor: {valor}'
+    - ' &7Taxa: &c{taxa}'
+    - ' &7Com: &f{contraparte}'
+    - ' &7Detalhe: &f{detalhe}'
+    - ' &7Saldo depois: &f{saldo}'
+    - ''
+    - ' &8{data}'
+  Tipos:
+    DEPOSITO: {Material: CHEST, Nome: '&aDeposito'}
+    SAQUE: {Material: HOPPER, Nome: '&eSaque'}
+    PIX_ENVIADO: {Material: ENDER_PEARL, Nome: '&cPix enviado'}
+    PIX_RECEBIDO: {Material: ENDER_EYE, Nome: '&aPix recebido'}
+    CHEQUE_CRIADO: {Material: PAPER, Nome: '&cCheque criado'}
+    CHEQUE_ATIVADO: {Material: MAP, Nome: '&aCheque ativado'}
+    RENDIMENTO: {Material: GOLD_NUGGET, Nome: '&6Rendimento'}
+    ACAO_COMPRA: {Material: EMERALD, Nome: '&cCompra de acoes'}
+    ACAO_VENDA: {Material: EMERALD_BLOCK, Nome: '&aVenda de acoes'}
+    DIVIDENDO: {Material: GOLD_INGOT, Nome: '&6Dividendos'}
+    APLICACAO: {Material: IRON_BLOCK, Nome: '&cAplicacao em renda fixa'}
+    RESGATE: {Material: GOLD_BLOCK, Nome: '&aResgate de renda fixa'}
+    EMPRESTIMO: {Material: GOLD_INGOT, Nome: '&aEmprestimo recebido'}
+    PAGAMENTO: {Material: IRON_INGOT, Nome: '&cPagamento de emprestimo'}
+    MULTA: {Material: REDSTONE, Nome: '&4Multa de atraso'}
+    NIVEL: {Material: NETHER_STAR, Nome: '&cSubida de nivel'}
+    ADMIN_ADICIONAR: {Material: LIME_DYE, Nome: '&aCredito da staff'}
+    ADMIN_REMOVER: {Material: RED_DYE, Nome: '&cDebito da staff'}
+    ADMIN_SETAR: {Material: GRAY_DYE, Nome: '&7Saldo definido pela staff'}
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&7Nada por aqui'
+    Lore:
+      - ''
+      - ' &7Nenhum movimento neste filtro.'
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+      Lore: [' &7Pagina {pagina}/{paginas}']
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+      Lore: [' &7Pagina {pagina}/{paginas}']
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+    Moeda:
+      Slot: 47
+      Material: GOLD_NUGGET
+      Nome: '&eMoeda: {filtro_moeda}'
+      Lore:
+        - ''
+        - ' &eClique para trocar'
+    Filtros:
+      # Linhas acrescentadas ao filtro que esta ligado.
+      Selecionado:
+        - ''
+        - ' &a&lSELECIONADO'
+      Todos:
+        Slot: 1
+        Material: BOOK
+        Nome: '&fTodos'
+        Lore: [' &7{total} movimentos']
+      Entradas:
+        Slot: 2
+        Material: LIME_DYE
+        Nome: '&aEntradas'
+      Saidas:
+        Slot: 3
+        Material: RED_DYE
+        Nome: '&cSaidas'
+      Transferencias:
+        Slot: 5
+        Material: ENDER_PEARL
+        Nome: '&bPix e cheques'
+      Investimentos:
+        Slot: 6
+        Material: EMERALD
+        Nome: '&eInvestimentos e juros'
+      Emprestimos:
+        Slot: 7
+        Material: GOLD_INGOT
+        Nome: '&6Emprestimos'
+
+Menu de top:
+  Titulo: '&8Mais ricos - {moeda}'
+  Linhas: 6
+  Slots: [13, 21, 22, 23, 29, 30, 31, 32, 33, 39, 40, 41]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: '{jogador}'
+    Nome: '&e#{posicao} &f{jogador} {tag}'
+    Lore:
+      - ''
+      - ' &7Saldo: &a{saldo}'
+      - ' &7Conta: {nivel}'
+  Botoes:
+    Moeda:
+      Slot: 47
+      Material: GOLD_NUGGET
+      Nome: '&eMoeda: {moeda}'
+      Lore:
+        - ''
+        - ' &eClique para trocar'
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de niveis:
+  Titulo: '&8Niveis da conta'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '{nivel}'
+    # Uma linha por faixa de juros, no lugar de {faixas}.
+    Faixa: '   &8- &f{de} &7a &f{ate}&7: &a{taxa}%'
+    Lore:
+      - ''
+      - ' &7Custo: &f{custo}'
+      - ' &7Saldo maximo: &f{saldo_maximo}'
+      - ' &7Rendimento maximo: &f{rendimento_maximo}'
+      - ' &7Desconto nas taxas: &f{desconto}%'
+      - ' &7Limite de credito: &f{limite_credito}'
+      - ' &7Saques extras: &f+{extra_saques}  &7Pix extras: &f+{extra_transferencias}'
+      - ''
+      - ' &7Juros por faixa:'
+      - '{faixas}'
+    Estados:
+      Atual:
+        - ''
+        - ' &a&lSEU NIVEL ATUAL'
+      Conquistado:
+        - ''
+        - ' &7Ja conquistado'
+      Proximo:
+        - ''
+        - ' &eClique para evoluir'
+      Bloqueado:
+        - ''
+        - ' &cSuba os niveis anteriores primeiro'
+  Botoes:
+    Anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de emprestimos:
+  Titulo: '&8Emprestimos'
+  Linhas: 6
+  Slots: [19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: PAPER
+    Nome: '&aEmprestimo #{id} &7({oferta}&7)'
+    Lore:
+      - ''
+      - ' &7Pegou: &f{valor}'
+      - ' &7Total a devolver: &f{total}'
+      - ' &7Ja pago: &a{pago}'
+      - ' &7Falta: &c{falta}'
+      - ''
+      - ' &7Vence em: &f{tempo} &8({vencimento})'
+      - ''
+      - ' &eEsquerdo &7quita tudo com o saldo do banco'
+      - ' &eDireito &7paga uma parte'
+  Item atrasado:
+    Material: REDSTONE_BLOCK
+    Nome: '&4Emprestimo #{id} ATRASADO'
+    Lore:
+      - ''
+      - ' &7Total a devolver: &f{total}'
+      - ' &7Ja pago: &a{pago}'
+      - ' &7Falta: &c{falta}'
+      - ''
+      - ' &cAtrasado ha &f{tempo}&c: multa diaria'
+      - ' &ce bloqueios ate quitar.'
+      - ''
+      - ' &eEsquerdo &7quita tudo com o saldo do banco'
+      - ' &eDireito &7paga uma parte'
+  Vazio:
+    Slot: 31
+    Material: BARRIER
+    Nome: '&7Nenhum emprestimo aberto'
+    Lore: []
+  Botoes:
+    Informacoes:
+      Slot: 3
+      Material: '{jogador}'
+      Nome: '&e&lSeu credito'
+      Lore:
+        - ''
+        - ' &7Conta: {nivel}'
+        - ' &7Score: &f{score}&7/&f{score_maximo}'
+        - ' &7Limite: &f{limite_credito}'
+        - ' &7Disponivel: &a{credito_disponivel}'
+        - ' &7Devendo: &c{divida}'
+        - ' &7Situacao: {situacao}'
+        - ''
+        - ' &7Pague em dia para subir o score'
+        - ' &7e aumentar o seu limite.'
+    Pedir:
+      Slot: 5
+      Material: EMERALD
+      Nome: '&a&lPedir emprestimo'
+      Lore:
+        - ''
+        - ' &7Disponivel: &a{credito_disponivel}'
+        - ''
+        - ' &eClique para escolher o prazo'
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de ofertas:
+  Titulo: '&8Escolha o prazo'
+  Linhas: 3
+  Slots: [11, 13, 15, 10, 12, 14, 16]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '{oferta}'
+    Lore:
+      - ''
+      - ' &7Prazo: &f{prazo}'
+      - ' &7Juros: &c{juros}%'
+      - ''
+      - ' &7Seu credito disponivel: &a{disponivel}'
+      - ' &7Pegando tudo, devolve: &c{exemplo}'
+      - ' &7Minimo: &f{minimo}'
+      - ''
+      - ' &eClique e digite o valor'
+  Botoes:
+    Anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de investimentos:
+  Titulo: '&8Investimentos'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Bolsa:
+      Slot: 19
+      Material: EMERALD
+      Nome: '&a&lBolsa de valores'
+      Lore:
+        - ''
+        - ' &7Compre e venda acoes que mudam'
+        - ' &7de preco sozinhas. Lucro ou prejuizo'
+        - ' &7depende do seu momento de venda.'
+        - ''
+        - ' &7Acoes: &f{acoes}  &7Corretagem: &f{corretagem}%'
+        - ' &7Precos mudam em: &f{proxima_atualizacao}'
+        - ' &7Proximos dividendos: &f{proximos_dividendos}'
+        - ''
+        - ' &eClique para abrir o pregao'
+    Carteira:
+      Slot: 21
+      Material: CHEST_MINECART
+      Nome: '&e&lSua carteira'
+      Lore:
+        - ''
+        - ' &7Acoes diferentes: &f{posicoes}'
+        - ' &7Valor hoje: &f{carteira}'
+        - ' &7Voce pagou: &f{investido}'
+        - ' &7Resultado: {resultado}'
+        - ''
+        - ' &eClique para ver'
+    Renda fixa:
+      Slot: 23
+      Material: GOLD_BLOCK
+      Nome: '&6&lRenda fixa'
+      Lore:
+        - ''
+        - ' &7Aplique e receba um valor garantido'
+        - ' &7no fim do prazo, mesmo offline.'
+        - ''
+        - ' &7Produtos: &f{produtos}'
+        - ''
+        - ' &eClique para aplicar'
+    Aplicacoes:
+      Slot: 25
+      Material: CLOCK
+      Nome: '&b&lSuas aplicacoes'
+      Lore:
+        - ''
+        - ' &7Abertas: &f{aplicacoes}&7/&f{maximo_aplicacoes}'
+        - ' &7Aplicado: &f{aplicado}'
+        - ''
+        - ' &eClique para ver ou resgatar'
+    Voltar:
+      Slot: 40
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu da bolsa:
+  Titulo: '&8Bolsa de valores'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '{acao} &8({id})'
+    Lore:
+      - ' &8{setor}'
+      - '{descricao}'
+      - ''
+      - ' &7Preco: &f{preco} {variacao}'
+      - ' &7Grafico: {grafico} {variacao_periodo}'
+      - ' &7Dividendos: &f{dividendos}% &7por cota'
+      - ''
+      - ' &7Suas cotas: &f{cotas} &8({valor_posicao})'
+      - ''
+      - ' &eClique para negociar'
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu da carteira:
+  Titulo: '&8Sua carteira'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '{acao} &8({id})'
+    Lore:
+      - ''
+      - ' &7Cotas: &f{cotas}'
+      - ' &7Preco medio: &f{preco_medio}'
+      - ' &7Preco agora: &f{preco} {variacao}'
+      - ''
+      - ' &7Voce pagou: &f{investido}'
+      - ' &7Vale hoje: &f{valor_posicao}'
+      - ' &7Resultado: {resultado} &8({lucro})'
+      - ''
+      - ' &eClique para negociar'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&7Voce ainda nao tem acoes'
+    Lore:
+      - ''
+      - ' &7Compre na bolsa de valores.'
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu da acao:
+  Titulo: '&8Acao {id}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Informacoes:
+      Slot: 4
+      Nome: '{acao} &8({id})'
+      Lore:
+        - ' &8{setor}'
+        - '{descricao}'
+        - ''
+        - ' &7Preco: &f{preco} {variacao}'
+        - ' &7Faixa: &f{minimo} &7a &f{maximo}'
+        - ' &7Volatilidade: &f{volatilidade}%'
+        - ' &7Dividendos: &f{dividendos}% &7por cota'
+        - ' &7Preco muda em: &f{proxima_atualizacao}'
+    Grafico:
+      Slot: 13
+      Material: MAP
+      Nome: '&fGrafico'
+      Lore:
+        - ''
+        - ' {grafico}'
+        - ''
+        - ' &7No periodo: {variacao_periodo}'
+        - ' &7Ultima mudanca: {variacao}'
+    Posicao:
+      Slot: 22
+      Material: CHEST
+      Nome: '&eSua posicao'
+      Lore:
+        - ''
+        - ' &7Cotas: &f{cotas}'
+        - ' &7Preco medio: &f{preco_medio}'
+        - ' &7Vale hoje: &f{valor_posicao}'
+        - ' &7Resultado: {resultado} &8({lucro})'
+        - ''
+        - ' &7Saldo no banco: &a{saldo}'
+    Comprar 1:
+      Slot: 28
+      Quantidade: 1
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aComprar 1 cota'
+      Lore: [' &7Preco: &f{preco} &8(+{corretagem}% corretagem)']
+    Comprar 2:
+      Slot: 29
+      Quantidade: 10
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aComprar 10 cotas'
+      Lore: [' &7Preco por cota: &f{preco}']
+    Comprar 3:
+      Slot: 30
+      Quantidade: 100
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aComprar 100 cotas'
+      Lore: [' &7Preco por cota: &f{preco}']
+    Comprar quantidade:
+      Slot: 37
+      Material: EMERALD
+      Nome: '&a&lComprar quantidade'
+      Lore: [' &7Digite quantas cotas no chat']
+    Vender 1:
+      Slot: 32
+      Quantidade: 1
+      Material: RED_STAINED_GLASS_PANE
+      Nome: '&cVender 1 cota'
+      Lore: [' &7Preco: &f{preco} &8(-{corretagem}% corretagem)']
+    Vender 2:
+      Slot: 33
+      Quantidade: 10
+      Material: RED_STAINED_GLASS_PANE
+      Nome: '&cVender 10 cotas'
+      Lore: [' &7Preco por cota: &f{preco}']
+    Vender 3:
+      Slot: 34
+      Quantidade: 100
+      Material: RED_STAINED_GLASS_PANE
+      Nome: '&cVender 100 cotas'
+      Lore: [' &7Preco por cota: &f{preco}']
+    Vender quantidade:
+      Slot: 43
+      Material: REDSTONE
+      Nome: '&c&lVender quantidade'
+      Lore: [' &7Digite quantas cotas no chat']
+    Vender tudo:
+      Slot: 44
+      Material: TNT
+      Nome: '&4&lVender tudo'
+      Lore: [' &7Vende as &f{cotas} &7cotas de uma vez']
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de renda fixa:
+  Titulo: '&8Renda fixa'
+  Linhas: 4
+  Slots: [11, 13, 15, 19, 21, 23, 25]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '{produto}'
+    Lore:
+      - ''
+      - ' &7Rende: &a{rendimento}% &7em &f{prazo}'
+      - ' &7Minimo: &f{minimo}  &7Maximo: &f{maximo}'
+      - ' &7Resgate antecipado: &c-{multa}% &7e sem rendimento'
+      - ' &7Conta exigida: {nivel}'
+    Liberado:
+      - ''
+      - ' &eClique e digite o valor'
+    Bloqueado:
+      - ''
+      - ' &cSua conta ainda nao pode aplicar aqui'
+  Botoes:
+    Anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de aplicacoes:
+  Titulo: '&8Suas aplicacoes'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '{produto} &8#{id}'
+    Lore:
+      - ''
+      - ' &7Aplicado: &f{valor}'
+      - ' &7Recebe no fim: &a{final} &8(+{rendimento}%)'
+      - ''
+      - ' {progresso} &f{porcentagem}%'
+      - ' &7Vence em: &f{falta} &8({vencimento})'
+      - ''
+      - ' &eClique para resgatar'
+      - ' &8Antes do prazo: {resgate_antecipado} (multa {multa}%)'
+  Vazio:
+    Slot: 13
+    Material: BARRIER
+    Nome: '&7Nenhuma aplicacao aberta'
+    Lore: []
+  Botoes:
+    Anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&aPagina anterior'
+    Proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&aProxima pagina'
+    Voltar:
+      Slot: 31
+      Material: ARROW
+      Nome: '&cVoltar'
+
+Menu de confirmacao:
+  Titulo: '&8Confirmar?'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Botoes:
+    Confirmar:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&a&lCONFIRMAR'
+      Lore:
+        - ''
+        - ' {acao}'
+        - ' {detalhe}'
+    Aviso:
+      Slot: 13
+      Material: PAPER
+      Nome: '&eTem certeza?'
+      Lore:
+        - ''
+        - ' {acao}'
+        - ' {detalhe}'
+    Cancelar:
+      Slot: 15
+      Material: RED_WOOL
+      Nome: '&c&lCANCELAR'
+      Lore: []
+
+# O papel do cheque. {moeda} {valor} {valor_completo} {criador} {data} {id}
+Cheque:
+  Material: PAPER
+  Nome: '&a&lCheque &7- {valor}'
+  Brilho: true
+  Lore:
+    - ''
+    - ' &7Valor: &a{valor_completo}'
+    - ' &7Moeda: &f{moeda}'
+    - ' &7Emitido por: &f{criador}'
+    - ' &7Em: &f{data}'
+    - ''
+    - ' &eClique com o botao direito'
+    - ' &epara ativar.'
+    - ''
+    - ' &8#{id}'

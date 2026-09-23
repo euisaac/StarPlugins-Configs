@@ -1,0 +1,33 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                         StarBanco - morte                            ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+# Ao morrer o jogador perde uma parte do dinheiro EM MAOS. O que esta no banco
+# nunca e tocado -- e esse o motivo de guardar dinheiro no banco.
+#
+# Vale a MENOR porcentagem entre os grupos que o jogador tem (permissao vazia =
+# todos). VIPs podem perder menos com um grupo proprio.
+
+Versao do modelo: 1
+
+Ativar: true
+# Moeda perdida (chave do economias.yml).
+Moeda: 'money'
+# So conta morte por outro jogador?
+Somente PvP: false
+# O assassino recebe o que a vitima perdeu?
+Dar ao assassino: true
+# Maior valor perdido numa morte (0 = sem teto).
+Perda maxima: 0
+# Mundos onde ninguem perde nada.
+Mundos ignorados:
+  - 'spawn'
+  - 'plots'
+
+Grupos:
+  membro:
+    Permissao: ''
+    Porcentagem: 10.0
+  vip:
+    Permissao: 'starbanco.morte.vip'
+    Porcentagem: 5.0
