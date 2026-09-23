@@ -6,7 +6,7 @@
 #  sem prefixo. Titulos usam <nl> para separar titulo e subtitulo.
 # ==========================================================================
 
-Versao do modelo: 6
+Versao do modelo: 7
 
 Prefixo: '&6&lBedWars &8» &7'
 
@@ -15,6 +15,8 @@ Etiquetas:
   Hora: 'h'
   Minuto: 'm'
   Segundo: 's'
+  Pausado: '&ePAUSADO'
+  Tocando: '&aTOCANDO'
   Sim: '&aSim'
   Nao: '&cNao'
   Nenhum: '&7Nenhum'
@@ -287,6 +289,8 @@ Titulos:
   Primeiro sangue: '&c&lPRIMEIRO SANGUE<nl>{cor}{jogador}'
 
 Actionbar:
+  Replay barra: '{estado} &f{tempo}&7/&f{total} &7[{barra}&7] &fx{velocidade}'
+  Barra: '{estado} &f{tempo}&7/&f{total} &7[{barra}&7] &fx{velocidade}'
   Coins: '&6+{coins} coins {bonus}'
   XP: '&b+{xp} xp {bonus}'
   Rastreador: '&aRastreando: {cor}{alvo} &7({distancia} blocos)'
@@ -343,6 +347,21 @@ Caixa:
 
 Brinquedos:
   Sem espaco: '&cNao ha espaco para montar o brinquedo aqui.'
+
+Replay:
+  Tocando: '{prefixo}&aTocando a partida de &f{arena} &7({modo})&a. Use a barra para pausar.'
+  Preparando: '{prefixo}&7Preparando o replay...'
+  Desligado: '{prefixo}&cOs replays estao desligados no config.'
+  Ja assistindo: '{prefixo}&cVoce ja esta assistindo um replay.'
+  Nao existe: '{prefixo}&cEsse replay nao existe.'
+  Quebrado: '{prefixo}&cNao foi possivel ler esse replay.'
+  Sem mapa: '{prefixo}&cO mapa &f{mapa} &cnao esta mais guardado.'
+  Fim: '{prefixo}&aFim do replay.'
+  Abate: '&7[replay] {assassino} &7matou {jogador}'
+  Morte: '&7[replay] {jogador} &7morreu'
+  Chat: '&7[replay] {jogador}&7: {mensagem}'
+  Evento: '&7[replay] &f{evento}'
+  Salvo: '{prefixo}&aA partida foi gravada! Veja em &f/bw replay&a.'
 
 Fragmentos:
   Saldo: '&aFragmentos de &f{jogador}&a: &f{fragmentos}'

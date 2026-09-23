@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 12
+Versao do modelo: 14
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -550,6 +550,28 @@ Hotbar:
       Nome: '&cSair &7(voltar para o lobby)'
       Material: RED_BED
       Slot: 8
+  # Barra de quem esta assistindo um replay (/bw replay).
+  Replay:
+    Pausar:
+      Nome: '&ePausar / continuar'
+      Material: PAPER
+      Slot: 3
+    Voltar:
+      Nome: '&aVoltar 10s'
+      Material: ARROW
+      Slot: 2
+    Adiantar:
+      Nome: '&aAdiantar 10s'
+      Material: ARROW
+      Slot: 4
+    Velocidade:
+      Nome: '&bVelocidade'
+      Material: FEATHER
+      Slot: 5
+    Sair:
+      Nome: '&cSair do replay'
+      Material: RED_BED
+      Slot: 8
   # Quem morreu de vez (sem cama) ou entrou para assistir.
   Espectador:
     Jogar novamente:
@@ -604,6 +626,29 @@ Hotbar:
 # Ex.: MEGA = 4 equipes na arena x 5 por equipe = 20 jogadores.
 # "Icone" e "Slot" (opcionais) sao a aparencia do modo nos menus; sem Slot ele
 # entra no proximo lugar livre, entao um modo novo aparece sozinho.
+# Replay das partidas: o plugin grava onde cada jogador estava, os blocos
+# colocados/quebrados, as mortes e os eventos. Para assistir (/bw replay ou
+# o item do lobby) o mapa e copiado para um mundo temporario e a partida e
+# remontada nele -- a arena de verdade nunca e tocada.
+# Cada arquivo tem alguns MB; "Guardar dias" e "Maximo de arquivos" limpam
+# os antigos sozinhos.
+Replay:
+  Ativar: true
+  # Ticks entre um quadro e outro (2 = 10 quadros por segundo). Mais alto
+  # deixa o arquivo menor e o replay mais "picotado".
+  Intervalo: 2
+  Gravar chat: true
+  Guardar dias: 7
+  Maximo de arquivos: 200
+
+# Loja da partida.
+Loja:
+  # true  = itens com Grupo sobem de nivel (madeira -> pedra -> ferro...), um
+  #         de cada vez, e so o proximo aparece.
+  # false = todos os niveis ficam a mostra e o jogador compra direto o que
+  #         quiser (a espada de diamante sem passar pelas outras).
+  Progressiva: true
+
 Modos:
   solo:
     Ativo: true

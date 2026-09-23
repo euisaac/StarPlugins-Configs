@@ -10,7 +10,7 @@
 #  (do arquivo dele) + o bloco de "Estados" abaixo, conforme a situacao.
 # ==========================================================================
 
-Versao do modelo: 4
+Versao do modelo: 6
 
 Botoes:
   Voltar:
@@ -373,6 +373,8 @@ Perfil:
       Material: BARRIER
 
 Modos:
+  # Slot do botao Voltar (-1 = primeiro slot da ultima linha).
+  Voltar: -1
   Titulo: '&8{categoria} - escolha o modo'
   Linhas: 3
   Itens:
@@ -801,7 +803,21 @@ Missoes:
         - ''
         - '&aConcluida!'
 
+Replays:
+  Titulo: '&8Partidas gravadas'
+  Item:
+    Material: FILLED_MAP
+    Nome: '&a{arena}'
+    Lore:
+      - ''
+      - ' &fQuando: &7{data}'
+      - ' &fTamanho: &7{tamanho} KB'
+      - ''
+      - '&eClique para assistir'
+
 Estatisticas:
+  # Slot do botao Voltar (-1 = primeiro slot da ultima linha).
+  Voltar: -1
   Titulo: '&8Estatisticas de {jogador}'
   Linhas: 4
   Itens:
