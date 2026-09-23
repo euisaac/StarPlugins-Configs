@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 14
+Versao do modelo: 16
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -88,6 +88,10 @@ Cash:
   Comando de dar: 'eco give {jogador} {valor}'
 
 Partida:
+  # true  = quem JA estava com a contagem de renascer rodando volta uma
+  #         ultima vez, mesmo que a cama tenha sido quebrada no meio.
+  # false = a cama quebrou, a contagem para na hora e ele vira espectador.
+  Renascer com a cama quebrada: true
   # Fome durante a partida (false = a barra fica sempre cheia).
   Fome: false
   # Ender chest no mapa abre um bau compartilhado da equipe (some no fim).
@@ -178,8 +182,20 @@ Partida:
   Dragoes na morte subita: 1
 
 Geradores:
-  # Geradores de ilha: segundos entre cada item por nivel da melhoria
-  # "Gerador" (nivel 0 = sem melhoria). "Maximo" = itens no chao antes de parar.
+  # ------------------------------------------------------------------
+  #  Como ler um gerador
+  #  Segundos  = de quanto em quanto tempo ele solta. MENOR = MAIS RAPIDO
+  #              (0.8 = quase um item por segundo; 3.5 = um a cada 3,5s).
+  #              Quando e uma LISTA, cada valor e um nivel da melhoria
+  #              "Gerador" comprada pela equipe: o primeiro e sem melhoria
+  #              (nivel 0), o segundo e o nivel 1, e assim por diante --
+  #              por isso a lista vai caindo (fica mais rapido a cada nivel).
+  #              Ex.: [ 1.2, 1.0, 0.8, 0.6, 0.4 ] = de 1,2s (sem melhoria)
+  #              ate 0,4s (melhoria no maximo).
+  #  Quantidade = quantos itens saem de uma vez.
+  #  Maximo     = quantos itens desse tipo podem ficar no chao ao redor; ao
+  #               bater nesse numero o gerador para ate alguem recolher.
+  # ------------------------------------------------------------------
   Ilha:
     Ferro:
       Segundos: [ 2.0, 1.7, 1.4, 1.1, 0.8 ]
@@ -638,6 +654,8 @@ Replay:
   # deixa o arquivo menor e o replay mais "picotado".
   Intervalo: 2
   Gravar chat: true
+  # Mortes, camas e o fim aparecem tambem em titulo na tela (nao so no chat).
+  Mostrar eventos: true
   Guardar dias: 7
   Maximo de arquivos: 200
 
