@@ -42,7 +42,7 @@ commands:
   reply: 'responder|r|reply'
   battle: 'batalha|battle|batalhar'
   autoreconectar: 'autoreconectar|ar'
-  fila: 'fila|queue'
+  fila: 'fila|queue|jogar'
   spawn: 'spawn'
   setspawn: 'setspawn'
   delspawn: 'delspawn|deletarspawn'
@@ -123,6 +123,20 @@ npcs:
   olhar-para-jogadores: false
   # Distância, em blocos, para o NPC notar um jogador.
   distancia-olhar: 8
+  # true: quem tenta atravessar o NPC é empurrado de volta, com o som do
+  #       villager recusando. Vale só para os teleporters do tipo NPC.
+  empurrar-ao-encostar: true
+  # Força do empurrão (0.6 é um tranco curto; 1.0 joga um bloco pra trás).
+  forca-empurrao: 0.6
+  som-empurrao: 'VILLAGER_NO'
+  # true: enquanto o servidor NÃO está online, o brilho do NPC troca da cor
+  #       configurada para a cor do status — Reiniciando/Offline/Manutenção
+  #       em vermelho, Beta-VIP em amarelo, Desenvolvimento em cinza. A cor
+  #       vem do código de cor do texto em "status:" mais abaixo (o "&c" de
+  #       "&cReiniciando"), então trocar lá troca o brilho junto. Online volta
+  #       pra cor configurada no "brilho" do servidor.
+  #       Só vale para NPC que já tem "brilho" ativado em servers.yml.
+  brilho-pela-cor-do-status: false
 
 # Partículas de ambiente e brilho dos teleporter-entity (NPC, cabeça giratória
 # ou item gigante) são configurados POR SERVIDOR, dentro do bloco

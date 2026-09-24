@@ -11,6 +11,10 @@ servers:
   exemplo:
     display-name: '&cExemplo'
     proxy-name: 'exemplo'
+    # Outros nomes que o /fila (e seus apelidos, como /jogar) aceitam para este
+    # servidor. Ex.: o servidor se chama 'destiny' e "/jogar survival" tambem
+    # leva para ele. Nao diferencia maiusculas. Opcional.
+    aliases: []
     ip: '0.0.0.0'
     port: 25566
     # O numero que aparece no {max_players} do menu e da tablist. Escrito aqui,
@@ -73,14 +77,36 @@ servers:
       # ou use o "/starlobby editor". Só do 1.9 em diante (no 1.8 é ignorado).
       #particulas:
       #  ativado: true
-      #  # Animação: GIRANDO (anel girando), PISCANDO (pontos em volta piscando)
-      #  # ou HELICE (pontos subindo em espiral).
+      #  # Animação. Cada tipo de teleporter tem as suas, pelo tamanho dele —
+      #  # o "/starlobby editor" só oferece as que cabem; no YAML vale qualquer uma.
+      #  #
+      #  #   NPC (alto e estreito):
+      #  #     GIRANDO       anel girando na cintura, subindo e descendo de leve
+      #  #     HELICE        pontos subindo em espiral pelo corpo
+      #  #     DUPLA_HELICE  duas hélices entrelaçadas (DNA) do pé até a "altura"
+      #  #     AURA          faíscas paradas espalhadas pelo corpo inteiro
+      #  #     PISCANDO      pontos fixos em volta, piscando
+      #  #   ROTATING-HEAD (um bloco flutuando):
+      #  #     ANEL_CHAO     anel rente ao chão girando embaixo da cabeça
+      #  #     ORBITA        duas órbitas em volta da cabeça (átomo)
+      #  #     PULSO         anel no chão expandindo e contraindo
+      #  #   HUGE-ITEM (volume grande):
+      #  #     ESTRELAS      faíscas sorteadas dentro do volume do item
+      #  #     ESFERA        pontos girando pela casca de uma esfera
+      #  #     FONTE         jatos subindo do chão sob o item
+      #  #
+      #  # Sem esta linha, cada tipo usa a primeira da lista dele.
       #  animacao: GIRANDO
       #  # Qual partícula usar (nome do Particle do Bukkit): END_ROD, FLAME,
       #  # SOUL_FIRE_FLAME, CRIT, PORTAL... Se não existir na versão, cai em END_ROD.
       #  tipo: 'END_ROD'
-      #  # Raio do anel, em blocos.
+      #  # Largura da animação, em blocos. Padrão por tipo: NPC 0.85,
+      #  # ROTATING-HEAD 0.6, HUGE-ITEM 1.8.
       #  raio: 0.85
+      #  # Até onde a animação sobe (DUPLA_HELICE, AURA) ou o centro dela
+      #  # (ORBITA, ESTRELAS, ESFERA), em blocos. Padrão por tipo: NPC 1.8,
+      #  # ROTATING-HEAD 1.7, HUGE-ITEM 2.5.
+      #  altura: 1.8
       #  # Quantos pontos ao mesmo tempo (mais = mais cheio).
       #  pontos: 3
       # Brilho (contorno colorido) SÓ deste teleporter (opcional). Sem este bloco,
