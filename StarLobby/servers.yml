@@ -11,10 +11,15 @@ servers:
   exemplo:
     display-name: '&cExemplo'
     proxy-name: 'exemplo'
-    # Outros nomes que o /fila (e seus apelidos, como /jogar) aceitam para este
-    # servidor. Ex.: o servidor se chama 'destiny' e "/jogar survival" tambem
-    # leva para ele. Nao diferencia maiusculas. Opcional.
-    aliases: []
+    # Apelidos: outros nomes que o /fila (e os apelidos dele, como /jogar)
+    # aceitam para este servidor. Nao diferencia maiusculas. Opcional.
+    # Exemplo: o servidor se chama 'destiny' e voce quer que "/jogar survival"
+    # tambem leve para ele:
+    #   aliases: [survival, sobrevivencia]
+    # ou, do mesmo jeito, em texto separado por "|":
+    #   aliases: 'survival|sobrevivencia'
+    # Aqui, "/fila ex" e "/fila teste" levam para o servidor 'exemplo'.
+    aliases: [ex, teste]
     ip: '0.0.0.0'
     port: 25566
     # O numero que aparece no {max_players} do menu e da tablist. Escrito aqui,
