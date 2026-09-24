@@ -1,0 +1,83 @@
+# StarRichPresence - mensagens
+# Mensagem vazia ("") nao e enviada.
+
+Versao do modelo: 1
+
+Prefixo: "&5&lRICH PRESENCE &8» &7"
+
+Sem permissao: "&cVoce nao tem permissao para isso."
+Somente jogador: "&cEsse comando so pode ser usado dentro do jogo."
+Jogador offline: "&cO jogador &f{jogador} &cnao esta online."
+Recarregado: "&aConfiguracoes recarregadas! &7({modos} modos)"
+
+Ajuda: |-
+  &5&lStarRichPresence &7- modo de jogo no Discord
+  &f/rp ocultar &7- esconde/mostra seu modo no Discord
+  &f/rp info [nick] &7- client e modo de um jogador
+  &f/rp clientes &7- quantos jogadores usam cada client
+  &f/rp modos &7- lista os modos e as condicoes
+  &f/rp ver <modo> &7- mostra como o modo aparece no Discord
+  &f/rp definir <nick> <modo|auto> &7- forca um modo
+  &f/rp gerar &7- monta os cadastros da LabyMod e da Lunar
+  &f/rp recarregar &7- recarrega as configuracoes
+
+Ajuda jogador: |-
+  &5&lStarRichPresence
+  &f/rp ocultar &7- esconde/mostra seu modo de jogo no Discord
+
+Info: |-
+  &5&lInfo &8- &f{jogador}
+  &7Clients: &f{clientes}
+  &7Marca do client: &f{marca}
+  &7Versao da LabyMod: &f{versao_labymod}
+  &7Modo atual: &f{modo} &8({origem})
+  &7Escondido no Discord: &f{oculto}
+  &7Enviado: &f{texto}
+
+Clientes: |-
+  &5&lClients online &8({total} jogadores)
+  &7LabyMod 4: &f{labymod}
+  &7LabyMod 3 (legado): &f{labymod_legado}
+  &7Lunar Client: &f{lunar}
+  &7Feather: &f{feather}
+  &7Sem suporte: &f{outros}
+
+Modos cabecalho: "&5&lModos &8({total}) &7- do mais forte para o mais fraco:"
+Modos linha: " &8• &f{id} &7(prioridade {prioridade}) &8- &7{condicoes}"
+Modos sem condicao: "sempre (padrao)"
+
+Ver: |-
+  &5&lModo {id}
+  &7LabyMod: &f{labymod}
+  &7Lunar: &f{lunar_jogo} &8| &f{lunar_variante} &8| &f{lunar_estado} &8| &f{lunar_jogador} &8| &f{lunar_mapa}
+  &7Feather: &f{detalhes} &8/ &f{estado}
+  &7Imagem: &f{imagem}
+  &7Time: &f{time}
+Modo inexistente: "&cNao existe o modo &f{modo}&c. Use &f/rp modos&c."
+
+Uso definir: "&cUse: &f/rp definir <nick> <modo|auto>"
+Definido: "&aO modo de &f{jogador} &afoi travado em &f{modo}&a."
+Definido auto: "&aO modo de &f{jogador} &avoltou a ser escolhido sozinho."
+
+Ocultado: "&7Seu modo de jogo foi &cescondido &7do Discord."
+Mostrado: "&7Seu modo de jogo voltou a &aaparecer &7no Discord."
+Ocultar desligado: "&cEsconder o modo de jogo esta desligado neste servidor."
+
+Gerando: "&7Montando os cadastros..."
+Gerado: |-
+  &aCadastros gerados em &fplugins/StarRichPresence/gerados/&a.
+  &7Abra o &fCOMO-ENVIAR.txt &7de la para o passo a passo.
+Gerado avisos: "&e{quantidade} aviso(s):"
+Gerado aviso: " &8• &e{aviso}"
+Gerar erro: "&cNao foi possivel gerar: &f{erro}"
+
+Cliente detectado: "&dSeu {cliente} foi reconhecido! &7Seu Discord vai mostrar em qual modo voce esta."
+
+Etiquetas:
+  Sim: "sim"
+  Nao: "nao"
+  Nenhum: "nenhum"
+  Desconhecida: "desconhecida"
+  Forcado: "forcado"
+  Automatico: "automatico"
+  Partida: "partida"

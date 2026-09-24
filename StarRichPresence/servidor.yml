@@ -1,0 +1,104 @@
+# ============================================================================
+#  StarRichPresence - cadastro do servidor (LabyMod e Lunar)
+# ============================================================================
+#
+#  A LOGO no Discord, o BANNER de fundo e os BOTOES de modo de jogo na lista
+#  de servidores NAO sao mandados pelo plugin: a lista aparece antes de o
+#  jogador entrar, e o client busca tudo no cadastro publico do servidor.
+#
+#    LabyMod -> repositorio github.com/LabyMod/server-media
+#               (logo, banner, fundo, botoes coloridos de modo de jogo,
+#                pagina em laby.net/server/<id>)
+#    Lunar   -> repositorio github.com/LunarClient/ServerMappings
+#               (logo e nome no Discord; obrigatorio para o Rich Presence
+#                da Lunar funcionar)
+#
+#  Preencha este arquivo, coloque as imagens na pasta
+#  plugins/StarRichPresence/imagens/ e use /rp gerar. O plugin monta as duas
+#  pastas prontas em plugins/StarRichPresence/gerados/ com um passo a passo
+#  de como abrir o pedido (pull request) em cada repositorio.
+#
+#  Imagens que o /rp gerar procura em imagens/ (todas PNG):
+#    icon.png        256x256   (LabyMod; icone do servidor)
+#    logo.png        512x512   (LabyMod e Lunar; transparente, quadrado)
+#    background.png  1920x1080 (LabyMod e Lunar; print do lobby)
+#    banner.png      1280x256  (LabyMod; proporcao 5:1)
+#    lunar-banner.png ou lunar-banner.gif  (Lunar; opcional)
+#    modos/<modo>.png 512x512  (LabyMod; icone de cada botao de modo)
+# ============================================================================
+
+Versao do modelo: 1
+
+# Identificador curto: so letras minusculas e numeros (vira nome de pasta).
+Id: "redestar"
+Nome: "RedeStar"
+
+# Endereco que os jogadores digitam. Os outros enderecos que levam ao mesmo
+# servidor tambem entram (sem porta).
+Endereco principal: "jogar.redestars.com"
+Outros enderecos:
+  - "redestars.com"
+
+# Frase curta sem emoji (a Lunar recusa caracteres especiais).
+Descricao: "Servidor brasileiro de Survival, Slimefun e Anarquia"
+
+Cores:
+  # Cor principal da marca e cor de fundo (formato #RRGGBB)
+  Principal: "#2BE4F8"
+  Fundo: "#0B1026"
+  Texto: "#FFFFFF"
+
+Versoes:
+  # Versao recomendada para jogar
+  Principal: "1.21.11"
+  # Faixas aceitas (formato da Lunar: 1.8.*, 1.12.*, 1.16.* ... 1.21.*, 26.1.*, 26.2.*)
+  Aceitas: ["1.8.*", "1.12.*", "1.16.*", "1.17.*", "1.18.*", "1.19.*", "1.20.*", "1.21.*"]
+
+# Idiomas (Lunar: pt-BR; LabyMod: pt)
+Idioma: "pt-BR"
+
+Localizacao:
+  Cidade: ""
+  Pais: "Brazil"
+  # Codigo do pais em 2 letras
+  Codigo: "BR"
+  # Regiao para a Lunar: SA (America do Sul), NA, EU, AS, OC, AF
+  Regiao: "SA"
+
+# Tipos de jogo aceitos pela Lunar (o primeiro e o principal):
+# Adventure, Anarchy, BoxPvP, Casual, Competitive, Creative, Crystal PvP,
+# Factions, Hardcore, HCF, KitPvP, Lifesteal, Minigames, MMORPG, OneBlock,
+# Parkour, Practice, Prison, PvE, PvP, Roleplay, Skyblock, Soup PvP,
+# Survival, Towny, Tycoon, UHC, Vanilla
+Tipos de jogo: ["Survival", "Anarchy"]
+
+# Aceita jogadores do Bedrock (Geyser)?
+Crossplay: false
+
+# Pode escrever o link completo ou so o @usuario: o plugin converte para o
+# formato que cada repositorio pede.
+Redes sociais:
+  Site: "https://loja.redestars.com"
+  Loja: "https://loja.redestars.com/shop"
+  # So convite direto do Discord (https://discord.gg/xxxx)
+  Discord: "https://discord.gg/C7xzp4CkDH"
+  YouTube: ""
+  Instagram: "RedeStar"
+  TikTok: "RedeStar_"
+  Twitter: ""
+
+# ID do servidor do Discord (numero). Opcional, so LabyMod.
+Discord ID: "743137676244287539"
+
+# Milissegundos que a LabyMod espera, depois de entrar, para digitar o
+# "Comando" do modo escolhido (Pagina.Comando no modos.yml). 0 = sem espera.
+Atraso do comando: 3000
+
+# ID do video de trailer no YouTube (o que vem depois de watch?v=). Opcional.
+Trailer: ""
+
+# Links de regras/termos (Lunar, opcionais)
+Regras: ""
+Termos: ""
+Privacidade: ""
+Suporte: ""

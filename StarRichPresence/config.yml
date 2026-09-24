@@ -1,0 +1,121 @@
+# ============================================================================
+#  StarRichPresence - configuracao geral
+# ============================================================================
+#
+#  O servidor NAO fala direto com o Discord: quem atualiza o status do
+#  jogador e o client dele. Funciona com:
+#
+#    - LabyMod 4 (1.8.9 ate a mais nova) ... texto do modo + tempo de jogo
+#    - LabyMod 3 (legado, 1.8 / 1.12) ..... texto do modo + tempo de jogo
+#    - Lunar Client ....................... jogo, variante, estado, mapa,
+#                                           sub-servidor e tamanho do time
+#    - Feather Client ..................... detalhes, estado, IMAGEM, texto
+#                                           da imagem, grupo e tempo
+#                                           (precisa do plugin FeatherServerAPI)
+#
+#  A logo que aparece no Discord pela LabyMod e pela Lunar vem do cadastro do
+#  servidor em cada client (use /rp gerar - veja o servidor.yml). Na Feather,
+#  a imagem vem do campo "Imagem" de cada modo.
+#
+#  Os textos de cada modo ficam no modos.yml.
+# ============================================================================
+
+Versao do modelo: 1
+
+# De quantos em quantos ticks o plugin confere se o status mudou (20 = 1s).
+# So manda pacote para o client quando alguma coisa realmente mudou.
+Intervalo de atualizacao: 40
+
+Clientes:
+  LabyMod: true
+  LabyMod legado: true
+  Lunar: true
+  Feather: true
+
+# De onde conta o "jogando ha 00:12" do Discord:
+#   MODO    - zera quando o jogador troca de modo de jogo
+#   SESSAO  - conta desde que o jogador entrou no servidor
+#   NENHUM  - nao mostra tempo
+Tempo: MODO
+
+# Nome deste servidor dentro da rede (lobby, destiny, slimefun, anarquia...).
+# Aparece como {servidor} nos textos, vai como "sub-servidor" para a Lunar e
+# serve para a condicao "Servidores" do modos.yml (util quando o mesmo
+# modos.yml e copiado para todos os servidores da rede).
+Servidor: "lobby"
+
+# Integracao com os minigames da StarPlugins (BedWars, EggWars, SkyWars,
+# Murder, TheBridge...): quem esta numa partida usa o modo "Partida" do
+# modos.yml, com mapa, modo e tamanho do time preenchidos sozinhos.
+Partidas: true
+
+# O jogador pode esconder o modo de jogo do proprio Discord com /rp ocultar.
+Permitir ocultar: true
+
+# Aviso no chat quando o plugin reconhece o client do jogador.
+# Deixe vazio no mensagens.yml para nao avisar.
+Avisar cliente detectado: false
+
+LabyMod:
+  # Banner mostrado em cima do TAB para quem usa LabyMod 4.
+  # Precisa ser um LINK para uma imagem PNG (proporcao 5:1, ate 1280x256).
+  # Vazio = sem banner.
+  Banner do TAB: ""
+
+  # Mostra o dinheiro do jogador no HUD da LabyMod 4 (canto da tela).
+  # Os valores saem de placeholders do PlaceholderAPI.
+  Economia:
+    Ativar: false
+    Dinheiro: "%vault_eco_balance%"
+    # Link de um icone PNG (opcional)
+    Icone do dinheiro: ""
+    # Deixe vazio para nao mostrar o banco
+    Banco: ""
+    Icone do banco: ""
+
+Lunar:
+  # Liga o modulo de Rich Presence no client. Deixe true a nao ser que outro
+  # plugin (ex.: o Apollo oficial) ja cuide disso.
+  Ligar modulo: true
+
+Feather:
+  # Imagem padrao do Discord para quem usa Feather. Precisa ser um LINK
+  # (https://...png). Cada modo pode trocar no modos.yml.
+  Imagem: ""
+  Texto da imagem: "{servidor_nome}"
+
+  # Fundo do servidor na LISTA DE SERVIDORES da Feather.
+  # Coloque um PNG em plugins/StarRichPresence/imagens/ e escreva o nome aqui.
+  # Limite da Feather: ate 1009x202 pixels e 512 KB.
+  Fundo da lista: ""
+
+# Nome bonito do servidor, usado em {servidor_nome}.
+Nome do servidor: "&b&lRedeStar"
+
+# ----------------------------------------------------------------------------
+#  Links no menu de pausa (ESC)
+# ----------------------------------------------------------------------------
+#  - Minecraft 1.21+ puro: botao "Links do servidor" no menu de pausa
+#    (precisa de servidor 1.21 ou mais novo).
+#  - Lunar Client: botoes no menu de pausa em qualquer versao.
+#
+#  Tipo (opcional, so no 1.21+): WEBSITE, SUPPORT, STATUS, FEEDBACK,
+#  COMMUNITY, FORUMS, NEWS, ANNOUNCEMENTS, REPORT_BUG, COMMUNITY_GUIDELINES.
+#  Com tipo, o jogo usa o nome traduzido; sem tipo, usa o "Nome".
+Links:
+  Ativar: false
+  Lista:
+    loja:
+      Nome: "&aLoja"
+      Url: "https://loja.redestars.com"
+    discord:
+      Nome: "&9Discord"
+      Url: "https://discord.gg/C7xzp4CkDH"
+    tiktok:
+      Nome: "&dTikTok"
+      Url: "https://www.tiktok.com/@RedeStar_"
+    instagram:
+      Nome: "&dInstagram"
+      Url: "https://www.instagram.com/RedeStar"
+
+Debug: false
