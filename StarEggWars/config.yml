@@ -24,7 +24,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 9
+Versao do modelo: 10
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -100,6 +100,10 @@ Partida:
   Renascer com o ovo quebrado: true
   # Fome durante a partida (false = a barra fica sempre cheia).
   Fome: false
+  # Area de espera dentro da arena. Desligada, quem entra vai direto para a
+  # JAULA da ilha da equipe dele e espera ali (trocar de equipe muda a jaula
+  # de lugar).
+  Sala de espera: true
   # Ender chest no mapa abre um bau compartilhado da equipe (some no fim).
   Bau da equipe: true
   # Segundos na sala de espera depois de bater o minimo de jogadores.
@@ -220,6 +224,9 @@ Itens:
     Empurrao horizontal: 1.0
     Empurrao vertical: 0.65
     Dano de queda: 3.0
+    # Velocidade da bola, em blocos por tique. Tres bases: 0.4 (lenta),
+    # 0.8 (media) e 1.6 (rapida, como era antes).
+    Velocidade: 0.8
     Botao: AMBOS
     Explosao: 3.0
     Cooldown: 2
@@ -273,6 +280,41 @@ Itens:
   Zumbi:
     Botao: DIREITO
     Cooldown: 0
+
+# O bau e o ender chest de cada ilha. Marque os dois no editor da equipe
+# (/eggwars editor -> Equipes -> "Bau da ilha" e "Ender chest da ilha"); sem
+# marcar, nada aqui acontece.
+#
+# Com eles marcados: aparece um holograma em cima, bater com um item na mao
+# guarda o item na hora, e -- o principal -- o que esta guardado conta como
+# pagamento nas lojas da partida (loja e melhorias).
+Baus:
+  # Holograma em cima de cada um (vazio = sem holograma).
+  Holograma bau: '&eBata para guardar!'
+  Holograma ender chest: '&eBata para guardar!'
+  Altura do holograma: 1.4
+  # Bater no bau da propria ilha com um item na mao guarda o item.
+  Guardar ao bater: true
+  # Itens que o tapa NUNCA guarda (nome cheio ou um pedaco do nome, entao
+  # "_SWORD" pega todas as espadas).
+  Nao guardar:
+    - '_SWORD'
+    - '_PICKAXE'
+    - '_AXE'
+    - '_SHOVEL'
+    - 'SHEARS'
+    - 'BOW'
+    - 'COMPASS'
+    - '_HELMET'
+    - '_CHESTPLATE'
+    - '_LEGGINGS'
+    - '_BOOTS'
+  # O que esta guardado conta na hora de comprar.
+  Contar na loja: true
+  Contar o bau da equipe: true
+  Contar o ender chest: true
+  # Mostra na lore do item da loja quanto ja esta guardado.
+  Mostrar na lore: true
 
 Recompensas:
   Coins:

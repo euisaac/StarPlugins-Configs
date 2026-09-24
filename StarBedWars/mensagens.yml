@@ -6,7 +6,7 @@
 #  sem prefixo. Titulos usam <nl> para separar titulo e subtitulo.
 # ==========================================================================
 
-Versao do modelo: 7
+Versao do modelo: 8
 
 Prefixo: '&6&lBedWars &8» &7'
 
@@ -234,7 +234,15 @@ Partida:
     - ' &fOs dragoes foram soltos! Nao ha mais para onde correr.'
     - ''
   Nao pode construir: '&cVoce nao pode construir aqui.'
+  Nao pode deitar: '&cA cama aqui nao e para dormir.'
+  Bau guardado: '&aGuardado: &f{quantidade}x {item}&a.'
+  Bau cheio: '&cO bau esta cheio.'
+  Bau item bloqueado: '&cEste item nao vai para o bau.'
   Nao pode quebrar: '&cVoce so pode quebrar blocos colocados por jogadores.'
+  # Sai quando alguem tenta editar o mapa de uma arena que esta no ar. A arena
+  # fica protegida de proposito (o mapa e restaurado a cada partida), mas sem
+  # este aviso o bloco simplesmente nao quebrava e ninguem sabia por que.
+  Arena protegida: '&cEsta arena esta ativa e o mapa fica protegido. Use &f/bw arena editar {arena}&c para mexer nele, ou &f/bw arena desativar {arena}&c.'
   Comando bloqueado: '&cComandos estao bloqueados durante a partida.'
   Cooldown: '&cAguarde &f{tempo}s &cpara usar isso de novo.'
   Limite de mobs: '&cSua equipe ja tem o maximo de {mob} ativos.'
@@ -472,6 +480,8 @@ Configurador:
   Equipe: '&aFerramentas da equipe &f{equipe}&a. Clique na flecha para voltar.'
   Equipe removida: '&cEquipe &f{equipe} &cremovida da arena.'
   Nao e cama: '&cClique com o botao direito em cima da cama da equipe.'
+  Nao e bau: '&cClique com o botao direito num BAU da ilha.'
+  Nao e ender chest: '&cClique com o botao direito num ENDER CHEST da ilha.'
   Geradores limpos: '&eTodos os geradores de {tipo} foram removidos.'
   Pos1: '&aPos1 definida em &f{x}, {y}, {z}&a.'
   Pos2: '&aPos2 definida em &f{x}, {y}, {z}&a.'

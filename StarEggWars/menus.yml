@@ -10,7 +10,7 @@
 #  (do arquivo dele) + o bloco de "Estados" abaixo, conforme a situacao.
 # ==========================================================================
 
-Versao do modelo: 3
+Versao do modelo: 4
 
 Botoes:
   Voltar:
@@ -634,6 +634,9 @@ Loja partida:
       - '&7Shift + clique: favoritar'
     Pode: '&aClique para comprar'
     Nao pode: '&cVoce nao tem {preco}'
+    # Linha extra que aparece sozinha quando a equipe tem o recurso guardado
+    # no bau/ender chest (secao Baus do config.yml).
+    Linha guardado: '&8{guardado} guardado(s) no bau'
   Favoritos:
     Nome: '&aCompra rapida'
     Material: NETHER_STAR
@@ -644,9 +647,21 @@ Loja partida:
       Nome: '&7Espaco vazio'
       Material: LIGHT_GRAY_STAINED_GLASS_PANE
       Lore:
-        - '&7Shift + clique num item'
-        - '&7da loja para favoritar'
+        - '&7Este lugar esta vazio.'
+        - '&7Clique aqui para escolher um item'
+        - '&7(ou shift + clique num item da loja)'
     Maximo: 14
+
+# Lista aberta pelo lugar vazio da compra rapida: escolhe qual item da loja
+# vai ocupar aquele lugar. A paginacao e os slots vem da secao "Lista".
+Escolher item:
+  Titulo: '&8Selecione um item'
+  Item:
+    Lore:
+      - ''
+      - ' &fPreco: {cor_preco}{preco}'
+      - ''
+      - '&aClique para por na compra rapida'
 
 Melhorias:
   Titulo: '&8Melhorias da equipe'
