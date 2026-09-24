@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 18
+Versao do modelo: 19
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -105,9 +105,13 @@ Partida:
   # Quando a sala lota, o contador cai para este valor.
   Tempo de espera lotado: 10
   # Segundos que os jogadores ficam presos na jaula antes do inicio.
+  # "Altura" = quantos blocos ACIMA do spawn da equipe a jaula fica (o spawn
+  # continua sendo o chao da ilha; ao abrir, cada um e posto nele, sem cair).
+  # Cada arena pode ter a sua altura: no editor, clique ESQUERDO no Checklist.
   Jaulas:
     Ativar: true
     Segundos: 10
+    Altura: 4
   # Segundos para renascer enquanto a cama existe.
   Segundos para renascer: 5
   # Segundos de invencibilidade ao renascer.
