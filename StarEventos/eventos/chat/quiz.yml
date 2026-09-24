@@ -34,6 +34,13 @@ Anuncios:
 # Quantas vezes o mesmo jogador pode tentar. 0 = sem limite.
 Tentativas por jogador: 0
 
+# Aceitar a resposta dita no chat, alem do comando. Vale o chat normal e os
+# comandos de chat do servidor (/g, /l...), listados no config.yml.
+#
+# So a resposta CERTA e consumida: quem errou continua conversando normalmente,
+# sem gastar tentativa nem pagar nada.
+Aceitar resposta no chat: true
+
 #
 # ══════════════════════════════════  NO MENU  ═══════════════════════════════
 #
@@ -120,12 +127,14 @@ Mensagens:
   Ajuda: |
     &8&m----------------------------------------
     &6&l{evento}
-    &e/{comando} <resposta> &8- &7responder
+    &7Responda direto no chat, no &f/g &7ou no &f/l&7.
+    &e/{comando} <resposta> &8- &7responder pelo comando
     &8&m----------------------------------------
   Ajuda staff: |
     &8&m----------------------------------------
     &6&l{evento} &7- administracao
-    &e/{comando} <resposta> &8- &7responder
+    &7Responda direto no chat, no &f/g &7ou no &f/l&7.
+    &e/{comando} <resposta> &8- &7responder pelo comando
     &e/{comando} iniciar &8- &7comecar agora
     &e/{comando} parar &8- &7derrubar o evento
     &8&m----------------------------------------
@@ -139,7 +148,7 @@ Anuncios de texto:
     &8&m----------------------------------------
     &6&l{evento}
     &f{pergunta}
-    &fResponda com &e/{comando} <resposta>&f.
+    &fResponda no chat ou com &e/{comando} <resposta>&f.
     &8&m----------------------------------------
 
   Vitoria: |

@@ -34,6 +34,13 @@ Anuncios:
 # Quantas vezes o mesmo jogador pode tentar. 0 = sem limite.
 Tentativas por jogador: 5
 
+# Aceitar a resposta dita no chat, alem do comando. Vale o chat normal e os
+# comandos de chat do servidor (/g, /l...), listados no config.yml.
+#
+# So a resposta CERTA e consumida: quem errou continua conversando normalmente,
+# sem gastar tentativa nem pagar nada.
+Aceitar resposta no chat: true
+
 #
 # ══════════════════════════════════  NO MENU  ═══════════════════════════════
 #
@@ -89,6 +96,10 @@ Opcoes:
   # Avisar se o chute foi alto ou baixo. Sem isso, vira sorte pura.
   Dar dica: true
 
+  # Com isto ligado, QUALQUER numero dito no chat vira um palpite -- com o
+  # custo e a dica de um palpite normal. Desligado, so o numero certo conta.
+  Palpite no chat: false
+
 #
 # ═════════════════════════════════  MENSAGENS  ══════════════════════════════
 #
@@ -103,12 +114,14 @@ Mensagens:
   Ajuda: |
     &8&m----------------------------------------
     &6&l{evento}
-    &e/{comando} <resposta> &8- &7responder
+    &7Responda direto no chat, no &f/g &7ou no &f/l&7.
+    &e/{comando} <resposta> &8- &7responder pelo comando
     &8&m----------------------------------------
   Ajuda staff: |
     &8&m----------------------------------------
     &6&l{evento} &7- administracao
-    &e/{comando} <resposta> &8- &7responder
+    &7Responda direto no chat, no &f/g &7ou no &f/l&7.
+    &e/{comando} <resposta> &8- &7responder pelo comando
     &e/{comando} iniciar &8- &7comecar agora
     &e/{comando} parar &8- &7derrubar o evento
     &8&m----------------------------------------
@@ -122,7 +135,7 @@ Anuncios de texto:
     &8&m----------------------------------------
     &6&l{evento}
     &fPensei num numero entre &e{minimo} &fe &e{maximo}&f.
-    &fChute com &e/{comando} <numero>&f.
+    &fChute no chat ou com &e/{comando} <numero>&f.
     &8&m----------------------------------------
 
   Vitoria: |
