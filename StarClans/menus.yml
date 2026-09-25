@@ -674,7 +674,17 @@ Menu do top:
       - '&7Banco: &a{moeda}{banco}'
       - '&r'
       - '&7{categoria}: &f{valor}'
+      - '{spawners}'
       - '&r'
+
+  #  A linha '{spawners}' acima vira uma linha por mob, e some quando nao ha o
+  #  que listar. So e preenchida na categoria SPAWNERS -- nos outros tops ela
+  #  desaparece sozinha, para a lore nao virar uma parede de texto.
+  Spawners:
+    Formato: '&8  {mob}: &f{quantidade}'
+    #  Quantos mobs no maximo; o resto vira a linha de "e mais".
+    Maximo: 8
+    Resto: '&8  e mais &f{quantos} &8tipo(s)'
 
   Vazio:
     Slot: 22
