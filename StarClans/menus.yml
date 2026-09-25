@@ -12,7 +12,7 @@
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 2
+Versao do modelo: 3
 
 #
 # ══════════════════════  MENU DE QUEM NAO TEM CLAN  ═══════════════════════
@@ -95,7 +95,7 @@ Menu sem clan:
         - '&a&lCLIQUE &fpara abrir'
     Fechar:
       Slot: 26
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&c&lFECHAR'
       Lore: []
 
@@ -243,8 +243,19 @@ Menu do clan:
         - '&7Agora: &f{tagcolorida}'
         - '&r'
         - '&a&lCLIQUE &fpara trocar'
-    Gerenciar:
+    Banner:
       Slot: 33
+      Material: '{banner}'
+      Nome: '&e&lBANNER DO CLAN'
+      Lore:
+        - '&7O simbolo que representa o clan'
+        - '&7nas telas e nos tops.'
+        - '&r'
+        - '&7Trocas disponiveis: &f{trocas_de_banner}'
+        - '&r'
+        - '&a&lCLIQUE &fpara abrir'
+    Gerenciar:
+      Slot: 37
       Material: 'COMPARATOR'
       Nome: '&b&lCONFIGURACOES'
       Lore:
@@ -253,7 +264,7 @@ Menu do clan:
         - '&r'
         - '&a&lCLIQUE &fpara abrir'
     Fogo amigo:
-      Slot: 37
+      Slot: 38
       Material: 'FLINT_AND_STEEL'
       Nome: '&c&lFOGO AMIGO'
       Lore:
@@ -300,8 +311,9 @@ Menu do clan:
         - '&r'
         - '&c&lCLIQUE &fpara sair'
     Desfazer:
-      #  So aparece para o lider; ocupa o mesmo lugar do botao de sair.
-      Slot: 44
+      #  So aparece para o lider, no lugar do botao de sair. Fica no ultimo
+      #  slot de proposito: e a unica acao da tela que nao tem volta.
+      Slot: 53
       Material: 'TNT'
       Nome: '&4&lDESFAZER O CLAN'
       Lore:
@@ -311,7 +323,7 @@ Menu do clan:
         - '&c&lCLIQUE &fpara desfazer'
     Fechar:
       Slot: 49
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&c&lFECHAR'
       Lore: []
 
@@ -549,7 +561,7 @@ Menu de procurar:
     Nome: ' '
 
   Clan:
-    Material: 'SHIELD'
+    Material: '{banner}'
     Nome: '&b&l{tagcolorida}'
     Lore:
       - '&7{descricao}'
@@ -597,7 +609,7 @@ Menu de online:
     Nome: ' '
 
   Clan:
-    Material: 'SHIELD'
+    Material: '{banner}'
     Nome: '&b&l{tagcolorida}'
     Lore:
       - '&7{descricao}'
@@ -648,7 +660,7 @@ Menu do top:
     Nome: ' '
 
   Clan:
-    Material: 'SHIELD'
+    Material: '{banner}'
     Nome: '&6&l#{posicao} &b{tagcolorida}'
     Lore:
       - '&7{descricao}'
@@ -934,6 +946,58 @@ Menu de cores:
       Lore: []
 
 #
+# ══════════════════════════════  BANNER  ══════════════════════════════════
+#
+Menu do banner:
+  #  O banner e o simbolo do clan: e ele que aparece no lugar do icone comum
+  #  no top, na procura e na lista de clans online.
+  #
+  #  A primeira definicao e de graca. Depois dela cada troca gasta uma das que
+  #  foram compradas no mercado (item "banner" do mercado.yml).
+  Titulo: '&8Banner &7» &f{tag}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  #  O unico slot da interface onde o jogador pode largar um item. O banner
+  #  deixado aqui e apenas copiado -- ele volta para o inventario ao fechar.
+  Slot do banner: 13
+
+  Botoes:
+    Atual:
+      #  Mostra o banner que o clan usa hoje; sem banner, cai no material.
+      Slot: 11
+      Material: 'WHITE_BANNER'
+      Nome: '&e&lBANNER ATUAL'
+      Lore:
+        - '&7O simbolo do clan hoje.'
+        - '&r'
+        - '&7Tem banner: {tem_banner}'
+        - '&7Trocas disponiveis: &f{trocas_de_banner}'
+    Confirmar:
+      Slot: 15
+      Material: 'LIME_DYE'
+      Nome: '&a&lCONFIRMAR'
+      Lore:
+        - '&7Usa o banner do slot do meio'
+        - '&7como simbolo do clan.'
+        - '&r'
+        - '&7A primeira vez e de graca.'
+        - '&7Depois, gasta uma troca.'
+        - '&r'
+        - '&7Trocas disponiveis: &f{trocas_de_banner}'
+        - '&r'
+        - '&a&lCLIQUE &fpara confirmar'
+    Voltar:
+      Slot: 22
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
 # ═══════════════════════════  ESCOLHER A COR  ══════════════════════════════
 #
 Menu de escolher cor:
@@ -965,6 +1029,18 @@ Menu de escolher cor:
       Material: 'ARROW'
       Nome: '&c&lVOLTAR'
       Lore: []
+    Negrito:
+      #  Alterna o negrito do mesmo alvo que esta sendo pintado -- a letra
+      #  aberta, ou a tag inteira. So aparece com a permissao starclans.negrito.
+      Slot: 32
+      Material: 'BOOK'
+      Nome: '&e&lNEGRITO'
+      Lore:
+        - '&7Deixa &f{letra} &7em negrito.'
+        - '&r'
+        - '&7Agora: {negrito}'
+        - '&r'
+        - '&a&lCLIQUE &fpara alternar'
     Anterior:
       Slot: 27
       Material: 'ARROW'
