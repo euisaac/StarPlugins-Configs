@@ -10,7 +10,7 @@
 #  (do arquivo dele) + o bloco de "Estados" abaixo, conforme a situacao.
 # ==========================================================================
 
-Versao do modelo: 5
+Versao do modelo: 6
 
 Botoes:
   Voltar:
@@ -636,8 +636,16 @@ Loja partida:
       - '&7Shift + clique: favoritar'
     Pode: '&aClique para comprar'
     Nao pode: '&cVoce nao tem {preco}'
-    # Linha extra que aparece sozinha quando a equipe tem o recurso guardado
-    # no bau/ender chest (secao Baus do config.yml).
+    # Bloco que aparece sozinho na lore quando a equipe tem recurso guardado
+    # no bau ou no ender chest (secao Baus do config.yml -- o bau da ilha
+    # precisa estar marcado no editor da equipe).
+    # {quantidade}, {recurso} (nome da secao Recursos) e {cor} por linha.
+    Guardado:
+      Titulo: '&7Minerios no bau:'
+      Linha: '&8- {cor}{quantidade}x {recurso}'
+      # true = lista tudo o que esta guardado; false = so o recurso do preco.
+      Todos: true
+    # Formato antigo, de uma linha so (vale quando "Guardado" nao existe).
     Linha guardado: '&8{guardado} guardado(s) no bau'
   # Editor de barra: aparece so na compra rapida (Slot -1 tira do menu).
   Editor de hotbar:
