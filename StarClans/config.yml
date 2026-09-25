@@ -387,6 +387,25 @@ Cores da relacao:
   Aliado: '&2[A] &a'
   Rival: '&4[R] &c'
 
+Fly do clan:
+  #  O voo comprado no mercado do clan. Ele vale SO dentro dos terrenos do
+  #  proprio clan -- fora deles o jogador cai, e a mensagem avisa.
+  #
+  #  Precisa do StarTerrenos ou do StarPlots instalado: sem um deles nao ha
+  #  como saber o que e terreno de quem, e o voo nunca liga.
+
+  #  De quantos em quantos ticks o voo e conferido. 20 ticks = 1 segundo.
+  #  Baixar demais nao deixa o voo mais responsivo: o que manda e o tempo
+  #  que o jogador leva para atravessar a divisa do terreno.
+  Conferir a cada: 20
+
+  # Mundos onde o voo do clan nunca vale (arenas, pvp, eventos).
+  Mundos bloqueados: []
+
+  #  O voo tambem vale em terreno de fora no qual o jogador foi adicionado
+  #  como membro. So o StarPlots responde isso.
+  Valer em terreno de membro: true
+
 StarLigas:
   #  O botao das ligas so aparece nos menus quando o StarLigas esta instalado.
   #  Desligue aqui para escondê-lo mesmo com o produto na casa.
