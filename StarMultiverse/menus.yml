@@ -8,7 +8,7 @@
 #  {jogadores}, {limite}, {dificuldade}, {modo}, {pvp}, {tempo}, {clima}.
 #  Nos botoes de propriedade vale {valor}.
 # ---------------------------------------------------------------------------
-Versao do modelo: 1
+Versao do modelo: 2
 
 Mundos:
   Titulo: '&8Mundos &7({pagina}/{paginas})'
@@ -73,7 +73,7 @@ Mundos:
         - '&7Pontos salvos pela staff.'
     Fechar:
       Slot: 48
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cFechar'
 
 Ancoras:
@@ -232,8 +232,10 @@ Mundo:
       Material: 'LAVA_BUCKET'
       Nome: '&6Limpar entidades'
       Lore:
-        - '&eClique &7remove monstros.'
-        - '&eClique direito &7remove itens no chao.'
+        - '&7Monstros, animais, itens no chao'
+        - '&7e orbes de experiencia.'
+        - ''
+        - '&eClique &7para abrir.'
     Backup:
       Slot: 40
       Material: 'CHEST'
@@ -258,6 +260,75 @@ Mundo:
         - '&cPede confirmacao no chat.'
     Voltar:
       Slot: 49
+      Material: 'ARROW'
+      Nome: '&eVoltar'
+
+Limpar:
+  Titulo: '&8Limpar: {mundo}'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+  # Em cada botao, {quantidade} e quanto existe no mundo AGORA. Se voce apagar
+  # a lista Lore, o plugin escreve a contagem sozinho.
+  Itens:
+    Monstros:
+      Slot: 10
+      Material: 'ROTTEN_FLESH'
+      Nome: '&cMonstros'
+      Lore:
+        - '&7Zumbi, esqueleto, creeper, slime,'
+        - '&7ghast, dragao e companhia.'
+        - ''
+        - '&7No mundo agora: &f{quantidade}'
+        - ''
+        - '&eClique &7para remover.'
+    Animais:
+      Slot: 12
+      Material: 'PORKCHOP'
+      Nome: '&aAnimais e mobs pacificos'
+      Lore:
+        - '&7Animais, peixes, lula, morcego,'
+        - '&7aldeao, golem e afins.'
+        - ''
+        - '&7No mundo agora: &f{quantidade}'
+        - ''
+        - '&eClique &7para remover.'
+    Itens:
+      Slot: 14
+      Material: 'CHEST'
+      Nome: '&eItens no chao'
+      Lore:
+        - '&7So o que esta jogado no chao.'
+        - ''
+        - '&7No mundo agora: &f{quantidade}'
+        - ''
+        - '&eClique &7para remover.'
+    XP:
+      Slot: 16
+      Material: 'EXPERIENCE_BOTTLE'
+      Nome: '&bOrbes de experiencia'
+      Lore:
+        - '&7As bolinhas de XP no chao.'
+        - ''
+        - '&7No mundo agora: &f{quantidade}'
+        - ''
+        - '&eClique &7para remover.'
+    Todos:
+      Slot: 22
+      Material: 'LAVA_BUCKET'
+      Nome: '&6Limpar tudo'
+      Lore:
+        - '&7Todos os grupos de uma vez, mais'
+        - '&7flechas e afins. Suportes de'
+        - '&7armadura e veiculos ficam.'
+        - ''
+        - '&7No mundo agora: &f{quantidade}'
+        - ''
+        - '&eClique &7para remover.'
+    Voltar:
+      Slot: 31
       Material: 'ARROW'
       Nome: '&eVoltar'
 
@@ -322,5 +393,5 @@ Criar:
         - '&eClique &7para digitar uma semente.'
     Cancelar:
       Slot: 31
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cCancelar'
