@@ -1,0 +1,90 @@
+# ------------------------------------------------------------------------
+#  StarOneBlock - os placares laterais
+#
+#  Sao DOIS, e cada um manda num lugar:
+#
+#    Ilhas      o placar de dentro do mundo das ilhas
+#    Servidor   o placar do resto do servidor
+#
+#  O de servidor vem DESLIGADO de fabrica: a maior parte dos servidores ja
+#  tem um placar de lobby, e dois plugins disputando a lateral fazem a tela
+#  piscar. Ligue so se quiser que este produto cuide dos dois lados.
+#
+#  Com os dois desligados, o jogador fica com o placar que ja tinha -- este
+#  produto nao encosta nele.
+#
+#  O jogo mostra no maximo 15 linhas. Linha vazia ('') vira um espaco, e
+#  duas linhas iguais nao brigam entre si: pode repetir a vontade.
+#
+#  Trocas que valem nos dois:
+#    {jogador} {online} {ping}
+#    {ilha} {id} {dono} {cargo}
+#    {fase} {fase_proxima} {fase_numero} {fase_total}
+#    {atual} {meta} {barra} {porcento}
+#    {nivel} {valor} {banco} {blocos}
+#    {membros} {membros_max} {tamanho} {barreira} {posicao} {impulso}
+#
+#  Com o PlaceholderAPI instalado, %qualquer_placeholder% tambem funciona --
+#  e assim que entram o dinheiro do servidor, o clan, o rank e o resto.
+#
+#  Quem ainda nao tem ilha ve, no lugar dos dados dela, o texto que voce
+#  escreveu em Placeholder > Sem ilha (e Sem ilha nos numeros) no
+#  mensagens.yml.
+#
+#  Tudo isto tambem pode ser editado por menu: /staroneblock config
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# Tiques entre uma atualizacao e outra; vale para os dois placares.
+# 20 = uma vez por segundo. Numero maior pesa menos e demora mais para
+# mostrar o que mudou.
+Atualizar a cada: 20
+
+# ------------------------------------------------------------------------
+#  Dentro do mundo das ilhas
+# ------------------------------------------------------------------------
+Ilhas:
+  Ativar: true
+
+  # Com true, quem ainda nao tem ilha nao ve placar nenhum aqui.
+  So para quem tem ilha: false
+
+  Titulo: '&e&lONEBLOCK'
+  Linhas:
+    - '&8&m-----------------'
+    - '&7ID: &f{id}'
+    - '&7Level: &a{nivel}'
+    - ''
+    - '&eFase: &a{fase}'
+    - '&eProx fase: &b{fase_proxima}'
+    - '&7{barra} &f{porcento}%'
+    - ''
+    - '&6Banco: &f{banco}'
+    - '&6Tamanho: &f{barreira}'
+    - '&8&m-----------------'
+
+# ------------------------------------------------------------------------
+#  Fora do mundo das ilhas
+# ------------------------------------------------------------------------
+Servidor:
+  Ativar: false
+
+  # Mundos em que este placar nao entra, mesmo ligado. E por aqui que voce
+  # deixa o lobby com o placar do plugin de lobby.
+  Mundos ignorados:
+    - 'lobby'
+
+  Titulo: '&e&lSERVIDOR'
+  Linhas:
+    - '&8&m-----------------'
+    - '&7Jogador: &f{jogador}'
+    - '&7Online: &a{online}'
+    - '&7Ping: &a{ping}ms'
+    - ''
+    - '&eSua ilha: &f{ilha}'
+    - '&eFase: &a{fase}'
+    - '&eNivel: &a{nivel}'
+    - ''
+    - '&7Use &f/ilha &7para voltar.'
+    - '&8&m-----------------'

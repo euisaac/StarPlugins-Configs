@@ -69,6 +69,14 @@ Ilha:
   Convite recebido: |
     &e{jogador} &7chamou voce para a ilha &f{ilha}&7.
     &7Use &a/ilha entrar {dono} &7dentro de &f{segundos}s&7.
+  Convite recebido com aviso: |
+    &e{jogador} &7chamou voce para a ilha &f{ilha}&7.
+    &c&lAtencao: &7voce ja esta no limite de ilhas.
+    &7Aceitar custa uma das suas -- voce escolhe qual.
+    &7Use &a/ilha entrar {dono} &7dentro de &f{segundos}s&7.
+  Solicitacao recusada: '&7Voce recusou o convite da ilha &f{ilha}&7.'
+  Largou: '&7A ilha &f{ilha} &7foi apagada para abrir a vaga.'
+  Nenhuma solicitacao: '&7Voce nao tem convite nenhum esperando.'
   Entrou: '&aVoce agora faz parte da ilha &f{ilha}&a.'
   Membro chegou: '&e{jogador} &7entrou na ilha.'
   Saiu: '&7Voce saiu da ilha &f{ilha}&7.'
@@ -84,6 +92,7 @@ Ilha:
   Descricao definida: '&aDescricao da ilha atualizada.'
   Aberta: '&aA ilha esta aberta para visitas.'
   Fechada: '&cA ilha esta fechada para visitas.'
+  Nucleo reposto: '&aO bloco central da ilha &f{ilha} &afoi reposto.'
   Resetando: '&7Limpando a ilha... isso leva alguns segundos.'
   Resetada: '&aA ilha voltou ao primeiro dia.'
   Subiu de nivel: '&a&lNIVEL {nivel}! &7A sua ilha subiu de nivel.'
@@ -116,6 +125,10 @@ Spawn:
 Lobby:
   Enviando: '&7Levando voce para o lobby &f{servidor}&7...'
   Sem servidor: '&cNao ha um lobby configurado neste servidor.'
+
+Ilhas:
+  Ativa: '&aEsta e a ilha ativa.'
+  Inativa: '&8Clique para deixar esta ativa.'
 
 Warp:
   Criado: '&aWarp &f{nome} &acriado.'
@@ -213,6 +226,7 @@ Menus:
   Banidos: '&8Barrados na ilha'
   Configuracao: '&8StarOneBlock - configuracao'
   Confirmar: '&8Tem certeza?'
+  Confirmar largar ilha: 'Apagar a ilha {ilha} para entrar na {destino}?'
   Confirmar reset: 'A ilha volta ao primeiro dia e tudo se perde.'
   Confirmar expulsar: '{jogador} sai da ilha na hora.'
 
@@ -251,6 +265,8 @@ Ajuda:
     &f/ilha banco [depositar|sacar] [valor]
     &f/ilha loja|melhorias|fases|geradores
     &f/ilha visitar [jogador] &8- &7conhece outra ilha
+    &f/ilha ilhas &8- &7trocar entre as suas ilhas
+    &f/ilha solicitacoes &8- &7convites esperando resposta
     &f/ilha top &8- &7o ranking das ilhas
     &f/ilha chat &8- &7fala so com a sua ilha
     &f/ilha voar &8- &7voa dentro da ilha
@@ -270,6 +286,7 @@ Ajuda:
     &f/ilhaadmin banco <jogador> <dar|tirar|definir> <valor>
     &f/ilhaadmin impulso <jogador> [multiplicador] [minutos]
     &f/ilhaadmin desbanir <jogador> <banido>
+    &f/ilhaadmin nucleo <jogador> &8- &7repoe o bloco central da ilha
     &f/ilhaadmin definirspawn &8- &7o /spawn passa a levar para onde voce esta
     &8&m---------------------------------
   Produto: |

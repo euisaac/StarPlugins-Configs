@@ -45,6 +45,14 @@ Mundo:
   Lado da plataforma: 1
   Bloco da plataforma: BEDROCK
 
+  # Quando o bloco central volta e tem alguem ocupando o lugar dele, esse
+  # alguem e posto EM CIMA do bloco.
+  #
+  # Sem isto o jogo empurra para o lado -- e numa ilha o lado e o vazio. Quem
+  # quebra o bloco em que esta pisando cai na plataforma, o bloco novo nasce
+  # dentro dele e o passeio termina no void.
+  Empurrar para cima do bloco: true
+
   # Quantas camadas o plugin apaga por tique ao resetar uma ilha.
   # Numero alto limpa mais rapido e pesa mais no servidor.
   Camadas por tique ao limpar: 4
@@ -78,6 +86,22 @@ Ilha:
   # Vagas de uma ilha nova (contando o dono). A melhoria 'membros' aumenta.
   Membros iniciais: 3
 
+  # Um jogador pode ter a propria ilha E participar da de um amigo.
+  #
+  # Com Ativar: true, o convite entra nas solicitacoes dele e, se ele aceitar
+  # dentro do limite, passa a fazer parte das duas. O /ilha abre um seletor
+  # quando ele esta em mais de uma.
+  #
+  # Com Ativar: false, o convite ainda chega -- mas avisando que aceitar
+  # custa a ilha que ele ja tem.
+  #
+  # Limite conta so as ilhas dos OUTROS: 1 quer dizer "a sua mais a de um
+  # amigo". Quem esta no limite e aceita outro convite escolhe na hora de
+  # qual ilha sair.
+  Participar de outras ilhas:
+    Ativar: true
+    Limite: 1
+
   # Teto de mobs vivos numa ilha. A melhoria 'mobs' aumenta.
   Limite inicial de mobs: 30
 
@@ -110,6 +134,13 @@ Ilha:
 
   # Deixa o /ilha voar funcionar. O voo cai sozinho ao sair da ilha.
   Voo liberado: true
+
+  # Para onde quem morre no mundo das ilhas renasce:
+  #   SPAWN  o spawn do servidor (o do /ilhaadmin definirspawn; sem ele, o
+  #          spawn do mundo principal)
+  #   ILHA   a casa da propria ilha
+  #   MUNDO  o spawn do mundo das ilhas, como o jogo faria sozinho
+  Ao morrer: SPAWN
 
 Nucleo:
   # Mostra a barra de progresso da fase na actionbar de quem esta minerando.

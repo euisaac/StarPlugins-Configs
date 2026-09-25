@@ -51,6 +51,7 @@ Menus:
   #          {fase_numero} {fase_total} {atual} {meta} {barra} {porcento}
   #          {nivel} {valor} {banco} {blocos} {membros} {membros_max}
   #          {tamanho} {barreira} {warps} {warps_max} {geradores} {banidos}
+  #          {solicitacoes} {minhas_ilhas}
   #          {posicao} {aberta} {impulso}
   # ====================================================================
   Principal:
@@ -224,6 +225,30 @@ Menus:
         Material: BARRIER
         Nome: '&c&lFechar'
         Lore: []
+
+      # So aparece quando ha convite esperando.
+      solicitacoes:
+        Slot: 8
+        Acao: SOLICITACOES
+        Material: PAPER
+        Nome: '&a&lSolicitacoes &7({solicitacoes})'
+        Lore:
+          - '&7Convites de ilha esperando'
+          - '&7a sua resposta.'
+          - ''
+          - '&eClique para abrir.'
+
+      # So aparece quando ele faz parte de mais de uma ilha.
+      minhas-ilhas:
+        Slot: 0
+        Acao: MINHAS_ILHAS
+        Material: COMPASS
+        Nome: '&b&lSuas ilhas &7({minhas_ilhas})'
+        Lore:
+          - '&7Trocar entre as ilhas de que'
+          - '&7voce faz parte.'
+          - ''
+          - '&eClique para abrir.'
 
       # Exemplo de botao SEU. Esta desligado; ponha um slot livre e ele
       # aparece. Vale em qualquer tela deste arquivo.
@@ -1154,6 +1179,207 @@ Menus:
           - '&7Gente online: &8ninguem'
           - ''
           - '&eClique para visitar.'
+
+
+  # ====================================================================
+  #  As ilhas de que o jogador faz parte
+  #
+  #  So abre quando ha mais de uma; com uma so, o /ilha vai direto.
+  #  Acoes: SOLICITACOES VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Modelos: propria, participa
+  #  Trocas do item: {ilha} {id} {dono} {cargo} {fase} {nivel} {banco}
+  #                  {membros} {ativa}
+  # ====================================================================
+  Minhas ilhas:
+    Titulo: '&8Suas ilhas'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      solicitacoes:
+        Slot: 49
+        Acao: SOLICITACOES
+        Material: PAPER
+        Nome: '&a&lSolicitacoes'
+        Lore:
+          - '&7Convites esperando: &f{solicitacoes}'
+          - ''
+          - '&eClique para abrir.'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: RED_DYE
+        Nome: '&c&lFechar'
+        Lore: []
+    Modelos:
+      propria:
+        Nome: '&6{ilha}'
+        Lore:
+          - '&7A sua ilha.'
+          - '&7Nivel: &a{nivel} &8| &7Fase: &b{fase}'
+          - '&7Banco: &6{banco} &8| &7Membros: &f{membros}'
+          - ''
+          - '{ativa}'
+          - '&eClique para abrir.'
+      participa:
+        Nome: '&b{ilha}'
+        Lore:
+          - '&7Ilha de &f{dono}&7.'
+          - '&7Seu cargo: &f{cargo}'
+          - '&7Nivel: &a{nivel} &8| &7Fase: &b{fase}'
+          - '&7Banco: &6{banco} &8| &7Membros: &f{membros}'
+          - ''
+          - '{ativa}'
+          - '&eClique para abrir.'
+
+  # ====================================================================
+  #  Os convites em aberto
+  #
+  #  Modelos: com_vaga, sem_vaga
+  #  Trocas do item: {jogador} {ilha} {dono} {id} {nivel} {membros}
+  #                  {membros_max} {resta}
+  # ====================================================================
+  Solicitacoes:
+    Titulo: '&8Solicitacoes'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: RED_DYE
+        Nome: '&c&lFechar'
+        Lore: []
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+    Modelos:
+      com_vaga:
+        Nome: '&a{ilha}'
+        Lore:
+          - '&7Convite de &f{jogador}&7.'
+          - '&7Ilha de &f{dono} &8| &7Nivel: &a{nivel}'
+          - '&7Vagas: &f{membros}&7/&f{membros_max}'
+          - '&7Vence em: &f{resta}'
+          - ''
+          - '&aClique &7para aceitar.'
+          - '&cShift + clique &7para recusar.'
+      sem_vaga:
+        Material: YELLOW_DYE
+        Nome: '&e{ilha}'
+        Lore:
+          - '&7Convite de &f{jogador}&7.'
+          - '&7Ilha de &f{dono} &8| &7Nivel: &a{nivel}'
+          - '&7Vence em: &f{resta}'
+          - ''
+          - '&c&lVOCE ESTA NO LIMITE'
+          - '&7Aceitar custa uma das suas ilhas;'
+          - '&7voce escolhe qual na proxima tela.'
+          - ''
+          - '&eClique &7para escolher.'
+          - '&cShift + clique &7para recusar.'
+
+  # ====================================================================
+  #  De qual ilha sair para aceitar o convite
+  #
+  #  Modelos: apagar (a propria), sair (a de um amigo)
+  #  Trocas do item: {ilha} {id} {dono} {nivel} {banco} {blocos} {destino}
+  # ====================================================================
+  Abrir vaga:
+    Titulo: '&8De qual ilha sair?'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      fechar:
+        Slot: 49
+        Acao: FECHAR
+        Material: RED_DYE
+        Nome: '&c&lFechar'
+        Lore: []
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+    Modelos:
+      apagar:
+        Material: TNT
+        Nome: '&4{ilha}'
+        Lore:
+          - '&7A sua ilha, nivel &a{nivel}&7.'
+          - '&7Banco: &6{banco} &8| &7Blocos: &f{blocos}'
+          - ''
+          - '&c&lESCOLHER AQUI APAGA ESTA ILHA'
+          - '&cTudo que esta nela se perde.'
+          - '&cNao tem volta.'
+          - ''
+          - '&7Voce entra na ilha &f{destino}&7.'
+          - '&eClique para escolher.'
+      sair:
+        Nome: '&b{ilha}'
+        Lore:
+          - '&7Ilha de &f{dono}&7.'
+          - ''
+          - '&7Escolher aqui so tira voce dela.'
+          - '&7A ilha continua existindo, e voce'
+          - '&7pode voltar com um convite novo.'
+          - ''
+          - '&7Voce entra na ilha &f{destino}&7.'
+          - '&eClique para escolher.'
 
   # ====================================================================
   #  A tela de "tem certeza?"
