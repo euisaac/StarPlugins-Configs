@@ -118,7 +118,10 @@ Menu do clan:
     Jogador:
       #  A sua propria cabeca, com os seus numeros dentro do clan.
       Slot: 10
-      Material: 'PLAYER_HEAD'
+      #  A placeholder pede a cabeca de quem abriu o menu. Escrita assim,
+      #  e nao como PLAYER_HEAD, porque ate a 1.12 a cabeca era SKULL_ITEM
+      #  com data value -- a placeholder atravessa a faixa toda.
+      Material: '{jogador}'
       Nome: '&b&l{jogador}'
       Lore:
         - '&7Cargo: &f{simbolo}{cargo}'
@@ -148,7 +151,7 @@ Menu do clan:
         - '&7Banco: &a{moeda}{banco}'
     Membros:
       Slot: 12
-      Material: 'PLAYER_HEAD'
+      Material: '{jogador}'
       Nome: '&b&lMEMBROS'
       Lore:
         - '&7Todos os membros do clan.'
@@ -992,7 +995,7 @@ Menu do membro:
   Botoes:
     Jogador:
       Slot: 4
-      Material: 'PLAYER_HEAD'
+      Material: '{jogador}'
       Nome: '&b&l{jogador}'
       Lore:
         - '&7Cargo: &f{simbolo}{cargo}'
@@ -1053,7 +1056,7 @@ Menu de info do clan:
       - '&7Banco: &a{moeda}{banco}'
 
   Membro:
-    Material: 'PLAYER_HEAD'
+    Material: '{jogador}'
     Nome: '&b{simbolo}{jogador}'
     Lore:
       - '&7Cargo: &f{cargo}'
@@ -1102,7 +1105,7 @@ Menu de info do jogador:
   Botoes:
     Jogador:
       Slot: 11
-      Material: 'PLAYER_HEAD'
+      Material: '{jogador}'
       Nome: '&b&l{jogador}'
       Lore:
         - '&7Cargo: &f{simbolo}{cargo}'
