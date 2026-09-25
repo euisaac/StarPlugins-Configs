@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 21
+Versao do modelo: 22
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -253,6 +253,10 @@ Geradores:
   Juntar drops: true
 
 Itens:
+  # true = quem tem a permissao starbedwars.cooldown.bypass usa os itens sem
+  # esperar. Cuidado: um "*" ou "starbedwars.*" no cargo do staff concede essa
+  # permissao sem querer, e a espera parece nao funcionar para quem testa.
+  Bypass por permissao: false
   # "Botao" de cada item: com que clique ele e usado -- DIREITO, ESQUERDO ou
   # AMBOS. "Cooldown" e a espera, em segundos, para usar o mesmo item de novo
   # (0 = sem espera). A espera e por jogador e vale para o item, nao para o
@@ -293,6 +297,9 @@ Itens:
   Asas:
     # Segundos de voo e espera entre um uso e outro.
     Segundos: 3
+    # Empurrao para cima ao abrir as asas (0 = nenhum): sem ele o voo do
+    # cliente so "pega" depois do jogador sair do chao.
+    Impulso: 0.5
     Botao: AMBOS
     Cooldown: 10
   Foguete:
