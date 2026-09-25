@@ -1,0 +1,91 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                       StarClans - migrador                           ║
+#  ║   Traz os clans de outro plugin para o StarClans.                    ║
+#  ║                                                                      ║
+#  ║   Use SEMPRE nesta ordem:                                            ║
+#  ║     1) /starclans migrar conferir   -- so conta e mostra o relatorio ║
+#  ║     2) /starclans migrar aplicar    -- grava de verdade              ║
+#  ║                                                                      ║
+#  ║   Nada e sobrescrito: clan cuja tag ja existe aqui e pulado. Rodar   ║
+#  ║   duas vezes nao duplica nem estraga o que ja estava.                ║
+#  ║                                                                      ║
+#  ║   Faca uma copia do banco do StarClans antes de aplicar.             ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Origem:
+  #  De onde os clans vem. Tem de ser o MESMO tipo que o outro plugin estava
+  #  usando: ler o SQLite de um servidor que ja tinha passado para MySQL traz
+  #  os dados velhos, e a migracao fica silenciosamente desatualizada.
+  #
+  #  SQLITE ou MYSQL.
+  Tipo: SQLITE
+
+  #  O prefixo das tabelas do outro plugin. As tres tabelas procuradas sao
+  #  <prefixo>clans, <prefixo>players e <prefixo>newsletters.
+  Prefixo das tabelas: 'yclans.'
+
+  SQLite:
+    # Caminho a partir da pasta do servidor (a que tem o plugins/ dentro).
+    Arquivo: 'plugins/yClans/database.db'
+
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: ''
+    Usuario: ''
+    Senha: ''
+
+#  De-para dos cargos: a esquerda o cargo do outro plugin, a direita o id de um
+#  cargo do seu cargos.yml. Cargo que nao estiver aqui (ou que apontar para um
+#  id inexistente) cai no cargo padrao.
+#
+#  O lider nao entra nesta lista: quem e lider do clan recebe o cargo marcado
+#  com "Lider: true" no cargos.yml, sempre.
+Cargos:
+  MEMBER: 'Membro'
+  TRUSTED: 'Confiavel'
+  CAPTAIN: 'Capitao'
+  LEADER: 'Lider'
+
+#  De-para dos boletins do mural: a esquerda o tipo do outro plugin, a direita
+#  uma secao de "Boletins" do config.yml -- e ela que da o icone e o nome no
+#  menu. Tipo desconhecido vira 'Recado'.
+Boletins:
+  CREATION: 'Criacao'
+  JOIN: 'Entrada'
+  LEAVE: 'Saida'
+  KICKED: 'Expulsao'
+  NAME: 'Troca de nome'
+  DESCRIPTION: 'Troca de descricao'
+  LEADERSHIP: 'Troca de lider'
+  MESSAGE: 'Recado'
+  BANNER: 'Recado'
+
+#  ── O que a migracao traz ───────────────────────────────────────────────
+#
+#  Clans (tag, nome, descricao, cor, lider, data, verificado, limites, banco),
+#  membros (cargo, entrada, abates, mortes, tag propria), aliados, rivais,
+#  propostas de alianca, pedidos de entrada, a base, o bau, o mural e o
+#  historico de quem abriu o bau.
+#
+#  ── O que ela NAO traz ──────────────────────────────────────────────────
+#
+#  Convites em aberto para jogadores, o historico de dinheiro (o outro plugin
+#  guardava a lista vazia) e as permissoes de cargo por clan -- estas ultimas
+#  passam a valer pelo padrao do seu cargos.yml, que e o que voce escreveu.
+#
+#  ── O ponto que mais merece atencao ─────────────────────────────────────
+#
+#  O outro plugin guarda os clans por NICK; o StarClans guarda por UUID. Para
+#  cada jogador o migrador procura o UUID em tres lugares, nesta ordem:
+#
+#    1. o UUID do banco de origem, quando ele e plausivel;
+#    2. o que este servidor ja conhece do nick (quem ja entrou aqui);
+#    3. o calculo de servidor offline, para quem nunca entrou.
+#
+#  O relatorio mostra quantos vieram de cada lugar. Se muita gente cair no
+#  terceiro caso e o seu servidor for premium, esses jogadores vao entrar sem
+#  clan -- vale conferir antes de aplicar.
