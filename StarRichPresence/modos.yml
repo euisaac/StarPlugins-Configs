@@ -39,11 +39,6 @@
 #                         Discord.Imagem + Texto da imagem  +  Time
 #  Texto vazio = campo nao enviado. As cores sao removidas (o Discord nao
 #  mostra cor).
-#
-#  "Pagina" e usado so pelo /rp gerar: vira um botao de modo de jogo na
-#  pagina do servidor na LabyMod (os botoes coloridos da lista de servidores).
-#    Mostrar: true | Cor: "#55FF55" | Comando: "/server x" | Site: "https://..."
-#  O icone de cada botao vai em imagens/modos/<modo>.png (512x512).
 # ============================================================================
 
 Versao do modelo: 1
@@ -67,8 +62,6 @@ Modos:
     Time:
       Atual: ""
       Maximo: ""
-    Pagina:
-      Mostrar: false
 
   # Cada servidor da rede tem o proprio "Servidor:" no config.yml; o modo
   # vale pelo servidor em que o jogador esta.
@@ -79,30 +72,18 @@ Modos:
       Servidores: [destiny]
     Lunar:
       Mapa: "{mundo}"
-    Pagina:
-      Mostrar: true
-      Cor: "#FFAA00"
-      Comando: "/jogar survival"
 
   Slimefun:
     Nome: "&2&lSlimefun"
     Prioridade: 10
     Condicoes:
       Servidores: [slimefun]
-    Pagina:
-      Mostrar: true
-      Cor: "#00AA00"
-      Comando: "/jogar slimefun"
 
   Anarquia:
     Nome: "&c&lAnarquia"
     Prioridade: 10
     Condicoes:
       Servidores: [anarquia]
-    Pagina:
-      Mostrar: true
-      Cor: "#FF5555"
-      Comando: "/jogar anarquia"
 
   # Qualquer minigame da StarPlugins que registre partidas no loader.
   Partida:

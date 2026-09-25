@@ -1,0 +1,71 @@
+# ============================================================================
+#  StarRichPresence (proxy Velocity) - modos de jogo da rede
+# ============================================================================
+#
+#  Cada modo diz O QUE aparece no Discord e QUANDO ele vale.
+#
+#  Como o proxy escolhe o modo do jogador:
+#    1. se o servidor em que ele esta tem o StarRichPresence e mandou um modo
+#       proprio (mundo, regiao, partida...), vale o do servidor;
+#    2. senao, entre os modos daqui cujas "Condicoes" batem, o de MAIOR
+#       "Prioridade";
+#    3. nenhum bateu -> o modo "Padrao".
+#
+#  Todo campo que um modo nao escrever e herdado do "Padrao".
+#
+#  ---------------------------------------------------------------------------
+#  Condicoes (todas precisam bater; dentro de uma lista, basta um item):
+#    Servidores:  [destiny, "slimefun*"]   nome do servidor no velocity.toml
+#                                          (* vale qualquer coisa)
+#    Permissao:   "grupo.vip"              permissao no proxy (LuckPerms)
+#  ---------------------------------------------------------------------------
+#  Variaveis:
+#    {modo} {jogador} {servidor} {rede} {online} {max} {online_servidor}
+#  ---------------------------------------------------------------------------
+#  Onde cada campo aparece:
+#    LabyMod ... texto unico do modo (Discord e lista de amigos)
+#    Lunar ..... Jogo / Variante / Estado do jogo / Estado do jogador / Mapa
+#                + Time (Atual/Maximo)
+#  Texto vazio = campo nao enviado. As cores sao removidas.
+# ============================================================================
+
+Versao do modelo: 1
+
+Modos:
+  Padrao:
+    Nome: "RedeStar"
+    Prioridade: 0
+    LabyMod: "{modo}"
+    Lunar:
+      Jogo: "{modo}"
+      Variante: ""
+      Estado do jogo: ""
+      Estado do jogador: "{online} online na rede"
+      Mapa: ""
+    Time:
+      Atual: ""
+      Maximo: ""
+
+  Lobby:
+    Nome: "Lobby"
+    Prioridade: 10
+    Condicoes:
+      Servidores: ["lobby*"]
+
+  Survival:
+    Nome: "&6&lSurvival"
+    Prioridade: 10
+    Condicoes:
+      Servidores: ["destiny*"]
+
+  Slimefun:
+    Nome: "&2&lSlimefun"
+    Prioridade: 10
+    Condicoes:
+      Servidores: ["slimefun*"]
+
+  Anarquia:
+    Nome: "&c&lAnarquia"
+    Prioridade: 10
+    Condicoes:
+      Servidores: ["anarquia*"]

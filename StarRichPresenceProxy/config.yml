@@ -1,0 +1,113 @@
+# ============================================================================
+#  StarRichPresence (proxy Velocity) - configuracao geral
+# ============================================================================
+#
+#  No proxy, o plugin manda o modo de jogo no Discord para a REDE INTEIRA:
+#  instala uma vez so, o modo sai do servidor em que o jogador esta (veja o
+#  modos.yml) e o tempo "jogando ha" nao zera na troca de servidor.
+#
+#  Clients: LabyMod 4, LabyMod 3 (legado) e Lunar Client.
+#  A Feather so funciona pelo StarRichPresence dos servidores (a API dela
+#  existe apenas para Bukkit).
+#
+#  StarRichPresence nos servidores (opcional): onde estiver instalado, ele
+#  conta ao proxy o que so o servidor sabe -- mundo, regiao, placeholders,
+#  partida de minigame -- e o proxy usa esse detalhe no lugar do modo do
+#  servidor. Onde nao estiver, vale o modos.yml daqui.
+# ============================================================================
+
+Versao do modelo: 1
+
+# De quantos em quantos segundos o proxy confere se o status mudou.
+# So manda pacote para o client quando alguma coisa realmente mudou.
+Intervalo de atualizacao: 2
+
+Clientes:
+  LabyMod: true
+  LabyMod legado: true
+  Lunar: true
+
+# De onde conta o "jogando ha 00:12" do Discord:
+#   MODO    - zera quando o jogador troca de modo de jogo
+#   SESSAO  - conta desde que o jogador entrou na rede
+#   NENHUM  - nao mostra tempo
+Tempo: MODO
+
+# Nome bonito da rede, usado em {rede}.
+Nome da rede: "&b&lRedeStar"
+
+# Usar o que o StarRichPresence dos servidores manda (modo por mundo,
+# regiao, placeholder, partida...). Com false, vale so o modos.yml daqui.
+Usar detalhes dos servidores: true
+
+# O jogador pode esconder o proprio modo com /rpp ocultar (ou /rp ocultar
+# nos servidores que tem o plugin).
+Permitir ocultar: true
+
+# Aviso no chat quando o proxy reconhece o client do jogador.
+Avisar cliente detectado: false
+
+LabyMod:
+  # Banner em cima do TAB para quem usa LabyMod 4 (LINK de um PNG 5:1,
+  # ate 1280x256). Vazio = sem banner.
+  Banner do TAB: ""
+
+Lunar:
+  # Liga o modulo de Rich Presence no client. Deixe true a nao ser que outro
+  # plugin (ex.: o Apollo oficial) ja cuide disso.
+  Ligar modulo: true
+
+# Botoes no menu de pausa (ESC) da Lunar, em qualquer versao.
+Links:
+  Ativar: false
+  Lista:
+    loja:
+      Nome: "&aLoja"
+      Url: "https://loja.redestars.com"
+    discord:
+      Nome: "&9Discord"
+      Url: "https://discord.gg/C7xzp4CkDH"
+
+Mensagens:
+  Prefixo: "&5&lRICH PRESENCE &8» &7"
+  Sem permissao: "&cVoce nao tem permissao para isso."
+  Somente jogador: "&cEsse comando so pode ser usado dentro do jogo."
+  Jogador offline: "&cO jogador &f{jogador} &cnao esta online."
+  Recarregado: "&aConfiguracoes do proxy recarregadas! &7({modos} modos)"
+  Ocultado: "&7Seu modo de jogo foi &cescondido &7do Discord."
+  Mostrado: "&7Seu modo de jogo voltou a &aaparecer &7no Discord."
+  Ocultar desligado: "&cEsconder o modo de jogo esta desligado nesta rede."
+  Cliente detectado: "&dSeu {cliente} foi reconhecido! &7Seu Discord vai mostrar em qual modo voce esta."
+  Ajuda: |-
+    &5&lStarRichPresence &7(proxy)
+    &f/rpp ocultar &7- esconde/mostra seu modo no Discord
+    &f/rpp info [nick] &7- client, servidor e modo de um jogador
+    &f/rpp clientes &7- quantos jogadores usam cada client
+    &f/rpp modos &7- lista os modos da rede
+    &f/rpp recarregar &7- recarrega as configuracoes
+  Info: |-
+    &5&lInfo &8- &f{jogador}
+    &7Clients: &f{clientes}
+    &7Versao da LabyMod: &f{versao_labymod}
+    &7Servidor: &f{servidor} &8({plugin_no_servidor})
+    &7Modo: &f{modo} &8({origem})
+    &7Escondido: &f{oculto}
+    &7Enviado: &f{texto}
+  Clientes: |-
+    &5&lClients na rede &8({total} jogadores)
+    &7LabyMod 4: &f{labymod}
+    &7LabyMod 3 (legado): &f{labymod_legado}
+    &7Lunar Client: &f{lunar}
+    &7Sem suporte (ou Feather): &f{outros}
+  Modos cabecalho: "&5&lModos da rede &8({total}) &7- do mais forte para o mais fraco:"
+  Modos linha: " &8• &f{id} &7(prioridade {prioridade}) &8- &7{condicoes}"
+  Etiquetas:
+    Sim: "sim"
+    Nao: "nao"
+    Nenhum: "nenhum"
+    Com plugin: "com o plugin"
+    Sem plugin: "sem o plugin"
+    Do servidor: "detalhe do servidor"
+    Do proxy: "modos do proxy"
+
+Debug: false
