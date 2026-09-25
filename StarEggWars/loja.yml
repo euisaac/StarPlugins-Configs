@@ -15,9 +15,14 @@
 #  ZOMBIE_SPAWN_EGG (zumbinho), MILK_BUCKET (leite magico), FEATHER (asas)
 #  e FIREWORK_ROCKET (foguete). Os numeros de cada um ficam no config.yml,
 #  em "Itens" e "Partida".
+#
+#  "Som": som tocado ao comprar AQUELE item. Sem ele vale o som geral,
+#  "Loja.Som da compra" do config.yml (e, se esse estiver vazio, o
+#  "Sons.Comprar"). Ou seja: um som para a loja toda e, quando quiser, um
+#  som proprio por item -- que sobrepoe o geral.
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 Categorias:
   blocos:
@@ -32,6 +37,8 @@ Categorias:
         Perde: true
         Nome: '&fLa'
         Material: WHITE_WOOL
+        # Exemplo do som por item (tire a linha para usar o som geral).
+        Som: 'CLICK'
         Itens:
           - 'WHITE_WOOL : 16 : cor=equipe'
       argila:
