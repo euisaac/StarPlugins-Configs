@@ -24,7 +24,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 11
+Versao do modelo: 13
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -132,6 +132,10 @@ Partida:
   Recursos para o assassino: true
   # Permite craftar dentro da partida.
   Permitir craft: false
+  # Folha de arvore caindo no mundo da arena quando alguem quebra o tronco.
+  # false = a arvore do mapa fica inteira partida depois de partida.
+  # (no mundo do lobby quem cuida disso e a secao "Protecao do lobby")
+  Folhas caem: false
   # Segundos que a partida fica aberta depois do vencedor (comemoracao).
   Segundos apos o fim: 10
   # Acabou a partida: o inventario da lugar a barra do fim (Hotbar.Fim), com
@@ -692,12 +696,36 @@ Hotbar:
 # "Icone" e "Slot" (opcionais) sao a aparencia do modo nos menus; sem Slot ele
 # entra no proximo lugar livre, entao um modo novo aparece sozinho.
 # Loja da partida.
+# Nome e cor de cada recurso no texto dos precos ("12 ferros"). A chave e o
+# material; "Nome" e o singular, "Plural" o resto e "Cor" a cor que a lore usa
+# ({cor_preco}). Material que nao estiver aqui usa o nome dele mesmo.
+Recursos:
+  IRON_INGOT:
+    Nome: 'ferro'
+    Plural: 'ferros'
+    Cor: '&f'
+  GOLD_INGOT:
+    Nome: 'ouro'
+    Plural: 'ouros'
+    Cor: '&6'
+  DIAMOND:
+    Nome: 'diamante'
+    Plural: 'diamantes'
+    Cor: '&b'
+  EMERALD:
+    Nome: 'esmeralda'
+    Plural: 'esmeraldas'
+    Cor: '&2'
+
 Loja:
   # true  = itens com Grupo sobem de nivel (madeira -> pedra -> ferro...), um
   #         de cada vez, e so o proximo aparece.
   # false = todos os niveis ficam a mostra e o jogador compra direto o que
   #         quiser (a espada de diamante sem passar pelas outras).
   Progressiva: true
+  # Som ao comprar na loja da partida (vazio = usa o Sons.Comprar).
+  # Cada item pode ter o seu proprio, com "Som:" no loja.yml.
+  Som da compra: 'CLICK'
 
 Modos:
   solo:
@@ -892,6 +920,7 @@ Protecao do lobby:
   Permitir dropar itens: false
   Permitir pegar itens: false
   Permitir chuva: false
+  Permitir folha caindo: false
   Permitir fogo e explosoes: false
   Tempo fixo: 6000
   # Quem cai abaixo de "Void abaixo de" volta para o spawn.
@@ -922,6 +951,12 @@ Tab:
   Separar por partida: true
 
 Tops:
+  # Area de clique das linhas (os tops sao clicaveis). "Altura do nome" e o
+  # quanto o texto aparece acima do pe do suporte -- 0.5 serve da 1.8 em
+  # diante; "Folga do clique" estica a area para cima e para baixo. Mexa nisso
+  # so se o clique estiver caindo fora do texto na sua versao.
+  Altura do nome: 0.5
+  Folga do clique: 0.5
   # Linhas dos hologramas de top. O top mostra "Total" posicoes em paginas
   # de "Quantidade": clicar na area dos NOMES passa a pagina; clicar no
   # RODAPE troca o modo (geral, solo, dupla...). Vale para todo mundo.

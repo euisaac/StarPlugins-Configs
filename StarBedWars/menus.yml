@@ -10,7 +10,7 @@
 #  (do arquivo dele) + o bloco de "Estados" abaixo, conforme a situacao.
 # ==========================================================================
 
-Versao do modelo: 7
+Versao do modelo: 8
 
 Botoes:
   Voltar:
@@ -621,7 +621,9 @@ Loja partida:
   Linhas: 6
   # Categorias na primeira linha, itens a partir da terceira.
   Slots categorias: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
-  Slots itens: [ 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  # Lugares dos itens (e dos favoritos, na ordem). Para mais uma linha,
+  # continue a lista: 46..52 e a quarta, e o menu vai ate o slot 53.
+  Slots itens: [ 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43, 46, 47, 48, 49, 50, 51, 52 ]
   Separador: GRAY_STAINED_GLASS_PANE
   Separador selecionado: GREEN_STAINED_GLASS_PANE
   Item:
@@ -637,6 +639,16 @@ Loja partida:
     # Linha extra que aparece sozinha quando a equipe tem o recurso guardado
     # no bau/ender chest (secao Baus do config.yml).
     Linha guardado: '&8{guardado} guardado(s) no bau'
+  # Editor de barra: aparece so na compra rapida (Slot -1 tira do menu).
+  Editor de hotbar:
+    Slot: 53
+    Nome: '&bEditor de hotbar'
+    Material: CHEST
+    Lore:
+      - '&7Escolha em que slot da barra'
+      - '&7cada compra vai cair.'
+      - ''
+      - '&aClique para abrir'
   Favoritos:
     Nome: '&aCompra rapida'
     Material: NETHER_STAR
@@ -650,7 +662,7 @@ Loja partida:
         - '&7Este lugar esta vazio.'
         - '&7Clique aqui para escolher um item'
         - '&7(ou shift + clique num item da loja)'
-    Maximo: 14
+    Maximo: 28
 
 # Lista aberta pelo lugar vazio da compra rapida: escolhe qual item da loja
 # vai ocupar aquele lugar. A paginacao e os slots vem da secao "Lista".
@@ -662,6 +674,59 @@ Escolher item:
       - ' &fPreco: {cor_preco}{preco}'
       - ''
       - '&aClique para por na compra rapida'
+
+# Editor de barra da loja: cada slot da barra recebe uma categoria (ou um item
+# solto), e o que for comprado cai nele.
+Editor de hotbar:
+  Titulo: '&8Editando hotbar...'
+  Linhas: 3
+  # Onde os 9 slots da barra aparecem no menu, na ordem (slot #1 ao #9).
+  Slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+  Voltar: 22
+  Nada: '&7nada'
+  Vazio:
+    Nome: '&7Slot #{numero}'
+    Material: LIGHT_GRAY_STAINED_GLASS_PANE
+    Lore:
+      - '&7Selecionado: {selecionado}'
+      - ''
+      - '&aBotao esquerdo: &fescolher'
+  Definido:
+    Nome: '&aSlot #{numero}'
+    Lore:
+      - '&7Selecionado: &f{selecionado}'
+      - ''
+      - '&aBotao esquerdo: &ftrocar'
+      - '&cBotao direito: &fremover'
+
+# Lista aberta pelo editor de barra (a paginacao vem da secao "Lista").
+Escolher para o slot:
+  Titulo: '&8Slot #{numero}'
+  Botao categorias: 0
+  Botao itens: 1
+  Botoes:
+    Categorias:
+      Nome: '&aCategorias'
+      Material: BOOK
+      Lore:
+        - '&7Toda a categoria vai para o slot'
+    Itens:
+      Nome: '&aItens'
+      Material: DIAMOND_PICKAXE
+      Lore:
+        - '&7Um item so vai para o slot'
+  Categoria:
+    Lore:
+      - ''
+      - '&7Inclui todos os itens desta categoria.'
+      - ''
+      - '&aClique para escolher'
+  Item:
+    Lore:
+      - ''
+      - ' &fPreco: {cor_preco}{preco}'
+      - ''
+      - '&aClique para escolher'
 
 Melhorias:
   Titulo: '&8Melhorias da equipe'
