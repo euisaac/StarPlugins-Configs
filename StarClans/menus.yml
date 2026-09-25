@@ -115,23 +115,37 @@ Menu do clan:
     Nome: ' '
 
   Botoes:
-    Informacoes:
+    Jogador:
+      #  A sua propria cabeca, com os seus numeros dentro do clan.
       Slot: 10
-      Material: '{jogador}'
+      Material: 'PLAYER_HEAD'
+      Nome: '&b&l{jogador}'
+      Lore:
+        - '&7Cargo: &f{simbolo}{cargo}'
+        - '&7Sua tag: &f{tag_propria}'
+        - '&7Entrou em: &f{entrou}'
+        - '&r'
+        - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes}'
+        - '&7KDR: &f{kdr}'
+    Informacoes:
+      #  A bandeira do clan, com os numeros do clan. Sem bandeira definida,
+      #  cai no material escrito aqui.
+      Slot: 28
+      Material: '{banner}'
       Nome: '&b&l{tagcolorida}'
       Lore:
         - '&7{descricao}'
         - '&r'
         - '&7Nome: &f{nome}'
         - '&7Lider: &f{lider}'
-        - '&7Seu cargo: &f{simbolo}{cargo}'
         - '&7Fundado em: &f{criado}'
         - '&7Verificado: {verificado}'
         - '&7Entrada: &f{entrada}'
         - '&r'
         - '&7Membros: &f{membros}&7/&f{maximo_membros} &8(&a{online} online&8)'
+        - '&7Aliados: &f{aliados} &8| &7Rivais: &f{rivais}'
         - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes} &8| &7KDR: &f{kdr}'
-        - '&r'
+        - '&7Banco: &a{moeda}{banco}'
     Membros:
       Slot: 12
       Material: 'PLAYER_HEAD'
@@ -163,7 +177,7 @@ Menu do clan:
         - '&r'
         - '&a&lCLIQUE &fpara ver'
     Boletins:
-      Slot: 15
+      Slot: 37
       Material: 'BOOK'
       Nome: '&e&lMURAL'
       Lore:
@@ -173,7 +187,7 @@ Menu do clan:
         - '&r'
         - '&a&lCLIQUE &fpara ler'
     Aliados:
-      Slot: 16
+      Slot: 15
       Material: 'GOLDEN_CHESTPLATE'
       Nome: '&a&lALIADOS'
       Lore:
@@ -184,7 +198,7 @@ Menu do clan:
         - '&r'
         - '&a&lCLIQUE &fpara gerenciar'
     Rivais:
-      Slot: 21
+      Slot: 16
       Material: 'IRON_SWORD'
       Nome: '&c&lRIVAIS'
       Lore:
@@ -215,7 +229,7 @@ Menu do clan:
         - '&r'
         - '&a&lCLIQUE &fpara abrir'
     Base:
-      Slot: 22
+      Slot: 21
       Material: 'COMPASS'
       Nome: '&b&lBASE DO CLAN'
       Lore:
@@ -226,7 +240,7 @@ Menu do clan:
         - '&a&lCLIQUE &fpara ir'
         - '&e&lCLIQUE DIREITO &fpara definir aqui'
     Mercado:
-      Slot: 23
+      Slot: 22
       Material: 'EMERALD'
       Nome: '&a&lMERCADO'
       Lore:
@@ -234,7 +248,7 @@ Menu do clan:
         - '&r'
         - '&a&lCLIQUE &fpara abrir'
     Gerenciar:
-      Slot: 28
+      Slot: 23
       Material: 'COMPARATOR'
       Nome: '&b&lCONFIGURACOES'
       Lore:
@@ -282,7 +296,7 @@ Menu do clan:
         - '&r'
         - '&a&lCLIQUE &fpara abrir'
     Sair:
-      Slot: 37
+      Slot: 53
       Material: 'OAK_DOOR'
       Nome: '&c&lSAIR DO CLAN'
       Lore:
