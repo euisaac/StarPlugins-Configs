@@ -1,0 +1,212 @@
+# =============================================================================
+#                                  StarChat
+#   Chat completo: canais, privado, mencoes, itens no chat, filtros, espiao,
+#   moderacao em jogo e rede BungeeCord. Feito por EuIsaac para a StarPlugins.
+#
+#   Arquivos:
+#     config.yml     -> este, com o funcionamento geral
+#     canais.yml     -> os canais (local, global, staff...)
+#     etiquetas.yml  -> pedacos clicaveis dos formatos ({vip}, {jogador}...)
+#     filtros.yml    -> divulgacao, palavras, maiusculas, flood, emojis
+#     mensagens.yml  -> todos os textos
+#     menus.yml      -> aparencia dos menus
+#     comandos.yml   -> nomes dos comandos
+#
+#   Quase tudo daqui tambem se muda EM JOGO: /starchat (painel da staff).
+#   Cores: &a, &l... e hexadecimal &#RRGGBB (1.16+).
+# =============================================================================
+Versao do modelo: 1
+
+# Nome deste servidor. Aparece em {servidor}, no historico e na rede.
+Servidor: 'servidor'
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL (compartilhado pela rede: preferencias,
+  # ignorados, silenciamentos e historico valem em todos os servidores).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starchat_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+# ------------------------------------------------------------------------------
+Chat:
+  # Canal (id do canais.yml) de quem ainda nao escolheu um.
+  Canal padrao: 'local'
+  # Canal padrao por mundo (vale mais que o de cima). Ex: world_nether: 'global'
+  Canal por mundo: {}
+  # O comando do canal sem texto (/g) passa a falar naquele canal.
+  Comando do canal foca: true
+  # Enderecos liberados em filtros.yml viram links clicaveis.
+  Links clicaveis: true
+  Cor dos links: '&b&n'
+  # Tamanho maximo de uma mensagem (0 = sem limite).
+  Tamanho maximo: 256
+  # Em que momento o StarChat pega o chat do servidor: LOWEST, LOW, NORMAL,
+  # HIGH ou HIGHEST. Deixe depois dos plugins de punicao (HIGH), assim quem
+  # foi silenciado por eles nem chega aqui. Mudou? Reinicie o servidor.
+  Prioridade: HIGH
+
+# Formato de /starchat falar e do console escrevendo num canal.
+Console:
+  Formato: '{canal} &c&lConsole&7: &f{mensagem}'
+
+# ------------------------------------------------------------------------------
+Privado:
+  Ativo: true
+  # Privado ligado para quem entra pela primeira vez.
+  Ligado por padrao: true
+  # /tell nick (sem texto) prende a conversa: tudo o que ele escrever vai para o nick.
+  Travar conversa: true
+  Intervalo: 1
+  Custo: 0
+  Filtros: true
+  Anti maiusculas: true
+  Substituicoes: true
+  Corrigir mensagens: false
+  Registrar no console: false
+  Salvar no historico: true
+  # {jogador} = quem mandou, {alvo} = quem recebe (com mouse e clique do etiquetas.yml).
+  Formato enviada: '&8[&7Eu &8-> {alvo}&8] &7{mensagem}'
+  Formato recebida: '&8[{jogador} &8-> &7Eu&8] &7{mensagem}'
+
+# ------------------------------------------------------------------------------
+Mencoes:
+  Ativo: true
+  Ligado por padrao: true
+  # true = so @nick menciona; false = o nick sozinho tambem.
+  Exigir arroba: false
+  Formato: '&b@{nick}'
+  Mouse:
+    - '&7Clique para mandar uma'
+    - '&7mensagem para &f{nick}&7.'
+  # SUGERIR:, COMANDO:, LINK: ou COPIAR: (vazio = sem clique).
+  Clique: 'SUGERIR:/tell {nick} '
+  # Quem tem starchat.mencionar.todos chama todo mundo com estas palavras.
+  Todos: ['@todos', '@everyone']
+  Formato todos: '&e&l{texto}'
+  # Tempo minimo entre dois avisos (som/barra) causados pelo mesmo jogador.
+  Intervalo segundos: 5
+
+# ------------------------------------------------------------------------------
+# [item], [inv] e [ender] no meio da mensagem. O mouse mostra o item e o clique
+# abre uma "foto" do que foi mostrado.
+Itens no chat:
+  Ativo: true
+  Limite por mensagem: 3
+  Guardar por minutos: 10
+  Item:
+    Ativo: true
+    Gatilhos: ['[item]', '[i]', '[mao]']
+    Texto: '&b[{item}&b{quantidade}]'
+    Mao vazia: '&7[nada na mao]'
+    Permissao: ''
+  Inventario:
+    Ativo: true
+    Gatilhos: ['[inv]', '[inventario]']
+    Texto: '&a[Inventario de {nick}]'
+    Mouse:
+      - '&7Clique para ver o inventario'
+      - '&7de &f{nick}&7.'
+    Permissao: ''
+  Bau do fim:
+    Ativo: true
+    Gatilhos: ['[ender]', '[bau]']
+    Texto: '&5[Bau do Fim de {nick}]'
+    Mouse:
+      - '&7Clique para ver o bau do fim'
+      - '&7de &f{nick}&7.'
+    Permissao: ''
+
+# Quantos emojis por linha no /chat emojis.
+Emojis por linha: 6
+
+# ------------------------------------------------------------------------------
+Ignorar:
+  # true = quem voce ignora some tambem dos canais; false = so do privado e das mencoes.
+  Esconder nos canais: true
+  # Maximo de jogadores ignorados (0 = sem limite).
+  Limite: 100
+
+# ------------------------------------------------------------------------------
+# Espiao: a staff (starchat.espiar) ve as mensagens que nao chegariam nela.
+Espiao:
+  Ligar ao entrar: false
+  Formato canal: '&8[Espiao] {canal} &7{nick}&8: &7{mensagem}'
+  Formato privado: '&8[Espiao] &7{nick} &8-> &7{alvo_nick}&8: &7{mensagem}'
+
+# ------------------------------------------------------------------------------
+Moderacao:
+  # O botao na frente de cada mensagem (so para quem tem starchat.moderar).
+  # Abre a tela da mensagem: apagar do chat de todos, silenciar, historico...
+  Botao:
+    Ativo: true
+    Texto: "&c&l✖ "
+    Mouse:
+      - '&cModerar esta mensagem'
+      - '&7Apagar, silenciar o autor,'
+      - '&7ver o historico...'
+  # Linhas do StarChat guardadas por jogador (para reescrever o chat ao apagar).
+  # Mensagens de outros plugins nao ficam guardadas e somem ao apagar uma.
+  Linhas guardadas: 100
+  Linhas em branco: 100
+  Mensagens na memoria: 1000
+  # Linhas em branco do /chat limpar.
+  Linhas ao limpar: 150
+  Anunciar silenciamentos: false
+  Lembrar silencio ao entrar: true
+  # Comandos que um jogador silenciado nao consegue usar.
+  Comandos bloqueados silenciado:
+    - tell
+    - msg
+    - m
+    - w
+    - whisper
+    - pm
+    - r
+    - reply
+    - responder
+    - me
+    - say
+    - mail
+
+# ------------------------------------------------------------------------------
+Historico:
+  # Grava as mensagens no banco (busca pelo /chat historico e pelo painel).
+  Salvar no banco: true
+  # Apaga o que tiver mais que isto (0 = nunca apaga).
+  Guardar por dias: 30
+
+# ------------------------------------------------------------------------------
+# Rede BungeeCord/Velocity: canais com "Rede: Ativo" chegam aos outros servidores,
+# e silenciar vale na hora em todos. Cada servidor precisa de um "Servidor"
+# diferente la em cima.
+Rede:
+  Ativo: false
+  Limpar chat na rede: false
+
+# ------------------------------------------------------------------------------
+Integracoes:
+  # O StarChat assume o chat, entao o DiscordSRV nao ve as mensagens sozinho.
+  # Aqui voce liga cada canal (id do canais.yml) a um canal do DiscordSRV.
+  DiscordSRV:
+    Canais:
+      global: 'global'
+
+# ------------------------------------------------------------------------------
+# Sons (nome antigo ou novo: o StarPlugins traduz). Vazio = sem som.
+Sons:
+  Mencao: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+  Privado: 'ENTITY_CHICKEN_EGG'
+  Aviso: 'BLOCK_NOTE_BLOCK_PLING'
+  Clique: 'UI_BUTTON_CLICK'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP'
+  Remover: 'ENTITY_ITEM_BREAK'
+  Erro: 'ENTITY_VILLAGER_NO'
+
+Menus:
+  # Milissegundos minimos entre dois cliques nos menus.
+  Intervalo entre cliques: 150

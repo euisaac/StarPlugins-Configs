@@ -1,0 +1,159 @@
+# =============================================================================
+#   Canais do StarChat. Tambem da para criar/editar em jogo: /starchat > Canais.
+#
+#   Chaves de cada canal:
+#     Ativo                 - desligado some da lista e ninguem fala nele
+#     Nome / Apelido / Cor  - {canal_nome}, {canal_apelido}, {canal_cor}
+#     Comandos              - comandos que falam no canal (/g oi). Sozinho, o
+#                             comando passa a falar nele (config.yml)
+#     Atalho                - simbolo no inicio da mensagem que manda direto
+#                             para este canal ("!oi" vai para o global)
+#     Permissao             - vazio = todos leem e falam; senao, so quem tem
+#     Distancia             - 0 = servidor inteiro, -1 = mesmo mundo,
+#                             outro numero = raio em blocos
+#     Mundos                - onde o canal funciona (vazio = todos)
+#     Intervalo             - segundos entre duas mensagens
+#     Custo                 - Valor cobrado por mensagem e Saldo minimo (Vault)
+#     Destaque              - cor da mensagem de quem tem starchat.destaque
+#     Formato               - a linha. {mensagem} + etiquetas (etiquetas.yml)
+#                             + valores: {nick} {jogador} {prefixo} {sufixo}
+#                             {grupo} {mundo} {hora} {data} {servidor} {saldo}
+#                             {canal} {canal_nome} {canal_cor}... e %placeholders%
+#     Formato espiao        - vazio = o do config.yml
+#     Rede                  - manda para os outros servidores (config.yml > Rede)
+#     Etiquetas             - redefine uma etiqueta so neste canal
+#
+#   Permissoes por canal (alem da "Permissao"):
+#     starchat.canal.<id>.cores / .formatos / .hex / .magico / .destaque
+# =============================================================================
+Canais:
+  local:
+    Ativo: true
+    Nome: 'Local'
+    Apelido: 'L'
+    Cor: '&e'
+    Comandos: [l, local]
+    Atalho: ''
+    Permissao: ''
+    Distancia: 64
+    Mundos: []
+    Intervalo: 1
+    Custo:
+      Valor: 0
+      Saldo minimo: 0
+      Avisar: true
+    Registrar no console: true
+    Mencoes: true
+    Itens no chat: true
+    Filtros: true
+    Anti maiusculas: true
+    Corrigir mensagens: false
+    Substituicoes: true
+    Avisar ninguem ouviu: true
+    Destaque: '&e'
+    Icone: OAK_SIGN
+    Formato: '{canal} {prefixo}{jogador}{sufixo}&e: &f{mensagem}'
+    Formato espiao: ''
+    Rede:
+      Ativo: false
+      Servidores: []
+
+  global:
+    Ativo: true
+    Nome: 'Global'
+    Apelido: 'G'
+    Cor: '&7'
+    Comandos: [g, global]
+    Atalho: '!'
+    Permissao: ''
+    Distancia: 0
+    Mundos: []
+    Intervalo: 3
+    Custo:
+      Valor: 0
+      Saldo minimo: 0
+      Avisar: true
+    Registrar no console: true
+    Mencoes: true
+    Itens no chat: true
+    Filtros: true
+    Anti maiusculas: true
+    Corrigir mensagens: false
+    Substituicoes: true
+    Avisar ninguem ouviu: false
+    Destaque: '&b'
+    Icone: COMPASS
+    Formato: '{canal} {prefixo}{jogador}{sufixo}&7: &7{mensagem}'
+    Formato espiao: ''
+    Rede:
+      Ativo: false
+      Servidores: []
+
+  comercio:
+    Ativo: true
+    Nome: 'Comercio'
+    Apelido: 'C'
+    Cor: '&a'
+    Comandos: [c, comercio, vender]
+    Atalho: '$'
+    Permissao: ''
+    Distancia: 0
+    Mundos: []
+    Intervalo: 15
+    Custo:
+      Valor: 0
+      Saldo minimo: 0
+      Avisar: true
+    Registrar no console: true
+    Mencoes: false
+    Itens no chat: true
+    Filtros: true
+    Anti maiusculas: true
+    Corrigir mensagens: false
+    Substituicoes: true
+    Avisar ninguem ouviu: false
+    Destaque: ''
+    Icone: EMERALD
+    Formato: '{canal} {jogador}&a: &f{mensagem}'
+    Formato espiao: ''
+    Rede:
+      Ativo: false
+      Servidores: []
+
+  staff:
+    Ativo: true
+    Nome: 'Equipe'
+    Apelido: 'E'
+    Cor: '&d'
+    Comandos: [s, staff, equipe]
+    Atalho: '#'
+    Permissao: 'starchat.canal.staff'
+    Distancia: 0
+    Mundos: []
+    Intervalo: 0
+    Custo:
+      Valor: 0
+      Saldo minimo: 0
+      Avisar: true
+    Registrar no console: true
+    Mencoes: true
+    Itens no chat: true
+    Filtros: false
+    Anti maiusculas: false
+    Corrigir mensagens: false
+    Substituicoes: true
+    Avisar ninguem ouviu: false
+    Destaque: ''
+    Icone: DIAMOND
+    Formato: '{canal} {jogador}&d: &f{mensagem}'
+    Formato espiao: ''
+    Rede:
+      Ativo: true
+      Servidores: []
+    # Neste canal o {canal} tem outro mouse.
+    Etiquetas:
+      canal:
+        Passar o mouse:
+          - '&dCanal da equipe'
+          - '&7So a staff le este canal.'
+        Clique: 'SUGERIR:/s '

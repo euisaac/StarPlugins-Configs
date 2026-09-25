@@ -1,0 +1,159 @@
+# =============================================================================
+#   Filtros do StarChat. Tudo aqui tambem se edita em jogo: /starchat > Filtros.
+#   Quem tem starchat.livre.filtros passa por cima de todos.
+#   Cada canal escolhe se usa os filtros (canais.yml > Filtros / Anti maiusculas).
+# =============================================================================
+Versao do modelo: 1
+
+# Outros enderecos e IPs no chat.
+Anti divulgacao:
+  Ativo: true
+  # Tambem pega "site . com", "site(ponto)com", "site [.] com"...
+  Juntar mensagem: true
+  Bloquear IPs: true
+  Avisar staff: true
+  # Enderecos que podem aparecer (e viram links clicaveis). Subdominios valem.
+  Dominios liberados:
+    - 'youtube.com'
+    - 'youtu.be'
+    - 'discord.gg'
+    - 'discord.com'
+    - 'imgur.com'
+    - 'prnt.sc'
+    - 'twitch.tv'
+    - 'tiktok.com'
+  # Terminacoes vigiadas (evita que "ok.vamos" seja tratado como site).
+  # Lista vazia = qualquer terminacao.
+  Terminacoes: [com, net, org, br, gg, io, me, tv, xyz, club, online, site, store, fun, top, info, biz, us, uk, pt,
+    es, co, app, dev, host, gl, ly, to, cc, ws, pw, ml, tk, ga, cf, gq, eu, de, fr, ru, live, shop, space, tech,
+    world, pro, vip, games, network, cloud, link, lol, sh, ai, be, net.br, mc, play, server, craft]
+  # Quantas tentativas sao perdoadas antes dos comandos de punicao (0 = pune na primeira).
+  Tolerancia: 1
+  # Rodam pelo console. {jogador} {endereco}
+  Comandos de punicao:
+    - 'chat silenciar {jogador} 30m Divulgacao de endereco'
+
+# Palavroes e trechos proibidos.
+Palavras bloqueadas:
+  Ativo: true
+  # CENSURAR troca as letras pelo caractere; BLOQUEAR nem envia a mensagem.
+  Modo: CENSURAR
+  Caractere: '*'
+  Avisar staff: true
+  Tolerancia: 0
+  # {jogador} {palavra}
+  Comandos de punicao: []
+  # Palavra inteira. Termine com * para pegar tudo que comeca com ela.
+  # O filtro desfaz acento, numero no lugar de letra (p0rr4), letra repetida
+  # (porrraaa), simbolos no meio (p.o.r.r.a) e letras separadas (p o r r a).
+  Palavras:
+    - 'porra'
+    - 'caralho'
+    - 'buceta'
+    - 'arrombado'
+    - 'arrombada'
+    - 'desgracado'
+    - 'vagabundo'
+    - 'vagabunda'
+    - 'viado'
+    - 'fdp'
+    - 'pqp'
+    - 'vsf'
+    - 'tnc'
+    - 'krl'
+    - 'crl'
+    - 'puta'
+    - 'putas'
+    - 'puto'
+    - 'cuzao'
+    - 'otario'
+    - 'otaria'
+    - 'merda'
+    - 'foder'
+    - 'fuder'
+    - 'fodase'
+    - 'fudido'
+    - 'fodido'
+    - 'retardado'
+    - 'retardada'
+  # Procurados em qualquer lugar, mesmo colados em outras palavras.
+  # Bom para nome de servidor concorrente.
+  Trechos: []
+
+# Mensagem gritada (quase tudo em maiusculas).
+Maiusculas:
+  Ativo: true
+  # MINUSCULAS passa tudo para minusculas; BLOQUEAR nao envia.
+  Modo: MINUSCULAS
+  # Letras minimas para comecar a contar.
+  Tamanho minimo: 6
+  Porcentagem maxima: 50
+  # Nunca contam (nicks online tambem nao).
+  Palavras liberadas: [VIP, VIP+, MVP, MVP+, PVP, PVE, XP, OK, KKK, TOP, GG, EZ, OMG, LOL, BR, ADM, MOD]
+
+# Muitas mensagens em pouco tempo.
+Anti flood:
+  Ativo: true
+  Mensagens: 4
+  Janela segundos: 6
+
+# A mesma mensagem (ou quase a mesma) em seguida.
+Anti repeticao:
+  Ativo: true
+  Segundos: 20
+  # 100 = so bloqueia a mensagem identica.
+  Semelhanca: 85
+
+# kkkkkkkkkkk -> kkkk
+Caracteres repetidos:
+  Ativo: true
+  Maximo: 4
+
+# Nos canais com "Corrigir mensagens": primeira letra maiuscula e ponto final.
+Correcao:
+  Minimo de palavras: 2
+
+# Trocas automaticas. Formato: de1,de2->para
+# As que comecam com :codigo: aparecem no /chat emojis.
+Substituicoes:
+  Ativo: true
+  Lista:
+    - "vc->você"
+    - "vcs->vocês"
+    - "tb,tbm->também"
+    - "pq->porque"
+    - "blz->beleza"
+    - "hj->hoje"
+    - "nao->não"
+    - "entao->então"
+    - "obg->obrigado"
+    - "<3,s2,S2->❤"
+    - ":coracao:->❤"
+    - ":estrela:->★"
+    - ":sol:->☀"
+    - ":nuvem:->☁"
+    - ":guarda-chuva:->☂"
+    - ":boneco:->☃"
+    - ":musica:->♫"
+    - ":nota:->♪"
+    - ":certo:->✔"
+    - ":errado:->✖"
+    - ":raio:->⚡"
+    - ":espadas:->⚔"
+    - ":flor:->✿"
+    - ":floco:->❄"
+    - ":sorriso:->☺"
+    - ":triste:->☹"
+    - ":paz:->☮"
+    - ":yinyang:->☯"
+    - ":caveira:->☠"
+    - ":radiacao:->☢"
+    - ":seta:->➤"
+    - ":coroa:->♛"
+    - ":ancora:->⚓"
+    - ":aviao:->✈"
+    - ":tel:->☎"
+    - ":ok:->✌"
+    - ":infinito:->∞"
+    - ":shrug:->¯\\_(ツ)_/¯"
+    - ":tabela:->(╯°□°)╯︵ ┻━┻"

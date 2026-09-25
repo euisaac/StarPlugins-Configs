@@ -1,0 +1,494 @@
+# Menus do StarChat.
+# Itens: Slot, Material, Nome, Lore, Brilho, Quantidade, Dono (cabeca de um jogador)
+# e Textura (hash, URL ou base64 de cabeca). Materiais pelo nome novo: o
+# StarPlugins traduz para a 1.8.
+Versao do modelo: 1
+
+# Setas e botoes das listas (menus de 6 linhas: anterior 45, voltar 49, proxima 53).
+Navegacao:
+  Anterior:
+    Material: ARROW
+    Nome: '&aPagina anterior'
+    Lore:
+      - '&7Pagina {pagina} de {paginas}'
+  Proxima:
+    Material: ARROW
+    Nome: '&aProxima pagina'
+    Lore:
+      - '&7Pagina {pagina} de {paginas}'
+  Voltar:
+    Material: RED_DYE
+    Nome: '&cVoltar'
+  Fechar:
+    Material: RED_DYE
+    Nome: '&cFechar'
+  Carregando:
+    Material: CLOCK
+    Nome: '&eCarregando...'
+  Vazio:
+    Material: BARRIER
+    Nome: '&cNada por aqui'
+    Lore:
+      - '&7Ainda nao ha nada para mostrar.'
+
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Sim:
+    Slot: 11
+    Material: LIME_DYE
+    Nome: '&aSim, {acao}'
+  Nao:
+    Slot: 15
+    Material: RED_DYE
+    Nome: '&cNao, voltar'
+
+# Aparencia dos campos dos editores da staff. Opcional: cada campo tem um
+# visual de fabrica. Ex.:
+#   canal-ativo:
+#     Material: LIME_DYE
+#     Nome: 'Canal ligado'
+#     Descricao: ['Linha 1', 'Linha 2']
+Campos: {}
+
+# Editor de listas (palavras, dominios, comandos...).
+Lista:
+  Titulo: '&8{nome} ({pagina}/{paginas})'
+  Item:
+    Material: PAPER
+    Nome: '&f{texto}'
+    Lore:
+      - '&8#{posicao}'
+      - ''
+      - '&eEsquerdo: &7editar'
+      - '&cDireito: &7remover'
+  Adicionar:
+    Slot: 51
+    Material: LIME_DYE
+    Nome: '&aAdicionar'
+    Lore:
+      - '&7Digite no chat o que'
+      - '&7adicionar em &f{nome}&7.'
+
+# ------------------------------ Jogador ---------------------------------------
+# /chat
+Preferencias:
+  Titulo: '&8Seu chat'
+  Linhas: 4
+  Preenchimento: 'BLACK_STAINED_GLASS_PANE'
+  Canais:
+    # Um slot por canal que o jogador pode usar (na ordem do canais.yml).
+    Slots: [10, 11, 12, 13, 14, 15, 16]
+    Item:
+      Nome: '{cor}{canal}'
+      Lore:
+        - '&7Comando: &f{comando}'
+        - '&7Alcance: &f{alcance}'
+        - '&7Aparecendo: {visivel}'
+        - ''
+        - '&eEsquerdo: &7falar neste canal'
+        - '&eDireito: &7mostrar/esconder'
+    Item focado:
+      Nome: '{cor}&l{canal} &a(voce fala aqui)'
+      Brilho: true
+      Lore:
+        - '&7Comando: &f{comando}'
+        - '&7Alcance: &f{alcance}'
+        - '&7Aparecendo: {visivel}'
+        - ''
+        - '&eDireito: &7mostrar/esconder'
+  Botoes:
+    Info:
+      Slot: 4
+      Material: BOOK
+      Nome: '&bSeu chat'
+      Lore:
+        - '&7Mensagens enviadas: &f{mensagens}'
+        - '&7Escolha abaixo onde falar'
+        - '&7e o que receber.'
+    Privado:
+      Slot: 28
+      Material: WRITABLE_BOOK
+      Nome: '&dMensagens privadas'
+      Lore:
+        - '&7Estado: {privado}'
+        - ''
+        - '&eClique para alternar.'
+    Mencoes:
+      Slot: 29
+      Material: NOTE_BLOCK
+      Nome: '&bAvisos de mencao'
+      Lore:
+        - '&7Estado: {mencoes}'
+        - '&7Som e aviso quando alguem'
+        - '&7escreve o seu nick.'
+        - ''
+        - '&eClique para alternar.'
+    Sons:
+      Slot: 30
+      Material: JUKEBOX
+      Nome: '&eSons do chat'
+      Lore:
+        - '&7Estado: {sons}'
+        - ''
+        - '&eClique para alternar.'
+    Fechar:
+      Slot: 31
+      Material: RED_DYE
+      Nome: '&cFechar'
+    Ignorados:
+      Slot: 32
+      Material: BARRIER
+      Nome: '&cIgnorados'
+      Lore:
+        - '&7Voce ignora &f{ignorados} &7jogador(es).'
+        - ''
+        - '&eClique para ver a lista.'
+    Emojis:
+      Slot: 33
+      Material: SUNFLOWER
+      Nome: '&6Emojis'
+      Lore:
+        - '&7Veja os emojis que voce'
+        - '&7pode usar no chat.'
+    # So aparece numa conversa travada (/tell nick).
+    Conversa:
+      Slot: 34
+      Material: TRIPWIRE_HOOK
+      Nome: '&dConversa com {conversa}'
+      Lore:
+        - '&7Tudo o que voce escreve vai'
+        - '&7direto para &f{conversa}&7.'
+        - ''
+        - '&eClique para encerrar.'
+
+Ignorados:
+  Titulo: '&8Ignorados ({pagina}/{paginas})'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{nick}'
+    Nome: '&f{nick}'
+    Lore:
+      - ''
+      - '&eClique para parar de ignorar.'
+  Adicionar:
+    Slot: 51
+    Material: LIME_DYE
+    Nome: '&aIgnorar alguem'
+    Lore:
+      - '&7Digite o nick no chat.'
+
+# ------------------------------- Staff ----------------------------------------
+# /starchat
+Painel:
+  Titulo: '&8Painel do chat'
+  Linhas: 5
+  Preenchimento: 'BLACK_STAINED_GLASS_PANE'
+  Botoes:
+    Canais:
+      Slot: 10
+      Material: OAK_SIGN
+      Nome: '&bCanais'
+      Lore:
+        - '&7{canais} canal(is).'
+        - '&7Crie, edite formato, distancia,'
+        - '&7custo, comandos e permissao.'
+    Filtros:
+      Slot: 11
+      Material: IRON_BARS
+      Nome: '&cFiltros'
+      Lore:
+        - '&7Divulgacao, palavras bloqueadas,'
+        - '&7maiusculas, flood e emojis.'
+    Etiquetas:
+      Slot: 12
+      Material: NAME_TAG
+      Nome: '&eEtiquetas'
+      Lore:
+        - '&7{etiquetas} etiqueta(s).'
+        - '&7Pedacos clicaveis dos formatos.'
+    Ajustes:
+      Slot: 13
+      Material: COMPARATOR
+      Nome: '&aAjustes gerais'
+      Lore:
+        - '&7Canal padrao, mencoes, privado,'
+        - '&7itens no chat, espiao...'
+    Jogadores:
+      Slot: 14
+      Material: PLAYER_HEAD
+      Nome: '&fJogadores online'
+      Lore:
+        - '&7{online} online.'
+        - '&7Silenciar, historico, espiar, avisar.'
+    Silenciados:
+      Slot: 15
+      Material: COBWEB
+      Nome: '&7Silenciados'
+      Lore:
+        - '&7Quem esta sem poder falar.'
+    Historico:
+      Slot: 16
+      Material: BOOKSHELF
+      Nome: '&6Historico'
+      Lore:
+        - '&7Ultimas mensagens, com busca.'
+    Limpar:
+      Slot: 28
+      Material: WATER_BUCKET
+      Nome: '&bLimpar o chat'
+      Lore:
+        - '&7Limpa o chat de todos.'
+    Travar:
+      Slot: 29
+      Material: IRON_DOOR
+      Nome: '&cTravar o chat'
+      Lore:
+        - '&7Travado: {travado}'
+        - '&7So quem tem starchat.livre.travado fala.'
+    Lento:
+      Slot: 30
+      Material: CLOCK
+      Nome: '&eModo lento'
+      Lore:
+        - '&7Agora: &f{lento}'
+        - '&eEsquerdo: &7mais lento'
+        - '&eDireito: &7menos lento'
+    Espiao:
+      Slot: 32
+      Material: ENDER_EYE
+      Nome: '&5Seu espiao'
+      Lore:
+        - '&7Ver todos os canais e o privado: {espiao}'
+    Moderacao:
+      Slot: 33
+      Material: RED_DYE
+      Nome: '&cSeu botao de moderacao'
+      Lore:
+        - '&7O botao na frente das mensagens: {moderacao}'
+    Recarregar:
+      Slot: 34
+      Material: EMERALD
+      Nome: '&aRecarregar'
+      Lore:
+        - '&7Versao: &f{versao}'
+        - '&7Banco: &f{banco} &8| &7Rede: {rede}'
+    Fechar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cFechar'
+
+Canais:
+  Titulo: '&8Canais ({pagina}/{paginas})'
+  # O material vem do "Icone" de cada canal.
+  Item:
+    Nome: '{cor}{nome} &8({id})'
+    Lore:
+      - '&7Estado: {estado}'
+      - '&7Comandos: &f{comandos}'
+      - '&7Alcance: &f{distancia}'
+      - '&7Permissao: &f{permissao}'
+      - '&7Padrao: {padrao} &8| &7Travado: {travado}'
+      - ''
+      - '&eClique para editar.'
+  Criar:
+    Slot: 51
+    Material: LIME_DYE
+    Nome: '&aCriar canal'
+    Lore:
+      - '&7Digite o id no chat.'
+
+Etiquetas:
+  Titulo: '&8Etiquetas ({pagina}/{paginas})'
+  Item:
+    Material: NAME_TAG
+    Nome: '&e{{id}}'
+    Lore:
+      - '&7Texto: &r{texto}'
+      - '&7Mouse:'
+      - '{mouse}'
+      - '&7Clique: &f{clique}'
+      - '&7Permissao: &f{permissao}'
+      - ''
+      - '&eClique para editar.'
+  Criar:
+    Slot: 51
+    Material: LIME_DYE
+    Nome: '&aCriar etiqueta'
+    Lore:
+      - '&7Digite o id no chat.'
+
+Jogadores:
+  Titulo: '&8Jogadores ({pagina}/{paginas})'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{nick}'
+    Nome: '&f{nick}'
+    Lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Falando em: &f{foco}'
+      - '&7Mensagens: &f{mensagens}'
+      - '&7Silenciado: {silenciado}'
+      - ''
+      - '&eClique para moderar.'
+
+# Moderacao de um jogador. Botoes: Info, Dessilenciar, Historico, Limpar,
+# Espiar, Avisar e Voltar (a acao vem do nome da chave).
+Jogador:
+  Titulo: '&8Moderar {nick}'
+  Linhas: 5
+  Preenchimento: 'BLACK_STAINED_GLASS_PANE'
+  Silenciar:
+    Slots: [19, 20, 21, 22, 23]
+    # 0 = para sempre.
+    Tempos: ['5m', '30m', '2h', '1d', '0']
+    Item:
+      Material: COBWEB
+      Nome: '&cSilenciar por {tempo}'
+      Lore:
+        - '&7Pede o motivo no chat.'
+  Botoes:
+    Info:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{nick}'
+      Nome: '&f{nick}'
+      Lore:
+        - '&7Online: {online}'
+        - '&7Silenciado: &f{silenciado}'
+        - '&7Motivo: &f{motivo}'
+        - '&7Mensagens: &f{mensagens}'
+        - '&7Ignora: &f{ignorados}'
+        - '&7Falando em: &f{foco}'
+    Dessilenciar:
+      Slot: 25
+      Material: LIME_DYE
+      Nome: '&aTirar o silencio'
+    Historico:
+      Slot: 29
+      Material: BOOKSHELF
+      Nome: '&6Historico'
+      Lore:
+        - '&7Mensagens de {nick}.'
+    Limpar:
+      Slot: 30
+      Material: WATER_BUCKET
+      Nome: '&bLimpar o chat dele'
+    Espiar:
+      Slot: 31
+      Material: ENDER_EYE
+      Nome: '&5Espiar {nick}'
+      Lore:
+        - '&7Espiando: {espiando}'
+        - '&7Voce ve tudo o que ele escreve,'
+        - '&7em qualquer canal e no privado.'
+    Avisar:
+      Slot: 32
+      Material: PAPER
+      Nome: '&eMandar um aviso'
+      Lore:
+        - '&7Mensagem destacada so para ele.'
+    Voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+
+# Aberto pelo botao na frente de uma mensagem. Tudo do "Jogador" mais Apagar.
+Moderar:
+  Titulo: '&8Mensagem de {nick}'
+  Linhas: 5
+  Preenchimento: 'BLACK_STAINED_GLASS_PANE'
+  Silenciar:
+    Slots: [19, 20, 21, 22, 23]
+    Tempos: ['5m', '30m', '2h', '1d', '0']
+    Item:
+      Material: COBWEB
+      Nome: '&cSilenciar {nick} por {tempo}'
+      Lore:
+        - '&7Pede o motivo no chat.'
+  Botoes:
+    Mensagem:
+      Slot: 4
+      Material: PAPER
+      Nome: '&f{nick} &8em {canal}'
+      Lore:
+        - '&7{data}'
+        - ''
+        - '{mensagem}'
+    Apagar:
+      Slot: 13
+      Material: LAVA_BUCKET
+      Nome: '&cApagar esta mensagem'
+      Lore:
+        - '&7Some do chat de todo mundo'
+        - '&7que viu (o chat e reescrito).'
+    Dessilenciar:
+      Slot: 25
+      Material: LIME_DYE
+      Nome: '&aTirar o silencio'
+    Historico:
+      Slot: 29
+      Material: BOOKSHELF
+      Nome: '&6Historico de {nick}'
+    Limpar:
+      Slot: 30
+      Material: WATER_BUCKET
+      Nome: '&bLimpar o chat de {nick}'
+    Espiar:
+      Slot: 31
+      Material: ENDER_EYE
+      Nome: '&5Espiar {nick}'
+      Lore:
+        - '&7Espiando: {espiando}'
+    Avisar:
+      Slot: 32
+      Material: PAPER
+      Nome: '&eMandar um aviso'
+    Voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cFechar'
+
+Historico:
+  Titulo todos: '&8Historico ({pagina}/{paginas})'
+  Titulo jogador: '&8Historico de {nick}'
+  # Quantas mensagens buscar de uma vez.
+  Limite: 300
+  Item:
+    Material: PAPER
+    Nome: '&f{nick} &8em {canal}'
+    Lore:
+      - '&7{data} &8| &7{servidor}'
+      - ''
+      - '{mensagem}'
+      - ''
+      - '{acao}'
+  Item privado:
+    Material: WRITABLE_BOOK
+    Nome: '&d{nick} &8em {canal}'
+    Lore:
+      - '&7{data} &8| &7{servidor}'
+      - ''
+      - '{mensagem}'
+      - ''
+      - '{acao}'
+  Buscar:
+    Slot: 51
+    Material: COMPASS
+    Nome: '&eBuscar'
+    Lore:
+      - '&7Busca atual: &f{busca}'
+      - '&eEsquerdo: &7procurar um trecho'
+      - '&eDireito: &7limpar a busca'
+
+Silenciados:
+  Titulo: '&8Silenciados ({pagina}/{paginas})'
+  Item:
+    Material: PLAYER_HEAD
+    Dono: '{nick}'
+    Nome: '&c{nick}'
+    Lore:
+      - '&7Falta: &f{tempo}'
+      - '&7Motivo: &f{motivo}'
+      - '&7Por: &f{autor} &8({data})'
+      - ''
+      - '&eClique para tirar o silencio.'

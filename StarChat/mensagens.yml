@@ -1,0 +1,246 @@
+# Mensagens do StarChat. Mensagem vazia ('') nao e enviada.
+# Mensagens com varias linhas (| do YAML) saem sem prefixo em cada linha.
+Versao do modelo: 1
+
+Prefixo: '&8[&bChat&8] &7'
+
+Permissao: '&cVoce nao tem permissao para isto.'
+So jogador: '&cSo jogadores podem usar este comando.'
+Inativo: '&cO StarChat esta sem banco de dados. Veja o console.'
+Carregando: '&7Seus dados ainda estao carregando, tente de novo em instantes.'
+Recarregado: '&aStarChat recarregado.'
+Offline: '&cO jogador &f{jogador} &cnao esta online.'
+Nunca entrou: '&cO jogador &f{jogador} &cnunca entrou no servidor.'
+Uso: '&cUse: &f{uso}'
+Numero invalido: '&c"{valor}" nao e um numero.'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para voltar.'
+  Cancelado: '&7Cancelado.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+  Vazio: '&8(vazio)'
+  Itens: 'itens'
+  Previa: '&7Previa:'
+  Global: 'Servidor inteiro'
+  Mundo: 'Mesmo mundo'
+
+Placeholders:
+  Sim: 'sim'
+  Nao: 'nao'
+
+# ------------------------------------------------------------------------------
+Chat:
+  Sem canal: '&cNenhum canal disponivel para voce falar.'
+  Canal desativado: '&cO canal &f{canal} &cesta desativado.'
+  Canal nao existe: '&cO canal &f{canal} &cnao existe.'
+  Sem permissao canal: '&cVoce nao pode usar o canal &f{canal}&c.'
+  Mundo bloqueado: '&cO canal &f{canal} &cnao funciona neste mundo.'
+  Travado: '&cO chat esta travado pela equipe no momento.'
+  Silenciado: '&cVoce esta silenciado por &f{tempo}&c. Motivo: &f{motivo}'
+  Aguarde: '&cAguarde &f{tempo}s &cpara falar em &f{canal} &cde novo.'
+  Flood: '&cCalma! Voce esta mandando mensagens rapido demais.'
+  Repetida: '&cNao repita a mesma mensagem.'
+  Divulgacao: '&cNao e permitido divulgar enderecos no chat.'
+  Bloqueada: '&cSua mensagem tem palavras que nao sao permitidas.'
+  Maiusculas: '&cNao escreva tudo em maiusculas.'
+  Ninguem ouviu: '&7&oNinguem por perto ouviu voce. Use &f!mensagem &7&opara falar no global.'
+  Saldo insuficiente: '&cVoce precisa de &f${valor} &cpara falar em &f{canal}&c.'
+  Custo: '&7Mensagem em &f{canal}&7: &c-${valor}'
+  Focou: '&7Agora voce fala no canal {cor}{canal}&7.'
+  Uso canal: '&cUse: &f/{comando} <mensagem>'
+  Lista titulo: '&8&m          &r &bCanais &8&m          '
+  Lista linha: ' &8- {cor}{canal} &8(&7{comando}&8)'
+  Lista linha foco: ' &8- {cor}&l{canal} &8(&7{comando}&8) &a<- voce fala aqui'
+  Lista mouse: '&eClique para falar em {canal}'
+
+Links:
+  Mouse:
+    - '&bAbrir link'
+
+Itens:
+  Titulo item: '&8Item de {nick}'
+  Titulo inventario: '&8Inventario de {nick}'
+  Titulo ender: '&8Bau do Fim de {nick}'
+  Expirou: '&cEsse item nao esta mais disponivel para ver.'
+  # Linhas no fim do mouse de um [item].
+  Mouse extra:
+    - ''
+    - '&eClique para ver o item.'
+
+Mencoes:
+  Barra de acao: '&b{nick} &7mencionou voce no chat!'
+  # Titulo<nl>Subtitulo. Vazio = sem titulo.
+  Titulo: ''
+
+Emojis:
+  Titulo: '&8&m          &r &bEmojis &8&m          &r &7(clique para usar)'
+  Item: '&f{emoji} '
+  Mouse:
+    - '&f{emoji}  &7{codigo}'
+    - '&eClique para escrever'
+  Nenhum: '&cNenhum emoji configurado.'
+
+# ------------------------------------------------------------------------------
+Privado:
+  Nome: 'Privado'
+  Uso: '&cUse: &f/{comando} <nick> <mensagem>'
+  # Palavra do "/tell sair", que encerra a conversa travada.
+  Palavra sair: 'sair'
+  Desativado: '&cAs mensagens privadas estao desativadas.'
+  Voce mesmo: '&cVoce nao pode mandar mensagem para voce mesmo.'
+  Voce desligou: '&cSuas mensagens privadas estao desligadas. Use &f/chat privado&c.'
+  Nao recebe: '&cO jogador &f{jogador} &cnao esta recebendo mensagens privadas.'
+  Ninguem para responder: '&cVoce nao tem ninguem para responder.'
+  Respondendo a: '&7Voce responde para &f{jogador}&7. Use &f/r <mensagem>&7.'
+  Conversa travada: '&7Agora tudo o que voce escrever vai para &f{jogador}&7. Use &f/tell sair &7para voltar.'
+  Conversa encerrada: '&7Conversa privada encerrada. Voce voltou ao seu canal.'
+  Sem conversa travada: '&cVoce nao esta numa conversa travada.'
+  Barra de acao: '&dMensagem privada de &f{nick}'
+
+Preferencias:
+  privado ligado: '&aMensagens privadas ligadas.'
+  privado desligado: '&cMensagens privadas desligadas.'
+  mencoes ligado: '&aAvisos de mencao ligados.'
+  mencoes desligado: '&cAvisos de mencao desligados.'
+  sons ligado: '&aSons do chat ligados.'
+  sons desligado: '&cSons do chat desligados.'
+  Canal oculto: '&7Voce nao vera mais o canal &f{canal}&7.'
+  Canal visivel: '&7O canal &f{canal} &7voltou a aparecer.'
+
+Ignorar:
+  Palavra lista: 'lista'
+  Adicionado: '&7Voce agora ignora &f{jogador}&7.'
+  Removido: '&7Voce parou de ignorar &f{jogador}&7.'
+  Voce mesmo: '&cVoce nao pode ignorar voce mesmo.'
+  Nao pode: '&cVoce nao pode ignorar &f{jogador}&c.'
+  Limite: '&cVoce ja ignora o maximo de &f{limite} &cjogadores.'
+  Digite nick: '&eDigite o nick de quem voce quer ignorar:'
+
+Espiao:
+  Palavra tudo: 'tudo'
+  Palavra privado: 'privado'
+  Tudo ligado: '&aEspiao ligado em todos os canais e no privado.'
+  Tudo desligado: '&cEspiao desligado.'
+  Ligado: '&aEspiando &f{alvo}&a.'
+  Desligado: '&cParou de espiar &f{alvo}&c.'
+  Nao achou: '&cNao achei canal nem jogador online chamado &f{alvo}&c.'
+
+# ------------------------------------------------------------------------------
+Filtros:
+  Aviso divulgacao: '&c[Filtro] &f{jogador} &7tentou divulgar &f{endereco}&7. &8(passe o mouse)'
+  Aviso palavra: '&c[Filtro] &f{jogador} &7usou &f{palavra}&7. &8(passe o mouse)'
+
+Moderacao:
+  Para sempre: 'para sempre'
+  Sem motivo: 'Sem motivo'
+  Chat travado: '&c&lO chat foi travado pela equipe.'
+  Chat destravado: '&a&lO chat foi liberado!'
+  Canal travado: '&7Canal &f{canal} &ctravado&7.'
+  Canal destravado: '&7Canal &f{canal} &aliberado&7.'
+  Modo lento ligado: '&eO chat esta em modo lento: uma mensagem a cada &f{segundos}s&e.'
+  Modo lento desligado: '&aO modo lento do chat foi desligado.'
+  Lento canal: '&7Modo lento de &f{canal}&7: &f{segundos}s&7.'
+  Chat limpo: '&7O chat foi limpo pela equipe.'
+  Chat limpo imune: '&7O chat foi limpo (o seu foi mantido).'
+  Seu chat limpo: '&7Seu chat foi limpo pela equipe.'
+  Limpou de: '&7Chat de &f{jogador} &7limpo.'
+  Silenciou: '&7Voce silenciou &f{jogador} &7por &f{tempo}&7. Motivo: &f{motivo}'
+  Voce foi silenciado: '&cVoce foi silenciado no chat por &f{tempo}&c. Motivo: &f{motivo}'
+  Voce esta silenciado: '&cVoce continua silenciado no chat por &f{tempo}&c. Motivo: &f{motivo}'
+  Anuncio silencio: '&c{jogador} &7foi silenciado por &f{tempo}&7. Motivo: &f{motivo}'
+  Aviso staff silencio: '&7{autor} silenciou &f{jogador} &7por &f{tempo}&7: &f{motivo}'
+  Dessilenciou: '&7Voce tirou o silencio de &f{jogador}&7.'
+  Nao silenciado: '&c{jogador} nao estava silenciado.'
+  Voce foi dessilenciado: '&aVoce pode falar no chat de novo.'
+  Aviso ao jogador: |-
+    &c&lAVISO DA EQUIPE &7({autor})
+    &f{mensagem}
+  Aviso enviado: '&7Aviso enviado para &f{jogador}&7.'
+  # Linha que fica no lugar da mensagem apagada. Vazio = a linha some.
+  Mensagem apagada: '&8&o<mensagem apagada pela equipe>'
+  Mensagem apagada staff: '&7Mensagem apagada do chat de &f{jogadores} &7jogador(es).'
+  Mensagem antiga: '&cEssa mensagem ja saiu da memoria do chat.'
+
+# ------------------------------------------------------------------------------
+Editor:
+  Atual: '&7Atual: '
+  Valor interno: '&8(valor interno)'
+  Palavra vazio: 'nada'
+  Digite: '&eDigite o novo valor de &f{campo}&e no chat. &7(atual: &f{atual}&7, &fnada &7= vazio)'
+  Digite item: '&eDigite o que adicionar em &f{campo}&e:'
+  Digite id canal: '&eDigite o id do canal novo (letras e numeros, ex: &fevento&e):'
+  Digite id etiqueta: '&eDigite o id da etiqueta nova (ex: &fcampeao&e). Depois use &f{campeao} &eno formato.'
+  Digite motivo: '&eDigite o motivo do silencio de &f{jogador} &7(&fnada &7= sem motivo)&e:'
+  Digite aviso: '&eDigite o aviso para &f{jogador}&e:'
+  Digite busca: '&eDigite o trecho que procura no historico:'
+  Id invalido: '&cId invalido ou ja existe: &f{id}'
+  Canal criado: '&aCanal &f{canal} &acriado! Ajuste ele no editor.'
+  Canal excluido: '&7Canal &f{canal} &7excluido.'
+  Etiqueta criada: '&aEtiqueta &f{etiqueta} &acriada! Use &f{{etiqueta}} &ano formato de um canal.'
+  Padrao definido: '&aO canal padrao agora e &f{canal}&a.'
+  Acao limpar: 'limpar o chat de todos'
+  Acao dessilenciar: 'tirar o silencio de {jogador}'
+  Clique moderar: '&eClique para moderar esta mensagem.'
+  Clique jogador: '&eClique para ver o jogador.'
+  Titulos:
+    Canal: '&8Canal: {canal}'
+    Filtros: '&8Filtros do chat'
+    Divulgacao: '&8Anti divulgacao'
+    Palavras: '&8Palavras bloqueadas'
+    Maiusculas: '&8Maiusculas'
+    Flood: '&8Flood e repeticao'
+    Substituicoes: '&8Substituicoes e emojis'
+    Etiqueta: '&8Etiqueta: {etiqueta}'
+    Ajustes: '&8Ajustes do chat'
+  Instrucoes:
+    SIM_NAO: '&eClique para ligar/desligar.'
+    NUMERO: |-
+      &eEsquerdo: &f+{passo} &8| &eDireito: &f-{passo}
+      &eShift: &f+/-{passo_grande}
+    TEXTO: |-
+      &eClique para digitar no chat.
+      &7Shift + direito: deixa vazio.
+    LISTA: '&eClique para editar a lista.'
+    CICLO: '&eClique para trocar.'
+    BOTAO: '&eClique.'
+
+# ------------------------------------------------------------------------------
+Ajuda:
+  Jogador:
+    - '&8&m          &r &bChat &8&m          '
+    - '&f/{comando} &7- suas preferencias em menu'
+    - '&f/{comando} privado|mencoes|sons &7- liga/desliga'
+    - '&f/{comando} canais &7- lista dos canais'
+    - '&f/{comando} ocultar|mostrar <canal> &7- esconde um canal'
+    - '&f/{comando} emojis &7- lista de emojis'
+    - '&f/tell <nick> [mensagem] &7- mensagem privada (sem texto trava a conversa)'
+    - '&f/r <mensagem> &7- responde'
+    - '&f/ignorar <nick> &7- ignora (de novo para desfazer)'
+    - '&f/canal <canal> &7- escolhe onde voce fala'
+    - '&7No chat: &f[item] &7[inv] [ender] mostram seus itens, &f@nick &7menciona.'
+  Staff:
+    - '&8&m          &r &cEquipe &8&m          '
+    - '&f/{comando} limpar [nick] &7- limpa o chat'
+    - '&f/{comando} travar [canal] &7- trava/destrava'
+    - '&f/{comando} lento <segundos> [canal] &7- modo lento (0 desliga)'
+    - '&f/{comando} espiar [tudo|privado|canal|nick]'
+    - '&f/{comando} silenciar <nick> [tempo] [motivo] &7- ex: 30m, 2h, 1d (0 = para sempre)'
+    - '&f/{comando} dessilenciar <nick>'
+    - '&f/{comando} silenciados &7- lista'
+    - '&f/{comando} historico [nick] &7- historico com busca'
+    - '&f/starchat &7- painel: canais, filtros, etiquetas, ajustes'
+  Admin:
+    - '&8&m          &r &bStarChat &8&m          '
+    - '&f/{comando} &7- painel da staff'
+    - '&f/{comando} recarregar &7- rele os arquivos'
+    - '&f/{comando} falar <canal> <mensagem> &7- escreve num canal como console'

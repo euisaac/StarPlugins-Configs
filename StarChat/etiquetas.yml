@@ -1,0 +1,73 @@
+# =============================================================================
+#   Etiquetas do StarChat: pedacos dos formatos com mouse e clique.
+#   Escreva {nome-da-etiqueta} no Formato de um canal (canais.yml) ou do privado.
+#   Tambem se edita em jogo: /starchat > Etiquetas.
+#
+#   Chaves:
+#     Texto            - o que aparece. Sem esta chave, usa o valor interno
+#                        ({jogador} = nome de exibicao, {canal} = [G], {prefixo}...)
+#     Passar o mouse   - linhas mostradas com o mouse em cima
+#     Clique           - SUGERIR:/comando   (escreve na barra do chat)
+#                        COMANDO:/comando   (executa)
+#                        LINK:https://...   (abre o site)
+#                        COPIAR:texto       (copia; 1.15+)
+#     Permissao        - so aparece para quem tem (vazio = todos)
+#
+#   Valores que funcionam aqui: {nick} {jogador} {prefixo} {sufixo} {grupo}
+#   {mundo} {hora} {data} {servidor} {saldo} {canal_nome} {canal_cor}
+#   {canal_comando} e, no privado, {alvo_nick} {alvo_grupo}... Tambem
+#   aceita %placeholders% do PlaceholderAPI (ex: %starclans_tag%).
+#
+#   Etiqueta que o jogador nao pode ver (ou que fica vazia) some da linha.
+# =============================================================================
+Etiquetas:
+  jogador:
+    Passar o mouse:
+      - '&f{nick}'
+      - '&7Grupo: &f{grupo}'
+      - '&7Mundo: &f{mundo}'
+      - ''
+      - '&eClique para mandar uma mensagem.'
+    Clique: 'SUGERIR:/tell {nick} '
+    Permissao: ''
+
+  alvo:
+    Texto: '{alvo_jogador}'
+    Passar o mouse:
+      - '&f{alvo_nick}'
+      - ''
+      - '&eClique para responder.'
+    Clique: 'SUGERIR:/tell {alvo_nick} '
+    Permissao: ''
+
+  canal:
+    Passar o mouse:
+      - '{canal_cor}Canal {canal_nome}'
+      - '&7Clique para falar neste canal.'
+    Clique: 'SUGERIR:/{canal_comando} '
+    Permissao: ''
+
+  prefixo:
+    Passar o mouse:
+      - '&7Grupo: &f{grupo}'
+    Clique: ''
+    Permissao: ''
+
+  sufixo:
+    Clique: ''
+    Permissao: ''
+
+  mensagem:
+    Passar o mouse:
+      - '&7Enviada as &f{hora}'
+    Clique: ''
+    Permissao: ''
+
+  # Exemplo de etiqueta que so aparece para quem tem a permissao.
+  vip:
+    Texto: '&6[VIP] '
+    Passar o mouse:
+      - '&6Jogador VIP'
+      - '&7Conheca as vantagens na loja!'
+    Clique: 'LINK:https://seusite.com.br/loja'
+    Permissao: 'starchat.etiqueta.vip'
