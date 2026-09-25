@@ -684,8 +684,11 @@ Menu do top:
       - '&7Nenhum clan cadastrado ainda.'
 
   Categorias:
-    #  As categorias sao fixas: ABATES, KDR, MEMBROS, BANCO.
+    #  As categorias sao fixas: ABATES, KDR, MEMBROS, BANCO, SPAWNERS.
     #  Slot -1 esconde a categoria do menu.
+    #
+    #  BANCO some sozinho quando o banco do clan esta desligado no config, e
+    #  SPAWNERS some quando falta o StarSpawners ou o plugin de terrenos.
     ABATES:
       Slot: 47
       Material: 'IRON_SWORD'
@@ -711,6 +714,13 @@ Menu do top:
       Nome: '&a&lBANCO'
       Lore:
         - '&7Ordena pelo dinheiro guardado.'
+    SPAWNERS:
+      Slot: 52
+      Material: 'SPAWNER'
+      Nome: '&d&lSPAWNERS'
+      Lore:
+        - '&7Ordena pelos spawners dentro'
+        - '&7dos terrenos dos membros.'
 
   Botoes:
     Voltar:
@@ -941,6 +951,119 @@ Menu de cores:
         - '&a&lCLIQUE &fpara alternar'
     Voltar:
       Slot: 32
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ═══════════════════════════════  INFO  ═══════════════════════════════════
+#
+Menu de info do clan:
+  #  Aberto pelo /clan info <tag>. E so leitura: clicar num membro abre a
+  #  ficha dele, nunca promove nem expulsa (isso e o "Menu de membros").
+  Titulo: '&8Info &7» &f{tagcolorida}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Banner:
+    #  O banner do clan, com os numeros dele. Clan sem banner cai no material.
+    #  Precisa ficar fora da area das cabecas (slots 0 a 35), senao um membro
+    #  seria desenhado por cima dele.
+    Slot: 40
+    Material: 'WHITE_BANNER'
+    Nome: '&b&l{tagcolorida}'
+    Lore:
+      - '&7{descricao}'
+      - '&r'
+      - '&7Nome: &f{nome}'
+      - '&7Lider: &f{lider}'
+      - '&7Fundado em: &f{criado}'
+      - '&7Verificado: {verificado}'
+      - '&7Entrada: &f{entrada}'
+      - '&r'
+      - '&7Membros: &f{membros}&7/&f{maximo_membros} &8(&a{online} online&8)'
+      - '&7Aliados: &f{aliados} &8| &7Rivais: &f{rivais}'
+      - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes} &8| &7KDR: &f{kdr}'
+      - '&7Banco: &a{moeda}{banco}'
+
+  Membro:
+    Material: 'PLAYER_HEAD'
+    Nome: '&b{simbolo}{jogador}'
+    Lore:
+      - '&7Cargo: &f{cargo}'
+      - '&7Entrou em: &f{entrou}'
+      - '&7Visto: &f{visto}'
+      - '&r'
+      - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes}'
+      - '&7KDR: &f{kdr}'
+      - '&r'
+      - '&a&lCLIQUE &fpara ver a ficha'
+
+  Vazio:
+    Slot: 22
+    Material: 'BARRIER'
+    Nome: '&c&lCLAN SEM MEMBROS'
+    Lore: []
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&e&lPAGINA ANTERIOR'
+      Lore: []
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&e&lPROXIMA PAGINA'
+      Lore: []
+
+Menu de info do jogador:
+  #  Aberto pelo /clan info <jogador>, e tambem ao clicar num membro na tela
+  #  de cima. Funciona com o jogador offline.
+  Titulo: '&8Info &7» &f{jogador}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Jogador:
+      Slot: 11
+      Material: 'PLAYER_HEAD'
+      Nome: '&b&l{jogador}'
+      Lore:
+        - '&7Cargo: &f{simbolo}{cargo}'
+        - '&7Estado: {estado}'
+        - '&7Entrou em: &f{entrou}'
+        - '&7Visto: &f{visto}'
+        - '&r'
+        - '&7Abates: &f{abates} &8| &7Mortes: &f{mortes}'
+        - '&7KDR: &f{kdr}'
+    Clan:
+      Slot: 15
+      Material: 'WHITE_BANNER'
+      Nome: '&b&l{tagcolorida}'
+      Lore:
+        - '&7O clan de &f{jogador}&7.'
+        - '&r'
+        - '&7Nome: &f{nome}'
+        - '&7Lider: &f{lider}'
+        - '&7Membros: &f{membros}&7/&f{maximo_membros}'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver o clan'
+    Voltar:
+      Slot: 22
       Material: 'ARROW'
       Nome: '&c&lVOLTAR'
       Lore: []

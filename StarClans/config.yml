@@ -118,6 +118,13 @@ Entrada:
   # Atraso da mensagem de entrada, em ticks, para nao brigar com o bem-vindo.
   Atraso na entrada: 60
 
+Recursos:
+  #  Desligue o que o seu servidor nao usa. O recurso desligado some do menu,
+  #  some das linhas de lore que falam dele e para de responder por comando --
+  #  em vez de aparecer e recusar no clique.
+  Bau do clan: true
+  Banco do clan: true
+
 Verificacao:
   #  O clan verificado e o que o dono do servidor liberou (por item especial ou
   #  pelo /starclans verificar). Aqui se escolhe o que fica trancado ate la.
@@ -235,12 +242,25 @@ Top:
   # Quantos clans aparecem em cada pagina do top.
   Clans por pagina: 45
 
+  Spawners:
+    #  O top de spawners conta os spawners que estao dentro de terrenos de
+    #  membros do clan. Precisa do StarSpawners e de um dos dois plugins de
+    #  terreno (StarTerrenos ou StarPlots); faltando um deles, o top fica
+    #  zerado e a categoria some do menu.
+    #
+    #  A conta atravessa todos os spawners do servidor, entao ela e feita em
+    #  fatias: "Spawners por tique" e o tamanho da fatia. Baixe se sentir o
+    #  servidor pesar durante a contagem; suba para ela terminar antes.
+    Atualizar a cada: 300
+    Spawners por tique: 200
+
   #  Etiqueta que aparece ao lado do clan que lidera cada categoria.
   #  Deixe '' para nao marcar.
   Etiquetas:
     Dinheiro: '&a[$]'
     Abates: '&c[K]'
     KDR: '&b[%]'
+    Spawners: '&d[S]'
     Membros: '&e[M]'
 
 Menu:
