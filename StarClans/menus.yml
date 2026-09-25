@@ -12,7 +12,7 @@
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 1
+Versao do modelo: 2
 
 #
 # ══════════════════════  MENU DE QUEM NAO TEM CLAN  ═══════════════════════
@@ -881,7 +881,54 @@ Menu de rivais:
 # ═══════════════════════════════  CORES  ══════════════════════════════════
 #
 Menu de cores:
-  Titulo: '&8Cor da tag'
+  #  A tela da tag: uma letra por slot, cada uma com a propria cor. Clicar numa
+  #  letra abre o "Menu de escolher cor" para aquela letra.
+  Titulo: '&8Cor da tag &7» &f{tag}'
+  Linhas: 4
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  #  Onde as letras ficam, da esquerda para a direita. Sobrando slot, o resto
+  #  nao e usado; faltando slot, as letras que nao couberem nao aparecem --
+  #  ponha slots suficientes para a maior tag que voce permite.
+  Slots das letras: [ 11, 12, 13, 14, 15 ]
+
+  Letra:
+    #  O material acompanha a cor escolhida (a la do cores.yml).
+    #  Placeholders: {letra} {previa} {posicao} {total} {tag} {tagcolorida}
+    Nome: '&f&l{previa}'
+    Lore:
+      - '&r'
+      - '&7Letra &f{posicao} &7de &f{total}'
+      - '&7Fica assim: &f{tagcolorida}'
+      - '&r'
+      - '&a&lCLIQUE &fpara trocar a cor desta letra'
+
+  Botoes:
+    Todas:
+      #  Pinta a tag inteira de uma cor so; -1 esconde o botao.
+      Slot: 30
+      Material: 'BRUSH'
+      Nome: '&b&lPINTAR A TAG INTEIRA'
+      Lore:
+        - '&7Uma cor so para todas as letras.'
+        - '&r'
+        - '&a&lCLIQUE &fpara escolher'
+    Voltar:
+      Slot: 32
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ═══════════════════════════  ESCOLHER A COR  ══════════════════════════════
+#
+Menu de escolher cor:
+  #  O seletor em si. Vale tanto para uma letra quanto para a tag inteira.
+  Titulo: '&8Escolha a cor'
   Linhas: 4
 
   Enfeite:
@@ -891,6 +938,7 @@ Menu de cores:
 
   Cor:
     #  O material e o nome de cada cor vem do cores.yml.
+    #  Placeholders: {previa} {estado} {letra} {posicao}
     Lore:
       - '&r'
       - '&7A tag ficaria: &f{previa}'
