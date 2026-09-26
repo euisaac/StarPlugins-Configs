@@ -113,6 +113,22 @@ Mundos:
   # true: alem dos mundos bloqueados, a warp so pode ser criada num terreno
   # do proprio jogador (StarTerrenos, GriefDefender ou GriefPrevention).
   Exigir terreno proprio: false
+  # Plugin de terreno que NAO tem API para outros plugins (o LeafTerrains e o
+  # caso): o dono do terreno onde o jogador esta vem de um placeholder do
+  # PlaceholderAPI. Vale para qualquer plugin que tenha um placeholder assim.
+  #
+  #   Dono  placeholder com o NICK do dono do terreno onde o jogador esta.
+  #         Precisa devolver VAZIO quando ele nao esta em terreno nenhum.
+  #   Nome  opcional: placeholder com o NOME do terreno. Serve para reconhecer
+  #         um terreno cujo dono nao aparece (terreno da equipe, por exemplo) e
+  #         barrar a criacao ali.
+  #
+  # Deixe vazio para nao usar. Exemplo para o LeafTerrains:
+  #   Dono: '%leafterrains_current_owner%'
+  #   Nome: '%leafterrains_current_name%'
+  Terreno por placeholder:
+    Dono: ''
+    Nome: ''
 
 Teleporte:
   # Segundos parado antes de teleportar (0 = na hora). Mexer ou tomar dano
