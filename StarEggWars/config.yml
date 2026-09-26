@@ -24,7 +24,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 15
+Versao do modelo: 16
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -88,7 +88,17 @@ Cash:
   # NENHUM       = ninguem tem cash; itens com preco em cash so saem da caixa.
   Tipo: NENHUM
   # So para STARECONOMIA: o id da moeda (vazio = a moeda principal).
+  #
+  # Com o StarEconomia ligado aqui, qualquer cosmetico (baloes, kits,
+  # habilidades, jaulas, brinquedos...) pode ser vendido no dinheiro do
+  # servidor: basta por o valor em "Cash:" no arquivo dele, em
+  # cosmeticos/<tipo>.yml. "Coins:" continua sendo a moeda interna, ganha
+  # jogando -- os dois podem existir no mesmo cosmetico.
   Moeda do StarEconomia: ''
+  # Como o cash aparece na lore. Vazios = o simbolo e o nome que a propria
+  # moeda do StarEconomia declara (singular/plural).
+  Simbolo: ''
+  Nome da moeda: ''
   Placeholder de saldo: '%vault_eco_balance%'
   Comando de retirar: 'eco take {jogador} {valor}'
   Comando de dar: 'eco give {jogador} {valor}'

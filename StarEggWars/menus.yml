@@ -10,7 +10,7 @@
 #  (do arquivo dele) + o bloco de "Estados" abaixo, conforme a situacao.
 # ==========================================================================
 
-Versao do modelo: 6
+Versao do modelo: 7
 
 Botoes:
   Voltar:
@@ -62,7 +62,9 @@ Estados:
     - ' &fRaridade: {raridade}'
     - ''
     - '&cSo sai da caixa misteriosa'
-  Cash: '&fe &d{preco_cash} cash'
+  # Pedaco "e X cash" do preco dos cosmeticos. {simbolo} e {moeda} vem da
+  # moeda configurada em Cash (do StarEconomia, quando for o caso).
+  Cash: '&fe &d{simbolo}{preco_cash} {moeda}'
   Nivel maximo: 'Maximo'
   Limpar:
     Nome: '&cRemover selecao'
