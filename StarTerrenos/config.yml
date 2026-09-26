@@ -40,7 +40,11 @@ Economia:
   # VAULT usa a economia registrada no Vault.
   # COMANDO serve para as economias que nao se registram no Vault: o saldo e
   # lido por placeholder e o dinheiro entra e sai por comando de console.
+  # STARECONOMIA usa uma moeda do StarEconomia -- escreva o id dela em Moeda.
   Tipo: VAULT
+
+  # So no modo STARECONOMIA: o id da moeda (money, cash...).
+  Moeda: ''
 
   Simbolo: '$'
 
@@ -109,10 +113,78 @@ Blocos de terreno:
   # Quanto por cento dos blocos volta quando o jogador abandona um terreno.
   Devolver ao abandonar: 100
 
-  # Loja de blocos no menu. 0 em qualquer um dos dois esconde o botao.
-  Preco de compra: 5.0
-  Preco de venda: 2.5
-  Quantidade por vez: 100
+  # ─────────────────────────────  LOJA DE BLOCOS  ───────────────────────────
+  #
+  # Os botoes de comprar e vender bloco dentro do /terreno blocos.
+  #
+  # Cada entrada e um botao com a SUA moeda, entao da para vender bloco por
+  # dinheiro e por cash ao mesmo tempo:
+  #
+  #   Economia: VAULT        -> a economia do topo deste arquivo
+  #             COMANDO      -> saldo por placeholder, dinheiro por comando
+  #             STARECONOMIA -> uma moeda do StarEconomia; o id vai em Moeda
+  #
+  #   Quantidade -> quantos blocos o botao move de uma vez
+  #   Preco      -> o preco do PACOTE inteiro, e nao de um bloco
+  #   Ativar     -> false tira so aquele botao
+  #
+  # Botao de moeda que este servidor nao tem (StarEconomia ausente, ou sem
+  # aquela moeda) nao aparece no menu.
+  Loja:
+    # false desliga a loja inteira: o menu continua mostrando quantos blocos o
+    # jogador tem, mas sem comprar nem vender.
+    Ativar: true
+
+    Comprar:
+      dinheiro:
+        Ativar: true
+        Economia: 'VAULT'
+        Quantidade: 100
+        Preco: 500.0
+        Slot: 11
+        Material: 'EMERALD'
+        Nome: '&a&lCOMPRAR COM DINHEIRO'
+        Lore:
+          - '&7 ⤷ Quantidade: &f{quantidade}'
+          - '&7 ⤷ Preco: &a{preco}'
+          - '&7 ⤷ Seu saldo: &f{saldo}'
+          - ''
+          - '&aCLIQUE &fpara comprar'
+
+      cash:
+        Ativar: true
+        Economia: 'STARECONOMIA'
+        Moeda: 'cash'
+        Simbolo: ''
+        Quantidade: 500
+        Preco: 25.0
+        Slot: 10
+        Material: 'DIAMOND'
+        Nome: '&b&lCOMPRAR COM CASH'
+        Lore:
+          - '&7 ⤷ Quantidade: &f{quantidade}'
+          - '&7 ⤷ Preco: &b{preco}'
+          - '&7 ⤷ Seu saldo: &f{saldo}'
+          - ''
+          - '&aCLIQUE &fpara comprar'
+
+    Vender:
+      dinheiro:
+        Ativar: true
+        Economia: 'VAULT'
+        Quantidade: 100
+        Preco: 250.0
+        Slot: 15
+        Material: 'GOLD_INGOT'
+        Nome: '&e&lVENDER BLOCOS'
+        Lore:
+          - '&7So da para vender o que'
+          - '&7esta sobrando.'
+          - ''
+          - '&7 ⤷ Quantidade: &f{quantidade}'
+          - '&7 ⤷ Recebe: &a{preco}'
+          - ''
+          - '&aCLIQUE &fpara vender'
 
 #
 # ═══════════════════════════════  FERRAMENTA  ═══════════════════════════════
