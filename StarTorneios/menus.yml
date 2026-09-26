@@ -30,6 +30,9 @@ Menu principal:
     #  Placeholders: {torneio} {id} {tipo} {ciclo} {pontos} {pontuacao}
     #  {posicao} {participantes} {agenda} {restante} {encerra} {data}
     #  {lider} {lider_pontos} {atualiza}
+    #  {tempo} = a pontuacao em horas (32h 14min); so no torneio de tempo
+    #  jogado, nos outros sai '-'. Serve para mostrar as duas coisas de uma
+    #  vez: '&f{pontos} pontos &7({tempo})'.
     Lore:
       - '{descricao}'
       - '&r'
@@ -85,8 +88,8 @@ Placar:
     Usar cabeca: true
     Material: PLAYER_HEAD
     Nome: '&6&l#{posicao} &f{jogador}'
-    #  Placeholders: {posicao} {jogador} {pontos} {pontuacao} {torneio}
-    #  {atualizado} {premio}
+    #  Placeholders: {posicao} {jogador} {pontos} {pontuacao} {tempo}
+    #  {torneio} {atualizado} {premio}
     Lore:
       - '&r'
       - '&7Pontuacao: &f{pontuacao}'

@@ -69,6 +69,35 @@ Anti abuso:
   # Mundos onde nada pontua, valendo para todos os torneios (ex.: arenas, lobby).
   Mundos bloqueados: []
 
+#  Vale para os torneios de MATAR_JOGADOR. Kill que cair numa das regras abaixo
+#  simplesmente nao pontua -- o plugin nao avisa nem pune ninguem, so deixa a
+#  kill de fora do placar. Cada torneio pode sobrescrever o "Ativar" com
+#  "Anti freekill: true/false" na secao "Anti abuso" dele.
+Anti freekill:
+  Ativar: true
+
+  #  Kills concentradas num grupinho. Cada linha e um tamanho de grupo
+  #  (contando o proprio matador) e quantas kills trocadas dentro dele ainda
+  #  contam -- da proxima em diante, nada. Vale nas duas direcoes, entao a
+  #  troca de kills cai junto; e vale para quem e o "saco de pancada" de dois
+  #  amigos que se revezam. Quem mata gente diferente o tempo todo nunca cai
+  #  aqui. Lista vazia ([]) desliga a regra.
+  Grupos:
+    - Pessoas: 2
+      Kills: 3
+    - Pessoas: 3
+      Kills: 5
+  #  Tempo, em minutos, que o jogador precisa ficar sem trocar kill para a
+  #  contagem dele voltar do zero.
+  Janela em minutos: 10
+
+  #  Kill em quem entrou no servidor ou renasceu ha menos de X segundos nao
+  #  conta: pega quem fica dando respawn na frente do matador. 0 desliga.
+  Segundos apos entrar ou renascer: 10
+
+  # Matador e vitima na mesma conexao (conta secundaria) nao conta.
+  Ignorar mesmo IP: true
+
 #  Sons no formato SOM;volume;tom -- o nome passa pelo XSeries, entao o mesmo
 #  nome funciona da 1.8 a 1.21. Deixe '' para nao tocar nada.
 Sons:

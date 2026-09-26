@@ -34,7 +34,8 @@
 #    A chave e a colocacao: '1', '2', '3', '4-10' (faixa) ou 'Participacao'
 #    (todo mundo que pontuou e nao pegou uma faixa acima).
 #    Nos Comandos e nas Mensagens valem {jogador}, {posicao}, {pontos},
-#    {pontuacao}, {torneio} e {ciclo}. Os comandos rodam no console.
+#    {pontuacao}, {tempo}, {torneio} e {ciclo}. Os comandos rodam no console.
+#    O {tempo} so tem valor no torneio de tempo jogado (32h 14min).
 #    As linhas de "Exibir" sao o que aparece no lugar de {premiacao} na lore.
 #
 
@@ -50,6 +51,7 @@ Torneios:
     Descricao:
       - '&7Este torneio e focado em ter a maior'
       - '&7quantidade de tempo jogado na semana.'
+      - '&7Cada minuto online vale &f1 ponto&7.'
 
     Menu:
       Slot: 10
@@ -394,6 +396,13 @@ Torneios:
 
     # Exemplo: so conta em mundos de pvp.
     Mundos: []
+
+    Anti abuso:
+      Ignorar modo criativo: true
+      #  Kill combinada (mesma dupla se matando, conta secundaria, vitima que
+      #  acabou de renascer) fica de fora. As regras estao no config.yml, em
+      #  "Anti freekill"; apague esta linha para seguir o "Ativar" de la.
+      Anti freekill: true
 
     Agenda:
       Tipo: SEMANAL
