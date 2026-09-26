@@ -110,10 +110,19 @@ Enxada:
     Nivel maximo texto: 'MAX'
 
 Economia:
-  # VAULT fala com qualquer economia registrada no Vault.
-  # COMANDO serve para as economias que nao se registram la: o saldo e lido
-  # pelo placeholder e a cobranca sai por comando de console.
+  # De onde sai o "dinheiro do servidor" -- o que compra a enxada e o que a
+  # venda automatica do drop credita.
+  #
+  #   VAULT         qualquer economia registrada no Vault
+  #   STARECONOMIA  uma moeda do StarEconomia, escolhida em "Moeda" abaixo
+  #   COMANDO       para as economias que nao se registram no Vault: o saldo e
+  #                 lido pelo placeholder e a cobranca sai por comando de console
   Tipo: VAULT
+  # So vale no tipo STARECONOMIA: o id da moeda, como esta no StarEconomia.
+  # Com ele, o dinheiro daqui pode ser o money, o cash ou o que voce criou.
+  # Vendendo drop nesse modo, o item vendido vai junto para o historico -- e o
+  # que faz o "analisar" do StarEconomia mostrar o trigo, e nao um valor solto.
+  Moeda: 'money'
   Simbolo: '$'
   Placeholder de saldo: '%vault_eco_balance%'
   Comando de retirar: 'money take {jogador} {valor}'

@@ -11,7 +11,17 @@
 #  Ao recolher, se "Comandos -> Ativar" estiver ligado rodam os comandos; se
 #  nao, o jogador recebe o item de "Item".
 #
-#  Valem {jogador} e {quantidade} nos comandos e nas mensagens.
+#  Valem {jogador} e {quantidade} nos comandos e nas mensagens, e {moedas} nas
+#  mensagens -- o que entrou de moeda do StarEconomia.
+#
+#  Alem do item e dos comandos, a recompensa pode pagar moedas do StarEconomia,
+#  multiplicadas pela quantidade recolhida:
+#
+#    Moedas:
+#      money: 5.0         # valor fixo
+#      cash:              # ou faixa sorteada
+#        Minimo: 1
+#        Maximo: 3
 # ---------------------------------------------------------------------------
 Versao do modelo: 1
 
@@ -34,6 +44,11 @@ Recompensas:
       Material: 'IRON_INGOT'
       Nome: ''
       Lore: []
+
+    # Moedas do StarEconomia entregues junto. Descomente depois de criar a
+    # moeda la -- o id e o mesmo do StarEconomia.
+    # Moedas:
+    #   money: 5.0
 
     Comandos:
       Ativar: false

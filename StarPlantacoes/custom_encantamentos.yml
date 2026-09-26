@@ -28,6 +28,9 @@
 #    Sementes             sementes fixas quando ele dispara
 #    Sementes por nivel   sementes a mais por nivel do encantamento
 #    Dinheiro por nivel   dinheiro (economia do servidor) por nivel
+#    Moedas por nivel     moedas do StarEconomia por nivel -- e assim que um
+#                         encantamento larga o money, o cash ou a moeda que
+#                         voce criou la (ver o exemplo 'moedeiro' no fim)
 #    Mensagens            Titulo, Actionbar e Chat do momento em que ele dispara
 #
 #  Os blocos colhidos por area entregam drop, sementes e experiencia normalmente,
@@ -35,7 +38,25 @@
 #  alcance 8 dispararia tudo isso oito vezes no mesmo golpe.
 #
 #  Na lore valem: {display} {nivel} {maximo} {bonus} {chance} {alcance} {preco}
-#  {moeda}. A linha {status} vira o bloco certo de menus.yml -> Evoluir -> Status.
+#  {moeda} {saldo}. A linha {status} vira o bloco certo de menus.yml -> Evoluir
+#  -> Status.
+#
+#  MOEDAS DO STARECONOMIA
+#  ----------------------
+#  Com o StarEconomia instalado, dois caminhos se abrem:
+#
+#    Moedas por nivel:     o que o encantamento PAGA quando dispara
+#      money: 2.0          (2 por nivel: no nivel 10 saem 20)
+#
+#    Preco:
+#      Moeda: 'money'      o encantamento passa a ser COMPRADO nessa moeda, e
+#                          as sementes nem sao tocadas. Vazio = pago em
+#                          sementes, que e o normal.
+#
+#  O id e o mesmo do StarEconomia -- 'money' e a moeda primaria dele; troque
+#  pelo id da sua. Moeda que nao existe la e avisada uma vez no console e
+#  ignorada -- o jogador nunca fica pagando por nada.
+#  Nas mensagens do encantamento vale {moedas}: "20 moedas".
 # ---------------------------------------------------------------------------
 Versao do modelo: 1
 
@@ -228,3 +249,50 @@ Encantamentos:
         - '&7Custo: &a{preco} {moeda}'
         - ''
         - '{status}'
+
+# ---------------------------------------------------------------------------
+#  EXEMPLO: encantamento que larga uma moeda do StarEconomia.
+#
+#  Descomente se voce usa o StarEconomia. O id 'money' e a moeda primaria dele;
+#  troque pelo id da sua se for outra. Sem o StarEconomia instalado o
+#  encantamento ficaria a venda sem pagar nada, por isso ele vem desligado.
+# ---------------------------------------------------------------------------
+#  moedeiro:
+#    Ordem: 10
+#    Tipo: COMANDO
+#    Display: '&6Moedeiro'
+#    Nivel inicial: 0
+#    Nivel maximo: 30
+#    Chance por nivel: 2.0
+#    Permissao: ''
+#    Preco:
+#      Base: 1000
+#      Por nivel: 750
+#      # Para cobrar este encantamento na propria moeda, em vez de sementes:
+#      # Moeda: 'money'
+#    Mostrar no menu: true
+#    Mostrar na lore: true
+#    Moedas por nivel:
+#      money: 1.0
+#    Mensagens:
+#      Titulo: '&6+{moedas}<nl>&7na colheita'
+#      Actionbar: ''
+#      Chat: ''
+#    Item:
+#      Slot: 21
+#      CustomSkull: false
+#      URL: ''
+#      Material: GOLD_NUGGET
+#      Data: 0
+#      Nome: '&6Moedeiro &7[{nivel}/{maximo}]'
+#      Lore:
+#        - '&7Da chance de largar dinheiro'
+#        - '&7enquanto voce colhe.'
+#        - ''
+#        - '&7Nivel: &f{nivel}&7/&f{maximo}'
+#        - '&7Chance atual: &f{chance}%'
+#        - '&7Por disparo: &f{nivel} moedas'
+#        - ''
+#        - '&7Custo: &a{preco} {moeda}'
+#        - ''
+#        - '{status}'

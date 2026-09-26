@@ -10,7 +10,18 @@
 #  1.8 ate a 1.21, sem depender do nome da semente em cada versao.
 #
 #  Nas mensagens de cada drop valem:
-#    {quantidade} {item} {sementes} {moeda} {dinheiro} {jogador} {bonus}
+#    {quantidade} {item} {sementes} {moeda} {dinheiro} {jogador} {bonus} {moedas}
+#
+#  Cada drop pode pagar MOEDAS DO STARECONOMIA (o money, o cash, o que voce
+#  criou la), por unidade colhida e ao lado das sementes:
+#
+#    Moedas:
+#      money: 0.5         # valor fixo por unidade
+#      cash:              # ou faixa sorteada
+#        Minimo: 1
+#        Maximo: 3
+#
+#  O id e o mesmo do StarEconomia; {moedas} na mensagem vira "12 moedas".
 # ---------------------------------------------------------------------------
 Versao do modelo: 1
 
@@ -63,6 +74,13 @@ Plantacoes:
         Sementes:
           Minimo: 1
           Maximo: 3
+        # Moedas do StarEconomia pagas POR UNIDADE colhida. Descomente depois
+        # de criar a moeda la; o id e o mesmo do StarEconomia. Aceita valor
+        # fixo (money: 0.5) ou faixa sorteada, como abaixo.
+        # Moedas:
+        #   money:
+        #     Minimo: 0.2
+        #     Maximo: 0.5
         # Vender na hora em vez de entregar o item.
         Vender:
           Ativar: false
