@@ -20,7 +20,12 @@
 #    Permissao:   "grupo.vip"              permissao no proxy (LuckPerms)
 #  ---------------------------------------------------------------------------
 #  Variaveis:
-#    {modo} {jogador} {servidor} {rede} {online} {max} {online_servidor}
+#    {modo} {jogador} {servidor} {rede} {online} {max}
+#    {online_servidor} ... jogadores no servidor em que ele esta
+#    {online_modo} ....... jogadores em TODOS os servidores do modo atual
+#                          (no Padrao, a rede inteira)
+#    {online_<modo>} ..... jogadores de um modo qualquer, pelo id dele em
+#                          minusculas: {online_survival}, {online_slimefun}
 #  ---------------------------------------------------------------------------
 #  Onde cada campo aparece:
 #    LabyMod ... texto unico do modo (Discord e lista de amigos)
@@ -35,12 +40,12 @@ Modos:
   Padrao:
     Nome: "RedeStar"
     Prioridade: 0
-    LabyMod: "{modo}"
+    LabyMod: "{modo} - {online_modo} online"
     Lunar:
       Jogo: "{modo}"
       Variante: ""
       Estado do jogo: ""
-      Estado do jogador: "{online} online na rede"
+      Estado do jogador: "{online_modo} jogando {modo}"
       Mapa: ""
     Time:
       Atual: ""
