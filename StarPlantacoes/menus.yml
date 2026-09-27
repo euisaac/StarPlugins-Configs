@@ -69,8 +69,13 @@ Principal:
         - ''
 
 Evoluir:
-  Titulo: '&8Encantamentos'
+  Titulo: '&8Encantamentos &7({pagina}/{paginas})'
   Linhas: 4
+  # As vagas que recebem encantamento, na ordem. Quando eles nao cabem todos,
+  # o menu vira pagina sozinho -- e a lista abaixo que manda, nao o "Slot" de
+  # cada encantamento (esse so vale se voce apagar esta lista daqui).
+  # A ordem de quem vem primeiro e o "Ordem" de cada encantamento.
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
   Enfeite:
     Ativar: true
     Material: 'GRAY_STAINED_GLASS_PANE'
@@ -110,6 +115,19 @@ Evoluir:
       Nome: '&cVoltar'
       Lore:
         - '&7Volta para o menu anterior.'
+    # As setas so aparecem quando ha para onde ir.
+    Anterior:
+      Slot: 29
+      Material: ARROW
+      Nome: '&aPagina anterior'
+      Lore:
+        - '&7Pagina &f{pagina}&7/&f{paginas}'
+    Proxima:
+      Slot: 33
+      Material: ARROW
+      Nome: '&aProxima pagina'
+      Lore:
+        - '&7Pagina &f{pagina}&7/&f{paginas}'
 
 Top:
   Titulo: '&8Top {moeda}'
