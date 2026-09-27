@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 25
+Versao do modelo: 26
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -133,6 +133,10 @@ Partida:
   # Segundos desde o ultimo golpe (dado ou recebido) para alguem contar
   # como "em combate" no teleporte do espectador.
   Segundos de combate: 8
+  # Sair no meio da partida conta como derrota na hora: partida somada,
+  # winstreak zerada e, no ranqueado, os pontos da derrota descontados.
+  # Sem isso da para "kitar" a partida perdida e manter a sequencia.
+  Contar derrota ao sair: true
   # Quem cai do servidor CAINDO NO VAZIO (e sem cama) morre ali, em vez de
   # ficar com a vaga guardada e voltar "salvo" no spawn da ilha -- assim quem
   # sobrou vivo ganha na hora. "Altura do vazio" e quantos blocos abaixo do
