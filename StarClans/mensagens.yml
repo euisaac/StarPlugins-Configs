@@ -39,6 +39,9 @@ Etiquetas:
   Ninguem: 'ninguem'
   Sem base: 'nao definida'
   Sem descricao: 'sem descricao'
+  Vazio: '&7(vazio)'
+  Quando vazio: '&eQuando vazio'
+  Quando tem: '&aQuando tem'
   Ligado: '&aligado'
   Desligado: '&cdesligado'
   Online: '&aonline'
@@ -102,6 +105,7 @@ Ajuda:
     &b› &f/starclans entrar <clan> <jogador> &8- &7poe alguem no clan
     &b› &f/starclans sair <jogador> &8- &7tira alguem do clan
     &b› &f/starclans salvar &8- &7grava tudo agora
+    &b› &f/starclans placeholders [nome] &8- &7confere as personalizadas
     &r
 
 Criar:
@@ -387,6 +391,27 @@ Migracao:
   Como aplicar: '&7Nada foi gravado. Para valer, use &f/starclans migrar aplicar&7.'
 
 Admin:
+  #  /starclans placeholders [nome] -- confere as placeholders personalizadas
+  #  do config.yml. Sem nome, lista; com nome, mostra etapa por etapa.
+  Placeholders: |
+    &r
+    &b&lPLACEHOLDERS PERSONALIZADAS
+    &7Carregadas: &f{quantas}
+    &7Nomes: &f{nomes}
+    &7PlaceholderAPI respondendo: {papi}
+    &r
+    &7Use &f/starclans placeholders <nome> &7para ver etapa por etapa.
+    &r
+  Placeholder nao existe: '&cNao existe nenhuma placeholder personalizada com o nome &f{nome}&c.'
+  Placeholder detalhe: |
+    &r
+    &b&l{nome}
+    &7Vem de: &f{vem_de}
+    &7Resolvido: &f{resolvido}
+    &7Medido (sem cor): &f{medido}
+    &7Ramo escolhido: {ramo}
+    &7Resultado: &f{resultado}
+    &r
   Clan deletado: '&aO clan &f{tagcolorida} &afoi deletado.'
   Lider definido: '&aO jogador &f{jogador} &aagora e o lider do clan &f{tagcolorida}&a.'
   Vagas definidas: '&aAs vagas de &f{tipo} &ado clan &f{tagcolorida} &aagora sao &f{quantia}&a.'
