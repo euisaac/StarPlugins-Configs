@@ -596,6 +596,12 @@ join:
   # ultimo, como um efeito padrao pra quem nao e VIP nenhum).
   efeitos:
     ativado: true
+    # Atraso (em ticks, 20 = 1s) antes de soltar o efeito ao entrar. Se soltar
+    # imediatamente, o efeito estoura no lugar onde o jogador estava ANTES de
+    # ser teleportado pro spawn (e antes de o mundo renderizar), ficando
+    # invisivel. Aumente se o seu servidor demora pra mandar o jogador pro
+    # spawn; use 0 so se voce NAO teleporta ninguem ao entrar.
+    delay-ticks: 20
     grupos:
       vip:
         permissao: 'starlobby.efeito.vip'

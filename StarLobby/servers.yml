@@ -20,6 +20,14 @@ servers:
     #   aliases: 'survival|sobrevivencia'
     # Aqui, "/fila ex" e "/fila teste" levam para o servidor 'exemplo'.
     aliases: [ex, teste]
+    # Endereco usado para PINGAR este servidor (o numero de jogadores e o
+    # status saem dai). Precisa ser um endereco de CONEXAO, alcancavel a
+    # partir deste servidor -- '0.0.0.0' e endereco de bind e nao responde.
+    # Use o ip/host real (ex: '127.0.0.1' se roda na mesma maquina).
+    # Excecao: a entrada que representa ESTE servidor nao e pingada -- o
+    # numero vem direto do Bukkit. Ele se reconhece pelo 'server-name' do
+    # config.yml; sem ele, por ip local (0.0.0.0/127.0.0.1/localhost) com a
+    # mesma porta.
     ip: '0.0.0.0'
     port: 25566
     # O numero que aparece no {max_players} do menu e da tablist. Escrito aqui,
@@ -102,8 +110,12 @@ servers:
       #  #
       #  # Sem esta linha, cada tipo usa a primeira da lista dele.
       #  animacao: GIRANDO
-      #  # Qual partícula usar (nome do Particle do Bukkit): END_ROD, FLAME,
-      #  # SOUL_FIRE_FLAME, CRIT, PORTAL... Se não existir na versão, cai em END_ROD.
+      #  # Qual partícula usar. Duas famílias:
+      #  #  - Uma COR (partícula de poeira colorida): VERMELHO, VERDE, AZUL,
+      #  #    AMARELO, LARANJA, ROSA, ROXO, CIANO, BRANCO, PRETO.
+      #  #  - Ou o nome de um Particle do Bukkit: END_ROD, FLAME, SOUL_FIRE_FLAME,
+      #  #    CRIT, PORTAL, HEART, TOTEM... Se não existir na versão, cai em END_ROD.
+      #  # Mais fácil: escolha pelo menu em /starlobby editor.
       #  tipo: 'END_ROD'
       #  # Largura da animação, em blocos. Padrão por tipo: NPC 0.85,
       #  # ROTATING-HEAD 0.6, HUGE-ITEM 1.8.
