@@ -1,0 +1,73 @@
+# ==========================================================================
+#  StarTops - configuracao geral
+#
+#  Os tops ficam no tops.yml, as entidades no mundo em hologramas.yml/npcs.yml,
+#  as recompensas no recompensas.yml, os textos no mensagens.yml e a aparencia
+#  das telas no menus.yml.
+#
+#  Como funciona: cada top le uma fonte (dinheiro, kills, tempo jogado, um
+#  placeholder qualquer, ou algo que outro plugin registrou pela API) e monta
+#  o ranking sozinho, comparando com o cadastro de jogadores conhecidos. Um top
+#  pode ser GERAL (nunca zera) ou SEMANAL/MENSAL (zera e credita pontos e
+#  recompensas para quem ficou bem colocado).
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'startops_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Calendario:
+  # Fuso usado para decidir quando a semana/o mes vira. Formato IANA
+  # (America/Sao_Paulo, America/New_York, Europe/Lisbon...).
+  Fuso: 'America/Sao_Paulo'
+
+Ranking:
+  # De quanto em quanto tempo cada top e relido, em segundos.
+  Atualizar a cada: 30
+
+  # Teto de jogadores avaliados por top (os mais vistos recentemente entram
+  # primeiro). Protege servidores com um cadastro gigantesco.
+  Maximo de jogadores avaliados: 2000
+
+  # Quantas posicoes um top guarda quando ele nao define "Limite de posicoes"
+  # no tops.yml.
+  Limite de posicoes padrao: 100
+
+Recompensas:
+  # Desliga o sorteio e a fila inteira (os pontos continuam sendo creditados).
+  Ativas: true
+
+  # Teto de recompensas acumuladas por jogador; o que passar disso e
+  # descartado (com aviso no console) em vez de empilhar pra sempre.
+  Maximo pendentes por jogador: 50
+
+  # Exige espaco no inventario antes de coletar cada recompensa com item.
+  Exigir espaco no inventario: false
+
+Menu:
+  # De quantos em quantos ticks o menu redesenha sozinho (telas sem lista).
+  Atualizar a cada: 20
+
+  # De quanto em quanto tempo o texto dos hologramas/NPCs plantados e
+  # atualizado, em segundos.
+  Entidades atualizar a cada: 15
+
+  Som ao clicar: 'UI_BUTTON_CLICK;1;1'
+  Som ao errar: 'ENTITY_VILLAGER_NO;1;1'
+  Som ao trocar de pagina: 'ITEM_BOOK_PAGE_TURN;1;1'

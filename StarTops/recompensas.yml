@@ -1,0 +1,63 @@
+# ==========================================================================
+#  StarTops - recompensas de posicao
+#
+#  "Recompensas:" define cada recompensa uma vez (aparencia na fila de
+#  pendentes, itens a entregar, comandos a rodar). "Tabelas:" diz, por top,
+#  qual posicao (ou faixa "3-10") sorteia qual recompensa.
+#
+#  Nas Tabelas, o valor de cada posicao/faixa e uma ou mais opcoes separadas
+#  por ";", cada uma "peso,id" (ou so "id" para peso 1) -- e assim que da pra
+#  ter mais de uma recompensa possivel pra mesma colocacao, sorteada com
+#  chance proporcional ao peso.
+#
+#  Nos Comandos de uma recompensa, use "console: comando" (roda pelo
+#  console) ou so o texto (vira mensagem pro jogador). Placeholders
+#  disponiveis: {jogador} {top} {periodo} {posicao} {valor} {pontos}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Recompensas:
+  caixa_ouro:
+    Exibir:
+      Material: GOLD_BLOCK
+      Nome: '&6&lCaixa de Ouro'
+      Lore:
+        - '&7Top: &f{top}'
+        - '&7Posicao: &f#{posicao} &7({periodo})'
+        - ''
+        - '&aCLIQUE &7para coletar.'
+      Brilho: true
+    Comandos:
+      - 'console: eco dar {jogador} 500'
+
+  caixa_prata:
+    Exibir:
+      Material: IRON_BLOCK
+      Nome: '&f&lCaixa de Prata'
+      Lore:
+        - '&7Top: &f{top}'
+        - '&7Posicao: &f#{posicao} &7({periodo})'
+        - ''
+        - '&aCLIQUE &7para coletar.'
+    Comandos:
+      - 'console: eco dar {jogador} 150'
+
+  caixa_bronze:
+    Exibir:
+      Material: COPPER_BLOCK
+      Nome: '&c&lCaixa de Bronze'
+      Lore:
+        - '&7Top: &f{top}'
+        - '&7Posicao: &f#{posicao} &7({periodo})'
+        - ''
+        - '&aCLIQUE &7para coletar.'
+    Comandos:
+      - 'console: eco dar {jogador} 50'
+
+Tabelas:
+  dinheiro_semanal:
+    "1": caixa_ouro
+    "2": caixa_prata
+    "3-5": caixa_bronze
+    "6-10": "70,caixa_bronze;30,caixa_prata"

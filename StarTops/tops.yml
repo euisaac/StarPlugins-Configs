@@ -1,0 +1,85 @@
+# ==========================================================================
+#  StarTops - os tops
+#
+#  Cada chave dentro de "Tops:" e um ranking. Campos:
+#
+#    Fonte              o id de uma fonte (veja abaixo), "placeholder" ou
+#                        "pontos"; tambem aceita um id customizado registrado
+#                        por outro plugin via StarTopsAPI.registrarFonte(...)
+#    Placeholder        so quando Fonte: placeholder -- qualquer %placeholder%
+#                        numerico do PlaceholderAPI (ex: %vault_eco_balance%)
+#    Nome               nome exibido nos menus/hologramas/mensagens
+#    Periodo            GERAL (nunca zera) | SEMANAL | MENSAL
+#    Formato            NUMERO | DINHEIRO | TEMPO | PERCENTUAL
+#    Limite de posicoes quantas posicoes o ranking guarda (padrao no config.yml)
+#    Posicoes premiadas ate que posicao credita pontos/sorteia recompensa ao
+#                        fechar o periodo (0 desliga os dois pra este top)
+#    Pontos             posicao (ou faixa "3-10") -> quantos pontos ela vale
+#    Visivel no menu    false tira o icone do /tops (o top continua existindo
+#                        para holograma/NPC/placeholder)
+#
+#  Fontes prontas dos StarPlugins (detectadas sozinho, so instalando o
+#  produto -- nada a configurar alem disto):
+#
+#    STARECONOMIA_<MOEDA>       uma por moeda que o StarEconomia tiver
+#                                (ex: STARECONOMIA_DINHEIRO, STARECONOMIA_GEMAS)
+#    STARBANCO_<MOEDA>          idem, se o servidor usar StarBanco no lugar
+#    STARRANKMORTES_KILLS       kills do StarRankMortes
+#    STARRANKMORTES_KILLSTREAK  sequencia recorde de kills do StarRankMortes
+#    STARTEMPOJOGADO_TEMPOONLINE  tempo jogado total do StarTempoJogado
+#
+#  O id ja diz de onde o valor vem -- "/startops listar" mostra, pra cada
+#  top, a fonte configurada e a fonte real por baixo dela. Pra nao precisar
+#  saber o nome exato da moeda so pra montar um top de dinheiro, existem
+#  tambem os apelidos curtos "dinheiro" (moeda primaria do StarEconomia/
+#  StarBanco, o que estiver instalado), "kills", "killstreak" e "tempojogado".
+# ==========================================================================
+
+Versao do modelo: 1
+
+Tops:
+  dinheiro_geral:
+    Fonte: dinheiro
+    Nome: '&aDinheiro'
+    Periodo: GERAL
+    Formato: DINHEIRO
+    Limite de posicoes: 100
+    Posicoes premiadas: 0
+
+  dinheiro_semanal:
+    Fonte: dinheiro
+    Nome: '&aDinheiro (semanal)'
+    Periodo: SEMANAL
+    Formato: DINHEIRO
+    Limite de posicoes: 50
+    Posicoes premiadas: 10
+    Pontos:
+      "1": 200
+      "2": 120
+      "3-5": 50
+      "6-10": 20
+
+  # Exemplo de fonte citada pelo id exato, pra rankear uma moeda especifica do
+  # StarEconomia em vez da moeda primaria (so funciona se essa moeda existir
+  # no seu servidor -- ajuste o nome dela).
+  gemas_geral:
+    Fonte: STARECONOMIA_GEMAS
+    Nome: '&dGemas'
+    Periodo: GERAL
+    Formato: NUMERO
+    Visivel no menu: false
+    Posicoes premiadas: 0
+
+  kills_geral:
+    Fonte: STARRANKMORTES_KILLS
+    Nome: '&cKills'
+    Periodo: GERAL
+    Formato: NUMERO
+    Posicoes premiadas: 0
+
+  tempojogado_geral:
+    Fonte: tempojogado
+    Nome: '&bTempo jogado'
+    Periodo: GERAL
+    Formato: TEMPO
+    Posicoes premiadas: 0

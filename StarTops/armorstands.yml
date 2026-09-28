@@ -1,0 +1,38 @@
+# ==========================================================================
+#  StarTops - bonecos (ArmorStand) plantados no mundo
+#
+#  Diferente do holograma (so texto) e do NPC (uma entidade generica), o
+#  boneco e um ArmorStand de verdade que pode vestir equipamento e ter uma
+#  pose propria -- ideal para montar um "podio" com o top 1/2/3 lado a lado.
+#
+#  Nao edite este arquivo na mao para adicionar um boneco -- use
+#  "/startops topboneco <top> [posicao]" em cima do local desejado (a
+#  "posicao" e QUAL colocacao do ranking aquele boneco especifico mostra: 1
+#  para o topo, 2 para o segundo lugar...) e depois ajuste aqui. Cada boneco e
+#  independente: plante 3 lado a lado, um com Posicao: 1, outro com Posicao: 2
+#  e outro com Posicao: 3, para um podio completo. "/startops removerentidade"
+#  tira o mais proximo.
+#
+#  Campos de cada entrada:
+#    Mundo/X/Y/Z/Yaw/Pitch     onde o boneco fica
+#    Posicao                   qual colocacao do ranking ele representa
+#    Bebe                      true encolhe o boneco (ArmorStand pequeno)
+#    Capacete/Peitoral/Calca/Bota/Mao   material do equipamento (nome do
+#                               XSeries, funciona em qualquer versao); deixe
+#                               "Capacete" vazio para usar a cabeca de verdade
+#                               de quem estiver naquela posicao (atualiza
+#                               sozinho quando o ranking muda); os outros
+#                               vazios simplesmente nao aparecem
+#    Rotacao <parte>           "x;y;z" em graus -- cabeca, corpo, braco
+#                               direito/esquerdo, perna direita/esquerda
+#    Linhas                    o holograma acima do boneco (mesmos
+#                               placeholders de hologramas.yml/npcs.yml:
+#                               {top} {jogador_N} {valor_N} {posicao_N})
+#    Comando ao clicar         vazio abre o menu do top; aceita {jogador}
+#                               {top} {top_jogador} {top_valor}, e o prefixo
+#                               "console:" para rodar como console
+# ==========================================================================
+
+Versao do modelo: 1
+
+Entidades: {}

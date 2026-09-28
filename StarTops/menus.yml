@@ -1,0 +1,191 @@
+# ==========================================================================
+#  StarTops - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+#  Cabeca: Material PLAYER_HEAD + Textura (hash/URL/base64) ou Dono (nick).
+#
+#  Cada tela tem:
+#    Titulo, Linhas    Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Enfeite           O vidro do fundo (Ativar: false deixa vazio).
+#    Slots             Onde o conteudo paginado entra (tops, jogadores do
+#                       ranking, recompensas pendentes), na ordem escrita.
+#    Itens             Botoes fixos: Slot/Slots, Material, Textura, Dono,
+#                       Nome, Lore, Brilho, Permissao, Esconder sem
+#                       permissao e Acoes.
+#
+#  Acoes proprias:  principal | top <id> | pontos | recompensas | coletartudo
+#                   anterior | proxima | fechar
+#  Acoes gerais:    comando: <cmd> | console: <cmd> | mensagem: <texto> |
+#                   anuncio: <texto> | som: <SOM;volume;tom>
+#
+#  Substituicoes comuns a toda tela: {jogador} {pontos} {posicao_pontos}
+#  {pagina} {paginas}. Placeholders do PlaceholderAPI tambem funcionam.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# ---------------------------------------------------------------------------
+#  /tops -- Slots recebe um icone por top visivel, na ordem do tops.yml.
+# ---------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Tops'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Top:
+    Material: BOOK
+    Nome: '&e{top}'
+    Lore:
+      - ''
+      - '&7Periodo: {periodo}'
+      - ''
+      - '&aCLIQUE &7para ver o ranking.'
+
+  Itens:
+    perfil:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&e&lSUAS INFORMACOES'
+      Lore:
+        - ''
+        - '&fPontos: &a{pontos}'
+        - '&fSua posicao no top de pontos: &a{posicao_pontos}'
+        - ''
+
+    pontos:
+      Slot: 40
+      Material: NETHER_STAR
+      Nome: '&d&lRANKING DE PONTOS'
+      Lore:
+        - ''
+        - '&7Cada posicao em cada top'
+        - '&7vale pontos. Veja quem lidera.'
+        - ''
+        - '&aCLIQUE &7para visualizar.'
+      Acoes:
+        - 'pontos'
+
+    recompensas:
+      Slot: 49
+      Material: CHEST
+      Nome: '&6&lRECOMPENSAS'
+      Lore:
+        - ''
+        - '&7Recompensas pendentes de'
+        - '&7colocacoes em tops semanais/mensais.'
+        - ''
+        - '&aCLIQUE &7para coletar.'
+      Acoes:
+        - 'recompensas'
+
+# ---------------------------------------------------------------------------
+#  Ranking de um top (ou dos pontos). Extras: {top}, {periodo},
+#  {minha_posicao}. No item de cada jogador: {posicao}, {jogador}, {valor}.
+# ---------------------------------------------------------------------------
+Top:
+  Titulo: '&8Top {top}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Jogador:
+    Material: PLAYER_HEAD
+    Usar a cabeca do jogador: true
+    Nome: '&e{posicao}. &f{jogador}'
+    Lore:
+      - ''
+      - '&fValor: &a{valor}'
+      - '&fPosicao: &a{posicao}'
+      - ''
+    Brilho no primeiro: true
+
+  Vazio:
+    Mostrar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: '&7{posicao}. &8---'
+    Lore: []
+
+  Itens:
+    eu:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&e{jogador}'
+      Lore:
+        - ''
+        - '&fSua posicao: &a{minha_posicao}'
+        - ''
+    anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Pagina {pagina} de {paginas}'
+      Acoes:
+        - 'anterior'
+    voltar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'principal'
+    proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Pagina {pagina} de {paginas}'
+      Acoes:
+        - 'proxima'
+
+# ---------------------------------------------------------------------------
+#  Recompensas pendentes. Extras: {quantidade_pendente}. No item de cada
+#  recompensa: {top}, {posicao}, {periodo}, {valor} (ja vem do
+#  recompensas.yml -> Exibir, mas os mesmos valores estao disponiveis para
+#  qualquer Lore extra que voce escrever nos botoes fixos abaixo).
+# ---------------------------------------------------------------------------
+Recompensas:
+  Titulo: '&8Recompensas pendentes'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+
+  Vazio:
+    Mostrar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: '&7Vazio'
+    Lore: []
+
+  Itens:
+    coletar_tudo:
+      Slot: 49
+      Material: HOPPER
+      Nome: '&a&lCOLETAR TUDO'
+      Lore:
+        - ''
+        - '&7Voce tem &f{quantidade_pendente} &7recompensa(s)'
+        - '&7pendente(s).'
+        - ''
+        - '&aCLIQUE &7para coletar todas de uma vez.'
+      Acoes:
+        - 'coletartudo'
+    voltar:
+      Slot: 45
+      Material: BARRIER
+      Nome: '&cVoltar'
+      Acoes:
+        - 'principal'
