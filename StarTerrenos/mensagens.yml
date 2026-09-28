@@ -15,6 +15,7 @@ Geral:
   Apenas jogadores: '&cSo quem esta no jogo pode usar este comando.'
   Fora de terreno: '&cVoce precisa estar dentro de um terreno.'
   Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou neste servidor.'
+  Jogador offline: '&cO jogador &f{jogador} &cprecisa estar online para receber isso.'
   Nao e numero: '&f{texto} &cnao e um numero valido.'
   Uso: '&cUse: &f{uso}'
   Mundo bloqueado: '&cOs terrenos nao funcionam neste mundo.'
@@ -215,7 +216,19 @@ Ferramenta:
     - ''
     - '&7Clique num canto do seu terreno'
     - '&7para mudar o tamanho dele.'
-  Recebida: '&aPronto, a ferramenta esta no seu inventario.'
+  Nome inspecao: '&e&lINSPECIONAR TERRENO'
+  Lore inspecao:
+    - '&7Clique com a direita num bloco'
+    - '&7para ver de quem e o terreno.'
+    - ''
+    - '&7Agachado, mostra todos os'
+    - '&7terrenos por perto de uma vez.'
+  Recebida: '&aPronto, as ferramentas estao no seu inventario.'
+  Recebida de staff: '&aVoce recebeu: &f{ferramenta}&a.'
+  Espere: '&cEspere &f{tempo} &cpara pegar a ferramenta de novo.'
+  Tipo criar: 'ferramenta de terreno'
+  Tipo inspecionar: 'item de inspecionar'
+  Tipo ambas: 'ferramenta de terreno e item de inspecionar'
   Cancelado: '&cMarcacao cancelada.'
   Primeiro canto: '&aPrimeiro canto marcado em &fX:{x} Z:{z}&a. Agora marque o outro.'
   Redimensionando: '&aMova o canto: clique onde ele deve ficar agora.'
@@ -257,6 +270,7 @@ Admin:
   Apagado: '&aTerreno de &f{jogador} &aapagado &7({quantidade} no total, contando subterrenos)&a.'
   Transferido: '&aO terreno agora e de &f{jogador}&a.'
   Blocos: '&aBlocos de &f{jogador} &aalterados em &f{quantidade}&a. Total: &f{total}&a.'
+  Ferramenta: '&aEntregue para &f{jogador}&a: &f{ferramenta}&a.'
   Informacoes: |
     &8&m
     &a&lSTARTERRENOS &7v{versao}
@@ -272,7 +286,7 @@ Ajuda:
     &a&lTERRENO
     &a/terreno &7- abre o menu do terreno
     &a/terreno info &7- de quem e este terreno
-    &a/terreno ferramenta &7- pega a ferramenta de marcar
+    &a/terreno ferramenta &7- pega as ferramentas de terreno
     &a/terreno modo <basico|subterreno> &7- o que a ferramenta cria
     &a/terreno blocos &7- seus blocos de terreno
     &a/terreno visualizacao &7- as bordas que voce quer ver
@@ -309,5 +323,6 @@ Ajuda:
     &a/starterrenos apagar &7- apaga o terreno em que voce esta
     &a/starterrenos transferir <jogador> &7- troca o dono
     &a/starterrenos blocos <jogador> <dar|tirar|definir> <n>
+    &a/starterrenos ferramenta <jogador> [criar|inspecionar|ambas]
     &a/starterrenos migrar <griefdefender|griefprevention|tudo>
     &8&m
