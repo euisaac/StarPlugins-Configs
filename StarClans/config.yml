@@ -405,24 +405,28 @@ Placeholders personalizadas:
   #  Placeholders que voce monta a partir das outras, para resolver o que a
   #  tablist e o chat nao sabem fazer: escolher entre dois textos.
   #
-  #  O nome da entrada vira a placeholder. A de baixo cria
-  #  %starclans_tag_formatada% (e tambem responde pelo nome antigo, se voce
-  #  veio de outro plugin de clans).
+  #  O NOME DA ENTRADA VIRA A PLACEHOLDER:  %starclans_<nome>%
+  #  A entrada chamada "tag_formatada" cria %starclans_tag_formatada%.
+  #  (ela tambem responde pelo nome antigo, se voce veio de outro plugin
+  #  de clans, entao a sua formatacao de tablist continua valendo)
   #
-  #    Vem de       o que sera medido. Vazio -> "Quando vazio";
-  #                 qualquer outra coisa -> "Quando tem".
+  #    Vem de        o que sera medido. Vazio -> "Quando vazio";
+  #                  qualquer outra coisa -> "Quando tem".
   #    Quando vazio  o texto usado quando "Vem de" nao devolve nada.
   #    Quando tem    o texto usado quando devolve alguma coisa.
   #
   #  Os tres campos aceitam placeholder de qualquer plugin. A cor e ignorada
   #  na hora de medir, entao um '&7' sozinho continua contando como vazio.
   #
-  #  Para testar: /papi parse <voce> %starclans_tag_formatada%
+  #  Conferir se esta funcionando: /starclans placeholders <nome>
+
+  #  Vira  %starclans_tag_formatada%
   tag_formatada:
     Vem de: '%starclans_tag%'
     Quando vazio: '&7Sem clan'
     Quando tem: '&7[%starclans_tagcolorida%&7]'
 
+  #  Vira  %starclans_tag_propria_formatada%
   tag_propria_formatada:
     Vem de: '%starclans_tag_propria%'
     Quando vazio: '%starclans_tagcolorida%'
