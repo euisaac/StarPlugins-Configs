@@ -1,0 +1,432 @@
+# =====================================================================
+#  StarCosmeticos - as janelas
+#
+#  Todo item aceita:
+#    Slot / Slots       onde ele aparece (Slots e uma lista)
+#    Item               material; nomes novos funcionam em versao antiga
+#    Textura            base64, URL ou hash, para cabecas
+#    Dono               nick, para usar a skin de um jogador
+#    Nome / Lore / Brilho / Quantidade / Encantamentos
+#    Permissao          quem nao tem nao consegue clicar
+#    Esconder sem permissao
+#    Acoes              lista extra, alem do que o botao ja faz
+#
+#  Acoes disponiveis: fechar, atualizar, comando: <cmd>, console: <cmd>,
+#  op: <cmd>, mensagem: <texto>, anuncio: <texto>, titulo: <texto>,
+#  actionbar: <texto>, som: <SOM;volume;tom>.
+#
+#  As chaves dos itens (voltar, proximo, limpar...) sao reconhecidas pelo
+#  plugin: nao troque o nome delas, so o visual.
+# =====================================================================
+
+Versao do modelo: 4
+
+Menus:
+
+  # ------------------------------------------------------------------
+  principal:
+    Titulo: '&8Cosmeticos'
+    Linhas: 6
+    Preencher:
+      Ativar: true
+      Item: GRAY_STAINED_GLASS_PANE
+      Nome: ' '
+
+    # {categoria}, {total}, {desbloqueados} e {equipado} valem em todos.
+    Categorias:
+      cabeca:
+        Slot: 10
+        Item: PLAYER_HEAD
+        Nome: '&e&l{categoria}'
+        Lore:
+          - '&7Chapeus e cabecas para usar'
+          - '&7no lugar do capacete.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      emoji:
+        Slot: 11
+        Item: PAPER
+        Nome: '&d&l{categoria}'
+        Lore:
+          - '&7Uma carinha animada flutuando'
+          - '&7em cima da sua cabeca.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      roupa:
+        Slot: 12
+        Item: LEATHER_CHESTPLATE
+        Nome: '&b&l{categoria}'
+        Lore:
+          - '&7Conjuntos completos de armadura,'
+          - '&7alguns com cores animadas.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      brinquedo:
+        Slot: 13
+        Item: FIREWORK_ROCKET
+        Nome: '&a&l{categoria}'
+        Lore:
+          - '&7Itens de brincadeira que voce'
+          - '&7usa clicando com o botao direito.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      efeito:
+        Slot: 14
+        Item: BLAZE_POWDER
+        Nome: '&c&l{categoria}'
+        Lore:
+          - '&7Particulas que acompanham voce'
+          - '&7por onde andar.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      pet:
+        Slot: 15
+        Item: BONE
+        Nome: '&6&l{categoria}'
+        Lore:
+          - '&7Um bichinho que anda atras de voce.'
+          - '&7Clique com o direito no pet ja'
+          - '&7equipado para trocar o nome dele.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      montaria:
+        Slot: 16
+        Item: SADDLE
+        Nome: '&2&l{categoria}'
+        Lore:
+          - '&7Suba e saia andando.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      capa:
+        Slot: 19
+        Item: ELYTRA
+        Nome: '&5&l{categoria}'
+        Lore:
+          - '&7Um manto de particulas preso'
+          - '&7nas suas costas.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      bandeira:
+        Slot: 20
+        Item: WHITE_BANNER
+        Nome: '&9&l{categoria}'
+        Lore:
+          - '&7Estandartes para usar na cabeca.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      miniatura:
+        Slot: 21
+        Item: ARMOR_STAND
+        Nome: '&3&l{categoria}'
+        Lore:
+          - '&7Um bichinho em miniatura'
+          - '&7girando em volta de voce.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      balao:
+        Slot: 22
+        Item: RED_WOOL
+        Nome: '&c&l{categoria}'
+        Lore:
+          - '&7Um balao boiando ao seu lado,'
+          - '&7preso por um cordao.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      entrada:
+        Slot: 23
+        Item: ENDER_PEARL
+        Nome: '&a&l{categoria}'
+        Lore:
+          - '&7O que acontece quando voce'
+          - '&7entra no servidor.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      morte:
+        Slot: 24
+        Item: SKELETON_SKULL
+        Nome: '&8&l{categoria}'
+        Lore:
+          - '&7O que acontece no lugar'
+          - '&7onde voce morrer.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      rastro:
+        Slot: 25
+        Item: GRASS_BLOCK
+        Nome: '&e&l{categoria}'
+        Lore:
+          - '&7A marca que fica no chao'
+          - '&7por onde voce passou.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      pulo:
+        Slot: 28
+        Item: RABBIT_FOOT
+        Nome: '&b&l{categoria}'
+        Lore:
+          - '&7O que acontece cada vez'
+          - '&7que voce pula.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      golpe:
+        Slot: 29
+        Item: IRON_SWORD
+        Nome: '&c&l{categoria}'
+        Lore:
+          - '&7O que aparece em quem'
+          - '&7voce acerta.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      abate:
+        Slot: 30
+        Item: DIAMOND_SWORD
+        Nome: '&4&l{categoria}'
+        Lore:
+          - '&7O que aparece quando voce'
+          - '&7derruba alguem de vez.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+      animacao:
+        Slot: 31
+        Item: ENDER_CHEST
+        Nome: '&d&l{categoria}'
+        Lore:
+          - '&7Como a sua caixa misteriosa'
+          - '&7abre: o caminho, o desenho'
+          - '&7de particulas e os sons.'
+          - ''
+          - '&7Voce tem: &f{desbloqueados}&7/&f{total}'
+          - '&7Usando: &f{equipado}'
+          - ''
+          - '&eClique para abrir'
+
+    Itens:
+      caixas:
+        Slot: 47
+        Item: CHEST
+        Nome: '&b&lCAIXAS MISTERIOSAS'
+        Lore:
+          - '&7Abra as suas caixas e descubra'
+          - '&7o que vem dentro.'
+          - ''
+          - '&7Caixas: &f{caixas}'
+          - '&7Fragmentos: &b{fragmentos}'
+          - ''
+          - '&eClique para abrir'
+      limpar:
+        Slot: 49
+        Item: BARRIER
+        Nome: '&c&lTIRAR TUDO'
+        Lore:
+          - '&7Remove todos os cosmeticos'
+          - '&7que voce esta usando.'
+          - ''
+          - '&eClique para tirar'
+      fabricar:
+        Slot: 51
+        Item: ANVIL
+        Nome: '&b&lFABRICAR CAIXAS'
+        Lore:
+          - '&7Troque os seus fragmentos'
+          - '&7por caixas novas.'
+          - ''
+          - '&7Fragmentos: &b{fragmentos}'
+          - ''
+          - '&eClique para abrir'
+
+  # ------------------------------------------------------------------
+  categoria:
+    Titulo: '&8{categoria} &7({pagina}/{paginas})'
+    Linhas: 6
+    Preencher:
+      Ativar: false
+      Item: GRAY_STAINED_GLASS_PANE
+      Nome: ' '
+    Slots: [ 10, 11, 12, 13, 14, 15, 16,
+             19, 20, 21, 22, 23, 24, 25,
+             28, 29, 30, 31, 32, 33, 34,
+             37, 38, 39, 40, 41, 42, 43 ]
+
+    Itens:
+      anterior:
+        Slot: 45
+        Item: ARROW
+        Nome: '&ePagina anterior'
+      voltar:
+        Slot: 49
+        Item: OAK_DOOR
+        Nome: '&cVoltar'
+        Lore:
+          - '&7Volta para o menu principal.'
+      limpar:
+        Slot: 48
+        Item: BARRIER
+        Nome: '&cTirar desta categoria'
+        Lore:
+          - '&7Usando: &f{equipado}'
+      nome do pet:
+        Slot: 50
+        Item: NAME_TAG
+        Nome: '&aTrocar o nome do pet'
+        Lore:
+          - '&7So funciona com um pet equipado.'
+      proximo:
+        Slot: 53
+        Item: ARROW
+        Nome: '&eProxima pagina'
+
+  # ------------------------------------------------------------------
+  caixas:
+    Titulo: '&8Caixas misteriosas'
+    Linhas: 5
+    Preencher:
+      Ativar: true
+      Item: GRAY_STAINED_GLASS_PANE
+      Nome: ' '
+    Slots: [ 19, 20, 21, 22, 23, 24, 25 ]
+
+    Itens:
+      sem caixas:
+        Slot: 4
+        Item: BARRIER
+        Nome: '&cVoce nao tem nenhuma caixa'
+        Lore:
+          - '&7Junte fragmentos abrindo caixas'
+          - '&7e troque por caixas novas.'
+      voltar:
+        Slot: 36
+        Item: OAK_DOOR
+        Nome: '&cVoltar'
+      info:
+        Slot: 40
+        Item: BOOK
+        Nome: '&bSuas contas'
+        Lore:
+          - '&7Caixas: &f{caixas}'
+          - '&7Fragmentos: &b{fragmentos}'
+      fabricar:
+        Slot: 44
+        Item: ANVIL
+        Nome: '&b&lFABRICAR CAIXAS'
+        Lore:
+          - '&7Fragmentos: &b{fragmentos}'
+          - ''
+          - '&eClique para abrir'
+
+  # ------------------------------------------------------------------
+  fabricar:
+    Titulo: '&8Fabricar caixas'
+    Linhas: 3
+    Preencher:
+      Ativar: true
+      Item: GRAY_STAINED_GLASS_PANE
+      Nome: ' '
+    Slots: [ 11, 13, 15 ]
+
+    Itens:
+      voltar:
+        Slot: 22
+        Item: OAK_DOOR
+        Nome: '&cVoltar'
+        Lore:
+          - '&7Fragmentos: &b{fragmentos}'
+
+  # ------------------------------------------------------------------
+  abertura:
+    Titulo: '&8Abrindo {caixa}'
+    Linhas: 3
+    # Onde o premio para no fim da roleta.
+    Slot do premio: 13
+    Preencher:
+      Ativar: true
+      Item: BLACK_STAINED_GLASS_PANE
+      Nome: ' '
+    Itens: { }
+
+  # ------------------------------------------------------------------
+  confirmar:
+    Titulo: '&8Comprar {nome}'
+    Linhas: 3
+    Preencher:
+      Ativar: true
+      Item: GRAY_STAINED_GLASS_PANE
+      Nome: ' '
+
+    Itens:
+      info:
+        Slot: 4
+      coins:
+        Slot: 11
+        Item: LIME_STAINED_GLASS_PANE
+        Nome: '&a&lCOMPRAR COM COINS'
+        Lore:
+          - '&7Preco: &f{coins} coins'
+          - '&7Voce tem: &f{seus_coins}'
+          - ''
+          - '&eClique para comprar'
+      cash:
+        Slot: 15
+        Item: DIAMOND
+        Nome: '&b&lCOMPRAR COM CASH'
+        Lore:
+          - '&7Preco: &f{cash} cash'
+          - '&7Voce tem: &f{seu_cash}'
+          - ''
+          - '&eClique para comprar'
+      cancelar:
+        Slot: 22
+        Item: BARRIER
+        Nome: '&c&lCANCELAR'
+        Lore:
+          - '&7Volta sem comprar nada.'

@@ -1,0 +1,118 @@
+# =====================================================================
+#  StarCosmeticos - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso
+#  sem precisar de uma opcao para cada um.
+#
+#  Use | para mensagens de varias linhas -- nelas o prefixo nao entra.
+# =====================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&b&lCOSMETICOS &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cEste comando so funciona dentro do jogo.'
+  Carregando: '&cSeus dados ainda estao carregando, tente de novo em instantes.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Ajuda: |
+    &b&lCOSMETICOS
+    &7/cosmeticos &8- &fabre o menu
+    &7/cosmeticos <categoria> &8- &fabre uma categoria direto
+    &7/cosmeticos caixas &8- &fsuas caixas misteriosas
+    &7/cosmeticos fragmentos &8- &ftroca fragmentos por caixas
+    &7/cosmeticos limpar &8- &ftira tudo que voce esta usando
+
+Menu:
+  Nenhum: '&7nenhum'
+  Todas: '&7todas'
+  # Linhas de preco montadas pelo plugin. Cada uma some da lore quando
+  # aquele cosmetico nao cobra naquela moeda.
+  Linha coins: '&7Preco: &f{coins} coins'
+  Linha cash: '&7Preco: &b{cash} cash'
+
+Cosmetico:
+  Equipou: '&aVoce equipou &f{nome}&a.'
+  Tirou: '&7Voce tirou &f{nome}&7.'
+  Limpou: '&7Voce tirou o cosmetico de &f{categoria}&7.'
+  Limpou tudo: '&7Todos os seus cosmeticos foram removidos.'
+  Bloqueado: '&cVoce ainda nao tem &f{nome} &7({raridade}&7)&c.'
+  Recebeu: '&aVoce recebeu o cosmetico &f{nome}&a!'
+  Mundo bloqueado: '&cOs cosmeticos nao funcionam neste mundo.'
+  Bloqueado PvP: '&cOs cosmeticos ficam desligados nesta area de PvP.'
+  Categoria desligada: '&cA categoria &f{categoria} &cesta desativada.'
+  Nao pode tirar: '&cTire o cosmetico pelo menu, nao pelo inventario.'
+
+Compra:
+  Comprou: '&aVoce comprou &f{nome} &apor &f{preco} {moeda}&a.'
+  Sem coins: '&cVoce nao tem coins suficientes. Preco: &f{preco}&c.'
+  Sem cash: '&cVoce nao tem cash suficiente. Preco: &f{preco}&c.'
+  Nome dos coins: 'coins'
+  Nome do cash: 'cash'
+
+Brinquedo:
+  Aguarde: '&cEspere &f{segundos}s &cpara usar &f{nome} &cde novo.'
+
+Pet:
+  Sem pet: '&cVoce precisa estar com um pet para trocar o nome dele.'
+  Digite o nome: |
+    &b&lNOME DO PET
+    &7Digite no chat o nome novo do seu pet.
+    &7Entre &f{minimo} &7e &f{maximo} &7letras, ou escreva &fcancelar&7.
+  Cancelou: '&7Troca de nome cancelada.'
+  Nome invalido: '&cO nome precisa ter entre &f{minimo} &ce &f{maximo} &cletras.'
+  Nome proibido: '&cEsse nome nao e permitido, escolha outro.'
+  Nome alterado: '&aO seu pet agora se chama &f{nome}&a.'
+
+Caixa:
+  Ganhou: '&aVoce ganhou &f{premio}&a! &7({raridade}&7)'
+  Repetido: '&7Repetido: &f{premio}&7. Voce ganhou &b{fragmentos} fragmentos &7(total: &f{total}&7).'
+  Anuncio: '&e{jogador} &7abriu &f{caixa} &7e tirou &f{premio} &7({raridade}&7)!'
+  Ja abrindo: '&cEspere a caixa que voce ja abriu terminar.'
+  Sem caixas: '&cVoce nao tem nenhuma &f{caixa}&c.'
+  Vazia: '&cA caixa &f{caixa} &cnao tem nenhum premio configurado.'
+  Nao existe: '&cA caixa &f{caixa} &cnao existe.'
+  Recebeu: '&aVoce recebeu &f{quantidade}x {caixa}&a! Total: &f{total}&a.'
+  Fabricou: '&aVoce trocou &b{fragmentos} fragmentos &apor &f{caixas}x {caixa}&a.'
+  Sem fragmentos: '&cFaltam &b{faltam} fragmentos&c. Este pacote custa &b{precisa}&c.'
+
+Fragmentos:
+  Saldo: '&7Voce tem &b{fragmentos} fragmentos&7.'
+
+Admin:
+  Recarregado: '&aConfiguracoes recarregadas.'
+  Ajuda: |
+    &b&lSTARCOSMETICOS
+    &7/starcosmeticos caixa add [caixa] &8- &fmarca o bloco que voce olha
+    &7/starcosmeticos caixa del &8- &ftira a marcacao do bloco
+    &7/starcosmeticos caixa dar <jogador> <caixa> [qtd]
+    &7/starcosmeticos fragmentos <dar|tirar|definir> <jogador> <qtd>
+    &7/starcosmeticos dar <jogador> <categoria> <id|*>
+    &7/starcosmeticos tirar <jogador> <categoria> <id|*>
+    &7/starcosmeticos limpar <jogador>
+    &7/starcosmeticos info [jogador]
+    &7/starcosmeticos recarregar
+  Ajuda caixa: '&7Use: &f/starcosmeticos caixa <add|del|dar>'
+  Ajuda fragmentos: '&7Use: &f/starcosmeticos fragmentos <dar|tirar|definir> <jogador> <qtd>'
+  Ajuda dar: '&7Use: &f/starcosmeticos dar <jogador> <categoria> <id|*>'
+  Sem bloco: '&cOlhe para um bloco a no maximo 6 blocos de distancia.'
+  Caixa adicionada: '&aBloco marcado como caixa misteriosa &f({caixa})&a.'
+  Caixa ja existe: '&cEste bloco ja e uma caixa misteriosa.'
+  Caixa removida: '&aMarcacao removida deste bloco.'
+  Caixa nao encontrada: '&cEste bloco nao e uma caixa misteriosa.'
+  Caixa dada: '&aVoce deu &f{quantidade}x {caixa} &apara &f{jogador}&a.'
+  Fragmentos: '&a{jogador} agora tem &b{total} fragmentos&a.'
+  Categoria invalida: '&cA categoria &f{categoria} &cnao existe.'
+  Cosmetico invalido: '&cNao existe cosmetico com o id &f{id}&c.'
+  Deu: '&aVoce deu &f{nome} &apara &f{jogador}&a.'
+  Tirou: '&aVoce tirou &f{nome} &ade &f{jogador}&a.'
+  Deu tudo: '&aVoce deu &f{quantidade} &acosmeticos de &f{categoria} &apara &f{jogador}&a.'
+  Tirou tudo: '&aVoce tirou todos os cosmeticos de &f{categoria} &ade &f{jogador}&a.'
+  Limpou: '&aOs cosmeticos de &f{jogador} &aforam removidos.'
+  Info: |
+    &b&lSTARCOSMETICOS &8- &f{jogador}
+    &7Banco: &f{banco}
+    &7Fragmentos: &b{fragmentos}
+    &7Caixas: &f{caixas}
+    &7Desbloqueados: &f{desbloqueados}&7/&f{catalogo}

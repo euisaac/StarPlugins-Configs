@@ -1,0 +1,240 @@
+# =====================================================================
+#  StarCosmeticos - caixa misteriosa
+#
+#  Como funciona:
+#    1. O jogador ganha caixas (comando, loja, evento, fabricacao).
+#    2. Ele abre em /cosmeticos caixas ou clicando num bloco marcado
+#       com /starcosmeticos caixa add.
+#    3. A roleta sorteia um cosmetico entre os "Premios" da caixa,
+#       usando o Peso da raridade dele (config.yml).
+#    4. Se ja tiver aquele cosmetico, vira fragmento; senao, desbloqueia.
+#    5. Fragmentos voltam a virar caixa no menu de fabricar.
+# =====================================================================
+
+Versao do modelo: 4
+
+Holograma:
+  Ativar: true
+  # Altura a partir do bloco marcado.
+  Altura: 1.8
+  Linhas:
+    - '&b&lCAIXA MISTERIOSA'
+    - '&7Clique para abrir'
+
+Abertura:
+  # Como a caixa abre:
+  #
+  #   MUNDO -> a caixa aparece na frente do jogador (ou em cima do bloco
+  #            marcado), sobe girando, estoura e o premio fica boiando
+  #            no ar com o nome escrito em cima. Todo mundo por perto ve.
+  #   MENU  -> uma roleta dentro do inventario, so para quem abriu.
+  Modo: MUNDO
+
+  # Raridades que avisam o servidor inteiro quando saem. Deixe vazio
+  # ([ ]) para nunca anunciar. Vale nos dois modos.
+  Anunciar raridades:
+    - lendario
+
+  # ------------------------------------------------------------- MUNDO
+  Mundo:
+    # ESTE E O PADRAO DO SERVIDOR. Quem tiver um cosmetico da categoria
+    # "animacoes" equipado abre com o roteiro DELE, e nao com este --
+    # veja cosmeticos/animacoes.yml.
+
+    # O que representa a caixa fechada enquanto ela sobe.
+    Item: CHEST
+
+    # O caminho que a caixa faz subindo:
+    #   SUBIR   reto para cima (o classico)
+    #   ORBITA  da uma volta em torno do ponto enquanto sobe
+    #   QUEDA   cai do ceu e freia na altura final
+    #   ESPIRAL sobe em espiral, do largo para o estreito
+    #   PORTAL  fica rente ao chao e dispara no fim
+    #   TREMOR  sobe tremendo, como se estivesse presa
+    Estilo: SUBIR
+
+    # Desenho de particulas em volta da caixa. Aceita qualquer forma dos
+    # efeitos (ANEL, VORTICE, GALAXIA, TORNADO, TEIA, DNA, as ASAS...).
+    # Vazio usa o anel classico, que fecha conforme a caixa sobe.
+    Forma: ''
+
+    # Em ticks (20 = 1 segundo).
+    Subida: 40        # quanto tempo a caixa sobe girando
+    Mostrando: 60     # quanto tempo o premio fica no ar depois do estouro
+
+    Altura: 1.4       # a que altura do chao a caixa para
+    Distancia: 2.2    # a quantos blocos na frente do jogador ela aparece
+
+    Particulas:
+      - FLAME
+      - CRIT_MAGIC
+    Particula do estouro: EXPLOSION_LARGE
+
+    Som da subida: 'BLOCK_NOTE_BLOCK_HAT;1;1.4'
+    Som da abertura: 'ENTITY_GENERIC_EXPLODE;1;1.4'
+
+    # O texto que aparece em cima do premio. {premio}, {raridade},
+    # {caixa} e {jogador} sao trocados na hora.
+    Holograma:
+      - '&f&l{premio}'
+      - '{raridade}'
+
+  # -------------------------------------------------------------- MENU
+  # Quanto tempo a roleta gira, em ticks. Ela desacelera sozinha ate parar.
+  Duracao: 70
+  Som do giro: 'UI_BUTTON_CLICK;1;1.6'
+  Som do premio: 'ENTITY_PLAYER_LEVELUP;1;1'
+
+# ---------------------------------------------------------------------
+#  Os tipos de caixa
+#
+#  Premios aceita:
+#    'cabeca:astronauta'  um cosmetico exato
+#    'cabeca:*'           a categoria inteira (so o que tiver
+#                         "Na caixa misteriosa: true", que e o padrao)
+#
+#  Fragmentos por repetido: -1 usa o valor da raridade do cosmetico
+#  (config.yml). Qualquer outro numero vale para a caixa toda.
+# ---------------------------------------------------------------------
+Caixas:
+
+  comum:
+    Nome: '&fCaixa comum'
+    Fragmentos por repetido: -1
+    Icone:
+      Item: CHEST
+      Nome: '&f&lCAIXA COMUM'
+      Lore:
+        - '&7A caixa do dia a dia. Sai de tudo'
+        - '&7um pouco, com mais chance de comum.'
+        - ''
+        - '&7Premios possiveis: &f{premios}'
+        - '&7Voce tem: &f{quantidade}'
+        - ''
+        - '&eClique para abrir'
+    Premios:
+      - 'cabeca:*'
+      - 'emoji:*'
+      - 'efeito:*'
+      - 'brinquedo:*'
+      - 'balao:*'
+      - 'entrada:*'
+      - 'rastro:*'
+      - 'pulo:*'
+      - 'animacao:*'
+    Comandos ao abrir: [ ]
+
+  rara:
+    Nome: '&aCaixa rara'
+    Fragmentos por repetido: -1
+    Icone:
+      Item: ENDER_CHEST
+      Nome: '&a&lCAIXA RARA'
+      Lore:
+        - '&7Sem as cabecas mais simples:'
+        - '&7aqui sai roupa, capa e pet.'
+        - ''
+        - '&7Premios possiveis: &f{premios}'
+        - '&7Voce tem: &f{quantidade}'
+        - ''
+        - '&eClique para abrir'
+    Premios:
+      - 'roupa:*'
+      - 'capa:*'
+      - 'pet:*'
+      - 'bandeira:*'
+      - 'miniatura:*'
+      - 'morte:*'
+      - 'golpe:*'
+    Comandos ao abrir: [ ]
+
+  lendaria:
+    Nome: '&6Caixa lendaria'
+    Fragmentos por repetido: -1
+    Icone:
+      Item: TRAPPED_CHEST
+      Nome: '&6&lCAIXA LENDARIA'
+      Lore:
+        - '&7Tudo que existe no catalogo,'
+        - '&7montarias inclusive.'
+        - ''
+        - '&7Premios possiveis: &f{premios}'
+        - '&7Voce tem: &f{quantidade}'
+        - ''
+        - '&eClique para abrir'
+    Premios:
+      - 'cabeca:*'
+      - 'emoji:*'
+      - 'roupa:*'
+      - 'brinquedo:*'
+      - 'efeito:*'
+      - 'pet:*'
+      - 'montaria:*'
+      - 'capa:*'
+      - 'bandeira:*'
+      - 'miniatura:*'
+      - 'balao:*'
+      - 'entrada:*'
+      - 'morte:*'
+      - 'rastro:*'
+      - 'pulo:*'
+      - 'golpe:*'
+      - 'abate:*'
+      - 'animacao:*'
+    Comandos ao abrir: [ ]
+
+# ---------------------------------------------------------------------
+#  Fragmentos -> caixas
+#
+#  Caixa vazia ('') entrega a primeira caixa deste arquivo.
+#  Slot -1 deixa o pacote entrar na ordem dos "Slots" do menu.
+# ---------------------------------------------------------------------
+Fabricar:
+
+  pacote_1:
+    Nome: '&f1 caixa comum'
+    Fragmentos: 100
+    Caixas: 1
+    Caixa: comum
+    Slot: 11
+    Icone:
+      Item: CHEST
+      Nome: '&f&l1x CAIXA COMUM'
+      Lore:
+        - '&7Custa &b{fragmentos} fragmentos&7.'
+        - '&7Voce tem: &b{seus_fragmentos}'
+        - '&cFaltam: &b{faltam}'
+        - ''
+        - '&eClique para fabricar'
+
+  pacote_2:
+    Nome: '&a1 caixa rara'
+    Fragmentos: 300
+    Caixas: 1
+    Caixa: rara
+    Slot: 13
+    Icone:
+      Item: ENDER_CHEST
+      Nome: '&a&l1x CAIXA RARA'
+      Lore:
+        - '&7Custa &b{fragmentos} fragmentos&7.'
+        - '&7Voce tem: &b{seus_fragmentos}'
+        - '&cFaltam: &b{faltam}'
+        - ''
+        - '&eClique para fabricar'
+
+  pacote_3:
+    Nome: '&61 caixa lendaria'
+    Fragmentos: 900
+    Caixas: 1
+    Caixa: lendaria
+    Slot: 15
+    Icone:
+      Item: TRAPPED_CHEST
+      Nome: '&6&l1x CAIXA LENDARIA'
+      Lore:
+        - '&7Custa &b{fragmentos} fragmentos&7.'
+        - '&7Voce tem: &b{seus_fragmentos}'
+        - '&cFaltam: &b{faltam}'
+        - ''
+        - '&eClique para fabricar'

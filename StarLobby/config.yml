@@ -440,6 +440,19 @@ double-jump:
   sound: 'FIREWORK_LAUNCH'
   permission: 'starlobby.doublejump'
 
+# Zonas de PvP permitido (flag "pvp" do WorldGuard, ou bandeira "PVP" do
+# StarMundoSeguro, em ALLOW/PERMITIR): quem não tiver o bypass abaixo perde o
+# voo (preferência do /preferencias) e o pulo duplo ao entrar. Região sem a
+# flag definida NÃO conta como liberada -- só zonas marcadas de propósito
+# (arena de batalha, PvP aberto) ativam isto; o resto do lobby continua livre.
+# Sem WorldGuard nem StarMundoSeguro instalados, nada disto age.
+pvp-arena:
+  bloquear-fly: true
+  bloquear-double-jump: true
+  bypass-permission: 'starlobby.bypass.pvp'
+  # Mensagem ao perder o voo por entrar numa zona de PvP (vazio = silêncio).
+  fly-removido: '&cVocê perdeu o voo: esta área tem PvP liberado.'
+
 # Sistema de combate HubPvP (item de combate no inventário, inspirado no
 # HubPvPSword) + batalha/arena x1/arena ffa (itens 8, 9 e 10). Clicar no item
 # "combat.item" entra em combate livre no lobby; /batalha desafia outro

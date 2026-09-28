@@ -1,0 +1,244 @@
+# =====================================================================
+#  StarCosmeticos - configuracao principal
+#
+#  Dezoito categorias de cosmetico num menu so, com caixa misteriosa,
+#  fragmentos e raridades.
+#
+#  Cada categoria tem o seu proprio arquivo, dentro da pasta cosmeticos/.
+#  Aqui ficam as regras que valem para todas.
+#
+#  Cores: use & (ex.: &a, &e) e, da 1.16 em diante, &#RRGGBB.
+# =====================================================================
+
+# Nao mexa: e por este numero que o plugin sabe que o modelo do arquivo
+# mudou numa atualizacao. Quando ele sobe, o seu arquivo antigo e guardado
+# ao lado como config-antigo-vN.yml e o novo entra no lugar.
+Versao do modelo: 5
+
+# Mensagens extras no console para achar problema de configuracao.
+Debug: false
+
+Banco de dados:
+  # SQLITE (padrao, arquivo dentro da pasta do plugin) ou MYSQL.
+  # Use MYSQL quando quiser os mesmos cosmeticos em varios servidores.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starcosmeticos_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Geral:
+  # Modelo da permissao de cada cosmetico. {categoria} vira cabeca, emoji,
+  # roupa, brinquedo, efeito, pet, montaria, capa ou bandeira; {id} vira a
+  # chave do cosmetico no arquivo dele.
+  #
+  # Com o modelo abaixo, starcosmeticos.cabeca.* libera todas as cabecas.
+  # Qualquer cosmetico pode ter uma permissao propria: e so escrever
+  # "Permissao:" dentro dele.
+  Permissao: 'starcosmeticos.{categoria}.{id}'
+
+  # ------------------------------------------------------------------
+  #  Os dois itens que o plugin poe na barra do jogador
+  #
+  #  O da esquerda e o que ABRE o menu, e fica sempre no mesmo lugar.
+  #  O outro e o cosmetico EQUIPADO da categoria brinquedos, que aparece
+  #  e some conforme o jogador escolhe.
+  #
+  #  Os dois slots vao de 0 a 8 e precisam ser DIFERENTES, senao um cobre
+  #  o outro (o console avisa se voce repetir).
+  # ------------------------------------------------------------------
+
+  Item do menu:
+    # false = ninguem recebe o item e o menu so abre por comando.
+    Ativar: true
+
+    # Slot fixo na barra, de 0 (primeiro) a 8 (ultimo).
+    Slot: 3
+
+    # true prende o item no slot: o jogador nao consegue arrastar nem
+    # jogar fora, e ele volta sozinho depois de morrer ou trocar de mundo.
+    # false deixa o item solto, como um item comum.
+    Fixo: true
+
+    # Vazio da para todo mundo. Preencha para entregar so a um grupo.
+    Permissao: ''
+
+    Item: NETHER_STAR
+    # Textura so vale quando o Item e uma cabeca (base64, URL ou hash).
+    Textura: ''
+    Nome: '&b&lCOSMETICOS'
+    Lore:
+      - '&7Clique com o botao direito'
+      - '&7para abrir o menu.'
+    Brilho: false
+
+  # Onde o item do brinquedo equipado aparece. O que estava neste slot e
+  # guardado e devolvido quando o brinquedo sai.
+  Slot do brinquedo: 5
+
+  Nome do pet:
+    # {jogador} = dono, {pet} = nome escolhido por ele, {nome} = nome do cosmetico.
+    Modelo: '&e{jogador} &7| &f{pet}'
+    Minimo de letras: 3
+    Maximo de letras: 16
+    Palavras proibidas: [ ]
+
+  # {jogador} e {nome} valem aqui tambem.
+  Nome da montaria: '&e{jogador} &7| &f{nome}'
+
+  # Tira os cosmeticos quando o jogador morre. Desligado, so o pet, a
+  # montaria e o emoji somem, e tudo volta no renascimento.
+  Limpar ao morrer: true
+
+  # Tira os cosmeticos quando ele troca de mundo.
+  Limpar ao trocar de mundo: false
+
+  # Lembra o que estava equipado e veste de novo quando ele entra.
+  Lembrar o que estava equipado: true
+
+  # Passo da tarefa de animacao, em ticks. Cada cosmetico ainda respeita o
+  # proprio "Atualizar" -- subir este numero deixa TUDO mais lento de uma
+  # vez, e so faz sentido em servidor muito cheio.
+  Passo da animacao: 1
+
+  Restringir por mundo:
+    Ativar: false
+    Mundos permitidos:
+      - lobby
+      - spawn
+
+  # Zona de PvP liberado (flag "pvp" do WorldGuard, ou bandeira "PVP" do
+  # StarMundoSeguro, em ALLOW/PERMITIR): desliga os cosmeticos de quem entra
+  # e devolve ao sair, sem apagar o que a pessoa tinha equipado. Regiao sem a
+  # flag definida NAO conta como liberada -- so zonas marcadas de proposito
+  # (arena de batalha, PvP aberto) ativam isto. Sem WorldGuard nem
+  # StarMundoSeguro instalados, nada disto age.
+  Bloquear em PvP:
+    Ativar: true
+    Permissao de bypass: 'starcosmeticos.bypass.pvp'
+
+  # Os tres caminhos que liberam um cosmetico. Podem ser combinados.
+  Como desbloquear:
+    # Todo mundo usa tudo, sem permissao e sem caixa.
+    Todos: false
+    # A permissao do cosmetico libera.
+    Permissao: true
+    # O que saiu da caixa misteriosa fica com o jogador.
+    Caixa misteriosa: true
+
+  # Ligue ou desligue categorias inteiras. Categoria desligada some do menu,
+  # dos comandos e do sorteio da caixa.
+  Categorias:
+    cabeca:
+      Ativar: true
+      Nome: '&eCabecas'
+    emoji:
+      Ativar: true
+      Nome: '&dEmojis'
+    roupa:
+      Ativar: true
+      Nome: '&bRoupas'
+    brinquedo:
+      Ativar: true
+      Nome: '&aBrinquedos'
+    efeito:
+      Ativar: true
+      Nome: '&cEfeitos'
+    pet:
+      Ativar: true
+      Nome: '&6Pets'
+    montaria:
+      Ativar: true
+      Nome: '&2Montarias'
+    capa:
+      Ativar: true
+      Nome: '&5Capas'
+    bandeira:
+      Ativar: true
+      Nome: '&9Bandeiras'
+    miniatura:
+      Ativar: true
+      Nome: '&3Miniaturas'
+    balao:
+      Ativar: true
+      Nome: '&cBaloes'
+    entrada:
+      Ativar: true
+      Nome: '&aEfeitos de entrada'
+    morte:
+      Ativar: true
+      Nome: '&8Efeitos de morte'
+    rastro:
+      Ativar: true
+      Nome: '&eRastros'
+    pulo:
+      Ativar: true
+      Nome: '&bEfeitos de pulo'
+    golpe:
+      Ativar: true
+      Nome: '&cEfeitos de golpe'
+    abate:
+      Ativar: true
+      Nome: '&4Efeitos de abate'
+    animacao:
+      Ativar: true
+      Nome: '&dAnimacoes de caixa'
+
+  # Cor, nome e peso de cada raridade.
+  #
+  #  Fragmentos: quanto o cosmetico vale quando sai repetido da caixa.
+  #  Peso:       chance relativa no sorteio. Peso 40 sai quatro vezes mais
+  #              que peso 10. Nao precisa somar 100.
+  Raridades:
+    comum:
+      Nome: 'Comum'
+      Cor: '&f'
+      Fragmentos: 5
+      Peso: 50
+    raro:
+      Nome: 'Raro'
+      Cor: '&a'
+      Fragmentos: 15
+      Peso: 28
+    epico:
+      Nome: 'Epico'
+      Cor: '&d'
+      Fragmentos: 40
+      Peso: 15
+    lendario:
+      Nome: 'Lendario'
+      Cor: '&6'
+      Fragmentos: 100
+      Peso: 7
+
+Economia:
+  Coins:
+    # VAULT  -> qualquer plugin de economia registrado no Vault.
+    # COMANDO -> le o saldo por placeholder e cobra por comando; use quando
+    #            a sua economia nao registra no Vault.
+    Tipo: VAULT
+    # So usado no modo COMANDO.
+    Placeholder: '%vault_eco_balance%'
+    # {jogador}, {uuid} e {valor} sao trocados na hora.
+    Comando de retirada: ''
+
+  # A segunda moeda, sempre por placeholder + comando. Deixe os dois vazios
+  # para desligar a compra com cash.
+  Cash:
+    Placeholder: ''
+    Comando de retirada: ''
+
+  Fragmentos:
+    # Simbolo que aparece nas lores ao lado do numero de fragmentos.
+    Simbolo: '&b*'
+
+# Formato: SOM;volume;tom. O nome do som e traduzido entre as versoes,
+# entao ENTITY_PLAYER_LEVELUP funciona tambem numa 1.8.
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Equipar: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+  Compra: 'ENTITY_PLAYER_LEVELUP;1;1'
