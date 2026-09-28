@@ -24,8 +24,17 @@ primeira-vez:
     - "&b&lNOVO JOGADOR &f➤ &bSeja bem-vindo(a) &f%player_name%&b!"
     - ""
 
-  # Comandos rodados via console, uma unica vez, so nessa primeira entrada.
-  # Ex.: dar um kit inicial, mensagem no discord, etc.
+  # Anuncio mandado a TODOS os jogadores online quando alguem entra pela
+  # primeira vez. Lista vazia = sem anuncio.
+  anuncio: []
+  #  - "&e&lNOVO! &fO jogador &6%player_name% &fentrou pela primeira vez no servidor!"
+
+  # Comandos rodados uma unica vez, so nessa primeira entrada (mesmo com
+  # "ativado: false" acima). Cada linha pode comecar com [console] (padrao)
+  # ou [jogador] (roda como o proprio jogador). Placeholders: %player_name%
+  # {player}. Ex.:
+  #  - "[console] kit inicial %player_name%"
+  #  - "[jogador] spawn"
   comandos: []
 
   # "BemVindo premiado": chance de comecar uma festa de boas-vindas na
@@ -72,3 +81,11 @@ primeira-vez:
         chance: 100
         comandos:
           - "money add %player_premiado% 5000"
+
+# Comandos rodados em TODA entrada (inclusive a primeira), no mesmo formato
+# dos de "primeira-vez.comandos" ([console] / [jogador]).
+comandos-toda-entrada: []
+
+# Espera antes de rodar os comandos de entrada, em ticks (20 = 1 segundo):
+# da tempo do jogador terminar de entrar (e ir pro spawn) antes de receber kit etc.
+comandos-atraso-ticks: 20

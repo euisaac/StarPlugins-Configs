@@ -65,6 +65,8 @@ compactar:
 # primeiro cuja permissao o jogador tiver e' o que vale.
 lose-on-death:
   ativado: false
+  # Moeda do economias.yml de onde sai a perda. Vazio = Vault.
+  economia: ''
   # Maximo que pode ser perdido numa morte so. 0 = sem limite.
   maximo: 0
   niveis:
@@ -79,14 +81,27 @@ lose-on-death:
 
 # Configuracoes gerais de teleporte (/spawn, /warp, /tpa, /back etc.).
 teleporte:
+  # Espera antes de teleportar. Por permissao da pra dar menos:
+  # staressentials.teleporte.tempo.<segundos> (vale o menor; ex.: tempo.1 pro VIP).
   delay-padrao-segundos: 3
   cancelar-ao-mover: true
+  # Levar dano ou atacar alguem durante a espera tambem cancela (fugir de luta pelo /spawn).
+  cancelar-ao-levar-dano: true
+  cancelar-ao-atacar: true
   som-ao-teleportar: "ENTITY_ENDERMAN_TELEPORT"
   tpa-expira-segundos: 60
+  # Lugares para onde o /tpa e o /tpahere nao levam: "mundo" (mundo inteiro)
+  # ou "mundo:regiao" (regiao do WorldGuard ou do StarMundoSeguro).
+  # Bypass: staressentials.tpa.bypass
+  tpa-bloqueados: []
   # Quando um staff manda outro jogador direto (ex.: /spawn <jogador>, /warp <warp> <jogador>),
   # pula o delay de teleporte pra esse jogador em vez de fazer ele esperar parado.
   forcar-sem-delay: true
   back:
+    # /back volta pro lugar de onde o jogador saiu no ultimo teleporte (comando
+    # deste plugin, /tp, outro plugin...). Portal e ender pearl nao contam.
+    salvar-ao-teleportar: true
+    # /back tambem volta pro lugar onde o jogador morreu.
     salvar-antes-de-morrer: true
     # Cooldown proprio do /back, em segundos. 0 = desativado.
     cooldown-segundos: 0
@@ -105,13 +120,14 @@ teleporte:
 # Configuracoes do /home, /sethome, /delhome e /homes.
 homes:
   limite-padrao: 3
+  # Mundos onde nao da pra marcar home. Bypass: staressentials.homeworld.bypass
   bloquear-em-mundos: []
   # Comandos rodados via console pelo /darhome, pra dar mais limite de home a
   # alguem (ex.: liberar uma permissao de limite maior no seu gerenciador de
   # permissoes). Placeholders: %player% %quantia% %antigo% %novo%
   dar-comandos: []
 
-# Mundos onde o /warp fica bloqueado.
+# Mundos onde o /warp fica bloqueado. Bypass: staressentials.warpworld.bypass
 warps:
   bloquear-em-mundos: []
 
@@ -142,6 +158,8 @@ plugin:
 # Configuracoes do /kit.
 kits:
   cooldown-padrao-segundos: 3600
+  # Cada kit exige a permissao staressentials.kit.<nome> (ou staressentials.kit.*).
+  permissao-por-kit: false
   # Adiciona uma lore aos itens do kit dizendo de quem e' o kit.
   lore-ativado: false
   lore:
@@ -165,8 +183,22 @@ bancadas:
 
 # Comportamento do spawn ao entrar no servidor.
 spawn:
+  # Manda pro spawn em TODA entrada no servidor.
   entrar-automaticamente-no-login: false
+  # Manda pro spawn na PRIMEIRA entrada (jogador novo), mesmo com a opcao acima desligada.
+  primeira-entrada: true
+  # Quem tem staressentials.spawn.vip vai pro spawn VIP (se ele estiver marcado).
+  usar-spawn-vip: true
+  # Modo de jogo aplicado em toda entrada: SURVIVAL, CREATIVE, ADVENTURE, SPECTATOR ou "" (nao mexe).
+  # Bypass: staressentials.gamemode.login.bypass
   gamemode-ao-entrar: ""
+
+# Toda entrada no servidor.
+entrada:
+  # Limpa o chat de quem entra (antes das boas-vindas).
+  limpar-chat: false
+  # Visao noturna ao entrar e ao renascer.
+  visao-noturna: false
 
 # Configuracoes do /randomtp - teleporte aleatorio dentro de um raio.
 randomtp:
@@ -212,6 +244,8 @@ reparar:
 vagas:
   ativado: false
   maximo: 100
+  # Vagas extras acima do maximo, so para quem tem staressentials.vagas.bypass (ou OP).
+  reservadas: 0
   mensagem-kick: "&cO servidor esta cheio! Tente novamente mais tarde."
 
 # Modo deus (/god) automatico pra quem tem a permissao "staressentials.god" ao entrar.
@@ -257,6 +291,12 @@ tab-tags:
 
 # O que acontece quando um jogador morre.
 morte:
+  # Renasce no spawn (o VIP para quem tem staressentials.spawn.vip).
+  renascer-no-spawn: false
+  # Com o de cima ligado: quem tem cama marcada renasce na cama.
+  priorizar-cama: true
+  # Pula a tela de "Voce morreu" (renasce na hora).
+  pular-tela-de-morte: false
   dropar-cabeca: false
   chance-dropar-cabeca: 100
 
@@ -309,8 +349,11 @@ restricoes:
   bloquear-criacao-portal: false
   bloquear-teleporte-portal: false
   mobs-imunes-fogo: false
+  # Tira do void quem cai: ao levar dano de void ou ao passar para baixo de y-limite-void.
   protecao-void: false
   y-limite-void: -64
+  # Mundos onde o void mata normalmente (minigames que eliminam na queda).
+  void-mundos-ignorados: []
   itens-banidos: []
   spawner-quebra-sem-silk-touch: false
 
@@ -399,3 +442,18 @@ enderpearl:
 # (o jogador e transferido pra outro servidor da rede, nao e um warp local).
 lobby:
   destinos: []
+
+# Itens que nao podem ficar no inventario (sao removidos a cada varredura e ao
+# entrar). Diferente de restricoes.itens-banidos, que so bloqueia o craft.
+# Bypass: staressentials.banitem.bypass
+itens-proibidos:
+  ativado: false
+  intervalo-segundos: 5
+  # Por material. Ex.: [BEDROCK, BARRIER]
+  materiais: []
+  # Por chave NBT (PersistentDataContainer, 1.14+): "plugin:chave" ou so "chave".
+  nbt: []
+  # Por CustomModelData (1.14+). Ex.: [999999]
+  custom-model-data: []
+  # So o item SEM CustomModelData (a versao sem textura do pacote). Ex.: [NETHERITE_SWORD]
+  sem-textura: []
