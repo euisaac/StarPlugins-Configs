@@ -12,7 +12,7 @@
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 4
+Versao do modelo: 5
 
 #
 # ══════════════════════  MENU DE QUEM NAO TEM CLAN  ═══════════════════════
@@ -236,12 +236,12 @@ Menu do clan:
       Material: 'COMPASS'
       Nome: '&b&lBASE DO CLAN'
       Lore:
-        - '&7O ponto de encontro do clan.'
+        - '&7A base e as homes do clan.'
         - '&r'
         - '&7Local: &f{base}'
+        - '&7Homes: &f{homes}&7/&f{maximo_homes}'
         - '&r'
-        - '&a&lCLIQUE &fpara ir'
-        - '&e&lCLIQUE DIREITO &fpara definir aqui'
+        - '&a&lCLIQUE &fpara abrir'
     Mercado:
       Slot: 22
       Material: 'EMERALD'
@@ -1129,6 +1129,74 @@ Menu de info do jogador:
         - '&a&lCLIQUE &fpara ver o clan'
     Voltar:
       Slot: 22
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ══════════════════════════════  BASES  ═══════════════════════════════════
+#
+Menu de bases:
+  #  A base e as vagas de home do clan. Cada ponto e um item: o que ele faz
+  #  esta escrito nele, em vez de depender de decorar o tipo do clique.
+  Titulo: '&8Bases &7» &f{nome}'
+  Linhas: 4
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  #  Um slot por vaga, na ordem. Sobrando slot, o resto nao e usado; a
+  #  quantidade real vem de "Base.Maximo de homes" no config.yml.
+  Slots das homes: [ 19, 20, 21, 22, 23, 24, 25, 28, 29, 30 ]
+
+  Definida: '&aDefinida'
+  Sem definir: '&cNao definida'
+
+  Home:
+    #  Vaga ocupada.
+    Material: 'LODESTONE'
+    Nome: '&b&lHOME {vaga}'
+    Lore:
+      - '&7Local: &f{local}'
+      - '&r'
+      - '&a&lCLIQUE &fpara ir'
+      - '&c&lCLIQUE DIREITO &fpara apagar'
+
+  Livre:
+    #  Vaga comprada e ainda vazia.
+    Material: 'LIGHT_GRAY_DYE'
+    Nome: '&7&lHOME {vaga}'
+    Lore:
+      - '&7Esta vaga esta livre.'
+      - '&r'
+      - '&a&lCLIQUE &fpara definir aqui'
+
+  Trancada:
+    #  Vaga que o clan ainda nao comprou no mercado.
+    Material: 'IRON_BARS'
+    Nome: '&8&lHOME {vaga}'
+    Lore:
+      - '&7O clan ainda nao tem esta vaga.'
+      - '&r'
+      - '&7Compre no mercado do clan.'
+
+  Botoes:
+    Base:
+      Slot: 4
+      Material: 'COMPASS'
+      Nome: '&b&lBASE DO CLAN'
+      Lore:
+        - '&7O ponto de encontro do clan.'
+        - '&r'
+        - '&7Local: &f{base}'
+        - '&7Estado: {estado}'
+        - '&r'
+        - '&a&lCLIQUE &fpara ir'
+        - '&e&lCLIQUE DIREITO &fpara definir aqui'
+    Voltar:
+      Slot: 31
       Material: 'ARROW'
       Nome: '&c&lVOLTAR'
       Lore: []
