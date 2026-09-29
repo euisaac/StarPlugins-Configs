@@ -1,0 +1,76 @@
+# ==========================================================
+#                        StarFAWE
+#   Edicao de mundo rapida e sem travar o servidor
+# ==========================================================
+
+Motor:
+  # Quanto de cada tick (50 ms) a edicao pode usar para colocar blocos.
+  # 25 = metade do tick. Mais alto termina antes; mais baixo pesa menos.
+  Milissegundos por tick: 25
+  # Diminui o tempo por tick sozinho quando o TPS cai.
+  Ajustar pelo TPS: true
+  # Abaixo deste TPS as edicoes esperam o servidor se recuperar.
+  Pausar abaixo do TPS: 12.0
+  # Threads que calculam as edicoes fora da thread principal. 0 = automatico.
+  Threads de calculo: 0
+  # Quantas edicoes (de jogadores diferentes) andam ao mesmo tempo.
+  Edicoes simultaneas: 3
+  # Quantas edicoes um jogador pode deixar na fila.
+  Fila por jogador: 5
+  # Atualizar fisica (agua escorrer, areia cair) nos blocos colocados.
+  # Desligado e bem mais rapido e e o que os editores de mundo fazem.
+  Aplicar fisica: false
+  # Barra de progresso na actionbar de quem esta editando.
+  Mostrar progresso: true
+
+Limites:
+  # Maximo de blocos trocados por edicao. Por jogador: starfawe.limite.<numero>
+  # (ex.: starfawe.limite.5000000). starfawe.semlimite tira todos os limites.
+  Blocos por edicao: 2000000
+  # Raio maximo de esferas, cilindros e ferramentas em volta do jogador.
+  Raio maximo: 150
+  Raio maximo do pincel: 15
+  # Tamanho maximo do que pode ser copiado (blocos).
+  Area de transferencia maxima: 30000000
+
+Historico:
+  # Quantas edicoes cada jogador pode desfazer (ficam gravadas no disco).
+  Maximo por jogador: 25
+  # Apaga do disco o historico mais velho que isto, na subida. 0 = nunca.
+  Apagar depois de dias: 7
+
+Area de transferencia:
+  # Guarda o que o jogador copiou quando ele sai, e devolve quando ele entra.
+  Guardar ao sair: true
+  Maximo para guardar: 5000000
+
+Esquemas:
+  # Formato do //schem salvar quando nao for informado:
+  #   schem     -> editores modernos (1.13+)
+  #   schematic -> editores antigos (1.8 - 1.12)
+  #   starfawe  -> o nosso; guarda tambem o conteudo de baus, placas e spawners
+  Formato padrao: schem
+  # Pastas de onde tambem da para carregar esquemas (so leitura).
+  Pastas extras:
+    - plugins/WorldEdit/schematics
+    - plugins/FastAsyncWorldEdit/schematics
+
+Varinha:
+  Material: WOODEN_AXE
+
+Pincel:
+  # Distancia maxima que o pincel alcanca.
+  Alcance: 200
+  Espera entre usos (ms): 250
+
+Visualizacao:
+  # Contorno de particulas na selecao enquanto segura a varinha.
+  Ativa: true
+  Intervalo em ticks: 10
+  Maximo de particulas: 400
+
+# Mundos onde ninguem edita (quem tem starfawe.semlimite passa).
+Mundos bloqueados: []
+
+# Comandos de edicao desligados. Ex.: ["/regen", "/butcher"]
+Comandos desativados: []

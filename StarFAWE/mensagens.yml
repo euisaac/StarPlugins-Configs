@@ -1,0 +1,244 @@
+# ==========================================================
+#                 StarFAWE - Mensagens
+#   Cores: &a &b ... e hex &#RRGGBB (1.16+). Texto vazio desliga a mensagem.
+# ==========================================================
+Versao do modelo: 1
+
+prefixo: '&d&lSTARFAWE &8» &7'
+
+erro:
+  uso: '&cUso correto: &f{uso}'
+  so-jogador: '&cEste comando so pode ser usado dentro do jogo.'
+  sem-permissao: '&cVoce nao tem permissao para isso.'
+  sem-selecao: '&cFaca uma selecao primeiro: &f//wand &c(esquerdo = ponto 1, direito = ponto 2) ou &f//pos1 &ce &f//pos2&c.'
+  sem-area: '&cVoce nao copiou nada ainda. Use &f//copy &cou &f//schem carregar <nome>&c.'
+  sem-alvo: '&cOlhe para um bloco (ate 300 blocos de distancia).'
+  bloco-invalido: '&cBloco desconhecido: &f{bloco}&c. Exemplos: &fstone&c, &f50%stone,50%dirt&c, &foak_stairs[facing=east]&c.'
+  mascara-invalida: '&cMascara invalida: &f{mascara}&c. Exemplos: &fstone,dirt&c, &f!air&c, &f>grass_block&c, &f#solido&c.'
+  numero-invalido: '&cNumero invalido: &f{valor}'
+  direcao-invalida: '&cDirecao invalida: &f{direcao}&c. Use cima, baixo, norte, sul, leste, oeste, frente, tras, esquerda ou direita.'
+  coordenadas: '&cCoordenadas invalidas: &f{valor}&c. Use &fx,y,z&c.'
+  raio-maximo: '&cO maximo permitido e &f{maximo}&c.'
+  area-grande: '&cA selecao passa do tamanho maximo que pode ser copiado (&f{maximo} &cblocos).'
+  mundo-bloqueado: '&cA edicao esta bloqueada no mundo &f{mundo}&c.'
+  fila-cheia: '&cVoce ja tem &f{maximo} &cedicoes na fila. Espere terminar ou use &f//cancelar&c.'
+  jogador-nao-encontrado: '&cJogador &f{jogador} &cnunca entrou no servidor.'
+  interno: '&cErro inesperado: &f{erro}&c. Avise a staff.'
+
+varinha:
+  nome: '&d&lVarinha de Selecao'
+  lore:
+    - '&7Clique &fesquerdo &7num bloco: &dponto 1'
+    - '&7Clique &fdireito &7num bloco: &dponto 2'
+    - ''
+    - '&8StarFAWE'
+
+selecao:
+  varinha: '&aVarinha entregue! &7Esquerdo marca o ponto 1, direito o ponto 2.'
+  pos1: '&dPonto 1 &7definido em &f{pos} &8(&7{volume} blocos&8)'
+  pos2: '&dPonto 2 &7definido em &f{pos} &8(&7{volume} blocos&8)'
+  limpa: '&7Selecao limpa.'
+  alterada: '&7Selecao: &f{min} &7ate &f{max} &8(&7{volume} blocos&8)'
+  tamanho: '&7Selecao &f{largura}x{altura}x{comprimento} &8(&7{volume} blocos&8) &7de &f{min} &7ate &f{max}'
+  chunk: '&7Chunk &f{x}, {z} &7selecionado inteiro.'
+  pequena-demais: '&cA selecao ficaria vazia com esse tanto.'
+  contagem: '&7Encontrados &f{quantidade} &7blocos de &f{volume}&7.'
+  distribuicao-titulo: '&7Distribuicao de &f{total} &7blocos:'
+  distribuicao-linha: '  &f{quantidade} &8(&7{porcentagem}%&8) &d{bloco}'
+
+edicao:
+  na-fila: '&7Sua edicao entrou na fila &8(&f{posicao}&7 na sua frente&8)&7.'
+  concluida: '&a{descricao} &7concluido: &f{blocos} &7blocos em &f{tempo}&7.'
+  cancelada: '&eEdicao cancelada. &7{blocos} blocos chegaram a ser trocados; &f//undo &7desfaz.'
+  limite: '&cA edicao parou no seu limite de &f{limite} &cblocos. &7O que foi feito pode ser desfeito com &f//undo&7.'
+  erro: '&cA edicao falhou: &f{erro}&c. O que foi feito pode ser desfeito com &f//undo&c.'
+
+progresso:
+  barra: '&d&lEDITANDO &8[{barra}&8] &f{porcentagem}% &8• &f{blocos} &7blocos &8• &7falta &f{restante}'
+  na-fila: '&7Sua edicao esta na fila...'
+  pausado: '&eEdicao pausada &7- use &f//pausar &7para retomar.'
+  pausado-tps: '&eEdicao aguardando o servidor &8(&7TPS {tps}&8)'
+
+area:
+  copiada: '&a{volume} &7blocos copiados &8({largura}x{altura}x{comprimento})&7. Use &f//paste &7para colar.'
+  recortada: '&a{volume} &7blocos recortados &8({largura}x{altura}x{comprimento})&7.'
+  sem-origem: '&cEsta copia nao sabe o lugar original (veio de um esquema).'
+  graus-invalidos: '&cUse multiplos de 90: &f90&c, &f180&c, &f270&c ou &f-90&c.'
+  girada: '&7Copia girada &f{graus}&7 graus.'
+  espelhada: '&7Copia espelhada no eixo &f{eixo}&7.'
+  limpa: '&7Area de transferencia limpa.'
+
+esquema:
+  salvando: '&7Salvando &f{nome}&7...'
+  salvo: '&aEsquema &f{nome} &asalvo &8({tamanho})&a.'
+  carregando: '&7Carregando &f{nome}&7...'
+  carregado: '&aEsquema &f{nome} &acarregado &8({largura}x{altura}x{comprimento})&a. Use &f//paste&a.'
+  nao-encontrado: '&cEsquema &f{nome} &cnao encontrado. Veja a lista com &f//schem listar&c.'
+  ja-existe: '&cJa existe &f{nome}&c. Use &f-f &cpara sobrescrever.'
+  nome-invalido: '&cNome invalido: use letras, numeros, _ e - (ate 64).'
+  formato-invalido: '&cFormato invalido. Use &fschem&c, &fschematic &cou &fstarfawe&c.'
+  apagado: '&7Esquema &f{nome} &7apagado.'
+  erro: '&cFalha no esquema: &f{erro}'
+  lista-vazia: '&7Nenhum esquema salvo ainda.'
+  lista-titulo: '&7Esquemas &8(&f{quantidade}&8) &7- pagina &f{pagina}/{paginas}'
+  lista-linha: '  &d{nome} &8- &7{arquivo} &8({tamanho})'
+  formatos: '&7Formatos: &fschem &8(editores 1.13+)&7, &fschematic &8(editores 1.8-1.12)&7, &fstarfawe &8(guarda baus, placas e spawners)&7. Todos abrem em qualquer versao.'
+
+historico:
+  aguarde: '&cEspere a sua edicao em andamento terminar (ou use &f//cancelar&c).'
+  nada-para-desfazer: '&7Nada para desfazer.'
+  nada-para-refazer: '&7Nada para refazer.'
+  desfeito: '&a{quantidade} &7edicao(oes) desfeita(s).'
+  refeito: '&a{quantidade} &7edicao(oes) refeita(s).'
+  limpo: '&7Historico apagado &8({quantidade} edicoes)&7.'
+  vazio: '&7O historico esta vazio.'
+  mundo-descarregado: '&cO mundo &f{mundo} &cdessa edicao nao esta carregado.'
+  arquivo-perdido: '&cO arquivo da edicao &f#{numero} &cnao pode ser lido.'
+  titulo: '&7Historico &8- &f{desfazer} &7para desfazer, &f{refazer} &7para refazer:'
+  linha: '  &8#{numero} &f{descricao} &8- &7{blocos} blocos em {mundo} &8({tempo})'
+  linha-desfeita: '  &8#{numero} &7&m{descricao}&r &8- &7{blocos} blocos &8(desfeita, {tempo})'
+
+pincel:
+  definido: '&aPincel &f{tipo} &apreso ao item &f{item} &8(raio {raio})&a. Clique direito para usar.'
+  removido: '&7Pincel removido de &f{item}&7.'
+  nenhum: '&cO item da sua mao nao tem pincel. Use &f/br&c.'
+  mao-vazia: '&cSegure um item na mao para prender o pincel.'
+  item-da-varinha: '&cA varinha de selecao nao pode virar pincel.'
+  tipo-invalido: '&cTipo de pincel desconhecido: &f{tipo}&c.'
+  mascara: '&7Mascara do pincel: &f{mascara}'
+  mascara-removida: '&7Mascara do pincel removida.'
+  padrao: '&7Padrao do pincel: &f{padrao}'
+  raio: '&7Raio do pincel: &f{raio}'
+  sem-alvo: '&cNenhum bloco ao alcance.'
+
+utilidade:
+  butcher: '&7{quantidade} monstros removidos.'
+  gmask: '&7Mascara global: &f{mascara} &8(vale para todas as suas edicoes)'
+  gmask-removida: '&7Mascara global removida.'
+  up: '&7Subiu &f{altura} &7bloco(s). &8(vidro embaixo dos seus pes)'
+  up-bloqueado: '&cTem bloco no caminho: nao cabe voce la em cima.'
+  up-fora-do-mundo: '&cEssa altura passa do limite do mundo.'
+
+fila:
+  vazia: '&7Nenhuma edicao em andamento.'
+  titulo: '&7Edicoes na fila: &f{quantidade} &8(TPS {tps})'
+  linha: '  &8#{numero} &f{jogador} &7{descricao} &8- {estado} &f{porcentagem}% &8({blocos} blocos)'
+  canceladas: '&e{quantidade} &7edicao(oes) cancelada(s).'
+  pausada: '&eEdicao pausada.'
+  retomada: '&aEdicao retomada.'
+  estado:
+    na_fila: '&7na fila'
+    rodando: '&arodando'
+    pausada: '&epausada'
+    concluida: '&aconcluida'
+    cancelada: '&ccancelada'
+
+ajuda:
+  cabecalho:
+    - '&d&lStarFAWE &8- &7edicao de mundo rapida'
+    - '&7Use &f//ajuda <categoria> &7para ver os comandos:'
+  categoria: '  &d{categoria} &8({quantidade} comandos)'
+  categoria-invalida: '&cCategoria desconhecida: &f{categoria}'
+  titulo: '&7Comandos de &d{categoria}&7:'
+  linha: '  &f{uso} &8- &7{descricao}'
+
+admin:
+  recarregado: '&aStarFAWE recarregado.'
+  info:
+    - '&d&lStarFAWE &f{versao}'
+    - '&7Era do servidor: &f{era}'
+    - '&7TPS medido: &f{tps} &8| &7Threads de calculo: &f{threads}'
+    - '&7Edicoes na fila: &f{fila}'
+    - '&7Desde a subida: &f{edicoes} &7edicoes, &f{blocos} &7blocos'
+    - '&7Estados de bloco conhecidos: &f{estados}'
+    - '&7Comandos em conflito com outro plugin: &f{conflitos}'
+
+menu:
+  fechar:
+    nome: '&cFechar'
+    lore: []
+  voltar:
+    nome: '&7Voltar'
+    lore: []
+  anterior:
+    nome: '&7Pagina anterior'
+    lore: []
+  proxima:
+    nome: '&7Proxima pagina'
+    lore: []
+  principal:
+    titulo: '&8StarFAWE'
+    info:
+      nome: '&d&lStarFAWE &f{versao}'
+      lore:
+        - '&7TPS: &f{tps}'
+        - '&7Edicoes na fila: &f{fila}'
+    varinha:
+      nome: '&dVarinha de selecao'
+      lore:
+        - '&7Clique para receber.'
+    selecao:
+      nome: '&dSelecao'
+      lore:
+        - '&7Ponto 1: &f{pos1}'
+        - '&7Ponto 2: &f{pos2}'
+        - '&7Volume: &f{volume}'
+        - ''
+        - '&eClique para limpar.'
+    visualizar-ligado:
+      nome: '&aContorno da selecao: ligado'
+      lore:
+        - '&7Particulas enquanto segura a varinha.'
+        - '&eClique para desligar.'
+    visualizar-desligado:
+      nome: '&cContorno da selecao: desligado'
+      lore:
+        - '&eClique para ligar.'
+    copiar:
+      nome: '&dCopiar'
+      lore:
+        - '&7Copia a selecao (//copy).'
+    colar:
+      nome: '&dColar'
+      lore:
+        - '&7Cola onde voce esta (//paste).'
+    area:
+      nome: '&dArea de transferencia'
+      lore:
+        - '&7Tamanho: &f{tamanho}'
+        - ''
+        - '&eClique direito para esquecer.'
+    desfazer:
+      nome: '&dDesfazer'
+      lore:
+        - '&7Edicoes para desfazer: &f{quantidade}'
+    refazer:
+      nome: '&dRefazer'
+      lore:
+        - '&7Edicoes para refazer: &f{quantidade}'
+    historico:
+      nome: '&dHistorico'
+      lore:
+        - '&7Lista as ultimas edicoes.'
+    fila:
+      nome: '&dFila'
+      lore:
+        - '&7Suas edicoes em andamento: &f{quantidade}'
+    cancelar:
+      nome: '&cCancelar edicoes'
+      lore:
+        - '&7Para tudo que e seu na fila.'
+        - '&7O que foi feito pode ser desfeito.'
+    esquemas:
+      nome: '&dEsquemas'
+      lore:
+        - '&7Clique para ver e carregar.'
+  esquemas:
+    titulo: '&8Esquemas {pagina}/{paginas}'
+    item:
+      nome: '&d{nome}'
+      lore:
+        - '&7Formato: &f{formato}'
+        - '&7Tamanho: &f{tamanho}'
+        - ''
+        - '&eClique para carregar.'
