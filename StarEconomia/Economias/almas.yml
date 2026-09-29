@@ -96,49 +96,125 @@ magnata:
   enabled: false
   minimo: 0.0
   tag: '&5[Ceifador]'
-  simbolo: '💀'
+  simbolo: '☠'
 
 # Abate: da almas automaticamente quando o jogador mata um mob, animal ou outro jogador. "mobs"
-# e um mapa <EntityType do Bukkit>: <quantia> -- vale tanto para hostis quanto para
-# passivos/animais; qualquer nome que nao estiver na lista nao da nada. "jogador" e a quantia
-# por matar outro jogador (PvP); 0 desativa so essa parte. Precisa ser um jogador quem da o
-# golpe final -- morte por fogo, queda, outro mob etc nao conta. Este recurso e generico: da
-# pra ativar em qualquer moeda (ver o bloco comentado em money.yml/cash.yml), a "almas" so ja
-# vem pronta de fabrica.
+# e um mapa <EntityType do Bukkit>: {quantidade, chance} -- vale tanto para hostis quanto para
+# passivos/animais; qualquer nome que nao estiver na lista nao da nada. Precisa ser um jogador
+# quem da o golpe final -- morte por fogo, queda, outro mob etc nao conta. Este recurso e
+# generico: da pra ativar em qualquer moeda (ver o bloco comentado em money.yml/cash.yml), a
+# "almas" so ja vem pronta de fabrica.
+#
+# "quantidade": um numero fixo (ex: 5) ou uma FAIXA em texto (ex: '1-3', tambem com decimais tipo
+# '0.5-1.5') sorteada a cada abate -- da variacao no valor ganho em vez de sempre o mesmo numero.
+# "chance" (0-100): chance do abate render a quantia -- 100 = sempre da; abaixo disso e sorteio
+# a parte (independente do sorteio da quantidade). "jogador" (PvP) usa o mesmo formato.
+#
+# O exemplo abaixo ja vem com uma economia pensada: PvP baixo (20%, pra nao virar a forma
+# principal de ganhar almas) e mobs escalando com a dificuldade -- passivos (vaca, porco...) tem
+# chance baixa (15-20%, sao faceis de fazer em massa), hostis comuns ficam por volta de 45-60%, e
+# os mais dificeis/raros (wither skeleton, elder guardian) quase sempre dao (90-100%).
 abate:
   enabled: true
-  jogador: 5.0
+  jogador:
+    quantidade: 5
+    chance: 20.0
   mobs:
-    ZOMBIE: 1.0
-    SKELETON: 1.0
-    SPIDER: 1.0
-    CAVE_SPIDER: 1.0
-    CREEPER: 1.5
-    ENDERMAN: 3.0
-    WITCH: 2.0
-    BLAZE: 2.5
-    WITHER_SKELETON: 4.0
-    PIGLIN: 1.5
-    ZOMBIFIED_PIGLIN: 1.0
-    DROWNED: 1.5
-    HUSK: 1.0
-    STRAY: 1.5
-    PHANTOM: 2.0
-    GUARDIAN: 3.0
-    ELDER_GUARDIAN: 10.0
-    SHULKER: 3.0
-    SLIME: 0.5
-    MAGMA_CUBE: 1.0
-    SILVERFISH: 0.5
-    COW: 0.25
-    PIG: 0.25
-    SHEEP: 0.25
-    CHICKEN: 0.1
-    RABBIT: 0.1
-    HORSE: 0.25
-    WOLF: 0.25
-    OCELOT: 0.25
-    TURTLE: 0.25
+    # -- hostis comuns (chance media) --
+    ZOMBIE:
+      quantidade: 0.5-1.5
+      chance: 50.0
+    SKELETON:
+      quantidade: 0.5-1.5
+      chance: 50.0
+    SPIDER:
+      quantidade: 0.5-1.5
+      chance: 50.0
+    CAVE_SPIDER:
+      quantidade: 0.5-1.5
+      chance: 45.0
+    HUSK:
+      quantidade: 0.5-1.5
+      chance: 45.0
+    ZOMBIFIED_PIGLIN:
+      quantidade: 0.5-1.5
+      chance: 45.0
+    DROWNED:
+      quantidade: 1-2
+      chance: 50.0
+    MAGMA_CUBE:
+      quantidade: 0.5-1.5
+      chance: 45.0
+    SLIME:
+      quantidade: 0.25-0.75
+      chance: 40.0
+    SILVERFISH:
+      quantidade: 0.25-0.75
+      chance: 40.0
+    # -- hostis mais dificeis (chance media-alta) --
+    CREEPER:
+      quantidade: 1-2
+      chance: 60.0
+    WITCH:
+      quantidade: 1.5-2.5
+      chance: 65.0
+    PHANTOM:
+      quantidade: 1.5-2.5
+      chance: 60.0
+    STRAY:
+      quantidade: 1-2
+      chance: 55.0
+    PIGLIN:
+      quantidade: 1-2
+      chance: 55.0
+    # -- dificeis/raros (chance alta) --
+    ENDERMAN:
+      quantidade: 2-4
+      chance: 75.0
+    BLAZE:
+      quantidade: 2-3
+      chance: 75.0
+    GUARDIAN:
+      quantidade: 2.5-3.5
+      chance: 75.0
+    SHULKER:
+      quantidade: 2.5-3.5
+      chance: 80.0
+    # -- praticamente chefes (chance muito alta) --
+    WITHER_SKELETON:
+      quantidade: 3-5
+      chance: 90.0
+    ELDER_GUARDIAN:
+      quantidade: 8-12
+      chance: 100.0
+    # -- passivos/animais (chance baixa -- sao faceis de fazer em massa) --
+    COW:
+      quantidade: 0.1-0.3
+      chance: 20.0
+    PIG:
+      quantidade: 0.1-0.3
+      chance: 20.0
+    SHEEP:
+      quantidade: 0.1-0.3
+      chance: 20.0
+    HORSE:
+      quantidade: 0.1-0.3
+      chance: 20.0
+    WOLF:
+      quantidade: 0.1-0.3
+      chance: 20.0
+    OCELOT:
+      quantidade: 0.1-0.3
+      chance: 20.0
+    TURTLE:
+      quantidade: 0.1-0.3
+      chance: 20.0
+    CHICKEN:
+      quantidade: 0.05-0.15
+      chance: 15.0
+    RABBIT:
+      quantidade: 0.05-0.15
+      chance: 15.0
 
 # Titulo rapido na tela do jogador quando ele ganha ou perde almas (inclusive por abate).
 # Placeholders: {valor} (quantia da transacao, sempre positiva), {simbolo}, {unidade}, {saldo}
@@ -219,23 +295,23 @@ cheques:
         - ''
         - '&7Clique com botao direito para ativar'
 
-# Loja desta moeda ("/almas loja" pra comprar, "/almas loja editor" pra staff editar -- arrasta o
-# item num slot vazio e o preco/quantidade/categoria sao pedidos no chat). Vem LIGADA por padrao
-# aqui, com um "Mercado Negro" (armadura/ferramentas de netherite, maca e totem de exemplo) --
-# os itens ficam em Lojas/almas.yml (criado no primeiro "/almas loja"/"loja editor" com esse
-# exemplo ja preenchido), num YAML legivel: da pra editar na mao (material, nome, lore, encantos,
-# preco, quantidade, categoria) ou pelo editor visual, os dois mexem no mesmo arquivo.
-# "slots-borda" e so decoracao (nao aceita item no editor); qualquer slot fora dela e onde a
-# staff pode colocar item. "lore-info" e o que se soma ao lore de cada item na hora de EXIBIR na
-# loja (categoria/quantidade/preco).
+# Loja desta moeda ("/almas loja" pra comprar, "/almas loja editor" pra staff editar). O editor
+# abre primeiro uma tela de configuracao (tamanho de cada pagina, quantidade de paginas) e so
+# depois leva pro editor de itens de verdade -- ali e so arrastar o item num slot vazio, o
+# preco/quantidade/categoria sao pedidos no chat. A ULTIMA LINHA de cada pagina e reservada pra
+# navegacao (anterior/config/proxima) -- nao aceita item, sem borda decorativa nenhuma. Vem
+# LIGADA por padrao aqui, com um "Mercado Negro" (armadura/ferramentas de netherite, maca e
+# totem de exemplo) -- os itens ficam em Lojas/almas.yml (criado no primeiro "/almas loja"/"loja
+# editor" com esse exemplo ja preenchido), num YAML legivel: da pra editar na mao (material,
+# nome, lore, encantos, preco, quantidade, categoria) ou pelo editor visual, os dois mexem no
+# mesmo arquivo. "size" e "paginas" tambem sao editaveis na tela de configuracao do editor (isso
+# aqui so e o valor inicial). "lore-info" e o que se soma ao lore de cada item na hora de EXIBIR
+# na loja (categoria/quantidade/preco).
 loja:
   enabled: true
   titulo: '&8Mercado Negro'
   size: 36
-  slots-borda: [0,1,2,3,4,5,6,7,8,9,17,18,26,27,28,29,30,31,32,33,34,35]
-  borda:
-    material: BLACK_STAINED_GLASS_PANE
-    nome: ' '
+  paginas: 1
   lore-info:
     - ''
     - '&fCategoria: &d{categoria}'
@@ -408,6 +484,8 @@ messages:
     alternar-desativado: '&cVoce desativou o recebimento de almas.'
     top-vazio: '&cAinda nao ha ranking para esta moeda.'
     top-desativado: '&cO top desta moeda esta desativado.'
+    top-atualizando: '&7Atualizando o ranking...'
+    top-atualizado: '&aRanking atualizado &7({quantidade} jogador(es)).'
     historico-vazio: '&cO historico desta moeda esta desativado ou vazio.'
     formatar: '&a{entrada} &7-> &a{saida}&7.'
     npc-setado: '&aNPC de top da posicao &f{posicao}&a criado/movido para a sua localizacao.'
@@ -453,12 +531,36 @@ messages:
     &f > &a/almas delnpc &f<posicao> &8- &7Remove o NPC de top.
     &f > &a/almas loja &8- &7Abre o Mercado Negro (compra itens com almas).
     &f > &a/almas loja editor &8- &7Edita a loja (arraste item + preco no chat).
+    &f > &a/almas analisar &f[jogador] &8- &7Ranking de vendas (tipo StarValores).
     &f > &a/almas reload &8- &7Recarrega esta moeda.
+    &f > &a/almas resetar confirmar &8- &7Apaga saldo e historico de TODO MUNDO nesta moeda &7(so pelo CONSOLE).
   # Usado por "/almas top" quando o menu esta desativado (general.top-menu: false). Alem de
   # {formato} (expande pra uma linha por jogador, via formato-jogador), as linhas de "mensagem"
   # tambem aceitam {self_top_pos} (posicao de quem digitou o comando, ou "-" se fora do top
-  # carregado) e {self_top_money} (saldo de quem digitou o comando, formatado).
+  # carregado) e {self_top} (saldo de quem digitou o comando; {self_top_money} e
+  # {self_top_<id da moeda>} tambem valem).
+  #
+  # {valor} e {self_top} aceitam sufixo para escolher como o numero sai --
+  # os mesmos nomes dos placeholders da PlaceholderAPI:
+  #
+  # A linha tambem aceita:
+  #   {prefixo}  -> prefixo do cargo (LuckPerms, ou qualquer um via Vault).
+  #   %...%      -> qualquer placeholder da PlaceholderAPI, resolvido com o
+  #                 JOGADOR DAQUELA LINHA. Ex.: %luckperms_prefix%, %vault_prefix%.
+  # Ex.: '&f{pos}o {prefixo}&7{jogador}&2: &7{valor}'
+  #  ou: '&f{pos}o %luckperms_prefix%&7{jogador}&2: &7{valor}'
+  #
+  # Os dois servem para a mesma coisa; {prefixo} nao precisa da PlaceholderAPI e
+  # nunca consulta banco na hora de montar a linha.
+  #
+  #   {valor}             -> 1,234.50   (formatado; e o que valia antes)
+  #   {valor_formatado}   -> 1,234.50
+  #   {valor_puro}        -> 1234.50    (sem separador de milhar)
+  #   {valor_abreviado}   -> 1.2K
+  #   {valor_completo}    -> 1,234.50 reais  (com o nome da moeda)
   top-chat:
+    # Quantos jogadores aparecem no top do chat ({formato}).
+    quantidade: 10
     formato-jogador: '&f{pos}o &7{jogador}&2: &7({valor})'
     mensagem:
       - ''
@@ -467,5 +569,5 @@ messages:
       - '{formato}'
       - ''
       - '&a      Voce esta atualmente em &f{self_top_pos}º'
-      - '&a              Com &f{self_top_money}&a.'
+      - '&a              Com &f{self_top}&a.'
       - ''

@@ -89,14 +89,18 @@ magnata:
   simbolo: '$'
 
 # Abate: da esta moeda automaticamente quando o jogador mata um mob, animal ou outro jogador.
-# Desativado por padrao no template -- a moeda "almas" ja vem com isto ligado, de exemplo.
-# "mobs" e um mapa <EntityType do Bukkit>: <quantia>, cobre tanto hostis quanto passivos/animais;
-# qualquer nome que nao estiver na lista nao da nada. "jogador" e a quantia por matar outro
-# jogador (PvP). Precisa ser um jogador quem da o golpe final -- morte por fogo, queda, outro
-# mob etc nao conta.
+# Desativado por padrao no template -- a moeda "almas" ja vem com isto ligado, de exemplo (com
+# quantidade em faixa e chance por dificuldade). "mobs" e um mapa <EntityType do Bukkit>:
+# {quantidade, chance}, cobre tanto hostis quanto passivos/animais; qualquer nome que nao estiver
+# na lista nao da nada. "jogador" (PvP) usa o mesmo formato. Precisa ser um jogador quem da o
+# golpe final -- morte por fogo, queda, outro mob etc nao conta.
+# "quantidade": numero fixo (ex: 5) ou faixa em texto (ex: '1-3', com decimais tambem) sorteada a
+# cada abate. "chance" (0-100): chance do abate render a quantia -- 100 = sempre da.
 abate:
   enabled: false
-  jogador: 0.0
+  jogador:
+    quantidade: 0.0
+    chance: 100.0
   mobs: {}
 
 # Titulo rapido na tela do jogador quando ele ganha ou perde saldo desta moeda. Placeholders:
@@ -176,23 +180,21 @@ cheques:
         - ''
         - '&7Clique com botao direito para ativar'
 
-# Loja desta moeda ("/{comando} loja" pra comprar, "/{comando} loja editor" pra staff editar --
-# arrasta o item num slot vazio e o preco/quantidade/categoria sao pedidos no chat). Desativada
-# por padrao aqui -- a moeda "almas" ja vem com a dela ("Mercado Negro") ligada, de exemplo. Os
-# itens em si (material, nome, lore, encantos, preco, quantidade, categoria) ficam na pasta
-# Lojas/<id>.yml, num YAML legivel -- da pra editar na mao ou pelo editor visual, os dois mexem
-# no mesmo arquivo. Aqui embaixo e so a APARENCIA da tela (titulo/tamanho/borda/lore extra).
-# "slots-borda" e so decoracao (nao aceita item no editor);
-# qualquer slot fora dela e onde a staff pode colocar item. "lore-info" e o que se soma ao lore
-# de cada item na hora de EXIBIR na loja (categoria/quantidade/preco).
+# Loja desta moeda ("/{comando} loja" pra comprar, "/{comando} loja editor" pra staff editar). O
+# editor abre primeiro uma tela de configuracao (tamanho de cada pagina, quantidade de paginas) e
+# so depois leva pro editor de itens (arrasta o item num slot vazio, preco/quantidade/categoria
+# pedidos no chat). A ULTIMA LINHA de cada pagina e reservada pra navegacao (anterior/config/
+# proxima) -- nao aceita item, sem borda decorativa nenhuma. Desativada por padrao aqui -- a
+# moeda "almas" ja vem com a dela ("Mercado Negro") ligada, de exemplo. Os itens em si (material,
+# nome, lore, encantos, preco, quantidade, categoria) ficam na pasta Lojas/<id>.yml, YAML legivel
+# -- da pra editar na mao ou pelo editor visual, os dois mexem no mesmo arquivo. "size"/"paginas"
+# tambem sao editaveis na tela de configuracao do editor (isso aqui so e o valor inicial).
+# "lore-info" e o que se soma ao lore de cada item na hora de EXIBIR na loja.
 loja:
   enabled: false
   titulo: '&8Loja'
   size: 54
-  slots-borda: [0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
-  borda:
-    material: GRAY_STAINED_GLASS_PANE
-    nome: ' '
+  paginas: 1
   lore-info:
     - ''
     - '&fCategoria: &d{categoria}'
@@ -318,6 +320,8 @@ messages:
     alternar-desativado: '&cVoce desativou o recebimento desta moeda.'
     top-vazio: '&cAinda nao ha ranking para esta moeda.'
     top-desativado: '&cO top desta moeda esta desativado.'
+    top-atualizando: '&7Atualizando o ranking...'
+    top-atualizado: '&aRanking atualizado &7({quantidade} jogador(es)).'
     historico-vazio: '&cO historico desta moeda esta desativado ou vazio.'
     formatar: '&a{entrada} &7-> &a{saida}&7.'
     npc-setado: '&aNPC de top da posicao &f{posicao}&a criado/movido para a sua localizacao.'
@@ -362,12 +366,36 @@ messages:
     &f > &a/{comando} delnpc &f<posicao> &8- &7Remove o NPC de top.
     &f > &a/{comando} loja &8- &7Abre a loja desta moeda (se ativada).
     &f > &a/{comando} loja editor &8- &7Edita a loja (arraste item + preco no chat).
+    &f > &a/{comando} analisar &f[jogador] &8- &7Ranking de vendas (tipo StarValores).
     &f > &a/{comando} reload &8- &7Recarrega esta moeda.
+    &f > &a/{comando} resetar confirmar &8- &7Apaga saldo e historico de TODO MUNDO nesta moeda &7(so pelo CONSOLE).
   # Usado por "/{comando} top" quando o menu esta desativado (general.top-menu: false). Alem
   # de {formato} (expande pra uma linha por jogador, via formato-jogador), as linhas de
   # "mensagem" tambem aceitam {self_top_pos} (posicao de quem digitou o comando, ou "-" se
-  # fora do top carregado) e {self_top_money} (saldo de quem digitou o comando, formatado).
+  # fora do top carregado) e {self_top} (saldo de quem digitou o comando; {self_top_money} e
+  # {self_top_<id da moeda>} tambem valem).
+  #
+  # {valor} e {self_top} aceitam sufixo para escolher como o numero sai --
+  # os mesmos nomes dos placeholders da PlaceholderAPI:
+  #
+  # A linha tambem aceita:
+  #   {prefixo}  -> prefixo do cargo (LuckPerms, ou qualquer um via Vault).
+  #   %...%      -> qualquer placeholder da PlaceholderAPI, resolvido com o
+  #                 JOGADOR DAQUELA LINHA. Ex.: %luckperms_prefix%, %vault_prefix%.
+  # Ex.: '&f{pos}o {prefixo}&7{jogador}&2: &7{valor}'
+  #  ou: '&f{pos}o %luckperms_prefix%&7{jogador}&2: &7{valor}'
+  #
+  # Os dois servem para a mesma coisa; {prefixo} nao precisa da PlaceholderAPI e
+  # nunca consulta banco na hora de montar a linha.
+  #
+  #   {valor}             -> 1,234.50   (formatado; e o que valia antes)
+  #   {valor_formatado}   -> 1,234.50
+  #   {valor_puro}        -> 1234.50    (sem separador de milhar)
+  #   {valor_abreviado}   -> 1.2K
+  #   {valor_completo}    -> 1,234.50 reais  (com o nome da moeda)
   top-chat:
+    # Quantos jogadores aparecem no top do chat ({formato}).
+    quantidade: 10
     formato-jogador: '&f{pos}o &7{jogador}&2: &7({valor})'
     mensagem:
       - ''
@@ -376,5 +404,5 @@ messages:
       - '{formato}'
       - ''
       - '&a      Voce esta atualmente em &f{self_top_pos}º'
-      - '&a              Com &f{self_top_money}&a.'
+      - '&a              Com &f{self_top}&a.'
       - ''

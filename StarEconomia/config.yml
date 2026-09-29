@@ -33,6 +33,19 @@ database:
 general:
   # Intervalo (em segundos) entre atualizacoes do ranking (top) de cada moeda.
   top-atualizar-segundos: 300
+  # Como o {valor} aparece nas mensagens, menus e top de todas as moedas:
+  #   abreviado -> 1K, 1.5M, 2B, 0   (sufixos: K M B T Q QQ S SS O N D)
+  #   completo  -> 1,000 / 1,500,000 / 1,234.50 / 0
+  # Nos dois o '.00' some quando o valor e redondo. Quem quiser o outro formato numa mensagem
+  # especifica usa {valor_abreviado} ou {valor_formatado}.
+  formato-valor: abreviado
+  # Mundos onde o titulo de ganho/perda de dinheiro (e o som dele) NAO aparece na tela. O saldo
+  # muda normalmente; so a notificacao some. Um por linha, "mundo:moeda" (sem espaco):
+  #   minas:todas  -> nenhuma moeda mostra titulo no mundo minas (o mesmo que so "minas")
+  #   minas:money  -> so a moeda money (id = nome do arquivo em Economias/, sem .yml)
+  #   minas:money,cash -> money e cash
+  titulo-mundos-bloqueados:
+  - minas:todas
 
 # Linhas usadas pelos placeholders {meta_status} e {booster_status}, disponiveis no lore do item
 # "informacoes" de QUALQUER moeda (menu.main.itens.informacoes.lore em Economias/<id>.yml) --
@@ -100,6 +113,12 @@ origens: []
 #    Ex: StarEconomiaAPI.getCurrency("cash"), StarEconomiaAPI.deposit(player, moeda,
 #    valor, "Loja: Espada de Diamante") -- o ultimo parametro vira a origem exibida
 #    no historico/log (respondendo "onde o dinheiro foi gasto/ganho").
+#
+#    Se sua loja SABE qual item foi vendido, use StarEconomiaAPI.depositVenda(player, moeda,
+#    valor, itemStack, "NomeDaSuaLoja") no lugar de deposit() -- credita normal, mas guarda o
+#    item junto no historico, e ele passa a aparecer de verdade (icone e tudo) no ranking de
+#    vendas em jogo ("/{comando} analisar", tipo o StarValores). Sem isso, "analisar" ainda
+#    funciona (conta qualquer credito com origem detectada via Vault), so sem o item pra mostrar.
 #    Pacote: com.star.economia.api.StarEconomiaAPI.
 #
 # 3) Vault -- se voce so precisa de saldo/saque/deposito basico da moeda primaria e

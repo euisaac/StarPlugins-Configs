@@ -99,14 +99,17 @@ magnata:
   # Prefixo/simbolo exibidos SO para quem esta em 1o lugar (placeholders magnata_tag/
   # magnata_simbolo) -- use no tab list, no nick, no scoreboard etc.
   tag: '&e[Magnata]'
-  simbolo: '💰'
+  simbolo: '$'
 
 # Abate: da esta moeda automaticamente por matar mob/animal/jogador. Desativado por padrao no
 # cash -- quem quiser cash por kill e so ativar e preencher "mobs" (ver Economias/almas.yml
-# para um exemplo completo ja preenchido).
+# para um exemplo completo ja preenchido, com quantidade em faixa e chance por dificuldade).
+# Formato de cada mob/jogador: {quantidade: <numero ou faixa tipo '1-3'>, chance: <0-100>}.
 abate:
   enabled: false
-  jogador: 0.0
+  jogador:
+    quantidade: 0.0
+    chance: 100.0
   mobs: {}
 
 # Titulo rapido na tela do jogador quando ele ganha ou perde cash. Placeholders: {valor}
@@ -186,19 +189,18 @@ cheques:
         - ''
         - '&7Clique com botao direito para ativar'
 
-# Loja desta moeda ("/cash loja" pra comprar, "/cash loja editor" pra staff editar -- arrasta o
-# item num slot vazio e o preco/quantidade/categoria sao pedidos no chat). Desativada por padrao
-# aqui -- a moeda "almas" ja vem com a dela ("Mercado Negro") ligada, de exemplo. Os itens
-# (material, nome, lore, encantos, preco, quantidade, categoria) ficam em Lojas/cash.yml, num
-# YAML legivel -- da pra editar na mao ou pelo editor visual, os dois mexem no mesmo arquivo.
+# Loja desta moeda ("/cash loja" pra comprar, "/cash loja editor" pra staff editar). O editor
+# abre primeiro uma tela de configuracao (tamanho de cada pagina, quantidade de paginas) e so
+# depois leva pro editor de itens (arrasta o item num slot vazio, preco/quantidade/categoria
+# pedidos no chat). A ULTIMA LINHA de cada pagina e reservada pra navegacao, sem borda decorativa.
+# Desativada por padrao aqui -- a moeda "almas" ja vem com a dela ("Mercado Negro") ligada, de
+# exemplo. Os itens ficam em Lojas/cash.yml, YAML legivel -- da pra editar na mao ou pelo editor
+# visual. "size"/"paginas" tambem sao editaveis na tela de configuracao do editor.
 loja:
   enabled: false
   titulo: '&8Loja - cash'
   size: 54
-  slots-borda: [0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
-  borda:
-    material: GRAY_STAINED_GLASS_PANE
-    nome: ' '
+  paginas: 1
   lore-info:
     - ''
     - '&fCategoria: &d{categoria}'
@@ -372,6 +374,8 @@ messages:
     alternar-desativado: '&cVoce desativou o recebimento de cash.'
     top-vazio: '&cAinda nao ha ranking para esta moeda.'
     top-desativado: '&cO top desta moeda esta desativado.'
+    top-atualizando: '&7Atualizando o ranking...'
+    top-atualizado: '&aRanking atualizado &7({quantidade} jogador(es)).'
     historico-vazio: '&cO historico desta moeda esta desativado ou vazio.'
     formatar: '&a{entrada} &7-> &a{saida}&7.'
     npc-setado: '&aNPC de top da posicao &f{posicao}&a criado/movido para a sua localizacao.'
@@ -417,12 +421,36 @@ messages:
     &f > &a/cash delnpc &f<posicao> &8- &7Remove o NPC de top.
     &f > &a/cash loja &8- &7Abre a loja desta moeda (se ativada).
     &f > &a/cash loja editor &8- &7Edita a loja (arraste item + preco no chat).
+    &f > &a/cash analisar &f[jogador] &8- &7Ranking de vendas (tipo StarValores).
     &f > &a/cash reload &8- &7Recarrega esta moeda.
+    &f > &a/cash resetar confirmar &8- &7Apaga saldo e historico de TODO MUNDO nesta moeda &7(so pelo CONSOLE).
   # Usado por "/cash top" quando o menu esta desativado (general.top-menu: false). Alem de
   # {formato} (expande pra uma linha por jogador, via formato-jogador), as linhas de "mensagem"
   # tambem aceitam {self_top_pos} (posicao de quem digitou o comando, ou "-" se fora do top
-  # carregado) e {self_top_money} (saldo de quem digitou o comando, formatado).
+  # carregado) e {self_top} (saldo de quem digitou o comando; {self_top_money} e
+  # {self_top_<id da moeda>} tambem valem).
+  #
+  # {valor} e {self_top} aceitam sufixo para escolher como o numero sai --
+  # os mesmos nomes dos placeholders da PlaceholderAPI:
+  #
+  # A linha tambem aceita:
+  #   {prefixo}  -> prefixo do cargo (LuckPerms, ou qualquer um via Vault).
+  #   %...%      -> qualquer placeholder da PlaceholderAPI, resolvido com o
+  #                 JOGADOR DAQUELA LINHA. Ex.: %luckperms_prefix%, %vault_prefix%.
+  # Ex.: '&f{pos}o {prefixo}&7{jogador}&2: &7{valor}'
+  #  ou: '&f{pos}o %luckperms_prefix%&7{jogador}&2: &7{valor}'
+  #
+  # Os dois servem para a mesma coisa; {prefixo} nao precisa da PlaceholderAPI e
+  # nunca consulta banco na hora de montar a linha.
+  #
+  #   {valor}             -> 1,234.50   (formatado; e o que valia antes)
+  #   {valor_formatado}   -> 1,234.50
+  #   {valor_puro}        -> 1234.50    (sem separador de milhar)
+  #   {valor_abreviado}   -> 1.2K
+  #   {valor_completo}    -> 1,234.50 reais  (com o nome da moeda)
   top-chat:
+    # Quantos jogadores aparecem no top do chat ({formato}).
+    quantidade: 10
     formato-jogador: '&f{pos}o &7{jogador}&2: &7({valor})'
     mensagem:
       - ''
@@ -431,5 +459,5 @@ messages:
       - '{formato}'
       - ''
       - '&a      Voce esta atualmente em &f{self_top_pos}º'
-      - '&a              Com &f{self_top_money}&a.'
+      - '&a              Com &f{self_top}&a.'
       - ''

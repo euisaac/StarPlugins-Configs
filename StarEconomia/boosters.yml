@@ -3,12 +3,19 @@
 # Um booster fica ATIVO para um jogador de tres formas (podem valer ao mesmo tempo):
 #   1) Permissao ("permissao" abaixo) -- enquanto o jogador tiver a permissao, o booster fica
 #      ligado o tempo todo, sem prazo (ex: perk de um rank VIP no permissions.yml/LuckPerms).
-#   2) Comando -- "/stareconomia booster dar <jogador> <id> [segundos]" liga o booster por um
-#      tempo (usa "duracao-padrao-segundos" se voce omitir os segundos).
-#   3) Item -- com "item.habilitado: true", "/stareconomia booster item <jogador> <id>
-#      [quantidade]" da um item fisico pro jogador; clicar nele com o botao direito consome 1
-#      unidade e liga o booster por "item.duracao-segundos". O item guarda o id do booster nele
-#      mesmo (NBT), entao pode ser vendido/negociado/dropado normalmente ate ser usado.
+#      Esta e a UNICA forma de um booster ficar "permanente" -- comando e item sao sempre por
+#      tempo determinado.
+#   2) Comando -- "/stareconomia booster dar <jogador> <id> <tempo>" liga o booster por aquele
+#      tempo (o argumento e OBRIGATORIO). O tempo aceita numero+unidade (s=segundos, m=minutos,
+#      h=horas, d=dias), combinaveis: "45s", "5m", "1h30m", "2d" -- tem tab-complete com
+#      sugestoes prontas. Um numero sozinho (sem letra) ainda e aceito como segundos.
+#   3) Item -- com "item.habilitado: true", "/stareconomia booster item <jogador> <id> <tempo>
+#      [quantidade]" da um item fisico pro jogador (mesmo formato de tempo do comando acima, e
+#      tambem obrigatorio -- cada leva gerada pode ter uma duracao diferente, fica gravada no
+#      proprio item). Clicar nele com o botao direito consome 1 unidade e liga o booster por
+#      esse tempo. O item guarda o id do booster e a duracao nele mesmo (NBT), entao pode ser
+#      vendido/negociado/dropado normalmente ate ser usado -- e o placeholder {tempo} no
+#      nome/lore do item (abaixo) mostra a duracao certa de cada leva.
 #
 # "moeda" filtra em qual moeda o booster vale -- vazio ("") = booster GERAL, vale pra qualquer
 # moeda habilitada. "tipos" filtra que TIPO de credito e afetado (ADICIONAR, GANHO, RECEBER,
@@ -21,8 +28,13 @@
 # 'StarLoja']" pra um booster que so afeta vendas dessas lojas especificamente.
 #
 # Boosters aplicaveis ao mesmo credito SOMAM o "bonus-percentual" entre si (nao multiplicam) --
-# dois boosters de +100% ativos ao mesmo tempo dao +200% (x3 no total), nao x4. Only afeta
+# dois boosters de +100% ativos ao mesmo tempo dao +200% (x3 no total), nao x4. So afeta
 # CREDITOS de verdade (deposito) -- pix entre jogadores (/moeda pagar) nunca e multiplicado.
+#
+# "duracao-padrao-segundos" so serve de fallback pra quem conceder o booster programaticamente
+# (API) sem informar um tempo -- o comando em si SEMPRE exige o tempo, nao usa este valor.
+# "item.duracao-segundos" e o mesmo tipo de fallback, mas pro item (usado se algum item antigo,
+# gerado antes de existir o argumento de tempo, nao tiver a duracao gravada nele).
 #
 # Boosters concedidos por comando ou item NAO sobrevivem a um restart do servidor (ficam so em
 # memoria, de proposito -- sao temporarios por natureza); os concedidos por permissao (VIP) nao
@@ -41,13 +53,17 @@ boosters:
     duracao-padrao-segundos: 3600
     item:
       habilitado: true
-      material: NETHER_STAR
-      nome: '&d&lBooster: 2x Almas &7(1h)'
+      material: EXPERIENCE_BOTTLE
+      nome: '&d&lBooster: 2x Almas &7({tempo})'
       lore:
         - ''
-        - '&7Clique com o botao direito para'
-        - '&7ativar 2x almas por 1 hora.'
+        - '&7Um frasco de experiencia brilhante,'
+        - '&7pulsando com energia das almas.'
         - ''
+        - '&fEfeito: &d+100% almas &7(abate)'
+        - '&fDuracao: &d{tempo}'
+        - ''
+        - '&e&lClique direito para ativar!'
       duracao-segundos: 3600
 
   vendas-em-dobro:
@@ -61,7 +77,15 @@ boosters:
     duracao-padrao-segundos: 1800
     item:
       habilitado: false
-      material: GOLD_NUGGET
-      nome: '&6Booster: 2x Vendas &7(30min)'
-      lore: []
+      material: EXPERIENCE_BOTTLE
+      nome: '&6&lBooster: 2x Vendas &7({tempo})'
+      lore:
+        - ''
+        - '&7Um frasco de experiencia dourado,'
+        - '&7cheio de sorte para negociar.'
+        - ''
+        - '&fEfeito: &6+100% em vendas &7(qualquer moeda)'
+        - '&fDuracao: &6{tempo}'
+        - ''
+        - '&e&lClique direito para ativar!'
       duracao-segundos: 1800
