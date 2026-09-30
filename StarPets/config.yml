@@ -1,0 +1,301 @@
+#   ____  _              ____       _
+#  / ___|| |_ __ _ _ __ |  _ \ ___ | |_ ___
+#  \___ \| __/ _` | '__|| |_) / _ \| __/ __|
+#   ___) | || (_| | |   |  __/  __/| |_\__ \
+#  |____/ \__\__,_|_|   |_|   \___| \__|___/
+#
+#  Configuracao geral do StarPets.
+#  Site: https://starplugins.redestars.com
+
+# Liga mensagens extras no console para investigar problemas.
+Debug: false
+
+#
+# ─────────────────────────── Banco de dados ───────────────────────────
+#
+# Onde ficam os pets: nivel, experiencia, modo, bau e o que mais o pet
+# acumular.
+#
+#   SQLITE - salva em dados/starpets.db (padrao, nao precisa de servidor externo)
+#   MYSQL  - servidor MySQL/MariaDB
+#
+# Os drivers sao baixados pelo loader StarPlugins, entao os dois funcionam em
+# qualquer servidor. Se o MYSQL nao conectar, o plugin cai para SQLITE em vez de
+# perder os pets dos jogadores.
+#
+Banco de dados:
+  Tipo: SQLITE
+  IP: localhost
+  Porta: 3306
+  Banco: starpets
+  Usuario: root
+  Senha: ''
+  # Prefixo das tabelas criadas (SQLITE/MYSQL).
+  Prefixo: 'starpets_'
+  # Salva os dados em disco a cada X segundos (0 desliga o salvamento automatico).
+  Salvar a cada: 300
+
+#
+# ────────────────────────────── Os pets ───────────────────────────────
+#
+Pets:
+  # Quantos pets cada jogador pode ter guardados.
+  # A permissao starpets.limite.<numero> passa por cima disto
+  # (starpets.limite.5 = ate 5 pets; starpets.limite.* = sem limite).
+  Limite de pets: 3
+
+  # O pet que estava no mundo volta sozinho quando o dono entra no servidor.
+  Chamar ao entrar: true
+
+  # true = ao sair, o pet e guardado de vez e nao volta sozinho no proximo login.
+  Guardar ao sair: false
+
+  # Modo de combate de um pet recem capturado.
+  # AGRESSIVO, DEFENSIVO, FAZENDA ou PASSIVO.
+  Modo padrao: DEFENSIVO
+
+  # De quantos em quantos ticks o pet pensa (seguir, atacar, regenerar).
+  # Menor = mais suave e mais pesado. 4 e um bom meio termo (5 vezes por segundo).
+  Ticks por ciclo: 4
+
+  # Nome que fica flutuando acima do pet.
+  # Use '' para nao mostrar nada.
+  Nome acima do pet: '&f{nome} &7[&e{nivel}&7] &c{vida}&7/&c{vidamaxima}'
+
+  # Mundos onde o plugin nao funciona (nem captura, nem chamar).
+  Mundos bloqueados: []
+
+  # Distancia (em blocos) em que o pet e teleportado de volta para o dono.
+  Distancia para teleportar: 25.0
+  # A mesma coisa, mas enquanto ele esta brigando: e a corda que ele ganha para
+  # perseguir o alvo sem ser puxado no meio da briga.
+  # Se voce voltar a se aproximar, ele retoma a briga de onde parou.
+  Distancia para teleportar em combate: 45.0
+  # Distancia do alvo em que o pet desiste da briga e volta para voce.
+  Distancia para desistir do alvo: 30.0
+  # Segundos em que o pet ignora alvos depois de um /pets parar.
+  # Levar dano (ou voce entrar numa briga) cancela a tregua.
+  Tregua do parar: 10
+
+  # Distancia em que o pet para de andar atras do dono.
+  Distancia para seguir: 4.0
+  # Em servidor Paper (1.15+) o pet anda pelo pathfinder do proprio jogo: ele
+  # vira para onde vai, sobe degraus e contorna parede, como qualquer mob.
+  # Deixe true. Em Spigot puro e na 1.8 nao existe pathfinder na API, e ali o
+  # pet e empurrado (as opcoes abaixo cuidam desse caso).
+  Usar pathfinder do servidor: true
+  # Multiplicador da velocidade do pet quando o pathfinder esta no comando.
+  # 1.0 = a velocidade do tipo; acima disso ele corre atras de quem esta correndo.
+  Velocidade do pathfinder: 1.15
+  # De quanto em quanto tempo o caminho ate voce e refeito, em segundos.
+  # Menor = o pet corrige a rota mais rapido e o servidor trabalha mais.
+  Recalcular caminho: 0.5
+
+  # Velocidade do empurrao a cada ciclo (modo sem pathfinder).
+  # Acima de 0.5 o pet fica saltitante.
+  Velocidade ao seguir: 0.32
+  # No modo empurrao, vira o pet para a direcao em que ele esta andando.
+  # Sem isso ele anda de lado, olhando para onde a IA nativa queria ir.
+  Corrigir o olhar: true
+
+  # Raio em que o pet procura alvo sozinho (modos AGRESSIVO e FAZENDA).
+  Raio para procurar alvo: 12.0
+  # Distancia maxima para o golpe acertar.
+  Alcance do ataque: 2.5
+  # Intervalo entre dois golpes do pet.
+  Segundos entre ataques: 1.2
+
+  Regeneracao:
+    # De quantos em quantos segundos o pet recupera vida fora de combate.
+    Segundos: 6
+    # Quanta vida ele recupera de cada vez (2 = um coracao).
+    Vida: 1.0
+
+#
+# ──────────────────────────── O laco ──────────────────────────────────
+#
+# O laco e o item que captura: quem da o ultimo golpe no mob segurando ele
+# leva o mob como pet. A chance de cada mob esta no pets.yml.
+#
+Laco:
+  Item:
+    Material: 'LEAD'
+    Nome: '&a&lLaco de Captura'
+    Lore:
+      - '&7Mate um mob segurando este item'
+      - '&7para tentar captura-lo como pet.'
+      - ''
+      - '&7A chance depende do mob.'
+    Brilho: true
+
+  # Aceita qualquer item do material acima como laco, mesmo sem o nome e a lore
+  # do plugin -- ou seja, a corda comum do jogo tambem captura.
+  # false = so o item entregue por /petsadmin laco (ou de loja) funciona.
+  Aceitar qualquer laco: false
+
+  # Cada laco aguenta um numero de usos e quebra quando eles acabam.
+  # A conta fica escrita numa linha da lore do proprio item: e o unico jeito
+  # que funciona da 1.8 a 1.21, e de quebra o jogador ve quanto falta.
+  Usos:
+    # Vem desligado para nao mudar o jogo de quem ja usava o plugin sem usos:
+    # ligue aqui se quiser que o laco quebre depois de um tanto de usos.
+    Ativar: false
+
+    # Usos de um laco novo.
+    Quantidade: 5
+
+    #   TENTATIVA - gasta em toda tentativa, capturando ou nao
+    #   CAPTURA   - so gasta quando o mob vira pet mesmo
+    Gastar em: TENTATIVA
+
+    # Linha escrita na lore. O plugin acha ela pelo texto antes do {usos},
+    # entao mude o texto a vontade -- so nao tire o {usos}.
+    Linha da lore: '&7Usos restantes: &f{usos}'
+
+  # So vale com "Usos.Ativar: false": ai o laco inteiro some numa captura.
+  Consumir ao capturar: true
+  # O mob capturado nao dropa itens nem experiencia.
+  Cancelar drops do mob capturado: true
+  Cancelar experiencia do mob capturado: true
+  # Mostra a chance de captura na actionbar enquanto o jogador bate no mob.
+  Avisar a chance no dano: true
+  # Cada nivel de experiencia do jogador soma isso na chance (0 desliga).
+  Chance extra por nivel do jogador: 0.0
+  # O pet ja aparece no mundo assim que e capturado.
+  Chamar ao capturar: true
+
+#
+# ────────────────────────────── Montaria ──────────────────────────────
+#
+# Quais tipos aceitam montaria esta no pets.yml ("Montaria: true").
+#
+Montaria:
+  # Multiplica a velocidade do tipo enquanto alguem esta montado.
+  Multiplicador de velocidade: 2.2
+
+  # Da 1.21.3 em diante o servidor entrega as teclas do jogador, e o pet passa
+  # a ser dirigido de verdade: W/S andam, A/D fazem o passo lateral, espaco
+  # pula e soltar tudo para o pet no lugar.
+  # Em servidor mais antigo isso nao existe fora do NMS, e ali o pet anda para
+  # onde voce estiver olhando (o valor abaixo nao muda nada nesse caso).
+  Usar teclas do jogador: true
+
+  # Forca do pulo com a barra de espaco.
+  Forca do pulo: 0.5
+
+#
+# ────────────────────────────── Protecao ──────────────────────────────
+#
+Protecao:
+  # O dono nao consegue machucar o proprio pet.
+  Dono nao machuca o pet: true
+  # Nenhum outro jogador consegue machucar o pet.
+  Outros jogadores nao machucam o pet: false
+  # O pet nunca ataca jogadores (o dono e sempre protegido, de qualquer jeito).
+  Pet nao ataca jogadores: true
+
+#
+# ─────────────────────────────── Morte ────────────────────────────────
+#
+Morte:
+  # Quanto tempo o pet fica morto antes de poder ser chamado de novo.
+  Segundos para reviver: 300
+  # Custo para reviver na hora, sem esperar (precisa de Vault; 0 desliga).
+  Custo para reviver na hora: 0.0
+
+#
+# ───────────────────────── Nivel e experiencia ────────────────────────
+#
+Experiencia:
+  # Experiencia de um mob que nao esta listado no pets.yml.
+  Por mob morto: 10.0
+  # Quanto o pet ganha das mortes do proprio dono, em porcentagem.
+  # 0 = o pet so ganha do que ele mesmo matar.
+  Porcentagem das mortes do dono: 50.0
+
+  # Experiencia para sair do nivel 1.
+  Base do nivel: 120.0
+  # Cada nivel exige este tanto a mais que o anterior.
+  # 120 no nivel 1, 150 no 2, 187 no 3...
+  Multiplicador por nivel: 1.25
+
+#
+# ───────────────────────── Coleta de itens ────────────────────────────
+#
+# Pets com bau recolhem do chao o que cair perto deles.
+#
+Coleta de itens:
+  Ativar: true
+  Raio: 3.0
+
+#
+# ──────────────────────────── Nome do pet ─────────────────────────────
+#
+Nome:
+  Minimo de letras: 3
+  Maximo de letras: 16
+  # Quem tem a permissao starpets.cores pode colorir o nome do pet: &a, &l,
+  # &#FF00AA, #FF00AA, <#FF00AA> ou o &x&F&F&0&0&A&A dos geradores de cor.
+  # O limite de letras conta o nome sem as cores.
+  Palavras proibidas:
+    - 'admin'
+    - 'staff'
+
+#
+# ──────────────────────────── Migracao ────────────────────────────────
+#
+# Traz os pets dos jogadores de um plugin de pets anterior, com
+# /petsadmin migrar (simula) e /petsadmin migrar confirmar (aplica).
+#
+# A leitura e do banco do plugin antigo -- e o unico lugar onde estao os pets
+# de quem esta offline. Nada e apagado la: o plugin antigo continua intacto.
+#
+# O que vem: dono, tipo do mob, nome, nivel (recalculado na curva do StarPets)
+# e o estado de morto. O que nao vem: arvore de habilidades, fome e equipamento,
+# que nao existem aqui.
+#
+Migracao:
+  MyPet:
+    #   SQLITE - o arquivo .db do plugin antigo
+    #   MYSQL  - o mesmo banco MySQL que ele usava
+    Tipo: SQLITE
+
+    # Caminho do arquivo, a partir da pasta do servidor.
+    Arquivo: 'plugins/MyPet/pets.db'
+
+    # Prefixo das tabelas no banco antigo, quando o plugin de origem usa um
+    # (o MyPet tem essa opcao no MySQL dele). Vazio serve para quase todos.
+    Prefixo: ''
+
+    # Usados so quando Tipo: MYSQL.
+    IP: localhost
+    Porta: 3306
+    Banco: mypet
+    Usuario: root
+    Senha: ''
+
+    # A curva de nivel dos dois plugins e diferente; este numero multiplica a
+    # experiencia trazida antes de ela ser gasta na curva do StarPets.
+    # Menor que 1 = os pets chegam em niveis mais baixos.
+    Multiplicador de experiencia: 1.0
+
+#
+# ─────────────────────────────── Sons ─────────────────────────────────
+#
+# Formato: NOME:volume:tom. Deixe '' para nao tocar nada.
+# Os nomes dos sons mudaram na 1.9: separe as alternativas com | que o plugin
+# usa a primeira que existir no servidor (nome novo primeiro, antigo depois).
+# Nenhum nome valido = so silencio, sem erro no console.
+#
+Sons:
+  Clique: 'UI_BUTTON_CLICK|CLICK:1:1'
+  Captura: 'ENTITY_PLAYER_LEVELUP|LEVEL_UP:1:1.4'
+  Captura falhou: 'ENTITY_ITEM_BREAK|ITEM_BREAK:1:1'
+  Laco quebrou: 'ENTITY_ITEM_BREAK|ITEM_BREAK:1:0.6'
+  Chamar: 'ENTITY_CHICKEN_EGG|CHICKEN_EGG_POP:1:1.2'
+  Guardar: 'ENTITY_CHICKEN_EGG|CHICKEN_EGG_POP:1:0.8'
+  Abandonar: 'ENTITY_ITEM_BREAK|ITEM_BREAK:1:0.8'
+  Renomear: 'ENTITY_PLAYER_LEVELUP|LEVEL_UP:1:1.8'
+  Reviver: 'ENTITY_PLAYER_LEVELUP|LEVEL_UP:1:1'
+  Subiu de nivel: 'ENTITY_PLAYER_LEVELUP|LEVEL_UP:1:1.2'
+  Pet morreu: 'ENTITY_WOLF_HURT|WOLF_HURT:1:1'

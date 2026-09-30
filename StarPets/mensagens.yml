@@ -1,0 +1,149 @@
+#  Mensagens do StarPets.
+#  Cores: &a, &c, ... e hex no formato &#RRGGBB.
+#  Deixe '' (vazio) para nao enviar a mensagem.
+
+Prefixo: '&d&lSTAR&f&lPETS &8» &r'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Somente jogador: '&cApenas jogadores in-game podem fazer isso.'
+  Jogador nao encontrado: '&cO jogador &f{jogador}&c nao foi encontrado.'
+  Recarregado: '&aConfiguracoes recarregadas com sucesso.'
+  Mundo bloqueado: '&cO StarPets nao funciona neste mundo.'
+
+Captura:
+  Sucesso: '&aVoce capturou um &f{tipo}&a! Use &f/pets&a para ver seus pets.'
+  Falhou: '&cO laco nao aguentou e o &f{tipo}&c escapou! &7(chance de {chance}%)'
+  Mob invalido: '&cEsse mob nao pode virar pet.'
+  Nao capturavel: '&cO &f{tipo}&c nao se doma matando: so a equipe entrega esse pet.'
+  Sem permissao tipo: '&cVoce nao tem permissao para ter um &f{tipo}&c como pet.'
+  Limite: '&cVoce ja tem &f{atual}&c de &f{limite}&c pets. Abandone um antes de capturar outro.'
+  Ja domado: '&cEsse mob ja tem dono.'
+  Dica dano: '&7Chance de captura do &f{tipo}&7: &a{chance}%'
+  Usos restantes: '&7O seu laco ainda aguenta &f{usos}&7 uso(s).'
+  Laco quebrou: '&cO seu laco arrebentou de tanto uso.'
+
+Pet:
+  Carregando: '&eSeus pets ainda estao carregando, tente de novo em instantes.'
+  Chamado: '&a{pet} &aveio para o seu lado.'
+  Puxado: '&a{pet} &alargou o que estava fazendo e veio ate voce.'
+  Parou: '&e{pet} &eparou de atacar e voltou para voce. &7({tempo}s de tregua)'
+  Guardado: '&e{pet} &efoi guardado.'
+  Instavel: '&cAlguma coisa esta tirando &f{pet}&c do mundo sem parar, entao ele foi guardado. Chame de novo daqui a pouco.'
+
+Habilidade:
+  Usada: ''
+  Escolhida: '&aAgora &f{pet}&a usa &f{habilidade}&a. Bata montado para soltar.'
+  Esperando: '&e{habilidade} &eainda esta carregando: &f{segundos}s&e.'
+  Ja chamado: '&c{pet} &cja esta com voce.'
+  Nao chamado: '&cChame o seu pet primeiro com &f/pets chamar&c.'
+  Nao foi possivel chamar: '&cNao foi possivel chamar &f{pet}&c aqui.'
+  Abandonado: '&c{pet} &cfoi abandonado e nao volta mais.'
+  Modo alterado: '&aO modo de &f{pet} &aagora e &f{modo}&a.'
+  Modos disponiveis: '&cModos disponiveis: &f{modos}&c.'
+  Renomeado: '&aSeu pet agora se chama &f{pet}&a.'
+  Nome invalido: '&cO nome precisa ter entre &f{minimo}&c e &f{maximo}&c letras.'
+  Nome proibido: '&cEsse nome nao e permitido.'
+  Nome cancelado: '&eRenomear cancelado.'
+  Digite o nome: '&aDigite no chat o novo nome de &f{pet}&a, ou &fcancelar&a para desistir.'
+  Sem pets: '&cVoce ainda nao tem nenhum pet. Mate um mob segurando o {laco}&c.'
+  Sem bau: '&cO seu &f{pet}&c nao tem bau.'
+  Sem montaria: '&cVoce nao pode montar no &f{pet}&c.'
+  Montado: '&aVoce montou em &f{pet}&a. Dirija com &fWASD&a, pule com &fespaco&a e desca com &fshift&a.'
+  Montado olhando: '&aVoce montou em &f{pet}&a. Ele anda para onde voce olhar; use &fshift&a para descer. &7(dirigir com WASD so na 1.21.3+)'
+  Nao foi possivel montar: '&cNao foi possivel montar em &f{pet}&c agora.'
+  Morreu: '&c{pet} &cmorreu! Ele volta em &f{tempo}&c.'
+  Ainda morto: '&c{pet} &cainda esta morto. Falta &f{tempo}&c (ou &f${custo}&c para reviver na hora).'
+  Reviveu: '&a{pet} &avoltou a vida!'
+  Nao esta morto: '&c{pet} &cnao esta morto.'
+  Sem dinheiro: '&cVoce precisa de &f${custo}&c para reviver o pet agora.'
+  Subiu de nivel: '&a{pet} &asubiu para o nivel &f{nivel}&a!'
+  Tipo removido: '&cO tipo do pet &f{pet}&c nao existe mais no servidor.'
+  Numero invalido: '&cEscolha um numero entre &f1&c e &f{total}&c. Veja em &f/pets lista&c.'
+  Nao encontrado: '&cPet nao encontrado.'
+
+  Lista cabecalho: |
+    &d&lSEUS PETS &7({total}/{limite})
+  Lista linha: '&f{numero}. &a{pet} &7- {tipo}, nivel {nivel}, {modo}, {estado}'
+
+  Informacoes: |
+    &d&lPET: &f{pet}
+    &7Tipo: &f{tipo}
+    &7Nivel: &f{nivel}&7/&f{nivelmaximo} &8({exp}/{expmax})
+    &7Vida: &c{vida} &7| Dano: &f{dano}
+    &7Modo: &f{modo}
+
+  Ajuda: |
+    &d&lSTARPETS &7- &fComandos
+    &f/{comando} &7Abre o menu dos seus pets.
+    &f/{comando} chamar [numero] &7Traz o pet para o seu lado (puxa mesmo ja chamado).
+    &f/{comando} parar &7Faz o pet parar de atacar e voltar.
+    &f/{comando} guardar &7Guarda o pet.
+    &f/{comando} modo <modo> &7Muda o modo de combate.
+    &f/{comando} renomear <nome> &7Renomeia o pet.
+    &f/{comando} bau &7Abre o bau do pet.
+    &f/{comando} montar &7Monta no pet.
+    &f/{comando} info &7Mostra a ficha do pet.
+    &f/{comando} lista &7Lista todos os seus pets.
+    &f/{comando} abandonar &7Solta o pet de vez.
+
+Admin:
+  Laco recebido: '&aVoce recebeu &f{quantidade}x &aLaco de Captura.'
+  Laco dado: '&aVoce deu &f{quantidade}x &alaco para &f{jogador}&a.'
+  Pet recebido: '&aVoce ganhou um pet: &f{tipo}&a!'
+  Pet dado: '&aVoce deu um &f{tipo}&a para &f{jogador}&a.'
+  Pet removido: '&aO pet &f{pet}&a de &f{jogador}&a foi removido.'
+  Tipo invalido: '&cO tipo &f{tipo}&c nao existe. Veja em &f/petsadmin tipos&c.'
+  Uso dar: '&cUse: &f/petsadmin dar <jogador> <tipo> [nivel]'
+  Uso remover: '&cUse: &f/petsadmin remover <jogador> <numero>'
+  Tipos: '&7Tipos de pet: &f{tipos}'
+  Migracao iniciada: '&eLendo o banco do plugin antigo...'
+  Migracao falhou: '&cNao foi possivel migrar: &f{erro}'
+  Migracao confirmar: '&eRode &f/petsadmin migrar confirmar&e para gravar de verdade.'
+
+  Migracao aviso donos: '&e{aviso}'
+  Desfazer migracao vazio: '&eNao ha nenhum pet vindo de migracao para apagar.'
+  Desfazer migracao feita: '&aPronto: &f{total}&a pets da migracao foram apagados. Pode rodar a migracao de novo.'
+
+  Desfazer migracao aviso: |
+    &c&lATENCAO
+    &7Isto apaga os &f{total}&7 pets que vieram do plugin antigo, com bau e nivel.
+    &7Os pets criados aqui no StarPets nao sao tocados.
+    &7Confirme com &f/petsadmin migrar desfazer confirmar
+  Migracao lista cabecalho: '&d&lQUEM RECEBEU &7({donos} jogadores)'
+  Migracao dono: '&f{jogador} &7({total}): &f{pets}'
+  Migracao lista resto: '&7Faltaram &f{restam}&7 jogadores aqui. A lista inteira esta em &f{arquivo}&7, na pasta do StarPets.'
+
+  Migracao relatorio: |
+    &d&lMIGRACAO &7({modo})
+    &7Pets lidos no banco antigo: &f{lidos}
+    &aMigrados: &f{migrados} &7(de &f{donos}&7 jogadores)
+    &7Ja migrados antes: &f{repetidos}
+    &7Sem dono valido: &f{sem_dono}
+    &7Sem tipo equivalente: &f{sem_tipo}
+    &7Tipos ignorados: &f{tipos_ignorados}
+    &8Tipo ignorado e mob que nao esta no pets.yml. Adicione ele la e
+    &8rode o comando de novo: quem ja veio nao vem duas vezes.
+
+  Lista cabecalho: |
+    &d&lPETS DE &f{jogador} &7({total})
+  Lista linha: '&f{numero}. &a{pet} &7- {tipo}, nivel {nivel}, {estado}'
+
+  Ajuda: |
+    &d&lSTARPETS &7- &fComandos administrativos
+    &f/{comando} recarregar &7Recarrega as configuracoes.
+    &f/{comando} laco <jogador> [quantidade] &7Da lacos de captura.
+    &f/{comando} dar <jogador> <tipo> [nivel] &7Da um pet pronto.
+    &f/{comando} remover <jogador> <numero> &7Remove um pet do jogador.
+    &f/{comando} listar <jogador> &7Lista os pets do jogador.
+    &f/{comando} tipos &7Mostra os tipos de pet carregados.
+    &f/{comando} migrar [confirmar] [jogador] &7Traz os pets do plugin antigo.
+    &8Sem 'confirmar' e so simulacao: mostra de quem e cada pet sem gravar.
+    &f/{comando} migrar desfazer confirmar &7Apaga tudo que veio da migracao.
+
+# Textos curtos usados pelos placeholders do PlaceholderAPI.
+Placeholders:
+  Sem pet: '&7nenhum'
+  Chamado: '&aNo mundo'
+  Guardado: '&7Guardado'
+  Morto: '&cMorto'

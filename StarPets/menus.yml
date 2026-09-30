@@ -1,0 +1,354 @@
+#   __  __
+#  |  \/  | ___ _ __  _   _ ___
+#  | |\/| |/ _ \ '_ \| | | / __|
+#  | |  | |  __/ | | | |_| \__ \
+#  |_|  |_|\___|_| |_|\__,_|___/
+#
+#  Menus do StarPets. Slots comecam em 0. Use Slot: -1 para esconder um item.
+#
+#  Placeholders disponiveis em cada menu estao anotados nas secoes.
+
+#
+# ────────────────────────── Menu do /pets ─────────────────────────────
+#
+# {pet} {tipo} {nivel} {nivelmaximo} {exp} {expmax} {vida} {vidamaxima}
+# {dano} {modo} {estado}
+#
+Pets:
+  Nome: '&8Seus pets'
+  Tamanho: 27
+  Slots dos pets: [10, 11, 12, 13, 14, 15, 16]
+
+  Estados:
+    Chamado: '&aNo mundo'
+    Guardado: '&7Guardado'
+    Morto: '&cMorto &7({tempo})'
+
+  Itens:
+    # O material deste item vem do "Icone" do tipo de pet (pets.yml).
+    Pet:
+      Material: 'BONE'
+      Nome: '&a{pet}'
+      Lore:
+        - '&7Tipo: &f{tipo}'
+        - '&7Nivel: &f{nivel}&7/&f{nivelmaximo} &8({exp}/{expmax})'
+        - '&7Vida: &c{vida}&7/&c{vidamaxima}'
+        - '&7Dano: &f{dano}'
+        - '&7Modo: &f{modo}'
+        - '&7Estado: {estado}'
+        - ''
+        - '&aClique para abrir as opcoes.'
+
+    Sem pets:
+      Slot: 13
+      Material: 'BARRIER'
+      Nome: '&cVoce ainda nao tem nenhum pet'
+      Lore:
+        - '&7Pegue um {laco} &7e mate um mob'
+        - '&7segurando ele para captura-lo.'
+        - ''
+        - '&7O golpe que mata o mob e o que captura.'
+
+    Informacoes:
+      Slot: 22
+      Material: 'BOOK'
+      Nome: '&eSeus pets'
+      Lore:
+        - '&7Pets: &f{pets}&7/&f{limite}'
+        - ''
+        - '&7Capture novos pets matando mobs'
+        - '&7com o {laco} &7na mao.'
+
+    Fechar:
+      Slot: 26
+      Material: 'BARRIER'
+      Nome: '&cFechar'
+
+#
+# ─────────────────────── Menu de um pet ───────────────────────────────
+#
+# {pet} {tipo} {nivel} {vida} {dano} {modo} {descricao} {tempo} {custo} {slots}
+#
+Pet:
+  Nome: '&8Pet: {pet}'
+  Tamanho: 27
+
+  Itens:
+    Chamar:
+      Slot: 10
+      Material: 'LEAD'
+      Nome: '&aChamar o pet'
+      Lore:
+        - '&7Traz &f{pet} &7para o seu lado.'
+        - ''
+        - '&aClique para chamar.'
+
+    Guardar:
+      Slot: 10
+      Material: 'ENDER_CHEST'
+      Nome: '&eGuardar o pet'
+      Lore:
+        - '&7Manda &f{pet} &7descansar.'
+        - ''
+        - '&aClique para guardar.'
+
+    Reviver:
+      Slot: 10
+      Material: 'GOLDEN_APPLE'
+      Nome: '&cSeu pet esta morto'
+      Lore:
+        - '&7Volta em: &f{tempo}'
+        - '&7Reviver na hora: &f${custo}'
+        - ''
+        - '&aClique para reviver.'
+
+    Parar:
+      Slot: 11
+      Material: 'REDSTONE_TORCH'
+      Nome: '&ePedir para parar'
+      Lore:
+        - '&7{pet} &7larga a briga e volta'
+        - '&7para o seu lado.'
+        - ''
+        - '&7Ele fica &f{tempo}s &7sem procurar'
+        - '&7briga, a menos que apanhe.'
+        - ''
+        - '&aClique para chamar de volta.'
+
+    Modo:
+      Slot: 12
+      Material: 'IRON_SWORD'
+      Nome: '&6Modo de combate'
+      Lore:
+        - '&7Modo atual: &f{modo}'
+        - '{descricao}'
+        - ''
+        - '&aClique para escolher.'
+        - '&7Clique direito para trocar direto.'
+
+    Informacoes:
+      Slot: 13
+      Material: 'BOOK'
+      Nome: '&eInformacoes'
+      Lore:
+        - '&7Tipo: &f{tipo}'
+        - '&7Nivel: &f{nivel}'
+        - '&7Vida: &c{vida}'
+        - '&7Dano: &f{dano}'
+        - ''
+        - '&aClique para ver a ficha completa.'
+
+    Renomear:
+      Slot: 14
+      Material: 'NAME_TAG'
+      Nome: '&bRenomear'
+      Lore:
+        - '&7Nome atual: &f{pet}'
+        - ''
+        - '&aClique e digite o novo nome no chat.'
+
+    Bau:
+      Slot: 15
+      Material: 'CHEST'
+      Nome: '&6Bau do pet'
+      Lore:
+        - '&7Espaco: &f{slots} slots'
+        - '&7Seu pet tambem recolhe do chao'
+        - '&7o que cair perto dele.'
+        - ''
+        - '&aClique para abrir.'
+
+    Habilidades:
+      Slot: 17
+      Material: 'BLAZE_POWDER'
+      Nome: '&5Habilidades'
+      Lore:
+        - '&7Escolhe o poder de &f{pet}&7.'
+        - '&7Montado, bata para usar e aperte'
+        - '&7&lSHIFT&7 + bater para trocar aqui.'
+
+    Montar:
+      Slot: 16
+      Material: 'SADDLE'
+      Nome: '&6Montar'
+      Lore:
+        - '&7Sobe em &f{pet}&7.'
+        - '&7Na 1.21.3+ voce dirige com &fWASD&7;'
+        - '&7nas versoes antigas ele anda'
+        - '&7para onde voce estiver olhando.'
+        - ''
+        - '&aClique para montar.'
+
+    Abandonar:
+      Slot: 26
+      Material: 'BARRIER'
+      Nome: '&cAbandonar'
+      Lore:
+        - '&7Solta &f{pet} &7de vez.'
+        - '&cO nivel e o bau dele se perdem.'
+        - ''
+        - '&cClique para abandonar.'
+
+    Voltar:
+      Slot: 18
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+      Lore:
+        - '&7Volta para a lista de pets.'
+
+#
+# ───────────────────────── Modos de combate ───────────────────────────
+#
+# {modo} {descricao} {selecionado}
+# Use {se-atual} numa linha para ela aparecer so no modo ativo, e
+# {se-outro} para ela aparecer so nos outros.
+#
+Modos:
+  Nome: '&8Modo de {pet}'
+  Tamanho: 27
+  Marcador ativo: '&aATIVO'
+  Marcador inativo: '&7inativo'
+
+  Itens:
+    Agressivo:
+      Slot: 10
+      Material: 'IRON_SWORD'
+      Nome: '&c{modo} &8[{selecionado}&8]'
+      Lore:
+        - '{descricao}'
+        - '&7Ele procura briga sozinho.'
+        - ''
+        - '&aClique para usar este modo.{se-atual}'
+
+    Defensivo:
+      Slot: 12
+      Material: 'SHIELD'
+      Nome: '&9{modo} &8[{selecionado}&8]'
+      Lore:
+        - '{descricao}'
+        - '&7So entra em briga que ja e sua.'
+        - ''
+        - '&aClique para usar este modo.{se-atual}'
+
+    Fazenda:
+      Slot: 14
+      Material: 'WHEAT'
+      Nome: '&6{modo} &8[{selecionado}&8]'
+      Lore:
+        - '{descricao}'
+        - '&7Bom para farmar drops de animais.'
+        - ''
+        - '&aClique para usar este modo.{se-atual}'
+
+    Passivo:
+      Slot: 16
+      Material: 'FEATHER'
+      Nome: '&a{modo} &8[{selecionado}&8]'
+      Lore:
+        - '{descricao}'
+        - '&7Ele nunca ataca nada.'
+        - ''
+        - '&aClique para usar este modo.{se-atual}'
+
+    Voltar:
+      Slot: 22
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+
+#
+# ────────────────────────── Ficha do pet ──────────────────────────────
+#
+# {pet} {tipo} {nivel} {nivelmaximo} {exp} {expmax} {barra} {vida}
+# {vidamaxima} {dano} {velocidade} {modo} {bau} {montaria} {capturado}
+#
+Informacoes:
+  Nome: '&8Ficha de {pet}'
+  Tamanho: 27
+
+  Barra:
+    Casas: 20
+    Cheio: '&a|'
+    Vazio: '&8|'
+
+  Itens:
+    Ficha:
+      Slot: 13
+      Material: 'BOOK'
+      Nome: '&a{pet}'
+      Lore:
+        - '&7Tipo: &f{tipo}'
+        - '&7Capturado em: &f{capturado}'
+        - ''
+        - '&7Nivel: &f{nivel}&7/&f{nivelmaximo}'
+        - '{barra}'
+        - '&7Experiencia: &f{exp}&7/&f{expmax}'
+        - ''
+        - '&7Vida: &c{vidamaxima}'
+        - '&7Dano por golpe: &f{dano}'
+        - '&7Velocidade: &f{velocidade}'
+        - '&7Modo: &f{modo}'
+        - ''
+        - '&7Bau: &f{bau} slots'
+        - '&7Montaria: &f{montaria}'
+
+    Voltar:
+      Slot: 22
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+
+#
+# ────────────────────── Confirmacao de abandono ───────────────────────
+#
+Confirmar:
+  Nome: '&8Abandonar {pet}?'
+  Tamanho: 27
+
+  Itens:
+    Sim:
+      Slot: 11
+      Material: 'LIME_WOOL'
+      Nome: '&aSim, abandonar'
+      Lore:
+        - '&7Voce perde &f{pet} &7(nivel {nivel})'
+        - '&7e tudo que estiver no bau dele.'
+
+    Nao:
+      Slot: 15
+      Material: 'RED_WOOL'
+      Nome: '&cNao, voltar'
+      Lore:
+        - '&7Mantem &f{pet} &7com voce.'
+
+#
+# ─────────────────────── Habilidades do pet ───────────────────────────
+#
+# Os poderes em si ficam no habilidades.yml -- icone, nome e descricao saem
+# de la. Aqui so o titulo, o tamanho e os dois itens fixos.
+#
+Habilidades:
+  Nome: '&8Habilidades de {pet}'
+  Tamanho: 27
+  Marcador ativo: '&8[&aATIVA&8]'
+  Marcador inativo: ''
+
+  Itens:
+    Nenhuma:
+      Slot: 13
+      Material: 'BARRIER'
+      Nome: '&cNenhuma habilidade'
+      Lore:
+        - '&7Voce ainda nao tem permissao para'
+        - '&7nenhuma habilidade com este pet.'
+
+    Voltar:
+      Slot: 26
+      Material: 'RED_DYE|INK_SACK'
+      Nome: '&cVoltar'
+
+#
+# ──────────────────────────── Bau do pet ──────────────────────────────
+#
+# O titulo aceita {pet}. O tamanho vem do tipo de pet (pets.yml).
+#
+Bau:
+  Nome: '&8Bau de {pet}'

@@ -1,0 +1,1174 @@
+#   ____       _
+#  |  _ \ ___ | |_ ___
+#  | |_) / _ \| __/ __|
+#  |  __/  __/| |_\__ \
+#  |_|   \___| \__|___/
+#
+#  Tipos de pet e a experiencia que cada mob da.
+#
+#  Cada chave de "Pets:" e um tipo. O jogador precisa da permissao
+#  starpets.tipo.<chave> para capturar aquele tipo (ou starpets.tipo.*).
+#
+#  Entidade      Nome do mob. Se ele nao existir na versao do servidor, o tipo
+#                e ignorado sem erro -- por isso da para deixar mobs novos
+#                listados aqui mesmo rodando numa 1.8.
+#  Vida          Vida no nivel 1 (2 = um coracao).
+#  Dano          Dano por golpe no nivel 1.
+#  Velocidade    Velocidade de movimento (0.3 e o normal de um mob).
+#  Bau           Slots do bau do pet (multiplo de 9, ate 54). 0 = sem bau.
+#  Capturavel    false tira o mob do laco: o pet so entra por
+#                /petsadmin dar. E assim que o dragao funciona.
+#  Montaria      O dono pode subir no pet e dirigir olhando para onde quer ir.
+#                Vem ligada em todos; ponha false no tipo para desligar nele.
+#  Chance de captura   Chance, em %, do laco segurar o mob.
+#
+
+Pets:
+
+  # ─────────────────────────── Companheiros ───────────────────────────
+
+  lobo:
+    Entidade: WOLF
+    Nome: '&fLobo'
+    Icone: 'BONE'
+    Vida: 24.0
+    Vida por nivel: 1.5
+    Dano: 4.0
+    Dano por nivel: 0.4
+    Velocidade: 0.34
+    Nivel maximo: 60
+    Chance de captura: 35.0
+    Bau: 0
+    Montaria: true
+
+  gato:
+    Entidade: OCELOT
+    Nome: '&fGato'
+    Icone: 'STRING'
+    Vida: 18.0
+    Vida por nivel: 1.0
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.36
+    Nivel maximo: 60
+    Chance de captura: 35.0
+    Bau: 0
+    Montaria: true
+
+  raposa:
+    Entidade: FOX
+    Nome: '&6Raposa'
+    Icone: 'SWEET_BERRIES'
+    Vida: 20.0
+    Vida por nivel: 1.2
+    Dano: 4.0
+    Dano por nivel: 0.35
+    Velocidade: 0.38
+    Nivel maximo: 60
+    Chance de captura: 25.0
+    Bau: 0
+    Montaria: true
+
+  papagaio:
+    Entidade: PARROT
+    Nome: '&aPapagaio'
+    Icone: 'FEATHER'
+    Vida: 14.0
+    Vida por nivel: 0.8
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.4
+    Nivel maximo: 50
+    Chance de captura: 25.0
+    Bau: 0
+    Montaria: true
+
+  # ──────────────────────────── Fazenda ───────────────────────────────
+
+  porco:
+    Entidade: PIG
+    Nome: '&dPorco'
+    Icone: 'PORKCHOP'
+    Vida: 20.0
+    Vida por nivel: 1.2
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.3
+    Nivel maximo: 40
+    Chance de captura: 60.0
+    Bau: 9
+    Montaria: true
+
+  vaca:
+    Entidade: COW
+    Nome: '&6Vaca'
+    Icone: 'BEEF'
+    Vida: 22.0
+    Vida por nivel: 1.4
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.28
+    Nivel maximo: 40
+    Chance de captura: 60.0
+    Bau: 9
+    Montaria: true
+
+  ovelha:
+    Entidade: SHEEP
+    Nome: '&fOvelha'
+    Icone: 'WHITE_WOOL'
+    Vida: 20.0
+    Vida por nivel: 1.2
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.3
+    Nivel maximo: 40
+    Chance de captura: 60.0
+    Bau: 9
+    Montaria: true
+
+  galinha:
+    Entidade: CHICKEN
+    Nome: '&eGalinha'
+    Icone: 'EGG'
+    Vida: 12.0
+    Vida por nivel: 0.8
+    Dano: 1.0
+    Dano por nivel: 0.1
+    Velocidade: 0.32
+    Nivel maximo: 40
+    Chance de captura: 65.0
+    Bau: 0
+    Montaria: true
+
+  coelho:
+    Entidade: RABBIT
+    Nome: '&fCoelho'
+    Icone: 'RABBIT_FOOT'
+    Vida: 14.0
+    Vida por nivel: 0.8
+    Dano: 1.0
+    Dano por nivel: 0.2
+    Velocidade: 0.4
+    Nivel maximo: 40
+    Chance de captura: 55.0
+    Bau: 0
+    Montaria: true
+
+  cavalo:
+    Entidade: HORSE
+    Nome: '&6Cavalo'
+    Icone: 'SADDLE'
+    Vida: 30.0
+    Vida por nivel: 2.0
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.42
+    Nivel maximo: 60
+    Chance de captura: 30.0
+    Bau: 18
+    Montaria: true
+
+  burro:
+    Entidade: DONKEY
+    Nome: '&6Burro'
+    Icone: 'CHEST'
+    Vida: 28.0
+    Vida por nivel: 1.8
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.36
+    Nivel maximo: 60
+    Chance de captura: 35.0
+    Bau: 27
+    Montaria: true
+
+  # ─────────────────────────── Monstros ───────────────────────────────
+
+  zumbi:
+    Entidade: ZOMBIE
+    Nome: '&2Zumbi'
+    Icone: 'ROTTEN_FLESH'
+    Vida: 26.0
+    Vida por nivel: 1.6
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.28
+    Nivel maximo: 70
+    Chance de captura: 25.0
+    Bau: 9
+    Montaria: true
+
+  esqueleto:
+    Entidade: SKELETON
+    Nome: '&7Esqueleto'
+    Icone: 'BONE'
+    Vida: 22.0
+    Vida por nivel: 1.4
+    Dano: 5.0
+    Dano por nivel: 0.55
+    Velocidade: 0.3
+    Nivel maximo: 70
+    Chance de captura: 25.0
+    Bau: 0
+    Montaria: true
+
+  aranha:
+    Entidade: SPIDER
+    Nome: '&8Aranha'
+    Icone: 'SPIDER_EYE'
+    Vida: 24.0
+    Vida por nivel: 1.4
+    Dano: 4.0
+    Dano por nivel: 0.5
+    Velocidade: 0.4
+    Nivel maximo: 70
+    Chance de captura: 25.0
+    Bau: 0
+    Montaria: true
+
+  creeper:
+    Entidade: CREEPER
+    Nome: '&aCreeper'
+    Icone: 'GUNPOWDER'
+    Vida: 20.0
+    Vida por nivel: 1.2
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.3
+    Nivel maximo: 70
+    Chance de captura: 15.0
+    Bau: 0
+    Montaria: true
+
+  enderman:
+    Entidade: ENDERMAN
+    Nome: '&5Enderman'
+    Icone: 'ENDER_PEARL'
+    Vida: 40.0
+    Vida por nivel: 2.0
+    Dano: 7.0
+    Dano por nivel: 0.7
+    Velocidade: 0.35
+    Nivel maximo: 80
+    Chance de captura: 10.0
+    Bau: 0
+    Montaria: true
+
+  blaze:
+    Entidade: BLAZE
+    Nome: '&eBlaze'
+    Icone: 'BLAZE_ROD'
+    Vida: 26.0
+    Vida por nivel: 1.6
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.32
+    Nivel maximo: 80
+    Chance de captura: 10.0
+    Bau: 0
+    Montaria: true
+
+  slime:
+    Entidade: SLIME
+    Nome: '&aSlime'
+    Icone: 'SLIME_BALL'
+    Vida: 20.0
+    Vida por nivel: 1.5
+    Dano: 4.0
+    Dano por nivel: 0.4
+    Velocidade: 0.3
+    Nivel maximo: 60
+    Chance de captura: 30.0
+    Bau: 0
+    Montaria: true
+
+  porco_zumbi:
+    Entidade: ZOMBIFIED_PIGLIN
+    Nome: '&dPorco Zumbi'
+    Icone: 'GOLD_NUGGET'
+    Vida: 30.0
+    Vida por nivel: 1.8
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.3
+    Nivel maximo: 80
+    Chance de captura: 15.0
+    Bau: 0
+    Montaria: true
+
+  golem:
+    Entidade: IRON_GOLEM
+    Nome: '&7Golem de Ferro'
+    Icone: 'IRON_INGOT'
+    Vida: 60.0
+    Vida por nivel: 3.0
+    Dano: 9.0
+    Dano por nivel: 0.8
+    Velocidade: 0.26
+    Nivel maximo: 90
+    Chance de captura: 5.0
+    Bau: 27
+    Montaria: true
+
+  aldeao:
+    Entidade: VILLAGER
+    Nome: '&aAldeao'
+    Icone: 'EMERALD'
+    Vida: 24.0
+    Vida por nivel: 1.2
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.3
+    Nivel maximo: 50
+    Chance de captura: 20.0
+    Bau: 27
+    Montaria: true
+
+  urso:
+    Entidade: POLAR_BEAR
+    Nome: '&fUrso Polar'
+    Icone: 'SNOWBALL'
+    Vida: 44.0
+    Vida por nivel: 2.2
+    Dano: 8.0
+    Dano por nivel: 0.7
+    Velocidade: 0.3
+    Nivel maximo: 80
+    Chance de captura: 12.0
+    Bau: 9
+    Montaria: true
+
+  panda:
+    Entidade: PANDA
+    Nome: '&fPanda'
+    Icone: 'BAMBOO'
+    Vida: 40.0
+    Vida por nivel: 2.0
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.3
+    Nivel maximo: 70
+    Chance de captura: 15.0
+    Bau: 9
+    Montaria: true
+
+
+  # ─────────────────────── Animais e neutros ──────────────────────────
+
+  gato_domestico:
+    Entidade: CAT
+    Nome: '&fGato Domestico'
+    Icone: 'COD'
+    Vida: 18
+    Vida por nivel: 1.0
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.36
+    Nivel maximo: 60
+    Chance de captura: 35
+    Bau: 0
+    Montaria: true
+
+  cabra:
+    Entidade: GOAT
+    Nome: '&fCabra'
+    Icone: 'MILK_BUCKET'
+    Vida: 20
+    Vida por nivel: 1.2
+    Dano: 4.0
+    Dano por nivel: 0.4
+    Velocidade: 0.34
+    Nivel maximo: 50
+    Chance de captura: 45
+    Bau: 0
+    Montaria: true
+
+  abelha:
+    Entidade: BEE
+    Nome: '&eAbelha'
+    Icone: 'HONEYCOMB'
+    Vida: 12
+    Vida por nivel: 0.8
+    Dano: 3.0
+    Dano por nivel: 0.35
+    Velocidade: 0.4
+    Nivel maximo: 50
+    Chance de captura: 40
+    Bau: 0
+    Montaria: true
+
+  sapo:
+    Entidade: FROG
+    Nome: '&aSapo'
+    Icone: 'LILY_PAD'
+    Vida: 12
+    Vida por nivel: 0.8
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.36
+    Nivel maximo: 40
+    Chance de captura: 50
+    Bau: 0
+    Montaria: true
+
+  tartaruga:
+    Entidade: TURTLE
+    Nome: '&aTartaruga'
+    Icone: 'TURTLE_HELMET'
+    Vida: 30
+    Vida por nivel: 1.6
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.22
+    Nivel maximo: 50
+    Chance de captura: 45
+    Bau: 0
+    Montaria: true
+
+  tatu:
+    Entidade: ARMADILLO
+    Nome: '&6Tatu'
+    Icone: 'ARMADILLO_SCUTE'
+    Vida: 18
+    Vida por nivel: 1.2
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.3
+    Nivel maximo: 50
+    Chance de captura: 45
+    Bau: 0
+    Montaria: true
+
+  vaca_cogumelo:
+    Entidade: MOOSHROOM
+    Nome: '&cVaca Cogumelo'
+    Icone: 'RED_MUSHROOM'
+    Vida: 22
+    Vida por nivel: 1.4
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.28
+    Nivel maximo: 40
+    Chance de captura: 45
+    Bau: 9
+    Montaria: true
+
+  morcego:
+    Entidade: BAT
+    Nome: '&8Morcego'
+    Icone: 'COAL'
+    Vida: 8
+    Vida por nivel: 0.6
+    Dano: 1.0
+    Dano por nivel: 0.15
+    Velocidade: 0.4
+    Nivel maximo: 40
+    Chance de captura: 55
+    Bau: 0
+    Montaria: true
+
+  lhama:
+    Entidade: LLAMA
+    Nome: '&6Lhama'
+    Icone: 'CHEST'
+    Vida: 26
+    Vida por nivel: 1.6
+    Dano: 4.0
+    Dano por nivel: 0.35
+    Velocidade: 0.32
+    Nivel maximo: 50
+    Chance de captura: 35
+    Bau: 27
+    Montaria: true
+
+  mula:
+    Entidade: MULE
+    Nome: '&6Mula'
+    Icone: 'CHEST'
+    Vida: 28
+    Vida por nivel: 1.8
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.36
+    Nivel maximo: 60
+    Chance de captura: 35
+    Bau: 27
+    Montaria: true
+
+  camelo:
+    Entidade: CAMEL
+    Nome: '&6Camelo'
+    Icone: 'CACTUS'
+    Vida: 34
+    Vida por nivel: 2.0
+    Dano: 4.0
+    Dano por nivel: 0.35
+    Velocidade: 0.4
+    Nivel maximo: 60
+    Chance de captura: 30
+    Bau: 18
+    Montaria: true
+
+  farejador:
+    Entidade: SNIFFER
+    Nome: '&aFarejador'
+    Icone: 'TORCHFLOWER_SEEDS'
+    Vida: 30
+    Vida por nivel: 1.8
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.26
+    Nivel maximo: 50
+    Chance de captura: 25
+    Bau: 18
+    Montaria: true
+
+  axolote:
+    Entidade: AXOLOTL
+    Nome: '&dAxolote'
+    Icone: 'TROPICAL_FISH_BUCKET'
+    Vida: 16
+    Vida por nivel: 1.0
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.34
+    Nivel maximo: 50
+    Chance de captura: 40
+    Bau: 0
+    Montaria: true
+
+  golfinho:
+    Entidade: DOLPHIN
+    Nome: '&bGolfinho'
+    Icone: 'COD'
+    Vida: 20
+    Vida por nivel: 1.2
+    Dano: 4.0
+    Dano por nivel: 0.4
+    Velocidade: 0.4
+    Nivel maximo: 50
+    Chance de captura: 30
+    Bau: 0
+    Montaria: true
+
+  lula:
+    Entidade: SQUID
+    Nome: '&8Lula'
+    Icone: 'INK_SAC'
+    Vida: 14
+    Vida por nivel: 0.8
+    Dano: 1.0
+    Dano por nivel: 0.15
+    Velocidade: 0.3
+    Nivel maximo: 40
+    Chance de captura: 50
+    Bau: 0
+    Montaria: true
+
+  lula_brilhante:
+    Entidade: GLOW_SQUID
+    Nome: '&bLula Brilhante'
+    Icone: 'GLOW_INK_SAC'
+    Vida: 14
+    Vida por nivel: 0.8
+    Dano: 1.0
+    Dano por nivel: 0.15
+    Velocidade: 0.3
+    Nivel maximo: 40
+    Chance de captura: 45
+    Bau: 0
+    Montaria: true
+
+  bacalhau:
+    Entidade: COD
+    Nome: '&fBacalhau'
+    Icone: 'COD'
+    Vida: 6
+    Vida por nivel: 0.5
+    Dano: 1.0
+    Dano por nivel: 0.1
+    Velocidade: 0.3
+    Nivel maximo: 30
+    Chance de captura: 60
+    Bau: 0
+    Montaria: true
+
+  salmao:
+    Entidade: SALMON
+    Nome: '&cSalmao'
+    Icone: 'SALMON'
+    Vida: 6
+    Vida por nivel: 0.5
+    Dano: 1.0
+    Dano por nivel: 0.1
+    Velocidade: 0.3
+    Nivel maximo: 30
+    Chance de captura: 60
+    Bau: 0
+    Montaria: true
+
+  baiacu:
+    Entidade: PUFFERFISH
+    Nome: '&eBaiacu'
+    Icone: 'PUFFERFISH'
+    Vida: 6
+    Vida por nivel: 0.5
+    Dano: 2.0
+    Dano por nivel: 0.2
+    Velocidade: 0.3
+    Nivel maximo: 30
+    Chance de captura: 55
+    Bau: 0
+    Montaria: true
+
+  peixe_tropical:
+    Entidade: TROPICAL_FISH
+    Nome: '&dPeixe Tropical'
+    Icone: 'TROPICAL_FISH'
+    Vida: 6
+    Vida por nivel: 0.5
+    Dano: 1.0
+    Dano por nivel: 0.1
+    Velocidade: 0.3
+    Nivel maximo: 30
+    Chance de captura: 60
+    Bau: 0
+    Montaria: true
+
+  allay:
+    Entidade: ALLAY
+    Nome: '&bAllay'
+    Icone: 'AMETHYST_SHARD'
+    Vida: 14
+    Vida por nivel: 0.8
+    Dano: 1.0
+    Dano por nivel: 0.15
+    Velocidade: 0.4
+    Nivel maximo: 50
+    Chance de captura: 20
+    Bau: 9
+    Montaria: true
+
+  boneco_de_neve:
+    Entidade: SNOW_GOLEM
+    Nome: '&fBoneco de Neve'
+    Icone: 'SNOWBALL'
+    Vida: 16
+    Vida por nivel: 1.0
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.3
+    Nivel maximo: 50
+    Chance de captura: 40
+    Bau: 0
+    Montaria: true
+
+  cavalo_esqueleto:
+    Entidade: SKELETON_HORSE
+    Nome: '&7Cavalo Esqueleto'
+    Icone: 'BONE'
+    Vida: 30
+    Vida por nivel: 2.0
+    Dano: 4.0
+    Dano por nivel: 0.4
+    Velocidade: 0.42
+    Nivel maximo: 70
+    Chance de captura: 15
+    Bau: 18
+    Montaria: true
+
+  cavalo_zumbi:
+    Entidade: ZOMBIE_HORSE
+    Nome: '&2Cavalo Zumbi'
+    Icone: 'ROTTEN_FLESH'
+    Vida: 30
+    Vida por nivel: 2.0
+    Dano: 4.0
+    Dano por nivel: 0.4
+    Velocidade: 0.4
+    Nivel maximo: 70
+    Chance de captura: 15
+    Bau: 18
+    Montaria: true
+
+  # ────────────────────── Monstros e hostis ───────────────────────────
+
+  aranha_da_caverna:
+    Entidade: CAVE_SPIDER
+    Nome: '&8Aranha da Caverna'
+    Icone: 'FERMENTED_SPIDER_EYE'
+    Vida: 20
+    Vida por nivel: 1.2
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.42
+    Nivel maximo: 70
+    Chance de captura: 25
+    Bau: 0
+    Montaria: true
+
+  peixinho_prateado:
+    Entidade: SILVERFISH
+    Nome: '&7Peixinho Prateado'
+    Icone: 'STONE'
+    Vida: 14
+    Vida por nivel: 1.0
+    Dano: 3.0
+    Dano por nivel: 0.35
+    Velocidade: 0.4
+    Nivel maximo: 60
+    Chance de captura: 35
+    Bau: 0
+    Montaria: true
+
+  endermite:
+    Entidade: ENDERMITE
+    Nome: '&5Endermite'
+    Icone: 'END_STONE'
+    Vida: 14
+    Vida por nivel: 1.0
+    Dano: 4.0
+    Dano por nivel: 0.4
+    Velocidade: 0.4
+    Nivel maximo: 60
+    Chance de captura: 30
+    Bau: 0
+    Montaria: true
+
+  cubo_de_magma:
+    Entidade: MAGMA_CUBE
+    Nome: '&6Cubo de Magma'
+    Icone: 'MAGMA_CREAM'
+    Vida: 22
+    Vida por nivel: 1.5
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.32
+    Nivel maximo: 70
+    Chance de captura: 25
+    Bau: 0
+    Montaria: true
+
+  zumbi_aldeao:
+    Entidade: ZOMBIE_VILLAGER
+    Nome: '&2Zumbi Aldeao'
+    Icone: 'ROTTEN_FLESH'
+    Vida: 26
+    Vida por nivel: 1.6
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.28
+    Nivel maximo: 70
+    Chance de captura: 25
+    Bau: 9
+    Montaria: true
+
+  husk:
+    Entidade: HUSK
+    Nome: '&eHusk'
+    Icone: 'SAND'
+    Vida: 28
+    Vida por nivel: 1.7
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.28
+    Nivel maximo: 70
+    Chance de captura: 22
+    Bau: 9
+    Montaria: true
+
+  stray:
+    Entidade: STRAY
+    Nome: '&bStray'
+    Icone: 'ICE'
+    Vida: 22
+    Vida por nivel: 1.4
+    Dano: 5.0
+    Dano por nivel: 0.55
+    Velocidade: 0.3
+    Nivel maximo: 70
+    Chance de captura: 22
+    Bau: 0
+    Montaria: true
+
+  afogado:
+    Entidade: DROWNED
+    Nome: '&3Afogado'
+    Icone: 'TRIDENT'
+    Vida: 26
+    Vida por nivel: 1.6
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.3
+    Nivel maximo: 70
+    Chance de captura: 22
+    Bau: 0
+    Montaria: true
+
+  bogged:
+    Entidade: BOGGED
+    Nome: '&2Bogged'
+    Icone: 'BROWN_MUSHROOM'
+    Vida: 20
+    Vida por nivel: 1.4
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.3
+    Nivel maximo: 70
+    Chance de captura: 22
+    Bau: 0
+    Montaria: true
+
+  esqueleto_wither:
+    Entidade: WITHER_SKELETON
+    Nome: '&8Esqueleto Wither'
+    Icone: 'COAL'
+    Vida: 28
+    Vida por nivel: 1.8
+    Dano: 7.0
+    Dano por nivel: 0.7
+    Velocidade: 0.32
+    Nivel maximo: 80
+    Chance de captura: 12
+    Bau: 0
+    Montaria: true
+
+  bruxa:
+    Entidade: WITCH
+    Nome: '&5Bruxa'
+    Icone: 'POTION'
+    Vida: 30
+    Vida por nivel: 1.8
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.3
+    Nivel maximo: 80
+    Chance de captura: 15
+    Bau: 0
+    Montaria: true
+
+  vindicator:
+    Entidade: VINDICATOR
+    Nome: '&7Vindicator'
+    Icone: 'IRON_AXE'
+    Vida: 30
+    Vida por nivel: 1.8
+    Dano: 7.0
+    Dano por nivel: 0.7
+    Velocidade: 0.34
+    Nivel maximo: 80
+    Chance de captura: 12
+    Bau: 0
+    Montaria: true
+
+  pillager:
+    Entidade: PILLAGER
+    Nome: '&7Pillager'
+    Icone: 'CROSSBOW'
+    Vida: 26
+    Vida por nivel: 1.6
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.34
+    Nivel maximo: 80
+    Chance de captura: 15
+    Bau: 0
+    Montaria: true
+
+  evoker:
+    Entidade: EVOKER
+    Nome: '&5Evoker'
+    Icone: 'TOTEM_OF_UNDYING'
+    Vida: 28
+    Vida por nivel: 1.8
+    Dano: 7.0
+    Dano por nivel: 0.7
+    Velocidade: 0.32
+    Nivel maximo: 85
+    Chance de captura: 8
+    Bau: 0
+    Montaria: true
+
+  vex:
+    Entidade: VEX
+    Nome: '&bVex'
+    Icone: 'IRON_SWORD'
+    Vida: 16
+    Vida por nivel: 1.2
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.45
+    Nivel maximo: 75
+    Chance de captura: 15
+    Bau: 0
+    Montaria: true
+
+  devastador:
+    Entidade: RAVAGER
+    Nome: '&4Devastador'
+    Icone: 'SADDLE'
+    Vida: 60
+    Vida por nivel: 3.0
+    Dano: 10.0
+    Dano por nivel: 0.9
+    Velocidade: 0.36
+    Nivel maximo: 90
+    Chance de captura: 6
+    Bau: 18
+    Montaria: true
+
+  hoglin:
+    Entidade: HOGLIN
+    Nome: '&cHoglin'
+    Icone: 'CRIMSON_FUNGUS'
+    Vida: 44
+    Vida por nivel: 2.2
+    Dano: 8.0
+    Dano por nivel: 0.7
+    Velocidade: 0.34
+    Nivel maximo: 80
+    Chance de captura: 12
+    Bau: 9
+    Montaria: true
+
+  zoglin:
+    Entidade: ZOGLIN
+    Nome: '&4Zoglin'
+    Icone: 'CRIMSON_ROOTS'
+    Vida: 44
+    Vida por nivel: 2.2
+    Dano: 8.0
+    Dano por nivel: 0.8
+    Velocidade: 0.34
+    Nivel maximo: 80
+    Chance de captura: 10
+    Bau: 0
+    Montaria: true
+
+  piglin:
+    Entidade: PIGLIN
+    Nome: '&dPiglin'
+    Icone: 'GOLD_INGOT'
+    Vida: 26
+    Vida por nivel: 1.6
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.32
+    Nivel maximo: 75
+    Chance de captura: 18
+    Bau: 9
+    Montaria: true
+
+  piglin_brutal:
+    Entidade: PIGLIN_BRUTE
+    Nome: '&4Piglin Brutal'
+    Icone: 'GOLDEN_AXE'
+    Vida: 34
+    Vida por nivel: 2.0
+    Dano: 9.0
+    Dano por nivel: 0.8
+    Velocidade: 0.34
+    Nivel maximo: 85
+    Chance de captura: 8
+    Bau: 0
+    Montaria: true
+
+  strider:
+    Entidade: STRIDER
+    Nome: '&cStrider'
+    Icone: 'WARPED_FUNGUS_ON_A_STICK'
+    Vida: 26
+    Vida por nivel: 1.6
+    Dano: 3.0
+    Dano por nivel: 0.3
+    Velocidade: 0.34
+    Nivel maximo: 60
+    Chance de captura: 30
+    Bau: 0
+    Montaria: true
+
+  phantom:
+    Entidade: PHANTOM
+    Nome: '&5Phantom'
+    Icone: 'PHANTOM_MEMBRANE'
+    Vida: 22
+    Vida por nivel: 1.4
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.42
+    Nivel maximo: 75
+    Chance de captura: 15
+    Bau: 0
+    Montaria: true
+
+  ghast:
+    Entidade: GHAST
+    Nome: '&fGhast'
+    Icone: 'GHAST_TEAR'
+    Vida: 20
+    Vida por nivel: 1.4
+    Dano: 7.0
+    Dano por nivel: 0.7
+    Velocidade: 0.3
+    Nivel maximo: 80
+    Chance de captura: 8
+    Bau: 0
+    Montaria: true
+
+  guardiao:
+    Entidade: GUARDIAN
+    Nome: '&3Guardiao'
+    Icone: 'PRISMARINE_SHARD'
+    Vida: 30
+    Vida por nivel: 1.8
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.3
+    Nivel maximo: 80
+    Chance de captura: 12
+    Bau: 0
+    Montaria: true
+
+  shulker:
+    Entidade: SHULKER
+    Nome: '&5Shulker'
+    Icone: 'SHULKER_SHELL'
+    Vida: 30
+    Vida por nivel: 1.8
+    Dano: 5.0
+    Dano por nivel: 0.5
+    Velocidade: 0.1
+    Nivel maximo: 80
+    Chance de captura: 8
+    Bau: 0
+    Montaria: true
+
+  breeze:
+    Entidade: BREEZE
+    Nome: '&bBreeze'
+    Icone: 'WIND_CHARGE'
+    Vida: 24
+    Vida por nivel: 1.6
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.4
+    Nivel maximo: 80
+    Chance de captura: 10
+    Bau: 0
+    Montaria: true
+
+  creaking:
+    Entidade: CREAKING
+    Nome: '&8Creaking'
+    Icone: 'PALE_OAK_LOG'
+    Vida: 30
+    Vida por nivel: 1.8
+    Dano: 6.0
+    Dano por nivel: 0.6
+    Velocidade: 0.3
+    Nivel maximo: 80
+    Chance de captura: 10
+    Bau: 0
+    Montaria: true
+
+  warden:
+    Entidade: WARDEN
+    Nome: '&3Warden'
+    Icone: 'SCULK_CATALYST'
+    Vida: 100
+    Vida por nivel: 4.0
+    Dano: 15.0
+    Dano por nivel: 1.2
+    Velocidade: 0.3
+    Nivel maximo: 100
+    Chance de captura: 2
+    Bau: 0
+    Montaria: true
+
+#  Nao vem configurado de proposito: ENDER_DRAGON e WITHER.
+#  Os dois sao chefes com logica propria (voo, barra de vida, imunidades) e
+#  nao se comportam como pet -- se quiser mesmo tentar, e so copiar um bloco
+#  acima trocando a Entidade.
+
+#
+# ─────────────────────── Experiencia por mob ──────────────────────────
+#
+# Quanta experiencia o pet ganha por cada mob morto. O que nao estiver aqui
+# vale o "Experiencia.Por mob morto" do config.yml.
+#
+Experiencia por mob:
+  CHICKEN: 4.0
+  RABBIT: 4.0
+  PIG: 6.0
+  SHEEP: 6.0
+  COW: 8.0
+  ZOMBIE: 12.0
+  SKELETON: 14.0
+  SPIDER: 12.0
+  CREEPER: 16.0
+  ENDERMAN: 30.0
+  BLAZE: 30.0
+  WITHER_SKELETON: 40.0
+  WITCH: 30.0
+  IRON_GOLEM: 40.0
+  ZOMBIFIED_PIGLIN: 20.0
+  PIG_ZOMBIE: 20.0
+  ENDER_DRAGON: 500.0
+  WITHER: 400.0
+  WARDEN: 300.0
+  ELDER_GUARDIAN: 120.0
+  RAVAGER: 90.0
+  EVOKER: 80.0
+  PIGLIN_BRUTE: 60.0
+  WITHER_SKELETON: 40.0
+  VINDICATOR: 40.0
+  PILLAGER: 30.0
+  HOGLIN: 30.0
+  ZOGLIN: 30.0
+  GUARDIAN: 30.0
+  PHANTOM: 25.0
+  BREEZE: 40.0
+  CREAKING: 40.0
+  SHULKER: 40.0
+  GHAST: 35.0
+  DROWNED: 14.0
+  HUSK: 13.0
+  STRAY: 14.0
+  BOGGED: 14.0
+  ZOMBIE_VILLAGER: 14.0
+  CAVE_SPIDER: 14.0
+  MAGMA_CUBE: 14.0
+  SILVERFISH: 8.0
+  ENDERMITE: 8.0
+  VEX: 20.0
+  PIGLIN: 18.0
+  SLIME: 10.0
+  GOAT: 8.0
+  BEE: 6.0
+  TURTLE: 6.0
+  FROG: 4.0
+  BAT: 3.0
+  COD: 2.0
+  SALMON: 2.0
+  TROPICAL_FISH: 2.0
+  PUFFERFISH: 3.0
+  SQUID: 4.0
+  GLOW_SQUID: 4.0
+
+  dragao:
+    Entidade: ENDER_DRAGON
+    Nome: '&5Dragao do Fim'
+    Icone: 'DRAGON_EGG'
+    Vida: 200.0
+    Vida por nivel: 10.0
+    Dano: 14.0
+    Dano por nivel: 1.0
+    Velocidade: 0.5
+    Nivel maximo: 100
+    # Zero e o laco nao pega: este pet e entregue pela equipe com
+    # /petsadmin dar <jogador> dragao.
+    Chance de captura: 0.0
+    Capturavel: false
+    Bau: 0
+    Montaria: true

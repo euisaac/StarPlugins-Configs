@@ -1,0 +1,99 @@
+#   _   _       _     _ _ _     _           _
+#  | | | | __ _| |__ (_) (_) __| | __ _  __| | ___  ___
+#  | |_| |/ _` | '_ \| | | |/ _` |/ _` |/ _` |/ _ \/ __|
+#  |  _  | (_| | |_) | | | | (_| | (_| | (_| |  __/\__ \
+#  |_| |_|\__,_|_.__/|_|_|_|\__,_|\__,_|\__,_|\___||___/
+#
+#  Poderes que o dono usa montado no pet.
+#
+#  Montado, o jogador BATE (clique esquerdo) para usar a habilidade escolhida,
+#  e aperta SHIFT e bate para abrir o menu e trocar de habilidade. So SHIFT
+#  desce do pet.
+#
+#  Cada bloco aqui e uma habilidade. O id (a chave) e o que fica salvo no pet.
+#
+#  Nome            Como ela aparece no menu e nas mensagens.
+#  Icone           Material do item no menu. Alternativas com | -- a primeira
+#                  que existir na versao do servidor e usada.
+#  Descricao       Linhas de explicacao no item do menu.
+#  Permissao       Sem ela, a habilidade nem aparece para o jogador.
+#  Efeito          BOLA            uma bola que viaja e estoura onde bate
+#                  EXPLOSAO_PERTO  o estouro sai na hora, em volta do pet
+#  Dano            Dano de quem estiver no raio do estouro.
+#  Raio            Alcance do estouro, em blocos.
+#  Alcance         Quanto a bola viaja antes de estourar sozinha (so BOLA).
+#  Velocidade      Blocos por tique da bola (0.9 e rapido, 0.4 e lento).
+#  Cooldown        Segundos de espera entre um uso e outro.
+#  Atinge jogadores  false deixa a habilidade so para mobs.
+#  Poe fogo        Deixa em chamas quem for atingido.
+#  Particulas      Nomes tentados em ordem; o primeiro que existir na versao do
+#                  servidor e usado. Deixe de fora para usar o roxo do plugin.
+#  Som             NOME:volume:tom, com alternativas separadas por |.
+#  Tipos de pet    Lista de tipos do pets.yml que podem usar. Vazio = todos.
+#
+
+Habilidades:
+
+  sopro_do_dragao:
+    Nome: '&5Sopro do Dragao'
+    Icone: 'DRAGON_BREATH|FIREBALL'
+    Descricao:
+      - '&7Uma bola roxa que voa para onde'
+      - '&7voce esta olhando e estoura em area.'
+    Permissao: 'starpets.habilidade.sopro_do_dragao'
+    Efeito: BOLA
+    Dano: 12.0
+    Raio: 4.0
+    Alcance: 45.0
+    Velocidade: 1.1
+    Cooldown: 3.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Particulas:
+      - 'DRAGON_BREATH'
+      - 'WITCH'
+      - 'SPELL_WITCH'
+      - 'PORTAL'
+    Som: 'ENTITY_ENDER_DRAGON_SHOOT|ENTITY_GHAST_SHOOT|GHAST_FIREBALL:1.0:1.0'
+    Tipos de pet:
+      - dragao
+
+  bola_de_fogo:
+    Nome: '&cBola de Fogo'
+    Icone: 'FIRE_CHARGE|FIREBALL'
+    Descricao:
+      - '&7Uma bola de fogo que estoura'
+      - '&7e incendeia quem estiver perto.'
+    Permissao: 'starpets.habilidade.bola_de_fogo'
+    Efeito: BOLA
+    Dano: 8.0
+    Raio: 3.5
+    Alcance: 40.0
+    Velocidade: 1.0
+    Cooldown: 4.0
+    Atinge jogadores: false
+    Poe fogo: true
+    Particulas:
+      - 'FLAME'
+    Som: 'ENTITY_BLAZE_SHOOT|BLAZE_HIT:1.0:1.0'
+    Tipos de pet: []
+
+  rugido:
+    Nome: '&6Rugido'
+    Icone: 'GOAT_HORN|NETHER_STAR'
+    Descricao:
+      - '&7Um estouro em volta do proprio pet,'
+      - '&7para quando cercam voce.'
+    Permissao: 'starpets.habilidade.rugido'
+    Efeito: EXPLOSAO_PERTO
+    Dano: 6.0
+    Raio: 5.0
+    Cooldown: 8.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Particulas:
+      - 'SONIC_BOOM'
+      - 'EXPLOSION'
+      - 'EXPLOSION_NORMAL'
+    Som: 'ENTITY_WARDEN_SONIC_BOOM|ENTITY_GENERIC_EXPLODE|EXPLODE:1.0:1.0'
+    Tipos de pet: []
