@@ -33,11 +33,9 @@ database:
 general:
   # Intervalo (em segundos) entre atualizacoes do ranking (top) de cada moeda.
   top-atualizar-segundos: 300
-  # Como o {valor} aparece nas mensagens, menus e top de todas as moedas:
-  #   abreviado -> 1K, 1.5M, 2B, 0   (sufixos: K M B T Q QQ S SS O N D)
-  #   completo  -> 1,000 / 1,500,000 / 1,234.50 / 0
-  # Nos dois o '.00' some quando o valor e redondo. Quem quiser o outro formato numa mensagem
-  # especifica usa {valor_abreviado} ou {valor_formatado}.
+  # Como o {valor} aparece agora vem do LOADER: veja 'Formato de numeros' em
+  # plugins/StarPlugins/config.yml (vale para todos os produtos de uma vez).
+  # Em loader antigo, este ajuste ainda manda: abreviado -> 1K, 1.5M; completo -> 1.500.000.
   formato-valor: abreviado
   # Mundos onde o titulo de ganho/perda de dinheiro (e o som dele) NAO aparece na tela. O saldo
   # muda normalmente; so a notificacao some. Um por linha, "mundo:moeda" (sem espaco):
