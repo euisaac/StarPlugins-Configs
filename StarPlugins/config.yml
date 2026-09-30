@@ -10,6 +10,26 @@
 # Deixe em false para atualizar na mao com /starplugins atualizar loader.
 atualizar-sozinho: true
 
+# Plugin de NPC que sera hookado pelos produtos.
+#   AUTO      = detectar automaticamente (recomendado)
+#   CITIZENS  = Citizens
+#   FANCYNPCS = FancyNpcs
+npc: 'AUTO'
+
+# Ate quantos blocos os NPCs do FancyNpcs continuam visiveis. O FancyNpcs e
+# por pacote e, por padrao, so mostra o NPC a 20 blocos - de longe ele some e
+# reaparece ao chegar perto, diferente do Citizens (entidade real). O loader
+# aplica este valor em cada NPC que os produtos criam. 0 = deixar o padrao do
+# FancyNpcs.
+npc-distancia-visivel: 96
+
+# Plugin de Holograma que sera hookado pelos produtos.
+#   AUTO                = detectar automaticamente (recomendado)
+#   FANCYHOLOGRAMS      = FancyHolograms
+#   DECENTHOLOGRAMS     = DecentHolograms
+#   HOLOGRAPHICDISPLAYS = HolographicDisplays
+hologram: 'AUTO'
+
 # Um MySQL so para todos os plugins Star deste servidor.
 #
 # Com 'ativado: true', estes dados sao escritos na configuracao de cada produto
@@ -31,3 +51,18 @@ database-global:
   # Escreva um nome por linha, do jeito que aparece no /starplugins lista.
   lista-negra:
     - StarExemplo
+
+# Como os numeros sao escritos em TODOS os produtos: precos, saldos, fragmentos,
+# cabecas, tops. O dono do servidor escolhe uma vez aqui e vale para todos.
+Formato de numeros:
+  # LETRA abrevia (1,5K, 2M, 430QN); NUMERO escreve por extenso (1.500.000).
+  Tipo: LETRA
+  # A partir de quanto o LETRA abrevia.
+  Abreviar a partir de: 1000
+  # Casas decimais (o zero a direita e cortado: 1,50K vira 1,5K).
+  Casas decimais: 2
+  Separador decimal: ','
+  Separador de milhar: '.'
+  # Os sufixos, do milhar em diante (K = mil, M = milhao...). Acrescente ou
+  # troque a vontade; passando do ultimo, o numero sai por extenso.
+  Sufixos: [ K, M, B, T, Q, QQ, S, SS, O, N, D, UN, DD, TR, QT, QN, SD ]
