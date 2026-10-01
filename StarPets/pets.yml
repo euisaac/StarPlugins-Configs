@@ -1086,10 +1086,28 @@ Pets:
     Bau: 0
     Montaria: true
 
-#  Nao vem configurado de proposito: ENDER_DRAGON e WITHER.
-#  Os dois sao chefes com logica propria (voo, barra de vida, imunidades) e
-#  nao se comportam como pet -- se quiser mesmo tentar, e so copiar um bloco
-#  acima trocando a Entidade.
+  # ──────────────────────────── Lendarios ────────────────────────────
+
+  dragao:
+    Entidade: ENDER_DRAGON
+    Nome: '&5Dragao do Fim'
+    Icone: 'DRAGON_EGG'
+    Vida: 200.0
+    Vida por nivel: 10.0
+    Dano: 14.0
+    Dano por nivel: 1.0
+    Velocidade: 0.5
+    Nivel maximo: 100
+    # Zero e o laco nao pega: este pet e entregue pela equipe com
+    # /petsadmin dar <jogador> dragao.
+    Chance de captura: 0.0
+    Capturavel: false
+    Bau: 0
+    Montaria: true
+
+#  O WITHER nao vem configurado de proposito: e um chefe com logica propria
+#  (voo, barra de vida, imunidades) e nao se comporta como pet. Se quiser
+#  mesmo tentar, e so copiar um bloco acima trocando a Entidade.
 
 #
 # ─────────────────────── Experiencia por mob ──────────────────────────
@@ -1155,20 +1173,3 @@ Experiencia por mob:
   PUFFERFISH: 3.0
   SQUID: 4.0
   GLOW_SQUID: 4.0
-
-  dragao:
-    Entidade: ENDER_DRAGON
-    Nome: '&5Dragao do Fim'
-    Icone: 'DRAGON_EGG'
-    Vida: 200.0
-    Vida por nivel: 10.0
-    Dano: 14.0
-    Dano por nivel: 1.0
-    Velocidade: 0.5
-    Nivel maximo: 100
-    # Zero e o laco nao pega: este pet e entregue pela equipe com
-    # /petsadmin dar <jogador> dragao.
-    Chance de captura: 0.0
-    Capturavel: false
-    Bau: 0
-    Montaria: true
