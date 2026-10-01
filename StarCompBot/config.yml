@@ -1,0 +1,67 @@
+# StarCompBot - competicao de tempo em call no Discord
+#
+# Este produto e um ADDON do StarDiscord: ele NAO tem token proprio nem abre uma
+# segunda conexao com o Discord. Quem fala com o Discord e o bot do StarDiscord,
+# que ja esta no ar -- este addon so acrescenta os comandos e os eventos.
+#
+# Para funcionar, o bot do StarDiscord precisa das intents de MEMBROS e de VOZ
+# ligadas no portal do Discord (Server Members Intent e, no codigo do StarDiscord,
+# GUILD_VOICE_STATES). Sem elas o Discord nao avisa quem entra e sai das calls.
+
+Banco:
+  # SQLite guarda tudo num arquivo dentro da pasta do plugin e nao pede nada a mais.
+  # MySQL so e necessario se voce quiser compartilhar os dados entre varios servidores.
+  Tipo: SQLite # SQLite ou MySQL
+
+  # Usados somente quando Tipo: MySQL
+  IP: localhost:3306
+  DB: starcompbot
+  User: root
+  Pass: ''
+
+Competicao:
+  # De quanto em quanto tempo (segundos) o ranking fixado e reescrito no Discord.
+  # Mexer muito abaixo disso so gasta limite de requisicao do Discord.
+  AtualizarRankingSegundos: 10
+
+  # De quanto em quanto tempo (segundos) o tempo de quem esta em call e somado.
+  # E tambem o passo da conferencia de termino da competicao.
+  ContarTempoSegundos: 5
+
+  # De quanto em quanto tempo (segundos) o tempo acumulado vai para o banco.
+  # Entre uma gravacao e outra o tempo vive na memoria; se o servidor cair, o que
+  # se perde e no maximo este intervalo.
+  GravarSegundos: 30
+
+  # Quantos vencedores a competicao tem, quando o servidor nao definiu o proprio.
+  VencedoresPadrao: 1
+
+  # Quantas pessoas aparecem na embed do ranking, quando o servidor nao definiu.
+  ParticipantesPadrao: 10
+
+  # Quantos escudos uma pessoa pode acumular.
+  MaximoDeEscudos: 3
+
+Recompensas:
+  # Liga a entrega das recompensas no jogo. O vinculo Discord <-> jogador vem do
+  # StarDiscord (o mesmo do /vincular); quem nao vinculou nao recebe.
+  Ativar: true
+
+  # Quando o vencedor esta offline, a recompensa fica guardada e e entregue na
+  # proxima vez que ele entrar no servidor.
+  GuardarParaOffline: true
+
+  # Quantos dias uma recompensa guardada continua valendo (0 = para sempre).
+  ValidadeDias: 30
+
+  # Avisa o jogador no chat ao entregar.
+  Mensagem:
+    - '&6&l[Competicao] &eVoce recebeu a recompensa de &6{posicao}o lugar &eem &6{evento}&e!'
+
+  # Anuncia para o servidor inteiro (deixe vazio para nao anunciar).
+  Anuncio:
+    - '&6&l[Competicao] &e{jogador} ficou em &6{posicao}o lugar &eem &6{evento}&e!'
+
+# Avisa no Discord (DM) quem esta participando sem ter vinculado a conta.
+AvisarNaoVinculado: true
+MensagemNaoVinculado: 'Voce esta participando de uma competicao, mas sua conta do jogo nao esta vinculada. Use /vincular para vincular e poder receber a recompensa.'

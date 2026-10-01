@@ -1,0 +1,39 @@
+# Eventos que acontecem durante a competicao de call.
+#
+# Todos avisam no canal de eventos do servidor (definido por /compconfig definir
+# canal_eventos) e so acontecem com a competicao rodando -- nunca pausada nem
+# terminada. Quem tem escudo nao e atingido: o escudo e gasto no lugar.
+
+Escudo:
+  Ativar: true
+  # De quanto em quanto tempo (minutos) alguem em call ganha um escudo.
+  IntervaloMinutos: 15
+  Mensagem: 'Voce ganhou um escudo! Protegido contra flechas e TNT.'
+  Imagem: 'https://i.imgur.com/MZqa4no.png'
+
+Flecha:
+  Ativar: true
+  # O intervalo e sorteado entre os dois valores, para nao virar relogio.
+  IntervaloMinimoMinutos: 10
+  IntervaloMaximoMinutos: 20
+  # Quantos segundos de aviso antes de a flecha sair.
+  AvisoSegundos: 60
+  Mensagem: 'Em 60 segundos alguem sera atingido por uma flecha!'
+  Imagem: 'https://i.imgur.com/uutGz2B.png'
+
+FlechaTeleguiada:
+  Ativar: true
+  IntervaloMinutos: 60
+  AvisoSegundos: 60
+  # Quanto tempo quem recebeu a flecha tem para escolher o alvo na DM.
+  # Passou disso, o alvo e sorteado.
+  EscolhaSegundos: 50
+  Mensagem: 'Em 60 segundos alguem sera atingido por uma flecha teleguiada!'
+  Imagem: 'https://i.imgur.com/uutGz2B.png'
+
+Tnt:
+  Ativar: true
+  IntervaloMinutos: 30
+  AvisoSegundos: 60
+  Mensagem: 'Uma TNT vai explodir em alguma call em 60 segundos!'
+  Imagem: 'https://i.imgur.com/vpq30Yd.gif'
