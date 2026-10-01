@@ -2,41 +2,41 @@
 #  StarRankup - os ranks
 #
 #  Cada rank tem:
-#    Ordem          posicao na escada (1 e o rank inicial; nao pode repetir)
+#    Ordem          posição na escada (1 é o rank inicial; não pode repetir)
 #    Tag            texto curto para chat, tab e placeholders
 #    Nome           nome completo
 #    Liberado em    data a partir da qual da para upar para ele, no formato
-#                   dd/MM/yyyy HH:mm. Vazio ('') = ja liberado. Antes da data o
+#                   dd/MM/yyyy HH:mm. Vazio ('') = já liberado. Antes da data o
 #                   menu mostra a contagem regressiva ({liberacao}).
-#    Permissao      so quem tiver consegue upar para ele ('' = todos)
+#    Permissão      só quem tiver consegue upar para ele ('' = todos)
 #    Icone          o item deste rank no /ranks (Material, Textura ou Dono).
-#                   Os ranks de fabrica usam a cabeca do mob de cada um. Sem
+#                   Os ranks de fabrica usam a cabeça do mob de cada um. Sem
 #                   Icone, o menu usa o material do estado (concluido, atual,
-#                   proximo, futuro) do menus.yml.
-#    Precos         o que custa para CHEGAR neste rank: 'economia: valor', com
-#                   os ids do economias.yml. Varias linhas = cobra todas.
+#                   próximo, futuro) do menus.yml.
+#    Preços         o que custa para CHEGAR neste rank: 'economia: valor', com
+#                   os ids do economias.yml. Várias linhas = cobra todas.
 #    Ao upar        o que acontece ao chegar neste rank:
 #      Comandos       rodados pelo console ({jogador}, {rank}, {tag}, {nome},
 #                     {prestigio}, {prestigio_tag}, {proximo_tag}, {proximo_nome})
 #      Itens          entregues ao jogador (Material/Nome/Lore/Quantidade ou
 #                     Base64 de um item real)
 #      Mensagens      avisos para TODOS: Chat, Actionbar e Titulo (<nl> quebra
-#                     o titulo em titulo/subtitulo; vazio nao envia)
-#      Mensagens privadas   os mesmos avisos, so para quem upou
-#      Som            SOM;volume;tom (vazio nao toca)
-#      Fogos          true solta fogos de artificio no jogador
+#                     o título em título/subtitulo; vazio não envia)
+#      Mensagens privadas   os mesmos avisos, só para quem upou
+#      Som            SOM;volume;tom (vazio não toca)
+#      Fogos          true solta fogos de artifício no jogador
 #    Ao perder      Comandos rodados quando o jogador SAI deste rank -- no
-#                   prestigio (que volta ao inicial) ou num setrank para baixo.
+#                   prestígio (que volta ao inicial) ou num setrank para baixo.
 #                   Serve para tirar o grupo do LuckPerms, por exemplo.
 #
-#  Os precos ficam mais caros a cada prestigio conforme o prestigios.yml, e
+#  Os preços ficam mais caros a cada prestígio conforme o prestigios.yml, e
 #  mais baratos conforme os Descontos do config.yml.
 #
 #  Cabeca com textura (em qualquer item destes arquivos): ponha
 #  Material: PLAYER_HEAD (ou SKULL_ITEM na 1.8) e cole em Textura o "Value"
-#  do site minecraft-heads.com -- vale tambem a URL da textura ou so o hash:
+#  do site minecraft-heads.com -- vale também a URL da textura ou só o hash:
 #    Textura: 'ewogICJ0ZXh0dXJlcyIgOiB7ICJTS0lOIiA6IHsgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8uLi4iIH0gfSB9'
-#  Ou a cabeca de um jogador, pelo nick:
+#  Ou a cabeça de um jogador, pelo nick:
 #    Dono: 'Notch'
 # ==========================================================================
 
@@ -61,7 +61,7 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&7Voce voltou ao rank &f{nome}&7.'
+        Chat: '&7Você voltou ao rank &f{nome}&7.'
         Actionbar: ''
         Titulo: ''
       Som: ''
@@ -89,8 +89,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -118,8 +118,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -147,8 +147,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -176,8 +176,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -206,8 +206,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -236,8 +236,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -267,8 +267,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -297,8 +297,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -328,8 +328,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -358,8 +358,8 @@ Ranks:
         Actionbar: ''
         Titulo: ''
       Mensagens privadas:
-        Chat: '&aParabens! Voce evoluiu para {tag}&a.'
-        Actionbar: '&a&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&aParabéns! Você evoluiu para {tag}&a.'
+        Actionbar: '&a&lRANKUP! &7Agora você é {tag}'
         Titulo: '&a&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_PLAYER_LEVELUP;1;1'
       Fogos: true
@@ -368,8 +368,8 @@ Ranks:
 
   dragao:
     Ordem: 12
-    Tag: '&d[Dragao]'
-    Nome: 'Dragao'
+    Tag: '&d[Dragão]'
+    Nome: 'Dragão'
     Liberado em: ''
     Permissao: ''
     Icone:
@@ -389,11 +389,11 @@ Ranks:
           &r
           &d&l * &f{jogador} &7alcancou o rank {tag}&7, o ultimo da escada!
           &r
-        Actionbar: '&d{jogador} &7agora e {tag}&7!'
-        Titulo: '&d&lDRAGAO<nl>&f{jogador}'
+        Actionbar: '&d{jogador} &7agora é {tag}&7!'
+        Titulo: '&d&lDRAGÃO<nl>&f{jogador}'
       Mensagens privadas:
-        Chat: '&dVoce chegou ao topo. Agora pode dar prestigio com &f/prestigio&d.'
-        Actionbar: '&d&lRANKUP! &7Agora voce e {tag}'
+        Chat: '&dVocê chegou ao topo. Agora pode dar prestígio com &f/prestigio&d.'
+        Actionbar: '&d&lRANKUP! &7Agora você é {tag}'
         Titulo: '&d&lRANKUP!<nl>{tag}'
       Som: 'ENTITY_ENDER_DRAGON_GROWL;1;1.5'
       Fogos: true

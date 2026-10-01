@@ -5,33 +5,33 @@
 #
 #  Cabeca com textura (em qualquer item destes arquivos): ponha
 #  Material: PLAYER_HEAD (ou SKULL_ITEM na 1.8) e cole em Textura o "Value"
-#  do site minecraft-heads.com -- vale tambem a URL da textura ou so o hash:
+#  do site minecraft-heads.com -- vale também a URL da textura ou só o hash:
 #    Textura: 'ewogICJ0ZXh0dXJlcyIgOiB7ICJTS0lOIiA6IHsgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8uLi4iIH0gfSB9'
-#  Ou a cabeca de um jogador, pelo nick:
+#  Ou a cabeça de um jogador, pelo nick:
 #    Dono: 'Notch'
-#  {jogador} no Dono vira o nick de quem esta olhando.
+#  {jogador} no Dono vira o nick de quem está olhando.
 #
 #  Cada tela tem:
-#    Titulo, Linhas        Titulo (ate 32 caracteres nas versoes antigas) e altura.
+#    Titulo, Linhas        o titulo (até 32 caracteres nas versões antigas) e altura.
 #    Enfeite               O vidro do fundo (Ativar: false deixa vazio).
 #    Itens                 Botoes fixos: Slot/Slots, Material, Textura, Dono,
-#                          Nome, Lore, Brilho, Permissao, Esconder sem
-#                          permissao e Acoes.
+#                          Nome, Lore, Brilho, Permissão, Esconder sem
+#                          Permissao e Acoes.
 #
-#  Acoes proprias:  principal | rankup | prestigio | ranks | cabecas | top
-#                   top <rank|prestigio|fragmentos|cabecas> | historico
-#                   autorankup | autoprestigio | anterior | proxima | fechar
+#  Acoes proprias:  principal | rankup | prestígio | ranks | cabeças | top
+#                   top <rank|prestigio|fragmentos|cabecas> | histórico
+#                   autorankup | autoprestigio | anterior | próxima | fechar
 #  Acoes gerais:    comando: <cmd> | console: <cmd> | op: <cmd> | mensagem: <texto>
-#                   anuncio: <texto> | titulo: <t<nl>sub> | actionbar: <texto>
+#                   anuncio: <texto> | título: <t<nl>sub> | actionbar: <texto>
 #                   som: <SOM;volume;tom>
 #
 #  Substituicoes em qualquer texto: {jogador} {rank} {tag} {nome}
 #  {proximo_tag} {proximo_nome} {prestigio} {prestigio_tag} {proximo_prestigio}
 #  {barra} {porcentagem} {fragmentos} {cabecas} {rankups} {autorankup}
 #  {autoprestigio} {desconto} {bonus} {posicao_rank} {posicao_prestigio}
-#  {posicao_fragmentos} {pagina} {paginas} {preco_<economia>} (preco do
-#  proximo rank ja com o desconto) e {tem_<economia>} (quanto o jogador
-#  tem). Placeholders do PlaceholderAPI tambem funcionam.
+#  {posicao_fragmentos} {pagina} {paginas} {preco_<economia>} (preço do
+#  próximo rank já com o desconto) e {tem_<economia>} (quanto o jogador
+#  tem). Placeholders do PlaceholderAPI também funcionam.
 # ==========================================================================
 
 Versao do modelo: 1
@@ -47,8 +47,8 @@ Principal:
     Material: BLACK_STAINED_GLASS_PANE
     Nome: ' '
 
-  # O botao de evoluir muda conforme o estado. {requisitos} vira uma linha
-  # por preco do proximo rank (Etiquetas do mensagens.yml).
+  # O botão de evoluir muda conforme o estado. {requisitos} vira uma linha
+  # por preço do próximo rank (Etiquetas do mensagens.yml).
   Rankup:
     Slot: 13
     Material: PLAYER_HEAD
@@ -56,7 +56,7 @@ Principal:
     Nome: '&a&lEVOLUIR'
     Lore pode:
       - ''
-      - '&fProximo rank: {proximo_tag}'
+      - '&fPróximo rank: {proximo_tag}'
       - ''
       - '{requisitos}'
       - ''
@@ -65,24 +65,24 @@ Principal:
       - '&aCLIQUE &7para evoluir!'
     Lore falta:
       - ''
-      - '&fProximo rank: {proximo_tag}'
+      - '&fPróximo rank: {proximo_tag}'
       - ''
       - '{requisitos}'
       - ''
       - '&fProgresso: {barra} &7{porcentagem}'
       - ''
-      - '&cVoce ainda nao tem tudo.'
+      - '&cVocê ainda não tem tudo.'
     Lore ultimo:
       - ''
-      - '&dVoce chegou ao ultimo rank!'
-      - '&7Use o prestigio para recomecar mais forte.'
+      - '&dVocê chegou ao último rank!'
+      - '&7Use o prestígio para recomeçar mais forte.'
     Lore bloqueado:
       - ''
-      - '&cVoce faz parte da equipe e nao'
-      - '&cparticipa da evolucao de ranks.'
+      - '&cVocê faz parte da equipe e não'
+      - '&cparticipa da evolução de ranks.'
     Lore nao liberado:
       - ''
-      - '&fProximo rank: {proximo_tag}'
+      - '&fPróximo rank: {proximo_tag}'
       - '&cLibera em: {liberacao}'
     Brilho quando pode: true
 
@@ -90,11 +90,11 @@ Principal:
     Slot: 15
     Material: PLAYER_HEAD
     Textura: '3ee29e8d07c128115dd4094bf48dceed236aa21eb2022e3730ff9bf23b9a3891'
-    Nome: '&c&lPRESTIGIO'
+    Nome: '&c&lPRESTÍGIO'
     Lore pode:
       - ''
       - '&fSeu prestigio: &f{prestigio} {prestigio_tag}'
-      - '&fProximo: &c{proximo_prestigio}'
+      - '&fPróximo: &c{proximo_prestigio}'
       - ''
       - '{requisitos}'
       - ''
@@ -102,25 +102,25 @@ Principal:
     Lore falta:
       - ''
       - '&fSeu prestigio: &f{prestigio} {prestigio_tag}'
-      - '&fProximo: &c{proximo_prestigio}'
+      - '&fPróximo: &c{proximo_prestigio}'
       - ''
       - '{requisitos}'
       - ''
-      - '&cVoce ainda nao tem tudo.'
+      - '&cVocê ainda não tem tudo.'
     Lore rank insuficiente:
       - ''
       - '&fSeu prestigio: &f{prestigio} {prestigio_tag}'
-      - '&fProximo: &c{proximo_prestigio}'
+      - '&fPróximo: &c{proximo_prestigio}'
       - ''
       - '&cChegue ao rank {rank_necessario} &cpara prestigiar.'
     Lore maximo:
       - ''
       - '&fSeu prestigio: &f{prestigio} {prestigio_tag}'
       - ''
-      - '&dVoce esta no prestigio maximo!'
+      - '&dVocê está no prestígio máximo!'
     Lore desligado:
       - ''
-      - '&cO prestigio esta desligado.'
+      - '&cO prestígio está desligado.'
     Brilho quando pode: true
 
   # Interruptores. Clicar alterna.
@@ -130,7 +130,7 @@ Principal:
     Nome: '&e&lAUTO-RANKUP'
     Lore:
       - ''
-      - '&7Evolui sozinho quando tiver o preco.'
+      - '&7Evolui sozinho quando tiver o preço.'
       - ''
       - '&fEstado: {autorankup}'
       - ''
@@ -141,7 +141,7 @@ Principal:
     Nome: '&e&lAUTO-PRESTIGIO'
     Lore:
       - ''
-      - '&7Prestigia sozinho ao chegar no ultimo rank.'
+      - '&7Prestigia sozinho ao chegar no último rank.'
       - ''
       - '&fEstado: {autoprestigio}'
       - ''
@@ -156,7 +156,7 @@ Principal:
       Lore:
         - ''
         - '&fRank: {tag} &7({nome}&7)'
-        - '&fProximo: {proximo_tag}'
+        - '&fPróximo: {proximo_tag}'
         - '&fProgresso: {barra} &7{porcentagem}'
         - ''
         - '&fPrestigio: &f{prestigio} {prestigio_tag}'
@@ -165,7 +165,7 @@ Principal:
         - '&fRankups feitos: &f{rankups}'
         - ''
         - '&fDesconto: &a{desconto}% &8| &fBonus: &a{bonus}%'
-        - '&fPosicao no top: &a{posicao_rank}'
+        - '&fPosição no top: &a{posicao_rank}'
         - ''
     ranks:
       Slot: 20
@@ -183,13 +183,13 @@ Principal:
       Slot: 22
       Material: PLAYER_HEAD
       Textura: '621668ef7cb79dd9c22ce3d1f3f4cb6e2559893b6df4a469514e667c16aa4'
-      Nome: '&d&lCABECAS'
+      Nome: '&d&lCABEÇAS'
       Lore:
         - ''
-        - '&7Venda ou retire as cabecas'
-        - '&7que voce juntou.'
+        - '&7Venda ou retire as cabeças'
+        - '&7que você juntou.'
         - ''
-        - '&fVoce tem: &e{cabecas}'
+        - '&fVocê tem: &e{cabecas}'
         - ''
         - '&aCLIQUE &7para abrir.'
       Acoes:
@@ -210,10 +210,10 @@ Principal:
     historico:
       Slot: 40
       Material: PAPER
-      Nome: '&7&lHISTORICO'
+      Nome: '&7&lHISTÓRICO'
       Lore:
         - ''
-        - '&7Suas evolucoes, com data e hora.'
+        - '&7Suas evoluções, com data e hora.'
         - ''
         - '&aCLIQUE &7para ver.'
       Acoes:
@@ -226,7 +226,7 @@ Principal:
         - 'fechar'
 
 # ---------------------------------------------------------------------------
-#  Confirmacao do /rankup. Extras: {requisitos}, {proximo_tag}, {proximo_nome}.
+#  Confirmação do /rankup. Extras: {requisitos}, {proximo_tag}, {proximo_nome}.
 # ---------------------------------------------------------------------------
 Rankup:
   Titulo: '&8Evoluir para {proximo_nome}?'
@@ -248,7 +248,7 @@ Rankup:
     Nome: '&a{tag} &7-> {proximo_tag}'
     Lore:
       - ''
-      - '&fPreco:'
+      - '&fPreço:'
       - '{requisitos}'
       - ''
       - '&fProgresso: {barra} &7{porcentagem}'
@@ -257,13 +257,13 @@ Rankup:
     Material: RED_STAINED_GLASS_PANE
     Nome: '&c&lCANCELAR'
     Lore:
-      - '&7Nada e cobrado.'
+      - '&7Nada é cobrado.'
 
 # ---------------------------------------------------------------------------
-#  Confirmacao do /prestigio. Extras: {requisitos}, {proximo_prestigio}.
+#  Confirmação do /prestigio. Extras: {requisitos}, {proximo_prestigio}.
 # ---------------------------------------------------------------------------
 Prestigio:
-  Titulo: '&8Dar prestigio?'
+  Titulo: '&8Dar prestígio?'
   Linhas: 3
   Enfeite:
     Ativar: true
@@ -274,30 +274,30 @@ Prestigio:
     Material: LIME_STAINED_GLASS_PANE
     Nome: '&a&lCONFIRMAR'
     Lore:
-      - '&7Ir para o prestigio &f{proximo_prestigio}&7.'
-      - '&cSeu rank volta ao inicio!'
+      - '&7Ir para o prestígio &f{proximo_prestigio}&7.'
+      - '&cSeu rank volta ao início!'
   Informacao:
     Slot: 13
     Material: PLAYER_HEAD
     Textura: '3ee29e8d07c128115dd4094bf48dceed236aa21eb2022e3730ff9bf23b9a3891'
-    Nome: '&cPrestigio {prestigio} &7-> &c{proximo_prestigio}'
+    Nome: '&cPrestígio {prestigio} &7-> &c{proximo_prestigio}'
     Lore:
       - ''
-      - '&fPreco:'
+      - '&fPreço:'
       - '{requisitos}'
       - ''
       - '&7Os ranks ficam &c{acrescimo}% &7mais caros'
-      - '&7e voce ganha &a{bonus_prestigio}% &7a mais de drops.'
+      - '&7e você ganha &a{bonus_prestigio}% &7a mais de drops.'
   Cancelar:
     Slot: 15
     Material: RED_STAINED_GLASS_PANE
     Nome: '&c&lCANCELAR'
     Lore:
-      - '&7Nada e cobrado.'
+      - '&7Nada é cobrado.'
 
 # ---------------------------------------------------------------------------
 #  /ranks -- a escada inteira. Em cada rank: {rank_tag}, {rank_nome},
-#  {rank_ordem}, {requisitos} (precos ja com prestigio e desconto),
+#  {rank_ordem}, {requisitos} (preços já com prestígio e desconto),
 #  {liberacao}.
 # ---------------------------------------------------------------------------
 Ranks:
@@ -311,9 +311,19 @@ Ranks:
   Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
 
   Rank:
-    # Material de cada estado (Textura concluido/atual/proximo/futuro tambem
-    # serve, para cabecas). Um rank com Icone no ranks.yml usa o proprio
-    # icone em todos os estados.
+    # Material de cada estado (Textura concluido/atual/proximo/futuro também
+    # serve, para cabeças). Um rank com Icone no ranks.yml usa o próprio
+    # ícone em todos os estados.
+    #
+    # Na lore, {requisitos} vira uma linha por preço DESTE rank (o texto
+    # de cada linha está em Etiquetas, no mensagens.yml). Para escrever
+    # requisito por requisito, use {<economia>_has}, {<economia>_need} e
+    # {<economia>_falta} -- também com o preço deste rank:
+    #
+    #   Lore futuro:
+    #     - '&a&lREQUISITOS PARA EVOLUIR'
+    #     - '&fVocê tem &7{money_has} &fde &a{money_need} &fcoins.'
+    #     - '&fVocê tem &7{fragmentos_has} &fde &a{fragmentos_need} &ffragmentos.'
     Material concluido: LIME_STAINED_GLASS_PANE
     Material atual: YELLOW_STAINED_GLASS_PANE
     Material proximo: ORANGE_STAINED_GLASS_PANE
@@ -321,19 +331,19 @@ Ranks:
     Nome: '{rank_tag} &7- &f{rank_nome}'
     Lore concluido:
       - ''
-      - '&aVoce ja passou por este rank.'
+      - '&aVocê já passou por este rank.'
     Lore atual:
       - ''
-      - '&eVoce esta aqui.'
+      - '&eVocê está aqui.'
     Lore proximo:
       - ''
-      - '&fPreco:'
+      - '&fPreço:'
       - '{requisitos}'
       - ''
-      - '&6E o seu proximo rank!'
+      - '&6E o seu próximo rank!'
     Lore futuro:
       - ''
-      - '&fPreco:'
+      - '&fPreço:'
       - '{requisitos}'
     Lore nao liberado:
       - ''
@@ -344,7 +354,7 @@ Ranks:
     anterior:
       Slot: 48
       Material: ARROW
-      Nome: '&ePagina anterior'
+      Nome: '&ePágina anterior'
       Acoes:
         - 'anterior'
     voltar:
@@ -356,15 +366,15 @@ Ranks:
     proxima:
       Slot: 50
       Material: ARROW
-      Nome: '&eProxima pagina'
+      Nome: '&ePróxima página'
       Acoes:
         - 'proxima'
 
 # ---------------------------------------------------------------------------
-#  /cabecas -- o icone de cada cabeca vem do Exibir do cabecas.yml.
+#  /cabecas -- o ícone de cada cabeça vem do Exibir do cabecas.yml.
 # ---------------------------------------------------------------------------
 Cabecas:
-  Titulo: '&8Suas cabecas'
+  Titulo: '&8Suas cabeças'
   Linhas: 6
   Enfeite:
     Ativar: true
@@ -373,7 +383,7 @@ Cabecas:
 
   Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
 
-  # true esconde as cabecas que o jogador nao tem (zero).
+  # true esconde as cabeças que o jogador não tem (zero).
   Esconder zeradas: false
 
   Vazio:
@@ -382,7 +392,7 @@ Cabecas:
     Material: COBWEB
     Nome: '&eNada por aqui...'
     Lore:
-      - '&7Voce ainda nao juntou nenhuma cabeca.'
+      - '&7Você ainda não juntou nenhuma cabeça.'
 
   Itens:
     resumo:
@@ -392,12 +402,12 @@ Cabecas:
       Nome: '&e{jogador}'
       Lore:
         - ''
-        - '&fCabecas guardadas: &e{cabecas}'
+        - '&fCabeças guardadas: &e{cabecas}'
         - ''
     anterior:
       Slot: 48
       Material: ARROW
-      Nome: '&ePagina anterior'
+      Nome: '&ePágina anterior'
       Acoes:
         - 'anterior'
     voltar:
@@ -409,14 +419,14 @@ Cabecas:
     proxima:
       Slot: 50
       Material: ARROW
-      Nome: '&eProxima pagina'
+      Nome: '&ePróxima página'
       Acoes:
         - 'proxima'
 
 # ---------------------------------------------------------------------------
 #  Top. Extras: {tipo} (o nome do top aberto), {minha_posicao},
 #  {minha_quantidade}. No item de cada jogador: {posicao}, {jogador},
-#  {valor} (rank, prestigio, fragmentos ou cabecas, conforme o top).
+#  {valor} (rank, prestígio, fragmentos ou cabeças, conforme o top).
 # ---------------------------------------------------------------------------
 Top:
   Titulo: '&8Top {tipo}'
@@ -435,13 +445,13 @@ Top:
       Nome: '&aRank'
     prestigio:
       Ativar: true
-      Nome: '&cPrestigio'
+      Nome: '&cPrestígio'
     fragmentos:
       Ativar: true
       Nome: '&bFragmentos'
     cabecas:
       Ativar: true
-      Nome: '&eCabecas'
+      Nome: '&eCabeças'
 
   # Clicar troca o top mostrado, na ordem acima.
   Seletor:
@@ -465,7 +475,7 @@ Top:
       - ''
       - '&f{tipo}: &a{valor}'
       - '&fPrestigio: &c{prestigio}'
-      - '&fPosicao: &e{posicao}'
+      - '&fPosição: &e{posicao}'
       - ''
     Brilho no primeiro: true
 
@@ -483,13 +493,13 @@ Top:
       Nome: '&e{jogador}'
       Lore:
         - ''
-        - '&fSua posicao: &a{minha_posicao}'
-        - '&fVoce: &a{minha_quantidade}'
+        - '&fSua posição: &a{minha_posicao}'
+        - '&fVocê: &a{minha_quantidade}'
         - ''
     anterior:
       Slot: 48
       Material: ARROW
-      Nome: '&ePagina anterior'
+      Nome: '&ePágina anterior'
       Acoes:
         - 'anterior'
     voltar:
@@ -501,15 +511,15 @@ Top:
     proxima:
       Slot: 50
       Material: ARROW
-      Nome: '&eProxima pagina'
+      Nome: '&ePróxima página'
       Acoes:
         - 'proxima'
 
 # ---------------------------------------------------------------------------
-#  Historico. Em cada registro: {tipo}, {de}, {para}, {data}.
+#  Histórico. Em cada registro: {tipo}, {de}, {para}, {data}.
 # ---------------------------------------------------------------------------
 Historico:
-  Titulo: '&8Seu historico'
+  Titulo: '&8Seu histórico'
   Linhas: 6
   Enfeite:
     Ativar: true
@@ -536,13 +546,13 @@ Historico:
     Material: COBWEB
     Nome: '&eNada por aqui...'
     Lore:
-      - '&7Voce ainda nao evoluiu nenhuma vez.'
+      - '&7Você ainda não evoluiu nenhuma vez.'
 
   Itens:
     anterior:
       Slot: 48
       Material: ARROW
-      Nome: '&ePagina anterior'
+      Nome: '&ePágina anterior'
       Acoes:
         - 'anterior'
     voltar:
@@ -554,6 +564,6 @@ Historico:
     proxima:
       Slot: 50
       Material: ARROW
-      Nome: '&eProxima pagina'
+      Nome: '&ePróxima página'
       Acoes:
         - 'proxima'

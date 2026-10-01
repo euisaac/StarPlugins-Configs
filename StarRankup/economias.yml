@@ -1,7 +1,7 @@
 # ==========================================================================
-#  StarRankup - economias aceitas nos precos
+#  StarRankup - economias aceitas nos preços
 #
-#  Cada preco do ranks.yml e do prestigios.yml aponta para um id daqui.
+#  Cada preço do ranks.yml e do prestigios.yml aponta para um id daqui.
 #  Um rank pode cobrar varias economias ao mesmo tempo: o jogador precisa
 #  ter todas.
 #
@@ -10,36 +10,36 @@
 #    STARECONOMIA           uma moeda do StarEconomia; a moeda vai em 'Moeda'
 #    stareconomia-<moeda>   atalho: 'stareconomia-cash' = moeda cash
 #    PLAYERPOINTS           pontos do PlayerPoints
-#    EXP                    experiencia do jogador (niveis ou pontos)
+#    EXP                    experiência do jogador (níveis ou pontos)
 #    ITEM                   um item do inventario (diamantes, por exemplo)
 #    FRAGMENTOS             os fragmentos deste plugin
-#    CABECA                 uma cabeca de mob deste plugin; o id vai em 'Cabeca'
-#    cabeca-<id>            atalho: 'cabeca-porco' = cabeca porco do cabecas.yml
-#    PLACEHOLDER            um numero de OUTRO plugin, lido pelo PlaceholderAPI
-#                           (kills, tempo online, nivel do mcMMO...). Serve de
+#    CABECA                 uma cabeça de mob deste plugin; o id vai em 'Cabeca'
+#    cabeca-<id>            atalho: 'cabeca-porco' = cabeça porco do cabecas.yml
+#    PLACEHOLDER            um número de OUTRO plugin, lido pelo PlaceholderAPI
+#                           (kills, tempo online, nível do mcMMO...). Serve de
 #                           REQUISITO: o plugin confere se o jogador tem, mas
-#                           nao consegue tirar -- por isso 'Consumir' e sempre
+#                           não consegue tirar -- por isso 'Consumir' é sempre
 #                           false nele.
 #
 #  Chaves comuns:
 #    Nome        como aparece nas mensagens ("Dinheiro")
 #    Abreviacao  nome curto para lore e barra ("coins")
-#    Simbolo     texto antes do valor ("$")
+#    Símbolo     texto antes do valor ("$")
 #    Sufixo      texto depois do valor (" coins")
-#    Formato     PADRAO (segue o 'Formato de numeros' do config), LETRA (1,5K)
+#    Formato     PADRAO (segue o 'Formato de números' do config), LETRA (1,5K)
 #                ou NUMERO (1.500)
-#    Consumir    false = so exige ter, nao cobra (util para kills e tempo)
-#    Permissao   quem nao tiver nao consegue pagar com esta economia ('' = todos)
+#    Consumir    false = só exige ter, não cobra (útil para kills e tempo)
+#    Permissão   quem não tiver não consegue pagar com esta economia ('' = todos)
 #
-#  Um Provedor que nao esteja nesta lista e tratado como o id de uma moeda do
+#  Um Provedor que não esteja nesta lista e tratado como o id de uma moeda do
 #  StarEconomia ('reais' vale o mesmo que 'stareconomia-reais').
 #
 #  Nos textos, cada economia tem {<id>_has} (o que o jogador tem),
 #  {<id>_need} (o que o rank pede) e {<id>_falta} -- por exemplo
 #  {money_has} e {money_need}.
 #
-#  Nenhum plugin de economia e obrigatorio: a economia e procurada quando e
-#  usada, entao pode subir depois do StarRankup.
+#  Nenhum plugin de economia é obrigatorio: a economia é procurada quando e
+#  usada, então pode subir depois do StarRankup.
 # ==========================================================================
 
 Versao do modelo: 1
@@ -67,7 +67,7 @@ Economias:
 
   cabeca-porco:
     Provedor: 'cabeca-porco'
-    Nome: 'Cabecas de Porco'
+    Nome: 'Cabeças de Porco'
     Abreviacao: 'porcos'
     Simbolo: ''
     Sufixo: ' cabecas de porco'
@@ -77,7 +77,7 @@ Economias:
 
   cabeca-zumbi:
     Provedor: 'cabeca-zumbi'
-    Nome: 'Cabecas de Zumbi'
+    Nome: 'Cabeças de Zumbi'
     Abreviacao: 'zumbis'
     Simbolo: ''
     Sufixo: ' cabecas de zumbi'
@@ -109,11 +109,11 @@ Economias:
 
   # xp:
   #   Provedor: EXP
-  #   Nome: 'Niveis de XP'
-  #   Abreviacao: 'niveis'
+  #   Nome: 'Níveis de XP'
+  #   Abreviacao: 'níveis'
   #   Simbolo: ''
-  #   Sufixo: ' niveis'
-  #   # true cobra em niveis; false em pontos de experiencia.
+  #   Sufixo: ' níveis'
+  #   # true cobra em níveis; false em pontos de experiência.
   #   Usar niveis: true
   #   Consumir: true
   #   Permissao: ''
@@ -121,7 +121,7 @@ Economias:
   # diamantes:
   #   Provedor: ITEM
   #   Material: DIAMOND
-  #   # true so aceita o item sem nome nem lore.
+  #   # true só aceita o item sem nome nem lore.
   #   Item limpo: true
   #   Nome: 'Diamantes'
   #   Abreviacao: 'diamantes'
@@ -132,7 +132,7 @@ Economias:
 
   # Requisito que NAO e cobrado: o jogador precisa ter, por exemplo, 100
   # abates para upar, e continua com eles depois. O placeholder precisa
-  # devolver um numero.
+  # devolver um número.
   # abates:
   #   Provedor: PLACEHOLDER
   #   Placeholder: '%statistic_player_kills%'
