@@ -59,6 +59,7 @@ Ajuda:
     &b› &f/clan top &8- &7mostra o ranking dos clans
     &b› &f/clan convidar <jogador> &8- &7convida alguem
     &b› &f/clan convites &8- &7lista os seus convites
+    &b› &f/clan solicitacoes [aceitar|negar] <jogador> &8- &7responde um pedido
     &b› &f/clan aceitar <clan> &8- &7aceita um convite
     &b› &f/clan solicitar <clan> &8- &7pede para entrar
     &b› &f/clan sair &8- &7sai do clan
@@ -139,6 +140,14 @@ Entrada:
   Anuncio de entrada: '&bO jogador &f{jogador} &bentrou no clan &f{tagcolorida}&b.'
   Aviso ao clan de entrada: '&aO jogador &f{jogador} &aentrou no clan.'
   Saiu: '&aVoce saiu do clan &f{tagcolorida}&a.'
+
+  #  O pedaco que entra no "{motivo}" quando alguem tenta aceitar um pedido e
+  #  nao da. Fica separado porque quem le e quem aceitou, nao quem ia entrar.
+  Motivo:
+    Ja tem clan: 'ele ja esta em outro clan.'
+    Clan cheio: 'o clan esta cheio.'
+    Esperando: 'ele ainda espera &f{tempo} &cpara entrar em outro clan.'
+    Fechado: 'o clan nao esta aceitando entradas.'
   Anuncio de saida: '&bO jogador &f{jogador} &bsaiu do clan &f{tagcolorida}&b.'
   Aviso ao clan de saida: '&cO jogador &f{jogador} &csaiu do clan.'
   Lider nao sai: '&cPasse a lideranca para outra pessoa antes de sair.'
@@ -170,6 +179,8 @@ Solicitacao:
   Ja enviada: '&cVoce ja solicitou entrada nesse clan.'
   Nao aceita: '&cEsse clan nao aceita solicitacoes.'
   Aceita: '&aVoce aceitou a solicitacao de &f{jogador}&a.'
+  Nao pode entrar: '&cNao deu para aceitar &f{jogador}&c: {motivo}'
+  Sem pedido: '&cNao existe pedido de &f{jogador}&c no seu clan.'
   Negada: '&aVoce recusou a solicitacao de &f{jogador}&a.'
   Aviso de aceita: '&aA sua solicitacao ao clan &f{tagcolorida} &afoi aceita!'
   Aviso de negada: '&cA sua solicitacao ao clan &f{tagcolorida} &cfoi recusada.'
