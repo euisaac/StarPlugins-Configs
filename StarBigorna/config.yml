@@ -1,0 +1,80 @@
+# Configuração do StarBigorna
+# Configurações gerais do plugin
+
+# Permite renomear itens
+renomear_itens: true
+
+# Permite combinar itens
+combinar_itens: true
+
+# Permite encantar itens com livros
+encantar_itens: true
+
+# Custo base para renomear (em níveis de experiência)
+custo_renomear: 1
+
+# Custo base para combinar (em níveis de experiência)
+custo_combinar: 2
+
+# Custo base para encantar (em níveis de experiência)
+custo_encantar: 1
+
+# Máximo de caracteres para nome de item
+max_caracteres_nome: 50
+
+# Adicionar lore de forjamento aos itens
+adicionar_lore_forjamento: true
+
+# Lore de forjamento (use %player% para o nome do jogador)
+lore_forjamento:
+  - "&r"
+  - " &fForjado por: &b%player%"
+  - "&r"
+
+# Mensagens personalizadas
+mensagens:
+  sem_permissao: "&cVocê não tem permissão para usar a bigorna."
+  item_invalido: "&cItem inválido para esta operação."
+  experiencia_insuficiente: "&cVocê não tem experiência suficiente."
+  operacao_sucesso: "&aOperação realizada com sucesso!"
+  bigorna_aberta: "&aBigorna aberta!"
+
+# Unir encantamentos na bigorna
+#
+# Dois encantamentos iguais e do mesmo nivel sobem um degrau: Eficiencia V
+# com Eficiencia V vira Eficiencia VI. No jogo isso nunca acontece porque a
+# bigorna para no limite do proprio encantamento -- aqui quem decide o limite
+# e voce.
+#
+# Vale para item + livro, livro + livro e item + item do mesmo tipo.
+encantamentos:
+
+  # Como os niveis se juntam:
+  #   SOMAR_UM -> V + V = VI  (a regra do jogo, so que sem teto baixo)
+  #   SOMAR    -> V + V = X   (os niveis se somam)
+  #   MAIOR    -> V + V = V   (nunca sobe; so aproveita o maior dos dois)
+  # Niveis diferentes sempre ficam com o maior (V + III = V).
+  regra: SOMAR_UM
+
+  # Teto de nivel para qualquer encantamento que nao esteja na lista abaixo.
+  # 0 = usar o limite do proprio Minecraft (Eficiencia pararia no V).
+  limite_padrao: 10
+
+  # Teto de um encantamento especifico; vale mais que o limite_padrao.
+  # Pode escrever o nome novo (efficiency), o antigo (DIG_SPEED) ou com o
+  # dono junto (minecraft:efficiency). Encantamento de outro plugin tambem vale.
+  limites:
+    # Estes mexem com drop e economia, entao seguem como no jogo:
+    FORTUNE: 3
+    LOOTING: 3
+    SILK_TOUCH: 1
+    MENDING: 1
+    INFINITY: 1
+
+  # Impedir encantamentos que brigam entre si (Fortuna com Toque Suave, por
+  # exemplo). Subir o nivel de um que o item JA tem nunca e barrado.
+  respeitar_conflitos: true
+
+  # Impedir encantamento em item que nao o aceita (Eficiencia numa espada).
+  # false libera qualquer encantamento em qualquer item.
+  respeitar_item: true
