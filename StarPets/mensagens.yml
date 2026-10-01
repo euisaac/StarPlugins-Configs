@@ -33,6 +33,10 @@ Pet:
 
 Habilidade:
   Usada: ''
+  Aprendida: '&a{pet} &aaprendeu &f{habilidade}&a!'
+  Ja sabe: '&e{pet} &eja sabe &f{habilidade}&e.'
+  Tomo desconhecido: '&cEste tomo e de uma habilidade que nao existe mais &7({id})&c.'
+  Tomo nao serve: '&c{habilidade} &cnao serve para &f{pet}&c.'
   Escolhida: '&aAgora &f{pet}&a usa &f{habilidade}&a. Bata montado para soltar.'
   Esperando: '&e{habilidade} &eainda esta carregando: &f{segundos}s&e.'
   Ja chamado: '&c{pet} &cja esta com voce.'
@@ -96,6 +100,10 @@ Admin:
   Tipo invalido: '&cO tipo &f{tipo}&c nao existe. Veja em &f/petsadmin tipos&c.'
   Uso dar: '&cUse: &f/petsadmin dar <jogador> <tipo> [nivel]'
   Uso remover: '&cUse: &f/petsadmin remover <jogador> <numero>'
+  Uso tomo: '&cUse: &f/petsadmin tomo <jogador> <habilidade> [quantidade]'
+  Habilidade invalida: '&cNao existe a habilidade &f{id}&c. Veja o habilidades.yml.'
+  Tomo dado: '&aVoce deu &f{quantidade}x &aTomo de &f{habilidade}&a para &f{jogador}&a.'
+  Tomo recebido: '&aVoce recebeu &f{quantidade}x &aTomo de &f{habilidade}&a! Clique com ele no seu pet.'
   Tipos: '&7Tipos de pet: &f{tipos}'
   Migracao iniciada: '&eLendo o banco do plugin antigo...'
   Migracao falhou: '&cNao foi possivel migrar: &f{erro}'
@@ -139,6 +147,7 @@ Admin:
     &f/{comando} tipos &7Mostra os tipos de pet carregados.
     &f/{comando} migrar [confirmar] [jogador] &7Traz os pets do plugin antigo.
     &8Sem 'confirmar' e so simulacao: mostra de quem e cada pet sem gravar.
+    &f/{comando} tomo <jogador> <habilidade> [qtd] &7Da o tomo de uma habilidade.
     &f/{comando} migrar desfazer confirmar &7Apaga tudo que veio da migracao.
 
 # Textos curtos usados pelos placeholders do PlaceholderAPI.

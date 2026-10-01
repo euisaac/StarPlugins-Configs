@@ -4,40 +4,226 @@
 #  |  _  | (_| | |_) | | | | (_| | (_| | (_| |  __/\__ \
 #  |_| |_|\__,_|_.__/|_|_|_|\__,_|\__,_|\__,_|\___||___/
 #
-#  Poderes que o dono usa montado no pet.
+#  Poderes de combate dos pets.
 #
-#  Montado, o jogador BATE (clique esquerdo) para usar a habilidade escolhida,
-#  e aperta SHIFT e bate para abrir o menu e trocar de habilidade. So SHIFT
-#  desce do pet.
+#  COMO O JOGADOR GANHA UMA
+#    - Tomo: um item que a equipe entrega (/petsadmin tomo <jogador> <id>) ou
+#      que sai de caixa, loja, evento. Clicando com ele no proprio pet,
+#      AQUELE pet aprende para sempre -- e o poder vai junto com o bicho.
+#    - Permissao: quem tem starpets.habilidade.<id> usa a habilidade em
+#      qualquer pet dele, sem precisar de tomo.
 #
-#  Cada bloco aqui e uma habilidade. O id (a chave) e o que fica salvo no pet.
+#  COMO SE USA
+#    Montado no pet: BATER solta a habilidade escolhida, SHIFT + bater abre o
+#    menu para trocar, so SHIFT desce. Fora da montaria, o menu do pet tem o
+#    botao Habilidades. E nos modos em que o pet briga, ele mesmo solta o
+#    poder de vez em quando (campo "Chance no combate").
 #
-#  Nome            Como ela aparece no menu e nas mensagens.
-#  Icone           Material do item no menu. Alternativas com | -- a primeira
-#                  que existir na versao do servidor e usada.
-#  Descricao       Linhas de explicacao no item do menu.
-#  Permissao       Sem ela, a habilidade nem aparece para o jogador.
-#  Efeito          BOLA            uma bola que viaja e estoura onde bate
-#                  EXPLOSAO_PERTO  o estouro sai na hora, em volta do pet
-#  Dano            Dano de quem estiver no raio do estouro.
+#  CAMPOS
+#  Nome            Como ela aparece no menu, no tomo e nas mensagens.
+#  Raridade        COMUM, RARA, EPICA ou LENDARIA. Muda a cor do tomo.
+#  Cor             Opcional: sobrescreve a cor da raridade.
+#  Material do tomo  Item usado como tomo. Alternativas com |.
+#  Icone           Item no menu de habilidades. Alternativas com |.
+#  Descricao       Linhas de explicacao no menu e no tomo.
+#  Permissao       Caminho alternativo ao tomo; sem ela e sem tomo, nao aparece.
+#  Efeito          BOLA            bola que viaja e estoura onde bate
+#                  LASER           linha reta que fere tudo no caminho
+#                  RAIOS           um raio em cada alvo do raio, um a um
+#                  METEOROS        pedras caindo do ceu em volta da mira
+#                  EXPLOSAO_PERTO  estouro em volta do proprio pet
+#                  ONDA            empurra para longe quem esta perto
+#                  REDEMOINHO      puxa para perto quem esta no raio
+#                  PRAGA           joga efeitos de pocao em quem esta no raio
+#                  CURA            devolve vida ao dono e ao pet
+#  Dano            Dano em cada alvo atingido (na CURA, vida devolvida).
 #  Raio            Alcance do estouro, em blocos.
-#  Alcance         Quanto a bola viaja antes de estourar sozinha (so BOLA).
+#  Alcance         Quanto a bola, o laser ou a mira alcancam.
 #  Velocidade      Blocos por tique da bola (0.9 e rapido, 0.4 e lento).
 #  Cooldown        Segundos de espera entre um uso e outro.
-#  Chance no combate  Chance, em %, de o PROPRIO pet soltar o poder quando
-#                  esta brigando (modos que atacam). 0 deixa so para o dono.
+#  Chance no combate  Chance, em %, de o PROPRIO pet soltar brigando.
 #  Atinge jogadores  false deixa a habilidade so para mobs.
 #  Poe fogo        Deixa em chamas quem for atingido.
-#  Particulas      Nomes tentados em ordem; o primeiro que existir na versao do
-#                  servidor e usado. Deixe de fora para usar o roxo do plugin.
+#  Pocoes          So na PRAGA: EFEITO:segundos:nivel, um por linha.
+#  Particulas      Nomes tentados em ordem; o primeiro que existir e usado.
 #  Som             NOME:volume:tom, com alternativas separadas por |.
 #  Tipos de pet    Lista de tipos do pets.yml que podem usar. Vazio = todos.
 #
 
 Habilidades:
 
+  # ───────────────────────────── Comuns ─────────────────────────────
+
+  bola_de_fogo:
+    Nome: '&cBola de Fogo'
+    Raridade: COMUM
+    Material do tomo: 'BOOK'
+    Icone: 'FIRE_CHARGE|FIREBALL'
+    Descricao:
+      - '&7Uma bola de fogo que estoura'
+      - '&7e incendeia quem estiver perto.'
+    Permissao: 'starpets.habilidade.bola_de_fogo'
+    Efeito: BOLA
+    Dano: 8.0
+    Raio: 3.5
+    Alcance: 40.0
+    Velocidade: 1.0
+    Cooldown: 4.0
+    Chance no combate: 15.0
+    Atinge jogadores: false
+    Poe fogo: true
+    Particulas:
+      - 'FLAME'
+    Som: 'ENTITY_BLAZE_SHOOT|BLAZE_HIT:1.0:1.0'
+    Tipos de pet: []
+
+  rugido:
+    Nome: '&6Rugido'
+    Raridade: COMUM
+    Material do tomo: 'BOOK'
+    Icone: 'GOAT_HORN|NETHER_STAR'
+    Descricao:
+      - '&7Um estouro em volta do proprio pet,'
+      - '&7para quando cercam voce.'
+    Permissao: 'starpets.habilidade.rugido'
+    Efeito: EXPLOSAO_PERTO
+    Dano: 6.0
+    Raio: 5.0
+    Cooldown: 8.0
+    Chance no combate: 10.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Particulas:
+      - 'SONIC_BOOM'
+      - 'EXPLOSION'
+      - 'EXPLOSION_NORMAL'
+    Som: 'ENTITY_WARDEN_SONIC_BOOM|ENTITY_GENERIC_EXPLODE|EXPLODE:1.0:1.0'
+    Tipos de pet: []
+
+  empurrao:
+    Nome: '&fEmpurrao'
+    Raridade: COMUM
+    Material do tomo: 'BOOK'
+    Icone: 'PISTON|PISTON_BASE'
+    Descricao:
+      - '&7Joga para longe tudo que estiver'
+      - '&7perto do pet. Machuca pouco, mas'
+      - '&7tira voce do aperto.'
+    Permissao: 'starpets.habilidade.empurrao'
+    Efeito: ONDA
+    Dano: 2.0
+    Raio: 6.0
+    Cooldown: 10.0
+    Chance no combate: 8.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Particulas:
+      - 'CLOUD'
+    Som: 'ENTITY_GENERIC_EXPLODE|EXPLODE:0.7:1.4'
+    Tipos de pet: []
+
+  # ───────────────────────────── Raras ──────────────────────────────
+
+  laser_gelido:
+    Nome: '&bLaser Gelido'
+    Raridade: RARA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'PRISMARINE_SHARD|DIAMOND'
+    Descricao:
+      - '&7Um feixe reto que atravessa tudo'
+      - '&7na frente e gela quem tocar.'
+    Permissao: 'starpets.habilidade.laser_gelido'
+    Efeito: LASER
+    Dano: 7.0
+    Raio: 1.5
+    Alcance: 30.0
+    Cooldown: 6.0
+    Chance no combate: 15.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Particulas:
+      - 'SNOWFLAKE'
+      - 'ITEM_SNOWBALL'
+      - 'SNOW_SHOVEL'
+    Som: 'BLOCK_GLASS_BREAK|GLASS:1.0:1.6'
+    Tipos de pet: []
+
+  praga_venenosa:
+    Nome: '&2Praga Venenosa'
+    Raridade: RARA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'SPIDER_EYE'
+    Descricao:
+      - '&7Uma nuvem que envenena e enfraquece'
+      - '&7todo mundo em volta da mira.'
+    Permissao: 'starpets.habilidade.praga_venenosa'
+    Efeito: PRAGA
+    Dano: 2.0
+    Raio: 5.0
+    Alcance: 25.0
+    Cooldown: 12.0
+    Chance no combate: 12.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Pocoes:
+      - 'POISON:6:1'
+      - 'WEAKNESS:8:1'
+      - 'SLOW:5:1'
+    Particulas:
+      - 'ITEM_SLIME'
+      - 'SLIME'
+    Som: 'ENTITY_WITCH_THROW|ENTITY_SPLASH_POTION_BREAK:1.0:0.8'
+    Tipos de pet: []
+
+  redemoinho:
+    Nome: '&3Redemoinho'
+    Raridade: RARA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'HEART_OF_THE_SEA|PRISMARINE_CRYSTALS'
+    Descricao:
+      - '&7Puxa para perto tudo que estiver no'
+      - '&7raio. Bom para juntar o bando antes'
+      - '&7de soltar outra habilidade.'
+    Permissao: 'starpets.habilidade.redemoinho'
+    Efeito: REDEMOINHO
+    Dano: 3.0
+    Raio: 10.0
+    Cooldown: 14.0
+    Chance no combate: 10.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Particulas:
+      - 'PORTAL'
+    Som: 'ENTITY_ENDERMAN_TELEPORT|ENDERMAN_TELEPORT:1.0:0.6'
+    Tipos de pet: []
+
+  sopro_curativo:
+    Nome: '&aSopro Curativo'
+    Raridade: RARA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'GOLDEN_APPLE'
+    Descricao:
+      - '&7O pet devolve vida a voce e a ele'
+      - '&7mesmo. Nao machuca ninguem.'
+    Permissao: 'starpets.habilidade.sopro_curativo'
+    Efeito: CURA
+    Dano: 8.0
+    Raio: 0.0
+    Cooldown: 25.0
+    Chance no combate: 20.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Particulas:
+      - 'HEART'
+    Som: 'ENTITY_PLAYER_LEVELUP|LEVEL_UP:1.0:1.6'
+    Tipos de pet: []
+
+  # ───────────────────────────── Epicas ─────────────────────────────
+
   sopro_do_dragao:
     Nome: '&5Sopro do Dragao'
+    Raridade: EPICA
+    Material do tomo: 'ENCHANTED_BOOK'
     Icone: 'DRAGON_BREATH|FIREBALL'
     Descricao:
       - '&7Uma bola roxa que voa para onde'
@@ -61,44 +247,127 @@ Habilidades:
     Tipos de pet:
       - dragao
 
-  bola_de_fogo:
-    Nome: '&cBola de Fogo'
-    Icone: 'FIRE_CHARGE|FIREBALL'
+  chuva_de_meteoros:
+    Nome: '&cChuva de Meteoros'
+    Raridade: EPICA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'MAGMA_CREAM'
     Descricao:
-      - '&7Uma bola de fogo que estoura'
-      - '&7e incendeia quem estiver perto.'
-    Permissao: 'starpets.habilidade.bola_de_fogo'
-    Efeito: BOLA
-    Dano: 8.0
-    Raio: 3.5
-    Alcance: 40.0
-    Velocidade: 1.0
-    Cooldown: 4.0
-    Chance no combate: 15.0
+      - '&7Seis pedras em chamas caem do ceu'
+      - '&7em volta de onde voce mirou.'
+    Permissao: 'starpets.habilidade.chuva_de_meteoros'
+    Efeito: METEOROS
+    Dano: 9.0
+    Raio: 7.0
+    Alcance: 35.0
+    Cooldown: 20.0
+    Chance no combate: 10.0
     Atinge jogadores: false
     Poe fogo: true
     Particulas:
       - 'FLAME'
-    Som: 'ENTITY_BLAZE_SHOOT|BLAZE_HIT:1.0:1.0'
+    Som: 'ENTITY_GENERIC_EXPLODE|EXPLODE:1.0:0.8'
     Tipos de pet: []
 
-  rugido:
-    Nome: '&6Rugido'
-    Icone: 'GOAT_HORN|NETHER_STAR'
+  laser_sombrio:
+    Nome: '&8Laser Sombrio'
+    Raridade: EPICA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'ECHO_SHARD|COAL'
     Descricao:
-      - '&7Um estouro em volta do proprio pet,'
-      - '&7para quando cercam voce.'
-    Permissao: 'starpets.habilidade.rugido'
-    Efeito: EXPLOSAO_PERTO
-    Dano: 6.0
-    Raio: 5.0
-    Cooldown: 8.0
-    Chance no combate: 10.0
+      - '&7Um feixe escuro que fere tudo em'
+      - '&7linha reta, por trinta blocos.'
+    Permissao: 'starpets.habilidade.laser_sombrio'
+    Efeito: LASER
+    Dano: 14.0
+    Raio: 1.5
+    Alcance: 32.0
+    Cooldown: 9.0
+    Chance no combate: 15.0
     Atinge jogadores: false
     Poe fogo: false
     Particulas:
-      - 'SONIC_BOOM'
-      - 'EXPLOSION'
-      - 'EXPLOSION_NORMAL'
-    Som: 'ENTITY_WARDEN_SONIC_BOOM|ENTITY_GENERIC_EXPLODE|EXPLODE:1.0:1.0'
+      - 'SCULK_SOUL'
+      - 'SQUID_INK'
+      - 'SMOKE_NORMAL'
+    Som: 'ENTITY_WARDEN_SONIC_BOOM|ENTITY_GENERIC_EXPLODE:1.0:1.2'
+    Tipos de pet: []
+
+  # ──────────────────────────── Lendarias ───────────────────────────
+
+  tempestade:
+    Nome: '&6Tempestade'
+    Raridade: LENDARIA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'LIGHTNING_ROD|BLAZE_ROD'
+    Descricao:
+      - '&7Um raio cai em cada inimigo em'
+      - '&7volta, um atras do outro.'
+      - '&eDas mais raras do jogo.'
+    Permissao: 'starpets.habilidade.tempestade'
+    Efeito: RAIOS
+    Dano: 11.0
+    Raio: 12.0
+    Alcance: 40.0
+    Cooldown: 30.0
+    Chance no combate: 12.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Particulas:
+      - 'ELECTRIC_SPARK'
+      - 'FIREWORKS_SPARK'
+      - 'CRIT_MAGIC'
+    Som: 'ENTITY_LIGHTNING_BOLT_THUNDER|AMBIENCE_THUNDER:1.0:1.0'
+    Tipos de pet: []
+
+  juizo_final:
+    Nome: '&4Juizo Final'
+    Raridade: LENDARIA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'NETHER_STAR'
+    Descricao:
+      - '&7Um estouro enorme em volta do pet,'
+      - '&7com fogo e dano pesado.'
+    Permissao: 'starpets.habilidade.juizo_final'
+    Efeito: EXPLOSAO_PERTO
+    Dano: 20.0
+    Raio: 9.0
+    Cooldown: 45.0
+    Chance no combate: 8.0
+    Atinge jogadores: false
+    Poe fogo: true
+    Particulas:
+      - 'EXPLOSION_EMITTER'
+      - 'EXPLOSION_HUGE'
+      - 'EXPLOSION_LARGE'
+    Som: 'ENTITY_GENERIC_EXPLODE|EXPLODE:1.0:0.6'
+    Tipos de pet: []
+
+  maldicao_do_fim:
+    Nome: '&5Maldicao do Fim'
+    Raridade: LENDARIA
+    Material do tomo: 'ENCHANTED_BOOK'
+    Icone: 'END_CRYSTAL|ENDER_PEARL'
+    Descricao:
+      - '&7Cega, enfraquece e envenena todo'
+      - '&7mundo em volta, e ainda machuca.'
+    Permissao: 'starpets.habilidade.maldicao_do_fim'
+    Efeito: PRAGA
+    Dano: 8.0
+    Raio: 8.0
+    Alcance: 30.0
+    Cooldown: 35.0
+    Chance no combate: 10.0
+    Atinge jogadores: false
+    Poe fogo: false
+    Pocoes:
+      - 'BLINDNESS:5:1'
+      - 'WEAKNESS:10:2'
+      - 'POISON:8:2'
+      - 'SLOW:8:2'
+    Particulas:
+      - 'DRAGON_BREATH'
+      - 'WITCH'
+      - 'SPELL_WITCH'
+    Som: 'ENTITY_ENDER_DRAGON_GROWL|ENDERDRAGON_GROWL:1.0:0.8'
     Tipos de pet: []
