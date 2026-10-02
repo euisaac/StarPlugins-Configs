@@ -324,11 +324,15 @@ Ranks:
     #     - '&a&lREQUISITOS PARA EVOLUIR'
     #     - '&fVocê tem &7{money_has} &fde &a{money_need} &fcoins.'
     #     - '&fVocê tem &7{fragmentos_has} &fde &a{fragmentos_need} &ffragmentos.'
+    #
+    # Da linha de cada rank: {rank_tag} {rank_nome} {rank_id} {rank_ordem},
+    # {rank_anterior_tag} {rank_anterior_nome} (de onde se vem) e
+    # {rank_proximo_tag} {rank_proximo_nome} (para onde se vai).
     Material concluido: LIME_STAINED_GLASS_PANE
     Material atual: YELLOW_STAINED_GLASS_PANE
     Material proximo: ORANGE_STAINED_GLASS_PANE
     Material futuro: RED_STAINED_GLASS_PANE
-    Nome: '{rank_tag} &7- &f{rank_nome}'
+    Nome: '{rank_tag} &7-> {rank_proximo_tag}'
     Lore concluido:
       - ''
       - '&aVocê já passou por este rank.'
@@ -337,13 +341,15 @@ Ranks:
       - '&eVocê está aqui.'
     Lore proximo:
       - ''
-      - '&fPreço:'
+      - '&a&lREQUISITOS PARA EVOLUIR'
       - '{requisitos}'
+      - ''
+      - '&fProgresso: {barra} &7{porcentagem}'
       - ''
       - '&6E o seu próximo rank!'
     Lore futuro:
       - ''
-      - '&fPreço:'
+      - '&a&lREQUISITOS PARA EVOLUIR'
       - '{requisitos}'
     Lore nao liberado:
       - ''
