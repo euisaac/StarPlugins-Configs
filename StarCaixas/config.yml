@@ -109,6 +109,26 @@ Hologramas:
   # Painel sem ninguem dentro deste raio nao precisa estar desenhado.
   Distancia: 48.0
 
+  # O texto que flutua acima de TODA caixa posta no mundo.
+  #
+  # Fica aqui, e nao em cada caixa, porque as linhas sao sempre as mesmas: o
+  # nome da caixa entra pelo {caixa}. A caixa que quiser texto proprio liga o
+  # "Holograma.Proprio" dela no caixas.yml (ou pelo /admcaixas editor), e so
+  # entao as linhas escritas la passam a valer.
+  #
+  # O holograma sobe sozinho acima da vitrine quando ela esta ligada, para o
+  # texto nao cair em cima do nome do item que flutua sobre a caixa.
+  Caixa:
+    Ativar: true
+
+    # A que altura, acima do bloco, a linha de baixo comeca.
+    Altura: 1.6
+
+    # {caixa} {id_caixa} {recompensas} {top1} {top1_aberturas}
+    Linhas:
+      - '&e&l{caixa}'
+      - '&7Clique para abrir'
+
   # O texto dos paineis criados por /starcaixas holograma criar.
   Modelo:
     Cabecalho:
