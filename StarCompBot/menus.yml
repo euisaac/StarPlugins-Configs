@@ -1,0 +1,93 @@
+# StarCompBot - os menus do jogo
+#
+# O desenho (quais botoes, em que ordem) e fixo; o que se muda aqui e o texto, o
+# material de cada botao e o enfeite do fundo.
+#
+# Material: escreva o nome da versao que voce roda (RED_DYE, GOLD_BLOCK...). O nome
+# passa pelo tradutor de materiais do loader, entao nomes antigos como INK_SACK
+# tambem servem; material que nao existe cai no padrao, sem derrubar o menu.
+#
+# Cores: & normal (&a, &6, &l) e hex &#RRGGBB nas versoes 1.16+.
+
+# O vidro que preenche os buracos do menu.
+Enfeite:
+  Ativar: true
+  Material: GRAY_STAINED_GLASS_PANE
+
+Botoes:
+  Fechar:
+    Material: RED_DYE
+    Nome: '&cFechar'
+    Lore: []
+  Voltar:
+    Material: ARROW
+    Nome: '&eVoltar'
+    Lore: []
+
+# /competicao -- a tela inicial do jogador.
+Principal:
+  Titulo: '&8Competicao de call'
+  Situacao:
+    # Com competicao valendo.
+    Material: CLOCK
+    # Sem competicao nenhuma.
+    MaterialSem: GRAY_DYE
+  Voce:
+    Material: NAME_TAG
+    MaterialSemVinculo: BARRIER
+  Ranking:
+    Material: GOLD_INGOT
+    Nome: '&6&lRanking'
+    Lore:
+      - '&7Todos os participantes, do maior'
+      - '&7tempo em call para o menor.'
+      - ''
+      - '&eClique para ver.'
+  Recompensas:
+    Material: CHEST
+    Nome: '&a&lRecompensas'
+    Lore:
+      - '&7O que cada colocado ganha.'
+      - ''
+      - '&eClique para ver.'
+  # So aparece para quem tem starcompbot.admin.
+  Equipe:
+    Material: COMPARATOR
+    Nome: '&b&lPainel da equipe'
+    Lore:
+      - '&7Abrir, pausar e configurar a'
+      - '&7competicao sem sair do jogo.'
+      - ''
+      - '&eClique para abrir.'
+
+# O ranking em paginas.
+Topo:
+  Titulo: '&8Ranking'
+  # O pe do podio.
+  Primeiro: GOLD_BLOCK
+  Segundo: IRON_BLOCK
+  Terceiro: COPPER_BLOCK
+  Demais: PAPER
+  MaterialVazio: GRAY_DYE
+  Anterior:
+    Material: ARROW
+  Proxima:
+    Material: ARROW
+  MinhaPosicao:
+    Material: NAME_TAG
+
+# As recompensas dos tops.
+Recompensas:
+  Titulo: '&8Recompensas dos tops'
+  # Posicao premiada que ainda nao tem recompensa definida.
+  MaterialVazio: GRAY_DYE
+  Nova:
+    Material: WRITABLE_BOOK
+
+# A recompensa de uma posicao (equipe).
+Premio:
+  Titulo: '&8Recompensa do'
+
+# O painel da equipe.
+Equipe:
+  Titulo: '&8Painel da competicao'
