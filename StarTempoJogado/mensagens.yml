@@ -5,7 +5,7 @@
 #  "Versao do modelo" e o numero deste arquivo dentro do jar. Quando ele sobe
 #  numa atualizacao, o plugin guarda o seu arquivo como mensagens-antigo-vX.yml
 #  e escreve o modelo novo no lugar -- e assim que as mensagens novas chegam.
-Versao do modelo: 1
+Versao do modelo: 2
 
 Prefixo: '&6&lStarTempoJogado &8» &r'
 
@@ -88,6 +88,7 @@ Admin:
     &e/startempojogado delnpc [raio] &7- tira o NPC do mundo (raio padrao: 10)
     &e/startempojogado irnpc &7- teleporta voce ate o NPC
     &e/startempojogado top [geral|mensal|semanal] &7- lista o top no chat
+    &e/startempojogado migrar &7- traz os dados do plugin de tempo antigo
     &e/startempojogado recarregar &7- recarrega os arquivos
     &8&m--------------------------------
   Uso setar: '&cUse &f/startempojogado setar <jogador> <tempo>&c.'
@@ -99,6 +100,43 @@ Admin:
   Menu aberto: '&aMenu do tempo aberto para &f{jogador}&a.'
   Top cabecalho: '&eTop {periodo} de tempo jogado:'
   Top linha: '&8 {posicao}. &f{jogador} &7- &e{tempo}'
+
+# Migracao do plugin de tempo antigo (/startempojogado migrar).
+Migracao:
+  Sem pasta: '&cNao achei a pasta &f{pasta}&c. O plugin antigo precisa estar (ou ter estado) instalado neste servidor.'
+  Lendo: '&7Lendo o banco antigo &f{banco}&7... isso pode levar alguns segundos.'
+  Ja rodando: '&cJa existe uma migracao em andamento; espere ela terminar.'
+  Erro: '&c&lERRO! &cA migracao parou e &lnada&c foi gravado: &f{erro}'
+  Npc sim: 'sim'
+  Npc nao: 'nao estava setado'
+  Aviso: '&e&lATENCAO! &e{aviso}'
+  Simulacao: |-
+    &8&m--------------------------------
+    &6&lMIGRACAO &7- o que seria trazido
+    &7Banco de origem: &f{banco}
+    &7Jogadores: &f{jogadores}
+    &7Missoes ja coletadas: &f{coletadas}
+    &7Missoes no arquivo: &f{missoes}
+    &7Recompensas no arquivo: &f{recompensas}
+    &8&m--------------------------------
+  Confirmar: |-
+    &eNada foi gravado ainda.
+    &ePara migrar de verdade: &f/startempojogado migrar confirmar
+    &7Quem ja tem tempo aqui e pulado. Para passar por cima tambem desses,
+    &7use &f/startempojogado migrar confirmar forcar&7.
+    &7Os arquivos trocados ganham uma copia &f-antes-da-migracao.yml&7 ao lado.
+    &8&m--------------------------------
+  Pronta: |-
+    &8&m--------------------------------
+    &a&lMIGRACAO CONCLUIDA
+    &7Jogadores trazidos: &f{jogadores}
+    &7Jogadores pulados (ja tinham tempo aqui): &f{pulados}
+    &7Missoes ja coletadas: &f{coletadas}
+    &7Missoes no missoes.yml: &f{missoes}
+    &7Recompensas no recompensas.yml: &f{recompensas}
+    &7Chaves de configuracao trocadas: &f{chaves}
+    &7Posicao do NPC: &f{npc}
+    &8&m--------------------------------
 
 Sons:
   #  Som do aviso de missao liberada. Deixe '' para nao tocar nada.
