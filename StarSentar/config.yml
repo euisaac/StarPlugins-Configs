@@ -70,6 +70,10 @@ pegar:
       #                    altura da cabeça e parecer que está flutuando.
       recuo: 0.42
       altura-dos-pes: 0.3
+      # O cliente desenha o assento interpolando uns 3 tiques, e por isso quem é carregado
+      # parece correr atrás de quem carrega. O assento é mandado estes tiques à frente, na
+      # direção do movimento, para a interpolação cair na posição real. 0 desliga.
+      compensar-atraso-tiques: 3
 
 # Lista de animais permitidos para sentar na cabeça
 animal-whitelist:
