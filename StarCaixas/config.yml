@@ -125,8 +125,15 @@ Hologramas:
     Altura: 1.6
 
     # {caixa} {id_caixa} {recompensas} {top1} {top1_aberturas}
+    #
+    # Estas tres falam de quem esta lendo: {chaves} (o total), {chaves_fisicas}
+    # (as que estao no inventario) e {chaves_virtuais} (as guardadas no perfil).
+    # Usando qualquer uma delas, cada jogador passa a ver o holograma dele, com
+    # o numero dele -- o que exige servidor 1.18 ou mais novo. Em servidor mais
+    # antigo essas linhas ficam de fora, e as placeholders continuam valendo.
     Linhas:
       - '&e&l{caixa}'
+      - '&7Voce tem &f{chaves} &7chave(s)'
       - '&7Clique para abrir'
 
   # O texto dos paineis criados por /starcaixas holograma criar.
