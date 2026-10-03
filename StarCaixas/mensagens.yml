@@ -88,6 +88,36 @@ Ranking:
   Desconhecido: '&7desconhecido'
   Fora do top: '&7fora do top'
 
+# Importacao de caixas de outro plugin (/starcaixas migrar).
+Migracao:
+  Pasta nao existe: '&cNao existe a pasta &f{pasta} &cdentro de plugins/.'
+  Pastas: '&7Pastas disponiveis: &f{pastas}'
+
+  Cabecalho simulacao: |
+    &8&m
+    &6&lSIMULACAO &7- nada foi gravado
+    &7Pasta: &f{pasta}
+    &7Entendi &f{caixas} &7caixa(s) e &f{recompensas} &7recompensa(s).
+  Cabecalho aplicado: |
+    &8&m
+    &a&lIMPORTADO
+    &7Pasta: &f{pasta}
+    &7Criei &f{caixas} &7caixa(s) com &f{recompensas} &7recompensa(s).
+
+  Linha lida: '&a + &f{caixa}'
+  Linha pulada: '&7 - &8{caixa}'
+  Aviso: '&e ! &7{aviso}'
+
+  Rodape simulacao: |
+    &7Para gravar de verdade:
+    &e/starcaixas migrar {pasta} aplicar
+    &8&m
+  Rodape aplicado: |
+    &7Confira tudo no &e/starcaixas editor&7.
+    &8A animacao, a recarga e os efeitos entraram com os padroes daqui:
+    &8nome de animacao de outro plugin nao casa com os destes.
+    &8&m
+
 Entrada:
   Como cancelar: '&7Digite &fcancelar &7para desistir.'
   Cancelado: '&cOperacao cancelada.'
@@ -105,6 +135,7 @@ Comando:
   Uso do bloco: '&cUse: /starcaixas bloco <definir <caixa>|remover|listar>'
   Uso do holograma: '&cUse: /starcaixas holograma <criar <id> <caixa|geral> [posicoes]|remover <id>|listar|ir <id>>'
   Uso do limpar: '&cUse: /starcaixas limpar historico <dias>'
+  Uso do migrar: '&cUse: /starcaixas migrar <pasta> [aplicar]'
 
   Info: |
     &8&m
@@ -143,4 +174,5 @@ Comando:
     &e/starcaixas holograma criar <id> <caixa|geral> [posicoes]
     &e/starcaixas holograma <remover <id>|listar|ir <id>>
     &e/starcaixas limpar historico <dias>
+    &e/starcaixas migrar <pasta> [aplicar] &7- traz caixas de outro plugin
     &8&m
