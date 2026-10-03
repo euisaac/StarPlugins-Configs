@@ -1,0 +1,172 @@
+#   ___ _              __   ___
+#  / __| |_ __ _ _ _   \ \ / (_)_ __ ___
+#  \__ \  _/ _` | '_|   \ V /| | '_ \ __|
+#  |___/\__\__,_|_|      \_/ |_| .__/___|
+#                              |_|
+# Sistema de vips do StarPlugins.
+
+# Banco de dados
+Banco:
+  # Tipos: SQLITE, MYSQL
+  # SQLITE guarda tudo em plugins/StarVips/dados.db e nao precisa de configuracao.
+  Tipo: SQLITE
+  # Aceita tanto "meu.host.com" quanto "meu.host.com:3306".
+  IP: 'localhost'
+  Porta: 3306
+  Database: 'minecraft'
+  Usuario: 'root'
+  Senha: ''
+  # Conexoes simultaneas (apenas MYSQL).
+  Pool: 10
+
+# Opcoes gerais
+Opcoes:
+  # Permitir que o jogador tenha varios vips equipados ao mesmo tempo.
+  # Com false, o vip novo entra como "aguardando" e ele troca quando quiser.
+  Permitir varios ativos: false
+
+  # Acerta o verbo do comando de grupo conforme a opcao acima.
+  #
+  # Com "Permitir varios ativos: false" o jogador so pode ter um grupo de vip,
+  # entao o "parent add" dos arquivos de vip roda como "parent set": a troca
+  # acontece de uma vez so e nao sobra o grupo do vip anterior caso o comando
+  # de remocao dele falhe.
+  #
+  # Com "Permitir varios ativos: true" o comando fica como esta escrito ("add"),
+  # senao cada vip novo apagaria o grupo dos outros que o jogador tem ativos.
+  #
+  # ATENCAO: o "parent set" do LuckPerms tira TODOS os outros grupos do jogador,
+  # inclusive o default. Se os seus grupos de vip nao herdam do default, troque
+  # o comando de remocao do vip para "lp user {player} parent set default",
+  # senao o jogador fica sem grupo nenhum quando o vip expirar.
+  #
+  # Deixe false para o StarVips nao mexer nos comandos que voce escreveu.
+  Ajustar comando de grupo: true
+
+  # Ativar um vip que o jogador ja tem soma o tempo no que ele possui, em vez
+  # de deixar dois registros iguais na conta. Vale para o vip em uso e para os
+  # que aguardam a vez; a chave guardada nao e afetada, porque ela ainda nao
+  # comecou a contar e o jogador escolhe quando ativar.
+  Somar vips iguais: true
+
+  # Descontar tempo tambem dos vips que estao apenas aguardando.
+  Reduzir nao equipados: true
+
+  # Equipar automaticamente o proximo vip aguardando quando o atual expirar.
+  Equipar pendente ao expirar: true
+
+  # Reaplicar os comandos de grupo do vip toda vez que o jogador entrar.
+  # Deixe true se o LuckPerms e o StarVips podem sair de sincronia.
+  Aplicar grupo ao entrar: true
+
+  # Segundos de espera entre uma troca de vip e outra.
+  # Zero desliga o delay. A permissao starvips.trocar.semdelay ignora ele.
+  Delay para trocar: 60
+
+  # Em uma rede com varios servidores no mesmo MYSQL, apenas UM deve descontar
+  # o tempo. Deixe true so no servidor principal e false nos outros.
+  Reduzir tempo neste servidor: true
+
+  # Entregar os itens de ativacao (activation-items) dos arquivos de vip.
+  #
+  # Com false NENHUM vip entrega item na ativacao, sem precisar mexer arquivo
+  # por arquivo -- e a lista de itens de cada vip continua guardada, entao basta
+  # voltar para true para tudo funcionar como antes.
+  #
+  # E a alternativa reversivel ao comando /starvips desligaritens, que grava
+  # "activation-items: false" em todos os arquivos e APAGA as listas de vez.
+  Entregar itens de ativacao: true
+
+# Meta coletiva de vips vendidos.
+# Cada ativacao soma o "party-vip-value" do vip; ao bater a meta, os comandos
+# abaixo rodam para o servidor inteiro.
+Party vip:
+  Ativar: false
+  Meta: 50.0
+  # Zerar o acumulado depois de atingir a meta.
+  Resetar ao atingir: true
+  # Somar tambem quando o vip vier do /setarvip.
+  Somar no setar: false
+  Comandos:
+    - 'broadcast &aA meta de VIPs foi atingida!'
+  Mensagens:
+    Desativado: '&cEste sistema esta desativado.'
+    Adicionou: |
+
+      &b&lPARTY VIP: &aUm novo VIP foi ativado!
+      &eProgresso: &7(&f{has}&7/&b{need}&7) {bar}
+
+    Atingiu: |
+
+      &b&lPARTY VIP: &aA META foi atingida!
+      &eValor alcancado: &7(&f{has}&7/&b{need}&7)
+
+    Progresso: |
+
+      &b&lPARTY VIP
+      &eProgresso: &7(&f{has}&7/&b{need}&7) &f{percent}%
+      {bar}
+
+# Barra usada no party-vip e no placeholder %starvips_party_barra%
+Barra de progresso:
+  Quantidade: 10
+  Simbolo: ':'
+  Cor cheia: '&a'
+  Cor vazia: '&7'
+
+# Festa do GG
+#
+# Quando alguem ativa um vip, o servidor tem um tempo para responder no chat.
+# Batendo a meta, todo mundo que respondeu leva o premio quando o tempo acaba.
+GG:
+  Ativar: false
+
+  # Palavras que contam. A mensagem precisa ser so uma delas, sem mais nada
+  # (maiusculo/minusculo nao importa). Adicione quantas variacoes quiser.
+  Palavras:
+    - 'gg'
+
+  # Comandos que levam mensagem ao chat, como o /g do global.
+  #
+  # Canal de chat costuma ser comando, e comando nao passa pelo evento de chat
+  # normal: sem esta lista, o gg mandado no /g aparece para todo mundo e nao
+  # conta na festa.
+  Comandos de chat:
+    - 'g'
+    - 'global'
+
+  # Quanto tempo a festa dura, em segundos.
+  Duracao: 120
+
+  # Quantos por cento de quem esta online precisam responder.
+  #
+  # A meta e calculada na hora da ativacao, entao ela acompanha o movimento do
+  # servidor: 30% de 20 jogadores sao 6 respostas; de 300, sao 90.
+  Porcentagem: 30.0
+
+  # Piso e teto da meta, para ela nao ficar boba nem impossivel.
+  # Teto 0 significa sem limite.
+  Minimo: 3
+  Maximo: 0
+
+  # Esconder o "gg" do chat depois de contar. Com false, a mensagem aparece
+  # normalmente e o chat fica cheio de gg, que costuma ser a graca da coisa.
+  Cancelar mensagem: false
+
+  # Rodados para cada participante, ao bater a meta.
+  # Use {player}, {vip}, {dono} e {total}.
+  Recompensas:
+    - 'eco give {player} 80'
+
+# Sons dos menus. Formato: SOM ou SOM:volume:tom
+# Deixe vazio ('') para desativar um som especifico.
+Sons:
+  Usar: true
+  Abrir menu: 'BLOCK_CHEST_OPEN:1:1'
+  Ativar: 'ENTITY_PLAYER_LEVELUP:1:2'
+  Comprar: 'ENTITY_EXPERIENCE_ORB_PICKUP:1:1'
+  Vender: 'BLOCK_NOTE_BLOCK_PLING:1:1.5'
+  Seletor: 'UI_BUTTON_CLICK:1:1'
+  Pagina: 'UI_BUTTON_CLICK:1:1.2'
+  Voltar: 'UI_BUTTON_CLICK:1:0.8'
+  Erro: 'ENTITY_VILLAGER_NO:1:1'

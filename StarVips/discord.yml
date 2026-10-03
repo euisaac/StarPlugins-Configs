@@ -1,0 +1,46 @@
+#   ___  _                       _
+#  |   \(_)___ __ ___ _ _ __| |
+#  | |) | (_-</ _/ _ \ '_/ _` |
+#  |___/|_/__/\__\___/_| \__,_|
+#
+# Aviso das ativacoes de vip em um canal do Discord.
+#
+# Para ligar, cole a URL do webhook abaixo e ative a secao "discord" no
+# arquivo do vip (plugins/StarVips/vips/<vip>.yml).
+
+Opcoes:
+  # Deixe '' (vazio) para desligar o envio.
+  Url: ''
+  Usuario: 'StarVips'
+
+# Placeholders disponiveis em todos os campos:
+#   {player} {vip} {id} {time}
+#   {activation_date} {activation_hour} {expire_date} {expire_hour}
+Embeds:
+  ativado:
+    Titulo: 'Um novo VIP foi ativado'
+    Descricao: ''
+    Cor: '#00d1ff'
+    Miniatura: 'https://minotar.net/body/{player}/100.png'
+    Rodape: 'StarVips'
+    Campos:
+      jogador:
+        Titulo: 'Jogador'
+        Valor: '```{player}```'
+        Linha: true
+      vip:
+        Titulo: 'VIP'
+        Valor: '```{vip}```'
+        Linha: true
+      duracao:
+        Titulo: 'Duracao'
+        Valor: '```{time}```'
+        Linha: true
+      ativado:
+        Titulo: 'Ativado em'
+        Valor: '{activation_date} as {activation_hour}'
+        Linha: true
+      expira:
+        Titulo: 'Expira em'
+        Valor: '{expire_date} as {expire_hour}'
+        Linha: true

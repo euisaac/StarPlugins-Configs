@@ -1,0 +1,350 @@
+# Todas as mensagens do plugin.
+# Deixe uma mensagem vazia ('') para nao enviar nada.
+# Suporta &a, &#0ae9ff e <nl> para quebra de linha.
+# As linhas com <click:...> e <hover:...> continuam clicaveis, igual ao sistema antigo.
+#
+# Aqui o nome do vip e {vip}. O {display_name} e coisa dos arquivos de vip,
+# em plugins/StarVips/vips/, onde ele evita reescrever o nome colorido em
+# cada item.
+
+# --- Gerais ---------------------------------------------------------
+Sem permissao: '&cVoce nao tem permissao para isto.'
+Somente jogador: '&cApenas jogadores in-game podem usar este comando.'
+Jogador nao encontrado: '&cO jogador &f{player}&c nao foi encontrado.'
+Nao e numero: '&cO valor informado nao e um numero.'
+Sintaxe: '&cUse: /{command} {syntax}'
+Cancelou: '&cOperacao cancelada.'
+Recarregado: '&aStarVips recarregado com sucesso.'
+Duracao invalida: '&cDuracao invalida: &f{duration}&c. Use 1d, 12h, 30m ou permanente.'
+Placeholder sem vip: '&7Nenhum'
+
+# --- Vips -----------------------------------------------------------
+Vip nao existe: |
+  &cEsse vip nao foi encontrado.
+  &cDisponiveis: &7{list}&c.
+Vip id nao encontrado: '&cNenhum vip encontrado com o id &f{id}&c.'
+Vip dado: '&aVoce deu o {vip}&a para &f{player}&a. &7(id {id}, {duration})'
+Vip setado: '&aVoce setou o {vip}&a para &f{player}&a. &7(id {id}, {duration})'
+Vip removido: '&aO vip &f{id}&a de &f{player}&a foi removido.'
+Vip trocado: '&aVoce equipou o {vip}&a.'
+Tempo somado: '&aVoce ja tinha o {display_name}&a: o tempo foi somado. &7(agora {expire_remaining})'
+Vip ja ativo: '&cVoce ja esta usando o vip de id &f{id}&c.'
+Vip ja equipado: '&eO {display_name}&e ja e o seu vip em uso. &7(expira em {expire_remaining})'
+Vip expirado: '&cO vip de id &f{id}&c ja expirou.'
+Vip permanente: '&cO vip &f{id}&c e permanente; nao da para alterar o tempo dele.'
+Vip expirou: '&cSeu {vip}&c expirou. &7(id {id})'
+Vip promovido: '&aSeu {vip}&a foi equipado automaticamente. &7(id {id})'
+Tempo alterado: '&aO tempo do vip &f{id}&a agora e &f{time}&a.'
+Delay de troca: '&cAguarde &e{time}&c para trocar de vip novamente.'
+Nenhum vip removido: '&cO jogador &f{player}&c nao tem nenhum vip ativo.'
+Vips removidos: '&a{amount} vip(s) de &f{player}&a foram removidos.'
+Sem vip ativo: '&cVoce nao tem nenhum vip equipado.'
+Sem vip ativo alvo: '&cO jogador &f{player}&c nao tem nenhum vip equipado.'
+
+Copiar id: '&7Id do vip: &r{vip_display} &8- &f<click:suggest_command:{id}><hover:show_text:"Clique para copiar">{id}</hover></click>'
+
+# --- /vips ----------------------------------------------------------
+Vips nenhum: '&cVoce nao tem nenhum vip.'
+Vips nenhum alvo: '&cO jogador &f{player}&c nao tem nenhum vip.'
+# O &r depois do nome fecha a cor e o negrito do vip, senao eles vazam para o
+# resto da linha. O vip expirado usa o formato de baixo, sem tempo restante.
+Vips formato: '  &8(<click:suggest_command:{id}><hover:show_text:"Clique para copiar">{id}</hover></click>) {vip_display}&r {status_cor} &7{expire_remaining}'
+Vips formato expirado: '  &8(<click:suggest_command:{id}><hover:show_text:"Clique para copiar">{id}</hover></click>) {vip_display}&r {status_cor}'
+Vips: |
+
+  &aSeus vips:
+
+  &f  ID:            &fVIP:
+
+  {format}
+
+Vips alvo: |
+
+  &aVips de &f{player}&a:
+
+  &f  ID:            &fVIP:
+
+  {format}
+
+# --- /tempovip ------------------------------------------------------
+Tempo vip: |
+
+  &aInformacoes do seu VIP:
+
+  &7Seu VIP: &r{vip_display}
+  &7Tag especial: &r{vip_prefix}
+
+  &7Expira em: &f{expire_remaining}
+  &7Ativado em: &f{activation_date} as {activation_hour}
+
+Tempo vip alvo: |
+
+  &aInformacoes do VIP de &f{player}&a:
+
+  &7VIP: &r{vip_display}
+  &7Tag especial: &r{vip_prefix}
+
+  &7Expira em: &f{expire_remaining}
+  &7Ativado em: &f{activation_date} as {activation_hour}
+
+# --- /infovip -------------------------------------------------------
+Info vip: |
+
+  &aInformacoes do vip &7({id})&a de &f{player}&a:
+
+  &7VIP: &r{vip_display}
+  &7Tag especial: &r{vip_prefix}
+  &7Tipo de tempo: &f{time_type}
+
+  &fStatus: &r{status}
+
+  &7Duracao: &f{duration}
+  &7Expira em: &f{expire_remaining}
+  &7Ativado em: &f{activation_date} as {activation_hour}
+
+# --- Chaves resgataveis (codigos) -----------------------------------
+Key nao existe: '&cA chave &f{key}&c nao existe ou ja foi usada.'
+Key ja existe: '&cJa existe uma chave com o codigo &f{key}&c.'
+Key deletada: '&aA chave &f{key}&a foi deletada.'
+Key gerada: |
+
+  &aChave criada:
+
+  &7Codigo: &f<click:suggest_command:{key}><hover:show_text:"Clique para copiar">{key}</hover></click>
+  &7VIP: &r{vip}
+
+  &7Usos: &f{use}
+  &7Duracao: &f{duration}
+
+Key editada: |
+
+  &aChave editada:
+
+  &7Codigo: &f<click:suggest_command:{key}><hover:show_text:"Clique para copiar">{key}</hover></click>
+  &7VIP: &r{vip}
+
+  &7Usos: &f{use}
+  &7Duracao: &f{duration}
+
+Key usada: |
+
+  &aVoce resgatou uma chave VIP:
+
+  &7VIP: &r{vip}
+  &7Duracao: &f{duration}
+  &7Id do vip: &f{id}
+
+Keys nenhuma: '&cNao ha nenhuma chave criada.'
+Keys formato: '  &8(<click:suggest_command:{key}><hover:show_text:"Clique para copiar">{key}</hover></click>)&f {vip_display} &6-> &7{duration} &6-> &7{use} uso(s)'
+Keys: |
+
+  &aChaves disponiveis:
+
+  &f  CODIGO:                   &fVIP:
+
+  {format}
+
+# --- Chaves na conta do jogador -------------------------------------
+Chave dada: '&aVoce deu uma chave do {vip}&a para &f{player}&a. &7(id {id}, {duration})'
+Chave recebida: '&aVoce recebeu uma chave do {vip}&a. &7(id {id}, {duration})&a Use /ativarvip {id}'
+Chave ativada: '&aVoce ativou a chave do {vip}&a. &7(id {id})'
+Chave nao encontrada: '&cNenhuma chave com o id &f{id}&c foi encontrada na sua conta.'
+Chave a venda ativar: '&cEsta chave esta a venda. Cancele a venda antes de ativar.'
+Chave ja ativada: '&cEsta chave ja foi ativada e nao pode mais ser negociada.'
+Chave nao e sua: '&cEssa chave nao e sua.'
+
+Keys jogador nenhuma: '&cVoce nao tem nenhuma chave guardada.'
+Keys jogador formato: '  &8(<click:suggest_command:{id}><hover:show_text:"Clique para copiar">{id}</hover></click>)&f {vip_display} &6-> &7{duration}'
+Keys jogador: |
+
+  &aSuas chaves guardadas:
+
+  &f  ID:            &fVIP:
+
+  {format}
+
+# --- Mercado --------------------------------------------------------
+Venda ativada: |
+
+  &aChave colocada a venda:
+
+  &7Id: &e{id}
+  &7Preco: &e{price} &7em &e{provider}
+
+  &7VIP: &r{vip}
+  &7Duracao: &f{duration}
+
+Venda cancelada: |
+
+  &aVenda cancelada:
+
+  &7Id: &e{id}
+  &7VIP: &r{vip}
+  &7Duracao: &f{duration}
+
+Chave comprada: |
+
+  &aVoce comprou uma chave VIP:
+
+  &7Id: &e{id}
+  &7Preco: &e{price} &7em &e{provider}
+
+  &7VIP: &r{vip}
+  &7Duracao: &f{duration}
+
+Chave vendida: '&aSua chave &f{id}&a do {vip}&a foi comprada por &f{player}&a. &7(+{price} {provider})'
+Chave nao esta a venda: '&cA chave &f{id}&c nao esta a venda.'
+Chave propria: '&cVoce nao pode negociar com a sua propria chave.'
+Dono offline: '&cEsta economia nao permite negociar com o dono offline.'
+Preco invalido: '&cO preco precisa ser maior que zero.'
+Preco alterado: '&aPreco alterado para &f{price}&a.'
+Economia nao existe: '&cEssa economia nao existe ou nao esta disponivel.'
+Economia sem permissao: '&cVoce nao pode negociar com essa economia.'
+Sem saldo: '&cVoce nao tem {provider_display} suficiente. Seu saldo: &f{provider_balance}&c.'
+
+Vendas nenhuma: '&cNao ha nenhuma chave a venda.'
+Vendas nenhuma alvo: '&cO jogador &f{player}&c nao tem chaves a venda.'
+Vendas formato: '  &8(<click:suggest_command:{id}><hover:show_text:"Clique para copiar">{id}</hover></click>)&f {vip_display} &6-> &7{duration} &6-> &a{price} {provider_abbreviated} &6-> &f{owner}'
+Vendas alvo formato: '  &8(<click:suggest_command:{id}><hover:show_text:"Clique para copiar">{id}</hover></click>)&f {vip_display} &6-> &7{duration} &6-> &a{price} {provider_abbreviated}'
+Vendas: |
+
+  &aChaves a venda:
+
+  &f  ID:            &fVIP:
+
+  {format}
+
+Vendas alvo: |
+
+  &aChaves a venda de &f{player}&a:
+
+  &f  ID:            &fVIP:
+
+  {format}
+
+# --- Bonus ----------------------------------------------------------
+Bonus dado: '&aVoce deu um bonus do {vip}&a para &f{player}&a. &7(id {id}, {duration})'
+Bonus recebido: '&aVoce recebeu um bonus do {vip}&a de &f{player}&a. &7(id {id})'
+Bonus ativado: '&aVoce ativou o bonus do {vip}&a. &7(id {id})'
+Bonus enviado: '&aVoce enviou o bonus &f{id}&a para &f{player}&a.'
+Bonus nao encontrado: '&cNenhum bonus com o id &f{id}&c foi encontrado.'
+Bonus nenhum: '&cVoce nao tem nenhum bonus guardado.'
+Bonus formato: '  &8(<click:suggest_command:{id}><hover:show_text:"Clique para copiar">{id}</hover></click>)&f {vip_display} &6-> &7{duration}'
+Bonus: |
+
+  &aSeus bonus disponiveis:
+
+  &f  ID:            &fVIP:
+
+  {format}
+
+# --- Ativacoes ------------------------------------------------------
+Ativacao recolhida: '&aVoce recolheu a ativacao do {vip}&a.'
+Ativacao kit: '&7O kit &f{kit}&7 foi liberado. Use &f/kit&7 para pegar.'
+
+# --- Creditos VIP ---------------------------------------------------
+Credito saldo: '&aVoce tem &f{amount}&a creditos VIP.'
+Credito saldo alvo: '&aO jogador &f{player}&a tem &f{amount}&a creditos VIP.'
+Credito adicionado: '&aVoce adicionou &f{amount}&a creditos para &f{player}&a. &7(saldo: {balance})'
+Credito removido: '&aVoce removeu &f{amount}&a creditos de &f{player}&a. &7(saldo: {balance})'
+Credito setado: '&aVoce definiu os creditos de &f{player}&a em &f{amount}&a.'
+Credito enviado: '&aVoce enviou &f{amount}&a creditos para &f{player}&a.'
+Credito recebido: '&aVoce recebeu &f{amount}&a creditos de &f{player}&a.'
+Credito proprio: '&cVoce nao pode enviar creditos para si mesmo.'
+Sem creditos: '&cVoce nao tem &f{amount}&c creditos VIP. Seu saldo: &f{balance}&c.'
+Comprou na loja: '&aCompra feita por &f{amount}&a creditos. &7(saldo: {balance})'
+
+# --- Upgrade --------------------------------------------------------
+Upgrade feito: '&aVoce fez o upgrade de {vip_antigo}&a para {vip_display}&a. &7(id {id}, {expire_remaining})'
+
+# --- Congelamento ---------------------------------------------------
+Congelado: '&aO tempo dos vips foi congelado neste servidor.'
+Descongelado: '&aO tempo dos vips voltou a correr neste servidor.'
+
+# --- Party VIP ------------------------------------------------------
+Party resetado: '&aO progresso do party-vip foi zerado.'
+
+# --- Perguntas no chat ----------------------------------------------
+Digite o preco:
+  - ''
+  - '&aDigite o preco no chat.'
+  - '&7Para cancelar, digite &ncancelar&7.'
+  - ''
+Digite o jogador:
+  - ''
+  - '&aDigite o nome do jogador no chat.'
+  - '&7Para cancelar, digite &ncancelar&7.'
+  - ''
+
+# --- Ajudas ---------------------------------------------------------
+Ajuda:
+  - ''
+  - '&b&lCOMANDOS DO VIP'
+  - ' &b- &f/vip &8-&7 abre o menu principal'
+  - ' &b- &f/vips &8-&7 lista os seus vips e ids'
+  - ' &b- &f/tempovip &8-&7 mostra o tempo do vip equipado'
+  - ' &b- &f/trocarvip &7<id> &8-&7 equipa outro vip seu'
+  - ' &b- &f/ativarvip &7<id> &8-&7 ativa uma chave guardada'
+  - ' &b- &f/usarkey &7<codigo> &8-&7 resgata uma chave'
+  - ' &b- &f/chaves &8-&7 lista as suas chaves'
+  - ' &b- &f/bonusvip lista &8-&7 lista os seus bonus'
+  - ' &b- &f/creditovip &8-&7 mostra os seus creditos'
+  - ' &b- &f/vendervip &7<id> <economia> <preco> &8-&7 vende uma chave'
+  - ' &b- &f/comprarvip &7<id> &8-&7 compra uma chave'
+  - ' &b- &f/vendasvip &8-&7 lista as chaves a venda'
+  - ' &b- &f/partyvip &8-&7 progresso da meta coletiva'
+  - ''
+
+Ajuda admin:
+  - ''
+  - '&b&lCOMANDOS DE ADMIN'
+  - ' &b- &f/darvip &7<jogador> <vip> <duracao>'
+  - ' &b- &f/setarvip &7<jogador> <vip> <duracao> &8-&7 sem anuncio'
+  - ' &b- &f/darchave &7<jogador> <vip> <duracao> &8-&7 sem ativar'
+  - ' &b- &f/removervip &7<id>'
+  - ' &b- &f/removertempovip &7<id> <duracao> &8-&7 use -1d para somar'
+  - ' &b- &f/removervipplayer &7<jogador>'
+  - ' &b- &f/gerarkey &7<vip> <duracao> [usos]'
+  - ' &b- &f/criarkey &7<codigo> <vip> <duracao> [usos]'
+  - ' &b- &f/editarkey &7<codigo> <vip> <duracao> [usos]'
+  - ' &b- &f/removerkey &7<codigo>'
+  - ' &b- &f/verkeys admin &8-&7 lista os codigos criados'
+  - ' &b- &f/bonusvip dar &7<jogador> <vip> <duracao>'
+  - ' &b- &f/infovip &7<id>'
+  - ' &b- &f/congelarvip &8-&7 pausa o tempo de todos'
+  - ' &b- &f/creditovip dar|remover|setar &7<jogador> <quantia>'
+  - ' &b- &f/starvips recarregar|importar|versao'
+  - ''
+
+Ajuda starvips:
+  - ''
+  - '&b&lSTARVIPS'
+  - ' &f/starvips recarregar &7- recarrega as configuracoes'
+  - ' &f/starvips importar &7- importa os vips e os dados do sistema antigo'
+  - ' &f/starvips importar forcar &7- refaz a importacao por cima do que ja veio'
+  - ' &f/starvips inspecionar &7- mostra o formato do banco do sistema antigo'
+  - ' &f/starvips limpar &7- remove registros sem vip correspondente'
+  - ' &f/starvips limpar tudo &7- zera os dados importados'
+  - ' &f/starvips desligaritens &7- desliga os itens de ativacao de todos os vips'
+  - ' &f/starvips versao &7- mostra a versao e as integracoes'
+  - ''
+
+# --- Festa do GG ----------------------------------------------------
+# {vip} {player} {gg} {total} {alvo} {faltam} {tempo}
+GG Inicio:
+  - ''
+  - '&d&lGG PARTY! &fO VIP {vip}&f de &b{player} &fprecisa de &e{alvo} &fGGs'
+  - '&fem &e{tempo}s&f! Mande &a{gg} &fno chat!'
+  - ''
+GG contou: '&aContou! &7Faltam &f{faltam} &7para bater a meta.'
+GG ja contou: '&7Voce ja mandou o seu {gg} nesta festa.'
+GG Sucesso:
+  - ''
+  - '&d&lMETA BATIDA! &fTodos que mandaram &a{gg} &fganharam o premio!'
+  - '&7Participaram: &f{total} &7jogador(es).'
+  - ''
+GG Falha:
+  - ''
+  - '&c&lQUE PENA! &fA meta de &e{alvo} &fGGs nao foi batida.'
+  - '&7Chegaram &f{total}&7. Fica para a proxima ativacao.'
+  - ''

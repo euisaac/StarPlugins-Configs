@@ -1,0 +1,240 @@
+# Modelo de vip do StarVips.
+#
+# Copie este arquivo para criar novos vips: o nome do arquivo e o id do vip
+# (exemplo.yml -> /darvip <jogador> exemplo 30d).
+#
+# O formato e o mesmo do sistema antigo, entao um arquivo trazido pelo
+# /starvips importar funciona sem nenhum ajuste.
+
+# Nome colorido, mostrado nas mensagens e nos menus.
+#
+# Escreva o nome AQUI e use {display_name} no resto do arquivo: nos itens, nos
+# anuncios, em tudo. Assim, para mudar a cor ou o nome do vip, voce mexe em uma
+# linha so em vez de cacar o texto item por item.
+display: '&b&lExemplo'
+
+# Tag exclusiva do vip, usada pelo placeholder %starvips_prefixo%.
+# Disponivel como {prefix} nos itens e mensagens deste arquivo.
+prefix: '&b&l*'
+
+# Como o tempo e descontado:
+#   BASIC  - o relogio corre sempre, mesmo com o servidor desligado
+#   SERVER - corre apenas enquanto o servidor esta ligado
+#   ONLINE - corre apenas enquanto o jogador esta conectado
+time-type: 'BASIC'
+
+# Kit do StarKits liberado ao ativar este vip.
+# Deixe vazio para usar um kit com o mesmo id do vip, ou 'none' para desligar.
+kit: ''
+
+# Creditos VIP dados ao jogador na ativacao.
+credit: 1.0
+
+# Quanto esta ativacao soma na meta do party-vip.
+party-vip-value: 1.0
+
+# Com true, os premios ficam guardados no menu de ativacoes e o jogador
+# recolhe quando quiser. Com false, saem na hora da ativacao.
+activation-menu: true
+
+# Icone padrao, usado quando um item especifico nao estiver configurado.
+icon:
+  material: 'DIAMOND'
+  name: '{display_name}'
+  lore: []
+
+# Avisos disparados na ativacao. Deixe '' para desligar um deles.
+announces:
+  sound: 'ENTITY_PLAYER_LEVELUP:1:1'
+  actionbar: '&7{player}&b acaba de ativar o {display_name}'
+  title: '&7{player}&b ativou o<nl>{display_name}'
+  chat: |
+
+    &b&lVIPS
+    &bO jogador &7{player} &bacaba de
+    &bse tornar {display_name}&b.
+
+  chat-private: |
+
+    &b&lVIPS
+    &7Recolha sua ativacao em /vip
+
+# Aviso no Discord. Precisa da Url preenchida no discord.yml.
+discord:
+  webhook:
+    enable: false
+    chat-embed: 'ativado'
+
+# Itens mostrados nos menus, um por situacao.
+#
+# Placeholders deste arquivo (valem no name e na lore de todos os itens,
+# e tambem nos anuncios la em cima):
+#
+#   {display_name}  o campo "display" la do topo -- use este no lugar de
+#                   reescrever o nome colorido em cada item
+#   {prefix}        o campo "prefix"
+#   {kit}           o kit do StarKits ligado a este vip
+#
+#   {id}            id da instancia do vip (o codigo de 8 letras)
+#   {status}        Guardado / Ativo / Aguardando / Expirado
+#   {duration}      duracao contratada
+#   {expire_remaining}  quanto ainda falta
+#   {activation_date} {activation_hour} {expire_date} {expire_hour}
+#   {player} {owner}    dono da chave
+#   {price} {provider_display} {provider_abbreviated}   dados da venda
+#
+# {vip_display} continua funcionando, igual ao sistema antigo, e e o mesmo que
+# {display_name}.
+item:
+  # Chave guardada na conta.
+  key-preview:
+    material: 'TRIPWIRE_HOOK'
+    name: '{display_name} &8{id}'
+    lore:
+      - ''
+      - ' &7VIP: &r{vip_display}'
+      - ' &7Duracao: &f{duration}'
+      - ''
+      - '&aBotao &fESQUERDO &apara ativar'
+      - '&aBotao &fDIREITO &apara vender'
+
+  # Chave guardada que esta a venda.
+  key-sell-preview:
+    material: 'TRIPWIRE_HOOK'
+    name: '{display_name} &8{id}'
+    lore:
+      - ''
+      - ' &7VIP: &r{vip_display}'
+      - ' &7Duracao: &f{duration}'
+      - ' &7A venda por &a{price} {provider_abbreviated}'
+      - ''
+      - '&aBotao &fDIREITO &apara cancelar a venda'
+
+  # Chave de outro jogador, vista no mercado.
+  key-sell:
+    material: 'TRIPWIRE_HOOK'
+    name: '{display_name} &8{id}'
+    lore:
+      - ''
+      - ' &7VIP: &r{vip_display}'
+      - ' &7Duracao: &f{duration}'
+      - ' &7Vendedor: &f{owner}'
+      - ' &7Preco: &a{price} {provider_abbreviated}'
+      - ''
+      - '&aClique para comprar'
+
+  # Chave bonus.
+  key-bonus-preview:
+    material: 'TRIPWIRE_HOOK'
+    name: '{display_name} &8{id}'
+    lore:
+      - ''
+      - ' &7VIP: &r{vip_display}'
+      - ' &7Duracao: &f{duration}'
+      - ''
+      - '&aBotao &fESQUERDO &apara ativar'
+      - '&aBotao &fDIREITO &apara enviar'
+
+  # Vip equipado.
+  active:
+    material: 'DIAMOND'
+    name: '{display_name} &8{id}'
+    lore:
+      - ''
+      - ' &fStatus: &aEquipado'
+      - ' &7Expira em: &f{expire_remaining}'
+      - ' &7Ativado em: &f{activation_date} as {activation_hour}'
+      - ''
+
+  # Vip ativado mas aguardando a vez.
+  change:
+    material: 'DIAMOND'
+    name: '{display_name} &8{id}'
+    lore:
+      - ''
+      - ' &fStatus: &eAguardando'
+      - ' &7Expira em: &f{expire_remaining}'
+      - ''
+      - '&aClique para equipar este vip'
+
+  # Vip expirado.
+  expired:
+    material: 'GRAY_DYE'
+    name: '{display_name} &8{id}'
+    lore:
+      - ''
+      - ' &fStatus: &cExpirado'
+      - ' &7Ativado em: &f{activation_date} as {activation_hour}'
+      - ''
+
+  # Ativacao esperando para ser recolhida.
+  activation:
+    material: 'CHEST'
+    name: '{display_name}'
+    lore:
+      - '&7Pendentes: &f{amount}'
+      - ''
+      - '&aClique para recolher'
+
+  # Item mostrado no menu de upgrade.
+  # Aqui {display_name} e o vip de DESTINO (cada linha mostra um) e
+  # {display_atual} e o vip que o jogador tem hoje.
+  upgrade:
+    material: 'ANVIL'
+    name: '{display_atual} &f-> &e{display_name}'
+    lore:
+      - '&7Mantendo o tempo que voce ja tem.'
+      - ''
+      - '&fPreco: &a{price}'
+      - ''
+      - '&aClique para upar'
+
+# Sistema de upgrade. Deixe vip-type vazio para desligar.
+upgrade:
+  vip-type: []
+  command: []
+  message: []
+  message-broadcast: ''
+  price:
+    preco1:
+      provider: 'creditos'
+      price: 10
+
+# Comandos rodados ao equipar e ao perder o vip.
+# Use {player}, {vip} e {id}.
+group-command:
+  add:
+    - 'lp user {player} parent add exemplo'
+  remove:
+    - 'lp user {player} parent remove exemplo'
+
+# Comandos da ativacao. Aceita "chance,comando" para sortear.
+# 100.0 (ou nenhuma chance) roda sempre.
+activation-commands: []
+
+# Itens entregues na ativacao.
+#
+# Deixe "false" para nao entregar item nenhum, que e o padrao. Para ligar,
+# troque por uma lista; a chance 0.0 significa "sempre":
+#
+#   activation-items:
+#     item-1:
+#       chance: 0.0
+#       material: 'DIAMOND'
+#       name: '&bPresente do {display_name}'
+#       lore: []
+activation-items: false
+
+# Festa do GG deste vip.
+#
+# Sem esta secao, vale o que estiver no config.yml. Ela existe para o vip
+# decidir sozinho: o vip barato pode nao mobilizar o servidor, e o caro pode
+# pedir mais gente e pagar melhor.
+#
+# Qualquer campo pode ser omitido: o que faltar cai no valor global.
+gg:
+  ativar: true
+  # duracao: 120
+  # porcentagem: 30.0
+  # recompensas:
+  #   - 'eco give {player} 150'

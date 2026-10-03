@@ -1,0 +1,95 @@
+#  _____                            _
+# | ____|___ ___  _ __   ___  _ __ (_) __ _ ___
+# |  _| / __/ _ \| '_ \ / _ \| '_ \| |/ _` / __|
+# | |__| (_| (_) | | | | (_) | | | | | (_| \__ \
+# |_____\___\___/|_| |_|\___/|_| |_|_|\__,_|___/
+#
+# Moedas aceitas no mercado de chaves e nos upgrades.
+#
+# Provedores disponiveis:
+#   VAULT         - a economia principal do servidor (precisa do Vault)
+#   CREDITO       - os creditos VIP do proprio StarVips
+#   PLAYERPOINTS  - PlayerPoints
+#   COMANDO       - qualquer outro plugin, por comandos e placeholder
+#
+# O provedor COMANDO usa tres campos extras:
+#   Saldo: '%plugin_saldo%'                 placeholder que devolve o saldo
+#   Retirar: [ 'plugin tirar {player} {valor}' ]
+#   Depositar: [ 'plugin dar {player} {valor}' ]
+# Ele so funciona com o jogador online, porque o saldo vem de um placeholder.
+
+# Moeda que ja vem selecionada ao colocar uma chave a venda.
+# Deixe '' (vazio) para nao pre-selecionar nenhuma.
+Padrao: 'dinheiro'
+
+Economias:
+  dinheiro:
+    Provedor: 'VAULT'
+    # Nome por extenso, usado nas mensagens.
+    Nome: 'Dinheiro'
+    # Nome curto, usado nas listas e lores.
+    Abreviado: 'coins'
+    # Permitir comprar de um jogador que esteja offline.
+    Permitir offline: true
+    # Deixe '' para liberar a todos.
+    Permissao: ''
+    Item:
+      material: 'GOLD_INGOT'
+      name: '&aDinheiro'
+      lore:
+        - ''
+        - ' &7Seu saldo: &f{balance}'
+        - ''
+        - '&aClique para escolher'
+
+  creditos:
+    Provedor: 'CREDITO'
+    Nome: 'Creditos VIP'
+    Abreviado: 'creditos'
+    Permitir offline: true
+    Permissao: ''
+    Item:
+      material: 'DIAMOND'
+      name: '&bCreditos VIP'
+      lore:
+        - ''
+        - ' &7Seu saldo: &f{balance}'
+        - ''
+        - '&aClique para escolher'
+
+  # Descomente se o servidor tiver o PlayerPoints.
+  #cash:
+  #  Provedor: 'PLAYERPOINTS'
+  #  Nome: 'Cash'
+  #  Abreviado: 'cash'
+  #  Permitir offline: true
+  #  Permissao: 'starvips.economia.cash'
+  #  Item:
+  #    material: 'EMERALD'
+  #    name: '&aCash'
+  #    lore:
+  #      - ''
+  #      - ' &7Seu saldo: &f{balance}'
+  #      - ''
+  #      - '&aClique para escolher'
+
+  # Exemplo de ponte generica com outro plugin de economia.
+  #tokens:
+  #  Provedor: 'COMANDO'
+  #  Nome: 'Tokens'
+  #  Abreviado: 'tokens'
+  #  Permitir offline: false
+  #  Permissao: ''
+  #  Saldo: '%tokens_balance%'
+  #  Retirar:
+  #    - 'tokens remover {player} {valor}'
+  #  Depositar:
+  #    - 'tokens adicionar {player} {valor}'
+  #  Item:
+  #    material: 'SUNFLOWER'
+  #    name: '&eTokens'
+  #    lore:
+  #      - ''
+  #      - ' &7Seu saldo: &f{balance}'
+  #      - ''
+  #      - '&aClique para escolher'

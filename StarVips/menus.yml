@@ -1,0 +1,455 @@
+#    /\/\   ___ _ __  _   _ ___
+#   /    \ / _ \ '_ \| | | / __|
+#  / /\/\ \  __/ | | | |_| \__ \
+#  \/    \/\___|_| |_|\__,_|___/
+#
+# Layout de todos os menus do plugin.
+#
+# Em qualquer item voce pode usar:
+#   material: 'DIAMOND'                 material normal
+#   material: '{player}'                cabeca do jogador
+#   material: '<hash da textura>'        cabeca customizada
+#   Slot: -1                            esconde o item do menu
+#
+# Placeholders disponiveis nos itens do jogador:
+#   {player} {display_name} {prefix} {credit} {spent} {activated}
+#   {amount_stored} {amount_bonus} {amount_obtained} {activations}
+#   {amount_pendentes} {amount_expirados} {amount_selling}
+#   {expire_remaining} {activation_date} {activation_hour} {id} {status}
+#
+# {display_name} e o vip equipado no momento; {vip_display} e a mesma coisa,
+# mantido por compatibilidade com o sistema antigo.
+#
+# Uma lore pode virar varias linhas: o texto de um placeholder que contenha
+# <nl> e quebrado ali. E assim que {vips_ativos} lista um vip por linha.
+#
+# Os itens que representam um vip (chaves, historico, ativacoes, mercado) NAO
+# sao configurados aqui: eles vem do arquivo do proprio vip, em
+# plugins/StarVips/vips/<vip>.yml.
+
+# Atualizar o menu principal sozinho enquanto ele esta aberto.
+Atualizar menu: true
+# Intervalo da atualizacao, em ticks (20 ticks = 1 segundo).
+Atualizar a cada: 20
+
+# Setas usadas em todos os menus paginados.
+Setas:
+  Voltar:
+    material: 'ARROW'
+    name: '&cVoltar'
+    lore:
+      - '&7Clique para voltar ao menu anterior.'
+  Anterior:
+    material: 'ARROW'
+    name: '&cPagina anterior'
+    lore:
+      - '&7Clique para voltar uma pagina.'
+  Proximo:
+    material: 'ARROW'
+    name: '&aProxima pagina'
+    lore:
+      - '&7Clique para avancar uma pagina.'
+
+# ====================================================================
+# Menu principal (/vip)
+# ====================================================================
+Principal:
+  Nome: '&8VIPs'
+  Tamanho: 27
+  Itens:
+    Perfil:
+      Slot: 10
+      material: '{player}'
+      name: '&b{player}'
+      lore:
+        - ''
+        - ' &fEm uso agora: &r{display_name}'
+        - ' &fTag: &r{prefix}'
+        - ' &fExpira em: &7{expire_remaining}'
+        - ''
+        - ' &7Aguardando a vez: &f{amount_pendentes}'
+        - ' &7Ja expirados: &f{amount_expirados}'
+        - ' &7Chaves guardadas: &f{amount_stored}'
+        - ''
+        - ' &fCreditos: &b* &f{credit}'
+        - ''
+        - '&aClique no Historico para trocar de VIP'
+        - ''
+
+    # Usado no lugar do "Perfil" quando Opcoes.Permitir varios ativos: true.
+    # Ali nao existe "o vip atual", entao a lore lista todos os que estao em uso.
+    #
+    # {vips_ativos} vira uma linha por vip, no formato abaixo. O mesmo vip
+    # aparece uma vez so, mesmo que o jogador tenha dois registros dele.
+    Perfil varios:
+      Slot: 10
+      material: '{player}'
+      name: '&b{player}'
+      Formato: ' &8- &r{display_name}&r &7{expire_remaining}'
+      Formato vazio: ' &7Nenhum'
+      lore:
+        - ''
+        - ' &fVips em uso:'
+        - '{vips_ativos}'
+        - ''
+        - ' &7Aguardando a vez: &f{amount_pendentes}'
+        - ' &7Ja expirados: &f{amount_expirados}'
+        - ' &7Chaves guardadas: &f{amount_stored}'
+        - ''
+        - ' &fCreditos: &b* &f{credit}'
+        - ''
+
+    Perfil sem vip:
+      Slot: 10
+      material: '{player}'
+      name: '&b{player}'
+      lore:
+        - ''
+        - ' &fCreditos: &b* &f{credit}'
+        - ''
+        - ' &cVoce ainda nao tem nenhum vip ativo.'
+        - ''
+
+    Historico:
+      Slot: 11
+      material: 'MAP'
+      name: '&bHistorico de VIPs'
+      lore:
+        - '&7Veja os vips que voce ja teve e'
+        - '&7troque entre os que estao aguardando.'
+        - ''
+        - '&aClique para abrir'
+
+    Chaves:
+      Slot: 12
+      material: 'TRIPWIRE_HOOK'
+      name: '&bChaves'
+      lore:
+        - '&7Suas chaves guardadas, prontas'
+        - '&7para ativar ou vender.'
+        - ''
+        - ' &7Guardadas: &f{amount_stored}'
+        - ' &7A venda: &f{amount_selling}'
+        - ''
+        - '&aClique para abrir'
+
+    Ativacoes:
+      Slot: 13
+      material: 'NAME_TAG'
+      name: '&bAtivacoes'
+      lore:
+        - '&7Recolha os premios dos vips'
+        - '&7que voce ativou.'
+        - ''
+        - ' &7Pendentes: &f{activations}'
+        - ''
+        - '&aClique para abrir'
+
+    Bonus:
+      Slot: 14
+      material: 'CHEST_MINECART'
+      name: '&bChaves bonus'
+      lore:
+        - '&7Chaves ganhas em ativacoes. Voce'
+        - '&7pode ativar ou enviar a um amigo.'
+        - ''
+        - ' &7Disponiveis: &f{amount_bonus}'
+        - ''
+        - '&aClique para abrir'
+
+    Mercado:
+      Slot: 15
+      material: 'EMERALD'
+      name: '&bMercado de chaves'
+      lore:
+        - '&7Compre chaves VIP de outros'
+        - '&7jogadores do servidor.'
+        - ''
+        - '&aClique para abrir'
+
+    Loja:
+      Slot: 16
+      material: 'GOLD_INGOT'
+      name: '&bLoja de creditos'
+      lore:
+        - '&7Gaste seus creditos VIP em'
+        - '&7recompensas exclusivas.'
+        - ''
+        - ' &7Seus creditos: &f{credit}'
+        - ''
+        - '&aClique para abrir'
+
+    Top:
+      Slot: 22
+      material: 'BOOK'
+      name: '&b&lTOP VIPs'
+      lore:
+        - '&7Veja quem mais ativou vip'
+        - '&7no servidor.'
+        - ''
+        - '&aClique para abrir'
+
+    Upgrade:
+      Slot: -1
+      material: 'ANVIL'
+      name: '&bUpar VIP'
+      lore:
+        - '&7Troque o seu vip atual por'
+        - '&7um melhor, mantendo o tempo.'
+        - ''
+        - '&aClique para abrir'
+
+  Decoracao:
+    borda1:
+      Slot: 4
+      material: 'GRAY_STAINED_GLASS_PANE'
+      name: ' '
+      lore: []
+
+# ====================================================================
+# Historico de vips
+# ====================================================================
+Historico:
+  Nome: '&8VIPs > Historico'
+  Tamanho: 54
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Slot anterior: 18
+  Slot proximo: 26
+  Slot voltar: 49
+  Seletor:
+    Slot: 50
+    material: 'HOPPER'
+    name: '&aFiltro'
+    Formato: ' &f- &7{nome}'
+    Formato selecionado: ' &f- &a{nome}'
+  Decoracao: {}
+
+# ====================================================================
+# Chaves guardadas
+# ====================================================================
+Chaves:
+  Nome: '&8VIPs > Chaves'
+  Tamanho: 54
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Slot anterior: 18
+  Slot proximo: 26
+  Slot voltar: 49
+  Decoracao:
+    ajuda:
+      Slot: 53
+      material: 'PAPER'
+      name: '&bComo usar'
+      lore:
+        - '&7Botao &fESQUERDO &7para ativar a chave.'
+        - '&7Botao &fDIREITO &7para colocar a venda.'
+
+# ====================================================================
+# Chaves bonus
+# ====================================================================
+Bonus:
+  Nome: '&8VIPs > Bonus'
+  Tamanho: 54
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Slot anterior: 18
+  Slot proximo: 26
+  Slot voltar: 49
+  Decoracao:
+    ajuda:
+      Slot: 53
+      material: 'PAPER'
+      name: '&bComo usar'
+      lore:
+        - '&7Botao &fESQUERDO &7para ativar o bonus.'
+        - '&7Botao &fDIREITO &7para enviar a um amigo.'
+
+# ====================================================================
+# Ativacoes pendentes
+# ====================================================================
+Ativacoes:
+  Nome: '&8VIPs > Ativacoes'
+  Tamanho: 54
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Slot anterior: 18
+  Slot proximo: 26
+  Slot voltar: 49
+  Decoracao: {}
+
+# ====================================================================
+# Mercado de chaves
+# ====================================================================
+Mercado:
+  Nome: '&8VIPs > Mercado'
+  Tamanho: 54
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Slot anterior: 18
+  Slot proximo: 26
+  Slot voltar: 49
+  Decoracao: {}
+
+# ====================================================================
+# Ranking
+# ====================================================================
+Top:
+  Nome: '&8VIPs > TOP'
+  Tamanho: 36
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Slot anterior: 9
+  Slot proximo: 17
+  Slot voltar: 30
+  Seletor:
+    Slot: 31
+    material: 'LIME_DYE'
+    name: '&aSeletor do TOP'
+    Formato: ' &f- &7{nome}'
+    Formato selecionado: ' &f- &a{nome}'
+    Tipos:
+      ativados: 'VIPs ativados'
+      creditos: 'Creditos VIP'
+  Itens:
+    ativados:
+      material: '{player}'
+      name: '&f{player}'
+      lore:
+        - ''
+        - '&fVIPs ativados: &7{amount}'
+        - '&fPosicao: &e{pos}o'
+        - ''
+    creditos:
+      material: '{player}'
+      name: '&f{player}'
+      lore:
+        - ''
+        - '&fCreditos VIP: &7{amount}'
+        - '&fPosicao: &e{pos}o'
+        - ''
+
+# ====================================================================
+# Loja de creditos
+# ====================================================================
+Loja:
+  Nome: '&8VIPs > Loja'
+  Tamanho: 27
+  Slot voltar: 22
+  Perfil:
+    Slot: 4
+    material: '{player}'
+    name: '&b{player}'
+    lore:
+      - ''
+      - ' &7Seus creditos: &f{credit}'
+      - ' &7Ja gastos: &f{spent}'
+      - ''
+  Itens:
+    # Exemplo: apague ou copie a vontade.
+    exemplo:
+      Slot: 12
+      Preco: 5.0
+      material: 'DIAMOND'
+      name: '&bKit diamante'
+      lore:
+        - '&7Um exemplo de item da loja.'
+        - ''
+        - '&fPreco: &b* &f{price}'
+        - ''
+        - '&aClique para comprar'
+      Comandos:
+        - 'give {player} diamond 16'
+  Decoracao: {}
+
+# ====================================================================
+# Venda de uma chave
+# ====================================================================
+Vender:
+  Nome: '&8VIPs > Vender chave'
+  Tamanho: 27
+  Slot voltar: 10
+  Itens:
+    Moeda:
+      Slot: 12
+      material: 'SUNFLOWER'
+      name: '&aMoeda da venda'
+      lore:
+        - '&7Moeda que sera usada nesta venda.'
+        - ''
+        - ' &7Atual: &f{provider}'
+        - ''
+        - '&aClique para alterar'
+    Preco:
+      Slot: 14
+      material: 'GOLD_INGOT'
+      name: '&aPreco da chave'
+      lore:
+        - '&7Quanto o comprador vai pagar.'
+        - ''
+        - ' &7Atual: &f{price}'
+        - ''
+        - '&aClique para alterar'
+    Ativar venda:
+      Slot: 16
+      material: 'EMERALD'
+      name: '&aAtivar venda'
+      lore:
+        - '&7Esta chave nao esta a venda.'
+        - ''
+        - ' &7VIP: &r{vip_display}'
+        - ' &7Duracao: &f{duration}'
+        - ''
+        - '&aClique para colocar a venda'
+    Desativar venda:
+      Slot: 16
+      material: 'REDSTONE'
+      name: '&cDesativar venda'
+      lore:
+        - '&7Esta chave esta a venda por'
+        - '&f{price} &7em &f{provider}&7.'
+        - ''
+        - '&cClique para cancelar a venda'
+  Decoracao: {}
+
+# ====================================================================
+# Selecao de moeda
+# ====================================================================
+Economias:
+  Nome: '&8VIPs > Moeda'
+  Tamanho: 27
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Slot anterior: 9
+  Slot proximo: 17
+  Slot voltar: 22
+  Decoracao: {}
+
+# ====================================================================
+# Confirmacao de compra
+# ====================================================================
+Confirmar:
+  Nome: '&8VIPs > Confirmar compra'
+  Tamanho: 27
+  Slot item: 13
+  Itens:
+    Confirmar:
+      Slot: 11
+      material: 'LIME_DYE'
+      name: '&aConfirmar compra'
+      lore:
+        - '&7Voce vai pagar &f{price} &7em &f{provider_display}&7.'
+        - ''
+        - '&aClique para confirmar'
+    Cancelar:
+      Slot: 15
+      material: 'BARRIER'
+      name: '&cCancelar'
+      lore:
+        - '&7Clique para voltar sem comprar.'
+  Decoracao: {}
+
+# ====================================================================
+# Upgrade de vip
+# ====================================================================
+Upgrade:
+  Nome: '&8VIPs > Upgrade'
+  Tamanho: 27
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Slot anterior: 9
+  Slot proximo: 17
+  Slot voltar: 22
+  Decoracao: {}
