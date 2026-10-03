@@ -1,0 +1,205 @@
+# Configuração do StarMafia
+# Ativar ou desativar o nascimento de bebê quando dois jogadores dormem em camas adjacentes
+enableBabyVillagerSpawning: true
+
+# Chance de nascimento do bebê (0 a 100, onde 100 = 100%)
+babyVillagerSpawnChance: 30
+
+# Tempo em segundos que a pessoa fica presa pelo comando /torar (0 para tempo indefinido)
+torarLockDurationSeconds: 5
+
+# Sistema de bebês/filhos como NPCs (requer o Citizens instalado)
+bebes:
+  # A cada quantos minutos o servidor verifica idade/fase/seguir dos filhos
+  intervaloChecagemMinutos: 60
+  # Se a mãe deixar o "seguir" desativado por mais desses dias, ele é reativado automaticamente
+  diasParaReativarSeguir: 5
+  # Dias da semana considerados "final de semana": nesses dias o filho passa algumas horas
+  # visitando um dos pais (ver finalDeSemanaHoras/finalDeSemanaCom abaixo), voltando pra mãe
+  # sozinho depois. Aceita nomes em português (domingo, segunda, terca, quarta, quinta, sexta,
+  # sabado) ou em inglês (SUNDAY, MONDAY, etc.)
+  diaComPai:
+    - "sexta"
+    - "sabado"
+    - "domingo"
+  # Quantas horas dura a visita nos dias de diaComPai
+  finalDeSemanaHoras: 3
+  # Quem o filho visita nesses dias: aleatorio (sorteia entre pai e mãe), pai, ou mae
+  finalDeSemanaCom: "aleatorio"
+  # Berçário: quando o pai/mãe que o bebê deveria seguir no momento está offline, o bebê é
+  # levado até aqui (num ponto aleatório dentro do raio) em vez de ficar parado sozinho.
+  # Definido com /starmafia setbercario, na localização de quem executa o comando.
+  bercario:
+    raioBlocos: 10
+    # Custo pra deixar o bebê no berçário (pago pela mãe), cobrado a cada hora que ele ficar lá
+    custoPorHora: 10000.0
+  # Idade (em anos) em que cada fase começa. 1 semana real = 1 ano de idade do personagem.
+  idade:
+    crianca: 5
+    adolescente: 16
+    # Com essa idade o filho pode virar adulto - a mãe decide no /bebe se continua com ele
+    # (vira ADULTO, permanente) ou deixa ele ir embora (deixa de existir)
+    sai: 18
+  # Nicks de jogadores usados como skin (sorteado aleatoriamente), separados por sexo em cada fase.
+  # Se a lista do sexo sorteado estiver vazia, usa a lista do outro sexo como reserva.
+  skins:
+    bebe:
+      menino:
+        - "anhyeuemnhieu"
+        - "maliksson"
+      menina:
+        - "anhyeuemnhieu"
+        - "maliksson"
+    crianca:
+      menino:
+        - "ChiefDeer"
+        - "maliksson"
+      menina:
+        - "ChiefDeer"
+        - "maliksson"
+    adolescente:
+      menino:
+        - "anhyeuemnhieu"
+        - "maliksson"
+      menina:
+        - "anhyeuemnhieu"
+        - "maliksson"
+    adulto:
+      menino:
+        - "anhyeuemnhieu"
+        - "maliksson"
+      menina:
+        - "anhyeuemnhieu"
+        - "maliksson"
+  # Tamanho do NPC (1.0 = tamanho normal de jogador). Cresce suavemente do "min" até o "max"
+  # conforme a idade avança dentro de cada fase (ex: bebê vai de 0.3 recém-nascido até 0.5
+  # perto de virar criança). Adulto é diferente: ao virar adulto, sorteia um valor fixo
+  # entre min e max (não cresce mais depois, já que a idade não importa mais nessa fase).
+  escala:
+    bebe:
+      min: 0.3
+      max: 0.5
+    crianca:
+      min: 0.5
+      max: 0.75
+    adolescente:
+      min: 0.75
+      max: 0.95
+    adulto:
+      min: 0.95
+      max: 1.0
+
+# Sistema de pensão semanal dos bebês (requer Vault + um plugin de economia instalado)
+pensao:
+  # Valor cobrado a cada cobrança semanal - sorteado entre o mínimo e o máximo quando a
+  # pensão é ativada (cada bebê pode ter um valor diferente)
+  valorMinimo: 30.0
+  valorMaximo: 80.0
+  # Intervalo, em dias, entre cada cobrança de pensão
+  intervaloDias: 7
+  # A cada quantos minutos o servidor verifica se alguma pensão venceu
+  intervaloChecagemMinutos: 30
+  # Depois de ativar a pensão, quantos minutos até poder desativar de novo (ativar nunca tem
+  # espera). Evita ligar/desligar repetidamente perto do vencimento.
+  minutosParaDesativar: 60
+  # Comando executado pelo console quando o pagador não paga a pensão a tempo
+  # %player% = nome do pagador (quem vai preso) | %parceiro% = nome de quem teve o bebê com ele
+  comandoJail: "prender %player% obsidian 15m Nao pagou a pensao do bebe com %parceiro%"
+
+# Ativar ou desativar o comando /beijar
+enableKissCommand: true
+
+# Mensagens de beijo globais (true = todos veem, false = só os envolvidos)
+globalKissMessages: true
+
+# Mensagens globais do comando /torar (true = todos veem, false = só os envolvidos)
+globalToraMessages: true
+
+# Mensagens personalizáveis (use códigos de cor do Minecraft: &a = verde, &c = vermelho, etc.)
+messages:
+  babyVillagerSpawn: "&aParabéns! Um Bebê Aldeão nasceu de &e%player1% &ae &e%player2%&a!"
+  babyVillagerFail: "&cNão foi possível gerar um bebê aldeão desta vez."
+  kissSender: "&dVocê beijou &e%target%&d!"
+  kissTarget: "&e%sender% &dte beijou!"
+  kissBroadcast: "&d%sender% beijou %target%!"
+  reloadSuccess: "&aConfiguração do StarMafia recarregada com sucesso!"
+  reloadNoPermission: "&cVocê não tem permissão para usar este comando."
+  kissNoTarget: "&cVocê deve estar olhando para um jogador para usar este comando."
+  kissConsole: "&cEste comando só pode ser usado por jogadores."
+  kissNoPermission: "&cVocê não tem permissão para usar o comando /beijar."
+  kissTargetNoPermission: "&cVocê não tem permissão para beijar outros jogadores diretamente."
+  starmafiaUsage: "&cUso: /starmafia <reload>"
+  starmafiaUnknownSubcommand: "&cSubcomando desconhecido. Uso: /starmafia <reload>"
+  kissCooldown: "&cVocê deve esperar %seconds% segundos antes de beijar novamente."
+  kissTodos: "&dVocê beijou todos os jogadores!"
+  kissTodosNoPermission: "&cVocê não tem permissão para beijar todos os jogadores."
+  kissOnEnabled: "&aVocê ativou beijos de outros jogadores."
+  kissOffDisabled: "&cVocê desativou beijos de outros jogadores."
+  kissTargetDisabled: "&cEste jogador desativou beijos."
+  torarArrested: "&cVocê esta sendo torado pelo jogador &e%player%&c e ficará impossibilitado de andar por %seconds% segundos."
+  torarReleased: "&aVocê foi solto pelo jogador &e%player%&a!"
+  torarNoPermission: "&cVocê não tem permissão para usar o comando /torar."
+  torarbabyVillagerSpawn: "&aO jogador &e%player2% &afoi torado por &e%player1% &ae tiveram um Bebê Aldeão"
+  bebeConsole: "&cEste comando só pode ser usado por jogadores."
+  bebeSemBebes: "&cVocê não tem nenhum bebê vivo no momento."
+  bebeMenuTitulo: "Seus Bebês"
+  bebeMenuDetalheTitulo: "Bebê de "
+  bebeSeguirOn: "&aEste bebê agora está seguindo &e%player%&a."
+  bebeSeguirOff: "&cEste bebê parou de seguir &e%player%&c."
+  bebeSeguirSoMae: "&cSó quem está com o bebê pode ativar/desativar o seguir."
+  bebeSeguirReativado: "&aSeu bebê com &e%player2% &avoltou a te seguir automaticamente depois de um tempo desativado."
+  bebePensaoAtivada: "&a%payer% agora deve pagar &e%valor% &atoda semana para &e%payee% &acomo pensão deste bebê, ou será preso!"
+  bebePensaoDesativada: "&cA pensão semanal deste bebê foi desativada."
+  bebePensaoCooldown: "&cEspere mais &e%minutos% &cminuto(s) para poder desativar a pensão."
+  bebePensaoPaga: "&aVocê pagou &e%valor% &ade pensão para &e%payee%&a."
+  bebePensaoJaPaga: "&cVocê já pagou a pensão deste bebê nesta semana."
+  bebePensaoSemDinheiro: "&cVocê não tem dinheiro suficiente para pagar a pensão (&e%valor%&c)."
+  bebePensaoSemPermissao: "&cVocê não é o responsável por pagar a pensão deste bebê."
+  bebePensaoSoMae: "&cSó quem está com o bebê pode ativar/desativar a pensão."
+  bebePensaoEconomiaIndisponivel: "&cSistema de economia indisponível, não é possível gerenciar a pensão."
+  bebePensaoAtrasadaPagador: "&cVocê não pagou a pensão do bebê a tempo e foi preso!"
+  bebePensaoAtrasadaOutro: "&e%player% não pagou a pensão do bebê a tempo e foi preso!"
+  bebePensaoAtrasadaBroadcast: "&c%player% está devendo a pensão do bebê com &e%parceiro% &ce foi preso!"
+  bebeSemCitizens: "&cO plugin Citizens não está instalado, não foi possível criar o bebê."
+  bebeCresceuCrianca: "&aSeu filho com &e%player1% &ae &e%player2% &acresceu e agora é uma criança!"
+  bebeCresceuAdolescente: "&aSeu filho com &e%player1% &ae &e%player2% &acresceu e agora é um(a) adolescente!"
+  bebeVirouAdulto: "&aSeu filho com &e%player1% &ae &e%player2% &acontinua com vocês, agora como um adulto!"
+  bebeFoiEmbora: "&eSeu filho com &e%player1% &ae &e%player2% &efoi embora de casa!"
+  bebeFoiParaUniversidade: "&eSeu filho com &e%player1% &ae &e%player2% &efoi embora de casa para a universidade!"
+  bebeDecisaoDisponivel: "&eSeu filho com &e%player2% &epode virar adulto! Acesse /bebe para decidir se continua com ele ou deixa ele ir embora."
+  bebeDecisaoManteve: "&aVocê decidiu continuar com seu filho, que agora é um adulto!"
+  bebeDecisaoDeixouIr: "&eVocê decidiu deixar seu filho seguir a vida dele."
+  bebeEscolhaNomeTitulo: "Nomeie seu bebê"
+  bebeNomeDefinido: "&aVocê deu o nome &e%nome% &apara o seu bebê!"
+  bebeBercarioSoMae: "&cSó quem está com o bebê pode deixar ou buscar ele no berçário."
+  bebeBercarioNaoConfigurado: "&cO berçário ainda não foi configurado neste servidor."
+  bebeBercarioSemEconomia: "&cSistema de economia indisponível, não é possível pagar o berçário."
+  bebeBercarioSemDinheiroAoDeixar: "&cVocê não tem dinheiro suficiente para deixar seu filho no berçário (&e%valor%&c por hora)."
+  bebeBercarioSemDinheiro: "&cVocê ficou sem dinheiro para manter seu filho com &e%player2% &cno berçário - ele voltou a te seguir."
+  # Mesma situação, mas quem pagava era o pai e a visita dele já acabou: o filho
+  # volta para a mãe, não para quem estava pagando.
+  bebeBercarioSemDinheiroVisita: "&cVocê ficou sem dinheiro para manter seu filho com &e%player2% &cno berçário - ele voltou para a mãe."
+
+  # Botão de quitar todas as pensões de uma vez, no rodapé do /bebe
+  bebePensaoPagasTodas: "&aVocê pagou &e%quantidade% &apensão(ões), num total de &e%valor%&a."
+  bebePensaoFaltouDinheiro: "&cFaltou dinheiro para &e%quantidade% &cpensão(ões)."
+  bebePensaoNadaADever: "&aVocê não tem nenhuma pensão em atraso."
+
+  # Escolher a aparência do filho adolescente com as skins do StarSkins
+  bebeSkinMenuTitulo: "&8Aparência do filho"
+  bebeSkinTrocada: "&aA aparência do seu filho agora é &e%skin%&a."
+  bebeSkinPadrao: "&aA aparência do seu filho voltou ao sorteio da fase."
+  bebeSkinSoMae: "&cSó quem está com o filho pode mudar a aparência dele."
+  bebeSkinSoAdolescente: "&cSó dá para escolher a aparência quando o filho é adolescente."
+  bebeSkinSemStarSkins: "&cO StarSkins não está disponível neste servidor."
+  bebeBercarioDeixado: "&aVocê deixou seu filho no berçário por &e%valor% &apor hora."
+  bebeBercarioBuscado: "&aVocê buscou seu filho de volta do berçário!"
+  bebeTransferenciaSoMae: "&cSó quem está com o bebê pode enviar ele pro outro pai/mãe."
+  bebeTransferenciaJaPendente: "&cJá existe um pedido de transferência pendente para este bebê."
+  bebeTransferenciaEmBercario: "&cBusque seu filho do berçário antes de tentar enviar ele pro outro pai/mãe."
+  bebeTransferenciaEnviada: "&aPedido de transferência enviado! Aguardando resposta de &e%player%&a."
+  bebeTransferenciaRecebida: "&e%player% &equer te enviar o filho de vocês! Acesse /bebe para aceitar ou recusar."
+  bebeTransferenciaAceita: "&a%player% aceitou ficar com o filho de vocês!"
+  bebeTransferenciaRecusada: "&c%player% recusou ficar com o filho de vocês."
+  bebeTransferenciaVoceAceitou: "&aVocê aceitou ficar com o filho de vocês!"
+  bebeTransferenciaVoceRecusou: "&cVocê recusou ficar com o filho de vocês."
