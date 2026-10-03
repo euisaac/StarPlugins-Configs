@@ -3,11 +3,13 @@
 #  ║   A loja interna do clan: melhorias compradas com o dinheiro do      ║
 #  ║   jogador ou com o dinheiro guardado no banco do clan.               ║
 #  ║                                                                      ║
-#  ║   Apagar um item daqui simplesmente tira ele do menu.                ║
+#  ║   Apagar um item daqui simplesmente tira ele do menu -- mas uma      ║
+#  ║   atualizacao do modelo devolve o padrao dele; para desligar sem      ║
+#  ║   que volte, ponha o Slot em -1.                                      ║
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 1
+Versao do modelo: 2
 
 Menu:
   Titulo: '&8Mercado &7» &f{nome}'
@@ -21,6 +23,19 @@ Menu:
     Material: 'ARROW'
     Nome: '&c&lVOLTAR'
     Lore: []
+  Comprado:
+    #  Como o item fica depois que o clan comprou o que ele vende e nao da mais
+    #  para comprar de novo (a tag no Discord, o fly, o gradiente...). Itens que
+    #  se compra varias vezes, como a troca de banner, nunca ficam assim.
+    #
+    #  Material vazio mantem o material do proprio item.
+    #  {item} e o nome que o item tem na vitrine.
+    Material: ''
+    Nome: '{item}'
+    Lore:
+      - '&7O seu clan ja tem isto.'
+      - '&r'
+      - '&a&lJA COMPRADO'
 
 #  Cada item tem:
 #    Slot        - onde fica no menu
