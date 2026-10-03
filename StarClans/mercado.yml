@@ -9,17 +9,20 @@
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 2
+Versao do modelo: 3
 
 Menu:
   Titulo: '&8Mercado &7» &f{nome}'
-  Linhas: 3
+  #  Cinco linhas com duas prateleiras: as EXPANSOES na segunda linha (11 a 15)
+  #  e as MELHORIAS na quarta (29 a 33). A linha vazia entre elas e o que separa
+  #  os dois grupos sem precisar de titulo.
+  Linhas: 5
   Enfeite:
     Ativar: true
     Material: 'GRAY_STAINED_GLASS_PANE'
     Nome: ' '
   Voltar:
-    Slot: 22
+    Slot: 40
     Material: 'ARROW'
     Nome: '&c&lVOLTAR'
     Lore: []
@@ -37,10 +40,54 @@ Menu:
       - '&r'
       - '&a&lJA COMPRADO'
 
+  Pagamento:
+    #  A pergunta "de onde sai o dinheiro", que aparece ao clicar num item com
+    #  'Pagar com: ESCOLHER'. Com o banco do clan desligado no config.yml ela
+    #  nao aparece: existe um bolso so, e nao ha o que perguntar.
+    #
+    #  Placeholders: {item} {preco} {moeda} {saldo_clan} {saldo_jogador}
+    Titulo: '&8Pagar com &7» &f{item}'
+    Linhas: 3
+    Enfeite:
+      Ativar: true
+      Material: 'GRAY_STAINED_GLASS_PANE'
+      Nome: ' '
+    Clan:
+      Slot: 11
+      Material: 'GOLD_INGOT'
+      Nome: '&6&lBANCO DO CLAN'
+      Lore:
+        - '&7Paga com o caixa que o clan juntou.'
+        - '&r'
+        - '&7Guardado: &a{moeda}{saldo_clan}'
+        - '&7Custa: &a{moeda}{preco}'
+        - '&r'
+        - '&a&lCLIQUE &fpara pagar com o clan'
+    Jogador:
+      Slot: 15
+      Material: 'EMERALD'
+      Nome: '&a&lA MINHA CARTEIRA'
+      Lore:
+        - '&7Paga do seu proprio bolso, sem'
+        - '&7mexer no caixa do clan.'
+        - '&r'
+        - '&7Voce tem: &a{moeda}{saldo_jogador}'
+        - '&7Custa: &a{moeda}{preco}'
+        - '&r'
+        - '&a&lCLIQUE &fpara pagar do seu bolso'
+    Voltar:
+      Slot: 22
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
 #  Cada item tem:
 #    Slot        - onde fica no menu
 #    Preco       - quanto custa
-#    Pagar com   - JOGADOR (a carteira de quem clicou) ou CLAN (o banco do clan)
+#    Pagar com   - JOGADOR (a carteira de quem clicou), CLAN (o banco do clan),
+#                  CASH (uma moeda do StarEconomia) ou ESCOLHER (o jogador
+#                  decide na hora, numa tela; com o banco desligado vale
+#                  como JOGADOR)
 #    Permissao   - '' libera a todos
 #    Acao        - o que acontece na compra:
 #                    EXPANDIR_BAU, EXPANDIR_MEMBROS, EXPANDIR_ALIADOS,
@@ -52,9 +99,9 @@ Menu:
 #                        {rivais} {linhas} {banco}
 Itens:
   expandir-membros:
-    Slot: 10
-    Preco: 25000.0
-    Pagar com: CLAN
+    Slot: 11
+    Preco: 150000.0
+    Pagar com: ESCOLHER
     Permissao: ''
     Acao: EXPANDIR_MEMBROS
     Comandos: []
@@ -66,14 +113,14 @@ Itens:
         - '&7membros do clan.'
         - '&r'
         - '&7Vagas agora: &f{membros}'
-        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&7Preco: &a{moeda}{preco}'
         - '&r'
         - '&a&lCLIQUE &fpara comprar'
 
   expandir-bau:
-    Slot: 11
-    Preco: 50000.0
-    Pagar com: CLAN
+    Slot: 12
+    Preco: 300000.0
+    Pagar com: ESCOLHER
     Permissao: ''
     Acao: EXPANDIR_BAU
     Comandos: []
@@ -85,14 +132,14 @@ Itens:
         - '&7linhas do bau do clan.'
         - '&r'
         - '&7Linhas agora: &f{linhas}'
-        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&7Preco: &a{moeda}{preco}'
         - '&r'
         - '&a&lCLIQUE &fpara comprar'
 
   expandir-aliados:
-    Slot: 12
-    Preco: 15000.0
-    Pagar com: CLAN
+    Slot: 13
+    Preco: 100000.0
+    Pagar com: ESCOLHER
     Permissao: ''
     Acao: EXPANDIR_ALIADOS
     Comandos: []
@@ -104,14 +151,14 @@ Itens:
         - '&7aliancas do clan.'
         - '&r'
         - '&7Vagas agora: &f{aliados}'
-        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&7Preco: &a{moeda}{preco}'
         - '&r'
         - '&a&lCLIQUE &fpara comprar'
 
   expandir-rivais:
-    Slot: 13
-    Preco: 15000.0
-    Pagar com: CLAN
+    Slot: 14
+    Preco: 100000.0
+    Pagar com: ESCOLHER
     Permissao: ''
     Acao: EXPANDIR_RIVAIS
     Comandos: []
@@ -123,14 +170,14 @@ Itens:
         - '&7rivalidades do clan.'
         - '&r'
         - '&7Vagas agora: &f{rivais}'
-        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&7Preco: &a{moeda}{preco}'
         - '&r'
         - '&a&lCLIQUE &fpara comprar'
 
   resetar-kdr:
-    Slot: 14
-    Preco: 100000.0
-    Pagar com: CLAN
+    Slot: 33
+    Preco: 500000.0
+    Pagar com: ESCOLHER
     Permissao: ''
     Acao: RESETAR_KDR
     Comandos: []
@@ -141,13 +188,13 @@ Itens:
         - '&7Zera os abates e as mortes'
         - '&7de todo o clan.'
         - '&r'
-        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&7Preco: &a{moeda}{preco}'
         - '&r'
         - '&a&lCLIQUE &fpara comprar'
 
   fly:
-    Slot: 15
-    Preco: 500.0
+    Slot: 29
+    Preco: 1500.0
     #  CASH cobra uma moeda do StarEconomia da carteira de quem clicou.
     #  O id da moeda e o que voce deu a ela la; sem o StarEconomia na casa,
     #  a compra e recusada em vez de sair de graca.
@@ -169,9 +216,9 @@ Itens:
 
   expandir-homes:
     #  Uma vaga de home a mais. O teto e "Base.Maximo de homes" no config.yml.
-    Slot: 18
-    Preco: 25000.0
-    Pagar com: CLAN
+    Slot: 15
+    Preco: 200000.0
+    Pagar com: ESCOLHER
     Permissao: ''
     Acao: EXPANDIR_HOMES
     Comandos: []
@@ -190,9 +237,9 @@ Itens:
     #  Da direito a UMA troca do banner do clan. A primeira definicao do
     #  banner e de graca; este item e para quem quiser mudar depois.
     #  Pode ser comprado varias vezes -- as trocas acumulam.
-    Slot: 17
-    Preco: 5000.0
-    Pagar com: CLAN
+    Slot: 32
+    Preco: 75000.0
+    Pagar com: ESCOLHER
     Permissao: ''
     Acao: TROCA_DE_BANNER
     Comandos: []
@@ -215,8 +262,8 @@ Itens:
     #
     #  Compra unica: o item continua na vitrine, mas clicar de novo responde que
     #  o clan ja esta no limite.
-    Slot: 19
-    Preco: 500.0
+    Slot: 31
+    Preco: 1500.0
     Pagar com: CASH
     Moeda: 'cash'
     Permissao: ''
@@ -235,9 +282,9 @@ Itens:
         - '&a&lCLIQUE &fpara comprar'
 
   cor-hex:
-    Slot: 16
-    Preco: 250000.0
-    Pagar com: CLAN
+    Slot: 30
+    Preco: 1500000.0
+    Pagar com: ESCOLHER
     Permissao: ''
     Acao: COR_HEX
     Comandos: []
@@ -248,6 +295,6 @@ Itens:
         - '&7Libera as cores hex e o gradiente'
         - '&7na tag do clan.'
         - '&r'
-        - '&7Preco: &a{moeda}{preco} &7(banco do clan)'
+        - '&7Preco: &a{moeda}{preco}'
         - '&r'
         - '&a&lCLIQUE &fpara comprar'
