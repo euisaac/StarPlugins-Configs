@@ -62,10 +62,14 @@ pegar:
   cooldown-soltar-ms: 1500 # Tempo mínimo carregado antes de poder soltar (evita soltar sem querer)
   modos:
     costas:
-      # Onde quem é carregado fica: blocos atrás do carregador (na direção do tronco dele) e a
-      # altura dos pés a partir dos pés do carregador. Vale na hora, com /starsentar reload.
-      atras: 0.4
-      altura: 0.9
+      # Onde quem é carregado fica, em relação a quem carrega. Vale na hora com /starsentar reload.
+      #   recuo         = blocos atrás dele (na direção do tronco, não da câmera)
+      #   altura-dos-pes = altura dos PÉS de quem é carregado, a partir dos pés de quem carrega.
+      #                    Montado, o jogador é desenhado sentado (o bumbum fica ~0,75 acima dos
+      #                    pés), então 0.3 deixa ele apoiado na lombar. Aumentar faz subir para a
+      #                    altura da cabeça e parecer que está flutuando.
+      recuo: 0.42
+      altura-dos-pes: 0.3
 
 # Lista de animais permitidos para sentar na cabeça
 animal-whitelist:
