@@ -1,0 +1,121 @@
+name: ${project.name}
+version: ${project.version}
+main: com.starlabs.starpets.StarPets
+author: Eulsaac
+description: ${project.description}
+website: https://starplugins.redestars.com
+
+# Sem "api-version": esse campo bloqueia o carregamento do plugin em servidores
+# mais antigos que o valor declarado. Este plugin roda de 1.8 ate 1.21.x.
+
+# Baixadas pelo loader a partir do Maven Central: sao os drivers do banco de
+# dados, que os servidores modernos nao trazem mais embutidos.
+libraries:
+  - org.xerial:sqlite-jdbc:3.45.3.0
+  - com.mysql:mysql-connector-j:8.4.0
+
+softdepend: [Vault, PlaceholderAPI]
+
+commands:
+  pets:
+    description: Menu e comandos do seu pet.
+    aliases: [pet, meupet]
+    usage: /<command> [chamar | guardar | modo | renomear | bau | montar | abandonar]
+  petsadmin:
+    description: Comandos administrativos do StarPets.
+    aliases: [starpets, petadmin]
+    usage: /<command> [recarregar | laco | dar | remover | listar]
+
+permissions:
+  starpets.usar:
+    description: Permite usar o menu e os comandos de pet.
+    default: 'true'
+  starpets.capturar:
+    description: Permite capturar mobs com o laco.
+    default: 'true'
+  starpets.admin:
+    description: Acesso aos comandos administrativos do StarPets.
+    default: 'op'
+  starpets.bau:
+    description: Permite abrir o bau do pet.
+    default: 'true'
+  starpets.montar:
+    description: Permite montar no pet quando o tipo aceita montaria.
+    default: 'true'
+  starpets.renomear:
+    description: Permite renomear o pet.
+    default: 'true'
+  starpets.tipo.dragao:
+    description: Permite ter o Dragao do Fim como pet (a equipe entrega).
+    default: 'false'
+  # As habilidades tambem chegam por tomo; a permissao e o outro caminho,
+  # para quem quiser liberar por grupo em vez de por item.
+  starpets.habilidade.bola_de_fogo:
+    description: Habilidade Bola de Fogo em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.rugido:
+    description: Habilidade Rugido em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.empurrao:
+    description: Habilidade Empurrao em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.laser_gelido:
+    description: Habilidade Laser Gelido em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.praga_venenosa:
+    description: Habilidade Praga Venenosa em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.redemoinho:
+    description: Habilidade Redemoinho em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.sopro_curativo:
+    description: Habilidade Sopro Curativo em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.sopro_do_dragao:
+    description: Habilidade Sopro do Dragao (so no dragao).
+    default: 'false'
+  starpets.habilidade.chuva_de_meteoros:
+    description: Habilidade Chuva de Meteoros em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.laser_sombrio:
+    description: Habilidade Laser Sombrio em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.tempestade:
+    description: Habilidade Tempestade em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.juizo_final:
+    description: Habilidade Juizo Final em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.maldicao_do_fim:
+    description: Habilidade Maldicao do Fim em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.bola_de_veneno:
+    description: Habilidade Bola de Veneno em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.vendaval:
+    description: Habilidade Vendaval em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.corrente_eletrica:
+    description: Habilidade Corrente Eletrica em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.escudo_de_pedra:
+    description: Habilidade Escudo de Pedra em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.furia_do_pet:
+    description: Habilidade Furia em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.lanca_do_vazio:
+    description: Habilidade Lanca do Vazio em qualquer pet do jogador.
+    default: 'false'
+  starpets.habilidade.julgamento:
+    description: Habilidade Julgamento em qualquer pet do jogador.
+    default: 'false'
+  starpets.cores:
+    description: Permite usar cores (&a) e hex (&#FF00AA) no nome do pet.
+    default: 'true'
+  starpets.limite.1:
+    description: Permite ter ate 1 pet guardado (troque o numero pelo limite desejado).
+    default: 'false'
+  starpets.tipo.*:
+    description: Permite capturar qualquer tipo de pet.
+    default: 'false'
