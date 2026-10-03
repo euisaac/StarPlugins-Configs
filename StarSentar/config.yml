@@ -62,13 +62,8 @@ pegar:
   cooldown-soltar-ms: 1500 # Tempo mínimo carregado antes de poder soltar (evita soltar sem querer)
   modos:
     costas:
-      # preso: true  -> o carregado vira passageiro do carregador, igual ao sentar na cabeça:
-      #                 acompanha sem nenhum atraso, mas fica sentado nos ombros (o Minecraft
-      #                 não sabe pôr passageiro atrás de ninguém).
-      # preso: false -> o assento é uma entidade solta que corre atrás do carregador na posição
-      #                 abaixo (atras = blocos atrás dele, altura = a partir dos pés). Fica nas
-      #                 costas de verdade, com um pequeno atraso ao andar.
-      preso: true
+      # Onde quem é carregado fica: blocos atrás do carregador (na direção do tronco dele) e a
+      # altura dos pés a partir dos pés do carregador. Vale na hora, com /starsentar reload.
       atras: 0.4
       altura: 0.9
 
@@ -126,6 +121,37 @@ non-sitable-blocks:
 disabled-worlds:
   - world_nether
   - world_the_end
+
+# Menu do shift + clique em um jogador (escolher pegar na cabeça ou nas costas).
+# %player% no título vira o nome de quem foi clicado; %acao% na lore vira "pegar na hora"
+# para quem tem starsentar.grab.bypass e "enviar o pedido" para os outros.
+menu-pegar:
+  titulo: "&8Pegar %player%"
+  tamanho: 27
+  itens:
+    cabeca:
+      slot: 11
+      material: PLAYER_HEAD
+      nome: "&e&lNa cabeça"
+      lore:
+        - "&7O jogador senta na sua cabeça."
+        - ""
+        - "&7Clique para %acao%&7."
+    costas:
+      slot: 15
+      material: LEATHER_CHESTPLATE
+      nome: "&e&lNas costas"
+      lore:
+        - "&7O jogador fica atrás de você,"
+        - "&7como uma mochila."
+        - ""
+        - "&7Clique para %acao%&7."
+    fechar:
+      slot: 22
+      material: RED_DYE
+      nome: "&c&lFechar"
+      lore:
+        - "&7Fecha o menu."
 
 # Menu de opções
 menu:
@@ -246,6 +272,9 @@ messages:
   pegar-nada-pra-soltar: "&cVocê não está carregando ninguém."
   pegar-espere: "&cEspere um instante antes de soltar."
   pegar-falhou: "&cNão deu para carregar &e%player%&c agora, tente de novo."
+  pegar-alvo-longe: "&cO jogador saiu de perto."
+  pegar-menu-acao-staff: "&apegar na hora"
+  pegar-menu-acao-pedido: "&eenviar o pedido"
   # %accept% e %deny% viram os botões clicáveis, igual no pedido de grab
   pegar-pedido-costas: "&e%player% &fquer te carregar nas costas. Use %accept% &fou %deny%&f."
   pegar-carregando: "&fVocê está carregando &e%player% &fnas costas."
