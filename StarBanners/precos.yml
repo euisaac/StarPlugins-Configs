@@ -1,0 +1,71 @@
+# ---------------------------------------------------------------------------
+#  StarBanners - quanto vale cada material
+#
+#  O preço de uma bandeira NÃO é tabelado desenho por desenho: ele é a soma do
+#  valor dos materiais que a receita dela consome. Uma bandeira de seis camadas
+#  custa mais do que uma de duas sozinha, e um emblema raro (globo, focinho)
+#  pesa no preço porque o item dele pesa aqui.
+#
+#  A receita de uma bandeira é:
+#    - 6 lãs da cor do fundo + 1 graveto   (dá para desligar no config.yml)
+#    - 1 corante da cor de cada camada
+#    - mais o item que o tear pede em alguns padrões (os de baixo)
+#
+#  Material que não estiver aqui vale o que está em "Outros" (0 = de graça).
+#  Uma linha com o nome inteiro do material (LIME_WOOL: 25) vale mais do que o
+#  grupo, então dá para ajustar uma cor só.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Outros: 0
+
+STICK: 5
+
+La:
+  WHITE: 15
+  ORANGE: 20
+  MAGENTA: 20
+  LIGHT_BLUE: 20
+  YELLOW: 20
+  LIME: 20
+  PINK: 20
+  GRAY: 15
+  LIGHT_GRAY: 15
+  CYAN: 25
+  PURPLE: 25
+  BLUE: 25
+  BROWN: 25
+  GREEN: 25
+  RED: 25
+  BLACK: 25
+
+Corante:
+  WHITE: 10
+  ORANGE: 15
+  MAGENTA: 15
+  LIGHT_BLUE: 15
+  YELLOW: 15
+  LIME: 15
+  PINK: 15
+  GRAY: 10
+  LIGHT_GRAY: 10
+  CYAN: 20
+  PURPLE: 20
+  BLUE: 20
+  BROWN: 20
+  GREEN: 20
+  RED: 20
+  BLACK: 20
+
+# Itens que o tear pede em padrões específicos.
+VINE: 25                      # borda recortada
+BRICKS: 40                    # tijolos
+OXEYE_DAISY: 30               # flor
+CREEPER_HEAD: 600             # rosto de creeper
+WITHER_SKELETON_SKULL: 750    # caveira
+ENCHANTED_GOLDEN_APPLE: 500   # emblema
+GLOBE_BANNER_PATTERN: 1000    # globo (1.14+)
+PIGLIN_BANNER_PATTERN: 800    # focinho (1.16+)
+FLOW_BANNER_PATTERN: 900      # fluxo (1.21+)
+GUSTER_BANNER_PATTERN: 900    # rajada (1.21+)

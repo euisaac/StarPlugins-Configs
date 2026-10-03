@@ -1,0 +1,147 @@
+# ---------------------------------------------------------------------------
+#  StarBanners - mensagens
+#
+#  Mensagem vazia ('') não é enviada: é assim que se desliga um aviso sem
+#  precisar de uma opção no config.yml para cada um.
+#
+#  Cores com & e, em servidor 1.16+, hexadecimal com &#RRGGBB.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&6&lBANDEIRA &8» &7'
+
+Geral:
+  Sem permissao: '&cVocê não tem permissão para isso.'
+  So jogador: '&cEsse comando só funciona dentro do jogo.'
+  Recarregado: '&aConfigurações recarregadas.'
+  Nao e bandeira na mao: '&cVocê precisa estar segurando uma bandeira.'
+  Nada para ler: '&cSegure uma bandeira ou olhe para uma bandeira colocada.'
+  Jogador offline: '&f{jogador} &cnão está no servidor.'
+  Numero invalido: '&f{valor} &cnão é um número válido.'
+
+  # O que aparece no lugar do preço para quem não paga em dinheiro. Para mostrar
+  # o valor mesmo assim, ligue 'Obter.Mostrar o preco de quem paga' no config.
+  Preco de graca: '&agrátis'
+  Preco em materiais: '&fsó os materiais'
+
+Ajuda:
+  Jogador: |
+    &8&m----------------------------------------
+    &6&lBANDEIRAS
+    &e/banner &8- &7abre o menu
+    &e/banner criar &8- &7monta uma bandeira nova
+    &e/banner minhas &8- &7a sua coleção de desenhos
+    &e/banner galeria &8- &7os desenhos do servidor
+    &e/banner alfabeto &8- &7letras e números
+    &e/banner texto <palavra> &8- &7uma bandeira por letra
+    &e/banner salvar &8- &7guarda a bandeira da mão
+    &e/banner info &8- &7lê a bandeira da mão
+    &e/banner codigo [código] &8- &7copia ou cola um desenho
+    &e/banner escudo &8- &7pinta o escudo com a bandeira da mão
+    &e/banner dar <jogador> &8- &7dá uma cópia para alguém
+    &8&m----------------------------------------
+  Admin: |
+    &8&m----------------------------------------
+    &6&lBANDEIRAS &7- administração
+    &e/starbanners info &8- &7números do produto
+    &e/starbanners recarregar &8- &7relê os arquivos
+    &e/starbanners galeria adicionar [nome] &8- &7põe a da mão na galeria
+    &e/starbanners galeria remover <id> &8- &7tira da galeria
+    &e/starbanners galeria listar &8- &7os ids da galeria
+    &e/starbanners dar <jogador> [código|mao] [qtd] &8- &7entrega de graça
+    &e/starbanners limpar <jogador|uuid> &8- &7apaga a coleção
+    &e/starbanners importar [pasta] &8- &7traz desenhos de outro plugin
+    &8&m----------------------------------------
+
+Entrada:
+  Como cancelar: '&7Digite &ccancelar &7para desistir.'
+  Cancelado: '&7Beleza, cancelado.'
+  Tempo esgotado: '&7O tempo acabou; nada foi alterado.'
+  Nome do desenho: '&eDigite o nome deste desenho no chat.'
+  Nome na galeria: '&eDigite o nome com que o desenho vai aparecer na galeria.'
+  Texto da bandeira: '&eDigite a palavra que você quer em bandeiras.'
+
+Obter:
+  Recebida: '&aPronto! Bandeira no seu inventário.'
+  Comprada: '&aPronto! Você pagou &f{preco} &ae ficou com &f{saldo}&a.'
+  Sem materiais: '&cFaltam materiais: &f{faltando}'
+  Sem dinheiro: '&cEssa bandeira custa &f{preco}&c e você tem &f{saldo}&c.'
+  Inventario cheio: '&cO seu inventário está cheio.'
+  Nao craftavel: '&cEste desenho passa de {limite} camadas e o tear não faz isso.'
+  Falhou: '&cNão deu para concluir; nada foi cobrado.'
+
+Editor:
+  Limite de camadas: '&cVocê já chegou no limite de &f{limite} &ccamadas.'
+
+Colecao:
+  Salvo: '&aDesenho guardado (&f{nome}&a). Você tem &f{salvos} &adesenhos.'
+  Renomeado: '&aAgora este desenho se chama &f{nome}&a.'
+  Apagado: '&7Desenho apagado.'
+  Repetido: '&cVocê já tem um desenho exatamente igual a esse.'
+  Desenho vazio: '&cUma bandeira lisa não vale um lugar na coleção.'
+  Limite atingido: '&cVocê já guardou &f{limite} &cdesenhos. Apague um para salvar outro.'
+  Limpa: '&aApaguei &f{quantidade} &adesenhos de &f{jogador}&a.'
+  Uso do limpar: '&cUse: /starbanners limpar <jogador|uuid>'
+
+Galeria:
+  Publicado: '&aDesenho publicado na galeria (&f{nome}&a).'
+  Removido: '&7Tirei &f{nome} &7da galeria.'
+  Repetido: '&cA galeria já tem um desenho exatamente igual a esse.'
+  Limite atingido: '&cVocê já tem &f{limite} &cdesenhos na galeria.'
+  Desligada: '&cA galeria está desligada neste servidor.'
+  Nao achou: '&cNão existe desenho com o id &f{id}&c na galeria.'
+  Uso do admin: '&cUse: /starbanners galeria <adicionar [nome] | remover <id> | listar>'
+  Lista cabecalho: '&7Galeria do servidor (&f{total}&7):'
+  Lista linha: '&8- &f{id} &7| &f{nome} &7| por &f{autor} &7| &f{camadas} &7camadas'
+
+Alfabeto:
+  Desligado: '&cO alfabeto está desligado neste servidor.'
+  Uso do texto: '&cUse: /banner texto <palavra>'
+  Texto vazio: '&cEscreva alguma coisa.'
+  Texto cortado: '&7Só as primeiras &f{maximo} &7letras entraram.'
+  Nada desenhavel: '&cNenhuma dessas letras tem desenho no alfabeto.'
+  Palavra entregue: '&aEntreguei &f{quantidade}&a de &f{total} &abandeiras de &f{texto}&a.'
+
+Escudo:
+  Pintado: '&aEscudo pintado!'
+  Como usar: '&7Segure a bandeira, tenha um escudo na outra mão e use &e/banner escudo&7.'
+  Desligado: '&cO escudo está desligado neste servidor.'
+  Bandeira lisa: '&cEssa bandeira não tem desenho nenhum para passar.'
+  Sem escudo: '&cVocê precisa de um escudo na outra mão ou no inventário.'
+  Nao deu: '&cEsta versão do servidor não deixou pintar o escudo.'
+
+Dar:
+  Uso: '&cUse: /banner dar <jogador>'
+  Uso do admin: '&cUse: /starbanners dar <jogador> [código|mao] [quantidade]'
+  Para si mesmo: '&cVocê já tem essa bandeira na mão.'
+  Enviada: '&aBandeira enviada para &f{jogador}&a.'
+  Recebida: '&a{jogador} &amandou uma bandeira para você.'
+  Nao deu: '&c{jogador} &cnão pôde receber a bandeira agora.'
+
+Info:
+  Cabecalho: |
+    &8&m----------------------------------------
+    &6&lBANDEIRA &7(lida da {origem})
+    &7Fundo: &f{fundo}
+    &7Camadas: &f{camadas}
+    &7Preço: &a{preco}
+    &7Feita no tear: &f{craftavel}
+  Camada: '&8 {numero}. &f{padrao} &7em &f{cor} &8({codigo})'
+  Codigo: '&7Código: &f{codigo}'
+  Codigo invalido: '&cO código &f{codigo} &cnão deu uma bandeira válida.'
+  Produto: |
+    &8&m----------------------------------------
+    &6&lSTARBANNERS &7v{versao}
+    &7Padrões nesta versão: &f{padroes}
+    &7Desenhos na galeria: &f{galeria}
+    &7Coleções em disco: &f{colecoes}
+    &7Letras no alfabeto: &f{letras}
+    &7Economia: &f{economia}
+    &7Modo padrão: &f{modo}
+    &8&m----------------------------------------
+
+Importar:
+  Sem pasta: '&cNão encontrei a pasta &f{pasta}&c.'
+  Comecando: '&7Importando de &f{pasta}&7...'
+  Pronto: '&aPronto: &f{desenhos} &adesenhos de &f{jogadores} &ajogadores (&f{arquivos} &aarquivos, &f{repetidos} &arepetidos, &f{ignorados} &aignorados).'

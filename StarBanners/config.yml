@@ -1,0 +1,204 @@
+# ---------------------------------------------------------------------------
+#  StarBanners
+#
+#  Criador de bandeiras em menu. O jogador monta a bandeira camada por camada
+#  vendo o resultado na hora, guarda os desenhos numa coleção própria, copia o
+#  que já existe, escreve palavras com o alfabeto e pinta escudo.
+#
+#  Compatível de 1.8 até 1.21: os padrões que não existem na versão do seu
+#  servidor simplesmente não aparecem no menu (o globo nasceu na 1.14; o
+#  focinho, na 1.16; fluxo e rajada, na 1.21).
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# Escreve no console o que o plugin está fazendo. Deixe ligado só para
+# investigar um problema.
+Debug: false
+
+
+#
+# ══════════════════════  COMO O JOGADOR LEVA A BANDEIRA  ═══════════════════
+#
+# Esta é a parte que mais muda de servidor para servidor, e é toda sua.
+#
+#   GRATIS                -> sai de graça, sem material e sem cobrança
+#   MATERIAIS             -> precisa ter a receita no inventário (6 lãs da cor
+#                            do fundo + 1 graveto + 1 corante por camada, mais
+#                            o item que o tear pede em alguns padrões)
+#   DINHEIRO              -> cobra na economia; o preço é calculado a partir
+#                            dessa mesma receita, com os valores do precos.yml
+#   MATERIAIS E DINHEIRO  -> as duas coisas
+#
+Obter:
+
+  # O modo de quem não casa com nenhuma regra abaixo.
+  Padrao: 'MATERIAIS'
+
+  # Modo por permissão. A PRIMEIRA linha que casar é a que vale, então ponha
+  # as mais generosas em cima. Formato: '<permissao> <MODO>'.
+  #
+  # A staff já leva de graça pelo 'starbanners.gratis' mesmo sem nenhuma linha
+  # aqui; estas servem para os seus outros grupos.
+  Por permissao:
+    - 'starbanners.gratis GRATIS'
+    - 'starbanners.vip.diamante GRATIS'
+    - 'starbanners.vip DINHEIRO'
+
+  # Mostrar o preço na tela também para quem leva de graça.
+  Mostrar o preco de quem paga: false
+
+
+#
+# ════════════════════════════════  MATERIAIS  ══════════════════════════════
+#
+Materiais:
+
+  # Cobrar a bandeira crua (as lãs e o graveto) além dos corantes das camadas.
+  # Desligue se no seu servidor o jogador já traz a bandeira pronta na mão.
+  Cobrar a bandeira base: true
+
+  Las por bandeira: 6
+  Gravetos por bandeira: 1
+
+
+#
+# ══════════════════════════════════  PREÇO  ════════════════════════════════
+#
+# O preço de uma bandeira é a soma do valor de cada material da receita (veja
+# o precos.yml) vezes o multiplicador, mais o valor fixo. Uma bandeira de seis
+# camadas custa mais do que uma de duas sem você tabelar nada.
+#
+Preco:
+  Valor fixo: 0
+  Multiplicador: 1.0
+
+  # Piso: nenhuma bandeira sai por menos do que isso.
+  Minimo: 0
+
+
+#
+# ════════════════════════════════  ECONOMIA  ═══════════════════════════════
+#
+Economia:
+
+  # STARECONOMIA | VAULT | PLAYERPOINTS | COMANDO
+  Tipo: 'VAULT'
+
+  # Como o valor aparece para o jogador.
+  Formato: '&a${valor}'
+
+  # Só para o StarEconomia: qual moeda dele usar.
+  Moeda: 'dinheiro'
+
+  # Só para o tipo COMANDO. {jogador} {valor}
+  Comando de retirar: ''
+  Comando de dar: ''
+  Placeholder de saldo: ''
+
+
+#
+# ════════════════════════════════  LIMITES  ════════════════════════════════
+#
+Limites:
+
+  # Quantas camadas o editor aceita. O jogo para em 6 (é o que o tear faz);
+  # acima disso a bandeira existe e aparece certa para o jogador, mas não há
+  # receita que a produza, e o editor avisa isso na tela. O cliente desenha
+  # até 16 camadas, que é o teto daqui.
+  Camadas: 6
+
+  # Deixar o jogador obter um desenho que o tear não faria.
+  Permitir desenho nao craftavel: true
+
+  # Quantos desenhos cada jogador pode guardar; 0 = sem limite.
+  # Dá para dar outro número por permissão: 'starbanners.salvos.50'.
+  Desenhos salvos: 20
+
+  # Quantas bandeiras saem de cada clique em "obter". Cada uma custa uma
+  # receita inteira.
+  Bandeiras por vez: 1
+
+
+#
+# ═════════════════════════════════  EDITOR  ════════════════════════════════
+#
+Editor:
+
+  # Abrir o editor já com o desenho da bandeira que o jogador tem na mão.
+  Comecar com a bandeira da mao: true
+
+  # Na escolha do padrão, mostrar cada opção POR CIMA do desenho atual (o
+  # jogador vê o resultado final antes de clicar). Desligado, cada opção
+  # aparece sozinha no fundo, o que é mais fácil de identificar.
+  # O jogador troca isso na hora pelo botão da tela.
+  Pre-visualizacao aplicada: true
+
+  # Som do clique, do sucesso e do erro. Formato: SOM, SOM;volume ou
+  # SOM;volume;tom. Nome desconhecido na sua versão apenas não toca.
+  Som do clique: 'UI_BUTTON_CLICK'
+  Som de sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Som de erro: 'ENTITY_VILLAGER_NO'
+
+
+#
+# ════════════════════════════════  ALFABETO  ═══════════════════════════════
+#
+# As formas das letras estão no alfabeto.yml e podem ser editadas. As cores
+# são escolhidas pelo jogador na tela; o que está aqui é só o começo.
+#
+Alfabeto:
+  Ativar: true
+  Cor do fundo: 'WHITE'
+  Cor da letra: 'BLACK'
+
+  # Máximo de letras que o /banner texto aceita de uma vez.
+  Maximo de letras por texto: 16
+
+
+#
+# ════════════════════════════════  GALERIA  ════════════════════════════════
+#
+# A galeria do servidor: os desenhos que todo mundo vê e pode pegar com um
+# clique. A staff adiciona com /starbanners galeria adicionar (segurando a
+# bandeira) e remove pelo próprio menu.
+#
+Galeria:
+  Ativar: true
+
+  # Deixar o jogador publicar um desenho dele na galeria.
+  Jogador pode publicar: true
+
+  # Quantos desenhos cada jogador pode ter publicados; 0 = sem limite.
+  # Quem tem 'starbanners.staff' não é contado.
+  Maximo por jogador: 5
+
+
+#
+# ═════════════════════════════════  ESCUDO  ════════════════════════════════
+#
+Escudo:
+  # /banner escudo passa o desenho da bandeira da mão para o escudo.
+  # Em servidor 1.8 não existe escudo, e o comando apenas avisa isso.
+  Ativar: true
+
+  # Gastar a bandeira ao pintar, como o tear do jogo faz.
+  Gastar a bandeira: true
+
+
+#
+# ═══════════════════════════════  DAR BANDEIRA  ════════════════════════════
+#
+Dar bandeira:
+  # /banner dar <jogador> entrega uma cópia da bandeira da mão. Quem recebe
+  # paga o que o modo dele pedir, para o comando não virar uma porta para
+  # contornar a cobrança do servidor.
+  Ativar: true
+
+
+# Registrar os placeholders no PlaceholderAPI, quando ele estiver instalado.
+# %starbanners_salvos% %starbanners_limite% %starbanners_restantes%
+# %starbanners_modo% %starbanners_galeria% %starbanners_padroes%
+# %starbanners_letras% %starbanners_mao_codigo% %starbanners_mao_camadas%
+# %starbanners_mao_preco%
+Placeholders: true

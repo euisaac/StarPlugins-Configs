@@ -1,0 +1,90 @@
+# ---------------------------------------------------------------------------
+#  StarBanners - alfabeto
+#
+#  A forma de cada letra, número e sinal. As CORES não estão aqui: quem escolhe
+#  o fundo e a tinta é o jogador, na tela do alfabeto. Por isso o mesmo arquivo
+#  serve para preto no branco, branco no vermelho ou qualquer combinação.
+#
+#  Cada entrada é uma lista de camadas, pintadas de baixo para cima:
+#
+#    ms              -> na cor da letra
+#    ms:{fundo}      -> na cor do fundo (serve para recortar o meio de uma forma)
+#    ms:RED          -> numa cor fixa
+#
+#  Os códigos das camadas são os mesmos do jogo. Os mais usados aqui:
+#
+#    ts  faixa superior        bs  faixa inferior
+#    ls  faixa esquerda        rs  faixa direita
+#    cs  faixa vertical        ms  faixa horizontal
+#    dls faixa diagonal /      drs faixa diagonal \
+#    tl  canto sup. esquerdo   tr  canto sup. direito
+#    bl  canto inf. esquerdo   br  canto inf. direito
+#    bo  borda (o "O")         cr  cruz em X
+#    sc  cruz reta (+)         mc  círculo central
+#    tt  triângulo superior    bt  triângulo inferior
+#    bri tijolos
+#
+#  O limite do jogo é 6 camadas por bandeira; passar disso faz a bandeira
+#  existir mas não ser mais criável no tear.
+#
+#  Um detalhe do formato: NÃO use ponto ('.') como nome de glifo. O ponto é o
+#  separador de caminho dos arquivos YAML do servidor, e um glifo chamado assim
+#  nunca é encontrado.
+#
+#  Estas formas são um ponto de partida que fica legível de longe. Se você
+#  desenhar um "S" melhor, troque aqui -- nada no plugin depende da forma, só
+#  da lista de camadas.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Glifos:
+
+  # ----------------------------- letras ---------------------------------
+  A: [ 'ts', 'ls', 'rs', 'ms' ]
+  B: [ 'ls', 'ts', 'ms', 'bs', 'rs' ]
+  C: [ 'ls', 'ts', 'bs' ]
+  D: [ 'bo', 'ls' ]
+  E: [ 'ls', 'ts', 'ms', 'bs' ]
+  F: [ 'ls', 'ts', 'ms' ]
+  G: [ 'ls', 'ts', 'bs', 'br', 'ms' ]
+  H: [ 'ls', 'rs', 'ms' ]
+  I: [ 'ts', 'cs', 'bs' ]
+  J: [ 'ts', 'cs', 'bs', 'bl' ]
+  K: [ 'ls', 'cr' ]
+  L: [ 'ls', 'bs' ]
+  M: [ 'ls', 'rs', 'tt' ]
+  N: [ 'ls', 'rs', 'drs' ]
+  O: [ 'bo' ]
+  P: [ 'ls', 'ts', 'ms', 'tr' ]
+  Q: [ 'bo', 'br' ]
+  R: [ 'ls', 'ts', 'ms', 'tr', 'drs' ]
+  S: [ 'ts', 'ms', 'bs', 'tl', 'br' ]
+  T: [ 'ts', 'cs' ]
+  U: [ 'ls', 'rs', 'bs' ]
+  V: [ 'tt' ]
+  W: [ 'ls', 'cs', 'rs', 'bs' ]
+  X: [ 'cr' ]
+  Y: [ 'tt', 'cs' ]
+  Z: [ 'ts', 'bs', 'dls' ]
+
+  # ----------------------------- números --------------------------------
+  '0': [ 'bo', 'drs' ]
+  '1': [ 'cs', 'bs' ]
+  '2': [ 'ts', 'tr', 'ms', 'bl', 'bs' ]
+  '3': [ 'ts', 'ms', 'bs', 'rs' ]
+  '4': [ 'tl', 'ms', 'rs' ]
+  '5': [ 'ts', 'tl', 'ms', 'br', 'bs' ]
+  '6': [ 'ls', 'ms', 'bs', 'br' ]
+  '7': [ 'ts', 'dls' ]
+  '8': [ 'bo', 'ms' ]
+  '9': [ 'ts', 'tl', 'ms', 'rs' ]
+
+  # ------------------------------ sinais --------------------------------
+  '+': [ 'sc' ]
+  '-': [ 'ms' ]
+  '|': [ 'cs' ]
+  '/': [ 'dls' ]
+  '\': [ 'drs' ]
+  '#': [ 'bri' ]
+  '?': [ 'ts', 'tr', 'ms', 'cs' ]
