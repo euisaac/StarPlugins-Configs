@@ -6,7 +6,7 @@
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 1
+Versao do modelo: 3
 
 Prefixo: '&b&lCLANS &8» &f'
 
@@ -71,6 +71,11 @@ Ajuda:
     &b› &f/clan transferir <jogador> &8- &7passa a lideranca
     &r
     &b› &f/clan base &8- &7vai para a base do clan
+    &b› &f/clan base setar &8- &7define a base aqui
+    &b› &f/clan base deletar &8- &7apaga a base do clan
+    &b› &f/clan home <numero> &8- &7vai para uma home do clan
+    &b› &f/clan home setar <numero> &8- &7define uma home aqui
+    &b› &f/clan home deletar <numero> &8- &7apaga uma home
     &b› &f/clan bau &8- &7abre o bau do clan
     &b› &f/clan banco &8- &7abre o banco do clan
     &b› &f/clan mercado &8- &7abre o mercado do clan
@@ -94,6 +99,7 @@ Ajuda:
     &b› &f/starclans info &8- &7estado do plugin
     &b› &f/starclans deletar <clan> &8- &7apaga um clan
     &b› &f/starclans verificar <clan> &8- &7verifica um clan
+    &b› &f/starclans discord <clan> [ligar|desligar] &8- &7tag no Discord
     &b› &f/starclans desverificar <clan> &8- &7tira a verificacao
     &b› &f/starclans definirlider <clan> <jogador> &8- &7troca o lider
     &b› &f/starclans item <tipo> <jogador> [quantia] &8- &7da um item especial
@@ -432,6 +438,10 @@ Admin:
     &8Os dois ultimos tem que ser iguais. Se nao forem, quem responde
     &8no PlaceholderAPI e uma carga anterior: reinicie o servidor.
     &r
+  Discord ligado: '&aO clan &f{tagcolorida} &aganhou a tag no Discord.'
+  Discord desligado: '&cO clan &f{tagcolorida} &cperdeu a tag no Discord.'
+  Discord ja tem: '&eO clan &f{tagcolorida} &eja tem a tag no Discord.'
+  Discord ja nao tem: '&eO clan &f{tagcolorida} &enao tem a tag no Discord.'
   Clan deletado: '&aO clan &f{tagcolorida} &afoi deletado.'
   Lider definido: '&aO jogador &f{jogador} &aagora e o lider do clan &f{tagcolorida}&a.'
   Vagas definidas: '&aAs vagas de &f{tipo} &ado clan &f{tagcolorida} &aagora sao &f{quantia}&a.'
