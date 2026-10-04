@@ -27,12 +27,12 @@
 #  Chaves comuns:
 #    Nome        como aparece nas mensagens ("Dinheiro")
 #    Abreviacao  nome curto para lore e barra ("coins")
-#    Símbolo     texto antes do valor ("$")
+#    Simbolo     texto antes do valor ("$")
 #    Sufixo      texto depois do valor (" coins")
 #    Formato     PADRAO (segue o 'Formato de números' do config), LETRA (1,5K)
 #                ou NUMERO (1.500)
 #    Consumir    false = só exige ter, não cobra (útil para kills e tempo)
-#    Permissão   quem não tiver não consegue pagar com esta economia ('' = todos)
+#    Permissao   quem não tiver não consegue pagar com esta economia ('' = todos)
 #
 #  Um Provedor que não esteja nesta lista e tratado como o id de uma moeda do
 #  StarEconomia ('reais' vale o mesmo que 'stareconomia-reais').
@@ -73,7 +73,7 @@ Economias:
     Nome: 'Cabeças de Porco'
     Abreviacao: 'porcos'
     Simbolo: ''
-    Sufixo: ' cabecas de porco'
+    Sufixo: ' cabeças de porco'
     Formato: PADRAO
     Consumir: true
     Permissao: ''
@@ -83,7 +83,21 @@ Economias:
     Nome: 'Cabeças de Zumbi'
     Abreviacao: 'zumbis'
     Simbolo: ''
-    Sufixo: ' cabecas de zumbi'
+    Sufixo: ' cabeças de zumbi'
+    Formato: PADRAO
+    Consumir: true
+    Permissao: ''
+
+  # As pepitas do StarMinas. Só funciona com o StarMinas instalado; sem
+  # ele a economia fica indisponível (o /starrankup info mostra) e os
+  # ranks que a cobram ficam esperando. Apague se não for usar.
+  starminas:
+    Provedor: STARMINAS
+    Moeda: 'pepitas'
+    Nome: 'Pepitas'
+    Abreviacao: 'pepitas'
+    Simbolo: ''
+    Sufixo: ' pepitas'
     Formato: PADRAO
     Consumir: true
     Permissao: ''
@@ -100,17 +114,6 @@ Economias:
   #   Consumir: true
   #   Permissao: ''
 
-
-  # starminas:
-  #   Provedor: STARMINAS
-  #   Moeda: 'pepitas'
-  #   Nome: 'Pepitas'
-  #   Abreviacao: 'pepitas'
-  #   Simbolo: ''
-  #   Sufixo: ' pepitas'
-  #   Formato: PADRAO
-  #   Consumir: true
-  #   Permissao: ''
 
   # pontos:
   #   Provedor: PLAYERPOINTS
