@@ -42,6 +42,12 @@ Competicao:
   # Quantos escudos uma pessoa pode acumular.
   MaximoDeEscudos: 3
 
+  # Avisos no chat do jogo antes de uma competicao agendada comecar, em minutos.
+  # Cada um sai uma vez so. Deixe a lista vazia para nao avisar nada.
+  AvisarMinutosAntes:
+    - 10
+    - 5
+
 Recompensas:
   # Liga a entrega das recompensas no jogo. O vinculo Discord <-> jogador vem do
   # StarDiscord (o mesmo do /vincular); quem nao vinculou nao recebe.
@@ -63,5 +69,11 @@ Recompensas:
     - '&6&l[Competicao] &e{jogador} ficou em &6{posicao}o lugar &eem &6{evento}&e!'
 
 # Avisa no Discord (DM) quem esta participando sem ter vinculado a conta.
+# Avisos de competicao agendada no chat do jogo. Aceita &a, &6, &l...
+# Trocas: %evento% (nome), %quando% (data e hora), %minutos% (contagem regressiva).
+messages:
+  compAgendadaAnuncio: '&6&l[Competicao] &eA competicao &6%evento% &ecomeca em &6%quando%&e!'
+  compAgendadaFaltam: '&6&l[Competicao] &eA competicao &6%evento% &ecomeca em &6%minutos% minuto(s)&e!'
+
 AvisarNaoVinculado: true
 MensagemNaoVinculado: 'Voce esta participando de uma competicao, mas sua conta do jogo nao esta vinculada. Use /vincular para vincular e poder receber a recompensa.'
