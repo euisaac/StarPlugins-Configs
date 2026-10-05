@@ -155,6 +155,28 @@ Placar:
     - '&fBooster: &e{booster}'
     - '&7'
     - '&bstarplugins.com.br'
+  # Enquanto um torneio estiver valendo, quem esta na area ve este placar no
+  # lugar do de cima. Alem das de cima: {torneio_tipo} {torneio_vara}
+  # {torneio_tempo} {torneio_premio} {torneio_1_nome} {torneio_1_valor} (ate 3)
+  # {torneio_posicao} {torneio_valor} {torneio_participantes} {torneio_perolas}.
+  Torneio:
+    Ativar: true
+    Titulo: '&6&lTORNEIO'
+    Linhas:
+      - '&7'
+      - '&fTipo: &e{torneio_tipo}'
+      - '&fVara: &e{torneio_vara}'
+      - '&fAcaba em: &e{torneio_tempo}'
+      - '&7'
+      - '&6&l1o &f{torneio_1_nome} &7{torneio_1_valor}'
+      - '&7&l2o &f{torneio_2_nome} &7{torneio_2_valor}'
+      - '&c&l3o &f{torneio_3_nome} &7{torneio_3_valor}'
+      - '&7'
+      - '&fSua posicao: &b{torneio_posicao}'
+      - '&fSeu placar: &b{torneio_valor}'
+      - '&fParticipantes: &b{torneio_participantes}'
+      - '&7'
+      - '&bstarplugins.com.br'
 
 # --------------------------------------------------------------------------
 #  A pesca em si

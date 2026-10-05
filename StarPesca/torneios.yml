@@ -91,6 +91,23 @@ Varas:
     # suspensa (nao vale e nao gasta) ate o torneio acabar.
     Bloquear iscas: true
 
+# Holograma do torneio: marque o lugar com /starpesca torneio holograma
+# (e tire com /starpesca torneio holograma remover). Ele so aparece enquanto
+# um torneio estiver valendo e se atualiza a cada 2 segundos.
+# Variaveis: {tipo} {descricao} {vara} {tempo} {premio} {participantes}
+# {1_nome} {1_valor} {2_nome} {2_valor} {3_nome} {3_valor}
+Holograma:
+  Linhas:
+    - '&6&lTORNEIO DE PESCA'
+    - '&f{tipo} &7| &f{vara}'
+    - '&7Acaba em &e{tempo}'
+    - ''
+    - '&6&l1o &f{1_nome} &7- &e{1_valor}'
+    - '&7&l2o &f{2_nome} &7- &e{2_valor}'
+    - '&c&l3o &f{3_nome} &7- &e{3_valor}'
+    - ''
+    - '&7Participantes: &f{participantes} &8| &7Premio: &f{premio}'
+
 # Agenda: comeca torneios sozinho.
 Agenda:
   Ativar: true
