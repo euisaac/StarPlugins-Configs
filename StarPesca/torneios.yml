@@ -81,6 +81,15 @@ Varas:
   vara_sem_upgrade:
     Nome: 'Vara sem upgrade'
     Descricao: 'Todos pescam com a vara inicial, sem evoluir.'
+    # Peso suportado infinito: nenhum peixe escapa por peso (bom para torneio
+    # de PESO, ja que todos estao com a vara inicial).
+    Peso infinito: true
+    # Sorteia peixes de todos os niveis (cada um pela propria chance), senao a
+    # vara inicial so pegaria peixe pequeno.
+    Todos os peixes: true
+    # Iscas nao podem ser compradas nem ativadas, e a que ja estava ativa fica
+    # suspensa (nao vale e nao gasta) ate o torneio acabar.
+    Bloquear iscas: true
 
 # Agenda: comeca torneios sozinho.
 Agenda:
