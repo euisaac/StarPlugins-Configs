@@ -34,7 +34,7 @@ Menu principal:
     # A cabeca com a skin que o jogador esta usando agora.
     # Clique normal abre as skins dele; clique direito volta para a skin padrao.
     Minha skin:
-      Slot: 11
+      Slot: 10
       Nome: '&a&lSua skin'
       Lore:
         - '&7Usando agora: &f{skin}'
@@ -45,7 +45,7 @@ Menu principal:
 
     # Abre a lista das skins que os jogadores do servidor ja usaram.
     Skins disponiveis:
-      Slot: 13
+      Slot: 12
       Material: CHEST
       Nome: '&e&lSkins disponiveis'
       Lore:
@@ -56,9 +56,20 @@ Menu principal:
         - ''
         - '&eClique para abrir.'
 
+    # Abre as skins em alta no mundo do Minecraft (Skins populares no config.yml).
+    Skins populares:
+      Slot: 14
+      Material: BLAZE_POWDER
+      Nome: '&6&lSkins populares'
+      Lore:
+        - '&7As skins em alta no mundo'
+        - '&7do Minecraft nesta semana.'
+        - ''
+        - '&eClique para abrir.'
+
     # Abre a lista de skins montada pela staff no personalizadas.yml.
     Skins personalizadas:
-      Slot: 15
+      Slot: 16
       Material: NETHER_STAR
       Nome: '&d&lSkins personalizadas'
       Lore:
@@ -73,6 +84,51 @@ Menu principal:
       Slot: 22
       Material: RED_DYE
       Nome: '&c&lFechar'
+      Lore: []
+
+#
+# ──────────────────────────── Skins populares ────────────────────────────
+#
+Menu populares:
+  Titulo: '&8Skins populares &7({pagina}/{paginas})'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  # {posicao}, {jogadores} (no mundo todo) e {modelo} (Steve/Alex).
+  Icone:
+    Nome: '&6Skin em alta #{posicao}'
+    Lore:
+      - '&7Usada por &f{jogadores} &7jogador(es)'
+      - '&7no mundo todo.'
+      - ''
+      - '&eClique para ver as opcoes.'
+
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Ir para a pagina &f{pagina}&7.'
+    Vazio:
+      Slot: 22
+      Material: COBWEB
+      Nome: '&cNenhuma skin em alta agora.'
       Lore: []
 
 #
