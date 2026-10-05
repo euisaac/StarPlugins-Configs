@@ -11,6 +11,12 @@
 #    RARIDADE    vence quem somar mais pontos de raridade (peixes.yml)
 #    VALOR       vence quem pescar peixes que somem mais valor de venda
 #
+#  Vara (opcional, depois do tipo):
+#    vara_do_player    cada um pesca com a propria vara (padrao)
+#    vara_zerada       todos com a vara inicial, que evolui durante o torneio
+#    vara_sem_upgrade  todos com a vara inicial, sem evoluir
+#  Ex.: /starpesca torneio iniciar quantidade vara_zerada 30
+#
 #  Recompensas: Perolas, Economias (por economia do economias.yml) e
 #  Comandos ({jogador}). Duracao em minutos.
 #  Nas mensagens: {tipo} {tempo} {premio} {jogador} {valor} e
@@ -59,6 +65,23 @@ Posicoes:
       money: 5000.0
     Comandos: [ ]
 
+# As varas do torneio: nome e descricao nas mensagens e menus.
+Varas:
+  vara_do_player:
+    Nome: 'Vara do jogador'
+    Descricao: 'Cada um pesca com a propria vara.'
+  vara_zerada:
+    Nome: 'Vara zerada'
+    Descricao: 'Todos comecam com a vara inicial e evoluem durante o torneio.'
+    # TORNEIO = evolui na loja de varas pagando com as perolas ganhas NESTE
+    #           torneio (o custo em perolas de cada vara; o saldo de perolas
+    #           da pessoa nao e tocado).
+    # NORMAL  = evolui pagando o custo normal da loja de varas.
+    Evoluir com: TORNEIO
+  vara_sem_upgrade:
+    Nome: 'Vara sem upgrade'
+    Descricao: 'Todos pescam com a vara inicial, sem evoluir.'
+
 # Agenda: comeca torneios sozinho.
 Agenda:
   Ativar: true
@@ -67,6 +90,8 @@ Agenda:
   # Tipos sorteados (vazio = todos).
   Tipos: [ PESO, QUANTIDADE, RARIDADE, VALOR ]
   Duracao: 30
+  # A vara dos torneios da agenda (vara_do_player, vara_zerada ou vara_sem_upgrade).
+  Vara: vara_do_player
   # So comeca com pelo menos tantos jogadores online.
   Minimo de jogadores: 2
 

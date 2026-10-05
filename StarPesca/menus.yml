@@ -677,6 +677,16 @@ Torneio:
       Material: ARROW
       Nome: '&cVoltar'
       Acoes: [ 'voltar' ]
+    historico:
+      Slot: 35
+      Material: BOOK
+      Nome: '&eHistorico de torneios'
+      Lore:
+        - '&7Ganhadores e participantes'
+        - '&7dos torneios que ja terminaram.'
+        - ''
+        - '&eClique para ver.'
+      Acoes: [ 'historico' ]
 
 # ---------------------------------------------------------------------------
 #  Confirmacao de compra (loja de perolas).
@@ -702,3 +712,109 @@ Confirmar:
       Material: RED_WOOL
       Nome: '&cCancelar'
       Acoes: [ 'voltar' ]
+
+# Historico de torneios (botao "historico" do menu do torneio ou
+# /starpesca torneio historico). Um item por torneio terminado, do mais novo
+# para o mais velho. Variaveis: {tipo_nome} {vara} {data} {duracao}
+# {participantes} {1_nome} {1_valor} ... {3_nome} {3_valor}.
+Historico de torneios:
+  Titulo: '&8Historico de torneios'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Torneio:
+    Material: GOLD_INGOT
+    Nome: '&b{tipo_nome} &7- &f{data}'
+    Lore:
+      - ''
+      - ' &7Vara: &f{vara}'
+      - ' &7Duracao: &f{duracao}'
+      - ' &7Participantes: &f{participantes}'
+      - ''
+      - ' &e1o &f{1_nome} &7- &f{1_valor}'
+      - ' &72o &f{2_nome} &7- &f{2_valor}'
+      - ' &63o &f{3_nome} &7- &f{3_valor}'
+      - ''
+      - '&eClique para ver todos os participantes.'
+  Vazio:
+    Slot: 22
+    Material: GRAY_DYE
+    Nome: '&7Nenhum torneio terminado ainda'
+    Lore:
+      - '&7Quando um torneio acabar, ele aparece aqui.'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes:
+        - anterior
+    voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes:
+        - voltar
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&eProxima pagina &7({pagina}/{paginas})'
+      Acoes:
+        - proxima
+
+# Um torneio do historico: todos os participantes, em ordem.
+# Variaveis do torneio (as de cima) + {posicao} {nome} {valor}.
+Torneio passado:
+  Titulo: '&8{tipo_nome}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Informacao:
+    Slot: 4
+    Material: GOLD_INGOT
+    Brilho: true
+    Nome: '&6{tipo_nome}'
+    Lore:
+      - ''
+      - ' &7Terminou: &f{data}'
+      - ' &7Vara: &f{vara}'
+      - ' &7Duracao: &f{duracao}'
+      - ' &7Participantes: &f{participantes}'
+      - ''
+  Posicao:
+    Material: PLAYER_HEAD
+    Dono: '{nome}'
+    Nome: '&b{posicao}o &f{nome}'
+    Lore:
+      - ''
+      - ' &7{tipo_nome}: &f{valor}'
+      - ''
+  Vazio:
+    Slot: 22
+    Material: GRAY_DYE
+    Nome: '&7Ninguem participou deste torneio'
+  Itens:
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes:
+        - anterior
+    voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes:
+        - voltar
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&eProxima pagina &7({pagina}/{paginas})'
+      Acoes:
+        - proxima
