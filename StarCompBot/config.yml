@@ -53,12 +53,28 @@ Recompensas:
   # StarDiscord (o mesmo do /vincular); quem nao vinculou nao recebe.
   Ativar: true
 
-  # Quando o vencedor esta offline, a recompensa fica guardada e e entregue na
-  # proxima vez que ele entrar no servidor.
-  GuardarParaOffline: true
+  # Cada premio escolhe no menu (/competicao > Recompensas > posicao) se os
+  # comandos saem "na hora" (assim que a competicao acaba, mesmo com o jogador
+  # offline) ou "quando estiver online" (espera ele entrar; se ja esta online,
+  # sai na hora). Tudo fica no historico, marcado como entregue quando sai.
 
-  # Quantos dias uma recompensa guardada continua valendo (0 = para sempre).
+  # Quantos dias um premio esperando o jogador continua valendo (0 = para sempre).
   ValidadeDias: 30
+
+  # Gift card da loja do servidor (precisa da RedeStar-Loja 1.0.12+). O valor e
+  # definido em cada premio, no menu. O codigo vai na DM, no menu
+  # "Minhas recompensas" e no /minhasrecompensas do Discord.
+  GiftCard:
+    # Endereco do site para resgatar. Vazio = o que a RedeStar-Loja usa.
+    Site: ''
+    # No chat, quando o jogador esta online. {codigo} {valor} {site}
+    Mensagem:
+      - '&6&l[Competicao] &eVoce ganhou um gift card de &6R$ {valor}&e!'
+      - '&eCodigo: &f&l{codigo} &7(resgate no site da loja{site})'
+
+  # DM no Discord para cada vencedor com o premio (e o gift card).
+  DM:
+    Ativar: true
 
   # Avisa o jogador no chat ao entregar.
   Mensagem:
