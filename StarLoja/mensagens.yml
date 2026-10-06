@@ -45,6 +45,9 @@ geral:
     &a/starloja boost [sortear] &7- vê ou sorteia de novo os boosts.
     &a/starloja meta [reiniciar] &7- vê ou reinicia a meta de venda.
     &a/starloja lojas &7- lista lojas e categorias no chat.
+    &a/starloja layout salvar [nome] &7- guarda menus/lojas num layout.
+    &a/starloja layout carregar <nome> &7- aplica um layout (pasta layouts/).
+    &a/starloja layout lista &7- lista os layouts salvos.
     &a/starloja recarregar &7- recarrega as configurações.
     &8&m--------------------------------------------
 
@@ -72,6 +75,7 @@ compra:
   sucesso: '&aVocê comprou &f{quantia}x {item} &apor &f{total}&a.'
   actionbar: '&a+{quantia}x {item} &8| &c-{total}'
   desativada: '&cO item &f{item} &cnão está à venda.'
+  nao-liberado: '&cO item &f{item} &cainda não foi liberado. Libera em &f{libera_em}&c.'
   sem-saldo: '&cVocê precisa de &f{total} &cpara comprar isso.'
   sem-saldo-ou-espaco: '&cVocê não tem saldo ou espaço para comprar esse item.'
   inventario-cheio: '&cSeu inventário está cheio.'
@@ -166,6 +170,7 @@ editor:
   pedir-permissao: '&aDigite a permissão necessária para usar esse item.'
   pedir-ordem: '&aDigite a ordem do item na categoria (&f1 &ae o primeiro) ou &f0 &apara o fim da fila.'
   pedir-slot: '&aDigite a slot (0 a {maximo}) ou &f-1 &apara automática.'
+  pedir-libera: '&aDigite a data de liberação no formato &fdd/MM/aaaa-HH:mm &a(ex.: &f15/11/2026-12:00&a). Clique direito no botão para liberar sem data.'
   pedir-estoque: '&aDigite o novo estoque de referência.'
   pedir-elasticidade: '&aDigite a nova elasticidade (ex: &f1.0&a).'
 
@@ -220,6 +225,20 @@ meta:
     &7 Termina em: &f{tempo}
     &7 Boost ativo: &f{boost}
     &8&m--------------------------------------------
+
+# /starloja layout (pasta plugins/StarLoja/layouts/)
+layout:
+  lista: '&7Layouts ({total}): &f{layouts}'
+  nada-marcado: '&cMarque pelo menos um menu ou loja.'
+  pedir-nome: '&eDigite no chat o nome do layout &7(letras, números, - e _). &8Digite cancelar para sair.'
+  nome-invalido: '&cNome inválido: use só letras, números, - e _ (até 32).'
+  padrao-protegido: '&cO layout &fpadrao &cé o de fábrica e não pode ser sobrescrito. Escolha outro nome.'
+  nao-encontrado: '&cLayout &f{layout} &cnão encontrado em layouts/. Veja: /starloja layout lista'
+  vazio: '&cO layout &f{layout} &cnão tem menus nem lojas.'
+  salvo: '&aLayout &f{layout} &asalvo com &f{partes} &aparte(s) em &flayouts/{layout}/&a.'
+  carregado: '&aLayout &f{layout} &acarregado ({partes} parte(s)) e loja recarregada.'
+  backup: '&7O que foi substituído está em &flayouts/{backup}/&7. Para desfazer: &f/starloja layout carregar {backup}'
+  erro: '&cNão foi possível concluir: {erro}'
 
 menus:
   lojas:
