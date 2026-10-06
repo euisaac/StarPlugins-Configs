@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 27
+Versao do modelo: 28
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -339,10 +339,15 @@ Itens:
     Botao: AMBOS
     Cooldown: 5
   Torre:
-    # Altura da torre instantanea (redonda, raio 2, com entrada na frente) e
-    # se tem escada na parede de tras.
+    # Altura da torre instantanea (redonda, raio 2) e se tem escada dentro.
     Altura: 5
     Escada: true
+    # De que lado fica cada coisa: FRENTE = para onde o jogador esta olhando,
+    # TRAS = o lado oposto. O padrao poe a entrada atras dele (o lado de onde
+    # ele veio) e a escada na cara dele, pronta para subir -- troque aqui se
+    # quiser o contrario.
+    Entrada: TRAS
+    Escada no lado: FRENTE
     Cooldown: 0
   Esponja:
     Raio: 3
