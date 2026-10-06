@@ -1,0 +1,120 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoesSkins - as skins
+#
+#  Cada secao aqui e uma aparencia da enxada. Copiou, trocou o material (ou a
+#  textura da cabeca): e uma skin nova no servidor, com permissao propria e
+#  lugar proprio no menu.
+#
+#  COMO UMA SKIN E LIBERADA -- tres caminhos, e qualquer um basta:
+#
+#    Padrao: true          todo mundo ja tem, sem pedir nada
+#    Permissao: '...'      quem tiver a permissao tem a skin
+#    por comando           /starplantacoesskins dar <jogador> <skin>
+#
+#  A permissao 'starplantacoesskins.skin.<chave>' tambem funciona sempre, sem
+#  voce precisar escrever nada: e o atalho para ligar na loja do servidor.
+#  O comando funciona com o jogador OFFLINE, entao da para entregar a skin de
+#  uma compra no site sem ele estar logado.
+#
+#  TRES JEITOS DE DESENHAR A APARENCIA:
+#
+#    Material / ID + Data   um item do jogo (o jeito que vale em toda versao)
+#    CustomSkull + URL      cabeca com textura propria (hash do textures.minecraft.net)
+#    CustomModelData        o seu resource pack decide a textura (1.14+)
+#
+#  O 'Icone' e so o botao do menu. Sem ele, o botao e a propria skin -- criar
+#  uma skin nova nao obriga a desenhar um icone para ela.
+#
+#  Na lore do icone valem: {display} {skin} {jogador}. A linha {status} vira o
+#  bloco certo de menus.yml -> Skins -> Status.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Skins:
+  ouro:
+    Ordem: 1
+    Display: '&6Enxada de Ouro'
+    # Todo mundo ja tem esta.
+    Padrao: true
+    Permissao: ''
+    Aparencia:
+      CustomSkull: false
+      URL: ''
+      Material: GOLDEN_HOE
+      Data: 0
+      CustomModelData: 0
+    Icone:
+      Material: GOLDEN_HOE
+      Nome: '&6Enxada de Ouro'
+      Lore:
+        - '&7A classica dourada.'
+        - ''
+        - '{status}'
+
+  ferro:
+    Ordem: 2
+    Display: '&fEnxada de Ferro'
+    Padrao: false
+    Permissao: 'starplantacoesskins.vip'
+    Aparencia:
+      CustomSkull: false
+      URL: ''
+      Material: IRON_HOE
+      Data: 0
+      CustomModelData: 0
+    Icone:
+      Material: IRON_HOE
+      Nome: '&fEnxada de Ferro'
+      Lore:
+        - '&7Simples e resistente.'
+        - ''
+        - '&7Liberada para: &fVIP'
+        - ''
+        - '{status}'
+
+  netherita:
+    Ordem: 3
+    Display: '&8Enxada de Netherita'
+    Padrao: false
+    # Sem permissao escrita: so sai pelo comando (recompensa, caixa, site) ou
+    # pela permissao automatica starplantacoesskins.skin.netherita.
+    Permissao: ''
+    Aparencia:
+      CustomSkull: false
+      URL: ''
+      # Nas versoes anteriores a 1.16 nao existe; ali ela cai em pedra, entao
+      # apague esta skin se o seu servidor for antigo.
+      Material: NETHERITE_HOE
+      Data: 0
+      CustomModelData: 0
+    Icone:
+      Material: NETHERITE_HOE
+      Nome: '&8Enxada de Netherita'
+      Lore:
+        - '&7Para quem ja colheu muito.'
+        - ''
+        - '&7So por recompensa.'
+        - ''
+        - '{status}'
+
+  melancia:
+    Ordem: 4
+    Display: '&aCabeca de Melancia'
+    Padrao: false
+    Permissao: 'starplantacoesskins.vip'
+    Aparencia:
+      # Exemplo de cabeca com textura: o texto do URL e o hash que se copia dos
+      # sites de cabecas (ou a URL inteira do textures.minecraft.net).
+      CustomSkull: true
+      URL: 'b78ef2e4cf2c41a2d14bfde9caff10219f5b1bf5b35a49eb51c6467882cb5f0'
+      Material: PLAYER_HEAD
+      Data: 0
+      CustomModelData: 0
+    Icone:
+      Nome: '&aCabeca de Melancia'
+      Lore:
+        - '&7Colher de cabeca feita.'
+        - ''
+        - '&7Liberada para: &fVIP'
+        - ''
+        - '{status}'

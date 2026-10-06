@@ -1,0 +1,57 @@
+# ---------------------------------------------------------------------------
+#  StarPlantacoesSkins - configuracao geral
+#
+#  Addon do StarPlantacoes: ele da aparencias novas para a enxada de farm.
+#
+#  Os outros arquivos:
+#    skins.yml      as skins em si (e o arquivo que voce vai mexer)
+#    menus.yml      titulo, slots e itens da vitrine
+#    mensagens.yml  tudo que o jogador le
+#
+#  A skin troca SO a aparencia. Nome, lore, nivel e encantamentos continuam
+#  sendo do StarPlantacoes, que os reescreve a cada colheita -- uma skin que
+#  mexesse neles perderia o que escreveu no primeiro trigo colhido.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/starplantacoesskins.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: starplantacoesskins_
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+# Quando o addon passa a skin equipada nas enxadas do jogador.
+Aplicar:
+  # Ao entrar no servidor (um segundo depois, para o perfil chegar do banco).
+  Ao entrar: true
+  # Ao pegar a enxada na mao. E o que veste a enxada comprada DEPOIS de o
+  # jogador ter escolhido a skin -- ela nasce com a aparencia de fabrica,
+  # porque o StarPlantacoes a cria do proprio config e nao sabe deste addon.
+  Ao segurar a enxada: true
+  # Trocar de skin passa em TODAS as enxadas do inventario, nao so na da mao.
+  Em todas as enxadas: true
+
+# Para onde o botao "aparencia original" leva. Normalmente e o mesmo item do
+# config.yml do StarPlantacoes (Enxada -> Item) -- se voce mudou a enxada de
+# la, mude aqui tambem.
+Aparencia original:
+  CustomSkull: false
+  URL: ''
+  Material: DIAMOND_HOE
+  Data: 0
+  CustomModelData: 0
+
+Sons:
+  Equipar: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Clique: 'UI_BUTTON_CLICK;1;1'
