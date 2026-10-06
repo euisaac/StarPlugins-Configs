@@ -46,12 +46,17 @@ Chat:
   # Tamanho maximo de uma mensagem (0 = sem limite).
   Tamanho maximo: 256
   # Em que momento o StarChat pega o chat do servidor: LOWEST, LOW, NORMAL,
-  # HIGH ou HIGHEST. Deixe depois dos plugins de punicao (HIGH), assim quem
-  # foi silenciado por eles nem chega aqui. Mudou? Reinicie o servidor.
-  Prioridade: HIGH
+  # HIGH, HIGHEST ou MONITOR. Deixe em MONITOR (o ultimo): assim os outros
+  # plugins veem a mensagem antes -- respostas digitadas no chat (nome de
+  # cargo do clan...), chat de clan/faccao, minigames, missoes e punicoes.
+  # Mudou? Reinicie o servidor.
+  Momento: MONITOR
 
-# Formato de /starchat falar e do console escrevendo num canal.
 Console:
+  # Mostrar as mensagens dos canais no console. Com false, nenhum canal
+  # aparece la; com true, vale o "Registrar no console" de cada canal.
+  Mostrar mensagens dos canais: false
+  # Formato de /starchat falar e do console escrevendo num canal.
   Formato: '{canal} &c&lConsole&7: &f{mensagem}'
 
 # ------------------------------------------------------------------------------
