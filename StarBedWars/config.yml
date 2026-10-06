@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 26
+Versao do modelo: 27
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -137,6 +137,10 @@ Partida:
   # winstreak zerada e, no ranqueado, os pontos da derrota descontados.
   # Sem isso da para "kitar" a partida perdida e manter a sequencia.
   Contar derrota ao sair: true
+  # Deixar soltar item (tecla Q) enquanto cai no vazio. Desligado, quem e
+  # jogado para fora do mapa nao consegue "esconder" os minerios no ar: eles
+  # vao com ele e caem para quem o matou.
+  Dropar no vazio: false
   # Quem cai do servidor CAINDO NO VAZIO (e sem cama) morre ali, em vez de
   # ficar com a vaga guardada e voltar "salvo" no spawn da ilha -- assim quem
   # sobrou vivo ganha na hora. "Altura do vazio" e quantos blocos abaixo do
@@ -163,9 +167,12 @@ Partida:
   # desistiram ou a equipe foi ELIMINADA -- continuam funcionando: gerador
   # rodando e NPCs de loja/melhorias de pe, para os outros jogadores irem
   # usar. A ilha nao disputa a partida, so funciona.
-  Ilhas sem participantes: false
+  Ilhas sem participantes: true
   # Blocos de distancia dos geradores e dos NPCs onde nao se pode construir.
   Distancia protegida: 2
+  # O mesmo, em volta do spawn da equipe e do gerador da ilha (0 = sem protecao):
+  # e o que impede fechar o nascimento de alguem com um bloco.
+  Distancia protegida do spawn: 2
   # Primeiro sangue (recompensa extra para o primeiro abate).
   Primeiro sangue: true
   # Ao morrer, a espada/picareta/machado comprados voltam um nivel.
