@@ -12,7 +12,7 @@
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 7
+Versao do modelo: 8
 
 #
 # ══════════════════════  MENU DE QUEM NAO TEM CLAN  ═══════════════════════
@@ -420,6 +420,21 @@ Menu de cargos:
         - '&7neste clan.'
         - '&r'
         - '&a&lCLIQUE &fpara criar'
+    Restaurar:
+      #  So aparece quando o clan mexeu em algum cargo DO SERVIDOR. Um cargo do
+      #  servidor "removido" sai da lista, entao este botao e o unico caminho de
+      #  volta para ele. -1 esconde.
+      Slot: 27
+      Material: 'CLOCK'
+      Nome: '&e&lRESTAURAR OS DO SERVIDOR'
+      Lore:
+        - '&7Devolve os cargos do servidor ao'
+        - '&7que eles sao de fabrica, inclusive'
+        - '&7os que voce removeu.'
+        - '&r'
+        - '&7Os cargos criados pelo clan ficam.'
+        - '&r'
+        - '&e&lCLIQUE &fpara restaurar'
     Voltar:
       Slot: 31
       Material: 'ARROW'
@@ -502,6 +517,16 @@ Menu do cargo:
         - '&7cargo padrao.'
         - '&r'
         - '&c&lCLIQUE &fpara apagar'
+    Restaurar:
+      #  So aparece num cargo DO SERVIDOR em que o clan mexeu.
+      Slot: 24
+      Material: 'CLOCK'
+      Nome: '&e&lVOLTAR AO PADRAO'
+      Lore:
+        - '&7Devolve este cargo ao que ele e'
+        - '&7no arquivo do servidor.'
+        - '&r'
+        - '&e&lCLIQUE &fpara restaurar'
     Voltar:
       Slot: 18
       Material: 'ARROW'
