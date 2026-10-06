@@ -12,7 +12,7 @@
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 6
+Versao do modelo: 7
 
 #
 # ══════════════════════  MENU DE QUEM NAO TEM CLAN  ═══════════════════════
@@ -409,8 +409,101 @@ Menu de cargos:
       - '&a&lCLIQUE &fpara ver as permissoes'
 
   Botoes:
+    Criar:
+      #  So aparece para o clan que liberou os cargos proprios (no mercado ou
+      #  pela permissao starclans.cargos). -1 esconde de vez.
+      Slot: 35
+      Material: 'WRITABLE_BOOK'
+      Nome: '&a&lCRIAR UM CARGO'
+      Lore:
+        - '&7Cria um cargo que existe so'
+        - '&7neste clan.'
+        - '&r'
+        - '&a&lCLIQUE &fpara criar'
     Voltar:
       Slot: 31
+      Material: 'ARROW'
+      Nome: '&c&lVOLTAR'
+      Lore: []
+
+#
+# ═════════════════════════════  CARGO DO CLAN  ═════════════════════════════
+#
+#  A tela de um cargo CRIADO pelo clan. Os cargos do cargos.yml nao passam por
+#  aqui: eles valem para o servidor inteiro, e o clique neles vai direto para as
+#  permissoes.
+#
+Menu do cargo:
+  Titulo: '&8Cargo &7» &f{cargo}'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Botoes:
+    Icone:
+      #  Mostra o cargo com o material que ele tem hoje.
+      Slot: 4
+      Nome: '&b&l{cargo}'
+      Lore:
+        - '&r'
+        - '&7Simbolo: &f{simbolo}'
+        - '&7Peso: &f{peso}'
+        - '&7Icone: &f{material}'
+    Nome:
+      Slot: 10
+      Material: 'NAME_TAG'
+      Nome: '&e&lTROCAR O NOME'
+      Lore:
+        - '&7Nome agora: &f{cargo}'
+        - '&r'
+        - '&a&lCLIQUE &fe digite no chat'
+    Simbolo:
+      Slot: 12
+      Material: 'FEATHER'
+      Nome: '&e&lTROCAR O SIMBOLO'
+      Lore:
+        - '&7O que aparece na frente do nome'
+        - '&7de quem tem este cargo.'
+        - '&r'
+        - '&7Simbolo agora: &f{simbolo}'
+        - '&r'
+        - '&a&lCLIQUE &fe digite no chat'
+    Peso:
+      Slot: 14
+      Material: 'LADDER'
+      Nome: '&e&lPESO NA HIERARQUIA'
+      Lore:
+        - '&7Quem tem peso maior manda em'
+        - '&7quem tem menor.'
+        - '&r'
+        - '&7Peso agora: &f{peso}'
+        - '&r'
+        - '&a&lCLIQUE &fpara subir 1'
+        - '&e&lCLIQUE DIREITO &fpara descer 1'
+        - '&7Com SHIFT, de 10 em 10.'
+    Permissoes:
+      Slot: 16
+      Material: 'BOOK'
+      Nome: '&b&lPERMISSOES'
+      Lore:
+        - '&7O que quem tem este cargo pode'
+        - '&7fazer dentro do clan.'
+        - '&r'
+        - '&a&lCLIQUE &fpara ver'
+    Apagar:
+      Slot: 26
+      Material: 'TNT'
+      Nome: '&4&lAPAGAR O CARGO'
+      Lore:
+        - '&7Quem estava nele volta para o'
+        - '&7cargo padrao.'
+        - '&r'
+        - '&c&lCLIQUE &fpara apagar'
+    Voltar:
+      Slot: 18
       Material: 'ARROW'
       Nome: '&c&lVOLTAR'
       Lore: []

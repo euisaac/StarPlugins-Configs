@@ -9,7 +9,7 @@
 #  ╚══════════════════════════════════════════════════════════════════════╝
 
 # Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
-Versao do modelo: 3
+Versao do modelo: 4
 
 Menu:
   Titulo: '&8Mercado &7» &f{nome}'
@@ -278,6 +278,31 @@ Itens:
         - '&7so para os membros.'
         - '&r'
         - '&7Preco: &a{preco} cash'
+        - '&r'
+        - '&a&lCLIQUE &fpara comprar'
+
+  cargos-proprios:
+    #  Libera o clan para CRIAR cargos proprios, alem dos do cargos.yml: nome,
+    #  simbolo, peso, icone e permissoes, cargo a cargo. O teto de quantos cada
+    #  clan pode criar esta no config.yml, em Cargos.
+    #
+    #  A permissao starclans.cargos libera o mesmo sem passar por aqui, para
+    #  quem quiser dar a um grupo inteiro.
+    Slot: 34
+    Preco: 400000.0
+    Pagar com: ESCOLHER
+    Permissao: ''
+    Acao: CARGOS_PROPRIOS
+    Comandos: []
+    Display:
+      Material: 'WRITABLE_BOOK'
+      Nome: '&a&lCARGOS DO CLAN'
+      Lore:
+        - '&7O clan passa a criar os proprios'
+        - '&7cargos, com nome, simbolo, icone'
+        - '&7e permissoes a escolher.'
+        - '&r'
+        - '&7Preco: &a{moeda}{preco}'
         - '&r'
         - '&a&lCLIQUE &fpara comprar'
 
