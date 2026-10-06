@@ -161,11 +161,12 @@ Principal:
     missoes:
       Slot: 30
       Material: PAPER
-      Nome: '&eMissoes do dia'
+      Nome: '&eMissoes'
       Lore:
-        - '&7Complete e ganhe perolas.'
+        - '&7Diarias e permanentes: complete e ganhe perolas.'
         - ''
-        - ' &7Concluidas hoje: &f{missoes_concluidas}&7/&f{missoes_total}'
+        - ' &7Diarias hoje: &f{missoes_concluidas}&7/&f{missoes_total}'
+        - ' &7Permanentes: &f{missoes_permanentes_concluidas}&7/&f{missoes_permanentes_total}'
         - ''
         - '&eClique para ver'
       Acoes: [ 'missoes' ]
@@ -587,13 +588,16 @@ Colecao:
 #  {meta} {porcentagem} {barra} {perolas} {estado}
 # ---------------------------------------------------------------------------
 Missoes:
-  Titulo: '&8Missoes do dia'
-  Linhas: 3
+  Titulo: '&8Missoes &7({aba})'
+  Linhas: 6
   Enfeite:
     Ativar: true
     Material: BLACK_STAINED_GLASS_PANE
     Nome: ' '
-  Slots: [ 11, 13, 15 ]
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  # Modelos de cada missao: em andamento, concluida e bloqueada (permanente que
+  # espera outra). Variaveis: {nome} {descricao} {progresso} {meta}
+  # {porcentagem} {barra} {perolas} {estado} {requer}
   Missao:
     Em andamento:
       Material: PAPER
@@ -620,20 +624,65 @@ Missoes:
         - ' {barra}'
         - ''
         - ' {estado}'
-  Itens:
-    info:
-      Slot: 4
-      Material: CLOCK
-      Nome: '&eRenova em &f{missoes_renova}'
+    Bloqueada:
+      Material: GRAY_DYE
+      Nome: '&8{nome}'
       Lore:
         - ''
-        - ' &7Concluidas: &f{missoes_concluidas}&7/&f{missoes_total}'
+        - '{descricao}'
         - ''
+        - ' &7Recompensa: &b{perolas} perolas'
+        - ''
+        - ' {estado}'
+  Itens:
+    aba_diarias:
+      Slot: 2
+      Material: CLOCK
+      Nome: '&eMissoes diarias'
+      Lore:
+        - '&7Sorteadas todo dia; zeram a meia-noite.'
+        - ''
+        - ' &7Concluidas hoje: &f{missoes_concluidas}&7/&f{missoes_total}'
+        - ' &7Renova em &f{missoes_renova}'
+        - ''
+        - '{aba_diarias_estado}'
+      Acoes: [ 'missoes_aba:diarias' ]
+    info:
+      Slot: 4
+      Material: BOOK
+      Nome: '&bMissoes'
+      Lore:
+        - '&7Complete e ganhe perolas.'
+        - ''
+        - ' &7Diarias hoje: &f{missoes_concluidas}&7/&f{missoes_total}'
+        - ' &7Permanentes: &f{missoes_permanentes_concluidas}&7/&f{missoes_permanentes_total}'
+    aba_permanentes:
+      Slot: 6
+      Material: NETHER_STAR
+      Nome: '&dMissoes permanentes'
+      Lore:
+        - '&7Nao zeram: cada uma vale uma vez.'
+        - '&7Algumas abrem a proxima da sequencia.'
+        - ''
+        - ' &7Concluidas: &f{missoes_permanentes_concluidas}&7/&f{missoes_permanentes_total}'
+        - ''
+        - '{aba_permanentes_estado}'
+      Acoes: [ 'missoes_aba:permanentes' ]
+    anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ 'anterior' ]
     voltar:
-      Slot: 22
+      Slot: 49
       Material: ARROW
       Nome: '&cVoltar'
       Acoes: [ 'voltar' ]
+    proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&7Proxima pagina &8({pagina}/{paginas})'
+      Acoes: [ 'proxima' ]
 
 # ---------------------------------------------------------------------------
 #  Torneio atual: as 10 posicoes nos Slots.
@@ -663,7 +712,7 @@ Torneio:
       Slot: 4
       Material: GOLD_INGOT
       Brilho: true
-      Nome: '&6Torneio: {torneio_estado}'
+      Nome: '&6{torneio_categoria}: {torneio_estado}'
       Lore:
         - ''
         - ' &7{torneio_descricao}'
@@ -677,6 +726,16 @@ Torneio:
       Material: ARROW
       Nome: '&cVoltar'
       Acoes: [ 'voltar' ]
+    # So aparece com o Torneio do Mes e um evento valendo ao mesmo tempo.
+    categoria:
+      Slot: 27
+      Material: CLOCK
+      Nome: '&eVer o {torneio_outro}'
+      Lore:
+        - '&7Tem dois torneios valendo agora.'
+        - ''
+        - '&eClique para alternar.'
+      Acoes: [ 'trocar_torneio' ]
     historico:
       Slot: 35
       Material: BOOK

@@ -1,9 +1,14 @@
 # ==========================================================================
 #  StarPesca - torneios
 #
-#  Um torneio por vez. Comeca pelo /starpesca torneio iniciar <tipo> ou
-#  sozinho, pela agenda abaixo. Ao terminar, os tres primeiros recebem as
-#  recompensas das Posicoes; sem participante nao ha vencedor.
+#  Duas categorias, que valem AO MESMO TEMPO (o mesmo peixe conta nas duas):
+#    Torneio do Mes     vai ate o fim do mes, premio maior (Categorias.Mensal)
+#    Evento de Torneio  breve, de 1 a 2 horas, pela Agenda (Categorias.Evento)
+#  Comeca pelo /starpesca torneio iniciar <tipo> [vara] [duracao] [mensal|evento]
+#  ou sozinho (Agenda e Categorias.Mensal.Automatico). Sem dizer a categoria,
+#  duracao de um dia ou mais e o do mes; mensal sem duracao vai ate o fim do mes.
+#  Ao terminar, as posicoes da categoria recebem as recompensas; sem
+#  participante nao ha vencedor.
 #
 #  Tipos:
 #    PESO        vence quem pescar o peixe mais pesado
@@ -47,7 +52,47 @@ Tipos:
 # Duracao padrao (minutos) quando o comando nao diz.
 Duracao: 30
 
-# Posicao -> recompensa. {premio} nas mensagens e a soma em money do 1o lugar.
+# Categorias. Sem esta secao: o Evento usa as Posicoes abaixo e o do Mes usa o
+# premio de fabrica (top 5: 2000/1200/800/400/200 perolas e 250k/150k/100k/50k/25k).
+Categorias:
+  Mensal:
+    Nome: 'Torneio do Mes'
+    # Sempre um valendo: comeca sozinho quando nao ha nenhum (ate o fim do mes).
+    Automatico: true
+    # Tipos sorteados para o do mes (vazio = todos) e a vara.
+    Tipos: [ QUANTIDADE, PESO, VALOR, RARIDADE ]
+    Vara: vara_do_player
+    Posicoes:
+      1:
+        Perolas: 2000.0
+        Economias:
+          money: 250000.0
+        Comandos: [ ]
+      2:
+        Perolas: 1200.0
+        Economias:
+          money: 150000.0
+        Comandos: [ ]
+      3:
+        Perolas: 800.0
+        Economias:
+          money: 100000.0
+        Comandos: [ ]
+      4:
+        Perolas: 400.0
+        Economias:
+          money: 50000.0
+        Comandos: [ ]
+      5:
+        Perolas: 200.0
+        Economias:
+          money: 25000.0
+        Comandos: [ ]
+  Evento:
+    Nome: 'Evento de Torneio'
+    # (Posicoes do evento: as Posicoes logo abaixo.)
+
+# Posicao -> recompensa do Evento de Torneio. {premio} nas mensagens e a soma do 1o lugar.
 Posicoes:
   1:
     Perolas: 300.0
@@ -97,30 +142,41 @@ Varas:
     Ignorar boosters: true
 
 # Holograma do torneio: marque o lugar com /starpesca torneio holograma
-# (e tire com /starpesca torneio holograma remover). Ele so aparece enquanto
-# um torneio estiver valendo e se atualiza a cada 2 segundos.
-# Variaveis: {tipo} {descricao} {vara} {tempo} {premio} {participantes}
+# (e tire com /starpesca torneio holograma remover). O Torneio do Mes fica em
+# cima e o evento embaixo (sem evento, quanto falta para o proximo). So aparece
+# com algum torneio valendo e se atualiza a cada 2 segundos.
+# Variaveis: {categoria} {tipo} {descricao} {vara} {tempo} {premio} {participantes}
 # {1_nome} {1_valor} {2_nome} {2_valor} {3_nome} {3_valor}
 Holograma:
-  Linhas:
-    - '&6&lTORNEIO DE PESCA'
-    - '&f{tipo} &7| &f{vara}'
-    - '&7Acaba em &e{tempo}'
-    - ''
-    - '&6&l1o &f{1_nome} &7- &e{1_valor}'
-    - '&7&l2o &f{2_nome} &7- &e{2_valor}'
-    - '&c&l3o &f{3_nome} &7- &e{3_valor}'
-    - ''
-    - '&7Participantes: &f{participantes} &8| &7Premio: &f{premio}'
+  Mensal:
+    Linhas:
+      - '&6&l✦ TORNEIO DO MES ✦'
+      - '&f{tipo} &7| &f{vara}'
+      - '&7Acaba em &e{tempo}'
+      - '&6&l1o &f{1_nome} &7- &e{1_valor}'
+      - '&7&l2o &f{2_nome} &7- &e{2_valor}'
+      - '&c&l3o &f{3_nome} &7- &e{3_valor}'
+      - '&7Participantes: &f{participantes} &8| &7Premio: &f{premio}'
+  Evento:
+    Linhas:
+      - '&d&l⚡ EVENTO DE TORNEIO ⚡'
+      - '&f{tipo} &7| &f{vara}'
+      - '&7Acaba em &e{tempo}'
+      - '&6&l1o &f{1_nome} &7- &e{1_valor}'
+      - '&7&l2o &f{2_nome} &7- &e{2_valor}'
+      - '&c&l3o &f{3_nome} &7- &e{3_valor}'
+      - '&7Participantes: &f{participantes} &8| &7Premio: &f{premio}'
+  Proximo evento: '&d⚡ &7Proximo evento em &e{tempo}'
 
-# Agenda: comeca torneios sozinho.
+# Agenda dos Eventos de Torneio (breves; o do mes tem a agenda dele em Categorias).
 Agenda:
   Ativar: true
-  # Intervalo entre um torneio e o proximo (minutos), contado do fim do anterior.
+  # Intervalo entre um evento e o proximo (minutos), contado do fim do anterior.
   A cada: 180
   # Tipos sorteados (vazio = todos).
   Tipos: [ PESO, QUANTIDADE, RARIDADE, VALOR ]
-  Duracao: 30
+  # Duracao de cada evento (minutos): de 1 a 2 horas.
+  Duracao: 60
   # A vara dos torneios da agenda (vara_do_player, vara_zerada ou vara_sem_upgrade).
   Vara: vara_do_player
   # So comeca com pelo menos tantos jogadores online.

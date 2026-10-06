@@ -17,6 +17,10 @@
 #    TEMPO               ficar {meta} minutos pescando
 #
 #  Recompensa: Perolas e Comandos ({jogador}). Peso: chance no sorteio.
+#
+#  Permanentes (secao Permanentes, no fim): nao zeram com o dia; cada uma se
+#  conclui uma vez. Com 'Requer: <id>' ela so comeca a contar depois da outra
+#  (as sequencias). Sem a secao no arquivo, valem as de fabrica.
 #  Nos itens: {nome} {descricao} {progresso} {meta} {porcentagem} {barra}
 #  {perolas} {estado}
 # ==========================================================================
@@ -148,3 +152,335 @@ Barra:
 Estado:
   Em andamento: '&eEm andamento'
   Concluida: '&aConcluida'
+
+# Missoes permanentes (ver o topo do arquivo).
+Permanentes:
+  perm_pescar_100:
+    Nome: '&aPrimeiros passos'
+    Descricao: '&7Pesque &f{meta}&7 peixes no total.'
+    Tipo: PESCAR
+    Meta: 100
+    Recompensa:
+      Perolas: 100.0
+      Comandos: [ ]
+  perm_pescar_500:
+    Nome: '&aPescador dedicado'
+    Descricao: '&7Pesque &f{meta}&7 peixes no total.'
+    Tipo: PESCAR
+    Meta: 500
+    Requer: perm_pescar_100
+    Recompensa:
+      Perolas: 300.0
+      Comandos: [ ]
+  perm_pescar_1000:
+    Nome: '&aMil peixes'
+    Descricao: '&7Pesque &f{meta}&7 peixes no total.'
+    Tipo: PESCAR
+    Meta: 1000
+    Requer: perm_pescar_500
+    Recompensa:
+      Perolas: 600.0
+      Comandos: [ ]
+  perm_pescar_5000:
+    Nome: '&2Veterano do lago'
+    Descricao: '&7Pesque &f{meta}&7 peixes no total.'
+    Tipo: PESCAR
+    Meta: 5000
+    Requer: perm_pescar_1000
+    Recompensa:
+      Perolas: 2000.0
+      Comandos: [ ]
+  perm_pescar_10000:
+    Nome: '&2Lenda das aguas'
+    Descricao: '&7Pesque &f{meta}&7 peixes no total.'
+    Tipo: PESCAR
+    Meta: 10000
+    Requer: perm_pescar_5000
+    Recompensa:
+      Perolas: 4000.0
+      Comandos: [ ]
+  perm_pescar_50000:
+    Nome: '&6Mestre pescador'
+    Descricao: '&7Pesque &f{meta}&7 peixes no total.'
+    Tipo: PESCAR
+    Meta: 50000
+    Requer: perm_pescar_10000
+    Recompensa:
+      Perolas: 15000.0
+      Comandos: [ ]
+  perm_peso_25kg:
+    Nome: '&bBalde cheio'
+    Descricao: '&7Some &f{meta}g&7 em peixes pescados.'
+    Tipo: PESO
+    Meta: 25000
+    Recompensa:
+      Perolas: 120.0
+      Comandos: [ ]
+  perm_peso_100kg:
+    Nome: '&bRede pesada'
+    Descricao: '&7Some &f{meta}g&7 em peixes pescados.'
+    Tipo: PESO
+    Meta: 100000
+    Requer: perm_peso_25kg
+    Recompensa:
+      Perolas: 400.0
+      Comandos: [ ]
+  perm_peso_500kg:
+    Nome: '&3Meia tonelada'
+    Descricao: '&7Some &f{meta}g&7 em peixes pescados.'
+    Tipo: PESO
+    Meta: 500000
+    Requer: perm_peso_100kg
+    Recompensa:
+      Perolas: 1500.0
+      Comandos: [ ]
+  perm_peso_2t:
+    Nome: '&3Duas toneladas'
+    Descricao: '&7Some &f{meta}g&7 em peixes pescados.'
+    Tipo: PESO
+    Meta: 2000000
+    Requer: perm_peso_500kg
+    Recompensa:
+      Perolas: 5000.0
+      Comandos: [ ]
+  perm_unico_2kg:
+    Nome: '&eBom tamanho'
+    Descricao: '&7Pesque um peixe com pelo menos &f{meta}g&7.'
+    Tipo: PESO_UNICO
+    Meta: 2000
+    Recompensa:
+      Perolas: 80.0
+      Comandos: [ ]
+  perm_unico_5kg:
+    Nome: '&eTrofeu de 5kg'
+    Descricao: '&7Pesque um peixe com pelo menos &f{meta}g&7.'
+    Tipo: PESO_UNICO
+    Meta: 5000
+    Requer: perm_unico_2kg
+    Recompensa:
+      Perolas: 250.0
+      Comandos: [ ]
+  perm_unico_10kg:
+    Nome: '&6Monstro de 10kg'
+    Descricao: '&7Pesque um peixe com pelo menos &f{meta}g&7.'
+    Tipo: PESO_UNICO
+    Meta: 10000
+    Requer: perm_unico_5kg
+    Recompensa:
+      Perolas: 800.0
+      Comandos: [ ]
+  perm_unico_18kg:
+    Nome: '&6Gigante de 18kg'
+    Descricao: '&7Pesque um peixe com pelo menos &f{meta}g&7.'
+    Tipo: PESO_UNICO
+    Meta: 18000
+    Requer: perm_unico_10kg
+    Recompensa:
+      Perolas: 2500.0
+      Comandos: [ ]
+  perm_incomum_50:
+    Nome: '&aColecionador de incomuns'
+    Descricao: '&7Pesque &f{meta}&7 peixes incomuns.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: incomum
+    Meta: 50
+    Recompensa:
+      Perolas: 200.0
+      Comandos: [ ]
+  perm_raro_25:
+    Nome: '&9Cacador de raros'
+    Descricao: '&7Pesque &f{meta}&7 peixes raros.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: raro
+    Meta: 25
+    Requer: perm_incomum_50
+    Recompensa:
+      Perolas: 400.0
+      Comandos: [ ]
+  perm_raro_100:
+    Nome: '&9Especialista em raros'
+    Descricao: '&7Pesque &f{meta}&7 peixes raros.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: raro
+    Meta: 100
+    Requer: perm_raro_25
+    Recompensa:
+      Perolas: 1200.0
+      Comandos: [ ]
+  perm_epico_10:
+    Nome: '&5Toque epico'
+    Descricao: '&7Pesque &f{meta}&7 peixes epicos.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: epico
+    Meta: 10
+    Requer: perm_raro_25
+    Recompensa:
+      Perolas: 900.0
+      Comandos: [ ]
+  perm_epico_50:
+    Nome: '&5Mestre dos epicos'
+    Descricao: '&7Pesque &f{meta}&7 peixes epicos.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: epico
+    Meta: 50
+    Requer: perm_epico_10
+    Recompensa:
+      Perolas: 3500.0
+      Comandos: [ ]
+  perm_lendario_1:
+    Nome: '&6Encontro lendario'
+    Descricao: '&7Pesque &f{meta}&7 peixe lendario.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: lendario
+    Meta: 1
+    Requer: perm_epico_10
+    Recompensa:
+      Perolas: 1500.0
+      Comandos: [ ]
+  perm_lendario_10:
+    Nome: '&6Lendas no anzol'
+    Descricao: '&7Pesque &f{meta}&7 peixes lendarios.'
+    Tipo: PESCAR_RARIDADE
+    Raridade: lendario
+    Meta: 10
+    Requer: perm_lendario_1
+    Recompensa:
+      Perolas: 8000.0
+      Comandos: [ ]
+  perm_nivel5_50:
+    Nome: '&bAguas fundas'
+    Descricao: '&7Pesque &f{meta}&7 peixes de nivel 5 ou mais.'
+    Tipo: PESCAR_NIVEL
+    Nivel: 5
+    Meta: 50
+    Recompensa:
+      Perolas: 500.0
+      Comandos: [ ]
+  perm_nivel8_25:
+    Nome: '&3Profundezas'
+    Descricao: '&7Pesque &f{meta}&7 peixes de nivel 8 ou mais.'
+    Tipo: PESCAR_NIVEL
+    Nivel: 8
+    Meta: 25
+    Requer: perm_nivel5_50
+    Recompensa:
+      Perolas: 1500.0
+      Comandos: [ ]
+  perm_nivel10_10:
+    Nome: '&3Abismo'
+    Descricao: '&7Pesque &f{meta}&7 peixes de nivel 10.'
+    Tipo: PESCAR_NIVEL
+    Nivel: 10
+    Meta: 10
+    Requer: perm_nivel8_25
+    Recompensa:
+      Perolas: 3000.0
+      Comandos: [ ]
+  perm_vender_50k:
+    Nome: '&aPrimeiras vendas'
+    Descricao: '&7Venda peixes por &f{meta}&7 no total.'
+    Tipo: VENDER
+    Economia: money
+    Meta: 50000
+    Recompensa:
+      Perolas: 150.0
+      Comandos: [ ]
+  perm_vender_500k:
+    Nome: '&aComerciante'
+    Descricao: '&7Venda peixes por &f{meta}&7 no total.'
+    Tipo: VENDER
+    Economia: money
+    Meta: 500000
+    Requer: perm_vender_50k
+    Recompensa:
+      Perolas: 700.0
+      Comandos: [ ]
+  perm_vender_5m:
+    Nome: '&2Magnata do peixe'
+    Descricao: '&7Venda peixes por &f{meta}&7 no total.'
+    Tipo: VENDER
+    Economia: money
+    Meta: 5000000
+    Requer: perm_vender_500k
+    Recompensa:
+      Perolas: 4000.0
+      Comandos: [ ]
+  perm_perolas_500:
+    Nome: '&bPerolas no bolso'
+    Descricao: '&7Ganhe &f{meta}&7 perolas pescando.'
+    Tipo: PEROLAS
+    Meta: 500
+    Recompensa:
+      Perolas: 100.0
+      Comandos: [ ]
+  perm_perolas_5000:
+    Nome: '&bTesouro de perolas'
+    Descricao: '&7Ganhe &f{meta}&7 perolas pescando.'
+    Tipo: PEROLAS
+    Meta: 5000
+    Requer: perm_perolas_500
+    Recompensa:
+      Perolas: 800.0
+      Comandos: [ ]
+  perm_tempo_60:
+    Nome: '&eUma hora no lago'
+    Descricao: '&7Fique &f{meta}&7 minutos pescando.'
+    Tipo: TEMPO
+    Meta: 60
+    Recompensa:
+      Perolas: 80.0
+      Comandos: [ ]
+  perm_tempo_600:
+    Nome: '&eDez horas pescando'
+    Descricao: '&7Fique &f{meta}&7 minutos pescando.'
+    Tipo: TEMPO
+    Meta: 600
+    Requer: perm_tempo_60
+    Recompensa:
+      Perolas: 600.0
+      Comandos: [ ]
+  perm_tempo_3000:
+    Nome: '&6Vida de pescador'
+    Descricao: '&7Fique &f{meta}&7 minutos pescando.'
+    Tipo: TEMPO
+    Meta: 3000
+    Requer: perm_tempo_600
+    Recompensa:
+      Perolas: 3000.0
+      Comandos: [ ]
+  perm_tubarao_5:
+    Nome: '&9Tubaroes a vista'
+    Descricao: '&7Pesque &f{meta}&7x o peixe tubarao.'
+    Tipo: PESCAR_PEIXE
+    Peixe: tubarao
+    Meta: 5
+    Recompensa:
+      Perolas: 600.0
+      Comandos: [ ]
+  perm_pirarucu_5:
+    Nome: '&2Gigante amazonico'
+    Descricao: '&7Pesque &f{meta}&7x o peixe pirarucu.'
+    Tipo: PESCAR_PEIXE
+    Peixe: pirarucu
+    Meta: 5
+    Recompensa:
+      Perolas: 600.0
+      Comandos: [ ]
+  perm_marlim_3:
+    Nome: '&3Duelo com o marlim'
+    Descricao: '&7Pesque &f{meta}&7x o peixe marlim.'
+    Tipo: PESCAR_PEIXE
+    Peixe: marlim
+    Meta: 3
+    Recompensa:
+      Perolas: 900.0
+      Comandos: [ ]
+  perm_atum_azul_1:
+    Nome: '&6O atum azul'
+    Descricao: '&7Pesque &f{meta}&7x o peixe atum azul.'
+    Tipo: PESCAR_PEIXE
+    Peixe: atum_azul
+    Meta: 1
+    Recompensa:
+      Perolas: 1500.0
+      Comandos: [ ]
