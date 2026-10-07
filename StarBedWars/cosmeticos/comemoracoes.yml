@@ -3,7 +3,10 @@
 #
 #  Tocadas para a equipe vencedora no fim da partida. O campo "Tipo" define
 #  o show: FOGOS, RAIOS, CHUVA_DE_LAS, EXPLOSOES, REBANHO, DRAGAO,
-#  BIGORNAS, BOLOS, CHUVA_DE_DIAMANTES, TORNADO.
+#  BIGORNAS, BOLOS, CHUVA_DE_DIAMANTES, TORNADO e DRAGAO_MONTADO (o vencedor
+#  monta um Dragao do Fim e voa pela arena, com fogos roxos em volta).
+#  "Titulo" e "Subtitulo" (opcionais) trocam o titulo de vitoria de quem
+#  usa a comemoracao.
 #  Nao remova "fogos": e a de quem nao escolheu nenhuma.
 #  Permissao para ter todas: starbedwars.comemoracao.*
 #
@@ -108,3 +111,27 @@ Comemoracoes:
     Cash: 0
     Descricao:
       - '&7Um dragao sobrevoa a arena'
+  dragao_montado:
+    Nome: 'Montaria do Dragao'
+    Tipo: DRAGAO_MONTADO
+    Material: DRAGON_HEAD
+    Raridade: LENDARIO
+    Coins: 75000
+    Cash: 0
+    # Titulo proprio da vitoria (no lugar do "Vitoria" do mensagens.yml).
+    Titulo: '&5&lVITORIA!'
+    Subtitulo: '&dVoce domou o Dragao do Fim'
+    # Para onde o jogador olha, o dragao vai. Velocidade em blocos por tique.
+    Velocidade: 0.9
+    # Quanto o jogador fica acima do dragao (ajuste se ele parecer flutuar
+    # longe das costas ou entrar no corpo do bicho).
+    Altura do jogador: 3.0
+    # Ate quantos blocos acima do ponto de partida da para subir.
+    Altura maxima: 40
+    # Distancia em volta do jogador em que os fogos (roxos) estouram.
+    Raio dos fogos: 14
+    Nome do dragao: '&5&lDragao da Vitoria'
+    Descricao:
+      - '&7Monte no Dragao do Fim e voe'
+      - '&7pela arena enquanto os fogos'
+      - '&7estouram ao seu redor'
