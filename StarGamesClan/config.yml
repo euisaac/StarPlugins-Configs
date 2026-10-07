@@ -1,0 +1,132 @@
+# ---------------------------------------------------------------------------
+#  StarGamesClan - configuracao geral
+#
+#  Clans para os minigames: /clan (criar, convidar, cargos, cor, nome) com as
+#  contas do grupo somadas pelas partidas.
+#
+#  Os outros arquivos:
+#    menus.yml      titulo, slots e itens das telas
+#    mensagens.yml  tudo que o jogador le
+#
+#  A ligacao com os jogos e UMA so: o registro de partidas do loader. Por isso
+#  StarBedWars, StarEggWars, StarSkyWars, StarTheBridge e StarMurder ja
+#  pontuam clan sem configuracao nenhuma -- e um minigame novo tambem, assim
+#  que ele usar o mesmo registro.
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Geral:
+  Debug: false
+
+Banco de dados:
+  # SQLITE ou MYSQL. O SQLite guarda em dados/stargamesclan.db.
+  Tipo: SQLITE
+  Prefixo das tabelas: stargamesclan_
+  # Segundos entre as gravacoes do que mudou.
+  Salvar a cada: 60
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Clan:
+  # Criar clan e por permissao.
+  #
+  # Ligado (o padrao), so cria quem tem a permissao abaixo -- e assim que o
+  # servidor vende "criar clan" para o VIP, com o resto do servidor podendo
+  # apenas ENTRAR nos clans que existem. Desligue para liberar a todos.
+  Exigir permissao para criar: true
+  Permissao para criar: stargamesclan.criar
+
+  # Tamanho da tag (so letras e numeros, sem cor e sem espaco).
+  Tamanho minimo da tag: 3
+  Tamanho maximo da tag: 5
+
+  # 0 = sem limite de membros.
+  Maximo de membros: 10
+
+  # Quanto tempo o convite espera a resposta. 0 = nao vence.
+  Segundos do convite: 60
+
+  # A cor com que a tag nasce; o dono do clan troca com /clan cor.
+  Cor padrao: '&b'
+
+  # Tags que ninguem pode usar (comparadas sem diferenciar maiuscula).
+  Tags proibidas:
+    - admin
+    - staff
+    - equipe
+    - dono
+    - owner
+    - mod
+
+  # Avisa o clan no chat quando o grupo ganha uma partida.
+  Avisar vitoria: true
+
+  # /clan chat: a conversa so entre os membros.
+  Chat do clan: true
+
+  # Poe a tag na frente da fala no chat.
+  #
+  # Desligado por padrao de proposito: quem usa um plugin de chat (ou o
+  # StarChat) prefere colocar %stargamesclan_etiqueta% no formato dele, e as
+  # duas coisas juntas deixariam a tag em dobro.
+  Tag no chat: false
+  Formato da tag: '&7[{cor}{tag}&7] '
+
+# Quanto cada coisa vale para o clan, por jogo.
+#
+# A secao com o NOME DO PRODUTO manda; o que nao estiver nela cai na "padrao".
+# E por isso que um minigame novo ja entra pontuando: ele usa a padrao.
+#
+#   Ativar          o jogo conta para o clan
+#   Pontos por abate / por cama / por partida / por vitoria
+#
+# "Pontos por cama" vale a cama do StarBedWars e o ovo do StarEggWars.
+# A vitoria e do CLAN, nao de cada membro: tres membros na equipe campea
+# somam UMA vitoria, nao tres.
+Jogos:
+  padrao:
+    Ativar: true
+    Pontos por abate: 5
+    Pontos por cama: 15
+    Pontos por partida: 2
+    Pontos por vitoria: 50
+
+  StarBedWars:
+    Ativar: true
+    Pontos por abate: 5
+    Pontos por cama: 15
+    Pontos por partida: 2
+    Pontos por vitoria: 50
+
+  StarEggWars:
+    Ativar: true
+    Pontos por abate: 5
+    Pontos por cama: 15
+    Pontos por partida: 2
+    Pontos por vitoria: 50
+
+  StarSkyWars:
+    Ativar: true
+    Pontos por abate: 6
+    Pontos por partida: 2
+    Pontos por vitoria: 45
+
+  StarTheBridge:
+    Ativar: true
+    Pontos por abate: 4
+    Pontos por partida: 2
+    Pontos por vitoria: 40
+
+  StarMurder:
+    Ativar: true
+    Pontos por abate: 4
+    Pontos por partida: 2
+    Pontos por vitoria: 40
+
+# Som dos cliques dos menus. Vazio = sem som.
+Sons:
+  Clique: UI_BUTTON_CLICK

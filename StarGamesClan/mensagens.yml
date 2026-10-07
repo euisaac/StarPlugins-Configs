@@ -1,0 +1,165 @@
+# ---------------------------------------------------------------------------
+#  StarGamesClan - mensagens
+#
+#  Deixe '' para a mensagem nao aparecer.
+#  Um bloco | vira varias linhas de chat (sem o prefixo).
+# ---------------------------------------------------------------------------
+Versao do modelo: 1
+
+Prefixo: '&b&lCLAN &8» &7'
+
+Erros:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Somente jogador: '&cEste comando e so para jogadores.'
+  Carregando: '&cOs clans ainda estao carregando. Tente de novo em instantes.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Voce mesmo: '&cVoce nao pode fazer isso com voce mesmo.'
+  Numero invalido: '&f{valor} &cnao e um numero.'
+
+Cargos:
+  DONO: '&cDono'
+  CAPITAO: '&eCapitao'
+  MEMBRO: '&7Membro'
+
+Etiquetas:
+  Online: '&aonline'
+  Offline: '&7offline'
+  # O que os placeholders devolvem para quem nao tem clan.
+  Sem clan: ''
+
+Clan:
+  Sem permissao para criar: '&cVoce nao tem permissao para criar um clan.'
+  Ja tem clan: '&cVoce ja esta em um clan. Use &f/clan sair &cantes.'
+  Alvo ja tem clan: '&f{jogador} &cja esta em um clan.'
+  Sem clan: '&cVoce nao esta em nenhum clan.'
+  Nao existe: '&cEsse clan nao existe.'
+  Cheio: '&cO clan esta cheio (&f{maximo} &cmembros).'
+
+  Tag tamanho: '&cA tag precisa ter de &f{minimo} &ca &f{maximo} &ccaracteres.'
+  Tag invalida: '&cA tag so pode ter letras e numeros.'
+  Tag proibida: '&cEssa tag nao e permitida.'
+  Tag em uso: '&cJa existe um clan com essa tag.'
+
+  Criado: '&aClan &f{tag} &acriado! Use &f/clan convidar <jogador> &apara chamar o time.'
+  Criado aviso: '&7O clan &f{nome} &8(&f{tag}&8) &7foi criado por &f{jogador}&7.'
+
+  Convite enviado: '&aConvite enviado para &f{jogador}&a.'
+  Convite recebido: |
+    &8&m-----------------------------------------
+    &b&lCONVITE DE CLAN
+    &7
+    &7Voce foi convidado para o clan &f{nome} &8(&f{tag}&8)
+    &7por &f{jogador}&7. O convite vence em &f{segundos}s&7.
+    &7
+    &a/clan aceitar &7ou &c/clan recusar
+    &8&m-----------------------------------------
+  Convite recusado: '&7Convite recusado.'
+  Sem convite: '&cVoce nao tem nenhum convite pendente.'
+
+  Entrou: '&aVoce entrou no clan &f{nome} &8(&f{tag}&8)&a.'
+  Entrou aviso: '&f{jogador} &aentrou no clan.'
+  Saiu: '&7Voce saiu do clan &f{tag}&7.'
+  Saiu aviso: '&f{jogador} &7saiu do clan.'
+  Dono nao sai: '&cVoce e o dono. Passe o clan com &f/clan transferir <jogador> &cou use &f/clan desfazer&c.'
+
+  Nao e membro: '&f{jogador} &cnao e membro do seu clan.'
+  Cargo insuficiente: '&cSo &r{cargo} &cpara cima pode fazer isso.'
+  Cargo alto demais: '&cVoce nao manda em &f{jogador}&c.'
+  Cargo do dono: '&cO cargo do dono nao se muda; use &f/clan transferir&c.'
+  Somente dono: '&cSo o dono do clan pode fazer isso.'
+  Ja e capitao: '&f{jogador} &cja e capitao.'
+  Ja e membro: '&f{jogador} &cja e membro comum.'
+  Promovido: '&f{jogador} &aagora e &r{cargo}&a.'
+  Rebaixado: '&f{jogador} &7agora e &r{cargo}&7.'
+  Novo dono: '&f{jogador} &aagora e o dono do clan.'
+  Expulso: '&cVoce foi expulso do clan &f{tag}&c.'
+  Expulso aviso: '&f{jogador} &cfoi expulso por &f{quem}&c.'
+
+  Cor trocada: '&aA cor do clan agora e {cor}{tag}&a.'
+  Cor invalida: '&cUse uma das 16 cores do jogo, de &f&0 &cate &f&f&c.'
+  Nome trocado: '&aO nome do clan agora e &f{nome}&a.'
+  Nome comprido: '&cO nome pode ter no maximo &f{maximo} &ccaracteres.'
+
+  Confirmar desfazer: '&cIsso apaga o clan &f{tag} &ce todos os pontos dele. Use &f/clan desfazer confirmar &cem 30s.'
+  Desfeito: '&7O clan &f{tag} &7foi desfeito.'
+  Desfeito aviso: '&cO clan &f{tag} &cfoi desfeito por &f{jogador}&c.'
+
+  Vitoria: '&6+{pontos} pontos &7pela vitoria no &f{jogo} &7(&f{arena}&7).'
+
+  Info: |
+    &8&m-----------------------------------------
+    &7Clan: {cor}{nome} &8(&f{tag}&8)
+    &7Dono: &f{dono}   &7Membros: &f{membros} &8(&a{online} online&8)
+    &7
+    &7Pontos: &e{pontos}   &7Posicao: &e#{posicao}
+    &7Vitorias: &f{vitorias}&7/&f{partidas} &8(&f{aproveitamento}%&8)
+    &7Abates: &f{abates}   &7Camas: &f{camas}
+    &8&m-----------------------------------------
+  Membros cabecalho: '&7Membros de {cor}{tag} &8(&f{membros}&8):'
+  Membros linha: '&8 - &f{jogador} &8[&r{cargo}&8] &7{estado}'
+
+Chat:
+  Formato: '&b[CLAN] &f{jogador}&7: &f{mensagem}'
+  Ligado: '&aAgora voce fala so no clan. Use &f/clan chat &apara voltar.'
+  Solto: '&7Voce voltou a falar no chat normal.'
+  Desligado: '&cO chat do clan esta desligado neste servidor.'
+
+Admin:
+  Recarregado: '&aArquivos recarregados.'
+  Salvo: '&aClans gravados.'
+  Desfeito: '&aO clan &f{tag} &afoi desfeito.'
+  Tirado: '&f{jogador} &afoi tirado do clan &f{tag}&a.'
+  Sem clan: '&f{jogador} &cnao esta em nenhum clan.'
+  Conta invalida: '&cContas: &f{contas}&c.'
+  Definido: '&a{conta} do clan &f{tag} &aagora e &f{valor}&a.'
+  Somado: '&a{valor} em {conta} somado ao clan &f{tag}&a.'
+  Info: |
+    &8&m-----------------------------------------
+    &b&lStarGamesClan &7v{versao}
+    &7Banco: &f{banco}   &7Clans: &f{clans}
+    &8&m-----------------------------------------
+
+Uso:
+  Criar: '&cUse: &f/clan criar <tag> [nome]'
+  Convidar: '&cUse: &f/clan convidar <jogador>'
+  Expulsar: '&cUse: &f/clan expulsar <jogador>'
+  Promover: '&cUse: &f/clan promover <jogador>'
+  Rebaixar: '&cUse: &f/clan rebaixar <jogador>'
+  Transferir: '&cUse: &f/clan transferir <jogador>'
+  Cor: '&cUse: &f/clan cor <&a-&f>'
+  Nome: '&cUse: &f/clan nome <nome>'
+  Admin desfazer: '&cUse: &f/stargamesclan desfazer <tag>'
+  Admin tirar: '&cUse: &f/stargamesclan tirar <jogador>'
+  Admin definir: '&cUse: &f/stargamesclan definir <tag> <pontos|vitorias|partidas|abates|camas> <valor>'
+  Admin somar: '&cUse: &f/stargamesclan somar <tag> <pontos|vitorias|partidas|abates|camas> <valor>'
+
+Ajuda:
+  Jogador: |
+    &8&m-----------------------------------------
+    &b&lCLAN
+    &7
+    &f/clan &8- &7abre o menu do seu clan
+    &f/clan criar <tag> [nome] &8- &7abre um clan
+    &f/clan convidar <jogador> &8- &7chama alguem
+    &f/clan aceitar &8| &frecusar &8- &7responde o convite
+    &f/clan membros &8- &7lista o time
+    &f/clan chat [mensagem] &8- &7fala so com o clan
+    &f/clan info [tag] &8- &7mostra as contas do clan
+    &f/clan top &8- &7o ranking dos clans
+    &f/clan cor &8| &fnome &8- &7aparencia do clan (dono)
+    &f/clan promover &8| &frebaixar &8| &fexpulsar &8- &7cargos
+    &f/clan transferir <jogador> &8- &7passa o clan
+    &f/clan sair &8| &fdesfazer &8- &7sai ou acaba com o clan
+    &8&m-----------------------------------------
+  Admin: |
+    &8&m-----------------------------------------
+    &b&lStarGamesClan &7- equipe
+    &7
+    &f/stargamesclan info &8- &7versao, banco e quantos clans
+    &f/stargamesclan recarregar &8- &7recarrega os arquivos
+    &f/stargamesclan salvar &8- &7grava o que mudou
+    &f/stargamesclan desfazer <tag> &8- &7apaga um clan
+    &f/stargamesclan tirar <jogador> &8- &7tira alguem do clan
+    &f/stargamesclan definir <tag> <conta> <valor>
+    &f/stargamesclan somar <tag> <conta> <valor>
+    &8&m-----------------------------------------
