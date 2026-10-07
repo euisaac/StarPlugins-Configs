@@ -45,6 +45,8 @@ geral:
     &a/starloja boost [sortear] &7- vê ou sorteia de novo os boosts.
     &a/starloja meta [reiniciar] &7- vê ou reinicia a meta de venda.
     &a/starloja lojas &7- lista lojas e categorias no chat.
+    &a/starloja layout criar <nome> [atual|vazio|layout] &7- cria e abre o editor visual.
+    &a/starloja layout editar <nome> &7- reabre o editor visual de um layout.
     &a/starloja layout salvar [nome] &7- guarda menus/lojas num layout.
     &a/starloja layout carregar <nome> &7- aplica um layout (pasta layouts/).
     &a/starloja layout lista &7- lista os layouts salvos.
@@ -239,6 +241,10 @@ layout:
   carregado: '&aLayout &f{layout} &acarregado ({partes} parte(s)) e loja recarregada.'
   backup: '&7O que foi substituído está em &flayouts/{backup}/&7. Para desfazer: &f/starloja layout carregar {backup}'
   erro: '&cNão foi possível concluir: {erro}'
+  criado: '&aLayout &f{layout} &acriado a partir de &f{base}&a. Abrindo o editor...'
+  ja-existe: '&cJá existe o layout &f{layout}&c. Para mexer nele: &f/starloja layout editar {layout}'
+  base-invalida: '&cBase &f{base} &cnão existe. Use &fatual&c, &fvazio &cou o nome de um layout.'
+  padrao-protegido-editar: '&cO layout &fpadrao &cé o de fábrica. Crie uma cópia: &f/starloja layout criar meu-layout padrao'
 
 menus:
   lojas:
