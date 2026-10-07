@@ -216,6 +216,22 @@ desativar-ia:
   dano-mobs: false
 
 # ---------------------------------------------------------
+# Integração com plugins de terreno
+# ---------------------------------------------------------
+# O StarSpawners já herda a PROTEÇÃO do plugin de terreno do servidor sem
+# precisar de nada (os ouvintes rodam depois da proteção). O ajuste abaixo
+# resolve o caso oposto: muitos plugins de terreno só liberam o clique no
+# spawner pra quem tem confiança alta (container/construtor), então um amigo
+# que o dono ADICIONOU ao terreno não conseguia abrir o spawner.
+integracao-terrenos:
+  # Se true, quem é dono OU foi adicionado ao terreno onde o spawner está
+  # consegue abrir o menu do spawner, mesmo que o plugin de terreno bloqueie
+  # o clique pra não-donos. Reconhece automaticamente (por reflexão, nenhum é
+  # obrigatório): StarTerrenos, StarOneBlock, StarSkyBlock, StarPlots,
+  # PlotSquared, GriefPrevention e GriefDefender. Fora de terreno, nada muda.
+  conceder-acesso-membros: true
+
+# ---------------------------------------------------------
 # Comportamento do spawner (lógica própria do StarSpawners)
 # ---------------------------------------------------------
 spawner:
@@ -280,8 +296,20 @@ spawner:
 # Upgrade: Armazenamento de Drops no Spawner (estilo SmartSpawner)
 # ---------------------------------------------------------
 armazenamento-spawner:
+  # Como os drops ficam guardados/exibidos no armazém do spawner:
+  #   PAGINAS  = (padrão) estilo SmartSpawner: pilhas físicas de até 64 em slots,
+  #              paginadas, com capacidade (slots-por-unidade x stack). O que não
+  #              couber na capacidade cai no chão.
+  #   PILHAS   = um registro por TIPO de drop, com a contagem real (ilimitada,
+  #              pode chegar a milhões) numa pilha só. Nada cai no chão. O menu
+  #              mostra cada tipo com "Armazenados: N", preço e valor; clique
+  #              esquerdo vende a pilha (precisa do upgrade de Venda), clique
+  #              direito retira um stack.
+  # Trocar o modo e reiniciar converte o que já estava guardado, sem perder nada.
+  modo-exibicao: PAGINAS
   # Quantos slots de armazenamento cada unidade empilhada do spawner adiciona.
   # Ex: um spawner com stack 4 tem 4 páginas de 45 slots = 180 slots no total.
+  # (Só vale no modo PAGINAS.)
   slots-por-unidade-empilhada: 45
   # Teto de páginas de armazenamento, independente de quantidadeEmpilhada.
   # Sem isso, um spawner com stack na casa das centenas de milhares gera uma
