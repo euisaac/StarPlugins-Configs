@@ -45,6 +45,7 @@ Etiquetas:
   Em recarga: '&cCooldown: {tempo}'
   Pronta: '&aReady to use'
   Ativa: '&dActive'
+  Instantanea: '&bInstant'
   Passiva: '&bPassive'
   Todas: '&fAll'
   Poder: '&6Power'
@@ -74,6 +75,8 @@ Categorias:
   AVENTURA: '&bAdventure'
 
 Ferramentas:
+  LANCA: 'trident'
+  MACA: 'mace'
   PICARETA: 'pickaxe'
   PA: 'shovel'
   MACHADO: 'axe'
@@ -118,6 +121,11 @@ Impulso:
   Acabou: '&d&l⚡ &fThe XP boost is over.'
 
 Avisos:
+  Disparou: '&b&l» &b{habilidade}&f!'
+  Golpe na cabeca: '&c&l✖ &7HEADSHOT!'
+  Imobilizou: '&c&l✖ &7You pinned the target down!'
+  Imobilizado: '&c&l✖ &7You were slammed into the ground!'
+  Lanca voltou: '&3&l« &7Your trident came back.'
   Preparou: '&7You readied your &f{ferramenta}&7... &8({tempo}s)'
   Preparo acabou: '&7You lowered your &f{ferramenta}&7.'
   Ativou: '&d&l» &d{habilidade} &fACTIVATED for &d{duracao}s&f!'
@@ -303,6 +311,21 @@ Skills:
       - '&7daze and arrow retrieval.'
     Ganha XP:
       - '&7Damage dealt with arrows.'
+  MACA:
+    Nome: '&cMace'
+    Descricao:
+      - '&7Come down hard: falcon leap,'
+      - '&7shockwave and headshots.'
+    Ganha XP:
+      - '&7Damage dealt with the mace.'
+  LANCA:
+    Nome: '&3Trident'
+    Descricao:
+      - '&7Dash, sprint and throw: the trident'
+      - '&7comes back to your hand.'
+    Ganha XP:
+      - '&7Damage dealt with the trident,'
+      - '&7in hand or thrown.'
   DOMAR:
     Nome: '&6Taming'
     Descricao:
@@ -684,6 +707,40 @@ Habilidades:
     Nome: '&9Flippers'
     Descricao:
       - '&7You swim faster.'
+  pulo_do_falcao:
+    Nome: '&cFalcon Leap'
+    Descricao:
+      - '&7Right-click with the mace to leap'
+      - '&7high. The landing does not hurt.'
+  onda_de_choque:
+    Nome: '&cShockwave'
+    Descricao:
+      - '&7Hitting someone after a long fall'
+      - '&7roots the target in place.'
+  golpe_na_cabeca:
+    Nome: '&cHeadshot'
+    Descricao:
+      - '&7Chance of double damage when you'
+      - '&7hit the upper part of the target.'
+  avanco:
+    Nome: '&3Dash'
+    Descricao:
+      - '&7Sneak + right-click with the trident'
+      - '&7to dash in the direction you face.'
+  passo_ligeiro:
+    Nome: '&3Light Step'
+    Descricao:
+      - '&7Extra speed while holding'
+      - '&7the trident.'
+  arremesso_certeiro:
+    Nome: '&3True Throw'
+    Descricao:
+      - '&7The thrown trident deals more damage.'
+  retorno:
+    Nome: '&3Recall'
+    Descricao:
+      - '&7Chance for the thrown trident to'
+      - '&7return straight to your inventory.'
 
 Biomas:
   # Modern (1.13+)

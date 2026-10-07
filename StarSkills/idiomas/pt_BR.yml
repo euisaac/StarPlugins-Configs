@@ -48,6 +48,7 @@ Etiquetas:
   Em recarga: '&cRecarga: {tempo}'
   Pronta: '&aPronta para usar'
   Ativa: '&dAtiva'
+  Instantanea: '&bInstantânea'
   Passiva: '&bPassiva'
   Todas: '&fTodas'
   Poder: '&6Poder'
@@ -79,6 +80,8 @@ Categorias:
   AVENTURA: '&bAventura'
 
 Ferramentas:
+  LANCA: 'lança'
+  MACA: 'maça'
   PICARETA: 'picareta'
   PA: 'pá'
   MACHADO: 'machado'
@@ -129,6 +132,11 @@ Impulso:
 #  Avisos das habilidades ativas e passivas.
 # ---------------------------------------------------------------------------
 Avisos:
+  Disparou: '&b&l» &b{habilidade}&f!'
+  Golpe na cabeca: '&c&l✖ &7NA CABEÇA!'
+  Imobilizou: '&c&l✖ &7Você prendeu o alvo no chão!'
+  Imobilizado: '&c&l✖ &7Você foi prensado no chão!'
+  Lanca voltou: '&3&l« &7Sua lança voltou.'
   Preparou: '&7Você preparou sua &f{ferramenta}&7... &8({tempo}s)'
   Preparo acabou: '&7Você baixou a &f{ferramenta}&7.'
   Ativou: '&d&l» &d{habilidade} &fLIGADA por &d{duracao}s&f!'
@@ -317,6 +325,21 @@ Skills:
       - '&7atordoar e recuperar flechas.'
     Ganha XP:
       - '&7Dano causado com flechas.'
+  MACA:
+    Nome: '&cMaça'
+    Descricao:
+      - '&7Caia do céu com tudo: pulo do falcão,'
+      - '&7onda de choque e golpe na cabeça.'
+    Ganha XP:
+      - '&7Dano causado com a maça.'
+  LANCA:
+    Nome: '&3Lança'
+    Descricao:
+      - '&7Avance, corra e arremesse: a lança'
+      - '&7volta sozinha para a sua mão.'
+    Ganha XP:
+      - '&7Dano causado com a lança, na mão'
+      - '&7ou arremessada.'
   DOMAR:
     Nome: '&6Domar'
     Descricao:
@@ -726,6 +749,40 @@ Habilidades:
     Nome: '&9Nadadeiras'
     Descricao:
       - '&7Você nada mais rápido.'
+  pulo_do_falcao:
+    Nome: '&cPulo do Falcão'
+    Descricao:
+      - '&7Clique direito com a maça para'
+      - '&7saltar alto. A queda não machuca.'
+  onda_de_choque:
+    Nome: '&cOnda de Choque'
+    Descricao:
+      - '&7Acertar alguém caindo de longe'
+      - '&7prende o alvo no lugar.'
+  golpe_na_cabeca:
+    Nome: '&cGolpe na Cabeça'
+    Descricao:
+      - '&7Chance de dano dobrado ao acertar'
+      - '&7a parte de cima do alvo.'
+  avanco:
+    Nome: '&3Avanço'
+    Descricao:
+      - '&7Agachado + clique direito com a lança'
+      - '&7para avançar na direção que olha.'
+  passo_ligeiro:
+    Nome: '&3Passo Ligeiro'
+    Descricao:
+      - '&7Velocidade extra enquanto estiver'
+      - '&7com a lança na mão.'
+  arremesso_certeiro:
+    Nome: '&3Arremesso Certeiro'
+    Descricao:
+      - '&7A lança arremessada causa mais dano.'
+  retorno:
+    Nome: '&3Retorno'
+    Descricao:
+      - '&7Chance de a lança arremessada'
+      - '&7voltar direto para o inventário.'
 
 # O nome de cada bioma no aviso do Cartografo. Bioma que nao estiver
 # aqui sai com a propria chave formatada (SNOWY_SLOPES -> Snowy slopes),
