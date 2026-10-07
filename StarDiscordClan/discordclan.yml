@@ -1,0 +1,186 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarDiscordClan - configuracao                   ║
+#  ║                                                                      ║
+#  ║   Este arquivo fica na pasta do produto de clans de proposito: tudo  ║
+#  ║   que configura clans mora num lugar so.                             ║
+#  ║                                                                      ║
+#  ║   Funciona com o StarClans ou com o StarGamesClan:                   ║
+#  ║   - StarClans: o clan compra a tag no mercado dele                   ║
+#  ║     (mercado.yml -> item "tag-discord", Acao: TAG_DISCORD).          ║
+#  ║   - StarGamesClan: a equipe (ou a loja do servidor, pelo console)    ║
+#  ║     libera com /stargamesclan discord <tag> ligar.                   ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+#  De qual produto vem os clans, quando o servidor tem OS DOIS instalados:
+#    AUTO          - o StarClans (padrao)
+#    STARCLANS     - o StarClans
+#    STARGAMESCLAN - o StarGamesClan
+#  Com um so instalado, vale ele, seja qual for o valor daqui.
+#  Com os dois, este arquivo fica na pasta do StarClans (ou onde ele ja estava).
+#  Trocar com o servidor no ar: /discordclan recarregar e depois
+#  /discordclan sincronizar.
+Fonte: AUTO
+
+Discord:
+  #  O ID da CATEGORIA do Discord onde os canais dos clans sao criados.
+  #  Para pegar: ative o modo desenvolvedor no Discord, clique com o direito na
+  #  categoria e escolha "Copiar ID do canal".
+  #
+  #  Sem este ID o produto nao cria canal nenhum -- ele avisa no console e para
+  #  por ai, em vez de espalhar canais na raiz do servidor.
+  Categoria: ''
+
+  #  O nome do cargo que o clan recebe. {tag} e a tag do clan, {nome} e o nome.
+  Nome do cargo: '{tag}'
+
+  #  Cargo destacado aparece em grupo separado na lista de membros do Discord.
+  Cargo destacado: true
+  #  Cargo mencionavel deixa qualquer um marcar o clan inteiro com @tag.
+  Cargo mencionavel: false
+
+Canais:
+  Criar chat: true
+  Criar call: true
+
+  #  {tag} e {nome} valem aqui tambem. O Discord poe o nome do canal de texto em
+  #  minusculas e troca espaco por hifen por conta propria.
+  Nome do chat: 'clan-{tag}'
+  Nome da call: 'Call {tag}'
+  Topico do chat: 'Canal privado do clan {nome}'
+
+Permissoes:
+  #  O que QUALQUER membro do clan pode nos dois canais.
+  #
+  #  Os nomes sao os do Discord (os do JDA, para ser exato). Um nome que nao
+  #  exista na versao instalada e ignorado com um aviso no console, em vez de
+  #  derrubar a criacao do canal inteiro.
+  Membro:
+    - VIEW_CHANNEL
+    - MESSAGE_HISTORY
+    - MESSAGE_SEND
+    - MESSAGE_ADD_REACTION
+    - MESSAGE_ATTACH_FILES
+    - MESSAGE_EMBED_LINKS
+    - VOICE_CONNECT
+    - VOICE_SPEAK
+    - VOICE_STREAM
+    - VOICE_USE_VAD
+
+  #  O que os moderadores do clan podem ALEM do que todo membro pode.
+  #  No StarClans: o lider e quem tem MODERAR_DISCORD no cargos.yml.
+  #  No StarGamesClan: o dono e os capitaes. Vai como permissao da pessoa no canal, nao
+  #  como um segundo cargo: cargo custa caro (o Discord permite 250 no servidor
+  #  inteiro) e um por clan ja e o suficiente.
+  Moderador:
+    - MESSAGE_MANAGE
+    - MANAGE_THREADS
+    - VOICE_MUTE_OTHERS
+    - VOICE_DEAF_OTHERS
+    - VOICE_MOVE_OTHERS
+
+Sincronizar:
+  #  Quem avisa este produto que alguem entrou, saiu ou mudou de cargo e o
+  #  proprio produto de clans, na hora em que acontece. A varredura abaixo e so uma rede
+  #  de seguranca para o que escapou (o bot estava fora do ar, por exemplo).
+  #
+  #  0 desliga. Quem quiser pode rodar na mao com /discordclan sincronizar.
+  Varredura a cada minutos: 0
+
+  #  Sincronizar o jogador quando ele entra no servidor. Custa uma consulta ao
+  #  vinculo do StarDiscord por entrada, e e o que resolve o caso de quem
+  #  vinculou a conta pelo Discord enquanto estava offline.
+  Ao entrar no servidor: true
+
+Menu:
+  #  A tela que o /discordclan e o botao no menu do clan abrem.
+  #  Slot -1 esconde o item.
+  Titulo: '&8Discord &7» &f{tag}'
+  Linhas: 3
+
+  #  O comando que o botao VOLTAR roda. Esta tela e aberta por comando (e pelo
+  #  botao do menu do clan, que tambem roda um comando), entao nao existe uma
+  #  "tela anterior" guardada para onde voltar -- o caminho de volta e um
+  #  comando. Deixe vazio para o botao so fechar.
+  Comando do voltar: 'clan'
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Cargo:
+    Slot: 11
+    Material: 'NAME_TAG'
+    Nome: '&b&lCARGO DO CLAN'
+    Lore:
+      - '&7O cargo que os membros do clan'
+      - '&7recebem no Discord do servidor.'
+      - '&r'
+      - '&7Cargo: &f{cargo}'
+      - '&7Cor: &f#{cor}'
+      - '&7Com o cargo: &f{vinculados}&7/&f{membros}'
+      - '&r'
+      - '&7Quem ainda nao aparece ali precisa'
+      - '&7vincular a conta com &f/vincular&7.'
+
+  Chat:
+    Slot: 13
+    Material: 'BOOK'
+    Nome: '&b&lCHAT DO CLAN'
+    Lore:
+      - '&7O canal de texto privado do clan.'
+      - '&r'
+      - '&7Canal: &f{chat}'
+
+  Call:
+    Slot: 15
+    Material: 'NOTE_BLOCK'
+    Nome: '&b&lCALL DO CLAN'
+    Lore:
+      - '&7A call privada do clan.'
+      - '&r'
+      - '&7Canal: &f{call}'
+
+  Sincronizar:
+    Slot: 22
+    Material: 'CLOCK'
+    Nome: '&a&lSINCRONIZAR'
+    Lore:
+      - '&7Confere o cargo e os canais do clan'
+      - '&7e entrega o cargo a quem faltou.'
+      - '&r'
+      - '&a&lCLIQUE &fpara sincronizar'
+
+  Voltar:
+    #  Leva de volta ao menu do clan. -1 esconde.
+    Slot: 18
+    Material: 'ARROW'
+    Nome: '&c&lVOLTAR'
+    Lore:
+      - '&7Volta para o menu do clan.'
+
+  Fechar:
+    Slot: 26
+    Material: 'RED_DYE'
+    Nome: '&c&lFECHAR'
+    Lore: []
+
+Mensagens:
+  Prefixo: '&8[&bDiscord&8] &r'
+  Sem clan: '&cVoce nao esta em um clan.'
+  #  {como} vira a dica de "Como conseguir" do produto de clans em uso.
+  Sem compra: '&cO seu clan ainda nao tem a tag no Discord. {como}'
+  Como conseguir:
+    StarClans: 'Compre no mercado do clan.'
+    StarGamesClan: 'Adquira na loja do servidor.'
+  Sem bot: '&cO bot do Discord nao esta conectado agora. Tente mais tarde.'
+  Sem categoria: '&cO Discord do clan ainda nao foi configurado pelo servidor.'
+  Sem vinculo: '&eVincule a sua conta do Discord com &f/vincular &epara receber o cargo.'
+  Nao criado: '&cainda nao criado'
+  Sincronizado: '&aDiscord do clan sincronizado.'
+  Sincronizado tudo: '&aSincronizei &f{clans} &aclans no Discord.'
+  Recarregado: '&aConfiguracao do StarDiscordClan recarregada.'
+  Cargo recebido: '&aVoce recebeu o cargo do clan no Discord.'
