@@ -10,7 +10,7 @@
 #  Em "Membros" valem {jogador} {cargo} {estado} {tag} {cor}.
 #  Em "Top" valem {posicao} e as mesmas contas do clan.
 # ---------------------------------------------------------------------------
-Versao do modelo: 1
+Versao do modelo: 2
 
 # A tela de /clan de quem JA tem clan.
 Clan:
@@ -63,6 +63,25 @@ Clan:
       - ''
       - '&eClique para ligar/desligar'
 
+  # So aparece com o StarDiscordClan ligado E para o clan que tem o Discord
+  # (/stargamesclan discord <tag> ligar). -1 esconde de vez.
+  # Quem atualizou da 1.0.0 nao tem esta secao no arquivo: o botao aparece com
+  # estes valores mesmo assim. Para mudar, copie a secao para o seu menus.yml.
+  Discord:
+    Slot: 22
+    Material: 'LAPIS_LAZULI'
+    Nome: '&9&lDiscord do clan'
+    Lore:
+      - '&7O cargo, o chat e a call'
+      - '&7do clan no Discord do servidor.'
+      - ''
+      - '&eClique para abrir'
+    # O comando que o botao roda (o do StarDiscordClan).
+    Comando: 'discordclan'
+
+  # Os dois dividem o mesmo lugar: quem ve "Sair" e o membro, e quem ve
+  # "Desfazer" e o dono. O dono nao sai do proprio clan -- com gente dentro ele
+  # precisa transferir antes, e sozinho sair e desfazer dao no mesmo.
   Sair:
     Slot: 40
     Material: 'IRON_DOOR'
@@ -71,6 +90,17 @@ Clan:
       - '&7Voce deixa de ser membro.'
       - ''
       - '&eClique para sair'
+
+  Desfazer:
+    Slot: 40
+    Material: 'TNT'
+    Nome: '&c&lDesfazer o clan'
+    Lore:
+      - '&7O clan acaba para todos os'
+      - '&7membros, com os pontos dele.'
+      - ''
+      - '&cIsso nao tem volta.'
+      - '&eClique e confirme no chat'
 
   Fechar:
     Slot: 44
