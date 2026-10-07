@@ -9,9 +9,14 @@
 #  servidor: com "Cash.Tipo: STARECONOMIA" no config.yml, o valor sai da
 #  moeda do StarEconomia -- da para vender qualquer cosmetico nela.
 #  "Ativar: false" tira o cosmetico da loja sem apagar a linha dele.
+#  METEORO, RUGIDO_DO_DRAGAO, GALINHAS e VULCAO chegaram na revisao dos
+#  cosmeticos.
+#  "Desde: N" marca a versao do arquivo em que o cosmetico chegou: e o que
+#  faz um cosmetico novo entrar UMA vez em quem ja tinha o arquivo. Pode
+#  apagar o cosmetico que quiser -- o que voce apagou nao volta.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Animacoes:
   fogos:
@@ -77,3 +82,44 @@ Animacoes:
     Raridade: LENDARIO
     Coins: 40000
     Cash: 0
+  meteoro:
+    Nome: 'Meteoro'
+    Tipo: METEORO
+    Material: MAGMA_CREAM
+    Raridade: EPICO
+    Coins: 18000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Um meteoro despenca no lugar'
+  rugido_do_dragao:
+    Nome: 'Rugido do dragao'
+    Tipo: RUGIDO_DO_DRAGAO
+    Material: DRAGON_EGG
+    Raridade: LENDARIO
+    Coins: 35000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7O dragao do fim ruge e o fim'
+      - '&7se abre no lugar'
+  galinhas:
+    Nome: 'Galinhas-foguete'
+    Tipo: GALINHAS
+    Material: EGG
+    Raridade: RARO
+    Coins: 8000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Galinhas voam e estouram em fogos'
+  vulcao:
+    Nome: 'Vulcao'
+    Tipo: VULCAO
+    Material: MAGMA_CREAM
+    Raridade: EPICO
+    Coins: 18000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Uma erupcao de fogo e lava'

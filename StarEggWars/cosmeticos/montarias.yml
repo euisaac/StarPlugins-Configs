@@ -21,9 +21,12 @@
 #  servidor: com "Cash.Tipo: STARECONOMIA" no config.yml, o valor sai da
 #  moeda do StarEconomia -- da para vender qualquer cosmetico nela.
 #  "Ativar: false" tira o cosmetico da loja sem apagar a linha dele.
+#  "Desde: N" marca a versao do arquivo em que o cosmetico chegou: e o que
+#  faz um cosmetico novo entrar UMA vez em quem ja tinha o arquivo. Pode
+#  apagar o cosmetico que quiser -- o que voce apagou nao volta.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Montarias:
   cavalo:
@@ -169,3 +172,63 @@ Montarias:
     Cash: 0
     Descricao:
       - '&7Um urso de montaria (1.10+)'
+  aranha:
+    Nome: 'Aranha'
+    Entidade: SPIDER
+    Material: SPIDER_EYE
+    Raridade: EPICO
+    Coins: 16000
+    Cash: 0
+    Velocidade: 0.32
+    Pulo: 0.6
+    Desde: 2
+    Descricao:
+      - '&7Uma aranha gigante de montaria'
+  aranha_das_cavernas:
+    Nome: 'Aranha das cavernas'
+    Entidade: CAVE_SPIDER
+    Material: FERMENTED_SPIDER_EYE
+    Raridade: RARO
+    Coins: 9000
+    Cash: 0
+    Velocidade: 0.34
+    Pulo: 0.55
+    Desde: 2
+    Descricao:
+      - '&7Pequena, mas rapida'
+  golem_de_ferro:
+    Nome: 'Golem de ferro'
+    Entidade: IRON_GOLEM
+    Material: IRON_BLOCK
+    Raridade: LENDARIO
+    Coins: 35000
+    Cash: 0
+    Velocidade: 0.26
+    Pulo: 0.5
+    Desde: 2
+    Descricao:
+      - '&7Ande nos ombros de um golem'
+  ocelote:
+    Nome: 'Ocelote'
+    Entidade: OCELOT
+    Material: COD
+    Raridade: RARO
+    Coins: 9000
+    Cash: 0
+    Velocidade: 0.36
+    Pulo: 0.6
+    Desde: 2
+    Descricao:
+      - '&7Um felino veloz'
+  coelho:
+    Nome: 'Coelho'
+    Entidade: RABBIT
+    Material: CARROT
+    Raridade: COMUM
+    Coins: 4000
+    Cash: 0
+    Velocidade: 0.3
+    Pulo: 0.8
+    Desde: 2
+    Descricao:
+      - '&7Pula que pula'

@@ -9,9 +9,13 @@
 #  servidor: com "Cash.Tipo: STARECONOMIA" no config.yml, o valor sai da
 #  moeda do StarEconomia -- da para vender qualquer cosmetico nela.
 #  "Ativar: false" tira o cosmetico da loja sem apagar a linha dele.
+#  VULCAO, GALAXIA, ALMA, CRISTAL e BOLHAS chegaram na revisao dos cosmeticos.
+#  "Desde: N" marca a versao do arquivo em que o cosmetico chegou: e o que
+#  faz um cosmetico novo entrar UMA vez em quem ja tinha o arquivo. Pode
+#  apagar o cosmetico que quiser -- o que voce apagou nao volta.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Efeitos:
   sangue:
@@ -113,3 +117,53 @@ Efeitos:
     Cash: 0
     Descricao:
       - '&7Musica para a vitima'
+  vulcao:
+    Nome: 'Vulcao'
+    Tipo: VULCAO
+    Material: MAGMA_CREAM
+    Raridade: EPICO
+    Coins: 15000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Uma erupcao onde o inimigo caiu'
+  galaxia:
+    Nome: 'Galaxia'
+    Tipo: GALAXIA
+    Material: ENDER_EYE
+    Raridade: LENDARIO
+    Coins: 30000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Uma galaxia gira no lugar'
+  alma:
+    Nome: 'Alma'
+    Tipo: ALMA
+    Material: GHAST_TEAR
+    Raridade: RARO
+    Coins: 8000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7A alma da vitima sobe aos ceus'
+  cristal:
+    Nome: 'Cristal'
+    Tipo: CRISTAL
+    Material: GLASS
+    Raridade: RARO
+    Coins: 8000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7A vitima se estilhaca como vidro'
+  bolhas:
+    Nome: 'Bolhas'
+    Tipo: BOLHAS
+    Material: WATER_BUCKET
+    Raridade: COMUM
+    Coins: 3000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Um jato de agua e bolhas'

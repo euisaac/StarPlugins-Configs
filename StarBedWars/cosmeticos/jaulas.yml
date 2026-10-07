@@ -2,7 +2,9 @@
 #  StarBedWars - cosmeticos/jaulas.yml - jaulas
 #
 #  A jaula e o cubo onde o jogador espera o inicio da partida. Composicao:
-#  "chao;teto;paredes" com nomes de bloco (modernos ou antigos).
+#  "chao;teto;paredes" com nomes de bloco (modernos ou antigos), e dois
+#  extras opcionais: ";cantos" (as quatro colunas das quinas) e ";janelas"
+#  (o bloco do meio de cada parede, na altura dos olhos).
 #  Nao remova a jaula "padrao": e a de quem nao escolheu nenhuma.
 #  Permissao para ter todas: starbedwars.jaula.*
 #
@@ -10,9 +12,12 @@
 #  servidor: com "Cash.Tipo: STARECONOMIA" no config.yml, o valor sai da
 #  moeda do StarEconomia -- da para vender qualquer cosmetico nela.
 #  "Ativar: false" tira o cosmetico da loja sem apagar a linha dele.
+#  "Desde: N" marca a versao do arquivo em que o cosmetico chegou: e o que
+#  faz um cosmetico novo entrar UMA vez em quem ja tinha o arquivo. Pode
+#  apagar o cosmetico que quiser -- o que voce apagou nao volta.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Jaulas:
   padrao:
@@ -99,3 +104,103 @@ Jaulas:
     Coins: 0
     Cash: 0
     Composicao: 'DIAMOND_BLOCK;DIAMOND_BLOCK;LIGHT_BLUE_STAINED_GLASS'
+  gelo:
+    Nome: 'Gelo'
+    Composicao: 'PACKED_ICE;PACKED_ICE;ICE;PACKED_ICE;LIGHT_BLUE_STAINED_GLASS'
+    Material: PACKED_ICE
+    Raridade: RARO
+    Coins: 7000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Uma jaula congelada'
+  obsidiana:
+    Nome: 'Obsidiana'
+    Composicao: 'OBSIDIAN;OBSIDIAN;BLACK_STAINED_GLASS;OBSIDIAN;PURPLE_STAINED_GLASS'
+    Material: OBSIDIAN
+    Raridade: EPICO
+    Coins: 14000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Pilares de obsidiana'
+  quartzo:
+    Nome: 'Templo de quartzo'
+    Composicao: 'QUARTZ_BLOCK;QUARTZ_BLOCK;WHITE_STAINED_GLASS;QUARTZ_PILLAR;GLASS'
+    Material: QUARTZ_BLOCK
+    Raridade: EPICO
+    Coins: 14000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Colunas brancas de quartzo'
+  nether:
+    Nome: 'Nether'
+    Composicao: 'NETHERRACK;NETHER_BRICKS;RED_STAINED_GLASS;NETHER_BRICKS;ORANGE_STAINED_GLASS'
+    Material: NETHERRACK
+    Raridade: RARO
+    Coins: 7000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Direto das profundezas'
+  esmeralda:
+    Nome: 'Esmeralda'
+    Composicao: 'EMERALD_BLOCK;EMERALD_BLOCK;LIME_STAINED_GLASS;EMERALD_BLOCK;GLASS'
+    Material: EMERALD_BLOCK
+    Raridade: LENDARIO
+    Coins: 35000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Uma jaula de esmeraldas'
+  redstone:
+    Nome: 'Redstone'
+    Composicao: 'REDSTONE_BLOCK;REDSTONE_BLOCK;RED_STAINED_GLASS;REDSTONE_BLOCK;GLASS'
+    Material: REDSTONE_BLOCK
+    Raridade: RARO
+    Coins: 7000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Energia pura'
+  oceano:
+    Nome: 'Oceano'
+    Composicao: 'PRISMARINE;SEA_LANTERN;LIGHT_BLUE_STAINED_GLASS;PRISMARINE;CYAN_STAINED_GLASS'
+    Material: SEA_LANTERN
+    Raridade: EPICO
+    Coins: 14000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Um aquario de prismarinho'
+  fim:
+    Nome: 'Fim'
+    Composicao: 'END_STONE;END_STONE;MAGENTA_STAINED_GLASS;OBSIDIAN;PURPLE_STAINED_GLASS'
+    Material: END_STONE
+    Raridade: EPICO
+    Coins: 14000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Pedra do fim e obsidiana'
+  abobora:
+    Nome: 'Abobora'
+    Composicao: 'PUMPKIN;JACK_O_LANTERN;ORANGE_STAINED_GLASS;PUMPKIN;BLACK_STAINED_GLASS'
+    Material: JACK_O_LANTERN
+    Raridade: RARO
+    Coins: 7000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Uma jaula de dia das bruxas'
+  cabana:
+    Nome: 'Cabana'
+    Composicao: 'OAK_PLANKS;OAK_PLANKS;GLASS;OAK_LOG;GLASS'
+    Material: OAK_LOG
+    Raridade: COMUM
+    Coins: 3000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Madeira e vidro'

@@ -2,16 +2,21 @@
 #  StarBedWars - cosmeticos/gritos-de-morte.yml - gritos de morte
 #
 #  O som tocado quando voce morre. Os nomes de som aceitam a forma moderna
-#  (ENTITY_ENDERMAN_DEATH) ou a antiga (ENDERMAN_DEATH).
+#  (ENTITY_ENDERMAN_DEATH) ou a antiga (ENDERMAN_DEATH), e "SOM:volume:tom"
+#  muda volume e tom (ENTITY_CHICKEN_HURT:1:0.5 = galinha grave).
+#  "Particula" (opcional) solta uma nuvem dessa particula onde voce caiu.
 #  Permissao para ter todos: starbedwars.grito.*
 #
 #  "Coins" e a moeda interna (ganha jogando). "Cash" e o dinheiro do
 #  servidor: com "Cash.Tipo: STARECONOMIA" no config.yml, o valor sai da
 #  moeda do StarEconomia -- da para vender qualquer cosmetico nela.
 #  "Ativar: false" tira o cosmetico da loja sem apagar a linha dele.
+#  "Desde: N" marca a versao do arquivo em que o cosmetico chegou: e o que
+#  faz um cosmetico novo entrar UMA vez em quem ja tinha o arquivo. Pode
+#  apagar o cosmetico que quiser -- o que voce apagou nao volta.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Gritos:
   enderman:
@@ -91,3 +96,80 @@ Gritos:
     Raridade: LENDARIO
     Coins: 30000
     Cash: 0
+  blaze:
+    Nome: 'Blaze'
+    Som: 'ENTITY_BLAZE_DEATH'
+    Particula: FLAME
+    Material: BLAZE_ROD
+    Raridade: RARO
+    Coins: 6000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Morre em chamas'
+  golem:
+    Nome: 'Golem de ferro'
+    Som: 'ENTITY_IRON_GOLEM_DEATH'
+    Particula: CRIT
+    Material: IRON_BLOCK
+    Raridade: RARO
+    Coins: 6000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Desaba como um golem'
+  creeper:
+    Nome: 'Creeper'
+    Som: 'ENTITY_CREEPER_PRIMED'
+    Particula: SMOKE_LARGE
+    Material: GUNPOWDER
+    Raridade: EPICO
+    Coins: 10000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Sssss... e uma nuvem de fumaca'
+  galinha:
+    Nome: 'Galinha'
+    Som: 'ENTITY_CHICKEN_HURT:1:0.6'
+    Particula: CLOUD
+    Material: FEATHER
+    Raridade: COMUM
+    Coins: 2000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Cocoricooo (grave)'
+  slime:
+    Nome: 'Slime'
+    Som: 'ENTITY_SLIME_SQUISH:1:0.7'
+    Particula: SLIME
+    Material: SLIME_BALL
+    Raridade: COMUM
+    Coins: 3000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Splash de gosma'
+  gato:
+    Nome: 'Gato bravo'
+    Som: 'ENTITY_CAT_HISS'
+    Particula: VILLAGER_ANGRY
+    Material: STRING
+    Raridade: RARO
+    Coins: 5000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Um chiado de gato irritado'
+  trovao:
+    Nome: 'Trovao'
+    Som: 'ENTITY_LIGHTNING_BOLT_THUNDER:0.7:1'
+    Particula: FIREWORKS_SPARK
+    Material: BLAZE_ROD
+    Raridade: EPICO
+    Coins: 12000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Um trovao ecoa pela arena'

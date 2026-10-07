@@ -10,15 +10,26 @@
 #    ESPIRAL - helice subindo pelo corpo
 #    TRILHA  - deixa um rastro so quando anda
 #    ASAS    - duas asas nas costas
+#    HALO    - aureola girando acima da cabeca
+#    CHUVA   - nuvenzinha na cabeca pingando a "Particula"
+#    ORBITA  - tres pontos orbitando o corpo
+#    CORACAO - um coracao pulsando nas costas
+#    DUPLA   - helice dupla subindo e descendo pelo corpo
+#  "Cor: R,G,B" (opcional) pinta as formas desenhadas (ANEL, ESPIRAL,
+#  ASAS, HALO, ORBITA, CORACAO, DUPLA) com poeira dessa cor. Na 1.8, que
+#  nao tem cor, sai a particula antiga mais parecida.
 #  Permissoes: stareggwars.particula.<chave> / stareggwars.particula.*
 #
 #  "Coins" e a moeda interna (ganha jogando). "Cash" e o dinheiro do
 #  servidor: com "Cash.Tipo: STARECONOMIA" no config.yml, o valor sai da
 #  moeda do StarEconomia -- da para vender qualquer cosmetico nela.
 #  "Ativar: false" tira o cosmetico da loja sem apagar a linha dele.
+#  "Desde: N" marca a versao do arquivo em que o cosmetico chegou: e o que
+#  faz um cosmetico novo entrar UMA vez em quem ja tinha o arquivo. Pode
+#  apagar o cosmetico que quiser -- o que voce apagou nao volta.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Particulas:
   chamas:
@@ -115,3 +126,85 @@ Particulas:
     Cash: 0
     Descricao:
       - '&7Rico ate nas particulas'
+  halo_de_anjo:
+    Nome: 'Halo de anjo'
+    Particula: FIREWORKS_SPARK
+    Forma: HALO
+    Cor: '255,240,150'
+    Material: GOLD_NUGGET
+    Raridade: RARO
+    Coins: 8000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Uma aureola dourada na cabeca'
+  nuvem_de_chuva:
+    Nome: 'Nuvem de chuva'
+    Particula: DRIP_WATER
+    Forma: CHUVA
+    Material: WATER_BUCKET
+    Raridade: RARO
+    Coins: 7000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Uma nuvem que chove so em voce'
+  orbita_magica:
+    Nome: 'Orbita magica'
+    Particula: SPELL_WITCH
+    Forma: ORBITA
+    Cor: '160,80,255'
+    Material: ENDER_EYE
+    Raridade: EPICO
+    Coins: 15000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Tres orbes giram em volta de voce'
+  coracao_apaixonado:
+    Nome: 'Coracao apaixonado'
+    Particula: HEART
+    Forma: CORACAO
+    Cor: '255,40,90'
+    Material: RED_DYE
+    Raridade: EPICO
+    Coins: 15000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Um coracao pulsando nas costas'
+  helice_de_fogo:
+    Nome: 'Helice de fogo'
+    Particula: FLAME
+    Forma: DUPLA
+    Material: BLAZE_POWDER
+    Raridade: RARO
+    Coins: 8000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Duas chamas girando pelo corpo'
+  asas_de_anjo:
+    Nome: 'Asas de anjo'
+    Particula: FIREWORKS_SPARK
+    Forma: ASAS
+    Cor: '255,255,255'
+    Material: FEATHER
+    Raridade: LENDARIO
+    Coins: 35000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Asas brancas e brilhantes'
+  asas_do_dragao:
+    Nome: 'Asas do dragao'
+    Particula: SPELL_WITCH
+    Forma: ASAS
+    Cor: '120,30,200'
+    Material: DRAGON_EGG
+    Raridade: LENDARIO
+    Coins: 40000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Asas roxas do dragao do fim'

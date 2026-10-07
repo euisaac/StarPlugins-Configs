@@ -3,7 +3,8 @@
 #
 #  Tocadas para a equipe vencedora no fim da partida. O campo "Tipo" define
 #  o show: FOGOS, RAIOS, CHUVA_DE_LAS, EXPLOSOES, REBANHO, DRAGAO,
-#  BIGORNAS, BOLOS, CHUVA_DE_DIAMANTES, TORNADO e DRAGAO_MONTADO (o vencedor
+#  BIGORNAS, BOLOS, CHUVA_DE_DIAMANTES, TORNADO, METEOROS, ARCO_IRIS, FENIX,
+#  GALINHAS e DRAGAO_MONTADO (o vencedor
 #  monta um Dragao do Fim e voa pela arena, com fogos roxos em volta).
 #  "Titulo" e "Subtitulo" (opcionais) trocam o titulo de vitoria de quem
 #  usa a comemoracao.
@@ -14,9 +15,12 @@
 #  servidor: com "Cash.Tipo: STARECONOMIA" no config.yml, o valor sai da
 #  moeda do StarEconomia -- da para vender qualquer cosmetico nela.
 #  "Ativar: false" tira o cosmetico da loja sem apagar a linha dele.
+#  "Desde: N" marca a versao do arquivo em que o cosmetico chegou: e o que
+#  faz um cosmetico novo entrar UMA vez em quem ja tinha o arquivo. Pode
+#  apagar o cosmetico que quiser -- o que voce apagou nao volta.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Comemoracoes:
   fogos:
@@ -131,7 +135,54 @@ Comemoracoes:
     # Distancia em volta do jogador em que os fogos (roxos) estouram.
     Raio dos fogos: 14
     Nome do dragao: '&5&lDragao da Vitoria'
+    Desde: 2
     Descricao:
       - '&7Monte no Dragao do Fim e voe'
       - '&7pela arena enquanto os fogos'
       - '&7estouram ao seu redor'
+  meteoros:
+    Nome: 'Chuva de meteoros'
+    Tipo: METEOROS
+    Material: MAGMA_CREAM
+    Raridade: EPICO
+    Coins: 20000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Meteoros em chamas despencam'
+      - '&7em volta de voce'
+  arco_iris:
+    Nome: 'Arco-iris'
+    Tipo: ARCO_IRIS
+    Material: LIME_DYE
+    Raridade: EPICO
+    Coins: 18000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Um arco-iris se desenha'
+      - '&7sobre a sua cabeca'
+  fenix:
+    Nome: 'Fenix'
+    Tipo: FENIX
+    Material: BLAZE_POWDER
+    Raridade: LENDARIO
+    Coins: 50000
+    Cash: 0
+    Desde: 2
+    Titulo: '&6&lVITORIA!'
+    Subtitulo: '&eRenascido das chamas'
+    Descricao:
+      - '&7Asas de fogo nas costas e uma'
+      - '&7coluna de chamas ao seu redor'
+  galinhas:
+    Nome: 'Galinhas-foguete'
+    Tipo: GALINHAS
+    Material: EGG
+    Raridade: RARO
+    Coins: 9000
+    Cash: 0
+    Desde: 2
+    Descricao:
+      - '&7Galinhas voam pelos ares'
+      - '&7e estouram em fogos'
