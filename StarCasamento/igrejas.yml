@@ -1,0 +1,43 @@
+#  As igrejas do servidor: as areas onde as cerimonias podem acontecer.
+#
+#  Este arquivo e escrito pelo proprio plugin quando voce usa /igreja criar,
+#  /igreja nome, /igreja remover e /igreja padre -- por isso ele NAO e trocado
+#  por modelo novo nas atualizacoes: as suas areas ficam onde estao.
+#
+#  Para a igreja virar obrigatoria, ligue tambem no config.yml:
+#      Casamento -> Igreja -> Ativar: true
+#
+#  Como criar uma, dentro do jogo:
+#      1. va num canto da igreja e use /igreja pos1
+#      2. va no canto oposto (de cima, para a altura entrar) e use /igreja pos2
+#      3. /igreja criar central &6Igreja Central
+#
+#  Vincular padres (opcional):
+#      /igreja padre adicionar central EuIsaac
+#      /igreja padre remover central EuIsaac
+#
+#  Igreja SEM padre na lista aceita qualquer padre do servidor -- e o que voce
+#  quer quando so precisa delimitar o lugar da cerimonia. Com padres na lista, e
+#  com "Exigir padre da igreja: true" no config, so eles celebram ali.
+#
+#  Os cantos sao em blocos, e o plugin ordena menor/maior sozinho. A area e um
+#  cubo: lembre de pegar do chao ate o teto.
+#
+#  Exemplo (apague e crie as suas pelo comando):
+#
+#  Igrejas:
+#    central:
+#      Nome: '&6Igreja Central'
+#      Mundo: world
+#      Canto 1:
+#        X: 100
+#        Y: 60
+#        Z: 100
+#      Canto 2:
+#        X: 120
+#        Y: 80
+#        Z: 120
+#      Padres:
+#        - 'euisaac'
+
+Igrejas: {}

@@ -62,6 +62,7 @@ Casar:
   Casados: '&aVoces estao casados! {coracao} &aParabens a voce e a &f{parceiro}&a!'
   Casados pelo padre: '&aO padre &f{padre}&a casou voce com &f{parceiro}&a! {coracao}'
   Padre casou: '&aVoce casou &f{jogador}&a com &f{parceiro}&a.'
+  # {igreja} fica vazio quando a igreja nao e obrigatoria.
   Anuncio: '&d&l❤ &f{jogador}&d e &f{parceiro}&d se casaram! &d&l❤'
   Anuncio com padre: '&d&l❤ &fO padre {padre}&d casou &f{jogador}&d com &f{parceiro}&d! &d&l❤'
   Forcado: '&aVoce casou &f{jogador}&a com &f{parceiro}&a pela administracao.'
@@ -113,6 +114,85 @@ Padre:
   Nenhum online: '&cNao ha nenhum padre online agora.'
   Lista: '&aPadres online &7({total})&a: &f{padres}'
   Selecionado: '&aFale com o padre &f{padre}&a, que esta no mundo &f{mundo}&a.'
+  # {igreja} tambem funciona aqui quando a igreja e obrigatoria.
+
+Igreja:
+  # Recado para o jogador quando a igreja e obrigatoria (config.yml ->
+  # Casamento -> Igreja -> Ativar) e ele tenta casar fora dela.
+  Precisa estar na igreja: '&cVoces precisam estar dentro de uma igreja para isso. Veja onde com &f/igrejas&c.'
+  Igrejas diferentes: '&cVoces estao em igrejas diferentes! Fiquem os dois na mesma.'
+  Padre fora da igreja: '&cO padre &f{padre}&c precisa estar dentro da &f{igreja}&c.'
+  Padre de outra igreja: '&f{padre}&c nao celebra na &f{igreja}&c. Procure um padre da igreja.'
+  Nenhuma cadastrada: '&cA igreja e obrigatoria, mas nenhuma foi criada ainda. Avise a equipe.'
+
+  Nenhuma: '&cNao ha nenhuma igreja no servidor ainda.'
+  Nao encontrada: '&cNao existe igreja com a chave &f{chave}&c.'
+  Fora de igreja: '&7Voce nao esta dentro de nenhuma igreja.'
+  Esta dentro: '&aVoce esta aqui'
+  Esta fora: '&7Fora'
+  Qualquer padre: '&7qualquer padre'
+
+  Ficha: |
+    &d&m                    &r &d&l⛪ {igreja} &d&m
+    &7Chave: &f{chave}
+    &7Mundo: &f{mundo}
+    &7Area: &f{area}
+    &7Blocos: &f{blocos}
+    &7Padres: &f{padres}
+    &7Voce: {dentro}
+    &d&m
+  Lista cabecalho: '&d&lIgrejas do servidor &7- pagina {pagina}/{paginas} &8({total} no total)'
+  Lista linha: '&7{posicao}. &f{igreja} &8[&7{chave}&8] &8- &7{mundo} &8- &7padres: &f{padres} &8- {dentro}'
+  Lista rodape: '&7Use &f/igrejas <pagina>&7 para ver as outras paginas.'
+  Padres: '&7Padres da &f{igreja}&7: &f{padres}'
+
+  Canto 1: '&aPrimeiro canto marcado em &f{local}&a.'
+  Canto 2: '&aSegundo canto marcado em &f{local}&a.'
+  Selecione os cantos: '&cMarque os dois cantos primeiro, com &f/igreja pos1&c e &f/igreja pos2&c.'
+  Cantos em mundos diferentes: '&cOs dois cantos precisam estar no mesmo mundo.'
+  Chave invalida: '&cA chave &f{chave}&c nao vale. Use so letras, numeros, &f-&c e &f_&c.'
+  Ja existe: '&cJa existe uma igreja com a chave &f{chave}&c.'
+  Criada: '&aIgreja &f{igreja}&a criada! &7({chave}, {blocos} blocos em {area})'
+  Removida: '&aA igreja &f{igreja}&a foi removida.'
+  Renomeada: '&aA igreja &f{chave}&a agora se chama &f{igreja}&a.'
+  Teleportado: '&aVoce foi teleportado para a &f{igreja}&a.'
+  Mundo sumiu: '&cO mundo &f{mundo}&c desta igreja nao existe mais neste servidor.'
+
+  Padre vinculado: '&f{jogador}&a agora celebra na &f{igreja}&a.'
+  Padre desvinculado: '&f{jogador}&a nao celebra mais na &f{igreja}&a.'
+  Padre ja vinculado: '&f{jogador}&c ja esta vinculado a &f{igreja}&c.'
+  Padre nao vinculado: '&f{jogador}&c nao esta vinculado a &f{igreja}&c.'
+  Voce foi vinculado: '&aVoce agora celebra casamentos na &f{igreja}&a.'
+  Voce foi desvinculado: '&cVoce nao celebra mais casamentos na &f{igreja}&c.'
+
+  Uso criar: '&cUse &f/igreja criar <chave> [nome]&c.'
+  Uso remover: '&cUse &f/igreja remover <chave>&c.'
+  Uso nome: '&cUse &f/igreja nome <chave> <nome>&c.'
+  Uso padre: '&cUse &f/igreja padre <adicionar|remover> <chave> <jogador>&c.'
+  Uso padres: '&cUse &f/igreja padres <chave>&c.'
+  Uso tp: '&cUse &f/igreja tp <chave>&c.'
+
+  Ajuda: |
+    &d&lIGREJAS &7- &fComandos
+    &f/igrejas &7Lista as igrejas do servidor.
+    &f/igreja &7Mostra a igreja em que voce esta.
+    &f/igreja info <chave> &7Mostra os dados de uma igreja.
+    &f/igreja padres <chave> &7Mostra quem celebra naquela igreja.
+  Ajuda admin: |
+    &d&lIGREJAS &7- &fComandos
+    &f/igrejas &7Lista as igrejas do servidor.
+    &f/igreja &7Mostra a igreja em que voce esta.
+    &f/igreja info <chave> &7Mostra os dados de uma igreja.
+    &f/igreja padres <chave> &7Mostra quem celebra naquela igreja.
+    &7--- &fadministracao &7---
+    &f/igreja pos1 &7Marca o primeiro canto onde voce esta.
+    &f/igreja pos2 &7Marca o canto oposto (pegue a altura!).
+    &f/igreja criar <chave> [nome] &7Cria a igreja com a area marcada.
+    &f/igreja nome <chave> <nome> &7Troca o nome exibido.
+    &f/igreja remover <chave> &7Apaga a igreja.
+    &f/igreja padre adicionar <chave> <jogador> &7Vincula um padre.
+    &f/igreja padre remover <chave> <jogador> &7Desvincula um padre.
+    &f/igreja tp <chave> &7Teleporta voce para a igreja.
 
 Teleporte:
   Bloqueado na origem: '&cVoce nao pode se teleportar a partir daqui.'

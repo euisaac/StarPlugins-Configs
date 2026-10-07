@@ -101,6 +101,27 @@ Casamento:
     #   AMBOS   - os dois confirmam quando quem pediu foi um padre
     Confirmacao: JOGADOR
 
+  # Obriga a cerimonia a acontecer dentro de uma igreja.
+  #
+  # As areas ficam no igrejas.yml e sao criadas dentro do jogo:
+  #     /igreja pos1  (um canto)
+  #     /igreja pos2  (o canto oposto, no alto)
+  #     /igreja criar central &6Igreja Central
+  #
+  # Da para ter quantas igrejas quiser e vincular padres a cada uma:
+  #     /igreja padre adicionar central EuIsaac
+  # Igreja sem padre vinculado aceita qualquer padre.
+  #
+  # Os dois noivos (e o padre, quando houver) precisam estar na MESMA igreja.
+  # O casamento forcado pela administracao (/starcasamento casar) ignora tudo
+  # isto, e quem tem starcasamento.ignorar.igreja tambem.
+  Igreja:
+    Ativar: false
+    # Exige a igreja tambem para o divorcio.
+    Exigir no divorcio: false
+    # Exige que o padre seja um dos vinculados aquela igreja no igrejas.yml.
+    Exigir padre da igreja: false
+
   Coracao:
     # Permite o /casamento cor e o menu de cores.
     Permitir trocar cor: true
