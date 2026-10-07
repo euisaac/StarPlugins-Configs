@@ -3,6 +3,22 @@
 #  Por Eulsaac
 # =========================================================
 
+# ---------------------------------------------------------
+#  Banco de dados
+# ---------------------------------------------------------
+# SQLITE guarda tudo num arquivo (starspawners.db), sem servidor externo (padrão).
+# MYSQL usa um servidor MySQL/MariaDB - útil pra ter os mesmos spawners em vários
+# servidores. Os drivers são baixados pelo loader StarPlugins, então os dois
+# funcionam em qualquer versão. Se o MYSQL não conectar, cai pro SQLITE pra não
+# perder os dados.
+banco-de-dados:
+  tipo: SQLITE
+  host: localhost
+  porta: 3306
+  nome: starspawners
+  usuario: root
+  senha: ''
+
 geral:
   # Idioma não é selecionável, o plugin é 100% em português.
   verificar-atualizacoes: true
@@ -194,6 +210,10 @@ desativar-ia:
   # direção da correnteza quando estiver na água) pra mobs sem IA - útil pra
   # farms onde os mobs precisam ser levados até um ponto de coleta.
   simular-fisica-basica: true
+  # Se true, os mobs de spawner (e os empilhados) não dão dano em players -
+  # nem corpo a corpo, nem com flecha/projétil. Útil em farm pra ninguém
+  # apanhar dentro da grinder. Padrão false (dano normal).
+  dano-mobs: false
 
 # ---------------------------------------------------------
 # Comportamento do spawner (lógica própria do StarSpawners)
