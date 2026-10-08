@@ -214,11 +214,16 @@ desativar-ia:
   # nem corpo a corpo, nem com flecha/projétil. Útil em farm pra ninguém
   # apanhar dentro da grinder. Padrão false (dano normal).
   dano-mobs: false
-  # Se true, o jogador NÃO consegue empurrar os mobs de spawner (a colisão
-  # deles fica desligada, o jogador atravessa o mob em vez de empurrá-lo). Mantém
-  # os mobs parados no ponto de coleta da farm. Padrão true. Sem efeito na 1.8
-  # (essa versão não tem API de colisão).
+  # Se true, o jogador NÃO consegue empurrar os mobs de spawner ANDANDO neles
+  # (a colisão fica desligada, o jogador atravessa o mob). Mantém os mobs
+  # parados no ponto de coleta da farm. Padrão true. ATENÇÃO: sem efeito na 1.8
+  # (essa versão não tem API de colisão) - pra 1.8, use o impedir-knockback abaixo.
   impedir-empurrao: true
+  # Se true, os mobs de spawner NÃO levam knockback (resistência a knockback no
+  # máximo), então não são empurrados ao levar dano/golpe. É isto que resolve o
+  # mob sair do lugar quando apanha - e funciona NA 1.8 também (via atributo).
+  # Padrão true.
+  impedir-knockback: true
 
 # ---------------------------------------------------------
 # Integração com plugins de terreno
