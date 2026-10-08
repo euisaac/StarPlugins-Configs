@@ -8,15 +8,33 @@
 #  mensagens.yml, não aqui.
 # =========================================================
 
+# Menu aberto ao clicar com o botão direito num spawner.
+# Em cada item você pode mudar:
+#   slot:     posição no menu (0 a 26; o menu tem 3 linhas de 9).
+#   material: id do item (ex: PLAYER_HEAD, DIAMOND, CHEST). Se vazio, usa o
+#             ícone padrão (item-tipo = ovo do mob; condições = esmeralda/
+#             redstone; armazenamento = baú/barreira).
+#   textura:  cabeça customizada (mesmo formato do StarLobby) - cole o "Value"
+#             do minecraft-heads (base64), a URL ou só o hash da textura. Com
+#             textura preenchida o material vira cabeça automaticamente.
+#   dono:     cabeça de um jogador pelo nick (alternativa à textura).
 spawner:
   titulo: "&8Spawner de %mob%"
   item-tipo:
+    slot: 10
+    material: ""
+    textura: ""
+    dono: ""
     nome: "&b%mob%"
     lore:
       - "&7Tipo de mob que esse spawner gera."
       - ""
       - "&7Quantidade empilhada: &e%quantidade%"
   item-dados:
+    slot: 12
+    material: ""
+    textura: ""
+    dono: ""
     nome: "&aDados do Spawner"
     lore:
       - "&7Tipo: &e%mob%"
@@ -25,8 +43,16 @@ spawner:
       - "&7Origem: &e%origem%"
       - "&7Próximo spawn em: &e%tempo%"
   item-condicoes:
+    slot: 14
+    material: ""
+    textura: ""
+    dono: ""
     nome: "&aCondições do Spawner"
   item-armazenamento:
+    slot: 16
+    material: ""
+    textura: ""
+    dono: ""
     nome: "&eArmazenamento de Drops"
     lore-com-upgrade:
       - "&7Status: &e%status%"
