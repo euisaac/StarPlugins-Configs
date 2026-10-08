@@ -30,7 +30,7 @@
 #  {pagina} {paginas}. Placeholders do PlaceholderAPI tambem funcionam.
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 # ---------------------------------------------------------------------------
 #  Menu principal (/pesca).
@@ -745,7 +745,7 @@ Torneio:
       Slot: 4
       Material: GOLD_INGOT
       Brilho: true
-      Nome: '&6{torneio_categoria}: {torneio_estado}'
+      Nome: '&6{torneio_nome}: {torneio_estado}'
       Lore:
         - ''
         - ' &7{torneio_descricao}'
@@ -753,21 +753,22 @@ Torneio:
         - ' &7Tempo restante: &f{torneio_tempo}'
         - ' &7Premio do 1o: &f{torneio_premio}'
         - ' {torneio_sua_posicao}'
+        - ' {torneio_falta_texto}'
         - ''
     voltar:
       Slot: 31
       Material: ARROW
       Nome: '&cVoltar'
       Acoes: [ 'voltar' ]
-    # So aparece com o Torneio do Mes e um evento valendo ao mesmo tempo.
+    # So aparece com dois ou mais torneios valendo: passa para o proximo.
     categoria:
       Slot: 27
       Material: CLOCK
       Nome: '&eVer o {torneio_outro}'
       Lore:
-        - '&7Tem dois torneios valendo agora.'
+        - '&7Tem mais de um torneio valendo agora.'
         - ''
-        - '&eClique para alternar.'
+        - '&eClique para ver o proximo.'
       Acoes: [ 'trocar_torneio' ]
     historico:
       Slot: 35
@@ -779,6 +780,110 @@ Torneio:
         - ''
         - '&eClique para ver.'
       Acoes: [ 'historico' ]
+
+# ---------------------------------------------------------------------------
+#  Torneios (/pesca torneio e o botao do menu principal): os que estao valendo
+#  agora (os do mes primeiro; clique para ver o placar) e, depois, os proximos
+#  da agenda. Mensal/Evento = o item de um torneio valendo; Proximo = o de um
+#  agendado.
+#  Valendo: {nome} {categoria} {tipo} {descricao} {vara} {tempo} {premio}
+#  {participantes} {posicao} {valor} {falta} {alvo} {falta_texto} {sua_posicao}
+#  {1_nome} {1_valor} ... {3_nome} {3_valor}
+#  Proximo: {nome} {categoria} {tipo} {vara} {quando} {tempo} {premio}
+# ---------------------------------------------------------------------------
+Torneios:
+  Titulo: '&8Torneios de pesca'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  # false = so os torneios valendo, sem os proximos.
+  Mostrar proximos: true
+  Mensal:
+    Material: GOLD_BLOCK
+    Brilho: true
+    Nome: '&6&l{nome} &8- &f{tipo}'
+    Lore:
+      - ''
+      - ' &7{descricao}'
+      - ''
+      - ' &7Acaba em: &f{tempo}'
+      - ' &7Vara: &f{vara}'
+      - ' &7Participantes: &f{participantes}'
+      - ' &7Premio do 1o: &f{premio}'
+      - ''
+      - ' &e1o &f{1_nome} &7- &f{1_valor}'
+      - ' &72o &f{2_nome} &7- &f{2_valor}'
+      - ' &63o &f{3_nome} &7- &f{3_valor}'
+      - ''
+      - ' {sua_posicao}'
+      - ' {falta_texto}'
+      - ''
+      - '&eClique para ver o placar.'
+  Evento:
+    Material: NETHER_STAR
+    Brilho: true
+    Nome: '&d&l{nome} &8- &f{tipo}'
+    Lore:
+      - ''
+      - ' &7{descricao}'
+      - ''
+      - ' &7Acaba em: &f{tempo}'
+      - ' &7Vara: &f{vara}'
+      - ' &7Participantes: &f{participantes}'
+      - ' &7Premio do 1o: &f{premio}'
+      - ''
+      - ' &e1o &f{1_nome} &7- &f{1_valor}'
+      - ' &72o &f{2_nome} &7- &f{2_valor}'
+      - ' &63o &f{3_nome} &7- &f{3_valor}'
+      - ''
+      - ' {sua_posicao}'
+      - ' {falta_texto}'
+      - ''
+      - '&eClique para ver o placar.'
+  Proximo:
+    Material: CLOCK
+    Nome: '&7{nome} &8- &f{tipo}'
+    Lore:
+      - ''
+      - ' &7Quando: &f{quando}'
+      - ' &7Comeca em: &e{tempo}'
+      - ' &7Vara: &f{vara}'
+      - ' &7Premio do 1o: &f{premio}'
+      - ''
+  Vazio:
+    Slot: 22
+    Material: GRAY_DYE
+    Nome: '&7Nenhum torneio valendo agora'
+    Lore: [ '&7Os torneios aparecem aqui quando comecam.' ]
+  Itens:
+    anterior:
+      Slot: 36
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes: [ 'anterior' ]
+    voltar:
+      Slot: 39
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
+    historico:
+      Slot: 41
+      Material: BOOK
+      Nome: '&eHistorico de torneios'
+      Lore:
+        - '&7Ganhadores e participantes'
+        - '&7dos torneios que ja terminaram.'
+        - ''
+        - '&eClique para ver.'
+      Acoes: [ 'historico' ]
+    proxima:
+      Slot: 44
+      Material: ARROW
+      Nome: '&eProxima pagina &7({pagina}/{paginas})'
+      Acoes: [ 'proxima' ]
 
 # ---------------------------------------------------------------------------
 #  Confirmacao de compra (loja de perolas).

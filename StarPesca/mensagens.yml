@@ -13,7 +13,7 @@
 #  Em titulos, <nl> separa o titulo do subtitulo.
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 Prefixo: '&8[&bPesca&8] &7'
 
@@ -258,26 +258,44 @@ Torneio:
   Cancelado: |
     <nl>
     &b&lTORNEIO DE PESCA
-    &cO torneio foi cancelado por um administrador.
+    &cO torneio &f{tipo}&c foi cancelado por um administrador.
     <nl>
   Aviso tempo: '&b&lTORNEIO &7Faltam &f{tempo}&7 para o fim do torneio &f{tipo}&7!'
-  Premiado: '&aVoce ficou em &f{posicao}o&a no torneio e ganhou &f{premio}&a!'
-  Ja existe: '&cJa ha um torneio acontecendo.'
+  Premiado: '&aVoce ficou em &f{posicao}o&a no &f{nome}&a e ganhou &f{premio}&a!'
+  Ja existe: '&cEsse torneio ja esta valendo.'
+  Vara ocupada: '&cOutro torneio ja esta trocando a vara de todos (vara zerada ou sem upgrade).'
   Nenhum: '&cNao ha nenhum torneio acontecendo.'
-  Tipo invalido: '&cTipos: &f{tipos}'
+  Tipo invalido: '&cUse um agendamento (&f{agendamentos}&c) ou um tipo (&f{tipos}&c).'
   Parado: '&aTorneio encerrado.'
   Estado nenhum: '&7Nenhum'
   Estado ativo: '&e{tipo} &7({tempo})'
   Posicao vazia: '&7---'
   Sua posicao: '&7Sua posicao: &f{posicao}o &7({valor})'
   Sem posicao: '&7Voce ainda nao participou.'
+  # {torneio_falta_texto}: o que falta para subir uma posicao.
+  Falta: '&7Falta &e{falta} &7para o &f{alvo}o'
+  Lider: '&6Voce esta em primeiro!'
+  # Quando cada agendamento acontece (menu de torneios e /starpesca torneio agenda).
+  Quando mensal: 'Todo mes'
+  Quando semanal: '{dia} as {hora}'
+  Quando intervalo: 'A cada {tempo}'
+  Quando manual: 'So pelo comando'
+  Dias da semana: 'Todo domingo,Toda segunda,Toda terca,Toda quarta,Toda quinta,Toda sexta,Todo sabado'
+  Tipo sorteado: 'Sorteado'
+  Comecando: 'comecando...'
+  # /starpesca torneio agenda
+  Agenda cabecalho: '&b&lTORNEIOS &7(valendo e agendados)'
+  Agenda ativo: ' &a● &f{id} &7- {nome}: &f{tipo} &7(acaba em &f{tempo}&7, &f{participantes}&7 participante(s))'
+  Agenda agendado: ' &7○ &f{id} &7- {nome}: &f{tipo} &8| &7{quando} &8(comeca em &7{tempo}&8)'
+  Agenda desligado: 'desligado'
   # Vara do torneio (/starpesca torneio iniciar <tipo> <vara>).
   Vara invalida: '&cVaras do torneio: &f{varas}'
   Duracao invalida: '&cDuracao invalida. Use por exemplo &f30m&c, &f1h&c ou &f1h30m&c.'
-  # /starpesca torneio holograma [remover]
-  Holograma definido: '&aHolograma do torneio marcado aqui. Ele aparece enquanto um torneio estiver valendo.'
-  Holograma removido: '&aHolograma do torneio removido.'
-  Holograma nenhum: '&cNao ha holograma do torneio marcado.'
+  # /starpesca torneio holograma <mensal|evento> [remover]
+  Holograma definido: '&aHolograma de &f{categoria}&a marcado aqui.'
+  Holograma removido: '&aHolograma de &f{categoria}&a removido.'
+  Holograma nenhum: '&cNao ha holograma de &f{categoria}&c marcado.'
+  Holograma sem pessoal: '&eEste servidor nao consegue mostrar uma linha so para cada jogador (precisa da 1.19.4 ou mais nova): a linha "voce esta em Xo" do holograma nao vai aparecer.'
   Aviso vara zerada: '&b&lTORNEIO &7Este torneio e de &f{vara}&7: todos pescam com a vara inicial e evoluem com as perolas ganhas no torneio (loja de varas).'
   Aviso vara sem upgrade: '&b&lTORNEIO &7Este torneio e de &f{vara}&7: todos pescam com a vara inicial, sem evoluir.'
   Vara sem upgrade: '&cNeste torneio a vara nao evolui nem recebe encantamentos.'
