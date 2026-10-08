@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 29
+Versao do modelo: 30
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -1050,6 +1050,29 @@ Tab:
   # Quem esta numa partida so ve (tab e mundo) quem esta na mesma partida;
   # quem esta fora so ve quem esta fora.
   Separar por partida: true
+
+# Novidades em cima dos NPCs de jogar e lancamentos de mapa agendados.
+# O editor e o /bw novidade (ou /bw novidade editor); para agendar pelo chat:
+#   /bw novidade criar <modo> <mapa> <dd/MM/aaaa> <HH:mm>
+# Ate a data o mapa fica FECHADO (desativado). Na hora ele abre, todo mundo
+# recebe o aviso e os NPCs de jogar do modo soltam a comemoracao escolhida.
+Novidades:
+  # Fuso das datas digitadas -- servidor hospedado fora do Brasil nao lanca o
+  # mapa horas antes. Ex.: America/Sao_Paulo, America/Manaus, UTC.
+  Fuso horario: 'America/Sao_Paulo'
+  # Onde as linhas entram no holograma do NPC quando o npcs.yml nao tem a
+  # linha {novidades}: TOPO, BAIXO ou NAO (so aparece onde estiver {novidades}).
+  Sem placeholder: TOPO
+  # Linhas que o lancamento poe sozinho no modo que ainda nao tinha novidade.
+  # Valem {mapa}, {tempo} (contagem; vira "liberado" depois), {data} e {modo}.
+  Linhas do lancamento:
+    - '&d&lNOVO MAPA EM BREVE'
+    - '&f{mapa} &7em &e{tempo}'
+  # A festa padrao de um lancamento novo (troca no editor, por lancamento).
+  Comemoracao padrao: FOGOS
+  Efeito padrao: ''
+  Segundos da comemoracao: 10
+  Som do lancamento: 'ENTITY_PLAYER_LEVELUP'
 
 Tops:
   # Area de clique das linhas (os tops sao clicaveis). "Altura do nome" e o

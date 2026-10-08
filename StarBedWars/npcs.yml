@@ -12,15 +12,20 @@
 #    {em_jogo}   - so quem esta com a partida rolando
 #    {esperando} - so quem esta na sala de espera
 #  Use a que preferir, ex.: '&7{em_jogo} jogando &8| &7{esperando} esperando'
+#    {novidades} - as linhas de novidade do modo (/bw novidade editor). Uma
+#                  linha so vira todas as da novidade, e some quando o modo nao
+#                  tem nenhuma. Sem ela, as linhas entram no topo (ver
+#                  Novidades.Sem placeholder no config.yml).
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 Jogar:
   Nome: ''
   Skin: 'EuIsaac'
   Altura do holograma: 2.3
   Holograma:
+    - '{novidades}'
     - '&e&lCLIQUE PARA JOGAR'
     - '&b{modo}'
     - '&7{jogando} jogando'

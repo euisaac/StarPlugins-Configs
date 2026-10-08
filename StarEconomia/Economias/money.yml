@@ -12,7 +12,7 @@
 #   %stareconomia_money_unidade%           -> real / reais (conforme o saldo atual)
 #   %stareconomia_money_simbolo%           -> R$
 #   %stareconomia_money_posicao%           -> posicao do jogador no /money top (ou "-")
-#   %stareconomia_money_magnata%           -> nome de quem esta em 1o lugar
+#   %stareconomia_money_magnata%           -> nome de quem esta em 1º lugar
 #   %stareconomia_money_magnata_tag%       -> magnata.tag, so quando quem pede o placeholder e o magnata (senao vazio)
 #   %stareconomia_money_magnata_simbolo%   -> magnata.simbolo, mesma regra acima
 #   O magnata tambem esta disponivel como TAG GLOBAL do nChat (requer nChat instalado, sistema
@@ -20,7 +20,7 @@
 #   direto no "format" de um canal (igual {clan_tag}, {vip_tag_vips} etc):
 #   {magnata}                  -> magnata.tag (atalho da moeda primaria, sem id)
 #   {magnata_money}            -> magnata.tag (mesma coisa, com o id explicito)
-#   {magnata_money_nome}       -> nome de quem esta em 1o lugar
+#   {magnata_money_nome}       -> nome de quem esta em 1º lugar
 #   {magnata_money_simbolo}    -> magnata.simbolo
 #   %stareconomia_money_top_1_jogador%     -> nome de quem esta na posicao 1 (troque o numero)
 #   %stareconomia_money_top_1_saldo%       -> saldo formatado da posicao 1
@@ -106,12 +106,12 @@ history:
   track-spent: true
 
 magnata:
-  # Quando o jogador em 1o lugar no /money top muda, anuncia no chat para todos os jogadores.
+  # Quando o jogador em 1º lugar no /money top muda, anuncia no chat para todos os jogadores.
   enabled: true
   # Saldo minimo que o novo lider precisa ter para o anuncio acontecer (evita anunciar troca de
   # "magnata" quando todo mundo ainda esta com 0 ou quase 0).
   minimo: 0.0
-  # Prefixo/simbolo exibidos SO para quem esta em 1o lugar (placeholders magnata_tag/
+  # Prefixo/simbolo exibidos SO para quem esta em 1º lugar (placeholders magnata_tag/
   # magnata_simbolo) -- use no tab list, no nick, no scoreboard etc.
   tag: '&6[Magnata]'
   simbolo: '♛'
@@ -471,8 +471,8 @@ messages:
   #   {prefixo}  -> prefixo do cargo (LuckPerms, ou qualquer um via Vault).
   #   %...%      -> qualquer placeholder da PlaceholderAPI, resolvido com o
   #                 JOGADOR DAQUELA LINHA. Ex.: %luckperms_prefix%, %vault_prefix%.
-  # Ex.: '&f{pos}o {prefixo}&7{jogador}&2: &7{valor}'
-  #  ou: '&f{pos}o %luckperms_prefix%&7{jogador}&2: &7{valor}'
+  # Ex.: '&f{pos}º {prefixo}&7{jogador}&2: &7{valor}'
+  #  ou: '&f{pos}º %luckperms_prefix%&7{jogador}&2: &7{valor}'
   #
   # Os dois servem para a mesma coisa; {prefixo} nao precisa da PlaceholderAPI e
   # nunca consulta banco na hora de montar a linha.

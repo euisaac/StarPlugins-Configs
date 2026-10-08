@@ -10,14 +10,14 @@
 #   %stareconomia_cash_unidade%           -> cash (conforme o saldo atual)
 #   %stareconomia_cash_simbolo%           -> C$
 #   %stareconomia_cash_posicao%           -> posicao do jogador no /cash top (ou "-")
-#   %stareconomia_cash_magnata%           -> nome de quem esta em 1o lugar
+#   %stareconomia_cash_magnata%           -> nome de quem esta em 1º lugar
 #   %stareconomia_cash_magnata_tag%       -> magnata.tag, so quando quem pede o placeholder e o magnata (senao vazio)
 #   %stareconomia_cash_magnata_simbolo%   -> magnata.simbolo, mesma regra acima
 #   O magnata tambem esta disponivel como TAG GLOBAL do nChat (requer nChat instalado, sistema
 #   separado do PlaceholderAPI -- ver docs.nickuc.com/pt/nchat/development/usage), pra colar
 #   direto no "format" de um canal (igual {clan_tag}, {vip_tag_vips} etc):
 #   {magnata_cash}             -> magnata.tag
-#   {magnata_cash_nome}        -> nome de quem esta em 1o lugar
+#   {magnata_cash_nome}        -> nome de quem esta em 1º lugar
 #   {magnata_cash_simbolo}     -> magnata.simbolo
 #   %stareconomia_cash_top_1_jogador%     -> nome de quem esta na posicao 1 (troque o numero)
 #   %stareconomia_cash_top_1_saldo%       -> saldo formatado da posicao 1
@@ -96,7 +96,7 @@ magnata:
   # Desativado por padrao no cash -- ative se quiser anunciar o top 1 desta moeda tambem.
   enabled: false
   minimo: 0.0
-  # Prefixo/simbolo exibidos SO para quem esta em 1o lugar (placeholders magnata_tag/
+  # Prefixo/simbolo exibidos SO para quem esta em 1º lugar (placeholders magnata_tag/
   # magnata_simbolo) -- use no tab list, no nick, no scoreboard etc.
   tag: '&e[Magnata]'
   simbolo: '$'
@@ -437,8 +437,8 @@ messages:
   #   {prefixo}  -> prefixo do cargo (LuckPerms, ou qualquer um via Vault).
   #   %...%      -> qualquer placeholder da PlaceholderAPI, resolvido com o
   #                 JOGADOR DAQUELA LINHA. Ex.: %luckperms_prefix%, %vault_prefix%.
-  # Ex.: '&f{pos}o {prefixo}&7{jogador}&2: &7{valor}'
-  #  ou: '&f{pos}o %luckperms_prefix%&7{jogador}&2: &7{valor}'
+  # Ex.: '&f{pos}º {prefixo}&7{jogador}&2: &7{valor}'
+  #  ou: '&f{pos}º %luckperms_prefix%&7{jogador}&2: &7{valor}'
   #
   # Os dois servem para a mesma coisa; {prefixo} nao precisa da PlaceholderAPI e
   # nunca consulta banco na hora de montar a linha.
@@ -451,7 +451,7 @@ messages:
   top-chat:
     # Quantos jogadores aparecem no top do chat ({formato}).
     quantidade: 10
-    formato-jogador: '&f{pos}o &7{jogador}&2: &7({valor})'
+    formato-jogador: '&f{pos}º &7{jogador}&2: &7({valor})'
     mensagem:
       - ''
       - '&2Top 10 Mais Cash &7(atualizado periodicamente)'

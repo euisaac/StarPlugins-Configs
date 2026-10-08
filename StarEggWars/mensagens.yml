@@ -6,11 +6,12 @@
 #  sem prefixo. Titulos usam <nl> para separar titulo e subtitulo.
 # ==========================================================================
 
-Versao do modelo: 8
+Versao do modelo: 9
 
 Prefixo: '&6&lEggWars &8» &7'
 
 Etiquetas:
+  Liberado: '&a&lLIBERADO'
   Dia: 'd'
   Hora: 'h'
   Minuto: 'm'
@@ -74,6 +75,7 @@ Ajuda:
     - '  &e/ew parar <arena> &7- encerra a partida'
     - '  &e/ew npc criar <JOGAR|LOJA|ESTATISTICAS> [modo] &7- NPC aqui'
     - '  &e/ew npc remover &7- remove o NPC mais perto'
+    - '  &e/ew novidade &7- novidades dos NPCs e lancamentos de mapa'
     - '  &e/ew top criar <tipo> [modo] &7- holograma de top aqui'
     - '  &e/ew top remover &7- remove o top mais perto'
     - '  &e/ew caixa definir|remover &7- caixa misteriosa no bloco olhado'
@@ -283,6 +285,7 @@ Partida:
   Pegou item: '&aVoce pegou &f{item}&a.'
 
 Titulos:
+  Novidade: '&d&lNOVO MAPA!<nl>&f{mapa} &7chegou no &f{modo}'
   Contagem: '&e{tempo}<nl>&fA partida vai comecar'
   Inicio: '&a&lEGG WARS<nl>&fProteja seu ovo!'
   Jaulas: '&e{tempo}<nl>&fJaulas abrindo'
@@ -440,6 +443,34 @@ Top:
     - '{lista}'
     - ''
   Chat linha: '  &e{posicao}. &f{jogador} &7- &a{valor}'
+
+Novidade:
+  Uso: '&cUse: &f/ew novidade [editor | criar | lista | lancar <id> | remover <id>]'
+  Uso criar: '&cUse: &f/ew novidade criar <modo> <mapa> <dd/MM/aaaa> <HH:mm>'
+  Data invalida: '&cData invalida. Escreva assim: &f14/06/2025 20:00'
+  Data passada: '&cEssa data ja passou.'
+  Mapa nao existe: '&cNao existe arena &f{mapa}&c.'
+  Mapa de outro modo: '&cA arena &f{mapa} &cnao e do modo &f{modo}&c.'
+  Mapa em uso: '&cA arena &f{mapa} &ctem gente jogando agora; espere a partida acabar.'
+  Agendado: '&aLancamento &f#{id} &aagendado: &f{mapa} &7({modo}) &aem &f{data}&a. O mapa fica fechado ate la.'
+  Removido: '&aLancamento de &f{mapa} &aapagado.'
+  Nao existe: '&cNao existe lancamento &f#{id}&c. Veja em &f/ew novidade lista&c.'
+  Ja lancado: '&f{mapa} &cja foi lancado.'
+  Testando: '&aTestando a festa de &f{mapa} &anos NPCs do modo.'
+  Arena nao pronta: '&cO lancamento de &f{mapa} &csaiu, mas a arena nao abriu. Falta: &f{falta}'
+  Lista vazia: '&7Nenhum lancamento agendado.'
+  Linha pendente: '&7#{id} &f{mapa} &7({modo}) em &e{data} &7(falta &e{tempo}&7)'
+  Linha feita: '&7#{id} &f{mapa} &7({modo}) &alancado em {data}'
+  Digite linha: '&aEscreva no chat a linha da novidade. Cores com &f&&rc&a, e valem &f{mapa}&a, &f{tempo}&a, &f{data}&a.'
+  Digite nova linha: '&aEscreva no chat o novo texto da linha.'
+  Digite mapa: '&aEscreva no chat o nome do mapa. Mapas do modo: &f{mapas}'
+  Digite data: '&aAgora a data e a hora do lancamento, assim: &f14/06/2025 20:00'
+  # Vai para TODO MUNDO online na hora do lancamento.
+  Anuncio:
+    - ''
+    - '  &d&lNOVIDADE! &fO mapa &d{mapa} &facabou de chegar no &d{modo}&f!'
+    - '  &7Corre no NPC de jogar e seja um dos primeiros.'
+    - ''
 
 Npc:
   Criado: '&aNPC &f{tipo} &acriado aqui.'
