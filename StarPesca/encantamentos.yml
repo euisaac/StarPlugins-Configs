@@ -19,17 +19,19 @@
 #  (o bonus atual), {proximo} (o bonus do proximo nivel), {custo}.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Encantamentos:
   sortudo:
     Tipo: SORTUDO
     Nome: 'Sortudo'
-    Maximo: 10
+    Maximo: 25
     Por nivel: 2.0
     Custo:
       Base: 100.0
       Por nivel: 150.0
+      # O custo sobe junto com o nivel: 1.1 = 10% a mais a cada um.
+      Multiplicador: 1.1
     Item:
       Material: RABBIT_FOOT
       Nome: '&aSortudo'
@@ -45,11 +47,13 @@ Encantamentos:
   multiplicador:
     Tipo: MULTIPLICADOR
     Nome: 'Multiplicador'
-    Maximo: 10
+    Maximo: 25
     Por nivel: 5.0
     Custo:
       Base: 100.0
       Por nivel: 150.0
+      # O custo sobe junto com o nivel: 1.1 = 10% a mais a cada um.
+      Multiplicador: 1.1
     Item:
       Material: GOLD_NUGGET
       Nome: '&eMultiplicador'
@@ -65,11 +69,15 @@ Encantamentos:
   peso:
     Tipo: PESO
     Nome: 'Peso'
-    Maximo: 5
+    Maximo: 15
     Por nivel: 4.0
     Custo:
       Base: 150.0
       Por nivel: 200.0
+      # O custo sobe junto com o nivel: 1.1 = 10% a mais a cada um.
+      Multiplicador: 1.12
+    Requisitos:
+      Nivel da vara: 4
     Item:
       Material: ANVIL
       Nome: '&7Peso'
@@ -81,15 +89,21 @@ Encantamentos:
         - ' &fBonus atual: &b+{valor}%'
         - ' &fProximo nivel: &b+{proximo}%'
         - ''
+        - '{requisitos}'
+        - ''
         - '{rodape}'
   velocidade:
     Tipo: VELOCIDADE
     Nome: 'Velocidade'
-    Maximo: 5
+    Maximo: 12
     Por nivel: 8.0
     Custo:
       Base: 150.0
       Por nivel: 200.0
+      # O custo sobe junto com o nivel: 1.1 = 10% a mais a cada um.
+      Multiplicador: 1.12
+    Requisitos:
+      Nivel da vara: 3
     Item:
       Material: SUGAR
       Nome: '&fVelocidade'
@@ -101,15 +115,22 @@ Encantamentos:
         - ' &fReducao atual: &b-{valor}%'
         - ' &fProximo nivel: &b-{proximo}%'
         - ''
+        - '{requisitos}'
+        - ''
         - '{rodape}'
   duplicador:
     Tipo: DUPLICADOR
     Nome: 'Duplicador'
-    Maximo: 5
+    Maximo: 15
     Por nivel: 3.0
     Custo:
       Base: 250.0
       Por nivel: 300.0
+      # O custo sobe junto com o nivel: 1.1 = 10% a mais a cada um.
+      Multiplicador: 1.15
+    Requisitos:
+      Nivel da vara: 6
+      Peixes pescados: 2000
     Item:
       Material: TROPICAL_FISH
       Nome: '&bDuplicador'
@@ -121,15 +142,22 @@ Encantamentos:
         - ' &fChance atual: &b{valor}%'
         - ' &fProximo nivel: &b{proximo}%'
         - ''
+        - '{requisitos}'
+        - ''
         - '{rodape}'
   valor:
     Tipo: VALOR
     Nome: 'Negociante'
-    Maximo: 10
+    Maximo: 25
     Por nivel: 3.0
     Custo:
       Base: 200.0
       Por nivel: 250.0
+      # O custo sobe junto com o nivel: 1.1 = 10% a mais a cada um.
+      Multiplicador: 1.1
+    Requisitos:
+      Nivel da vara: 5
+      Peixes pescados: 800
     Item:
       Material: EMERALD
       Nome: '&2Negociante'
@@ -141,6 +169,8 @@ Encantamentos:
         - ' &fBonus atual: &b+{valor}%'
         - ' &fProximo nivel: &b+{proximo}%'
         - ''
+        - '{requisitos}'
+        - ''
         - '{rodape}'
   chaveiro:
     Tipo: CHAVEIRO
@@ -150,6 +180,11 @@ Encantamentos:
     Custo:
       Base: 300.0
       Por nivel: 400.0
+      # O custo sobe junto com o nivel: 1.1 = 10% a mais a cada um.
+      Multiplicador: 1.08
+    Requisitos:
+      Nivel da vara: 7
+      Peixes pescados: 4000
     # 'chance,comando': a chance e multiplicada pelo bonus atual. {jogador}.
     Comandos:
       - '100,give {jogador} tripwire_hook 1'
@@ -168,6 +203,198 @@ Encantamentos:
         - ' &fChance atual: &b{valor}%'
         - ' &fProximo nivel: &b{proximo}%'
         - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+
+  experiencia:
+    Tipo: EXPERIENCIA
+    Nome: 'Experiencia'
+    Maximo: 15
+    Por nivel: 5.0
+    Custo:
+      Base: 300.0
+      Por nivel: 400.0
+      Multiplicador: 1.1
+    Requisitos:
+      Nivel da vara: 3
+    Item:
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&aExperiencia'
+      Lore:
+        - '&7Aumenta o XP de pesca do mcMMO'
+        - '&7que cada peixe da.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fBonus atual: &b+{valor}%'
+        - ' &fProximo nivel: &b+{proximo}%'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  sacola:
+    Tipo: SACOLA
+    Nome: 'Sacola'
+    Maximo: 25
+    Por nivel: 8.0
+    Custo:
+      Base: 500.0
+      Por nivel: 600.0
+      Multiplicador: 1.12
+    Requisitos:
+      Nivel da vara: 4
+      Peixes pescados: 500
+    Item:
+      Material: LEATHER
+      Nome: '&eSacola'
+      Lore:
+        - '&7Cabem mais peixes na sua sacola,'
+        - '&7alem dos niveis que voce compra.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fLimite a mais: &b+{valor}'
+        - ' &fProximo nivel: &b+{proximo}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  suporte:
+    Tipo: SUPORTE
+    Nome: 'Suporte'
+    Maximo: 15
+    Por nivel: 6.0
+    Custo:
+      Base: 800.0
+      Por nivel: 900.0
+      Multiplicador: 1.12
+    Requisitos:
+      Nivel da vara: 5
+      Peixes pescados: 1200
+    Item:
+      Material: IRON_INGOT
+      Nome: '&7Suporte'
+      Lore:
+        - '&7A vara aguenta peixes mais'
+        - '&7pesados sem deixar escapar.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fPeso suportado: &b+{valor}%'
+        - ' &fProximo nivel: &b+{proximo}%'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  tesouro:
+    Tipo: TESOURO
+    Nome: 'Cacador de tesouros'
+    Maximo: 10
+    Por nivel: 10.0
+    Custo:
+      Base: 1200.0
+      Por nivel: 1400.0
+      Multiplicador: 1.12
+    Requisitos:
+      Nivel da vara: 6
+      Colecao: 25
+    Item:
+      Material: CHEST
+      Nome: '&6Cacador de tesouros'
+      Lore:
+        - '&7Aumenta a chance das recompensas'
+        - '&7que vem presas no anzol.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fChance a mais: &b+{valor}%'
+        - ' &fProximo nivel: &b+{proximo}%'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  isca_eterna:
+    Tipo: ISCA
+    Nome: 'Isca eterna'
+    Maximo: 10
+    Por nivel: 4.0
+    Custo:
+      Base: 2000.0
+      Por nivel: 2500.0
+      Multiplicador: 1.15
+    Requisitos:
+      Nivel da vara: 7
+      Peixes pescados: 3000
+    Item:
+      Material: STRING
+      Nome: '&bIsca eterna'
+      Lore:
+        - '&7Chance de a isca ativa nao'
+        - '&7gastar o uso no peixe.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fChance atual: &b{valor}%'
+        - ' &fProximo nivel: &b{proximo}%'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  profundidade:
+    Tipo: PROFUNDIDADE
+    Nome: 'Profundidade'
+    Maximo: 3
+    Por nivel: 1.0
+    Custo:
+      Base: 25000.0
+      Por nivel: 50000.0
+      Multiplicador: 1.5
+    Requisitos:
+      Nivel da vara: 9
+      Colecao: 50
+      Peixes pescados: 6000
+    Item:
+      Material: PRISMARINE_CRYSTALS
+      Nome: '&5Profundidade'
+      Lore:
+        - '&7Peixes de niveis acima do da'
+        - '&7sua vara passam a aparecer.'
+        - '&8(eles ainda podem escapar pelo peso)'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fNiveis a mais: &b+{valor}'
+        - ' &fProximo nivel: &b+{proximo}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  corrente:
+    Tipo: COMANDO
+    Nome: 'Corrente do mar'
+    Maximo: -1
+    Por nivel: 2.0
+    Custo:
+      Base: 5000.0
+      Por nivel: 6000.0
+      Multiplicador: 1.08
+    Requisitos:
+      Nivel da vara: 8
+    # 'chance,comando': a chance e multiplicada pelo bonus atual. {jogador}.
+    Comandos:
+      - '100,give {jogador} nautilus_shell 1'
+    Mensagens:
+      Titulo: '&bConcha encontrada!<nl>&7A corrente trouxe algo'
+      Actionbar: ''
+      Chat: ''
+    Item:
+      Material: NAUTILUS_SHELL
+      Nome: '&3Corrente do mar'
+      Lore:
+        - '&7Chance de a corrente trazer'
+        - '&7conchas junto com o peixe.'
+        - ''
+        - ' &fNivel: &b{nivel}&f/&b{maximo}'
+        - ' &fChance atual: &b{valor}%'
+        - ' &fProximo nivel: &b{proximo}%'
+        - ''
+        - '{requisitos}'
+        - ''
         - '{rodape}'
 
 # Rodape do item de cada encantamento ({rodape}), conforme a situacao.
@@ -175,3 +402,4 @@ Rodape:
   Pode: '&aClique para evoluir por &f{custo} perolas&a.'
   Sem perolas: '&cVoce precisa de &f{custo} perolas&c.'
   Maximo: '&cNivel maximo alcancado.'
+  Requisitos: '&cVoce ainda nao cumpre os requisitos.'

@@ -16,7 +16,7 @@
 #  {bonus_valor} {custo} {efeitos}
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 # Nome mostrado para quem nao tem classe.
 Sem classe: '&7Nenhuma'
@@ -36,6 +36,11 @@ Classes:
     Custo:
       money: 5000.0
       perolas: 100.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 100
+      Colecao: 5
+      Nivel da vara: 2
     Item:
       Material: LEATHER_CHESTPLATE
       Nome: '&fClasse Quartzo'
@@ -49,6 +54,8 @@ Classes:
         - ' &7▪ Peso: &b+{bonus_peso}%'
         - ' &7▪ Valor: &b+{bonus_valor}%'
         - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
         - ''
         - '{rodape}'
   esmeralda:
@@ -65,6 +72,11 @@ Classes:
     Custo:
       money: 20000.0
       perolas: 400.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 400
+      Colecao: 15
+      Nivel da vara: 3
     Item:
       Material: LEATHER_CHESTPLATE
       Nome: '&aClasse Esmeralda'
@@ -78,6 +90,8 @@ Classes:
         - ' &7▪ Peso: &b+{bonus_peso}%'
         - ' &7▪ Valor: &b+{bonus_valor}%'
         - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
         - ''
         - '{rodape}'
   diamante:
@@ -94,6 +108,11 @@ Classes:
     Custo:
       money: 75000.0
       perolas: 1200.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 1000
+      Colecao: 25
+      Nivel da vara: 4
     Item:
       Material: LEATHER_CHESTPLATE
       Nome: '&bClasse Diamante'
@@ -107,6 +126,8 @@ Classes:
         - ' &7▪ Peso: &b+{bonus_peso}%'
         - ' &7▪ Valor: &b+{bonus_valor}%'
         - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
         - ''
         - '{rodape}'
   netherita:
@@ -123,6 +144,11 @@ Classes:
     Custo:
       money: 250000.0
       perolas: 3500.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 2500
+      Colecao: 35
+      Nivel da vara: 6
     Item:
       Material: LEATHER_CHESTPLATE
       Nome: '&8Classe Netherita'
@@ -136,6 +162,8 @@ Classes:
         - ' &7▪ Peso: &b+{bonus_peso}%'
         - ' &7▪ Valor: &b+{bonus_valor}%'
         - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
         - ''
         - '{rodape}'
   lendaria:
@@ -152,6 +180,11 @@ Classes:
     Custo:
       money: 1000000.0
       perolas: 10000.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 5000
+      Colecao: 45
+      Nivel da vara: 8
     Item:
       Material: LEATHER_CHESTPLATE
       Nome: '&6Classe Lendaria'
@@ -167,14 +200,368 @@ Classes:
         - ' &7▪ Valor: &b+{bonus_valor}%'
         - ' &fEfeitos: &b{efeitos}'
         - ''
+        - '{requisitos}'
+        - ''
         - '{rodape}'
 
 # Rodape do item da classe no menu, conforme a situacao.
+  coral:
+    Ordem: 5
+    Nome: '&3Coral'
+    Cor: '0:170:170'
+    Permissao: ''
+    Efeitos: [ 'SPEED:2', 'WATER_BREATHING:1' ]
+    Bonus:
+      Chance: 22.0
+      Perolas: 65.0
+      Peso: 20.0
+      Valor: 20.0
+    Custo:
+      money: 3000000.0
+      perolas: 22000.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 9000
+      Colecao: 56
+      Nivel da vara: 10
+    # A armadura desta classe (as de cima vestem material melhor).
+    Armadura:
+      Capacete:
+        Material: CHAINMAIL_HELMET
+        Nome: '&3 Capacete de pescador &7({classe}&7)'
+      Peitoral:
+        Material: CHAINMAIL_CHESTPLATE
+        Nome: '&3 Colete de pescador &7({classe}&7)'
+      Calca:
+        Material: CHAINMAIL_LEGGINGS
+        Nome: '&3 Calca de pescador &7({classe}&7)'
+      Botas:
+        Material: CHAINMAIL_BOOTS
+        Nome: '&3 Botas de pescador &7({classe}&7)'
+    Item:
+      Material: CHAINMAIL_CHESTPLATE
+      Nome: '&3Classe Coral'
+      Lore:
+        - ''
+        - ' &7Quem conhece os recifes de cor.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  perola:
+    Ordem: 6
+    Nome: '&fPerola'
+    Cor: '255:255:255'
+    Permissao: ''
+    Efeitos: [ 'SPEED:2', 'WATER_BREATHING:1', 'NIGHT_VISION:1' ]
+    Bonus:
+      Chance: 26.0
+      Perolas: 80.0
+      Peso: 25.0
+      Valor: 25.0
+    Custo:
+      money: 7000000.0
+      perolas: 40000.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 14000
+      Colecao: 62
+      Nivel da vara: 11
+    # A armadura desta classe (as de cima vestem material melhor).
+    Armadura:
+      Capacete:
+        Material: CHAINMAIL_HELMET
+        Nome: '&f Capacete de pescador &7({classe}&7)'
+      Peitoral:
+        Material: CHAINMAIL_CHESTPLATE
+        Nome: '&f Colete de pescador &7({classe}&7)'
+      Calca:
+        Material: CHAINMAIL_LEGGINGS
+        Nome: '&f Calca de pescador &7({classe}&7)'
+      Botas:
+        Material: CHAINMAIL_BOOTS
+        Nome: '&f Botas de pescador &7({classe}&7)'
+    Item:
+      Material: CHAINMAIL_CHESTPLATE
+      Nome: '&fClasse Perola'
+      Lore:
+        - ''
+        - ' &7A pescaria vira joia nas suas maos.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  abissal:
+    Ordem: 7
+    Nome: '&9Abissal'
+    Cor: '0:0:170'
+    Permissao: ''
+    Efeitos: [ 'SPEED:2', 'WATER_BREATHING:1', 'NIGHT_VISION:1' ]
+    Bonus:
+      Chance: 30.0
+      Perolas: 100.0
+      Peso: 30.0
+      Valor: 30.0
+    Custo:
+      money: 15000000.0
+      perolas: 70000.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 20000
+      Colecao: 70
+      Nivel da vara: 12
+    # A armadura desta classe (as de cima vestem material melhor).
+    Armadura:
+      Capacete:
+        Material: IRON_HELMET
+        Nome: '&9 Capacete de pescador &7({classe}&7)'
+      Peitoral:
+        Material: IRON_CHESTPLATE
+        Nome: '&9 Colete de pescador &7({classe}&7)'
+      Calca:
+        Material: IRON_LEGGINGS
+        Nome: '&9 Calca de pescador &7({classe}&7)'
+      Botas:
+        Material: IRON_BOOTS
+        Nome: '&9 Botas de pescador &7({classe}&7)'
+    Item:
+      Material: IRON_CHESTPLATE
+      Nome: '&9Classe Abissal'
+      Lore:
+        - ''
+        - ' &7Pesca onde a luz ja nao chega.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  tempestade:
+    Ordem: 8
+    Nome: '&8Tempestade'
+    Cor: '85:85:85'
+    Permissao: ''
+    Efeitos: [ 'SPEED:2', 'WATER_BREATHING:1', 'NIGHT_VISION:1', 'LUCK:1' ]
+    Bonus:
+      Chance: 35.0
+      Perolas: 125.0
+      Peso: 36.0
+      Valor: 36.0
+    Custo:
+      money: 30000000.0
+      perolas: 120000.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 28000
+      Colecao: 78
+      Nivel da vara: 13
+    # A armadura desta classe (as de cima vestem material melhor).
+    Armadura:
+      Capacete:
+        Material: IRON_HELMET
+        Nome: '&8 Capacete de pescador &7({classe}&7)'
+      Peitoral:
+        Material: IRON_CHESTPLATE
+        Nome: '&8 Colete de pescador &7({classe}&7)'
+      Calca:
+        Material: IRON_LEGGINGS
+        Nome: '&8 Calca de pescador &7({classe}&7)'
+      Botas:
+        Material: IRON_BOOTS
+        Nome: '&8 Botas de pescador &7({classe}&7)'
+    Item:
+      Material: IRON_CHESTPLATE
+      Nome: '&8Classe Tempestade'
+      Lore:
+        - ''
+        - ' &7Nem o temporal atrapalha a linha.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  estelar:
+    Ordem: 9
+    Nome: '&bEstelar'
+    Cor: '85:255:255'
+    Permissao: ''
+    Efeitos: [ 'SPEED:3', 'WATER_BREATHING:1', 'NIGHT_VISION:1', 'LUCK:1' ]
+    Bonus:
+      Chance: 40.0
+      Perolas: 155.0
+      Peso: 42.0
+      Valor: 42.0
+    Custo:
+      money: 60000000.0
+      perolas: 200000.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 38000
+      Colecao: 85
+      Nivel da vara: 15
+    # A armadura desta classe (as de cima vestem material melhor).
+    Armadura:
+      Capacete:
+        Material: DIAMOND_HELMET
+        Nome: '&b Capacete de pescador &7({classe}&7)'
+      Peitoral:
+        Material: DIAMOND_CHESTPLATE
+        Nome: '&b Colete de pescador &7({classe}&7)'
+      Calca:
+        Material: DIAMOND_LEGGINGS
+        Nome: '&b Calca de pescador &7({classe}&7)'
+      Botas:
+        Material: DIAMOND_BOOTS
+        Nome: '&b Botas de pescador &7({classe}&7)'
+    Item:
+      Material: DIAMOND_CHESTPLATE
+      Nome: '&bClasse Estelar'
+      Lore:
+        - ''
+        - ' &7Pesca guiada pelas estrelas.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  ancestral:
+    Ordem: 10
+    Nome: '&6Ancestral'
+    Cor: '255:170:0'
+    Permissao: ''
+    Efeitos: [ 'SPEED:3', 'WATER_BREATHING:1', 'NIGHT_VISION:1', 'LUCK:2' ]
+    Bonus:
+      Chance: 46.0
+      Perolas: 190.0
+      Peso: 50.0
+      Valor: 50.0
+    Custo:
+      money: 120000000.0
+      perolas: 320000.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 50000
+      Colecao: 92
+      Nivel da vara: 16
+    # A armadura desta classe (as de cima vestem material melhor).
+    Armadura:
+      Capacete:
+        Material: DIAMOND_HELMET
+        Nome: '&6 Capacete de pescador &7({classe}&7)'
+      Peitoral:
+        Material: DIAMOND_CHESTPLATE
+        Nome: '&6 Colete de pescador &7({classe}&7)'
+      Calca:
+        Material: DIAMOND_LEGGINGS
+        Nome: '&6 Calca de pescador &7({classe}&7)'
+      Botas:
+        Material: DIAMOND_BOOTS
+        Nome: '&6 Botas de pescador &7({classe}&7)'
+    Item:
+      Material: DIAMOND_CHESTPLATE
+      Nome: '&6Classe Ancestral'
+      Lore:
+        - ''
+        - ' &7O saber de todos os pescadores que vieram antes.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+  divina:
+    Ordem: 11
+    Nome: '&e&lDivina'
+    Cor: '255:255:85'
+    Permissao: ''
+    Efeitos: [ 'SPEED:3', 'WATER_BREATHING:1', 'NIGHT_VISION:1', 'LUCK:2', 'DOLPHINS_GRACE:1' ]
+    Bonus:
+      Chance: 55.0
+      Perolas: 240.0
+      Peso: 60.0
+      Valor: 60.0
+    Custo:
+      money: 250000000.0
+      perolas: 500000.0
+    # So evolui quem ja tem estrada na pescaria.
+    Requisitos:
+      Peixes pescados: 70000
+      Colecao: 98
+      Nivel da vara: 18
+    # A armadura desta classe (as de cima vestem material melhor).
+    Armadura:
+      Capacete:
+        Material: DIAMOND_HELMET
+        Nome: '&e&l Capacete de pescador &7({classe}&7)'
+      Peitoral:
+        Material: DIAMOND_CHESTPLATE
+        Nome: '&e&l Colete de pescador &7({classe}&7)'
+      Calca:
+        Material: DIAMOND_LEGGINGS
+        Nome: '&e&l Calca de pescador &7({classe}&7)'
+      Botas:
+        Material: DIAMOND_BOOTS
+        Nome: '&e&l Botas de pescador &7({classe}&7)'
+    Item:
+      Material: DIAMOND_CHESTPLATE
+      Nome: '&e&lClasse Divina'
+      Lore:
+        - ''
+        - ' &7O mar inteiro responde a sua vara.'
+        - ''
+        - ' &fBonus:'
+        - ' &7▪ Raridade: &b+{bonus_chance}%'
+        - ' &7▪ Perolas: &b+{bonus_perolas}%'
+        - ' &7▪ Peso: &b+{bonus_peso}%'
+        - ' &7▪ Valor: &b+{bonus_valor}%'
+        - ' &fEfeitos: &b{efeitos}'
+        - ''
+        - '{requisitos}'
+        - ''
+        - '{rodape}'
+
 Rodape:
   Comprar: '&aClique para evoluir por {custo}&a.'
   Sem saldo: '&cVoce precisa de {custo}&c.'
   Anterior: '&cVoce precisa da classe anterior.'
   Permissao: '&cVoce nao tem permissao para esta classe.'
+  Requisitos: '&cVoce ainda nao cumpre os requisitos.'
   Equipar: '&eClique para equipar.'
   Equipada: '&aClasse equipada.'
 

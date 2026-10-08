@@ -14,7 +14,7 @@
 
 # Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
 # tras depois de uma atualizacao.
-Versao do modelo: 2
+Versao do modelo: 3
 
 Geral:
   # Escreve no console o que o plugin esta fazendo.
@@ -257,13 +257,16 @@ Sacola:
   # true: o aumento e multiplicado pelo nivel (nivel 3 sobe 3x 'Por nivel').
   Multiplicar por nivel: false
   # Nivel maximo da sacola (0 = sem limite).
-  Nivel maximo: 10
+  Nivel maximo: 30
   # Custo para subir de nivel: economia (economias.yml) e valor. O valor e
-  # multiplicado pelo nivel atual quando 'Multiplicar custo' e true.
+  # multiplicado pelo nivel atual quando 'Multiplicar custo' e true, e sobe
+  # mais 'Crescimento' a cada nivel (1.12 = 12% em cima do anterior) -- sem
+  # isso o nivel 30 custaria so 30 vezes o primeiro.
   Custo:
     money: 2500.0
     perolas: 100.0
   Multiplicar custo: true
+  Crescimento: 1.12
   # Limites por permissao (starpesca.sacola.<chave>): o maior vale, somado
   # aos niveis comprados.
   Por permissao:

@@ -13,7 +13,7 @@
 #  Em titulos, <nl> separa o titulo do subtitulo.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Prefixo: '&8[&bPesca&8] &7'
 
@@ -154,11 +154,13 @@ Sacola:
 Vara:
   Evoluida: '&aVoce evoluiu para a &f{vara_nome} &7(L.{nivel})&a!'
   Precisa anterior: '&cVoce precisa da vara anterior para evoluir para esta.'
+  Requisito: '&cFalta para evoluir a vara: &f{requisito}&c.'
   Ja tem: '&cVoce ja tem esta vara (ou melhor).'
   Reparada: '&aSua vara foi reparada.'
   Nao quebrada: '&cSua vara nao esta quebrada.'
   Encantamento evoluido: '&aEncantamento &f{encantamento}&a evoluido para o nivel &f{nivel}&a.'
   Encantamento maximo: '&cEsse encantamento ja esta no maximo.'
+  Encantamento requisito: '&cFalta para este encantamento: &f{requisito}&c.'
   Encantamento sem perolas: '&cVoce precisa de &f{custo} perolas&c para evoluir esse encantamento.'
   Definida: '&aA vara de &f{jogador}&a agora e a &f{vara_nome}&a.'
   Resetada: '&aA vara de &f{jogador}&a foi resetada.'
@@ -197,6 +199,7 @@ Classes:
   Equipada: '&aClasse {classe}&a equipada.'
   Ja equipada: '&cEssa classe ja esta equipada.'
   Precisa anterior: '&cVoce precisa da classe anterior primeiro.'
+  Requisito: '&cFalta para esta classe: &f{requisito}&c.'
   Sem permissao: '&cVoce nao tem permissao para essa classe.'
   Desativado: '&cAs classes estao desativadas.'
   Definida: '&aA classe de &f{jogador}&a agora e {classe}&a.'
@@ -343,6 +346,22 @@ Entrada:
   Tempo esgotado: '&cO tempo para responder acabou.'
   Quantia: '&eDigite no chat a quantia de perolas para enviar:'
   Jogador: '&eDigite no chat o nome do jogador:'
+
+# As exigencias de vara, classe e encantamento (a secao Requisitos do yml de
+# cada um). A linha {requisitos} da lore vira esta lista; {tem} e o que a
+# pessoa tem agora e {precisa} o que falta alcancar.
+Requisitos:
+  Titulo: '&7Requisitos:'
+  Atendido: ' &a✔ &7{texto}'
+  Faltando: ' &c✖ &7{texto}'
+  Peixes pescados: 'Pescar {precisa} peixes &8({tem})'
+  Colecao: 'Ter {precisa} peixes na colecao &8({tem})'
+  Maior peso: 'Pescar um peixe de {precisa} &8({tem})'
+  Nivel da vara: 'Ter a vara nivel {precisa} &8({tem})'
+  Nivel da sacola: 'Ter a sacola nivel {precisa} &8({tem})'
+  Classe: 'Ter a classe {precisa}'
+  Missao: 'Concluir a missao {precisa}'
+  Permissao: 'Ter a permissao {precisa}'
 
 Etiquetas:
   Dia: 'd'
