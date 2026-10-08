@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 10
+Versao do modelo: 11
 
 Geral:
   Debug: false
@@ -166,23 +166,32 @@ Texto no nome:
   # servidor, ajuste este numero uma vez e todas as linhas acompanham.
   Encaixe do visor: 1.8
 
-  # MONTAR O NOME NO JOGADOR -- so vale quando NAO ha visor de texto.
+  # Quantos tiques o visor leva para chegar na posicao nova.
   #
-  # Ligado, a linha do nome viaja MONTADA no jogador, como quem esta sentado
-  # numa montaria. O cliente desenha passageiro colado no veiculo, inclusive no
-  # seu proprio corpo (que ele desenha adivinhando o movimento, sem esperar o
-  # servidor) -- entao o nome nao fica para tras de jeito nenhum.
+  # Entidade comum tem a interpolacao de tres tiques CRAVADA no cliente -- e
+  # dai que vem o rastro do texto quando o jogador corre. O visor de texto
+  # deixa escolher: 0 cola na posicao nova no mesmo quadro, e e por isso que o
+  # nome acompanha o jogador sem precisar ir montado nele.
   #
-  # So a linha do NOME e montada. Quem posiciona passageiro e o jogo, e ele poe
-  # todos no mesmo ponto: duas linhas montadas ficariam uma escrita por cima da
-  # outra. As de acima e abaixo do nome continuam sendo reposicionadas.
+  # Suba para 1 ou 2 se preferir o movimento mais macio, em troca de um rastro
+  # curto. Precisa da 1.20.2 em diante.
+  Suavizar: 0
+
+  # MONTAR NO JOGADOR -- leia inteiro antes de ligar.
   #
-  # Sem visor e montado, "Altura do nome" nao vale -- a altura passa a ser a do
-  # jogo. Desligue se voce precisar da altura exata numa versao antiga e
-  # preferir conviver com o atraso.
+  # Ligado, as linhas viajam MONTADAS no jogador, como passageiro. Acompanha
+  # sem atraso nenhum... e QUEBRA TODO TELEPORTE DO SERVIDOR.
   #
-  # Precisa de "Substituir o nome do jogador: true".
-  Montar o nome no jogador: true
+  # Jogador com passageiro nao pode ser teleportado: o servidor comeca o
+  # teleporte com "se tem passageiro, recusa", e essa recusa acontece ANTES de
+  # o evento de teleporte existir -- nem o plugin de teleporte fica sabendo.
+  # /tp, /spawn, /warp, portais e menus de teleporte anunciam sucesso e o
+  # jogador nao sai do lugar, sem nenhum erro no console.
+  #
+  # Da 1.20.2 em diante voce NAO PRECISA disto: com "Suavizar: 0" o
+  # reposicionamento alcanca o mesmo resultado sem quebrar nada. Ligue so num
+  # servidor antigo, que nao teleporte ninguem.
+  Montar no jogador: false
 
   # A altura da LINHA MAIS BAIXA de todas, em blocos a partir dos pes.
   #
