@@ -1,0 +1,212 @@
+# Configuração dos menus do StarSinalizador
+
+beacon_menu:
+  title: "Sinalizador"
+  size: 54
+
+  # Itens decorativos (não fazem nada, apenas visual)
+  decorative_items:
+    - slot: [0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,44,45,46,47,48,49,50,51,52,53]
+      material: GRAY_STAINED_GLASS_PANE
+      data: 0
+      name: "&7"
+      lore: []
+
+  # Itens funcionais
+  functional_items:
+    - slot: 13
+      material: BEACON
+      name: "&bSinalizador"
+      lore:
+        - ""
+        - "%pyramid_layers%"
+        - ""
+        - "&7Tipo: %beacon_tipo%"
+        - "&7Status: %beacon_status%"
+        - ""
+        - "&bClique para ativar o sinalizador"
+      action: activate_beacon
+    - slot: 39
+      material: FEATHER
+      name: "&bUpgrade Distância"
+      lore:
+        - "&7Preço: 500 moedas por nível"
+        - "&7Distância atual: %distance% blocos"
+        - "&7Clique para upgrade"
+      action: upgrade_distance
+    - slot: 40
+      material: TNT
+      name: "&cRemover Sinalizador"
+      lore:
+        - "&cCuidado! Esta ação é irreversível"
+        - "&7Remove o sinalizador permanentemente"
+        - ""
+        - "&7Dono e membros do terreno podem remover"
+      action: remove_beacon
+    - slot: 41
+      material: DIAMOND_BLOCK
+      name: "&cBypass Obstrução"
+      lore:
+        - "&7Preço: 10000 moedas"
+        - "&7%action_text%"
+      action: toggle_bypass
+
+# Todos os efeitos do beacon organizados
+custom_effects:
+  speed:
+    pagina: 1
+    slot: 19
+    upgrade-slot: 28
+    display_name: "Velocidade"
+    effect: speed
+    max_level: 4
+    price: 25000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 1
+       tipo_necessario: "TODAS"
+      upgrade2:
+       level: 2
+       camadas: 2
+       tipo_necessario: "TODAS"
+      upgrade3:
+       level: 3 # Nesse nivel será nessesario:
+       camadas: 4 # Quantas camadas de piramide sao necessarias. tendo 1,2,3,4
+       tipo_necessario: "NETHERITE" # Tipo de piramide necessario. tendo TODAS, MISTA, FERRO, OURO, DIAMANTE, ESMERALDA, NETHERITE
+      upgrade4:
+       level: 4
+       camadas: 4
+       tipo_necessario: "NETHERITE"
+  haste:
+    pagina: 1
+    slot: 20
+    upgrade-slot: 29
+    display_name: "Pressa"
+    effect: haste
+    max_level: 3
+    price: 25000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 1
+       tipo_necessario: "TODAS"
+      upgrade2:
+       level: 2
+       camadas: 3
+       tipo_necessario: "OURO"
+      upgrade3:
+       level: 3
+       camadas: 4
+       tipo_necessario: "OURO"
+  strength:
+    pagina: 1
+    slot: 21
+    upgrade-slot: 30
+    display_name: "Força"
+    effect: strength
+    max_level: 3
+    price: 25000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 1
+       tipo_necessario: "TODAS"
+      upgrade2:
+       level: 2
+       camadas: 3
+       tipo_necessario: "DIAMANTE"
+      upgrade3:
+       level: 3
+       camadas: 4
+       tipo_necessario: "DIAMANTE"
+  jump_boost:
+    pagina: 1
+    slot: 22
+    upgrade-slot: 31
+    display_name: "Super Pulo"
+    effect: jump_boost
+    max_level: 2
+    price: 25000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 1
+       tipo_necessario: "TODAS"
+      upgrade2:
+       level: 2
+       camadas: 3
+       tipo_necessario: "TODAS"
+  regeneration:
+    pagina: 1
+    slot: 23
+    upgrade-slot: 32
+    display_name: "Regeneração"
+    effect: regeneration
+    max_level: 2
+    price: 15000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 4
+       tipo_necessario: "TODAS"
+      upgrade2:
+       level: 2
+       camadas: 4
+       tipo_necessario: "NETHERITE"
+  resistance:
+    pagina: 1
+    slot: 24
+    upgrade-slot: 33
+    display_name: "Resistência"
+    effect: resistance
+    max_level: 2
+    price: 50000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 2
+       tipo_necessario: "TODAS"
+      upgrade2:
+       level: 2
+       camadas: 4
+       tipo_necessario: "TODAS"
+  night_vision:
+    pagina: 1
+    slot: 25
+    upgrade-slot: 34
+    display_name: "Visão Noturna"
+    effect: night_vision
+    max_level: 1
+    price: 80000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 3
+       tipo_necessario: "DIAMANTE"
+  fire_resistance:
+    pagina: 2
+    slot: 19
+    upgrade-slot: 28
+    display_name: "Resistência ao Fogo"
+    effect: fire_resistance
+    max_level: 1
+    price: 50000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 2
+       tipo_necessario: "OURO"
+  luck:
+    pagina: 2
+    slot: 20
+    upgrade-slot: 29
+    display_name: "Sorte"
+    effect: luck
+    max_level: 1
+    price: 20000
+    upgrades:
+      upgrade1:
+       level: 1
+       camadas: 2
+       tipo_necessario: "ESMERALDA"

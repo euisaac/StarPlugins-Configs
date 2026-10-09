@@ -1,0 +1,69 @@
+# Configuração geral do StarSinalizador
+
+# Configurações gerais
+general:
+  default_distance: 20
+  max_distance: 100
+  bypass_duration: 3600  # em segundos
+  autosave_seconds: 300  # de quanto em quanto tempo os sinalizadores sao gravados no disco
+
+# Quem mexe no sinalizador alem do dono e da staff (starsinalizador.admin).
+# Vale para StarTerrenos, StarSkyBlock, StarOneBlock, StarPlots, StarFactions,
+# StarBunkers, GriefDefender, GriefPrevention e WorldGuard -- o que estiver no
+# servidor. O membro do terreno onde o sinalizador esta pode:
+#   usar    = abrir o menu, ligar/desligar efeitos e comprar melhorias
+#   remover = remover pelo menu e quebrar o bloco
+terrenos:
+  ativar: true
+  # Nivel minimo de confianca no StarTerrenos: ACESSO, CONTAINER, CONSTRUTOR ou GERENTE.
+  # Nos outros plugins: usar = abrir baus, remover = construir/quebrar.
+  nivel_usar: CONTAINER
+  nivel_remover: CONSTRUTOR
+
+# Quebrar o bloco do sinalizador com a picareta.
+quebrar:
+  # false = so da para tirar pelo menu (comportamento antigo)
+  ativar: true
+  # Sinalizador com melhorias compradas pede uma segunda quebrada dentro deste
+  # tempo, para ninguem perder as compras sem querer. 0 = quebra direto.
+  confirmar_segundos: 5
+  # Explosoes (creeper, TNT) nao destroem sinalizadores
+  proteger_de_explosao: true
+
+# Upgrade de distância
+distance_upgrade:
+  price_per_level: 500
+  max_level: 5
+
+# Recurso para ignorar obstruções
+obstruction_bypass:
+  item: DIAMOND_BLOCK
+  price: 10000
+  duration: 3600  # em segundos
+
+# Mensagens
+messages:
+  no_permission: "&cVocê não tem permissão para usar isso."
+  insufficient_funds: "&cVocê não tem dinheiro suficiente."
+  effect_activated: "&aEfeito ativado: %effect%"
+  effect_deactivated: "&cEfeito desativado: %effect%"
+  upgrade_purchased: "&aUpgrade comprado: %upgrade%"
+  bypass_purchased: "&aRecurso de obstrução comprado!"
+  bypass_expired: "&cO tempo do bypass expirou. Compre novamente."
+  beacon_activated: "&aSinalizador ativado!"
+  effect_purchased: "&aEfeito comprado: %effect% nível %level%"
+  distance_upgraded: "&aDistância aumentada para %distance% blocos!"
+  upgrade_layers_required: "&cPara upar para nível %level%, a pirâmide deve ter %camadas% camadas!"
+  upgrade_type_required: "&cPara upar para nível %level%, a pirâmide deve ser de %type%!"
+  no_access: "&cVocê não tem permissão para acessar este sinalizador!"
+  no_remove_permission: "&cVocê não tem permissão para remover este sinalizador!"
+  break_disabled: "&cVocê não pode quebrar este sinalizador! Use o menu para removê-lo."
+  break_confirm: "&eEste sinalizador tem melhorias compradas que serão perdidas. Quebre de novo em %segundos%s para confirmar."
+  beacon_broken: "&aSinalizador removido!"
+
+# Visualização da pirâmide do beacon
+pyramid_visualization:
+  - "&0⬜⬜⬜&r███"
+  - "&0⬜⬜&r█████"
+  - "&0⬜&r███████"
+  - "█████████"
