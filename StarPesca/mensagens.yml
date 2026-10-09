@@ -13,7 +13,7 @@
 #  Em titulos, <nl> separa o titulo do subtitulo.
 # ==========================================================================
 
-Versao do modelo: 3
+Versao do modelo: 4
 
 Prefixo: '&8[&bPesca&8] &7'
 
@@ -369,6 +369,29 @@ Entrada:
 # As exigencias de vara, classe e encantamento (a secao Requisitos do yml de
 # cada um). A linha {requisitos} da lore vira esta lista; {tem} e o que a
 # pessoa tem agora e {precisa} o que falta alcancar.
+# Anti macro (config.yml > Anti macro). {tempo} {erros} {jogador}
+Captcha:
+  Pedido: '&b&lCAPTCHA &7Confirme que voce esta ai: clique no item pedido no titulo, pelo &fdesenho&7 (os nomes estao trocados).'
+  Parado: '&b&lCAPTCHA &7Voce esta pescando parado do mesmo jeito ha muito tempo. Confirme que esta ai.'
+  Acertou: '&aCAPTCHA certo! Pode continuar pescando.'
+  Errou: '&cVoce errou o CAPTCHA e ficou &f{tempo}&c sem pescar.'
+  Tempo esgotado: '&cO tempo do CAPTCHA acabou: &f{tempo}&c sem pescar.'
+  Expulso: '&cVoce errou o CAPTCHA vezes demais e saiu da area de pesca.'
+  Bloqueado: '&cSem pescar por mais &f{tempo} &7(CAPTCHA)'
+  Enviado: '&aCAPTCHA enviado para &f{jogador}&a.'
+  Liberado: '&f{jogador}&a foi liberado do CAPTCHA.'
+
+# Textos curtos das variaveis do placar (config.yml > Placar).
+Placar:
+  # {proxima_status}
+  Vara maxima: '&aVara maxima'
+  Vara pronta: '&aPronta!'
+  Vara requisitos: '&f{cumpridos}&8/&7{total} req.'
+  # {torneio_resumo}
+  Torneio nenhum: '&7nenhum'
+  Torneio fora: '&epesque p/ entrar'
+  Torneio posicao: '&e{posicao}º &7de {participantes}'
+
 Requisitos:
   Titulo: '&7Requisitos:'
   Atendido: ' &a✔ &7{texto}'

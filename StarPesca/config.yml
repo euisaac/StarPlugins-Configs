@@ -14,7 +14,7 @@
 
 # Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
 # tras depois de uma atualizacao.
-Versao do modelo: 3
+Versao do modelo: 4
 
 Geral:
   # Escreve no console o que o plugin esta fazendo.
@@ -143,44 +143,88 @@ Placar:
   # Em segundos.
   Atualizar a cada: 2
   Titulo: '&b&lPESCARIA'
+  # Linhas curtas: o placar fica tao largo quanto a maior delas.
+  # {proxima_status} = "Vara maxima", "Pronta!" ou "2/4 req." (os requisitos da
+  # proxima vara mais as perolas). {torneio_resumo} = sua posicao no torneio em
+  # destaque ("3o de 12"). Textos em mensagens.yml > Placar.
   Linhas:
     - '&7'
-    - '&fVara: &b{vara_nome}'
-    - '&fNivel: &b{nivel} &7| &fPeso: &b{peso_suportado}g'
-    - '&fProxima: &b{perolas}&7/&b{proximo_custo_perolas}'
+    - '&b&l» &fVara'
+    - ' &b{vara_nome} &8(&7Nv.{nivel}&8)'
+    - ' &7Suporta: &f{peso_suportado}g'
+    - ' &7Evoluir: {proxima_status}'
     - '&7'
-    - '&fPescados: &b{pescados}'
-    - '&fMaior peso: &b{maior_peso}g'
-    - '&fSacola: &b{sacola}&7/&b{limite}'
-    - '&fClasse: {classe}'
-    - '&fMissoes: &b{missoes_concluidas}&7/&b{missoes_total}'
+    - '&b&l» &fPesca'
+    - ' &7Pescados: &f{pescados}'
+    - ' &7Recorde: &f{maior_peso}g'
+    - ' &7Sacola: &f{sacola}&8/&7{limite}'
+    - ' &7Perolas: &b{perolas}'
+    - ' &7Missoes: &f{missoes_concluidas}&8/&7{missoes_total}'
     - '&7'
-    - '&fTorneio: &e{torneio_estado}'
-    - '&fBooster: &e{booster}'
-    - '&7'
+    - ' &7Torneio: {torneio_resumo}'
     - '&bstarplugins.com.br'
-  # Enquanto um torneio estiver valendo, quem esta na area ve este placar no
-  # lugar do de cima. Alem das de cima: {torneio_tipo} {torneio_vara}
-  # {torneio_tempo} {torneio_premio} {torneio_1_nome} {torneio_1_valor} (ate 3)
-  # {torneio_posicao} {torneio_valor} {torneio_participantes} {torneio_perolas}.
+  # O placar do torneio, no lugar do de cima. Quando: EVENTO = so com um evento
+  # de torneio valendo (os do mes valem o mes todo e tomariam o placar sempre);
+  # QUALQUER = com qualquer torneio. Variaveis: {torneio_nome} {torneio_tipo}
+  # {torneio_vara} {torneio_tempo} {torneio_premio} {torneio_1_nome}
+  # {torneio_1_valor} (ate 3) {torneio_posicao} {torneio_valor}
+  # {torneio_participantes} {torneio_falta_texto} {torneio_perolas}.
   Torneio:
     Ativar: true
-    Titulo: '&6&lTORNEIO'
+    Quando: EVENTO
+    Titulo: '&d&lEVENTO'
     Linhas:
       - '&7'
-      - '&fTipo: &e{torneio_tipo}'
-      - '&fVara: &e{torneio_vara}'
-      - '&fAcaba em: &e{torneio_tempo}'
+      - '&d&l» &f{torneio_tipo}'
+      - ' &7Acaba em: &f{torneio_tempo}'
       - '&7'
-      - '&6&l1o &f{torneio_1_nome} &7{torneio_1_valor}'
-      - '&7&l2o &f{torneio_2_nome} &7{torneio_2_valor}'
-      - '&c&l3o &f{torneio_3_nome} &7{torneio_3_valor}'
+      - ' &6&l1º &f{torneio_1_nome}'
+      - '   &e{torneio_1_valor}'
+      - ' &7&l2º &f{torneio_2_nome}'
+      - '   &e{torneio_2_valor}'
+      - ' &c&l3º &f{torneio_3_nome}'
+      - '   &e{torneio_3_valor}'
       - '&7'
-      - '&fSua posicao: &b{torneio_posicao}'
-      - '&fSeu placar: &b{torneio_valor}'
-      - '&fParticipantes: &b{torneio_participantes}'
-      - '&7'
+      - ' &7Voce: &b{torneio_posicao} &8| &f{torneio_valor}'
+      - ' {torneio_falta_texto}'
       - '&bstarplugins.com.br'
+
+# --------------------------------------------------------------------------
+#  Anti macro (pesca AFK)
+#
+#  O CAPTCHA abre um menu pedindo um item pelo nome; as opcoes tem os NOMES
+#  TROCADOS, entao so passa quem clica no item pelo desenho (menus.yml >
+#  Captcha). Com o CAPTCHA pendente nenhum peixe vem e o menu volta a cada
+#  lance (fechar nao adianta).
+#  Quem tem starpesca.captcha.bypass nunca recebe -- e o * da staff da essa
+#  permissao. Para testar em voce: /starpesca captcha <seu nick>.
+#  /starpesca captcha liberar <jogador> tira o castigo.
+# --------------------------------------------------------------------------
+Anti macro:
+  Ativar: true
+  # CAPTCHA a cada tantos minutos PESCANDO (o tempo parado nao conta). 0 = so
+  # pela mira parada.
+  A cada: 30
+  # Ate tantos minutos a mais ou a menos, sorteado a cada vez: o macro nao
+  # sabe quando vem o proximo.
+  Variacao: 10
+  # Lances seguidos do mesmo bloco e com a mesma mira = parado: abre o CAPTCHA.
+  # So contam os lances aceitos (o clique repetido durante o intervalo nao).
+  # 0 = desliga.
+  Lances parados: 25
+  # Quanto a mira (em graus) pode mudar e ainda contar como "a mesma".
+  Tolerancia da mira: 0.5
+  # Segundos para responder, contados so com a pessoa DENTRO da area. Passou
+  # disso, conta como erro.
+  Tempo para responder: 60
+  # Errou: segundos sem pescar. Depois disso o CAPTCHA continua esperando.
+  Punicao: 300
+  # Comandos no console a cada erro ({jogador} {uuid} {erros}).
+  Comandos ao errar: [ ]
+  # Com tantos erros seguidos o jogador sai da area de pesca. 0 = nunca.
+  Erros para expulsar: 3
+  # Comandos no console quando ele e tirado da area (ex.: 'kick {jogador} Macro de pesca').
+  Comandos ao expulsar: [ ]
 
 # --------------------------------------------------------------------------
 #  A pesca em si

@@ -30,7 +30,7 @@
 #  {pagina} {paginas}. Placeholders do PlaceholderAPI tambem funcionam.
 # ==========================================================================
 
-Versao do modelo: 3
+Versao do modelo: 4
 
 # ---------------------------------------------------------------------------
 #  Menu principal (/pesca).
@@ -391,17 +391,41 @@ Sacola:
 # ---------------------------------------------------------------------------
 Top:
   Titulo: '&8Ranking &7- {tipo_nome}'
-  Linhas: 4
+  Linhas: 5
   Enfeite:
     Ativar: true
     Material: BLACK_STAINED_GLASS_PANE
     Nome: ' '
-  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21 ]
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 21, 22, 23 ]
   Tipos:
     pescados: 'Peixes pescados'
     perolas: 'Perolas'
     peso: 'Peixe mais pesado'
     tempo: 'Tempo pescando'
+    vara: 'Melhor vara'
+  # Um botao por ranking, embaixo. Slots: o lugar de cada um (-1 = sem botao).
+  # Selecionado = o ranking que esta aberto; Outro = os demais. {nome} = o
+  # nome do ranking (Tipos, acima).
+  Rankings:
+    Slots:
+      pescados: 38
+      perolas: 39
+      peso: 40
+      tempo: 41
+      vara: 42
+    Selecionado:
+      Material: STONE_BUTTON
+      Nome: '&a&l{nome}'
+      Lore:
+        - ''
+        - '&7Voce esta vendo este ranking.'
+    Outro:
+      Material: OAK_BUTTON
+      Nome: '&e{nome}'
+      Lore:
+        - ''
+        - '&eClique para ver.'
+  # (lista dos rankings, para quem usar a acao 'alternar' num botao proprio)
   Opcoes:
     Selecionada: ' &f▪ &a{nome}'
     Outra: ' &f▪ &7{nome}'
@@ -418,17 +442,8 @@ Top:
     Nome: '&7{posicao}º &8---'
     Lore: [ '&7Ninguem ainda.' ]
   Itens:
-    seletor:
-      Slot: 31
-      Material: COMPASS
-      Nome: '&aTipo de ranking'
-      Lore:
-        - '{opcoes}'
-        - ''
-        - '&eClique para alternar'
-      Acoes: [ 'alternar' ]
     voltar:
-      Slot: 27
+      Slot: 36
       Material: ARROW
       Nome: '&cVoltar'
       Acoes: [ 'voltar' ]
@@ -909,6 +924,75 @@ Confirmar:
       Material: RED_WOOL
       Nome: '&cCancelar'
       Acoes: [ 'voltar' ]
+
+# ---------------------------------------------------------------------------
+#  CAPTCHA anti macro (config.yml > Anti macro). O titulo pede um item pelo
+#  nome ({item}); as opcoes sao sorteadas de 'Itens' (uma por slot de 'Slots')
+#  e os NOMES delas vem trocados entre si -- o certo e o item com o DESENHO
+#  pedido, nunca o que se chama assim. Use itens bem diferentes entre si.
+# ---------------------------------------------------------------------------
+Captcha:
+  Titulo: '&8Clique: &0{item} &b&lCAPTCHA'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 12, 14, 16 ]
+  Nome: '&f{nome}'
+  Lore:
+    - ''
+    - '&7Clique no item: &f{item}'
+    - '&8Olhe o desenho, nao o nome.'
+  Itens:
+    bacalhau:
+      Material: COD
+      Nome: 'Bacalhau'
+    salmao:
+      Material: SALMON
+      Nome: 'Salmao'
+    baiacu:
+      Material: PUFFERFISH
+      Nome: 'Baiacu'
+    peixe_tropical:
+      Material: TROPICAL_FISH
+      Nome: 'Peixe tropical'
+    vara:
+      Material: FISHING_ROD
+      Nome: 'Vara de pesca'
+    vitoria_regia:
+      Material: LILY_PAD
+      Nome: 'Vitoria-regia'
+    linha:
+      Material: STRING
+      Nome: 'Linha'
+    osso:
+      Material: BONE
+      Nome: 'Osso'
+    bota:
+      Material: LEATHER_BOOTS
+      Nome: 'Bota velha'
+    tigela:
+      Material: BOWL
+      Nome: 'Tigela'
+    etiqueta:
+      Material: NAME_TAG
+      Nome: 'Etiqueta'
+    sela:
+      Material: SADDLE
+      Nome: 'Sela'
+    livro:
+      Material: BOOK
+      Nome: 'Livro'
+    esmeralda:
+      Material: EMERALD
+      Nome: 'Esmeralda'
+    balde:
+      Material: WATER_BUCKET
+      Nome: 'Balde de agua'
+    bussola:
+      Material: COMPASS
+      Nome: 'Bussola'
 
 # Historico de torneios (botao "historico" do menu do torneio ou
 # /starpesca torneio historico). Um item por torneio terminado, do mais novo
