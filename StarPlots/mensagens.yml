@@ -112,6 +112,10 @@ Erros:
   Mundo nao criado: '&cO servidor recusou criar o mundo &f{mundo}&c. Veja o console.'
   Mundo desconhecido: '&cNao existe o mundo de terrenos &f{mundo}&c.'
   Teleporte recusado: '&cO servidor recusou o teleporte. Veja o console.'
+  Importar sem plugin: '&cNao achei o outro plugin de terrenos em &f{pasta}&c.'
+  Importar sem mundos: '&cO outro plugin nao tem nenhum mundo de terrenos configurado.'
+  Importar mundo desconhecido: '&cO outro plugin nao tem esse mundo.'
+  Importar banco: '&cNao consegui abrir o banco do outro plugin. Veja o console.'
   Captura de rua: '&cNao deu para capturar: &f{motivo}&c. Fique em cima de um pedaco de rua do tipo pedido.'
 
 Terreno:
@@ -395,6 +399,25 @@ Admin:
   Ruas recarregadas: '&aModelos de rua recarregados.'
   Aplicando rua: '&7Refazendo a rua em volta...'
   Rua aplicada: '&aRua refeita.'
+  Importando: '&7Lendo os terrenos do outro plugin...'
+  Importacao cabecalho: |
+    
+    &8&m-----------------------------
+    &a&lImportar terrenos
+    &8&m-----------------------------
+  Importacao resumo: |
+    &8&m-----------------------------
+    &7Terrenos: &f{terrenos} &8| &7pulados (ja existem): &f{pulados}
+    &7Mundos novos: &f{mundos} &8| &7membros: &f{membros} &8| &7notas: &f{notas}
+  Importacao simulacao: |
+    &eNada foi gravado ainda.
+    &7Rode de novo com &fconfirmar &7no fim para valer.
+    &8&m-----------------------------
+  Importacao pronta: |
+    &aImportacao concluida!
+    &7Agora: tire o outro plugin da pasta plugins, tire o mundo do
+    &7bukkit.yml (se estiver la) e reinicie o servidor.
+    &8&m-----------------------------
   Modelo salvo: '&aModelo &f{modelo} &asalvo. Ajuste nome, icone e preco no modelos.yml (ou pelo /starplots config).'
   Modelo apagado: '&aModelo &f{modelo} &aapagado.'
   Linha de modelo: '&7- &f{modelo} &7({nome}&7) &f{preco}'
@@ -445,6 +468,7 @@ Ajuda:
     &f/terrenoadmin rua capturar reto|cruzamento &7- modelo de rua
     &f/terrenoadmin rua aplicar|recarregar
     &f/terrenoadmin modelo salvar|apagar|lista [nome]
+    &f/terrenoadmin importar [mundo|todos] [confirmar] &7- traz os terrenos de outro plugin
     &f/terrenoadmin restaurar &7- backups do terreno
     &f/terrenoadmin info|recarregar
     &8&m-----------------------------
