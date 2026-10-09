@@ -1,0 +1,382 @@
+Database:
+  Tipo: SQLITE #Tipos: MYSQL, SQLITE
+  IP: localhost:3306
+  DB: starcorreio
+  User: root
+  Pass: ''
+
+# Configuracoes do servidor redis (opcional). So usado para avisar o jogador na hora
+# quando ele recebe um envio enquanto esta online em OUTRO servidor da rede (BungeeCord/Velocity).
+# O banco de dados continua sendo a unica fonte de verdade dos envios.
+redis:
+  enabled: false
+  host: 'localhost'
+  port: 6379
+  username: ''
+  password: ''
+
+# Comando e aliases (definidos no plugin.yml: correio, correios, encomendas, courier)
+Comando:
+  Correio:
+    Comando: 'correio'
+    Aliases: [correios, encomendas, courier]
+
+# Tipo de formato de quantia: LETRA (K,M,B,T...) ou NUMERO (100, 1000...)
+Formatacao: 'LETRA'
+
+# Opcoes do NPC do correio (Citizens, opcional - ver "Opcoes" abaixo)
+NPC:
+  Skin: 'Notch'
+  Holograma:
+    Altura: 3.1
+    Holograma:
+      - '&6StarCorreio'
+      - '&7Clique para gerenciar suas encomendas.'
+
+# Como o botao "Enviar" do menu e o /correio enviar (sem nick) escolhem o destinatario:
+#   MENU - abre um menu com a cabeca de todos os jogadores online (tem tambem o botao
+#          "Digitar no chat", que serve inclusive para quem esta offline)
+#   CHAT - pede o nick direto no chat
+# O /correio enviar <nick> continua funcionando direto, nos dois modos.
+Enviar:
+  Modo: MENU
+
+# Guarda no correio os itens que cairiam no chao porque o inventario do jogador estava cheio
+# (premios, ativacao de VIP, /give, kits...). Eles aparecem numa aba propria do /correio
+# ("Inventario cheio" no seletor) e o jogador e avisado no chat.
+# Como nao da para saber qual plugin soltou o item, ele e recolhido quando cai colado no
+# jogador e NAO cabe no inventario dele. Item jogado fora de proposito (Q, arrastar para
+# fora) fica no chao normalmente.
+InventarioCheio:
+  Ativar: false
+  # Distancia maxima (em blocos) entre o item que caiu e o jogador
+  Distancia: 2.0
+  # Ignora itens que saem de blocos quebrados, mobs mortos, explosoes, folhas e
+  # dispensers ali do lado (mineracao, escavacao e farms ficam no chao como sempre)
+  Ignorar blocos e mobs: true
+  # Jogadores no criativo nao tem os itens recolhidos
+  Ignorar criativo: true
+  # Maximo de itens guardados assim por jogador. Cheio, o item volta a cair no chao. 0 = sem limite
+  Limite: 200
+  # Dias ate o item guardado expirar (e sumir). 0 = nunca expira
+  Dias expiracao: 0
+  # Nome mostrado como remetente no historico
+  Remetente: 'Inventario cheio'
+  # Mundos onde nada e recolhido
+  Mundos desativados:
+    - 'none'
+  # Itens que NUNCA vao para o correio (mineracao, escavacao, farm).
+  # Aceita o nome inteiro ou com * nas pontas: *_ORE, RAW_*, *_LOG
+  Blacklist:
+    - '*_ORE'
+    - 'RAW_*'
+    - 'ANCIENT_DEBRIS'
+    - 'COAL'
+    - 'CHARCOAL'
+    - 'DIAMOND'
+    - 'EMERALD'
+    - 'LAPIS_LAZULI'
+    - 'REDSTONE'
+    - 'QUARTZ'
+    - 'AMETHYST_SHARD'
+    - 'GLOWSTONE_DUST'
+    - 'FLINT'
+    - 'STONE'
+    - 'COBBLESTONE'
+    - 'COBBLED_DEEPSLATE'
+    - 'DEEPSLATE'
+    - 'ANDESITE'
+    - 'DIORITE'
+    - 'GRANITE'
+    - 'TUFF'
+    - 'CALCITE'
+    - 'NETHERRACK'
+    - 'BLACKSTONE'
+    - 'BASALT'
+    - 'END_STONE'
+    - 'OBSIDIAN'
+    - 'DIRT'
+    - 'COARSE_DIRT'
+    - 'ROOTED_DIRT'
+    - 'GRASS_BLOCK'
+    - 'MUD'
+    - 'CLAY_BALL'
+    - 'GRAVEL'
+    - 'SAND'
+    - 'RED_SAND'
+    - 'SANDSTONE'
+    - 'SOUL_SAND'
+    - 'SOUL_SOIL'
+    - 'SNOWBALL'
+    - 'ICE'
+    - '*_LOG'
+    - '*_STEM'
+    - '*_SAPLING'
+
+# Caixa de correio no mundo: uma cerca com a cabeca de caixa de correio em cima e o
+# holograma "Correio de NICK". Quem clica nela envia itens ao dono; o dono clicando abre o
+# proprio /correio. O jogador pega a caixa no botao do /correio. Para tirar: o dono
+# agachado (SHIFT) quebrando, ou o botao direito no /correio (recolhe do chao a distancia).
+CaixaCorreio:
+  Ativar: true
+  # Preco da primeira caixa do jogador (0 = gratis) e das proximas (quando ela some do
+  # chao e do inventario e ele precisa de outra). Cobrado pelo Vault.
+  Preco primeira: 0
+  Preco: 15000
+  # Caixas no chao por jogador (mais por comando: /correio caixa limite <player> <quantia>)
+  Limite por jogador: 1
+  # Cerca embaixo da cabeca
+  Cerca: OAK_FENCE
+  # Textura da cabeca colocada no chao (hash do textures.minecraft.net ou a URL inteira)
+  Textura: 'eb2815b99c13bfc55b4c5c2959d157a6233ab06186459233bc1e4d4f78792c69'
+  # A cada quantos segundos atualizar o "Voce recebeu X itens!"
+  Atualizar segundos: 5
+  Texto gratis: '&aGratis'
+  Texto preco: '&2$&a{valor}'
+  Item:
+    CustomSkull: true
+    URL: 'eb2815b99c13bfc55b4c5c2959d157a6233ab06186459233bc1e4d4f78792c69'
+    ID: AIR
+    Data: 0
+    Name: '&eCaixa de correio'
+    Lore:
+      - '&7Coloque no chao para que outros'
+      - '&7jogadores te enviem itens.'
+      - ''
+      - '&7Para tirar: agache (SHIFT) e quebre.'
+  Holograma:
+    # Altura da primeira linha acima da cerca e o espaco entre as linhas
+    Altura: 2.05
+    Espacamento: 0.27
+    Linhas:
+      - '&eCorreio de &f{dono}'
+      - '&7Envie itens por correio.'
+    # Linha acima das outras que SO o dono ve, quando tem algo esperando no correio
+    # (servidor 1.18+). Deixe vazio ('') para nao mostrar.
+    Dono: '&aVoce recebeu {quantia} itens!'
+
+# Opcoes gerais do plugin
+Opcoes:
+  # Mundos onde nao e possivel coletar encomendas/recompensas
+  World blacklist:
+    - 'none'
+  # Enviar aviso de recompensas/encomendas pendentes ao logar
+  Logar mensagem: true
+  # Limite de encomendas armazenadas por jogador
+  Limite encomenda: 40
+  # Ativar o sistema de encomendas entre jogadores
+  Encomendas ativar: true
+  # Delay (em ticks) apos o login antes de checar o correio do jogador
+  Login delay: 20
+  # Ativar o botao Q para deletar itens do correio
+  UsarQ: true
+
+# Mensagens gerais do plugin
+Mensagens:
+  Permissao: '&cVoce nao possui permissao para isto.'
+  Setado npc: '&aNPC do correio setado com sucesso.'
+  Removido npc: '&aNPC do correio removido com sucesso.'
+  Nao setado npc: '&cO NPC nao esta setado.'
+  Npc indisponivel: '&cEste servidor nao possui o Citizens instalado, entao o NPC nao pode ser criado.'
+  Cancelou: '&cVoce cancelou a operacao.'
+  Nao encontrado: '&cEste jogador nao foi encontrado.'
+  Enviou: '&aVoce enviou &f{quantia}x &aitens para o jogador &f{player}&a.'
+  Recebeu: '&aVoce recebeu &f{quantia}x &aitens do jogador &f{player}&a. Acesse &f/correio&a para recolher.'
+  Enviou todos: '&aVoce enviou &f{quantia}x &aitens para todos os jogadores online.'
+  Enviou grupo: '&aVoce enviou &f{quantia}x &aitens para todos os jogadores do grupo &f{grupo}&a.'
+  Recebeu todos: '&aTodos os jogadores receberam &f{quantia}x &aitens no /correio.'
+  Recebeu grupo: '&aTodos os jogadores do grupo &f{grupo}&a receberam &f{quantia}x &aitens no /correio.'
+  Fechar: '&eOs itens que voce colocou no menu voltaram para o seu inventario.'
+  Inserir: '&cVoce deve inserir itens no menu.'
+  Si mesmo: '&cVoce nao pode realizar esta operacao em si mesmo.'
+  Deletado: '&cItem deletado com sucesso.'
+  Deletado recompensa: '&cRecompensa deletada com sucesso.'
+  InvCheio: '&cSeu inventario esta cheio.'
+  Recolheu encomenda: '&aVoce recolheu &f{quantia}x &aencomendas com sucesso.'
+  Recolheu recompensa: '&aVoce recolheu &f{quantia}x &arecompensas da categoria &f{categoria}&a com sucesso.'
+  Mundo: '&cVoce nao pode coletar neste mundo.'
+  Recompensas: '&aLista de recompensas disponiveis: &f{lista}&a.'
+  Grupos: '&aLista de grupos disponiveis: &f{lista}&a.'
+  Categorias: '&aLista de categorias disponiveis: &f{lista}&a.'
+  Nao encontrado grupo: '&cEste grupo nao existe. Disponiveis: &7{grupos}&c.'
+  Nao encontrado categoria: '&cEsta categoria nao existe. Disponiveis: &7{categorias}&c.'
+  Nao encontrado recompensa: '&cEsta recompensa nao existe. Disponiveis: &7{recompensas}&c.'
+  Give player: '&aVoce deu &f{quantia}x &f{recompensa}&a na categoria &f{categoria}&a para o jogador &f{player}&a.'
+  Give todos: '&aVoce deu &f{quantia}x &f{recompensa}&a na categoria &f{categoria}&a para todos os jogadores online.'
+  Give grupo: '&aVoce deu &f{quantia}x &f{recompensa}&a na categoria &f{categoria}&a para todos os jogadores do grupo &f{grupo}&a.'
+  Recebeu player: '&aVoce recebeu &f{quantia}x &f{recompensa}&a na categoria &f{categoria}&a.'
+  Recebeu player actionbar: '&a+ &f{quantia}x &f{recompensa}&a na categoria &f{categoria}&a.'
+  Recebeu player all: '&aVoce recebeu recompensas no seu correio.'
+  Recebeu player all actionbar: '&aVoce recebeu recompensas no seu correio.'
+  Numero: '&cO argumento nao e um numero.'
+  Limite encomenda: '&cEste jogador atingiu o limite de {limite} encomendas.'
+  Nenhuma: '&cNenhuma categoria foi configurada.'
+  Encomenda desativado: '&cO sistema de encomendas foi desativado.'
+  Recarregado: '&aConfiguracoes do StarCorreio recarregadas com sucesso.'
+  Admin acao remover: '&cClique para remover este item do correio do jogador.'
+  Inventario cheio guardado: '&e[Correio] &fSeu inventario estava cheio: &e{quantia} &fitem(s) foram guardados no seu &e/correio&f.'
+  Inventario cheio limite: '&c[Correio] Seu correio de itens do inventario cheio atingiu o limite de {limite}. O item caiu no chao.'
+  Caixa colocada: '&aSua caixa de correio foi colocada! Outros jogadores podem clicar nela para te enviar itens.'
+  Caixa limite: '&cVoce ja tem {limite} caixa(s) de correio no chao. Recolha uma antes de pegar ou colocar outra.'
+  Caixa sem espaco: '&cE preciso ter um bloco livre acima para colocar a caixa de correio.'
+  Caixa removida: '&eSua caixa de correio foi recolhida.'
+  Caixa agachar: '&eAgache (SHIFT) e quebre para recolher a caixa de correio.'
+  Caixa de outro: '&cEsta caixa de correio e de &f{dono}&c.'
+  Caixa pegou: '&aVoce pegou sua caixa de correio! Coloque no chao para receber itens.'
+  Caixa comprou: '&aVoce comprou uma caixa de correio por {preco}&a.'
+  Caixa sem dinheiro: '&cVoce precisa de {preco} &cpara comprar uma caixa de correio.'
+  Caixa sem economia: '&cA compra de caixas de correio esta indisponivel no momento.'
+  Caixa ja tem item: '&cVoce ja tem uma caixa de correio no inventario. Coloque ela no chao.'
+  Caixa nenhuma no chao: '&cVoce nao tem nenhuma caixa de correio no chao.'
+  Caixa recolhidas: '&aVoce recolheu &f{quantia}&a caixa(s) de correio do chao.'
+  Caixa desativada: '&cAs caixas de correio estao desativadas.'
+  Caixa uso: '&cUse: /correio caixa <dar|limite|remover> <player> [quantia|padrao]'
+  Caixa admin dar: '&aVoce deu uma caixa de correio para &f{player}&a.'
+  Caixa admin limite: '&aLimite de caixas de correio de &f{player}&a definido para &f{limite}&a.'
+  Caixa admin remover: '&aRemovidas &f{quantia}&a caixa(s) de correio de &f{player}&a.'
+  Digite:
+    - ''
+    - '&aDigite o nome do jogador que deseja enviar itens.'
+    - '&7Para cancelar, digite &ncancelar&7.'
+    - ''
+  Possui encomenda:
+    - ''
+    - '&aVoce possui &f{encomendas}&a encomenda(s) no seu /correio.'
+    - ''
+  Possui recompensa:
+    - ''
+    - '&aVoce possui &f{recompensas}&a recompensa(s) no seu /correio.'
+    - ''
+  Possui recompensa encomenda:
+    - ''
+    - '&aVoce possui &f{encomendas} encomenda(s)&a e &f{recompensas} recompensa(s)&a no seu /correio.'
+    - ''
+  Help:
+    - '&aComandos disponiveis:'
+    - ''
+    - '&f > &a/correio &8- &7Abre o menu principal'
+    - '&f > &a/correio ajuda &8- &7Envia esta mensagem'
+    - '&f > &a/correio enviar [player] &8- &7Envia itens a um jogador.'
+    - '&f > &a/correio historico &8- &7Ve o historico dos seus envios.'
+    - ''
+  Help admin:
+    - '&aComandos disponiveis:'
+    - ''
+    - '&f > &a/correio &8- &7Abre o menu principal'
+    - '&f > &a/correio ajuda &8- &7Envia esta mensagem'
+    - '&f > &a/correio enviar [player] &8- &7Envia itens a um jogador.'
+    - '&f > &a/correio historico &8- &7Ve o historico dos seus envios.'
+    - '&f > &a/correio historico [player] &8- &7Ve o historico de envios de um jogador (e pode puxar/forcar pendentes).'
+    - '&f > &a/correio admin [player] &8- &7Ve e remove itens/recompensas do correio de um jogador.'
+    - '&f > &a/correio enviartodos &8- &7Envia itens a todos os jogadores online.'
+    - '&f > &a/correio enviargrupo [grupo] &8- &7Envia itens a todos os jogadores online de um grupo.'
+    - '&f > &a/correio give [player] [categoria] [recompensa] [quantia] &8- &7Da recompensa(s) a um jogador.'
+    - '&f > &a/correio giveall [categoria] [recompensa] [quantia] &8- &7Da recompensa(s) a todos online.'
+    - '&f > &a/correio givegrupo [grupo] [categoria] [recompensa] [quantia] &8- &7Da recompensa(s) a um grupo.'
+    - '&f > &a/correio recompensas &8- &7Ve a lista de recompensas configuradas.'
+    - '&f > &a/correio grupos &8- &7Ve a lista de grupos configurados.'
+    - '&f > &a/correio categorias &8- &7Ve a lista de categorias configuradas.'
+    - '&f > &a/correio caixa dar|limite|remover [player] &8- &7Gerencia as caixas de correio de um jogador.'
+    - '&f > &a/correio setnpc &8- &7Seta o NPC do correio.'
+    - '&f > &a/correio delnpc &8- &7Deleta o NPC do correio.'
+    - '&f > &a/correio reload &8- &7Recarrega as configuracoes.'
+    - ''
+
+# Lores de sobreposicao (adicionadas embaixo da lore original do item)
+Lores:
+  Principal:
+    Ativar: true
+    Lore:
+      - ''
+      - '&aBotao esquerdo para coletar'
+      - '&aBotao Q para deletar'
+  Recompensa:
+    Ativar: true
+    Lore:
+      - ''
+      - '&fQuantia: &b{quantia}&f.'
+      - ''
+      - '&aBotao ESQUERDO para coletar'
+      - '&aBotao Q para deletar'
+      - '&aBotao SHIFT+ESQUERDO para coletar todos'
+
+# Registro em log (console) de coletas
+logs:
+  reward:
+    enabled: true
+    format: '[{date}:{hour}] {player} recolheu a recompensa {reward} no mundo [{world}] nas coordenadas ({coords})'
+  package:
+    enabled: true
+    format: '[{date}:{hour}] {player} recolheu a encomenda {item} no mundo [{world}] nas coordenadas ({coords})'
+
+# Sistema de historico de envios
+Historico:
+  # Dias ate um envio pendente expirar e retornar ao remetente
+  Dias expiracao: 7
+  # Limite de entradas no historico exibidas por jogador
+  Limite por jogador: 50
+  # A cada quantos minutos verificar e processar envios expirados
+  Verificar minutos: 60
+  # Permissao para ver o historico de outros jogadores
+  Permissao staff: 'starcorreio.historico.outros'
+  Mensagens:
+    Titulo: '&8Historico de Envios'
+    Status pendente: '&ePendente'
+    Status recolhido: '&a✓ Recolhido'
+    Status retornado: '&c↩ Retornado'
+    Enviado para: '&7Enviado para: &f{destinatario}'
+    Data envio: '&7Data: &f{data}'
+    Expira em: '&7Expira em: &f{tempo}'
+    Sem historico: '&cVoce nao tem envios no historico.'
+    Item retornado: '&e[StarCorreio] &fSeu item &e{item} &fnao foi coletado por &e{player} &fe retornou para voce!'
+    Acao puxar: '&e[Staff] Clique ESQUERDO: puxar este item para voce'
+    Acao forcar: '&e[Staff] Clique DIREITO: forcar a entrega ao destinatario'
+    Puxou: '&aVoce puxou o item pendente para o seu inventario.'
+    Forcou: '&aVoce forcou a entrega do item pendente ao destinatario.'
+    Destinatario offline: '&cO destinatario precisa estar online para forcar a entrega.'
+
+# Setas dos menus
+Setas:
+  Voltar:
+    CustomSkull: false
+    URL: ''
+    ID: ARROW
+    Data: 0
+    Glow: true
+    Name: '&cVoltar'
+    Lore:
+      - '&7Clique para voltar ao menu anterior.'
+  Anterior:
+    CustomSkull: false
+    URL: ''
+    ID: ARROW
+    Data: 0
+    Glow: true
+    Name: '&cAnterior'
+    Lore:
+      - '&7Clique para voltar a pagina anterior.'
+  Proximo:
+    CustomSkull: false
+    URL: ''
+    ID: ARROW
+    Data: 0
+    Glow: true
+    Name: '&aProxima'
+    Lore:
+      - '&7Clique para ir a proxima pagina.'
+
+# Formatos de quantia (usado quando Formatacao = LETRA)
+Formats:
+  - ''
+  - ''
+  - 'K'
+  - 'M'
+  - 'B'
+  - 'T'
+  - 'Q'
+  - 'QQ'
+  - 'S'
+  - 'SS'
+  - 'O'
+  - 'N'
+  - 'D'
