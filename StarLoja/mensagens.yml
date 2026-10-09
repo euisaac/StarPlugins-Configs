@@ -77,7 +77,9 @@ compra:
   sucesso: '&aVocê comprou &f{quantia}x {item} &apor &f{total}&a.'
   actionbar: '&a+{quantia}x {item} &8| &c-{total}'
   desativada: '&cO item &f{item} &cnão está à venda.'
-  nao-liberado: '&cO item &f{item} &cainda não foi liberado. Libera em &f{libera_em}&c.'
+  # {item} respeita o "ocultar-info" da loja: em loja oculta ele vira "BLOQUEADO"
+  # (nunca vaza o nome real do item); fora dela mostra o nome normal.
+  nao-liberado: '&cEste item ainda não foi liberado. Libera em &f{libera_em}&c.'
   sem-saldo: '&cVocê precisa de &f{total} &cpara comprar isso.'
   sem-saldo-ou-espaco: '&cVocê não tem saldo ou espaço para comprar esse item.'
   inventario-cheio: '&cSeu inventário está cheio.'
@@ -118,6 +120,8 @@ captcha:
   errou: '&cItem errado! Você não pode vender por comando durante &f{tempo}&c.'
   bloqueado: '&cVocê errou o captcha. Aguarde &f{tempo} &cpara vender por comando.'
   liberado: '&aO bloqueio de &f{jogador} &afoi removido.'
+  enviado: '&aCaptcha aberto para &f{jogador}&a.'
+  sem-itens: '&cNao ha itens de venda suficientes para montar o captcha.'
 
 quantia:
   pedir-compra: |

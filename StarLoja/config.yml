@@ -207,11 +207,13 @@ Captcha:
   # Chance (%) de aparecer, depois do limite acima.
   Chance: 30.0
 
-  # Quem tem esta permissao nunca recebe captcha.
+  # Quem tem esta permissao nunca recebe captcha. Ela precisa ser dada por
+  # extenso (OP e o * da staff nao contam). Para testar: /starloja captcha <nick>.
   Permissao-bypass: 'starloja.captcha.bypass'
 
   # Chances diferentes por permissao. Vale o grupo de menor Ordem que o
-  # jogador tiver; quem nao tem nenhum usa a Chance acima.
+  # jogador tiver (dada por extenso; o * nao conta); quem nao tem nenhum usa a
+  # Chance acima.
   Chances:
     vip:
       Permissao: 'starloja.captcha.chance.vip'
