@@ -165,6 +165,9 @@ settings:
   # Ativar ou desativar a função de guardar itens na mochila colocando-os sobre ela no inventário
   inventory-store-enabled: true
 
+  # Quantas linhas de histórico cada mochila guarda (o /starmochila menu mostra todas)
+  historico-maximo: 300
+
   # Cooldown em segundos para abrir a mochila
   backpack-cooldown-seconds: 1
 
@@ -230,6 +233,25 @@ settings:
       bancada: true  # Bancada de Trabalho
       fornalha: true  # Fornalhas
       paginas: true  # Páginas Extras
+
+# Alertas de dup (/starmochila menu -> Alertas)
+alertas:
+  # Confere a conta dos itens toda vez que alguém fecha a mochila: se o jogador
+  # ficou com mais itens (inventário + mochila) do que tinha, vira alerta de DUP.
+  detector-ao-vivo: true
+  # A partir de quantos itens a mais vira alerta
+  minimo-itens: 1
+  # Avisa no chat quem tem starmochila.staff
+  avisar-staff: true
+  # Avisa também os "possíveis dups" (os confirmados sempre avisam)
+  avisar-possiveis: true
+  # Procura no histórico o padrão "abre, tira, fecha, repete" ao ligar o servidor
+  analisar-historico-ao-ligar: true
+  historico:
+    # Quantas retiradas seguidas do mesmo jogador contam como padrão
+    retiradas-seguidas: 3
+    # Tempo máximo (segundos) entre uma retirada e a próxima
+    intervalo-segundos: 15
 
 # Tipos de mochilas
 backpacks:
