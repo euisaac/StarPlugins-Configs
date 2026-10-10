@@ -24,11 +24,17 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 22
+Versao do modelo: 24
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
   Debug: false
+
+  # Resource pack de PvP da 1.8 desenha "a" e "o" com til (e algumas
+  # maiusculas com acento) como simbolos: "nao" vira "n♀o". Ligado, essas
+  # letras saem sem o acento em tudo que o plugin manda. Ligue se o seu
+  # servidor recebe jogadores de 1.8 e voce escreve as mensagens com acento.
+  Trocar letras que a fonte 1.8 quebra: false
 
   # Milissegundos entre dois cliques no mesmo menu (evita spam).
   Intervalo entre cliques: 100
@@ -152,6 +158,10 @@ Partida:
   # sobrou vivo ganha na hora. "Altura do vazio" e quantos blocos abaixo do
   # spawn da ilha ja contam como vazio.
   Morrer ao sair no vazio: true
+  # Quem caiu do servidor (e esta com a vaga guardada para voltar) e tem o
+  # ovo quebrado e eliminado na hora, e a eliminacao conta para quem quebrou
+  # o ovo. Desligado, ele continua esperando a reconexao -- e volta sem ovo.
+  Eliminar desconectado sem ovo: true
   Altura do vazio: 5
   # Dano ao cair no vazio (999 = morte na hora).
   Dano do vazio: 999.0
@@ -252,6 +262,15 @@ Ovo:
       - '{cor}&lOVO {equipe}'
       - '&7Proteja-o!'
 
+# Os geradores em si (tipos, niveis, tempos) ficam no geradores.yml.
+Geradores:
+  # Gerador dividido: quem pega ferro ou ouro de um gerador faz os colegas de
+  # equipe que estao perto DELE (ate "Raio da divisao" blocos) receberem a
+  # mesma quantidade. Cada um leva o que o colega pegou (nao divide pela metade).
+  Dividir com o time: false
+  Raio da divisao: 2.5
+  Recursos divididos: [ IRON_INGOT, GOLD_INGOT ]
+
 Itens:
   # true = quem tem a permissao stareggwars.cooldown.bypass usa os itens sem
   # esperar. Cuidado: um "*" ou "stareggwars.*" no cargo do staff concede essa
@@ -276,6 +295,9 @@ Itens:
   TNT:
     # Segundos ate explodir depois de colocada.
     Fusivel: 3
+    # "EXPLODE EM 2.4s" em cima da TNT acesa. {tempo} = segundos que faltam.
+    Holograma: true
+    Texto do holograma: '&c&lEXPLODE EM &f{tempo}s'
     Empurrao horizontal: 1.3
     Empurrao vertical: 0.9
     Explosao: 4.0
