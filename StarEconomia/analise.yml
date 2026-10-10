@@ -1,0 +1,95 @@
+# analise.yml -- "/stareconomia analisar": procura sinais de que alguem esta ganhando dinheiro
+# de um jeito que nao bate com o servidor (dupe, farm proibido, alt alimentando conta, staff
+# dando dinheiro, item hackeado sendo vendido).
+#
+# Nada aqui pune ninguem: a analise so aponta. Cada sinal vira um "indicio" com gravidade
+# (&eatencao&r, &6suspeito&r, &cgrave&r) e o jogador com mais indicios aparece primeiro.
+#
+# Comandos:
+#   /stareconomia analisar            -> lista de suspeitos do periodo + itens vendidos no servidor
+#   /stareconomia analisar <jogador>  -> raio-x do jogador: entradas e saidas de cada moeda,
+#                                        de onde veio o dinheiro, itens vendidos, quem mandou pix
+#
+# Itens vendidos so aparecem para vendas feitas DEPOIS desta versao, por loja que avisa o item
+# (o StarLoja avisa; outra loja pode usar StarEconomiaAPI#anotarVenda ou #depositVenda).
+#
+# Apos editar: /stareconomia reload
+
+# Periodo que o menu abre por padrao, e os periodos que o botao do relogio alterna.
+# Formato: 30m, 1h, 12h, 1d, 7d...
+periodo-padrao: '24h'
+periodos:
+  - '1h'
+  - '24h'
+  - '7d'
+  - '30d'
+
+# Quantas transacoes, no maximo, sao lidas por analise (as mais recentes do periodo). Servidor
+# grande em periodo longo pode passar disso -- o menu avisa quando cortou.
+limite-registros: 150000
+
+# Itens raros: quanto e "normal" um jogador vender em 24 HORAS. Em periodo maior o limite
+# cresce junto (7d = 7x); em periodo menor continua o mesmo. Passou do limite = atencao,
+# 3x = suspeito, 10x = grave. Use o nome do material do Minecraft.
+itens-raros:
+  NETHERITE_BLOCK: 2
+  NETHERITE_INGOT: 16
+  NETHERITE_SCRAP: 64
+  ANCIENT_DEBRIS: 64
+  NETHERITE_SWORD: 2
+  NETHERITE_PICKAXE: 2
+  NETHERITE_AXE: 2
+  NETHERITE_HELMET: 2
+  NETHERITE_CHESTPLATE: 2
+  NETHERITE_LEGGINGS: 2
+  NETHERITE_BOOTS: 2
+  DIAMOND_BLOCK: 64
+  EMERALD_BLOCK: 128
+  ELYTRA: 1
+  BEACON: 2
+  NETHER_STAR: 3
+  DRAGON_EGG: 1
+  DRAGON_HEAD: 2
+  ENCHANTED_GOLDEN_APPLE: 4
+  TOTEM_OF_UNDYING: 8
+  TRIDENT: 2
+  HEART_OF_THE_SEA: 2
+  SPAWNER: 1
+  SHULKER_SHELL: 32
+  SHULKER_BOX: 4
+  END_CRYSTAL: 16
+  NETHERITE_UPGRADE_SMITHING_TEMPLATE: 4
+
+# Ganhou muito mais que o resto: soma de tudo que entrou na moeda (vendas, pix, abates,
+# staff...) comparada com a mediana de quem ganhou alguma coisa no periodo.
+ganho-fora-da-curva:
+  ativo: true
+  # Quantas vezes a mediana ja chama atencao (3x isso = suspeito, 10x = grave).
+  vezes-a-mediana: 20
+  # Com pouca gente no periodo a mediana nao diz nada; abaixo disso o indice nao roda.
+  minimo-de-jogadores: 5
+
+# Volume de itens vendidos numa unica hora (somando todos os itens). 2.304 = um inventario
+# cheio de stacks de 64. Atencao a partir daqui; 3x = suspeito; 10x = grave.
+volume-por-hora:
+  ativo: true
+  itens: 20000
+
+# Pix (/<moeda> pagar) recebido.
+pix:
+  ativo: true
+  # Recebeu de tantos jogadores diferentes no periodo: tipico de contas alternativas juntando
+  # tudo numa principal.
+  remetentes-distintos: 6
+  # Total recebido em pix comparado com a mediana de quem recebeu pix.
+  vezes-a-mediana: 20
+
+# Dinheiro dado por staff com /<moeda> adicionar ou setar, digitado por um JOGADOR. O console
+# (loja de cash, votos, recompensas automaticas) fica de fora de proposito.
+staff:
+  ativo: true
+
+# Item impossivel de conseguir jogando sendo vendido: encantamento acima do nivel maximo ou
+# pilha maior que o jogo permite. Sempre grave.
+itens-ilegais:
+  ativo: true
