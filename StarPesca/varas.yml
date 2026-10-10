@@ -14,6 +14,11 @@
 #                      (%) e peso (%).
 #    Reparo            Custo para consertar (por economia do economias.yml).
 #    Evoluir           Custo para chegar NESTE nivel vindo do anterior.
+#    Requisitos        O que precisa ter, alem do custo, para chegar NESTE nivel:
+#                      Peixes pescados, Colecao, Maior peso, Nivel da sacola...
+#                      O 'Maior peso' tem de caber no que a vara ANTERIOR pesca
+#                      (o peixe mais pesado dos niveis dela, ate o peso que ela
+#                      suporta); quando nao cabe, o plugin avisa no console.
 #    Recompensas       'chance,recompensa' do recompensas.yml, sorteadas a
 #                      cada peixe pescado.
 #    Item              Nome e lore da vara. {nivel} {peso_suportado} {intervalo}
@@ -23,7 +28,7 @@
 #                      Bloqueada = precisa da anterior).
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 # Item mostrado na loja no lugar de uma vara que o jogador ainda nao alcanca.
 Bloqueada:
@@ -346,7 +351,7 @@ Varas:
     Requisitos:
       Peixes pescados: 450
       Colecao: 20
-      Maior peso: 100
+      Maior peso: 30
     Recompensas:
       - '8.0,pedra'
       - '5.0,ferro'
@@ -417,7 +422,7 @@ Varas:
     Requisitos:
       Peixes pescados: 800
       Colecao: 26
-      Maior peso: 400
+      Maior peso: 110
     Recompensas:
       - '9.0,pedra'
       - '6.0,ferro'
@@ -488,7 +493,7 @@ Varas:
     Requisitos:
       Peixes pescados: 1300
       Colecao: 32
-      Maior peso: 1200
+      Maior peso: 150
     Recompensas:
       - '10.0,pedra'
       - '7.0,ferro'
@@ -559,7 +564,7 @@ Varas:
     Requisitos:
       Peixes pescados: 1900
       Colecao: 38
-      Maior peso: 3000
+      Maior peso: 750
     Recompensas:
       - '11.0,pedra'
       - '8.0,ferro'
@@ -630,7 +635,7 @@ Varas:
     Requisitos:
       Peixes pescados: 2600
       Colecao: 44
-      Maior peso: 7000
+      Maior peso: 900
     Recompensas:
       - '12.0,pedra'
       - '9.0,ferro'
@@ -701,7 +706,7 @@ Varas:
     Requisitos:
       Peixes pescados: 3500
       Colecao: 50
-      Maior peso: 15000
+      Maior peso: 3300
     Recompensas:
       - '13.0,pedra'
       - '10.0,ferro'
@@ -772,7 +777,7 @@ Varas:
     Requisitos:
       Peixes pescados: 5000
       Colecao: 56
-      Maior peso: 25000
+      Maior peso: 15000
     Recompensas:
       - '21.0,pedra'
       - '9.0,ferro'
@@ -844,7 +849,7 @@ Varas:
     Requisitos:
       Peixes pescados: 7500
       Colecao: 62
-      Maior peso: 50000
+      Maior peso: 18000
     Recompensas:
       - '22.0,pedra'
       - '10.0,ferro'
@@ -916,7 +921,7 @@ Varas:
     Requisitos:
       Peixes pescados: 11000
       Colecao: 68
-      Maior peso: 85000
+      Maior peso: 41000
     Recompensas:
       - '23.0,pedra'
       - '11.0,ferro'
@@ -988,7 +993,7 @@ Varas:
     Requisitos:
       Peixes pescados: 16000
       Colecao: 74
-      Maior peso: 145000
+      Maior peso: 71000
     Recompensas:
       - '24.0,pedra'
       - '12.0,ferro'
@@ -1060,7 +1065,7 @@ Varas:
     Requisitos:
       Peixes pescados: 23000
       Colecao: 80
-      Maior peso: 230000
+      Maior peso: 110000
     Recompensas:
       - '25.0,pedra'
       - '13.0,ferro'
@@ -1132,7 +1137,7 @@ Varas:
     Requisitos:
       Peixes pescados: 32000
       Colecao: 86
-      Maior peso: 360000
+      Maior peso: 180000
     Recompensas:
       - '26.0,pedra'
       - '14.0,ferro'
@@ -1204,7 +1209,7 @@ Varas:
     Requisitos:
       Peixes pescados: 45000
       Colecao: 90
-      Maior peso: 560000
+      Maior peso: 270000
     Recompensas:
       - '27.0,pedra'
       - '15.0,ferro'
@@ -1276,7 +1281,7 @@ Varas:
     Requisitos:
       Peixes pescados: 65000
       Colecao: 95
-      Maior peso: 900000
+      Maior peso: 420000
     Recompensas:
       - '28.0,pedra'
       - '16.0,ferro'
