@@ -1,0 +1,69 @@
+nome: "&6&lMina Abandonada"
+icone: IRON_PICKAXE
+ativo: true
+descricao:
+  - "&7Tuneis profundos onde os mineiros"
+  - "&7nunca mais voltaram a superficie."
+blocos:
+  parede: "minecraft:deepslate"
+  portao: "minecraft:iron_bars"
+particula-ambiente: ""
+loot: padrao
+mobs:
+  m1:
+    tipo: ZOMBIE
+    nome: "&6Mineiro Zumbi"
+    vida: 24
+    dano: 4.5
+    peso: 10
+    equipamento:
+      mao: IRON_PICKAXE
+      cabeca: LEATHER_HELMET
+  m2:
+    tipo: SKELETON
+    nome: "&7Esqueleto das Galerias"
+    vida: 20
+    dano: 4
+    peso: 8
+    equipamento:
+      mao: BOW
+  m3:
+    tipo: CAVE_SPIDER
+    nome: "&8Aranha dos Tuneis"
+    vida: 14
+    dano: 3
+    peso: 5
+  m4:
+    tipo: SILVERFISH
+    nome: "&7Traca de Pedra"
+    vida: 10
+    dano: 2.5
+    peso: 4
+elites:
+  e1:
+    tipo: VINDICATOR
+    nome: "&6&lCapataz Enlouquecido"
+    vida: 110
+    dano: 9
+    peso: 10
+    equipamento:
+      mao: IRON_AXE
+  e2:
+    tipo: ZOMBIE
+    nome: "&e&lMineiro Blindado"
+    vida: 130
+    dano: 7
+    peso: 8
+    equipamento:
+      mao: DIAMOND_PICKAXE
+      cabeca: IRON_HELMET
+      peito: IRON_CHESTPLATE
+boss:
+  tipo: IRON_GOLEM
+  nome: "&6&lColosso da Mina"
+  vida: 460
+  dano: 13
+  escala: 1.4
+  intervalo-habilidades: 8
+  habilidades: [TERREMOTO, INVOCAR, FURIA, ESCUDO]
+  invocacoes: [ZOMBIE, CAVE_SPIDER]

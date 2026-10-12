@@ -1,0 +1,68 @@
+nome: "&c&lFornalha Infernal"
+icone: MAGMA_BLOCK
+ativo: true
+descricao:
+  - "&7Salas de pedra negra que nunca"
+  - "&7esfriam. Cuidado com o fogo."
+blocos:
+  parede: "minecraft:nether_bricks"
+  portao: "minecraft:iron_bars"
+particula-ambiente: LAVA
+loot: padrao
+mobs:
+  m1:
+    tipo: BLAZE
+    nome: "&6Chama Viva"
+    vida: 22
+    dano: 5
+    peso: 6
+  m2:
+    tipo: MAGMA_CUBE
+    nome: "&cCubo de Magma"
+    vida: 20
+    dano: 4
+    peso: 6
+  m3:
+    tipo: WITHER_SKELETON
+    nome: "&8Sentinela Carbonizada"
+    vida: 26
+    dano: 5
+    peso: 8
+    equipamento:
+      mao: STONE_SWORD
+  m4:
+    tipo: ZOMBIFIED_PIGLIN
+    nome: "&dPiglin Corrompido"
+    vida: 24
+    dano: 4.5
+    peso: 8
+    equipamento:
+      mao: GOLDEN_SWORD
+elites:
+  e1:
+    tipo: PIGLIN_BRUTE
+    nome: "&6&lBrutamontes Infernal"
+    vida: 120
+    dano: 9
+    peso: 10
+    equipamento:
+      mao: GOLDEN_AXE
+  e2:
+    tipo: BLAZE
+    nome: "&e&lChama Ancestral"
+    vida: 80
+    dano: 8
+    peso: 6
+    escala: 1.5
+boss:
+  tipo: PIGLIN_BRUTE
+  nome: "&4&lCarrasco das Chamas"
+  vida: 420
+  dano: 12
+  escala: 1.8
+  intervalo-habilidades: 7
+  habilidades: [INVOCAR, TERREMOTO, FURIA, RAIOS]
+  invocacoes: [BLAZE, MAGMA_CUBE]
+  equipamento:
+    mao: NETHERITE_AXE
+    cabeca: GOLDEN_HELMET

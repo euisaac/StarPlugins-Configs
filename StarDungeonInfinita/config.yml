@@ -1,0 +1,184 @@
+# =========================================================
+#                 StarDungeonInfinita
+#   Dungeons infinitas: as salas vao sendo geradas conforme
+#   o grupo abre as portas. Quase tudo daqui tambem pode ser
+#   ajustado em jogo pelo menu da staff (/dginf admin).
+# =========================================================
+
+# Mundo vazio onde as dungeons sao montadas (criado sozinho).
+mundo: "dungeon_infinita"
+# Altura do chao das salas nesse mundo.
+altura-chao: 64
+# Distancia (em blocos) entre as areas de corridas diferentes e entre os
+# andares de uma mesma corrida. Aumente se usar salas muito grandes.
+distancia-entre-corridas: 6000
+distancia-entre-andares: 2500
+# Quantas corridas podem acontecer ao mesmo tempo.
+maximo-corridas: 30
+# Tempo (em ms) por tick que o plugin pode gastar colando/limpando blocos.
+# Mais = salas aparecem mais rapido; menos = mais folga para o servidor.
+ms-por-tick: 6
+
+# Para onde os jogadores voltam ao sair/terminar. Vazio = de onde vieram.
+# Defina em jogo com /dginf admin > Definir saida (formato mundo;x;y;z;yaw;pitch).
+saida: ""
+
+# Tamanho das salas conforme quantos jogadores tem o grupo. Toda sala de
+# um tamanho tem o mesmo lado (impar) e a saida fica no meio de cada parede
+# (3 blocos de largura, 4 de altura, logo acima do chao).
+# mobs-base: quantos mobs por sala de combate antes da escala por jogador.
+tamanhos:
+  pequena:
+    nome: "&aPequena"
+    lado: 17
+    altura: 9
+    ate-jogadores: 2
+    mobs-base: 3
+  media:
+    nome: "&eMedia"
+    lado: 25
+    altura: 11
+    ate-jogadores: 4
+    mobs-base: 4
+  grande:
+    nome: "&cGrande"
+    lado: 33
+    altura: 13
+    ate-jogadores: 100
+    mobs-base: 6
+
+# Maximo de jogadores num grupo da dungeon infinita.
+maximo-jogadores-grupo: 8
+
+dificuldades:
+  FACIL:
+    nome: "&aFacil"
+    icone: LIME_DYE
+    vida: 0.7
+    dano: 0.7
+    loot: 0.8
+    dinheiro: 0.7
+    salas-por-andar: 6
+  NORMAL:
+    nome: "&eNormal"
+    icone: YELLOW_DYE
+    vida: 1.0
+    dano: 1.0
+    loot: 1.0
+    dinheiro: 1.0
+    salas-por-andar: 8
+  DIFICIL:
+    nome: "&cDificil"
+    icone: RED_DYE
+    vida: 1.5
+    dano: 1.35
+    loot: 1.3
+    dinheiro: 1.5
+    salas-por-andar: 10
+  PESADELO:
+    nome: "&4&lPesadelo"
+    icone: WITHER_ROSE
+    vida: 2.3
+    dano: 1.8
+    loot: 1.7
+    dinheiro: 2.2
+    salas-por-andar: 12
+
+# Como os mobs crescem. A ideia e mais VIDA, nao mais mobs:
+#   vida  = base x dificuldade x (1 + vida-por-jogador x (jogadores-1))
+#           x (1 + vida-por-sala x sala) x (1 + vida-por-andar x (andar-1))
+#   mobs  = mobs-base do tamanho + mobs-por-jogador x (jogadores-1)  (arredonda pra baixo)
+escala:
+  vida-por-jogador: 0.6
+  mobs-por-jogador: 0.35
+  dano-por-jogador: 0.05
+  vida-por-sala: 0.06
+  dano-por-sala: 0.025
+  vida-por-andar: 0.35
+  dano-por-andar: 0.12
+  # Vida do boss tambem cresce mais com o grupo.
+  vida-boss-por-jogador: 0.85
+  # A partir dessa vida o mob passa a usar "vida virtual" (o dano recebido e
+  # dividido), porque o servidor limita a vida maxima real (padrao 1024/2048).
+  vida-real-maxima: 1000
+
+# Chance (peso) de cada tipo de sala aparecer atras de uma porta nova.
+# BOSS nao entra aqui: ele aparece sozinho ao fim de cada andar.
+geracao:
+  pesos:
+    COMBATE: 60
+    ELITE: 12
+    BAU: 16
+    DESCANSO: 8
+  # Elite so a partir dessa sala do andar.
+  elite-a-partir-da-sala: 3
+  # Descanso nao aparece duas vezes seguidas e so depois de N salas desde o ultimo.
+  descanso-intervalo-minimo: 4
+  # Salas de tesouro/descanso costumam ser becos sem saida (o grupo volta e abre outra porta).
+  chance-beco-sem-saida: 0.65
+  # Quantas portas novas uma sala de combate abre (1 + chance de mais).
+  chance-segunda-porta: 0.35
+  chance-terceira-porta: 0.10
+  # Quando o grupo entra numa sala de combate, puxa quem ficou para tras.
+  puxar-grupo-ao-entrar: true
+  # Segundos de preparo antes dos mobs aparecerem.
+  preparo-segundos: 3
+  # Combate pode ter ondas: chance de vir uma segunda onda.
+  chance-segunda-onda: 0.30
+
+# Tema "aleatorio": cada andar sorteia um tema diferente do anterior.
+# Ao terminar um andar o grupo pode continuar (mais forte) ou sair.
+manter-inventario: true
+# Os jogadores caidos voltam quando a sala de combate atual e limpa.
+reviver-ao-limpar-sala: true
+# Vida (fracao) com que o jogador volta.
+vida-ao-reviver: 0.5
+
+recompensas:
+  # Dinheiro (Vault) por sala de combate limpa, por jogador.
+  dinheiro-por-sala: 25
+  # Cresce com a profundidade: + esse tanto por sala ja vencida.
+  dinheiro-cresce-por-sala: 0.05
+  dinheiro-por-boss: 400
+  # Comandos ao derrotar o boss de um andar (para cada jogador vivo).
+  # Placeholders: %jogador% %andar% %sala% %dificuldade% %tema%
+  comandos-boss: []
+  # Comandos ao terminar a corrida (sair ou cair), conforme a sala alcancada.
+  # Cada chave e a sala minima; vale a MAIOR faixa alcancada. Exemplo:
+  #   comandos-por-sala:
+  #     "10": ["eco give %jogador% 1000"]
+  #     "25": ["eco give %jogador% 5000"]
+  comandos-por-sala: {}
+
+# Comandos liberados dentro da dungeon infinita (sem a barra).
+comandos-permitidos:
+  - dginf
+  - dungeoninfinita
+  - infinita
+  - dungeon
+  - r
+  - g
+  - tell
+  - msg
+
+# Blocos que marcam pontos especiais nas salas (troque se sua sala usa la
+# como decoracao). Sao removidos ao colar a sala.
+marcadores:
+  mob: "minecraft:red_wool"
+  boss: "minecraft:purple_wool"
+  bau: "minecraft:yellow_wool"
+  entrada: "minecraft:lime_wool"
+
+# Blocos novos que nao existem na versao do servidor caem num substituto.
+# Ja existe uma lista padrao; aqui voce pode adicionar ou trocar.
+substitutos: {}
+
+# Banco dos recordes: SQLITE (arquivo) ou MYSQL.
+banco:
+  tipo: SQLITE
+  mysql:
+    host: localhost
+    porta: 3306
+    banco: stardungeon
+    usuario: root
+    senha: ""

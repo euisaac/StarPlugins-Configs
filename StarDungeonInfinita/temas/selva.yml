@@ -1,0 +1,65 @@
+nome: "&a&lTemplo da Selva"
+icone: MOSSY_COBBLESTONE
+ativo: true
+descricao:
+  - "&7Ruinas engolidas pela mata, cheias"
+  - "&7de veneno e armadilhas vivas."
+blocos:
+  parede: "minecraft:mossy_stone_bricks"
+  portao: "minecraft:iron_bars"
+particula-ambiente: SPORE_BLOSSOM_AIR
+loot: padrao
+mobs:
+  m1:
+    tipo: SPIDER
+    nome: "&2Aranha da Mata"
+    vida: 20
+    dano: 4
+    peso: 8
+    velocidade: 1
+  m2:
+    tipo: CAVE_SPIDER
+    nome: "&aAranha Venenosa"
+    vida: 14
+    dano: 3
+    peso: 6
+  m3:
+    tipo: ZOMBIE
+    nome: "&2Guerreiro da Tribo"
+    vida: 26
+    dano: 4.5
+    peso: 8
+    equipamento:
+      mao: WOODEN_SWORD
+  m4:
+    tipo: WITCH
+    nome: "&5Xama da Selva"
+    vida: 24
+    dano: 3
+    peso: 4
+    a-partir-da-sala: 2
+elites:
+  e1:
+    tipo: VINDICATOR
+    nome: "&2&lCacador de Cabecas"
+    vida: 110
+    dano: 9
+    peso: 10
+    equipamento:
+      mao: IRON_AXE
+  e2:
+    tipo: SPIDER
+    nome: "&a&lMae das Aranhas"
+    vida: 100
+    dano: 7
+    peso: 6
+    escala: 1.8
+boss:
+  tipo: RAVAGER
+  nome: "&2&lFera Ancestral"
+  vida: 440
+  dano: 12
+  escala: 1.2
+  intervalo-habilidades: 8
+  habilidades: [INVOCAR, TERREMOTO, VENENO, FURIA]
+  invocacoes: [SPIDER, CAVE_SPIDER]

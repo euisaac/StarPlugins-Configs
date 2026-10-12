@@ -1,0 +1,116 @@
+# =========================================================
+#        StarDungeonInfinita - Tabelas de loot dos baus
+#   Cada tema escolhe a tabela no temas/<tema>.yml (loot: padrao).
+#   "boss" e usada no bau que aparece ao derrotar o boss do andar.
+#
+#   rolagens: quantos itens sorteados por bau (faixa "min-max").
+#   rolagem-extra-a-cada-salas: +1 rolagem a cada N salas da corrida.
+#   Cada item:
+#     material    nome do item (XSeries)
+#     quantidade  "1" ou "min-max"
+#     chance      0-100 (multiplicada pelo "loot" da dificuldade)
+#     a-partir-da-sala  so aparece depois dessa sala da corrida
+#     nome / lore       opcionais (& para cores)
+#     encantamentos     lista "NOME:NIVEL" (ex: SHARPNESS:3)
+# =========================================================
+
+tabelas:
+  padrao:
+    rolagens: "3-5"
+    rolagem-extra-a-cada-salas: 8
+    itens:
+      pao:
+        material: BREAD
+        quantidade: "2-6"
+        chance: 60
+      flechas:
+        material: ARROW
+        quantidade: "8-24"
+        chance: 45
+      ferro:
+        material: IRON_INGOT
+        quantidade: "2-6"
+        chance: 45
+      ouro:
+        material: GOLD_INGOT
+        quantidade: "2-5"
+        chance: 35
+      esmeralda:
+        material: EMERALD
+        quantidade: "1-4"
+        chance: 25
+      maca-dourada:
+        material: GOLDEN_APPLE
+        quantidade: "1-2"
+        chance: 18
+      diamante:
+        material: DIAMOND
+        quantidade: "1-2"
+        chance: 10
+        a-partir-da-sala: 5
+      livro-afiacao:
+        material: ENCHANTED_BOOK
+        chance: 6
+        a-partir-da-sala: 8
+        encantamentos: ["SHARPNESS:3"]
+      espada-ferro:
+        material: IRON_SWORD
+        chance: 8
+        nome: "&fLamina da Masmorra"
+        encantamentos: ["SHARPNESS:2"]
+      peitoral-ferro:
+        material: IRON_CHESTPLATE
+        chance: 6
+        a-partir-da-sala: 4
+        encantamentos: ["PROTECTION:2"]
+      pocao-cura:
+        material: GOLDEN_CARROT
+        quantidade: "2-5"
+        chance: 30
+      totem:
+        material: TOTEM_OF_UNDYING
+        chance: 2
+        a-partir-da-sala: 15
+      netherite:
+        material: NETHERITE_SCRAP
+        chance: 3
+        a-partir-da-sala: 20
+  boss:
+    rolagens: "4-6"
+    rolagem-extra-a-cada-salas: 10
+    itens:
+      diamante:
+        material: DIAMOND
+        quantidade: "2-5"
+        chance: 60
+      esmeralda:
+        material: EMERALD
+        quantidade: "4-10"
+        chance: 60
+      maca-encantada:
+        material: ENCHANTED_GOLDEN_APPLE
+        chance: 15
+      espada-diamante:
+        material: DIAMOND_SWORD
+        chance: 20
+        nome: "&bLamina do Guardiao"
+        lore:
+          - "&7Tomada de um boss da"
+          - "&7dungeon infinita."
+        encantamentos: ["SHARPNESS:4", "UNBREAKING:3"]
+      capacete-diamante:
+        material: DIAMOND_HELMET
+        chance: 15
+        encantamentos: ["PROTECTION:3"]
+      netherite:
+        material: NETHERITE_INGOT
+        chance: 6
+        a-partir-da-sala: 16
+      totem:
+        material: TOTEM_OF_UNDYING
+        chance: 12
+      livro-mending:
+        material: ENCHANTED_BOOK
+        chance: 8
+        a-partir-da-sala: 8
+        encantamentos: ["MENDING:1"]

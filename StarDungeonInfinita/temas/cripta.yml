@@ -1,0 +1,79 @@
+# Tema da dungeon infinita. As salas ficam em salas/cripta/<tipo>/*.schem.
+# vida/dano sao os valores BASE (sala 1, dificuldade Normal, 1 jogador);
+# o plugin escala a partir deles. peso = chance no sorteio.
+# a-partir-da-sala: o mob so aparece depois dessa sala do andar.
+nome: "&7&lCripta Esquecida"
+icone: SKELETON_SKULL
+ativo: true
+descricao:
+  - "&7Corredores de pedra antiga onde os"
+  - "&7mortos nao descansam."
+blocos:
+  parede: "minecraft:stone_bricks"
+  portao: "minecraft:iron_bars"
+particula-ambiente: ASH
+loot: padrao
+mobs:
+  m1:
+    tipo: ZOMBIE
+    nome: "&7Morto-vivo"
+    vida: 24
+    dano: 4
+    peso: 10
+  m2:
+    tipo: SKELETON
+    nome: "&fEsqueleto da Cripta"
+    vida: 20
+    dano: 4
+    peso: 8
+    equipamento:
+      mao: BOW
+  m3:
+    tipo: ZOMBIE_VILLAGER
+    nome: "&8Aldeao Amaldicoado"
+    vida: 26
+    dano: 4.5
+    peso: 5
+    a-partir-da-sala: 3
+    equipamento:
+      mao: STONE_SWORD
+  m4:
+    tipo: SPIDER
+    nome: "&8Aranha das Catacumbas"
+    vida: 18
+    dano: 3.5
+    peso: 4
+    velocidade: 1
+elites:
+  e1:
+    tipo: WITHER_SKELETON
+    nome: "&8&lGuardiao do Ossario"
+    vida: 90
+    dano: 8
+    peso: 10
+    escala: 1.2
+    equipamento:
+      mao: STONE_SWORD
+      cabeca: CHAINMAIL_HELMET
+  e2:
+    tipo: ZOMBIE
+    nome: "&7&lCavaleiro Caido"
+    vida: 110
+    dano: 7
+    peso: 8
+    equipamento:
+      mao: IRON_SWORD
+      cabeca: IRON_HELMET
+      peito: IRON_CHESTPLATE
+boss:
+  tipo: WITHER_SKELETON
+  nome: "&4&lRei da Cripta"
+  vida: 380
+  dano: 11
+  escala: 1.8
+  intervalo-habilidades: 8
+  habilidades: [INVOCAR, TERREMOTO, FURIA, PUXAR]
+  invocacoes: [ZOMBIE, SKELETON]
+  equipamento:
+    mao: NETHERITE_SWORD
+    cabeca: GOLDEN_HELMET
