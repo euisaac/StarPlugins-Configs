@@ -1,0 +1,182 @@
+# =========================================================
+#              StarDungeon - Medalhas do perfil
+#   Cada medalha desbloqueia sozinha quando a estatistica do
+#   jogador alcanca o "valor". Use /dungeonadmin reload para
+#   aplicar as mudancas.
+#
+#   Estatisticas disponiveis:
+#     dungeons_completadas, mortes, mobs_mortos, bosses_mortos,
+#     melhor_tempo (em segundos - use comparacao: MENOR_IGUAL),
+#     passes_solo, dungeons_jogadas, vitorias_sem_morrer,
+#     vitorias_solo, vitorias_em_grupo, eventos_participados,
+#     eventos_vencidos, recordes_batidos,
+#     dificuldade.<FACIL|NORMAL|MEDIO|DIFICIL|EXTREMO>.vitorias,
+#     dungeon.<nome-da-dungeon>.vitorias
+#   Addons (ex: StarDungeonInfinita) registram medalhas proprias
+#   com as estatisticas deles - elas aparecem junto destas.
+#
+#   raridade: COMUM, INCOMUM, RARA, EPICA ou LENDARIA
+#   oculta: true esconde nome e requisito ate desbloquear.
+#   comandos: rodam pelo console ao desbloquear (%jogador%).
+# =========================================================
+
+# A partir de qual raridade o desbloqueio e anunciado no chat para todos.
+anunciar-a-partir-de: EPICA
+# Som tocado para quem desbloqueia (nome XSound). Vazio desativa.
+som-desbloqueio: UI_TOAST_CHALLENGE_COMPLETE
+
+medalhas:
+  primeiros-passos:
+    nome: "Primeiros Passos"
+    icone: LEATHER_BOOTS
+    raridade: COMUM
+    estatistica: dungeons_completadas
+    valor: 1
+    descricao:
+      - "&7Conclua sua primeira dungeon."
+  aventureiro:
+    nome: "Aventureiro"
+    icone: IRON_SWORD
+    raridade: INCOMUM
+    estatistica: dungeons_completadas
+    valor: 10
+    descricao:
+      - "&7Conclua 10 dungeons."
+  veterano:
+    nome: "Veterano das Masmorras"
+    icone: DIAMOND_SWORD
+    raridade: RARA
+    estatistica: dungeons_completadas
+    valor: 50
+    descricao:
+      - "&7Conclua 50 dungeons."
+  lenda:
+    nome: "Lenda das Masmorras"
+    icone: NETHERITE_SWORD
+    raridade: LENDARIA
+    estatistica: dungeons_completadas
+    valor: 250
+    descricao:
+      - "&7Conclua 250 dungeons."
+  exterminador:
+    nome: "Exterminador"
+    icone: BONE
+    raridade: INCOMUM
+    estatistica: mobs_mortos
+    valor: 500
+    descricao:
+      - "&7Derrote 500 mobs dentro das dungeons."
+  carrasco:
+    nome: "Carrasco"
+    icone: IRON_AXE
+    raridade: EPICA
+    estatistica: mobs_mortos
+    valor: 5000
+    descricao:
+      - "&7Derrote 5.000 mobs dentro das dungeons."
+  cacador-de-chefes:
+    nome: "Cacador de Chefes"
+    icone: ZOMBIE_HEAD
+    raridade: RARA
+    estatistica: bosses_mortos
+    valor: 10
+    descricao:
+      - "&7Ajude a derrotar 10 bosses."
+  matador-de-titas:
+    nome: "Matador de Titas"
+    icone: WITHER_SKELETON_SKULL
+    raridade: LENDARIA
+    estatistica: bosses_mortos
+    valor: 100
+    descricao:
+      - "&7Ajude a derrotar 100 bosses."
+  relampago:
+    nome: "Relampago"
+    icone: CLOCK
+    raridade: RARA
+    estatistica: melhor_tempo
+    comparacao: MENOR_IGUAL
+    valor: 300
+    descricao:
+      - "&7Conclua uma dungeon em ate 5 minutos."
+  intocavel:
+    nome: "Intocavel"
+    icone: SHIELD
+    raridade: RARA
+    estatistica: vitorias_sem_morrer
+    valor: 5
+    descricao:
+      - "&7Venca 5 dungeons sem morrer nenhuma vez."
+  imortal:
+    nome: "Imortal"
+    icone: TOTEM_OF_UNDYING
+    raridade: EPICA
+    estatistica: vitorias_sem_morrer
+    valor: 25
+    descricao:
+      - "&7Venca 25 dungeons sem morrer nenhuma vez."
+  lobo-solitario:
+    nome: "Lobo Solitario"
+    icone: BOW
+    raridade: RARA
+    estatistica: vitorias_solo
+    valor: 10
+    descricao:
+      - "&7Venca 10 dungeons jogando sozinho."
+  espirito-de-equipe:
+    nome: "Espirito de Equipe"
+    icone: CAKE
+    raridade: INCOMUM
+    estatistica: vitorias_em_grupo
+    valor: 20
+    descricao:
+      - "&7Venca 20 dungeons em grupo."
+  desafiante:
+    nome: "Desafiante"
+    icone: BLAZE_POWDER
+    raridade: RARA
+    estatistica: dificuldade.DIFICIL.vitorias
+    valor: 5
+    descricao:
+      - "&7Venca 5 dungeons no &cDificil&7."
+  extremista:
+    nome: "Extremista"
+    icone: NETHER_STAR
+    raridade: LENDARIA
+    estatistica: dificuldade.EXTREMO.vitorias
+    valor: 1
+    descricao:
+      - "&7Venca uma dungeon no &4&lExtremo&7."
+  festeiro:
+    nome: "Festeiro"
+    icone: FIREWORK_ROCKET
+    raridade: COMUM
+    estatistica: eventos_participados
+    valor: 1
+    descricao:
+      - "&7Participe de um evento de dungeon."
+  campeao-de-eventos:
+    nome: "Campeao de Eventos"
+    icone: BEACON
+    raridade: EPICA
+    estatistica: eventos_vencidos
+    valor: 10
+    descricao:
+      - "&7Venca 10 eventos de dungeon."
+  quebra-recordes:
+    nome: "Quebra-Recordes"
+    icone: GOLDEN_APPLE
+    raridade: EPICA
+    estatistica: recordes_batidos
+    valor: 1
+    descricao:
+      - "&7Bata o recorde de tempo de uma dungeon."
+  persistente:
+    nome: "Persistente"
+    icone: SKELETON_SKULL
+    raridade: INCOMUM
+    estatistica: mortes
+    valor: 100
+    oculta: true
+    descricao:
+      - "&7Caia 100 vezes... e continue tentando."

@@ -1,0 +1,241 @@
+# =========================================================
+#                       StarDungeon
+#   Configuracao principal do plugin. Edite com cuidado e
+#   use "/dungeonadmin reload" para aplicar as mudancas.
+# =========================================================
+
+# Ativa logs detalhados no console. Mantenha "false" em producao,
+# pois pode impactar a performance do servidor.
+debug: false
+
+# Tempo em milissegundos que o plugin espera apos o login do jogador
+# antes de carregar os dados dele. Util em redes com servidor de
+# lobby/mine separado, onde os dados ainda podem estar sendo salvos.
+delay-login-ms: 500
+
+armazenamento:
+  # Tipos suportados: SQLITE (arquivo local, ideal para servidores pequenos)
+  # ou MYSQL (banco externo, recomendado para redes maiores).
+  tipo: SQLITE
+  mysql:
+    host: localhost
+    porta: 3306
+    banco: stardungeon
+    usuario: root
+    senha: ""
+    # Numero maximo de conexoes simultaneas no pool (HikariCP).
+    pool-maximo: 10
+
+redis:
+  # Sincronizacao entre servidores (BungeeCord/Velocity). Nao implementado
+  # nesta versao do plugin - reservado para uma proxima atualizacao.
+  ativo: false
+  host: localhost
+  porta: 6379
+  senha: ""
+
+dungeon:
+  # Quantidade minima e maxima de jogadores por instancia de dungeon.
+  jogadores-minimo: 1
+  jogadores-maximo: 4
+  # Tempo (em segundos) de contagem regressiva da fila antes de iniciar.
+  contagem-fila-segundos: 10
+  # Tempo (em segundos) de preparo antes dos mobs comecarem a aparecer.
+  aquecimento-segundos: 5
+  # Tempo maximo (em segundos) que uma instancia pode durar. 0 = sem limite.
+  tempo-limite-segundos: 0
+  # Intervalo (em segundos) entre cada verificacao de jogadores AFK.
+  afk-verificacao-segundos: 30
+  # Tempo (em segundos) parado para ser considerado AFK e removido da instancia.
+  afk-limite-segundos: 120
+  # Pausa (em segundos) entre o portao do round abrir e a contagem do
+  # proximo round comecar a rodar.
+  delay-apos-portao-segundos: 3
+  # Impede mobs vanilla de nascerem naturalmente dentro da regiao de
+  # qualquer dungeon (nao afeta os mobs spawnados pelos rounds/hordas).
+  bloquear-spawn-natural: true
+  # Permissao concedida (via Vault + um plugin de permissao, ex: LuckPerms) a
+  # um jogador enquanto ele estiver como espectador (morreu, esperando o
+  # proximo round ou o fim da run) - util pra liberar voo em mundos que
+  # normalmente bloqueiam (ex: essentials.fly.bypass). Removida automaticamente
+  # quando ele voltar a vida (proximo round, item de reviver do bruxo, ou sair
+  # da instancia). Vazio desativa o recurso.
+  permissao-voar-espectador: "essentials.fly.bypass"
+  # Se a dungeon tem "retomar ao desconectar" ativado e todo mundo que ainda
+  # esta "vivo" fica offline (morreu quem restava online, ou o ultimo vivo
+  # online desconectou), a instancia nao pode saber se eles vao voltar - em
+  # vez de ficar presa pra sempre (mobs vivos, nada acontecendo), espera esse
+  # tempo (em segundos) por uma reconexao antes de declarar derrota por
+  # abandono. 0 = declara derrota na hora, sem esperar.
+  tempo-espera-jogadores-desconectados-segundos: 600
+  # Limita o teletransporte de mobs/boss da dungeon (ex: enderman) - cancela
+  # o teleporte se ele fugir demais da altura (Y) ou da distancia de onde nasceu.
+  mob-teleport-max-desvio-y: 6
+  mob-teleport-max-distancia: 16
+  # Bloqueia o uso de comandos por jogadores dentro de uma instancia de
+  # dungeon, exceto os listados em "comandos-permitidos" (sem a barra).
+  bloquear-comandos: true
+  # Limite de Vex vivos simultaneos por instancia (invocados por Evoker via
+  # SpawnReason.SPELL, nao coberto pelo bloqueio de spawn natural acima).
+  # -1 = sem limite, 0 = bloqueia Vex completamente dentro de dungeons, N = maximo.
+  limite-vex-por-instancia: 10
+  # Se os mobs/boss da dungeon colidem uns com os outros (se empurram em vez de
+  # se sobrepor). Ajuda a evitar que um monte de mobs convergindo pro mesmo
+  # ponto se amontoe dentro um do outro e morra pelo limite de "entity cramming"
+  # do proprio servidor.
+  mobs-colidem: true
+  comandos-permitidos:
+    - dungeon
+    - dungeons
+    - dungeonadmin
+    - bruxo
+    - luz
+    - r
+    - g
+
+dificuldades:
+  # Multiplicadores por dificuldade, editaveis em jogo com
+  # /dungeonadmin configdificuldade <dificuldade>. jogadores-minimo e
+  # jogadores-maximo: -1 = nao sobrescreve (usa o min/max da propria dungeon).
+  FACIL:
+    multiplicador-quantidade-mobs: 1.0
+    multiplicador-vida: 0.6
+    multiplicador-dano: 0.7
+    multiplicador-recompensa: 0.7
+    multiplicador-custo: 0.7
+    jogadores-minimo: -1
+    jogadores-maximo: -1
+  NORMAL:
+    multiplicador-quantidade-mobs: 1.0
+    multiplicador-vida: 1.0
+    multiplicador-dano: 1.0
+    multiplicador-recompensa: 1.0
+    multiplicador-custo: 1.0
+    jogadores-minimo: -1
+    jogadores-maximo: -1
+  MEDIO:
+    multiplicador-quantidade-mobs: 1.0
+    multiplicador-vida: 1.35
+    multiplicador-dano: 1.3
+    multiplicador-recompensa: 1.3
+    multiplicador-custo: 1.3
+    jogadores-minimo: -1
+    jogadores-maximo: -1
+  DIFICIL:
+    multiplicador-quantidade-mobs: 1.0
+    multiplicador-vida: 1.75
+    multiplicador-dano: 1.6
+    multiplicador-recompensa: 1.6
+    multiplicador-custo: 1.6
+    jogadores-minimo: -1
+    jogadores-maximo: -1
+  EXTREMO:
+    multiplicador-quantidade-mobs: 1.0
+    multiplicador-vida: 2.5
+    multiplicador-dano: 2.2
+    multiplicador-recompensa: 2.2
+    multiplicador-custo: 2.2
+    jogadores-minimo: -1
+    jogadores-maximo: -1
+
+multi-instancia:
+  # Permite varias instancias simultaneas da mesma dungeon (por dungeon, veja
+  # o toggle no menu de setup) clonando a arena via WorldEdit/FAWE pra um
+  # "slot" livre nesse mundo dedicado. Requer o WorldEdit ou o FastAsyncWorldEdit
+  # instalado - sem eles, o recurso fica desativado e as dungeons com essa
+  # opcao ativada caem na fila normal, como antes.
+  mundo-clones: "Dungeon"
+  slots-por-dungeon: 3
+  # Espacamento (em blocos) entre dungeons diferentes e entre os slots de uma
+  # mesma dungeon dentro do mundo de clones - aumente se suas dungeons forem
+  # maiores que isso, pra nenhum clone se sobrepor a outro.
+  espacamento-linha: 2000
+  espacamento-coluna: 500
+
+scoreboard:
+  ativo: true
+  # O titulo tambem aceita os mesmos placeholders das linhas.
+  titulo: "&b&l{dungeon}"
+  # Placeholders disponiveis: {dungeon} {round} {total_rounds} {horda} {total_hordas}
+  # {mobs_restantes} {tempo} {dificuldade} {jogadores_vivos} {jogadores_espectadores}
+  # {jogadores_totais} {moedas_bruxo}
+  # A linha com {horda}/{total_hordas} some sozinha quando nao ha horda ativa (ex: fase do boss).
+  linhas:
+    - "&7&m----------------"
+    - "&fRound: &b{round}&7/&b{total_rounds}"
+    - "&fHorda: &b{horda}&7/&b{total_hordas}"
+    - "&fDificuldade: &b{dificuldade}"
+    - "&fMobs restantes: &b{mobs_restantes}"
+    - "&fTempo: &b{tempo}"
+    - "&dMoedas do bruxo: &f{moedas_bruxo}"
+    - "&fUse &7/bruxo"
+    - " "
+    - "&fJogadores: &a{jogadores_vivos}&f/&7{jogadores_totais} &c{jogadores_espectadores}☠ "
+    - "&7&m----------------"
+
+bossbar:
+  # Mostra a vida do boss tambem numa boss bar nativa (alem da actionbar).
+  # So funciona em servidores 1.9+; em 1.8 e ignorado automaticamente.
+  ativo: true
+  cor: RED       # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+  estilo: SOLID  # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+
+sons:
+  # Nomes de som XSound (compativel entre versoes). Deixe vazio ("") para desativar.
+  dungeon-iniciou: ENTITY_PLAYER_LEVELUP
+  round-limpo: ENTITY_EXPERIENCE_ORB_PICKUP
+  horda-limpa: ENTITY_ARROW_HIT_PLAYER
+  boss-spawn: ENTITY_WITHER_SPAWN
+  boss-morte: ENTITY_WITHER_DEATH
+  vitoria: UI_TOAST_CHALLENGE_COMPLETE
+  derrota: ENTITY_WITHER_HURT
+
+economia:
+  # Requer o Vault + um plugin de economia instalado.
+  ativa: true
+
+placeholders:
+  # Texto padrao (global) do placeholder %stardungeon_recorde_<dungeon>% (requer
+  # PlaceholderAPI) para o jogador que detem o recorde de tempo daquela dungeon
+  # especifica. Vazio para qualquer outro jogador. Cada dungeon pode sobrescrever
+  # esse texto individualmente no proprio menu de setup ("Tag do recordista") -
+  # esse aqui e so o padrao usado quando a dungeon nao define o proprio.
+  tag-recordista: "&6[RECORDE]"
+
+bruxo:
+  # Moeda propria da loja do bruxo (nao e a economia do Vault) - so pode ser
+  # ganha matando mobs/boss dentro da propria dungeon e nao persiste entre runs.
+  # A faixa de moedas por kill (min/max) e configurada por mob/boss no editor
+  # da dungeon - os padroes sao 0-2 por mob comum e 50-200 por boss.
+  custo-bomba: 20
+  custo-velocidade: 15
+  custo-forca: 15
+  custo-cura: 25
+  custo-reparar: 30
+  # Totem de Revivencia: da um item que, ao usar (clique direito), abre um menu pra
+  # escolher e reviver um jogador morto (ainda como espectador) na sua propria dungeon.
+  custo-reviver: 100
+  # Forca (yield) da explosao da bomba do bruxo - uma TNT de verdade, sem
+  # quebrar blocos e sem ferir jogadores, so os mobs da area.
+  raio-bomba: 3.0
+
+eventos:
+  # Fuso horario usado para agendar e mostrar as datas dos eventos
+  # (ex: "America/Sao_Paulo"). Vazio usa o fuso do servidor.
+  fuso-horario: "America/Sao_Paulo"
+  # Valores iniciais de um evento novo (todos editaveis no menu do evento).
+  duracao-padrao-minutos: 30
+  multiplicador-padrao: 2.0
+  # Minutos antes do inicio em que o evento e anunciado no chat.
+  avisos-minutos: [60, 30, 15, 5, 1]
+  # Quem se inscreveu entra sozinho na fila quando o evento abrir
+  # (se estiver online e livre).
+  entrar-automatico-inscritos: true
+  # Quanto tempo a fila espera juntar mais gente antes de iniciar um grupo
+  # que ja tem o minimo de jogadores da dungeon.
+  espera-formar-grupo-segundos: 20
+  # Se o mesmo jogador pode jogar mais de uma run no mesmo evento.
+  permitir-repetir: false
+  # Por quantos minutos um evento encerrado (que nao se repete) continua
+  # aparecendo no menu da staff antes de ser apagado.
+  manter-encerrados-minutos: 60

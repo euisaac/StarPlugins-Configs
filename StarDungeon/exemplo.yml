@@ -1,0 +1,130 @@
+# =========================================================
+#           StarDungeon - Dungeon de exemplo
+#
+#  Esta dungeon ja vem com 3 rounds de mobs configurados
+#  (incluindo um boss com skill e efeitos no ultimo round).
+#  Falta apenas voce (admin) redefinir os locais dela no seu
+#  mundo.
+#
+#  Dentro do jogo, use /dungeonadmin setup exemplo para abrir
+#  o menu de configuracao. Nele voce define spawn, saida,
+#  regiao (fique no canto e clique), pontos de spawn por
+#  round (com o marcador de spawn), boss, gates fisicos
+#  (com o machado de portao) e efeitos de pocao de cada mob.
+#
+#  Depois disso a dungeon ja fica ativa (vem "ativada: true"
+#  por padrao) e pode ser testada com /dungeon (menu) ou
+#  /dungeon fila entrar exemplo.
+#
+#  OBS: assim que voce editar algo pelo menu, o plugin
+#  reescreve este arquivo e estes comentarios somem - isso e
+#  normal (limitacao do formato YAML do Bukkit).
+# =========================================================
+
+nome-exibicao: 'Cripta Esquecida'
+ativada: true
+min-jogadores: 1
+max-jogadores: 4
+modo-morte: ESPECTADOR
+solo: false
+exigir-inventario-vazio: false
+exigir-passe: false
+custo-entrada: 0.0
+tempo-para-iniciar-segundos: -1
+icone: CHEST
+dificuldade-padrao: NORMAL
+personalizavel: false
+custo-personalizada: 0.0
+whitelist:
+  ativa: false
+  jogadores: []
+recompensas: []
+rounds:
+- pontos-spawn-mob: []
+  mobs:
+  - mob: ZOMBIE
+    mythic-mob: ''
+    nome: ''
+    vida: 20.0
+    dano: 2.0
+    velocidade: 0.3
+    quantidade: 4
+    sword-xp: 1
+    recompensa-dinheiro: 2.0
+    efeitos-mob: []
+    efeitos-jogador: []
+  boss:
+    ativado: false
+- pontos-spawn-mob: []
+  mobs:
+  - mob: SPIDER
+    mythic-mob: ''
+    nome: ''
+    vida: 16.0
+    dano: 3.0
+    velocidade: 0.4
+    quantidade: 4
+    sword-xp: 1
+    recompensa-dinheiro: 2.0
+    efeitos-mob: []
+    efeitos-jogador:
+    - chance: 25.0
+      tipo: SLOWNESS
+      duracao-ticks: 60
+      amplificador: 0
+  - mob: SKELETON
+    mythic-mob: ''
+    nome: ''
+    vida: 20.0
+    dano: 3.0
+    velocidade: 0.3
+    quantidade: 3
+    sword-xp: 1
+    recompensa-dinheiro: 3.0
+    efeitos-mob: []
+    efeitos-jogador: []
+  boss:
+    ativado: false
+- pontos-spawn-mob: []
+  mobs:
+  - mob: CREEPER
+    mythic-mob: ''
+    nome: ''
+    vida: 20.0
+    dano: 3.0
+    velocidade: 0.3
+    quantidade: 2
+    sword-xp: 2
+    recompensa-dinheiro: 4.0
+    efeitos-mob: []
+    efeitos-jogador: []
+  boss:
+    ativado: true
+    mob: WITCH
+    mythic-mob: ''
+    nome: '&4&lFeiticeira Ancia'
+    vida: 80.0
+    dano: 5.0
+    velocidade: 0.35
+    sem-ia: false
+    sword-xp: 10
+    broadcast-spawn: '&4&l[ BOSS ] &cA Feiticeira Ancia desperta! Boa sorte!'
+    broadcast-morte: '&a&l[ BOSS ] &fA Feiticeira Ancia foi derrotada!'
+    recompensa-dinheiro: 50.0
+    efeitos-mob:
+    - chance: 100.0
+      tipo: REGENERATION
+      duracao-ticks: 100
+      amplificador: 0
+    efeitos-jogador:
+    - chance: 20.0
+      tipo: WEAKNESS
+      duracao-ticks: 80
+      amplificador: 0
+    skills:
+    - tipo: BOMBA_VIVA
+      chance: 15.0
+      cooldown-ticks: 100
+      duracao-ticks: 60
+      raio: 3.0
+gates: []
