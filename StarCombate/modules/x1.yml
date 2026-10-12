@@ -1,0 +1,141 @@
+# Modulo: X1 (1v1)
+# Comando configuravel em config.yml (Comandos.X1)
+
+# Formato de exibicao de quantia: LETRA (1.5K, 2M...) ou NUMERO (1.500,00)
+Formatacao: 'LETRA'
+
+Opcoes:
+  # Tempo (segundos) para o desafio expirar.
+  Tempo expirar: 120
+  # Tempo (segundos) de preparo antes do PVP ser liberado.
+  Tempo pvp: 5
+  # Tempo (segundos) para os itens dropados na arena serem recolhidos/limpos apos a luta.
+  Tempo recolher: 30
+  # Minimo de dinheiro (Vault) necessario para apostar no X1. 0 para desativar o minimo.
+  Minimo money: 0.0
+  # Comandos permitidos durante um X1.
+  Comandos:
+    - '/g'
+    - '/l'
+    - '/tell'
+  # Comandos bloqueados enquanto o jogador estiver desafiando/sendo desafiado.
+  Comandos desafiando blacklist: []
+  # Delay (segundos) para poder desafiar novamente apos um X1.
+  Delay desafiar: 60
+  # Quantidade de vezes que o Mito pode recusar/ignorar um X1 antes de perder a tag.
+  Mito quantia: 3
+  # Bloquear o jogador de levar itens do inventario para o camarote (espectador).
+  camarote-block-items: true
+  # Desativa completamente o sistema de apostas do X1.
+  bet-disabled: false
+
+# Sistema de arenas automaticas: em vez de setar pos1/pos2/saida manualmente,
+# o plugin cola o schematic configurado em um espaco livre do mundo escolhido
+# sempre que um X1 comeca, e libera o espaco novamente ao final da luta.
+# Isso permite varios X1 simultaneos sem necessidade de criar arenas manualmente.
+Arena automatica:
+  Ativar: false
+  Mundo: 'world_x1'
+  Schematic: 'x1arena'
+  # Distancia (blocos) entre cada arena colada na grade do mundo.
+  Espacamento: 200
+  # Quantidade maxima de X1 simultaneos usando arena automatica.
+  Maximo simultaneas: 20
+  # Posicoes relativas (x,y,z) a partir da origem onde o schematic e colado.
+  Pos1: '5,1,5'
+  Pos2: '-5,1,-5'
+  Saida: '0,1,20'
+  Camarote: '0,15,0'
+
+Mensagens:
+  Permissao: '&cVoce nao possui permissao para isto.'
+  Nao encontrado: '&cEste jogador nao esta online.'
+  Aleatorio nao: '&cNao foi encontrado nenhum jogador disponivel para X1 com voce.'
+  Nao e numero: '&cO argumento nao e um numero.'
+  Nao possui: '&cVoce nao possui &f{money} &cde coins.'
+  Nao possui outro: '&cO outro jogador nao possui &f{money} &cde coins.'
+  Si mesmo: '&cVoce nao pode utilizar esta acao a si mesmo.'
+  Ja em x1: '&cVoce ja esta em um X1.'
+  Alvo em x1: '&cEste jogador ja esta em um X1.'
+  Camarote nao: '&cO camarote nao foi setado.'
+  Pos nao: '&cAs posicoes da arena nao foram configuradas corretamente.'
+  Setado: '&aLocal &7({local})&a da arena manual de X1 setado com sucesso.'
+  Sem arena livre: '&cNao ha nenhuma arena de X1 disponivel no momento. Tente novamente em instantes.'
+  Teleportado: '&aVoce foi teleportado.'
+  Nao desafiado: '&cVoce nao foi desafiado por ninguem.'
+  Nao desafiou: '&cVoce nao desafiou ninguem.'
+  Cancelado: '&cVoce cancelou o desafio.'
+  Minimo: '&cVoce deve apostar no minimo &f{minimo} &ccoins.'
+  Delay: '&cAguarde &7{time} &cpara desafiar novamente.'
+  TimerTitle: '&aA batalha ira comecar em'
+  TimerSubtitle: '&e{tempo} segundos'
+  TimerActionbar: '&aA batalha ira comecar em &e{tempo} segundos'
+  Camarote itens: '&cVoce precisa esvaziar seu inventario para entrar no camarote.'
+  Nenhum:
+    - '&cNao ha nenhum X1 ocorrendo no momento.'
+  Ja ocorrendo:
+    - '&cJa ha um X1 ocorrendo ou um pedido de X1 pendente no momento.'
+  Pendente:
+    - ''
+    - '&cHa um desafio ou pedido ocorrendo.'
+    - '&f > &7Desafiante: &f{desafiante}&7.'
+    - '&f > &7Desafiado: &f{desafiado}&7.'
+    - '&f > &7Quantia apostada: &f{money}&7.'
+    - ''
+  Desafio:
+    - ''
+    - '&6&lDESAFIO &f{desafiante} &echamou &f{desafiado}&e para um X1.'
+    - '&eQuantia apostada: &a{money}&e. O desafiado tem &f{tempo}&e segundos para decidir.'
+    - ''
+    - '&cPara aceitar digite &f&n/{comando} aceitar &ce &f&n/{comando} negar &cpara negar.'
+    - ''
+  Aceitou:
+    - ''
+    - '&6&lDESAFIO &f{desafiado} &aaceitou o X1 de &f{desafiante}&a.'
+    - '&aQuantia apostada: &f{money}&a. Assista com &f/{comando} camarote'
+    - ''
+    - '&cOs jogadores tem &f{tempo}&c segundos para se prepararem.'
+    - ''
+  Negou:
+    - ''
+    - '&6&lDESAFIO &f{desafiado} &cnegou o desafio do jogador &f{desafiante}&c.'
+    - ''
+  Expirou:
+    - ''
+    - '&6&lDESAFIO &f{desafiado} &cnao aceitou o desafio do jogador &f{desafiante}&c.'
+    - ''
+  Ganhou:
+    - ''
+    - '&6&lX1 &f{ganhador} &cganhou o X1 contra o jogador &f{perdedor}&c.'
+    - '&f > &7Tempo para recolher os itens: &f&n{tempo} segundos&7.'
+    - ''
+  Liberado:
+    - '&aO PVP foi liberado.'
+  Help:
+    - '&a<--> Comandos do X1 <-->'
+    - ''
+    - '&f > &a/{comando} &8- &7Ver as informacoes do X1 atual.'
+    - '&f > &a/{comando} camarote &8- &7Teleportar para o camarote do X1.'
+    - '&f > &a/{comando} desafiar &f<jogador> [money] &8- &7Desafiar um jogador para X1.'
+    - '&f > &a/{comando} aceitar &8- &7Aceitar um desafio de X1.'
+    - '&f > &a/{comando} negar &8- &7Negar um desafio de X1.'
+    - ''
+  Help staff:
+    - '&a<--> Comandos do X1 &7(STAFF)&a <-->'
+    - ''
+    - '&f > &a/{comando} setpos1 &8- &7Setar a POSICAO 1 da arena manual.'
+    - '&f > &a/{comando} setpos2 &8- &7Setar a POSICAO 2 da arena manual.'
+    - '&f > &a/{comando} setsaida &8- &7Setar a SAIDA da arena manual.'
+    - '&f > &a/{comando} setcamarote &8- &7Setar a POSICAO do CAMAROTE.'
+    - ''
+
+# Formatos de money e quantia para o modo LETRA
+Formats:
+  - ''
+  - ''
+  - 'K'
+  - 'M'
+  - 'B'
+  - 'T'
+  - 'Q'
+  - 'QQ'

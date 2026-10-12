@@ -1,0 +1,37 @@
+# Modulo: Cheat
+# Sistema de assistencia de mira (estilo "aimbot" leve). Quando o jogador
+# ataca (clique esquerdo) e erra - "bate no ar" - sem acertar nenhuma
+# entidade, se houver um alvo valido dentro do alcance/campo de visao a
+# mira do jogador e puxada em direcao a ele.
+# Nao precisa de comando proprio - use /starcombate reload apos editar.
+
+aimbot:
+  enabled: false
+
+  # Puxar a mira quando o alvo perdido for um jogador.
+  jogadores: true
+  # Puxar a mira quando o alvo perdido for um mob (hostil ou passivo).
+  mobs: false
+
+  # Distancia maxima (blocos) para procurar um alvo, a partir dos olhos do jogador.
+  alcance: 4.0
+
+  # Campo de visao (graus) a frente de onde o jogador ja esta olhando, dentro
+  # do qual um alvo pode ser puxado. 360 = qualquer direcao ao redor.
+  # Valores baixos evitam que a mira gire para alvos quase atras do jogador.
+  fov: 100.0
+
+  # Forca do puxao: 1.0 = trava direto no alvo (mira "gruda" nele).
+  # Valores menores (ex: 0.35) fazem a mira se mover em direcao ao alvo aos
+  # poucos a cada erro, em vez de travar de uma vez.
+  forca: 1.0
+
+  # Tempo minimo (ms) entre dois puxoes de mira do mesmo jogador, para evitar
+  # tremedeira ao clicar muito rapido. 0 desativa o cooldown.
+  cooldown-ms: 0
+
+  # Exige linha de visao direta (sem blocos no meio) ate o alvo.
+  precisa-linha-de-visao: true
+
+  # Ignora alvos invisiveis (poção de invisibilidade) ou em modo espectador.
+  ignorar-invisiveis: true

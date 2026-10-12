@@ -1,0 +1,203 @@
+# Modulo: OldCombate
+# Mecanicas de combate no estilo 1.8, inspirado no plugin OldCombatMechanics
+# (kernitus/Rayzr522). Comando configuravel em config.yml (Comandos.Oldcombate).
+#
+# Cada mecanica abaixo tem seu proprio "enabled": true = SEMPRE ativa pra
+# todo mundo, em qualquer mundo (equivalente ao always_enabled_modules do
+# OCM original). Se preferir que uma mecanica so valha em determinados
+# mundos/pro modo "antigo", deixe o "enabled" dela como false e liste a
+# mecanica dentro de modos.antigo la embaixo - nesse caso ela so fica ativa
+# para jogadores cujo modo de combate atual (por mundo, ou trocado na mao
+# com /modopvp) for "antigo".
+
+# Desativa o cooldown de ataque do 1.9+ (o "carregamento" da espada).
+# E a mudanca mais perceptivel para quem quer a sensacao de combate do 1.8:
+# todo hit bate com o dano cheio, sem precisar esperar a espada recarregar.
+disable-attack-cooldown:
+  enabled: true
+  # Velocidade de ataque do atributo generic.attack_speed. O padrao do 1.9+ e 4;
+  # qualquer valor a partir de ~20 ja praticamente elimina o cooldown. 40 e o
+  # valor usado pelo OldCombatMechanics.
+  attack-speed: 40.0
+
+# Controla quanto tempo (em ticks) uma entidade fica invulneravel depois de
+# levar um hit, ou seja, de quanto em quanto tempo ela pode ser atingida de novo.
+attack-frequency:
+  enabled: false
+  jogador-delay: 18
+  mob-delay: 16
+
+# Restaura o critico do 1.8 (multiplicador fixo, podendo acontecer mesmo
+# correndo, dependendo da opcao abaixo).
+old-critical-hits:
+  enabled: false
+  multiplicador: 1.5
+  permitir-correndo: true
+
+# Restaura os valores de knockback do 1.8 (mais previsivel/consistente que o
+# knockback do 1.9+). Nao inclui a reducao por cliques consecutivos (w-tap)
+# do OldCombatMechanics original - aqui e um valor fixo por hit.
+old-player-knockback:
+  enabled: false
+  horizontal: 0.4
+  vertical: 0.4
+  vertical-limite: 0.4
+  extra-horizontal: 0.5
+  extra-vertical: 0.1
+  # Se false, remove a resistencia a knockback de itens como armadura de
+  # netherite (igual o 1.8, onde essa resistencia nao existia).
+  permitir-resistencia-knockback: false
+
+# Restaura os valores de dano das ferramentas/armas do 1.8 (antes do
+# rebalanceamento do combate 1.9+).
+old-tool-damage:
+  enabled: false
+  # Sharpness antigo: cada nivel soma +1.25 de dano (1.8) em vez do calculo
+  # do 1.9+ (+0.5 por nivel, +1 no total).
+  sharpness-antigo: false
+  danos:
+    GOLDEN_AXE: 4
+    WOODEN_AXE: 4
+    STONE_AXE: 5
+    IRON_AXE: 6
+    DIAMOND_AXE: 7
+    NETHERITE_AXE: 8
+    GOLDEN_SHOVEL: 2
+    WOODEN_SHOVEL: 2
+    STONE_SHOVEL: 3
+    IRON_SHOVEL: 4
+    DIAMOND_SHOVEL: 5
+    NETHERITE_SHOVEL: 6
+    GOLDEN_SWORD: 5
+    WOODEN_SWORD: 5
+    STONE_SWORD: 6
+    IRON_SWORD: 7
+    DIAMOND_SWORD: 8
+    NETHERITE_SWORD: 9
+    GOLDEN_PICKAXE: 3
+    WOODEN_PICKAXE: 3
+    STONE_PICKAXE: 4
+    IRON_PICKAXE: 5
+    DIAMOND_PICKAXE: 6
+    NETHERITE_PICKAXE: 7
+    GOLDEN_HOE: 1
+    WOODEN_HOE: 1
+    STONE_HOE: 1
+    IRON_HOE: 1
+    DIAMOND_HOE: 1
+    NETHERITE_HOE: 1
+    TRIDENT: 8
+    MACE: 6
+
+# Muda como o escudo reduz o dano bloqueado (no 1.9+ o escudo reduz uma
+# porcentagem fixa; no 1.8 a reducao era mais forte).
+shield-damage-reduction:
+  enabled: false
+  # Primeiro subtrai a quantidade, depois multiplica pela porcentagem.
+  # reducao = (dano - quantidade) * porcentagem / 100
+  geral-quantidade: 1
+  geral-porcentagem: 50
+  # O mesmo, mas exclusivo para dano de projeteis (flechas etc).
+  projetil-quantidade: 1
+  projetil-porcentagem: 50
+
+# Restaura o cooldown (e opcionalmente os efeitos) das macas douradas do 1.8.
+old-golden-apples:
+  enabled: false
+  # Cooldown em segundos. 0 para nao ter cooldown.
+  cooldown-normal: 0
+  cooldown-encantada: 0
+  # Se os dois cooldowns contam como um so (comer qualquer uma reinicia as duas).
+  cooldown-compartilhado: false
+  # Aplica os efeitos de poção do 1.8 ao inves dos efeitos atuais do jogo.
+  efeitos-antigos: false
+  efeitos-normal:
+    regeneracao:
+      duracao: 5
+      amplificador: 1
+    absorcao:
+      duracao: 120
+      amplificador: 0
+  efeitos-encantada:
+    regeneracao:
+      duracao: 30
+      amplificador: 4
+    resistencia:
+      duracao: 300
+      amplificador: 0
+    resistencia-fogo:
+      duracao: 300
+      amplificador: 0
+    absorcao:
+      duracao: 120
+      amplificador: 0
+
+# Remove/reduz o cooldown de usar ender pearl (adicionado no 1.17+).
+disable-enderpearl-cooldown:
+  enabled: false
+  # Cooldown (em segundos) a aplicar no lugar do padrao do jogo. 0 remove
+  # completamente o cooldown.
+  cooldown: 0
+
+# Restaura a regeneracao de vida por comida do 1.8 (cura periodica baseada em
+# intervalo fixo, em vez do sistema atual).
+old-player-regen:
+  enabled: false
+  # Intervalo entre curas, em milissegundos. Padrao do 1.8: ~4000ms (4s).
+  intervalo-ms: 3990
+  # Quantidade de meio-coracoes curados a cada intervalo.
+  quantidade: 1
+  # Exaustao aplicada por cura (1.8: 3).
+  exaustao: 3
+
+# ########################
+# MODOS E MUNDOS
+# ########################
+
+# Quais mecanicas cada modo ativa (alem das que ja tem "enabled: true" acima,
+# que ficam sempre ligadas independente do modo). O modo "novo" normalmente
+# fica vazio (comportamento atual do jogo).
+modos:
+  antigo:
+    - disable-attack-cooldown
+    - attack-frequency
+    - old-critical-hits
+    - old-player-knockback
+    - old-tool-damage
+    - shield-damage-reduction
+    - old-golden-apples
+    - disable-enderpearl-cooldown
+    - old-player-regen
+  novo: []
+
+# Modos disponiveis em cada mundo. O primeiro da lista e o modo padrao de
+# quem entra nesse mundo sem ter escolhido um modo (ou cujo modo escolhido
+# nao esta disponivel ali). Mundos que nao aparecem aqui liberam os dois
+# modos, comecando em "novo".
+mundos:
+  world: [ novo ]
+  world_nether: [ novo ]
+  world_the_end: [ novo ]
+  # Exemplo de mundo dedicado ao pvp antigo:
+  # world_pvp_antigo: [ antigo ]
+
+Mensagens:
+  Sem-permissao: '&cVoce nao possui permissao para isto.'
+  Modo-invalido: '&cModo invalido. Use &fantigo &cou &fnovo&c.'
+  Modo-indisponivel: '&cO modo &f{modo} &cnao esta disponivel neste mundo.'
+  Jogador-nao-encontrado: '&cEste jogador nao esta online.'
+  Modo-atual: '&fSeu modo de combate atual e: &a{modo}'
+  Modo-alterado: '&aSeu modo de combate foi alterado para &f{modo}&a.'
+  Modo-alterado-outro: '&aVoce alterou o modo de combate de &f{player} &apara &f{modo}&a.'
+  Modo-alterado-por: '&aSeu modo de combate foi alterado para &f{modo} &apor &f{player}&a.'
+  Ajuda:
+    - ''
+    - '&b--> &7Comandos do modo de combate &b<--'
+    - ''
+    - '&b -> &f/{comando} &8- &7Mostra seu modo de combate atual.'
+    - '&b -> &f/{comando} antigo &8- &7Muda seu modo para o combate antigo (1.8).'
+    - '&b -> &f/{comando} novo &8- &7Muda seu modo para o combate atual.'
+    - ''
+  Ajuda-admin:
+    - '&b -> &f/{comando} <antigo|novo> &7<jogador> &8- &7Muda o modo de outro jogador.'
+    - ''

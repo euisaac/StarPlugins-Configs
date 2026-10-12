@@ -1,0 +1,82 @@
+# Modulo: Mito
+# Comando configuravel em config.yml (Comandos.Mito)
+#
+# Um jogador pode ser setado como "Mito". Quem matar o Mito (em uma arena ou
+# em um X1) recebe a tag automaticamente. O Mito tambem pode perder a tag por
+# inatividade.
+
+general:
+  # Tag do Mito no chat. Onde usar:
+  #   StarChat ............ {mito} no Formato do canal (canais.yml); {mito_nome} = nick do Mito atual
+  #   chat do servidor .... {mito} no formato (troca no AsyncPlayerChatEvent)
+  #   PlaceholderAPI ...... %starcombate_mito% e %starcombate_mito_nome%
+  # So aparece para quem e o Mito; para os outros fica vazia.
+  tag: ' &5[MITO]'
+  # Ativa abrir o menu ao digitar /mito
+  mito-menu: true
+  # Ativa o sistema de perder o Mito por inatividade
+  lose: true
+  # Tempo (segundos) inativo no servidor para perder a tag de Mito
+  time-lose: 86400
+  # So perde o mito por tempo se houver outro jogador online no momento
+  lose-has-player: true
+  # Tempo (segundos) que o jogador pode morrer sem perder/transferir a tag
+  # apos receber (protege o novo Mito de ser mortos em sequencia).
+  cooldown-lose-death: 160
+
+effect:
+  # Solta um raio (sem dano) no novo Mito
+  strike-lightning: true
+  # Spawna morcegos ao redor do novo Mito
+  spawn-bats: false
+  # Toca um som para o novo Mito
+  sound: 'ENTITY_ENDER_DRAGON_GROWL'
+
+# Recompensas por matar o Mito. Formato: 'chance,recompensa' (recompensas.yml). Sorteia 'amount' itens da lista.
+rewards:
+  amount: 1
+  list:
+    - '100.0,Reco1'
+
+# Comandos executados quando um jogador se torna o novo Mito. Placeholder: {player}
+commands: []
+
+npc:
+  # Altura do holograma acima do NPC
+  off-set: 2.6
+  hologram:
+    - '&c&lMITO'
+    - '&7Mito atual: &c{player}&7.'
+
+Mensagens:
+  Permissao: '&cVoce nao possui permissao para isto.'
+  Nao ha mito: '&cNao ha nenhum Mito no momento.'
+  Ja e mito: '&cEste jogador ja e o Mito.'
+  Setado: '&aVoce setou &f{player} &acomo o novo Mito!'
+  Recebeu: '&5&lVoce se tornou o novo MITO do servidor!'
+  Perdeu inatividade: '&cVoce perdeu a tag de Mito por inatividade.'
+  Perdeu recusa: '&cVoce perdeu a tag de Mito por recusar/ignorar desafios de X1 varias vezes.'
+  Matou mito:
+    - ''
+    - '&5&lMITO &f{killer} &amatou o Mito &f{mito}&a e recebeu a tag!'
+    - ''
+  Broadcast novo mito:
+    - ''
+    - '&5&lMITO &f{player} &aagora e o novo Mito do servidor!'
+    - ''
+  Setado npc: '&aNPC do Mito setado com sucesso.'
+  Removido npc: '&aNPC do Mito removido com sucesso.'
+  Nao setado npc: '&cO NPC do Mito nao esta setado.'
+  Help:
+    - ''
+    - '&b--> &7Comandos do Mito &b<--'
+    - ''
+    - '&b -> &f/{comando} &8- &7Abre o menu do Mito.'
+    - '&b -> &f/{comando} info &8- &7Mostra quem e o Mito atual.'
+    - ''
+  Help admin:
+    - '&b -> &f/{comando} setar &7<jogador|random> &8- &7Define o Mito manualmente.'
+    - '&b -> &f/{comando} remover &8- &7Remove a tag do Mito atual.'
+    - '&b -> &f/{comando} setnpc &8- &7Cria o NPC do Mito onde voce esta.'
+    - '&b -> &f/{comando} delnpc &8- &7Remove o NPC do Mito.'
+    - ''

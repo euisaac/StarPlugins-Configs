@@ -1,0 +1,170 @@
+# Modulo: CombateLog
+# Comando configuravel em config.yml (Comandos.Pvp / Comandos.StarCombate)
+
+# Delay para carregar os dados depois do login (em ticks). 20 ticks = 1 segundo.
+login-delay: 20
+
+# Formatos da placeholder %starcombate_pvp%
+papi-toggle-off: '&cPVP OFF'
+papi-toggle-on: '&aPVP ON'
+
+# Formatos da placeholder %starcombate_status%
+papi-status-off: '&cEM COMBATE'
+papi-status-on: '&aLIVRE'
+
+# Comandos que serao executados caso o jogador deslogue em combate.
+# Placeholder para o nick do player: {player}
+Comandos deslogar: []
+
+# Comandos permitidos em combate
+Comandos permitidos:
+  - '/l'
+  - '/g'
+
+# Mundos permitidos para teleportar em combate
+Mundos permitidos:
+  - 'world'
+
+# Mundos em que o jogador nao entra em combate
+Mundos blacklist:
+  - 'nenhum'
+
+# Blacklist de regioes (WorldGuard) que nao entra em combate.
+# Formato obrigatorio: 'mundo:regiao' (o nome de uma regiao so e unico dentro
+# do proprio mundo, entao o mundo precisa ser especificado). Exemplo:
+# - 'evento:arena1'
+region-blacklist: []
+
+# Blacklist de causas de dano que o sistema de combate ira ignorar
+# Lista: https://helpch.at/docs/1.21/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html
+causes-blacklist: [ 'LIGHTNING_BOLT' ]
+
+# Mundos em que o sistema de ligar/desligar PVP (/pvp) NAO ira funcionar.
+# Nesses mundos o PVP fica sempre ativo (nao pode ser desativado) e o
+# proprio comando /pvp fica bloqueado enquanto o jogador estiver neles.
+world-disable-blacklist:
+  - 'evento'
+
+# Regioes (WorldGuard) em que o sistema de ligar/desligar PVP (/pvp) NAO ira
+# funcionar - o PVP fica sempre ativo dentro delas independente do toggle.
+# Formato obrigatorio: 'mundo:regiao'. Exemplo:
+# - 'world:spawn'
+region-disable-blacklist: []
+
+# Acoes que o plugin ira bloquear enquanto o jogador estiver em combate
+Bloquear:
+  Comando: true
+  Teleportar: true
+  Enderpearl: true
+  # Bloqueia pegar itens do chao. So se aplica enquanto o jogador estiver
+  # em combate (tag ativa) - fora de combate ele pega itens normalmente.
+  Pickup: true
+
+# Quando o jogador sair do servidor em combate, matar ele
+Matar ao sair: true
+
+# Porcentagem do dinheiro (Vault) que sera removida ao deslogar em combate
+Sair porcentagem: 0.0
+
+# Valor maximo que sera removido ao deslogar em combate (-1 para infinito)
+Valor maximo: -1
+
+# Tirar o fly do jogador quando ele entrar em combate
+Remover fly: true
+
+# Staff pode entrar em combate (permissao: starcombate.combat.staff)
+Staff combate: false
+
+# Tempo (em segundos) que o jogador fica marcado em combate
+Tempo combate: 15
+
+# Bloquear de entrar em regioes sem pvp (WorldGuard) estando em combate
+Bloquear regioes: true
+# Margem extra (em blocos) usada para checar a borda da area sem pvp.
+# O plugin verifica as bordas do hitbox do jogador (nao so o ponto central),
+# entao mesmo so encostando na linha da regiao ele ja e barrado antes de
+# conseguir tocar de fato a area protegida. Aumente se ainda conseguir
+# "roçar" na borda, diminua se o bloqueio estiver empurrando de longe demais.
+Bloquear regioes margem: 0.4
+
+# Bloquear de entrar em combate durante um X1
+Bloquear x1: true
+
+# Bloquear voo de elytra em combate
+Bloquear elytra: true
+
+# Ao registrar no servidor pela primeira vez, desativar o PVP automaticamente
+toggle-register: false
+
+# Sistema de auto totem: o Totem of Undying ativa mesmo sem estar na mao
+# (principal ou secundaria), desde que o jogador tenha um em qualquer lugar
+# do inventario. Se ja tiver um totem na mao, o jogo cuida disso normalmente
+# (o auto totem so entra em acao quando o totem esta "guardado").
+auto-totem:
+  enabled: false
+  # Chance (0.0 a 100.0) do auto totem realmente salvar o jogador quando ele
+  # morreria. 100 = sempre funciona (igual o totem normal na mao). Se a
+  # chance falhar, o totem NAO e consumido e o jogador morre normalmente.
+  chance: 100.0
+
+# Sistema de escala do jogador em combate (requer 1.20.5+).
+# Se o plugin StarTamanho estiver instalado, o StarCombate detecta e usa a
+# API dele automaticamente (StarTamanhoAPI) para aplicar/restaurar o
+# tamanho, respeitando o tamanho real salvo pelo StarTamanho e a transicao
+# suave configurada la. Sem o StarTamanho, mexe direto no atributo SCALE.
+scale:
+  enabled: false
+  combat-size: 1.0
+
+# Sistema de barreiras: cria um cercado temporario ao redor da luta para
+# impedir que outros jogadores entrem no meio do combate (anti-invasao).
+barriers:
+  enabled: true
+  material: 'RED_STAINED_GLASS'
+  # Raio (blocos) do cercado ao redor do ponto medio entre os dois jogadores
+  radius: 4
+  # Altura (blocos) do cercado
+  height: 3
+  # Fecha o topo do cercado (evita escapar pulando, com elytra ou ender pearl)
+  fechar-topo: true
+  # Desenha o "chao" do cercado como um efeito visual de particulas, no
+  # material configurado acima - NAO usa blocos reais, entao nao altera nem
+  # corre o risco de "quebrar" o terreno embaixo dos jogadores (buracos,
+  # placas de pressao, agua, redstone, etc.). Some sozinho quando a
+  # barreira e removida, sem precisar restaurar nada.
+  chao-visual: true
+
+# Sistema anti-2v1: impede que um terceiro jogador ataque quem ja esta em combate
+anti-boring:
+  enabled: true
+
+# Configuracao da barra de progresso mostrada na actionbar
+Progress bar:
+  Quantia: 10
+  Simbolo: ':'
+  Cor sim: '&a'
+  Cor nao: '&7'
+
+Mensagens:
+  Sem-permissao: '&cVoce nao possui permissao para isto.'
+  target: '&cJogador {player} nao encontrado.'
+  Quitou:
+    - '&c[Combate] O jogador &7{player} &cdeslogou em combate.'
+  Saiu: '&aVoce nao esta mais em combate. Pode deslogar sem perigo.'
+  Teleportar: '&cVoce nao pode teleportar em combate.'
+  Comando: '&cVoce nao pode usar este comando em combate.'
+  Area: '&cVoce nao pode entrar nesta area enquanto estiver em combate.'
+  Enderpearl: '&cVoce nao pode usar ender pearl em combate.'
+  Actionbar: '&cVoce esta em combate por {tempo} segundos &8[{progressbar}&8]&a.'
+  Target-pvp: '&cO jogador {player} desativou o PVP.'
+  Damager-pvp: '&cVoce desativou o PVP.'
+  Toggle-on: '&aVoce ativou seu PVP.'
+  Toggle-off: '&cVoce desativou seu PVP.'
+  Toggle-target-on: '&aVoce ativou o PVP do jogador {player}.'
+  Toggle-target-off: '&cVoce desativou o PVP do jogador {player}.'
+  Mundo-pvp-forcado: '&cO PVP e sempre ativo neste mundo. Nao e possivel altera-lo aqui.'
+  Anti-boring-target: '&cO jogador {player} ja esta em combate com {target}.'
+  Anti-boring-self: '&cVoce ja esta em combate com {target}.'
+  Help:
+    - '&cComandos disponiveis:'
+    - '&7-> /pvp [jogador]'

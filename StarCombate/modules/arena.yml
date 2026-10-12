@@ -1,0 +1,124 @@
+# Modulo: Arenas PvP (aberta / FFA, com ou sem kit, com regeneracao por schematic)
+# Comando configuravel em config.yml (Comandos.Arena)
+# As arenas em si (nome, tipo, spawns, kit, schematic) sao criadas em jogo com
+# /arena criararena e ficam salvas em data/arenas.yml - esta config aqui e so
+# de comportamento geral do sistema.
+
+NPC:
+  # Nome de jogador usado como skin padrao dos NPCs de arena.
+  Skin: 'MHF_Steve'
+  Holograma:
+    Altura: 2.6
+    Linhas:
+      - '&6&l{arena}'
+      - '&7Clique para entrar na arena.'
+
+Opcoes:
+  # Tag exibida na frente do jogador com mais kills (top kills) da arena.
+  Tag: '&c[MATADOR]'
+  # O comando /arena arenas abre um menu com todas as arenas.
+  Arenas menu: true
+  # O comando /arena kits abre um menu com todos os kits.
+  Kits menu: true
+  # Evita reparar itens, regenerar vida, ganhar itens/recompensas/killstreak
+  # ao matar o mesmo jogador 2x ou mais seguidas (anti abuso de kill).
+  AntiFreeKill: true
+  # true = o jogador precisa estar com o inventario vazio para entrar em arenas com kit setado.
+  # false = o plugin limpa o inventario do jogador ao entrar e entrega o kit da arena.
+  Entrar inventario vazio: false
+  # Permitir que jogadores dropem itens dentro da arena.
+  Permitir dropar itens: false
+  # Permitir que jogadores movam itens no proprio inventario dentro da arena.
+  Permitir mover itens: true
+  # Comandos que poderao ser usados dentro da arena.
+  Command whitelist:
+    - '/g'
+    - '/l'
+  # Recompensas (definidas em recompensas.yml) que podem ser dadas ao matar um jogador na arena.
+  # Formato: 'chance,recompensa'. Deixe [] para nao usar.
+  Recompensas:
+    - '100.0,Reco1'
+  # Regenera esta quantidade de vida ao matar um jogador (vida maxima = 20). 0 para nao usar.
+  Regenerar: 5
+  # Reseta o inventario do jogador ao matar alguem (apenas em arenas com kit setado).
+  ResetarMatar: false
+  # Itens que podem ser dados ao matar um jogador (sorteia 1 da lista por kill). Formato: 'MATERIAL:quantidade'.
+  Itens dar:
+    - 'GOLDEN_APPLE:1'
+  # Tempo (segundos) apos a arena ficar vazia para colar novamente o schematic (arenas do tipo REGEN).
+  Regen delay: 10
+  # Sistema de killstreak (sequencia de kills sem morrer).
+  Killstreak:
+    Ativar: true
+    Minimo: 2
+    Broadcast: '&aO jogador &f{player}&a esta com um &nkillstreak&a de &6{kills} &a&nkills&a.'
+    Player: '&aVoce esta com um &nkillstreak&a de &6{kills} &a&nkills&a.'
+    Recompensas:
+      - '2,100.0,Reco1'
+
+Mensagens:
+  Permissao: '&cVoce nao possui permissao para isto.'
+  Setado npc: '&aNPC da arena setado com sucesso.'
+  Removido npc: '&aNPC da arena removido com sucesso.'
+  Nao setado npc: '&cO NPC nao esta setado.'
+  Setado spawn: '&aSpawn #{id} da arena &7{arena}&a adicionado com sucesso.'
+  Setado kit: '&aO kit da arena &7{arena}&a foi setado com sucesso. &7(Todos os itens do seu inventario foram reconhecidos)'
+  Recebeu kit: '&aVoce recebeu o kit da arena.'
+  Entrou: '&aVoce entrou na arena &7{arena}&a.'
+  Saiu: '&aVoce saiu da arena &7{arena}&a.'
+  Ja esta: '&cVoce ja esta em uma arena.'
+  Nao esta: '&cVoce nao esta em nenhuma arena.'
+  Esvazie: '&cEsvazie seu inventario para entrar nesta arena.'
+  Arena criada: '&aArena &7{arena} &8({tipo})&a criada com sucesso.'
+  Arena existe: '&cJa existe uma arena com este nome.'
+  Kit existe: '&cJa existe um kit com este nome.'
+  Arena nao existe: '&cEsta arena nao existe.'
+  Kit nao existe: '&cEste kit nao existe.'
+  Arena deletada: '&cArena deletada.'
+  Kit deletado: '&cKit deletado.'
+  Kit criado: '&aKit &7{kit}&a criado com sucesso a partir do seu inventario.'
+  Precisa spawns: '&cEsta arena precisa de pelo menos 2 spawns configurados.'
+  Schematic setado: '&aSchematic &7{schematic}&a vinculado a arena &7{arena}&a.'
+  Schematic nao encontrado: '&cEste schematic nao foi encontrado na pasta schematics/.'
+  Icone mudou: '&aIcone alterado com sucesso.'
+  Cancelou: '&cVoce cancelou a operacao.'
+  Inv cheio: '&cSeu inventario esta cheio.'
+  Kit salvo: '&aSeu kit personalizado foi salvo.'
+  Kit resetado: '&aSeu kit personalizado foi resetado.'
+  Digite nome:
+    - ''
+    - '&aDigite o nome no chat.'
+    - '&7Para cancelar digite &ncancelar&7.'
+    - ''
+  Arenas:
+    - '&aArenas disponiveis: &7{arenas}&a.'
+  Kits:
+    - '&aKits disponiveis: &7{kits}&a.'
+  Help admin:
+    - ''
+    - '&b--> &7Comandos administrativos &b<--'
+    - ''
+    - '&b -> &f/{comando} criararena &7<nome> <normal|regen> &8- &7Cria uma nova arena.'
+    - '&b -> &f/{comando} delarena &7<nome> &8- &7Deleta uma arena.'
+    - '&b -> &f/{comando} addspawn &7<nome> &8- &7Adiciona um spawn na arena onde voce esta.'
+    - '&b -> &f/{comando} setschematic &7<nome> <schematic> &8- &7Vincula um schematic a arena.'
+    - '&b -> &f/{comando} setkit &7<nome> &8- &7Define o kit da arena a partir do seu inventario.'
+    - '&b -> &f/{comando} removerkit &7<nome> &8- &7Remove o kit da arena.'
+    - '&b -> &f/{comando} criarkit &7<nome> &8- &7Cria um novo kit a partir do seu inventario.'
+    - '&b -> &f/{comando} delkit &7<nome> &8- &7Deleta um kit.'
+    - '&b -> &f/{comando} setnpc &7<nome> &8- &7Cria o NPC de uma arena onde voce esta.'
+    - '&b -> &f/{comando} delnpc &7<nome> &8- &7Remove o NPC de uma arena.'
+    - ''
+  Help:
+    - ''
+    - '&b--> &7Comandos disponiveis &b<--'
+    - ''
+    - '&b -> &f/{comando} &8- &7Abre o menu principal.'
+    - '&b -> &f/{comando} entrar &7<nome> &8- &7Entra em uma arena.'
+    - '&b -> &f/{comando} sair &8- &7Sai da arena atual.'
+    - '&b -> &f/{comando} rekit &8- &7Recebe novamente o kit da arena.'
+    - '&b -> &f/{comando} salvarkit &8- &7Salva seu kit personalizado da arena atual.'
+    - '&b -> &f/{comando} resetarkit &8- &7Reseta seu kit personalizado da arena atual.'
+    - '&b -> &f/{comando} arenas &8- &7Ve todas as arenas do servidor.'
+    - '&b -> &f/{comando} kits &8- &7Ve os kits configurados.'
+    - ''
