@@ -166,12 +166,13 @@ Decoracao:
         - '&8da loja recebem um boost de {meta_boost_valor}.'
       brilho: true
 
-  # --- Saldo do jogador -----------------------------------------------------
+  # --- Saldo do jogador (cabeça do próprio jogador) ------------------------
   saldo:
-    Slot: 49
+    Slot: 45
     Acao: NENHUMA
     Item:
-      material: GOLD_NUGGET
+      material: PLAYER_HEAD
+      dono: '{player}'        # cabeça de quem está vendo o menu
       nome: '&6&lSEU SALDO'
       lore:
         - '&r'
@@ -181,6 +182,20 @@ Decoracao:
         - '&r'
         - '&7Seu desconto na compra: &b{desconto}'
         - '&7Seu bônus na venda: &b{bonus}'
+
+  # --- Loja de Spawners (onde ficava o saldo) ------------------------------
+  loja-spawners:
+    Slot: 49
+    Acao: 'ABRIR_LOJA:spawners'
+    Item:
+      material: SPAWNER
+      nome: '&c&lLOJA DE SPAWNERS'
+      lore:
+        - '&r'
+        - '&7Compre geradores de monstros.'
+        - '&7Novos spawners liberam por data!'
+        - '&r'
+        - '&a&lCLIQUE PARA ACESSAR'
       brilho: true
 
   # --- Venda rápida (print: funil) -----------------------------------------

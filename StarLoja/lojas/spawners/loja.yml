@@ -1,0 +1,106 @@
+# ============================================================================
+#  Loja: spawners   ->   /lojaspawners
+#
+#  Loja só de spawners. Cada spawner é entregue por COMANDO (o "Item:" é só o
+#  ícone no menu). O destaque aqui é o campo "Libera em" de cada item: antes da
+#  data o spawner aparece BLOQUEADO e não pode ser comprado; na data, libera.
+#
+#  O comando de entrega abaixo usa o StarSpawners (/starspawners dar ...). Troque
+#  pelo comando do seu plugin de spawners se usar outro.
+# ============================================================================
+
+Nome: '&8LOJA DE SPAWNERS'
+Tamanho: 54
+Permissao: ''
+Som: 'NOTA'
+
+Comandos:
+  - 'lojaspawners'
+  - 'spawnershop'
+  - 'spawners'
+
+Abrir-categoria-unica: true
+
+# Posicao e icone desta loja no menu /loja lojas.
+Slot: 16
+Icone:
+  material: SPAWNER
+  nome: '&c&lLOJA DE SPAWNERS'
+  lore:
+    - '&r'
+    - '&7Compre geradores de monstros.'
+    - '&7Novos spawners liberam por data!'
+    - '&r'
+    - '&a&lCLIQUE PARA ACESSAR'
+  brilho: true
+
+Cliques:
+  LEFT_CLICK: COMPRAR_QUANTIA
+  RIGHT_CLICK: COMPRAR
+  SHIFT_LEFT_CLICK: COMPRAR_QUANTIA
+  SHIFT_RIGHT_CLICK: COMPRAR_MAXIMO
+  MIDDLE_CLICK: NENHUMA
+  DROP: NENHUMA
+
+# A lore de cada spawner. As linhas {nao_liberado} só aparecem ANTES da data de
+# liberação; as {se_liberado} só depois. {libera_em} é a data do item.
+Lore-formato:
+  - '&r'
+  - '{se_liberado}&a&lDISPONÍVEL'
+  - '{se_liberado} &8| &a&lCOMPRAR:'
+  - '{se_liberado} &8|  &eMoney: &f{preco_compra_money}'
+  - '{se_liberado} &8|  &bCash: &f{preco_compra_cash_num}'
+  - '{se_liberado}&r'
+  - '{se_liberado} &7Botão direito: &fcomprar 1'
+  - '{se_liberado} &7Botão esquerdo: &fescolher quantia'
+  - '{se_liberado} &7Shift + direito: &fcomprar o limite'
+  - '{nao_liberado}&c&lBLOQUEADO'
+  - '{nao_liberado} &8| &7Libera em: &f{libera_em}'
+  - '{nao_liberado}&r'
+  - '{nao_liberado} &7Preço: &f{preco_compra}'
+  - '{se_editor}&r'
+  - '{se_editor} &6&lSHIFT + CLIQUE &7para editar'
+
+Dinamico:
+  Ativar: false
+
+# Aparência do item quando BLOQUEADO (antes da "Libera em" de cada spawner).
+#   material     : ícone usado no lugar do item ('' = mantém o ícone do item)
+#   ocultar-info : true esconde o nome/tipo/preço reais e mostra só o abaixo
+#   nome / lore  : o que aparece quando ocultar-info é true ({libera_em} vale aqui)
+Bloqueado:
+  material: RED_DYE
+  ocultar-info: true
+  nome: '&c&lBLOQUEADO'
+  lore:
+    - '&8| &7Libera em: &f{libera_em}'
+
+Decoracao:
+  saldo:
+    Slot: 49
+    Acao: NENHUMA
+    Item:
+      material: PLAYER_HEAD
+      dono: '{player}'
+      nome: '&6&lSEU SALDO'
+      lore:
+        - '&r'
+        - '&8| &7Dinheiro: &a{saldo_money}'
+      brilho: true
+
+  voltar:
+    Slot: 45
+    Acao: 'ABRIR_LOJA:principal'
+    Item:
+      material: ARROW
+      nome: '&c&lVOLTAR'
+      lore:
+        - '&r'
+        - '&7Voltar ao menu principal.'
+
+  fechar:
+    Slot: 53
+    Acao: FECHAR
+    Item:
+      material: RED_DYE
+      nome: '&c&lFECHAR'

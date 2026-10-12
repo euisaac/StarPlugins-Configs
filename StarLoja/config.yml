@@ -278,3 +278,28 @@ Navegacao:
       nome: '&ePróxima página »'
       lore:
         - '&7Clique para avançar uma página.'
+
+# ---------------------------------------------------------------------------
+# Registro de transacoes
+# ---------------------------------------------------------------------------
+# Toda compra e venda feita na loja fica guardada (quem, o que, quanto, em qual
+# moeda e quando). E dele que saem os rankings e o historico, inclusive para o
+# painel do StarValores. A gravacao roda fora da thread principal.
+Registro de transacoes:
+  Ativar: true
+  # Apaga os registros mais velhos que isso ao ligar (0 = guarda para sempre).
+  Guardar dias: 0
+
+# Onde o registro fica:
+#   SQLITE - dados/transacoes.db (padrao, nao precisa de servidor externo)
+#   MYSQL  - servidor MySQL/MariaDB (se nao conectar, cai para SQLITE)
+# Os drivers sao baixados pelo loader StarPlugins.
+Banco de dados:
+  Tipo: SQLITE
+  IP: localhost
+  Porta: 3306
+  Banco: starloja
+  Usuario: root
+  Senha: ''
+  # Prefixo da tabela (a tabela fica <prefixo>transacoes).
+  Prefixo: 'starloja_'

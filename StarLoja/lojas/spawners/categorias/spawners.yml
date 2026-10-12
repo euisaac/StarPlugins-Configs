@@ -1,0 +1,127 @@
+# ============================================================================
+#  Categoria: spawners  (loja spawners)
+#
+#  Cada item entrega um spawner por COMANDO (StarSpawners). O campo "Libera em"
+#  controla a data/hora em que o spawner fica comprável:
+#     Libera em: dd/MM/yyyy-HH:mm
+#  Antes da data o item aparece BLOQUEADO (lore {nao_liberado}) e a compra é
+#  recusada; depois, libera sozinho. Remova a linha para liberar na hora.
+# ============================================================================
+
+Nome: '&8SPAWNERS'
+Permissao: ''
+Som: 'ABRIR'
+Paginar: true
+Usar-ordem: true
+
+Icone:
+  material: SPAWNER
+  nome: '&c&lSPAWNERS'
+  lore:
+    - '&r'
+    - '&7Geradores de monstros.'
+    - '&r'
+    - '&a&lCLIQUE PARA ABRIR'
+  brilho: true
+
+Itens:
+
+  vaca:
+    Ordem: 1
+    # Sem "Libera em": já está liberado.
+    Item:
+      material: SPAWNER
+      nome: '&a&lSpawner de Vaca'
+      lore:
+        - '&8| &7Tipo: &fVaca'
+      brilho: false
+    Compra:
+      Ativar: true
+      Preco: 500000.0
+      Economia: money
+      Precos-extra:
+        cash: 25.0
+      Comandos:
+        - 'starspawners dar {jogador} COW {quantia}'
+    Venda:
+      Ativar: false
+
+  porco:
+    Ordem: 2
+    Libera em: 15/10/2026-12:00
+    Item:
+      material: SPAWNER
+      nome: '&a&lSpawner de Porco'
+      lore:
+        - '&8| &7Tipo: &fPorco'
+      brilho: false
+    Compra:
+      Ativar: true
+      Preco: 800000.0
+      Economia: money
+      Precos-extra:
+        cash: 25.0
+      Comandos:
+        - 'starspawners dar {jogador} PIG {quantia}'
+    Venda:
+      Ativar: false
+
+  zumbi:
+    Ordem: 3
+    Libera em: 01/11/2026-12:00
+    Item:
+      material: SPAWNER
+      nome: '&a&lSpawner de Zumbi'
+      lore:
+        - '&8| &7Tipo: &fZumbi'
+      brilho: false
+    Compra:
+      Ativar: true
+      Preco: 1200000.0
+      Economia: money
+      Precos-extra:
+        cash: 25.0
+      Comandos:
+        - 'starspawners dar {jogador} ZOMBIE {quantia}'
+    Venda:
+      Ativar: false
+
+  esqueleto:
+    Ordem: 4
+    Libera em: 15/11/2026-12:00
+    Item:
+      material: SPAWNER
+      nome: '&a&lSpawner de Esqueleto'
+      lore:
+        - '&8| &7Tipo: &fEsqueleto'
+      brilho: false
+    Compra:
+      Ativar: true
+      Preco: 1500000.0
+      Economia: money
+      Precos-extra:
+        cash: 25.0
+      Comandos:
+        - 'starspawners dar {jogador} SKELETON {quantia}'
+    Venda:
+      Ativar: false
+
+  blaze:
+    Ordem: 5
+    Libera em: 01/12/2026-12:00
+    Item:
+      material: SPAWNER
+      nome: '&a&lSpawner de Blaze'
+      lore:
+        - '&8| &7Tipo: &fBlaze'
+      brilho: false
+    Compra:
+      Ativar: true
+      Preco: 2500000.0
+      Economia: money
+      Precos-extra:
+        cash: 25.0
+      Comandos:
+        - 'starspawners dar {jogador} BLAZE {quantia}'
+    Venda:
+      Ativar: false
