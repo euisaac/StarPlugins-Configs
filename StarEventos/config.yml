@@ -55,9 +55,24 @@ Geral:
   # Tiques ate o bloco pisado sumir no TNTRun. 20 tiques = 1 segundo.
   Atraso dos blocos que somem: 8
 
-  # Tag que o vencedor carrega ate o proximo evento. Aparece no placeholder
-  # %stareventos_tag% -- o plugin nao mexe no nome de ninguem.
+  # Cargo de vencedor: cada evento tem a sua tag (Regras.Tag no arquivo do
+  # evento) e ela fica com quem venceu por ultimo, ate outra pessoa vencer
+  # aquele evento. Fica gravado em cargos.yml (sobrevive a sair e ao restart).
+  # O plugin nao mexe no nome de ninguem; mostre a tag onde quiser:
+  #   StarChat (direto no Formato do canal, sem PlaceholderAPI):
+  #     {stareventos_tag}              tag do ultimo evento que o jogador venceu
+  #     {stareventos_tags}             todas as tags de evento que ele segura
+  #     {stareventos_tag_<evento>}     so a de um evento (ex: {stareventos_tag_bolao})
+  #     {stareventos_vencedor_<evento>} nick de quem segura o cargo do evento
+  #     {stareventos_campeao}          a Tag do campeao, so para o TOP 1 geral
+  #   PlaceholderAPI: %stareventos_tag% %stareventos_tags% %stareventos_tag_<evento>%
+  #     %stareventos_vencedor_<evento>% %stareventos_tag_campeao%
+  #
+  # Tag do TOP 1 geral, e a usada pelo evento que nao tem Regras.Tag.
   Tag do campeao: '&6[CAMPEAO]'
+
+  # Horas que o cargo de vencedor dura. 0 = ate outra pessoa vencer o evento.
+  Duracao da tag (horas): 0
 
   # Comandos rodados no console para cada vencedor de qualquer evento.
   # Marcadores: {jogador} {evento} {chave}
