@@ -1,0 +1,74 @@
+# Configuração do StarValores Plugin
+# Porta onde o servidor web será executado
+port: 8080
+
+# Domínio para o link do site (ex: RedeStars.com)
+domain: localhost
+
+# Mensagem enviada a todos os players no reload/update (use %url-site% para o link)
+update-message: "&a&lStarValores&f Ranks Atualizados, Acesse agora: &b%url-site% &fe fique sabendo sobre a economia do servidor!"
+broadcast-interval-minutes: 5
+enable-broadcast: true
+
+# Qual loja o site mostra:
+#   AUTO           - o StarLoja, se estiver no servidor; senao o EconomyShopGUI
+#   STARLOJA       - so o StarLoja (precos com mercado dinamico, boosts e meta;
+#                    vendas do registro de transacoes dele + historico do StarEconomia)
+#   ECONOMYSHOPGUI - so o EconomyShopGUI (Premium ou gratuito)
+loja: AUTO
+
+# Com o StarLoja: de quantos em quantos segundos as vendas novas entram no ranking
+starloja:
+  intervalo-vendas-segundos: 60
+
+# So para o EconomyShopGUI, se ele estiver numa pasta diferente da padrao
+# (caminhos relativos a pasta plugins). Vazio = procura sozinho.
+economy_shops_path: ""
+transactions_db_path: ""
+
+# Categorias escondidas do site (o id de cada uma aparece no painel staff,
+# em Configuracoes > Categorias Ativas). Exemplo: ["farm", "minerios"]
+disabled_categories: []
+
+# Painel staff (/admin). Nao existe mais senha: no jogo, quem tem a permissao
+# starvalores.admin digita /starvalores gerarcodigo e recebe um codigo de 4
+# digitos para colocar no painel.
+painel-staff:
+  # Quantos minutos o codigo vale (ele so pode ser usado uma vez)
+  validade-codigo-minutos: 5
+  # Por quantos dias o navegador fica liberado quando o staff marca "Lembrar"
+  # (0 = nunca lembra; a sessao acaba ao fechar o navegador)
+  lembrar-dias: 7
+  # Para derrubar todos os acessos: /starvalores revogar [nick]
+
+# Ha quantos dias o site compara o preco atual ("+12%"), se a pasta Anterior
+# nao tiver os precos antigos colocados a mao
+comparar-precos-dias: 7
+
+# Nome do servidor exibido na home
+server-name: "Servidor"
+# Nome da moeda e abreviacao. Em branco: usa os da moeda principal do
+# StarEconomia (ou "Coins" / "$")
+currency-name: ""
+currency-short: ""
+# Placeholder do saldo atual do jogador (exibido no painel admin)
+balance-placeholder: "%yeconomy_money%"
+
+# ─── StarPainel (painel.redestars.com) ─────────────────────────────
+# Conecta este plugin ao painel central da RedeStars.
+# O link do servidor fica em: https://painel.redestars.com/starvalores/<server-id>
+# Use /starvalores acessar no jogo para receber o link.
+#
+# Só liga/desliga a integração — o resto (endereço do túnel, chave de
+# registro, token e identificador deste servidor) mora em
+# plugins/StarPainel/servidor.yml, COMPARTILHADO entre todos os plugins
+# StarPainel deste servidor (StarValores, StarPainelWeb, StarVoice etc.).
+# Esse arquivo é criado sozinho com os valores padrão na primeira vez que
+# qualquer um desses plugins liga, se ainda não existir — edite ele, não este
+# aqui. Preencha "chave-registro" nele só se quiser escolher o nome do
+# servidor (server-id) e protegê-lo contra colisão, ou recuperar um token
+# perdido.
+painel:
+  # Ativa a conexão com o painel central
+  enabled: true
+
