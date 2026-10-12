@@ -1,0 +1,158 @@
+# Configuração do StarFarm
+
+# Silk Amethyst - Quando ativado, permite coletar BUD
+silk-amethyst:
+  enabled: true
+
+# Transferência de Itens - Quando ativado, os itens dos blocos quebrados pelos pistões automáticos serão transferidos para baús conectados pelos jogadores.
+ativa-transferencia-itens: false
+
+# Limite deChunks - Quando ativado, limita o número de pistões por chunk.
+ativa-limite-chunk: false
+max-pistoes-por-chunk: 10
+
+# Intervalo de Verificação - Com que frequência (em ticks) os blocos especificados no arquivo blocks.yml na frente dos pistões serão verificados.
+# 20 ticks = 1 segundo
+intervalo-verificacao-ticks: 20
+
+# Chunks por Tick - Quantos chunks serão processados por tick.
+# Valor maior = processamento mais rápido, mas maior carga no servidor
+# Valor menor = processamento mais lento, mas menor carga no servidor
+chunks-por-tick: 3
+
+# Mundos Desativados - Lista de mundos onde o StarFarm estará desativado.
+mundos-desativados:
+  - 'world_nether'
+  - 'world_the_end'
+  - 'disabled_world_example'
+
+# Debug - Ative para logs mais detalhados.
+debug: false
+
+# PERFORMANCE - Otimizações anti-lag
+# Pistões e funis são salvos automaticamente no banco (starfarm.db) a cada
+# mudança, então não existe mais "autosave" - cada evento já é persistido
+# na hora, em uma thread separada, sem travar o servidor.
+performance:
+  async-piston-check: true
+  piston-cache-time: 300  # 5 minutos em ticks (300s = 15min real)
+  chunk-scan-throttle: 60  # Funis pulam chunks inativos
+  # Quantos chunks o /starfarm cleanup pode forçar carregar por tick ao
+  # verificar pistões/funis órfãos. Valor maior = limpeza mais rápida,
+  # porém mais pesada por tick.
+  cleanup-chunks-per-tick: 5
+
+# Minecart com Funil (Hopper Minecart) - Coleta estendida
+# Quando ha um bloco solido cobrindo o trilho (para proteger o carrinho),
+# itens que caem em cima desse bloco normalmente ficam presos e nao sao
+# coletados. Com isso ativado, o carrinho tambem coleta itens que estejam
+# ate 'extra-height' blocos acima do alcance normal.
+hopper-minecart:
+  extended-pickup:
+    enabled: true
+    extra-height: 1          # Quantos blocos extras acima do alcance normal serao verificados
+    check-interval-ticks: 5  # Com que frequencia (em ticks) os carrinhos sao verificados
+
+# Venda dos itens do funil ("Vender Tudo" e auto-venda)
+vendas:
+  # De onde vem o preco e para onde vai o dinheiro:
+  #   AUTO     - pelo StarLoja quando ele esta no servidor; sem ele, pelos precos do blocks.yml
+  #   STARLOJA - so pelo StarLoja (sem ele, nada e vendido)
+  #   LISTA    - so pelos precos do blocks.yml, pagos pela economia do Vault
+  # Pelo StarLoja vale o preco da loja (mercado dinamico, boosts, meta coletiva e
+  # bonus do jogador), o dinheiro cai na economia que a loja usa para o item e a
+  # venda conta nas estatisticas dela. A auto-venda pelo StarLoja espera o dono
+  # estar online.
+  fonte: AUTO
+  # Item que o StarLoja nao compra: vende pelo preco do blocks.yml (true) ou fica no funil (false)
+  lista-quando-starloja-nao-compra: true
+  # %itens% = quantidade vendida, %valor% = total ja com a moeda (ex.: $1.250,00)
+  mensagem: "§a✦ O funil vendeu §f%itens% §aitens por %valor%§a!"
+  sem-economia: "§c✦ Nao ha economia para pagar a venda agora; os itens continuam no funil."
+  nada-vendavel: "§c✦ Nenhum item do funil esta a venda."
+
+# Configuração do Funil (Funnel)
+funil:
+  # Ativar o sistema de funil
+  enabled: true
+  
+  # Quantidade maxima de funil do plugin por chunk
+  max-hopper: 1
+
+  # Material do funil (item que será dado ao jogador)
+  material: "HOPPER"
+  
+  # Limite de itens que o funil pode armazenar
+  item-limit: 10000
+  
+  # Nome de exibição do funil (use & para cores)
+  name: "§6Funil ✦"
+  
+  # Lore do funil (linhas de descrição)
+  lore:
+    - "§7Dono: §f%owner%"
+    - "§7Capacidade: %max% itens"
+    - "§7Raio: §f%radius%"
+    - "§7Valor: §f$%value%"
+    - "§7Auto-Venda: %autosell%"
+  
+  # Intervalo de coleta (em ticks) - 20 ticks = 1 segundo
+  collect-interval: 40
+  
+  # Raio de coleta por chunk
+  collect-radius: 1
+  
+  # Título do inventário (menu de itens)
+  inventory-title: "§6✦ Funil - Itens Armazenados"
+  
+  # Auto-Venda Configuration
+  auto-sell:
+    # Intervalo de auto-venda (em ticks) - 20 ticks = 1 segundo
+    # 1200 ticks = 1 minuto
+    interval: 1200
+    
+    # Valor mínimo para auto-venda (evitar vendas de valores muito baixos)
+    min-value: 1
+    
+    # Mensagem quando vender
+    sell-message: "§a✦ Você recebeu $%value% do funil!"
+    offline-sell-message: "§a✦ Você recebeu $%value% do funil (offline)!"
+    
+    # Título do menu de vendas
+    menu-title: "§6✦ Funil - Auto Venda"
+    
+    # Lore do item de toggle
+    toggle-on-lore:
+      - "§7Status: §aATIVADO"
+      - "§7Clique para §cdesativar"
+    toggle-off-lore:
+      - "§7Status: §cDESATIVADO"
+      - "§7Clique para §aativar"
+    
+    # Lore do botão vender tudo
+    sell-all-lore:
+      - "§7Vender todos os itens"
+      - "§7Valor total: §f$%value%"
+      - "§7Clique para vender"
+    
+    # Lore do botão coletar saldo
+    collect-balance-lore:
+      - "§7Saldo armazenado: §f$%balance%"
+      - "§7Clique para coletar"
+  
+  # Configurações do Holograma
+  hologram:
+    # Ativar holograma acima do funil
+    enabled: true
+    
+    # Altura do holograma acima do funil
+    height: 1.5
+    
+    # Intervalo de atualização do holograma (em ticks)
+    update-interval: 10
+    
+    # Formato do texto do holograma
+    format:
+       - "§f%owner%" 
+       - "§6✦ %count% / %max% ✦"
+       - "&eColetando em: %time-collect%"
