@@ -11,7 +11,7 @@
 #            funciona sem plugin no proxy, pelo canal do BungeeCord)
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 comandos:
   ew: ''
@@ -21,3 +21,23 @@ comandos:
   missoes: ''
   spawn: ''
   lobby: ''
+
+# Atalhos para QUALQUER comando do servidor (nao so os do plugin). Cada um
+# tem um nome livre; "origem" e o comando de verdade e "atalho" sao os nomes
+# curtos, separados por virgula. O que vier depois do atalho e repassado no
+# fim, e a permissao continua sendo a do comando de origem. Exemplo:
+#
+#   atalhos:
+#     # nome para o atalho
+#     criativo:
+#       origem: 'gamemode creative'
+#       atalho: 'gmc, criativo'      # /gmc Steve vira /gamemode creative Steve
+#     modo:
+#       origem: 'gamemode'
+#       atalho: 'gm'                 # /gm 1 vira /gamemode 1
+#     iniciar:
+#       origem: 'ew iniciar'
+#       atalho: 'start'              # /start vira /ew iniciar
+#
+# Vale no chat e no console; o /ew recarregar aplica sem reiniciar.
+atalhos: {}

@@ -24,7 +24,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 25
+Versao do modelo: 26
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -158,6 +158,14 @@ Partida:
   # sobrou vivo ganha na hora. "Altura do vazio" e quantos blocos abaixo do
   # spawn da ilha ja contam como vazio.
   Morrer ao sair no vazio: true
+  # Pegadas no chao por onde passa quem esta invisivel (pocao), para todos
+  # verem. Ate a 1.12 sao as pegadas do proprio jogo; da 1.13 em diante,
+  # pontos de poeira na "Cor": EQUIPE (a cor do time dele) ou R,G,B.
+  # "Distancia" e quantos blocos ele anda entre uma pegada e outra.
+  Rastro do invisivel:
+    Ligado: true
+    Distancia: 0.9
+    Cor: '200,200,200'
   # Quem caiu do servidor (e esta com a vaga guardada para voltar) e tem o
   # ovo quebrado e eliminado na hora, e a eliminacao conta para quem quebrou
   # o ovo. Desligado, ele continua esperando a reconexao -- e volta sem ovo.
