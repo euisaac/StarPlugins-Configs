@@ -20,10 +20,18 @@
 #
 #   Etiqueta que o jogador nao pode ver (ou que fica vazia) some da linha.
 #
-#   Tags de outros plugins: plugins que registram tags no StarChat (como o
-#   StarClans: {clan_tag} {clan_colortag} {clan_name} {clan_role}
-#   {clan_role_symbol} {clan_top_money}...) funcionam direto no Formato do
-#   canal, sem criar nada aqui. Crie uma etiqueta com o mesmo nome, sem
+#   {prefixo} {sufixo} {grupo}: do Vault ou, sem Vault, direto do LuckPerms.
+#
+#   Tags de outros plugins: plugins que registram tags no StarChat funcionam
+#   direto no Formato do canal, sem criar nada aqui:
+#     StarClans ... {clan_tag} {clan_colortag} {clan_name} {clan_role}
+#                   {clan_role_symbol} {clan_top_money}...
+#     StarEconomia  {magnata} {magnata_<moeda>} {magnata_nome} {magnata_simbolo}
+#     StarBanco ... {starbanco_magnata} {starbanco_magnata_<moeda>}
+#     StarCombate . {mito} {mito_nome}
+#     StarEventos . {stareventos_tag} {stareventos_tags} {stareventos_campeao}
+#                   {stareventos_tag_<evento>} {stareventos_vencedor_<evento>}
+#   Lista das que estao ativas no seu servidor: /starchat tags. Crie uma etiqueta com o mesmo nome, sem
 #   "Texto", para colocar mouse e clique na tag. Fora do chat: %starchat_tag_<nome>%.
 # =============================================================================
 Etiquetas:
