@@ -22,6 +22,7 @@ geral:
     - "&c/dginf editor criar <tema> <tipo> <tamanho> &7- sala nova"
     - "&c/dginf editor editar <tema/tipo/nome> &7- editar sala"
     - "&c/dginf editor salvar <nome> [tipo] &7| &c/dginf editor sair"
+    - "&c/dginf forcar <jogador> [tema|jogador] [dificuldade] &7- colocar na dungeon"
     - "&c/dginf finalizar <jogador> &7| &c/dginf recarregar"
 
 hub:
@@ -77,6 +78,15 @@ corrida:
   saiu: "&eVoce saiu da dungeon infinita na sala &f{sala} &e(andar &f{andar}&e)."
   saiu-forcado: "&eVoce foi tirado da dungeon infinita na sala &f{sala}&e."
   membro-saiu: "&7{jogador} saiu da dungeon."
+  membro-desconectou: "&e{jogador} caiu do servidor. Se voltar em ate &f{tempo}&e, continua no grupo."
+  membro-voltou: "&a{jogador} voltou para a dungeon!"
+  membro-entrou: "&a{jogador} entrou na dungeon."
+  guardada: "&7A dungeon infinita esta reiniciando - sua corrida continua em instantes."
+  restaurada: "&aSua corrida da dungeon infinita continua! &7(andar &f{andar}&7, sala &f{sala}&7)"
+  reconectou: "&aVoce voltou para a dungeon infinita! &7(andar &f{andar}&7, sala &f{sala}&7)"
+  reconexao-expirou: "&eVoce demorou para voltar e saiu da dungeon infinita."
+  forcado: "&eA staff te colocou na Dungeon Infinita."
+  forcado-junto: "&eA staff te colocou na corrida de &f{jogador}&e."
   comando-bloqueado: "&cEsse comando nao funciona dentro da dungeon infinita. Use /dginf sair."
   nao-esta: "&cVoce nao esta numa dungeon infinita."
   novo-recorde: "&6&l★ NOVO RECORDE! &fSala {sala}!"
@@ -154,6 +164,7 @@ barra:
   portal: " &8• &dPortal aberto!"
 
 grupo:
+  ja-jogando: "&cEsse grupo ja comecou a jogar."
   indisponivel: "&cGrupos precisam do StarDungeon ligado."
   outra-party: "&cVoce esta numa party de outra dungeon. Saia dela (/dungeon party sair) para jogar aqui."
   so-lider: "&cSo o lider do grupo pode iniciar a dungeon infinita."
@@ -177,6 +188,9 @@ admin:
   sala-apagada: "&aSala &f{sala} &aapagada (o arquivo virou .apagado)."
   sem-corrida: "&cEsse jogador nao esta numa corrida."
   corrida-finalizada: "&aCorrida encerrada."
+  forcar-uso: "&cUse: /dginf forcar <jogador> [tema|aleatorio|jogador em corrida] [dificuldade]"
+  forcar-recusado: "&cNao foi possivel: {motivo}"
+  forcar-ok: "&a{jogador} foi colocado na Dungeon Infinita."
 
 editor:
   em-corrida: "&cSaia da corrida antes de abrir o editor."
