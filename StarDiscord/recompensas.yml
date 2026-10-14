@@ -1,0 +1,40 @@
+Recompensas:
+  Reco1:
+    receber: FIRST # Recompensa dada ao vincular pela primeira vez.
+    Item:
+      CustomSkull: false
+      URL: ''
+      ID: 264
+      Data: 0
+      Name: '&6Recompensa de 1x Booster'
+      Amount: 16
+      Lore:
+        - '&eObrigado por dar boost no servidor!'
+      Enchants:
+        - ''
+    Broadcast:
+      - '&9&lStarDiscord &b{player} &fVinculou sua conta no discord e ganhou uma &4&lChave RARA &fVincule tambem com &7/discord'
+    Command:
+      Use: true #caso esteja em true o item não é enviado, e sim os comandos da lista são executados.
+      List:
+        - 'caixa key give {player} rara 1'
+  Booster1x:
+    # Recompensa para quem dá 1 boost no servidor
+    BoosterQuantity: 1
+    receber: PRIMEIROBOOST # Recompensa dada ao dar o primeiro boost no servidor (uma vez por conta Discord)
+    Broadcast:
+      - '&9&lStarDiscord &b{player} &fGanhou recompensa por dar &c1x Boost &fno servidor!'
+    Command:
+      Use: true
+      List:
+        - 'tags dar {player} booster26'
+  Booster2x:
+    # Recompensa para quem dá 2 boosts no servidor
+    BoosterQuantity: 2
+    receber: RENOVAR # Recompensa dada ao vincular pela primeira vez, RENOVAR para cada renovação do booster
+    Broadcast:
+      - '&9&lStarDiscord &b{player} &fGanhou recompensa por dar &c2x Boosts &fno servidor!'
+    Command:
+      Use: true
+      List:
+        - 'darvip {player} booster 15d'

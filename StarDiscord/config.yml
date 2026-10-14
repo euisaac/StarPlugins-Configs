@@ -1,0 +1,224 @@
+Database:
+  Tipo: SQLite # MySQL ou SQLite
+  IP: localhost:3306
+  DB: test
+  User: admin
+  Pass: ''
+  Debug: true
+
+# Comandos e aliases do plugin
+Comando:
+  Discord:
+    Comando: 'discord'
+    Aliases: [ dc ]
+  Vincular:
+    Comando: 'vincular'
+    Aliases: [ vinculardc, dcvincular, discordvincular, vinculardiscord, dc ]
+  Desvincular:
+    Comando: 'desvinculardiscord'
+    Aliases: [ desvincular, desvinculardc, dcdesvincular, discorddesvincular ]
+  VerDiscord:
+    Comando: 'verdiscord'
+    Aliases: [ userdc, verdc, discordver, dcver ]
+  ConfigDiscord:
+    Comando: 'configdiscord'
+    Aliases: [ configdc, perfildiscord ]
+
+  # Comando no discord
+  Discord-Command:
+    enabled: true
+    commands: [ 'vincular' ]
+
+# Tag do vinculado
+# %stardiscord_tag%
+Tag: 
+   vinculado: ' &2✔ '
+   nao-vinculado: ' &c✘ '
+
+# Tag de Booster Minecraft
+# %stardiscord_tagboost%
+TagBoost: 
+   1xboost: ' &d🚀 ' #Enviou 1 boost no servidor
+   2xboost: ' &5🚀 ' #Enviou 2 boosts no servidor
+
+# Configurações do bot
+Bot:
+  # Token do bot
+  Token: ''
+  # ID do grupo (guilda) do discord
+  Guild: ''
+  # Canal onde caem os avisos de boost, para contar quantos boosts cada pessoa deu.
+  # Deixe '' (vazio) para o bot usar sozinho o CANAL DE SISTEMA do Discord (onde
+  # ele mesmo posta "Fulano impulsionou o servidor!"). Preencha com o ID do canal
+  # só se seus avisos de boost ficam em outro canal.
+  BoostChannel: ''
+  # Ligue (true) só se, nos logs, seus avisos de boost "N vezes" forem N boosts
+  # de uma vez (simultaneos). Se o "N vezes" for o total acumulado da pessoa,
+  # deixe false (padrao) para nao contar duas vezes.
+  BoostContarVezes: false
+  # Status do bot
+  # Deixe '' (vazio para não usar)
+  Status: 'Survival Destiny - %players_online% Online.' # Use %players_online% para mostrar jogadores online
+  # Link de convite do Discord
+  Invite: 'https://discord.gg/SEU_LINK_AQUI'
+
+# Sistema de aviso para vincular
+Aviso:
+  Ativar: true
+  Mensagem:
+    - ' '
+    - ' &aVoce ainda não se vinculou ao discord.'
+    - ' &aUtilize &f/discord&a para vincular.'
+    - ' '
+
+# Opções gerais do plugin
+Opcoes:
+  # Bypass de cargos automáticos no Discord.
+  # A permissão stardiscord.bypass já funciona sozinha: quem tiver essa permissão
+  # (ex: staff) não recebe cargos automaticamente, só ativando manualmente em /perfildiscord.
+  # Esta opção aqui é um interruptor GERAL: se true, aplica esse mesmo comportamento
+  # para TODOS os jogadores, sem precisar dar a permissão individualmente.
+  Bypass: false
+  # Enviar mensagem no chat apenas se estiver vinculado
+  ChatVinculado: false
+  # Habilitar o jogador desvincular o discord
+  Desvincular: false
+  # Recompensas dadas ao vincular pela primeira vez
+  # As recompensas são cadastradas na recompensas.yml
+  # Use: chance,recompense
+  Recompensas:
+    - '100,Reco1'
+  # Sistema de verificação do server booster
+  Booster:
+    Ativar: false
+    # ID do cargo do booster
+    CargoID: '761437104990846988'
+    # Comandos que serão executados
+    Comandos:
+      # Ao virar booster
+      Booster:
+        # Executar o comando sempre ao logar
+        # caso false, será executado apenas uma vez
+        AoLogar: false
+        Lista:
+          - 'tell {player} {player} Você ainda é Booster.'
+          - 'darvip {player} booster 15d'
+      # Ao não ser mais booster
+      NaoBooster:
+        Lista:
+          - 'tell {player} {player} Você não é mais Booster.'
+          - 'setarvip {player} Booster 1s'
+
+# Mensagens gerais do plugin
+Mensagens:
+  Permissao: '&cVocê não tem permissão para isto.'
+  Cancelou: '&cVocê cancelou a ação.'
+  Valido: |
+    &cVocê deve por um ID válido.
+    &7O ID é composto somente por números e com no mínimo 15 números.
+  Ja vinculado sua: '&cEste já está vinculado à sua conta.'
+  Ja vinculado:
+    - ''
+    - '&cVocê já está vinculado ao Discord.'
+    - '&aConta: &f{discord_username}&a.'
+    - ''
+  Privado: '&cSeu privado está bloqueado.'
+  Errado: '&cO token está errado.'
+  Encontrado: '&cO membro com este ID ou @ não foi encontrado.'
+  Enviando: '&aEnviando token...' # deixe '' para não usar
+  Nao vinculado: '&cVocê não está vinculado.'
+  Nao vinculado player: '&cO jogador &f{player}&c não está vinculado.'
+  Jogador: '&cJogador não encontrado.'
+  Chat: '&cVocê não pode enviar mensagens antes de se vincular. -> /vincular'
+  DesvincularBooster: '&cVocê não pode desvincular enquanto for server-booster.'
+  Ja vinculado player: '&cO jogador &f{player}&c já está vinculado.'
+  Codigo invalido: '&cCódigo inválido ou expirado!'
+  Vinculou target:
+    - ''
+    - '&aVocê vinculou com sucesso o discord do jogador &f{player}&a.'
+    - '&aConta: &f{discord_username}&a.'
+    - '&aID: &f{discord_id}&a.'
+    - ''
+  Digite:
+    - ''
+    - '&aUse &f/discord <ID>&a ou &f/discord <Username>&a para vincular.'
+    - '&7Exemplo: &f/discord 123456789012345678 &7ou &f/discord euisaac'
+    - '&7Para cancelar digite &ncancelar&7.'
+    - ''
+  Desvinculou:
+    - ''
+    - '&aVocê desvinculou com sucesso o discord.'
+    - '&aConta: &f{discord_username}&a.'
+    - '&aID: &f{discord_id}&a.'
+    - ''
+  Vinculou:
+    - ''
+    - '&aVocê vinculou com sucesso o discord.'
+    - '&aConta: &f{discord_username}&a.'
+    - '&aID: &f{discord_id}&a.'
+    - ''
+  Vinculado:
+    - ''
+    - '&aVocê vinculou com sucesso o discord.'
+    - '&aConta: &f{discord_username}&a.'
+    - '&aID: &f{discord_id}&a.'
+    - ''
+  Verifique:
+    - ''
+    - '&aDigite o código enviado à sua DM para completar a verificação.'
+    - '&7A verificação irá expirar em 5 minutos.'
+    - ''
+  Info:
+    - ''
+    - '&aInformações do jogador &f{player}&a:'
+    - '&aConta: &f{discord_username}&a.'
+    - '&aID: &f{discord_id}&a.'
+    - '&aBoosts: &f{boosts}&a.'
+    - ''
+
+# =========================================================
+#  Mute espelhado do jogo (StarPunicoes)
+# =========================================================
+# Quando alguem e mutado no Minecraft, ele tambem fica sem falar no Discord -
+# no chat e na call. O silenciamento e feito por um CARGO com "Enviar mensagens"
+# e "Falar" negados, e nao pelo mute de call do Discord, que so funciona para
+# quem esta numa call naquele instante e nao alcanca o chat.
+#
+# O mute fica gravado no banco: quem sai do servidor do Discord e volta perde os
+# cargos, mas o cargo de mute e recolocado assim que ele entra de novo.
+Mute:
+  Ativado: true
+  # ID do cargo usado para silenciar. Deixe vazio que o bot cria o cargo sozinho
+  # na primeira vez (e nega falar/escrever em todas as categorias), gravando o ID
+  # aqui. Para isso o bot precisa da permissao "Gerenciar cargos", e o cargo dele
+  # precisa estar ACIMA do cargo de mute na lista de cargos do Discord.
+  Cargo: ''
+  Nome-Do-Cargo: 'Mutado'
+  # Manda uma DM avisando (com motivo e quanto falta) ao mutar e ao desmutar.
+  Avisar-Por-DM: true
+  DM-Mutado: 'Voce foi silenciado no Discord porque foi mutado no servidor.'
+  DM-Desmutado: 'Seu silenciamento no Discord acabou.'
+
+# Banimentos espelhados entre o jogo e o Discord (precisa do StarPunicoes para
+# o lado jogo -> Discord). O bot precisa da permissao "Banir membros" e de um
+# cargo acima do da pessoa.
+Banimento:
+  Ativado: true
+  # BANIR: a conta vinculada e banida do Discord e desbanida sozinha quando a
+  #        pena do jogo vence.
+  # CARGO: a conta recebe o cargo abaixo (ex.: um cargo que so ve o canal de
+  #        apelacao). Sair e voltar ao Discord nao tira o cargo.
+  Acao: BANIR
+  Cargo: ''
+  Avisar-Por-DM: true
+  DM-Banido: 'Voce foi banido do Discord porque foi banido do servidor.'
+  DM-Desbanido: 'Seu banimento no Discord acabou.'
+  # Quando a staff bane/desbane alguem DIRETO no Discord, roda estes comandos
+  # no console para o jogador vinculado. {player}, {motivo}, {discord_id}.
+  # Funciona com qualquer plugin de punicao.
+  Do-Discord-Para-O-Jogo:
+    Ativado: false
+    Ao-Banir:
+      - 'ban {player} Banido no Discord: {motivo}'
+    Ao-Desbanir:
+      - 'pardon {player}'
