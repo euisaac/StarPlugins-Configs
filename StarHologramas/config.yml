@@ -1,0 +1,84 @@
+# ---------------------------------------------------------------------------
+#  StarHologramas - configuracao
+#
+#  Os hologramas ficam em hologramas/<nome>.yml (um arquivo por holograma).
+#  Edite pelo menu (/holo) ou direto no arquivo e use /holo recarregar.
+# ---------------------------------------------------------------------------
+
+Geral:
+  # Mostra no console o motivo de cada linha que nao conseguiu nascer.
+  Debug: false
+  # Fuso usado em {hora}, {data} e no "Horario" dos hologramas.
+  # 'servidor' usa o do sistema. Ex.: America/Sao_Paulo
+  Fuso horario: America/Sao_Paulo
+
+Exibicao:
+  # Distancia (em blocos) para ver um holograma que nao tem a propria.
+  Distancia padrao: 48
+  # A cada quantos ticks os placeholders sao recalculados (20 = 1 segundo).
+  # Animacoes andam sozinhas, nao dependem disto.
+  Atualizar a cada: 20
+  # A cada quantos ticks o plugin confere quem esta perto de cada holograma.
+  Intervalo de visibilidade: 10
+  # Como desenhar o texto quando o holograma esta em AUTO:
+  #   AUTO    - visor de texto quando o servidor tem (1.19.4+), senao suporte
+  #   SUPORTE - nome flutuante classico (funciona em todas as versoes)
+  #   VISOR   - visor de texto (fundo, sombra, escala, alinhamento)
+  Motor padrao: AUTO
+  # Altura acima dos pes do jogador onde nasce o holograma que ele cria.
+  Altura ao criar: 2.2
+  # Registra %starhologramas_...% no PlaceholderAPI.
+  Registrar placeholders: true
+
+# Espaco que cada tipo de linha ocupa (cada linha pode ter a propria altura).
+Alturas:
+  Texto: 0.3
+  Cabeca: 0.75
+  Cabeca pequena: 0.5
+  Item: 0.6
+  Entidade: 2.0
+
+# So mexa se, na sua versao de servidor, alguma coisa aparecer fora do lugar.
+Ajustes finos:
+  # O nome do suporte aparece esta distancia acima dele.
+  Texto do suporte: 0.5
+  # Sobe (+) ou desce (-) o visor de texto.
+  Texto do visor: 0.0
+  # Distancia do pe do suporte ate o meio da cabeca (normal e pequena).
+  Cabeca: 1.75
+  Cabeca pequena: 0.875
+  # Sobe (+) ou desce (-) as linhas de item.
+  Item: 0.0
+
+Cliques:
+  # Espera minima entre dois cliques do mesmo jogador (milissegundos).
+  Espera entre cliques: 250
+  # Largura da caixa de clique dos hologramas com acoes (servidor 1.19.4+).
+  Largura da caixa: 1.6
+
+Varinha:
+  Material: BLAZE_ROD
+
+Desfazer:
+  # Quantas mudancas de cada holograma ficam guardadas para o /holo desfazer.
+  Limite por holograma: 20
+
+# Numeros que sobem de quem toma dano ou se cura.
+Indicadores:
+  Dano:
+    Ativo: true
+    Formato: '&c-{valor} &4❤'
+    # Golpe critico de jogador (pulando). Vazio usa o formato normal.
+    Formato critico: '&6&l-{valor} &e✦'
+    # Quanto tempo o numero fica no ar (ticks).
+    Duracao: 24
+    Somente quando um jogador bate: false
+    Mostrar em jogadores: true
+  Cura:
+    Ativo: true
+    Formato: '&a+{valor} &2❤'
+    Duracao: 24
+  # Mundos sem indicadores (lobby, por exemplo).
+  Mundos ignorados: []
+  # Teto de numeros no ar ao mesmo tempo (protege contra lag em explosoes).
+  Limite ao mesmo tempo: 60

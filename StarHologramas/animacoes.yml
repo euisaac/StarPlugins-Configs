@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+#  StarHologramas - animacoes
+#
+#  Prontas (nao precisam estar aqui):
+#    <animacao:arco-iris>Texto</animacao>
+#    <animacao:degrade:#FF0000:#FFFF00>Texto</animacao>
+#    <animacao:onda:&7:&e>Texto</animacao>       (cor base : cor da onda)
+#    <animacao:brilho:&7:&f>Texto</animacao>
+#    <animacao:digitar>Texto</animacao>
+#    <animacao:piscar>Texto</animacao>
+#    <animacao:rolar:16>Um texto bem comprido</animacao>   (largura)
+#
+#  Velocidade (ticks por quadro) depois de @:  <animacao:onda@4>Texto</animacao>
+#
+#  As daqui servem de dois jeitos:
+#    {anim:carregando}                       - o quadro atual no lugar
+#    <animacao:alerta>Texto</animacao>       - {texto} dos quadros vira "Texto"
+# ---------------------------------------------------------------------------
+
+Animacoes:
+  carregando:
+    Velocidade: 3
+    Quadros:
+      - '&a▉&7▉▉▉▉'
+      - '&a▉▉&7▉▉▉'
+      - '&a▉▉▉&7▉▉'
+      - '&a▉▉▉▉&7▉'
+      - '&a▉▉▉▉▉'
+      - '&7▉▉▉▉▉'
+
+  alerta:
+    Velocidade: 10
+    Quadros:
+      - '&c&l{texto}'
+      - '&f&l{texto}'
+
+  setas:
+    Velocidade: 4
+    Quadros:
+      - '&e» &7» »'
+      - '&7» &e» &7»'
+      - '&7» » &e»'
+
+  estrela:
+    Velocidade: 5
+    Quadros:
+      - '&e✦'
+      - '&6✧'
+      - '&e★'
+      - '&6✧'

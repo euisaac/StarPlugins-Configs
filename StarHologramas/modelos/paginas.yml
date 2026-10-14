@@ -1,0 +1,30 @@
+# Modelo pronto: tres paginas. Direito avanca, esquerdo volta.
+# Cada jogador ve a propria pagina (servidor 1.18+).
+Paginas:
+  1:
+    Linhas:
+    - '&b&lREGRAS &7(1/3)'
+    - '&f1. Respeite todos os jogadores'
+    - '&f2. Nada de hack ou bug'
+    - '&8Clique: direito avança, esquerdo volta'
+    Acoes:
+      DIREITO: ['PROXIMA_PAGINA', 'SOM:UI_BUTTON_CLICK']
+      ESQUERDO: ['PAGINA_ANTERIOR', 'SOM:UI_BUTTON_CLICK']
+  2:
+    Linhas:
+    - '&b&lREGRAS &7(2/3)'
+    - '&f3. Sem spam no chat'
+    - '&f4. Sem propaganda de outros servidores'
+    - '&8Clique: direito avança, esquerdo volta'
+    Acoes:
+      DIREITO: ['PROXIMA_PAGINA', 'SOM:UI_BUTTON_CLICK']
+      ESQUERDO: ['PAGINA_ANTERIOR', 'SOM:UI_BUTTON_CLICK']
+  3:
+    Linhas:
+    - '&b&lREGRAS &7(3/3)'
+    - '&aBom jogo, &f{jogador}&a!'
+    - '#ITEM:NETHER_STAR'
+    - '&8Clique: direito avança, esquerdo volta'
+    Acoes:
+      DIREITO: ['PROXIMA_PAGINA', 'SOM:UI_BUTTON_CLICK']
+      ESQUERDO: ['PAGINA_ANTERIOR', 'SOM:UI_BUTTON_CLICK']

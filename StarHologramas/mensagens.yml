@@ -1,0 +1,182 @@
+# ---------------------------------------------------------------------------
+#  StarHologramas - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso.
+#  Cores com &, RGB com &#RRGGBB e degrade com <gradiente:#FF0000:#FFFF00>texto</gradiente>.
+# ---------------------------------------------------------------------------
+
+Prefixo: '&b&lHOLOGRAMAS &8» &7'
+
+Geral:
+  Sem permissao: '&cVocê não tem permissão para isso.'
+  So jogador: '&cEsse comando só funciona dentro do jogo.'
+  Recarregado: '&aTudo recarregado: &f{quantidade} &aholograma(s).'
+  Jogador offline: '&f{jogador} &cnão está no servidor.'
+  Numero invalido: '&f{valor} &cnão é um número válido.'
+  Uso: '&cUse: &f{uso}'
+  Subcomando desconhecido: '&cNão conheço &f{sub}&c. Veja &f/holo ajuda&c.'
+  Erro: '&cAlgo deu errado: &f{erro}'
+
+Uso:
+  criar: '/holo criar <nome> [primeira linha]'
+  apagar: '/holo apagar <nome>'
+  info: '/holo info [nome]'
+  editar: '/holo editar [nome]'
+  tp: '/holo tp <nome>'
+  aqui: '/holo aqui <nome>'
+  mover: '/holo mover <nome> <x> <y> <z> [mundo]  (~ soma: ~0.5)'
+  centralizar: '/holo centralizar <nome>'
+  alinhar: '/holo alinhar <nome> <outro> <x|y|z|xz|tudo>'
+  clonar: '/holo clonar <nome> <novo nome>'
+  renomear: '/holo renomear <nome> <novo nome>'
+  ativar: '/holo ativar <nome>'
+  desativar: '/holo desativar <nome>'
+  distancia: '/holo distancia <nome> <blocos>'
+  permissao: '/holo permissao <nome> <permissao|nenhuma>'
+  desfazer: '/holo desfazer <nome>'
+  linha: '/holo linha <adicionar|inserir|definir|remover|altura|trocar> <nome> [n] [texto] [--pagina p]'
+  linhas: '/holo linhas <nome> [pagina]'
+  pagina: '/holo pagina <adicionar|remover|ir> <nome> [pagina] [jogador]'
+  acao: '/holo acao <adicionar|lista|limpar> <nome> <pagina> [clique] [TIPO:valor]'
+  modelo: '/holo modelo <lista|salvar <nome> [modelo]|usar <modelo> <novo>>'
+  temporario: '/holo temporario <segundos> <linha 1 | linha 2 ...>'
+
+Holograma:
+  # Texto da primeira linha de um holograma criado sem texto.
+  Primeira linha: '&b&l{nome} &7- edite com &f/holo'
+  Criado: '&aHolograma &f{nome} &acriado em cima de você.'
+  Apagado: '&eHolograma &f{nome} &eapagado.'
+  Nao existe: '&cNão existe holograma chamado &f{nome}&c.'
+  Ja existe: '&cJá existe um holograma chamado &f{nome}&c.'
+  Nome invalido: '&cUse só letras, números, - e _ no nome (até 48).'
+  Movido: '&aHolograma &f{nome} &amovido.'
+  Alinhado: '&f{nome} &aalinhado com &f{outro} &7({eixo})&a.'
+  Clonado: '&aCópia de &f{nome} &acriada como &f{novo}&a.'
+  Renomeado: '&f{nome} &aagora se chama &f{novo}&a.'
+  Ativado: '&f{nome} &aativado.'
+  Desativado: '&f{nome} &edesativado (continua salvo).'
+  Alterado: '&f{nome} &aatualizado.'
+  Desfeito: '&aÚltima mudança de &f{nome} &adesfeita.'
+  Nada para desfazer: '&cNão há nada para desfazer nesse holograma.'
+  Mundo nao carregado: '&cO mundo &f{mundo} &cnão está carregado.'
+  Temporario: '&aTexto temporário criado por &f{segundos}s&a.'
+
+Linha:
+  Adicionada: '&aLinha adicionada em &f{nome}&a.'
+  Editada: '&aLinha &f{linha} &ade &f{nome} &aatualizada.'
+  Removida: '&eLinha &f{linha} &ede &f{nome} &eapagada.'
+  Movida: '&aLinha levada para a página &f{pagina}&a.'
+  Nao existe: '&cNão existe a linha &f{linha}&c.'
+  Entidade invalida: '&f{tipo} &cnão é uma entidade válida. Ex.: VILLAGER, ZOMBIE, IRON_GOLEM.'
+  Mao vazia: '&cSegure o item (ou bloco) na mão.'
+
+Pagina:
+  Adicionada: '&aPágina &f{pagina} &acriada em &f{nome}&a.'
+  Removida: '&ePágina &f{pagina} &ede &f{nome} &eapagada.'
+  Nao existe: '&cNão existe a página &f{pagina}&c.'
+  Ultima: '&cO holograma precisa de pelo menos uma página.'
+  So uma: '&cEste holograma só tem uma página.'
+  Navegacao: '&aNavegação montada em &f{nome}&a: direito avança, esquerdo volta.'
+
+Acoes:
+  Adicionada: '&aAção &f{acao} &aadicionada no clique &f{clique}&a.'
+  Limpas: '&eAções de &f{nome} &eapagadas.'
+  Nenhuma: '&7Esta página não tem ações.'
+  Clique invalido: '&f{clique} &cnão é um clique. Use DIREITO, ESQUERDO, SHIFT_DIREITO, SHIFT_ESQUERDO ou QUALQUER.'
+  Tipo invalido: '&f{acao} &cnão é uma ação. Ex.: COMANDO:spawn, MENSAGEM:Olá!, SOM:LEVEL_UP'
+  # Quando a acao PERMISSAO barra o jogador.
+  Sem permissao: '&cVocê precisa da permissão &f{permissao}&c.'
+  Mundo inexistente: '&cO mundo &f{mundo} &cnão existe.'
+
+Modelo:
+  Lista: '&7Modelos: &f{modelos}'
+  Salvo: '&aModelo &f{modelo} &asalvo.'
+  Usado: '&aHolograma &f{nome} &acriado com o modelo &f{modelo}&a.'
+  Nao existe: '&cNão existe o modelo &f{modelo}&c.'
+
+Varinha:
+  Recebida: '&aVocê recebeu a &6varinha de hologramas&a. Clique com o direito num holograma para editar.'
+  Nada na mira: '&cNenhum holograma na sua mira.'
+  Nada selecionado: '&cSelecione um holograma antes: clique com o direito nele.'
+  Altura: '&f{nome} &7» altura &e{y}'
+
+Lista:
+  Cabecalho: '&8&m------&r &b&lHologramas &7({total}) &8- &7página {pagina}/{paginas} &8&m------'
+  Perto: '&f{quantidade} &7holograma(s) a até &f{raio} &7blocos:'
+  Nada perto: '&7Nenhum holograma a até &f{raio} &7blocos.'
+
+Info:
+  Geral: |
+    &8&m----------------------------------------
+    &b&lStarHologramas &7v{versao}
+    &7Hologramas: &f{hologramas}
+    &7Entidades no mundo agora: &f{entidades}
+    &7Servidor: &f{servidor}
+    &8&m----------------------------------------
+  Holograma: |
+    &8&m----------------------------------------
+    &b&l{nome}
+    &7Lugar: &f{mundo} &7» &f{x}, {y}, {z}
+    &7Páginas: &f{paginas} &7| Linhas: &f{linhas}
+    &7Ativo: {ativo} &7| Distância: &f{distancia}
+    &7Permissão: &f{permissao} &7| Texto: &f{motor}
+    &7Vendo agora: &f{vendo}
+    &8&m----------------------------------------
+
+Importar:
+  Feito: '&aImportados &f{quantidade} &aholograma(s). &7Com nome repetido: &f{renomeados}&7. Falhas: &f{falhas}&7.'
+  Nada: '&7Não achei hologramas de outro plugin na pasta plugins/.'
+
+Entrada:
+  Como cancelar: '&7Digite &ccancelar &7para desistir.'
+  Cancelado: '&7Beleza, cancelado.'
+  Tempo esgotado: '&7O tempo acabou; nada foi alterado.'
+
+Ajuda:
+  Pagina 1: |
+    &8&m----------------------------------------
+    &b&lHOLOGRAMAS &7- página 1/3
+    &e/holo &8- &7abre o menu (faz tudo por lá)
+    &e/holo criar <nome> [texto] &8- &7cria em cima de você
+    &e/holo editar [nome] &8- &7editor (sem nome: o da mira)
+    &e/holo apagar <nome> &8- &7apaga (dá para desfazer)
+    &e/holo lista &8| &eperto [raio] &8| &einfo [nome]
+    &e/holo tp <nome> &8| &eaqui <nome> &8| &ecentralizar <nome>
+    &e/holo mover <nome> <x> <y> <z> [mundo] &8- &7aceita ~
+    &e/holo alinhar <nome> <outro> <x|y|z|xz>
+    &e/holo clonar <nome> <novo> &8| &erenomear <nome> <novo>
+    &e/holo desfazer <nome> &8- &7volta a última mudança
+    &e/holo varinha &8- &7edita e move pela mira
+    &7Mais: &f/holo ajuda 2
+    &8&m----------------------------------------
+  Pagina 2: |
+    &8&m----------------------------------------
+    &b&lHOLOGRAMAS &7- página 2/3 &8(linhas e páginas)
+    &e/holo linhas <nome> &8- &7linhas clicáveis no chat
+    &e/holo linha adicionar <nome> <texto>
+    &e/holo linha inserir <nome> <n> <texto>
+    &e/holo linha definir <nome> <n> <texto> &8- &7Tab traz o texto atual
+    &e/holo linha remover <nome> <n>
+    &e/holo linha altura <nome> <n> <valor|auto>
+    &e/holo linha trocar <nome> <a> <b>
+    &7Em outra página: some &f--pagina 2 &7ao comando.
+    &e/holo pagina adicionar|remover|ir <nome> [n]
+    &7Tipos: &f#CABECA:Notch &8| &f#CABECA_PEQUENA:{jogador}
+    &f#ITEM:DIAMOND &8| &f#ENTIDADE:VILLAGER
+    &7Mais: &f/holo ajuda 3
+    &8&m----------------------------------------
+  Pagina 3: |
+    &8&m----------------------------------------
+    &b&lHOLOGRAMAS &7- página 3/3 &8(cliques e extras)
+    &e/holo acao adicionar <nome> <pág> <clique> <TIPO:valor>
+    &7Cliques: &fDIREITO, ESQUERDO, SHIFT_DIREITO, SHIFT_ESQUERDO, QUALQUER
+    &7Ações: &fMENSAGEM, COMANDO, CONSOLE, SOM, TITULO, ACTIONBAR,
+    &fTELEPORTAR, CONECTAR, PROXIMA_PAGINA, PAGINA_ANTERIOR, PAGINA,
+    &fPERMISSAO, ESPERAR
+    &e/holo modelo lista|salvar|usar &8- &7modelos prontos
+    &e/holo temporario <segundos> <linha | linha>
+    &e/holo importar &8- &7traz de outro plugin de hologramas
+    &e/holo recarregar
+    &7Texto: &f&#RRGGBB &7RGB, &f<gradiente:#F00:#FF0>...</gradiente>
+    &f<animacao:arco-iris>...</animacao>&7, &f{jogador} {online} %papi%
+    &8&m----------------------------------------
