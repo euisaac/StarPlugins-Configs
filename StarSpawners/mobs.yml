@@ -1,0 +1,64 @@
+# =========================================================
+#  StarSpawners - Drops dos mobs
+#  Vale só para mob que nasceu de spawner do StarSpawners. Mob natural do
+#  mundo continua com os drops normais do jogo.
+#
+#  Mob que não está aqui fica 100% normal. Para mexer num mob, crie uma
+#  entrada com o nome dele (o mesmo do /summon, em maiúsculas: ZOMBIE,
+#  SKELETON, BLAZE, IRON_GOLEM, CHICKEN...).
+#
+#  Em cada mob:
+#    drops-naturais:  false = o mob não solta NADA do que o jogo daria
+#                     (só os drops desta lista). true = mantém os do jogo.
+#    remover-drops-naturais: com drops-naturais true, tira só alguns itens
+#                     do drop normal (por material). Ex: [ROTTEN_FLESH]
+#    xp:              XP por mob. -1 = o do próprio jogo. 0 = nenhum.
+#                     (xp-spawner.ativado: false no config.yml zera tudo)
+#    drops:           drops novos. Cada um com um nome qualquer:
+#      material:      id do item (DIAMOND, GOLD_INGOT, ...)
+#      quantidade:    número fixo (2) ou faixa ("1-3")
+#      chance:        chance em % de cair (0 a 100; aceita 0.5)
+#      nome:          nome do item (opcional, aceita &cores)
+#      lore:          linhas de descrição (opcional)
+#      encantamentos: lista "NOME:nivel" (opcional). Ex: ["sharpness:5"]
+#
+#  Quando a pilha morre inteira de uma vez, cada mob da pilha sorteia o seu
+#  drop - uma pilha de 100 com chance de 5% solta uns 5, não 100 nem 0.
+#  Os drops novos também vão pro armazenamento do spawner, igual aos normais.
+# =========================================================
+
+mobs:
+  # Exemplo: zumbi deixa de soltar carne podre e ganha uma chance de ferro.
+  # Tire o "#" das linhas abaixo para ativar.
+  #
+  # ZOMBIE:
+  #   drops-naturais: true
+  #   remover-drops-naturais:
+  #     - ROTTEN_FLESH
+  #   xp: -1
+  #   drops:
+  #     ferro:
+  #       material: IRON_INGOT
+  #       quantidade: "1-2"
+  #       chance: 25
+  #
+  # Exemplo: blaze só solta o que está aqui, com XP fixo.
+  #
+  # BLAZE:
+  #   drops-naturais: false
+  #   xp: 5
+  #   drops:
+  #     vara:
+  #       material: BLAZE_ROD
+  #       quantidade: 1
+  #       chance: 100
+  #     espada-rara:
+  #       material: DIAMOND_SWORD
+  #       quantidade: 1
+  #       chance: 0.5
+  #       nome: "&6Espada do Blaze"
+  #       lore:
+  #         - "&7Caiu de um blaze de spawner."
+  #       encantamentos:
+  #         - "sharpness:5"
+  #         - "fire_aspect:2"

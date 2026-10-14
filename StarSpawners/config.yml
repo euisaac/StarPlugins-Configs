@@ -81,6 +81,27 @@ quebra-spawner:
   # jeito (não perde o item).
   ir-direto-pro-inventario: true
 
+  # O que acontece com a pilha de MOBS do spawner quando o spawner sai inteiro
+  # (quebrado de vez ou destruído por explosão - quebrar só 1 unidade da pilha
+  # de spawners não mexe nos mobs):
+  #   MANTER  = os mobs continuam no lugar (como sempre foi)
+  #   REMOVER = a pilha de mobs some junto, sem soltar nada
+  #   MATAR   = a pilha de mobs morre inteira de uma vez e solta todos os drops
+  #             e o XP no chão (como matar agachado). Quem quebrou conta como
+  #             quem matou, então sai também o loot que só cai em morte por jogador.
+  mobs-ao-quebrar: MANTER
+
+# ---------------------------------------------------------
+# XP dos mobs de spawner
+# ---------------------------------------------------------
+xp-spawner:
+  # Se false, mob que nasceu de spawner não solta XP ao morrer, o armazém do
+  # spawner não guarda XP e o botão "Coletar XP" e as linhas de XP somem do
+  # menu e do holograma. XP já guardado antes de desligar continua lá (sai na
+  # venda ou cai no chão ao quebrar o spawner). O XP de cada mob também pode
+  # ser trocado no mobs.yml.
+  ativado: true
+
 # ---------------------------------------------------------
 # Explosão (TNT, creeper, cama/âncora, etc) atingindo um spawner
 # ---------------------------------------------------------
@@ -164,6 +185,10 @@ stack-mobs:
   # entre uma morte e o substituto aparecer. Se true, o substituto nasce na
   # hora, no mesmo tick do golpe (sem esse intervalo).
   kill-instantaneo: true
+  # Se false (padrão), galinha que nasceu de spawner não bota ovo - sem isso a
+  # pilha parada no gerador enche o chão de ovo. Galinhas normais do mundo não
+  # são afetadas.
+  galinha-bota-ovo: false
   # Raio (em blocos) usado em duas situações: 1) quando um spawner precisa
   # reconectar com a própria entidade representante (ex: depois de um reinício,
   # ou se o chunk dela descarregou por um instante) mas não a encontra pelo

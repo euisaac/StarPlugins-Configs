@@ -177,9 +177,19 @@ historico:
       - ""
       - "&aClique para se teleportar até lá"
 
+# Menu de armazenamento. Os itens guardados ocupam os slots 0 a 44; os botões
+# ficam na linha de baixo, então "slot" aceita de 45 a 53 (fora disso volta
+# pro padrão). Use -1 para esconder um botão.
 armazenamento:
   titulo: "&8Armazenamento [%pagina%/%total-paginas%]"
+  item-pagina-anterior:
+    slot: 45
+  item-proxima-pagina:
+    slot: 53
+  item-voltar:
+    slot: 50
   item-coletar-xp:
+    slot: 46
     nome: "&aColetar XP"
     lore:
       - "&7XP armazenado: &e%xp%"
@@ -187,12 +197,14 @@ armazenamento:
       - ""
       - "&aClique para coletar"
   item-dropar-pagina:
+    slot: 47
     nome: "&cDropar Página"
     lore:
       - "&7Solta todos os itens dessa página no chão."
       - ""
       - "&cClique para dropar!"
   item-vender:
+    slot: 48
     nome: "&6Vender Tudo e Coletar XP"
     lore:
       - "&7Vende todos os itens armazenados (todas as páginas)"
@@ -203,6 +215,18 @@ armazenamento:
       - "&7Total estimado: &e$%total%"
       - ""
       - "&6Clique para vender!"
+    # Usados no lugar de nome/lore quando xp-spawner.ativado = false (config.yml)
+    sem-xp-nome: "&6Vender Tudo"
+    sem-xp-lore:
+      - "&7Vende todos os itens armazenados (todas as páginas)."
+      - ""
+      - "&7Itens armazenados: &e%itens%"
+      - "&7Total estimado: &e$%total%"
+      - ""
+      - "&6Clique para vender!"
+  # Botão de ligar/desligar o armazenamento (o texto muda com o estado, abaixo)
+  item-toggle:
+    slot: 49
   item-toggle-ligado:
     nome: "&aArmazenamento: LIGADO"
     lore:
