@@ -15,7 +15,7 @@
 
 # Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
 # tras depois de uma atualizacao.
-Versao do modelo: 1
+Versao do modelo: 2
 
 Geral:
   # Escreve no console o que o plugin esta fazendo.
@@ -140,14 +140,25 @@ Bloqueios:
   Mundos: [ world_nether, world_the_end ]
 
 Holograma:
-  # Texto flutuante em cima do bau (usa o DecentHolograms se estiver
-  # instalado; senao, ArmorStands). O dono pode desligar por loja.
+  # Liga o holograma no servidor inteiro (usa o DecentHolograms se estiver
+  # instalado; senao, ArmorStands). Desligado aqui, o botao some do menu.
   Ativar: true
-  # O item da loja girando em cima do texto.
+  # O estilo que a loja nova recebe. Cada dono troca o dele no menu:
+  #   TEXTO        as linhas de 'Linhas' abaixo (com o item, se 'Mostrar item')
+  #   ITEM         so o item girando em cima do bau, sem texto nenhum
+  #   ITEM_E_NOME  o item girando com as 'Linhas do nome' embaixo
+  #   NENHUM       nada no ar
+  Estilo padrao: TEXTO
+  # No estilo TEXTO, mostra tambem o item girando em cima das linhas.
+  # (Nos estilos ITEM e ITEM_E_NOME o item aparece sempre.)
   Mostrar item: true
-  # Altura do texto acima do topo do bau.
+  # Altura do holograma acima do topo do bau.
   Altura: 0.6
-  # As linhas por tipo de loja. Substituicoes: as da loja ({dono} {item}
+  # O texto do estilo ITEM_E_NOME -- em geral uma linha so, o nome do item.
+  # Aceita as mesmas substituicoes das linhas de baixo.
+  Linhas do nome:
+    - '&f{item}'
+  # O texto do estilo TEXTO, por tipo de loja. Substituicoes: as da loja ({dono} {item}
   # {quantidade} {preco_compra} {preco_venda} {moeda} {estoque} {espaco}
   # {ajuste} {vendidos} {comprados}...). Linha vazia vira espaco.
   Linhas:

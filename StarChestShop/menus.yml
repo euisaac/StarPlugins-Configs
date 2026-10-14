@@ -28,16 +28,20 @@
 #  {dinamico}. Placeholders do PlaceholderAPI tambem funcionam nos botoes.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 # ---------------------------------------------------------------------------
 #  Configuracao da loja (clique direito do dono na placa).
 #  Acoes: item | economia | tipo | preco | preco-compra | preco-venda | nome
 #         quantidade | alternar aberta|holograma|avisos|dinamico | amigos
 #         estoque | historico-loja | remover
-#  Botoes com par ligar/desligar (abrir/fechar, holograma-ligar/-desligar,
-#  avisos-*, dinamico-*) so aparecem no estado certo. Na lore do 'tipo', a
-#  linha {opcoes_tipo} vira a lista dos tres tipos, com o atual marcado.
+#  Botoes com par ligar/desligar (abrir/fechar, avisos-*, dinamico-*) so
+#  aparecem no estado certo. O holograma tem um botao por estilo
+#  (holograma-nenhum | holograma-texto | holograma-item |
+#  holograma-item-e-nome): aparece o do estilo atual e o clique gira para o
+#  proximo -- ou use 'alternar holograma ITEM' para ir direto num estilo.
+#  Na lore, a linha {opcoes_tipo} vira a lista dos tipos de loja e a linha
+#  {opcoes_holograma} a lista dos estilos de holograma, com o atual marcado.
 # ---------------------------------------------------------------------------
 Configuracao:
   Titulo: '&8Configurar loja'
@@ -153,23 +157,51 @@ Configuracao:
         - ''
         - '&eClique para fechar'
       Acoes: [ 'alternar aberta' ]
-    holograma-ligar:
+    # Um botao por estilo de holograma: aparece o do estilo atual e o clique
+    # gira para o proximo. A linha {opcoes_holograma} mostra todos.
+    holograma-nenhum:
       Slot: 23
       Material: GRAY_DYE
-      Nome: '&cHolograma desligado'
+      Nome: '&cHolograma: &fdesligado'
       Lore:
-        - '&7Sem texto flutuante em cima do bau.'
+        - '&7Nada flutuando em cima do bau.'
         - ''
-        - '&eClique para ligar'
+        - '{opcoes_holograma}'
+        - ''
+        - '&eClique para trocar'
       Acoes: [ 'alternar holograma' ]
-    holograma-desligar:
+    holograma-texto:
       Slot: 23
-      Material: LIME_DYE
-      Nome: '&aHolograma ligado'
+      Material: PAPER
+      Nome: '&aHolograma: &ftexto'
       Lore:
-        - '&7Texto flutuante em cima do bau.'
+        - '&7As linhas de texto com preco e estoque.'
         - ''
-        - '&eClique para desligar'
+        - '{opcoes_holograma}'
+        - ''
+        - '&eClique para trocar'
+      Acoes: [ 'alternar holograma' ]
+    holograma-item:
+      Slot: 23
+      Material: ITEM_FRAME
+      Nome: '&aHolograma: &fso o item'
+      Lore:
+        - '&7So o item girando em cima do bau.'
+        - ''
+        - '{opcoes_holograma}'
+        - ''
+        - '&eClique para trocar'
+      Acoes: [ 'alternar holograma' ]
+    holograma-item-e-nome:
+      Slot: 23
+      Material: NAME_TAG
+      Nome: '&aHolograma: &fitem e nome'
+      Lore:
+        - '&7O item girando com o nome embaixo.'
+        - ''
+        - '{opcoes_holograma}'
+        - ''
+        - '&eClique para trocar'
       Acoes: [ 'alternar holograma' ]
     avisos-ligar:
       Slot: 24
