@@ -14,7 +14,7 @@
 
 # Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
 # tras depois de uma atualizacao.
-Versao do modelo: 5
+Versao do modelo: 6
 
 Geral:
   # Escreve no console o que o plugin esta fazendo.
@@ -370,6 +370,24 @@ Pesca:
     Anuncio para todos:
       Raridades: [ divino ]
       Peixes: [ ]
+  # Contra a fazenda de pesca automatica, conferido quando o peixe e fisgado.
+  # O peixe barrado nao conta para nada (nem gasta a vara).
+  Anti fazenda:
+    Ativar: true
+    # Distancia minima (blocos, na horizontal) entre o jogador e o anzol: a
+    # fazenda classica e um buraco de agua encostado no pe. 0 = desliga.
+    Distancia minima: 3
+    # Blocos de agua (de 25) num quadrado 5x5 em volta do anzol: um poco de 1
+    # bloco nao pesca. 0 = desliga.
+    Agua minima: 9
+    # Cada ponto da agua (quadrado de 'Tamanho do ponto' blocos) tem peixes
+    # limitados, divididos entre todo mundo. Acabou: so em outro lugar. O
+    # ponto recupera 1 peixe a cada 'Recupera um a cada' segundos.
+    Cardume:
+      Ativar: true
+      Tamanho do ponto: 4
+      Peixes por ponto: 25
+      Recupera um a cada: 30
 
 # --------------------------------------------------------------------------
 #  Perolas: a moeda da pesca
