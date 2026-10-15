@@ -120,6 +120,12 @@ porta:
   revelada: "&7Uma sala de {tipo} &7se revelou!"
 
 sala:
+  horda-titulo: "&5&lHORDA!"
+  horda-subtitulo: "&dPortais se abriram - aguente as ondas"
+  horda-onda-titulo: "&5Nova horda!"
+  horda-onda-subtitulo: "&dfaltam &f{restantes} &dhorda(s)"
+  corredor-titulo: "&e&lCorredor"
+  corredor-subtitulo: "&7Avance com cuidado..."
   combate-titulo: "&c&lSALA {sala}"
   combate-subtitulo: "{tipo} &7- as portas se fecharam!"
   boss-titulo: "&4&lBOSS"
@@ -207,6 +213,7 @@ editor:
   aviso-sem-mobs: "&eAtencao: sala de combate sem la vermelha - os mobs vao nascer em volta do centro."
   aviso-sem-boss: "&eAtencao: sala de boss sem la roxa - o boss nasce no centro."
   aviso-sem-baus: "&eAtencao: sala de tesouro sem la amarela - ela nao tera baus."
+  aviso-sem-gatilhos: "&eAtencao: sala de corredor sem la laranja - nenhum gatilho vai soltar mobs."
   saiu: "&7Voce saiu do editor."
   uso-criar: "&cUse: /dginf editor criar <tema> <tipo> <tamanho>"
   uso-salvar: "&cUse: /dginf editor salvar <nome> [tipo]"
@@ -226,6 +233,7 @@ editor:
     - "  &cla vermelha &7- mob   &5la roxa &7- boss"
     - "  &ela amarela &7- bau     &ala verde &7- chegada"
     - "  &bla azul-clara &7- bau escondido (pode aparecer)"
+    - "  &6la laranja &7- gatilho (corredor: solta os mobs)"
     - " &7O teto de vidro pode ser trocado; a altura salva e"
     - " &7ate o bloco mais alto que voce colocar."
     - " &f/dginf editor salvar <nome> [tipo] &7| &f/dginf editor sair"
@@ -236,7 +244,7 @@ editor:
     - "&f/dginf editor editar <tema/tipo/nome>"
     - "&f/dginf editor salvar <nome> [tipo]"
     - "&f/dginf editor sair"
-    - "&7Tipos: entrada, combate, elite, bau, descanso, boss"
+    - "&7Tipos: entrada, combate, elite, bau, descanso, boss, corredor"
   kit-mob-nome: "&c&lPonto de mob"
   kit-mob-lore:
     - "&7Os mobs nascem aqui."
@@ -253,6 +261,12 @@ editor:
     - "&7Ponha em nichos discretos (atras de"
     - "&7estante, recuo da parede). Pode ou nao"
     - "&7virar bau, em qualquer tipo de sala."
+  kit-gatilho-nome: "&6&lGatilho"
+  kit-gatilho-lore:
+    - "&7Salas de corredor: no chao do"
+    - "&7corredor, a cada 5-7 blocos. Quando"
+    - "&7o grupo passa ali, os mobs aparecem."
+    - "&7Nao ponha na frente das saidas."
   kit-entrada-nome: "&a&lChegada"
   kit-entrada-lore:
     - "&7Onde o grupo aparece (entrada e"
@@ -275,3 +289,10 @@ editor:
   tipo-boss:
     - "&7Fim do andar. La roxa = boss,"
     - "&7las vermelhas = escolta."
+  tipo-corredor:
+    - "&7Corredor de 3 de largura ligando"
+    - "&7as saidas; o resto e rocha. Use"
+    - "&7las laranjas (gatilhos) no chao."
+  tipo-horda:
+    - "&7Ondas de mobs (Dificil pra cima)."
+    - "&7Usa as salas de combate."

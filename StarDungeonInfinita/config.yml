@@ -166,10 +166,18 @@ geracao:
     ELITE: 12
     BAU: 16
     DESCANSO: 8
+    # Corredor: mobs nascem conforme o grupo avanca pelo corredor.
+    CORREDOR: 12
+    # Horda: portais soltam ondas de mobs (so nas dificuldades de horda-dificuldades).
+    HORDA: 10
+  horda-dificuldades: [DIFICIL, PESADELO]
   # Elite so a partir dessa sala do andar.
   elite-a-partir-da-sala: 3
   # Descanso nao aparece duas vezes seguidas e so depois de N salas desde o ultimo.
   descanso-intervalo-minimo: 4
+  # Fogueira do descanso: vida curada por segundo de quem esta dentro da sala
+  # (a aura so roda com alguem na sala).
+  descanso-cura-por-segundo: 1.0
   # Salas de tesouro/descanso costumam ser becos sem saida (o grupo volta e abre outra porta).
   chance-beco-sem-saida: 0.65
   # Quantas portas novas uma sala de combate abre (1 + chance de mais).
@@ -230,6 +238,8 @@ marcadores:
   # Bau escondido: coloque em nichos discretos (atras de estante, recuo da parede...).
   # Vale em qualquer tipo de sala; vira bau so pela chance geracao.chance-bau-escondido.
   bau-escondido: "minecraft:light_blue_wool"
+  # Gatilho (salas de corredor): no chao do corredor; quando o grupo passa, os mobs aparecem.
+  gatilho: "minecraft:orange_wool"
 
 # Blocos novos que nao existem na versao do servidor caem num substituto.
 # Ja existe uma lista padrao; aqui voce pode adicionar ou trocar.
