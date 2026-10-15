@@ -1,0 +1,753 @@
+# ============================================================
+#  StarDungeonPoderes - poderes dos mobs de dungeon
+#
+#  Todo mob que nasce numa dungeon do StarDungeon (ou da Dungeon Infinita)
+#  passa por aqui: o addon sorteia os poderes dele pela categoria
+#  (mob, elite, boss) e pelo nivel.
+#
+#  Campos de cada poder:
+#    ativo         liga/desliga (tambem pelo /dgpoderes poderes)
+#    nome          nome mostrado no aviso de uso
+#    peso          chance relativa de ser sorteado
+#    categorias    [mob, elite, boss]
+#    nivel-minimo  nivel do mob a partir do qual o poder pode sair
+#    recarga       segundos entre um uso e outro (poder ativo)
+#    alcance       distancia maxima do alvo para usar
+#    chance        chance de usar quando esta pronto (0 a 1)
+#    dano          multiplicador sobre o dano do mob (1.0 = dano normal)
+#    sem-visao     true = usa mesmo sem ver o alvo
+#  Os outros campos sao proprios de cada poder.
+# ============================================================
+
+geral:
+  ativo: true
+  # Dano usado quando o StarDungeon nao informa o dano do mob.
+  dano-padrao: 6
+  # Cada nivel do mob soma este tanto no dano dos poderes (0.01 = +1%), ate o maximo.
+  escala-dano-por-nivel: 0.01
+  escala-dano-maxima: 1.0
+  # Forca dos poderes por categoria (multiplica o dano).
+  forca:
+    mob: 1.0
+    elite: 1.2
+    boss: 1.5
+  # Duracao dos efeitos por categoria (multiplica).
+  duracao:
+    mob: 1.0
+    elite: 1.15
+    boss: 1.4
+  # Segundos minimos entre dois poderes do mesmo mob.
+  intervalo-entre-poderes:
+    mob: 5
+    elite: 3.5
+    boss: 2.5
+  # Distancia em que o mob procura um jogador alvo.
+  alcance-busca: 20
+  # Poder ativo so sai se o mob enxergar o alvo (menos os com sem-visao: true).
+  exigir-visao: true
+  # Particulas discretas em volta de elites e bosses com poderes (o nome do mob nao e tocado).
+  aura-elite-boss: true
+  # Action bar para os jogadores perto quando o mob usa um poder.
+  aviso-uso:
+    mob: false
+    elite: true
+    boss: true
+    formato: "&c⚡ &f{mob} &7usou &c{poder}"
+
+# Quantos poderes cada categoria ganha ao nascer.
+#   chance: chance de ganhar poderes (mais chance-por-nivel por nivel, ate chance-maxima)
+#   minimo/maximo: quantos; poder-extra-a-cada-niveis: +1 a cada N niveis; limite: teto
+sorteio:
+  mob:
+    chance: 0.25
+    chance-por-nivel: 0.01
+    chance-maxima: 0.6
+    minimo: 1
+    maximo: 1
+    poder-extra-a-cada-niveis: 25
+    limite: 2
+  elite:
+    chance: 1.0
+    minimo: 1
+    maximo: 2
+    poder-extra-a-cada-niveis: 20
+    limite: 3
+  boss:
+    chance: 1.0
+    minimo: 3
+    maximo: 5
+    poder-extra-a-cada-niveis: 15
+    limite: 7
+
+poderes:
+
+  # ---------------- Combate fisico
+
+  # Prepara o corpo e dispara em linha reta, atropelando quem estiver no caminho.
+  INVESTIDA:
+    ativo: true
+    nome: "Investida"
+    peso: 12
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 9
+    alcance: 12
+    chance: 1.0
+    dano: 1.0
+
+  # Salta alto em direcao ao alvo e esmaga o chao na queda, ferindo e lancando quem estiver perto.
+  SALTO_ESMAGADOR:
+    ativo: true
+    nome: "Salto Esmagador"
+    peso: 10
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 12
+    alcance: 14
+    chance: 1.0
+    dano: 1.0
+    raio: 4.5
+
+  # Bate no chao e solta um anel que cresce: pule por cima dele ou seja lancado.
+  ONDA_DE_CHOQUE:
+    ativo: true
+    nome: "Onda de Choque"
+    peso: 8
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 9
+    chance: 1.0
+    dano: 1.0
+    raio: 9
+
+  # Lanca uma corrente que prende o alvo e o arrasta ate o mob.
+  PUXAR:
+    ativo: true
+    nome: "Gancho"
+    peso: 9
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 10
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+
+  # Explosao de vento em volta do mob que arremessa todos para longe.
+  EMPURRAR:
+    ativo: true
+    nome: "Rajada Repulsora"
+    peso: 9
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 10
+    alcance: 5
+    chance: 1.0
+    dano: 1.0
+    raio: 5
+
+  # Some numa nuvem e reaparece nas costas do alvo com um golpe traicoeiro.
+  TELEPORTE_COSTAS:
+    ativo: true
+    nome: "Passo Sombrio"
+    peso: 9
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 12
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+    sem-visao: true
+
+  # Gira como um furacao de laminas por alguns segundos, cortando quem chegar perto.
+  REDEMOINHO:
+    ativo: true
+    nome: "Redemoinho de Laminas"
+    peso: 7
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 4
+    chance: 1.0
+    dano: 1.0
+    raio: 2.8
+
+  # Faz o chao tremer tres vezes: quem estiver pisando no chao se machuca e fica tonto.
+  TERREMOTO:
+    ativo: true
+    nome: "Terremoto"
+    peso: 6
+    categorias: [elite, boss]
+    nivel-minimo: 5
+    recarga: 18
+    alcance: 10
+    chance: 1.0
+    dano: 1.0
+
+  # Ergue o alvo no ar com forca invisivel e o arremessa contra o chao.
+  AGARRAR:
+    ativo: true
+    nome: "Agarrao"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 14
+    alcance: 12
+    chance: 1.0
+    dano: 1.0
+
+  # Um corte profundo que faz o alvo sangrar por alguns segundos.
+  SANGRAMENTO:
+    ativo: true
+    nome: "Corte Sangrento"
+    peso: 10
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 10
+    alcance: 4
+    chance: 1.0
+    dano: 1.0
+    pulsos: 5
+
+  # Correntes espectrais prendem o alvo no lugar por alguns segundos.
+  AMARRAR:
+    ativo: true
+    nome: "Correntes da Alma"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 16
+    alcance: 12
+    chance: 1.0
+    dano: 1.0
+    duracao: 50
+
+  # ---------------- Elementos, projeteis e explosoes
+
+  # Marca o chao sob o alvo com faiscas e, um instante depois, um raio cai ali. Saia de cima!
+  RELAMPAGO:
+    ativo: true
+    nome: "Relampago"
+    peso: 11
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 8
+    alcance: 20
+    chance: 1.0
+    dano: 1.0
+
+  # Um raio sai do mob e salta de jogador em jogador, perdendo forca a cada salto.
+  CORRENTE_RAIOS:
+    ativo: true
+    nome: "Corrente de Raios"
+    peso: 7
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+    saltos: 4
+    distancia-salto: 7
+
+  # Atira uma bola de fogo que explode ao bater, queimando quem estiver perto (sem fogo no mapa).
+  BOLA_DE_FOGO:
+    ativo: true
+    nome: "Bola de Fogo"
+    peso: 11
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 7
+    alcance: 20
+    chance: 1.0
+    dano: 1.0
+
+  # Um circulo vermelho aparece no chao e um meteoro em chamas despenca do ceu sobre ele.
+  METEORO:
+    ativo: true
+    nome: "Meteoro"
+    peso: 6
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 16
+    alcance: 22
+    chance: 1.0
+    dano: 1.0
+    raio: 3.5
+
+  # Uma espiral de gelo envolve o alvo: lentidao forte e congelamento.
+  CONGELAR:
+    ativo: true
+    nome: "Toque Gelido"
+    peso: 9
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 12
+    alcance: 14
+    chance: 1.0
+    dano: 1.0
+
+  # Dispara um leque de estilhacos de gelo que ferem e deixam lento.
+  ESTILHACOS_GELO:
+    ativo: true
+    nome: "Estilhacos de Gelo"
+    peso: 9
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 9
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+    quantidade: 5
+
+  # Cobre o chao em volta do alvo com uma geada magica que congela e machuca quem fica em cima.
+  GELO_NO_CHAO:
+    ativo: true
+    nome: "Chao Congelado"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 16
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+    raio: 4
+    duracao: 120
+
+  # Uma nuvem de flechas desaba do alto sobre a area do alvo.
+  CHUVA_DE_FLECHAS:
+    ativo: true
+    nome: "Chuva de Flechas"
+    peso: 6
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 16
+    alcance: 22
+    chance: 1.0
+    dano: 1.0
+    raio: 4
+    flechas: 24
+
+  # Atira varias flechas de uma vez, abertas em leque.
+  LEQUE_DE_FLECHAS:
+    ativo: true
+    nome: "Leque de Flechas"
+    peso: 9
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 9
+    alcance: 18
+    chance: 1.0
+    dano: 1.0
+    quantidade: 7
+
+  # Arremessa granadas em arco que piscam no chao e explodem logo depois.
+  GRANADAS:
+    ativo: true
+    nome: "Granadas"
+    peso: 8
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 12
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+    quantidade: 3
+
+  # Gruda uma bomba no alvo. Quatro bipes e ela explode - fique longe dos amigos!
+  BOMBA_RELOGIO:
+    ativo: true
+    nome: "Bomba Relogio"
+    peso: 5
+    categorias: [elite, boss]
+    nivel-minimo: 5
+    recarga: 20
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+
+  # O mob se carrega de energia por um instante e explode em volta de si (sem quebrar nada).
+  EXPLOSAO:
+    ativo: true
+    nome: "Explosao Arcana"
+    peso: 8
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 5
+    chance: 1.0
+    dano: 1.0
+    raio: 4
+
+  # Abre uma singularidade que suga todos os jogadores para o centro e os esmaga.
+  BURACO_NEGRO:
+    ativo: true
+    nome: "Buraco Negro"
+    peso: 4
+    categorias: [elite, boss]
+    nivel-minimo: 10
+    recarga: 22
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+    raio: 7
+    duracao: 60
+
+  # Uma fileira de presas de evocador rasga o chao em direcao ao alvo.
+  PRESAS_LINHA:
+    ativo: true
+    nome: "Presas em Linha"
+    peso: 9
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 9
+    alcance: 14
+    chance: 1.0
+    dano: 1.0
+
+  # Dois aneis de presas brotam em volta do mob, um depois do outro.
+  PRESAS_ANEL:
+    ativo: true
+    nome: "Anel de Presas"
+    peso: 8
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 12
+    alcance: 5
+    chance: 1.0
+    dano: 1.0
+
+  # ---------------- Maldicoes e sombras
+
+  # Cospe uma bola de veneno que envenena quem for atingido.
+  VENENO:
+    ativo: true
+    nome: "Cuspe Venenoso"
+    peso: 10
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 8
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+
+  # Lanca um cranio de fumaca que persegue o alvo e o seca com wither.
+  WITHER:
+    ativo: true
+    nome: "Cranio Sombrio"
+    peso: 8
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 11
+    alcance: 20
+    chance: 1.0
+    dano: 1.0
+
+  # Explode uma nuvem de tinta no rosto do alvo, cegando-o.
+  CEGUEIRA:
+    ativo: true
+    nome: "Nuvem de Tinta"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 12
+    chance: 1.0
+    dano: 1.0
+
+  # Uma batida de coracao sombria se espalha: a visao de todos escurece e pulsa.
+  ESCURIDAO:
+    ativo: true
+    nome: "Pulso das Trevas"
+    peso: 5
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 20
+    alcance: 14
+    chance: 1.0
+    dano: 1.0
+
+  # Um orbe teleguiado que, ao tocar, faz o alvo flutuar indefeso.
+  LEVITACAO:
+    ativo: true
+    nome: "Orbe Flutuante"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 14
+    alcance: 18
+    chance: 1.0
+    dano: 1.0
+
+  # Envolve o alvo num miasma podre que causa nausea e fome.
+  NAUSEA:
+    ativo: true
+    nome: "Miasma"
+    peso: 6
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 12
+    chance: 1.0
+    dano: 1.0
+
+  # Amaldicoa o alvo: fraqueza, cansaco e passos pesados.
+  FRAQUEZA:
+    ativo: true
+    nome: "Maldicao"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 14
+    chance: 1.0
+    dano: 1.0
+
+  # Um grito ensurdecedor em onda: lentidao, fraqueza e tontura em todos em volta.
+  GRITO:
+    ativo: true
+    nome: "Grito Aterrador"
+    peso: 6
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 16
+    alcance: 8
+    chance: 1.0
+    dano: 1.0
+
+  # Marca o alvo com uma mira vermelha: o proximo golpe do mob nele causa o dobro de dano.
+  MARCAR_ALVO:
+    ativo: true
+    nome: "Marca da Presa"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+
+  # Um feixe de sangue liga o mob ao alvo e rouba a vida dele aos poucos.
+  DRENAR_VIDA:
+    ativo: true
+    nome: "Drenar Vida"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 12
+    alcance: 12
+    chance: 1.0
+    dano: 1.0
+
+  # O mob some numa nuvem de fumaca e fica invisivel e rapido por alguns segundos.
+  INVISIBILIDADE:
+    ativo: true
+    nome: "Veu das Sombras"
+    peso: 6
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 16
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+    duracao: 70
+
+  # Apaga os efeitos bons (forca, velocidade, regeneracao, resistencia...) de quem estiver perto.
+  DISSIPAR:
+    ativo: true
+    nome: "Dissipar Magia"
+    peso: 4
+    categorias: [elite, boss]
+    nivel-minimo: 5
+    recarga: 18
+    alcance: 10
+    chance: 1.0
+    dano: 1.0
+
+  # ---------------- Invocacoes, cura e defesa
+
+  # Ergue lacaios do chao em meio a almas. Eles somem quando o mob morre.
+  INVOCAR_LACAIOS:
+    ativo: true
+    nome: "Invocar Lacaios"
+    peso: 7
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 20
+    alcance: 20
+    chance: 1.0
+    dano: 1.0
+    sem-visao: true
+    quantidade: 2
+    maximo-vivos: 4
+    vida: 16
+    dano-lacaio: 0.35
+    duracao: 600
+    tipos: [ZOMBIE, SKELETON, SPIDER, HUSK]
+
+  # O mob se embaralha com copias ilusorias identicas. As copias caem com um golpe.
+  CLONE_ILUSORIO:
+    ativo: true
+    nome: "Clones Ilusorios"
+    peso: 5
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 20
+    alcance: 14
+    chance: 1.0
+    dano: 1.0
+    quantidade: 2
+    duracao: 200
+
+  # Invoca espiritos voadores (vexes) que mergulham sobre o alvo.
+  ENXAME_VEXES:
+    ativo: true
+    nome: "Enxame de Vexes"
+    peso: 5
+    categorias: [elite, boss]
+    nivel-minimo: 5
+    recarga: 22
+    alcance: 18
+    chance: 1.0
+    dano: 1.0
+    quantidade: 3
+    maximo-vivos: 5
+    dano-vex: 0.3
+    duracao: 240
+
+  # Libera um enxame de abelhas furiosas atras do alvo.
+  ENXAME_ABELHAS:
+    ativo: true
+    nome: "Enxame de Abelhas"
+    peso: 6
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    recarga: 20
+    alcance: 16
+    chance: 1.0
+    dano: 1.0
+    quantidade: 4
+    maximo-vivos: 6
+    dano-abelha: 0.25
+    duracao: 240
+
+  # Liga feixes de cura nos outros mobs feridos da dungeon e recupera parte da vida deles.
+  CURA_ALIADOS:
+    ativo: true
+    nome: "Cura dos Aliados"
+    peso: 6
+    categorias: [elite, boss]
+    nivel-minimo: 1
+    recarga: 14
+    alcance: 30
+    chance: 1.0
+    dano: 1.0
+    sem-visao: true
+    raio: 10
+    cura: 0.25
+
+  # Envolve o mob numa bolha que absorve a maior parte do dano por alguns segundos.
+  ESCUDO:
+    ativo: true
+    nome: "Escudo Arcano"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 20
+    alcance: 20
+    chance: 1.0
+    dano: 1.0
+    sem-visao: true
+    duracao: 100
+    reducao: 0.75
+
+  # Quando ferido, o mob se envolve numa espiral verde e recupera vida ao longo de alguns segundos.
+  REGENERACAO:
+    ativo: true
+    nome: "Regeneracao"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    recarga: 20
+    alcance: 30
+    chance: 1.0
+    dano: 1.0
+    sem-visao: true
+    cura: 0.3
+
+  # ---------------- Passivos (reagem a golpes, vida baixa e morte)
+
+  # Abaixo de 30% de vida o mob entra em furia: fica mais rapido e cada golpe fere 50% a mais. (passivo)
+  FURIA:
+    ativo: true
+    nome: "Furia"
+    peso: 8
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    dano: 1.0
+    vida: 0.3
+    dano-extra: 0.5
+
+  # Cada golpe do mob rouba vida do jogador e cura o mob. (passivo)
+  VAMPIRISMO:
+    ativo: true
+    nome: "Vampirismo"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    dano: 1.0
+    roubo: 0.5
+
+  # Parte do dano corpo a corpo que o mob leva volta para quem bateu. (passivo)
+  ESPINHOS:
+    ativo: true
+    nome: "Espinhos"
+    peso: 7
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    dano: 1.0
+    reflexo: 0.25
+    reflexo-maximo: 1.0
+
+  # Um anel de chamas gira em volta do mob e queima quem fica colado nele. (passivo)
+  AURA_DANO:
+    ativo: true
+    nome: "Aura Flamejante"
+    peso: 6
+    categorias: [mob, elite, boss]
+    nivel-minimo: 3
+    dano: 1.0
+    raio: 3
+    dano-pulso: 0.2
+
+  # Ao morrer, o corpo do mob pisca e explode logo depois. Afaste-se! (passivo)
+  EXPLODIR_AO_MORRER:
+    ativo: true
+    nome: "Ultimo Suspiro"
+    peso: 6
+    categorias: [mob, elite]
+    nivel-minimo: 1
+    dano: 1.0
+    raio: 4
+
+  # Ao morrer, o mob se parte em copias menores e mais fracas. (passivo)
+  DIVIDIR_AO_MORRER:
+    ativo: true
+    nome: "Divisao"
+    peso: 5
+    categorias: [mob, elite]
+    nivel-minimo: 3
+    dano: 1.0
+    quantidade: 2
+    vida: 0.3
+    duracao: 600
+
+  # Uma barreira desvia boa parte das flechas e magias de projetil que acertariam o mob. (passivo)
+  ESCUDO_PROJETEIS:
+    ativo: true
+    nome: "Escudo de Projeteis"
+    peso: 6
+    categorias: [mob, elite, boss]
+    nivel-minimo: 1
+    dano: 1.0
+    chance-desviar: 0.6

@@ -1,0 +1,520 @@
+# ============================================================
+#  StarDungeonPoderes - itens magicos que dropam das dungeons
+#
+#  Campos:
+#    ativo          false = nao dropa e nao funciona
+#    nome           nome do item (a cor vem da raridade)
+#    material       material (aceita alternativas: "ECHO_SHARD|NETHER_STAR")
+#    raridade       COMUM, RARO, EPICO, LENDARIO ou MITICO (config.yml)
+#    poder          poder do clique direito
+#    poder-shift    poder do shift + clique direito (opcional)
+#    dano           dano base por acerto (x raridade x nivel do item)
+#    dano-shift     dano do poder do shift
+#    recarga        segundos (recarga-shift para o shift)
+#    alcance        distancia da mira / do projetil
+#    descricao      texto da lore (descricao-shift para o shift)
+#    drop           categorias de mob que podem dropar [mob, elite, boss]
+#    peso           chance relativa entre os itens da mesma raridade
+#    modelo         CustomModelData para resource pack (0 = nenhum)
+#  Os outros campos sao proprios de cada poder (raio, duracao, cura...).
+#
+#  Poderes disponiveis: RELAMPAGO, CORRENTE, RAIO_GELO, NOVA_GELO, BOLA_FOGO,
+#  CONE_CHAMAS, BURACO_NEGRO, TEMPESTADE, ALMAS, COLHER_ALMAS, NUVEM_VENENO,
+#  CHUVA_METEOROS, RAIO_ESTELAR, SUPERNOVA, MISSIL_ARCANO, TOTEM_CURA,
+#  ESTANDARTE, CORNETA, RELICARIO, BOLHA_TEMPO, GOLEM, LOBOS, ABELHAS,
+#  FOGOS_FATUOS, OLHO, FUMACA, SINO, FENIX, DASH, SALTO, LEQUE_FANTASMA,
+#  FENDA, ESTRONDO, LANCA_GELO, PASSO_SOMBRIO, GANCHO, GRANADA_ACIDA,
+#  CEIFAR, MARTELO, LEVITAR
+# ============================================================
+
+itens:
+
+  # ---------------------------------------------------------------- COMUM
+
+  cajado-arcano:
+    nome: "Cajado Arcano"
+    material: "STICK"
+    raridade: COMUM
+    poder: MISSIL_ARCANO
+    dano: 3
+    recarga: 3
+    alcance: 20
+    misseis: 3
+    descricao: "Dispara tres misseis arcanos que perseguem o inimigo na mira."
+    drop: [mob, elite, boss]
+    peso: 12
+
+  cajado-peconhento:
+    nome: "Cajado Peconhento"
+    material: "BAMBOO|STICK"
+    raridade: COMUM
+    poder: NUVEM_VENENO
+    dano: 1.5
+    recarga: 10
+    alcance: 18
+    raio: 3.5
+    duracao: 120
+    descricao: "Planta uma nuvem toxica na mira que envenena e corroi quem ficar dentro."
+    drop: [mob, elite, boss]
+    peso: 10
+
+  botas-impulso:
+    nome: "Botas do Impulso"
+    material: "FEATHER"
+    raridade: COMUM
+    poder: DASH
+    poder-shift: SALTO
+    dano: 2
+    dano-shift: 4
+    recarga: 4
+    recarga-shift: 9
+    alcance: 8
+    forca: 1.7
+    altura: 1.25
+    descricao: "Um impulso rapido para frente que atropela inimigos no caminho."
+    descricao-shift: "Um salto alto; ao cair, solta uma onda de impacto."
+    drop: [mob, elite, boss]
+    peso: 10
+
+  gancho-abismo:
+    nome: "Gancho do Abismo"
+    material: "FISHING_ROD"
+    raridade: COMUM
+    poder: GANCHO
+    dano: 3
+    recarga: 6
+    alcance: 16
+    descricao: "Fisga o inimigo na mira e o arrasta ate voce."
+    drop: [mob, elite, boss]
+    peso: 9
+
+  frasco-corrosivo:
+    nome: "Frasco Corrosivo"
+    material: "SLIME_BALL"
+    raridade: COMUM
+    poder: GRANADA_ACIDA
+    dano: 5
+    recarga: 7
+    alcance: 18
+    raio: 3
+    descricao: "Arremessa um frasco de acido que estoura em area: dano, veneno e fraqueza."
+    drop: [mob, elite, boss]
+    peso: 9
+
+  frasco-fumaca:
+    nome: "Bomba de Fumaca"
+    material: "GUNPOWDER"
+    raridade: COMUM
+    poder: FUMACA
+    dano: 0
+    recarga: 18
+    alcance: 5
+    raio: 5
+    duracao: 80
+    descricao: "Explode em fumaca: cega os inimigos em volta e te deixa invisivel e veloz."
+    drop: [mob, elite, boss]
+    peso: 7
+
+  # ---------------------------------------------------------------- RARO
+
+  cajado-relampago:
+    nome: "Cajado do Relampago"
+    material: "LIGHTNING_ROD|BLAZE_ROD"
+    raridade: RARO
+    poder: RELAMPAGO
+    poder-shift: CORRENTE
+    dano: 7
+    dano-shift: 5
+    recarga: 5
+    recarga-shift: 12
+    alcance: 22
+    raio: 2.6
+    saltos: 4
+    distancia-salto: 7
+    descricao: "Faz um raio cair onde voce mira, ferindo e atordoando quem estiver perto."
+    descricao-shift: "Uma corrente eletrica que salta de inimigo em inimigo."
+    drop: [mob, elite, boss]
+    peso: 10
+
+  cajado-gelido:
+    nome: "Cajado Gelido"
+    material: "BREEZE_ROD|STICK"
+    raridade: RARO
+    poder: RAIO_GELO
+    poder-shift: NOVA_GELO
+    dano: 6
+    dano-shift: 5
+    recarga: 4
+    recarga-shift: 14
+    alcance: 24
+    raio-shift: 5.5
+    descricao: "Um raio de gelo que congela o alvo e os inimigos em volta dele."
+    descricao-shift: "Uma nova gelida em volta de voce que congela tudo por perto."
+    drop: [mob, elite, boss]
+    peso: 10
+
+  cajado-brasas:
+    nome: "Cajado das Brasas"
+    material: "BLAZE_ROD"
+    raridade: RARO
+    poder: BOLA_FOGO
+    poder-shift: CONE_CHAMAS
+    dano: 7
+    dano-shift: 1.5
+    recarga: 5
+    recarga-shift: 12
+    alcance: 24
+    raio: 3
+    alcance-shift: 7
+    descricao: "Lanca uma bola de fogo que explode em area e incendeia os inimigos."
+    descricao-shift: "Sopra chamas a sua frente por alguns segundos (dano por pulso)."
+    drop: [mob, elite, boss]
+    peso: 10
+
+  corneta-desespero:
+    nome: "Corneta do Desespero"
+    material: "GOAT_HORN|NAUTILUS_SHELL"
+    raridade: RARO
+    poder: CORNETA
+    dano: 3
+    recarga: 14
+    alcance: 8
+    raio: 8
+    descricao: "Um toque aterrador que arremessa os inimigos para longe e os enfraquece."
+    drop: [mob, elite, boss]
+    peso: 8
+
+  lanca-gelo:
+    nome: "Lanca de Gelo"
+    material: "TRIDENT"
+    raridade: RARO
+    poder: LANCA_GELO
+    dano: 8
+    recarga: 6
+    alcance: 26
+    descricao: "Arremessa uma lanca de gelo que atravessa todos os inimigos em linha."
+    drop: [elite, boss]
+    peso: 8
+
+  flechas-fantasmas:
+    nome: "Flechas Fantasmas"
+    material: "PHANTOM_MEMBRANE"
+    raridade: RARO
+    poder: LEQUE_FANTASMA
+    dano: 4
+    recarga: 6
+    alcance: 22
+    flechas: 5
+    descricao: "Dispara um leque de flechas espectrais que marcam os inimigos atingidos."
+    drop: [mob, elite, boss]
+    peso: 9
+
+  lanterna-fantasma:
+    nome: "Lanterna Fantasma"
+    material: "SOUL_LANTERN"
+    raridade: RARO
+    poder: FOGOS_FATUOS
+    dano: 3
+    recarga: 20
+    alcance: 12
+    fogos: 3
+    duracao: 200
+    descricao: "Fogos-fatuos orbitam voce e atiram chamas de alma nos inimigos proximos."
+    drop: [mob, elite, boss]
+    peso: 8
+
+  adaga-sombria:
+    nome: "Adaga Sombria"
+    material: "IRON_SWORD"
+    raridade: RARO
+    poder: PASSO_SOMBRIO
+    dano: 9
+    recarga: 8
+    alcance: 14
+    descricao: "Teleporta voce para as costas do inimigo na mira com um golpe traicoeiro."
+    drop: [mob, elite, boss]
+    peso: 8
+
+  sino-atordoante:
+    nome: "Sino Atordoante"
+    material: "BELL"
+    raridade: RARO
+    poder: SINO
+    dano: 3
+    recarga: 16
+    alcance: 7
+    raio: 7
+    duracao: 60
+    descricao: "Badala um sino magico que atordoa e enfraquece os inimigos em volta."
+    drop: [elite, boss]
+    peso: 7
+
+  runa-gravidade:
+    nome: "Runa da Gravidade"
+    material: "PRISMARINE_CRYSTALS"
+    raridade: RARO
+    poder: LEVITAR
+    dano: 7
+    recarga: 12
+    alcance: 10
+    descricao: "Ergue os inimigos a sua frente e os arremessa contra o chao."
+    drop: [mob, elite, boss]
+    peso: 7
+
+  colmeia-encantada:
+    nome: "Colmeia Encantada"
+    material: "HONEYCOMB"
+    raridade: RARO
+    poder: ABELHAS
+    dano: 2.5
+    recarga: 25
+    alcance: 14
+    abelhas: 4
+    vida: 10
+    duracao: 300
+    descricao: "Liberta um enxame de abelhas aliadas que ataca os inimigos."
+    drop: [mob, elite, boss]
+    peso: 7
+
+  # ---------------------------------------------------------------- EPICO
+
+  totem-regeneracao:
+    nome: "Totem da Regeneracao"
+    material: "CONDUIT|HEART_OF_THE_SEA"
+    raridade: EPICO
+    poder: TOTEM_CURA
+    dano: 0
+    recarga: 35
+    alcance: 6
+    raio: 6
+    cura: 2
+    duracao: 200
+    descricao: "Ergue um totem que cura voce e os aliados em volta a cada segundo."
+    drop: [elite, boss]
+    peso: 8
+
+  estandarte-guerra:
+    nome: "Estandarte da Guerra"
+    material: "RED_BANNER"
+    raridade: EPICO
+    poder: ESTANDARTE
+    dano: 0
+    recarga: 40
+    alcance: 8
+    raio: 8
+    duracao: 240
+    descricao: "Finca um estandarte que da forca, velocidade e resistencia aos aliados perto dele."
+    drop: [elite, boss]
+    peso: 7
+
+  orbe-tempestade:
+    nome: "Orbe da Tempestade"
+    material: "HEART_OF_THE_SEA"
+    raridade: EPICO
+    poder: TEMPESTADE
+    dano: 6
+    recarga: 22
+    alcance: 22
+    raio: 6
+    raios: 6
+    descricao: "Invoca uma nuvem de tempestade na mira que derruba raios nos inimigos."
+    drop: [elite, boss]
+    peso: 8
+
+  lobos-espectrais:
+    nome: "Lobos Espectrais"
+    material: "BONE"
+    raridade: EPICO
+    poder: LOBOS
+    dano: 4
+    recarga: 30
+    alcance: 14
+    lobos: 2
+    vida: 30
+    duracao: 400
+    descricao: "Chama lobos espectrais que lutam ao seu lado por um tempo."
+    drop: [elite, boss]
+    peso: 7
+
+  machado-sismico:
+    nome: "Machado Sismico"
+    material: "IRON_AXE"
+    raridade: EPICO
+    poder: FENDA
+    poder-shift: ESTRONDO
+    dano: 8
+    dano-shift: 6
+    recarga: 7
+    recarga-shift: 14
+    alcance: 12
+    raio-shift: 5
+    descricao: "Rasga o chao em linha reta, lancando os inimigos para o alto."
+    descricao-shift: "Golpeia o chao e solta uma onda em volta de voce."
+    drop: [elite, boss]
+    peso: 8
+
+  relicario-vida:
+    nome: "Relicario da Vida"
+    material: "GHAST_TEAR"
+    raridade: EPICO
+    poder: RELICARIO
+    dano: 0
+    recarga: 45
+    alcance: 1
+    cura: 0.4
+    descricao: "Recupera boa parte da sua vida, da absorcao e remove veneno e wither."
+    drop: [elite, boss]
+    peso: 7
+
+  olho-observador:
+    nome: "Olho do Observador"
+    material: "ENDER_EYE"
+    raridade: EPICO
+    poder: OLHO
+    dano: 0
+    recarga: 25
+    alcance: 16
+    duracao: 160
+    vulnerabilidade: 1.25
+    descricao: "Revela os inimigos em volta (brilho) e os deixa vulneraveis: levam mais dano de voce."
+    drop: [elite, boss]
+    peso: 6
+
+  # ---------------------------------------------------------------- LENDARIO
+
+  varinha-vazio:
+    nome: "Varinha do Vazio"
+    material: "END_ROD"
+    raridade: LENDARIO
+    poder: BURACO_NEGRO
+    dano: 7
+    recarga: 28
+    alcance: 20
+    raio: 8
+    duracao: 80
+    descricao: "Abre um buraco negro na mira que suga os inimigos e implode no final."
+    drop: [elite, boss]
+    peso: 8
+
+  amuleto-almas:
+    nome: "Amuleto das Almas"
+    material: "ECHO_SHARD|NETHER_STAR"
+    raridade: LENDARIO
+    poder: ALMAS
+    poder-shift: COLHER_ALMAS
+    dano: 6
+    dano-shift: 4
+    recarga: 8
+    recarga-shift: 20
+    alcance: 20
+    almas: 3
+    raio-shift: 6
+    cura-por-alma: 2
+    cura-maxima: 8
+    descricao: "Liberta almas errantes que cacam os inimigos mais proximos."
+    descricao-shift: "Colhe a alma dos inimigos em volta e cura voce com elas."
+    drop: [elite, boss]
+    peso: 8
+
+  kit-golem:
+    nome: "Kit do Golem Guardiao"
+    material: "IRON_BLOCK"
+    raridade: LENDARIO
+    poder: GOLEM
+    dano: 9
+    recarga: 60
+    alcance: 14
+    vida: 80
+    duracao: 400
+    descricao: "Monta um golem de ferro aliado que luta por voce durante um tempo."
+    drop: [elite, boss]
+    peso: 7
+
+  cristal-tempo:
+    nome: "Cristal do Tempo"
+    material: "AMETHYST_SHARD"
+    raridade: LENDARIO
+    poder: BOLHA_TEMPO
+    dano: 3
+    recarga: 30
+    alcance: 20
+    raio: 6
+    duracao: 120
+    descricao: "Cria uma bolha onde o tempo quase para: inimigos dentro ficam lentissimos."
+    drop: [elite, boss]
+    peso: 7
+
+  foice-almas:
+    nome: "Foice das Almas"
+    material: "NETHERITE_HOE|DIAMOND_HOE"
+    raridade: LENDARIO
+    poder: CEIFAR
+    dano: 10
+    recarga: 7
+    alcance: 5
+    raio: 4.5
+    roubo: 0.15
+    cura-maxima: 6
+    descricao: "Um corte em arco a sua frente que rouba vida de cada inimigo atingido."
+    drop: [elite, boss]
+    peso: 7
+
+  # ---------------------------------------------------------------- MITICO
+
+  grimorio-meteoros:
+    nome: "Grimorio dos Meteoros"
+    material: "ENCHANTED_BOOK|BOOK"
+    raridade: MITICO
+    poder: CHUVA_METEOROS
+    dano: 9
+    recarga: 35
+    alcance: 26
+    meteoros: 4
+    raio: 3
+    descricao: "Faz chover meteoros em chamas sobre a area na mira."
+    drop: [boss]
+    peso: 8
+
+  cetro-estelar:
+    nome: "Cetro Estelar"
+    material: "NETHER_STAR"
+    raridade: MITICO
+    poder: RAIO_ESTELAR
+    poder-shift: SUPERNOVA
+    dano: 10
+    dano-shift: 9
+    recarga: 6
+    recarga-shift: 30
+    alcance: 30
+    raio-shift: 7
+    descricao: "Um raio de luz estelar que atravessa todos os inimigos em linha."
+    descricao-shift: "Concentra a luz das estrelas e explode numa supernova a sua volta."
+    drop: [boss]
+    peso: 8
+
+  pena-fenix:
+    nome: "Pena da Fenix"
+    material: "BLAZE_POWDER"
+    raridade: MITICO
+    poder: FENIX
+    dano: 8
+    recarga: 40
+    alcance: 6
+    raio: 5.5
+    cura: 6
+    descricao: "Abre asas de fogo: queima os inimigos em volta e cura e protege os aliados do fogo."
+    drop: [boss]
+    peso: 7
+
+  martelo-trovao:
+    nome: "Martelo do Trovao"
+    material: "MACE|NETHERITE_AXE"
+    raridade: MITICO
+    poder: MARTELO
+    dano: 12
+    recarga: 14
+    alcance: 6
+    raio: 5
+    descricao: "Salta e despenca com o martelo: um anel de raios cai em volta do impacto."
+    drop: [boss]
+    peso: 7

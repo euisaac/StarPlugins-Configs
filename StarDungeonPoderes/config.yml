@@ -1,0 +1,149 @@
+# ============================================================
+#  StarDungeonPoderes - configuracao geral
+#  Poderes dos mobs: poderes.yml | Itens magicos: itens.yml
+# ============================================================
+
+itens:
+  # Poderes de item acertam jogadores? (padrao: so mobs)
+  atingir-jogadores: false
+  # Onde os itens magicos funcionam:
+  #   geral   = em qualquer lugar do servidor
+  #   dungeon = so com o jogador dentro de uma dungeon (StarDungeon ou Dungeon Infinita)
+  funcionar-em: geral
+  # So mobs hostis (alem dos mobs de dungeon e lacaios) sao alvo dos itens.
+  # Com false, animais passivos tambem sao atingidos.
+  apenas-mobs-hostis: true
+  # Barra de recarga na action bar enquanto segura um item recarregando.
+  mostrar-recarga: true
+  # Cada nivel do item (1-5) soma este tanto no dano (0.15 = +15% por nivel).
+  dano-por-nivel: 0.15
+  # Cada nivel do item tira este tanto da recarga (0.04 = -4% por nivel, max 50%).
+  recarga-por-nivel: 0.04
+
+# Raridades (na ordem, da mais comum para a mais rara).
+# cores: uma cor = cor solida; duas ou mais = gradiente no nome.
+raridades:
+  COMUM:
+    nome: "Comum"
+    cores: ["#B0BEC5"]
+    negrito: false
+    brilho: false
+    multiplicador-dano: 1.0
+  RARO:
+    nome: "Raro"
+    cores: ["#4FC3F7"]
+    negrito: false
+    brilho: false
+    multiplicador-dano: 1.25
+  EPICO:
+    nome: "Epico"
+    cores: ["#CE93D8", "#8E24AA"]
+    negrito: false
+    brilho: true
+    multiplicador-dano: 1.55
+  LENDARIO:
+    nome: "Lendario"
+    cores: ["#FFE082", "#FFB300", "#FF6F00"]
+    negrito: true
+    brilho: true
+    multiplicador-dano: 1.9
+  MITICO:
+    nome: "Mitico"
+    cores: ["#FF4081", "#B388FF", "#18FFFF"]
+    negrito: true
+    brilho: true
+    multiplicador-dano: 2.4
+
+drops:
+  ativo: true
+  # chao = cai no chao com feixe de luz e so o matador pega por alguns segundos
+  # inventario = vai direto para o inventario do matador
+  entrega: chao
+  protecao-segundos: 60
+  # Chance de UM item magico cair ao matar (0.01 = 1%).
+  chance:
+    mob: 0.006
+    elite: 0.045
+    boss: 0.35
+  # Somado a chance por nivel do mob (na Dungeon Infinita o nivel cresce com a sala).
+  chance-por-nivel: 0.0003
+  chance-maxima:
+    mob: 0.03
+    elite: 0.15
+    boss: 0.8
+  # Peso de cada raridade por categoria de mob.
+  raridades:
+    mob:
+      COMUM: 70
+      RARO: 25
+      EPICO: 4.5
+      LENDARIO: 0.45
+      MITICO: 0.05
+    elite:
+      COMUM: 45
+      RARO: 36
+      EPICO: 15
+      LENDARIO: 3.4
+      MITICO: 0.6
+    boss:
+      COMUM: 18
+      RARO: 36
+      EPICO: 30
+      LENDARIO: 13
+      MITICO: 3
+  # Por nivel do mob, o peso de Epico pra cima cresce este tanto (0.01 = +1%/nivel).
+  bonus-raridade-por-nivel: 0.01
+  # Peso do nivel do item (1 a 5) no drop.
+  nivel-item:
+    "1": 50
+    "2": 28
+    "3": 14
+    "4": 6
+    "5": 2
+  # Por nivel do mob, niveis altos do item ficam mais provaveis.
+  nivel-item-bonus-por-nivel-mob: 0.02
+
+# Anuncio no chat de todo o servidor para os drops dessas raridades.
+anuncio:
+  raridades: [LENDARIO, MITICO]
+  som: "UI_TOAST_CHALLENGE_COMPLETE"
+
+# Medalhas no perfil do StarDungeon (colecionador, lendario, mitico).
+medalhas: true
+
+item-lore:
+  topo: "&8Artefato de Dungeon"
+  direito: "&6▶ Clique direito"
+  shift: "&6▶ Shift + direito"
+  rodape:
+    - "&8Item magico das dungeons"
+
+mensagens:
+  prefixo: "&8[&5Poderes&8] "
+  sem-permissao: "{prefixo}&cVoce nao tem permissao."
+  sem-permissao-usar: "{prefixo}&cVoce nao pode usar itens magicos."
+  so-jogador: "{prefixo}&cSo jogadores podem usar isso."
+  item-desativado: "{prefixo}&cEste item magico esta desativado."
+  item-fora-da-dungeon: "{prefixo}&cEste item magico so funciona dentro das dungeons."
+  sem-alvo: "&c✖ Nenhum alvo ao alcance"
+  recarga: "&c⌛ &f{poder} &7recarregando: &e{tempo}s"
+  usou: "&a✦ &f{poder} &8| &7recarga &b{tempo}s"
+  drop:
+    pessoal: "{prefixo}&7Voce encontrou {item} &7(&e{nivel}★&7) - {raridade}&7!"
+    anuncio: "&5&l✦ &d{jogador} &7encontrou {item} &7(&e{nivel}★&7) numa dungeon! {raridade}"
+    titulo: "{item}"
+    subtitulo: "&7Item {raridade} &7encontrado!"
+  admin:
+    uso-dar: "{prefixo}&cUse: /dgpoderes dar <jogador> <item> [nivel]"
+    jogador-offline: "{prefixo}&cJogador &f{jogador} &cnao esta online."
+    item-inexistente: "{prefixo}&cItem &f{item} &cnao existe (veja o itens.yml ou /dgpoderes menu)."
+    nivel-invalido: "{prefixo}&cNivel invalido (1 a {maximo})."
+    deu: "{prefixo}&aEntregue {item} &7(&e{nivel}★&7) &apara &f{jogador}&a."
+    pegou: "{prefixo}&aVoce pegou {item} &7(&e{nivel}★&7)."
+    recarregado: "{prefixo}&aRecarregado: &f{itens} &aitens e &f{poderes} &apoderes."
+  ajuda:
+    - "&5&lStarDungeonPoderes"
+    - "&d/{comando} dar <jogador> <item> [nivel] &7- da um item magico"
+    - "&d/{comando} menu &7- catalogo de itens por raridade"
+    - "&d/{comando} poderes &7- poderes dos mobs (ligar/desligar)"
+    - "&d/{comando} recarregar &7- recarrega os arquivos"
