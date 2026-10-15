@@ -19,7 +19,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 34
+Versao do modelo: 35
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -66,6 +66,34 @@ Geral:
   # MULTIARENA (vazio = so teleporta para o lobby do /bw setlobby).
   # {jogador} e trocado.
   Comando ao sair: ''
+
+# Liga e desliga sistemas inteiros.
+#   Kits / Habilidades: desligado, some da loja, do perfil, da barra da sala
+#   de espera e da caixa misteriosa, e nao vale na partida (quem tinha um
+#   escolhido joga sem ele). O que cada um ja desbloqueou continua guardado:
+#   ligou de novo, volta tudo.
+#   Amigos: o /amigo, o botao no perfil e os avisos de entrada (veja "Amigos").
+Sistemas:
+  Kits: true
+  Habilidades: true
+  Amigos: true
+
+# Amigos (/amigo). Pedido de amizade funciona com o outro offline: ele recebe
+# ao entrar. O "visto por ultimo" e a presenca valem na rede inteira quando os
+# servidores usam o mesmo MySQL (cada um marca quem esta nele a cada minuto).
+Amigos:
+  # Maximo de amigos. Por cargo: permissao starbedwars.amigos.limite.<numero>
+  # (vale o maior que o jogador tiver).
+  Limite: 50
+  # Dias ate um pedido nao respondido vencer.
+  Pedido vence em dias: 7
+  # Ao entrar, o jogador ve "Amigos online: X/Y".
+  Resumo ao entrar: true
+  # Avisar os amigos quando alguem sai (o aviso de entrada sempre sai, para
+  # quem nao desligou em /amigo avisos).
+  Avisar quando sai: true
+  # Formato de "Amigos desde" (Java SimpleDateFormat).
+  Formato da data: 'dd/MM/yyyy'
 
 Banco de dados:
   # SQLITE (arquivo, nao precisa de nada) ou MYSQL (obrigatorio nos modos
