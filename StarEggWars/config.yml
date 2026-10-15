@@ -24,7 +24,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 27
+Versao do modelo: 29
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -327,6 +327,10 @@ Itens:
     Velocidade: 0.8
     Botao: AMBOS
     Explosao: 3.0
+    # Bater na bola de fogo (soco, espada ou flecha) manda ela para onde voce
+    # esta olhando, e ela passa a ser sua.
+    Rebater: true
+    Som ao rebater: ENTITY_BLAZE_HURT
     Cooldown: 2
   TNT:
     # Segundos ate explodir depois de colocada.
@@ -1050,6 +1054,10 @@ Tab:
   # Quem esta numa partida so ve (tab e mundo) quem esta na mesma partida;
   # quem esta fora so ve quem esta fora.
   Separar por partida: true
+  # Vida dos jogadores no tab durante a partida: CORACOES, NUMERO ou
+  # DESLIGADO. Na 1.8 os coracoes aparecem como numero no tab de alguns
+  # clientes; da 1.13 em diante sao sempre coracoes.
+  Vida no tab: CORACOES
 
 # Novidades em cima dos NPCs de jogar e lancamentos de mapa agendados.
 # O editor e o /ew novidade (ou /ew novidade editor); para agendar pelo chat:
