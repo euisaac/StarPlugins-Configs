@@ -30,7 +30,7 @@
 #  {pagina} {paginas}. Placeholders do PlaceholderAPI tambem funcionam.
 # ==========================================================================
 
-Versao do modelo: 4
+Versao do modelo: 5
 
 # ---------------------------------------------------------------------------
 #  Menu principal (/pesca).
@@ -259,13 +259,13 @@ Vara:
     reparar:
       Slot: 32
       Material: ANVIL
-      Nome: '&cReparar vara'
+      Nome: '&6Ferreiro'
       Lore:
-        - '&7Sua vara esta quebrada e nao pesca.'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
-        - ' &7Custo: &f{custo_reparo}'
+        - '&7Conserte a vara com &breparadores&7.'
         - ''
-        - '&eClique para reparar'
+        - '&eClique para abrir o ferreiro'
       Acoes: [ 'reparar' ]
     pegar:
       Slot: 31
@@ -499,6 +499,49 @@ Loja:
           - ''
           - '&eClique para comprar'
       Comandos: [ 'starpesca givebooster {jogador} 50 30' ]
+    reparador:
+      Slot: 20
+      Preco: 150
+      Item:
+        Material: PRISMARINE_SHARD
+        Nome: '&b&lReparador de vara'
+        Lore:
+          - '&7Conserta a vara no ferreiro.'
+          - ''
+          - ' &7Preco: &b{preco} perolas'
+          - ''
+          - '&eClique para comprar'
+      Comandos: [ 'starpesca givereparador {jogador} 1' ]
+    reparadores:
+      Slot: 22
+      Preco: 1300
+      Item:
+        Material: PRISMARINE_SHARD
+        Quantidade: 10
+        Nome: '&b&l10 Reparadores de vara'
+        Lore:
+          - '&7Conserta a vara no ferreiro.'
+          - ''
+          - ' &7Preco: &b{preco} perolas'
+          - ''
+          - '&eClique para comprar'
+      Comandos: [ 'starpesca givereparador {jogador} 10' ]
+    vara_relampago:
+      Slot: 24
+      Preco: 5000
+      Item:
+        Material: FISHING_ROD
+        Brilho: true
+        Nome: '&e&lVara Relampago'
+        Lore:
+          - '&7Vara especial: nivel 6, intervalo de 4s,'
+          - '&7Velocidade V e Sortudo III.'
+          - '&8(varas-especiais.yml)'
+          - ''
+          - ' &7Preco: &b{preco} perolas'
+          - ''
+          - '&eClique para comprar'
+      Comandos: [ 'starpesca darvara {jogador} relampago' ]
   Itens:
     perfil:
       Slot: 4
@@ -899,6 +942,64 @@ Torneios:
       Material: ARROW
       Nome: '&eProxima pagina &7({pagina}/{paginas})'
       Acoes: [ 'proxima' ]
+
+# ---------------------------------------------------------------------------
+#  Ferreiro (NPC 'reparo', /pesca reparar, botao 'reparar' do menu da vara):
+#  conserta a vara da evolucao e, se estiver na mao, a vara especial.
+#  Acoes: consertar (a do perfil), consertar_especial (a da mao). Botao com
+#  chave comecando em 'especial' so aparece com uma vara especial na mao.
+#  Variaveis: {durabilidade} {durabilidade_maxima} {durabilidade_barra}
+#  {reparo_reparadores} {reparo_economias} {reparadores} e da especial
+#  {especial_nome} {especial_durabilidade} {especial_maxima} {especial_barra}
+#  {especial_reparadores} {especial_economias}.
+# ---------------------------------------------------------------------------
+Reparo:
+  Titulo: '&8Ferreiro'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    vara:
+      Slot: 11
+      Material: FISHING_ROD
+      Nome: '&b{vara_nome}'
+      Lore:
+        - ''
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
+        - ''
+        - ' &7Conserto: &b{reparo_reparadores} reparador(es) &7+ &f{reparo_economias}'
+        - ''
+        - '&eClique para consertar'
+      Acoes: [ 'consertar' ]
+    reparadores:
+      Slot: 13
+      Material: PRISMARINE_SHARD
+      Nome: '&bSeus reparadores: &f{reparadores}'
+      Lore:
+        - ''
+        - '&7Ganhe pescando (raro) ou'
+        - '&7compre na loja de perolas.'
+    especial:
+      Slot: 15
+      Material: FISHING_ROD
+      Brilho: true
+      Nome: '&e{especial_nome}'
+      Lore:
+        - '&7A vara especial na sua mao.'
+        - ''
+        - ' &7Durabilidade: {especial_barra} &f{especial_durabilidade}&7/&f{especial_maxima}'
+        - ''
+        - ' &7Conserto: &b{especial_reparadores} reparador(es) &7+ &f{especial_economias}'
+        - ''
+        - '&eClique para consertar'
+      Acoes: [ 'consertar_especial' ]
+    voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+      Acoes: [ 'voltar' ]
 
 # ---------------------------------------------------------------------------
 #  Confirmacao de compra (loja de perolas).

@@ -14,7 +14,7 @@
 
 # Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
 # tras depois de uma atualizacao.
-Versao do modelo: 4
+Versao do modelo: 5
 
 Geral:
   # Escreve no console o que o plugin esta fazendo.
@@ -190,6 +190,85 @@ Placar:
       - '&bstarplugins.com.br'
 
 # --------------------------------------------------------------------------
+#  Durabilidade das varas
+#
+#  Cada peixe gasta a vara; no zero ela quebra e nao pesca ate ser consertada
+#  no ferreiro (NPC 'reparo', /pesca reparar ou o botao do menu da vara). O
+#  conserto gasta REPARADORES (o item abaixo) proporcionais ao desgaste -- a
+#  quantidade cheia e o 'Reparadores' de cada vara no varas.yml, maior nas mais
+#  evoluidas -- e a parte proporcional do 'Reparo' (economias) dela.
+#  Reparador: /starpesca givereparador <jogador> [quantidade] (console tambem),
+#  loja de perolas e recompensa rara de pesca (recompensas.yml > reparador).
+#  A durabilidade da vara da evolucao fica no PERFIL; a da vara especial
+#  (varas-especiais.yml), no proprio item. A vara do torneio nunca gasta.
+#  Ativar: false = o sistema de antes (sem desgaste; a vara so quebra com peixe
+#  pesado demais quando tem 'Quebra com peso').
+# --------------------------------------------------------------------------
+Durabilidade:
+  Ativar: true
+  # Quanto cada peixe pescado gasta.
+  Por peixe: 1
+  # Quanto gasta o peixe pesado demais que escapa (ele nao quebra a vara na hora).
+  Peixe que escapa: 3
+  # Avisa quando sobra menos que isto (em %), e a barra fica vermelha.
+  Aviso abaixo de: 10
+  # {durabilidade_barra}
+  Barra:
+    Tamanho: 10
+    Cheio: '&a|'
+    Vazio: '&8|'
+  Reparador:
+    Material: PRISMARINE_SHARD
+    Brilho: true
+    Nome: '&b&lReparador de vara'
+    Lore:
+      - '&7Conserta a vara de pesca no &fferreiro&7.'
+      - '&7Varas mais evoluidas gastam mais.'
+
+# --------------------------------------------------------------------------
+#  Animacoes de peixe raro (no anzol, para quem estiver perto)
+#
+#    FOGOS[:quantidade]       fogos saindo da agua (nao machucam)
+#    SALTO:<criatura>         a criatura pula da agua e mergulha de volta:
+#                             SQUID ou GLOW_SQUID (polvo), GUARDIAN (tubarao),
+#                             DOLPHIN, TURTLE, COD, SALMON, TROPICAL_FISH...
+#                             Nao apanha, nao ataca e nao deixa nada.
+#    ONDA                     anel de respingos em volta do anzol
+#    RAIO                     so o efeito do raio (sem dano e sem fogo)
+#    PARTICULAS:<nome>[:qtd]  particula do jogo
+#    SOM:<som>                som para quem esta a ate 32 blocos
+#  Por raridade (ids do peixes.yml > Raridades) e por peixe (ids do peixes.yml
+#  > Peixes); um peixe com os dois toca os dois.
+# --------------------------------------------------------------------------
+Animacoes:
+  Ativar: true
+  Raridades:
+    epico: [ 'ONDA' ]
+    lendario: [ 'ONDA', 'SALTO:COD', 'FOGOS:1' ]
+    mitico: [ 'ONDA', 'SALTO:SQUID', 'FOGOS:3' ]
+    ancestral: [ 'ONDA', 'SALTO:GUARDIAN', 'FOGOS:5', 'SOM:ENTITY_ELDER_GUARDIAN_CURSE' ]
+    divino: [ 'ONDA', 'SALTO:DOLPHIN', 'FOGOS:8', 'RAIO', 'SOM:UI_TOAST_CHALLENGE_COMPLETE' ]
+  Peixes:
+    lula: [ 'SALTO:GLOW_SQUID' ]
+    polvo: [ 'SALTO:GLOW_SQUID' ]
+    lula_gigante: [ 'SALTO:GLOW_SQUID', 'ONDA' ]
+    lula_abissal: [ 'SALTO:GLOW_SQUID', 'ONDA' ]
+    polvo_colossal: [ 'SALTO:GLOW_SQUID', 'ONDA', 'FOGOS:2' ]
+    tubarao: [ 'SALTO:GUARDIAN' ]
+    tubarao_martelo: [ 'SALTO:GUARDIAN' ]
+    tubarao_tigre: [ 'SALTO:GUARDIAN' ]
+    tubarao_branco: [ 'SALTO:GUARDIAN', 'ONDA' ]
+    tubarao_duende: [ 'SALTO:GUARDIAN', 'ONDA' ]
+    tubarao_ciclone: [ 'SALTO:GUARDIAN', 'ONDA', 'FOGOS:2' ]
+    tubarao_abissal: [ 'SALTO:GUARDIAN', 'ONDA', 'FOGOS:2' ]
+    tubarao_baleia: [ 'SALTO:GUARDIAN', 'ONDA', 'FOGOS:3' ]
+    baleia_sombria: [ 'SALTO:DOLPHIN', 'ONDA', 'FOGOS:3' ]
+    tentaculo_do_kraken: [ 'SALTO:SQUID', 'ONDA' ]
+    kraken_jovem: [ 'SALTO:SQUID', 'ONDA', 'FOGOS:2' ]
+    kraken: [ 'SALTO:SQUID', 'ONDA', 'FOGOS:4', 'RAIO' ]
+    kraken_primordial: [ 'SALTO:SQUID', 'ONDA', 'FOGOS:6', 'RAIO' ]
+
+# --------------------------------------------------------------------------
 #  Anti macro (pesca AFK)
 #
 #  O CAPTCHA abre um menu pedindo um item pelo nome; as opcoes tem os NOMES
@@ -283,6 +362,14 @@ Pesca:
     # Raio da mensagem "X pescou um peixe LENDARIO" nas raridades que tem
     # anuncio proximo (0 = servidor inteiro).
     Raio do anuncio: 0
+    # O anuncio de peixe raro (peixes.yml > Raridades > Anuncio: chat e titulo)
+    # vai so para quem esta NA AREA DE PESCA. false = para todos (ou o raio).
+    Anuncio so na area: true
+    # Excecoes, anunciadas para o servidor inteiro mesmo assim: raridades
+    # (ids do peixes.yml > Raridades) e peixes (ids do peixes.yml > Peixes).
+    Anuncio para todos:
+      Raridades: [ divino ]
+      Peixes: [ ]
 
 # --------------------------------------------------------------------------
 #  Perolas: a moeda da pesca

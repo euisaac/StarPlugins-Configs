@@ -28,7 +28,7 @@
 #                      Bloqueada = precisa da anterior).
 # ==========================================================================
 
-Versao do modelo: 3
+Versao do modelo: 4
 
 # Item mostrado na loja no lugar de uma vara que o jogador ainda nao alcanca.
 Bloqueada:
@@ -54,6 +54,10 @@ Barra:
 Varas:
   iniciante:
     Nivel: 1
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 250
+    Reparadores: 1
     Nome: '&fVara de Iniciante'
     Peso suportado: 8
     Quebra com peso: false
@@ -67,12 +71,13 @@ Varas:
       Perolas: 0.0
       Peso: 0.0
     Reparo:
-      money: 100.0
+      money: 55.0
       perolas: 0.0
     Evoluir:
       money: 0.0
       perolas: 0.0
     Recompensas:
+      - '1.0,reparador'
       - '4.0,pedra'
       - '1.0,ferro'
       - '0.3,diamante'
@@ -86,6 +91,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -120,6 +126,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   madeira:
     Nivel: 2
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 280
+    Reparadores: 1
     Nome: '&aVara de Madeira'
     Peso suportado: 30
     Quebra com peso: true
@@ -133,15 +143,16 @@ Varas:
       Perolas: 5.0
       Peso: 0.0
     Reparo:
-      money: 200.0
+      money: 67.0
       perolas: 10.0
     Evoluir:
-      money: 1500.0
+      money: 830.0
       perolas: 50.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
       Peixes pescados: 25
     Recompensas:
+      - '1.0,reparador'
       - '5.0,pedra'
       - '2.0,ferro'
       - '0.6,diamante'
@@ -155,6 +166,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -189,6 +201,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   bambu:
     Nivel: 3
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 300
+    Reparadores: 2
     Nome: '&eVara de Bambu'
     Peso suportado: 60
     Quebra com peso: true
@@ -202,16 +218,17 @@ Varas:
       Perolas: 10.0
       Peso: 0.0
     Reparo:
-      money: 400.0
+      money: 91.0
       perolas: 25.0
     Evoluir:
-      money: 4000.0
+      money: 1330.0
       perolas: 120.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
       Peixes pescados: 75
       Colecao: 8
     Recompensas:
+      - '1.0,reparador'
       - '6.0,pedra'
       - '3.0,ferro'
       - '0.9,diamante'
@@ -225,6 +242,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -259,6 +277,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   ferro:
     Nivel: 4
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 330
+    Reparadores: 3
     Nome: '&6Vara de Ferro'
     Peso suportado: 160
     Quebra com peso: true
@@ -272,16 +294,17 @@ Varas:
       Perolas: 15.0
       Peso: 0.0
     Reparo:
-      money: 800.0
+      money: 140.0
       perolas: 50.0
     Evoluir:
-      money: 9000.0
+      money: 2050.0
       perolas: 250.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
       Peixes pescados: 200
       Colecao: 14
     Recompensas:
+      - '1.0,reparador'
       - '7.0,pedra'
       - '4.0,ferro'
       - '1.2,diamante'
@@ -295,6 +318,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -329,6 +353,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   prata:
     Nivel: 5
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 370
+    Reparadores: 3
     Nome: '&bVara de Prata'
     Peso suportado: 300
     Quebra com peso: true
@@ -342,10 +370,10 @@ Varas:
       Perolas: 20.0
       Peso: 0.0
     Reparo:
-      money: 1500.0
+      money: 190.0
       perolas: 90.0
     Evoluir:
-      money: 18000.0
+      money: 3250.0
       perolas: 450.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -353,6 +381,7 @@ Varas:
       Colecao: 20
       Maior peso: 30
     Recompensas:
+      - '1.0,reparador'
       - '8.0,pedra'
       - '5.0,ferro'
       - '1.5,diamante'
@@ -366,6 +395,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -400,6 +430,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   ouro:
     Nivel: 6
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 400
+    Reparadores: 4
     Nome: '&3Vara de Ouro'
     Peso suportado: 600
     Quebra com peso: true
@@ -413,10 +447,10 @@ Varas:
       Perolas: 25.0
       Peso: 0.0
     Reparo:
-      money: 2500.0
+      money: 220.0
       perolas: 150.0
     Evoluir:
-      money: 35000.0
+      money: 4470.0
       perolas: 800.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -424,6 +458,7 @@ Varas:
       Colecao: 26
       Maior peso: 110
     Recompensas:
+      - '1.0,reparador'
       - '9.0,pedra'
       - '6.0,ferro'
       - '1.8,diamante'
@@ -437,6 +472,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -471,6 +507,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   esmeralda:
     Nivel: 7
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 440
+    Reparadores: 5
     Nome: '&9Vara de Esmeralda'
     Peso suportado: 1200
     Quebra com peso: true
@@ -484,10 +524,10 @@ Varas:
       Perolas: 30.0
       Peso: 0.0
     Reparo:
-      money: 4000.0
+      money: 250.0
       perolas: 250.0
     Evoluir:
-      money: 65000.0
+      money: 5720.0
       perolas: 1400.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -495,6 +535,7 @@ Varas:
       Colecao: 32
       Maior peso: 150
     Recompensas:
+      - '1.0,reparador'
       - '10.0,pedra'
       - '7.0,ferro'
       - '2.1,diamante'
@@ -508,6 +549,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -542,6 +584,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   diamante:
     Nivel: 8
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 490
+    Reparadores: 5
     Nome: '&5Vara de Diamante'
     Peso suportado: 2000
     Quebra com peso: true
@@ -555,10 +601,10 @@ Varas:
       Perolas: 35.0
       Peso: 0.0
     Reparo:
-      money: 6000.0
+      money: 290.0
       perolas: 400.0
     Evoluir:
-      money: 120000.0
+      money: 7170.0
       perolas: 2500.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -566,6 +612,7 @@ Varas:
       Colecao: 38
       Maior peso: 750
     Recompensas:
+      - '1.0,reparador'
       - '11.0,pedra'
       - '8.0,ferro'
       - '2.4,diamante'
@@ -579,6 +626,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -613,6 +661,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   abissal:
     Nivel: 9
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 540
+    Reparadores: 6
     Nome: '&dVara Abissal'
     Peso suportado: 5000
     Quebra com peso: true
@@ -626,10 +678,10 @@ Varas:
       Perolas: 40.0
       Peso: 0.0
     Reparo:
-      money: 9000.0
+      money: 330.0
       perolas: 600.0
     Evoluir:
-      money: 220000.0
+      money: 9130.0
       perolas: 4000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -637,6 +689,7 @@ Varas:
       Colecao: 44
       Maior peso: 900
     Recompensas:
+      - '1.0,reparador'
       - '12.0,pedra'
       - '9.0,ferro'
       - '2.7,diamante'
@@ -650,6 +703,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -684,6 +738,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   lendaria:
     Nivel: 10
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 590
+    Reparadores: 7
     Nome: '&cVara Lendaria'
     Peso suportado: 25000
     Quebra com peso: false
@@ -697,10 +755,10 @@ Varas:
       Perolas: 45.0
       Peso: 0.0
     Reparo:
-      money: 15000.0
+      money: 380.0
       perolas: 1000.0
     Evoluir:
-      money: 400000.0
+      money: 10700.0
       perolas: 7000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -708,6 +766,7 @@ Varas:
       Colecao: 50
       Maior peso: 3300
     Recompensas:
+      - '1.0,reparador'
       - '13.0,pedra'
       - '10.0,ferro'
       - '3.0,diamante'
@@ -721,6 +780,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -755,6 +815,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   coral:
     Nivel: 11
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 650
+    Reparadores: 7
     Nome: '&3Vara de Coral'
     Peso suportado: 45000
     Quebra com peso: true
@@ -768,10 +832,10 @@ Varas:
       Perolas: 50.0
       Peso: 2.0
     Reparo:
-      money: 25000.0
+      money: 440.0
       perolas: 1600.0
     Evoluir:
-      money: 800000.0
+      money: 12300.0
       perolas: 12000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -779,6 +843,7 @@ Varas:
       Colecao: 56
       Maior peso: 15000
     Recompensas:
+      - '1.0,reparador'
       - '21.0,pedra'
       - '9.0,ferro'
       - '5.5,diamante'
@@ -793,6 +858,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -827,6 +893,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   tempestade:
     Nivel: 12
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 710
+    Reparadores: 8
     Nome: '&9Vara da Tempestade'
     Peso suportado: 70000
     Quebra com peso: true
@@ -840,10 +910,10 @@ Varas:
       Perolas: 55.0
       Peso: 4.0
     Reparo:
-      money: 40000.0
+      money: 510.0
       perolas: 2500.0
     Evoluir:
-      money: 1600000.0
+      money: 18400.0
       perolas: 20000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -851,6 +921,7 @@ Varas:
       Colecao: 62
       Maior peso: 18000
     Recompensas:
+      - '1.0,reparador'
       - '22.0,pedra'
       - '10.0,ferro'
       - '6.0,diamante'
@@ -865,6 +936,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -899,6 +971,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   kraken:
     Nivel: 13
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 780
+    Reparadores: 9
     Nome: '&5Vara do Kraken'
     Peso suportado: 110000
     Quebra com peso: true
@@ -912,10 +988,10 @@ Varas:
       Perolas: 60.0
       Peso: 6.0
     Reparo:
-      money: 65000.0
+      money: 590.0
       perolas: 4000.0
     Evoluir:
-      money: 3200000.0
+      money: 26700.0
       perolas: 32000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -923,6 +999,7 @@ Varas:
       Colecao: 68
       Maior peso: 41000
     Recompensas:
+      - '1.0,reparador'
       - '23.0,pedra'
       - '11.0,ferro'
       - '6.5,diamante'
@@ -937,6 +1014,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -971,6 +1049,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   leviata:
     Nivel: 14
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 860
+    Reparadores: 9
     Nome: '&dVara do Leviata'
     Peso suportado: 170000
     Quebra com peso: true
@@ -984,10 +1066,10 @@ Varas:
       Perolas: 65.0
       Peso: 8.0
     Reparo:
-      money: 100000.0
+      money: 680.0
       perolas: 6000.0
     Evoluir:
-      money: 6500000.0
+      money: 35800.0
       perolas: 50000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -995,6 +1077,7 @@ Varas:
       Colecao: 74
       Maior peso: 71000
     Recompensas:
+      - '1.0,reparador'
       - '24.0,pedra'
       - '12.0,ferro'
       - '7.0,diamante'
@@ -1009,6 +1092,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -1043,6 +1127,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   estelar:
     Nivel: 15
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 950
+    Reparadores: 10
     Nome: '&bVara Estelar'
     Peso suportado: 260000
     Quebra com peso: true
@@ -1056,10 +1144,10 @@ Varas:
       Perolas: 70.0
       Peso: 10.0
     Reparo:
-      money: 150000.0
+      money: 780.0
       perolas: 9000.0
     Evoluir:
-      money: 13000000.0
+      money: 56600.0
       perolas: 80000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -1067,6 +1155,7 @@ Varas:
       Colecao: 80
       Maior peso: 110000
     Recompensas:
+      - '1.0,reparador'
       - '25.0,pedra'
       - '13.0,ferro'
       - '7.5,diamante'
@@ -1081,6 +1170,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -1115,6 +1205,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   ancestral:
     Nivel: 16
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 1040
+    Reparadores: 11
     Nome: '&6Vara Ancestral'
     Peso suportado: 400000
     Quebra com peso: true
@@ -1128,10 +1222,10 @@ Varas:
       Perolas: 75.0
       Peso: 12.0
     Reparo:
-      money: 230000.0
+      money: 900.0
       perolas: 14000.0
     Evoluir:
-      money: 26000000.0
+      money: 94400.0
       perolas: 125000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -1139,6 +1233,7 @@ Varas:
       Colecao: 86
       Maior peso: 180000
     Recompensas:
+      - '1.0,reparador'
       - '26.0,pedra'
       - '14.0,ferro'
       - '8.0,diamante'
@@ -1153,6 +1248,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -1187,6 +1283,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   divina:
     Nivel: 17
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 1150
+    Reparadores: 11
     Nome: '&eVara Divina'
     Peso suportado: 650000
     Quebra com peso: true
@@ -1200,10 +1300,10 @@ Varas:
       Perolas: 80.0
       Peso: 14.0
     Reparo:
-      money: 350000.0
+      money: 1040.0
       perolas: 21000.0
     Evoluir:
-      money: 52000000.0
+      money: 135000.0
       perolas: 200000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -1211,6 +1311,7 @@ Varas:
       Colecao: 90
       Maior peso: 270000
     Recompensas:
+      - '1.0,reparador'
       - '27.0,pedra'
       - '15.0,ferro'
       - '8.5,diamante'
@@ -1225,6 +1326,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'
@@ -1259,6 +1361,10 @@ Varas:
           - '&aVoce ja tem esta vara (ou melhor).'
   eterna:
     Nivel: 18
+    # Peixes que a vara aguenta ate quebrar (Durabilidade no config.yml) e
+    # quantos reparadores o conserto completo gasta.
+    Durabilidade: 1260
+    Reparadores: 12
     Nome: '&4Vara Eterna'
     Peso suportado: 1000000
     Quebra com peso: true
@@ -1272,10 +1378,10 @@ Varas:
       Perolas: 85.0
       Peso: 16.0
     Reparo:
-      money: 500000.0
+      money: 1200.0
       perolas: 32000.0
     Evoluir:
-      money: 100000000.0
+      money: 194000.0
       perolas: 320000.0
     # Dinheiro nao basta: so evolui quem ja pescou o bastante.
     Requisitos:
@@ -1283,6 +1389,7 @@ Varas:
       Colecao: 95
       Maior peso: 420000
     Recompensas:
+      - '1.0,reparador'
       - '28.0,pedra'
       - '16.0,ferro'
       - '9.0,diamante'
@@ -1297,6 +1404,7 @@ Varas:
         - ' &7Nivel: &f{nivel}'
         - ' &7Peso suportado: &f{peso_suportado}g'
         - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
         - ''
         - ' &bEncantamentos:'
         - '{encantamentos}'

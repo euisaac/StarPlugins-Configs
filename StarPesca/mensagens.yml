@@ -13,7 +13,7 @@
 #  Em titulos, <nl> separa o titulo do subtitulo.
 # ==========================================================================
 
-Versao do modelo: 4
+Versao do modelo: 5
 
 Prefixo: '&8[&bPesca&8] &7'
 
@@ -128,7 +128,7 @@ Pesca:
   Vara de outro: '&cEssa vara e de &f{dono}&c, nao sua. Ela foi recolhida.'
   Vara entregue: '&aVoce recebeu a sua vara.'
   Vara ja tem: '&cVoce ja esta com a sua vara.'
-  Vara quebrada: '&cSua vara esta quebrada! Repare no menu da vara.'
+  Vara quebrada: '&cSua vara esta quebrada! Conserte no &fferreiro&c (/pesca reparar).'
   Intervalo: '&cEspere &f{tempo}&c para pescar de novo.'
   Escapou: '&cO peixe era mais pesado do que sua vara suporta (&f{peso}g&c) e escapou!'
   Quebrou: '&cO peixe (&f{peso}g&c) era pesado demais e &lQUEBROU&c a sua vara!'
@@ -284,6 +284,8 @@ Torneio:
   Tipo sorteado: 'Sorteado'
   Comecando: 'comecando...'
   # /starpesca torneio agenda
+  # /starpesca torneio encerrar|parar sem dizer qual: a lista dos que valem.
+  Encerrar qual: '&b&lTORNEIOS VALENDO &7(diga qual quer {acao}):'
   Agenda cabecalho: '&b&lTORNEIOS &7(valendo e agendados)'
   Agenda ativo: ' &a● &f{id} &7- {nome}: &f{tipo} &7(acaba em &f{tempo}&7, &f{participantes}&7 participante(s))'
   Agenda agendado: ' &7○ &f{id} &7- {nome}: &f{tipo} &8| &7{quando} &8(comeca em &7{tempo}&8)'
@@ -391,6 +393,21 @@ Placar:
   Torneio nenhum: '&7nenhum'
   Torneio fora: '&epesque p/ entrar'
   Torneio posicao: '&e{posicao}º &7de {participantes}'
+
+# Durabilidade das varas (config.yml > Durabilidade) e varas especiais.
+Durabilidade:
+  Infinita: '&f∞'
+  Quebrou: '&cSua &f{vara}&c quebrou! Conserte no &fferreiro&c com &b{reparadores} reparador(es)&c (/pesca reparar).'
+  Acabando: '&eSua &f{vara}&e esta acabando: so &f{durabilidade}&e de durabilidade. Conserte no ferreiro (/pesca reparar).'
+  Especial quebrada: '&cEsta vara especial esta quebrada. Conserte no &fferreiro&c (/pesca reparar) com ela na mao.'
+  Inteira: '&aEssa vara ja esta inteira.'
+  Falta reparador: '&cVoce nao tem reparadores suficientes. Ganhe pescando ou compre na loja de perolas.'
+  Sem vara: '&cNao ha vara para consertar.'
+  Deu reparador: '&aDeu &f{quantidade} reparador(es)&a para &f{jogador}&a.'
+  Recebeu reparador: '&aVoce recebeu &f{quantidade} reparador(es) de vara&a.'
+  Deu vara: '&aDeu &f{quantidade}x {vara}&a para &f{jogador}&a.'
+  Recebeu vara: '&aVoce recebeu a &f{vara}&a!'
+  Vara especial invalida: '&cVaras especiais: &f{varas}'
 
 Requisitos:
   Titulo: '&7Requisitos:'

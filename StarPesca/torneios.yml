@@ -11,7 +11,8 @@
 #    Nome                 como aparece nos avisos, menus e hologramas
 #    Categoria            MENSAL (Torneio do Mes) ou EVENTO; cada categoria tem
 #                         o seu holograma e o seu grupo no menu
-#    Tipo                 PESO, QUANTIDADE, RARIDADE, VALOR ou ALEATORIO (sorteia
+#    Tipo                 PESO, PESO_TOTAL, QUANTIDADE, RARIDADE, VALOR, VENDAS
+#                         ou ALEATORIO (sorteia
 #                         entre os "Tipos:" a cada vez que comeca; vazio = todos)
 #    Vara                 vara_do_player, vara_zerada ou vara_sem_upgrade
 #    Quando.Tipo          MENSAL    sempre um valendo, ate o fim do mes
@@ -38,16 +39,19 @@
 #
 #  Tipos:
 #    PESO        vence quem pescar o peixe mais pesado
+#    PESO_TOTAL  vence quem somar mais peso em peixes (todos os que pescou)
 #    QUANTIDADE  vence quem pescar mais peixes
 #    RARIDADE    vence quem somar mais pontos de raridade (peixes.yml)
 #    VALOR       vence quem pescar peixes que somem mais valor de venda
+#    VENDAS      vence quem ganhar mais dinheiro VENDENDO peixe (sacola ou
+#                venda automatica) durante o torneio
 #
 #  Recompensas: Perolas, Economias (por economia do economias.yml) e
 #  Comandos ({jogador}). Duracao em minutos.
 #  Nas mensagens: {nome} {tipo} {tempo} {premio} {jogador} {valor} e
 #  {1_nome} {1_valor} ... {3_nome} {3_valor}.
 # ==========================================================================
-Versao do modelo: 2
+Versao do modelo: 3
 
 Torneios:
   # Os dois Torneios do Mes: sempre valendo, ate o ultimo dia do mes.
@@ -77,7 +81,7 @@ Torneios:
     Nome: 'Evento de Quarta'
     Categoria: EVENTO
     Tipo: ALEATORIO
-    Tipos: [ PESO, QUANTIDADE, RARIDADE, VALOR ]
+    Tipos: [ PESO, PESO_TOTAL, QUANTIDADE, RARIDADE, VALOR, VENDAS ]
     Vara: vara_do_player
     Quando:
       Tipo: SEMANAL
@@ -171,6 +175,14 @@ Tipos:
   VALOR:
     Nome: 'Maior valor'
     Descricao: 'Vence quem somar mais valor em peixes.'
+    Unidade: ''
+  PESO_TOTAL:
+    Nome: 'Mais peso pescado'
+    Descricao: 'Vence quem somar mais peso em peixes.'
+    Unidade: 'g'
+  VENDAS:
+    Nome: 'Maior vendedor'
+    Descricao: 'Vence quem ganhar mais dinheiro vendendo peixes.'
     Unidade: ''
 
 # Duracao padrao (minutos) do torneio avulso e do agendamento sem Duracao.

@@ -1,0 +1,143 @@
+# ==========================================================================
+#  StarPesca - varas especiais
+#
+#  Varas fora da evolucao: cada uma e um ITEM, dado pelo comando (funciona no
+#  console, em caixas, loja, voto...):
+#    /starpesca darvara <jogador> <id> [quantidade]
+#  Quem pesca com ela na mao usa os atributos DELA (nivel dos peixes, peso,
+#  intervalo, bonus e encantamentos fixos) no lugar da vara da evolucao. Os
+#  encantamentos do perfil nao entram: a especial tem os dela.
+#  O item pode ser trocado entre jogadores e entra na area de pesca junto.
+#
+#  Os campos sao os mesmos do varas.yml (Nivel, Peso suportado, Intervalo,
+#  Mordida, Bonus, Reparo, Recompensas, Item), mais:
+#    Durabilidade   peixes ate quebrar (0 = nunca quebra); fica no proprio item
+#    Reparadores    quantos o conserto completo gasta (no ferreiro)
+#    Encantamentos  id -> nivel (do encantamentos.yml)
+#  Na lore do Item: {nome} {nivel} {peso_suportado} {intervalo}
+#  {durabilidade} {durabilidade_maxima} {durabilidade_barra} e a linha
+#  {encantamentos}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Varas:
+  # Vendida na loja de perolas (menus.yml > Loja): um atalho no meio da evolucao.
+  relampago:
+    Nome: '&e&lVara Relampago'
+    Nivel: 6
+    Peso suportado: 600
+    Intervalo: 4
+    Mordida:
+      Minimo: 4
+      Maximo: 16
+    Auto venda: true
+    Bonus:
+      Chance: 6.0
+      Perolas: 15.0
+      Peso: 5.0
+    Durabilidade: 500
+    Reparadores: 4
+    Reparo:
+      money: 300.0
+    Encantamentos:
+      velocidade: 5
+      sortudo: 3
+    Recompensas:
+      - '1.5,reparador'
+    Item:
+      Material: FISHING_ROD
+      Brilho: true
+      Nome: '&e&lVara Relampago'
+      Lore:
+        - '&7Rapida como um raio.'
+        - ''
+        - ' &7Nivel dos peixes: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
+        - ''
+        - ' &eEncantamentos:'
+        - '{encantamentos}'
+  # So por comando (caixas, eventos, ranking...).
+  kraken_dourada:
+    Nome: '&6&lVara do Kraken Dourado'
+    Nivel: 13
+    Peso suportado: 130000
+    Intervalo: 3
+    Mordida:
+      Minimo: 3
+      Maximo: 12
+    Auto venda: true
+    Bonus:
+      Chance: 15.0
+      Perolas: 35.0
+      Peso: 12.0
+    Durabilidade: 1500
+    Reparadores: 10
+    Reparo:
+      money: 2000.0
+    Encantamentos:
+      sortudo: 10
+      multiplicador: 10
+      peso: 8
+      velocidade: 8
+      duplicador: 5
+    Recompensas:
+      - '2.0,reparador'
+      - '1.0,diamante'
+    Item:
+      Material: FISHING_ROD
+      Brilho: true
+      Nome: '&6&lVara do Kraken Dourado'
+      Lore:
+        - '&7Forjada com os tentaculos de um'
+        - '&7kraken das profundezas.'
+        - ''
+        - ' &7Nivel dos peixes: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ' &7Durabilidade: {durabilidade_barra} &f{durabilidade}&7/&f{durabilidade_maxima}'
+        - ''
+        - ' &6Encantamentos:'
+        - '{encantamentos}'
+  # So por comando, e nunca quebra (Durabilidade: 0).
+  tridente_divino:
+    Nome: '&b&lTridente Divino'
+    Nivel: 18
+    Peso suportado: 1000000
+    Intervalo: 2
+    Mordida:
+      Minimo: 2
+      Maximo: 8
+    Auto venda: true
+    Bonus:
+      Chance: 25.0
+      Perolas: 60.0
+      Peso: 20.0
+    Durabilidade: 0
+    Reparadores: 1
+    Encantamentos:
+      sortudo: 20
+      multiplicador: 20
+      peso: 15
+      velocidade: 12
+      duplicador: 10
+      valor: 10
+    Recompensas:
+      - '3.0,reparador'
+      - '2.0,diamante'
+    Item:
+      Material: FISHING_ROD
+      Brilho: true
+      Nome: '&b&lTridente Divino'
+      Lore:
+        - '&7A vara dos deuses do mar.'
+        - '&8Nunca quebra.'
+        - ''
+        - ' &7Nivel dos peixes: &f{nivel}'
+        - ' &7Peso suportado: &f{peso_suportado}'
+        - ' &7Intervalo: &f{intervalo}s'
+        - ''
+        - ' &bEncantamentos:'
+        - '{encantamentos}'
