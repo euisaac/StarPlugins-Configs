@@ -18,6 +18,9 @@ maximo-corridas: 30
 # Quem cai do servidor no meio da corrida tem esse tempo (segundos) para
 # entrar de novo e voltar para o grupo. 0 = sai da corrida na hora.
 reconexao-segundos: 180
+# Parede escura a 1 bloco atras de cada portao ainda fechado (esconde o vazio do
+# outro lado); some quando a porta abre. "nenhum" desliga.
+bloco-cortina-portao: "minecraft:black_wool"
 # Ao reiniciar o plugin (ou o servidor), as corridas sao guardadas e continuam
 # de onde pararam. Sala que estava em combate recomeca o combate.
 manter-corridas-ao-reiniciar: true
@@ -95,6 +98,8 @@ dificuldades:
 #           x (1 + vida-por-sala x sala) x (1 + vida-por-andar x (andar-1))
 #   mobs  = mobs-base do tamanho + mobs-por-jogador x (jogadores-1)  (arredonda pra baixo)
 escala:
+  # Multiplica o dano de todos os mobs (os valores dos temas sao a base).
+  dano-global: 1.7
   vida-por-jogador: 0.6
   mobs-por-jogador: 0.35
   dano-por-jogador: 0.05
@@ -131,6 +136,9 @@ geracao:
   preparo-segundos: 3
   # Combate pode ter ondas: chance de vir uma segunda onda.
   chance-segunda-onda: 0.30
+  # Chance de cada ponto de bau escondido (la azul-clara) virar um bau com loot do tema
+  # (um pouco menos itens que o bau normal). O ponto que nao sorteia fica vazio.
+  chance-bau-escondido: 0.35
 
 # Tema "aleatorio": cada andar sorteia um tema diferente do anterior.
 # Ao terminar um andar o grupo pode continuar (mais forte) ou sair.
@@ -174,6 +182,9 @@ marcadores:
   boss: "minecraft:purple_wool"
   bau: "minecraft:yellow_wool"
   entrada: "minecraft:lime_wool"
+  # Bau escondido: coloque em nichos discretos (atras de estante, recuo da parede...).
+  # Vale em qualquer tipo de sala; vira bau so pela chance geracao.chance-bau-escondido.
+  bau-escondido: "minecraft:light_blue_wool"
 
 # Blocos novos que nao existem na versao do servidor caem num substituto.
 # Ja existe uma lista padrao; aqui voce pode adicionar ou trocar.

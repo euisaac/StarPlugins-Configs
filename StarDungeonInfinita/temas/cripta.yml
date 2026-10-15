@@ -13,6 +13,8 @@ blocos:
   portao: "minecraft:iron_bars"
 particula-ambiente: ASH
 loot: padrao
+# Sobe quando o plugin traz mobs novos: quem ja tem o tema recebe so os que faltam.
+versao-mobs: 2
 mobs:
   m1:
     tipo: ZOMBIE
@@ -44,6 +46,36 @@ mobs:
     dano: 3.5
     peso: 4
     velocidade: 1
+  m5:
+    tipo: HUSK
+    nome: "&eMumia Esquecida"
+    vida: 28
+    dano: 5
+    peso: 5
+    a-partir-da-sala: 4
+  m6:
+    tipo: CAVE_SPIDER
+    nome: "&8Aranha Tumular"
+    vida: 14
+    dano: 3.5
+    peso: 4
+  m7:
+    tipo: ZOMBIE
+    nome: "&7Coveiro"
+    vida: 30
+    dano: 5
+    peso: 5
+    a-partir-da-sala: 5
+    equipamento:
+      mao: IRON_SHOVEL
+      cabeca: LEATHER_HELMET
+  m8:
+    tipo: VEX
+    nome: "&fAlma Penada"
+    vida: 14
+    dano: 4
+    peso: 3
+    a-partir-da-sala: 6
 elites:
   e1:
     tipo: WITHER_SKELETON
@@ -65,6 +97,23 @@ elites:
       mao: IRON_SWORD
       cabeca: IRON_HELMET
       peito: IRON_CHESTPLATE
+  e3:
+    tipo: EVOKER
+    nome: "&5&lNecromante"
+    vida: 90
+    dano: 7
+    peso: 6
+    escala: 1.15
+  e4:
+    tipo: HUSK
+    nome: "&6&lFarao Desperto"
+    vida: 130
+    dano: 8
+    peso: 6
+    escala: 1.15
+    equipamento:
+      mao: GOLDEN_SWORD
+      cabeca: GOLDEN_HELMET
 boss:
   tipo: WITHER_SKELETON
   nome: "&4&lRei da Cripta"

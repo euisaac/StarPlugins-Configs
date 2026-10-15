@@ -9,6 +9,8 @@ blocos:
   portao: "minecraft:iron_bars"
 particula-ambiente: PORTAL
 loot: padrao
+# Sobe quando o plugin traz mobs novos: quem ja tem o tema recebe so os que faltam.
+versao-mobs: 2
 mobs:
   m1:
     tipo: ENDERMAN
@@ -37,6 +39,37 @@ mobs:
     dano: 4
     peso: 4
     a-partir-da-sala: 3
+  m5:
+    tipo: VEX
+    nome: "&dFragmento do Vazio"
+    vida: 14
+    dano: 4
+    peso: 4
+    a-partir-da-sala: 3
+  m6:
+    tipo: SKELETON
+    nome: "&5Arqueiro Estelar"
+    vida: 22
+    dano: 5
+    peso: 5
+    equipamento:
+      mao: BOW
+      cabeca: LEATHER_HELMET
+  m7:
+    tipo: ZOMBIE
+    nome: "&8Errante do Fim"
+    vida: 30
+    dano: 5
+    peso: 6
+    equipamento:
+      mao: STONE_SWORD
+  m8:
+    tipo: ENDERMITE
+    nome: "&5Enxame do Vazio"
+    vida: 12
+    dano: 3.5
+    peso: 4
+    a-partir-da-sala: 4
 elites:
   e1:
     tipo: SHULKER
@@ -51,6 +84,23 @@ elites:
     dano: 9
     peso: 10
     escala: 1.3
+  e3:
+    tipo: EVOKER
+    nome: "&d&lProfeta do Vazio"
+    vida: 100
+    dano: 8
+    peso: 6
+    escala: 1.15
+  e4:
+    tipo: WITHER_SKELETON
+    nome: "&5&lCavaleiro do Fim"
+    vida: 130
+    dano: 9
+    peso: 6
+    escala: 1.15
+    equipamento:
+      mao: DIAMOND_SWORD
+      cabeca: CHAINMAIL_HELMET
 boss:
   tipo: ENDERMAN
   nome: "&5&lSenhor do Vazio"

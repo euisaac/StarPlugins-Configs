@@ -9,6 +9,8 @@ blocos:
   portao: "minecraft:iron_bars"
 particula-ambiente: LAVA
 loot: padrao
+# Sobe quando o plugin traz mobs novos: quem ja tem o tema recebe so os que faltam.
+versao-mobs: 2
 mobs:
   m1:
     tipo: BLAZE
@@ -38,6 +40,37 @@ mobs:
     peso: 8
     equipamento:
       mao: GOLDEN_SWORD
+  m5:
+    tipo: PIGLIN
+    nome: "&6Piglin Saqueador"
+    vida: 22
+    dano: 5
+    peso: 6
+    equipamento:
+      mao: CROSSBOW
+  m6:
+    tipo: ZOGLIN
+    nome: "&cZoglin Furioso"
+    vida: 32
+    dano: 6
+    peso: 4
+    a-partir-da-sala: 4
+  m7:
+    tipo: SKELETON
+    nome: "&8Arqueiro Cinzento"
+    vida: 22
+    dano: 4.5
+    peso: 5
+    equipamento:
+      mao: BOW
+      cabeca: GOLDEN_HELMET
+  m8:
+    tipo: MAGMA_CUBE
+    nome: "&6Brasa Saltitante"
+    vida: 16
+    dano: 4
+    peso: 4
+    a-partir-da-sala: 3
 elites:
   e1:
     tipo: PIGLIN_BRUTE
@@ -54,6 +87,23 @@ elites:
     dano: 8
     peso: 6
     escala: 1.5
+  e3:
+    tipo: GHAST
+    nome: "&f&lLamento Ardente"
+    vida: 70
+    dano: 8
+    peso: 4
+    escala: 1.15
+  e4:
+    tipo: WITHER_SKELETON
+    nome: "&4&lCarrasco de Brasa"
+    vida: 130
+    dano: 9
+    peso: 6
+    escala: 1.15
+    equipamento:
+      mao: IRON_AXE
+      cabeca: NETHERITE_HELMET
 boss:
   tipo: PIGLIN_BRUTE
   nome: "&4&lCarrasco das Chamas"

@@ -9,6 +9,8 @@ blocos:
   portao: "minecraft:iron_bars"
 particula-ambiente: SNOWFLAKE
 loot: padrao
+# Sobe quando o plugin traz mobs novos: quem ja tem o tema recebe so os que faltam.
+versao-mobs: 2
 mobs:
   m1:
     tipo: STRAY
@@ -41,6 +43,40 @@ mobs:
     dano: 3
     peso: 3
     velocidade: 1
+  m5:
+    tipo: DROWNED
+    nome: "&3Afogado do Lago Gelado"
+    vida: 26
+    dano: 5
+    peso: 5
+    a-partir-da-sala: 4
+    equipamento:
+      mao: TRIDENT
+  m6:
+    tipo: SPIDER
+    nome: "&bAranha da Geada"
+    vida: 20
+    dano: 4
+    peso: 5
+  m7:
+    tipo: ZOMBIE
+    nome: "&fViajante Perdido"
+    vida: 28
+    dano: 4.5
+    peso: 6
+    equipamento:
+      cabeca: LEATHER_HELMET
+      peito: LEATHER_CHESTPLATE
+  m8:
+    tipo: STRAY
+    nome: "&9Batedor da Nevasca"
+    vida: 22
+    dano: 5
+    peso: 4
+    a-partir-da-sala: 5
+    equipamento:
+      mao: BOW
+      cabeca: CHAINMAIL_HELMET
 elites:
   e1:
     tipo: POLAR_BEAR
@@ -58,6 +94,24 @@ elites:
     equipamento:
       mao: BOW
       cabeca: DIAMOND_HELMET
+  e3:
+    tipo: ZOMBIE
+    nome: "&f&lGigante de Gelo"
+    vida: 150
+    dano: 9
+    peso: 6
+    escala: 1.15
+    equipamento:
+      mao: IRON_SWORD
+      cabeca: DIAMOND_HELMET
+      peito: IRON_CHESTPLATE
+  e4:
+    tipo: ILLUSIONER
+    nome: "&3&lIlusionista da Nevasca"
+    vida: 90
+    dano: 7
+    peso: 4
+    escala: 1.15
 boss:
   tipo: STRAY
   nome: "&b&lRainha do Inverno"

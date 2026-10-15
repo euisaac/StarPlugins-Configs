@@ -9,6 +9,8 @@ blocos:
   portao: "minecraft:iron_bars"
 particula-ambiente: ""
 loot: padrao
+# Sobe quando o plugin traz mobs novos: quem ja tem o tema recebe so os que faltam.
+versao-mobs: 2
 mobs:
   m1:
     tipo: ZOMBIE
@@ -39,6 +41,38 @@ mobs:
     vida: 10
     dano: 2.5
     peso: 4
+  m5:
+    tipo: HUSK
+    nome: "&6Minerador Ressecado"
+    vida: 28
+    dano: 5
+    peso: 5
+    a-partir-da-sala: 3
+    equipamento:
+      mao: IRON_SHOVEL
+  m6:
+    tipo: PILLAGER
+    nome: "&7Saqueador das Galerias"
+    vida: 22
+    dano: 5
+    peso: 5
+    equipamento:
+      mao: CROSSBOW
+  m7:
+    tipo: ZOMBIE_VILLAGER
+    nome: "&8Ferreiro Amaldicoado"
+    vida: 28
+    dano: 5
+    peso: 5
+    a-partir-da-sala: 4
+    equipamento:
+      mao: IRON_AXE
+  m8:
+    tipo: SLIME
+    nome: "&2Lodo das Cavernas"
+    vida: 18
+    dano: 4
+    peso: 3
 elites:
   e1:
     tipo: VINDICATOR
@@ -58,6 +92,24 @@ elites:
       mao: DIAMOND_PICKAXE
       cabeca: IRON_HELMET
       peito: IRON_CHESTPLATE
+  e3:
+    tipo: RAVAGER
+    nome: "&6&lEscavadora Viva"
+    vida: 150
+    dano: 10
+    peso: 4
+    escala: 1.15
+  e4:
+    tipo: SKELETON
+    nome: "&7&lAtirador da Mina"
+    vida: 95
+    dano: 8
+    peso: 6
+    escala: 1.15
+    equipamento:
+      mao: BOW
+      cabeca: IRON_HELMET
+      peito: CHAINMAIL_CHESTPLATE
 boss:
   tipo: IRON_GOLEM
   nome: "&6&lColosso da Mina"

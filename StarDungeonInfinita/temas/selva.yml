@@ -9,6 +9,8 @@ blocos:
   portao: "minecraft:iron_bars"
 particula-ambiente: SPORE_BLOSSOM_AIR
 loot: padrao
+# Sobe quando o plugin traz mobs novos: quem ja tem o tema recebe so os que faltam.
+versao-mobs: 2
 mobs:
   m1:
     tipo: SPIDER
@@ -38,6 +40,34 @@ mobs:
     dano: 3
     peso: 4
     a-partir-da-sala: 2
+  m5:
+    tipo: PILLAGER
+    nome: "&2Batedor da Tribo"
+    vida: 24
+    dano: 5
+    peso: 6
+    equipamento:
+      mao: CROSSBOW
+  m6:
+    tipo: SLIME
+    nome: "&aLodo do Pantano"
+    vida: 20
+    dano: 4
+    peso: 4
+  m7:
+    tipo: DROWNED
+    nome: "&2Afogado do Pantano"
+    vida: 24
+    dano: 4.5
+    peso: 5
+    a-partir-da-sala: 3
+  m8:
+    tipo: SPIDER
+    nome: "&6Aranha Saltadora"
+    vida: 18
+    dano: 4
+    peso: 4
+    a-partir-da-sala: 4
 elites:
   e1:
     tipo: VINDICATOR
@@ -54,6 +84,23 @@ elites:
     dano: 7
     peso: 6
     escala: 1.8
+  e3:
+    tipo: WITCH
+    nome: "&5&lBruxa Ancia"
+    vida: 90
+    dano: 6
+    peso: 6
+    escala: 1.15
+  e4:
+    tipo: PILLAGER
+    nome: "&2&lCapitao da Tribo"
+    vida: 110
+    dano: 8
+    peso: 6
+    escala: 1.15
+    equipamento:
+      mao: CROSSBOW
+      cabeca: LEATHER_HELMET
 boss:
   tipo: RAVAGER
   nome: "&2&lFera Ancestral"
