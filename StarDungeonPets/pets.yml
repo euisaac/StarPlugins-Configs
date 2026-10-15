@@ -1,0 +1,245 @@
+# ============================================================
+#  StarDungeonPets - pets
+#
+#  Cada pet:
+#    nome, raridade (COMUM/RARO/EPICO/LENDARIO do config.yml),
+#    entidade (nome da entidade; alternativas com "|": "ALLAY|PARROT"),
+#    icone (item do menu; alternativas com "|"),
+#    variante (opcional: cor do papagaio RED/BLUE/GREEN/CYAN/GRAY,
+#              gato ALL_BLACK/BLACK/RED/SIAMESE..., raposa RED/SNOW,
+#              lobo PALE/BLACK/SNOWY... - o que a versao nao tiver e ignorado),
+#    filhote (true/false), escala (1.0 = normal; precisa 1.20.5+),
+#    velocidade (multiplica a do config), descricao (lore),
+#    habilidades (uma ou mais).
+#
+#  Habilidades (campo "tipo"):
+#    ATACAR   intervalo, alcance, dano, area (0 = so o alvo),
+#             efeito (POISON, SLOWNESS, WITHER...), nivel, duracao
+#             -> ataca o mob de dungeon mais perto do dono (o abate e do dono)
+#    CURAR    intervalo, valor (vida; 2 = 1 coracao), raio
+#             -> cura os companheiros machucados no raio
+#    EFEITO   efeito (SPEED, HASTE, RESISTANCE, STRENGTH, JUMP_BOOST,
+#             REGENERATION, NIGHT_VISION...), nivel, duracao, intervalo,
+#             alvo (dono | grupo), raio
+#    ESCUDO   intervalo, absorcao (coracoes; arredonda de 2 em 2), alvo, raio
+#    REVIVER  usos, a-cada-salas, atraso (segundos ate reviver)
+#             -> ex.: 2 usos a cada 5 salas; os usos voltam a cada bloco de salas
+#    ILUMINAR nivel-luz (1-15) -> luz invisivel em volta do pet (1.17+)
+#    COLETAR  raio -> puxa os itens do chao ate o dono (tambem aceita "IMA")
+#  Opcional em qualquer uma: nome, descricao, particula, som.
+#
+#  Para o jogador possuir: /petdungeonadmin dar <jogador> <id>
+#  ou a permissao stardungeonpets.pet.<id>
+# ============================================================
+
+pets:
+  lobo_guerreiro:
+    nome: "Lobo Guerreiro"
+    raridade: COMUM
+    entidade: WOLF
+    icone: BONE
+    descricao:
+      - "Fiel e destemido, avança contra"
+      - "qualquer criatura que ameace o dono."
+    habilidades:
+      mordida:
+        tipo: ATACAR
+        nome: "Mordida Feroz"
+        intervalo: 2.0
+        alcance: 10
+        dano: 5
+        som: "ENTITY_WOLF_GROWL"
+
+  raposa_veloz:
+    nome: "Raposa Veloz"
+    raridade: COMUM
+    entidade: FOX
+    icone: "SWEET_BERRIES|APPLE"
+    variante: RED
+    descricao:
+      - "Esperta e ligeira, ensina o dono"
+      - "a correr e a minerar mais rápido."
+    habilidades:
+      passos:
+        tipo: EFEITO
+        nome: "Passos Ligeiros"
+        efeito: SPEED
+        nivel: 2
+        duracao: 15
+        intervalo: 5
+        alvo: dono
+      garras:
+        tipo: EFEITO
+        nome: "Garras Ágeis"
+        efeito: HASTE
+        nivel: 1
+        duracao: 15
+        intervalo: 5
+        alvo: dono
+
+  abelha_rainha:
+    nome: "Abelha Rainha"
+    raridade: RARO
+    entidade: BEE
+    icone: "HONEYCOMB|HONEY_BOTTLE"
+    descricao:
+      - "Soberana da colmeia, seu ferrão"
+      - "envenena os inimigos da dungeon."
+    habilidades:
+      ferrao:
+        tipo: ATACAR
+        nome: "Ferrão Real"
+        intervalo: 3.0
+        alcance: 10
+        dano: 4
+        efeito: POISON
+        nivel: 2
+        duracao: 5
+        particula: "FALLING_HONEY|DRIPPING_HONEY"
+        som: "ENTITY_BEE_STING"
+
+  fada_curandeira:
+    nome: "Fada Curandeira"
+    raridade: RARO
+    entidade: "ALLAY|PARROT"
+    icone: "AMETHYST_SHARD|GLOWSTONE_DUST"
+    descricao:
+      - "Um espírito gentil que fecha as"
+      - "feridas de todo o grupo."
+    habilidades:
+      cura:
+        tipo: CURAR
+        nome: "Sopro Restaurador"
+        intervalo: 5
+        valor: 4
+        raio: 10
+        particula: "END_ROD"
+
+  gato_sombrio:
+    nome: "Gato Sombrio"
+    raridade: RARO
+    entidade: CAT
+    icone: "INK_SAC"
+    variante: ALL_BLACK
+    descricao:
+      - "Olhos que brilham no escuro e"
+      - "afastam o que se esconde nas sombras."
+    habilidades:
+      olhos:
+        tipo: ILUMINAR
+        nome: "Olhos Luminosos"
+        nivel-luz: 12
+      visao:
+        tipo: EFEITO
+        nome: "Visão Felina"
+        efeito: NIGHT_VISION
+        nivel: 1
+        duracao: 20
+        intervalo: 8
+        alvo: dono
+
+  golem_guardiao:
+    nome: "Golem Guardião"
+    raridade: EPICO
+    entidade: IRON_GOLEM
+    icone: "IRON_BLOCK"
+    escala: 0.4
+    descricao:
+      - "Um pequeno colosso de ferro que"
+      - "protege o dono e prende os inimigos."
+    habilidades:
+      couraca:
+        tipo: ESCUDO
+        nome: "Couraça de Ferro"
+        intervalo: 20
+        absorcao: 4
+        alvo: dono
+      punho:
+        tipo: ATACAR
+        nome: "Punho Esmagador"
+        intervalo: 4.0
+        alcance: 8
+        dano: 3
+        efeito: SLOWNESS
+        nivel: 2
+        duracao: 4
+        som: "ENTITY_IRON_GOLEM_ATTACK"
+
+  vagalume:
+    nome: "Vagalume"
+    raridade: EPICO
+    entidade: "ALLAY|PARROT"
+    icone: "GLOWSTONE_DUST|GLOWSTONE"
+    descricao:
+      - "Uma luz viva que clareia os corredores"
+      - "mais escuros e recolhe o que cai."
+    habilidades:
+      clarao:
+        tipo: ILUMINAR
+        nome: "Clarão Vivo"
+        nivel-luz: 15
+      coleta:
+        tipo: COLETAR
+        nome: "Asas Coletoras"
+        raio: 8
+      brilho:
+        tipo: EFEITO
+        nome: "Brilho Guia"
+        efeito: NIGHT_VISION
+        nivel: 1
+        duracao: 20
+        intervalo: 8
+        alvo: grupo
+        raio: 12
+
+  fenix:
+    nome: "Fênix"
+    raridade: LENDARIO
+    entidade: PARROT
+    icone: "BLAZE_POWDER"
+    variante: RED
+    descricao:
+      - "Renasce das cinzas e devolve a vida"
+      - "a quem caiu ao lado do dono."
+    habilidades:
+      renascer:
+        tipo: REVIVER
+        nome: "Chama do Renascer"
+        usos: 2
+        a-cada-salas: 5
+        atraso: 3
+      calor:
+        tipo: CURAR
+        nome: "Calor da Fênix"
+        intervalo: 8
+        valor: 2
+        raio: 8
+        particula: "FLAME"
+
+  lobo_alfa:
+    nome: "Lobo Alfa"
+    raridade: LENDARIO
+    entidade: WOLF
+    icone: "GOLDEN_SWORD"
+    variante: BLACK
+    descricao:
+      - "O líder da matilha. Seu uivo dá força"
+      - "ao grupo e seu ataque varre a sala."
+    habilidades:
+      investida:
+        tipo: ATACAR
+        nome: "Investida da Matilha"
+        intervalo: 3.0
+        alcance: 12
+        dano: 7
+        area: 3
+        som: "ENTITY_WOLF_GROWL"
+      uivo:
+        tipo: EFEITO
+        nome: "Uivo do Alfa"
+        efeito: STRENGTH
+        nivel: 1
+        duracao: 15
+        intervalo: 5
+        alvo: grupo
+        raio: 12

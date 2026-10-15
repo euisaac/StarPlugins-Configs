@@ -1,0 +1,73 @@
+# ============================================================
+#  StarDungeonPets - configuracao geral
+#  Pets e habilidades: pets.yml | Textos: mensagens.yml
+#  Os pets so aparecem dentro das dungeons do StarDungeon
+#  (dungeons normais e Dungeon Infinita).
+# ============================================================
+
+pet:
+  # Nome em cima do pet. {pet} = nome, {pet_colorido} = nome com a cor da
+  # raridade, {jogador} = dono, {nivel} = nivel do pet.
+  nome: "&b{pet} &7de {jogador}"
+  # Mostrar o nome sempre (false = so ao olhar de perto).
+  mostrar-nome: true
+  # Pet sem sons (latido, miado...).
+  silencioso: true
+  # Se uma protecao de regiao bloquear o nascimento de mobs na dungeon,
+  # o pet nasce mesmo assim (so o pet, nada mais).
+  forcar-nascimento: true
+
+seguir:
+  # De quantos em quantos tiques o pet segue o dono e usa as habilidades (20 = 1s).
+  intervalo-tiques: 10
+  # Distancia em que o pet para de andar atras do dono.
+  distancia: 3.0
+  # Longe disso (ou em outro mundo) o pet e teleportado para perto do dono.
+  teleportar-acima-de: 12.0
+  # Servidor sem Paper (sem o "andar ate" do mob): teleporta acima desta distancia.
+  teleportar-sem-paper-acima-de: 4.0
+  # Velocidade ao andar atras do dono (Paper). Cada pet pode multiplicar no pets.yml.
+  velocidade: 1.25
+
+# Mundos onde os pets ficam desligados, mesmo dentro de dungeon.
+# Vazio = funcionam em todas. Aceita comeco com * (ex.: "evento_*").
+desligar-em: []
+
+# Ao invocar o pet.
+invocar:
+  som: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  particula: "TOTEM_OF_UNDYING|TOTEM"
+
+# Nivel do pet: sobe com os abates feitos por ele (por jogador, por pet).
+nivel:
+  abates-por-nivel: 50
+  maximo: 10
+  # Cada nivel acima do 1 soma este tanto em dano, cura e escudo (0.05 = +5%).
+  bonus-por-nivel: 0.05
+
+# Quando um pet revive alguem, avisar todo o grupo (false = so o dono e o revivido).
+avisar-grupo-ao-reviver: true
+
+# Quadro "Pets da Dungeon" no perfil do StarDungeon.
+perfil:
+  mostrar: true
+
+# Raridades (na ordem, da mais comum para a mais rara).
+# cor: codigo de cor do nome (&a, &#FFAA00, &6&l...)
+raridades:
+  COMUM:
+    nome: "Comum"
+    cor: "&f"
+    vidro: "WHITE_STAINED_GLASS_PANE"
+  RARO:
+    nome: "Raro"
+    cor: "&9"
+    vidro: "BLUE_STAINED_GLASS_PANE"
+  EPICO:
+    nome: "Épico"
+    cor: "&5"
+    vidro: "PURPLE_STAINED_GLASS_PANE"
+  LENDARIO:
+    nome: "Lendário"
+    cor: "&6"
+    vidro: "ORANGE_STAINED_GLASS_PANE"
