@@ -13,6 +13,21 @@ altura-chao: 64
 # andares de uma mesma corrida. Aumente se usar salas muito grandes.
 distancia-entre-corridas: 6000
 distancia-entre-andares: 2500
+# Placeholder %stardungeon_infinita% (precisa do PlaceholderAPI): mostra a sala em
+# que o jogador esta, e fica vazio fora da dungeon. Tambem existem
+# %stardungeon_infinita_sala%, _andar, _dificuldade e _tema.
+placeholder:
+  # O espaco antes do simbolo faz parte do texto (fica entre as aspas).
+  formato: " {cor}✧ {sala}"
+  # Cor a partir de cada sala.
+  cores:
+    1: "&a"
+    10: "&e"
+    20: "&6"
+    35: "&c"
+    50: "&5"
+    80: "&4"
+
 # Quantas corridas podem acontecer ao mesmo tempo.
 maximo-corridas: 30
 # Quem cai do servidor no meio da corrida tem esse tempo (segundos) para
@@ -68,6 +83,8 @@ dificuldades:
     loot: 0.8
     dinheiro: 0.7
     salas-por-andar: 6
+    # Multiplica a quantidade de mobs por sala.
+    mobs: 1.0
   NORMAL:
     nome: "&eNormal"
     icone: YELLOW_DYE
@@ -76,6 +93,8 @@ dificuldades:
     loot: 1.0
     dinheiro: 1.0
     salas-por-andar: 8
+    # Multiplica a quantidade de mobs por sala.
+    mobs: 1.3
   DIFICIL:
     nome: "&cDificil"
     icone: RED_DYE
@@ -84,6 +103,8 @@ dificuldades:
     loot: 1.3
     dinheiro: 1.5
     salas-por-andar: 10
+    # Multiplica a quantidade de mobs por sala.
+    mobs: 1.7
   PESADELO:
     nome: "&4&lPesadelo"
     icone: WITHER_ROSE
@@ -92,16 +113,40 @@ dificuldades:
     loot: 1.7
     dinheiro: 2.2
     salas-por-andar: 12
+    # Multiplica a quantidade de mobs por sala.
+    mobs: 2.2
 
 # Como os mobs crescem. A ideia e mais VIDA, nao mais mobs:
 #   vida  = base x dificuldade x (1 + vida-por-jogador x (jogadores-1))
 #           x (1 + vida-por-sala x sala) x (1 + vida-por-andar x (andar-1))
 #   mobs  = mobs-base do tamanho + mobs-por-jogador x (jogadores-1)  (arredonda pra baixo)
+# Balanceamento automatico: se o grupo limpa as salas rapido e quase sem levar
+# dano, as proximas salas ficam mais dificeis (mais vida, mais dano e mais mobs);
+# se alguem cai ou a sala demora muito, volta a aliviar. 1.0 = normal.
+balanceamento:
+  ativo: true
+  passo: 0.15
+  minimo: 1.0
+  maximo: 3.0
+  # Rapido = ate esses segundos por mob; lento = a partir desses.
+  segundos-por-mob-rapido: 6
+  segundos-por-mob-lento: 14
+  # Dano levado na sala, em fracao da vida do grupo (1.0 = a vida inteira de todos).
+  dano-leve: 0.35
+  dano-pesado: 0.9
+  # Quanto o desafio pesa no dano (a vida usa ele inteiro) e mobs a mais por ponto.
+  peso-no-dano: 0.6
+  mobs-por-ponto: 2.5
+
 escala:
   # Multiplica o dano de todos os mobs (os valores dos temas sao a base).
   dano-global: 1.7
   vida-por-jogador: 0.6
   mobs-por-jogador: 0.35
+  # Mobs a mais conforme a corrida avanca (por sala vencida e por andar) e o teto.
+  mobs-por-sala: 0.08
+  mobs-por-andar: 0.5
+  mobs-maximo: 14
   dano-por-jogador: 0.05
   vida-por-sala: 0.06
   dano-por-sala: 0.025
