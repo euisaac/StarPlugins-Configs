@@ -13,6 +13,25 @@ altura-chao: 64
 # andares de uma mesma corrida. Aumente se usar salas muito grandes.
 distancia-entre-corridas: 6000
 distancia-entre-andares: 2500
+# Pagar para comecar uma corrida (Vault ou StarEconomia). O preco e o
+# "preco" da dificuldade vezes o multiplicador do tamanho das salas (que
+# depende de quantos jogadores tem o grupo). Em grupo o lider escolhe no menu
+# se o valor e dividido entre todos ou se ele paga sozinho.
+pagamento:
+  ativo: false
+  dividir-padrao: true
+  multiplicador-tamanho:
+    pequena: 1.0
+    media: 1.5
+    grande: 2.0
+
+# Modo "perder itens" (botao no menu da Infinita): quem cair larga o inventario
+# no chao da sala; em troca o loot e o dinheiro da corrida sobem.
+perder-itens:
+  permitir: true
+  loot: 1.5
+  dinheiro: 1.75
+
 # Placeholder %stardungeon_infinita% (precisa do PlaceholderAPI): mostra a sala em
 # que o jogador esta, e fica vazio fora da dungeon. Tambem existem
 # %stardungeon_infinita_sala%, _andar, _dificuldade e _tema.
@@ -85,6 +104,8 @@ dificuldades:
     salas-por-andar: 6
     # Multiplica a quantidade de mobs por sala.
     mobs: 1.0
+    # Custo para comecar a corrida (com pagamento.ativo).
+    preco: 0
   NORMAL:
     nome: "&eNormal"
     icone: YELLOW_DYE
@@ -95,6 +116,8 @@ dificuldades:
     salas-por-andar: 8
     # Multiplica a quantidade de mobs por sala.
     mobs: 1.3
+    # Custo para comecar a corrida (com pagamento.ativo).
+    preco: 500
   DIFICIL:
     nome: "&cDificil"
     icone: RED_DYE
@@ -105,6 +128,8 @@ dificuldades:
     salas-por-andar: 10
     # Multiplica a quantidade de mobs por sala.
     mobs: 1.7
+    # Custo para comecar a corrida (com pagamento.ativo).
+    preco: 1500
   PESADELO:
     nome: "&4&lPesadelo"
     icone: WITHER_ROSE
@@ -115,6 +140,8 @@ dificuldades:
     salas-por-andar: 12
     # Multiplica a quantidade de mobs por sala.
     mobs: 2.2
+    # Custo para comecar a corrida (com pagamento.ativo).
+    preco: 4000
 
 # Como os mobs crescem. A ideia e mais VIDA, nao mais mobs:
 #   vida  = base x dificuldade x (1 + vida-por-jogador x (jogadores-1))
@@ -170,7 +197,27 @@ geracao:
     CORREDOR: 12
     # Horda: portais soltam ondas de mobs (so nas dificuldades de horda-dificuldades).
     HORDA: 10
+    # Sala das Portas: corredor escuro com celas (baus e mimicos).
+    PORTAS: 8
+    # Corredor Escuro: sem tocha na mao, a Sombra aparece.
+    ESCURO: 8
+    # Armadilha: prende so quem entrou; ondas + flechas e espinhos.
+    ARMADILHA: 7
   horda-dificuldades: [DIFICIL, PESADELO]
+  armadilha-a-partir-da-sala: 4
+  armadilha-intervalo-segundos: 4
+  # Sombra (salas escuras): segundos no escuro sem luz na mao ate ela vir,
+  # dano por segundo (2 = 1 coracao), espera depois de morta e luz maxima
+  # que ainda conta como escuro.
+  sombra-segundos-no-escuro: 4
+  sombra-dano: 2.0
+  sombra-espera-segundos: 20
+  sombra-luz-maxima: 3
+  # Chances: bau da sala das portas ser mimico; ponto de emboscada soltar
+  # monstros; mob de combate vir invisivel (espreitador).
+  chance-mimico: 0.3
+  chance-emboscada: 0.6
+  chance-espreitador: 0.12
   # Elite so a partir dessa sala do andar.
   elite-a-partir-da-sala: 3
   # Descanso nao aparece duas vezes seguidas e so depois de N salas desde o ultimo.

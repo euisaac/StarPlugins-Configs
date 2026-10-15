@@ -120,6 +120,12 @@ porta:
   revelada: "&7Uma sala de {tipo} &7se revelou!"
 
 sala:
+  armadilha-titulo: "&4&lARMADILHA!"
+  armadilha-subtitulo: "&cVoce esta preso - sobreviva"
+  armadilha-fora-titulo: "&4&lARMADILHA!"
+  armadilha-fora-subtitulo: "&f{jogador} &cficou preso la dentro"
+  armadilha-falhou-titulo: "&7A armadilha venceu"
+  armadilha-falhou-subtitulo: "&8a sala se abriu..."
   horda-titulo: "&5&lHORDA!"
   horda-subtitulo: "&dPortais se abriram - aguente as ondas"
   horda-onda-titulo: "&5Nova horda!"
@@ -244,7 +250,7 @@ editor:
     - "&f/dginf editor editar <tema/tipo/nome>"
     - "&f/dginf editor salvar <nome> [tipo]"
     - "&f/dginf editor sair"
-    - "&7Tipos: entrada, combate, elite, bau, descanso, boss, corredor"
+    - "&7Tipos: entrada, combate, elite, bau, descanso, boss, corredor, portas, escuro"
   kit-mob-nome: "&c&lPonto de mob"
   kit-mob-lore:
     - "&7Os mobs nascem aqui."
@@ -293,6 +299,46 @@ editor:
     - "&7Corredor de 3 de largura ligando"
     - "&7as saidas; o resto e rocha. Use"
     - "&7las laranjas (gatilhos) no chao."
+  tipo-portas:
+    - "&8Sala das Portas"
+    - "&7Corredor largo e escuro com portas"
+    - "&7de madeira; cada uma leva a uma cela."
+    - "&7La amarela no fundo das celas, las"
+    - "&7vermelhas no corredor (emboscada)."
+    - "&7Sem nenhuma luz."
+  tipo-escuro:
+    - "&0Corredor Escuro"
+    - "&7Corredor sem luz nenhuma, com folga"
+    - "&7acima da cabeca. Las vermelhas sao"
+    - "&7pontos de emboscada; sem la laranja."
   tipo-horda:
     - "&7Ondas de mobs (Dificil pra cima)."
     - "&7Usa as salas de combate."
+
+pagamento:
+  sem-dinheiro: "&cVoce precisa de &6{valor} &cpara comecar essa corrida (saldo: &6{saldo}&c)."
+  membro-sem-dinheiro: "&c{jogador} nao tem &6{valor} &cpara pagar a parte dele da corrida."
+  pagou: "&aVoce pagou &6{valor} &apara comecar a corrida."
+  lider-pagou: "&a{jogador} pagou &6{valor} &apela corrida do grupo."
+  dividido: "&aVoce pagou &6{valor} &a(sua parte de &6{total}&a) para comecar a corrida."
+
+escuro:
+  portas-titulo: "&8&lSala das Portas"
+  portas-subtitulo: "&7Nem todo bau e o que parece..."
+  corredor-titulo: "&0&lCorredor Escuro"
+  corredor-subtitulo: "&7Nao fique no escuro"
+  ganhou-tocha: "&6Voce recebeu uma tocha. &7Segure-a na mao para iluminar - no escuro, algo vem atras de voce."
+  dica: "&7Segure uma tocha na mao para iluminar - no escuro, algo vem atras de voce."
+  sussurro: "&8&o...tem alguma coisa aqui com voce..."
+  sombra-titulo: ""
+  sombra-subtitulo: "&8Procure em volta - &0mate a Sombra"
+  sombra-morta: "&7A Sombra se desfez."
+  emboscada-titulo: ""
+  emboscada-subtitulo: "&c&lEMBOSCADA!"
+  mimico-titulo: ""
+  mimico-subtitulo: "&6&lE um MIMICO!"
+  espreitador: "&cAlgo invisivel estava esperando por voce!"
+
+perder-itens:
+  ligado: "&c☠ Modo perder itens ligado: &7quem cair larga tudo no chao. &a+{loot}% loot &7e &a+{dinheiro}% dinheiro&7."
+  perdeu: "&cVoce largou todos os seus itens no chao da sala."
