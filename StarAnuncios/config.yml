@@ -1,0 +1,224 @@
+# ============================================================
+#  StarAnuncios - o jogador aluga um horário e a mensagem dele
+#  vai ao ar para o servidor inteiro, uma vez, naquela hora.
+#
+#  Alugar: /anuncios -> hora -> minuto -> digita a mensagem ->
+#  vê a prévia -> confirma e paga. O dinheiro só sai na
+#  confirmação; desistir ou sair do jogo não custa nada.
+# ============================================================
+
+debug: false
+
+# Fuso dos horários (ex.: America/Sao_Paulo). Vazio = o do servidor.
+# Servidor hospedado fora do Brasil costuma estar em UTC: 3h de diferença.
+fuso-horario: ""
+
+# Minutos de cada hora em que há vaga (cada um é um "slot").
+# Ex.: [0, 30] = duas vagas por hora; [0, 15, 30, 45] = quatro. Até 9.
+minutos: [0, 20, 40]
+
+# Com menos que isto de antecedência, o horário de hoje vira o de amanhã.
+antecedencia-minutos: 1
+
+# Anúncios futuros por jogador. Por permissão: staranuncios.limite.<n>
+limite-anuncios-por-jogador: 6
+
+# Desconto por permissão: staranuncios.desconto.<porcentagem> (vale o maior).
+# Ex.: staranuncios.desconto.20 = 20% mais barato.
+
+# Palavra que o jogador digita no chat para desistir.
+palavra-cancelar: "cancelar"
+
+# Nome usado quando o console anuncia (/anuncios admin anunciar).
+nome-do-console: "Servidor"
+
+reserva:
+  # Segundos para digitar a mensagem; a vaga fica segura nesse tempo.
+  tempo-para-digitar: 90
+
+mensagem:
+  tamanho-minimo: 5
+  tamanho-maximo: 120
+  # Sem staranuncios.links, links e convites são recusados.
+  bloquear-links: true
+  # Sem staranuncios.cores, os códigos de cor (&a, &#RRGGBB) saem da mensagem.
+  palavras-bloqueadas: []
+
+cancelamento:
+  # Quanto volta quando o próprio jogador cancela.
+  reembolso-porcentagem: 50
+  # Faltando menos que isto, não dá mais para editar nem cancelar.
+  minutos-antes-bloqueia: 5
+
+perdidos:
+  # Anúncio que não foi ao ar (servidor desligado na hora) é devolvido.
+  reembolsar: true
+  # Minutos de atraso aceitos antes de considerar perdido.
+  tolerancia-minutos: 3
+
+menu-title: "&8Anúncios - Escolha uma Hora"
+menu-size: 27
+
+menus:
+  escolher-slot: "&8Anúncios - {hour}h"
+  confirmar: "&8Confirmar anúncio"
+  meus: "&8Meus anúncios"
+  gerenciar: "&8Gerenciar anúncio"
+  sons: "&8Som do anúncio"
+  admin: "&8Anúncios - Equipe"
+
+items:
+  available:
+    material: "LIME_DYE"
+    name: "&a{hour}h &7(livre)"
+    lore:
+      - ""
+  rented:
+    material: "YELLOW_DYE"
+    name: "&e{hour}h &7(vagas sobrando)"
+    lore:
+      - ""
+  unavailable:
+    material: "RED_DYE"
+    name: "&c{hour}h &7(cheio)"
+    lore:
+      - ""
+  slot-livre: "&a● &f{horario} &aLivre"
+  slot-alugado: "&c● &f{horario} &7{player}"
+  slot-reservado: "&6● &f{horario} &6Reservado"
+  lore-slots: "&7Vagas: &e{slots}/{total}"
+  lore-preco: "&7Preço: &a$ {price}"
+
+# Preço e posição no menu de cada hora. Hora fora da lista não é alugável.
+horarios:
+  - {horario: 0, valor: 5000, slot: 0}
+  - {horario: 1, valor: 5000, slot: 1}
+  - {horario: 2, valor: 5000, slot: 2}
+  - {horario: 3, valor: 5000, slot: 3}
+  - {horario: 4, valor: 5000, slot: 4}
+  - {horario: 5, valor: 5000, slot: 5}
+  - {horario: 6, valor: 10000, slot: 6}
+  - {horario: 7, valor: 10000, slot: 7}
+  - {horario: 8, valor: 10000, slot: 8}
+  - {horario: 9, valor: 10000, slot: 9}
+  - {horario: 10, valor: 10000, slot: 10}
+  - {horario: 11, valor: 10000, slot: 11}
+  - {horario: 12, valor: 15000, slot: 12}
+  - {horario: 13, valor: 15000, slot: 13}
+  - {horario: 14, valor: 15000, slot: 14}
+  - {horario: 15, valor: 15000, slot: 15}
+  - {horario: 16, valor: 15000, slot: 16}
+  - {horario: 17, valor: 15000, slot: 17}
+  - {horario: 18, valor: 20000, slot: 18}
+  - {horario: 19, valor: 20000, slot: 19}
+  - {horario: 20, valor: 20000, slot: 20}
+  - {horario: 21, valor: 20000, slot: 21}
+  - {horario: 22, valor: 10000, slot: 22}
+  - {horario: 23, valor: 10000, slot: 23}
+
+manager-item:
+  slot: 26
+  material: "BOOK"
+  name: "&aMeus anúncios"
+  lore:
+    - "&7Editar, trocar o som ou cancelar"
+    - "&7os anúncios que você agendou."
+
+agenda-item:
+  # -1 esconde o item.
+  slot: 25
+  material: "CLOCK"
+  name: "&eAgenda de hoje"
+
+admin-item:
+  # Só aparece para quem tem staranuncios.admin.
+  slot: 24
+
+anuncio:
+  # {player} = quem anunciou, {message} = a mensagem, {hora} = a hora.
+  # Aceita PlaceholderAPI (do jogador que anunciou), ex.: %vault_prefix%.
+  format:
+    - ""
+    - "&6&l[ANÚNCIO] &e{player} &7disse: &f{message}"
+    - ""
+  # Também mostrar no console.
+  console: true
+  sound: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  # Sons que o jogador pode escolher em "Meus anúncios".
+  sons:
+    - "ENTITY_EXPERIENCE_ORB_PICKUP"
+    - "BLOCK_NOTE_BLOCK_PLING"
+    - "BLOCK_NOTE_BLOCK_BELL"
+    - "ENTITY_PLAYER_LEVELUP"
+    - "BLOCK_ANVIL_USE"
+    - "ENTITY_VILLAGER_YES"
+    - "UI_TOAST_CHALLENGE_COMPLETE"
+    - "BLOCK_AMETHYST_BLOCK_CHIME"
+  titulo:
+    ativado: false
+    titulo: "&6&lANÚNCIO"
+    subtitulo: "&e{player}&7: &f{message}"
+    entrada: 10
+    fica: 60
+    saida: 15
+  actionbar:
+    ativado: false
+    texto: "&6Anúncio de &e{player}&7: &f{message}"
+  bossbar:
+    ativado: true
+    texto: "&6Anúncio de &e{player}&7: &f{message}"
+    # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+    cor: "YELLOW"
+    segundos: 15
+
+auto-mensagem:
+  enabled: true
+  interval: 10 # em minutos
+  # Várias mensagens vão em rodízio. Sem a lista, vale "mensagem".
+  mensagens:
+    - "&6&lANÚNCIOS &fUse &e/anuncios &fpara anunciar no servidor! Vagas limitadas por horário."
+    - "&6&lANÚNCIOS &fVeja o que vai ao ar hoje com &e/anuncios agenda&f."
+  mensagem: ""
+
+messages:
+  prefixo: ""
+  no-permission: "&cVocê não tem permissão."
+  reload-success: "&aConfigurações recarregadas!"
+  unavailable: "&cEste horário já está cheio."
+  horario-invalido: "&cHorário inválido ou fora da lista de horários alugáveis."
+  minutos-validos: "&cUse um destes minutos: &e{minutos}&c. Ex.: &e/anuncio 13:20 Minha mensagem"
+  vaga-ocupada: "&cO horário &e{horario} &cjá está alugado ou reservado. Escolha outro."
+  limite: "&cVocê já tem &e{limite} &canúncio(s) agendado(s), o máximo permitido."
+  sem-dinheiro: "&cVocê precisa de &e$ {preco} &cpara este horário."
+  digite-mensagem: "&aHorário &e{horario} &a({dia}) reservado para você por &e{segundos}s&a. Digite a mensagem no chat (preço: &e$ {preco}&a). Digite &ccancelar &apara desistir."
+  digite-nova-mensagem: "&aDigite a nova mensagem no chat (&e{segundos}s&a). Digite &ccancelar &apara desistir."
+  mensagem-curta: "&cMensagem curta demais (mínimo {minimo} letras). Digite de novo."
+  mensagem-longa: "&cMensagem longa demais (máximo {maximo} letras). Digite de novo."
+  mensagem-link: "&cLinks e convites não são permitidos no anúncio. Digite de novo."
+  mensagem-bloqueada: "&cSua mensagem tem uma palavra não permitida. Digite de novo."
+  previa-titulo: "&7&o- Prévia do seu anúncio (só você está vendo) -"
+  nada-para-confirmar: "&cVocê não tem nenhum anúncio esperando confirmação."
+  agendado: "&aAnúncio agendado para &e{dia} às {horario}&a! Pago: &e$ {preco}&a."
+  reserva-cancelada: "&eReserva cancelada. Nada foi cobrado."
+  reserva-expirou: "&cO tempo acabou e o horário foi liberado. Nada foi cobrado."
+  tempo-esgotado: "&cTempo esgotado."
+  edicao-cancelada: "&eEdição cancelada."
+  perto-demais: "&cFaltam menos de {minutos} minutos para este anúncio: não dá mais para mexer."
+  mensagem-editada: "&aMensagem do anúncio atualizada!"
+  anuncio-cancelado: "&eAnúncio cancelado. &a$ {valor} &edevolvidos."
+  confirme-shift: "&eSegure &fShift &ee clique de novo para confirmar o cancelamento."
+  som-trocado: "&aSom do anúncio: &e{som}"
+  admin-removido: "&eAnúncio de &f{player} &eremovido (sem reembolso)."
+  admin-removido-reembolso: "&eAnúncio de &f{player} &eremovido e &a$ {valor} &edevolvidos."
+  seu-anuncio-removido: "&cA equipe removeu seu anúncio das {horario}. Reembolso: &e$ {valor}&c."
+  anuncio-perdido: "&eSeu anúncio das {horario} não pôde ir ao ar (servidor fora do ar). Reembolso: &a$ {valor}&e."
+  uso-agendar: "&cUso: &e/anuncio <HH:MM> <mensagem> &7(ex.: /anuncio 13:20 Loja aberta na warp!)"
+  agenda-titulo: "&6&lAgenda de hoje &7({total})"
+  agenda-vazia: "&7Nenhum anúncio agendado para hoje. Que tal o seu? &e/anuncios"
+  agenda-linha: "&e{horario} &8- &f{player}"
+  ajuda:
+    - "&6&lStarAnuncios"
+    - "&e/anuncios &7- escolher um horário no menu"
+    - "&e/anuncio <HH:MM> <mensagem> &7- alugar direto pelo chat"
+    - "&e/anuncios gerenciar &7- seus anúncios (editar, som, cancelar)"
+    - "&e/anuncios agenda &7- o que vai ao ar hoje"
