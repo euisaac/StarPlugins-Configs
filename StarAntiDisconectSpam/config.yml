@@ -1,0 +1,168 @@
+# ==========================================================================
+#  StarAntiDisconectSpam
+#  Impede que jogadores sejam desconectados à toa: spam, keepalive,
+#  falhas do chat assinado (1.19+) e qualquer outro motivo que você cadastrar.
+# ==========================================================================
+
+Geral:
+  # Escreve no console cada desconexão evitada
+  # (no máximo um aviso a cada 10 segundos por jogador e motivo).
+  Registrar-no-console: true
+
+  # Escreve no console o texto, os IDs e a causa de TODA desconexão, evitada ou não.
+  # Ligue (ou use /ads depurar) para descobrir o ID de um kick que ainda não está na
+  # lista e depois adicione esse ID em "Motivos". Quem tem a permissão
+  # starantidisconectspam.admin também recebe esse aviso no chat.
+  Depurar: false
+
+  # Kick dado por comando, por outro plugin ou pela staff NUNCA é bloqueado,
+  # mesmo que o texto seja igual ao de um motivo da lista.
+  Ignorar-kick-de-plugins: true
+
+  # Causas de kick (servidores Paper e derivados) que nunca são bloqueadas.
+  Causas-ignoradas:
+    - PLUGIN
+    - KICK_COMMAND
+    - BANNED
+    - IP_BANNED
+    - WHITELIST
+    - RESTART_COMMAND
+    - FULL_SERVER
+    - DUPLICATE_LOGIN
+
+# --------------------------------------------------------------------------
+#  Tempo de espera da conexão
+#  Quando o servidor fica muitos segundos sem receber NADA do jogador (lag forte,
+#  internet oscilando, PC travado carregando chunks), a conexão cai com
+#  "Timed out". O jogo espera 30 segundos; aqui você aumenta essa espera.
+#  Funciona da 1.8 à 1.21, direto na conexão de rede do jogador.
+# --------------------------------------------------------------------------
+Tempo-de-espera:
+  Ativo: true
+  # Segundos (o padrão do jogo é 30). Use entre 30 e 300.
+  Segundos: 60
+
+# --------------------------------------------------------------------------
+#  Motivos de desconexão que o plugin impede
+#
+#  Cada motivo é reconhecido por QUALQUER uma destas três coisas:
+#    Ids:    a chave de tradução do kick (ex.: disconnect.spam)
+#    Textos: um pedaço do texto que o jogador veria na tela (sem cores,
+#            sem diferenciar maiúsculas de minúsculas)
+#    Causas: a causa do kick nos servidores Paper (ex.: SPAM, TIMEOUT)
+#
+#  Para adicionar um motivo novo, copie um bloco abaixo, troque o nome e
+#  coloque o ID que o /ads depurar mostrou no console.
+#
+#  Opções de cada motivo:
+#    Ativo:               liga ou desliga o motivo
+#    Tolerancia-segundos: por quanto tempo seguido o jogador fica protegido.
+#                         Passou disso, o kick acontece (0 = sempre protegido)
+#    Limite-por-minuto:   quantos kicks deste motivo podem ser evitados por
+#                         minuto para o mesmo jogador (0 = sem limite)
+#    Aviso:               mensagem mandada ao jogador quando o kick é evitado
+#                         ('' = nenhuma). Sai no máximo a cada 3 segundos.
+# --------------------------------------------------------------------------
+Motivos:
+
+  # "Kicked for spamming" ao mandar mensagens ou comandos rápido.
+  spam:
+    Ativo: true
+    Ids:
+      - disconnect.spam
+    Textos:
+      - 'Kicked for spamming'
+    Causas:
+      - SPAM
+    Tolerancia-segundos: 0
+    Limite-por-minuto: 0
+    Aviso: '&cCalma! Voce esta mandando mensagens rapido demais.'
+
+  # "Timed out": o keepalive não chegou a tempo (lag) ou chegou com o número
+  # errado (comum atrás de proxy). O jogador ganha mais tempo para responder;
+  # se a conexão realmente caiu, ela fecha sozinha mesmo assim.
+  keepalive:
+    Ativo: true
+    Ids:
+      - disconnect.timeout
+    Textos:
+      - 'Timed out'
+    Causas:
+      - TIMEOUT
+    Tolerancia-segundos: 60
+    Limite-por-minuto: 0
+    Aviso: ''
+
+  # Falhas do chat assinado da 1.19+: relógio do PC fora de hora, chave de
+  # perfil vencida, mensagens fora de ordem ou sem confirmação.
+  chat-assinado:
+    Ativo: true
+    Ids:
+      - multiplayer.disconnect.chat_validation_failed
+      - multiplayer.disconnect.out_of_order_chat
+      - multiplayer.disconnect.expired_public_key
+      - multiplayer.disconnect.invalid_public_key_signature
+      - multiplayer.disconnect.missing_public_key
+      - multiplayer.disconnect.too_many_pending_chats
+      - multiplayer.disconnect.unsigned_chat
+    Textos:
+      - 'Chat message validation failure'
+      - 'Out-of-order chat packet'
+      - 'Expired profile public key'
+      - 'Too many unacknowledged chat messages'
+      - 'Received chat packet with missing or invalid signature'
+    Causas:
+      - CHAT_VALIDATION_FAILED
+      - OUT_OF_ORDER_CHAT
+      - EXPIRED_PROFILE_PUBLIC_KEY
+      - INVALID_PUBLIC_KEY_SIGNATURE
+      - TOO_MANY_PENDING_CHATS
+      - UNSIGNED_CHAT
+    Tolerancia-segundos: 0
+    Limite-por-minuto: 0
+    Aviso: '&eSua mensagem nao foi enviada. Tente de novo.'
+
+  # "You have been idle for too long!" (opção player-idle-timeout do servidor).
+  # Desligado: ligue só se não quiser expulsar ninguém por ficar parado.
+  ausente:
+    Ativo: false
+    Ids:
+      - multiplayer.disconnect.idling
+    Textos:
+      - 'You have been idle for too long'
+    Causas:
+      - IDLING
+    Tolerancia-segundos: 0
+    Limite-por-minuto: 0
+    Aviso: ''
+
+  # "Flying is not enabled on this server". Pode acontecer com lag forte em
+  # cima de blocos ou com elytra, mas também pega quem usa voo ilegal.
+  # Desligado: ligue só se você já usa um anticheat.
+  voo:
+    Ativo: false
+    Ids:
+      - multiplayer.disconnect.flying
+    Textos:
+      - 'Flying is not enabled on this server'
+    Causas:
+      - FLYING_PLAYER
+      - FLYING_VEHICLE
+    Tolerancia-segundos: 0
+    Limite-por-minuto: 10
+    Aviso: ''
+
+Mensagens:
+  Prefixo: '&8[&bAntiDisconect&8] '
+  Sem-permissao: '&cVoce nao tem permissao para isso.'
+  Recarregado: '&aConfiguracao recarregada. &7({motivos} motivos ativos, espera de {segundos}s)'
+  Depurar-ligado: '&aDepuracao ligada: todo kick vai aparecer no console com os IDs.'
+  Depurar-desligado: '&eDepuracao desligada.'
+  Evitado-console: '{jogador} nao foi desconectado por "{motivo}" ({texto})'
+  Depurar-linha: '&7{jogador} &8| &fids: &e{ids} &8| &fcausa: &e{causa} &8| &ftexto: &e{texto} &8| {resultado}'
+  Ajuda:
+    - '&b&lStarAntiDisconectSpam'
+    - '&f/ads status &7- desconexoes evitadas desde que o servidor ligou'
+    - '&f/ads motivos &7- lista os motivos e os IDs de cada um'
+    - '&f/ads depurar &7- mostra o ID de todo kick (para cadastrar novos)'
+    - '&f/ads recarregar &7- recarrega a configuracao'
