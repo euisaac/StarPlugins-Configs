@@ -12,7 +12,7 @@
 #  (do arquivo dele) + o bloco de "Estados" abaixo, conforme a situacao.
 # ==========================================================================
 
-Versao do modelo: 7
+Versao do modelo: 8
 
 Botoes:
   Voltar:
@@ -370,6 +370,19 @@ Perfil:
       Lore:
         - '&7Mostrar ou esconder os jogadores'
         - '&7do lobby'
+    Amigos:
+      Slot: 29
+      Acao: AMIGOS
+      Nome: '&aAmigos'
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Lore:
+        - '&7Seus amigos, quem esta online'
+        - '&7e o visto por ultimo'
+        - ''
+        - ' &fOnline: &a{amigos_online}&7/&f{amigos}'
+        - ''
+        - '&eClique para ver'
     Fechar:
       Slot: 40
       Acao: FECHAR
@@ -1022,3 +1035,92 @@ Estatisticas:
       - ' &fSequencia: &a{winstreak} &7(maior: {maior_winstreak})'
       - ''
       - ' &7Mensal: {vitorias_mensal} vitorias, {abates_mensal} abates'
+
+# A lista de amigos (/amigo ou o botao Amigos do perfil). Usa os slots de
+# "Lista". {online}/{total} no titulo. No amigo: {jogador}, {nivel},
+# {nivel_formatado}, {status} (lobby, partida, outro servidor ou "visto ha"),
+# {visto}, {desde} e {acoes} (as linhas de "Acoes ..." conforme o caso).
+Amigos:
+  Titulo: '&8Amigos ({online}/{total})'
+  Amigo:
+    Nome online: '&a{jogador}'
+    Nome offline: '&7{jogador}'
+    Lore:
+      - ' &fNivel: {nivel_formatado}'
+      - ' &fStatus: {status}'
+      - ' &fAmigos desde: &7{desde}'
+      - ''
+      - '{acoes}'
+    Acoes em partida:
+      - '&eEsquerdo &7entra na partida dele'
+      - '&eDireito &7chama para o seu grupo'
+      - '&cShift + direito &7desfaz a amizade'
+    Acoes online:
+      - '&eDireito &7chama para o seu grupo'
+      - '&cShift + direito &7desfaz a amizade'
+    Acoes offline:
+      - '&cShift + direito &7desfaz a amizade'
+  Desfazer:
+    Titulo: '&8Desfazer amizade?'
+    Lore:
+      - '&7Voce vai desfazer a amizade'
+      - '&7com &f{jogador}&7.'
+  Botoes:
+    Vazio:
+      Slot: 22
+      Nome: '&7Nenhum amigo ainda'
+      Material: PAPER
+      Lore:
+        - '&7Clique em &fAdicionar amigo'
+        - '&7ou use &f/amigo adicionar <nick>'
+    Pedidos:
+      Slot: 47
+      Nome: '&ePedidos de amizade &7({pedidos})'
+      Material: BOOK
+      Lore:
+        - '&7Pedidos que voce recebeu'
+        - ''
+        - '&eClique para ver'
+    Adicionar:
+      Slot: 49
+      Nome: '&aAdicionar amigo'
+      Material: EMERALD
+      Lore:
+        - '&7Digite o nick no chat'
+        - ''
+        - '&eClique para adicionar'
+    Avisos:
+      Slot: 51
+      Nome: '&eAviso de amigo entrando: {estado}'
+      Material: NOTE_BLOCK
+      Lore:
+        - '&7Mensagem no chat quando'
+        - '&7um amigo entra no servidor'
+        - ''
+        - '&eClique para alternar'
+    Receber pedidos:
+      Slot: 53
+      Nome: '&eReceber pedidos: {estado}'
+      Material: NAME_TAG
+      Lore:
+        - '&7Desligado, ninguem consegue'
+        - '&7te mandar pedido de amizade'
+        - ''
+        - '&eClique para alternar'
+
+# Os pedidos de amizade recebidos. {jogador}, {nivel}, {nivel_formatado},
+# {enviado} (ha quanto tempo) e {status}.
+Amigos pedidos:
+  Titulo: '&8Pedidos de amizade ({pedidos})'
+  Pedido:
+    Nome: '&e{jogador}'
+    Lore:
+      - ' &fNivel: {nivel_formatado}'
+      - ' &fEnviado ha: &7{enviado}'
+      - ''
+      - '&aEsquerdo &7aceita'
+      - '&cDireito &7recusa'
+  Vazio:
+    Slot: 22
+    Nome: '&7Nenhum pedido'
+    Material: PAPER

@@ -6,7 +6,7 @@
 #  sem prefixo. Titulos usam <nl> para separar titulo e subtitulo.
 # ==========================================================================
 
-Versao do modelo: 10
+Versao do modelo: 11
 
 Prefixo: '&6&lEggWars &8» &7'
 
@@ -543,3 +543,64 @@ Votacao:
 
 Admin:
   Titulo: '&8Administracao'
+
+Amigos:
+  Desligado: '&cO sistema de amigos esta desligado neste servidor.'
+  Carregando: '&7Sua lista de amigos ainda esta carregando, tente de novo.'
+  Uso:
+    - '&6&lAmigos &8- &7comandos'
+    - ' &f/amigo &7- abre a sua lista'
+    - ' &f/amigo adicionar <nick> &7- manda um pedido'
+    - ' &f/amigo aceitar <nick> &7/ &f/amigo recusar <nick>'
+    - ' &f/amigo remover <nick> &7- desfaz a amizade'
+    - ' &f/amigo lista &7- lista no chat'
+    - ' &f/amigo pedidos &7- pedidos recebidos'
+    - ' &f/amigo avisos &7- liga/desliga o aviso quando um amigo entra'
+    - ' &f/amigo privado &7- liga/desliga receber pedidos'
+  Digite o nick: '&eDigite no chat o nick de quem voce quer adicionar.'
+  Voce mesmo: '&cVoce nao pode adicionar a si mesmo.'
+  Nao encontrado: '&cNenhum jogador chamado &f{jogador} &cjogou aqui ainda.'
+  Ja amigos: '&f{jogador} &7ja e seu amigo.'
+  Pedido ja enviado: '&7Voce ja mandou um pedido para &f{jogador}&7. Agora e com ele.'
+  Pedido enviado: '&aPedido de amizade enviado para &f{jogador}&a.'
+  Pedido recebido: '&f{jogador} &equer ser seu amigo!'
+  Nao aceita pedidos: '&f{jogador} &cnao esta aceitando pedidos de amizade.'
+  Limite: '&cVoce chegou ao limite de &f{limite} &camigos.'
+  Limite dele: '&f{jogador} &cja chegou ao limite de amigos.'
+  Sem pedido: '&cVoce nao tem pedido de amizade de &f{jogador}&c.'
+  Sem pedidos: '&7Voce nao tem pedidos de amizade.'
+  Aceitou: '&aVoce e &f{jogador} &aagora sao amigos!'
+  Foi aceito: '&f{jogador} &aaceitou o seu pedido de amizade!'
+  Recusou: '&7Pedido de &f{jogador} &7recusado.'
+  Nao e amigo: '&f{jogador} &cnao esta na sua lista de amigos.'
+  Removido: '&7Voce desfez a amizade com &f{jogador}&7.'
+  Entrou: '&a&lAMIGO &8» &f{jogador} &aentrou no servidor.'
+  Saiu: '&c&lAMIGO &8» &f{jogador} &csaiu do servidor.'
+  Resumo: '&7Amigos online: &a{online}&7/&f{total}&7. Use &f/amigo &7para ver.'
+  Pedidos pendentes: '&eVoce tem &f{quantidade} &epedido(s) de amizade. Use &f/amigo pedidos&e.'
+  Avisos ligados: '&aVoce volta a ser avisado quando um amigo entra.'
+  Avisos desligados: '&7Voce nao sera mais avisado quando um amigo entrar.'
+  Pedidos ligados: '&aVoce volta a receber pedidos de amizade.'
+  Pedidos desligados: '&7Ninguem mais consegue te mandar pedido de amizade.'
+  Nao esta em partida: '&f{jogador} &cnao esta numa partida agora.'
+  Partida ja comecou: '&cA partida de &f{jogador} &cja comecou.'
+  Lista vazia: '&7Voce ainda nao tem amigos. Use &f/amigo adicionar <nick>&7.'
+  Lista cabecalho: '&6&lAmigos &7({online}/{total} online)'
+  Lista online: ' &a● &f{jogador} &8- {status}'
+  Lista offline: ' &8● &7{jogador} &8- {status}'
+  # {modo}, {mapa}, {servidor} e {visto} conforme o caso.
+  Status:
+    Lobby: '&aNo lobby'
+    Esperando: '&eNa sala de espera &7({modo} - {mapa})'
+    Jogando: '&eJogando &7{modo} - {mapa}'
+    Outro servidor: '&aOnline em &f{servidor}'
+    Offline: '&7Visto ha &f{visto}'
+    Nunca visto: '&7nunca'
+  # Os botoes clicaveis do pedido. "Sem clique" sai no lugar deles quando o
+  # servidor nao tem chat clicavel.
+  Botoes:
+    Aceitar: '&a&l[ACEITAR]'
+    Dica aceitar: '&7Clique para aceitar'
+    Recusar: '&c&l[RECUSAR]'
+    Dica recusar: '&7Clique para recusar'
+    Sem clique: '&7Use &a/amigo aceitar {jogador} &7ou &c/amigo recusar {jogador}&7.'
