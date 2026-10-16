@@ -242,6 +242,28 @@ Varinha:
 Eventos desligados: []
 
 #
+# ════════════════════════════  COMPRA DE EVENTOS  ═══════════════════════════
+#
+# Os jogadores podem pagar para ativar um evento pelo menu /eventos.
+#
+# Ativar: false tira a compra de TODOS os eventos -- o item do menu deixa de
+# mostrar o preco e o "clique para ativar". Os eventos continuam rodando
+# pelos horarios, pela staff e pela votacao.
+#
+# Exceto: os eventos que fogem da regra acima (nome do arquivo, sem o .yml).
+#   Com Ativar: false -> so estes continuam a venda.
+#   Com Ativar: true  -> estes saem da venda e o resto continua.
+#
+# Exemplo -- so o bingo e o quiz a venda:
+#   Ativar: false
+#   Exceto: [ 'bingo', 'quiz' ]
+#
+# Cada evento ainda tem o seu Comprar.Ativar (e o preco) no proprio arquivo.
+Compra de eventos:
+  Ativar: true
+  Exceto: []
+
+#
 # ═══════════════════════════════  INTEGRACOES  ══════════════════════════════
 #
 PlaceholderAPI:

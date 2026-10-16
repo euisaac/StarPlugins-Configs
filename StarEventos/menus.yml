@@ -5,7 +5,7 @@
 #  (uma linha tem 9 slots).
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 #
 # ═══════════════════════════════  MENU PRINCIPAL  ═══════════════════════════
@@ -89,6 +89,25 @@ Eventos:
     Material: 'GRAY_STAINED_GLASS_PANE'
     Nome: ' '
 
+  # O fim da lore de cada evento, conforme o momento. O comeco vem do
+  # Menu.Item do arquivo do evento. Lista vazia ([]) nao acrescenta nada.
+  #   Aberto           -> inscricoes abertas: o clique entra.
+  #   Comprar          -> parado e a venda: o clique compra a ativacao.
+  #   Espera da compra -> a venda, mas o jogador comprou ha pouco ({espera}).
+  # Com a compra desligada (config.yml, Compra de eventos) o evento parado
+  # nao ganha linha nenhuma.
+  Linhas extras:
+    Aberto:
+      - ''
+      - '&aClique para entrar.'
+    Comprar:
+      - ''
+      - '&7Ativar agora custa &f{preco}&7.'
+      - '&aClique para ativar.'
+    Espera da compra:
+      - ''
+      - '&7Voce pode ativar de novo em &f{espera}&7.'
+
   Botoes:
     Anterior:
       Slot: 45
@@ -102,7 +121,7 @@ Eventos:
       Lore: [ '&7Pagina {pagina} de {paginas}' ]
     Voltar:
       Slot: 49
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
 
@@ -152,7 +171,7 @@ Top:
       Lore: [ '&7Pagina {pagina} de {paginas}' ]
     Voltar:
       Slot: 39
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
 
@@ -197,7 +216,7 @@ Votacao:
       Lore: []
     Voltar:
       Slot: 40
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cFechar'
       Lore: []
 
@@ -229,7 +248,7 @@ Recompensas:
   Botoes:
     Vazio:
       Slot: 22
-      Material: 'BARRIER'
+      Material: 'COBWEB'
       Nome: '&cNada por aqui'
       Lore:
         - '&7Voce nao tem nenhum premio'
@@ -246,7 +265,7 @@ Recompensas:
       Lore: []
     Voltar:
       Slot: 49
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
 
@@ -293,7 +312,7 @@ Times:
   Botoes:
     Voltar:
       Slot: 22
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cFechar'
       Lore: [ '&7O time sai no sorteio se voce nao escolher.' ]
 
@@ -337,7 +356,7 @@ Editor lista:
       Lore: []
     Voltar:
       Slot: 49
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cFechar'
       Lore: []
 
@@ -524,11 +543,11 @@ Editor:
       Lore: [ '&7Comeca o evento &f{evento}&7.' ]
     Parar:
       Slot: 41
-      Material: 'RED_DYE'
+      Material: 'BARRIER'
       Nome: '&c&lPARAR'
       Lore: [ '&7Derruba o evento &f{evento}&7.' ]
     Voltar:
       Slot: 36
-      Material: 'ARROW'
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
