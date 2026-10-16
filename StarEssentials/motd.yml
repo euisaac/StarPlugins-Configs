@@ -43,14 +43,22 @@ Motd:
       - '&7Servidor com &a%online%&7 jogador(es) online'
       - '&7Compre plugins em &fstarplugins.com.br'
 
+# Modo manutencao - liga/desliga com /manutencao (ou /motd manutencao on|off).
+# "/manutencao on 5m" agenda: avisa no chat e fecha depois do tempo.
 Manutencao:
   Ativo: false
   Linhas:
     - '&c&lEM MANUTENCAO'
     - '&7Ja ja estamos de volta!'
-  # Quem tiver essa permissao entra mesmo em manutencao.
+  # Quem tiver essa permissao entra mesmo em manutencao (op sempre entra).
   Permissao: 'staressentials.manutencao.entrar'
   Mensagem kick: '&c&lEM MANUTENCAO\n&7Volte daqui a pouco.'
+  # Ao ligar, expulsa quem ja esta online sem a permissao acima (com a
+  # mensagem de kick). false = so barra quem tentar entrar depois.
+  Expulsar online: true
+  # Com "/manutencao on <tempo>", segundos restantes em que o aviso aparece no
+  # chat. Nos ultimos 10 segundos aparece tambem um titulo na tela.
+  Avisos contagem: [300, 120, 60, 30, 10, 5, 4, 3, 2, 1]
   # Contagem de vagas exibida enquanto a manutencao esta ligada.
   # -1 = nao mexer no numero.
   Online: 0
