@@ -24,7 +24,7 @@
 
 # Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
 # plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
-Versao do modelo: 29
+Versao do modelo: 30
 
 Geral:
   # Escreve no console cada operacao. Ligue so para achar problema.
@@ -1011,6 +1011,18 @@ Caixa misteriosa:
 # arena. Cada "Permitir ..." em false BLOQUEIA aquilo. A permissao
 # stareggwars.lobby.bypass ignora as regras de blocos e itens (staff).
 # "Tempo fixo" em ticks (6000 = meio-dia, 18000 = meia-noite; -1 = nao mexe).
+# Montaria do spawn (loja de cosmeticos), quando o jogador desce dela.
+#   SEGUIR: ela fica e segue o dono; clique direito nela monta de novo.
+#   SUMIR: ela some (para chamar de novo, escolha outra vez na loja).
+Montarias:
+  Ao descer: SEGUIR
+  # Blocos de distancia em que ela comeca a andar atras do dono, e a partir
+  # de quantos ela teleporta para perto dele.
+  Seguir a partir de: 3.0
+  Teleportar a partir de: 15.0
+  # Velocidade andando atras do dono (cavalos e montarias sem "Velocidade").
+  Velocidade ao seguir: 0.3
+
 Protecao do lobby:
   Ativar: true
   Mundos: []
