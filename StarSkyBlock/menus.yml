@@ -184,8 +184,20 @@ Menus:
           - ''
           - '&eClique para abrir.'
 
-      ranking:
+      bioma:
         Slot: 33
+        Acao: BIOMA
+        Material: GRASS_BLOCK
+        Nome: '&a&lBioma'
+        Lore:
+          - '&7O seu: &f{bioma}'
+          - ''
+          - '&7Trocar o bioma nao reseta nada.'
+          - ''
+          - '&eClique para abrir.'
+
+      ranking:
+        Slot: 34
         Acao: TOP
         Material: BEACON
         Nome: '&b&lRanking'
@@ -428,6 +440,76 @@ Menus:
           - ''
           - '&cVoce nao tem acesso a este modelo.'
           - '&8{permissao}'
+
+  # ====================================================================
+  #  O bioma da ilha
+  #
+  #  Serve para duas coisas: trocar o bioma de uma ilha que ja existe
+  #  (de graca, sem resetar nada) e, na criacao, escolher o bioma antes
+  #  de digitar o nome.
+  #
+  #  Acoes: BIOMA_DO_MODELO VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Modelos: disponivel, atual
+  #  Trocas do item: {bioma} {bioma_id}
+  # ====================================================================
+  Biomas:
+    Titulo: '&8Bioma da ilha'
+    Linhas: 6
+    Enfeite:
+      Ativar: true
+      Material: GRAY_STAINED_GLASS_PANE
+    Slots: [10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43]
+    Itens:
+      voltar:
+        Slot: 45
+        Acao: VOLTAR
+        Material: ARROW
+        Nome: '&cVoltar'
+        Lore: []
+      anterior:
+        Slot: 48
+        Acao: PAGINA_ANTERIOR
+        Material: ARROW
+        Nome: '&ePagina anterior'
+        Lore: []
+      do-modelo:
+        Slot: 49
+        Acao: BIOMA_DO_MODELO
+        Material: LIME_DYE
+        Nome: '&a&lUsar o bioma do modelo'
+        Lore:
+          - '&7Segue com o bioma que o tipo de'
+          - '&7ilha ja traz: &f{bioma}'
+          - ''
+          - '&7Voce pode trocar depois, quando'
+          - '&7quiser, com &f/ilha bioma&7.'
+          - ''
+          - '&eClique para continuar.'
+      proxima:
+        Slot: 50
+        Acao: PROXIMA_PAGINA
+        Material: ARROW
+        Nome: '&eProxima pagina'
+        Lore: []
+      fechar:
+        Slot: 53
+        Acao: FECHAR
+        Material: BARRIER
+        Nome: '&c&lFechar'
+        Lore: []
+    Modelos:
+      disponivel:
+        Nome: '{bioma}'
+        Lore:
+          - '&8{bioma_id}'
+          - ''
+          - '&eClique para usar este bioma.'
+      atual:
+        Brilho: true
+        Nome: '{bioma}'
+        Lore:
+          - '&6&lE O SEU BIOMA'
+          - '&8{bioma_id}'
 
   # ====================================================================
   #  Os membros da ilha
@@ -715,11 +797,13 @@ Menus:
         Slot: 49
         Acao: NENHUMA
         Material: GOLD_INGOT
-        Nome: '&6&lBanco da ilha'
+        Nome: '&6&lO que paga as melhorias'
         Lore:
-          - '&7Saldo: &f{banco}'
+          - '&7Voce tem: &f{banco}'
           - ''
-          - '&7As melhorias saem daqui.'
+          - '&7A forma de pagamento e escolhida'
+          - '&7no melhorias.yml (banco da ilha,'
+          - '&7dinheiro do servidor ou cristais).'
       proxima:
         Slot: 50
         Acao: PROXIMA_PAGINA
