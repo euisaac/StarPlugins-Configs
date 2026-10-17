@@ -7,11 +7,13 @@
 #  "delay-ticks" abaixo para redesenhar mais rapido que 1 segundo.
 # =========================================================
 
-atualizar-a-cada: 20 # em ticks, usado quando delay-ticks nao estiver definido
+atualizar-a-cada: 20 # em ticks, usado quando delay-ticks for 0
 
 tablist:
   ativado: true
-  # delay-ticks: 2 # descomente para redesenhar mais rapido (necessario p/ animacoes fluidas)
+  # De quantos em quantos ticks a tab se redesenha (20 ticks = 1s).
+  # 0 = usar o "atualizar-a-cada" la de cima. Use 2 a 5 pra animacoes fluidas.
+  delay-ticks: 0
   cabecalho:
     - ""
     - "&8&l» %animacao:StarPlugins% &8&l«"
