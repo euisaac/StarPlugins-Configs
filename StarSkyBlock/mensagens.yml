@@ -38,6 +38,7 @@ Erros:
   Limite de warps: '&cA ilha ja tem os &f{limite} &cwarps.'
   Warp desconhecido: '&cNao existe um warp chamado &f{nome}&c.'
   Warp privado: '&cEsse warp e so para os membros da ilha.'
+  Nivel para warps: '&cA ilha precisa chegar ao nivel &f{nivel} &cpara criar warps.'
   Banido da ilha: '&cVoce esta barrado na ilha &f{ilha}&c.'
   Ilha fechada: '&cA ilha &f{ilha} &cnao esta aceitando visita.'
   Valor invalido: '&cEscreva um valor maior que zero.'
@@ -150,6 +151,12 @@ Voo:
   So na ilha: '&cVoce so voa dentro de uma ilha em que tenha esse direito.'
   Desligado no servidor: '&cO voo esta desligado neste servidor.'
 
+Portal:
+  Chegou nether: '&cVoce chegou na ilha do nether.'
+  Chegou end: '&5Voce chegou na ilha do end.'
+  Nether desligado: '&cO nether das ilhas esta desligado neste servidor.'
+  End desligado: '&cO end das ilhas esta desligado neste servidor.'
+
 Teleporte:
   Contagem: '&7Nao se mexa por &f{segundos}s&7...'
   Cancelado: '&cVoce se mexeu e a viagem foi cancelada.'
@@ -218,7 +225,10 @@ Ajuda:
     &f/ilha abrir|fechar &8- &7deixa (ou nao) visitarem
     &f/ilha nome|descricao <texto>
     &f/ilha definircasa &8- &7marca onde o /ilha ir chega
-    &f/ilha warp [nome|criar|apagar]
+    &f/ilha warp &8- &7os warps publicos de todas as ilhas
+    &f/ilha warp minhas|criar|apagar [nome] &8- &7os da sua ilha
+    &7(ou uma placa com &f[warp] &7na 1a linha e o nome na 2a)
+    &f/ilha nether|end &8- &7vai para a sua ilha no nether/end
     &f/ilha visitar [jogador] &8- &7conhece outra ilha
     &f/ilha top &8- &7o ranking das ilhas
     &f/ilha chat &8- &7fala so com a sua ilha
@@ -278,6 +288,7 @@ Modelo:
 # Os titulos das telas. O menus.yml pode ganhar de qualquer um deles: o que
 # estiver escrito la vale; o que ficar vazio la cai aqui.
 Menus:
+  Warps publicos: '&8Warps publicos'
   Principal: '&8{ilha}'
   Missoes: '&8Missoes'
   Modelos: '&8Tipos de ilha'
