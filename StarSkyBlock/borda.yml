@@ -1,0 +1,53 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - a borda da ilha
+#
+#  A borda é a parede de luz que marca até onde vai a ilha, a mesma do fim
+#  do mundo do Minecraft -- só que cada jogador vê a da ilha em que está.
+#  Ela cresce sozinha quando a ilha compra a melhoria de tamanho.
+#
+#  O jogo só sabe desenhar a borda em três cores: AZUL, VERDE e VERMELHO.
+#  A ilha escolhe a sua com /ilha borda (ou pelo menu), e cada jogador pode
+#  esconder a borda só para si com /ilha borda esconder.
+#
+#  Servidor 1.8 a 1.16 e 1.18.2 em diante: borda de verdade.
+#  Servidor 1.17 a 1.18.1: o jogo não deixa mandar uma borda por jogador, e
+#  o plugin desenha a beira com partículas (veja abaixo).
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Ativar: true
+
+# A cor de toda ilha nova (e de quem nunca escolheu).
+Cor padrao: AZUL
+
+# true = qualquer jogador pode esconder a borda só para ele.
+Jogador pode esconder: true
+
+# true = quem está visitando também vê a borda da ilha (com a cor dela).
+Mostrar para visitantes: true
+
+# Nas versões sem borda por jogador, desenha a beira da ilha com partículas
+# quando o jogador chega perto dela.
+Particulas em versao antiga: true
+
+# As cores que a ilha pode escolher. Apague uma para tirá-la do menu.
+# Permissao: vazio libera para todo mundo; com uma permissão, só a ilha
+# cujo DONO tem a permissão pode usar aquela cor (bom para cor de VIP).
+# Cor da particula: R,G,B usado nas versões que desenham com partículas.
+Cores:
+  AZUL:
+    Nome: '&9Azul'
+    Icone: LIGHT_BLUE_STAINED_GLASS
+    Permissao: ''
+    Cor da particula: '60,120,255'
+  VERDE:
+    Nome: '&aVerde'
+    Icone: LIME_STAINED_GLASS
+    Permissao: ''
+    Cor da particula: '80,255,80'
+  VERMELHO:
+    Nome: '&cVermelho'
+    Icone: RED_STAINED_GLASS
+    Permissao: ''
+    Cor da particula: '255,60,60'

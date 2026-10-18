@@ -1,38 +1,50 @@
 # ------------------------------------------------------------------------
 #  StarSkyBlock - as melhorias da ilha
 #
-#  Cada melhoria e uma escada: o nivel 0 e o 'Valor inicial' (o que a ilha ja
-#  tem de graca) e cada degrau tem um Custo (tirado do banco da ilha) e um
-#  Valor novo.
+#  Cada melhoria é uma escada: o nível 0 é o 'Valor inicial' (o que a ilha já
+#  tem de graça) e cada degrau tem um Custo e um Valor novo.
 #
-#  Os ids abaixo sao os que o plugin entende. Voce pode mudar nome, icone,
-#  precos, valores e quantos degraus quiser -- mas nao os ids.
+#  Os ids abaixo são os que o plugin entende. Você pode mudar nome, ícone,
+#  preços, valores e quantos degraus quiser -- mas não os ids.
 #
-#    tamanho       lado do quadrado protegido, em blocos
+#    tamanho       lado do quadrado protegido (e da borda), em blocos
 #    membros       quantas pessoas cabem na ilha (contando o dono)
-#    gerador       o nivel do gerador de cobblestone (ver geradores.yml)
-#    mobs          teto de mobs vivos por pedaco da ilha
-#    funis         funis por pedaco
+#    gerador       o nível do gerador de pedra (ver geradores.yml)
+#    mobs          teto de mobs vivos por pedaço da ilha
+#    funis         funis por pedaço
 #    multiplicador multiplica o que a loja da ilha paga
+#    plantacoes    acelera as plantações (1.5 = metade das vezes cresce 2x)
+#    spawners      acelera os spawners (2 = o dobro de mobs)
+#    drops         multiplica o que os mobs soltam (e a experiência)
+#    efeitos       efeitos de poção para o time dentro da ilha (veja abaixo)
+#    warps         quantos warps a ilha pode ter
+#    banco         teto do banco da ilha (0 = sem teto)
+#    bau           linhas do baú da ilha, de 1 a 6 (0 = sem baú)
+#    cooperados    quantos cooperados a ilha pode ter ao mesmo tempo
+#    limites       multiplica todos os limites do limites.yml
 #
-#  O 'gerador' e o unico cujo Valor nao e usado: o que muda com o nivel dele
-#  e a tabela de minerios do geradores.yml. Deixe o Valor igual ao nivel para
-#  a lore do menu fazer sentido.
+#  O 'gerador' e o 'efeitos' não usam o Valor: o do gerador é a tabela do
+#  geradores.yml, e o do efeitos é a lista 'Efeitos' de cada degrau.
 #
-#  Tudo isto tambem pode ser editado por menu: /starskyblock config
+#  Cada degrau aceita também:
+#    Nivel da ilha: 10       a ilha precisa estar nesse nível para comprar
+#    Permissao: 'vip.algo'   quem compra precisa ter essa permissão
+#    Comandos: [...]         comandos rodados na compra ({jogador} {ilha}...)
+#
+#  Tudo isto também pode ser editado por menu: /starskyblock config
 # ------------------------------------------------------------------------
 
 Versao do modelo: 1
 
-# De onde sai o dinheiro de uma melhoria:
+# De onde sai o dinheiro de uma melhoria (e de liberar o nether e o end):
 #
-#   BANCO      do banco da ilha (o padrao -- faz o time trabalhar junto)
+#   BANCO      do banco da ilha (o padrão -- faz o time trabalhar junto)
 #   DINHEIRO   do bolso de quem clicou, pela economia do servidor
 #              (Vault, StarEconomia... o que estiver no config.yml)
-#   CRISTAIS   dos cristais que as missoes pagam
+#   CRISTAIS   dos cristais que as missões pagam
 #
-# Em DINHEIRO o custo vira mais um sumidouro de moeda do servidor, que e o que
-# um servidor com inflacao precisa.
+# Em DINHEIRO o custo vira mais um sumidouro de moeda do servidor, que é o que
+# um servidor com inflação precisa.
 Pagar com: BANCO
 
 Melhorias:
@@ -43,7 +55,7 @@ Melhorias:
     Slot: -1
     Descricao:
       - '&7Aumenta o quadrado protegido'
-      - '&7da sua ilha.'
+      - '&7da sua ilha (e a borda junto).'
     Valor inicial: 100
     Niveis:
       '1':
@@ -73,7 +85,7 @@ Melhorias:
     Slot: -1
     Descricao:
       - '&7Quanta gente cabe na ilha,'
-      - '&7contando voce.'
+      - '&7contando você.'
     Valor inicial: 4
     Niveis:
       '1':
@@ -98,11 +110,8 @@ Melhorias:
     Icone: COBBLESTONE
     Slot: -1
     Descricao:
-      - '&7Melhora o que sai quando agua'
+      - '&7Melhora o que sai quando água'
       - '&7e lava se encontram na sua ilha.'
-      - ''
-      - '&7Ver geradores.yml para o que'
-      - '&7cada nivel solta.'
     Valor inicial: 1
     Niveis:
       '1':
@@ -132,7 +141,7 @@ Melhorias:
     Slot: -1
     Descricao:
       - '&7Quantos mobs podem estar vivos'
-      - '&7em cada pedaco da ilha.'
+      - '&7em cada pedaço da ilha.'
     Valor inicial: 30
     Niveis:
       '1':
@@ -154,10 +163,7 @@ Melhorias:
     Slot: -1
     Descricao:
       - '&7Quantos funis cabem em cada'
-      - '&7pedaco da ilha.'
-      - ''
-      - '&7E o limite que segura a fabrica'
-      - '&7de funis, que derruba o tique.'
+      - '&7pedaço da ilha.'
     Valor inicial: 8
     Niveis:
       '1':
@@ -174,7 +180,7 @@ Melhorias:
         Comandos: []
 
   multiplicador:
-    Nome: 'Preco da loja'
+    Nome: 'Preço da loja'
     Icone: EMERALD
     Slot: -1
     Descricao:
@@ -197,4 +203,221 @@ Melhorias:
       '4':
         Custo: 2000000
         Valor: 2.0
+        Comandos: []
+
+  plantacoes:
+    Nome: 'Plantações rápidas'
+    Icone: WHEAT
+    Slot: -1
+    Descricao:
+      - '&7As plantações da ilha crescem'
+      - '&7mais rápido.'
+    Valor inicial: 1
+    Niveis:
+      '1':
+        Custo: 40000
+        Valor: 1.25
+        Comandos: []
+      '2':
+        Custo: 150000
+        Valor: 1.5
+        Comandos: []
+      '3':
+        Custo: 500000
+        Valor: 2.0
+        Nivel da ilha: 10
+        Comandos: []
+
+  spawners:
+    Nome: 'Spawners rápidos'
+    Icone: SPAWNER
+    Slot: -1
+    Descricao:
+      - '&7Os spawners da ilha soltam'
+      - '&7mobs com menos espera.'
+    Valor inicial: 1
+    Niveis:
+      '1':
+        Custo: 60000
+        Valor: 1.25
+        Comandos: []
+      '2':
+        Custo: 250000
+        Valor: 1.5
+        Comandos: []
+      '3':
+        Custo: 800000
+        Valor: 2.0
+        Nivel da ilha: 15
+        Comandos: []
+
+  drops:
+    Nome: 'Drops de mobs'
+    Icone: ROTTEN_FLESH
+    Slot: -1
+    Descricao:
+      - '&7Os mobs mortos na ilha soltam'
+      - '&7mais itens e experiência.'
+    Valor inicial: 1
+    Niveis:
+      '1':
+        Custo: 50000
+        Valor: 1.25
+        Comandos: []
+      '2':
+        Custo: 200000
+        Valor: 1.5
+        Comandos: []
+      '3':
+        Custo: 700000
+        Valor: 2.0
+        Nivel da ilha: 15
+        Comandos: []
+
+  # Os efeitos ficam ligados em quem é do time (ou cooperado) enquanto está
+  # dentro da ilha. Formato: EFEITO:NIVEL (SPEED:2 = Velocidade II).
+  efeitos:
+    Nome: 'Efeitos da ilha'
+    Icone: BREWING_STAND
+    Slot: -1
+    Descricao:
+      - '&7Efeitos de poção para o time'
+      - '&7enquanto estiver na ilha.'
+    Valor inicial: 0
+    Niveis:
+      '1':
+        Custo: 75000
+        Valor: 1
+        Efeitos:
+          - 'SPEED:1'
+        Comandos: []
+      '2':
+        Custo: 250000
+        Valor: 2
+        Efeitos:
+          - 'SPEED:1'
+          - 'FAST_DIGGING:1'
+        Comandos: []
+      '3':
+        Custo: 900000
+        Valor: 3
+        Nivel da ilha: 20
+        Efeitos:
+          - 'SPEED:2'
+          - 'FAST_DIGGING:2'
+          - 'JUMP:1'
+        Comandos: []
+
+  warps:
+    Nome: 'Vagas de warp'
+    Icone: ENDER_EYE
+    Slot: -1
+    Descricao:
+      - '&7Quantos warps a ilha pode ter.'
+    Valor inicial: 3
+    Niveis:
+      '1':
+        Custo: 30000
+        Valor: 5
+        Comandos: []
+      '2':
+        Custo: 100000
+        Valor: 7
+        Comandos: []
+      '3':
+        Custo: 300000
+        Valor: 10
+        Comandos: []
+
+  banco:
+    Nome: 'Cofre do banco'
+    Icone: GOLD_BLOCK
+    Slot: -1
+    Descricao:
+      - '&7Aumenta quanto cabe no'
+      - '&7banco da ilha.'
+    Valor inicial: 1000000
+    Niveis:
+      '1':
+        Custo: 100000
+        Valor: 5000000
+        Comandos: []
+      '2':
+        Custo: 500000
+        Valor: 25000000
+        Comandos: []
+      '3':
+        Custo: 2000000
+        Valor: 0
+        Comandos: []
+
+  bau:
+    Nome: 'Baú da ilha'
+    Icone: ENDER_CHEST
+    Slot: -1
+    Descricao:
+      - '&7Linhas do baú dividido pelo'
+      - '&7time (/ilha bau).'
+    Valor inicial: 1
+    Niveis:
+      '1':
+        Custo: 20000
+        Valor: 2
+        Comandos: []
+      '2':
+        Custo: 60000
+        Valor: 3
+        Comandos: []
+      '3':
+        Custo: 150000
+        Valor: 4
+        Comandos: []
+      '4':
+        Custo: 400000
+        Valor: 5
+        Comandos: []
+      '5':
+        Custo: 1000000
+        Valor: 6
+        Comandos: []
+
+  cooperados:
+    Nome: 'Vagas de cooperado'
+    Icone: EMERALD_BLOCK
+    Slot: -1
+    Descricao:
+      - '&7Quantos jogadores de fora'
+      - '&7podem ajudar ao mesmo tempo.'
+    Valor inicial: 1
+    Niveis:
+      '1':
+        Custo: 25000
+        Valor: 2
+        Comandos: []
+      '2':
+        Custo: 100000
+        Valor: 4
+        Comandos: []
+
+  limites:
+    Nome: 'Limites de blocos'
+    Icone: CHEST
+    Slot: -1
+    Descricao:
+      - '&7Multiplica os limites de funil,'
+      - '&7spawner, pistão e outros blocos.'
+    Valor inicial: 1
+    Niveis:
+      '1':
+        Custo: 80000
+        Valor: 1.5
+        Comandos: []
+      '2':
+        Custo: 300000
+        Valor: 2
+        Comandos: []
+      '3':
+        Custo: 1000000
+        Valor: 3
+        Nivel da ilha: 20
         Comandos: []

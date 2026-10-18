@@ -1,0 +1,44 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - o mundo das ilhas
+#
+#  O mundo nasce vazio de verdade: não precisa de plugin de mundo nenhum.
+#  O nether e o end de cada ilha ficam no dimensoes.yml.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# O nome da pasta do mundo das ilhas.
+Nome: 'ilhas'
+
+# A altura em que o centro da ilha é colado.
+Altura da ilha: 100
+
+# Distância entre o centro de uma ilha e o da próxima, em blocos. É o teto do
+# tamanho que uma ilha pode alcançar pelas melhorias -- deixe folga.
+#
+# ATENÇÃO: só mude isto ANTES de ter ilhas. Com ilhas criadas, mudar a
+# distância faz cada ilha "aparecer" no lugar errado.
+Distancia entre ilhas: 400
+
+# Quantas ilhas o servidor aceita. Zero é sem limite.
+Limite de ilhas: 0
+
+# Lado do quadrado protegido de uma ilha nova, em blocos. Só vale quando a
+# melhoria "tamanho" NÃO existe no melhorias.yml -- se ela existir, quem
+# manda é o "Valor inicial" dela.
+Tamanho inicial: 100
+
+Desempenho:
+  # Quantas camadas por tique ao limpar uma ilha (reset). Mais alto limpa mais
+  # rápido e pesa mais no servidor.
+  Camadas por tique ao limpar: 4
+
+  # Quantos blocos por tique ao colar um modelo. Mesma troca: mais alto faz a
+  # ilha nascer mais rápido e pesa mais.
+  Blocos por tique ao colar: 2000
+
+Regras:
+  Spawn natural de mobs: true
+  Fogo se propaga: false
+  # PEACEFUL, EASY, NORMAL ou HARD.
+  Dificuldade: NORMAL

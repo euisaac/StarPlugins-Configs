@@ -1,0 +1,58 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - o nether e o end de cada ilha
+#
+#  Toda ilha tem o seu próprio nether e o seu próprio end, no MESMO lugar da
+#  grade: quem acende um portal na ilha cai no nether da ilha (e não no nether
+#  do servidor), e volta pelo portal para a ilha.
+#
+#  O que aparece lá na primeira visita é o arquivo de nether/end do modelo
+#  (modelos.yml). Modelo sem esse arquivo ganha uma plataforma pequena.
+#
+#  Funciona mesmo com allow-nether=false no server.properties e com o end
+#  desligado no bukkit.yml -- o plugin cuida da viagem sozinho.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Nether:
+  # false = o mundo nem é criado, e os portais da ilha não levam a lugar
+  # nenhum.
+  Ativar: true
+  Nome do mundo: 'ilhas_nether'
+
+  # O que a ilha precisa para poder ir ao nether. Com tudo zerado, o nether
+  # fica liberado desde o primeiro dia.
+  Liberar:
+    # Nível mínimo da ilha.
+    Nivel da ilha: 0
+    # Preço pago uma vez só, por ilha, com /ilha liberar nether. Sai de onde
+    # as melhorias são pagas (melhorias.yml -> Pagar com).
+    Preco: 0
+
+End:
+  Ativar: true
+  Nome do mundo: 'ilhas_end'
+  Liberar:
+    Nivel da ilha: 0
+    Preco: 0
+
+Portais:
+  # true = o portal leva para o MESMO ponto da ilha na outra dimensão (quem
+  # entra no portal da ponta leste da ilha sai na ponta leste do nether). Se
+  # já houver um portal por perto, o jogador sai nele.
+  # false = o portal sempre leva para a entrada da ilha na outra dimensão.
+  Chegar no portal correspondente: true
+
+  # Quando não existe portal na chegada, o plugin monta um de obsidiana
+  # (só no nether), para o jogador conseguir voltar.
+  Criar portal de volta: true
+
+  # Tempo mínimo entre duas travessias do mesmo jogador.
+  Espera entre travessias em segundos: 3
+
+# O mundo do end tem um dragão no centro do mapa -- bem em cima da primeira
+# ilha. false impede o dragão de nascer nos mundos das ilhas.
+Dragao no end: false
+
+# Os blocos do nether e do end da ilha contam no valor, no nível e nos
+# limites de bloco (limites.yml) do mesmo jeito que os do mundo normal.

@@ -4,55 +4,56 @@
 #  Cada tela tem:
 #
 #    Titulo    o texto do topo ('' usa o do mensagens.yml)
-#    Linhas    de 1 a 6 (cada linha tem 9 slots; eles comecam no 0)
+#    Linhas    de 1 a 6 (cada linha tem 9 slots; eles começam no 0)
 #    Enfeite   o vidro que fecha os buracos
-#    Slots     onde a lista aparece (so nas telas com lista)
-#    Itens     os botoes
-#    Modelos   como cada item da lista e escrito, por estado
+#    Slots     onde a lista aparece (só nas telas com lista)
+#    Itens     os botões
+#    Modelos   como cada item da lista é escrito, por estado
 #
-#  Para TIRAR um botao, ponha  Slot: -1  (a configuracao dele fica guardada
-#  aqui, esperando o dia em que voce quiser de volta).
+#  Para TIRAR um botão, ponha  Slot: -1  (a configuração dele fica guardada
+#  aqui, esperando o dia em que você quiser de volta).
 #
-#  Para POR UM BOTAO SEU em qualquer tela, escreva mais um item com
+#  Para PÔR UM BOTÃO SEU em qualquer tela, escreva mais um item com
 #  "Comandos" -- veja o exemplo "loja-do-servidor" no menu Principal.
 #
 #  Todo item aceita:
 #    Slot        onde ele fica (-1 desliga)
-#    Acao        o que o clique faz (a lista esta em cada tela)
-#    Material    o icone ('' deixa o menu escolher: a cabeca do jogador,
-#                o item que a loja vende, o icone do modelo...)
+#    Acao        o que o clique faz (a lista está em cada tela)
+#    Material    o ícone ('' deixa o menu escolher: a cabeça do jogador,
+#                o item que a loja vende, o ícone do modelo...)
 #    Nome        o nome do item
 #    Lore        as linhas de baixo
-#    Brilho      true da o brilho de encantado
-#    Permissao   so quem tem ve o item ('' = todo mundo)
+#    Brilho      true dá o brilho de encantado
+#    Permissao   só quem tem vê o item ('' = todo mundo)
 #    Comandos    lista de comandos rodados no clique
 #    Fechar      true fecha o menu antes de rodar os comandos
 #
-#  Os comandos aceitam os mesmos prefixos das recompensas de missao:
+#  Os comandos aceitam os mesmos prefixos das recompensas de missão:
 #    jogador: loja          console: give {jogador} diamond 1
 #    op: gamemode creative  mensagem: &aOi!
-#    som: ENTITY_PLAYER_LEVELUP    titulo: &aTitulo<nl>&7Subtitulo
+#    som: ENTITY_PLAYER_LEVELUP    titulo: &aTítulo<nl>&7Subtítulo
 #    link: seusite.com.br          espera: 20
 #
-#  Tudo isto tambem pode ser editado por menu: /starskyblock config
+#  Tudo isto também pode ser editado por menu: /starskyblock config
 # ------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Menus:
 
   # ====================================================================
   #  O menu do /ilha
   #
-  #  Acoes: RETRATO MISSOES MODELOS MEMBROS MELHORIAS BANCO LOJA
+  #  Ações: RETRATO MISSOES MODELOS MEMBROS MELHORIAS BANCO LOJA
   #         BANDEIRAS CARGOS WARPS TOP VISITAS IR CALCULAR RESETAR
-  #         FECHAR NENHUMA
+  #         BORDA BAU NETHER END FECHAR NENHUMA
   #
   #  Trocas: {ilha} {id} {dono} {descricao} {jogador} {cargo} {modelo}
   #          {bioma} {nivel} {valor} {experiencia} {banco} {cristais}
   #          {barra} {porcento} {falta} {membros} {membros_max} {tamanho}
   #          {warps} {warps_max} {banidos} {missoes} {missoes_prontas}
-  #          {gerador} {posicao} {aberta}
+  #          {gerador} {posicao} {aberta} {nota} {avaliacoes} {borda}
+  #          {nether} {end} {cooperados}
   # ====================================================================
   Principal:
     Titulo: '&8{ilha}'
@@ -71,27 +72,28 @@ Menus:
           - '&7Dono: &f{dono}'
           - '&7{descricao}'
           - ''
-          - '&7Nivel: &a{nivel}'
+          - '&7Nível: &a{nivel}'
           - '{barra} &7{porcento}%'
           - '&7Faltam &f{falta} &7pontos'
           - ''
-          - '&7Valor: &a{valor} &8| &7Experiencia: &d{experiencia}'
+          - '&7Valor: &a{valor} &8| &7Experiência: &d{experiencia}'
           - '&7Banco: &6{banco} &8| &7Cristais: &b{cristais}'
           - '&7Tamanho: &f{tamanho}x{tamanho}'
           - '&7Modelo: &f{modelo}'
           - ''
-          - '&7Ilha n&f{id} &8| &7Ranking: &e#{posicao}'
+          - '&7Ilha nº &f{id} &8| &7Ranking: &e#{posicao}'
+          - '&7Nota: {nota} &8({avaliacoes})'
 
       missoes:
         Slot: 20
         Acao: MISSOES
         Material: BOOK
-        Nome: '&b&lMissoes'
+        Nome: '&b&lMissões'
         Lore:
-          - '&7O que fazer, e o que voce ganha'
+          - '&7O que fazer e o que você ganha'
           - '&7por ter feito.'
           - ''
-          - '&7Concluidas: &f{missoes}'
+          - '&7Concluídas: &f{missoes}'
           - '&aProntas para pegar: &f{missoes_prontas}'
           - ''
           - '&eClique para abrir.'
@@ -116,7 +118,7 @@ Menus:
           - '&7Gaste o banco da ilha para'
           - '&7crescer, caber mais e minerar melhor.'
           - ''
-          - '&7Gerador: &fnivel {gerador}'
+          - '&7Gerador: &fnível {gerador}'
           - ''
           - '&eClique para abrir.'
 
@@ -192,7 +194,7 @@ Menus:
         Lore:
           - '&7O seu: &f{bioma}'
           - ''
-          - '&7Trocar o bioma nao reseta nada.'
+          - '&7Trocar o bioma não reseta nada.'
           - ''
           - '&eClique para abrir.'
 
@@ -202,7 +204,7 @@ Menus:
         Material: BEACON
         Nome: '&b&lRanking'
         Lore:
-          - '&7Sua posicao: &f#{posicao}'
+          - '&7Sua posição: &f#{posicao}'
           - ''
           - '&eClique para abrir.'
 
@@ -212,7 +214,7 @@ Menus:
         Material: GRASS_BLOCK
         Nome: '&a&lIr para a ilha'
         Lore:
-          - '&7Leva voce para casa.'
+          - '&7Leva você para casa.'
           - ''
           - '&eClique para viajar.'
 
@@ -234,9 +236,9 @@ Menus:
         Lore:
           - '&7Reconta bloco por bloco.'
           - ''
-          - '&7So e preciso se o valor parecer'
-          - '&7errado -- a contagem do dia a dia'
-          - '&7ja acompanha tudo sozinha.'
+          - '&7Só é preciso se o valor parecer'
+          - '&7errado — a contagem do dia a dia'
+          - '&7já acompanha tudo sozinha.'
           - ''
           - '&eClique para recontar.'
 
@@ -246,10 +248,59 @@ Menus:
         Material: TNT
         Nome: '&4&lResetar a ilha'
         Lore:
-          - '&cApaga tudo e comeca do zero.'
-          - '&cNao tem volta.'
+          - '&cApaga tudo e começa do zero.'
+          - '&cNão tem volta.'
           - ''
-          - '&eClique para comecar.'
+          - '&eClique para começar.'
+
+      bau:
+        Slot: 37
+        Acao: BAU
+        Material: ENDER_CHEST
+        Nome: '&6&lBaú da ilha'
+        Lore:
+          - '&7Um baú dividido por todo o time.'
+          - '&7A melhoria de baú aumenta o espaço.'
+          - ''
+          - '&eClique para abrir.'
+
+      borda:
+        Slot: 40
+        Acao: BORDA
+        Material: LIGHT_BLUE_STAINED_GLASS
+        Nome: '&b&lBorda da ilha'
+        Lore:
+          - '&7A cor de agora: {borda}'
+          - ''
+          - '&7Escolha a cor da borda ou'
+          - '&7esconda ela só para você.'
+          - ''
+          - '&eClique para abrir.'
+
+      nether:
+        Slot: 48
+        Acao: NETHER
+        Material: NETHERRACK
+        Nome: '&c&lNether da ilha'
+        Lore:
+          - '&7Situação: {nether}'
+          - ''
+          - '&7A sua ilha também existe no nether.'
+          - '&7Um portal na ilha leva até ela.'
+          - ''
+          - '&eClique para viajar.'
+
+      end:
+        Slot: 50
+        Acao: END
+        Material: END_STONE
+        Nome: '&5&lEnd da ilha'
+        Lore:
+          - '&7Situação: {end}'
+          - ''
+          - '&7A sua ilha também existe no end.'
+          - ''
+          - '&eClique para viajar.'
 
       fechar:
         Slot: 49
@@ -258,7 +309,7 @@ Menus:
         Nome: '&c&lFechar'
         Lore: []
 
-      # Exemplo de botao SEU. Esta desligado; ponha um slot livre e ele
+      # Exemplo de botão SEU. Está desligado; ponha um slot livre e ele
       # aparece. Vale em qualquer tela deste arquivo.
       loja-do-servidor:
         Slot: -1
@@ -275,9 +326,9 @@ Menus:
           - 'jogador: loja'
 
   # ====================================================================
-  #  As missoes
+  #  As missões
   #
-  #  Acoes: CATEGORIA RESGATAR_TUDO VOLTAR FECHAR PAGINA_ANTERIOR
+  #  Ações: CATEGORIA RESGATAR_TUDO VOLTAR FECHAR PAGINA_ANTERIOR
   #         PROXIMA_PAGINA
   #  Modelos: pronta, andamento, concluida
   #  Trocas do item: {missao} {descricao} {categoria} {frequencia}
@@ -285,7 +336,7 @@ Menus:
   #                  {porcento} {premio}
   # ====================================================================
   Missoes:
-    Titulo: '&8Missoes &7- {categoria}'
+    Titulo: '&8Missões &7- {categoria}'
     Linhas: 6
     Enfeite:
       Ativar: true
@@ -311,17 +362,17 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore:
-          - '&7Pagina &f{pagina}&7/&f{paginas}'
+          - '&7Página &f{pagina}&7/&f{paginas}'
       resgatar-tudo:
         Slot: 49
         Acao: RESGATAR_TUDO
         Material: CHEST
         Nome: '&a&lPegar tudo'
         Lore:
-          - '&7Pega de uma vez o premio de todas'
-          - '&7as missoes que ja estao prontas.'
+          - '&7Pega de uma vez o prêmio de todas'
+          - '&7as missões que já estão prontas.'
           - ''
           - '&7Prontas agora: &a{prontas}'
           - ''
@@ -330,9 +381,9 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore:
-          - '&7Pagina &f{pagina}&7/&f{paginas}'
+          - '&7Página &f{pagina}&7/&f{paginas}'
       fechar:
         Slot: 53
         Acao: FECHAR
@@ -351,26 +402,26 @@ Menus:
           - '&7{objetivos}'
           - '{barra} &7{porcento}%'
           - ''
-          - '&7Premio: {premio}'
+          - '&7Prêmio: {premio}'
           - ''
           - '&eClique para pegar.'
       andamento:
         Nome: '&e{missao}'
         Lore:
-          - '&8{frequencia} &7- missao {de_quem}'
+          - '&8{frequencia} &7- missão {de_quem}'
           - ''
           - '&7{descricao}'
           - ''
           - '&7{objetivos}'
           - '{barra} &7{porcento}%'
           - ''
-          - '&7Nivel &f{nivel} &8| &7concluida &f{concluida}x'
-          - '&7Premio: {premio}'
+          - '&7Nível &f{nivel} &8| &7concluída &f{concluida}x'
+          - '&7Prêmio: {premio}'
       concluida:
         Material: GRAY_DYE
         Nome: '&7{missao}'
         Lore:
-          - '&8Ja concluida'
+          - '&8Já concluída'
           - ''
           - '&7{descricao}'
 
@@ -399,7 +450,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       fechar:
         Slot: 49
@@ -411,7 +462,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
     Modelos:
       disponivel:
@@ -427,7 +478,7 @@ Menus:
         Brilho: true
         Nome: '&6{modelo}'
         Lore:
-          - '&6&lE O SEU MODELO'
+          - '&6&lÉ O SEU MODELO'
           - ''
           - '&7{descricao}'
           - ''
@@ -438,17 +489,17 @@ Menus:
         Lore:
           - '&7{descricao}'
           - ''
-          - '&cVoce nao tem acesso a este modelo.'
+          - '&cVocê não tem acesso a este modelo.'
           - '&8{permissao}'
 
   # ====================================================================
   #  O bioma da ilha
   #
-  #  Serve para duas coisas: trocar o bioma de uma ilha que ja existe
-  #  (de graca, sem resetar nada) e, na criacao, escolher o bioma antes
+  #  Serve para duas coisas: trocar o bioma de uma ilha que já existe
+  #  (de graça, sem resetar nada) e, na criação, escolher o bioma antes
   #  de digitar o nome.
   #
-  #  Acoes: BIOMA_DO_MODELO VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Ações: BIOMA_DO_MODELO VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
   #  Modelos: disponivel, atual
   #  Trocas do item: {bioma} {bioma_id}
   # ====================================================================
@@ -470,7 +521,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       do-modelo:
         Slot: 49
@@ -479,9 +530,9 @@ Menus:
         Nome: '&a&lUsar o bioma do modelo'
         Lore:
           - '&7Segue com o bioma que o tipo de'
-          - '&7ilha ja traz: &f{bioma}'
+          - '&7ilha já traz: &f{bioma}.'
           - ''
-          - '&7Voce pode trocar depois, quando'
+          - '&7Você pode trocar depois, quando'
           - '&7quiser, com &f/ilha bioma&7.'
           - ''
           - '&eClique para continuar.'
@@ -489,7 +540,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
       fechar:
         Slot: 53
@@ -508,13 +559,13 @@ Menus:
         Brilho: true
         Nome: '{bioma}'
         Lore:
-          - '&6&lE O SEU BIOMA'
+          - '&6&lÉ O SEU BIOMA'
           - '&8{bioma_id}'
 
   # ====================================================================
   #  Os membros da ilha
   #
-  #  Acoes: CONVIDAR BANIDOS VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Ações: CONVIDAR BANIDOS VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
   #  Modelos: dono, membro, sem_permissao
   #  Trocas do item: {jogador} {cargo} {cargo_colorido} {cor} {estado}
   # ====================================================================
@@ -545,7 +596,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       fechar:
         Slot: 49
@@ -557,7 +608,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
       banidos:
         Slot: 51
@@ -575,7 +626,7 @@ Menus:
           - '&7Cargo: {cargo_colorido}'
           - '&7Estado: {estado}'
           - ''
-          - '&8O dono nao pode ser mexido aqui.'
+          - '&8O dono não pode ser mexido aqui.'
       membro:
         Nome: '{cor}{jogador}'
         Lore:
@@ -591,7 +642,7 @@ Menus:
           - '&7Cargo: {cargo_colorido}'
           - '&7Estado: {estado}'
           - ''
-          - '&8Voce nao mexe nos membros desta ilha.'
+          - '&8Você não mexe nos membros desta ilha.'
 
   # ====================================================================
   #  Os barrados
@@ -614,7 +665,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       fechar:
         Slot: 49
@@ -626,7 +677,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
     Modelos:
       banido:
@@ -640,12 +691,12 @@ Menus:
         Lore:
           - '&7Banido em: &f{quando}'
           - ''
-          - '&8Voce nao mexe nos banimentos.'
+          - '&8Você não mexe nos banimentos.'
 
   # ====================================================================
   #  As regras da ilha
   #
-  #  Acoes: ABRIR_FECHAR VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Ações: ABRIR_FECHAR VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
   #  Modelos: ligada, desligada, ilha_aberta, ilha_fechada
   # ====================================================================
   Bandeiras:
@@ -672,7 +723,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       fechar:
         Slot: 49
@@ -684,7 +735,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
     Modelos:
       ligada:
@@ -716,7 +767,7 @@ Menus:
         Material: GRAY_DYE
         Nome: '&c&lIlha fechada'
         Lore:
-          - '&7So os membros entram.'
+          - '&7Só os membros entram.'
           - ''
           - '&eClique para trocar.'
 
@@ -741,7 +792,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       fechar:
         Slot: 49
@@ -753,7 +804,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
     Modelos:
       acao:
@@ -791,7 +842,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       saldo:
         Slot: 49
@@ -799,16 +850,16 @@ Menus:
         Material: GOLD_INGOT
         Nome: '&6&lO que paga as melhorias'
         Lore:
-          - '&7Voce tem: &f{banco}'
+          - '&7Você tem: &f{banco}'
           - ''
-          - '&7A forma de pagamento e escolhida'
+          - '&7A forma de pagamento é escolhida'
           - '&7no melhorias.yml (banco da ilha,'
           - '&7dinheiro do servidor ou cristais).'
       proxima:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
       fechar:
         Slot: 53
@@ -822,7 +873,7 @@ Menus:
         Lore:
           - '&7{descricao}'
           - ''
-          - '&7Nivel: &f{nivel}&7/&f{nivel_max}'
+          - '&7Nível: &f{nivel}&7/&f{nivel_max}'
           - '&7Agora: &a{agora}'
           - '&7Depois: &a{depois}'
           - ''
@@ -833,27 +884,27 @@ Menus:
         Lore:
           - '&7{descricao}'
           - ''
-          - '&7Nivel: &f{nivel}&7/&f{nivel_max}'
+          - '&7Nível: &f{nivel}&7/&f{nivel_max}'
           - '&7Agora: &a{agora}'
           - '&7Depois: &a{depois}'
           - ''
           - '&7Custo: &e{custo}'
-          - '&cO banco da ilha nao tem esse valor.'
+          - '&cO banco da ilha não tem esse valor.'
       no_topo:
         Nome: '&b&l{melhoria}'
         Lore:
           - '&7{descricao}'
           - ''
-          - '&7Nivel: &f{nivel}&7/&f{nivel_max}'
+          - '&7Nível: &f{nivel}&7/&f{nivel_max}'
           - '&7Agora: &a{agora}'
           - ''
-          - '&6&lNO MAXIMO'
+          - '&6&lNO MÁXIMO'
 
   # ====================================================================
   #  O banco da ilha
   #
-  #  Acoes: DEPOSITAR SACAR DIGITAR_VALOR VOLTAR FECHAR
-  #  A chave "Valor" de cada botao diz quanto ele mexe; -1 quer dizer tudo.
+  #  Ações: DEPOSITAR SACAR DIGITAR_VALOR VOLTAR FECHAR
+  #  A chave "Valor" de cada botão diz quanto ele mexe; -1 quer dizer tudo.
   #  Trocas: as da ilha mais {bolso} {teto} {cristais} {juros_hora}
   # ====================================================================
   Banco:
@@ -882,7 +933,7 @@ Menus:
         Material: GOLD_NUGGET
         Nome: '&aDepositar 1.000'
         Lore:
-          - '&7Tira do seu bolso e poe no banco.'
+          - '&7Tira do seu bolso e põe no banco.'
       depositar-dez-mil:
         Slot: 20
         Acao: DEPOSITAR
@@ -890,7 +941,7 @@ Menus:
         Material: GOLD_INGOT
         Nome: '&aDepositar 10.000'
         Lore:
-          - '&7Tira do seu bolso e poe no banco.'
+          - '&7Tira do seu bolso e põe no banco.'
       depositar-tudo:
         Slot: 21
         Acao: DEPOSITAR
@@ -901,7 +952,7 @@ Menus:
           - '&7Manda todo o seu dinheiro'
           - '&7para o banco da ilha.'
           - ''
-          - '&7Voce tem: &e{bolso}'
+          - '&7Você tem: &e{bolso}'
       digitar:
         Slot: 22
         Acao: DIGITAR_VALOR
@@ -918,7 +969,7 @@ Menus:
         Material: IRON_NUGGET
         Nome: '&cSacar 1.000'
         Lore:
-          - '&7Tira do banco e poe no seu bolso.'
+          - '&7Tira do banco e põe no seu bolso.'
       sacar-dez-mil:
         Slot: 24
         Acao: SACAR
@@ -926,7 +977,7 @@ Menus:
         Material: IRON_INGOT
         Nome: '&cSacar 10.000'
         Lore:
-          - '&7Tira do banco e poe no seu bolso.'
+          - '&7Tira do banco e põe no seu bolso.'
       sacar-tudo:
         Slot: 25
         Acao: SACAR
@@ -947,7 +998,7 @@ Menus:
   # ====================================================================
   #  A loja da ilha
   #
-  #  Acoes: VENDER_TUDO VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
+  #  Ações: VENDER_TUDO VOLTAR FECHAR PAGINA_ANTERIOR PROXIMA_PAGINA
   #  Modelos: tem, nao_tem
   # ====================================================================
   Loja:
@@ -968,7 +1019,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       vender-tudo:
         Slot: 49
@@ -977,7 +1028,7 @@ Menus:
         Nome: '&a&lVender tudo'
         Lore:
           - '&7Vende de uma vez tudo que a loja'
-          - '&7aceita do seu inventario.'
+          - '&7aceita do seu inventário.'
           - ''
           - '&7Banco da ilha: &e{banco}'
           - '&7Multiplicador: &ax{multiplicador}'
@@ -987,7 +1038,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
       fechar:
         Slot: 53
@@ -999,8 +1050,8 @@ Menus:
       tem:
         Nome: '&f{item}'
         Lore:
-          - '&7Preco: &e{preco} &7cada'
-          - '&7No seu inventario: &f{quantidade}'
+          - '&7Preço: &e{preco} &7cada'
+          - '&7No seu inventário: &f{quantidade}'
           - '&7Vale tudo: &a{total_do_item}'
           - ''
           - '&eClique &7para vender uma pilha.'
@@ -1008,9 +1059,9 @@ Menus:
       nao_tem:
         Nome: '&7{item}'
         Lore:
-          - '&7Preco: &e{preco} &7cada'
+          - '&7Preço: &e{preco} &7cada'
           - ''
-          - '&8Voce nao tem nenhum.'
+          - '&8Você não tem nenhum.'
 
   # ====================================================================
   #  Os warps
@@ -1033,7 +1084,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       criar:
         Slot: 49
@@ -1041,7 +1092,7 @@ Menus:
         Material: NAME_TAG
         Nome: '&a&lCriar um warp'
         Lore:
-          - '&7Marca o lugar onde voce esta.'
+          - '&7Marca o lugar onde você está.'
           - '&7Salvos: &f{warps}&7/&f{warps_max}'
           - ''
           - '&eClique para digitar o nome.'
@@ -1049,7 +1100,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
       fechar:
         Slot: 53
@@ -1061,32 +1112,32 @@ Menus:
       publico:
         Nome: '&5{warp}'
         Lore:
-          - '&aPublico &7- qualquer visitante usa.'
+          - '&aPúblico &7- qualquer visitante usa.'
           - '&7Visitas: &f{visitas}'
           - ''
           - '&eClique &7para viajar.'
-          - '&eClique direito &7para trocar publico/privado.'
+          - '&eClique direito &7para trocar público/privado.'
           - '&eShift + clique &7para apagar.'
       privado:
         Nome: '&5{warp}'
         Lore:
-          - '&cPrivado &7- so os membros usam.'
+          - '&cPrivado &7- só os membros usam.'
           - '&7Visitas: &f{visitas}'
           - ''
           - '&eClique &7para viajar.'
-          - '&eClique direito &7para trocar publico/privado.'
+          - '&eClique direito &7para trocar público/privado.'
           - '&eShift + clique &7para apagar.'
       publico_sem_permissao:
         Nome: '&5{warp}'
         Lore:
-          - '&aPublico &7- qualquer visitante usa.'
+          - '&aPúblico &7- qualquer visitante usa.'
           - '&7Visitas: &f{visitas}'
           - ''
           - '&eClique &7para viajar.'
       privado_sem_permissao:
         Nome: '&5{warp}'
         Lore:
-          - '&cPrivado &7- so os membros usam.'
+          - '&cPrivado &7- só os membros usam.'
           - '&7Visitas: &f{visitas}'
           - ''
           - '&eClique &7para viajar.'
@@ -1114,7 +1165,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       legenda:
         Slot: 49
@@ -1125,12 +1176,12 @@ Menus:
           - '&7Ordenado por: &f{criterio}'
           - '&7Ilhas no servidor: &f{ilhas}'
           - ''
-          - '&7Sua posicao: &e#{posicao}'
+          - '&7Sua posição: &e#{posicao}'
       proxima:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
       fechar:
         Slot: 53
@@ -1145,9 +1196,9 @@ Menus:
           - '&7Dono: &f{dono}'
           - '&7Membros: &f{membros}'
           - ''
-          - '&7Nivel: &a{nivel}'
+          - '&7Nível: &a{nivel}'
           - '&7Valor: &a{valor}'
-          - '&7Missoes: &f{missoes}'
+          - '&7Missões: &f{missoes}'
           - '&7Cristais: &b{cristais}'
           - ''
           - '&eClique para visitar.'
@@ -1157,11 +1208,11 @@ Menus:
           - '&7Dono: &f{dono}'
           - '&7Membros: &f{membros}'
           - ''
-          - '&7Nivel: &a{nivel}'
+          - '&7Nível: &a{nivel}'
           - '&7Valor: &a{valor}'
-          - '&7Missoes: &f{missoes}'
+          - '&7Missões: &f{missoes}'
           - ''
-          - '&8Esta ilha esta fechada.'
+          - '&8Esta ilha está fechada.'
 
   # ====================================================================
   #  As ilhas abertas
@@ -1186,7 +1237,7 @@ Menus:
         Slot: 48
         Acao: PAGINA_ANTERIOR
         Material: ARROW
-        Nome: '&ePagina anterior'
+        Nome: '&ePágina anterior'
         Lore: []
       fechar:
         Slot: 49
@@ -1198,7 +1249,7 @@ Menus:
         Slot: 50
         Acao: PROXIMA_PAGINA
         Material: ARROW
-        Nome: '&eProxima pagina'
+        Nome: '&ePróxima página'
         Lore: []
     Modelos:
       com_gente:
@@ -1207,9 +1258,9 @@ Menus:
           - '&7Dono: &f{dono}'
           - '&7{descricao}'
           - ''
-          - '&7Nivel: &a{nivel}'
+          - '&7Nível: &a{nivel}'
           - '&7Valor: &a{valor}'
-          - '&7Missoes: &f{missoes}'
+          - '&7Missões: &f{missoes}'
           - '&7Gente online: &a{online}'
           - ''
           - '&eClique para visitar.'
@@ -1219,10 +1270,10 @@ Menus:
           - '&7Dono: &f{dono}'
           - '&7{descricao}'
           - ''
-          - '&7Nivel: &a{nivel}'
+          - '&7Nível: &a{nivel}'
           - '&7Valor: &a{valor}'
-          - '&7Missoes: &f{missoes}'
-          - '&7Gente online: &8ninguem'
+          - '&7Missões: &f{missoes}'
+          - '&7Gente online: &8ninguém'
           - ''
           - '&eClique para visitar.'
 

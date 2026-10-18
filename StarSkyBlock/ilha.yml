@@ -1,0 +1,110 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - as regras de toda ilha
+#
+#  O que vale para qualquer ilha do servidor: como ela nasce, quem entra,
+#  como se viaja, o reset, os warps e o banco.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Criacao:
+  # {jogador} vira o nick de quem criou.
+  Nome padrao: 'Ilha de {jogador}'
+
+  # true = a ilha nasce aberta a visitas.
+  Nasce aberta: false
+
+  # Quantas pessoas cabem numa ilha nova (contando o dono). Só vale quando a
+  # melhoria "membros" NÃO existe no melhorias.yml -- se ela existir, quem
+  # manda é o "Valor inicial" dela.
+  Membros iniciais: 4
+
+  # true põe o kit num BAÚ na ilha, em vez de entregar no inventário. Se o
+  # modelo já tiver um baú perto da entrada, o kit vai nele.
+  Kit inicial no bau: true
+
+  # Formato: MATERIAL:QUANTIDADE[:ENCANTAMENTO:NIVEL...]
+  Kit inicial:
+    - 'ICE:2'
+    - 'LAVA_BUCKET:1'
+    - 'OAK_SAPLING:2'
+    - 'BONE_MEAL:8'
+    - 'MELON_SEEDS:1'
+    - 'PUMPKIN_SEEDS:1'
+    - 'SUGAR_CANE:1'
+    - 'BREAD:8'
+    - 'WOODEN_PICKAXE:1'
+    - 'WOODEN_AXE:1'
+
+Membros:
+  # Quanto tempo um convite fica valendo.
+  Segundos do convite: 120
+
+  # Cooperado é alguém de fora que ganha as permissões de "Confiança" na ilha
+  # enquanto estiver online -- para ajudar sem entrar no time. Ele perde o
+  # acesso quando sai do servidor. Zero desliga o recurso.
+  Limite de cooperados: 3
+
+Teleporte:
+  # Segundos parado antes de viajar (/ilha ir, warps, visitas). Zero = na hora.
+  Espera em segundos: 3
+
+  # true cancela a viagem se o jogador andar durante a contagem.
+  Cancelar ao andar: true
+
+  # Quem cai no vazio do mundo das ilhas volta para a casa da própria ilha,
+  # sem perder o inventário.
+  Resgatar do vazio: true
+
+Reset:
+  # Pede confirmação num menu antes de apagar tudo.
+  Confirmar: true
+
+  # Tempo mínimo entre um reset e outro da mesma ilha. Zero = sem espera.
+  Espera entre resets em minutos: 0
+
+  # Quantas vezes uma ilha pode ser resetada. Zero = sem limite.
+  Limite de resets: 0
+
+  # true = as melhorias compradas continuam depois do reset.
+  Manter melhorias: true
+
+Warps:
+  # Teto de warps quando a melhoria "warps" não existe no melhorias.yml.
+  Limite de warps: 9
+
+  # Nível da ilha para poder criar warps (comando, menu ou placa). 0 = desde
+  # o começo.
+  Nivel para criar warps: 5
+
+  # Placa de warp: escreva isto na 1ª linha e o nome do warp na 2ª. O warp
+  # nasce público, no lugar da placa, e aparece no /ilha warp para todos.
+  # Quebrar a placa apaga o warp. Vazio desliga.
+  Placa de warp: '[warp]'
+
+Voo:
+  # Libera o /ilha voar dentro da ilha (quem tem a permissão starskyblock.voar
+  # e o cargo que a ilha exige).
+  Liberado: true
+
+  # true = quem ligou o voo e saiu da ilha volta a voar sozinho ao entrar nela
+  # de novo, sem precisar digitar o comando outra vez.
+  Religar ao voltar para a ilha: true
+
+Anuncios:
+  # A partir de que nível a ilha é anunciada no servidor. Zero desliga.
+  Nivel para anunciar: 10
+
+Banco:
+  # Quanto o dinheiro guardado rende por hora, em porcento. Zero desliga.
+  Juros por hora: 0.5
+
+  # Teto do banco quando a melhoria "banco" não existe. Zero = sem teto.
+  Teto: 0
+
+Visitas:
+  # Ao fechar a ilha, quem é de fora e está nela é mandado embora.
+  Expulsar visitantes ao fechar: true
+
+  # Visitantes podem dar nota de 1 a 5 para a ilha (/ilha avaliar).
+  Avaliacoes: true

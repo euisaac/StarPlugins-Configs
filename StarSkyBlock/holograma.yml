@@ -1,0 +1,38 @@
+# ------------------------------------------------------------------------
+#  StarSkyBlock - o holograma da entrada da ilha
+#
+#  Precisa de um plugin de holograma no servidor (DecentHolograms, ou o que
+#  o StarPlugins já entrega). Cada ilha pode desligar o seu nas regras.
+# ------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Ativar: true
+
+# Onde fica a linha DE BAIXO do letreiro, contando do centro da ilha. As
+# outras empilham para cima a partir dela, então ligar ou desligar uma linha
+# nunca empurra o resto para dentro do chão.
+Altura: 3.0
+
+# Distância entre uma linha e outra. Só é usada para a conta da altura --
+# quem desenha as linhas é o provedor de holograma.
+Espaco entre linhas: 0.3
+
+# A que distância o letreiro nasce. Ele só existe enquanto tem gente perto:
+# ilha vazia não custa nada ao servidor.
+Alcance: 48
+
+Intervalo em segundos: 3
+
+# true reescreve o texto a cada passada, mesmo sem nada ter mudado. Custa
+# mais e só vale se você puser algo que muda sozinho nas linhas.
+Sempre atualizado: false
+
+# Placeholders: {ilha} {dono} {nivel} {valor} {barra} {porcento} {missoes}
+# {posicao} {membros} {nota}
+Linhas:
+  - '&e&l{ilha}'
+  - '&7de &f{dono}'
+  - '&fNível: &a{nivel} &8| &fValor: &a{valor}'
+  - '{barra} &7{porcento}%'
+  - '&7Missões: &f{missoes} &8| &7Ranking: &e#{posicao}'

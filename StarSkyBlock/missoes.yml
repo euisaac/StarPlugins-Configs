@@ -1,41 +1,41 @@
 # ------------------------------------------------------------------------
-#  StarSkyBlock - as missoes
+#  StarSkyBlock - as missões
 #
 #  OBJETIVOS: escritos como  TIPO:ALVO:QUANTIDADE  (o alvo aceita QUALQUER).
-#  Uma missao pode ter varios; ela so fica pronta quando todos terminam.
+#  Uma missão pode ter vários; ela só fica pronta quando todos terminam.
 #
 #  Os 16 tipos:
 #    QUEBRAR    COLOCAR    COLHER     MATAR      PESCAR     FABRICAR
 #    FUNDIR     ENCANTAR   FERMENTAR  DOMAR      TOSQUIAR   VENDER
 #    ENTREGAR   GERAR      NIVEL      TEMPO
 #
-#  Nos tipos NIVEL e TEMPO o alvo nao existe: escreva  NIVEL:25.
+#  Nos tipos NIVEL e TEMPO o alvo não existe: escreva  NIVEL:25.
 #
 #  FREQUENCIA:
 #    UNICA      termina e acabou (a trilha de conquistas)
 #    DIARIA     zera na virada do dia
 #    SEMANAL    zera na virada da semana
-#    INFINITA   termina, paga, SOBE DE NIVEL e recomeca maior
+#    INFINITA   termina, paga, SOBE DE NÍVEL e recomeça maior
 #
-#  As diarias e semanais zeram pela data, e nao por tarefa agendada: servidor
+#  As diárias e semanais zeram pela data, e não por tarefa agendada: servidor
 #  desligado na virada (ou fora do ar por dias) zera certo sozinho.
 #
 #  DE QUEM:
-#    ILHA       todo mundo empurra o mesmo numero, e o premio e da ilha
+#    ILHA       todo mundo empurra o mesmo número, e o prêmio é da ilha
 #    JOGADOR    cada um tem o seu
 #
-#  Use os dois. Missao de ilha faz o time trabalhar junto; a de jogador
+#  Use os dois. Missão de ilha faz o time trabalhar junto; a de jogador
 #  impede que o veterano termine tudo antes de o novato chegar.
 #
-#  Tudo isto tambem pode ser editado por menu: /starskyblock config
+#  Tudo isto também pode ser editado por menu: /starskyblock config
 # ------------------------------------------------------------------------
 
 Versao do modelo: 1
 
-# Avisar na barra de acao a cada avanco. Desligue num servidor muito cheio.
+# Avisar na barra de ação a cada avanço. Desligue num servidor muito cheio.
 Avisar a cada avanco: true
 
-# A ordem das abas no menu de missoes. Categoria que nao estiver aqui entra
+# A ordem das abas no menu de missões. Categoria que não estiver aqui entra
 # no fim, na ordem em que aparecer.
 Ordem das categorias:
   - comeco
@@ -47,15 +47,15 @@ Ordem das categorias:
 Missoes:
 
   # ====================================================================
-  #  Comeco -- a trilha do primeiro dia
+  #  Começo -- a trilha do primeiro dia
   # ====================================================================
 
   primeira-arvore:
     Categoria: comeco
-    Nome: '&aA primeira arvore'
+    Nome: '&aA primeira árvore'
     Icone: OAK_SAPLING
     Descricao:
-      - '&7Toda ilha comeca com uma arvore.'
+      - '&7Toda ilha começa com uma árvore.'
       - '&7Corte a sua e plante outra.'
     Frequencia: UNICA
     De quem: ILHA
@@ -69,15 +69,15 @@ Missoes:
       Itens:
         - 'OAK_SAPLING:2'
       Mensagem:
-        - '&a&lMISSAO! &7Voce plantou a semente do seu futuro.'
+        - '&a&lMISSÃO! &7Você plantou a semente do seu futuro.'
 
   primeiro-gerador:
     Categoria: comeco
     Nome: '&7O gerador'
     Icone: COBBLESTONE
     Descricao:
-      - '&7Agua e lava juntas viram pedra.'
-      - '&7E a mina da sua ilha.'
+      - '&7Água e lava juntas viram pedra.'
+      - '&7É a mina da sua ilha.'
     Frequencia: UNICA
     De quem: ILHA
     Objetivos:
@@ -97,7 +97,7 @@ Missoes:
     Icone: WHEAT
     Descricao:
       - '&7Plante, espere e colha.'
-      - '&7So conta o que esta no ponto.'
+      - '&7Só conta o que está no ponto.'
     Frequencia: UNICA
     De quem: ILHA
     Objetivos:
@@ -110,7 +110,7 @@ Missoes:
         - 'BREAD:16'
 
   # ====================================================================
-  #  Mineracao
+  #  Mineração
   # ====================================================================
 
   minerador:
@@ -120,16 +120,16 @@ Missoes:
     Descricao:
       - '&7Quebre pedra. Muita pedra.'
       - ''
-      - '&e&lINFINITA &7- cada nivel pede mais e paga mais.'
+      - '&e&lINFINITA &7- cada nível pede mais e paga mais.'
     Frequencia: INFINITA
     De quem: JOGADOR
     Objetivos:
       - 'QUEBRAR:COBBLESTONE:500'
     Infinita:
-      # Nivel 1 pede 500; nivel 2 pede 500 x 1.7; e assim por diante.
+      # Nível 1 pede 500; nível 2 pede 500 x 1.7; e assim por diante.
       Fator da meta: 1.7
       Acrescimo da meta: 0
-      # Zero e sem teto.
+      # Zero é sem teto.
       Nivel maximo: 0
       Fator do premio: 1.6
     Recompensa:
@@ -139,10 +139,10 @@ Missoes:
 
   cacador-de-ferro:
     Categoria: mineracao
-    Nome: '&fCacador de ferro'
+    Nome: '&fCaçador de ferro'
     Icone: IRON_INGOT
     Descricao:
-      - '&7Melhore o gerador e o ferro comeca a sair.'
+      - '&7Melhore o gerador e o ferro começa a sair.'
     Frequencia: INFINITA
     De quem: ILHA
     Objetivos:
@@ -162,8 +162,8 @@ Missoes:
     Nome: '&bDiamante'
     Icone: DIAMOND
     Descricao:
-      - '&7O gerador no nivel alto solta diamante.'
-      - '&7Chegue la.'
+      - '&7O gerador no nível alto solta diamante.'
+      - '&7Chegue lá.'
     Frequencia: UNICA
     De quem: ILHA
     Objetivos:
@@ -186,7 +186,7 @@ Missoes:
     Descricao:
       - '&7Colha o que plantou.'
       - ''
-      - '&b&lDIARIA &7- zera todo dia.'
+      - '&b&lDIÁRIA &7- zera todo dia.'
     Frequencia: DIARIA
     De quem: JOGADOR
     Objetivos:
@@ -235,10 +235,10 @@ Missoes:
 
   cacador:
     Categoria: combate
-    Nome: '&cCacador'
+    Nome: '&cCaçador'
     Icone: DIAMOND_SWORD
     Descricao:
-      - '&7Os mobs vem. Esteja pronto.'
+      - '&7Os mobs vêm. Esteja pronto.'
     Frequencia: INFINITA
     De quem: JOGADOR
     Objetivos:
@@ -279,7 +279,7 @@ Missoes:
     Nome: '&dA ilha cresce'
     Icone: BEACON
     Descricao:
-      - '&7Suba o nivel da sua ilha.'
+      - '&7Suba o nível da sua ilha.'
       - ''
       - '&e&lINFINITA'
     Frequencia: INFINITA
@@ -314,7 +314,7 @@ Missoes:
     Nome: '&fConstrutor'
     Icone: BRICKS
     Descricao:
-      - '&7Uma ilha e feita de blocos colocados.'
+      - '&7Uma ilha é feita de blocos colocados.'
     Frequencia: INFINITA
     De quem: ILHA
     Objetivos:
