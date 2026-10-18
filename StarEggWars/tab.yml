@@ -17,10 +17,13 @@
 #  ordena o tab); aceitam placeholders do PlaceholderAPI do JOGADOR mostrado
 #  (%luckperms_prefix%, %startags_tag%...). Na partida tambem {cor}, {tag} e
 #  {equipe}. Fora de partida, vazio = nao mexe (deixa para o plugin de tags).
+#  Vida: {vida} (o numero) e {vida_formatada} (o "Formato da vida" abaixo)
+#  no Prefixo/Sufixo da partida mostram a vida de cada um depois do nome,
+#  no tab e em cima da cabeca. Ex.: Sufixo: ' {vida_formatada}' -> Nome ❤ 20
 #  Limite: 16 letras ate a 1.12, 64 da 1.13 em diante.
 # ==========================================================================
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Ativar: true
 
@@ -44,6 +47,8 @@ Fora:
 Partida:
   Prefixo: '{cor}{tag} '
   Sufixo: ''
+  # O que {vida_formatada} vira (so em quem esta vivo na partida).
+  Formato da vida: '&c❤ &f{vida}'
   Prefixo espera: '&7'
   Sufixo espera: ''
   Prefixo espectador: '&8[ESP] &7'
