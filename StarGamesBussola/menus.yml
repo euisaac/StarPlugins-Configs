@@ -1,0 +1,301 @@
+# ==========================================================================
+#  StarGamesBussola - menus
+#
+#  Cada menu fica em Menus.<nome>; a bussola abre o do config.yml (Menu).
+#  Um botao tem Slot, Material, Nome, Lore, Brilho (opcional), Permissao
+#  (opcional: sem ela o botao some) e as Acoes, rodadas na ordem:
+#
+#    LOBBY                 vai para o lobby (config.yml > Lobby)
+#    SERVIDOR:<nome>       vai para aquele servidor da rede
+#    COMANDO:<comando>     o jogador roda o comando (ex.: COMANDO:bw jogar solo)
+#    CONSOLE:<comando>     o console roda ({jogador} = o nick)
+#    MENU:<nome>           abre outro menu daqui
+#    FECHAR                fecha o menu
+#
+#  Numa rede, a partida pode estar em outro servidor: use SERVIDOR:<nome>
+#  (e, se quiser, o modo e escolhido la). Num servidor so, COMANDO:.
+#
+#  Nos textos: {jogador}, {jogando} (todos em partida agora) e
+#  {jogando:<jogo>} ou {jogando:<jogo>:<modo>} -- quantos estao jogando
+#  aquele jogo neste servidor (ex.: {jogando:bedwars}, {jogando:bedwars:solo}).
+#  PlaceholderAPI tambem vale.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Menus:
+
+  principal:
+    Titulo: '&8Minigames'
+    Linhas: 3
+    Enfeite: 'GRAY_STAINED_GLASS_PANE'
+    Itens:
+      lobby:
+        Slot: 4
+        Material: NETHER_STAR
+        Nome: '&a&lLobby'
+        Lore:
+          - '&7Volta para o lobby.'
+          - ''
+          - '&eClique para ir.'
+        Acoes:
+          - 'LOBBY'
+      bedwars:
+        Slot: 11
+        Material: RED_BED
+        Nome: '&c&lBedWars'
+        Lore:
+          - '&7Proteja a sua cama e'
+          - '&7destrua a dos outros.'
+          - ''
+          - '&7Jogando agora: &f{jogando:bedwars}'
+          - ''
+          - '&eClique para escolher o modo.'
+        Acoes:
+          - 'MENU:bedwars'
+      eggwars:
+        Slot: 12
+        Material: DRAGON_EGG
+        Nome: '&e&lEggWars'
+        Lore:
+          - '&7Proteja o seu ovo e'
+          - '&7quebre o dos outros.'
+          - ''
+          - '&7Jogando agora: &f{jogando:eggwars}'
+          - ''
+          - '&eClique para escolher o modo.'
+        Acoes:
+          - 'MENU:eggwars'
+      skywars:
+        Slot: 13
+        Material: FEATHER
+        Nome: '&b&lSkyWars'
+        Lore:
+          - '&7Cada um na sua ilha,'
+          - '&7so um sobrevive.'
+          - ''
+          - '&7Jogando agora: &f{jogando:skywars}'
+          - ''
+          - '&eClique para escolher o modo.'
+        Acoes:
+          - 'MENU:skywars'
+      thebridge:
+        Slot: 14
+        Material: BLUE_TERRACOTTA
+        Nome: '&9&lThe Bridge'
+        Lore:
+          - '&7Atravesse a ponte e'
+          - '&7marque no gol do outro.'
+          - ''
+          - '&7Jogando agora: &f{jogando:thebridge}'
+          - ''
+          - '&eClique para escolher o modo.'
+        Acoes:
+          - 'MENU:thebridge'
+      murder:
+        Slot: 15
+        Material: IRON_SWORD
+        Nome: '&4&lMurder'
+        Lore:
+          - '&7Descubra o assassino'
+          - '&7antes que seja tarde.'
+          - ''
+          - '&7Jogando agora: &f{jogando:murder}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:murder jogar'
+      fechar:
+        Slot: 22
+        Material: RED_DYE
+        Nome: '&cFechar'
+        Acoes:
+          - 'FECHAR'
+
+  bedwars:
+    Titulo: '&8BedWars'
+    Linhas: 3
+    Enfeite: 'GRAY_STAINED_GLASS_PANE'
+    Itens:
+      solo:
+        Slot: 10
+        Material: RED_BED
+        Nome: '&aSolo'
+        Lore:
+          - '&7Jogando: &f{jogando:bedwars:solo}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:bw jogar solo'
+      dupla:
+        Slot: 12
+        Material: RED_BED
+        Nome: '&aDupla'
+        Lore:
+          - '&7Jogando: &f{jogando:bedwars:dupla}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:bw jogar dupla'
+      trio:
+        Slot: 14
+        Material: RED_BED
+        Nome: '&aTrio'
+        Lore:
+          - '&7Jogando: &f{jogando:bedwars:trio}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:bw jogar trio'
+      quarteto:
+        Slot: 16
+        Material: RED_BED
+        Nome: '&aQuarteto'
+        Lore:
+          - '&7Jogando: &f{jogando:bedwars:quarteto}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:bw jogar quarteto'
+      voltar:
+        Slot: 22
+        Material: ARROW
+        Nome: '&cVoltar'
+        Acoes:
+          - 'MENU:principal'
+
+  eggwars:
+    Titulo: '&8EggWars'
+    Linhas: 3
+    Enfeite: 'GRAY_STAINED_GLASS_PANE'
+    Itens:
+      solo:
+        Slot: 10
+        Material: DRAGON_EGG
+        Nome: '&aSolo'
+        Lore:
+          - '&7Jogando: &f{jogando:eggwars:solo}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:ew jogar solo'
+      dupla:
+        Slot: 12
+        Material: DRAGON_EGG
+        Nome: '&aDupla'
+        Lore:
+          - '&7Jogando: &f{jogando:eggwars:dupla}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:ew jogar dupla'
+      trio:
+        Slot: 14
+        Material: DRAGON_EGG
+        Nome: '&aTrio'
+        Lore:
+          - '&7Jogando: &f{jogando:eggwars:trio}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:ew jogar trio'
+      quarteto:
+        Slot: 16
+        Material: DRAGON_EGG
+        Nome: '&aQuarteto'
+        Lore:
+          - '&7Jogando: &f{jogando:eggwars:quarteto}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:ew jogar quarteto'
+      voltar:
+        Slot: 22
+        Material: ARROW
+        Nome: '&cVoltar'
+        Acoes:
+          - 'MENU:principal'
+
+  skywars:
+    Titulo: '&8SkyWars'
+    Linhas: 3
+    Enfeite: 'GRAY_STAINED_GLASS_PANE'
+    Itens:
+      solo:
+        Slot: 11
+        Material: FEATHER
+        Nome: '&aSolo'
+        Lore:
+          - '&7Jogando: &f{jogando:skywars:solo}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:sw jogar solo'
+      dupla:
+        Slot: 15
+        Material: FEATHER
+        Nome: '&aDupla'
+        Lore:
+          - '&7Jogando: &f{jogando:skywars:dupla}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:sw jogar dupla'
+      voltar:
+        Slot: 22
+        Material: ARROW
+        Nome: '&cVoltar'
+        Acoes:
+          - 'MENU:principal'
+
+  thebridge:
+    Titulo: '&8The Bridge'
+    Linhas: 3
+    Enfeite: 'GRAY_STAINED_GLASS_PANE'
+    Itens:
+      1v1:
+        Slot: 10
+        Material: BLUE_TERRACOTTA
+        Nome: '&a1v1'
+        Lore:
+          - '&7Jogando: &f{jogando:thebridge:1v1}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:thebridge jogar 1v1'
+      2v2:
+        Slot: 12
+        Material: BLUE_TERRACOTTA
+        Nome: '&a2v2'
+        Lore:
+          - '&7Jogando: &f{jogando:thebridge:2v2}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:thebridge jogar 2v2'
+      3v3:
+        Slot: 14
+        Material: BLUE_TERRACOTTA
+        Nome: '&a3v3'
+        Lore:
+          - '&7Jogando: &f{jogando:thebridge:3v3}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:thebridge jogar 3v3'
+      4v4:
+        Slot: 16
+        Material: BLUE_TERRACOTTA
+        Nome: '&a4v4'
+        Lore:
+          - '&7Jogando: &f{jogando:thebridge:4v4}'
+          - ''
+          - '&eClique para jogar.'
+        Acoes:
+          - 'COMANDO:thebridge jogar 4v4'
+      voltar:
+        Slot: 22
+        Material: ARROW
+        Nome: '&cVoltar'
+        Acoes:
+          - 'MENU:principal'

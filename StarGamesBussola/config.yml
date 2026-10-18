@@ -1,0 +1,51 @@
+# ==========================================================================
+#  StarGamesBussola - a bussola dos minigames
+#
+#  Um item na barra do jogador que leva ao lobby ou abre o menu dos jogos
+#  (menus.yml). Dentro de partida ela some sozinha: os minigames StarPlugins
+#  avisam o loader quem esta jogando, e a bussola volta quando o jogador sai.
+#
+#  /bussola abre o mesmo que o clique; /stargamesbussola recarregar.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Bussola:
+  Ativar: true
+  # Clique na bussola:
+  #   MENU  - abre o menu do "Menu" abaixo (menus.yml)
+  #   LOBBY - manda direto para o lobby (veja "Lobby")
+  Modo: MENU
+  Menu: principal
+  # Slot da barra (0 a 8). Se ele ja tiver outro item, vai para o primeiro
+  # slot livre da barra -- a bussola nunca passa por cima de item de outro
+  # plugin.
+  Slot: 1
+  Material: COMPASS
+  Nome: '&a&lMinigames &7(clique)'
+  Lore:
+    - '&7Escolha um jogo ou volte'
+    - '&7para o lobby.'
+  # Mundos onde a bussola aparece. Vazio = so o mundo principal do servidor
+  # (o primeiro do server.properties, normalmente o lobby). '*' = todos.
+  # Numa rede, desligue (Ativar: false) nos servidores de partida que nao
+  # tem lobby, ou liste so o mundo do lobby deles.
+  Mundos: []
+  # Onde ela nunca aparece (vale mesmo com '*').
+  Mundos bloqueados: []
+  # Aparece tambem para quem esta no criativo.
+  No criativo: true
+  # Trava a bussola: nao sai do slot, nao cai, nao vai para bau e nao e
+  # colocada como bloco. Clicar nela no inventario tambem abre o menu.
+  Travar: true
+  Som: 'CLICK'
+  Som do menu: 'CLICK'
+
+Lobby:
+  # Servidor(es) do lobby na rede (BungeeCord/Velocity). Com mais de um, a
+  # bussola sorteia. Tambem aceita um so: Servidores: 'lobby'
+  Servidores:
+    - 'lobby'
+  # Sem servidor nenhum (Servidores: []), roda este comando no lugar --
+  # util num servidor so (ex.: 'spawn' ou 'bw sair').
+  Comando: ''
