@@ -19,7 +19,7 @@
 #  (o bonus atual), {proximo} (o bonus do proximo nivel), {custo}.
 # ==========================================================================
 
-Versao do modelo: 2
+Versao do modelo: 3
 
 Encantamentos:
   sortudo:
@@ -96,7 +96,8 @@ Encantamentos:
     Tipo: VELOCIDADE
     Nome: 'Velocidade'
     Maximo: 12
-    Por nivel: 8.0
+    # Teto da soma: config.yml > Pesca > Velocidade maxima (50%).
+    Por nivel: 4.0
     Custo:
       Base: 150.0
       Por nivel: 200.0

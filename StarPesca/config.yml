@@ -14,7 +14,7 @@
 
 # Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
 # tras depois de uma atualizacao.
-Versao do modelo: 6
+Versao do modelo: 7
 
 Geral:
   # Escreve no console o que o plugin esta fazendo.
@@ -198,7 +198,7 @@ Placar:
 #  quantidade cheia e o 'Reparadores' de cada vara no varas.yml, maior nas mais
 #  evoluidas -- e a parte proporcional do 'Reparo' (economias) dela.
 #  Reparador: /starpesca givereparador <jogador> [quantidade] (console tambem),
-#  loja de perolas e recompensa rara de pesca (recompensas.yml > reparador).
+#  loja de perolas (loja.yml) e recompensa rara de pesca (recompensas.yml > reparador).
 #  A durabilidade da vara da evolucao fica no PERFIL; a da vara especial
 #  (varas-especiais.yml), no proprio item. A vara do torneio nunca gasta.
 #  Ativar: false = o sistema de antes (sem desgaste; a vara so quebra com peixe
@@ -329,11 +329,15 @@ Pesca:
   Peixes acima do nivel: false
   # Tempo de espera pela mordida, em segundos (min e max). Funciona em Paper
   # 1.16+ (em outros servidores vale o tempo do jogo). Os valores da vara
-  # (varas.yml -> Mordida) ganham destes.
+  # (varas.yml -> Mordida) ganham destes. Sem a mordida do Paper, a espera
+  # que passar do tempo do jogo (media de 17,5s) entra no intervalo da vara.
   Mordida:
     Ativar: true
-    Minimo: 5
-    Maximo: 30
+    Minimo: 15
+    Maximo: 90
+  # Quanto o encantamento Velocidade pode encurtar, no total, a mordida e o
+  # intervalo (%). 100 = sem teto (com Velocidade alta o peixe vinha na hora).
+  Velocidade maxima: 50.0
   # O clima e a hora mudam a pesca (peixes com Condicoes no peixes.yml).
   Condicoes:
     Ativar: true
@@ -497,12 +501,12 @@ Colecao:
 Missoes:
   Ativar: true
   # Quantas missoes cada jogador recebe por dia (sorteadas do missoes.yml).
-  Por dia: 3
+  Por dia: 5
   # Fuso horario da virada do dia (ex.: America/Sao_Paulo). Vazio = o do servidor.
   Fuso: 'America/Sao_Paulo'
   # Recompensa extra por completar todas as missoes do dia.
   Todas:
-    Perolas: 100.0
+    Perolas: 50.0
     Comandos: [ ]
     Mensagem: '&e&lMISSOES &7Voce completou todas as missoes de hoje e ganhou &f{perolas} perolas&7!'
 

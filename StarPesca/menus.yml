@@ -30,7 +30,7 @@
 #  {pagina} {paginas}. Placeholders do PlaceholderAPI tambem funcionam.
 # ==========================================================================
 
-Versao do modelo: 5
+Versao do modelo: 6
 
 # ---------------------------------------------------------------------------
 #  Menu principal (/pesca).
@@ -449,9 +449,8 @@ Top:
       Acoes: [ 'voltar' ]
 
 # ---------------------------------------------------------------------------
-#  Loja de perolas: cada item de 'Produtos' custa 'Preco' perolas e roda os
-#  Comandos (console, {jogador}). 'Item' e o que o jogador ve. A compra abre
-#  a confirmacao. Permissao (opcional) esconde o produto.
+#  Loja de perolas: aqui so a tela (titulo, fundo, botoes). Os produtos, com
+#  preco e comandos, ficam no loja.yml.
 # ---------------------------------------------------------------------------
 Loja:
   Titulo: '&8Loja de perolas'
@@ -460,88 +459,7 @@ Loja:
     Ativar: true
     Material: BLACK_STAINED_GLASS_PANE
     Nome: ' '
-  Produtos:
-    chave:
-      Slot: 11
-      Preco: 150
-      Item:
-        Material: TRIPWIRE_HOOK
-        Nome: '&6Chave de caixa'
-        Lore:
-          - '&7Uma chave para abrir caixas.'
-          - ''
-          - ' &7Preco: &b{preco} perolas'
-          - ''
-          - '&eClique para comprar'
-      Comandos: [ 'give {jogador} tripwire_hook 1' ]
-    diamantes:
-      Slot: 13
-      Preco: 500
-      Item:
-        Material: DIAMOND
-        Quantidade: 16
-        Nome: '&b16 Diamantes'
-        Lore:
-          - ''
-          - ' &7Preco: &b{preco} perolas'
-          - ''
-          - '&eClique para comprar'
-      Comandos: [ 'give {jogador} diamond 16' ]
-    booster:
-      Slot: 15
-      Preco: 800
-      Item:
-        Material: EXPERIENCE_BOTTLE
-        Nome: '&dBooster de pesca &7(+50%, 30 min)'
-        Lore:
-          - ''
-          - ' &7Preco: &b{preco} perolas'
-          - ''
-          - '&eClique para comprar'
-      Comandos: [ 'starpesca givebooster {jogador} 50 30' ]
-    reparador:
-      Slot: 20
-      Preco: 150
-      Item:
-        Material: PRISMARINE_SHARD
-        Nome: '&b&lReparador de vara'
-        Lore:
-          - '&7Conserta a vara no ferreiro.'
-          - ''
-          - ' &7Preco: &b{preco} perolas'
-          - ''
-          - '&eClique para comprar'
-      Comandos: [ 'starpesca givereparador {jogador} 1' ]
-    reparadores:
-      Slot: 22
-      Preco: 1300
-      Item:
-        Material: PRISMARINE_SHARD
-        Quantidade: 10
-        Nome: '&b&l10 Reparadores de vara'
-        Lore:
-          - '&7Conserta a vara no ferreiro.'
-          - ''
-          - ' &7Preco: &b{preco} perolas'
-          - ''
-          - '&eClique para comprar'
-      Comandos: [ 'starpesca givereparador {jogador} 10' ]
-    vara_relampago:
-      Slot: 24
-      Preco: 5000
-      Item:
-        Material: FISHING_ROD
-        Brilho: true
-        Nome: '&e&lVara Relampago'
-        Lore:
-          - '&7Vara especial: nivel 6, intervalo de 4s,'
-          - '&7Velocidade V e Sortudo III.'
-          - '&8(varas-especiais.yml)'
-          - ''
-          - ' &7Preco: &b{preco} perolas'
-          - ''
-          - '&eClique para comprar'
-      Comandos: [ 'starpesca darvara {jogador} relampago' ]
+  # Os produtos ficam no loja.yml.
   Itens:
     perfil:
       Slot: 4
