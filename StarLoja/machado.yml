@@ -1,0 +1,150 @@
+# ============================================================================
+#  Machado de venda
+#
+#  Um machado que, ao bater num bau, vende tudo o que tem dentro (pelos precos
+#  de venda das lojas) e paga quem bateu. O bau nunca quebra.
+#
+#  Dar o machado (staff ou console):
+#    /starloja machado dar <jogador> [usos|infinito] [quantidade]
+#      usos       = quantas vendas o machado faz antes de quebrar (padrao abaixo)
+#      infinito   = nunca acaba (aparece o simbolo de infinito no item)
+#      quantidade = quantos machados entregar (padrao 1)
+#
+#  Permissoes:
+#    starloja.machado                  dar o machado e mexer no captcha dos outros
+#    starloja.machado.usar             usar o machado (padrao: todos)
+#    starloja.machado.terreno.ignorar  vender em qualquer lugar (staff)
+#    starloja.machado.captcha.bypass   nunca recebe o captcha (so por extenso)
+# ============================================================================
+
+Ativar: true
+
+Item:
+  Material: DIAMOND_AXE
+  Nome: '&6&lMACHADO DE VENDA'
+  # {usos} vira o numero de usos que sobram, ou o simbolo de infinito.
+  Lore:
+    - '&7Bata em um baú para vender'
+    - '&7tudo o que estiver dentro dele.'
+    - '&r'
+    - '&8| &7Usos: &f{usos}'
+    - '&r'
+    - '&8Só funciona nos terrenos em que'
+    - '&8você pode abrir os baús.'
+  Brilho: true
+  # Texto mostrado no lugar do numero quando o machado e infinito.
+  Infinito: '&b∞'
+
+# Usos quando o comando nao informa.
+Usos padrao: 100
+
+# Blocos que o machado vende. Qualquer bloco com inventario serve.
+Blocos:
+  - CHEST
+  - TRAPPED_CHEST
+  - BARREL
+
+# Um uso so e gasto quando o bau tinha algo para vender.
+# Segundos de espera para vender o MESMO bau de novo (0 = sem espera).
+Espera por bau: 5
+# Espera minima entre duas batidas do mesmo jogador, em qualquer bau (em ms).
+Espera entre batidas: 400
+
+# true = o machado tambem funciona como machado comum (cortar arvore, etc.).
+# false = ele so serve para vender; bater em outros blocos nao faz nada.
+Usar como machado comum: false
+
+# ---------------------------------------------------------------------------
+#  Terrenos
+#
+#  Reconhece StarTerrenos, StarSkyBlock, StarOneBlock, StarPlots, StarFactions,
+#  StarBunkers, GriefDefender, GriefPrevention, PlotSquared e WorldGuard.
+#  Dentro de um terreno, so vende quem pode abrir os baus dali.
+# ---------------------------------------------------------------------------
+Terrenos:
+  Ativar: true
+  # Nivel minimo de confianca no StarTerrenos: ACESSO, CONTAINER, CONSTRUTOR, GERENTE.
+  Nivel StarTerrenos: CONTAINER
+  # false = fora de qualquer terreno o machado nao vende (padrao).
+  # true  = fora de terreno qualquer bau pode ser vendido.
+  Fora de terreno: false
+
+# ---------------------------------------------------------------------------
+#  Anti AFK (CAPTCHA)
+#
+#  Duas portas para o captcha, como na pesca:
+#    - Mesmo bau: muitas vendas seguidas no mesmo bau (farm com funil e
+#      clicador automatico).
+#    - Varios baus: a cada tantas vendas, mesmo trocando de bau, com uma
+#      variacao sorteada para o macro nao prever o momento.
+#
+#  Com o captcha pendente o machado nao vende nada e o menu reabre a cada
+#  batida (fechar o menu nao livra). Errar, ou deixar o tempo de responder
+#  passar com o machado na mao, deixa o machado travado por "Punicao" segundos;
+#  o captcha continua esperando depois disso.
+# ---------------------------------------------------------------------------
+Anti afk:
+  Ativar: true
+  # Vendas seguidas no mesmo bau que abrem o captcha (0 = desliga esta porta).
+  Mesmo bau: 15
+  # A cada quantas vendas (em quaisquer baus) vem o captcha (0 = desliga).
+  A cada vendas: 40
+  # Variacao sorteada para mais ou para menos em "A cada vendas".
+  Variacao: 10
+  # Segundos para responder. So corre com o machado na mao.
+  Tempo para responder: 60
+  # Segundos com o machado travado depois de errar.
+  Punicao: 120
+  # Comandos (pelo console) a cada erro. {jogador} {uuid} {erros}
+  Comandos ao errar: []
+  # Erros seguidos que disparam os comandos abaixo (0 = desliga).
+  Erros para punir: 3
+  Comandos ao punir: []
+  #  - 'kick {jogador} &cAnti AFK: errou o captcha {erros} vezes.'
+
+  Menu:
+    Titulo: '&8Clique: &0{item}'
+    Linhas: 3
+    # Onde as opcoes aparecem (precisa de pelo menos 2).
+    Slots: [10, 12, 14, 16]
+    # Nome de cada opcao. Os nomes vem embaralhados: o item que se chama
+    # como o pedido nunca e o certo. So acerta quem olha o desenho.
+    Nome: '&f{nome}'
+    Lore:
+      - '&7Clique no item do título: &f{item}'
+    Enfeite:
+      Ativar: true
+      Material: BLACK_STAINED_GLASS_PANE
+    Itens:
+      diamante: {Material: DIAMOND, Nome: 'Diamante'}
+      esmeralda: {Material: EMERALD, Nome: 'Esmeralda'}
+      ouro: {Material: GOLD_INGOT, Nome: 'Barra de ouro'}
+      ferro: {Material: IRON_INGOT, Nome: 'Barra de ferro'}
+      maca: {Material: APPLE, Nome: 'Maçã'}
+      pao: {Material: BREAD, Nome: 'Pão'}
+      carvao: {Material: COAL, Nome: 'Carvão'}
+      osso: {Material: BONE, Nome: 'Osso'}
+      pena: {Material: FEATHER, Nome: 'Pena'}
+      livro: {Material: BOOK, Nome: 'Livro'}
+      balde: {Material: BUCKET, Nome: 'Balde'}
+      bussola: {Material: COMPASS, Nome: 'Bússola'}
+
+# ---------------------------------------------------------------------------
+#  Mensagens  ({prefixo} = prefixo do mensagens.yml)
+# ---------------------------------------------------------------------------
+Mensagens:
+  Vendeu: '{prefixo}&aBaú vendido por {total}&a. &7Usos: &f{usos}'
+  Vazio: '{prefixo}&7Nada para vender neste baú.'
+  Espera: '{prefixo}&7Espere &f{tempo} &7para vender este baú de novo.'
+  Sem permissao: '{prefixo}&cVocê não pode usar o machado de venda.'
+  Sem terreno: '{prefixo}&cVocê só pode vender baús nos terrenos em que pode abrir os baús.'
+  Fora de terreno: '{prefixo}&cO machado de venda só funciona dentro de um terreno seu.'
+  Quebrou: '{prefixo}&cSeu machado de venda acabou.'
+  Recebeu: '{prefixo}&aVocê recebeu {quantidade}x machado de venda &7(usos: &f{usos}&7).'
+  Deu: '{prefixo}&aEntregue {quantidade}x machado de venda para &f{jogador} &7(usos: &f{usos}&7).'
+  Captcha pedido: '{prefixo}&eAnti AFK: clique no item pedido para continuar vendendo.'
+  Captcha mesmo bau: '{prefixo}&eAnti AFK: muitas vendas no mesmo baú. Clique no item pedido.'
+  Captcha acertou: '{prefixo}&aCerto! Pode continuar vendendo.'
+  Captcha errou: '{prefixo}&cErrado. Machado travado por &f{tempo}&c. &7(erros seguidos: {erros})'
+  Captcha tempo: '{prefixo}&cO tempo para responder acabou. Machado travado por &f{tempo}&c.'
+  Captcha travado: '&cMachado travado por &f{tempo}'
