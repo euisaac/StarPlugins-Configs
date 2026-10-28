@@ -1,0 +1,53 @@
+# =========================================================
+#  StarLiveInterativa - mensagens
+#  Cores: &a, &l... e hex com &#RRGGBB. Mensagem vazia = não envia.
+# =========================================================
+
+prefixo: "&#89CFF0&lLIVE &8» &7"
+
+sem-permissao: "{prefixo}&cVocê não tem permissão para isso."
+so-jogador: "{prefixo}&cEste comando é só para jogadores."
+recarregado: "{prefixo}&aConfiguração recarregada."
+
+sem-chave:
+  - "{prefixo}&cA chave do TikBooster não foi configurada."
+  - "&7Coloque a chave em &fconfig.yml &7(tikbooster.chave) e use &f/liveinterativa recarregar&7."
+  - "&7Premium da StarPlugins recebe uma chave durante a assinatura. Ou compre em &bhttps://tikbooster.starplugins.com.br/plugin"
+
+ligada: "{prefixo}&aLive interativa LIGADA! &7Os presentes da sua live agora aparecem aqui."
+desligada: "{prefixo}&cLive interativa desligada."
+sem-tiktok: "{prefixo}&eDefina primeiro o seu @ do TikTok no &f/live&e."
+digite-tiktok: "{prefixo}&fDigite no chat o seu @ do TikTok &7(ou &ccancelar&7):"
+tiktok-definido: "{prefixo}&aTikTok definido: &f@{tiktok}"
+tiktok-invalido: "{prefixo}&cEsse @ não parece válido. Use só letras, números, ponto e _."
+cancelado: "{prefixo}&7Cancelado."
+tempo-esgotado: "{prefixo}&7Tempo esgotado para digitar."
+
+digite-presente: "{prefixo}&fDigite no chat o NOME do presente como aparece no TikTok &7(ex.: Rose, GG, TikTok) ou &ccancelar&7:"
+digite-material: "{prefixo}&fDigite no chat o item &7(ex.: DIAMOND, GOLDEN_APPLE) ou &ccancelar&7:"
+digite-efeito: "{prefixo}&fDigite no chat o efeito &7(ex.: speed, jump_boost, regeneration) ou &ccancelar&7:"
+digite-comando: "{prefixo}&fDigite no chat o comando sem a barra &7({streamer} e {doador} viram os nomes) ou &ccancelar&7:"
+digite-moedas: "{prefixo}&fDigite no chat o valor mínimo do presente em moedas &7(ex.: 100, 1000) ou &ccancelar&7:"
+digite-curtidas: "{prefixo}&fDigite no chat a cada quantas curtidas a ação acontece &7(ou &ccancelar&7):"
+valor-invalido: "{prefixo}&cValor inválido."
+interacao-criada: "{prefixo}&aInteração criada! Agora escolha o que ela faz."
+interacao-removida: "{prefixo}&cInteração removida."
+mundo-bloqueado: "{prefixo}&cA live interativa não funciona neste mundo."
+
+# Mensagem no chat do streamer quando algo acontece (pode desligar no /live).
+chat-interacao: "&#89CFF0» &6{doador} &7mandou &f{presente}{quantidade} &8→ &a{acao}"
+chat-presente: "&#89CFF0» &6{doador} &7mandou &f{presente}{quantidade}"
+
+painel-link:
+  - "{prefixo}&fPainel da sua live no site:"
+  - "{link-painel}"
+  - "&7Entre com a conta StarPlugins do MESMO nick do jogo (&f{nick}&7)."
+widget-link:
+  - "{prefixo}&fLink do widget para colocar na live (OBS / TikTok Studio):"
+  - "{link-widget}"
+widget-aguardando: "{prefixo}&7O link do widget aparece aqui depois que o servidor falar com o site (até 1 minuto)."
+
+teste-feito: "{prefixo}&aTeste enviado: &f{presente} x{n} &apara &f{streamer}&a."
+teste-uso: "{prefixo}&7Use: &f/liveinterativa testar <jogador> <presente|VALOR:moedas|SEGUIR|COMPARTILHAR> [quantidade]"
+jogador-offline: "{prefixo}&cJogador não encontrado."
+nao-e-streamer: "{prefixo}&cEsse jogador ainda não abriu o /live."

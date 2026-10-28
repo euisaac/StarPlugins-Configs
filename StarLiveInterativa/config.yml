@@ -1,0 +1,181 @@
+# =========================================================
+#  StarLiveInterativa - configuração principal
+#
+#  O streamer usa /live para ligar a live interativa, dizer
+#  qual é o @ dele no TikTok e escolher o que cada presente
+#  faz no jogo. Tudo isso também dá para mexer pelo site:
+#  starplugins.com.br > Painéis > Live Interativa
+#  (com uma conta StarPlugins no MESMO nick do jogo).
+# =========================================================
+
+# Versão deste arquivo (não mexa: é usada para atualizar o modelo).
+versao-do-modelo: 1
+
+tikbooster:
+  # Chave da API do TikBooster. É ela que deixa o plugin ver a live do
+  # streamer: presentes, seguidores, compartilhamentos e curtidas.
+  #
+  # Como conseguir a sua chave:
+  #  - Premium da StarPlugins: quem assina recebe uma chave enquanto a
+  #    assinatura estiver ativa (Área do Cliente > Premium > Benefícios).
+  #  - Ou compre a chave separada em https://tikbooster.starplugins.com.br/plugin
+  chave: ""
+
+painel:
+  # Manda o status do plugin e dos streamers para o painel do site e traz de
+  # volta o que o streamer configurar por lá (título, presentes, liga/desliga).
+  sincronizar: true
+
+limites:
+  # No máximo quantos mobs / TNTs / itens um ÚNICO presente pode gerar,
+  # mesmo com combo grande (x100). Protege o servidor de lag.
+  mobs-por-presente: 50
+  tnt-por-presente: 30
+  itens-por-presente: 640
+  # Quantas entidades nascem por tick. O resto espera numa fila.
+  nascer-por-tick: 4
+  # Máximo de coisas esperando na fila de um streamer (o resto é descartado).
+  fila-maxima: 400
+  # Distância padrão (em blocos) ao redor do streamer onde mobs e TNTs aparecem.
+  # Cada streamer muda a dele no /live ou no painel do site (0 = em cima dele).
+  raio: 4
+  # Mundos onde a live interativa não faz nada (lobby, spawn...).
+  mundos-bloqueados:
+    - "lobby"
+
+tnt:
+  # Tempo até explodir (20 ticks = 1 segundo).
+  pavio-ticks: 60
+  # Altura acima do streamer em que a TNT aparece.
+  altura: 3
+
+mobs:
+  # Mostra o nome de quem mandou o presente em cima do mob.
+  nome-do-doador: true
+  formato-do-nome: "&e{doador}"
+
+# Como o streamer começa ao abrir o /live pela primeira vez.
+# Depois disso cada streamer tem a SUA configuração (no /live ou no site).
+padrao-do-streamer:
+  titulo:
+    ligado: true
+    # Quem vê o título: STREAMER (só ele), PERTO (quem está a 30 blocos) ou TODOS.
+    para: STREAMER
+    # {presente} = nome do presente  {quantidade} = texto abaixo (só quando for mais de 1)
+    titulo: "&#89CFF0&l{presente}{quantidade}"
+    quantidade: " &#89CFF0&l&nx{n}"
+    # {doador} = nome de quem mandou
+    subtitulo: "&6{doador} &eObrigado!"
+    entrada-ticks: 5
+    ficar-ticks: 40
+    saida-ticks: 10
+    # Mostra o título em TODO presente, até nos que não têm interação.
+    todos-os-presentes: true
+  # Mensagem no chat do streamer a cada interação.
+  chat: true
+  # Som tocado no streamer (nome do som do Minecraft; vazio = sem som).
+  som: "entity.player.levelup"
+  # Antispam (cada streamer liga/desliga no /live ou no painel do site).
+  # Compartilhar é de graça e dá para repetir sem parar: a mesma pessoa só
+  # dispara a ação uma vez a cada X segundos (0 = sem limite). Seguir conta
+  # uma vez só por pessoa (contra seguir e deixar de seguir em sequência).
+  antispam:
+    ligado: true
+    compartilhar-segundos: 120
+    seguir-uma-vez: true
+  # GATILHOS: PRESENTE (precisa do nome do presente), SEGUIR, COMPARTILHAR,
+  #           CURTIDAS (precisa de "cada": a cada quantas curtidas), INSCREVER e
+  #           VALOR (precisa de "minimo": presente que vale tantas moedas ou mais;
+  #           com várias faixas, só a de maior mínimo que o presente alcança acontece).
+  # ACOES:    MOB (alvo = mob), TNT, ITEM (alvo = material), RAIO,
+  #           EFEITO (alvo = efeito, ex.: speed), FOGOS, CURAR, COMANDO (alvo = comando).
+  # quantidade: quantos por presente. multiplicar: combo x5 = 5 vezes a quantidade.
+  # armadura (só MOB): NENHUMA, COURO, FERRO, OURO, DIAMANTE, NETHERITA.
+  interacoes:
+    - gatilho: SEGUIR
+      acao: MOB
+      alvo: WOLF
+      quantidade: 1
+    - gatilho: PRESENTE
+      presente: "Rose"
+      acao: MOB
+      alvo: ZOMBIE
+      quantidade: 1
+      multiplicar: true
+    - gatilho: PRESENTE
+      presente: "TikTok"
+      acao: TNT
+      quantidade: 1
+      multiplicar: true
+    - gatilho: PRESENTE
+      presente: "Finger Heart"
+      acao: ITEM
+      alvo: GOLDEN_APPLE
+      quantidade: 1
+      multiplicar: true
+    - gatilho: PRESENTE
+      presente: "GG"
+      acao: MOB
+      alvo: SKELETON
+      quantidade: 3
+      multiplicar: true
+    - gatilho: PRESENTE
+      presente: "Ice Cream Cone"
+      acao: MOB
+      alvo: IRON_GOLEM
+      quantidade: 1
+      multiplicar: false
+    - gatilho: PRESENTE
+      presente: "Doughnut"
+      acao: MOB
+      alvo: BLAZE
+      quantidade: 3
+      multiplicar: true
+    - gatilho: PRESENTE
+      presente: "Capybara"
+      acao: MOB
+      alvo: ZOMBIE
+      quantidade: 1
+      armadura: DIAMANTE
+      multiplicar: true
+    - gatilho: PRESENTE
+      presente: "Hand Hearts"
+      acao: MOB
+      alvo: CREEPER
+      quantidade: 10
+      multiplicar: true
+    - gatilho: PRESENTE
+      presente: "Heart Me"
+      acao: RAIO
+      quantidade: 1
+      multiplicar: false
+    - gatilho: COMPARTILHAR
+      acao: MOB
+      alvo: CHICKEN
+      quantidade: 3
+    - gatilho: CURTIDAS
+      cada: 1000
+      acao: TNT
+      quantidade: 1
+
+# Nome em português dos presentes (o TikTok manda em inglês).
+# O nome da esquerda é o que vem do TikTok, o da direita é o que aparece no jogo.
+nomes-dos-presentes:
+  "Rose": "Rosa"
+  "TikTok": "TikTok"
+  "GG": "GG"
+  "Finger Heart": "Coração com os dedos"
+  "Ice Cream Cone": "Sorvete"
+  "Doughnut": "Rosquinha"
+  "Capybara": "Capivara"
+  "Hand Hearts": "Corações com as mãos"
+  "Heart Me": "Me dê um coração"
+  "Perfume": "Perfume"
+  "Corgi": "Corgi"
+  "Money Gun": "Pistola de dinheiro"
+  "Galaxy": "Galáxia"
+  "Lion": "Leão"
+  "Universe": "Universo"
+  "Love you": "Te amo"
+  "Sunglasses": "Óculos de sol"
+  "Swan": "Cisne"
