@@ -1,0 +1,74 @@
+# Configuração do StarMoveis
+#
+# Os pacotes, itens e preços ficam no packages.yml.
+
+debug: false
+
+# Quem fornece os móveis:
+#   AUTO       - ItemsAdder; se ele não estiver no servidor, RPEngine
+#   ITEMSADDER - só ItemsAdder
+#   RPENGINE   - só RPEngine (resourcepack.ai)
+# Se o escolhido não estiver instalado, o outro é usado (com aviso no console).
+provider: AUTO
+
+# Comportamento do menu
+closeMenuOnPurchase: true
+# Sem "icon:" no pacote, mostra um móvel sorteado dele em vez de um baú
+useRandomItemAsIcon: false
+
+# Inventário cheio: true = o móvel cai no chão; false = a compra é recusada
+dropIfFull: false
+
+# Preço dos itens que o /moveis carregar acrescenta ao packages.yml
+defaultPrice: 100.0
+
+# Som da compra (nome do som do Minecraft; vazio = sem som)
+sounds:
+  purchase: "entity.experience_orb.pickup"
+
+# Textos dos menus. Variáveis entre {chaves}.
+menu:
+  packages_title: "&6Pacotes de Móveis"
+  items_title: "&8{pacote} &8({pagina}/{paginas})"
+  # {valor} é o número formatado pelo "Formato de numeros" do StarPlugins
+  price_format: "$ {valor}"
+  free: "Grátis"
+  package_lore:
+    - "&7{itens} móveis"
+    - "&7A partir de &6{a_partir}"
+    - ""
+    - "&eClique para ver os itens"
+  item_lore:
+    - ""
+    - "&7Preço: &6{preco}"
+    - "&aClique para comprar"
+  item_lore_no_money:
+    - ""
+    - "&7Preço: &6{preco}"
+    - "&cFaltam {falta}"
+  missing_item: "&cItem não encontrado: {id}"
+  no_packages: "&cNenhum pacote disponível!"
+  no_packages_lore:
+    - "&7Admins: /moveis instalar e /moveis carregar"
+  balance: "&eSeu saldo: &6{saldo}"
+  previous_page: "&bPágina anterior"
+  next_page: "&bPróxima página"
+  back: "&cVoltar"
+  close: "&cFechar"
+
+# Mensagens (deixe vazia para não enviar)
+messages:
+  no_permission: "&cVocê não tem permissão para usar este comando."
+  only_players: "&cEste comando só pode ser usado por jogadores!"
+  reload_success: "&aConfiguração recarregada com sucesso!"
+  no_economy: "&cSistema de economia não encontrado!"
+  insufficient_funds: "&cVocê não tem dinheiro suficiente! Faltam &6{falta}&c."
+  purchase_success: "&aVocê comprou &f{item} &apor &6{preco}&a!"
+  inventory_full: "&cSeu inventário está cheio!"
+  dropped_on_ground: "&eSeu inventário estava cheio: o móvel caiu no chão."
+  item_not_found: "&cItem não encontrado!"
+  package_not_found: "&cPacote não encontrado!"
+  no_provider: "&cNenhum plugin de móveis (ItemsAdder ou RPEngine) foi encontrado."
+  provider_loading: "&eOs móveis ainda estão carregando, tente de novo em instantes."
+  load_result: "&a{pacotes} pacotes e {itens} itens novos acrescentados ao packages.yml &7(lido de {pasta})"
+  install_result: "&a{copiados} arquivos copiados para o {plugin} &7({existiam} já existiam, {pacotes} pacotes)&a. Rode &f{recarregar} &ae depois &f/moveis carregar&a."
