@@ -1,0 +1,125 @@
+# Configuração do StarBorda Plugin
+
+# Ativar/desativar integração com WorldGuard
+worldguard:
+  enabled: true #Regiões marcadas como flag exit em deny
+
+# Ativar/desativar integração com WorldBorder
+worldborder:
+  enabled: true
+  bossbar:
+    enabled: true
+    location: MUNDO # Opções: TODOS "Todos mundos mostra a bossbar", MUNDO "Somente a bossbar do mundo onde a borda esta expandindo"
+    title: "&6%current_size_% / %target_size_% Blocos &a(%progress_%%) &e%remaining_time% &f[&e%world%&f]"
+    # %target_size_% vem do último /worldborder set|add rodado para o mundo -
+    # não precisa mais configurar aqui.
+    color: GREEN # Opções: PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+    style: SOLID # Opções: SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+    flags: [] # Opções: DARKEN_SCREEN, PLAY_BOSS_MUSIC, CREATE_FOG
+
+
+# Material do vidro a ser usado na barreira
+glass:
+  material: RED_STAINED_GLASS
+
+# Distância em blocos para começar a mostrar a barreira
+distance: 20
+
+# Configurações da barreira de vidro
+barrier:
+  # Altura da barreira de vidro para cima (quantos blocos de altura)
+  height: 10
+  # Altura da barreira de vidro para baixo (quantos blocos de altura)
+  downward: 10
+  # Largura da barreira de vidro (quantos blocos de largura)
+  width: 20
+  # Delay em ticks antes da barreira aparecer
+  delay: 1
+  # Delay em ticks antes da barreira desaparecer
+  clear_delay: 200
+  # Intervalo mínimo (ms) entre reconstruções da parede para o mesmo jogador.
+  # Evita travar o servidor quando o jogador cruza vários blocos por tick (elytra, sprint+pulo).
+  rebuild-cooldown-ms: 150
+  # A parede de vidro vai encolhendo conforme o jogador se aproxima da borda
+  shrink:
+    enabled: true
+    # Distância (blocos) da borda em que o encolhimento começa
+    start-distance: 3
+    # Tamanho mínimo (largura/altura) quando o jogador encosta na borda
+    min-size: 5
+# Lista de blocos que a barreira pode substituir (além de AIR)
+replaceable_blocks:
+    - SHORT_GRASS
+    - TALL_GRASS
+    - FLOWER
+
+# Configurações do aviso de borda próxima
+warning:
+  # Distância em blocos para começar a mostrar o aviso
+  distance: 5
+  # Mensagem do aviso (suporta códigos de cor do Minecraft)
+  message: "&6⚠ &fBorda do Mapa &6⚠"
+  # Tempo de cooldown em segundos para não spam de avisos
+  cooldown: 10
+
+# Aviso de distância da borda enquanto o jogador voa de elytra
+elytra:
+  warning:
+    enabled: true
+    # Distância (blocos) da borda em que o aviso começa a aparecer
+    distance: 20
+    bossbar-message: "&c⚠ Você está a &f%blocks% &cblocos da barreira!"
+    actionbar-message: "&eDistância até a barreira: &f%blocks% &eblocos"
+
+# =====================================================================
+#  /borda - bordas com nome (cidades, arenas, eventos)
+#  As bordas ficam salvas em bordas.yml. Tudo se cria pelo /borda menu.
+# =====================================================================
+bordas:
+  # Parede de vidro que aparece para o jogador perto de uma borda fechada.
+  # É só visual (só ele vê, o mundo não muda e nada pode ser quebrado).
+  visual:
+    ativar: true
+    material: LIGHT_BLUE_STAINED_GLASS
+    # A parede aparece quando o jogador está a esta distância dela (2 a 32)
+    distancia: 8
+    altura-acima: 6
+    altura-abaixo: 3
+  # Barrar teleportes (pérola, /tpa, /home, /warp...) que atravessem uma borda fechada
+  bloquear-teleportes: true
+  # Quando sai o aviso "vai abrir em ..." (tempo que falta). Ex.: 1d, 12h, 30m, 10s
+  avisos: [1d, 12h, 6h, 3h, 1h, 30m, 15m, 10m, 5m, 3m, 1m, 30s, 10s, 5s, 4s, 3s, 2s, 1s]
+  som-aviso: BLOCK_NOTE_BLOCK_PLING
+  # Barra no topo da tela com a contagem, para quem está dentro ou perto da borda
+  contagem-bossbar:
+    ativar: true
+    # Distância (blocos) da parede em que a barra aparece
+    distancia: 150
+    cor: BLUE # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+    estilo: SOLID # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+    titulo: "&b{borda} &fabre em &e{tempo}"
+  # Quando a barreira cai (pela contagem ou pelo /borda abrir)
+  ao-abrir:
+    som: ENTITY_WITHER_DEATH
+    titulo: "&c&lBARREIRA CAIU!"
+    subtitulo: "&f{borda} &7está aberta - &f{x}, {z}"
+    # Comandos do console. Ex.: "say {borda} abriu!"
+    comandos: []
+  # Variaveis: {borda} {id} {tempo} {x} {z} {mundo} {raio} {formato}
+  # Deixe uma mensagem vazia ("") para não enviar.
+  mensagens:
+    aviso:
+      - ""
+      - "&6&l⚠ &eA barreira de &f{borda} &evai abrir em &f{tempo}&e!"
+      - "&7   Coordenadas: &f{x}, {z} &7({mundo})"
+      - ""
+    abriu:
+      - ""
+      - "&c&l⚠ A BARREIRA DE &f&l{borda} &c&lCAIU! ⚠"
+      - "&eOs loots estão expostos! Corra!"
+      - "&7   Coordenadas: &f{x}, {z} &7({mundo})"
+      - ""
+    fechou: "&eA barreira de &f{borda} &efoi levantada."
+    bloqueado-entrar: "&cA barreira de &f{borda} &cestá fechada! &7Abre em &f{tempo}"
+    bloqueado-sair: "&cVocê não pode sair de &f{borda} &cenquanto a barreira estiver fechada."
+    sem-contagem: "sem previsão"
