@@ -12,7 +12,7 @@
 #    mensagens.yml            tudo que o jogador le
 #    comandos.yml             os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 1
+Versao do modelo: 2
 
 Geral:
   Debug: false
@@ -135,6 +135,13 @@ Livros:
         - ''
         - '&7Clique em uma espada para aplicar.'
 
+# A evolucao paga: o menu que vende os encantamentos do encantamentos.yml.
+Evoluir:
+  # Desligue para a espada subir SOMENTE por livro: o menu de evolucao vira so
+  # a ficha da espada (pilhagem, afiacao, Divino, Sequencia e nivel) e nada
+  # pode ser comprado ali.
+  Encantamentos pagos: true
+
 # O Divino e um bonus temporario: a cada abate ha uma chance de ativar, e
 # enquanto dura os drops sao multiplicados de novo.
 Divino:
@@ -180,6 +187,29 @@ Recompensas:
     'starespadas.bonus.vip': 1.25
     'starespadas.bonus.mvp': 1.5
 
+# Conversa com outros produtos. Nenhum e obrigatorio: sem ele instalado, a
+# integracao simplesmente nao faz nada.
+Integracoes:
+  # Mobs empilhados do StarSpawners.
+  #
+  # Uma pilha e UMA entidade que vale varios mobs. Sem isto, matar uma pilha
+  # de 50 zumbis contaria um abate so e pagaria uma recompensa so, enquanto os
+  # drops sairiam pelos 50 -- o jogador farmaria com a espada parada no nivel.
+  #
+  # A pilha inteira morre quando quem bate esta AGACHADO (e a opcao
+  # 'matar-pilha-toda-ao-agachar' do StarSpawners esta ligada). No golpe comum
+  # morre um mob so, e e um abate so -- a conta aqui e a mesma de la.
+  #
+  # Spawner com o upgrade de Armazenamento ligado guarda os drops antes da
+  # pilhagem entrar: ali a espada conta os abates e paga as recompensas, mas
+  # nao multiplica o que vai para dentro do spawner.
+  StarSpawners:
+    Ativar: true
+    # Pagar a recompensa do mobs.yml por todos os mobs da pilha.
+    Multiplicar recompensas: true
+    # Teto de mobs contados num golpe; 0 tira o limite.
+    Maximo por golpe: 0
+
 Banco de dados:
   # SQLITE ou MYSQL. O SQLite guarda em dados/starespadas.db.
   Tipo: SQLITE
@@ -201,26 +231,10 @@ Ranking:
   # Tag que o TOP 1 recebe no placeholder %starespadas_tag%.
   Tag do top 1: '&c&l[MATADOR]'
 
-# Como os numeros grandes aparecem nas mensagens e menus.
-Formato:
-  # LETRA abrevia (1.5K, 2.3M); NUMERO escreve por extenso (1.500, 2.300.000).
-  Tipo: LETRA
-  # Casas decimais da forma abreviada.
-  Casas decimais: 2
-  # Sufixo de cada potencia de mil, na ordem: unidade, mil, milhao, bilhao...
-  Sufixos:
-    - ''
-    - 'K'
-    - 'M'
-    - 'B'
-    - 'T'
-    - 'Q'
-    - 'QQ'
-    - 'S'
-    - 'SS'
-    - 'O'
-    - 'N'
-    - 'D'
+# Como os numeros aparecem (1,5K ou 1.500), as casas decimais, os separadores
+# e a lista de sufixos: isso agora e do LOADER. Veja 'Formato de numeros' em
+# plugins/StarPlugins/config.yml -- assim todos os produtos escrevem igual, sem
+# voce repetir a escolha em cada um.
 
 Sons:
   Comprar: 'ENTITY_PLAYER_LEVELUP;1;1.2'
