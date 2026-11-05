@@ -1,0 +1,217 @@
+# ============================================================================
+#  StarTeste  -  plugin do servidor de testes / vitrine da StarPlugins
+# ============================================================================
+#  O que ele faz:
+#   - Da a quem entra as permissoes para testar os plugins (todos os star*),
+#     mas bloqueia comandos perigosos (stop, op, ban...).
+#   - Troca o MOTD e o icone do servidor.
+#   - Manda pro spawn com uma mensagem explicativa e um menu (/teste) que
+#     teleporta para cada ZONA (um mundo por plugin: lobby, bedwars, ...).
+#   - Protege os mundos escolhidos (ninguem quebra/coloca nada), menos dentro
+#     das areas 'sandbox', que voltam ao normal sozinhas.
+# ============================================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+# ------------------------------------------------------------ verificacao
+# Na PRIMEIRA entrada, o jogador precisa vincular a conta da loja: digita o
+# usuario no chat, recebe um link unico (no jogo e no DM do Discord, se tiver a
+# conta vinculada), abre logado no site e confirma. Ao confirmar, ganha a
+# medalha "Testador" e passa a entrar direto. Enquanto nao verifica, fica preso
+# no spawn.
+verificacao:
+  ativo: true
+  site-url: 'https://starplugins.com.br'
+  # Segredo compartilhado com o site (site_settings.starteste_secret). NAO
+  # divulgue este valor.
+  segredo: '0a6ee91cefa8a78210ddb861cc49ec1e8506374768224c58'
+  mensagens:
+    pedir-usuario: '&e&lVERIFICACAO &7Digite no chat o seu &fusuario da loja&7 (starplugins.com.br) para liberar sua entrada.'
+    # Title/subtitle mostrados na tela ao pedir a verificacao (chat e limpo antes).
+    titulo: '&e&lVERIFIQUE SUA CONTA'
+    subtitulo: '&7Digite seu usuario da loja no chat'
+    conta-nao-encontrada: '&cNao achei a conta &f{user}&c na loja. Confira o nome e digite de novo.'
+    link: '&aAbra este link, logado na sua conta, para confirmar:'
+    # Title/subtitle ao mandar o link.
+    titulo-link: '&b&lABRA O LINK'
+    subtitulo-link: '&7Confirme logado na sua conta e volte'
+    aguardando: '&7Aguardando voce confirmar no site... (deixe esta tela e volte)'
+    aprovado: '&a&lVERIFICADO! &7Bem-vindo ao servidor de testes, &f{user}&7!'
+    congelado: '&cVerifique sua conta para poder se mover.'
+
+# ------------------------------------------------------------ registros
+# O que gravar da atividade (aparece no /admin/teste do site).
+registros:
+  ativo: true
+  comandos: true
+  chat: true
+  zonas: true
+  entradas-saidas: true
+
+# ------------------------------------------------------------ permissoes
+permissoes:
+  # Ao entrar, da TODA permissao registrada que comece com um destes prefixos
+  # (pega todos os StarPlugins de uma vez, sem listar um por um).
+  prefixos: [star]
+  # Permissoes avulsas extras, alem dos prefixos.
+  extras: []
+  # Permissoes que NUNCA sao dadas, mesmo casando com um prefixo. Serve para
+  # tirar poderes perigosos do pacotao. Casa por igualdade ou por prefixo
+  # (ex.: 'starplugins.admin' tira o carregar/descarregar/atualizar plugins).
+  excluir:
+    - 'starreiniciar.admin'   # forcar/agendar o reinicio do servidor
+    - 'starplugins.admin'     # carregar/descarregar/atualizar plugins
+  # Quem tiver esta permissao NAO recebe o pacotao (ex.: staff).
+  ignorar-permissao: 'starteste.semauto'
+
+# Comandos barrados para todos (mesmo com as permissoes acima). Escreva sem a
+# "/". Pega o comando mesmo com "plugin:comando". Quem tem 'starteste.admin'
+# passa por cima.
+comandos-bloqueados:
+  - stop
+  - restart
+  - op
+  - deop
+  - ban
+  - ban-ip
+  - banlist
+  - pardon
+  - kick
+  - whitelist
+  - reload
+  - rl
+  - plugman
+  - gamemode
+  - gm
+  - save-off
+  - save-all
+  - timings
+  - spark
+
+# ------------------------------------------------------------ MOTD + icone
+motd:
+  ativo: true
+  linha1: '&b&lStarPlugins &8- &fServidor de Testes'
+  linha2: '&7Entre e teste todos os nossos plugins!'
+  # PNG 64x64 na pasta do plugin. Vazio = nao troca o icone.
+  icone: 'server-icon.png'
+  # Numero de "vagas" mostrado na lista (0 = nao mexer).
+  max-jogadores: 0
+
+# ------------------------------------------------------------ spawn / hub
+spawn:
+  teleportar-ao-entrar: true
+  # Preenchido por /teste setspawn. Vazio = usa o spawn do mundo abaixo.
+  mundo: ''
+  x: 0.0
+  y: 0.0
+  z: 0.0
+  yaw: 0.0
+  pitch: 0.0
+  titulo: '&b&lServidor de Testes'
+  subtitulo: '&7Use &f/teste &7para escolher o que testar'
+  mensagens:
+    - '&8&m----------------------------------------'
+    - '  &b&lBem-vindo ao servidor de testes da StarPlugins!'
+    - '  &7Aqui voce testa TODOS os nossos plugins.'
+    - '  &7Use &f/teste &7para abrir o menu e escolher.'
+    - '  &7Nossa loja: &fstarplugins.com.br'
+    - '&8&m----------------------------------------'
+
+# ------------------------------------------------------------ chat
+# O servidor de testes enche o chat de avisos de varios plugins ao entrar
+# (missoes, recompensas, updates...). Aqui limpamos o chat um pouco depois de
+# entrar e mostramos so a boas-vindas do StarTeste.
+chat:
+  limpar-ao-entrar: true
+  # Quanto tempo esperar (em ticks; 20 = 1s) antes de limpar -- da tempo dos
+  # outros plugins mandarem os avisos, ai a limpeza pega tudo.
+  atraso-ticks: 40
+  # Quantas linhas em branco mandar para empurrar o historico pra cima.
+  linhas-em-branco: 100
+
+# ------------------------------------------------------------ menu / zonas
+menu:
+  titulo: '&8Servidor de Testes'
+  linhas: 3
+
+# Cada zona vira um item no /teste que teleporta para o MUNDO dela. Um mundo
+# por plugin deixa a tab/scoreboard/funcoes de cada um isoladas, sem brigar
+# no hub. O StarTeste pode CRIAR o mundo sozinho:
+#   gerar: void   -> mundo vazio + uma plataforma no spawn (bom para vitrine)
+#   gerar: flat   -> superflat
+#   gerar: normal -> mundo normal
+#   (sem 'gerar')  -> so carrega o mundo que ja existe na pasta
+#   carregar: true -> ja cria/carrega no boot (senao cria na primeira visita)
+#   proteger: true -> ninguem quebra/coloca nesse mundo (padrao: true no void)
+#   plataforma-material / plataforma-raio -> a plataforma do void (raio 3 = 7x7)
+zonas:
+  lobby:
+    nome: '&b&lLobby'
+    material: 'BEACON'
+    slot: 10
+    descricao:
+      - '&7Sistema de lobby: tab, scoreboard,'
+      - '&7selecao de servidores e mais.'
+    mundo: 'world'
+    carregar: false
+    x: 0.5
+    y: 100.0
+    z: 0.5
+    yaw: 0.0
+    pitch: 0.0
+  # Exemplo de mundo-vitrine criado do zero (void com plataforma):
+  # scoreboard-teste:
+  #   nome: '&e&lScoreboard'
+  #   material: 'OAK_SIGN'
+  #   slot: 12
+  #   descricao: ['&7Mundo isolado para testar', '&7um plugin com scoreboard proprio.']
+  #   mundo: 'teste_scoreboard'
+  #   gerar: void
+  #   carregar: true
+  #   proteger: true
+  #   plataforma-material: 'SMOOTH_QUARTZ'
+  #   plataforma-raio: 4
+  #   x: 0.5
+  #   y: 100.0
+  #   z: 0.5
+
+# ------------------------------------------------------------ protecao
+protecao:
+  ativo: true
+  # Mundos onde ninguem quebra/coloca/explode nada (fora das areas sandbox).
+  mundos: ['world']
+  # Barra tambem dano de PVP/mob nesses mundos (bom para o hub).
+  bloquear-dano: true
+
+# ------------------------------------------------------------ sandbox
+# Cuboides onde da para construir/testar. O estado bom e salvo (snapshot) e
+# restaurado sozinho. Comandos: /teste sandbox pos1 | pos2 | criar <nome> |
+# salvar <nome> | resetar [nome] | remover <nome>.
+sandbox:
+  # De quantos em quantos minutos resetar TODAS as areas (0 = so no comando).
+  reset-minutos: 15
+  # Quantos blocos por tick ao restaurar (mais alto = mais rapido, mais lag).
+  blocos-por-tick: 4000
+  areas: {}
