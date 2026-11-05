@@ -61,6 +61,111 @@ Alertas:
   # jogador. 0 desliga o freio.
   Alertas iguais por segundo: 2
 
+# ---------------------------------------------------------------------
+# Mitigacao: o que acontece NA HORA, antes de qualquer punicao. Vale nas
+# verificacoes com "Cancelar: true" no verificacoes.yml, ja na primeira
+# deteccao -- sem esperar o buffer encher.
+# ---------------------------------------------------------------------
+Mitigacao:
+  # Voo, speed, passo alto, atravessar parede: o jogador volta para o ultimo
+  # lugar onde estava pisando em algo.
+  Recuar ao detectar movimento: true
+  Intervalo entre recuos em ms: 150
+
+  # O golpe apontado como suspeito (alcance, aura, hitbox, autoclick) nao
+  # causa dano no jogador nem na entidade que levou o golpe.
+  Cancelar o golpe suspeito: true
+
+  # Depois de uma suspeita de combate, os golpes seguintes tambem nao contam
+  # por este tempo. Enquanto o macro/aura continuar no padrao, a suspeita se
+  # repete e o bloqueio se renova.
+  Bloquear golpes apos suspeita em ms: 1500
+
+  # Quando a violacao de combate chega a ser contada, o jogador fica sem
+  # conseguir bater em ninguem por este tempo. 0 desliga.
+  Bloquear combate por segundos: 6
+
+  # A mitigacao age antes de existir violacao. Para a staff nao ficar no
+  # escuro, um aviso sai a cada N recuos (ou golpes cancelados) do mesmo
+  # jogador em 10 segundos. Nao soma violacao. 0 desliga.
+  Avisar a staff a cada: 3
+
+Cliente:
+  # Escreve no console a marca e os canais de mod de quem entra.
+  Registrar no console: true
+  # Avisa a staff (com os alertas ligados) a marca de quem entra.
+  Avisar a staff ao entrar: true
+
+# ---------------------------------------------------------------------
+# Protecoes: em vez de detectar o hack, nao entregar a informacao a ele.
+# ---------------------------------------------------------------------
+Protecoes:
+  Anti ESP de jogadores:
+    # Jogador totalmente atras de bloco opaco nao tem a posicao real enviada
+    # a quem nao o ve. ESP, tracer e nome atraves da parede apontam para o
+    # nada. Quem tem staranticheat.verparedes (e o espectador) ve todos.
+    Ativado: true
+    # De quantos em quantos tiques recalcular. Menor = reaparece mais rapido
+    # na quina, mas custa mais. 3 tiques = 0,15 s.
+    A cada tiques: 3
+    # Perto disso, sempre visivel (nao vale esconder quem esta colado).
+    Sempre visivel ate: 4.0
+    # Alem disso, nem calcula (o servidor ja nao envia).
+    Distancia maxima: 96.0
+    # Folga em volta do alvo: ele reaparece um pouco antes de surgir na quina.
+    Margem em blocos: 1.0
+
+  Anti ESP de baus:
+    # Baus fora da linha de visao saem do chunk como ar (e sem a entrada que o
+    # StorageESP le). Aparecem assim que alguma face fica a vista.
+    Ativado: true
+    A cada tiques: 5
+    Distancia maxima: 64.0
+    # Pedaco do nome do bloco, sem diferenciar maiuscula.
+    Blocos:
+      - chest
+      - barrel
+      - shulker_box
+
+  Anti xray:
+    # Minerio cercado por blocos opacos dos seis lados sai como pedra. Ao
+    # quebrar ou explodir um bloco, os minerios em volta sao reenviados com o
+    # tipo real. Tambem deixa o #mine do Baritone cego.
+    #
+    # No Paper/Leaf existe um anti-xray proprio (paper-world-defaults.yml,
+    # anticheat.anti-xray). Use um OU outro, nunca os dois.
+    Ativado: true
+    # So esconde abaixo desta altura. 64 cobre diamante, ouro, lapis e
+    # redstone com pouco custo. Para esconder tambem esmeralda e o carvao/ferro
+    # das montanhas, suba para 320 -- custa mais CPU na hora de enviar chunk.
+    Altura maxima: 64
+    # O minerio na beira do chunk tambem e escondido. A varredura abaixo
+    # devolve o que estiver exposto numa caverna quando alguem chega perto.
+    Esconder na beira do chunk: true
+    # Raio (em blocos) da varredura que revela minerio exposto perto do
+    # jogador. 0 desliga.
+    Revelar expostos num raio de: 4
+    Minerios:
+      - _ore
+      - ancient_debris
+
+Provas:
+  # Um arquivo por dia em registros/ com cada deteccao, punicao e mitigacao.
+  Registro do dia: true
+  # Ao punir, salva os ultimos 30 s do jogador (posicao, mira, golpes,
+  # suspeitas e recuos) em gravacoes/. E a prova para revisar um banimento.
+  Salvar caixa-preta ao punir: true
+
+Congelar:
+  # Comandos que o jogador congelado ainda pode usar (sem a barra).
+  Comandos liberados:
+    - msg
+    - tell
+    - r
+  # Rodados pelo console quando alguem sai do servidor congelado.
+  # Ex.: 'ban {jogador} Saiu durante a verificacao'
+  Comandos ao sair congelado: []
+
 Punicoes:
   # Os comandos de punicao rodam pelo console (recomendado).
   Executar pelo console: true

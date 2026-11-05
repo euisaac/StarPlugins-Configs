@@ -5,7 +5,7 @@
 #  um som sem precisar de uma chave "Ativado" para cada um.
 #  Aceita as cores &a e tambem hex no formato &#RRGGBB (1.16+).
 # =====================================================================
-Versao do modelo: 1
+Versao do modelo: 2
 
 Prefixo: '&8[&cStarAntiCheat&8] &r'
 
@@ -13,6 +13,44 @@ Alerta:
   # Placeholders: {jogador} {verificacao} {tipo} {vl} {detalhe} {ping}
   # {tps} {mundo} {cliente}
   Formato: '&8[&cAC&8] &f{jogador} &7falhou em &c{verificacao} &8({tipo}) &7VL&8: &c{vl} &8| &7{detalhe} &8| &7{ping}ms'
+  # Ao passar o mouse no alerta. Os mesmos placeholders, mais {marca} e {hora}.
+  Balao:
+    - '&c{verificacao} &8({tipo}) &7- VL &c{vl}'
+    - '&7{detalhe}'
+    - ''
+    - '&7Ping&8: &f{ping}ms  &7TPS&8: &f{tps}'
+    - '&7Cliente&8: &f{marca} &8(&7{cliente}&8)'
+    - '&7Mundo&8: &f{mundo}  &7Hora&8: &f{hora}'
+    - ''
+    - '&eClique para ir ate {jogador}'
+  # Comando rodado pela staff ao clicar no alerta. Vazio desliga o clique.
+  Ao clicar: '/anticheat ir {jogador}'
+
+Congelar:
+  Titulo: '&c&lCONGELADO<nl>&7Aguarde a staff falar com voce'
+  Congelado: |-
+    &8&m----------------------------------------
+    &c&l Voce foi congelado pela staff.
+    &7 Nao saia do servidor: sair agora conta como fuga.
+    &7 Aguarde as instrucoes no chat.
+    &8&m----------------------------------------
+  Liberado: '&aVoce foi liberado. Bom jogo!'
+  Comando bloqueado: '&cVoce esta congelado e nao pode usar comandos agora.'
+  Ja congelado: '&f{jogador} &cja esta congelado.'
+  Nao congelado: '&f{jogador} &cnao esta congelado.'
+  Staff congelou: '&8[&cAC&8] &f{staff} &7congelou &f{jogador}&7.'
+  Staff liberou: '&8[&cAC&8] &f{staff} &7liberou &f{jogador}&7.'
+  Saiu congelado: '&8[&cAC&8] &f{jogador} &csaiu do servidor congelado!'
+
+Mitigacao:
+  # {jogador} {vezes} {motivo}
+  Recuado: '&8[&cAC&8] &f{jogador} &7foi puxado de volta &c{vezes}x &7em 10 s &8(&7{motivo}&8)'
+  Golpes cancelados: '&8[&cAC&8] &f{jogador} &7teve &c{vezes} &7golpes anulados em 10 s &8(&7{motivo}&8)'
+  Acoes desfeitas: '&8[&cAC&8] &f{jogador} &7teve &c{vezes} &7acoes desfeitas em 10 s &8(&7{motivo}&8)'
+
+Cliente:
+  # Aviso para a staff quando alguem entra. {marca} {canais} {jogador}
+  Entrou: '&8[&cAC&8] &f{jogador} &7entrou com &e{marca} &8(&7{canais} canais de mod&8)'
 
 Sons:
   Alerta: 'NOTE_PLING;0.7;2.0'
@@ -34,6 +72,8 @@ Comando:
   Verificacao ligada: '&aVerificacao &f{verificacao} &aligada.'
   Verificacao desligada: '&7Verificacao &f{verificacao} &7desligada.'
   Historico vazio: '&7Nenhuma deteccao guardada para &f{jogador}&7.'
+  Foi ate: '&aVoce foi ate &f{jogador}&a.'
+  Gravacao salva: '&aCaixa-preta de &f{jogador} &asalva em &f{arquivo}&a.'
 
   Ajuda: |-
     &8&m----------------------------------------
@@ -44,12 +84,17 @@ Comando:
     &c/anticheat info <jogador> &8- &7violacoes da sessao
     &c/anticheat historico <jogador> &8- &7deteccoes salvas
     &c/anticheat limpar <jogador> &8- &7zera as violacoes
+    &c/anticheat congelar <jogador> &8- &7congela para verificacao
+    &c/anticheat descongelar <jogador> &8- &7libera o jogador
+    &c/anticheat ir <jogador> &8- &7vai ate o jogador
+    &c/anticheat gravacao <jogador> &8- &7salva a caixa-preta
     &c/anticheat verificacoes &8- &7lista tudo que esta ligado
     &c/anticheat recarregar &8- &7recarrega os arquivos
     &8&m----------------------------------------
 
   Info:
     Cabecalho: '&8&m--------- &c{jogador} &8&m---------'
+    Cliente: '&7Marca&8: &e{marca} &8| &7Canais de mod&8: &f{canais}'
     Resumo: '&7Violacoes&8: &c{vl} &8| &7Ping&8: &f{ping}ms &8| &7Cliente&8: &f{cliente} &8| &7TPS&8: &f{tps}'
     Sem violacoes: '&7Nenhuma violacao nesta sessao.'
     Linha: '&8 - &c{verificacao} &8: &f{vl}'

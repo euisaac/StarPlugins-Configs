@@ -28,7 +28,7 @@
 #  {vl} {detalhe} {ping} {tps}. Prefixe com [jogador] para rodar como o
 #  proprio jogador em vez do console.
 # =====================================================================
-Versao do modelo: 1
+Versao do modelo: 2
 
 Padrao:
   Ativado: true
@@ -60,6 +60,7 @@ Verificacoes:
 
     fly:
       a:
+        Cancelar: true
         Maximo de violacoes: 15
         Buffer:
           Maximo: 4.0
@@ -69,6 +70,7 @@ Verificacoes:
           Tiques no ar: 6
           Tolerancia: 0.001
       b:
+        Cancelar: true
         Maximo de violacoes: 15
         Buffer:
           Maximo: 5.0
@@ -78,9 +80,10 @@ Verificacoes:
           Tiques no ar: 8
           Movimento maximo: 0.005
       c:
+        Cancelar: true
         Maximo de violacoes: 25
         Buffer:
-          Maximo: 8.0
+          Maximo: 4.0
           Multiplicador: 1.0
           Decaimento: 1.0
         Opcoes:
@@ -89,6 +92,7 @@ Verificacoes:
 
     speed:
       a:
+        Cancelar: true
         Maximo de violacoes: 20
         Buffer:
           Maximo: 6.0
@@ -96,7 +100,9 @@ Verificacoes:
           Decaimento: 0.75
         Opcoes:
           Velocidade no chao: 0.36
-          Velocidade no ar: 0.52
+          # Pulo correndo encadeado passa de 0,6 no tique do pulo -- e vanilla.
+          Velocidade no ar: 0.66
+          Tiques no chao: 3
           Multiplicador do gelo: 2.4
           Multiplicador do empurrao: 3.0
       b:
@@ -108,10 +114,11 @@ Verificacoes:
         Opcoes:
           Tiques no ar: 5
           Velocidade minima: 0.18
-          Ganho maximo: 0.0
+          Ganho maximo: 0.002
 
     nofall:
       a:
+        Cancelar: true
         Maximo de violacoes: 12
         Buffer:
           Maximo: 3.0
@@ -120,6 +127,7 @@ Verificacoes:
         Opcoes:
           Queda minima: 0.1
       b:
+        Cancelar: true
         Maximo de violacoes: 12
         Buffer:
           Maximo: 2.0
@@ -130,6 +138,7 @@ Verificacoes:
 
     jesus:
       a:
+        Cancelar: true
         Maximo de violacoes: 12
         Buffer:
           Maximo: 4.0
@@ -139,6 +148,7 @@ Verificacoes:
           Variacao maxima: 0.03
           Movimento minimo: 0.08
       b:
+        Cancelar: true
         Maximo de violacoes: 18
         Buffer:
           Maximo: 6.0
@@ -149,6 +159,7 @@ Verificacoes:
 
     step:
       a:
+        Cancelar: true
         Maximo de violacoes: 15
         Buffer:
           Maximo: 3.0
@@ -159,6 +170,7 @@ Verificacoes:
 
     vclip:
       a:
+        Cancelar: true
         Maximo de violacoes: 8
         Buffer:
           Maximo: 0.0
@@ -167,6 +179,7 @@ Verificacoes:
         Opcoes:
           Altura maxima: 1.0
       b:
+        Cancelar: true
         Maximo de violacoes: 10
         Buffer:
           Maximo: 2.0
@@ -177,6 +190,7 @@ Verificacoes:
 
     noslow:
       a:
+        Cancelar: true
         Maximo de violacoes: 15
         Buffer:
           Maximo: 5.0
@@ -207,6 +221,7 @@ Verificacoes:
 
     fastclimb:
       a:
+        Cancelar: true
         Maximo de violacoes: 12
         Buffer:
           Maximo: 3.0
@@ -217,6 +232,7 @@ Verificacoes:
 
     jump:
       a:
+        Cancelar: true
         Maximo de violacoes: 15
         Buffer:
           Maximo: 3.0
@@ -226,6 +242,7 @@ Verificacoes:
           Impulso maximo: 0.42
           Folga: 0.03
       b:
+        Cancelar: true
         Maximo de violacoes: 15
         Buffer:
           Maximo: 3.0
@@ -242,6 +259,7 @@ Verificacoes:
 
     reach:
       a:
+        Cancelar: true
         Maximo de violacoes: 15
         Ping maximo: 350
         Buffer:
@@ -264,6 +282,7 @@ Verificacoes:
 
     killaura:
       a:
+        Cancelar: true
         Maximo de violacoes: 12
         Buffer:
           Maximo: 3.0
@@ -272,6 +291,7 @@ Verificacoes:
         Opcoes:
           Angulo maximo: 90.0
       b:
+        Cancelar: true
         Maximo de violacoes: 12
         Buffer:
           Maximo: 4.0
@@ -280,6 +300,7 @@ Verificacoes:
         Opcoes:
           Janela em ms: 120
       c:
+        Cancelar: true
         Maximo de violacoes: 10
         Buffer:
           Maximo: 0.0
@@ -289,6 +310,7 @@ Verificacoes:
           Janela em ms: 600
           Alvos diferentes: 3
       d:
+        Cancelar: true
         Maximo de violacoes: 10
         Buffer:
           Maximo: 2.0
@@ -300,6 +322,7 @@ Verificacoes:
       # defeituoso gera numeros parecidos. Por isso os tres tipos so
       # avisam a staff.
       a:
+        Cancelar: true
         Punivel: false
         Nao alertar ate: 5
         Buffer:
@@ -309,6 +332,7 @@ Verificacoes:
         Opcoes:
           Cliques por segundo: 20
       b:
+        Cancelar: true
         Punivel: false
         Nao alertar ate: 5
         Buffer:
@@ -318,6 +342,8 @@ Verificacoes:
         Opcoes:
           Desvio minimo: 12.0
       c:
+        # Sinal fraco (mao humana as vezes clica simetrico): so avisa, nao
+        # cancela golpe.
         Punivel: false
         Nao alertar ate: 5
         Buffer:
@@ -330,6 +356,7 @@ Verificacoes:
 
     hitbox:
       a:
+        Cancelar: true
         Maximo de violacoes: 15
         Ping maximo: 350
         Buffer:
@@ -360,6 +387,7 @@ Verificacoes:
 
     criticals:
       a:
+        Cancelar: true
         Maximo de violacoes: 20
         Buffer:
           Maximo: 5.0
@@ -376,6 +404,7 @@ Verificacoes:
 
     autoblock:
       a:
+        Cancelar: true
         Maximo de violacoes: 15
         Buffer:
           Maximo: 4.0
@@ -384,6 +413,7 @@ Verificacoes:
         Opcoes:
           Bloqueio minimo em ms: 60
       b:
+        Cancelar: true
         Maximo de violacoes: 15
         Buffer:
           Maximo: 5.0
@@ -462,6 +492,7 @@ Verificacoes:
         Opcoes:
           Giro minimo: 3.0
           Variacao minima: 0.02
+          Repeticoes: 6
       c:
         # Desligada de proposito. A conta do MDC e a mais forte que
         # existe contra aimbot, mas celular, controle e mods de mira
@@ -546,6 +577,18 @@ Verificacoes:
           Decaimento: 0.5
         Opcoes:
           Tempo minimo em ms: 60
+      c:
+        # Speed mine: quebrou antes do tempo que o proprio servidor calcula
+        # para o bloco e a ferramenta. So funciona da 1.17 em diante.
+        Cancelar: true
+        Maximo de violacoes: 15
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Fracao minima do tempo: 0.6
+          Folga em tiques: 2.0
 
     nuker:
       a:
@@ -573,6 +616,30 @@ Verificacoes:
           Decaimento: 1.0
         Opcoes:
           Angulo maximo: 95.0
+      d:
+        # Quebrar sem o braco se mexer: o nuker que limpa tudo em volta.
+        Cancelar: true
+        Maximo de violacoes: 10
+        Nao alertar ate: 1
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Janela do swing em ms: 400
+      e:
+        # Mira no centro exato de varios blocos seguidos: a rotacao foi
+        # calculada, nao feita com o mouse.
+        Cancelar: true
+        Maximo de violacoes: 10
+        Nao alertar ate: 1
+        Buffer:
+          Maximo: 2.0
+          Multiplicador: 1.0
+          Decaimento: 0.5
+        Opcoes:
+          Angulo maximo do centro: 0.5
+          Blocos seguidos: 3
 
     airplace:
       a:
@@ -656,6 +723,7 @@ Verificacoes:
 
     timer:
       a:
+        Cancelar: true
         Maximo de violacoes: 12
         Buffer:
           Maximo: 2.0
@@ -663,7 +731,14 @@ Verificacoes:
           Decaimento: 0.5
         Opcoes:
           Saldo maximo: 300.0
+          # Quanto tempo de lag o jogador pode "compensar" com uma rajada de
+          # pacotes sem virar alerta. Tambem e o maximo de tempo parado que vira
+          # credito -- abaixo disso, quem acelera o jogo aparece rapido.
+          Tolerancia de lag em ms: 1000.0
       b:
+        # Desligada: o cliente da 1.9 em diante nao manda pacote de movimento
+        # enquanto esta parado, e o "jogo atrasado" aparecia para todo mundo.
+        Ativado: false
         Punivel: false
         Buffer:
           Maximo: 3.0
@@ -720,6 +795,10 @@ Verificacoes:
         Opcoes:
           Tiques sem girar: 120
       b:
+        # Desligada: quem e teleportado para um warp (que cai no centro do
+        # bloco) e anda so com o W fica com a outra coordenada travada no
+        # centro exato -- igual a um robo. Sinal fraco demais para alertar.
+        Ativado: false
         Punivel: false
         Buffer:
           Maximo: 0.0
@@ -774,3 +853,86 @@ Verificacoes:
           Decaimento: 0.0
         Opcoes:
           Repeticoes: 3
+
+    cliente:
+      # Avaliado alguns segundos depois da entrada, com a marca e os canais que
+      # o cliente anunciou. O nome casa por pedaco, sem diferenciar maiuscula.
+      a:
+        Maximo de violacoes: 1
+        Nao alertar ate: 0
+        Anunciar punicao: false
+        Comandos de punicao:
+          - 'kick {jogador} &cCliente nao permitido neste servidor.'
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Termos:
+            - meteor
+            - wurst
+            - aristois
+            - impactclient
+            - liquidbounce
+            - futureclient
+            - rusherhack
+            - thunderhack
+            - coffeeclient
+            - inertia
+            - konas
+            - salhack
+            - phobos
+            - kamiblue
+            - bleachhack
+            - aoba
+            - mathax
+            - asteroid
+            - zenithclient
+            - vesperclient
+            - novaclient
+            - sakuraclient
+            - cipherclient
+            - ghostclient
+            - shadowclient
+            - helikon
+            - myriad
+            - breezclient
+            - nekoclient
+            - celarix
+            - vanillasploit
+            - gothbreach
+            - doomsday
+            - prestigeclient
+            - vapeclient
+            - ravenclient
+      b:
+        # Diz "vanilla" mas registrou canal de carregador de mod: o cliente
+        # esta mentindo a marca. So avisa por padrao.
+        Punivel: false
+        Nao alertar ate: 0
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Canais de carregador:
+            - 'fabric'
+            - 'forge'
+            - 'fml'
+            - 'neoforge'
+            - 'quilt'
+      c:
+        # Mods que o servidor nao aceita. Comece so avisando e decida depois
+        # o que vira expulsao: varios desses tem uso legitimo.
+        Punivel: false
+        Nao alertar ate: 0
+        Buffer:
+          Maximo: 0.0
+          Multiplicador: 1.0
+          Decaimento: 0.0
+        Opcoes:
+          Termos:
+            - freecam
+            - baritone
+            - xray
+            - autoclicker
