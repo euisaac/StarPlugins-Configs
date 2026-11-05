@@ -1,0 +1,189 @@
+# ============================================================
+#  Menus de Acoes Rapidas
+# ------------------------------------------------------------
+#  Prefira editar em jogo: /staracoesrapidas menu
+#  (o editor reescreve este arquivo).
+#
+#  Tipos de acao:
+#    COMANDO  - o jogador executa o comando (Valor sem a barra)
+#    CONSOLE  - o console executa o comando ({jogador} = nick)
+#    MENSAGEM - envia o texto do Valor ao jogador
+#    LINK     - abre o site do Valor (https://...)
+#    SERVIDOR - manda para outro servidor do BungeeCord/Velocity
+#    MENU     - abre outro menu (Valor = id do menu)
+#    FECHAR   - so fecha o menu
+#  Varios comandos/linhas no mesmo Valor: separe com ;;
+#  Placeholders: {jogador} {uuid} {mundo} {servidor} + PlaceholderAPI
+#
+#  Simbolo: aparece antes do nome na tela nativa (tecla G),
+#  no formulario do Bedrock e no chat. Aceita &cores.
+# ============================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Menus:
+  principal:
+    Titulo: '{servidor}'
+    Subtitulo: '&7Ações Rápidas'
+    Linhas: 4
+    Colunas: 2
+    Slot do fechar: 31
+    Acoes:
+      spawn:
+        Nome: '&fSpawn'
+        Simbolo: '&c❤'
+        Material: RED_BED
+        Slot: 10
+        Descricao:
+          - '&7Volte para o spawn do servidor.'
+        Tipo: COMANDO
+        Valor: 'spawn'
+      rtp:
+        Nome: '&fRTP'
+        Simbolo: '&b✈'
+        Material: ENDER_PEARL
+        Slot: 11
+        Descricao:
+          - '&7Teleporte para um lugar aleatório.'
+        Tipo: COMANDO
+        Valor: 'rtp'
+        Confirmar: true
+      loja:
+        Nome: '&fLoja'
+        Simbolo: '&a$'
+        Material: EMERALD
+        Slot: 12
+        Descricao:
+          - '&7Compre itens com o seu dinheiro.'
+        Tipo: COMANDO
+        Valor: 'loja'
+      vender:
+        Nome: '&fVender'
+        Simbolo: '&6⛃'
+        Material: GOLD_INGOT
+        Slot: 13
+        Descricao:
+          - '&7Venda os itens do seu inventário.'
+        Tipo: COMANDO
+        Valor: 'vender'
+      leilao:
+        Nome: '&fLeilão'
+        Simbolo: '&e⚖'
+        Material: CLOCK
+        Slot: 14
+        Descricao:
+          - '&7Compre e venda com outros jogadores.'
+        Tipo: COMANDO
+        Valor: 'leilao'
+      pedidos:
+        Nome: '&fPedidos'
+        Simbolo: '&d✉'
+        Material: WRITABLE_BOOK
+        Slot: 15
+        Descricao:
+          - '&7Peça itens e receba de outros jogadores.'
+        Tipo: COMANDO
+        Valor: 'pedidos'
+      kits:
+        Nome: '&fKits'
+        Simbolo: '&3✦'
+        Material: CHEST
+        Slot: 16
+        Descricao:
+          - '&7Pegue os seus kits.'
+        Tipo: COMANDO
+        Valor: 'kits'
+      preferencias:
+        Nome: '&fPreferências'
+        Simbolo: '&7⚙'
+        Material: COMPARATOR
+        Slot: 21
+        Descricao:
+          - '&7Ajuste o servidor do seu jeito.'
+        Tipo: COMANDO
+        Valor: 'preferencias'
+      bounty:
+        Nome: '&fBounty'
+        Simbolo: '&4⚔'
+        Material: DIAMOND_SWORD
+        Slot: 22
+        Descricao:
+          - '&7Coloque uma recompensa na cabeça de alguem.'
+        Tipo: COMANDO
+        Valor: 'bounty'
+      links:
+        Nome: '&7Links oficiais do {servidor}'
+        Simbolo: '&b☰'
+        Material: BOOK
+        Slot: 23
+        Descricao:
+          - '&7Discord, loja online e regras.'
+        Tipo: MENU
+        Valor: 'links'
+
+  links:
+    Titulo: '{servidor}'
+    Subtitulo: '&7Links oficiais do {servidor}'
+    Linhas: 3
+    Colunas: 2
+    Slot do fechar: 22
+    Acoes:
+      discord:
+        Nome: '&bDiscord'
+        Simbolo: ''
+        Material: LIGHT_BLUE_DYE
+        Slot: 10
+        Descricao:
+          - '&7Entre na nossa comunidade.'
+        Tipo: LINK
+        Valor: 'https://discord.gg/seuservidor'
+      loja-online:
+        Nome: '&aLoja online'
+        Simbolo: ''
+        Material: EMERALD
+        Slot: 12
+        Descricao:
+          - '&7Apoie o servidor.'
+        Tipo: LINK
+        Valor: 'https://loja.seuservidor.com.br'
+      regras:
+        Nome: '&6Regras'
+        Simbolo: ''
+        Material: PAPER
+        Slot: 14
+        Descricao:
+          - '&7Leia antes de jogar.'
+        Tipo: MENSAGEM
+        Valor: '&6&lRegras básicas;;&f1. &7Respeite todos os jogadores.;;&f2. &7Nada de hack, macro ou bug.;;&f3. &7Sem spam ou divulgação.'
+      acoes-rapidas:
+        Nome: '&fAções Rápidas'
+        Simbolo: ''
+        Material: NETHER_STAR
+        Slot: 16
+        Descricao:
+          - '&7Spawn, RTP, Loja e mais.'
+        Tipo: MENU
+        Valor: 'principal'
