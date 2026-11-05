@@ -1,0 +1,108 @@
+#   __  __
+#  |  \/  | ___ _ __  _   _ ___
+#  | |\/| |/ _ \ '_ \| | | / __|
+#  | |  | |  __/ | | | |_| \__ \
+#  |_|  |_|\___|_| |_|\__,_|___/
+#
+#  Menus da Area AFK. Slots comecam em 0. Use -1 para esconder um item.
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Setas:
+  Voltar:
+    Material: 'ARROW'
+    Nome: '&cVoltar'
+    Lore: [ '&7Clique para voltar ao menu anterior.' ]
+  Anterior:
+    Material: 'ARROW'
+    Nome: '&cAnterior'
+    Lore: [ '&7Clique para ir a pagina anterior.' ]
+  Proximo:
+    Material: 'ARROW'
+    Nome: '&aProximo'
+    Lore: [ '&7Clique para ir a proxima pagina.' ]
+
+Principal:
+  Nome: '&7Menu da Area AFK'
+  Tamanho: 27
+  Slot ir: 11
+  Slot recompensas: 15
+  Slot upgrade: 13
+  Itens:
+    Ir:
+      Material: 'ENDER_PEARL'
+      Nome: '&eFarmar AFK!'
+      Lore:
+        - '&7Ganhe recompensas ficando'
+        - '&7AFK na area do servidor.'
+        - ''
+        - '&7Nivel atual: &f{nivel}'
+        - '&7Tempo restante: &f{tempo}'
+        - ''
+        - '&aClique para ir.'
+    Recompensas:
+      Material: 'CHEST'
+      Nome: '&aRecompensas'
+      Lore:
+        - ''
+        - ' &fRecompensas no armazem: &a{recompensas}&f.'
+        - ''
+        - '&7Clique para gerenciar.'
+    Upgrade:
+      Material: 'GOLD_INGOT'
+      Nome: '&6Upgrades!'
+      Lore:
+        - '&7Melhore as recompensas'
+        - '&7da sua Area AFK.'
+        - ''
+        - '&7Nivel atual: &f{nivel}'
+        - ''
+        - '&aClique para acessar.'
+
+Upgrades:
+  Nome: '&7Menu de Upgrades'
+  Tamanho: 27
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Slot voltar: 0
+  Slot anterior: 9
+  Slot proximo: 17
+
+Recompensas:
+  Nome: '&7Armazem de Recompensas'
+  Tamanho: 54
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Slot anterior: 18
+  Slot proximo: 26
+  Slot voltar: 48
+  Slot vazio: 22
+  Slot recolher: 50
+  Itens:
+    Vazio:
+      Material: 'COBWEB'
+      Nome: '&eVazio...'
+      Lore: [ '&7Nenhuma recompensa para', '&7coletar.' ]
+    Recolher:
+      Material: 'HOPPER'
+      Nome: '&eRecolher tudo'
+      Lore: [ '&7Clique para recolher', '&7todas as recompensas.' ]

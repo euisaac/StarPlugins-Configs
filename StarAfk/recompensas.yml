@@ -1,0 +1,288 @@
+#   ____
+#  |  _ \ ___  ___ ___  _ __ ___  _ __   ___ _ __  ___  __ _ ___
+#  | |_) / _ \/ __/ _ \| '_ ` _ \| '_ \ / _ \ '_ \/ __|/ _` / __|
+#  |  _ <  __/ (_| (_) | | | | | | |_) |  __/ | | \__ \ (_| \__ \
+#  |_| \_\___|\___\___/|_| |_| |_| .__/ \___|_| |_|___/\__,_|___/
+#                                |_|
+#
+#  Definicao das recompensas. Quais delas caem, e com qual chance, fica na
+#  secao "Sorteio" de cada arquivo em areas/.
+#
+#  preview  - como o item aparece na lore/preview dos menus de upgrade
+#  coletar  - como o item aparece no armazem de recompensas
+#  comando  - o que acontece quando o jogador recolhe
+#
+#  Placeholders: {jogador}, {quantia}, {quantia_bruta}
+#
+#  Quantia     - valor base de UMA recompensa
+#  Multiplicar - roda o comando uma vez so com a quantia somada (Quantia x
+#                acumulado). Deixe false quando o comando nao aceita
+#                quantidade, como os de VIP -- ai ele roda uma vez por
+#                recompensa acumulada.
+#
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+recompensas:
+  coins:
+    preview:
+      Material: 'GOLD_INGOT'
+      Nome: '&e1.000 Coins'
+      Quantidade: 1
+      Lore: [ '&aRecompensa garantida!' ]
+      Encantamentos: []
+    coletar:
+      Material: 'GOLD_INGOT'
+      Nome: '&e1.000 Coins'
+      Quantidade: 1
+      Lore:
+        - '&aRecompensa garantida!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ' &7> &fTotal: &7{quantia} coins'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: []
+    comando:
+      Dar: true
+      Quantia: 1000
+      Multiplicar: true
+      Lista:
+        - 'money give {jogador} {quantia}'
+
+  caixa_avancada:
+    preview:
+      Material: 'CHEST'
+      Nome: '&6Caixa Avancada'
+      Quantidade: 1
+      Lore: [ '&eUma caixa especial!' ]
+      Encantamentos: []
+    coletar:
+      Material: 'CHEST'
+      Nome: '&6Caixa Avancada'
+      Quantidade: 1
+      Lore:
+        - '&eUma caixa especial!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: []
+    comando:
+      Dar: true
+      Quantia: 1
+      Multiplicar: true
+      Lista:
+        - 'excellentcrates key give {jogador} avancada {quantia}'
+
+  caixa_lendaria:
+    preview:
+      Material: 'ENDER_CHEST'
+      Nome: '&5Caixa Lendaria'
+      Quantidade: 1
+      Lore: [ '&dUma caixa lendaria!' ]
+      Encantamentos: []
+    coletar:
+      Material: 'ENDER_CHEST'
+      Nome: '&5Caixa Lendaria'
+      Quantidade: 1
+      Lore:
+        - '&dUma caixa lendaria!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: []
+    comando:
+      Dar: true
+      Quantia: 1
+      Multiplicar: true
+      Lista:
+        - 'excellentcrates key give {jogador} lendaria {quantia}'
+
+  caixa_copa:
+    preview:
+      Material: 'HOPPER'
+      Nome: '&cCaixa da Copa'
+      Quantidade: 1
+      Lore: [ '&cCaixa da Copa do ano!' ]
+      Encantamentos: []
+    coletar:
+      Material: 'HOPPER'
+      Nome: '&cCaixa da Copa'
+      Quantidade: 1
+      Lore:
+        - '&cCaixa da Copa do ano!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: []
+    comando:
+      Dar: true
+      Quantia: 1
+      Multiplicar: true
+      Lista:
+        - 'excellentcrates key give {jogador} copa {quantia}'
+
+  stargold_5:
+    preview:
+      Material: 'GOLD_NUGGET'
+      Nome: '&e5 StarGold'
+      Quantidade: 5
+      Lore: [ '&eMoeda VIP do servidor!' ]
+      Encantamentos: []
+    coletar:
+      Material: 'GOLD_NUGGET'
+      Nome: '&e5 StarGold'
+      Quantidade: 1
+      Lore:
+        - '&eMoeda VIP do servidor!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ' &7> &fTotal: &7{quantia} StarGold'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: []
+    comando:
+      Dar: true
+      Quantia: 5
+      Multiplicar: true
+      Lista:
+        - 'stargolds adicionar {jogador} {quantia}'
+
+  stargold_10:
+    preview:
+      Material: 'GOLD_NUGGET'
+      Nome: '&e10 StarGold'
+      Quantidade: 10
+      Lore: [ '&eMoeda VIP do servidor!' ]
+      Encantamentos: []
+    coletar:
+      Material: 'GOLD_NUGGET'
+      Nome: '&e10 StarGold'
+      Quantidade: 1
+      Lore:
+        - '&eMoeda VIP do servidor!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ' &7> &fTotal: &7{quantia} StarGold'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: []
+    comando:
+      Dar: true
+      Quantia: 10
+      Multiplicar: true
+      Lista:
+        - 'stargolds adicionar {jogador} {quantia}'
+
+  stargold_50:
+    preview:
+      Material: 'GOLD_NUGGET'
+      Nome: '&e50 StarGold'
+      Quantidade: 50
+      Lore: [ '&6Uma grande quantidade de StarGold!' ]
+      Encantamentos: [ 'DURABILITY:1' ]
+    coletar:
+      Material: 'GOLD_NUGGET'
+      Nome: '&e50 StarGold'
+      Quantidade: 1
+      Lore:
+        - '&6Uma grande quantidade de StarGold!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ' &7> &fTotal: &7{quantia} StarGold'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: [ 'DURABILITY:1' ]
+    comando:
+      Dar: true
+      Quantia: 50
+      Multiplicar: true
+      Lista:
+        - 'stargolds adicionar {jogador} {quantia}'
+
+  estelar_7dias:
+    preview:
+      Material: 'NETHER_STAR'
+      Nome: '&bEstelar (7 dias)'
+      Quantidade: 1
+      Lore: [ '&eVIP Estelar por 7 dias!' ]
+      Encantamentos: [ 'DURABILITY:1' ]
+    coletar:
+      Material: 'NETHER_STAR'
+      Nome: '&bEstelar (7 dias)'
+      Quantidade: 1
+      Lore:
+        - '&eVIP Estelar por 7 dias!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: [ 'DURABILITY:1' ]
+    comando:
+      Dar: true
+      Quantia: 1
+      # Comando de VIP nao aceita quantidade: roda uma vez por recompensa.
+      Multiplicar: false
+      Lista:
+        - 'darvip {jogador} estelar 7d'
+        - 'msg {jogador} &eVoce recebeu &bEstelar &epor 7 dias!'
+
+  red_dragon_7dias:
+    preview:
+      Material: 'NETHER_STAR'
+      Nome: '&4RED DRAGON (7 dias)'
+      Quantidade: 1
+      Lore: [ '&cVIP RED DRAGON lendario por 7 dias!' ]
+      Encantamentos: [ 'DURABILITY:1' ]
+    coletar:
+      Material: 'NETHER_STAR'
+      Nome: '&4RED DRAGON (7 dias)'
+      Quantidade: 1
+      Lore:
+        - '&cVIP RED DRAGON lendario por 7 dias!'
+        - ''
+        - ' &7> &fQuantidade: &7{quantia_bruta}'
+        - ''
+        - '&eClique esquerdo para receber'
+        - '&eClique direito para deletar'
+      Encantamentos: [ 'DURABILITY:1' ]
+    comando:
+      Dar: true
+      Quantia: 1
+      # Comando de VIP nao aceita quantidade: roda uma vez por recompensa.
+      Multiplicar: false
+      Lista:
+        - 'darvip {jogador} reddragon 7d'
+        - 'msg {jogador} &eVoce recebeu &4RED DRAGON &epor 7 dias!'
