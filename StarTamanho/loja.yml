@@ -1,0 +1,143 @@
+# =====================================================
+#  StarTamanho - loja de tamanhos (menu de compra)
+#  Aberta com /tamanho (sem argumentos)
+# =====================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Loja:
+  Titulo: '&8&lLoja de Tamanhos'
+  # Numero de linhas do inventario (1 a 6). Total de slots = Linhas * 9.
+  Linhas: 3
+
+  # A cobranca usa automaticamente o plugin de economia que estiver registrado
+  # no Vault (StarEconomia, EssentialsX, CMI, etc) - nao ha nada para configurar
+  # aqui. Se nenhum plugin de economia com suporte a Vault estiver instalado,
+  # os itens pagos ficam bloqueados e os jogadores veem a mensagem
+  # "loja.economia-indisponivel" (mensagens/pt_br.yml).
+
+  ItemPreencher:
+    Ativo: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  BotaoReset:
+    Ativo: true
+    Slot: 22
+    Material: BARRIER
+    Nome: '&c&lVoltar ao Normal'
+    Lore:
+      - '&7Restaura o seu tamanho para o padrao.'
+      - ''
+      - '&aGratuito'
+
+  # Cada entrada abaixo vira um item comprável no menu.
+  # Tamanho: escala aplicada (1.0 = normal, 0.5 = metade, 2.0 = dobro, etc).
+  # Preco: valor cobrado na moeda configurada acima.
+  # Tempo: "permanente" ou uma duracao (ex: 30s, 10m, 2h, 1d). Apos o tempo
+  #         acabar, o jogador volta automaticamente ao tamanho normal.
+  # Permissao: permissao extra exigida para comprar este item (opcional).
+  Itens:
+    minusculo:
+      Slot: 10
+      Material: SLIME_BALL
+      Nome: '&d&lMinusculo'
+      Lore:
+        - '&7Fique com &e25%% &7do seu tamanho normal.'
+        - ''
+        - '&7Preco: &e%preco% %moeda%'
+        - '&7Duracao: &e%tempo%'
+      Tamanho: 0.25
+      Preco: 1000
+      Tempo: permanente
+      Permissao: ''
+
+    pequeno:
+      Slot: 11
+      Material: BAMBOO
+      Nome: '&a&lPequeno'
+      Lore:
+        - '&7Fique com &e50%% &7do seu tamanho normal.'
+        - ''
+        - '&7Preco: &e%preco% %moeda%'
+        - '&7Duracao: &e%tempo%'
+      Tamanho: 0.5
+      Preco: 500
+      Tempo: permanente
+      Permissao: ''
+
+    normal:
+      Slot: 13
+      Material: PLAYER_HEAD
+      Nome: '&f&lNormal'
+      Lore:
+        - '&7Seu tamanho padrao (1.0).'
+        - ''
+        - '&7Preco: &e%preco% %moeda%'
+      Tamanho: 1.0
+      Preco: 0
+      Tempo: permanente
+      Permissao: ''
+
+    grande:
+      Slot: 15
+      Material: IRON_INGOT
+      Nome: '&6&lGrande'
+      Lore:
+        - '&7Fique com o dobro do seu tamanho normal.'
+        - ''
+        - '&7Preco: &e%preco% %moeda%'
+        - '&7Duracao: &e%tempo%'
+      Tamanho: 2.0
+      Preco: 1500
+      Tempo: permanente
+      Permissao: ''
+
+    gigante:
+      Slot: 16
+      Material: NETHER_STAR
+      Nome: '&c&lGigante'
+      Lore:
+        - '&7Fique &e4x &7maior que o seu tamanho normal.'
+        - ''
+        - '&7Preco: &e%preco% %moeda%'
+        - '&7Duracao: &e%tempo%'
+      Tamanho: 4.0
+      Preco: 5000
+      Tempo: permanente
+      Permissao: ''
+
+    gigante-temporario:
+      Slot: 20
+      Material: GOLDEN_APPLE
+      Nome: '&e&lGigante Temporario'
+      Lore:
+        - '&7Fique &e4x &7maior por tempo limitado.'
+        - ''
+        - '&7Preco: &e%preco% %moeda%'
+        - '&7Duracao: &e%tempo%'
+      Tamanho: 4.0
+      Preco: 800
+      Tempo: 1h
+      Permissao: ''
