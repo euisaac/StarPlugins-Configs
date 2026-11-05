@@ -10,7 +10,30 @@
 #    {mundo} {pagina} {paginas} {jogador} {valor} {linhas}
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 3
 
 #
 # ═══════════════════════════  VISAO DOS LIXEIROS  ═══════════════════════════
@@ -50,7 +73,7 @@ Lixeiros:
         - '&aClique para abrir.'
     Voltar:
       Slot: 36
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cFechar'
       Lore: []
     Anterior:
@@ -103,7 +126,7 @@ Historico:
         - '&aClique para trocar.'
     Voltar:
       Slot: 49
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
     Anterior:
@@ -151,6 +174,17 @@ Itens:
       - '&aClique &7para pegar uma pilha.'
       - '&aShift + clique &7para pegar tudo que couber.'
 
+  # O mesmo item quando a tela foi aberta pelo leilao.
+  Item leilao:
+    Lore:
+      - ''
+      - '&7Quantidade: &f{quantidade}'
+      - '&7Mundo: &f{mundo}'
+      - ''
+      - '&aClique &7para abrir leilao deste item.'
+      - '&7Lance inicial minimo: &f{minimo}'
+      - '&7O leilao dura &f{duracao}h&7.'
+
   # A criatura que foi removida.
   Entidade:
     Material: 'ZOMBIE_HEAD'
@@ -170,7 +204,7 @@ Itens:
         - '&7Criaturas: &f{entidades}'
     Voltar:
       Slot: 49
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
     Anterior:
@@ -221,7 +255,7 @@ Editor:
         - '&aClique para criar.'
     Voltar:
       Slot: 36
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cFechar'
       Lore: []
     Anterior:
@@ -359,7 +393,7 @@ Editar:
         - '&aClique para limpar.'
     Voltar:
       Slot: 36
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
 
@@ -400,7 +434,7 @@ Mundos:
         - '&aClique para limpar a lista.'
     Voltar:
       Slot: 49
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
     Anterior:
@@ -450,7 +484,183 @@ Lista:
         - '&aClique para digitar.'
     Voltar:
       Slot: 49
-      Material: 'BARRIER'
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+
+#
+# ═══════════════════════════════  LEILAO  ═══════════════════════════════════
+#
+Leilao:
+  Titulo: '&8Leilao do lixeiro'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  # Linhas coladas embaixo da lore que o item ja tinha.
+  Item:
+    Lore:
+      - ''
+      - '&7Quantidade: &f{quantidade}'
+      - '&7Do lixeiro: &f{lixeiro}'
+      - '&7Abriu: &f{abriu}'
+      - ''
+      - '&7Lance atual: &a{lance}'
+      - '&7De: &f{quem} &8({estado}&8)'
+      - '&7Termina em: &f{restante}'
+      - ''
+      - '&aClique &7para dar &f{minimo} &7ou mais.'
+
+  Botoes:
+    # O convite para escolher um item. Sem nenhum leilao de pe ele aparece no
+    # meio da tela ("Slot vazio"); com leiloes de pe desce para "Slot".
+    Ver itens:
+      Slot: 47
+      Slot vazio: 22
+      Material: 'HOPPER'
+      Nome: '&e&lITENS DE HOJE'
+      Lore:
+        - '&7Veja o que a limpeza recolheu'
+        - '&7hoje e abra o leilao de um item.'
+        - ''
+        - '&aClique para escolher.'
+    Armazem:
+      Slot: 49
+      Material: 'CHEST'
+      Nome: '&e&lMEU ARMAZEM'
+      Lore:
+        - '&7O que voce arrematou e ainda'
+        - '&7nao levou: &f{armazem} &7lote(s).'
+        - ''
+        - '&aClique para abrir.'
+    Perfil:
+      Slot: 51
+      Nome: '&e&l{jogador}'
+      Lore:
+        - '&7Leiloes abertos por voce: &f{abertos}'
+        - '&7Ganhando agora: &f{ganhando}'
+        - '&7Ja arrematados: &f{ganhos}'
+        - '&7Esperando no armazem: &f{armazem}'
+        - ''
+        - '&7Preso em lances: &e{preso}'
+        - '&7Ja gasto em leiloes: &e{gasto}'
+        - '&7Seu saldo: &a{saldo}'
+    Voltar:
+      Slot: 46
+      Material: 'RED_DYE'
+      Nome: '&cFechar'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+
+#
+# ═════════════════════  LIMPEZAS DE HOJE (para leiloar)  ════════════════════
+#
+LeilaoLimpezas:
+  Titulo: '&8Limpezas de hoje'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Material: 'PAPER'
+    Nome: '&e{lixeiro} &8- &7{atras}'
+    Lore:
+      - '&7Hora: &f{hora}'
+      - '&7Itens: &f{itens}'
+      - ''
+      - '&aClique para escolher um item.'
+
+  Botoes:
+    Filtro:
+      Slot: 48
+      Material: 'HOPPER'
+      Nome: '&e&lFILTRO'
+      Lore:
+        - '&7Mostrando: &f{lixeiro}'
+        - ''
+        - '&aClique para trocar.'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+      Lore: []
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+
+#
+# ═══════════════════════════════  ARMAZEM  ══════════════════════════════════
+#
+Armazem:
+  Titulo: '&8Meus itens do leilao'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34,
+           37, 38, 39, 40, 41, 42, 43 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Lore:
+      - ''
+      - '&7Quantidade: &f{quantidade}'
+      - '&7Pago: &e{valor}'
+      - '&7Ganho: &f{data} as {hora}'
+      - ''
+      - '&aClique &7para pegar uma pilha.'
+      - '&aShift + clique &7para pegar tudo que couber.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
       Nome: '&cVoltar'
       Lore: []
     Anterior:
