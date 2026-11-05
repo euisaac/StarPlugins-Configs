@@ -1,0 +1,150 @@
+# Configuração do StarAtalhos
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+debug: false
+
+# Prefixo para mensagens
+prefix: "&9&lStarAtalhos &r"
+
+# ticks para enviar comandos do /cmdoff
+cmdoff_ticks: 100
+
+# Configurações de timing
+timing:
+  double_shift_precision: 500  # Tempo em milissegundos para detectar double shift
+  tap_max: 350  # Ate quantos ms o shift conta como TOQUE (acima disso e "segurar", nao dispara single/double)
+  cooldown_duration: 1000  # Tempo de cooldown em milissegundos entre execuções
+
+# Mensagens personalizadas
+messages:
+  menu_opened: "Menu de atalhos aberto!"
+  shortcut_executed: "Atalho executado: %command%"
+  shortcut_executed_enabled: true  # Ativar/desativar mensagem ao executar atalho
+  shortcut_disabled: "Este atalho está desativado."
+  no_permission: "Você não tem permissão para usar este comando."
+  enter_command: "Digite o comando que deseja executar com Shift no chat (sem a barra /):"
+  enter_command_double: "Digite o comando que deseja executar com Double Shift no chat (sem a barra /):"
+  enter_command_f: "Digite o comando que deseja executar com Shift + F no chat (sem a barra /):"
+  command_set: "Comando configurado: %command%"
+  command_set_double: "Comando configurado para Double Shift: %command%"
+  command_set_f: "Comando configurado para Shift + F: %command%"
+  toggle_activated: "Atalho %shortcut% ativado"
+  toggle_deactivated: "Atalho %shortcut% desativado"
+  status_activated: "&aAtivado"
+  status_deactivated: "&cDesativado"
+  cooldown_active: "Cooldown ativo, aguarde."
+  command_lore_text: "&7Comando: &e%command%"
+
+# Configuração do menu
+menu:
+  title: "Configurar Atalhos"
+  size: 36  # Tamanho do inventário (múltiplo de 9)
+  items:
+    config_shift:
+      slot: 11
+      material: COMMAND_BLOCK
+      name: "&aConfigurar Comando Shift"
+      lore:
+        - "&7Clique para configurar o comando"
+        - "&7que será executado com Shift"
+        - ""
+    config_double_shift:
+      slot: 13
+      material: COMMAND_BLOCK
+      name: "&bConfigurar Comando Double Shift"
+      lore:
+        - "&7Clique para configurar o comando"
+        - "&7que será executado com Double Shift"
+        - ""
+    config_shift_f:
+      slot: 15
+      material: COMMAND_BLOCK
+      name: "&9Configurar Comando Shift + F"
+      lore:
+        - "&7Clique para configurar o comando"
+        - "&7que será executado com Shift + F"
+        - ""
+    toggle_shift:
+      slot: 20
+      material: GRAY_DYE
+      name: "&aAtivar/Desativar Shift"
+      lore:
+        - "&7Clique para ativar ou desativar"
+        - "&7a execução do comando com Shift"
+        - ""
+        - "&7Atualmente: %status%"
+    toggle_double_shift:
+      slot: 22
+      material: GRAY_DYE
+      name: "&bAtivar/Desativar Double Shift"
+      lore:
+        - "&7Clique para ativar ou desativar"
+        - "&7a execução do comando com Double Shift"
+        - ""
+        - "&7Atualmente: %status%"
+    toggle_shift_f:
+      slot: 24
+      material: GRAY_DYE
+      name: "&9Ativar/Desativar Shift + F"
+      lore:
+        - "&7Clique para ativar ou desativar"
+        - "&7a execução do comando com Shift + F"
+        - ""
+        - "&7Atualmente: %status%"
+
+# Configurações dos atalhos (true/false para ativar/desativar no menu)
+shortcuts:
+  shift:
+    enabled: true
+    default_command: ""  # Deixe vazio para não usar comando padrão
+  double_shift:
+    enabled: true
+    default_command: ""  # Deixe vazio para não usar comando padrão
+  shift_f:
+    enabled: true
+    default_command: ""  # Deixe vazio para não usar comando padrão
+
+# Recurso de subcomandos
+subcomandos:
+  sub1:
+    original: "/vip ativacoes" # Comando que sera acionado quando o player executar o comando sub:
+    sub: ["kit", "kits"] # Comando que o player vai dar em jogo
+    tipo: PLAYER # Configurar se o comando vai ser executado pelo PLAYER ou CONSOLE
+  sub2:
+    original: "/stattrackers"
+    sub: "/atributos"
+    tipo: PLAYER
+  sub3:
+    original: "/playerwarps create %argumento1%" # %argumento1% Exemplo /playerwarps create Exemplo, %argumento1% seria oque o player digitar apos o comando.
+    sub: "/halloweenparticipar"
+    tipo: PLAYER
+
+# Recurso de Comandos de texto
+txt_commands:
+  txt1:
+    command: "/ajuda" #Ao executar esse comando ele responde o player com o texto
+    sound: "ENTITY_EXPERIENCE_ORB_PICKUP" #Som que será emitido no player quando der o comando
+    texts: #mensagens que o plaeyr vai receber
+      - "&eOlá %player%, Mensagem de ajuda."
