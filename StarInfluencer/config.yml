@@ -1,0 +1,88 @@
+# StarInfluencer Configuration
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+# Discord Bot Token
+discord:
+  token: "Vazio"
+  channel_id: "Vazio"  # ID of the channel for validation approvals/denials
+  role_id: ""  # ID of the role to mention when sending validation requests
+  guild_id: ""  # ID do servidor Discord (para comandos aparecerem instantaneamente)
+  bonus_channel_id: ""  # Canal dos pedidos de bonificação por visualização (vazio = o mesmo das validações)
+
+# Banco de dados
+# SQLITE guarda tudo num arquivo dentro da pasta do plugin e nao precisa de
+# mais nada. Use MYSQL para os mesmos influenciadores valerem em varios
+# servidores; ai preencha os campos abaixo.
+database:
+  type: SQLITE
+  host: "Vazio"
+  port: 3306
+  name: "Vazio"
+  username: "Vazio"
+  password: "Vazio"
+
+max-validacoes:
+  max_lives_per_day: 1 # Maximo de Lives para validar no dia
+  max_videos_per_day: 2 # Maximo de Videos para validar no dia
+
+# Os cargos (antigos "roles" e "inicial_roles") agora ficam no arquivo
+# cargos.yml — lá você cria/edita cargos livremente, inclusive metas
+# combinadas (goal:). Este config.yml não trata mais de cargos.
+
+# Menu Configuration
+menu:
+  title: "&7Validações de %player%"
+  size: 54
+  days_slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 26, 28, 29, 30, 31, 32, 33, 34]
+  items:
+    aprovado: "SLIME_BALL"
+    analise: "GRAY_DYE"
+    validar: "MAGMA_CREAM"
+  item:
+    name: "&eValidação {id}"
+    lore:
+      - ""
+      - " &7Tipo: &f{type}"
+      - " &7Link: &f{link}"
+      - " &7Status: &f{status}"
+      - ""
+  profile_item:
+    material: "{PLAYER_HEAD}"
+    slot: 0
+    name: "&ePerfil"
+    lore:
+      - ""
+      - "&7Nome: &f{name}"
+      - "&7Categoria: &f{category}"
+      - "&7Meta de Vídeos: &f{video_progress}"
+      - "&7Meta de Lives: &f{live_progress}"
+  reward_item:
+    material: "CHEST"
+    slot: 8
+    name: "&eRecompensas"
+    lore:
+      - ""
+      - "&7Clique para abrir menu de recompensas."
+      - "&7Disponível apenas no dia 1 do mês"
