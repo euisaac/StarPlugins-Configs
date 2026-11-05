@@ -166,6 +166,74 @@ Congelar:
   # Ex.: 'ban {jogador} Saiu durante a verificacao'
   Comandos ao sair congelado: []
 
+# ---------------------------------------------------------------------
+# Escada de punicao: punicao que sobe conforme o jogador insiste.
+#
+# Ligada, ela substitui os "Comandos de punicao" de cada verificacao. Cada
+# punicao sobe um degrau (1 expulsar, 2 prender, 3 banir, por padrao), e o
+# degrau fica guardado em escada.yml entre sessoes e reinicios.
+#
+# A prioridade de cada tipo (certeza / alta / media / baixa) decide a
+# entrada: certeza vai direto para o ultimo degrau. Cada tipo ja vem com uma
+# prioridade de fabrica; para trocar, ponha "Prioridade: alta" (por exemplo)
+# no tipo dentro do verificacoes.yml.
+# ---------------------------------------------------------------------
+Escada de punicao:
+  Ativado: false
+  # Sem nenhuma punicao por este tempo, o jogador volta ao comeco da escada.
+  Esquecer apos dias: 30
+
+  Prioridades:
+    # Sinal que nao acontece em jogo limpo (pacote impossivel, cliente de hack
+    # se anunciando, queda inventada na maca): ultimo degrau, na primeira
+    # violacao contada.
+    certeza:
+      Pular para o degrau: 3
+      Violacoes para punir: 1
+    # Sobem um degrau por punicao, quando o tipo chega no "Maximo de violacoes".
+    alta:
+      Pular para o degrau: 1
+    media:
+      Pular para o degrau: 1
+    # Estatistica (mira, clique, mineracao): so avisa a staff.
+    baixa:
+      Punir: false
+
+  # Tipos: kick (so os comandos), prisao (prende pelos minutos, alem dos
+  # comandos) e comando. Placeholders: {jogador} {uuid} {verificacao} {tipo}
+  # {vl} {detalhe} {degrau} {total} {minutos}
+  Degraus:
+    '1':
+      Tipo: kick
+      Comandos:
+        - 'kick {jogador} &c[Aviso {degrau}/{total}] Trapaca detectada ({verificacao}). Na proxima, prisao.'
+    '2':
+      Tipo: prisao
+      Minutos: 10
+      # Quem prefere o /jail de outro plugin: troque o Tipo para "comando" e
+      # ponha aqui o comando dele, ex.: 'jail {jogador} cadeia 10m'.
+      Comandos: []
+    '3':
+      Tipo: comando
+      Comandos:
+        - 'ban {jogador} &cBanido permanentemente por uso de trapaca ({verificacao}).'
+
+  Prisao:
+    # Definido no jogo com /anticheat prisao definir. Vazio: o jogador e preso
+    # onde estiver.
+    Local: ''
+    # Quanto o preso pode andar em volta da cela.
+    Raio: 4.0
+    # Preso continua sendo julgado: com estas violacoes contadas dentro da
+    # prisao, sobe para o degrau seguinte (o ban, por padrao).
+    Violacoes para subir: 3
+    Comandos liberados:
+      - msg
+      - tell
+      - r
+    # Cumprida a pena: spawn | onde-estava
+    Ao sair: spawn
+
 Punicoes:
   # Os comandos de punicao rodam pelo console (recomendado).
   Executar pelo console: true

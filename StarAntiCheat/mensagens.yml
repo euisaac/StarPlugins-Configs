@@ -42,6 +42,36 @@ Congelar:
   Staff liberou: '&8[&cAC&8] &f{staff} &7liberou &f{jogador}&7.'
   Saiu congelado: '&8[&cAC&8] &f{jogador} &csaiu do servidor congelado!'
 
+Escada:
+  Staff: '&8[&cAC&8] &f{jogador} &7subiu para o degrau &c{degrau}/{total} &8(&7{acao}&8) &7por &c{verificacao} {tipo} &8[{prioridade}]'
+  Acao:
+    kick: 'expulso'
+    prisao: 'preso por {minutos} min'
+    comando: 'punicao final'
+  Anuncio do ultimo degrau: '&8[&cAC&8] &f{jogador} &7foi banido por uso de trapaca &8(&c{verificacao}&8)&7.'
+  Info: '&f{jogador}&7: degrau &c{degrau}/{total} &8| &7escada {ativa}{preso}'
+  Ligada: '&aligada'
+  Desligada: '&7desligada'
+  Preso por: ' &8| &cpreso por mais {minutos} min'
+  Zerado: '&aEscada de &f{jogador} &azerada.'
+  Sem registro: '&7{jogador} nunca foi punido pela escada.'
+
+Prisao:
+  Preso: |-
+    &8&m----------------------------------------
+    &c&l Voce foi preso por {minutos} minuto(s).
+    &7 Motivo: &f{motivo}
+    &7 Sair do servidor nao adianta: a pena continua quando voltar.
+    &7 Nova trapaca durante a prisao e banimento.
+    &8&m----------------------------------------
+  Tempo: '&cPreso &8- &7faltam &f{tempo}'
+  Solto: '&aSua pena acabou. Jogue limpo!'
+  Comando bloqueado: '&cVoce esta preso e nao pode usar comandos.'
+  Definida: '&aLocal da prisao definido aqui.'
+  Staff prendeu: '&aVoce prendeu &f{jogador} &apor {minutos} min.'
+  Staff soltou: '&aVoce soltou &f{jogador}&a.'
+  Uso: '&cUse: /anticheat prisao <definir | prender <jogador> [minutos] | soltar <jogador>>'
+
 Mitigacao:
   # {jogador} {vezes} {motivo}
   Recuado: '&8[&cAC&8] &f{jogador} &7foi puxado de volta &c{vezes}x &7em 10 s &8(&7{motivo}&8)'
@@ -88,6 +118,8 @@ Comando:
     &c/anticheat descongelar <jogador> &8- &7libera o jogador
     &c/anticheat ir <jogador> &8- &7vai ate o jogador
     &c/anticheat gravacao <jogador> &8- &7salva a caixa-preta
+    &c/anticheat escada <jogador> [zerar] &8- &7degrau na escada de punicao
+    &c/anticheat prisao <definir|prender|soltar> &8- &7prisao do anti-cheat
     &c/anticheat verificacoes &8- &7lista tudo que esta ligado
     &c/anticheat recarregar &8- &7recarrega os arquivos
     &8&m----------------------------------------
