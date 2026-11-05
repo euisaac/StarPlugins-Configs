@@ -97,7 +97,6 @@ Ilha:
     &a&lIGNORAR LIGADO&7. Voce atravessa a protecao de qualquer ilha.
     &7Ele some quando voce sair do servidor, ou use &f/ilhaadmin ignorar &7de novo.
   Ignorar desligado: '&7Ignorar desligado. As ilhas voltam a barrar voce.'
-  Nucleo reposto: '&aO bloco central da ilha &f{ilha} &afoi reposto.'
   Resetando: '&7Limpando a ilha... isso leva alguns segundos.'
   Resetada: '&aA ilha voltou ao primeiro dia.'
   Subiu de nivel: '&a&lNIVEL {nivel}! &7A sua ilha subiu de nivel.'
@@ -206,6 +205,27 @@ Admin:
   Nivel trocado: '&aA ilha &f{ilha} &aagora esta no nivel &f{nivel}&a.'
   Banco trocado: '&aBanco da ilha &f{ilha}&a: &6{saldo}'
   Impulso dado: '&aImpulso x{multiplicador} por {minutos} min na ilha &f{ilha}&a.'
+  Porque: |
+    &8&m---------------------------------
+    &e&lPOR QUE EU NAO MEXO AQUI?
+    &7Bloco: &f{bloco}
+    &7Lugar: &f{x}, {y}, {z} &8({mundo})
+    &7Ilha: &f{ilha} &8(de {dono})
+    &7Seu cargo nela: &f{cargo}
+    &8&m- - - - - - - - - - - - - - - - -
+    {veredito}
+    &8&m---------------------------------
+  Porque sem bloco: '&cMire um bloco a ate 8 blocos de distancia e use o comando de novo.'
+  Porque fora do mundo: '&aEste nao e o mundo das ilhas: o StarOneBlock nao protege nada aqui.'
+  Porque ignorando: '&aVoce esta com o &f/ilhaadmin ignorar &aligado: atravessa tudo.'
+  Porque terra de ninguem: |
+    &cAqui e terra de ninguem -- o espaco ENTRE as ilhas.
+    &7Ninguem constroi nem quebra nesta faixa, nem o dono da ilha vizinha.
+    &7Uma arvore que cresceu passando da borda cai nisso: o tronco esta na
+    &7ilha e as folhas ja estao fora. Aumente a ilha em &f/ilha melhorias&7.
+  Porque pode: '&aVoce pode quebrar e construir aqui.'
+  Porque sem cargo: '&cSo quem e &f{cargo} &cou mais mexe nos blocos desta ilha.'
+  Nucleo reposto: '&aO bloco central da ilha &f{ilha} &afoi reposto.'
   Info: |
     &8&m---------------------------------
     &e&l{ilha} &8(&7ilha n&f{id}&8)
@@ -241,6 +261,30 @@ Menus:
 # "Nivel: 0" fica certo -- entao os placeholders de numero tem o seu proprio.
 #
 # Deixe '' (vazio) em qualquer um dos dois para a linha sair em branco.
+# A descricao de cada subcomando do administrador na ajuda.
+# Deixe vazio ('') para usar o texto que vem no plugin.
+Ajuda de admin:
+  listar: ''
+  ir: ''
+  info: ''
+  resetar: ''
+  apagar: ''
+  dono: ''
+  fase: ''
+  nivel: ''
+  banco: ''
+  impulso: ''
+  desbanir: ''
+  nucleo: ''
+  ignorar: ''
+  definirspawn: ''
+  porque: ''
+  config: ''
+  gerador: ''
+  recarregar: ''
+  salvar: ''
+  versao: ''
+
 Placeholder:
   Sem ilha: '&cSem Info'
   Sem ilha nos numeros: '0'
@@ -277,24 +321,18 @@ Ajuda:
     &f/ilha voar &8- &7voa dentro da ilha
     &f/ilha resetar &8- &7comeca tudo de novo
     &8&m---------------------------------
-  Admin: |
+  # A ajuda do administrador e MONTADA pela lista de subcomandos do plugin,
+  # com estas tres pecas. Assim um comando novo aparece sozinho, em vez de
+  # ficar de fora porque o seu arquivo tem a lista antiga.
+  #
+  # A descricao de cada um pode ser trocada em 'Ajuda de admin', mais abaixo.
+  Admin cabecalho: |
     &8&m---------------------------------
     &c&lADMINISTRACAO DAS ILHAS
-    &f/ilhaadmin listar &8- &7numeros do servidor
-    &f/ilhaadmin ir <jogador>
-    &f/ilhaadmin info <jogador>
-    &f/ilhaadmin resetar <jogador>
-    &f/ilhaadmin apagar <jogador>
-    &f/ilhaadmin dono <jogador> <novo dono>
-    &f/ilhaadmin fase <jogador> <fase>
-    &f/ilhaadmin nivel <jogador> <numero>
-    &f/ilhaadmin banco <jogador> <dar|tirar|definir> <valor>
-    &f/ilhaadmin impulso <jogador> [multiplicador] [minutos]
-    &f/ilhaadmin desbanir <jogador> <banido>
-    &f/ilhaadmin ignorar &8- &7liga e desliga o bypass das protecoes
-    &f/ilhaadmin nucleo <jogador> &8- &7repoe o bloco central da ilha
-    &f/ilhaadmin definirspawn &8- &7o /spawn passa a levar para onde voce esta
+  Admin linha: '&f{comando} &8- &7{descricao}'
+  Admin rodape: |
     &8&m---------------------------------
+    &7Os dois nomes valem: &f/ilhaadmin &7e &f/staroneblock&7.
   Produto: |
     &8&m---------------------------------
     &e&lStarOneBlock &7v{versao}
