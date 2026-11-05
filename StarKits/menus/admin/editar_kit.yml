@@ -1,0 +1,184 @@
+# Menu de edicao do kit (/editarkit <nome>).
+# Para esconder uma opcao, apague o bloco dela ou coloque Slot: -1.
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       ID: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Nome: '&8Editando: {kit}'
+Tamanho: 45
+IconeSlot: 13
+
+Itens:
+  Permissao:
+    Slot: 28
+    CustomSkull: false
+    URL: ''
+    ID: PAPER
+    Glow: false
+    Name: '&aPermissao'
+    Lore:
+      - ''
+      - '&7Atual: &f{permissao}&7.'
+      - ''
+      - '&aClique &fesquerdo&a para alterar.'
+      - '&aClique &fdireito&a para remover.'
+
+  Display:
+    Slot: 29
+    CustomSkull: false
+    URL: ''
+    ID: NAME_TAG
+    Glow: false
+    Name: '&aNome'
+    Lore:
+      - ''
+      - '&7Atual: &f{nome}&7.'
+      - ''
+      - '&aClique para alterar o nome.'
+
+  Icone:
+    Slot: 30
+    CustomSkull: false
+    URL: ''
+    ID: ITEM_FRAME
+    Glow: false
+    Name: '&aIcone'
+    Lore:
+      - '&7Segure o item desejado na mao'
+      - '&7e clique aqui.'
+
+  Delay:
+    Slot: 31
+    CustomSkull: false
+    URL: ''
+    ID: CLOCK
+    Glow: false
+    Name: '&aDelay'
+    Lore:
+      - ''
+      - '&7Atual: &f{delay}&7.'
+      - ''
+      - '&aClique para alterar o delay.'
+
+  MainSlot:
+    Slot: 32
+    CustomSkull: false
+    URL: ''
+    ID: ANVIL
+    Glow: false
+    Name: '&aSlot no menu principal'
+    Lore:
+      - ''
+      - '&7Atual: &f{slot}&7.'
+      - ''
+      - '&aClique para alterar o slot.'
+      - '&7Use -1 para nao aparecer.'
+
+  Itens:
+    Slot: 33
+    CustomSkull: false
+    URL: ''
+    ID: CHEST
+    Glow: false
+    Name: '&aItens e armadura'
+    Lore:
+      - '&7Abre o editor de conteudo do kit.'
+      - ''
+      - '&aClique para editar.'
+
+  Presets:
+    Slot: 20
+    CustomSkull: false
+    URL: ''
+    ID: ENDER_CHEST
+    Glow: false
+    Name: '&aPresets'
+    Lore:
+      - '&7Salve o conteudo deste kit como preset'
+      - '&7ou carregue um preset ja salvo.'
+      - ''
+      - '&7Presets salvos: &f{presets}&7.'
+      - ''
+      - '&aClique para abrir.'
+
+  RenomearItens:
+    Slot: 21
+    CustomSkull: false
+    URL: ''
+    ID: WRITABLE_BOOK
+    Glow: false
+    Name: '&aRenomear todos os itens'
+    Lore:
+      - '&7Aplica um mesmo nome a todos os itens'
+      - '&7do kit de uma vez. Voce escolhe quais'
+      - '&7itens ficam de fora antes de confirmar.'
+      - ''
+      - '&7Itens no kit: &f{itens}&7.'
+      - ''
+      - '&aClique para abrir.'
+
+  Encantamentos:
+    Slot: 22
+    CustomSkull: false
+    URL: ''
+    ID: ENCHANTING_TABLE
+    Glow: false
+    Name: '&aAtualizar encantamentos'
+    Lore:
+      - '&7Altera o nivel dos encantamentos de'
+      - '&7todas as armaduras ou de todas as'
+      - '&7ferramentas de uma vez.'
+      - ''
+      - '&aClique para abrir.'
+
+  Rastreio:
+    Slot: 24
+    CustomSkull: false
+    URL: ''
+    ID: SPYGLASS
+    Glow: false
+    Name: '&aRastreio'
+    Lore:
+      - '&7Mostra este kit no painel de rastreio'
+      - '&7da staff (/starkits rastreio).'
+      - ''
+      - '&7Estado: {estado}&7.'
+      - ''
+      - '&aClique para alternar.'
+
+  # Esta opcao so aparece quando o StarVips esta instalado.
+  KitAtivacao:
+    Slot: 25
+    CustomSkull: false
+    URL: ''
+    ID: NETHER_STAR
+    Glow: false
+    Name: '&bKit de ativacao'
+    Lore:
+      - '&7O kit passa a ser retirado apenas ao'
+      - '&7ativar um VIP no StarVips. Cada ativacao'
+      - '&7libera uma retirada, sem delay.'
+      - ''
+      - '&7Estado: {estado}&7.'
+      - ''
+      - '&aClique para alternar.'

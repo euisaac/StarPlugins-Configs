@@ -1,0 +1,121 @@
+# Menu de renomeacao em massa dos itens do kit.
+#
+# Clique em um item para tira-lo (ou devolve-lo) da renomeacao.
+# Os itens marcados ficam brilhando.
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       ID: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Nome: '&8Renomear ➜ {kit}'
+Tamanho: 54
+
+# Onde cada um dos 36 itens do kit aparece, na ordem.
+Slots: [ 0, 1, 2, 3, 4, 5, 6, 7, 8,
+         9, 10, 11, 12, 13, 14, 15, 16, 17,
+         18, 19, 20, 21, 22, 23, 24, 25, 26,
+         27, 28, 29, 30, 31, 32, 33, 34, 35 ]
+
+# Capacete, peitoral, calca e botas.
+ArmorSlots: [ 36, 37, 38, 39 ]
+
+# Estado inicial da opcao de nomear ferramentas.
+Nomear ferramentas padrao: true
+
+# Lore acrescentada aos itens que SERAO renomeados.
+Lore incluido:
+  - ''
+  - '&aEste item sera renomeado.'
+  - '&7Tipo detectado: &f{tipo}&7.'
+  - ''
+  - '&7Clique para deixar de fora.'
+
+# Lore acrescentada aos itens que ficaram de fora.
+Lore ignorado:
+  - ''
+  - '&cEste item NAO sera renomeado.'
+  - ''
+  - '&7Clique para incluir de volta.'
+
+Itens:
+  NomearFerramentasLigado:
+    Slot: 48
+    CustomSkull: false
+    URL: ''
+    ID: DIAMOND_SWORD
+    Glow: true
+    Name: '&aNomear ferramentas: &fligado'
+    Lore:
+      - '&7Acrescenta o tipo do item ao final'
+      - '&7do nome que voce digitar.'
+      - ''
+      - '&7Resultado: &r{exemplo}'
+      - ''
+      - '&aClique para desligar.'
+
+  NomearFerramentasDesligado:
+    Slot: 48
+    CustomSkull: false
+    URL: ''
+    ID: WOODEN_SWORD
+    Glow: false
+    Name: '&cNomear ferramentas: &fdesligado'
+    Lore:
+      - '&7Todos os itens recebem exatamente'
+      - '&7o nome que voce digitar.'
+      - ''
+      - '&7Resultado: &r{exemplo}'
+      - ''
+      - '&aClique para ligar.'
+
+  Confirmar:
+    Slot: 50
+    CustomSkull: false
+    URL: ''
+    ID: LIME_DYE
+    Glow: true
+    Name: '&aConfirmar'
+    Lore:
+      - '&7Serao renomeados &a{alterados}&7 item(ns).'
+      - '&7Ficaram de fora &c{ignorados}&7 item(ns).'
+      - ''
+      - '&aClique e digite o novo nome no chat.'
+
+  Cancelar:
+    Slot: 46
+    CustomSkull: false
+    URL: ''
+    ID: BARRIER
+    Glow: false
+    Name: '&cCancelar'
+    Lore:
+      - '&7Volta sem alterar nada.'
+
+  # Enfeites: qualquer chave a mais vira um item decorativo.
+  Separador1:
+    Slot: 40
+    CustomSkull: false
+    URL: ''
+    ID: GRAY_STAINED_GLASS_PANE
+    Glow: false
+    Name: ' '
+    Lore: []
