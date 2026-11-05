@@ -1,0 +1,327 @@
+# ============================================================
+#                      StarFake - menus
+# ============================================================
+# Cada botao tem Slot, Material, Nome e Lore. Slot -1 esconde o botao.
+# Material aceita o nome moderno (vale em toda versao: o plugin
+# traduz para a 1.8 sozinho).
+#
+# Para desligar um botao, ponha Slot: -1 (nao apague a secao: numa
+# atualizacao ela voltaria com o valor de fabrica).
+# ============================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "Textura"):
+#       Dono: 'Notch'
+#
+# Com "Textura" ou "Dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "Textura".
+#
+# A cabeca por "Dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "Textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# Textos que aparecem dentro das lores.
+Textos:
+  Sorteado: '&7sorteado'
+  Skin aleatoria: '&7sorteada'
+  Skin padrao: '&fpadrao &7(Steve/Alex)'
+  Skin propria: '&fa sua'
+  Sem permissao: '&cVoce nao pode mudar isto.'
+
+Principal:
+  Titulo: '&8Disfarce'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  Botoes:
+    Status:
+      Slot: 4
+      # A cabeca mostra a skin que voce esta usando agora.
+      Nome: '&e&lSEU DISFARCE'
+      Lore disfarcado:
+        - '&7Voce esta disfarcado como:'
+        - ''
+        - '  &fNick: {prefixo}{cor}{nick}'
+        - '  &fSkin: &7{skin}'
+        - '  &fCargo: {cargo}'
+        - '  &fHa: &7{tempo}'
+        - ''
+        - '&7Nome real: &f{nome_real}'
+      Lore normal:
+        - '&7Voce nao esta disfarcado.'
+        - ''
+        - '&7Monte o disfarce abaixo e clique'
+        - '&7em &aAPLICAR&7, ou use o &dFake aleatorio&7.'
+    Nick:
+      Slot: 20
+      Material: 'NAME_TAG'
+      Nome: '&aNick'
+      Lore:
+        - '&7Escolhido: &f{nick}'
+        - ''
+        - '&eClique &7para digitar um nick'
+        - '&eBotao direito &7para sortear'
+    Skin:
+      Slot: 22
+      # A cabeca mostra a skin escolhida.
+      Nome: '&aSkin'
+      Lore:
+        - '&7Escolhida: &f{skin}'
+        - ''
+        - '&eClique &7para escolher'
+        - '&eBotao direito &7para sortear'
+    Cargo:
+      Slot: 24
+      # O material e o icone do cargo escolhido (cargos.yml).
+      Nome: '&aCargo'
+      Lore:
+        - '&7Escolhido: {cargo}'
+        - '&7Fica assim: {prefixo}{cor}{nick}{sufixo}'
+        - ''
+        - '&eClique &7para escolher'
+    Aleatorio:
+      Slot: 29
+      Material: 'ENDER_PEARL'
+      Nome: '&d&lFAKE ALEATORIO'
+      Lore:
+        - '&7Nick, skin e cargo sorteados'
+        - '&7na hora, com um clique.'
+    Aplicar:
+      Slot: 31
+      Material: 'LIME_DYE'
+      Nome: '&a&lAPLICAR DISFARCE'
+      Lore:
+        - '&7Nick: &f{nick}'
+        - '&7Skin: &f{skin}'
+        - '&7Cargo: {cargo}'
+        - ''
+        - '&aClique para se disfarcar!'
+    Remover:
+      Slot: 33
+      Material: 'RED_WOOL'
+      Nome: '&c&lTIRAR DISFARCE'
+      Lore:
+        - '&7Volta para o seu nick,'
+        - '&7a sua skin e o seu cargo.'
+    Disfarcados:
+      Slot: 36
+      Material: 'ENDER_EYE'
+      Nome: '&cDisfarcados &8(staff)'
+      Lore:
+        - '&7Veja quem esta disfarcado'
+        - '&7e o nome real de cada um.'
+    Perfis:
+      Slot: 38
+      Material: 'BOOK'
+      Nome: '&bMeus perfis'
+      Lore:
+        - '&7Guarde disfarces para usar'
+        - '&7de novo com um clique.'
+    Fechar:
+      Slot: 40
+      Material: 'RED_DYE'
+      Nome: '&cFechar'
+    Prontos:
+      Slot: 42
+      Material: 'ARMOR_STAND'
+      Nome: '&6Perfis prontos'
+      Lore:
+        - '&7Disfarces montados pela staff.'
+
+Skins:
+  Titulo: '&8Escolha a skin &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  Item:
+    Nome: '&a{skin}'
+    Lore:
+      - '&7Skin da conta &f{skin}&7.'
+      - ''
+      - '&eClique para usar'
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&7Pagina anterior'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&7Proxima pagina'
+    Aleatoria:
+      Slot: 46
+      Material: 'ENDER_PEARL'
+      Nome: '&dSkin sorteada'
+      Lore:
+        - '&7Uma das skins acima, sorteada.'
+    Padrao:
+      Slot: 47
+      Material: 'LEATHER_CHESTPLATE'
+      Nome: '&fSkin padrao'
+      Lore:
+        - '&7Steve ou Alex, como um jogador'
+        - '&7que nunca trocou de skin.'
+    Digitar:
+      Slot: 49
+      Material: 'OAK_SIGN'
+      Nome: '&eDigitar um nick'
+      Lore:
+        - '&7Usa a skin de qualquer'
+        - '&7conta original.'
+    Propria:
+      Slot: 51
+      Material: 'PLAYER_HEAD'
+      Nome: '&bA sua skin'
+      Lore:
+        - '&7Troca so o nick e o cargo;'
+        - '&7a skin continua a sua.'
+    Voltar:
+      Slot: 52
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+
+Cargos:
+  Titulo: '&8Escolha o cargo &7({pagina}/{paginas})'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  Item:
+    Nome: '{cargo}'
+    Lore:
+      - '&7Fica assim: {prefixo}{cor}{nick}{sufixo}'
+      - ''
+      - '&eClique para usar'
+    # Brilho no cargo que ja esta escolhido.
+    Brilho no atual: true
+  Botoes:
+    Anterior:
+      Slot: 27
+      Material: 'ARROW'
+      Nome: '&7Pagina anterior'
+    Proxima:
+      Slot: 35
+      Material: 'ARROW'
+      Nome: '&7Proxima pagina'
+    Voltar:
+      Slot: 31
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+
+Perfis:
+  Titulo: '&8Meus perfis &7({total}/{limite})'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  Item:
+    Nome: '&b{perfil}'
+    Lore:
+      - '&7Nick: &f{nick}'
+      - '&7Skin: &f{skin}'
+      - '&7Cargo: {cargo}'
+      - '&7Salvo em: &f{data}'
+      - ''
+      - '&eClique &7para usar'
+      - '&cShift + direito &7para apagar'
+  Botoes:
+    Anterior:
+      Slot: 27
+      Material: 'ARROW'
+      Nome: '&7Pagina anterior'
+    Proxima:
+      Slot: 35
+      Material: 'ARROW'
+      Nome: '&7Proxima pagina'
+    Salvar:
+      Slot: 30
+      Material: 'WRITABLE_BOOK'
+      Nome: '&aSalvar o disfarce atual'
+      Lore:
+        - '&7Guarda o nick, a skin e o cargo'
+        - '&7que voce esta usando agora.'
+    Voltar:
+      Slot: 32
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+
+Prontos:
+  Titulo: '&8Perfis prontos &7({pagina}/{paginas})'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  Item:
+    Nome: '{perfil}'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&7Nick: &f{nick}'
+      - '&7Skin: &f{skin}'
+      - '&7Cargo: {cargo}'
+      - ''
+      - '&eClique para usar'
+  Botoes:
+    Anterior:
+      Slot: 27
+      Material: 'ARROW'
+      Nome: '&7Pagina anterior'
+    Proxima:
+      Slot: 35
+      Material: 'ARROW'
+      Nome: '&7Proxima pagina'
+    Voltar:
+      Slot: 31
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+
+Disfarcados:
+  Titulo: '&8Disfarcados &7({total})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  Item:
+    Nome: '{prefixo}{cor}{nick}'
+    Lore:
+      - '&7Nome real: &e{nome_real}'
+      - '&7Cargo falso: {cargo}'
+      - '&7Skin: &f{skin}'
+      - '&7Disfarcado ha: &f{tempo}'
+      - ''
+      - '&eClique &7para ir ate ele'
+      - '&cShift + direito &7para tirar o disfarce'
+  Botoes:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&7Pagina anterior'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&7Proxima pagina'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
