@@ -1,0 +1,222 @@
+# =====================================================================
+#  StarClima - menus do /starclima painel
+#  Slot -1 esconde o botao. Material com o nome moderno vale em toda versao
+#  (ex.: RED_DYE vira o corante vermelho da 1.8 sozinho).
+#  Variaveis: as do mundo (veja o mensagens.yml) e as listadas em cada botao.
+# =====================================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (vale em qualquer
+# versao) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Som do clique: "UI_BUTTON_CLICK 0.5 1.2"
+
+Fundo:
+  Ativado: true
+  Material: GRAY_STAINED_GLASS_PANE
+
+Mundos:
+  Titulo: "&8Clima dos mundos"
+  Linhas: 5
+  Slots dos mundos: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Mundo:
+    Material: GRASS_BLOCK
+    Material do Nether: NETHERRACK
+    Material do End: END_STONE
+    Nome: "&b&l{mundo}"
+    Lore:
+      - "&7Clima: &f{modo_clima} &8({icone} {clima})"
+      - "&7Horário: &f{modo_horario} &8({horario})"
+      - "&7Cidade: &f{cidade}"
+      - "&7Tempo lá: &f{condicao}, {temperatura}"
+      - ""
+      - "&eClique para ajustar"
+  Botoes:
+    Fechar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: "&cFechar"
+
+Mundo:
+  Titulo: "&8Clima: {mundo}"
+  Linhas: 5
+  # Quanto tempo dura o clima escolhido no botao "Forcar clima".
+  Minutos do forcar: 30
+  Opcao marcada: "&a▶ &f{opcao}"
+  Opcao: "&8  {opcao}"
+  # O botao de informacoes muda de material com o clima de agora.
+  Materiais de clima:
+    SOL: SUNFLOWER
+    CHUVA: WATER_BUCKET
+    TEMPESTADE: BLAZE_POWDER
+  Botoes:
+    Informacoes:
+      Slot: 4
+      Nome: "&b&l{icone} {mundo}"
+      Lore:
+        - "&7Clima agora: &f{clima}"
+        - "&7Horário agora: &f{horario}"
+        - "&7Cidade: &f{cidade_completa}"
+        - "&7Tempo lá: &f{condicao}, {temperatura} &8(sensação {sensacao})"
+        - "&7Umidade &f{umidade} &8• &7Vento &f{vento}"
+        - "&7Sol: &f{nascer} &8→ &f{por}"
+    Modo do clima:
+      Slot: 10
+      Material: COMPASS
+      Nome: "&b&lModo do clima"
+      Lore:
+        - "&7Quem decide se chove neste mundo."
+        - ""
+        - "{opcoes_clima}"
+        - ""
+        - "&eEsquerdo: &7próximo &8• &eDireito: &7anterior"
+    Clima fixo:
+      Slot: 11
+      Material: SUNFLOWER
+      Nome: "&e&lClima fixo"
+      Lore:
+        - "&7Usado no modo &fFixo&7."
+        - ""
+        - "&7Atual: &f{clima_fixo}"
+        - ""
+        - "&eClique para trocar"
+    Ciclo:
+      Slot: 12
+      Material: REPEATER
+      Nome: "&9&lCiclo próprio"
+      Lore:
+        - "&7Usado no modo &fCiclo próprio&7."
+        - ""
+        - "&7Chance de chuva: &f{ciclo_chuva}%"
+        - "&7Chance de tempestade: &f{ciclo_tempestade}%"
+        - "&7Sol dura: &f{ciclo_sol_minutos} min &8• &7Chuva: &f{ciclo_chuva_minutos} min"
+        - ""
+        - "&eEsq/Dir: &7chuva ±5% &8• &eShift: &7tempestade ±5%"
+    Forcar clima:
+      Slot: 13
+      Material: NETHER_STAR
+      Nome: "&d&lForçar clima"
+      Lore:
+        - "&7Passa por cima do modo por &f{minutos_forcar} min&7."
+        - ""
+        - "&7Forçado agora: &f{forcado}"
+        - ""
+        - "&eEsquerdo: &7Sol → Chuva → Tempestade"
+        - "&eDireito: &7volta ao normal"
+    Modo do horario:
+      Slot: 14
+      Material: CLOCK
+      Nome: "&6&lModo do horário"
+      Lore:
+        - "&7Quem decide a hora deste mundo."
+        - ""
+        - "{opcoes_horario}"
+        - ""
+        - "&eEsquerdo: &7próximo &8• &eDireito: &7anterior"
+    Horario fixo:
+      Slot: 15
+      Material: DAYLIGHT_DETECTOR
+      Nome: "&6&lHorário parado"
+      Lore:
+        - "&7Usado no modo &fParado&7."
+        - ""
+        - "&7Atual: &f{horario_fixo} &8(tique {horario_fixo_ticks})"
+        - ""
+        - "&eEsq/Dir: &7±1 hora &8• &eShift: &7±15 minutos"
+    Velocidade:
+      Slot: 16
+      Material: FEATHER
+      Nome: "&f&lVelocidade do dia"
+      Lore:
+        - "&7Usado no modo &fVelocidade própria&7."
+        - ""
+        - "&7Dia: &f{minutos_dia} min &8• &7Noite: &f{minutos_noite} min"
+        - ""
+        - "&eEsq/Dir: &7dia ±1 min &8• &eShift: &7noite ±1 min"
+    Cidade:
+      Slot: 28
+      Material: FILLED_MAP
+      Nome: "&a&lCidade de verdade"
+      Lore:
+        - "&7Atual: &f{cidade_completa}"
+        - ""
+        - "&7Ao escolher, o clima e o horário"
+        - "&7passam a seguir a cidade."
+        - ""
+        - "&eClique e digite o nome no chat"
+    Atualizar:
+      Slot: 29
+      Material: EMERALD
+      Nome: "&a&lAtualizar agora"
+      Lore:
+        - "&7Busca o tempo da cidade sem esperar"
+        - "&7a próxima atualização automática."
+        - ""
+        - "&eClique para buscar"
+    Sol de verdade:
+      Slot: 31
+      Material: GLOWSTONE_DUST
+      Nome: "&e&lSol de verdade"
+      Lore:
+        - "&7O sol nasce e se põe na hora real"
+        - "&7da cidade (no modo &fRelógio da cidade&7)."
+        - ""
+        - "&7Ligado: {sol_real}"
+        - ""
+        - "&eClique para trocar"
+    Lua de verdade:
+      Slot: 32
+      Material: ENDER_EYE
+      Nome: "&3&lLua de verdade"
+      Lore:
+        - "&7A fase da lua acompanha a do céu"
+        - "&7de verdade (no modo &fRelógio da cidade&7)."
+        - ""
+        - "&7Ligado: {lua_real}"
+        - ""
+        - "&eClique para trocar"
+    Raios:
+      Slot: 33
+      Material: BLAZE_ROD
+      Nome: "&5&lRaios"
+      Lore:
+        - "&7Raios caem nas tempestades: {raios}"
+        - "&7Raio põe fogo: {fogo}"
+        - ""
+        - "&eEsquerdo: &7raios &8• &eDireito: &7fogo"
+    Avisos:
+      Slot: 34
+      Material: NOTE_BLOCK
+      Nome: "&b&lAvisos"
+      Lore:
+        - "&7Avisa os jogadores do mundo quando"
+        - "&7o clima muda e quando vai chover."
+        - ""
+        - "&7Ligado: {avisos}"
+        - ""
+        - "&eClique para trocar"
+    Voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: "&cVoltar"
