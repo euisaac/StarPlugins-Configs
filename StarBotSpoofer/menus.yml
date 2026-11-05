@@ -1,0 +1,90 @@
+# ---------------------------------------------------------------------------
+#  StarBotSpoofer - telas
+#
+#  Slot: -1 esconde o botao.
+#  Marcadores: {bot} {tempo} {restante} {ping} {skin} {quantidade} {meta}
+#              {pagina} {paginas}
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "Textura"):
+#       Dono: 'Notch'
+#
+# Com "Textura" ou "Dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "Textura".
+#
+# A cabeca por "Dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "Textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Bots:
+  Titulo: '&8Bots ({quantidade}/{meta})'
+  Linhas: 6
+
+  Slots: [ 10, 11, 12, 13, 14, 15, 16,
+           19, 20, 21, 22, 23, 24, 25,
+           28, 29, 30, 31, 32, 33, 34 ]
+
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+
+  Item:
+    Nome: '&f{bot}'
+    Lore:
+      - '&7Online ha: &f{tempo}'
+      - '&7Sai em: &f{restante}'
+      - '&7Ping: &f{ping}ms'
+      - '&7Skin: {skin}'
+      - ''
+      - '&cClique para tirar do servidor.'
+
+  Botoes:
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&cFechar'
+      Lore: []
+    Anterior:
+      Slot: 48
+      Material: 'ARROW'
+      Nome: '&aPagina anterior'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Proxima:
+      Slot: 50
+      Material: 'ARROW'
+      Nome: '&aProxima pagina'
+      Lore: [ '&7Pagina {pagina} de {paginas}' ]
+    Entrar:
+      Slot: 45
+      Material: 'EMERALD'
+      Nome: '&a&lPOR UM BOT'
+      Lore:
+        - '&7Um bot novo entra agora,'
+        - '&7com nick e skin sorteados.'
+        - ''
+        - '&aClique para por.'
+    Pausar:
+      Slot: 53
+      Material: 'CLOCK'
+      Nome: '&e&lPAUSAR / CONTINUAR'
+      Lore:
+        - '&7Pausa (ou retoma) o controle'
+        - '&7automatico da quantidade.'
+        - ''
+        - '&7Agora: &f{modo}'
