@@ -1,0 +1,246 @@
+# ==========================================================================
+#  StarMaquinas - maquinas
+#
+#  Cada maquina fica INTEIRA aqui: como funciona, o que dropa, quanto vale,
+#  os upgrades, o holograma e o preco na loja. Para criar uma nova, copie um
+#  bloco (ex.: 'ferro'), troque a chave e ajuste -- ou use o editor em jogo:
+#  /maquinasadmin editor
+#
+#  A chave (ferro, ouro...) e o que fica gravado nas maquinas colocadas:
+#  nao renomeie uma chave que ja esta em uso no servidor.
+#
+#  Materiais aceitam o nome moderno (1.13+) em qualquer versao: IRON_BLOCK,
+#  GOLD_INGOT, PLAYER_HEAD... A maquina e colocada como o bloco do item;
+#  com PLAYER_HEAD + Textura ela vira uma cabeca personalizada.
+#
+#  Upgrades: o valor de cada um e  base + nivel x 'Por nivel'.
+#    Tanque       litros que cabem (base = Funcionamento.Tanque)
+#    Drops        drops por ciclo (base = Funcionamento.Drops por ciclo)
+#    Velocidade   segundos A MENOS por ciclo (base = Funcionamento.Velocidade)
+#    Durabilidade % A MENOS de chance de quebrar
+#    Armazem      drops que cabem no armazem (base = Funcionamento.Armazem)
+#    Sorte        % de chance de o ciclo render em DOBRO
+#  O preco do nivel N e  'Preco inicial' x (1 + 'Aumento do preco'/100)^N.
+#  'Nivel maximo: 0' desliga o upgrade.
+#
+#  Modo: BLOCO    a maquina e colocada no chao
+#        VIRTUAL  vive so no menu do jogador (/maquinas): clique com o item
+#                 no ar para ativar. Ocupa um slot virtual (config.yml).
+#        AMBOS    o jogador escolhe: no chao vira bloco, no ar vira virtual
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Lore padrao do item de todas as maquinas. Uma maquina pode ter a propria
+# (Item.Lore dentro dela). Substituicoes: {quantidade} {velocidade} {drops}
+# {tanque} {armazem} {drop} {valor} {combustiveis} {nivel_<upgrade>}
+Modelo do item:
+  - ''
+  - ' &7Quantidade: &f{quantidade}x'
+  - ' &7Gera &f{drops}x {drop} &7a cada &f{velocidade}s'
+  - ' &7Valor por drop: &a{valor}'
+  - ' &7Combustiveis: &f{combustiveis}'
+  - ''
+  - ' &8Upgrades: &7Tanque &f{nivel_tanque} &8| &7Drops &f{nivel_drops} &8| &7Vel. &f{nivel_velocidade}'
+  - ''
+  - '&eColoque no chao para usar.'
+
+# Linhas padrao do holograma. Uma maquina pode ter as proprias
+# (Holograma.Linhas). Substituicoes: {nome} {dono} {stack} {status}
+# {combustivel} {tanque} {barra} {porcentagem} {drops} {armazem}
+# {drop} {lucro_hora} {tempo_proximo}
+Modelo do holograma:
+  - '{nome} &7x{stack}'
+  - '&7Dono: &f{dono}'
+  - '{status}'
+  - '&7Combustivel: &f{combustivel}&7/&f{tanque} &8{barra}'
+  - '&7Drops: &a{drops} &7{drop}'
+
+Maquinas:
+
+  ferro:
+    Nome: '&fMaquina de Ferro'
+    # BLOCO, VIRTUAL ou AMBOS (veja o topo do arquivo).
+    Modo: AMBOS
+    # Permissao para colocar esta maquina (vazio = todos).
+    Permissao: ''
+    Item:
+      Material: IRON_BLOCK
+      Textura: ''
+      Brilho: true
+    Funcionamento:
+      # Segundos por ciclo.
+      Velocidade: 10
+      # Drops gerados por ciclo, por maquina do stack.
+      Drops por ciclo: 1
+      # Litros gastos por ciclo, por maquina do stack.
+      Combustivel por ciclo: 1
+      # Litros que cabem no tanque (antes dos upgrades).
+      Tanque: 200
+      # Drops que cabem no armazem (antes dos upgrades). 0 = sem limite.
+      Armazem: 0
+      # Combustiveis aceitos (chaves do combustiveis.yml). Vazio = qualquer.
+      Combustiveis: [ carvao, gasolina, nuclear ]
+      # Quantas maquinas cabem num bloco empilhado (0 = sem limite).
+      Stack maximo: 100
+    Quebra:
+      # % de chance de quebrar a cada ciclo (0 = nunca quebra).
+      Chance: 0.2
+      Preco do conserto: 2500
+      Economia do conserto: dinheiro
+    Drop:
+      Nome: '&fFerro'
+      Item:
+        Material: IRON_INGOT
+        Nome: '&fFerro'
+        Lore: [ '&7Produzido por uma maquina.' ]
+      # Quanto vale cada drop, em cada economia do economias.yml.
+      Valor:
+        dinheiro: 15
+      Pode coletar: true
+      Pode vender: true
+      # Se tiver comandos, COLETAR roda os comandos (console) em vez de dar o
+      # item. {jogador} {quantidade}
+      Comandos ao coletar: [ ]
+    Upgrades:
+      Tanque: { Nivel maximo: 10, Por nivel: 100, Preco inicial: 1500, Aumento do preco: 35, Economia: dinheiro }
+      Drops: { Nivel maximo: 5, Por nivel: 1, Preco inicial: 5000, Aumento do preco: 60, Economia: dinheiro }
+      Velocidade: { Nivel maximo: 5, Por nivel: 1, Preco inicial: 4000, Aumento do preco: 50, Economia: dinheiro }
+      Durabilidade: { Nivel maximo: 4, Por nivel: 0.05, Preco inicial: 2000, Aumento do preco: 40, Economia: dinheiro }
+      Armazem: { Nivel maximo: 0, Por nivel: 0, Preco inicial: 0, Aumento do preco: 0, Economia: dinheiro }
+      Sorte: { Nivel maximo: 5, Por nivel: 4, Preco inicial: 6000, Aumento do preco: 50, Economia: dinheiro }
+    Holograma:
+      Ativar: true
+      # Altura do holograma acima do bloco.
+      Altura: 1.2
+      # Deixe vazio para usar o 'Modelo do holograma'.
+      Linhas: [ ]
+    Particulas:
+      Ativar: true
+      # Nome da particula (FLAME, HAPPY_VILLAGER, END_ROD, CRIT, NOTE...).
+      Tipo: 'CRIT'
+      # SIMPLES, ORBITA, ESPIRAL, SUBIR ou PULSO.
+      Efeito: ORBITA
+      Quantidade: 2
+    Loja:
+      Ativar: true
+      # Slot fixo no menu da loja (-1 = o proximo livre).
+      Slot: -1
+      # Preco de UMA maquina em cada economia (pode cobrar mais de uma).
+      Precos:
+        dinheiro: 25000
+      # Permissao para comprar (vazio = todos).
+      Permissao: ''
+      # Data de liberacao ('' = ja liberada). Formato do config.yml.
+      Libera em: ''
+
+  ouro:
+    Nome: '&6Maquina de Ouro'
+    Modo: AMBOS
+    Permissao: ''
+    Item:
+      Material: GOLD_BLOCK
+      Textura: ''
+      Brilho: true
+    Funcionamento:
+      Velocidade: 12
+      Drops por ciclo: 1
+      Combustivel por ciclo: 2
+      Tanque: 300
+      Armazem: 0
+      Combustiveis: [ gasolina, nuclear ]
+      Stack maximo: 100
+    Quebra:
+      Chance: 0.3
+      Preco do conserto: 6000
+      Economia do conserto: dinheiro
+    Drop:
+      Nome: '&6Ouro'
+      Item:
+        Material: GOLD_INGOT
+        Nome: '&6Ouro'
+        Lore: [ '&7Produzido por uma maquina.' ]
+      Valor:
+        dinheiro: 40
+      Pode coletar: true
+      Pode vender: true
+      Comandos ao coletar: [ ]
+    Upgrades:
+      Tanque: { Nivel maximo: 10, Por nivel: 150, Preco inicial: 3000, Aumento do preco: 35, Economia: dinheiro }
+      Drops: { Nivel maximo: 5, Por nivel: 1, Preco inicial: 12000, Aumento do preco: 60, Economia: dinheiro }
+      Velocidade: { Nivel maximo: 6, Por nivel: 1, Preco inicial: 9000, Aumento do preco: 50, Economia: dinheiro }
+      Durabilidade: { Nivel maximo: 5, Por nivel: 0.05, Preco inicial: 5000, Aumento do preco: 40, Economia: dinheiro }
+      Armazem: { Nivel maximo: 0, Por nivel: 0, Preco inicial: 0, Aumento do preco: 0, Economia: dinheiro }
+      Sorte: { Nivel maximo: 5, Por nivel: 4, Preco inicial: 15000, Aumento do preco: 50, Economia: dinheiro }
+    Holograma:
+      Ativar: true
+      Altura: 1.2
+      Linhas: [ ]
+    Particulas:
+      Ativar: true
+      Tipo: 'FLAME'
+      Efeito: ESPIRAL
+      Quantidade: 2
+    Loja:
+      Ativar: true
+      Slot: -1
+      Precos:
+        dinheiro: 75000
+      Permissao: ''
+      Libera em: ''
+
+  diamante:
+    Nome: '&bMaquina de Diamante'
+    Modo: AMBOS
+    Permissao: ''
+    Item:
+      Material: DIAMOND_BLOCK
+      Textura: ''
+      Brilho: true
+    Funcionamento:
+      Velocidade: 15
+      Drops por ciclo: 1
+      Combustivel por ciclo: 3
+      Tanque: 400
+      # Esta tem armazem limitado: e o upgrade 'Armazem' que aumenta.
+      Armazem: 5000
+      Combustiveis: [ nuclear ]
+      Stack maximo: 50
+    Quebra:
+      Chance: 0.5
+      Preco do conserto: 20000
+      Economia do conserto: dinheiro
+    Drop:
+      Nome: '&bDiamante'
+      Item:
+        Material: DIAMOND
+        Nome: '&bDiamante'
+        Lore: [ '&7Produzido por uma maquina.' ]
+      Valor:
+        dinheiro: 120
+      Pode coletar: true
+      Pode vender: true
+      Comandos ao coletar: [ ]
+    Upgrades:
+      Tanque: { Nivel maximo: 10, Por nivel: 200, Preco inicial: 8000, Aumento do preco: 35, Economia: dinheiro }
+      Drops: { Nivel maximo: 5, Por nivel: 1, Preco inicial: 40000, Aumento do preco: 60, Economia: dinheiro }
+      Velocidade: { Nivel maximo: 8, Por nivel: 1, Preco inicial: 30000, Aumento do preco: 50, Economia: dinheiro }
+      Durabilidade: { Nivel maximo: 5, Por nivel: 0.1, Preco inicial: 15000, Aumento do preco: 40, Economia: dinheiro }
+      Armazem: { Nivel maximo: 10, Por nivel: 5000, Preco inicial: 10000, Aumento do preco: 30, Economia: dinheiro }
+      Sorte: { Nivel maximo: 5, Por nivel: 4, Preco inicial: 50000, Aumento do preco: 50, Economia: dinheiro }
+    Holograma:
+      Ativar: true
+      Altura: 1.2
+      Linhas: [ ]
+    Particulas:
+      Ativar: true
+      Tipo: 'HAPPY_VILLAGER'
+      Efeito: PULSO
+      Quantidade: 3
+    Loja:
+      Ativar: true
+      Slot: -1
+      Precos:
+        dinheiro: 250000
+      Permissao: ''
+      Libera em: ''

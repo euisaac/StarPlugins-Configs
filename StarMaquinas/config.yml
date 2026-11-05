@@ -1,0 +1,335 @@
+# ==========================================================================
+#  StarMaquinas - configuracao geral
+#
+#  Arquivos desta pasta:
+#    config.yml        este arquivo: regras gerais do plugin
+#    maquinas.yml      as maquinas (tudo de cada uma num lugar so, inclusive
+#                      o preco na loja e os upgrades)
+#    combustiveis.yml  os combustiveis (e o preco deles na loja)
+#    boosters.yml      os boosters de venda, de drops e de velocidade
+#    economias.yml     as economias usadas nos precos (Vault, PlayerPoints...)
+#    menus.yml         todos os menus (titulos, slots, itens e acoes)
+#    mensagens.yml     todas as mensagens
+#
+#  Dica para a staff: /maquinasadmin editor abre o editor em jogo, e
+#  /maquinasadmin verificar aponta qualquer erro de configuracao.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# --------------------------------------------------------------------------
+#  Banco de dados
+# --------------------------------------------------------------------------
+Banco de dados:
+  # SQLITE (arquivo local, nao precisa configurar nada) ou MYSQL.
+  Tipo: SQLITE
+  Host: 'localhost'
+  Porta: 3306
+  Banco: 'minecraft'
+  Usuario: 'root'
+  Senha: ''
+  # Prefixo das tabelas: permite varios servidores dividirem o mesmo banco.
+  Prefixo: 'starmaquinas_'
+  # De quantos em quantos segundos as maquinas alteradas sao gravadas.
+  Salvar a cada: 60
+
+# --------------------------------------------------------------------------
+#  Geracao
+# --------------------------------------------------------------------------
+Geracao:
+  # De quantos em quantos ticks a tarefa confere as maquinas (20 = 1s).
+  # Nao muda a velocidade das maquinas, so a precisao.
+  Intervalo da tarefa: 20
+  # A maquina continua gerando com o chunk descarregado? A geracao e
+  # virtual (nada no mundo e lido), entao nao pesa no servidor.
+  Gerar com chunk descarregado: true
+  # A maquina so gera com o dono (ou um amigo) online.
+  Apenas com dono online: false
+  # A capacidade do tanque e multiplicada pela quantidade empilhada.
+  Tanque multiplica pelo stack: true
+  # O armazem tambem e multiplicado pela quantidade empilhada.
+  Armazem multiplica pelo stack: true
+  # Ligar a maquina sozinha quando ela e colocada.
+  Ligar ao colocar: true
+
+# --------------------------------------------------------------------------
+#  Maquinas virtuais
+#
+#  Uma maquina com 'Modo: VIRTUAL' (ou AMBOS) no maquinas.yml pode viver so
+#  no menu do jogador, sem bloco no mundo: ele clica com o item no AR (ou usa
+#  /maquinas ativar) e ela vai para o /maquinas, onde gera, vende, coleta e
+#  recebe upgrades como qualquer outra. Agachado ativa a pilha da mao inteira.
+#  Cada TIPO de maquina virtual ocupa um slot; maquinas iguais empilham no
+#  mesmo slot.
+# --------------------------------------------------------------------------
+Virtuais:
+  Ativar: true
+  # As virtuais gastam combustivel (abastecidas pelo painel)? false = geram
+  # sem combustivel nenhum.
+  Usar combustivel: true
+  # Slots que todo jogador tem. Itens de slot (/maquinasadmin limite dar
+  # <jogador> slots <qtd>) e as permissoes abaixo aumentam.
+  Slots padrao: 2
+  Slots maximo: 20
+  Slots por permissao:
+    'starmaquinas.slots.vip': 5
+
+# --------------------------------------------------------------------------
+#  Colocar maquinas
+# --------------------------------------------------------------------------
+Colocar:
+  # Segundos de espera entre colocar uma maquina e outra (0 = sem espera).
+  Espera: 0
+  # Quantas maquinas (somando os stacks) cada jogador pode ter colocadas.
+  # 0 = sem limite. As permissoes abaixo aumentam o limite: vale a MAIOR.
+  Limite padrao: 0
+  Limites por permissao:
+    'starmaquinas.colocadas.vip': 500
+    'starmaquinas.colocadas.mvp': 2000
+  # Mundos onde nao da para colocar maquinas.
+  Mundos bloqueados:
+    - 'world_nether_exemplo'
+  # Blocos que nao podem ficar embaixo de uma maquina (aceita * curinga).
+  Blocos proibidos embaixo:
+    - 'HOPPER'
+  # Distancia minima (em blocos) entre maquinas de TIPOS diferentes do mesmo
+  # dono. Evita que um jogador espalhe dez tipos num canto. 0 = desligado.
+  Distancia entre tipos diferentes: 0
+  # O dono de um terreno/plot pode ser outro: o plugin respeita qualquer
+  # protecao (WorldGuard, PlotSquared, GriefPrevention, StarTerrenos...)
+  # porque so age depois que elas liberaram o bloco.
+
+# --------------------------------------------------------------------------
+#  Empilhar (stack)
+# --------------------------------------------------------------------------
+Empilhar:
+  # Clicar com o item da maquina numa maquina do mesmo tipo empilha.
+  Clicar para empilhar: true
+  # Agachado, o clique empilha a pilha inteira da mao de uma vez.
+  Agachado empilha tudo: true
+  # Colocar uma maquina perto de outra igual sua empilha nela sozinho, em vez
+  # de criar outro bloco. Raio em blocos (0 = desligado).
+  Juntar automaticamente no raio: 0
+  # Ao empilhar maquinas com upgrades diferentes, fica o nivel MAIOR de cada
+  # upgrade (true) ou o da maquina que ja estava no chao (false).
+  Manter o maior upgrade: true
+
+# --------------------------------------------------------------------------
+#  Remover / quebrar
+# --------------------------------------------------------------------------
+Quebrar:
+  # Quebrar o bloco exige picareta com toque suave.
+  Exigir toque suave: false
+  # So o dono pode quebrar (staff com starmaquinas.admin sempre pode).
+  Apenas o dono: true
+  # O item devolvido guarda os niveis de upgrade da maquina.
+  Manter upgrades no item: true
+  # Devolve o combustivel que sobrou no tanque como item de combustivel.
+  Devolver combustivel: true
+  # Vende os drops armazenados para o dono antes de remover (senao eles vao
+  # para o inventario como item).
+  Vender drops ao remover: true
+  # Fecha o menu de quem estava com a maquina aberta quando ela some.
+  Fechar menus abertos: true
+
+# --------------------------------------------------------------------------
+#  Amigos (valem para TODAS as maquinas do jogador)
+# --------------------------------------------------------------------------
+Amigos:
+  # Quantos amigos cada jogador pode ter (0 = sem limite).
+  Maximo: 10
+  # O que um amigo pode fazer nas suas maquinas. O dinheiro de uma venda
+  # feita por um amigo vai SEMPRE para o dono da maquina.
+  Podem:
+    Abrir: true
+    Abastecer: true
+    Coletar: true
+    Vender: true
+    Ligar e desligar: false
+    Comprar upgrades: false
+    Consertar: true
+
+# --------------------------------------------------------------------------
+#  Painel remoto (/maquinas)
+# --------------------------------------------------------------------------
+Painel:
+  # O jogador gerencia as maquinas de longe pelo /maquinas, sem ir ate elas.
+  Gerenciar a distancia: true
+  # Permissao para gerenciar de longe (vazio = todos).
+  Permissao para gerenciar a distancia: ''
+  # Botao "Abastecer todas": usa o combustivel do inventario em ordem.
+  Abastecer em massa: true
+
+# --------------------------------------------------------------------------
+#  Venda
+# --------------------------------------------------------------------------
+Venda:
+  # Bonus nas vendas por permissao (em %). O jogador fica com o MAIOR, ou com
+  # a soma de todos que tiver se 'Acumular bonus' for true.
+  Acumular bonus: false
+  Bonus por permissao:
+    vip:
+      Permissao: 'starmaquinas.bonus.vip'
+      Nome: '&a[VIP]'
+      Bonus: 10
+    mvp:
+      Permissao: 'starmaquinas.bonus.mvp'
+      Nome: '&b[MVP]'
+      Bonus: 25
+  # Venda automatica: a maquina vende os drops sozinha a cada ciclo.
+  Venda automatica:
+    Ativar: true
+    # Permissao do dono para ligar a venda automatica (vazio = todos).
+    # Ex.: 'starmaquinas.autovenda' para deixar so para quem voce der.
+    Permissao: ''
+    # % descontada do que a venda automatica rende (o preco da comodidade).
+    Taxa: 10
+    # Avisar o dono no chat a cada venda automatica (fica pesado; a barra de
+    # acao resume a cada minuto).
+    Avisar no chat: false
+
+# --------------------------------------------------------------------------
+#  Loja (/maquinas loja e /combustiveis)
+# --------------------------------------------------------------------------
+Loja:
+  # Descontos na loja por permissao (em %). Vale o MAIOR.
+  Descontos por permissao:
+    vip:
+      Permissao: 'starmaquinas.desconto.vip'
+      Nome: '&a[VIP]'
+      Desconto: 5
+  # Limite de compra: quantas maquinas o jogador compra de UMA vez. Itens de
+  # limite (/maquinasadmin limite dar) aumentam o de cada jogador.
+  Limite de compra:
+    Ativar: true
+    Padrao: 5
+    Maximo: 1000
+    Por permissao:
+      'starmaquinas.limitecompra.vip': 20
+  # Pedir confirmacao em compras acima deste valor (0 = nunca pede).
+  Confirmar acima de: 1000000
+
+# --------------------------------------------------------------------------
+#  Itens de limite (/maquinasadmin limite dar <jogador> <compra|colocadas> <qtd>)
+#  O jogador clica com o botao direito para ativar; agachado junta todos os
+#  iguais do inventario num item so.
+# --------------------------------------------------------------------------
+Itens de limite:
+  Compra:
+    Material: PAPER
+    Brilho: true
+    Nome: '&bLimite de compra &f+{quantidade}'
+    Lore:
+      - ''
+      - ' &7Aumenta em &f{quantidade} &7quantas maquinas'
+      - ' &7voce compra de uma vez na loja.'
+      - ''
+      - '&eClique com o botao direito para ativar.'
+      - '&8Agachado: junta todos num item so.'
+  Slots:
+    Material: HOPPER
+    Brilho: true
+    Nome: '&aSlots de maquina virtual &f+{quantidade}'
+    Lore:
+      - ''
+      - ' &7Mais &f{quantidade} &7slot(s) para as suas'
+      - ' &7maquinas virtuais.'
+      - ''
+      - '&eClique com o botao direito para ativar.'
+      - '&8Agachado: junta todos num item so.'
+  Colocadas:
+    Material: BOOK
+    Brilho: true
+    Nome: '&dLimite de maquinas &f+{quantidade}'
+    Lore:
+      - ''
+      - ' &7Aumenta em &f{quantidade} &7quantas maquinas'
+      - ' &7voce pode ter colocadas.'
+      - ''
+      - '&eClique com o botao direito para ativar.'
+      - '&8Agachado: junta todos num item so.'
+
+# --------------------------------------------------------------------------
+#  Avisos ao dono
+# --------------------------------------------------------------------------
+Avisos:
+  # Avisa o dono (se estiver online) quando uma maquina fica sem combustivel,
+  # quebra ou enche o armazem. Cada jogador liga/desliga no /maquinas.
+  Ativar: true
+  # Segundos minimos entre dois avisos iguais para o mesmo jogador.
+  Intervalo: 60
+  # Onde o aviso aparece: CHAT, ACTIONBAR, TITULO (pode por mais de um).
+  Formas: [ CHAT, ACTIONBAR ]
+  # Resumo de lucro na barra de acao a cada minuto (venda automatica).
+  Resumo da venda automatica: true
+
+# --------------------------------------------------------------------------
+#  Holograma e particulas
+# --------------------------------------------------------------------------
+Holograma:
+  # Liga/desliga os hologramas de todas as maquinas (cada tipo tambem tem o
+  # seu em maquinas.yml, e cada dono pode esconder o da propria maquina).
+  Ativar: true
+  # De quantos em quantos ticks o texto e atualizado.
+  Atualizar a cada: 20
+Particulas:
+  Ativar: true
+  # So desenha para quem esta ate esta distancia (blocos).
+  Distancia: 24
+  # De quantos em quantos ticks.
+  Intervalo: 10
+
+# --------------------------------------------------------------------------
+#  Ranking (/maquinas top)
+# --------------------------------------------------------------------------
+Ranking:
+  # De quantos em quantos minutos o ranking e recalculado.
+  Atualizar a cada: 5
+  Tamanho: 21
+
+# --------------------------------------------------------------------------
+#  Formatos
+# --------------------------------------------------------------------------
+Formatos:
+  Barra de progresso:
+    Tamanho: 10
+    Simbolo: '|'
+    Cor cheia: '&a'
+    Cor vazia: '&7'
+  Status:
+    Funcionando: '&aFUNCIONANDO'
+    Desligada: '&7DESLIGADA'
+    Sem combustivel: '&cSEM COMBUSTIVEL'
+    Quebrada: '&4QUEBRADA'
+    Armazem cheio: '&eARMAZEM CHEIO'
+    Dono offline: '&8AGUARDANDO O DONO'
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+  Infinito: '&d∞'
+  Maximo: '&aMAXIMO'
+  # Data usada no "Libera em" da loja.
+  Data: 'dd/MM/yyyy HH:mm'
+
+# --------------------------------------------------------------------------
+#  Sons (NOME;volume;tom). Vazio = sem som.
+# --------------------------------------------------------------------------
+Sons:
+  Clique: 'UI_BUTTON_CLICK;0.6;1.2'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Comprar: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Vender: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1'
+  Coletar: 'ENTITY_ITEM_PICKUP;1;1'
+  Abastecer: 'ITEM_BUCKET_FILL;1;1'
+  Colocar: 'BLOCK_ANVIL_PLACE;0.5;1.6'
+  Upgrade: 'BLOCK_ANVIL_USE;0.7;1.4'
+  Quebrou: 'ENTITY_ITEM_BREAK;1;0.8'
+  Consertar: 'BLOCK_ANVIL_USE;1;1'
+
+# Intervalo minimo entre dois cliques num menu (ms): segura o clique duplo.
+Intervalo entre cliques: 150
+
+# Mostra no console o que acontece com cada maquina (so para investigar).
+Debug: false

@@ -1,0 +1,102 @@
+# ==========================================================================
+#  StarMaquinas - combustiveis
+#
+#  A chave (carvao, gasolina...) e o que as maquinas citam em
+#  'Combustiveis'. Nao renomeie uma chave em uso.
+#
+#  Litros           quantos litros UM item poe no tanque.
+#  Infinito         a maquina abastecida com ele nunca mais precisa de
+#                   combustivel (o item nao tem litros).
+#  Somente dono     so quem comprou (ou recebeu) o item pode usa-lo.
+#
+#  Combustiveis iguais no inventario podem ser juntados num item so pelo
+#  /combustiveis juntar (os litros somam).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Lore padrao. Substituicoes: {litros} {nome} {dono}
+Modelo do item:
+  - ''
+  - ' &7Litros: &f{litros}'
+  - ''
+  - '&eClique numa maquina para abastecer.'
+  - '&8Agachado: usa todos da mao.'
+
+Combustiveis:
+
+  carvao:
+    Nome: '&8Carvao Comprimido'
+    Litros: 50
+    Infinito: false
+    Somente dono: false
+    Item:
+      Material: COAL
+      Textura: ''
+      Brilho: false
+    Loja:
+      Ativar: true
+      Slot: -1
+      Precos:
+        dinheiro: 500
+      Permissao: ''
+      Libera em: ''
+
+  gasolina:
+    Nome: '&eGasolina'
+    Litros: 150
+    Infinito: false
+    Somente dono: false
+    Item:
+      Material: BLAZE_POWDER
+      Textura: ''
+      Brilho: true
+    Loja:
+      Ativar: true
+      Slot: -1
+      Precos:
+        dinheiro: 1800
+      Permissao: ''
+      Libera em: ''
+
+  nuclear:
+    Nome: '&aCombustivel Nuclear'
+    Litros: 1000
+    Infinito: false
+    Somente dono: false
+    Item:
+      Material: SLIME_BALL
+      Textura: ''
+      Brilho: true
+    Loja:
+      Ativar: true
+      Slot: -1
+      Precos:
+        dinheiro: 15000
+      Permissao: ''
+      Libera em: ''
+
+  # Combustivel infinito: nao vai para a loja por padrao, e um item de
+  # premio (/maquinasadmin combustivel dar <jogador> infinito 1).
+  infinito:
+    Nome: '&d&lCombustivel Infinito'
+    Litros: 0
+    Infinito: true
+    Somente dono: true
+    Item:
+      Material: NETHER_STAR
+      Textura: ''
+      Brilho: true
+      Lore:
+        - ''
+        - ' &7Deixa uma maquina &dpara sempre &7abastecida.'
+        - ' &7Dono: &f{dono}'
+        - ''
+        - '&eClique numa maquina para usar.'
+    Loja:
+      Ativar: false
+      Slot: -1
+      Precos:
+        dinheiro: 5000000
+      Permissao: ''
+      Libera em: ''

@@ -1,0 +1,61 @@
+# ==========================================================================
+#  StarMaquinas - boosters
+#
+#  Tipo:
+#    VENDA       do JOGADOR: +Bonus% em tudo que ele vender (clique no ar).
+#    DROPS       da MAQUINA: +Bonus% de drops por ciclo (clique na maquina).
+#    VELOCIDADE  da MAQUINA: ciclo Bonus% mais rapido (clique na maquina).
+#  Duracao em segundos. Um booster do mesmo tipo ativo nao acumula: o novo
+#  so pode ser usado quando o atual acabar.
+#
+#  Entregar: /maquinasadmin booster dar <jogador> <booster> [quantidade]
+# ==========================================================================
+
+Versao do modelo: 1
+
+Boosters:
+
+  venda_25:
+    Tipo: VENDA
+    Bonus: 25
+    Duracao: 3600
+    Item:
+      Material: EXPERIENCE_BOTTLE
+      Brilho: true
+      Nome: '&aBooster de Venda &f+25%'
+      Lore:
+        - ''
+        - ' &7Todas as suas vendas rendem &a+{bonus}%'
+        - ' &7durante &f{duracao}&7.'
+        - ''
+        - '&eClique com o botao direito para ativar.'
+
+  drops_50:
+    Tipo: DROPS
+    Bonus: 50
+    Duracao: 1800
+    Item:
+      Material: GLOWSTONE_DUST
+      Brilho: true
+      Nome: '&eBooster de Drops &f+50%'
+      Lore:
+        - ''
+        - ' &7A maquina gera &e+{bonus}% &7de drops'
+        - ' &7durante &f{duracao}&7.'
+        - ''
+        - '&eClique numa maquina para ativar.'
+
+  velocidade_30:
+    Tipo: VELOCIDADE
+    Bonus: 30
+    Duracao: 1800
+    Item:
+      Material: SUGAR
+      Brilho: true
+      Nome: '&bBooster de Velocidade &f+30%'
+      Lore:
+        - ''
+        - ' &7A maquina trabalha &b{bonus}% &7mais rapido'
+        - ' &7durante &f{duracao}&7.'
+        - ''
+        - '&eClique numa maquina para ativar.'

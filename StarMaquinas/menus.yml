@@ -1,0 +1,884 @@
+# ==========================================================================
+#  StarMaquinas - menus
+#
+#  Cada tela tem:
+#    Titulo, Linhas (1 a 6)
+#    Enfeite      vidro de fundo (Ativar, Material, Nome)
+#    Slots        onde entra o conteudo da tela (maquinas, amigos, ofertas)
+#    Itens        os botoes. Cada botao aceita:
+#      Slot / Slots, Material, Textura (cabeca), Nome, Lore, Brilho,
+#      Quantidade, Permissao (+ 'Esconder sem permissao'),
+#      Condicao     o botao so aparece quando a condicao vale. '!' nega e
+#                   varias vao separadas por virgula: 'ligada,!quebrada'.
+#                   Dois botoes no MESMO slot com condicoes opostas = um
+#                   botao que muda de cara (ligada/desligada).
+#      Acoes        o que o clique faz. Comece a linha com o clique:
+#                   [esquerdo] [direito] [shift] [shift_esquerdo]
+#                   [shift_direito] [meio] [q]  -- sem colchetes = qualquer.
+#
+#  Acoes que servem em qualquer tela:
+#    minhas, loja, loja_combustiveis, top, amigos, voltar, anterior,
+#    proxima, atualizar, fechar, som: NOME, mensagem: texto,
+#    comando: /cmd (como o jogador), console: cmd, op: cmd,
+#    titulo: Titulo<nl>Subtitulo, actionbar: texto
+#
+#  Material aceita {material} (o bloco da maquina) e {material_drop}.
+#  Variaveis do jogador (todas as telas): {jogador} {colocadas}
+#  {limite_colocadas} {limite_compra} {blocos} {bonus} {bonus_grupo}
+#  {desconto} {desconto_grupo} {booster_venda} {booster_venda_tempo}
+#  {compradas} {vendido_total} {amigos} {amigos_maximo} {avisos}
+#  {drops_total} {valor_total} {lucro_hora_total} {saldo_<economia>}
+#  {slots} {slots_usados} {slots_maximo} {pagina} {paginas}
+# ==========================================================================
+
+Versao do modelo: 1
+
+# --------------------------------------------------------------------------
+#  Painel de uma maquina (clique direito nela, ou pelo /maquinas)
+#
+#  Acoes: vender, coletar, coletar_quantia, abastecer, abastecer_tudo,
+#  upgrades, ligar, holograma, autovenda, consertar, remover (tudo, com
+#  confirmacao), remover_um, remover_quantia
+#  Condicoes: quebrada, ligada, autovenda, pode_autovenda, infinito,
+#  tem_drops, booster, dono, holograma, pode_coletar, pode_vender,
+#  virtual, usa_combustivel
+#  Variaveis da maquina: {nome} {dono} {stack} {stack_maximo} {status}
+#  {combustivel} {tanque} {barra} {porcentagem} {autonomia} {drops}
+#  {armazem} {barra_armazem} {drop} {valor_drop} {valor_drops}
+#  {velocidade} {drops_ciclo} {consumo} {drops_hora} {lucro_hora}
+#  {tempo_proximo} {chance_quebra} {sorte} {conserto} {produzido}
+#  {vendido} {combustiveis} {ligada} {holograma} {autovenda}
+#  {taxa_autovenda} {infinito} {booster_drops} {booster_drops_tempo}
+#  {booster_velocidade} {booster_velocidade_tempo} {local} {mundo} {x} {y} {z}
+#  e dos upgrades: {tanque_nivel} {tanque_maximo} {tanque_valor}
+#  {tanque_proximo} {tanque_preco} {tanque_barra} (troque 'tanque' por
+#  drops, velocidade, durabilidade, armazem ou sorte)
+# --------------------------------------------------------------------------
+Maquina:
+  Titulo: '&8{nome} &7x{stack}'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Informacoes:
+      Slot: 4
+      Material: '{material}'
+      Textura: '{textura}'
+      Brilho: true
+      Nome: '{nome}'
+      Lore:
+        - ''
+        - ' &7Dono: &f{dono}'
+        - ' &7Onde: &f{local}'
+        - ' &7Quantidade: &f{stack}&7/&f{stack_maximo}'
+        - ' &7Status: {status}'
+        - ''
+        - ' &7Gera &f{drops_ciclo}x {drop} &7a cada &f{velocidade}s'
+        - ' &7Por hora: &f{drops_hora} &7drops &8(&a{lucro_hora}&8)'
+        - ' &7Proximo ciclo em: &f{tempo_proximo}'
+        - ''
+        - ' &7Ja produziu: &f{produzido} &7drops'
+        - ' &7Ja vendeu: &a{vendido}'
+    Combustivel:
+      Slot: 20
+      Condicao: '!infinito,usa_combustivel'
+      Material: COAL
+      Nome: '&eCombustivel'
+      Lore:
+        - ''
+        - ' &7Tanque: &f{combustivel}&7/&f{tanque} &8({porcentagem}%)'
+        - ' {barra}'
+        - ' &7Gasta &f{consumo}L &7por ciclo'
+        - ' &7Dura mais: &f{autonomia}'
+        - ' &7Aceita: &f{combustiveis}'
+        - ''
+        - '&aEsquerdo &7usa 1 do inventario'
+        - '&aDireito &7enche com o que voce tiver'
+        - '&8Ou clique na maquina com o combustivel.'
+      Acoes:
+        - '[esquerdo] abastecer'
+        - '[direito] abastecer_tudo'
+    Combustivel infinito:
+      Slot: 20
+      Condicao: infinito
+      Material: NETHER_STAR
+      Brilho: true
+      Nome: '&dCombustivel infinito'
+      Lore:
+        - ''
+        - ' &7Esta maquina nunca para por falta'
+        - ' &7de combustivel.'
+    Drops:
+      Slot: 22
+      Material: CHEST
+      Nome: '&aArmazem'
+      Lore:
+        - ''
+        - ' &7Guardados: &f{drops}&7/&f{armazem} {drop}'
+        - ' &7Valem: &a{valor_drops} &8(bonus {bonus}%)'
+        - ''
+        - '&aEsquerdo &7vende tudo'
+        - '&aDireito &7coleta para o inventario'
+        - '&aShift &7escolhe quanto coletar'
+      Acoes:
+        - '[esquerdo] vender'
+        - '[direito] coletar'
+        - '[shift] coletar_quantia'
+    Upgrades:
+      Slot: 24
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&dUpgrades'
+      Lore:
+        - ''
+        - ' &7Tanque &f{tanque_nivel}&7/&f{tanque_maximo}  &7Drops &f{drops_nivel}&7/&f{drops_maximo}'
+        - ' &7Velocidade &f{velocidade_nivel}&7/&f{velocidade_maximo}  &7Sorte &f{sorte_nivel}&7/&f{sorte_maximo}'
+        - ''
+        - '&eClique para evoluir'
+      Acoes: [ upgrades ]
+    Ligada:
+      Slot: 30
+      Condicao: 'ligada,!quebrada'
+      Material: LIME_DYE
+      Nome: '&aLigada'
+      Lore: [ '', ' {status}', '', '&eClique para desligar' ]
+      Acoes: [ ligar ]
+    Desligada:
+      Slot: 30
+      Condicao: '!ligada,!quebrada'
+      Material: GRAY_DYE
+      Nome: '&7Desligada'
+      Lore: [ '', ' &7A maquina esta parada.', '', '&eClique para ligar' ]
+      Acoes: [ ligar ]
+    Quebrada:
+      Slot: 30
+      Condicao: quebrada
+      Material: TNT
+      Brilho: true
+      Nome: '&4Maquina quebrada!'
+      Lore:
+        - ''
+        - ' &7Ela parou de gerar ate ser consertada.'
+        - ' &7Conserto: &f{conserto}'
+        - ''
+        - '&eClique para consertar'
+      Acoes: [ consertar ]
+    Venda automatica ligada:
+      Slot: 31
+      Condicao: 'pode_autovenda,autovenda,dono'
+      Material: HOPPER
+      Brilho: true
+      Nome: '&aVenda automatica: &fligada'
+      Lore:
+        - ''
+        - ' &7Os drops sao vendidos sozinhos'
+        - ' &7a cada ciclo (taxa de &f{taxa_autovenda}%&7).'
+        - ''
+        - '&eClique para desligar'
+      Acoes: [ autovenda ]
+    Venda automatica desligada:
+      Slot: 31
+      Condicao: 'pode_autovenda,!autovenda,dono'
+      Material: HOPPER
+      Nome: '&7Venda automatica: &cdesligada'
+      Lore:
+        - ''
+        - ' &7Ligada, a maquina vende os drops'
+        - ' &7sozinha a cada ciclo, mesmo com'
+        - ' &7voce offline (taxa de &f{taxa_autovenda}%&7).'
+        - ''
+        - '&eClique para ligar'
+      Acoes: [ autovenda ]
+    Holograma:
+      Slot: 32
+      Condicao: 'dono,!virtual'
+      Material: ITEM_FRAME
+      Nome: '&bHolograma: {holograma}'
+      Lore: [ '', '&eClique para mostrar/esconder' ]
+      Acoes: [ holograma ]
+    Booster:
+      Slot: 13
+      Condicao: booster
+      Material: GLOWSTONE_DUST
+      Brilho: true
+      Nome: '&eBoosters ativos'
+      Lore:
+        - ''
+        - ' &7Drops: &e+{booster_drops}% &8({booster_drops_tempo})'
+        - ' &7Velocidade: &b+{booster_velocidade}% &8({booster_velocidade_tempo})'
+    Amigos:
+      Slot: 38
+      Condicao: dono
+      Material: NAME_TAG
+      Nome: '&aAmigos'
+      Lore:
+        - ''
+        - ' &7Seus amigos usam TODAS as suas'
+        - ' &7maquinas. Voce tem &f{amigos}&7/&f{amigos_maximo}&7.'
+        - ''
+        - '&eClique para gerenciar'
+      Acoes: [ amigos ]
+    Remover:
+      Slot: 42
+      Condicao: dono
+      Material: HOPPER_MINECART
+      Nome: '&cRetirar maquinas'
+      Lore:
+        - ''
+        - ' &7Devolve as maquinas como item,'
+        - ' &7com os upgrades (stack inteiro).'
+        - ' &7Virtual: libera o slot dela.'
+        - ''
+        - '&aEsquerdo &7retira 1'
+        - '&aDireito &7escolhe quantas'
+        - '&cShift &7retira TODAS (some o bloco)'
+      Acoes:
+        - '[esquerdo] remover_um'
+        - '[direito] remover_quantia'
+        - '[shift] remover'
+    Voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+#  Upgrades de uma maquina
+#
+#  Acoes: 'upgrade TANQUE' (1 nivel) e 'upgrade_max TANQUE' (quantos o
+#  saldo pagar). TANQUE, DROPS, VELOCIDADE, DURABILIDADE, ARMAZEM, SORTE.
+#  Condicoes: upgrade_<nome> (ligado nesta maquina), maximo_<nome>.
+# --------------------------------------------------------------------------
+Upgrades:
+  Titulo: '&8Upgrades - {nome}'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Tanque:
+      Slot: 10
+      Condicao: 'upgrade_tanque,!maximo_tanque'
+      Material: BUCKET
+      Nome: '&eTanque &7[{tanque_nivel}/{tanque_maximo}]'
+      Lore:
+        - ''
+        - ' &7Cabe mais combustivel.'
+        - ' &7Agora: &f{tanque_valor}L &8-> &a{tanque_proximo}L'
+        - ' {tanque_barra}'
+        - ''
+        - ' &7Preco: &a{tanque_preco}'
+        - ''
+        - '&aEsquerdo &7compra 1 nivel'
+        - '&aDireito &7compra o maximo que puder'
+      Acoes: [ '[esquerdo] upgrade TANQUE', '[direito] upgrade_max TANQUE' ]
+    Tanque maximo:
+      Slot: 10
+      Condicao: 'upgrade_tanque,maximo_tanque'
+      Material: BUCKET
+      Brilho: true
+      Nome: '&eTanque &a[MAXIMO]'
+      Lore: [ '', ' &7Tanque: &f{tanque_valor}L', ' {tanque_barra}' ]
+    Drops:
+      Slot: 11
+      Condicao: 'upgrade_drops,!maximo_drops'
+      Material: HOPPER
+      Nome: '&aDrops por ciclo &7[{drops_nivel}/{drops_maximo}]'
+      Lore:
+        - ''
+        - ' &7Gera mais por ciclo.'
+        - ' &7Agora: &f{drops_valor} &8-> &a{drops_proximo}'
+        - ' {drops_barra}'
+        - ''
+        - ' &7Preco: &a{drops_preco}'
+        - ''
+        - '&aEsquerdo &7compra 1 nivel'
+        - '&aDireito &7compra o maximo que puder'
+      Acoes: [ '[esquerdo] upgrade DROPS', '[direito] upgrade_max DROPS' ]
+    Drops maximo:
+      Slot: 11
+      Condicao: 'upgrade_drops,maximo_drops'
+      Material: HOPPER
+      Brilho: true
+      Nome: '&aDrops por ciclo &a[MAXIMO]'
+      Lore: [ '', ' &7Por ciclo: &f{drops_valor}', ' {drops_barra}' ]
+    Velocidade:
+      Slot: 12
+      Condicao: 'upgrade_velocidade,!maximo_velocidade'
+      Material: SUGAR
+      Nome: '&bVelocidade &7[{velocidade_nivel}/{velocidade_maximo}]'
+      Lore:
+        - ''
+        - ' &7Ciclos mais curtos.'
+        - ' &7Agora: &f{velocidade_valor}s &8-> &a{velocidade_proximo}s'
+        - ' {velocidade_barra}'
+        - ''
+        - ' &7Preco: &a{velocidade_preco}'
+        - ''
+        - '&aEsquerdo &7compra 1 nivel'
+        - '&aDireito &7compra o maximo que puder'
+      Acoes: [ '[esquerdo] upgrade VELOCIDADE', '[direito] upgrade_max VELOCIDADE' ]
+    Velocidade maximo:
+      Slot: 12
+      Condicao: 'upgrade_velocidade,maximo_velocidade'
+      Material: SUGAR
+      Brilho: true
+      Nome: '&bVelocidade &a[MAXIMO]'
+      Lore: [ '', ' &7Ciclo: &f{velocidade_valor}s', ' {velocidade_barra}' ]
+    Durabilidade:
+      Slot: 14
+      Condicao: 'upgrade_durabilidade,!maximo_durabilidade'
+      Material: ANVIL
+      Nome: '&6Durabilidade &7[{durabilidade_nivel}/{durabilidade_maximo}]'
+      Lore:
+        - ''
+        - ' &7Menos chance de quebrar.'
+        - ' &7Agora: &f{durabilidade_valor}% &8-> &a{durabilidade_proximo}%'
+        - ' {durabilidade_barra}'
+        - ''
+        - ' &7Preco: &a{durabilidade_preco}'
+        - ''
+        - '&aEsquerdo &7compra 1 nivel'
+        - '&aDireito &7compra o maximo que puder'
+      Acoes: [ '[esquerdo] upgrade DURABILIDADE', '[direito] upgrade_max DURABILIDADE' ]
+    Durabilidade maximo:
+      Slot: 14
+      Condicao: 'upgrade_durabilidade,maximo_durabilidade'
+      Material: ANVIL
+      Brilho: true
+      Nome: '&6Durabilidade &a[MAXIMO]'
+      Lore: [ '', ' &7Chance de quebrar: &f{durabilidade_valor}%', ' {durabilidade_barra}' ]
+    Armazem:
+      Slot: 15
+      Condicao: 'upgrade_armazem,!maximo_armazem'
+      Material: CHEST
+      Nome: '&2Armazem &7[{armazem_nivel}/{armazem_maximo}]'
+      Lore:
+        - ''
+        - ' &7Guarda mais drops.'
+        - ' &7Agora: &f{armazem_valor} &8-> &a{armazem_proximo}'
+        - ' {armazem_barra}'
+        - ''
+        - ' &7Preco: &a{armazem_preco}'
+        - ''
+        - '&aEsquerdo &7compra 1 nivel'
+        - '&aDireito &7compra o maximo que puder'
+      Acoes: [ '[esquerdo] upgrade ARMAZEM', '[direito] upgrade_max ARMAZEM' ]
+    Armazem maximo:
+      Slot: 15
+      Condicao: 'upgrade_armazem,maximo_armazem'
+      Material: CHEST
+      Brilho: true
+      Nome: '&2Armazem &a[MAXIMO]'
+      Lore: [ '', ' &7Cabem: &f{armazem_valor}', ' {armazem_barra}' ]
+    Sorte:
+      Slot: 16
+      Condicao: 'upgrade_sorte,!maximo_sorte'
+      Material: RABBIT_FOOT
+      Nome: '&dSorte &7[{sorte_nivel}/{sorte_maximo}]'
+      Lore:
+        - ''
+        - ' &7Chance de o ciclo render em DOBRO.'
+        - ' &7Agora: &f{sorte_valor}% &8-> &a{sorte_proximo}%'
+        - ' {sorte_barra}'
+        - ''
+        - ' &7Preco: &a{sorte_preco}'
+        - ''
+        - '&aEsquerdo &7compra 1 nivel'
+        - '&aDireito &7compra o maximo que puder'
+      Acoes: [ '[esquerdo] upgrade SORTE', '[direito] upgrade_max SORTE' ]
+    Sorte maximo:
+      Slot: 16
+      Condicao: 'upgrade_sorte,maximo_sorte'
+      Material: RABBIT_FOOT
+      Brilho: true
+      Nome: '&dSorte &a[MAXIMO]'
+      Lore: [ '', ' &7Chance de dobrar: &f{sorte_valor}%', ' {sorte_barra}' ]
+    Voltar:
+      Slot: 31
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+#  Suas maquinas (/maquinas)
+#
+#  Clique numa maquina: esquerdo abre o painel dela, direito vende os
+#  drops, shift abastece com o combustivel do inventario.
+#  Acoes: vender_tudo, coletar_tudo, abastecer_todas, avisos,
+#  maquinas_amigos
+#  Condicoes: tem_maquinas, avisos, abastecer_em_massa, virtuais,
+#  tem_amigos_maquinas
+# --------------------------------------------------------------------------
+Minhas maquinas:
+  Titulo: '&8Suas maquinas &7({pagina}/{paginas})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  # Como cada maquina aparece (o material e o da propria maquina).
+  Item da maquina:
+    Nome: '{nome} &7x{stack}'
+    Lore:
+      - ''
+      - ' &7Status: {status}'
+      - ' &7Combustivel: &f{combustivel}&7/&f{tanque} &8{barra}'
+      - ' &7Drops: &f{drops} &8(&a{valor_drops}&8)'
+      - ' &7Lucro/hora: &a{lucro_hora}'
+      - ' &8{local}'
+      - ''
+      - '&aEsquerdo &7abre o painel'
+      - '&aDireito &7vende os drops'
+      - '&aShift &7abastece'
+  Sem maquinas:
+    Slot: 22
+    Material: COBWEB
+    Nome: '&7Voce ainda nao tem maquinas'
+    Lore:
+      - ''
+      - ' &7Compre na loja e coloque no chao.'
+  Itens:
+    Resumo:
+      Slot: 4
+      Material: BOOK
+      Nome: '&e&lSuas maquinas'
+      Lore:
+        - ''
+        - ' &7Maquinas: &f{colocadas}&7/&f{limite_colocadas} &8({blocos} blocos)'
+        - ' &7Slots virtuais: &f{slots_usados}&7/&f{slots}'
+        - ' &7Drops guardados: &f{drops_total} &8(&a{valor_total}&8)'
+        - ' &7Lucro por hora: &a{lucro_hora_total}'
+        - ''
+        - ' &7Seu bonus de venda: &a{bonus}% &8{bonus_grupo}'
+        - ' &7Booster de venda: &a+{booster_venda}% &8({booster_venda_tempo})'
+        - ' &7Limite de compra: &f{limite_compra}'
+    Avisos ligados:
+      Slot: 8
+      Condicao: avisos
+      Material: NOTE_BLOCK
+      Nome: '&aAvisos: ligados'
+      Lore: [ '', ' &7Voce e avisado quando uma maquina', ' &7para (sem combustivel, quebrada...).', '', '&eClique para desligar' ]
+      Acoes: [ avisos ]
+    Avisos desligados:
+      Slot: 8
+      Condicao: '!avisos'
+      Material: NOTE_BLOCK
+      Nome: '&cAvisos: desligados'
+      Lore: [ '', '&eClique para ligar' ]
+      Acoes: [ avisos ]
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ anterior ]
+    Vender tudo:
+      Slot: 47
+      Condicao: tem_maquinas
+      Material: GOLD_INGOT
+      Brilho: true
+      Nome: '&aVender tudo'
+      Lore: [ '', ' &7Vende os drops de todas as', ' &7suas maquinas: &a{valor_total}', '', '&eClique para vender' ]
+      Acoes: [ vender_tudo ]
+    Coletar tudo:
+      Slot: 48
+      Condicao: tem_maquinas
+      Material: CHEST
+      Nome: '&eColetar tudo'
+      Lore: [ '', ' &7Leva os drops de todas as maquinas', ' &7para o inventario (ate encher).', '', '&eClique para coletar' ]
+      Acoes: [ coletar_tudo ]
+    Abastecer todas:
+      Slot: 49
+      Condicao: 'tem_maquinas,abastecer_em_massa'
+      Material: COAL
+      Nome: '&6Abastecer todas'
+      Lore: [ '', ' &7Usa o combustivel do seu inventario', ' &7nas maquinas mais vazias primeiro.', '', '&eClique para abastecer' ]
+      Acoes: [ abastecer_todas ]
+    Loja:
+      Slot: 50
+      Material: EMERALD
+      Nome: '&aLoja de maquinas'
+      Acoes: [ loja ]
+    Combustiveis:
+      Slot: 51
+      Material: BLAZE_POWDER
+      Nome: '&eLoja de combustiveis'
+      Acoes: [ loja_combustiveis ]
+    Amigos:
+      Slot: 46
+      Material: NAME_TAG
+      Nome: '&bAmigos &7({amigos}/{amigos_maximo})'
+      Acoes: [ amigos ]
+    Top:
+      Slot: 0
+      Material: NETHER_STAR
+      Nome: '&6Ranking'
+      Acoes: [ top ]
+    Virtuais:
+      Slot: 1
+      Condicao: virtuais
+      Material: ENDER_EYE
+      Nome: '&dMaquinas virtuais &7({slots_usados}/{slots})'
+      Lore:
+        - ''
+        - ' &7Maquinas que vivem so aqui no menu,'
+        - ' &7sem bloco no mundo.'
+        - ''
+        - ' &7Para ativar: clique com a maquina'
+        - ' &7no AR (ou use &f/maquinas ativar&7).'
+        - ' &7Cada tipo ocupa um slot; iguais empilham.'
+    Maquinas de amigos:
+      Slot: 7
+      Condicao: tem_amigos_maquinas
+      Material: GOLD_INGOT
+      Nome: '&eMaquinas de amigos'
+      Lore:
+        - ''
+        - ' &7As maquinas de quem te adicionou'
+        - ' &7como amigo.'
+        - ''
+        - '&eClique para ver'
+      Acoes: [ maquinas_amigos ]
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ proxima ]
+
+# --------------------------------------------------------------------------
+#  Maquinas de amigos: as maquinas de quem adicionou o jogador como amigo.
+#  Cliques iguais aos de "Suas maquinas" (o que o amigo pode fazer vem de
+#  config.yml -> Amigos.Podem). O dinheiro de uma venda vai para o dono.
+# --------------------------------------------------------------------------
+Maquinas de amigos:
+  Titulo: '&8Maquinas de amigos &7({pagina}/{paginas})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Item da maquina:
+    Nome: '{nome} &7x{stack}'
+    Lore:
+      - ''
+      - ' &7Dono: &f{dono}'
+      - ' &7Status: {status}'
+      - ' &7Combustivel: &f{combustivel}&7/&f{tanque} &8{barra}'
+      - ' &7Drops: &f{drops} &8(&a{valor_drops}&8)'
+      - ' &8{local}'
+      - ''
+      - '&aEsquerdo &7abre o painel'
+      - '&aDireito &7vende (para o dono)'
+      - '&aShift &7abastece'
+  Sem maquinas:
+    Slot: 22
+    Material: COBWEB
+    Nome: '&7Nenhum amigo com maquinas'
+  Itens:
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ anterior ]
+    Voltar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ proxima ]
+
+# --------------------------------------------------------------------------
+#  Amigos. Acao 'adicionar' pede o nick no chat; clique direito numa cabeca
+#  tira o amigo. Variaveis da cabeca: {amigo} {online}
+# --------------------------------------------------------------------------
+Amigos:
+  Titulo: '&8Amigos ({amigos}/{amigos_maximo})'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Item do amigo:
+    Nome: '&a{amigo}'
+    Lore:
+      - ''
+      - ' &7Online: {online}'
+      - ''
+      - '&cDireito &7para remover'
+  Itens:
+    Adicionar:
+      Slot: 40
+      Material: WRITABLE_BOOK
+      Nome: '&aAdicionar amigo'
+      Lore:
+        - ''
+        - ' &7Amigos usam TODAS as suas maquinas'
+        - ' &7(abastecer, coletar, vender...).'
+        - ' &7O dinheiro das vendas e sempre seu.'
+        - ''
+        - '&eClique e digite o nick no chat'
+      Acoes: [ adicionar ]
+    Anterior:
+      Slot: 37
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 43
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ proxima ]
+    Voltar:
+      Slot: 36
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+#  Loja de maquinas e de combustiveis. O preco mora no maquinas.yml /
+#  combustiveis.yml (secao Loja de cada um).
+#
+#  No item: esquerdo compra 1, direito escolhe a quantidade no chat, Q
+#  compra o limite inteiro, shift+direito mostra a previa (maquinas).
+#  Linhas acrescentadas no item: {preco} {preco_sem_desconto}
+#  {preco_limite} {limite} {libera_em} {falta} {litros} e as da maquina.
+#  Acao: trocar_loja (vai para a outra loja)
+# --------------------------------------------------------------------------
+Loja de maquinas:
+  Titulo: '&8Loja de maquinas'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Linhas da oferta:
+    - ''
+    - ' &7Preco: &a{preco}'
+    - ' &7Seu limite de compra: &f{limite} &8({preco_limite})'
+    - ''
+    - '&aEsquerdo &7compra 1'
+    - '&aDireito &7escolhe quantas'
+    - '&aQ &7compra o limite ({limite})'
+    - '&aShift+Direito &7ver a previa'
+  Linhas bloqueada por data:
+    - ''
+    - ' &cAinda nao liberada.'
+    - ' &7Libera em: &f{libera_em} &8(falta {falta})'
+  Linhas sem permissao:
+    - ''
+    - ' &cVoce nao pode comprar esta maquina.'
+  Itens:
+    Informacoes:
+      Slot: 49
+      Material: BOOK
+      Nome: '&eSua conta'
+      Lore:
+        - ''
+        - ' &7Saldo: &a{saldo_dinheiro}'
+        - ' &7Desconto: &a{desconto}% &8{desconto_grupo}'
+        - ' &7Limite de compra: &f{limite_compra}'
+        - ' &7Maquinas: &f{colocadas}&7/&f{limite_colocadas}'
+    Combustiveis:
+      Slot: 48
+      Material: BLAZE_POWDER
+      Nome: '&eIr para os combustiveis'
+      Acoes: [ trocar_loja ]
+    Suas maquinas:
+      Slot: 50
+      Material: CHEST
+      Nome: '&aSuas maquinas'
+      Acoes: [ minhas ]
+    Anterior:
+      Slot: 47
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 51
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ proxima ]
+    Voltar:
+      Slot: 45
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+Loja de combustiveis:
+  Titulo: '&8Loja de combustiveis'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Linhas da oferta:
+    - ''
+    - ' &7Preco: &a{preco}'
+    - ''
+    - '&aEsquerdo &7compra 1'
+    - '&aDireito &7escolhe quantos'
+    - '&aQ &7compra 64 de uma vez'
+  Linhas bloqueada por data:
+    - ''
+    - ' &cAinda nao liberado.'
+    - ' &7Libera em: &f{libera_em} &8(falta {falta})'
+  Linhas sem permissao:
+    - ''
+    - ' &cVoce nao pode comprar este combustivel.'
+  Itens:
+    Informacoes:
+      Slot: 49
+      Material: BOOK
+      Nome: '&eSua conta'
+      Lore:
+        - ''
+        - ' &7Saldo: &a{saldo_dinheiro}'
+        - ' &7Desconto: &a{desconto}% &8{desconto_grupo}'
+        - ''
+        - ' &8Dica: /combustiveis juntar une os'
+        - ' &8combustiveis iguais num item so.'
+    Maquinas:
+      Slot: 48
+      Material: EMERALD
+      Nome: '&aIr para as maquinas'
+      Acoes: [ trocar_loja ]
+    Suas maquinas:
+      Slot: 50
+      Material: CHEST
+      Nome: '&aSuas maquinas'
+      Acoes: [ minhas ]
+    Anterior:
+      Slot: 47
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 51
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ proxima ]
+    Voltar:
+      Slot: 45
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+#  Previa de uma maquina da loja (shift+direito no item da loja).
+#  Maquina.Slot e Drop.Slot posicionam os dois itens; Drop.Lore e
+#  acrescentada no item do drop. Variaveis: as do item da maquina
+#  ({velocidade} {drops} {tanque} {valor} {combustiveis}...).
+# --------------------------------------------------------------------------
+Previa:
+  Titulo: '&8Previa - {nome}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Maquina:
+    Slot: 11
+  Drop:
+    Slot: 15
+    Lore:
+      - ''
+      - ' &7Valor de cada um: &a{valor}'
+  Itens:
+    Detalhes:
+      Slot: 13
+      Material: BOOK
+      Nome: '&eComo funciona'
+      Lore:
+        - ''
+        - ' &7Gera &f{drops}x {drop} &7a cada &f{velocidade}s'
+        - ' &7Tanque: &f{tanque}L &8| &7Armazem: &f{armazem}'
+        - ' &7Combustiveis: &f{combustiveis}'
+    Voltar:
+      Slot: 22
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+#  Ranking. Acao 'categoria' troca entre colocadas, vendido e compradas
+#  (direito volta). Cabeca: {posicao} {nome_jogador} {valor}
+#  Tela: {categoria} {proxima} {sua_posicao}
+# --------------------------------------------------------------------------
+Top:
+  Titulo: '&8Ranking - {categoria}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Item do jogador:
+    Nome: '&e{posicao}. &f{nome_jogador}'
+    Lore:
+      - ''
+      - ' &7{categoria}: &a{valor}'
+  Itens:
+    Categoria:
+      Slot: 49
+      Material: COMPARATOR
+      Nome: '&eVendo: &f{categoria}'
+      Lore:
+        - ''
+        - ' &7Sua posicao: &f{sua_posicao}'
+        - ''
+        - '&eClique para ver: &f{proxima}'
+      Acoes: [ categoria ]
+    Anterior:
+      Slot: 48
+      Material: ARROW
+      Nome: '&7Pagina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 50
+      Material: ARROW
+      Nome: '&7Proxima pagina'
+      Acoes: [ proxima ]
+    Voltar:
+      Slot: 45
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+#  Confirmacao (remover todas, compras caras). Acoes: confirmar, cancelar.
+#  {acao} = o que vai acontecer.
+# --------------------------------------------------------------------------
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Confirmar:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&aConfirmar'
+      Lore: [ '', ' {acao}' ]
+      Acoes: [ confirmar ]
+    O que:
+      Slot: 13
+      Material: PAPER
+      Nome: '&e{acao}'
+    Cancelar:
+      Slot: 15
+      Material: RED_WOOL
+      Nome: '&cCancelar'
+      Acoes: [ cancelar ]

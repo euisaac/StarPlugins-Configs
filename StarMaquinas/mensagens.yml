@@ -1,0 +1,268 @@
+# ==========================================================================
+#  StarMaquinas - mensagens
+#
+#  Deixe uma mensagem vazia ('') para ela nao ser enviada.
+#  {prefixo} poe o prefixo onde voce quiser; sem ele, o prefixo vai na
+#  frente das mensagens de uma linha so. Aceita &cores e &#RRGGBB (1.16+).
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&8[&6Maquinas&8] &r'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Apenas jogadores: '&cSo jogadores dentro do jogo podem usar isso.'
+  Carregando: '&eAs maquinas ainda estao carregando, tente em alguns segundos.'
+  Subcomando desconhecido: '&cNao conheco esse comando. Use &f/{comando} ajuda&c.'
+  Numero invalido: '&cValor invalido.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+  Sem saldo: '&cVoce precisa de &f{valor} &c({economia}). Voce tem &f{saldo}&c.'
+  Economia indisponivel: '&cA economia deste preco nao esta disponivel. Avise a staff.'
+  Lista de maquinas: '&7Maquinas do servidor: {maquinas}'
+
+Ajuda:
+  Jogador: |
+    &6&lMaquinas &8- &7comandos
+    &e/{comando} &8- &7abre o painel com todas as suas maquinas
+    &e/{comando} loja &8- &7loja de maquinas
+    &e/{comando} combustiveis &8- &7loja de combustiveis
+    &e/{comando} top &8- &7ranking
+    &e/{comando} amigos [adicionar|remover <nick>] &8- &7seus amigos
+    &e/{comando} deamigos &8- &7as maquinas de quem te adicionou
+    &e/{comando} ativar &8- &7ativa a maquina da mao como virtual (ou clique no ar)
+    &e/{comando} vender &8- &7vende os drops de todas as suas maquinas
+    &e/{comando} coletar &8- &7coleta os drops de todas
+    &e/{comando} abastecer &8- &7abastece todas com o seu inventario
+    &e/{comando} lista &8- &7as maquinas do servidor
+    &e/{comando} limites &8- &7seus limites
+    &e/{comando} avisos &8- &7liga/desliga os avisos das maquinas
+  Combustiveis: |
+    &6&lCombustiveis &8- &7comandos
+    &e/{comando} &8- &7abre a loja de combustiveis
+    &e/{comando} juntar &8- &7junta os combustiveis iguais num item so
+  Admin: |
+    &6&lMaquinas &8- &7staff
+    &e/{comando} editor &8- &7editor em jogo (maquinas e combustiveis)
+    &e/{comando} verificar &8- &7procura erros na configuracao
+    &e/{comando} recarregar &8- &7le os arquivos de novo
+    &e/{comando} dar <jogador|todos> <maquina> [qtd] [compactar]
+    &e/{comando} combustivel <jogador|todos> <combustivel> [qtd]
+    &e/{comando} booster <jogador|todos> <booster> [qtd]
+    &e/{comando} limite dar <jogador|todos> <compra|colocadas|slots> <qtd> &8- &7item de limite
+    &e/{comando} limite adicionar|definir <jogador> <compra|colocadas|slots> <qtd>
+    &e/{comando} info &8- &7detalhes da maquina que voce esta olhando
+    &e/{comando} remover &8- &7retira a maquina que voce esta olhando
+
+Maquina:
+  Sem acesso: '&cEsta maquina nao e sua.'
+  Apenas o dono: '&cSo o dono da maquina pode fazer isso.'
+  Tipo inexistente: '&cA maquina &f{tipo} &cnao existe.'
+  Nao existe mais: '&cEsta maquina nao existe mais.'
+  Ligou: '&aMaquina ligada.'
+  Desligou: '&7Maquina desligada.'
+  Holograma ligado: '&aHolograma visivel.'
+  Holograma desligado: '&7Holograma escondido.'
+
+Colocar:
+  Colocou: '&aVoce colocou &f{quantidade}x {maquina}&a. Abasteca para ela comecar!'
+  Sem permissao: '&cVoce nao pode colocar {maquina}&c.'
+  Mundo bloqueado: '&cNao da para colocar maquinas neste mundo.'
+  Bloco proibido embaixo: '&cNao da para colocar uma maquina em cima deste bloco.'
+  Aguarde: '&cAguarde &f{tempo} &cpara colocar outra maquina.'
+  Limite: '&cVoce chegou no limite de maquinas: &f{atual}&c/&f{limite}&c.'
+  Tipo diferente perto: '&cHa uma maquina de outro tipo sua a menos de &f{raio} &cblocos.'
+
+Empilhar:
+  Empilhou: '&a+{quantidade}x {maquina}&a. Agora sao &f{stack}&a.'
+  Juntou perto: '&aSua {maquina} &afoi juntada na que ja estava perto: agora sao &f{stack}&a.'
+  Maximo: '&cEsta maquina ja esta no maximo de &f{maximo}&c.'
+  Tipo diferente: '&cSo da para empilhar maquinas do mesmo tipo.'
+  Infinito diferente: '&cNao da para misturar maquina com combustivel infinito com uma normal.'
+
+Virtual:
+  Ativou: '&dVirtual: &f{quantidade}x {maquina} &dno seu menu &8(slots {usados}/{slots})&d. Abra com &f/maquinas&d.'
+  Empilhou: '&d+{quantidade}x {maquina} &dna sua virtual. Agora sao &f{stack}&d.'
+  Sem slot: '&cSeus slots de maquina virtual estao cheios (&f{usados}&c/&f{slots}&c). Retire uma ou ganhe mais slots.'
+  Nao pode: '{maquina} &cnao pode ser virtual: coloque no chao.'
+  Sem combustivel: '&eAs maquinas virtuais deste servidor nao usam combustivel.'
+  Segure a maquina: '&cSegure o item da maquina na mao.'
+
+Quebrar:
+  Toque suave: '&cVoce precisa de uma picareta com Toque Suave para quebrar a maquina.'
+
+Remover:
+  Removeu: '&aVoce retirou &f{quantidade}x {maquina}&a.'
+  Longe: '&cChegue perto da maquina (chunk carregado) para retirar todas.'
+  Tipo apagado: '&eEsta maquina era do tipo &f{tipo}&e, que nao existe mais. Ela foi tirada.'
+
+Combustivel:
+  Abasteceu: '&a+{litros}L de {combustivel}&a. Tanque: &f{tanque}&a.'
+  Abasteceu inventario: '&aVoce usou &f{itens} &acombustivel(is). Tanque: &f{tanque}&a.'
+  Tanque cheio: '&eO tanque desta maquina ja esta cheio.'
+  Nao aceita: '&c{maquina} &cnao aceita {combustivel}&c.'
+  Inexistente: '&cEsse combustivel nao existe.'
+  Somente dono: '&cEste combustivel e de &f{dono}&c: so ele pode usar.'
+  Ja infinita: '&eEsta maquina ja tem combustivel infinito.'
+  Ficou infinita: '&d&l{maquina} &dagora tem combustivel INFINITO!'
+  Sem no inventario: '&cVoce nao tem combustivel para ela no inventario. Ela aceita: {combustiveis}&c.'
+  Clique na maquina: '&eClique numa maquina com o combustivel na mao.'
+  Juntou: '&aJuntou {combustivel} &aem um item com &f{litros}L&a.'
+  Nada para juntar: '&eVoce nao tem combustiveis repetidos para juntar.'
+
+Venda:
+  Vendeu: '&aVendeu &f{quantidade}x {drop} &apor &f{valor} &8(bonus {bonus}%)&a.'
+  Vendeu tudo: '&aVendeu &f{quantidade} &adrops de todas as maquinas por &f{valor} &8(bonus {bonus}%)&a.'
+  Automatica: '&8[Auto] &7Vendeu &f{quantidade}x {drop} &7por &a{valor}&7.'
+  Sem drops: '&eNao ha drops para isso.'
+  Nao vende: '&cOs drops desta maquina nao podem ser vendidos.'
+  Falhou: '&cNao foi possivel vender agora. Tente de novo.'
+  Automatica ligada: '&aVenda automatica ligada. Taxa: &f{taxa}%&a.'
+  Automatica desligada: '&7Venda automatica desligada.'
+  Automatica sem permissao: '&cVoce nao tem permissao para ligar a venda automatica.'
+
+Coleta:
+  Coletou: '&aColetou &f{quantidade}x {drop}&a. Restam &f{restam}&a.'
+  Coletou tudo: '&aColetou &f{quantidade} &adrops de todas as maquinas.'
+  Coletou tudo cheio: '&eColetou &f{quantidade} &edrops e seu inventario encheu.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+  Nao coleta: '&cOs drops desta maquina so podem ser vendidos.'
+
+Upgrade:
+  Comprou: '&a+{niveis} nivel(is) de {upgrade} &a({nivel}/{maximo}) por &f{valor}&a.'
+  Maximo: '&eEste upgrade ja esta no maximo.'
+  Desligado: '&cEste upgrade nao existe para esta maquina.'
+
+Conserto:
+  Consertou: '&a{maquina} &aconsertada por &f{valor}&a!'
+  Nao quebrada: '&eEsta maquina nao esta quebrada.'
+
+Booster:
+  Venda ativado: '&aBooster de venda ativado: &f+{bonus}% &adurante &f{tempo}&a.'
+  Drops ativado: '&aBooster de drops em {maquina}&a: &f+{bonus}% &adurante &f{tempo}&a.'
+  Velocidade ativado: '&bBooster de velocidade em {maquina}&b: &f+{bonus}% &bdurante &f{tempo}&b.'
+  Ja ativo: '&cJa ha um booster desse tipo ativo (acaba em &f{tempo}&c).'
+  Clique na maquina: '&eEste booster e de maquina: clique numa maquina com ele na mao.'
+  Invalido: '&cEsse booster nao existe.'
+
+Limite:
+  Ativou compra: '&a+{quantidade} de limite de compra. Agora: &f{limite}&a.'
+  Ativou colocadas: '&a+{quantidade} de limite de maquinas. Agora: &f{limite}&a.'
+  Ativou slots: '&d+{quantidade} slot(s) de maquina virtual. Agora: &f{limite}&d.'
+  Maximo: '&cVoce ja esta no limite maximo de compra (&f{maximo}&c).'
+  Maximo slots: '&cVoce ja tem o maximo de slots virtuais (&f{maximo}&c).'
+  Juntou: '&aSeus itens de limite viraram um so: &f+{quantidade}&a.'
+  Seus limites: |
+    &6&lSeus limites
+    &7Maquinas colocadas: &f{colocadas}&7/&f{limite_colocadas}
+    &7Compra por vez na loja: &f{limite_compra}
+    &7Slots de maquina virtual: &f{slots_usados}&7/&f{slots}
+
+Loja:
+  Comprou: '&aVoce comprou &f{quantidade}x {nome} &apor &f{preco}&a.'
+  Sem permissao: '&cVoce nao pode comprar isso.'
+  Ainda bloqueada: '&cAinda nao liberado. Falta &f{falta}&c.'
+  Acima do limite: '&eSeu limite de compra e &f{limite}&e; comprando essa quantidade.'
+
+Amigos:
+  Adicionou: '&a{amigo} &aagora usa suas maquinas.'
+  Foi adicionado: '&a{dono} &ate adicionou como amigo nas maquinas dele.'
+  Removeu: '&7{amigo} &7nao e mais seu amigo nas maquinas.'
+  Maximo: '&cVoce ja tem o maximo de &f{maximo} &camigos.'
+  Nao encontrado: '&cNao achei &f{amigo}&c. Ele precisa estar online (ou ja ter entrado no servidor).'
+  Voce mesmo: '&cVoce nao pode se adicionar.'
+  Ja e amigo: '&e{amigo} &eja e seu amigo.'
+  Nao e amigo: '&c{amigo} &cnao esta na sua lista de amigos.'
+
+Painel:
+  Sem gerenciar de longe: '&cVoce precisa ir ate a maquina para abrir o painel dela.'
+  Abasteceu todas: '&aUsou &f{itens} &acombustivel(is) em &f{maquinas} &amaquina(s).'
+  Nada para abastecer: '&eNada para abastecer: sem combustivel no inventario ou os tanques estao cheios.'
+  Abastecer em massa desligado: '&cO abastecimento em massa esta desligado neste servidor.'
+  Avisos ligados: '&aAvisos das maquinas ligados.'
+  Avisos desligados: '&7Avisos das maquinas desligados.'
+
+# Avisos ao dono quando a maquina para. Cada um em CHAT, ACTIONBAR e TITULO
+# (as formas ligadas ficam em config.yml -> Avisos.Formas).
+# {maquina} {local} {mundo} {x} {y} {z}
+Avisos:
+  Sem combustivel:
+    Chat: '&e{maquina} &eficou sem combustivel &8({local})&e.'
+    Actionbar: '&e{maquina} &esem combustivel!'
+    Titulo: '&eSem combustivel<nl>{maquina}'
+  Quebrou:
+    Chat: '&c{maquina} &cquebrou &8({local})&c! Conserte no painel dela.'
+    Actionbar: '&c{maquina} &cquebrou!'
+    Titulo: '&cMaquina quebrada<nl>{maquina}'
+  Armazem cheio:
+    Chat: '&6{maquina} &6esta com o armazem cheio &8({local})&6. Venda ou colete os drops.'
+    Actionbar: '&6{maquina} &6com o armazem cheio!'
+    Titulo: '&6Armazem cheio<nl>{maquina}'
+  Resumo da venda automatica: '&a+{valor} &7com a venda automatica no ultimo minuto'
+
+Confirmar:
+  Remover: '&cRetirar {quantidade}x {maquina}'
+  Comprar: '&aComprar {quantidade}x {nome} por {preco}'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&7Cancelado.'
+  Tempo esgotado: '&7O tempo para responder acabou.'
+  Quantos comprar: '&eQuantas unidades de {nome}&e? &7(seu limite: &f{limite}&7)'
+  Quantos coletar: '&eQuantos drops coletar? &7(ha &f{drops}&7; digite &ftudo &7para todos)'
+  Quantas remover: '&eQuantas maquinas retirar? &7(ha &f{stack}&7; digite &ftudo &7para todas)'
+  Nome do amigo: '&eDigite o nick do amigo:'
+
+Editor:
+  Aberto: '&7Editor aberto. As mudancas sao gravadas e valem na hora. &8(Ate a 1.17 o arquivo perde os comentarios ao gravar.)'
+  Digite: '&eDigite o novo valor de &f{campo}&e. &7Atual: &f{atual}&7. &8(- deixa vazio)'
+  Nova chave: '&eDigite a chave (id) do novo item: so letras, numeros e _.'
+
+Admin:
+  Recarregou: '&aArquivos recarregados.'
+  Deu: '&aVoce deu &f{quantidade}x {item} &apara &f{jogador}&a.'
+  Recebeu: '&aVoce recebeu &f{quantidade}x {item}&a.'
+  Limite alterado: '&aLimite extra de {tipo} de &f{jogador}&a agora e &f{quantidade}&a.'
+  Uso dar: '&cUse: /{comando} dar <jogador|todos> <maquina> [quantidade] [compactar]'
+  Uso combustivel: '&cUse: /{comando} combustivel <jogador|todos> <combustivel> [quantidade]'
+  Uso booster: '&cUse: /{comando} booster <jogador|todos> <booster> [quantidade]'
+  Uso limite: '&cUse: /{comando} limite <dar|adicionar|definir> <jogador> <compra|colocadas|slots> <quantidade>'
+  Olhe para uma maquina: '&cOlhe para uma maquina (ate 6 blocos).'
+  Verificar sem problemas: '&aConfiguracao sem problemas! &7({maquinas} maquinas, {combustiveis} combustiveis)'
+  Verificar com problemas: '&c{quantidade} problema(s) na configuracao:'
+  Info: |
+    &6&l{nome} &8({id})
+    &7Dono: &f{dono} &8| &7Stack: &f{stack} &8| {status}
+    &7Combustivel: &f{combustivel}&7/&f{tanque} &8| &7Infinito: {infinito}
+    &7Drops: &f{drops}&7/&f{armazem} &8| &7Por hora: &f{drops_hora}
+    &7Upgrades: &fT{tanque_nivel} D{drops_nivel} V{velocidade_nivel} Du{durabilidade_nivel} A{armazem_nivel} S{sorte_nivel}
+    &7Local: &f{mundo} {x}, {y}, {z}
+
+Itens:
+  # Nome do item de maquina compactado (vale varias).
+  Nome compactado: '{nome} &7(x{quantidade})'
+  # Linhas acrescentadas no item da maquina com combustivel infinito.
+  Linhas de infinito:
+    - '&d&l✦ Combustivel infinito'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  E: ' e '
+  Nenhum: '&8nenhum'
+  Ninguem: 'qualquer um'
+  Qualquer: '&fqualquer um'
+  Ordinal: 'º'
+  Ranking vazio: '---'
+  Virtual: '&dVirtual'
+  Ranking Colocadas: 'Maquinas colocadas'
+  Ranking Vendido: 'Mais vendido'
+  Ranking Compradas: 'Maquinas compradas'
+  Upgrade Tanque: '&eTanque'
+  Upgrade Drops: '&aDrops'
+  Upgrade Velocidade: '&bVelocidade'
+  Upgrade Durabilidade: '&6Durabilidade'
+  Upgrade Armazem: '&2Armazem'
+  Upgrade Sorte: '&dSorte'
