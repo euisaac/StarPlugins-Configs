@@ -1,0 +1,857 @@
+# Menus do StarAltarMistico.
+#
+# Cada botao tem Slot, Material, Nome e Lore.
+#  - Slot: -1 esconde o botao.
+#  - Material: '' (vazio) = o plugin escolhe (o icone do altar, o ovo da entidade...).
+#  - Linhas: tamanho do menu (1 a 6).
+#  - Enfeite: vidro que preenche os espacos vazios.
+# Nos menus de lista, "Slots" diz onde os itens aparecem (padrao: as 5 primeiras linhas).
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+# Nao mexa: quando o modelo muda, o arquivo antigo e guardado ao lado e um
+# novo e criado.
+Versao do modelo: 1
+
+# Botoes que se repetem em todos os menus.
+Navegacao:
+  Voltar:
+    Material: RED_DYE
+    Nome: '&cVoltar'
+    Lore: []
+  Fechar:
+    Material: RED_DYE
+    Nome: '&cFechar'
+    Lore: []
+  Anterior:
+    Material: ARROW
+    Nome: '&ePagina anterior'
+    Lore:
+      - '&7Ir para a pagina {pagina}'
+  Proxima:
+    Material: ARROW
+    Nome: '&eProxima pagina'
+    Lore:
+      - '&7Ir para a pagina {pagina}'
+
+# ---------------------------------------------------------------- staff
+
+Principal:
+  Titulo: '&8Altares misticos'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Altar:
+    Nome: '{altar}'
+    Lore:
+      - '&8{id}'
+      - ''
+      - '&7Ciclo: &f{ciclo}'
+      - '&7Jogadores minimos: &f{minimo}'
+      - '&7Recompensas: &f{recompensas} &8({drops} por vez)'
+      - '&7Guardiao: {guardiao}'
+      - '&7Colocados no mundo: &f{colocados}'
+      - ''
+      - '&eEsquerdo &7editar'
+      - '&eDireito &7pegar item de colocar'
+      - '&eShift + esquerdo &7ver os colocados'
+      - '&eShift + direito &7forcar liberacao'
+  Vazio:
+    Material: PAPER
+    Nome: '&7Nenhum altar criado'
+    Lore:
+      - '&7Clique em &aCriar altar &7para comecar.'
+  Itens:
+    Colocados:
+      Material: COMPASS
+      Nome: '&eAltares colocados'
+      Lore:
+        - '&7Todos os altares no mundo: &f{colocados}'
+        - '&7Teleporte, force ou remova.'
+    Criar:
+      Material: NETHER_STAR
+      Nome: '&aCriar altar'
+      Lore:
+        - '&7Cria um altar novo e abre o editor.'
+    Recarregar:
+      Material: CLOCK
+      Nome: '&eRecarregar arquivos'
+      Lore:
+        - '&7Rele config, mensagens, menus e altares.'
+    Ajuda:
+      Material: BOOK
+      Nome: '&bComo usar'
+      Lore:
+        - '&7Passo a passo para montar um altar.'
+
+Editor:
+  Titulo: '&8Editando {id}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Icone:
+      Slot: 10
+      Material: ''
+      Nome: '&aIcone'
+      Lore:
+        - '&7O item que representa o altar'
+        - '&7nos menus e no item de colocar.'
+        - ''
+        - '&eClique com o ESQUERDO num item'
+        - '&edo seu inventario para trocar.'
+    Nome:
+      Slot: 11
+      Material: NAME_TAG
+      Nome: '&aNome'
+      Lore:
+        - '&7Atual: {altar}'
+        - ''
+        - '&eClique para mudar'
+    Aparencia:
+      Slot: 12
+      Material: ''
+      Nome: '&aAparencia'
+      Lore:
+        - '&7Modo: &f{modo}'
+        - '&7Bloco: &f{bloco}'
+        - '&7Entidade: &f{entidade} &8(altura {altura})'
+        - ''
+        - '&eEsquerdo &7alternar bloco/entidade'
+        - '&eDireito &7escolher a entidade'
+        - '&eShift + esq/dir &7altura da entidade'
+        - '&eQ &7digitar o bloco'
+        - '&eDireito num bloco do inventario &7usa ele'
+    Holograma:
+      Slot: 13
+      Material: ARMOR_STAND
+      Nome: '&aHolograma'
+      Lore:
+        - '&7Ligado: {ativo}'
+        - '&7Altura: &f{altura}'
+        - '&7Linhas: &f{linhas}'
+        - ''
+        - '&eClique para editar as linhas'
+    Barra:
+      Slot: 14
+      Material: NAME_TAG
+      Nome: '&aBarra de progresso'
+      Lore:
+        - '&7Simbolo: &f{simbolo}'
+        - '&7Quantidade: &f{quantidade}'
+        - '&7Cores: {cheia}cheia {vazia}vazia'
+        - ''
+        - '&eEsquerdo &7trocar o simbolo'
+        - '&eDireito &7+1 &8| &eShift + direito &7-1'
+        - '&eShift + esquerdo &7+5'
+        - '&eQ &7trocar as cores'
+    Efeitos:
+      Slot: 15
+      Material: BLAZE_POWDER
+      Nome: '&aEfeitos e avisos'
+      Lore:
+        - '&7Particulas, sons e as mensagens'
+        - '&7que o altar manda.'
+        - ''
+        - '&eClique para abrir'
+    Anuncios:
+      Slot: 16
+      Material: JUKEBOX
+      Nome: '&aAnuncios'
+      Lore:
+        - '&7Avisos de "falta pouco".'
+        - '&7Cadastrados: &f{anuncios}'
+        - ''
+        - '&eClique para abrir'
+    Ciclo:
+      Slot: 19
+      Material: COMPARATOR
+      Nome: '&aModo do ciclo'
+      Lore:
+        - '&7Atual: &f{modo}'
+        - ''
+        - '&fIntervalo&7: libera a cada X tempo'
+        - '&7(o tempo so corre com jogadores perto).'
+        - '&fHorarios&7: libera em horas certas do dia.'
+        - ''
+        - '&eClique para alternar'
+    Tempo:
+      Slot: 20
+      Material: CLOCK
+      Nome: '&aIntervalo'
+      Lore:
+        - '&7Atual: &f{tempo}'
+        - ''
+        - '&eEsquerdo/Direito &7+10s / -10s'
+        - '&eShift &7+1min / -1min'
+        - '&eQ &7digitar (ex.: 5m, 1h30m)'
+    Horarios:
+      Slot: 21
+      Material: PAPER
+      Nome: '&aHorarios'
+      Lore:
+        - '&7Atuais: &f{horarios}'
+        - ''
+        - '&eClique &7digitar (ex.: 12:00, 18:30)'
+        - '&eShift + direito &7limpar'
+    Jogadores:
+      Slot: 22
+      Material: PLAYER_HEAD
+      Nome: '&aJogadores minimos'
+      Lore:
+        - '&7Atual: &f{minimo}'
+        - '&7Sem esse tanto de gente no raio,'
+        - '&7o altar fica aguardando. 0 desliga.'
+        - ''
+        - '&eEsquerdo/Direito &7+1 / -1'
+        - '&eShift &7+5 / -5 &8| &eQ &7digitar'
+    Raio:
+      Slot: 23
+      Material: BEACON
+      Nome: '&aRaio de checagem'
+      Lore:
+        - '&7Horizontal: &f{x} blocos'
+        - '&7Altura: &f{y} blocos'
+        - ''
+        - '&eEsquerdo/Direito &7+1 / -1'
+        - '&eShift &7+5 / -5 &8| &eQ &7digitar'
+    Altura do raio:
+      Slot: 24
+      Material: LADDER
+      Nome: '&aAltura do raio'
+      Lore:
+        - '&7Atual: &f{y} blocos para cima e para baixo'
+        - ''
+        - '&eEsquerdo/Direito &7+1 / -1'
+        - '&eShift &7+5 / -5 &8| &eQ &7digitar'
+    Quantidade:
+      Slot: 25
+      Material: EMERALD
+      Nome: '&aQuantidade de drops'
+      Lore:
+        - '&7Recompensas sorteadas por vez: &f{quantidade}'
+        - '&8(no modo chance individual nao conta)'
+        - ''
+        - '&eEsquerdo/Direito &7+1 / -1'
+        - '&eShift &7+5 / -5 &8| &eQ &7digitar'
+    Recompensas:
+      Slot: 28
+      Material: CHEST
+      Nome: '&aRecompensas'
+      Lore:
+        - '&7Cadastradas: &f{recompensas}'
+        - ''
+        - '&eClique para abrir'
+    Sorteio:
+      Slot: 29
+      Material: HOPPER
+      Nome: '&aModo de sorteio'
+      Lore:
+        - '&7Atual: &f{modo}'
+        - ''
+        - '&fSorteio por peso&7: sorteia X recompensas,'
+        - '&7quem tem mais peso sai mais.'
+        - '&fChance individual&7: cada recompensa'
+        - '&7tem a sua chance em %, independente.'
+        - ''
+        - '&eClique para alternar'
+    Sem repetir:
+      Slot: 30
+      Material: REPEATER
+      Nome: '&aSem repetir'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7A mesma recompensa nao sai duas'
+        - '&7vezes na mesma liberacao.'
+        - ''
+        - '&eClique para alternar'
+    Jogar para cima:
+      Slot: 31
+      Material: SLIME_BLOCK
+      Nome: '&aJogar para cima'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7Forca: &f{forca}'
+        - ''
+        - '&eEsquerdo &7ligar/desligar'
+        - '&eDireito/Shift + direito &7forca + / -'
+    Raio visual:
+      Slot: 32
+      Material: BLAZE_ROD
+      Nome: '&aRaio ao liberar'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7So o efeito: nao queima nem fere.'
+        - ''
+        - '&eClique para alternar'
+    Sumir:
+      Slot: 33
+      Material: CAULDRON
+      Nome: '&aSumir itens do chao'
+      Lore:
+        - '&7Depois de: &f{tempo}'
+        - '&7Itens que ninguem pegou somem (anti-lag).'
+        - ''
+        - '&eEsquerdo/Direito &7+30s / -30s'
+        - '&eShift &7+5min / -5min &8| &eQ &7digitar'
+    Guardiao:
+      Slot: 34
+      Material: WITHER_SKELETON_SKULL
+      Nome: '&aGuardiao'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7Entidade: &f{entidade} &8| &7Vida: &f{vida}'
+        - '&7Os itens so saem quando ele for derrotado.'
+        - ''
+        - '&eClique para abrir'
+    Pegar item:
+      Slot: 46
+      Material: END_PORTAL_FRAME
+      Nome: '&ePegar item de colocar'
+      Lore:
+        - '&7Clique com ele num bloco para colocar.'
+        - '&eShift &7pega 16'
+    Colocar aqui:
+      Slot: 47
+      Material: GRASS_BLOCK
+      Nome: '&eColocar onde estou olhando'
+      Lore:
+        - '&7Coloca o altar em cima do bloco'
+        - '&7que voce esta olhando.'
+    Colocados:
+      Slot: 48
+      Material: COMPASS
+      Nome: '&eAltares colocados'
+      Lore:
+        - '&7Deste tipo: &f{colocados}'
+    Forcar:
+      Slot: 49
+      Material: TNT
+      Nome: '&cForcar liberacao'
+      Lore:
+        - '&7Libera agora todos deste tipo,'
+        - '&7ignorando o minimo de jogadores.'
+        - ''
+        - '&eEsquerdo &7normal (com guardiao)'
+        - '&eDireito &7direto, sem guardiao'
+    Previa:
+      Slot: 50
+      Material: ENDER_EYE
+      Nome: '&bVer como jogador'
+      Lore:
+        - '&7O que os jogadores veem ao'
+        - '&7clicar no altar.'
+    Deletar:
+      Slot: 53
+      Material: LAVA_BUCKET
+      Nome: '&4Excluir altar'
+      Lore:
+        - '&7Remove todos os colocados e manda'
+        - '&7o arquivo para altares/excluidos/.'
+
+Recompensas:
+  Titulo: '&8Recompensas de {id}'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+  Recompensa:
+    # Linhas coladas embaixo da lore do proprio item.
+    Lore:
+      - ''
+      - '&7Chance: &a{chance} &8(peso {peso})'
+      - '&7Quantidade: &f{quantidade}'
+      - '&7Anunciar como raro: {anunciar}'
+      - '&7Comandos:'
+      - '{comandos}'
+      - ''
+      - '&eEsquerdo &7editar'
+      - '&eShift + esquerdo &7pegar copia'
+      - '&eShift + direito &7remover'
+  Vazio:
+    Material: PAPER
+    Nome: '&7Nenhuma recompensa'
+    Lore:
+      - '&7Clique num item do SEU inventario'
+      - '&7para adicionar.'
+  Itens:
+    Como adicionar:
+      Material: BOOK
+      Nome: '&bComo adicionar'
+      Lore:
+        - '&7Clique em qualquer item do seu'
+        - '&7inventario com este menu aberto.'
+    Adicionar comando:
+      Material: COMMAND_BLOCK
+      Nome: '&aAdicionar comando'
+      Lore:
+        - '&7Recompensa que roda um comando'
+        - '&7(dinheiro, chave, VIP...).'
+    Testar:
+      Material: DIAMOND
+      Nome: '&dTestar sorteio'
+      Lore:
+        - '&7Sorteia uma vez e mostra no chat,'
+        - '&7sem entregar nada.'
+        - '&7Modo: &f{modo} &8({drops} por vez)'
+
+Recompensa:
+  Titulo: '&8Recompensa #{numero}'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Item:
+      Slot: 13
+      Lore:
+        - ''
+        - '&7Chance: &a{chance}'
+        - '&7Quantidade: &f{quantidade}'
+        - ''
+        - '&eClique num item do inventario &7troca'
+        - '&eClique aqui &7pega uma copia'
+    Peso:
+      Material: EMERALD
+      Nome: '&aPeso'
+      Lore:
+        - '&7Peso: &f{peso} &8(chance {chance})'
+        - '&7Quanto maior, mais vezes sai.'
+        - ''
+        - '&eEsquerdo/Direito &7+1 / -1'
+        - '&eShift &7+10 / -10 &8| &eQ &7digitar'
+    Chance:
+      Material: EMERALD
+      Nome: '&aChance'
+      Lore:
+        - '&7Chance: &f{chance}'
+        - '&7Cada liberacao rola essa chance.'
+        - ''
+        - '&eEsquerdo/Direito &7+1% / -1%'
+        - '&eShift &7+10% / -10% &8| &eQ &7digitar'
+    Minimo:
+      Material: GOLD_NUGGET
+      Nome: '&aQuantidade minima'
+      Lore:
+        - '&7Atual: &f{minimo}'
+        - ''
+        - '&eEsquerdo/Direito &7+1 / -1 &8| &eShift &7+8 / -8'
+    Maximo:
+      Material: GOLD_INGOT
+      Nome: '&aQuantidade maxima'
+      Lore:
+        - '&7Atual: &f{maximo}'
+        - '&7A quantidade sai entre o minimo e o maximo.'
+        - ''
+        - '&eEsquerdo/Direito &7+1 / -1 &8| &eShift &7+8 / -8'
+    Anunciar:
+      Material: BEACON
+      Nome: '&aAnunciar como raro'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7Avisa o servidor inteiro quando sair.'
+        - ''
+        - '&eClique para alternar'
+    Nome:
+      Material: NAME_TAG
+      Nome: '&aNome nos avisos'
+      Lore:
+        - '&7Atual: {nome}'
+        - ''
+        - '&eClique &7digitar &8| &eShift + direito &7limpar'
+    Comandos:
+      Material: COMMAND_BLOCK
+      Nome: '&aComandos'
+      Lore:
+        - '&7Rodam pelo console quando sair.'
+        - '{comandos}'
+        - ''
+        - '&eEsquerdo &7adicionar'
+        - '&eDireito &7tirar o ultimo'
+        - '&eShift + direito &7limpar'
+    Excluir:
+      Material: LAVA_BUCKET
+      Nome: '&4Excluir recompensa'
+      Lore: []
+
+Holograma:
+  Titulo: '&8Holograma de {id}'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+  Linha:
+    Material: PAPER
+    Lore:
+      - ''
+      - '&eEsquerdo &7editar'
+      - '&eDireito &7inserir linha abaixo'
+      - '&eShift + esquerdo &7subir'
+      - '&eShift + direito &7remover'
+  Itens:
+    Adicionar:
+      Material: WRITABLE_BOOK
+      Nome: '&aAdicionar linha'
+      Lore:
+        - '&7Acrescenta no fim.'
+    Lista:
+      Material: BOOKSHELF
+      Nome: '&eEditando: {lista}'
+      Lore:
+        - '&7O altar mostra uma lista diferente'
+        - '&7em cada momento:'
+        - '&f Contando &7- tempo correndo'
+        - '&f Aguardando jogadores &7- falta gente'
+        - '&f Guardiao vivo &7- durante a batalha'
+        - ''
+        - '&eClique para trocar'
+    Ativar:
+      Material: LEVER
+      Nome: '&aHolograma ligado'
+      Lore:
+        - '&7Ligado: {estado}'
+    Altura:
+      Material: LADDER
+      Nome: '&aAltura'
+      Lore:
+        - '&7Atual: &f{altura} blocos acima do altar'
+        - ''
+        - '&eEsquerdo/Direito &7+0.1 / -0.1'
+        - '&eShift &7+0.5 / -0.5'
+    Placeholders:
+      Material: BOOK
+      Nome: '&bPlaceholders'
+      Lore:
+        - '&7Clique para ver a lista no chat.'
+
+Anuncios:
+  Titulo: '&8Anuncios de {id}'
+  Linhas: 4
+  Enfeite:
+    Ativar: false
+  Anuncio:
+    Material: CLOCK
+    Nome: '&e{tempo} antes'
+    Lore:
+      - '&7Mensagem:'
+      - '&f{mensagem}'
+      - ''
+      - '&eEsquerdo &7mudar a mensagem'
+      - '&eDireito &7mudar o tempo'
+      - '&eShift + direito &7remover'
+  Vazio:
+    Material: PAPER
+    Nome: '&7Nenhum anuncio'
+    Lore: []
+  Itens:
+    Adicionar:
+      Material: WRITABLE_BOOK
+      Nome: '&aAdicionar anuncio'
+      Lore:
+        - '&7Digite: &f<tempo> <mensagem>'
+
+Efeitos:
+  Titulo: '&8Efeitos de {id}'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Particula:
+      Material: BLAZE_POWDER
+      Nome: '&aParticula em volta'
+      Lore:
+        - '&7Atual: &f{valor}'
+        - ''
+        - '&eClique &7digitar &8| &eShift + direito &7desligar'
+    Particula ao liberar:
+      Material: FIREWORK_ROCKET
+      Nome: '&aParticula ao liberar'
+      Lore:
+        - '&7Atual: &f{valor}'
+        - ''
+        - '&eClique &7digitar &8| &eShift + direito &7desligar'
+    Som ao liberar:
+      Material: NOTE_BLOCK
+      Nome: '&aSom ao liberar'
+      Lore:
+        - '&7Atual: &f{valor}'
+        - ''
+        - '&eEsquerdo &7digitar &8| &eDireito &7ouvir'
+        - '&eShift + direito &7desligar'
+    Som do anuncio:
+      Material: NOTE_BLOCK
+      Nome: '&aSom dos anuncios'
+      Lore:
+        - '&7Atual: &f{valor}'
+        - ''
+        - '&eEsquerdo &7digitar &8| &eDireito &7ouvir'
+        - '&eShift + direito &7desligar'
+    Som do guardiao:
+      Material: NOTE_BLOCK
+      Nome: '&aSom do guardiao'
+      Lore:
+        - '&7Atual: &f{valor}'
+        - ''
+        - '&eEsquerdo &7digitar &8| &eDireito &7ouvir'
+        - '&eShift + direito &7desligar'
+    Alcance:
+      Material: COMPASS
+      Nome: '&aQuem recebe os avisos'
+      Lore:
+        - '&7Atual: &f{alcance}'
+        - '&7Distancia (modo perto): &f{distancia} blocos'
+        - ''
+        - '&eEsquerdo &7alternar'
+        - '&eDireito/Shift + direito &7distancia + / -'
+    Liberou:
+      Material: PAPER
+      Nome: '&aAviso ao liberar'
+      Lore:
+        - '&f{valor}'
+        - ''
+        - '&eClique &7digitar &8| &eShift + direito &7desligar'
+    Titulo:
+      Material: PAPER
+      Nome: '&aTitulo ao liberar'
+      Lore:
+        - '&f{valor}'
+        - ''
+        - '&eClique &7digitar &8| &eShift + direito &7desligar'
+    Guardiao surgiu:
+      Material: PAPER
+      Nome: '&aAviso: guardiao surgiu'
+      Lore:
+        - '&f{valor}'
+        - ''
+        - '&eClique &7digitar &8| &eShift + direito &7desligar'
+    Guardiao derrotado:
+      Material: PAPER
+      Nome: '&aAviso: guardiao derrotado'
+      Lore:
+        - '&f{valor}'
+        - ''
+        - '&eClique &7digitar &8| &eShift + direito &7desligar'
+    Guardiao fugiu:
+      Material: PAPER
+      Nome: '&aAviso: guardiao fugiu'
+      Lore:
+        - '&f{valor}'
+        - ''
+        - '&eClique &7digitar &8| &eShift + direito &7desligar'
+
+Guardiao:
+  Titulo: '&8Guardiao de {id}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Ativar:
+      Material: LEVER
+      Nome: '&aGuardiao ligado'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7Quando o tempo acaba, o altar invoca'
+        - '&7o guardiao. Os itens so saem quando'
+        - '&7alguem derrotar ele.'
+        - ''
+        - '&eClique para alternar'
+    Entidade:
+      Material: ''
+      Nome: '&aEntidade'
+      Lore:
+        - '&7Atual: &f{entidade}'
+        - ''
+        - '&eClique para escolher'
+    Nome:
+      Material: NAME_TAG
+      Nome: '&aNome'
+      Lore:
+        - '&7Atual: {nome}'
+        - ''
+        - '&eClique para mudar'
+    Vida:
+      Material: GOLDEN_APPLE
+      Nome: '&aVida'
+      Lore:
+        - '&7Atual: &f{vida}'
+        - ''
+        - '&eEsquerdo/Direito &7+10 / -10'
+        - '&eShift &7+100 / -100 &8| &eQ &7digitar'
+    Tempo limite:
+      Material: CLOCK
+      Nome: '&aTempo para derrotar'
+      Lore:
+        - '&7Atual: &f{tempo}'
+        - '&7Passou do tempo, o guardiao foge'
+        - '&7e ninguem ganha nada.'
+        - ''
+        - '&eEsquerdo/Direito &7+30s / -30s'
+        - '&eShift &7+5min / -5min &8| &eQ &7digitar'
+    Prender:
+      Material: LEAD
+      Nome: '&aPreso ao raio do altar'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7Se ele sair do raio, volta para o altar.'
+    Drop onde morreu:
+      Material: HOPPER
+      Nome: '&aItens onde ele morreu'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7Desligado: os itens saem do altar.'
+    Drops normais:
+      Material: ROTTEN_FLESH
+      Nome: '&aDrops normais do mob'
+      Lore:
+        - '&7Ligado: {estado}'
+        - '&7O que o mob deixaria cair (e o XP).'
+    Copiar:
+      Material: ARMOR_STAND
+      Nome: '&aCopiar meu equipamento'
+      Lore:
+        - '&7Vista a armadura e segure a arma'
+        - '&7que o guardiao deve usar e clique.'
+        - '&7O equipamento atual aparece embaixo.'
+        - ''
+        - '&eClique &7copiar &8| &eShift + direito &7limpar'
+    Holograma:
+      Material: ARMOR_STAND
+      Nome: '&aHolograma do guardiao'
+      Lore:
+        - '&7Linhas mostradas durante a batalha: &f{linhas}'
+        - ''
+        - '&eClique para editar'
+
+Entidades:
+  Titulo: '&8Escolha a entidade'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+  Entidade:
+    Lore:
+      - ''
+      - '&eClique para escolher'
+
+Colocados:
+  Titulo: '&8Altares colocados'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+  Altar:
+    Nome: '&f#{numero} {altar}'
+    Lore:
+      - '&7Local: &f{mundo} {x}, {y}, {z}'
+      - '&7Estado: {estado}'
+      - '&7Proxima liberacao: &e{tempo}'
+      - '&7Jogadores perto: &f{jogadores}/{minimo}'
+      - '&7Liberacoes desde o inicio: &f{liberacoes}'
+      - ''
+      - '&eEsquerdo &7teleportar'
+      - '&eDireito &7forcar liberacao'
+      - '&eShift + esquerdo &7forcar sem guardiao'
+      - '&eShift + direito &7remover do mundo'
+  Vazio:
+    Material: PAPER
+    Nome: '&7Nenhum altar colocado'
+    Lore: []
+
+# ---------------------------------------------------------------- jogadores
+
+Jogador:
+  Titulo: '&8Altares misticos'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  Altar:
+    Nome: '{altar}'
+    Lore:
+      - '&7Local: &f{mundo} {x}, {y}, {z}'
+      - '&7Situacao: {estado}'
+      - '&7Libera em: &e{tempo}'
+      - '&7Jogadores perto: &f{jogadores}/{minimo}'
+      - ''
+      - '&eClique para ver as recompensas'
+    # Acrescentado quando o jogador pode teleportar.
+    Lore teleporte:
+      - '&eDireito para ir ate la'
+  Vazio:
+    Material: PAPER
+    Nome: '&7Nenhum altar no servidor'
+    Lore: []
+
+Previa:
+  Titulo: '&8{altar}'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+  Recompensa:
+    Lore:
+      - ''
+      - '&7Chance: &a{chance}'
+      - '&7Quantidade: &f{quantidade}'
+  Vazio:
+    Material: PAPER
+    Nome: '&7Este altar ainda nao tem recompensas'
+    Lore: []
+  Itens:
+    Info:
+      Material: ''
+      Nome: '{altar}'
+      Lore:
+        - '&7Situacao: {estado}'
+        - '&7Libera em: &e{tempo}'
+        - '&7Precisa de &f{minimo} &7jogador(es) perto.'
+        - '&7Recompensas por vez: &f{drops}'
+        - '&7Guardiao: {guardiao}'
+
+Confirmar:
+  Titulo: '{pergunta}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Confirmar:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&aConfirmar'
+      Lore:
+        - '&7{pergunta}'
+    Cancelar:
+      Slot: 15
+      Material: RED_DYE
+      Nome: '&cCancelar'
+      Lore: []
