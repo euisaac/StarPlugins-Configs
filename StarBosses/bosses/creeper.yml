@@ -1,0 +1,95 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarBosses  ·  Boss "creeper"                    ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Boss "saco de pancada" com PILHA: fica parado, so apanha, e varios ovos
+#  viram um boss so com "x N". Cada vez que a vida zera, morre um (ou quantos
+#  a matadora derrubar por golpe) e a vida volta cheia para o proximo.
+#  Agachado, um golpe mata a pilha inteira (config.yml > pilha).
+#  Os comentarios de cada opcao estao no rei_zumbi.yml.
+
+nome: "&a&lBoss Creeper"
+entidade: CREEPER
+vida: 1000
+modo: PARADO
+dano: 0
+velocidade: -1
+
+opcoes:
+  brilho: false
+  bebe: false
+  tamanho-slime: 1
+  efeitos: []
+  imune-a-dano-do-ambiente: true
+
+equipamento:
+  capacete: ""
+  peitoral: ""
+  calca: ""
+  botas: ""
+  mao: ""
+
+pilha:
+  ativada: true
+  maximo: 0
+
+matadora:
+  # Este so leva dano de matadora.
+  obrigatoria: true
+  aceitas: []
+
+ovo:
+  material: CREEPER_SPAWN_EGG
+  nome: "&a&lBoss Creeper &7(x%quantidade%)"
+  lore:
+    - "&7Vida: &c%vida%"
+    - "&7Quantidade: &f%quantidade%"
+    - ""
+    - "&eClique direito no chao para invocar."
+    - "&eAgachado: invoca todos da mao."
+  brilho: true
+
+exibicao:
+  nome-flutuante: "%nome% &7x%pilha% &c❤ %vida%"
+  barra-ao-bater: "%nome% &7(x%pilha%) &f» &c❤ %vida% &4[-%dano%] %barra%"
+  bossbar:
+    ativada: false
+    cor: GREEN
+    estilo: SOLID
+    texto: "%nome% &7x%pilha% &f- &c%vida%"
+    raio: 15
+
+combate:
+  raio-maximo: 0
+  regenerar-sem-combate: 0
+  sumir-apos-minutos: 0
+
+reacoes:
+  - tipo: EXPLOSAO
+    chance: 3
+    valor: 4
+  - tipo: EMPURRAR
+    chance: 5
+    valor: 1.2
+
+habilidades: []
+fases: []
+
+recompensas:
+  entrega: ARMAZEM
+  quem-recebe: MATADOR
+  participacao-minima: 0
+  sorteios: 1
+  sempre-dar: true
+  lista:
+    - "100 polvora"
+    - "25 ouro"
+    - "2 chave_boss"
+  ranking: {}
+  dinheiro: 100
+  xp: 5
+  comandos: []
+
+anuncios:
+  nascer: false
+  morrer: false

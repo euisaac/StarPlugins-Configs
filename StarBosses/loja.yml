@@ -1,0 +1,45 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                         StarBosses  ·  Loja                          ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  O que se vende no /bosses loja. Precisa do Vault (com um plugin de
+#  economia). Clique esquerdo compra 1; clique direito pergunta a quantidade
+#  no chat.
+#
+#  Cada item:
+#    boss / matadora -> ID (bosses/<id>.yml ou matadoras.yml)
+#    preco           -> preco de 1
+#    permissao       -> "" = todos podem comprar
+#    liberar-em      -> "" = ja liberado. Formato: dd/MM/yyyy HH:mm
+#    slot            -> -1 = o proximo livre
+
+bosses:
+  creeper:
+    boss: creeper
+    preco: 1500
+    permissao: ""
+    liberar-em: ""
+    slot: -1
+  aranha_rainha:
+    boss: aranha_rainha
+    preco: 25000
+    permissao: ""
+    liberar-em: ""
+    slot: -1
+
+matadoras:
+  basica:
+    matadora: basica
+    preco: 5000
+    permissao: ""
+    liberar-em: ""
+    slot: -1
+
+# Desconto por permissao. Vale o MAIOR que o jogador tiver.
+descontos:
+  vip:
+    permissao: "starbosses.desconto.vip"
+    porcentagem: 10
+  mvp:
+    permissao: "starbosses.desconto.mvp"
+    porcentagem: 20

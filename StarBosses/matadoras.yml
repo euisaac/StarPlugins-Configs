@@ -1,0 +1,80 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                       StarBosses  ·  Matadoras                       ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Matadora = espada que bate nos bosses com o dano dela (nao o da espada
+#  normal). Boss com "matadora.obrigatoria: true" so apanha de matadora.
+#  /starbosses darmatadora <jogador> <id> [quantidade]
+#
+#  Evolucao: com a matadora na mao, AGACHE + clique direito no ar para abrir
+#  o menu de evolucao. Cada atributo tem nivel:
+#    valor do nivel N = inicial + por-nivel * (N - 1)
+#    preco do nivel N = preco-inicial * preco-multiplicador ^ (N - 2)
+#  (preco-multiplicador 1.0 = preco fixo; 1.5 = cada nivel 50% mais caro)
+#
+#  Atributos:
+#    dano   -> quanto de vida tira por golpe
+#    pilha  -> quantos bosses de uma PILHA morrem quando a vida zera
+#
+#  Placeholders da lore: %dano% %pilha% %nivel_dano% %nivel_pilha%
+#  %durabilidade% (golpes que faltam) %durabilidade_maxima%
+
+matadoras:
+  basica:
+    item:
+      material: IRON_SWORD
+      nome: "&f&lMatadora &7(basica)"
+      lore:
+        - "&7Dano: &c%dano% &8(nv. %nivel_dano%)"
+        - "&7Golpe em pilha: &bx%pilha% &8(nv. %nivel_pilha%)"
+        - ""
+        - "&eAgache + clique direito para evoluir."
+      brilho: true
+    dano:
+      inicial: 50
+      por-nivel: 25
+      nivel-maximo: 10
+      preco-inicial: 1000
+      preco-multiplicador: 1.4
+    pilha:
+      inicial: 1
+      por-nivel: 1
+      nivel-maximo: 5
+      preco-inicial: 5000
+      preco-multiplicador: 1.8
+    # true = cada golpe mata um boss inteiro (ignora a vida).
+    mata-com-um-golpe: false
+    # Golpes ate quebrar. 0 = nunca quebra.
+    durabilidade: 0
+    # IDs de bosses em que esta matadora NAO funciona.
+    bosses-bloqueados: []
+    # false = o menu de evolucao nao abre para ela.
+    evoluir: true
+
+  suprema:
+    item:
+      material: "NETHERITE_SWORD|DIAMOND_SWORD"
+      nome: "&c&lMatadora Suprema"
+      lore:
+        - "&7Mata um boss inteiro por golpe."
+        - "&7Golpe em pilha: &bx%pilha% &8(nv. %nivel_pilha%)"
+        - "&7Golpes restantes: &f%durabilidade%&7/&f%durabilidade_maxima%"
+        - ""
+        - "&eAgache + clique direito para evoluir."
+      brilho: true
+    dano:
+      inicial: 0
+      por-nivel: 0
+      nivel-maximo: 1
+      preco-inicial: 0
+      preco-multiplicador: 1.0
+    pilha:
+      inicial: 1
+      por-nivel: 2
+      nivel-maximo: 10
+      preco-inicial: 20000
+      preco-multiplicador: 1.5
+    mata-com-um-golpe: true
+    durabilidade: 500
+    bosses-bloqueados: ["rei_zumbi"]
+    evoluir: true

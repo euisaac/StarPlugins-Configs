@@ -1,0 +1,120 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                  StarBosses  ·  Boss "aranha_rainha"                 ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Boss de COMBATE leve, bom para ponto de spawn automatico
+#  (/starbosses ponto criar <nome> aranha_rainha <minutos>).
+#  Os comentarios de cada opcao estao no rei_zumbi.yml.
+
+nome: "&5&lAranha Rainha"
+entidade: SPIDER
+vida: 3000
+modo: COMBATE
+dano: 6
+velocidade: 0.34
+
+opcoes:
+  brilho: true
+  bebe: false
+  tamanho-slime: 1
+  efeitos: []
+  imune-a-dano-do-ambiente: true
+
+equipamento:
+  capacete: ""
+  peitoral: ""
+  calca: ""
+  botas: ""
+  mao: ""
+
+pilha:
+  ativada: false
+  maximo: 0
+
+matadora:
+  obrigatoria: false
+  aceitas: []
+
+ovo:
+  material: SPIDER_SPAWN_EGG
+  nome: "&5&lInvocar: Aranha Rainha"
+  lore:
+    - "&7Vida: &c%vida%"
+    - ""
+    - "&eClique direito no chao para invocar."
+  brilho: true
+
+exibicao:
+  nome-flutuante: "%nome% &c%vida%"
+  barra-ao-bater: "%nome% &f» &c❤ %vida% &4[-%dano%] %barra%"
+  bossbar:
+    ativada: true
+    cor: PURPLE
+    estilo: SEGMENTED_6
+    texto: "%nome% &7- &c%vida%"
+    raio: 30
+
+combate:
+  raio-maximo: 20
+  regenerar-sem-combate: 45
+  sumir-apos-minutos: 20
+
+reacoes:
+  - tipo: VENENO
+    chance: 10
+    valor: 3
+
+habilidades:
+  - tipo: TEIAS
+    a-cada: 18
+    chance: 60
+    raio: 8
+    valor: 3
+    mensagem: "&5&lAranha Rainha: &dPresos na minha teia!"
+  - tipo: TELEPORTE
+    a-cada: 20
+    chance: 50
+    raio: 15
+    valor: 0
+    mensagem: ""
+  - tipo: INVOCAR
+    a-cada: 30
+    chance: 70
+    raio: 5
+    valor: 4
+    mob: CAVE_SPIDER
+    mensagem: "&5&lAranha Rainha: &dMeus filhotes!"
+
+fases:
+  - vida: 30
+    mensagem: "&5&lAranha Rainha &dficou desesperada!"
+    titulo: ""
+    subtitulo: ""
+    multiplicador-dano: 1.5
+    efeitos: ["SPEED:1"]
+    habilidades:
+      - tipo: VENENO
+        a-cada: 10
+        chance: 80
+        raio: 7
+        valor: 4
+        mensagem: ""
+
+recompensas:
+  entrega: ARMAZEM
+  quem-recebe: TODOS
+  participacao-minima: 10
+  sorteios: 1
+  sempre-dar: true
+  lista:
+    - "100 ouro"
+    - "20 diamantes"
+  ranking:
+    1: ["100 chave_boss"]
+  dinheiro: 1000
+  xp: 30
+  comandos: []
+
+anuncios:
+  nascer: true
+  morrer: true

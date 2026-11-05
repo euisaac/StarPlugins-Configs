@@ -1,0 +1,156 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarBosses  ·  Mensagens                        ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Deixe uma mensagem vazia ("") para ela nao ser enviada.
+#  %prefixo% nao precisa: o prefixo entra sozinho no comeco das mensagens
+#  de chat (menos nas listas e nos anuncios).
+
+prefixo: "&4&lBOSSES &8» &7"
+
+geral:
+  sem-permissao: "&cVoce nao tem permissao para isso."
+  so-jogador: "&cSo jogadores podem usar este comando."
+  jogador-offline: "&cO jogador &f%jogador% &cnao esta online."
+  numero-invalido: "&cNumero invalido: &f%valor%"
+  boss-inexistente: "&cNao existe boss com o ID &f%id%&c. Use &f/starbosses lista&c."
+  matadora-inexistente: "&cNao existe matadora com o ID &f%id%&c."
+  recompensa-inexistente: "&cNao existe recompensa com o ID &f%id%&c."
+  inventario-cheio: "&eSeu inventario estava cheio: o resto caiu no chao."
+  recarregado: "&aStarBosses recarregado: &f%bosses% &abosses, &f%recompensas% &arecompensas, &f%matadoras% &amatadoras."
+  recarregado-com-avisos: "&eForam achados &f%avisos% &eproblema(s) na config. Veja o console ou use &f/starbosses verificar&e."
+  sem-economia: "&cA loja precisa do Vault com um plugin de economia."
+  pergunta-cancelada: "&cCancelado."
+
+invocar:
+  mundo-bloqueado: "&cNao da para invocar bosses neste mundo."
+  mobs-perto: "&cTem mobs ou spawners a menos de &f%raio% &cblocos. Afaste-se para invocar."
+  protegido: "&cVoce nao pode invocar bosses aqui."
+  limite-chunk: "&cEste lugar ja tem bosses demais (limite: &f%limite%&c)."
+  invocou: "&aVoce invocou &f%quantidade%x %boss%&a!"
+  juntou: "&aSeus &f%quantidade% %boss% &aentraram na pilha &7(agora x%pilha%)&a."
+  # Anuncio para o servidor (boss com anuncios.nascer: true). Sem prefixo.
+  anuncio:
+    - ""
+    - "&4&lBOSS! &f%jogador% &7invocou &f%boss%&7!"
+    - "&7Local: &f%mundo% &7(%x%, %y%, %z%)"
+    - ""
+  anuncio-ponto:
+    - ""
+    - "&4&lBOSS! &f%boss% &7apareceu em &f%ponto%&7!"
+    - "&7Local: &f%mundo% &7(%x%, %y%, %z%)"
+    - ""
+  ponto-em-breve: "&4&lBOSS! &f%boss% &7aparece em &f%ponto% &7daqui a &f%tempo%&7!"
+
+combate:
+  precisa-matadora: "&cEste boss so apanha de &fmatadora&c!"
+  matadora-nao-serve: "&cSua matadora nao funciona contra &f%boss%&c."
+  matadora-quebrou: "&cSua matadora quebrou!"
+  escudo: "&e%boss% &7esta com escudo!"
+  voltou: "&e%boss% &7voltou para o lugar dele."
+  regenerou: "&e%boss% &7ficou sem ninguem lutando e se curou."
+  sumiu: "&7O boss &f%boss% &7foi embora..."
+  vida-ao-clicar: "%nome% &7(x%pilha%) &f» &c❤ %vida% %barra%"
+  # Barra de acao de quem matou.
+  matou-barra: "&a&l+%quantidade% %boss% &7morto(s)!"
+  matou-titulo: ""
+  matou-subtitulo: ""
+  # Anuncio de morte (boss com anuncios.morrer: true). Sem prefixo.
+  anuncio-morte:
+    - ""
+    - "&4&lBOSS! &f%boss% &7foi derrotado por &f%jogador%&7!"
+    - "%top%"
+    - ""
+  linha-top: "  &e%posicao%o &f%jogador% &7- &c%dano% &7de dano (%porcentagem%%)"
+
+recompensas:
+  recebeu-armazem: "&a+%quantidade% recompensa(s) no &f/bosses armazem&a."
+  recebeu-inventario: "&a+%quantidade% recompensa(s) no seu inventario."
+  # Drop raro (recompensa com anunciar: true). Sem prefixo.
+  anuncio-raro: "&6&lDROP RARO! &f%jogador% &7ganhou &f%recompensa% &7de &f%boss%&7!"
+  coletou: "&aVoce coletou &f%quantidade%x %recompensa%&a."
+  coletou-tudo: "&aVoce coletou &f%quantidade% &arecompensa(s)."
+  coletou-limite: "&eLimite de &f%limite% &epor coleta: o resto continua guardado."
+  jogou-fora: "&7Voce jogou fora &f%quantidade%x %recompensa%&7."
+  filtrou: "&7Voce nao vai mais receber &f%recompensa%&7."
+  desfiltrou: "&aVoce voltou a receber &f%recompensa%&a."
+  nada: "&7Seu armazem esta vazio."
+  dinheiro: "&a+%valor% &7de dinheiro."
+
+loja:
+  comprou: "&aVoce comprou &f%quantidade%x %produto% &apor &f%preco%&a."
+  sem-dinheiro: "&cVoce precisa de &f%preco% &c(tem &f%saldo%&c)."
+  sem-permissao: "&cVoce nao pode comprar este item."
+  em-breve: "&cEste item so libera em &f%data%&c."
+  perguntar-quantidade: "&eDigite no chat quantos quer comprar &7(ou &fcancelar&7):"
+  quantidade-invalida: "&cQuantidade invalida."
+
+matadora:
+  evoluiu: "&aSua matadora subiu &f%atributo% &apara o nivel &f%nivel%&a!"
+  maximo: "&cEste atributo ja esta no nivel maximo."
+  segurar: "&cSegure a matadora na mao."
+  nao-evolui: "&cEsta matadora nao pode ser evoluida."
+  livro-aplicado: "&aLivro aplicado: &f%atributo% &aagora e nivel &f%nivel%&a."
+
+amuletos:
+  ativou: "&aAmuleto &f%amuleto% &aativado na sua conta para sempre!"
+  ja-tem: "&cVoce ja tem o amuleto &f%amuleto%&c."
+
+ovos:
+  compactou: "&aVoce juntou &f%quantidade% &aovos em &f%tipos% &aitem(ns)."
+  nada-para-compactar: "&7Nenhum ovo para juntar."
+
+ajuda:
+  jogador:
+    - "&4&lStarBosses &7- comandos"
+    - "&f/bosses &7- menu principal"
+    - "&f/bosses armazem &7- suas recompensas"
+    - "&f/bosses top &7- top de bosses"
+    - "&f/bosses loja &7- loja de ovos e matadoras"
+    - "&f/bosses lista &7- bosses do servidor e recompensas"
+    - "&f/bosses vivos &7- bosses vivos agora"
+    - "&f/bosses amuletos &7- seus amuletos"
+    - "&f/bosses juntar &7- junta os ovos iguais do inventario"
+  staff:
+    - "&4&lStarBosses &7- staff"
+    - "&f/starbosses editor &7- criar e editar bosses no jogo"
+    - "&f/starbosses dar <jogador> <boss> [quantidade]"
+    - "&f/starbosses darmatadora <jogador> <matadora> [quantidade]"
+    - "&f/starbosses daramuleto <anti-dano|anti-repulsao|anti-fogo> <jogador|todos> [quantidade]"
+    - "&f/starbosses darlivro <dano|pilha> <jogador> [quantidade] [niveis]"
+    - "&f/starbosses invocar <boss> [quantidade] &7- no seu lugar"
+    - "&f/starbosses matar <raio|todos> &7- remove bosses vivos"
+    - "&f/starbosses lista &7- bosses carregados"
+    - "&f/starbosses vivos &7- bosses vivos agora"
+    - "&f/starbosses ponto <criar|remover|lista|forcar|tp> &7- spawn automatico"
+    - "&f/starbosses recompensa salvar <id> &7- item da mao vira recompensa"
+    - "&f/starbosses verificar &7- procura erros na config"
+    - "&f/starbosses recarregar"
+
+staff:
+  deu: "&aVoce deu &f%quantidade%x %item% &apara &f%jogador%&a."
+  recebeu: "&aVoce recebeu &f%quantidade%x %item%&a."
+  invocou: "&aInvocado: &f%quantidade%x %boss%&a."
+  matou: "&aRemovidos &f%quantidade% &abosses."
+  lista-cabecalho: "&4&lBosses carregados &7(%quantidade%):"
+  lista-linha: " &7- &f%id% &8(%nome%&8) &7vida &c%vida% &7%modo%%pilha%"
+  vivos-cabecalho: "&4&lBosses vivos &7(%quantidade%):"
+  vivos-linha: " &7- %nome% &7x%pilha% &8em &f%mundo% %x% %y% %z%"
+  recompensa-salva: "&aRecompensa &f%id% &asalva a partir do item da mao. Coloque &f\"100 %id%\" &ana lista de um boss (ou use o editor)."
+  segure-item: "&cSegure o item na mao."
+  ponto-criado: "&aPonto &f%ponto% &acriado: &f%boss% &aa cada &f%minutos% &aminuto(s), aqui."
+  ponto-removido: "&aPonto &f%ponto% &aremovido."
+  ponto-inexistente: "&cNao existe ponto chamado &f%ponto%&c."
+  ponto-ja-existe: "&cJa existe um ponto chamado &f%ponto%&c."
+  ponto-forcado: "&aBoss do ponto &f%ponto% &ainvocado agora."
+  ponto-lista-cabecalho: "&4&lPontos de spawn &7(%quantidade%):"
+  ponto-lista-linha: " &7- &f%ponto% &8(%boss%&8) &7a cada &f%minutos%min &7- proximo em &f%proximo% %vivo%"
+  verificar-ok: "&aNenhum problema encontrado na config."
+  verificar-cabecalho: "&e%quantidade% problema(s) na config:"
+  verificar-linha: " &7- &f%problema%"
+  editor-pergunta: "&eDigite no chat &7(ou &fcancelar&7):"
+  editor-salvo: "&aSalvo."
+  boss-criado: "&aBoss &f%id% &acriado! Edite tudo pelo menu."
+  boss-excluido: "&cBoss &f%id% &cexcluido (o arquivo foi para bosses/excluidos)."
+  id-invalido: "&cUse so letras minusculas, numeros e _ no ID."
+  id-existe: "&cJa existe um boss com o ID &f%id%&c."

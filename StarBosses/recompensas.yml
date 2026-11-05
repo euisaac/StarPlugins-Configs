@@ -1,0 +1,68 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                      StarBosses  ·  Recompensas                      ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Cada recompensa tem um ID (o nome da secao) que os bosses usam na lista
+#  deles: "chance id" (ex: "40 diamantes").
+#
+#  Jeito mais facil de criar: segure o item na mao e use
+#    /starbosses recompensa salvar <id>
+#  O item vai inteiro (nome, lore, encantamentos, NBT de outros plugins) para
+#  a chave "item-salvo" - nao precisa escrever nada.
+#
+#  Uma recompensa pode ter qualquer combinacao de:
+#    item        -> item escrito a mao (material, quantidade, nome, lore,
+#                   encantamentos "NOME:nivel", brilho)
+#    item-salvo  -> item copiado do jogo (nao edite a mao)
+#    comandos    -> rodados pelo console. %jogador% %quantidade%
+#    dinheiro    -> precisa do Vault
+#    nome        -> como aparece no armazem e na lista de recompensas
+#                   (vazio = nome do item)
+#    anunciar    -> true = avisa o servidor quando alguem ganhar (drop raro)
+#    multiplicar-comandos -> true = no armazem, coletar 50 de uma vez roda
+#                   o comando 1x com %quantidade% = 50; false = roda 50x
+
+recompensas:
+  ouro:
+    nome: "&6Barras de Ouro &7x16"
+    item:
+      material: GOLD_INGOT
+      quantidade: 16
+    anunciar: false
+  diamantes:
+    nome: "&bDiamantes &7x8"
+    item:
+      material: DIAMOND
+      quantidade: 8
+    anunciar: false
+  polvora:
+    nome: "&7Polvora &7x32"
+    item:
+      material: GUNPOWDER
+      quantidade: 32
+    anunciar: false
+  espada_lendaria:
+    nome: "&6&lEspada Lendaria"
+    item:
+      material: DIAMOND_SWORD
+      quantidade: 1
+      nome: "&6&lEspada Lendaria"
+      lore:
+        - "&7Forjada no sangue do Rei Zumbi."
+      encantamentos: ["SHARPNESS:6", "UNBREAKING:4"]
+      brilho: false
+    anunciar: true
+  chave_boss:
+    nome: "&e&lChave de Boss"
+    item:
+      material: TRIPWIRE_HOOK
+      quantidade: 1
+      nome: "&e&lChave de Boss"
+      lore:
+        - "&7Use na caixa de bosses."
+      brilho: true
+    # Exemplo de comando junto do item (apague se nao usar):
+    comandos: []
+    multiplicar-comandos: true
+    dinheiro: 0
+    anunciar: false

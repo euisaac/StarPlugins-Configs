@@ -1,0 +1,227 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                    StarBosses  ·  Boss "rei_zumbi"                   ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  O nome do arquivo e o ID do boss (rei_zumbi). Para criar outro boss:
+#  copie este arquivo com outro nome, ou use /starbosses editor > Criar boss.
+#  Tudo aqui da para mudar pelo editor no jogo.
+#
+#  Este e um boss de COMBATE: anda, ataca, usa habilidades e muda de fase.
+#  Para um boss "saco de pancada" (parado, que so apanha), veja o creeper.yml.
+
+# Nome em cima do boss e nas mensagens.
+nome: "&4&lRei Zumbi"
+# Tipo do mob (nome em ingles do EntityType: ZOMBIE, SKELETON, IRON_GOLEM,
+# WITHER_SKELETON, SLIME, SPIDER, ENDERMAN, BLAZE, RAVAGER...).
+entidade: ZOMBIE
+# Vida de UM boss. Pode ser qualquer numero (nao depende do max-health do
+# spigot.yml: a vida e contada pelo plugin).
+vida: 8000
+# PARADO  = nao anda nem ataca; so apanha (bom para farm de pilha).
+# COMBATE = anda, persegue jogadores, ataca e usa as habilidades abaixo.
+modo: COMBATE
+# Dano de cada ataque corpo a corpo do boss (COMBATE). Coracoes = dano / 2.
+dano: 9
+# Velocidade de andar (padrao de um zumbi = 0.23). -1 = a do mob.
+velocidade: 0.28
+
+opcoes:
+  # Contorno brilhante (1.9+).
+  brilho: true
+  bebe: false
+  # Tamanho do slime/magma cube (so vale para esses mobs).
+  tamanho-slime: 4
+  # Efeitos que o boss tem o tempo todo. Formato: EFEITO:nivel
+  efeitos: ["FIRE_RESISTANCE:1"]
+  # Nao toma dano de queda, fogo, afogamento, sufocamento e explosao.
+  imune-a-dano-do-ambiente: true
+
+# Equipamento (vazio = nada). Nunca cai no chao quando ele morre.
+equipamento:
+  capacete: GOLDEN_HELMET
+  peitoral: DIAMOND_CHESTPLATE
+  calca: ""
+  botas: ""
+  mao: GOLDEN_AXE
+
+pilha:
+  # true = bosses iguais perto um do outro viram um so com "x N".
+  ativada: false
+  # Maximo de bosses numa pilha. 0 = sem limite.
+  maximo: 0
+
+matadora:
+  # true = so leva dano de quem estiver com uma matadora (matadoras.yml).
+  obrigatoria: false
+  # IDs das matadoras que funcionam neste boss. Vazio = todas.
+  aceitas: []
+
+# Item que invoca o boss (/starbosses dar <jogador> rei_zumbi).
+ovo:
+  material: ZOMBIE_SPAWN_EGG
+  nome: "&4&lInvocar: Rei Zumbi"
+  lore:
+    - "&7Vida: &c%vida%"
+    - "&7Quantidade: &f%quantidade%"
+    - ""
+    - "&eClique direito no chao para invocar."
+  brilho: true
+
+exibicao:
+  # Nome flutuante. %nome% %vida% %vida_maxima% %pilha% %barra% %porcentagem%
+  nome-flutuante: "%nome% &c%vida%&7/&c%vida_maxima%"
+  # Barra de acao de quem bate.
+  barra-ao-bater: "%nome% &f» &c❤ %vida% &4[-%dano%] %barra%"
+  bossbar:
+    ativada: true
+    # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+    cor: RED
+    # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+    estilo: SEGMENTED_10
+    texto: "%nome% &7- &c%vida% &7(%porcentagem%%)"
+    # Distancia em que os jogadores veem a barra.
+    raio: 40
+
+combate:
+  # Se o boss se afastar mais que isso do lugar onde nasceu, ele volta.
+  # 0 = pode ir para onde quiser.
+  raio-maximo: 30
+  # Segundos sem levar dano para o boss curar tudo e zerar o ranking.
+  # 0 = nunca regenera.
+  regenerar-sem-combate: 60
+  # Minutos vivo ate sumir sozinho (com aviso). 0 = nunca some.
+  sumir-apos-minutos: 30
+
+# Reacoes: quando o boss APANHA, pode revidar em quem bateu.
+#   tipo: FOGO (valor = segundos), VENENO/CEGUEIRA/NAUSEA/LENTIDAO/FRAQUEZA
+#         (valor = segundos), EMPURRAR (valor = forca), DANO (valor = dano),
+#         RAIO (valor = dano), EXPLOSAO (valor = dano, nao quebra blocos)
+#   chance: em % por golpe recebido
+reacoes:
+  - tipo: EMPURRAR
+    chance: 8
+    valor: 1.5
+  - tipo: FOGO
+    chance: 5
+    valor: 3
+
+# Habilidades: o boss usa sozinho durante a luta (so no modo COMBATE).
+#   tipo       -> veja a lista no fim do arquivo
+#   a-cada     -> espera minima entre dois usos (segundos)
+#   chance     -> chance (%) de usar quando a espera acaba (checado 1x/seg)
+#   raio       -> alcance (blocos)
+#   valor      -> dano / quantidade / forca / segundos, depende do tipo
+#   mob        -> so para INVOCAR
+#   mensagem   -> mandada para quem esta perto ("" = nada)
+habilidades:
+  - tipo: INVOCAR
+    a-cada: 25
+    chance: 70
+    raio: 6
+    valor: 3
+    mob: ZOMBIE
+    mensagem: "&4&lRei Zumbi: &cLevantem-se, meus servos!"
+  - tipo: EMPURRAO
+    a-cada: 15
+    chance: 60
+    raio: 6
+    valor: 1.8
+    mensagem: "&4&lRei Zumbi: &cSaiam de perto!"
+  - tipo: RAIOS
+    a-cada: 20
+    chance: 50
+    raio: 12
+    valor: 6
+    mensagem: ""
+
+# Fases: quando a vida cai abaixo da porcentagem, a fase liga (uma vez por boss).
+fases:
+  - vida: 50
+    mensagem: "&4&lRei Zumbi &centrou em furia!"
+    titulo: "&4&lFURIA"
+    subtitulo: "&cO Rei Zumbi ficou mais forte"
+    # Multiplica o dano dos ataques do boss.
+    multiplicador-dano: 1.4
+    efeitos: ["SPEED:2"]
+    # Habilidades que so aparecem nesta fase (mesmo formato de cima).
+    habilidades:
+      - tipo: PUXAR
+        a-cada: 12
+        chance: 60
+        raio: 15
+        valor: 1.5
+        mensagem: "&4&lRei Zumbi: &cVoce nao vai fugir!"
+  - vida: 20
+    mensagem: "&4&lRei Zumbi &cesta quase caindo... e invocou a guarda real!"
+    titulo: ""
+    subtitulo: ""
+    multiplicador-dano: 1.8
+    efeitos: []
+    habilidades:
+      - tipo: INVOCAR
+        a-cada: 15
+        chance: 100
+        raio: 6
+        valor: 4
+        mob: ZOMBIE_VILLAGER
+        mensagem: ""
+      - tipo: CURAR
+        a-cada: 40
+        chance: 40
+        raio: 0
+        valor: 5
+        mensagem: "&4&lRei Zumbi &ase curou um pouco!"
+
+recompensas:
+  # ARMAZEM    = vai para o /bosses armazem (o jogador coleta quando quiser)
+  # INVENTARIO = direto no inventario (o que nao couber cai no chao)
+  # CHAO       = cai no chao onde o boss morreu
+  entrega: ARMAZEM
+  # MATADOR = so quem deu o ultimo golpe sorteia a lista abaixo
+  # TODOS   = cada jogador que bateu sorteia a sua propria lista
+  quem-recebe: TODOS
+  # Em TODOS e no ranking, so conta quem deu pelo menos esta % do dano.
+  participacao-minima: 5
+  # Quantas vezes a lista e sorteada por boss morto.
+  sorteios: 2
+  # true = se nenhuma recompensa sair no sorteio, garante uma.
+  sempre-dar: true
+  # Formato: "chance id" (id do recompensas.yml)
+  lista:
+    - "100 ouro"
+    - "40 diamantes"
+    - "5 espada_lendaria"
+  # Extra para quem mais bateu (1o, 2o, 3o...), alem da lista.
+  ranking:
+    1: ["100 diamantes", "100 chave_boss"]
+    2: ["100 diamantes"]
+    3: ["100 ouro"]
+  # Para o matador, por boss morto (0 = nada). Dinheiro precisa do Vault.
+  dinheiro: 2500
+  xp: 50
+  # Rodados pelo console por boss morto. %jogador% %boss% %quantidade%
+  comandos: []
+
+anuncios:
+  # Avisa o servidor inteiro quando este boss nasce / morre (com o top 3).
+  nascer: true
+  morrer: true
+
+#  ── Tipos de habilidade ─────────────────────────────────────────────────
+#  INVOCAR     invoca "valor" mobs do tipo "mob" em volta (somem quando o boss morre)
+#  EMPURRAO    joga longe quem esta no raio (valor = forca)
+#  PUXAR       puxa para perto quem esta no raio (valor = forca)
+#  RAIOS       raio cai em quem esta no raio (valor = dano)
+#  EXPLOSAO    explosao em volta do boss, sem quebrar blocos (valor = dano)
+#  CHAMAS      poe fogo em quem esta no raio (valor = segundos)
+#  VENENO      envenena quem esta no raio (valor = segundos)
+#  CEGUEIRA    cega quem esta no raio (valor = segundos)
+#  LENTIDAO    deixa lento quem esta no raio (valor = segundos)
+#  TELEPORTE   o boss aparece do lado do jogador mais perto no raio
+#  TEIAS       prende quem esta no raio em teia (valor = segundos; a teia some)
+#  FLECHAS     atira flechas em quem esta no raio (valor = quantidade)
+#  BOLAS_DE_FOGO  atira bolas de fogo (valor = quantidade, nao quebram blocos)
+#  CURAR       o boss recupera "valor"% da vida
+#  ESCUDO      o boss fica invulneravel por "valor" segundos
+#  FURIA       o boss fica rapido e forte por "valor" segundos
+#  METEOROS    caem blocos de fogo do ceu em quem esta no raio (valor = dano)

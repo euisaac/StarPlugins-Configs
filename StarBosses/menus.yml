@@ -1,0 +1,341 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                        StarBosses  ·  Menus                          ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Cada botao: slot (0 = canto de cima a esquerda; -1 esconde o botao),
+#  material, nome e lore. "linhas" = altura do menu (1 a 6).
+#  Botoes de lista (armazem, top, loja...) usam os "slots-lista".
+#
+#  No menu principal da para por botoes seus em "extras": cada um roda um
+#  comando como o jogador ao ser clicado ("" = so enfeite).
+
+principal:
+  titulo: "&8Bosses"
+  linhas: 3
+  itens:
+    ativos:
+      slot: 10
+      material: COMPASS
+      nome: "&e&lBosses vivos"
+      lore:
+        - "&7Veja os bosses que estao vivos"
+        - "&7agora no servidor."
+        - ""
+        - "&fVivos agora: &e%vivos%"
+    perfil:
+      slot: 11
+      material: PLAYER_HEAD
+      nome: "&a&l%jogador%"
+      lore:
+        - "&7Bosses mortos: &f%mortos%"
+        - "&7Dano causado: &f%dano%"
+        - "&7Recompensas guardadas: &f%armazem%"
+        - "&7Posicao no top: &f%posicao%"
+    armazem:
+      slot: 12
+      material: CHEST
+      nome: "&6&lArmazem"
+      lore:
+        - "&7Recompensas que voce ganhou"
+        - "&7e ainda nao coletou."
+        - ""
+        - "&fGuardadas: &6%armazem%"
+    bosses:
+      slot: 13
+      material: ZOMBIE_HEAD
+      nome: "&c&lBosses do servidor"
+      lore:
+        - "&7Veja a vida, as habilidades e"
+        - "&7as recompensas de cada boss."
+    top:
+      slot: 14
+      material: GOLD_INGOT
+      nome: "&e&lTop"
+      lore:
+        - "&7Quem mais matou bosses e"
+        - "&7quem mais causou dano."
+    loja:
+      slot: 15
+      material: EMERALD
+      nome: "&a&lLoja"
+      lore:
+        - "&7Compre ovos de bosses e matadoras."
+    amuletos:
+      slot: 16
+      material: NETHER_STAR
+      nome: "&b&lAmuletos"
+      lore:
+        - "&7Protecoes permanentes contra"
+        - "&7os ataques dos bosses."
+  # Botoes extras: nome livre, cada um com slot/material/nome/lore/comando.
+  extras:
+    enfeite:
+      slot: 22
+      material: BOOK
+      nome: "&f&lComo funciona?"
+      lore:
+        - "&7Ganhe ovos, invoque bosses e"
+        - "&7derrote-os para ganhar recompensas."
+        - "&7Bata com uma &fmatadora &7para tirar"
+        - "&7mais vida e matar pilhas inteiras."
+      comando: ""
+
+armazem:
+  titulo: "&8Armazem &7(%pagina%/%paginas%)"
+  linhas: 6
+  slots-lista: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  # Lore acrescentada em cada recompensa guardada.
+  lore-recompensa:
+    - ""
+    - "&7Guardadas: &f%quantidade%"
+    - ""
+    - "&aClique esquerdo: &fcoletar"
+    - "&cClique direito: &fjogar fora"
+    - "&8Agachado + direito: nao receber mais"
+  itens:
+    vazio:
+      slot: 22
+      material: COBWEB
+      nome: "&7Nada por aqui"
+      lore:
+        - "&7Derrote bosses para ganhar recompensas."
+    coletar-tudo:
+      slot: 49
+      material: HOPPER
+      nome: "&a&lColetar tudo"
+      lore:
+        - "&7Coleta ate &f%limite% &7recompensas"
+        - "&7de uma vez."
+    filtro:
+      slot: 53
+      material: "COMPARATOR|REDSTONE_COMPARATOR"
+      nome: "&e&lFiltro"
+      lore:
+        - "&7Recompensas que voce escolheu"
+        - "&7nao receber mais: &f%filtradas%"
+        - ""
+        - "&eClique para ver."
+    voltar:
+      slot: 45
+      material: RED_DYE
+      nome: "&cVoltar"
+      lore: []
+    anterior:
+      slot: 48
+      material: ARROW
+      nome: "&ePagina anterior"
+      lore: []
+    proxima:
+      slot: 50
+      material: ARROW
+      nome: "&eProxima pagina"
+      lore: []
+
+filtro:
+  titulo: "&8Filtro do armazem"
+  linhas: 4
+  slots-lista: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  lore-recompensa:
+    - ""
+    - "&7Voce nao recebe mais esta recompensa."
+    - "&aClique para voltar a receber."
+  itens:
+    vazio:
+      slot: 13
+      material: COBWEB
+      nome: "&7Filtro vazio"
+      lore:
+        - "&7No armazem, agache e clique com o"
+        - "&7direito numa recompensa para filtrar."
+    voltar:
+      slot: 27
+      material: RED_DYE
+      nome: "&cVoltar"
+      lore: []
+
+bosses:
+  titulo: "&8Bosses do servidor"
+  linhas: 6
+  slots-lista: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  # Lore de cada boss (o icone e o ovo dele).
+  lore-boss:
+    - "&7Vida: &c%vida%"
+    - "&7Modo: &f%modo%"
+    - "&7Pilha: &f%pilha%"
+    - "&7Habilidades: &f%habilidades%"
+    - "&7Precisa de matadora: &f%matadora%"
+    - ""
+    - "&7Voce ja matou: &e%mortos_deste%"
+    - ""
+    - "&eClique para ver as recompensas."
+  itens:
+    voltar:
+      slot: 49
+      material: RED_DYE
+      nome: "&cVoltar"
+      lore: []
+
+recompensas-boss:
+  titulo: "&8Recompensas: %boss%"
+  linhas: 6
+  slots-lista: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  lore-recompensa:
+    - ""
+    - "&7Chance: &f%chance%%"
+  lore-ranking:
+    - ""
+    - "&6Extra para o %posicao%o lugar no dano"
+  itens:
+    info:
+      slot: 4
+      material: PAPER
+      nome: "&e&lComo recebe"
+      lore:
+        - "&7Sorteios por boss: &f%sorteios%"
+        - "&7Quem recebe: &f%quem%"
+        - "&7Entrega: &f%entrega%"
+        - "&7Dinheiro: &f%dinheiro%"
+    voltar:
+      slot: 49
+      material: RED_DYE
+      nome: "&cVoltar"
+      lore: []
+
+top:
+  titulo: "&8Top de bosses - %tipo%"
+  linhas: 5
+  slots-lista: [10, 11, 12, 13, 14, 15, 16, 21, 22, 23]
+  item-posicao:
+    material: PLAYER_HEAD
+    nome: "&e%posicao%o &f%jogador%"
+    lore:
+      - "&7Bosses mortos: &f%mortos%"
+      - "&7Dano causado: &f%dano%"
+  itens:
+    trocar:
+      slot: 40
+      material: HOPPER
+      nome: "&e&lMostrando: %tipo%"
+      lore:
+        - "&7Clique para ver o top de &f%outro%&7."
+    voltar:
+      slot: 36
+      material: RED_DYE
+      nome: "&cVoltar"
+      lore: []
+
+loja:
+  titulo: "&8Loja de bosses"
+  linhas: 6
+  slots-lista: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  lore-produto:
+    - ""
+    - "&7Preco: &a%preco%"
+    - "%desconto%"
+    - ""
+    - "&aEsquerdo: &fcomprar 1"
+    - "&aDireito: &fescolher a quantidade"
+  lore-bloqueado:
+    - ""
+    - "&cVoce nao tem permissao para comprar."
+  lore-em-breve:
+    - ""
+    - "&7Libera em: &f%data%"
+    - "&7Falta: &f%falta%"
+  itens:
+    saldo:
+      slot: 4
+      material: GOLD_NUGGET
+      nome: "&e&lSeu saldo"
+      lore:
+        - "&7Saldo: &a%saldo%"
+        - "&7Desconto: &a%desconto%%"
+    voltar:
+      slot: 49
+      material: RED_DYE
+      nome: "&cVoltar"
+      lore: []
+
+amuletos:
+  titulo: "&8Amuletos"
+  linhas: 3
+  slots-amuletos:
+    anti-dano: 11
+    anti-repulsao: 13
+    anti-fogo: 15
+  lore-tem:
+    - ""
+    - "&a&lATIVO NA SUA CONTA"
+  lore-nao-tem:
+    - ""
+    - "&cVoce ainda nao tem."
+    - "&7Consiga o item e clique com o direito."
+  itens:
+    voltar:
+      slot: 22
+      material: RED_DYE
+      nome: "&cVoltar"
+      lore: []
+
+ativos:
+  titulo: "&8Bosses vivos"
+  linhas: 6
+  slots-lista: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  lore-boss:
+    - "&7Mundo: &f%mundo%"
+    - "&7Posicao: &f%x%, %y%, %z%"
+    - "&7Vida: &c%vida%&7/&c%vida_maxima%"
+    - "&7Pilha: &fx%pilha%"
+    - "&7Distancia: &f%distancia%"
+    - "%teleporte%"
+  texto-teleporte: "&eClique para ir ate ele."
+  itens:
+    vazio:
+      slot: 22
+      material: COBWEB
+      nome: "&7Nenhum boss vivo agora"
+      lore: []
+    voltar:
+      slot: 49
+      material: RED_DYE
+      nome: "&cVoltar"
+      lore: []
+
+evoluir:
+  titulo: "&8Evoluir matadora"
+  linhas: 3
+  itens:
+    dano:
+      slot: 11
+      material: "NETHERITE_SWORD|DIAMOND_SWORD"
+      nome: "&c&lDano &7(nv. %nivel%/%maximo%)"
+      lore:
+        - "&7Agora: &f%atual%"
+        - "&7Proximo nivel: &a%proximo%"
+        - ""
+        - "&7Preco: &a%preco%"
+        - "%estado%"
+    matadora:
+      slot: 13
+      material: IRON_SWORD
+      nome: ""
+      lore: []
+    pilha:
+      slot: 15
+      material: "SLIME_BALL"
+      nome: "&b&lGolpe em pilha &7(nv. %nivel%/%maximo%)"
+      lore:
+        - "&7Agora: &fx%atual%"
+        - "&7Proximo nivel: &ax%proximo%"
+        - ""
+        - "&7Preco: &a%preco%"
+        - "%estado%"
+    saldo:
+      slot: 22
+      material: GOLD_NUGGET
+      nome: "&e&lSeu saldo"
+      lore:
+        - "&7Saldo: &a%saldo%"
+  texto-pode: "&aClique para evoluir."
+  texto-sem-dinheiro: "&cVoce nao tem dinheiro suficiente."
+  texto-maximo: "&6Nivel maximo!"

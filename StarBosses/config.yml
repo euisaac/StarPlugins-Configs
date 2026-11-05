@@ -1,0 +1,172 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                        StarBosses  ·  Config                         ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Onde fica cada coisa:
+#    config.yml       -> regras gerais (este arquivo)
+#    bosses/*.yml     -> um arquivo por boss (o nome do arquivo e o ID dele)
+#    recompensas.yml  -> os itens/comandos que os bosses podem dar
+#    matadoras.yml    -> as espadas que batem nos bosses e a evolucao delas
+#    loja.yml         -> o que se vende no /bosses loja e os descontos
+#    menus.yml        -> visual dos menus
+#    mensagens.yml    -> todas as mensagens
+#
+#  Quase tudo tambem da para fazer NO JOGO, sem abrir arquivo nenhum:
+#    /starbosses editor   -> criar e editar bosses, recompensas e habilidades
+#    /starbosses recompensa salvar <id>   -> o item da sua mao vira recompensa
+#  Depois de editar um arquivo na mao: /starbosses recarregar
+#
+#  Formato de item (vale em todos os arquivos):
+#    material: nome moderno (DIAMOND_SWORD, ZOMBIE_SPAWN_EGG...) - em servidor
+#              1.8-1.12 o plugin traduz sozinho. Tambem aceita o antigo com
+#              data ("INK_SACK:1"). Nunca precisa de ID numerico.
+#              Varias opcoes separadas por | : "NETHERITE_SWORD|DIAMOND_SWORD"
+#              usa a primeira que existir na versao do servidor.
+
+# ---------------------------------------------------------------------------
+#  INVOCAR (usar o ovo)
+# ---------------------------------------------------------------------------
+invocar:
+  # Mundos onde nao da para invocar bosses com o ovo.
+  mundos-bloqueados: []
+  # Nao deixa invocar se tiver outro mob (que nao seja boss) a ate N blocos.
+  # Evita farm de boss em cima de spawner/grinder. 0 = nao checa.
+  raio-checagem-mobs: 5
+  # Nao deixa invocar perto de spawners (mesmo raio de cima).
+  bloquear-perto-de-spawners: true
+  # true = so invoca onde o jogador poderia construir. Respeita qualquer
+  # plugin de terreno/protecao (o clique precisa nao ter sido bloqueado).
+  respeitar-protecao: true
+  # Quantos bosses (somando as pilhas) cabem num mesmo chunk. 0 = sem limite.
+  limite-por-chunk: 0
+  # Agachado + clique direito usa TODOS os ovos da mao de uma vez.
+  agachar-usa-todos: true
+
+# ---------------------------------------------------------------------------
+#  PILHA DE BOSSES
+# ---------------------------------------------------------------------------
+#  Bosses com "pilha.ativada: true" no arquivo deles se juntam: em vez de 50
+#  entidades, nasce uma so com "x50" no nome. Cada vez que a vida zera, morre
+#  um (ou quantos a matadora derrubar por golpe) e a vida volta cheia.
+pilha:
+  # Distancia para um boss novo entrar na pilha de um igual.
+  raio-juntar: 6
+  # Agachado, um golpe mata a pilha inteira (ate o maximo abaixo).
+  agachar-mata-tudo: true
+  # Quantos bosses no maximo morrem num golpe so (agachado ou pela matadora).
+  maximo-por-golpe: 1000
+
+# ---------------------------------------------------------------------------
+#  COMBATE
+# ---------------------------------------------------------------------------
+combate:
+  # Tempo minimo entre dois golpes do mesmo jogador (milissegundos).
+  # Evita autoclicker e duplicacao de recompensa.
+  intervalo-entre-golpes-ms: 450
+  # true = flechas, tridentes e bolas de neve tambem tiram vida do boss.
+  aceitar-projeteis: true
+  # Mostra a vida na barra de acao ao clicar com o direito no boss.
+  mostrar-vida-ao-clicar: true
+  # Agachado + clique direito no boss abre a lista de recompensas dele.
+  agachar-ver-recompensas: true
+
+# ---------------------------------------------------------------------------
+#  ARMAZEM (/bosses armazem)
+# ---------------------------------------------------------------------------
+armazem:
+  # Quantas recompensas no maximo saem num clique so ("Coletar tudo" e o
+  # clique numa recompensa). O resto continua guardado. Evita lag.
+  limite-por-coleta: 1000
+  # true = recompensa nova avisa na barra de acao.
+  avisar-ao-receber: true
+
+# ---------------------------------------------------------------------------
+#  MULTIPLICADORES DE RECOMPENSA
+# ---------------------------------------------------------------------------
+#  Permissao: multiplicador. Vale o maior que o jogador tiver. Multiplica a
+#  quantidade de recompensas sorteadas (1.5 = 50% a mais, arredondado com
+#  sorte). Apague as linhas que nao quiser.
+multiplicadores:
+  "starbosses.multiplicador.vip": 1.25
+  "starbosses.multiplicador.mvp": 1.5
+
+# ---------------------------------------------------------------------------
+#  BARRA DE VIDA (%barra% nos textos)
+# ---------------------------------------------------------------------------
+barra-progresso:
+  quantidade: 20
+  simbolo: "|"
+  cor-cheia: "&a"
+  cor-vazia: "&7"
+
+# ---------------------------------------------------------------------------
+#  AMULETOS (/bosses amuletos)
+# ---------------------------------------------------------------------------
+#  O jogador usa o item uma vez e o amuleto fica na conta para sempre.
+#    anti-dano      -> reduz o dano que bosses e habilidades causam nele
+#    anti-repulsao  -> nao e empurrado nem puxado por bosses
+#    anti-fogo      -> nao pega fogo por bosses/habilidades
+amuletos:
+  anti-dano:
+    # Quanto do dano dos bosses o amuleto corta (em %).
+    reducao: 50
+    item:
+      material: NETHER_STAR
+      nome: "&b&lAmuleto Anti-Dano"
+      lore:
+        - "&7Corta &f%reducao%% &7do dano que os"
+        - "&7bosses causam em voce."
+        - ""
+        - "&eClique direito para ativar na conta."
+      brilho: true
+  anti-repulsao:
+    item:
+      material: FEATHER
+      nome: "&f&lAmuleto Anti-Repulsao"
+      lore:
+        - "&7Os bosses nao conseguem mais"
+        - "&7te empurrar nem te puxar."
+        - ""
+        - "&eClique direito para ativar na conta."
+      brilho: true
+  anti-fogo:
+    item:
+      material: MAGMA_CREAM
+      nome: "&6&lAmuleto Anti-Fogo"
+      lore:
+        - "&7Os bosses nao conseguem mais"
+        - "&7te colocar fogo."
+        - ""
+        - "&eClique direito para ativar na conta."
+      brilho: true
+
+# ---------------------------------------------------------------------------
+#  LIVROS DE EVOLUCAO (/starbosses darlivro)
+# ---------------------------------------------------------------------------
+#  Arraste o livro em cima da matadora no inventario para subir o nivel.
+livros:
+  dano:
+    material: ENCHANTED_BOOK
+    nome: "&c&lLivro de Dano &7(+%niveis%)"
+    lore:
+      - "&7Sobe &f%niveis% &7nivel(is) de &cDano"
+      - "&7de uma matadora."
+      - ""
+      - "&eArraste em cima da matadora."
+  pilha:
+    material: ENCHANTED_BOOK
+    nome: "&b&lLivro de Golpe em Pilha &7(+%niveis%)"
+    lore:
+      - "&7Sobe &f%niveis% &7nivel(is) de &bGolpe em"
+      - "&bPilha &7de uma matadora (mata mais"
+      - "&7bosses de uma pilha por golpe)."
+      - ""
+      - "&eArraste em cima da matadora."
+
+# ---------------------------------------------------------------------------
+#  OUTROS
+# ---------------------------------------------------------------------------
+# De quantos em quantos segundos os dados dos jogadores sao salvos.
+salvar-a-cada: 300
+# Quantas posicoes o /bosses top mostra.
+tamanho-top: 10
