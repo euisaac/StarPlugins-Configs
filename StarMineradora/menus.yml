@@ -1,0 +1,289 @@
+# ==========================================================================
+#  StarMineradora - as telas
+#
+#  Material passa pelo XSeries: o mesmo nome funciona na 1.8 e na 1.21.
+# ==========================================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 4
+
+Principal:
+  Titulo: '&8Mineradora'
+  Linhas: 3
+  Enfeite:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Informacao:
+    Slot: 13
+    Material: PAPER
+    Nome: '&f{tipo}'
+    Lore:
+      - '&7Estado: &f{estado}'
+      - '&7Progresso: &f{progresso}%'
+      - '&7Blocos minerados: &f{blocos}'
+      - '&7Combustivel: &f{combustivel}/{combustivel_max}'
+  Iniciar Montagem:
+    Slot: 11
+    Material: LIME_STAINED_GLASS_PANE
+    Nome: '&a&lINICIAR MONTAGEM'
+    Lore:
+      - '&7A estrutura comeca a subir'
+      - '&7sozinha, bloco a bloco.'
+  Iniciar Mineracao:
+    Slot: 11
+    Material: LIME_STAINED_GLASS_PANE
+    Nome: '&a&lINICIAR MINERACAO'
+    Lore:
+      - '&7O poco comeca a descer'
+      - '&7sozinho, camada por camada.'
+  Pausar:
+    Slot: 11
+    Material: YELLOW_STAINED_GLASS_PANE
+    Nome: '&e&lPAUSAR MINERACAO'
+    Lore:
+      - '&7Para a escavacao onde'
+      - '&7esta, sem perder o progresso.'
+  Despausar:
+    Slot: 11
+    Material: LIME_STAINED_GLASS_PANE
+    Nome: '&a&lDESPAUSAR MINERACAO'
+    Lore:
+      - '&7A mineracao esta pausada.'
+      - '&7Clique para continuar de'
+      - '&7onde parou.'
+  Configurar Saida:
+    Slot: 15
+    Material: HOPPER
+    Nome: '&e&lCONFIGURAR SAIDA'
+    Lore:
+      - '&7Escolha o que sai por'
+      - '&7cada lado da estrutura.'
+  Desmontar:
+    Slot: 17
+    Material: RED_STAINED_GLASS_PANE
+    Nome: '&c&lDESMONTAR'
+    Lore:
+      - '&7Remove so a ESTRUTURA do mundo.'
+      - '&7A maquina continua no lugar --'
+      - '&7monte de novo quando quiser.'
+  Pegar:
+    Slot: 17
+    Material: BARRIER
+    Nome: '&c&lPEGAR MINERADORA'
+    Lore:
+      - '&7Guarda a mineradora de volta'
+      - '&7no seu inventario, em item,'
+      - '&7com o combustivel preservado.'
+  Comprar Combustivel:
+    Slot: 4
+    Material: BLAZE_POWDER
+    Nome: '&e&lCOMPRAR COMBUSTIVEL'
+    Lore:
+      - '&7Tanque: &f{combustivel}/{combustivel_max}'
+      - ''
+      - '&aClique para abrir a loja'
+  Fechar:
+    Slot: 26
+    Material: ARROW
+    Nome: '&cFechar'
+
+Confirmar Quebra:
+  Titulo: '&8Quebrar mineradora?'
+  Linhas: 3
+  Enfeite:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Informacao:
+    Slot: 13
+    Material: PAPER
+    Nome: '&f{tipo}'
+    Lore:
+      - '&7Quebrar o bloco da maquina'
+      - '&7desmonta a estrutura (se houver)'
+      - '&7e devolve a mineradora em item,'
+      - '&7com o combustivel preservado.'
+      - ''
+      - '&7Combustivel: &f{combustivel}/{combustivel_max}'
+  Confirmar:
+    Slot: 11
+    Material: BARRIER
+    Nome: '&a&lCONFIRMAR'
+    Lore:
+      - '&7Desmonta e quebra a mineradora'
+      - '&7de vez. Ela volta pro seu'
+      - '&7inventario, em item.'
+  Cancelar:
+    Slot: 15
+    Material: ARROW
+    Nome: '&cCANCELAR'
+    Lore:
+      - '&7Nada acontece: a mineradora'
+      - '&7continua como estava.'
+
+Saida:
+  Titulo: '&8Saida dos itens'
+  Linhas: 3
+  Enfeite:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Lados:
+    FRENTE:
+      Slot: 10
+      TODOS:
+        Material: LIME_STAINED_GLASS_PANE
+        Nome: '&aFrente: &fTudo'
+        Lore: [ '&7Clique para mudar.' ]
+      MINERIOS:
+        Material: RAW_IRON
+        Nome: '&aFrente: &fSomente minerios'
+        Lore: [ '&7Clique para mudar.' ]
+      PEDRAS_E_DESTROCOS:
+        Material: COBBLESTONE
+        Nome: '&aFrente: &fPedras e destrocos'
+        Lore: [ '&7Clique para mudar.' ]
+      NENHUM:
+        Material: BARRIER
+        Nome: '&aFrente: &7Nada'
+        Lore: [ '&7Clique para mudar.' ]
+    TRAS:
+      Slot: 12
+      TODOS:
+        Material: LIME_STAINED_GLASS_PANE
+        Nome: '&aTras: &fTudo'
+        Lore: [ '&7Clique para mudar.' ]
+      MINERIOS:
+        Material: RAW_IRON
+        Nome: '&aTras: &fSomente minerios'
+        Lore: [ '&7Clique para mudar.' ]
+      PEDRAS_E_DESTROCOS:
+        Material: COBBLESTONE
+        Nome: '&aTras: &fPedras e destrocos'
+        Lore: [ '&7Clique para mudar.' ]
+      NENHUM:
+        Material: BARRIER
+        Nome: '&aTras: &7Nada'
+        Lore: [ '&7Clique para mudar.' ]
+    ESQUERDA:
+      Slot: 14
+      TODOS:
+        Material: LIME_STAINED_GLASS_PANE
+        Nome: '&aEsquerda: &fTudo'
+        Lore: [ '&7Clique para mudar.' ]
+      MINERIOS:
+        Material: RAW_IRON
+        Nome: '&aEsquerda: &fSomente minerios'
+        Lore: [ '&7Clique para mudar.' ]
+      PEDRAS_E_DESTROCOS:
+        Material: COBBLESTONE
+        Nome: '&aEsquerda: &fPedras e destrocos'
+        Lore: [ '&7Clique para mudar.' ]
+      NENHUM:
+        Material: BARRIER
+        Nome: '&aEsquerda: &7Nada'
+        Lore: [ '&7Clique para mudar.' ]
+    DIREITA:
+      Slot: 16
+      TODOS:
+        Material: LIME_STAINED_GLASS_PANE
+        Nome: '&aDireita: &fTudo'
+        Lore: [ '&7Clique para mudar.', '&8(Padrao de fabrica)' ]
+      MINERIOS:
+        Material: RAW_IRON
+        Nome: '&aDireita: &fSomente minerios'
+        Lore: [ '&7Clique para mudar.' ]
+      PEDRAS_E_DESTROCOS:
+        Material: COBBLESTONE
+        Nome: '&aDireita: &fPedras e destrocos'
+        Lore: [ '&7Clique para mudar.' ]
+      NENHUM:
+        Material: BARRIER
+        Nome: '&aDireita: &7Nada'
+        Lore: [ '&7Clique para mudar.' ]
+  Voltar:
+    Slot: 22
+    Material: ARROW
+    Nome: '&cVoltar'
+
+Loja Combustivel:
+  Titulo: '&8Comprar combustivel'
+  Linhas: 3
+  Enfeite:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Informacao:
+    Slot: 4
+    Material: PAPER
+    Nome: '&f{tipo}'
+    Lore:
+      - '&7Tanque: &f{combustivel}/{combustivel_max}'
+      - '&7Moeda: &f{moeda}'
+  # Cada opcao aparece como um botao. "Quantidade" e o combustivel creditado; o
+  # preco sai sozinho de "Loja.Preco por unidade de combustivel" (config.yml).
+  Opcoes:
+    - Quantidade: 100
+      Slot: 11
+      Material: COAL
+      Nome: '&a&l+100 COMBUSTIVEL'
+      Lore:
+        - '&7Preco: &f{preco}'
+        - ''
+        - '&aClique para comprar'
+    - Quantidade: 500
+      Slot: 13
+      Material: COAL_BLOCK
+      Nome: '&a&l+500 COMBUSTIVEL'
+      Lore:
+        - '&7Preco: &f{preco}'
+        - ''
+        - '&aClique para comprar'
+    - Quantidade: 1000
+      Slot: 15
+      Material: BLAZE_ROD
+      Nome: '&a&l+1000 COMBUSTIVEL'
+      Lore:
+        - '&7Preco: &f{preco}'
+        - ''
+        - '&aClique para comprar'
+  Voltar:
+    Slot: 22
+    Material: ARROW
+    Nome: '&cVoltar'
+
+Loja Mineradoras:
+  Titulo: '&8Loja de mineradoras'
+  Linhas: 3
+  Enfeite:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  # Acrescentado embaixo da lore de cada tipo (a mesma do mineradoras.yml:
+  # Item.Lore) so nesta tela -- so aparecem tipos com "Preco na loja" > 0.
+  Lore extra:
+    - ''
+    - '&7Preco: &f{preco}'
+    - '&aClique para comprar'
+  Fechar:
+    Slot: 26
+    Material: ARROW
+    Nome: '&cFechar'
