@@ -1,0 +1,96 @@
+# ---------------------------------------------------------------------------
+#  StarComemorar - menus
+#
+#  Título, número de linhas e vidro de fundo de cada tela. Os botões dos
+#  editores mostram o valor atual e mudam conforme o tipo da arma ou o modo do
+#  espetáculo, então ficam no plugin; aqui fica a aparência.
+#
+#  Enfeite.Ativar: false deixa os espaços vazios sem vidro.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (vale em qualquer
+# versao) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# O /comemorar dos jogadores.
+Armas do jogador:
+  Titulo: '&8Armas de Comemoração'
+  # false esconde as armas que o jogador ainda não pode pegar.
+  Mostrar bloqueadas: true
+  # Linhas acrescentadas embaixo da descrição da arma.
+  Lore liberada:
+    - ''
+    - '&aClique para pegar!'
+  Lore bloqueada:
+    - ''
+    - '&cVocê não tem esta arma.'
+    - '&7Adquira na loja do servidor!'
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+Principal:
+  Titulo: '&8Comemorar &7- Administração'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+
+Espetaculos:
+  Titulo: '&8Espetáculos'
+
+Espetaculo:
+  Titulo: '&8Espetáculo: {id}'
+
+Pontos:
+  Titulo: '&8Pontos: {id}'
+
+Agenda:
+  Titulo: '&8Agenda: {id}'
+
+Armas:
+  Titulo: '&8Armas de Comemoração'
+
+Arma:
+  Titulo: '&8Arma: {id}'
+
+Tipos:
+  Titulo: '&8Escolha o tipo da arma'
+
+Paletas:
+  Titulo: '&8Paletas de Cores'
+
+Escolher paleta:
+  Titulo: '&8Escolha uma paleta'
+
+Paleta:
+  Titulo: '&8Paleta: {id}'
+
+Celebracoes:
+  Titulo: '&8Celebrações'
+
+Confirmar:
+  Titulo: '&8Confirmar'
