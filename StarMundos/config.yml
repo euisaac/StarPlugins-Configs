@@ -1,0 +1,484 @@
+# ============================================================
+#  StarMundos - Configuração Principal
+#  Autor: EuIsaac
+# ============================================================
+#
+#  EFEITOS DISPONÍVEIS (use o nome em inglês):
+#    SPEED, SLOWNESS, HASTE, MINING_FATIGUE, STRENGTH,
+#    INSTANT_HEALTH, INSTANT_DAMAGE, JUMP_BOOST, NAUSEA,
+#    REGENERATION, RESISTANCE, FIRE_RESISTANCE, WATER_BREATHING,
+#    INVISIBILITY, BLINDNESS, NIGHT_VISION, HUNGER, WEAKNESS,
+#    POISON, WITHER, HEALTH_BOOST, ABSORPTION, SATURATION,
+#    GLOWING, LEVITATION, LUCK, UNLUCK, SLOW_FALLING,
+#    CONDUIT_POWER, DOLPHINS_GRACE, BAD_OMEN, HERO_OF_THE_VILLAGE
+#
+#  MATERIAIS: Use os nomes do Minecraft em maiúsculo
+#    Ex: GRASS_BLOCK, DIAMOND_ORE, NETHERRACK, END_STONE
+# ============================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (nos recursos da
+# mina: icone: 'PLAYER_HEAD') e UM destes dois campos:
+#
+#       material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+mundos:
+
+  exploracao-1:
+    nome-display: "&a✦ Exploração &f&lI"
+    mundo: "world"           # Nome exato do mundo no servidor
+    slot: 10                 # Slot no inventário (GUI 3 linhas = slots 0-26)
+    material: GRASS_BLOCK
+    relogar-spawn: false     # Ao relogar neste mundo, teleporta ao spawn do mundo
+    mensagem-entrada: "&8[&a✦&8] &7Bem-vindo ao &aExploração I&7! Mobs dropam &a+25%&7 e você tem &fResistência I&7."
+    lore:
+      - "&7Mundo de exploração e construção"
+      - ""
+      - "&a⚔ &7Drops de mobs: &a+25%"
+      - "&a✦ &7Efeito: &fResistência I"
+      - ""
+      - "&eClique para teleportar!"
+    buffs:
+      drop-bonus-mobs: 25    # % extra nos drops de mobs (0 = desativado)
+      crescimento-bonus: 0   # % extra de crescimento de plantações (0 = desativado)
+      efeitos:
+        - tipo: RESISTANCE
+          nivel: 1
+
+  exploracao-2:
+    nome-display: "&2✦ Exploração &f&lII"
+    mundo: "world2"
+    slot: 11
+    material: OAK_LOG
+    relogar-spawn: false
+    mensagem-entrada: "&8[&2✦&8] &7Bem-vindo ao &2Exploração II&7! Plantações crescem &a+25%&7 e você tem &fRespiração I&7."
+    lore:
+      - "&7Mundo de exploração e construção"
+      - ""
+      - "&a🌱 &7Plantações crescem: &a+25%"
+      - "&b✦ &7Efeito: &fRespiração I"
+      - ""
+      - "&eClique para teleportar!"
+    buffs:
+      drop-bonus-mobs: 0
+      crescimento-bonus: 25
+      efeitos:
+        - tipo: WATER_BREATHING
+          nivel: 1
+
+  recursos:
+    nome-display: "&6✦ Recursos"
+    mundo: "recursos"
+    slot: 13
+    material: DIAMOND_ORE
+    relogar-spawn: true      # Jogadores que relogam aqui vão ao spawn (evita ficar preso em caves)
+    rtp: true                # Ao ir por /mundos, teleporta para um local aleatório e seguro no mundo
+    mensagem-entrada:
+      - "&8&m                                        "
+      - " &6✦ &eBem-vindo ao mundo de &6Recursos&e! &6✦"
+      - " &7Use &e/mina &7para configurar sua coleta automática."
+      - "&8&m                                        "
+    lore:
+      - "&7Mineração e coleta de recursos"
+      - ""
+      - "&e⛏ &7Efeito: &fPressa I"
+      - ""
+      - "&eClique para teleportar!"
+    buffs:
+      drop-bonus-mobs: 0
+      crescimento-bonus: 0
+      efeitos:
+        - tipo: HASTE
+          nivel: 1
+
+  nether:
+    nome-display: "&c✦ Nether"
+    mundo: "world_nether"
+    slot: 15
+    material: NETHERRACK
+    relogar-spawn: false
+    mensagem-entrada: "&8[&c✦&8] &7Você entrou no &cNether&7. Cuidado com o calor!"
+    lore:
+      - "&7O submundo em chamas"
+      - ""
+      - "&eClique para teleportar!"
+    buffs:
+      drop-bonus-mobs: 0
+      crescimento-bonus: 0
+      efeitos: []
+
+  end:
+    nome-display: "&5✦ The End"
+    mundo: "world_the_end"
+    slot: 16
+    material: END_STONE
+    relogar-spawn: false
+    mensagem-entrada: "&8[&5✦&8] &7Você entrou no &5The End&7. O vazio te aguarda..."
+    lore:
+      - "&7O vazio entre dimensões"
+      - ""
+      - "&eClique para teleportar!"
+    buffs:
+      drop-bonus-mobs: 0
+      crescimento-bonus: 0
+      efeitos: []
+
+# ============================================================
+#  Configurações gerais
+# ============================================================
+
+# Intervalo em ticks para reaplicar efeitos aos jogadores
+# 20 ticks = 1 segundo | Padrão: 100 ticks = 5 segundos
+efeitos-intervalo: 100
+
+# Configurações do GUI
+gui:
+  titulo: "&8✦ &b&lMundos &8✦"
+  linhas: 3
+  fill-vazio:
+    ativo: true
+    material: GRAY_STAINED_GLASS_PANE
+
+# ============================================================
+#  Reset semanal de mundo
+# ============================================================
+reset-mundo:
+  ativo: true
+  # Chave do mundo (deve corresponder a uma entrada em 'mundos:')
+  mundo-chave: "recursos"
+
+  # Dia da semana do reset (em inglês):
+  # MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+  dia-da-semana: MONDAY
+
+  # Horário do reset no formato HH:mm (horário local do servidor)
+  horario: "04:00"
+
+  # Avisos antes do reset (em minutos). Use vírgula para múltiplos avisos.
+  avisos-minutos: [30, 10, 5, 1]
+
+  # Mundo para onde os jogadores serão teleportados antes do reset
+  mundo-fallback: "spawn"
+
+  # Tipo do mundo recriado: NORMAL, FLAT, AMPLIFIED, LARGE_BIOMES
+  tipo: NORMAL
+
+  # Semente do mundo (vazio = aleatória a cada reset)
+  semente: ""
+
+# Mensagens do plugin (suporta códigos de cor com &)
+mensagens:
+  sem-permissao: "&cVocê não tem permissão para isso."
+  mundo-nao-encontrado: "&cO mundo &e{mundo} &cnão existe no servidor."
+  teleportando: "&aTeleportando para &e{mundo}&a..."
+  config-recarregada: "&aStar&2Mundos &a» Configurações recarregadas com sucesso!"
+  prefixo: "&aStar&2Mundos &8» &f"
+  mina-fora-do-mundo: "&cO recurso automático só funciona nos mundos de exploração."
+  mina-recurso-ligado: "&a✔ &e{recurso} &aativado — irá direto ao seu inventário."
+  mina-recurso-desligado: "&c✘ &e{recurso} &cdesativado — cairá no chão normalmente."
+  mina-inventario-cheio: "&cSeu inventário está cheio! Alguns itens caíram no chão."
+  reset-aviso: "&c&l⚠ O mundo de Recursos será resetado em &e{minutos} &c&lminuto(s)!"
+  reset-iniciando: "&c&l⚠ Resetando o mundo de Recursos agora! Você foi teleportado ao spawn."
+  reset-concluido: "&a✔ O mundo de Recursos foi resetado com sucesso!"
+  rtp-procurando: "&aProcurando um local seguro para te teletransportar..."
+  rtp-cooldown: "&cAguarde &e{segundos}s &cpara usar o RTP novamente."
+  rtp-falha-local: "&cNão foi possível encontrar um local seguro. Tente novamente."
+  rtp-mundo-invalido: "&cO mundo &e{mundo} &cnão existe ou não está carregado."
+  rtp-ja-buscando: "&cVocê já está esperando um teleporte aleatório. Aguarde..."
+
+# ============================================================
+#  Sistema /mina — Recursos automáticos ao minerar
+# ============================================================
+mina:
+  # Mundos onde o /mina funciona (whitelist)
+  mundos-permitidos:
+    - "recursos"
+
+  # Configurações do GUI
+  gui:
+    titulo: "&8⛏ &6&lRecursos de Mineração &8⛏"
+    linhas: 5
+
+  # Cada recurso agrupa os blocos relacionados.
+  # blocos: lista dos blocos que ativam a coleta automática
+  # icone: item exibido no GUI
+  # slot: posição no inventário do GUI
+  recursos:
+
+    carvao:
+      nome: "&7Carvão"
+      icone: COAL
+      slot: 10
+      blocos:
+        - COAL_ORE
+        - DEEPSLATE_COAL_ORE
+
+    ferro:
+      nome: "&fFerro Bruto"
+      icone: RAW_IRON
+      slot: 11
+      blocos:
+        - IRON_ORE
+        - DEEPSLATE_IRON_ORE
+
+    cobre:
+      nome: "&6Cobre Bruto"
+      icone: RAW_COPPER
+      slot: 12
+      blocos:
+        - COPPER_ORE
+        - DEEPSLATE_COPPER_ORE
+
+    ouro:
+      nome: "&eOuro Bruto"
+      icone: RAW_GOLD
+      slot: 13
+      blocos:
+        - GOLD_ORE
+        - DEEPSLATE_GOLD_ORE
+        - NETHER_GOLD_ORE
+
+    redstone:
+      nome: "&cRedstone"
+      icone: REDSTONE
+      slot: 14
+      blocos:
+        - REDSTONE_ORE
+        - DEEPSLATE_REDSTONE_ORE
+
+    lapis:
+      nome: "&9Lápis-Lazúli"
+      icone: LAPIS_LAZULI
+      slot: 15
+      blocos:
+        - LAPIS_ORE
+        - DEEPSLATE_LAPIS_ORE
+
+    diamante:
+      nome: "&bDiamante"
+      icone: DIAMOND
+      slot: 16
+      blocos:
+        - DIAMOND_ORE
+        - DEEPSLATE_DIAMOND_ORE
+
+    esmeralda:
+      nome: "&aEsmeralda"
+      icone: EMERALD
+      slot: 19
+      blocos:
+        - EMERALD_ORE
+        - DEEPSLATE_EMERALD_ORE
+
+    quartzo:
+      nome: "&fQuartzo"
+      icone: QUARTZ
+      slot: 20
+      blocos:
+        - NETHER_QUARTZ_ORE
+
+    restos-antigos:
+      nome: "&5Restos Antigos"
+      icone: NETHERITE_SCRAP
+      slot: 21
+      blocos:
+        - ANCIENT_DEBRIS
+
+    pedra:
+      nome: "&8Pedra / Cobogranito"
+      icone: STONE
+      slot: 22
+      blocos:
+        - STONE
+        - COBBLESTONE
+        - DEEPSLATE
+        - COBBLED_DEEPSLATE
+        - GRANITE
+        - DIORITE
+        - ANDESITE
+        - TUFF
+
+    cascalho:
+      nome: "&8Cascalho"
+      icone: GRAVEL
+      slot: 23
+      blocos:
+        - GRAVEL
+
+    areia:
+      nome: "&eAreia"
+      icone: SAND
+      slot: 24
+      blocos:
+        - SAND
+        - RED_SAND
+
+    argila:
+      nome: "&9Argila"
+      icone: CLAY_BALL
+      slot: 25
+      blocos:
+        - CLAY
+
+    obsidiana:
+      nome: "&5Obsidiana"
+      icone: OBSIDIAN
+      slot: 28
+      blocos:
+        - OBSIDIAN
+        - CRYING_OBSIDIAN
+
+# ============================================================
+#  Sistema de RTP (Teleporte Aleatório) — inspirado no BetterRTP
+# ============================================================
+rtp:
+
+  # Configuração padrão usada em QUALQUER mundo que não tenha uma
+  # entrada customizada em 'mundos-customizados' abaixo.
+  # É essa configuração que vale para mundos marcados com 'rtp: true' no /mundos,
+  # a menos que o nome do mundo apareça também em 'mundos-customizados'.
+  padrao:
+    raio-maximo: 1000
+    raio-minimo: 100
+    centro-x: 0
+    centro-z: 0
+    formato: SQUARE          # SQUARE ou CIRCLE
+    y-maximo: 320
+    y-minimo: 60
+    usar-worldborder: true
+    cooldown: 30             # segundos
+
+  # Segurança aplicada a TODO RTP, independente do mundo
+  seguranca:
+    # Impede que o jogador seja teleportado para dentro/perto de blocos perigosos
+    # (água, lava, cactos, folhas, ar, bedrock, etc). Recomendado: true
+    evitar-terrenos-perigosos: true
+
+    # Quantas tentativas o plugin faz até desistir e avisar o jogador
+    tentativas-maximas: 30
+
+    # Quantos locais candidatos são gerados e verificados em paralelo por rodada.
+    # Valores maiores encontram um local mais rápido, mas geram mais chunks de uma vez.
+    # O carregamento/geração dos chunks é sempre assíncrono e o teleporte final usa
+    # teleportAsync, então o servidor nunca trava esperando terreno novo ser gerado —
+    # o jogador é movido assim que o chunk de destino estiver pronto.
+    tentativas-paralelas: 4
+
+    # Tempo máximo (em segundos) que a busca por um local seguro pode durar antes
+    # de desistir, mesmo que ainda existam tentativas disponíveis. Evita que o
+    # jogador fique esperando indefinidamente exposto a perigo (mobs, queda, etc.)
+    # em mundos onde gerar terreno novo está demorando muito.
+    tempo-limite-segundos: 8
+
+    # Blocos nos quais o RTP NUNCA vai pousar (topo, chão ou "cabeça" do local sorteado)
+    blacklist-blocos:
+      - WATER
+      - LAVA
+      - CACTUS
+      - OAK_LEAVES
+      - JUNGLE_LEAVES
+      - SPRUCE_LEAVES
+      - BIRCH_LEAVES
+      - DARK_OAK_LEAVES
+      - ACACIA_LEAVES
+      - MANGROVE_LEAVES
+      - CHERRY_LEAVES
+      - AZALEA_LEAVES
+      - FLOWERING_AZALEA_LEAVES
+      - AIR
+      - VOID_AIR
+      - CAVE_AIR
+      - BEDROCK
+      - KELP
+      - KELP_PLANT
+      - FIRE
+      - SOUL_FIRE
+      - MAGMA_BLOCK
+      - POWDER_SNOW
+      - SWEET_BERRY_BUSH
+
+  # Título, subtítulo e som exibidos/tocados ao concluir QUALQUER RTP
+  # (tanto pelo comando /rtp quanto pelo clique num mundo com 'rtp: true' no /mundos)
+  efeito:
+    title: "&a&lTeletransportado!"
+    subtitle: "&7Boa sorte na aventura"
+    som: ENTITY_ENDERMAN_TELEPORT
+    volume: 1.0
+    pitch: 1.0
+
+  # Mundos com configuração própria (usar o NOME EXATO do mundo no servidor, não a chave do /mundos)
+  # [MaxRadius] e [MinRadius] devem ser positivos e diferentes entre si.
+  #
+  # IMPORTANTE: se 'usar-worldborder' for true, o raio-maximo é automaticamente
+  # limitado ao tamanho real do WorldBorder do mundo (com uma margem de segurança).
+  # Isso evita que o plugin sorteie coordenadas fora da borda e gaste tempo à toa
+  # gerando chunks que nunca serão usados. Configure o raio-maximo pensando no
+  # tamanho que a borda TERÁ quando o mundo crescer, sem medo de exagerar.
+  mundos-customizados:
+
+    world_the_end:
+      usar-worldborder: true
+      raio-maximo: 1000
+      raio-minimo: 250
+      centro-x: 0
+      centro-z: 0
+      preco: 0
+      formato: SQUARE
+      y-maximo: 320
+      y-minimo: 0
+      cooldown: 1800
+
+    recursos:
+      usar-worldborder: true
+      raio-maximo: 10000
+      raio-minimo: 150
+      centro-x: 0
+      centro-z: 0
+      preco: 0
+      formato: CIRCLE
+      y-maximo: 320
+      y-minimo: 40
+      biomas: []             # vazio = qualquer bioma. Ex: [DESERT, FOREST]
+      rtp-ao-morrer: false   # se true, reposiciona o jogador ao renascer neste mundo
+      cooldown: 60
+
+    # O Nether é detectado automaticamente pelo plugin (via World.Environment do
+    # Bukkit) e usa um algoritmo diferente de busca: como o teto do Nether é sempre
+    # sólido, o plugin escaneia a coluna vertical inteira procurando uma bolsa de
+    # ar sobre chão sólido, em vez de procurar "o ponto mais alto" (que no Nether
+    # seria sempre o teto de bedrock/netherrack). Ajuste o y-minimo/y-maximo para
+    # ficar longe do piso (y=0) e do teto (y=127) de bedrock.
+    world_nether:
+      usar-worldborder: true
+      raio-maximo: 1000
+      raio-minimo: 100
+      centro-x: 0
+      centro-z: 0
+      preco: 0
+      formato: SQUARE
+      y-maximo: 100
+      y-minimo: 32
+      cooldown: 60
+
+  # Executa o RTP em outro mundo quando o comando/clique acontece a partir do mundo listado.
+  # Formato: "mundo-de-origem": "mundo-de-destino"
+  overrides:
+    spawn: world
+    creative_world: world
