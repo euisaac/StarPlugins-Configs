@@ -1,0 +1,65 @@
+# ------------------------------------------------------------------
+#  Recompensas que podem sair ao guardar plantacoes
+#
+#  A chance fica no plantacoes.yml ('chance;id'). A recompensa nao e
+#  entregue na hora: fica guardada no armazem e e recolhida pelo menu
+#  (botao Recompensas). Assim nada se perde com o dono offline.
+#
+#  Itens    - o que o jogador recebe (Material, Quantidade, Nome, Lore,
+#             Encantamentos ['SHARPNESS:2'], Brilho).
+#  Comandos - rodam no console. Com {quantidade} rodam UMA vez com o
+#             total; sem ele, uma vez por recompensa. {jogador}.
+#  Anunciar - avisa o servidor inteiro quando sair.
+# ------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Recompensas:
+  saco_de_moedas:
+    Nome: '&6Saco de moedas'
+    Icone:
+      Material: GOLD_NUGGET
+      Nome: '&6Saco de moedas'
+      Lore:
+        - '&7Vale &a$500 &7ao recolher.'
+    Comandos:
+      - 'eco give {jogador} 500'
+    Anunciar: false
+
+  semente_dourada:
+    Nome: '&eSemente dourada'
+    Icone:
+      Material: GOLDEN_CARROT
+      Nome: '&eSemente dourada'
+      Lore:
+        - '&7Uma maca dourada e uma'
+        - '&7cenoura dourada.'
+    Itens:
+      maca:
+        Material: GOLDEN_APPLE
+        Quantidade: 1
+      cenoura:
+        Material: GOLDEN_CARROT
+        Quantidade: 1
+    Anunciar: true
