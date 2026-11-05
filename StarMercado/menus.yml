@@ -1,0 +1,640 @@
+# ------------------------------------------------------------------------
+#  Telas do StarMercado.
+#
+#  Em todo item: Slot -1 esconde. Os itens a venda ocupam tudo menos a
+#  ultima linha, que e a barra de botoes.
+#
+#  Placeholders das grades: {categoria} {ordem} {busca} {pagina} {paginas} {total}
+# ------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+# Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
+# tras depois de uma atualizacao.
+Versao do modelo: 1
+
+# ------------------------------------------------------------------------
+#  A tela do /mercado (modo padrao: itens direto na tela principal).
+# ------------------------------------------------------------------------
+Mercado:
+  Titulo: '&8Mercado &7- &f{categoria}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    # Lore colada embaixo da lore original de cada item a venda.
+    # {preco} {unitario} {quantidade} {vendedor} {categoria} {expira} {dentro}
+    Anuncio:
+      Lore:
+        - ''
+        - '&7Preco: &a{preco}'
+        - '&7Cada: &f{unitario}'
+        - '&7Vendedor: &f{vendedor}'
+        - '&7Categoria: {categoria}'
+        - '&7Vence em: &f{expira}'
+        - ''
+        - '&eClique para comprar.'
+      Lore proprio:
+        - '&7(seu anuncio) &eClique para tirar do mercado.'
+      Lore shulker:
+        - '&d{dentro} itens dentro &7- clique para ver antes de comprar.'
+      Lore staff:
+        - '&cShift-clique: tirar do mercado e pegar o item.'
+
+    Vazio:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&cNenhum item por aqui'
+      Lore:
+        - '&7Categoria: {categoria}'
+        - '&7Use o filtro para ver outras.'
+
+    Filtro:
+      Slot: 49
+      Material: HOPPER
+      Nome: '&eCategoria: &f{categoria}'
+      Lore:
+        - '&7Clique para a proxima.'
+        - '&7Clique direito para a anterior.'
+        - ''
+      # Como cada categoria aparece na lista abaixo da lore.
+      Ativa: '&a> {categoria}'
+      Inativa: '&8  {categoria}'
+
+    Ordenar:
+      Slot: 50
+      Material: COMPARATOR
+      Nome: '&eOrdem: &f{ordem}'
+      Lore:
+        - '&7Clique para trocar a ordem.'
+        - '&7{total} itens a venda.'
+
+    Buscar:
+      Slot: 48
+      Material: OAK_SIGN
+      Nome: '&eBuscar'
+      Lore:
+        - '&7Busca atual: &f{busca}'
+        - '&7Clique para digitar.'
+        - '&7Clique direito para limpar.'
+
+    'Meus anuncios':
+      Slot: 45
+      Material: BOOK
+      Nome: '&eMeus anuncios'
+      Lore:
+        - '&7Veja e cancele os seus anuncios.'
+
+    Armazem:
+      Slot: 46
+      Material: ENDER_CHEST
+      Nome: '&eArmazem'
+      Lore:
+        - '&7Itens vencidos, ganhos e devolvidos.'
+
+    Historico:
+      Slot: -1
+      Material: PAPER
+      Nome: '&eHistorico'
+      Lore:
+        - '&7As suas ultimas negociacoes.'
+
+    Vender:
+      Slot: 52
+      Material: GOLD_INGOT
+      Nome: '&aAnunciar o item da mao'
+      Lore:
+        - '&7Segure o item e clique aqui.'
+        - '&7Ou use &f/mercado vender <preco>&7.'
+
+    Trocar:
+      Slot: 53
+      Material: CLOCK
+      Nome: '&6Ir para o leilao'
+      Lore:
+        - '&7Abre a tela so de leiloes.'
+
+    Anterior:
+      Slot: 47
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Lore:
+        - '&7Pagina {pagina} de {paginas}.'
+
+    Proxima:
+      Slot: 51
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Lore:
+        - '&7Pagina {pagina} de {paginas}.'
+
+    Fechar:
+      Slot: -1
+      Material: BARRIER
+      Nome: '&cFechar'
+
+# ------------------------------------------------------------------------
+#  A tela do /leilao.
+#  {lance} {proximo} {inicial} {incremento} {imediata} {lider} {dono} {tempo}
+# ------------------------------------------------------------------------
+Leilao:
+  Titulo: '&8Leilao &7- &f{categoria}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Leilao:
+      Lore:
+        - ''
+        - '&7Lance atual: &a{lance}'
+        - '&7Quem ganha: &f{lider}'
+        - '&7Proximo lance: &e{proximo}'
+        - '&7Dono: &f{dono}'
+        - '&7Termina em: &f{tempo}'
+        - ''
+        - '&eClique para dar lance.'
+      Lore imediata:
+        - '&aCompra imediata: &f{imediata}'
+      Lore proprio:
+        - '&7(seu leilao)'
+      Lore lider:
+        - '&aVoce esta ganhando este leilao.'
+      Lore shulker:
+        - '&d{dentro} itens dentro &7- clique para ver.'
+      Lore staff:
+        - '&cShift-clique: tirar do ar e pegar o item.'
+
+    Vazio:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&cNenhum leilao rolando'
+      Lore:
+        - '&7Use &f/leilao criar <inicial>&7.'
+
+    Filtro:
+      Slot: 49
+      Material: HOPPER
+      Nome: '&eCategoria: &f{categoria}'
+      Lore:
+        - '&7Clique para a proxima.'
+        - '&7Clique direito para a anterior.'
+        - ''
+      Ativa: '&a> {categoria}'
+      Inativa: '&8  {categoria}'
+
+    Ordenar:
+      Slot: 50
+      Material: COMPARATOR
+      Nome: '&eOrdem: &f{ordem}'
+      Lore:
+        - '&7Clique para trocar a ordem.'
+        - '&7{total} leiloes no ar.'
+
+    Buscar:
+      Slot: 48
+      Material: OAK_SIGN
+      Nome: '&eBuscar'
+      Lore:
+        - '&7Busca atual: &f{busca}'
+        - '&7Clique para digitar.'
+        - '&7Clique direito para limpar.'
+
+    'Meus anuncios':
+      Slot: 45
+      Material: BOOK
+      Nome: '&eMeus leiloes'
+      Lore:
+        - '&7Veja e cancele os seus leiloes.'
+
+    Armazem:
+      Slot: 46
+      Material: ENDER_CHEST
+      Nome: '&eArmazem'
+      Lore:
+        - '&7Itens ganhos e devolvidos.'
+
+    Historico:
+      Slot: -1
+      Material: PAPER
+      Nome: '&eHistorico'
+
+    Vender:
+      Slot: 52
+      Material: GOLD_INGOT
+      Nome: '&aLeiloar o item da mao'
+      Lore:
+        - '&7Segure o item e clique aqui.'
+        - '&7Ou use &f/leilao criar <inicial>&7.'
+
+    Trocar:
+      Slot: 53
+      Material: EMERALD
+      Nome: '&6Ir para o mercado'
+      Lore:
+        - '&7Abre a tela de venda direta.'
+
+    Anterior:
+      Slot: 47
+      Material: ARROW
+      Nome: '&ePagina anterior'
+
+    Proxima:
+      Slot: 51
+      Material: ARROW
+      Nome: '&eProxima pagina'
+
+    Fechar:
+      Slot: -1
+      Material: BARRIER
+      Nome: '&cFechar'
+
+# ------------------------------------------------------------------------
+#  So aparece com "Menu.Categorias separadas: true" no config.yml.
+#  O slot de cada categoria fica no categorias.yml.
+# ------------------------------------------------------------------------
+Categorias:
+  Titulo: '&8Mercado'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Todas:
+      Slot: 4
+      Material: CHEST
+      Nome: '&eTodas as categorias'
+      Lore:
+        - '&7{quantidade} itens a venda.'
+
+    'Meus anuncios':
+      Slot: 45
+      Material: BOOK
+      Nome: '&eMeus anuncios'
+
+    Armazem:
+      Slot: 46
+      Material: ENDER_CHEST
+      Nome: '&eArmazem'
+
+    Historico:
+      Slot: 47
+      Material: PAPER
+      Nome: '&eHistorico'
+
+    Vender:
+      Slot: 52
+      Material: GOLD_INGOT
+      Nome: '&aAnunciar um item'
+      Lore:
+        - '&7Segure o item e use'
+        - '&f/mercado vender <preco>&7.'
+
+    Trocar:
+      Slot: 53
+      Material: CLOCK
+      Nome: '&6Ir para o leilao'
+
+    Fechar:
+      Slot: 49
+      Material: BARRIER
+      Nome: '&cFechar'
+
+# ------------------------------------------------------------------------
+#  O preview da shulker: o conteudo aparece nos 27 primeiros slots.
+#  {item} {preco} {dentro} {tipos} {saldo}
+# ------------------------------------------------------------------------
+Preview:
+  Titulo: '&8Dentro: &f{item}'
+  Linhas: 5
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Item:
+      Slot: 31
+      Lore:
+        - ''
+        - '&7Dentro: &f{dentro} itens &7em &f{tipos} &7pilhas.'
+        - '&7Preco: &a{preco}'
+
+    Voltar:
+      Slot: 29
+      Material: ARROW
+      Nome: '&cVoltar'
+      Lore:
+        - '&7Volta para o mercado sem comprar.'
+
+    Comprar:
+      Slot: 33
+      Material: EMERALD_BLOCK
+      Nome: '&aComprar por {preco}'
+      Lore:
+        - '&7Seu saldo: &f{saldo}'
+
+# ------------------------------------------------------------------------
+#  As duas telas de confirmacao.
+# ------------------------------------------------------------------------
+'Confirmar compra':
+  Titulo: '&8Confirmar compra'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Item:
+      Slot: 13
+      Lore:
+        - ''
+        - '&7Preco: &a{preco}'
+        - '&7Cada: &f{unitario}'
+        - '&7Vendedor: &f{vendedor}'
+        - '&7Seu saldo: &f{saldo}'
+
+    Confirmar:
+      Slot: 11
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aComprar'
+      Lore:
+        - '&7Confirma a compra por &f{preco}&7.'
+
+    Cancelar:
+      Slot: 15
+      Material: RED_STAINED_GLASS_PANE
+      Nome: '&cCancelar'
+
+'Confirmar cancelamento':
+  Titulo: '&8Tirar do mercado?'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Item:
+      Slot: 13
+      Lore:
+        - ''
+        - '&7O item volta para voce.'
+
+    Confirmar:
+      Slot: 11
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&aTirar do mercado'
+
+    Cancelar:
+      Slot: 15
+      Material: RED_STAINED_GLASS_PANE
+      Nome: '&cDeixar como esta'
+
+# ------------------------------------------------------------------------
+#  A tela de lance.
+# ------------------------------------------------------------------------
+Lance:
+  Titulo: '&8Dar lance'
+  Linhas: 3
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Item:
+      Slot: 4
+      Lore:
+        - ''
+        - '&7Lance atual: &a{lance} &7({lider})'
+        - '&7Dono: &f{dono}'
+        - '&7Termina em: &f{tempo}'
+
+    'Lance minimo':
+      Slot: 11
+      Material: GOLD_INGOT
+      Nome: '&aDar lance de {proximo}'
+      Lore:
+        - '&7Incremento: &f{incremento}'
+        - '&7Seu saldo: &f{saldo}'
+
+    Digitar:
+      Slot: 13
+      Material: OAK_SIGN
+      Nome: '&eDigitar outro valor'
+      Lore:
+        - '&7Minimo: &f{proximo}'
+
+    'Comprar agora':
+      Slot: 15
+      Material: EMERALD_BLOCK
+      Nome: '&aComprar agora por {imediata}'
+      Lore:
+        - '&7Leva o item na hora e fecha o leilao.'
+
+    Voltar:
+      Slot: 22
+      Material: ARROW
+      Nome: '&cVoltar'
+
+# ------------------------------------------------------------------------
+#  Meus anuncios / meus leiloes.
+# ------------------------------------------------------------------------
+Meus:
+  Titulo: '&8Meus {tipo}'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Anuncio:
+      Lore:
+        - ''
+        - '&7Preco: &a{preco}'
+        - '&7Categoria: {categoria}'
+        - '&7Vence em: &f{expira}'
+        - ''
+        - '&eClique para tirar do mercado.'
+
+    Leilao:
+      Lore:
+        - ''
+        - '&7Lance atual: &a{lance} &7({lider})'
+        - '&7Inicial: &f{inicial}'
+        - '&7Termina em: &f{tempo}'
+        - ''
+        - '&eClique para cancelar (so sem lance).'
+
+    Vazio:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&cVoce nao tem nada aqui'
+
+    Trocar:
+      Slot: 53
+      Material: CLOCK
+      Nome: '&6Trocar entre anuncios e leiloes'
+
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+
+    Anterior:
+      Slot: 47
+      Material: ARROW
+      Nome: '&ePagina anterior'
+
+    Proxima:
+      Slot: 51
+      Material: ARROW
+      Nome: '&eProxima pagina'
+
+# ------------------------------------------------------------------------
+#  O armazem: o que esta esperando para ser retirado.
+# ------------------------------------------------------------------------
+Armazem:
+  Titulo: '&8Armazem &7({total})'
+  Linhas: 6
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Item:
+      Lore:
+        - ''
+        - '&7Motivo: &f{motivo}'
+        - '&7Guardado ha &f{ha}'
+        - ''
+        - '&eClique para pegar.'
+
+    Carregando:
+      Slot: 22
+      Material: CLOCK
+      Nome: '&7Carregando...'
+
+    Vazio:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&cSeu armazem esta vazio'
+
+    'Retirar tudo':
+      Slot: 53
+      Material: HOPPER
+      Nome: '&aRetirar tudo'
+      Lore:
+        - '&7Pega tudo que couber no inventario.'
+
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+
+    Anterior:
+      Slot: 47
+      Material: ARROW
+      Nome: '&ePagina anterior'
+
+    Proxima:
+      Slot: 51
+      Material: ARROW
+      Nome: '&eProxima pagina'
+
+# ------------------------------------------------------------------------
+#  Historico de compras e vendas.
+# ------------------------------------------------------------------------
+Historico:
+  Titulo: '&8Historico'
+  Linhas: 6
+  # Quantas linhas o banco devolve.
+  Limite: 90
+
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+
+  Itens:
+    Compra:
+      Lore:
+        - ''
+        - '&aVoce comprou &7({tipo})'
+        - '&7De: &f{vendedor}'
+        - '&7Preco: &f{preco}'
+        - '&7Quando: &f{quando}'
+
+    Venda:
+      Lore:
+        - ''
+        - '&6Voce vendeu &7({tipo})'
+        - '&7Para: &f{comprador}'
+        - '&7Preco: &f{preco}'
+        - '&7Quando: &f{quando}'
+
+    Carregando:
+      Slot: 22
+      Material: CLOCK
+      Nome: '&7Carregando...'
+
+    Vazio:
+      Slot: 22
+      Material: BARRIER
+      Nome: '&cVoce ainda nao negociou nada'
+
+    Voltar:
+      Slot: 49
+      Material: ARROW
+      Nome: '&cVoltar'
+
+    Anterior:
+      Slot: 47
+      Material: ARROW
+      Nome: '&ePagina anterior'
+
+    Proxima:
+      Slot: 51
+      Material: ARROW
+      Nome: '&eProxima pagina'

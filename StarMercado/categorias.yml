@@ -1,0 +1,293 @@
+# ------------------------------------------------------------------------
+#  Categorias do mercado.
+#
+#  A categoria de um item e decidida UMA VEZ, quando ele e anunciado, e fica
+#  guardada com o anuncio -- mexer nesta lista nao mexe no que ja esta a venda.
+#
+#  A ordem manda: vale a PRIMEIRA categoria cuja lista casar com o material.
+#  Os nomes aceitam curinga: *_LOG, DIAMOND_*, *SWORD*.
+#
+#  Slot: onde a categoria aparece no menu de categorias separadas
+#  (config.yml -> Menu.Categorias separadas: true). -1 esconde de la, mas
+#  a categoria continua no filtro da ultima linha.
+#
+#  Permissao: deixe vazio para todo mundo ver.
+# ------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+# Nao mexa: o plugin usa este numero para saber se o seu arquivo ficou para
+# tras depois de uma atualizacao.
+Versao do modelo: 1
+
+# Categoria de sobra: recebe tudo que nao casar com nenhuma lista.
+Categoria padrao: OUTROS
+
+Categorias:
+
+  ENCANTADOS:
+    Nome: '&dEncantados'
+    Material: ENCHANTED_BOOK
+    Slot: 10
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - ENCHANTED_BOOK
+      - EXPERIENCE_BOTTLE
+      - EXP_BOTTLE
+
+  ARMAS:
+    Nome: '&cArmas'
+    Material: DIAMOND_SWORD
+    Slot: 11
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*SWORD*'
+      - BOW
+      - CROSSBOW
+      - ARROW
+      - SPECTRAL_ARROW
+      - TIPPED_ARROW
+      - TRIDENT
+      - SHIELD
+      - TNT
+
+  FERRAMENTAS:
+    Nome: '&eFerramentas'
+    Material: DIAMOND_PICKAXE
+    Slot: 12
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*PICKAXE*'
+      - '*_AXE'
+      - '*SHOVEL*'
+      - '*SPADE*'
+      - '*_HOE'
+      - SHEARS
+      - FISHING_ROD
+      - FLINT_AND_STEEL
+      - ELYTRA
+      - BUCKET
+      - '*_BUCKET'
+
+  ARMADURAS:
+    Nome: '&9Armaduras'
+    Material: DIAMOND_CHESTPLATE
+    Slot: 13
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*HELMET*'
+      - '*CHESTPLATE*'
+      - '*LEGGINGS*'
+      - '*BOOTS*'
+      - '*HORSE_ARMOR*'
+      - '*BARDING*'
+      - TURTLE_HELMET
+
+  POCOES:
+    Nome: '&5Pocoes'
+    Material: POTION
+    Slot: 14
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*POTION*'
+      - GLASS_BOTTLE
+      - BREWING_STAND
+      - DRAGON_BREATH
+      - NETHER_WART
+      - BLAZE_POWDER
+      - FERMENTED_SPIDER_EYE
+
+  COMIDAS:
+    Nome: '&6Comidas'
+    Material: COOKED_BEEF
+    Slot: 15
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*BEEF*'
+      - '*PORKCHOP*'
+      - '*CHICKEN*'
+      - '*MUTTON*'
+      - '*RABBIT*'
+      - '*FISH*'
+      - '*COD*'
+      - '*SALMON*'
+      - BREAD
+      - '*APPLE*'
+      - CAKE
+      - COOKIE
+      - '*MELON*'
+      - '*CARROT*'
+      - '*POTATO*'
+      - '*BEETROOT*'
+      - PUMPKIN_PIE
+      - '*STEW*'
+      - '*SOUP*'
+      - HONEY_BOTTLE
+      - SUGAR
+      - EGG
+      - WHEAT
+
+  MINERIOS:
+    Nome: '&bMinerios'
+    Material: DIAMOND
+    Slot: 16
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*_ORE'
+      - '*_INGOT'
+      - '*_NUGGET'
+      - DIAMOND
+      - EMERALD
+      - COAL
+      - CHARCOAL
+      - '*LAPIS*'
+      - '*QUARTZ*'
+      - '*AMETHYST*'
+      - '*NETHERITE*'
+      - '*COPPER*'
+      - RAW_IRON
+      - RAW_GOLD
+      - RAW_COPPER
+
+  REDSTONE:
+    Nome: '&4Redstone'
+    Material: REDSTONE
+    Slot: 19
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*REDSTONE*'
+      - '*PISTON*'
+      - '*REPEATER*'
+      - '*COMPARATOR*'
+      - HOPPER
+      - DISPENSER
+      - DROPPER
+      - OBSERVER
+      - LEVER
+      - '*BUTTON*'
+      - '*PRESSURE_PLATE*'
+      - '*RAIL*'
+      - '*TRIPWIRE*'
+      - '*DAYLIGHT*'
+      - NOTE_BLOCK
+      - TARGET
+      - SLIME_BALL
+
+  MOBS:
+    Nome: '&aMobs'
+    Material: EGG
+    Slot: 20
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*SPAWN_EGG*'
+      - '*MONSTER_EGG*'
+      - '*SPAWNER*'
+      - LEAD
+      - NAME_TAG
+      - SADDLE
+
+  DECORACAO:
+    Nome: '&dDecoracao'
+    Material: PAINTING
+    Slot: 21
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*BANNER*'
+      - '*CARPET*'
+      - '*GLASS*'
+      - '*TORCH*'
+      - PAINTING
+      - ITEM_FRAME
+      - '*FLOWER*'
+      - '*SAPLING*'
+      - '*BED*'
+      - '*SIGN*'
+      - '*SKULL*'
+      - '*HEAD*'
+      - '*CANDLE*'
+      - FLOWER_POT
+      - ARMOR_STAND
+
+  BLOCOS:
+    Nome: '&7Blocos'
+    Material: GRASS_BLOCK
+    Slot: 22
+    Permissao: ''
+    Lore:
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*_LOG'
+      - '*PLANKS*'
+      - '*WOOD*'
+      - '*STONE*'
+      - '*DIRT*'
+      - '*GRASS*'
+      - '*SAND*'
+      - GRAVEL
+      - '*CONCRETE*'
+      - '*TERRACOTTA*'
+      - '*WOOL*'
+      - '*BRICK*'
+      - OBSIDIAN
+      - NETHERRACK
+      - '*_BLOCK'
+      - '*_SLAB'
+      - '*_STAIRS'
+      - '*FENCE*'
+      - '*_WALL'
+      - '*LEAVES*'
+      - CHEST
+      - ENDER_CHEST
+      - FURNACE
+
+  OUTROS:
+    Nome: '&8Outros'
+    Material: CHEST
+    Slot: 24
+    Permissao: ''
+    Lore:
+      - '&7Tudo que nao entrou nas outras.'
+      - '&7{quantidade} itens a venda.'
+    Materiais:
+      - '*'
