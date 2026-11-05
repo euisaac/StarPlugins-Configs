@@ -1,0 +1,96 @@
+# ==========================================================================
+#  StarCabecasPerdidos - aparencia dos menus
+# ==========================================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "Textura"):
+#       Dono: 'Notch'
+#
+# Com "Textura" ou "Dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "Textura".
+#
+# A cabeca por "Dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "Textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Cacas:
+  Titulo: '&8☆ &fCabecas Perdidas'
+  Icone cacada:
+    Material: PLAYER_HEAD
+    Nome: '{cor}{cacada}'
+    Lore:
+      - '&7Encontradas: &f{achadas}&7/&f{total} &8({porcentagem}%)'
+      - ''
+      - '&eClique para ver o progresso'
+  Icone ranking:
+    Material: GOLD_INGOT
+    Nome: '&6&lRanking geral'
+    Lore:
+      - '&7Veja quem mais achou cabecas'
+      - '&7em todas as cacadas.'
+  Icone fechar:
+    Material: RED_DYE
+    Nome: '&cFechar'
+  Icone sem cacadas:
+    Material: BARRIER
+    Nome: '&cNenhuma cacada ativa'
+    Lore:
+      - '&7Volte outra hora!'
+
+Progresso:
+  Titulo: '&8☆ &f{cacada}'
+  Icone encontrada:
+    Material: PLAYER_HEAD
+    Nome: '{cor}Cabeca #{numero}'
+    Lore:
+      - '&7Raridade: {cor}{raridade}'
+      - '&aEncontrada!'
+  Icone nao encontrada:
+    Material: SKELETON_SKULL
+    Nome: '&7Cabeca #{numero}'
+    Lore:
+      - '&7Raridade: {cor}{raridade}'
+      - '&8Ainda nao encontrada'
+  Icone ranking da cacada:
+    Material: GOLD_INGOT
+    Nome: '&6&lRanking desta cacada'
+  Icone voltar:
+    Material: ARROW
+    Nome: '&eVoltar'
+
+Ranking:
+  Titulo: '&8☆ &fRanking - {cacada}'
+  Icone jogador:
+    Material: PLAYER_HEAD
+    Nome: '{posicao}&8. {cor}{jogador}'
+    Lore:
+      - '&7Cabecas encontradas: &f{quantidade}'
+  Icone carregando:
+    Material: GRAY_DYE
+    Nome: '&7Carregando...'
+  Icone vazio:
+    Material: BARRIER
+    Nome: '&cNinguem encontrou uma cabeca ainda'
+  Icone voltar:
+    Material: ARROW
+    Nome: '&eVoltar'
+
+# Cor da posicao no topo 3 do ranking; da 4a posicao em diante usa '&7'.
+Cores do podio:
+  '1': '&6&l'
+  '2': '&7&l'
+  '3': '&c&l'
