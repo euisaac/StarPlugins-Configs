@@ -1,0 +1,84 @@
+commands:
+  sell-all: "vendertudo"
+
+check-interval-ticks: 20 # A cada quantos ticks checar inventário (20 ticks = 1s)
+
+messages:
+  no-permission: "&b&lStarPlugins &cVocê não tem permissão para usar este comando."
+  autovender-on: "&b&lStarPlugins &aAutoVender ativado! Agora seus itens serão vendidos automaticamente quando o inventário estiver cheio."
+  autovender-off: "&b&lStarPlugins &cAutoVender desativado."
+  shiftautovender-on: "&b&lStarPlugins &aShiftAutoVender ativado! Agora ao agachar seus itens serão vendidos."
+  shiftautovender-off: "&b&lStarPlugins &cShiftAutoVender desativado."
+  autovender-cooldown: "&b&lStarPlugins &cAutoVender em cooldown. Tempo restante: %time%."
+  shiftautovender-cooldown: "&b&lStarPlugins &cShiftAutoVender em cooldown. Tempo restante: %time%."
+  config-reloaded: "&aConfigurações recarregadas com sucesso!"
+  ajuda-uso: "&eUse: /starautovender ajuda"
+  ajuda:
+    - "&6==== &eStarAutoVender &6===="
+    - "&a/autovender &7- Ativa ou desativa o auto vender quando o inventário enche."
+    - "&a/shiftautovender &7- Ativa ou desativa o vender ao agachar."
+    - "&a/vender &7- Abre o menu de vender com opções personalizadas."
+    - "&c/starautovender reload &7- Recarrega as configurações."
+  actionbar:
+    autovender-active: "&aAutoVender ativo: %time% restante"
+    autovender-cooldown: "&cAutoVender cooldown: %time% restante"
+    shiftautovender-active: "&eShiftAutoVender ativo: %time% restante"
+    shiftautovender-cooldown: "&cShiftAutoVender cooldown: %time% restante"
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+menu:
+  title: "&b&lStarPlugins &e- Menu de Vender"
+  size: 27  # linhas x 9 (9, 18, 27, 36, 45 ou 54)
+  # Fundo do menu (deixa mais bonito, sem buracos pretos). material vazio desliga.
+  filler:
+    enabled: true
+    material: "GRAY_STAINED_GLASS_PANE"
+    name: " "
+  # DICA: coloque -1 em qualquer "*-slot" (ou no slot de um custom-item) para
+  # DESATIVAR aquele item no menu.
+  autovender-slot: 11
+  shiftautovender-slot: 15
+  autovender-item:
+    material: "DIAMOND"
+    name: "&aAutoVender"
+    lore:
+      - "&7Clique para ativar/desativar"
+      - "&7Status: %status%"
+  shiftautovender-item:
+    material: "GOLD_INGOT"
+    name: "&eShiftAutoVender"
+    lore:
+      - "&7Clique para ativar/desativar"
+      - "&7Status: %status%"
+  custom-items:
+    example-item:
+      slot: 13
+      material: "EMERALD"
+      name: "&aVender Tudo"
+      lore:
+        - "&7Clique esquerdo: Vender tudo"
+        - "&7Clique direito: Vender itens específicos"
+      left-click-command: "vendertudo"
+      right-click-command: "venderitens"
