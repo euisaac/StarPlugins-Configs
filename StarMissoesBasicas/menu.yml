@@ -1,0 +1,103 @@
+# =====================================================
+#                  StarMissoes Basicas
+#            Configuração visual dos menus
+# =====================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' e UM destes dois
+# campos:
+#
+#       material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       dono: 'Notch'
+#       dono: '{player}'   # a cabeca de quem abriu o menu (so no "cabeca-jogador")
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+menu-principal:
+  titulo: "&8&lMissões Diárias"
+  # Número de linhas (multiplicar por 9 = tamanho do inventário). Mínimo 3, máximo 6.
+  linhas: 6
+
+  fundo:
+    ativo: true
+    material: BLACK_STAINED_GLASS_PANE
+    nome: " "
+    slots: [0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,37,38,39,40,41,42,43,44,46,47,48,50,51,52]
+
+  # Item central com a missão do dia
+  missao-do-dia:
+    slot: 22
+    brilho: true
+    nome: "&e&l{missao}"
+    lore:
+      - "&7{descricao}"
+      - ""
+      - "&7Itens necessários:"
+      - "{itens}"
+      - ""
+      - "&7Progresso: {barra} &f{porcentagem}%"
+      - "&7Entregue: &f{entregue}&7/&f{total}"
+      - ""
+      - "&eClique para entregar itens!"
+    # Formato de cada linha da lista de itens necessários (placeholder {itens} acima)
+    formato-item-lore: "&8 - &7{material} &8(&f{entregue}&8/&f{necessario}&8)"
+    # Cores/caracteres da barra de progresso
+    barra:
+      tamanho: 20
+      caractere-preenchido: "|"
+      caractere-vazio: "|"
+      cor-preenchido: "&a"
+      cor-vazio: "&7"
+
+  # Cabeça com o perfil do jogador (canto inferior esquerdo)
+  cabeca-jogador:
+    slot: 45
+    nome: "&a&l{player}"
+    lore:
+      - "&7Missões completas: &f{missoes-completas}"
+      - "&7Status de hoje: {status}"
+      - "&7Progresso: &f{porcentagem}%"
+
+  # Baú de recompensas (canto inferior direito, último slot)
+  bau-recompensas:
+    slot: 53
+    material-disponivel: CHEST
+    material-bloqueado: BARRIER
+    material-resgatado: CHEST
+    nome: "&6&lRecompensas"
+    lore-bloqueado:
+      - "&cComplete a missão do dia para desbloquear!"
+      - "&7Progresso: &f{porcentagem}%"
+    lore-disponivel:
+      - "&aClique para resgatar sua recompensa!"
+    lore-resgatado:
+      - "&aVocê já resgatou a recompensa de hoje."
+      - "&7Volte amanhã para uma nova missão!"
+
+# Menu que abre ao clicar na missão, para depositar os itens pedidos
+menu-entrega:
+  titulo: "&8&lEntregar Itens"
+  linhas: 3
+
+  fundo:
+    ativo: true
+    material: GRAY_STAINED_GLASS_PANE
+    nome: " "
+    slots: [0,1,2,3,4,5,6,7,8,18,19,20,21,22,23,24,25,26]
+
+  # Slots livres onde o jogador pode colocar os itens para entregar
+  slots-deposito: [9,10,11,12,13,14,15,16,17]
