@@ -1,0 +1,282 @@
+# =========================================================================
+#  StarAdmin - punições
+# =========================================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# Quem aplica as punições:
+#   AUTO         - o StarPunicoes, quando ele está instalado; senão, o INTERNO
+#   STARPUNICOES - sempre o StarPunicoes (histórico, anúncios, Discord e proxy dele)
+#   INTERNO      - o próprio StarAdmin (lista de bans do servidor + mute e prisão próprios)
+#   COMANDOS     - roda os comandos da seção "Comandos" (outro plugin de punições)
+Motor: AUTO
+
+# Pergunta "tem certeza?" antes de aplicar.
+Confirmar antes de punir: true
+
+# Quem tem staradmin.protegido (a staff) só é punido, congelado ou testado
+# por quem tem staradmin.admin.
+Proteger staff: true
+
+# Anúncio no chat de toda punição (motores INTERNO e COMANDOS; o StarPunicoes
+# anuncia sozinho).
+Anunciar punicoes no chat: true
+
+StarPunicoes:
+  # JOGADOR: o comando sai no nome do staff (a punição fica no nome dele e
+  #          o StarPunicoes confere as permissões dele).
+  # CONSOLE: o comando sai pelo console (autor "CONSOLE").
+  Executar como: JOGADOR
+  # Cela usada no "Prender" (vazio = a primeira cela criada com /cadeia).
+  Cela: ''
+
+# Usado só com Motor: COMANDOS.
+# Placeholders: {jogador}, {duracao} (7d, 30m... ou perm), {motivo}, {staff}, {uuid}.
+# Cada tipo aceita uma lista. A variante _PERMANENTE (quando existe) vale para
+# punição sem prazo.
+Comandos:
+  # CONSOLE ou JOGADOR
+  Executar como: CONSOLE
+  Aplicar:
+    EXPULSAR: 'kick {jogador} {motivo}'
+    AVISO: 'warn {jogador} {motivo}'
+    MUTAR: 'tempmute {jogador} {duracao} {motivo}'
+    MUTAR_PERMANENTE: 'mute {jogador} {motivo}'
+    BANIR: 'tempban {jogador} {duracao} {motivo}'
+    BANIR_PERMANENTE: 'ban {jogador} {motivo}'
+    BANIR_IP: 'tempbanip {jogador} {duracao} {motivo}'
+    BANIR_IP_PERMANENTE: 'banip {jogador} {motivo}'
+    PRISAO: 'jail {jogador} jail {duracao}'
+  Revogar:
+    BANIR: 'unban {jogador}'
+    BANIR_IP: 'unbanip {jogador}'
+    MUTAR: 'unmute {jogador}'
+    PRISAO: 'unjail {jogador}'
+
+# ------------------------------------------------------------------------
+#  Avisos automáticos: ao chegar num número de avisos, a punição do degrau
+#  é aplicada sozinha (vale para os avisos dados pelo painel).
+# ------------------------------------------------------------------------
+Avisos automaticos:
+  Ativar: true
+  # Só contam os avisos dos últimos X dias (0 = todos).
+  Contar avisos dos ultimos dias: 30
+  Escada:
+    '3':
+      Tipo: MUTAR
+      Duracao: 1h
+      Motivo: 'Acumulou {avisos} avisos'
+    '5':
+      Tipo: BANIR
+      Duracao: 1d
+      Motivo: 'Acumulou {avisos} avisos'
+    '7':
+      Tipo: BANIR
+      Duracao: 7d
+      Motivo: 'Acumulou {avisos} avisos'
+    '10':
+      Tipo: BANIR
+      Duracao: perm
+      Motivo: 'Acumulou {avisos} avisos'
+
+# ------------------------------------------------------------------------
+#  Motivos prontos. Cada um aparece no menu do seu Tipo.
+#  Tipo: EXPULSAR, AVISO, MUTAR, BANIR, BANIR_IP ou PRISAO
+#  Duracao: 30m, 12h, 7d, 2w, 1mo... ou perm (sem prazo). Expulsar e avisar não usam.
+#  Motivo: o texto que o jogador lê.   Permissao: opcional, só quem tem vê o motivo.
+#  Motivos criados pelo menu ficam em motivos-criados.yml.
+# ------------------------------------------------------------------------
+Motivos:
+  # ----------------------------- expulsar -----------------------------
+  expulsar-comportamento:
+    Tipo: EXPULSAR
+    Nome: '&cComportamento inadequado'
+    Motivo: 'Comportamento inadequado'
+    Material: LEATHER_BOOTS
+  expulsar-ausente:
+    Tipo: EXPULSAR
+    Nome: '&cAusente (AFK) em área de evento'
+    Motivo: 'Ausente em área de evento'
+    Material: CLOCK
+  expulsar-flood:
+    Tipo: EXPULSAR
+    Nome: '&cFlood de comandos'
+    Motivo: 'Flood de comandos'
+    Material: COMMAND_BLOCK
+
+  # ------------------------------ avisos ------------------------------
+  aviso-linguagem:
+    Tipo: AVISO
+    Nome: '&eLinguagem imprópria'
+    Motivo: 'Linguagem imprópria no chat'
+    Material: YELLOW_DYE
+  aviso-spam:
+    Tipo: AVISO
+    Nome: '&eSpam / flood'
+    Motivo: 'Spam no chat'
+    Material: PAPER
+  aviso-desrespeito:
+    Tipo: AVISO
+    Nome: '&eDesrespeito'
+    Motivo: 'Desrespeito a outro jogador'
+    Material: POPPY
+  aviso-comercio:
+    Tipo: AVISO
+    Nome: '&eComércio fora do lugar'
+    Motivo: 'Comércio no chat global'
+    Material: GOLD_NUGGET
+  aviso-caps:
+    Tipo: AVISO
+    Nome: '&eExcesso de letras maiúsculas'
+    Motivo: 'Excesso de maiúsculas'
+    Material: NAME_TAG
+
+  # ---------------------------- silenciar -----------------------------
+  mute-spam:
+    Tipo: MUTAR
+    Nome: '&6Spam'
+    Motivo: 'Spam no chat'
+    Duracao: 30m
+    Material: PAPER
+  mute-xingamento:
+    Tipo: MUTAR
+    Nome: '&6Xingamento'
+    Motivo: 'Xingamento'
+    Duracao: 1h
+    Material: ORANGE_DYE
+  mute-staff:
+    Tipo: MUTAR
+    Nome: '&6Ofensa à staff'
+    Motivo: 'Ofensa à staff'
+    Duracao: 6h
+    Material: GOLDEN_HELMET
+  mute-divulgacao:
+    Tipo: MUTAR
+    Nome: '&6Divulgação de outro servidor'
+    Motivo: 'Divulgação'
+    Duracao: 1d
+    Material: BOOK
+  mute-assedio:
+    Tipo: MUTAR
+    Nome: '&6Assédio'
+    Motivo: 'Assédio'
+    Duracao: 7d
+    Material: BONE
+  mute-odio:
+    Tipo: MUTAR
+    Nome: '&4Discurso de ódio'
+    Motivo: 'Discurso de ódio'
+    Duracao: perm
+    Material: REDSTONE_BLOCK
+    Brilho: true
+
+  # ------------------------------ banir -------------------------------
+  ban-hack:
+    Tipo: BANIR
+    Nome: '&cUso de hack'
+    Motivo: 'Uso de hack'
+    Duracao: 30d
+    Material: DIAMOND_SWORD
+    Lore:
+      - '&7Primeira vez com hack comprovado.'
+  ban-bug:
+    Tipo: BANIR
+    Nome: '&cAbuso de bug'
+    Motivo: 'Abuso de bug'
+    Duracao: 7d
+    Material: SPIDER_EYE
+  ban-antijogo:
+    Tipo: BANIR
+    Nome: '&cAntijogo / time proibido'
+    Motivo: 'Antijogo'
+    Duracao: 3d
+    Material: IRON_SWORD
+  ban-golpe:
+    Tipo: BANIR
+    Nome: '&cGolpe em jogador'
+    Motivo: 'Golpe em jogador'
+    Duracao: 15d
+    Material: GOLD_INGOT
+  ban-hack-reincidencia:
+    Tipo: BANIR
+    Nome: '&4Hack (reincidência)'
+    Motivo: 'Uso de hack (reincidência)'
+    Duracao: perm
+    Material: GOLDEN_SWORD
+    Brilho: true
+  ban-nick:
+    Tipo: BANIR
+    Nome: '&4Nick ofensivo'
+    Motivo: 'Nick ofensivo'
+    Duracao: perm
+    Material: NAME_TAG
+  ban-ameaca:
+    Tipo: BANIR
+    Nome: '&4Ameaça / exposição de dados'
+    Motivo: 'Ameaça ou exposição de dados pessoais'
+    Duracao: perm
+    Material: TNT
+
+  # ---------------------------- banir IP ------------------------------
+  banip-burlar:
+    Tipo: BANIR_IP
+    Nome: '&4Burlar banimento'
+    Motivo: 'Burlar banimento com outra conta'
+    Duracao: perm
+    Material: ENDER_EYE
+  banip-ataque:
+    Tipo: BANIR_IP
+    Nome: '&4Ataque ao servidor'
+    Motivo: 'Ataque ao servidor'
+    Duracao: perm
+    Material: TNT
+    Brilho: true
+  banip-contas:
+    Tipo: BANIR_IP
+    Nome: '&cContas falsas em massa'
+    Motivo: 'Contas falsas em massa'
+    Duracao: 30d
+    Material: PLAYER_HEAD
+
+  # ------------------------------ prisão ------------------------------
+  prisao-grief:
+    Tipo: PRISAO
+    Nome: '&8Grief leve'
+    Motivo: 'Grief'
+    Duracao: 30m
+    Material: IRON_BARS
+  prisao-desrespeito:
+    Tipo: PRISAO
+    Nome: '&8Desrespeito'
+    Motivo: 'Desrespeito'
+    Duracao: 1h
+    Material: LEAD
+  prisao-antijogo:
+    Tipo: PRISAO
+    Nome: '&8Antijogo'
+    Motivo: 'Antijogo'
+    Duracao: 2h
+    Material: COBWEB

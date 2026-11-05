@@ -1,0 +1,1278 @@
+# =========================================================================
+#  StarAdmin - menus
+#
+#  Cada menu: Titulo, Linhas (1 a 6), Fundo (item que preenche o vazio) e Itens.
+#  Cada item: Slot (ou Slots: [..]), Material, Nome, Lore, Brilho, Quantidade,
+#  Dono (cabeça: '{jogador}' = o jogador escolhido, '{staff}' = você), Textura,
+#  Permissao (sem ela o botão some), Acao e "Acao direito" (clique direito).
+#  "Mostrar se:" esconde o item fora da condição (online, offline, banido,
+#  mutado, preso, congelado, starpunicoes, starreportar, motor-interno...;
+#  "!" na frente inverte). "Estado:" + "Ligado:" troca o visual (e a Acao, se
+#  a seção Ligado tiver uma) quando a condição vale: vanish, modo-staff,
+#  staff-chat, voo, espectando, congelado, voo-alvo, chat-mutado...
+#
+#  AÇÕES (Acao aceita uma ou uma lista):
+#   Navegar: fechar, voltar, atualizar, principal, menu <Seção>, jogadores, offline,
+#            escolher <GERENCIAR|TP_OCULTO|ESPECTAR|TELEPORTAR|PUXAR|INFORMACOES>,
+#            staff-online, log
+#   Você:    vanish, modo-staff, staff-chat, voo, gamemode <MODO>, tp-aleatorio, espectar-sair
+#   Servidor: limpar-chat, mutar-chat, dia, noite, sol, chuva, limpar-itens, matar-mobs, recarregar
+#   Jogador: gerenciar, informacoes, historico, reportes, anotacoes, acoes, mineracao,
+#            punir <TIPO> [permanente|temporario], revogar <TIPO>,
+#            teleportar, puxar, tp-oculto, espectar, congelar, ver-inventario, ver-ender,
+#            curar, alimentar, limpar-inventario, matar, gamemode-alvo <MODO>, voo-alvo,
+#            testar-knockback, testar-voo, testar-cps, testar-xray
+#   Livres:  '[jogador] comando', '[console] comando', '[mensagem] texto'
+#
+#  Menus novos: crie uma seção com Titulo/Linhas/Itens e abra com 'menu <Seção>'.
+#
+#  Placeholders em toda tela: {staff} {online} {max} {staff_online} {ocultos}
+#  {congelados} {vanish} {modo_staff} {staff_chat} {voo} {meu_modo} {tps}
+#  {tps_minuto} {tps_cor} {ram} {ram_max} {entidades} {chunks} {mundos} {motor}
+#  {chat_mutado} {versao}. Nas telas de jogador: {jogador} {uuid} {status}
+#  {avisos} {proxima_punicao} {reportes} {banido} {mutado} {preso} {ban_motivo}
+#  {ban_expira} {mute_motivo} {mute_expira} {punicoes} {congelado}
+#  {alvo_vanish} {voo_alvo} {modo_alvo}.
+# =========================================================================
+
+# ---------------------------------------------------------------------------
+# CABECA CUSTOMIZADA -- vale para qualquer item de menu deste arquivo
+# ---------------------------------------------------------------------------
+# Para o item ser uma cabeca, use o material 'PLAYER_HEAD' (ou 'SKULL_ITEM:3'
+# na 1.8) e UM destes dois campos:
+#
+#       Material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads.com: abra a cabeca no site e copie o campo
+#       # "Value" (base64). Vale tambem a URL da textura
+#       # (http://textures.minecraft.net/texture/...) ou so o hash do fim dela.
+#       Textura: 'eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWUzYThhYTg1NTU0MWUxODUyYzEyOWFiODBiMTg1ZmRhZWI4NGYwZGI3ZjhiYTdjMTRkZjAxNTBjN2QyNGI5ZCJ9fX0='
+#       # ...ou a cabeca de um jogador, pelo nick (no lugar de "textura"):
+#       Dono: 'Notch'
+#       Dono: '{staff}'   # a cabeca de quem abriu o menu
+#
+# Com "textura" ou "dono" o item vira cabeca mesmo que o material seja outro,
+# mantendo nome, lore e quantidade. Os dois juntos: vale a "textura".
+#
+# A cabeca por "dono" so mostra a skin de quem o servidor ja conhece (jogador
+# online, ou cuja skin ja esta guardada no servidor); de quem nao conhece fica a
+# cabeca padrao (Steve) -- o servidor nao pergunta a Mojang para nao travar o
+# menu. Para um icone fixo use sempre "textura".
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+# ------------------------------------------------------------------ /admin
+Principal:
+  Titulo: '&8Painel da Staff'
+  Linhas: 6
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    cabeca:
+      Slot: 22
+      Material: PLAYER_HEAD
+      Dono: '{staff}'
+      Nome: '&c&lPainel da Staff'
+      Lore:
+        - '&7Olá, &f{staff}&7!'
+        - ''
+        - '&7Online: &f{online}&7/&f{max} &8| &7Staff: &f{staff_online}'
+        - '&7Em vanish: &f{ocultos} &8| &7Congelados: &f{congelados}'
+        - '&7TPS: {tps_cor}{tps} &8| &7RAM: &f{ram}&7/&f{ram_max} MB'
+        - '&7Punições por: &f{motor}'
+      Acao: ''
+    vitima:
+      Slot: 31
+      Material: PAPER
+      Nome: '&e&lSelecione a vítima'
+      Lore:
+        - '&7Escolha o jogador para punir,'
+        - '&7testar, espectar e muito mais.'
+        - ''
+        - '&eClique: &fjogadores online'
+        - '&eDireito: &fjogadores offline'
+      Acao: 'jogadores'
+      Acao direito: 'offline'
+    staff:
+      Slot: 29
+      Material: NETHER_STAR
+      Nome: '&b&lÁrea da staff'
+      Lore:
+        - '&7Vanish, TP silencioso, espectar,'
+        - '&7modo de jogo, modo staff e chat.'
+      Acao: 'menu Staff'
+    servidor:
+      Slot: 33
+      Material: COMPARATOR
+      Nome: '&6&lServidor'
+      Lore:
+        - '&7Desempenho, chat, horário,'
+        - '&7clima e limpeza.'
+      Permissao: 'staradmin.servidor'
+      Acao: 'menu Servidor'
+    vanish:
+      Slot: 20
+      Material: GRAY_DYE
+      Nome: '&fVanish: {vanish}'
+      Lore:
+        - '&7Some para os jogadores.'
+      Permissao: 'staradmin.vanish'
+      Acao: 'vanish'
+      Estado: vanish
+      Ligado:
+        Material: LIME_DYE
+        Brilho: true
+    modo-staff:
+      Slot: 24
+      Material: BLAZE_ROD
+      Nome: '&fModo staff: {modo_staff}'
+      Lore:
+        - '&7Guarda seu inventário e dá as'
+        - '&7ferramentas da staff na hotbar.'
+      Permissao: 'staradmin.modostaff'
+      Acao: 'modo-staff'
+      Estado: modo-staff
+      Ligado:
+        Brilho: true
+    registro:
+      Slot: 40
+      Material: BOOK
+      Nome: '&dRegistro da staff'
+      Lore:
+        - '&7Tudo o que a staff fez pelo painel.'
+      Permissao: 'staradmin.log'
+      Acao: 'log'
+    fechar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cFechar'
+      Acao: 'fechar'
+
+# --------------------------------------------------------- área da staff
+Staff:
+  Titulo: '&8Área da staff'
+  Linhas: 5
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    vanish:
+      Slot: 10
+      Material: GRAY_DYE
+      Nome: '&fVanish: {vanish}'
+      Lore:
+        - '&7Some do mundo e da lista do TAB.'
+        - '&7Não pega itens, não é mirado por monstros.'
+      Permissao: 'staradmin.vanish'
+      Acao: 'vanish'
+      Estado: vanish
+      Ligado:
+        Material: LIME_DYE
+        Brilho: true
+    tp-oculto:
+      Slot: 11
+      Material: ENDER_PEARL
+      Nome: '&5TP silencioso'
+      Lore:
+        - '&7Liga o vanish e teleporta até'
+        - '&7o jogador sem ninguém ver.'
+      Permissao: 'staradmin.tpoculto'
+      Acao: 'escolher TP_OCULTO'
+    espectar:
+      Slot: 12
+      Material: ENDER_EYE
+      Nome: '&dEspectar'
+      Lore:
+        - '&7Modo espectador já dentro do jogador,'
+        - '&7vendo o que ele vê. Sem sair do vanish.'
+      Permissao: 'staradmin.espectar'
+      Acao: 'escolher ESPECTAR'
+      Estado: espectando
+      Ligado:
+        Nome: '&dParar de espectar'
+        Lore:
+          - '&7Volta para onde você estava.'
+        Brilho: true
+        Acao: 'espectar-sair'
+    gamemode:
+      Slot: 13
+      Material: GRASS_BLOCK
+      Nome: '&aModo de jogo'
+      Lore:
+        - '&7Atual: &f{meu_modo}'
+      Permissao: 'staradmin.gamemode'
+      Acao: 'menu Modo de jogo'
+    modo-staff:
+      Slot: 14
+      Material: BLAZE_ROD
+      Nome: '&fModo staff: {modo_staff}'
+      Lore:
+        - '&7Ferramentas na hotbar: teleporte,'
+        - '&7ver inventário, congelar, knockback...'
+      Permissao: 'staradmin.modostaff'
+      Acao: 'modo-staff'
+      Estado: modo-staff
+      Ligado:
+        Brilho: true
+    staff-chat:
+      Slot: 15
+      Material: OAK_SIGN
+      Nome: '&fChat da staff fixo: {staff_chat}'
+      Lore:
+        - '&7Tudo o que você escrever vai'
+        - '&7só para a staff. Atalho: &f#mensagem'
+      Permissao: 'staradmin.staffchat'
+      Acao: 'staff-chat'
+      Estado: staff-chat
+      Ligado:
+        Brilho: true
+    voo:
+      Slot: 16
+      Material: FEATHER
+      Nome: '&fVoo: {voo}'
+      Permissao: 'staradmin.gamemode'
+      Acao: 'voo'
+      Estado: voo
+      Ligado:
+        Brilho: true
+    staff-online:
+      Slot: 21
+      Material: PLAYER_HEAD
+      Dono: '{staff}'
+      Nome: '&bStaff online &7({staff_online})'
+      Lore:
+        - '&7Quem está on, em vanish ou no modo staff.'
+      Acao: 'staff-online'
+    jogadores:
+      Slot: 22
+      Material: PAPER
+      Nome: '&eSelecionar jogador'
+      Acao: 'jogadores'
+      Acao direito: 'offline'
+    registro:
+      Slot: 23
+      Material: BOOK
+      Nome: '&dRegistro da staff'
+      Permissao: 'staradmin.log'
+      Acao: 'log'
+    voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: 'voltar'
+
+Modo de jogo:
+  Titulo: '&8Seu modo de jogo'
+  Linhas: 3
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    sobrevivencia:
+      Slot: 10
+      Material: IRON_SWORD
+      Nome: '&fSobrevivência'
+      Acao: 'gamemode SURVIVAL'
+    criativo:
+      Slot: 12
+      Material: GRASS_BLOCK
+      Nome: '&fCriativo'
+      Acao: 'gamemode CREATIVE'
+    aventura:
+      Slot: 14
+      Material: MAP
+      Nome: '&fAventura'
+      Acao: 'gamemode ADVENTURE'
+    espectador:
+      Slot: 16
+      Material: ENDER_EYE
+      Nome: '&fEspectador'
+      Acao: 'gamemode SPECTATOR'
+    voltar:
+      Slot: 22
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: 'voltar'
+
+# --------------------------------------------------------------- servidor
+Servidor:
+  Titulo: '&8Servidor'
+  Linhas: 4
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    desempenho:
+      Slot: 4
+      Material: CLOCK
+      Nome: '&6Desempenho'
+      Lore:
+        - '&7TPS agora: {tps_cor}{tps} &8| &7média 1 min: &f{tps_minuto}'
+        - '&7RAM: &f{ram}&7/&f{ram_max} MB'
+        - '&7Entidades: &f{entidades} &8| &7Chunks: &f{chunks}'
+        - '&7Mundos: &f{mundos} &8| &7Online: &f{online}'
+        - ''
+        - '&eClique para atualizar'
+      Acao: 'atualizar'
+    limpar-chat:
+      Slot: 19
+      Material: PAPER
+      Nome: '&fLimpar o chat'
+      Lore:
+        - '&7A staff não perde o chat.'
+      Acao: 'limpar-chat'
+    mutar-chat:
+      Slot: 20
+      Material: OAK_SIGN
+      Nome: '&fChat silenciado: {chat_mutado}'
+      Lore:
+        - '&7Só a staff fala enquanto estiver ligado.'
+      Acao: 'mutar-chat'
+      Estado: chat-mutado
+      Ligado:
+        Brilho: true
+    dia:
+      Slot: 21
+      Material: SUNFLOWER
+      Nome: '&eDeixar de dia'
+      Lore:
+        - '&7No mundo em que você está.'
+      Acao: 'dia'
+    noite:
+      Slot: 22
+      Material: COAL
+      Nome: '&8Deixar de noite'
+      Acao: 'noite'
+    sol:
+      Slot: 23
+      Material: GLOWSTONE_DUST
+      Nome: '&eTirar a chuva'
+      Acao: 'sol'
+    chuva:
+      Slot: 24
+      Material: WATER_BUCKET
+      Nome: '&9Fazer chover'
+      Acao: 'chuva'
+    limpar-itens:
+      Slot: 25
+      Material: HOPPER
+      Nome: '&fLimpar itens do chão'
+      Lore:
+        - '&7Em todos os mundos.'
+      Acao: 'limpar-itens'
+    matar-mobs:
+      Slot: 13
+      Material: ROTTEN_FLESH
+      Nome: '&cMatar monstros'
+      Lore:
+        - '&7Todos os monstros sem nome,'
+        - '&7em todos os mundos.'
+      Acao: 'matar-mobs'
+    recarregar:
+      Slot: 35
+      Material: REPEATER
+      Nome: '&aRecarregar o StarAdmin'
+      Permissao: 'staradmin.admin'
+      Acao: 'recarregar'
+    voltar:
+      Slot: 31
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: 'voltar'
+
+# ------------------------------------------------ painel de um jogador
+Alvo:
+  Titulo: '&8Gerenciar {jogador}'
+  Linhas: 6
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    cabeca:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&f{jogador} {status}'
+      Lore:
+        - '&7Avisos: &e{avisos} &8| &7Reportes abertos: &c{reportes}'
+        - '&7Próxima punição automática: {proxima_punicao}'
+        - '&7Banido: {banido} &8| &7Silenciado: {mutado} &8| &7Preso: {preso}'
+        - '&7Congelado: {congelado}'
+        - ''
+        - '&eClique para ver todas as informações'
+      Permissao: 'staradmin.informacoes'
+      Acao: 'informacoes'
+    # -------- punições
+    expulsar:
+      Slot: 10
+      Material: LEATHER_BOOTS
+      Nome: '&cExpulsar'
+      Lore:
+        - '&7Tira o jogador do servidor agora.'
+      Permissao: 'staradmin.punir.expulsar'
+      Mostrar se: online
+      Acao: 'punir EXPULSAR'
+    avisar:
+      Slot: 11
+      Material: YELLOW_DYE
+      Nome: '&eDar aviso'
+      Lore:
+        - '&7Avisos: &f{avisos}'
+        - '&7Próxima punição automática:'
+        - '&7{proxima_punicao}'
+      Permissao: 'staradmin.punir.aviso'
+      Acao: 'punir AVISO'
+    mutar:
+      Slot: 12
+      Material: ORANGE_DYE
+      Nome: '&6Silenciar'
+      Lore:
+        - '&7Silenciado agora: {mutado}'
+        - '&7Até: &f{mute_expira}'
+      Permissao: 'staradmin.punir.mutar'
+      Acao: 'punir MUTAR'
+    reportes:
+      Slot: 13
+      Material: WRITABLE_BOOK
+      Nome: '&dLogs de report'
+      Lore:
+        - '&7Reportes em aberto: &f{reportes}'
+        - '&7Veja quantas vezes e por que'
+        - '&7ele foi reportado (StarReportar).'
+      Permissao: 'staradmin.historico'
+      Mostrar se: starreportar
+      Acao: 'reportes'
+    banir:
+      Slot: 14
+      Material: DIAMOND_AXE
+      Nome: '&4Banir'
+      Lore:
+        - '&7Motivos permanentes.'
+        - '&7Banido agora: {banido}'
+      Permissao: 'staradmin.punir.banir'
+      Acao: 'punir BANIR permanente'
+    banir-temp:
+      Slot: 15
+      Material: IRON_AXE
+      Nome: '&cBanir temporário'
+      Lore:
+        - '&7Motivos com prazo.'
+      Permissao: 'staradmin.punir.banir'
+      Acao: 'punir BANIR temporario'
+    banir-ip:
+      Slot: 16
+      Material: TNT
+      Nome: '&4Banir por IP'
+      Lore:
+        - '&7Bane a conta e o IP dela.'
+      Permissao: 'staradmin.punir.banirip'
+      Acao: 'punir BANIR_IP permanente'
+    banir-ip-temp:
+      Slot: 19
+      Material: TNT_MINECART
+      Nome: '&cBanir o IP temporário'
+      Permissao: 'staradmin.punir.banirip'
+      Acao: 'punir BANIR_IP temporario'
+    prisao:
+      Slot: 20
+      Material: IRON_BARS
+      Nome: '&8Prisão'
+      Lore:
+        - '&7Preso agora: {preso}'
+      Permissao: 'staradmin.punir.prender'
+      Acao: 'punir PRISAO'
+    congelar:
+      Slot: 21
+      Material: PACKED_ICE
+      Nome: '&bCongelar'
+      Lore:
+        - '&7Para a verificação: não anda,'
+        - '&7não usa comandos, não toma dano.'
+      Permissao: 'staradmin.congelar'
+      Mostrar se: online
+      Acao: 'congelar'
+      Estado: congelado
+      Ligado:
+        Material: ICE
+        Nome: '&aDescongelar'
+        Lore:
+          - '&7Libera o jogador.'
+        Brilho: true
+    historico:
+      Slot: 22
+      Material: BOOK
+      Nome: '&fHistórico de punições'
+      Lore:
+        - '&7Registradas: &f{punicoes}'
+      Permissao: 'staradmin.historico'
+      Acao: 'historico'
+    anotacoes:
+      Slot: 23
+      Material: WRITABLE_BOOK
+      Nome: '&fAnotações da staff'
+      Lore:
+        - '&7O que a staff anotou sobre ele.'
+      Permissao: 'staradmin.anotacoes'
+      Acao: 'anotacoes'
+    revogar:
+      Slot: 24
+      Material: MILK_BUCKET
+      Nome: '&aDesfazer punições'
+      Lore:
+        - '&7Desbanir, desmutar, soltar...'
+      Permissao: 'staradmin.revogar'
+      Acao: 'menu Revogar'
+    registro:
+      Slot: 25
+      Material: ENCHANTED_BOOK
+      Nome: '&dO que a staff fez com ele'
+      Permissao: 'staradmin.log'
+      Acao: 'acoes'
+    # -------- ferramentas
+    teleportar:
+      Slot: 28
+      Material: COMPASS
+      Nome: '&aTeleportar até ele'
+      Permissao: 'staradmin.teleportar'
+      Mostrar se: online
+      Acao: 'teleportar'
+    tp-oculto:
+      Slot: 29
+      Material: ENDER_PEARL
+      Nome: '&5TP silencioso'
+      Lore:
+        - '&7Liga o vanish antes de ir.'
+      Permissao: 'staradmin.tpoculto'
+      Mostrar se: online
+      Acao: 'tp-oculto'
+    puxar:
+      Slot: 30
+      Material: FISHING_ROD
+      Nome: '&aPuxar até você'
+      Permissao: 'staradmin.teleportar'
+      Mostrar se: online
+      Acao: 'puxar'
+    espectar:
+      Slot: 31
+      Material: ENDER_EYE
+      Nome: '&dEspectar'
+      Lore:
+        - '&7Entra no jogador em modo espectador,'
+        - '&7sem sair do vanish.'
+      Permissao: 'staradmin.espectar'
+      Mostrar se: online
+      Acao: 'espectar'
+    inventario:
+      Slot: 32
+      Material: CHEST
+      Nome: '&eVer inventário'
+      Permissao: 'staradmin.inventario'
+      Mostrar se: online
+      Acao: 'ver-inventario'
+    ender:
+      Slot: 33
+      Material: ENDER_CHEST
+      Nome: '&5Ver baú do ender'
+      Permissao: 'staradmin.inventario'
+      Mostrar se: online
+      Acao: 'ver-ender'
+    informacoes:
+      Slot: 34
+      Material: NAME_TAG
+      Nome: '&fInformações'
+      Lore:
+        - '&7IP, ping, contas no mesmo IP,'
+        - '&7local, vida, primeira entrada...'
+      Permissao: 'staradmin.informacoes'
+      Acao: 'informacoes'
+    # -------- testes
+    knockback:
+      Slot: 37
+      Material: STICK
+      Nome: '&6Testar knockback'
+      Lore:
+        - '&7Empurra o jogador (sem dano) e mede'
+        - '&7quanto ele andou. Parado = anti-knockback.'
+      Permissao: 'staradmin.testes'
+      Mostrar se: online
+      Acao: 'testar-knockback'
+    xray:
+      Slot: 38
+      Material: DIAMOND_ORE
+      Nome: '&bTestar xray (isca)'
+      Lore:
+        - '&7Esconde minérios falsos na pedra que'
+        - '&7só ele vê. Quem cava direto até eles'
+        - '&7está vendo através da pedra.'
+      Permissao: 'staradmin.testes'
+      Mostrar se: online
+      Acao: 'testar-xray'
+    mineracao:
+      Slot: 39
+      Material: DIAMOND_PICKAXE
+      Nome: '&bMineração recente'
+      Lore:
+        - '&7Minérios contra pedra nas últimas horas.'
+      Permissao: 'staradmin.xray'
+      Acao: 'mineracao'
+    cps:
+      Slot: 40
+      Material: CLOCK
+      Nome: '&eTestar CPS'
+      Lore:
+        - '&7Conta os cliques por alguns segundos.'
+      Permissao: 'staradmin.testes'
+      Mostrar se: online
+      Acao: 'testar-cps'
+    voo:
+      Slot: 41
+      Material: FEATHER
+      Nome: '&fTestar voo'
+      Lore:
+        - '&7Joga o jogador para cima e observa'
+        - '&7se ele cai (a queda não machuca).'
+      Permissao: 'staradmin.testes'
+      Mostrar se: online
+      Acao: 'testar-voo'
+    curar:
+      Slot: 42
+      Material: GOLDEN_APPLE
+      Nome: '&aCurar'
+      Lore:
+        - '&eDireito: &falimentar'
+      Permissao: 'staradmin.utilidades'
+      Mostrar se: online
+      Acao: 'curar'
+      Acao direito: 'alimentar'
+    gamemode:
+      Slot: 43
+      Material: GRASS_BLOCK
+      Nome: '&aModo de jogo e voo'
+      Lore:
+        - '&7Modo: &f{modo_alvo} &8| &7Voo: {voo_alvo}'
+      Permissao: 'staradmin.gamemode.outros'
+      Mostrar se: online
+      Acao: 'menu Modo de jogo do alvo'
+    limpar:
+      Slot: 48
+      Material: LAVA_BUCKET
+      Nome: '&cLimpar inventário'
+      Permissao: 'staradmin.utilidades'
+      Mostrar se: online
+      Acao: 'limpar-inventario'
+    voltar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: 'voltar'
+    matar:
+      Slot: 50
+      Material: SKELETON_SKULL
+      Nome: '&4Matar'
+      Permissao: 'staradmin.utilidades'
+      Mostrar se: online
+      Acao: 'matar'
+
+Modo de jogo do alvo:
+  Titulo: '&8Modo de jogo de {jogador}'
+  Linhas: 3
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    sobrevivencia:
+      Slot: 10
+      Material: IRON_SWORD
+      Nome: '&fSobrevivência'
+      Acao: 'gamemode-alvo SURVIVAL'
+    criativo:
+      Slot: 11
+      Material: GRASS_BLOCK
+      Nome: '&fCriativo'
+      Acao: 'gamemode-alvo CREATIVE'
+    voo:
+      Slot: 13
+      Material: FEATHER
+      Nome: '&fVoo: {voo_alvo}'
+      Acao: ['voo-alvo', 'voltar']
+    aventura:
+      Slot: 15
+      Material: MAP
+      Nome: '&fAventura'
+      Acao: 'gamemode-alvo ADVENTURE'
+    espectador:
+      Slot: 16
+      Material: ENDER_EYE
+      Nome: '&fEspectador'
+      Acao: 'gamemode-alvo SPECTATOR'
+    voltar:
+      Slot: 22
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: 'voltar'
+
+Revogar:
+  Titulo: '&8Desfazer punições de {jogador}'
+  Linhas: 3
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    desbanir:
+      Slot: 10
+      Material: LIME_DYE
+      Nome: '&aDesbanir'
+      Lore:
+        - '&7Banido agora: {banido}'
+      Acao: 'revogar BANIR'
+    desbanir-ip:
+      Slot: 11
+      Material: LIME_DYE
+      Nome: '&aDesbanir o IP'
+      Acao: 'revogar BANIR_IP'
+    desmutar:
+      Slot: 13
+      Material: NOTE_BLOCK
+      Nome: '&aDesmutar'
+      Lore:
+        - '&7Silenciado agora: {mutado}'
+      Acao: 'revogar MUTAR'
+    soltar:
+      Slot: 15
+      Material: IRON_DOOR
+      Nome: '&aSoltar da prisão'
+      Lore:
+        - '&7Preso agora: {preso}'
+      Acao: 'revogar PRISAO'
+    avisos:
+      Slot: 16
+      Material: SPONGE
+      Nome: '&aTirar todos os avisos'
+      Lore:
+        - '&7Avisos: &f{avisos}'
+      Mostrar se: '!starpunicoes'
+      Acao: 'revogar AVISO'
+    voltar:
+      Slot: 22
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: 'voltar'
+
+# ------------------------------------------------ informações completas
+Informacoes:
+  Titulo: '&8Informações de {jogador}'
+  Linhas: 5
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    cabeca:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&f{jogador} {status}'
+      Lore:
+        - '&8{uuid}'
+      Acao: ''
+    conta:
+      Slot: 19
+      Material: NAME_TAG
+      Nome: '&fConta'
+      Lore:
+        - '&7Primeira entrada: &f{primeira}'
+        - '&7Última vez visto: &f{ultima}'
+        - '&7Online há: &f{sessao}'
+        - '&7Operador: {op}'
+    conexao:
+      Slot: 20
+      Material: COMPASS
+      Nome: '&fConexão'
+      Lore:
+        - '&7IP: &f{ip}'
+        - '&7Ping: &f{ping} ms'
+        - '&7Versão do cliente: &f{versao_cliente}'
+        - '&7Contas no mesmo IP: &f{quantidade_alts}'
+    alts:
+      Slot: 21
+      Material: PLAYER_HEAD
+      Nome: '&fContas no mesmo IP'
+      Lore:
+        - '{alts}'
+    estado:
+      Slot: 22
+      Material: GOLDEN_APPLE
+      Nome: '&fEstado'
+      Lore:
+        - '&7Vida: &c{vida}&7/&c{vida_max}'
+        - '&7Fome: &6{fome}'
+        - '&7Nível: &a{nivel}'
+        - '&7Modo de jogo: &f{modo}'
+        - '&7Voando: {voando}'
+        - '&7Em vanish: {alvo_vanish}'
+    local:
+      Slot: 23
+      Material: FILLED_MAP
+      Nome: '&fLocal'
+      Lore:
+        - '&7Mundo: &f{mundo}'
+        - '&7Posição: &f{local}'
+        - ''
+        - '&eClique para teleportar'
+      Permissao: 'staradmin.teleportar'
+      Acao: 'teleportar'
+    punicoes:
+      Slot: 24
+      Material: IRON_AXE
+      Nome: '&fPunições'
+      Lore:
+        - '&7Banido: {banido} &7- &f{ban_motivo} &7({ban_expira})'
+        - '&7Silenciado: {mutado} &7- &f{mute_motivo} &7({mute_expira})'
+        - '&7Preso: {preso} &8| &7Congelado: {congelado}'
+        - '&7Avisos: &e{avisos}'
+        - '&7Próxima automática: {proxima_punicao}'
+        - ''
+        - '&eClique para ver o histórico'
+      Permissao: 'staradmin.historico'
+      Acao: 'historico'
+    reportes:
+      Slot: 25
+      Material: WRITABLE_BOOK
+      Nome: '&fReportes'
+      Lore:
+        - '&7Em aberto: &c{reportes}'
+        - ''
+        - '&eClique para ver os reportes'
+      Permissao: 'staradmin.historico'
+      Mostrar se: starreportar
+      Acao: 'reportes'
+    anotacoes:
+      Slot: 31
+      Material: BOOK
+      Nome: '&fAnotações da staff'
+      Lore:
+        - '&7Anotações: &f{anotacoes}'
+      Permissao: 'staradmin.anotacoes'
+      Acao: 'anotacoes'
+    gerenciar:
+      Slot: 30
+      Material: BLAZE_ROD
+      Nome: '&cGerenciar {jogador}'
+      Permissao: 'staradmin.usar'
+      Acao: 'gerenciar'
+    mineracao:
+      Slot: 32
+      Material: DIAMOND_PICKAXE
+      Nome: '&bMineração recente'
+      Permissao: 'staradmin.xray'
+      Acao: 'mineracao'
+    voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: 'voltar'
+
+# ------------------------------------------------------------- confirmar
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Linhas: 3
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Resumo:
+    Slot: 13
+    Material: PAPER
+    Nome: '&eConfirmar?'
+    Lore:
+      - '{acao}'
+  Sim:
+    Slots: [10, 11, 12]
+    Material: LIME_WOOL
+    Nome: '&a&lCONFIRMAR'
+    Lore:
+      - '{acao}'
+  Nao:
+    Slots: [14, 15, 16]
+    Material: RED_WOOL
+    Nome: '&c&lCANCELAR'
+
+# ======================================================== listas paginadas
+# Slots, Anterior, Proxima, Voltar e Vazio funcionam igual em todas.
+
+Jogadores:
+  Titulo: '&8Jogadores {aba} ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item online:
+    Material: PLAYER_HEAD
+    Nome: '&a{jogador}'
+    Lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Ping: &f{ping} ms &8| &7Modo: &f{modo}'
+      - '&7Vanish: {vanish}'
+      - ''
+      - '&eClique para selecionar'
+  Item offline:
+    Material: PLAYER_HEAD
+    Nome: '&7{jogador}'
+    Lore:
+      - '&7Visto por último: &f{ultima}'
+      - ''
+      - '&eClique para selecionar'
+  Aba online:
+    Slot: 47
+    Material: LIME_DYE
+    Nome: '&aJogadores online'
+    Ligado:
+      Brilho: true
+      Nome: '&a&lJogadores online'
+  Buscar:
+    Slot: 48
+    Material: OAK_SIGN
+    Nome: '&ePesquisar pelo nick'
+    Lore:
+      - '&7Busca atual: &f{busca}'
+      - ''
+      - '&eClique para pesquisar'
+      - '&eDireito para limpar'
+  Aba offline:
+    Slot: 51
+    Material: GRAY_DYE
+    Nome: '&7Jogadores offline'
+    Ligado:
+      Brilho: true
+      Nome: '&7&lJogadores offline'
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Página anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&7Próxima página'
+  Voltar:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNinguém encontrado'
+    Lore:
+      - '&7Busca: &f{busca}'
+
+Motivos:
+  Titulo: '&8{tipo}: {jogador}'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Personalizado:
+    Slot: 48
+    Material: WRITABLE_BOOK
+    Nome: '&eMotivo personalizado'
+    Lore:
+      - '&7Digite o motivo (e a duração) no chat.'
+  Criar:
+    Slot: 50
+    Material: ANVIL
+    Nome: '&aCriar motivo pronto'
+    Lore:
+      - '&7Fica salvo para as próximas vezes.'
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Página anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&7Próxima página'
+  Voltar:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cNenhum motivo pronto aqui'
+    Lore:
+      - '&7Use o motivo personalizado ou'
+      - '&7crie um motivo pronto.'
+
+Historico:
+  Titulo: '&8Histórico de {jogador} ({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: PAPER
+    Nome: '{tipo}'
+    Lore:
+      - '&7Motivo: &f{motivo}'
+      - '&7Por: &f{staff}'
+      - '&7Quando: &f{data}'
+      - '&7Duração: &f{duracao}'
+      - '&7Situação: {estado}'
+  # Material e nome de cada tipo.
+  Tipos:
+    EXPULSAR:
+      Material: LEATHER_BOOTS
+      Nome: '&cExpulsão'
+    AVISO:
+      Material: YELLOW_DYE
+      Nome: '&eAviso'
+    MUTAR:
+      Material: ORANGE_DYE
+      Nome: '&6Silenciamento'
+    BANIR:
+      Material: DIAMOND_AXE
+      Nome: '&4Banimento'
+    BANIR_IP:
+      Material: TNT
+      Nome: '&4Banimento de IP'
+    PRISAO:
+      Material: IRON_BARS
+      Nome: '&8Prisão'
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Página anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&7Próxima página'
+  Voltar:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: LIME_DYE
+    Nome: '&aNenhuma punição registrada'
+
+Reportes:
+  Titulo: '&8Reportes de {jogador} ({quantidade})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: PAPER
+    Nome: '&fReporte #{id} &8- {estado}'
+    Lore:
+      - '&7Motivo: &f{motivo}'
+      - '&7Reportado por: &f{autor}'
+      - '&7Quando: &f{data}'
+      - '&7Servidor: &f{servidor}'
+      - '&7Staff: &f{staff}'
+      - '&7Prova: &f{prova}'
+  Abrir no StarReportar:
+    Slot: 50
+    Material: WRITABLE_BOOK
+    Nome: '&dAbrir no StarReportar'
+    Lore:
+      - '&7Assumir, punir e arquivar os reportes.'
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Página anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&7Próxima página'
+  Voltar:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: LIME_DYE
+    Nome: '&aNunca foi reportado'
+
+Anotacoes:
+  Titulo: '&8Anotações sobre {jogador}'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: PAPER
+    Nome: '&f{autor} &8- &7{data}'
+    Lore:
+      - '&f{texto}'
+      - ''
+      - '&cShift + direito para apagar'
+  Nova:
+    Slot: 50
+    Material: WRITABLE_BOOK
+    Nome: '&aNova anotação'
+    Lore:
+      - '&7Escreva no chat (só a staff lê).'
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Página anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&7Próxima página'
+  Voltar:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BOOK
+    Nome: '&7Nenhuma anotação ainda'
+
+Registro:
+  Titulo: '&8Registro da staff: {filtro}'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: PAPER
+    Nome: '{acao} &8- &f{alvo}'
+    Lore:
+      - '&7Por: &f{staff}'
+      - '&7Quando: &f{data}'
+      - '&7Motivo: &f{motivo}'
+      - '&7Duração: &f{duracao}'
+      - '&7Detalhe: &f{detalhe}'
+      - '&7Servidor: &f{servidor}'
+      - ''
+      - '&eClique para abrir o jogador'
+  Tipos:
+    EXPULSAR: {Material: LEATHER_BOOTS, Nome: '&cExpulsão'}
+    AVISO: {Material: YELLOW_DYE, Nome: '&eAviso'}
+    MUTAR: {Material: ORANGE_DYE, Nome: '&6Silenciamento'}
+    BANIR: {Material: DIAMOND_AXE, Nome: '&4Banimento'}
+    BANIR_IP: {Material: TNT, Nome: '&4Banimento de IP'}
+    PRISAO: {Material: IRON_BARS, Nome: '&8Prisão'}
+    REVOGAR_BANIR: {Material: LIME_DYE, Nome: '&aDesbanido'}
+    REVOGAR_BANIR_IP: {Material: LIME_DYE, Nome: '&aIP desbanido'}
+    REVOGAR_MUTAR: {Material: NOTE_BLOCK, Nome: '&aDesmutado'}
+    REVOGAR_PRISAO: {Material: IRON_DOOR, Nome: '&aSolto'}
+    REVOGAR_AVISO: {Material: SPONGE, Nome: '&aAvisos tirados'}
+    CONGELAR: {Material: PACKED_ICE, Nome: '&bCongelado'}
+    DESCONGELAR: {Material: ICE, Nome: '&aDescongelado'}
+    ESPECTAR: {Material: ENDER_EYE, Nome: '&dEspectou'}
+    TELEPORTAR: {Material: ENDER_PEARL, Nome: '&aTeleportou'}
+    TP_OCULTO: {Material: ENDER_PEARL, Nome: '&5TP silencioso'}
+    PUXAR: {Material: FISHING_ROD, Nome: '&aPuxou'}
+    VER_INVENTARIO: {Material: CHEST, Nome: '&eViu o inventário'}
+    VER_ENDER: {Material: ENDER_CHEST, Nome: '&5Viu o baú do ender'}
+    TESTE_KNOCKBACK: {Material: STICK, Nome: '&6Teste de knockback'}
+    TESTE_VOO: {Material: FEATHER, Nome: '&fTeste de voo'}
+    TESTE_CPS: {Material: CLOCK, Nome: '&eTeste de CPS'}
+    TESTE_XRAY: {Material: DIAMOND_ORE, Nome: '&bIsca de xray'}
+    CURAR: {Material: GOLDEN_APPLE, Nome: '&aCurou'}
+    ALIMENTAR: {Material: BREAD, Nome: '&aAlimentou'}
+    LIMPAR_INVENTARIO: {Material: LAVA_BUCKET, Nome: '&cLimpou o inventário'}
+    MATAR: {Material: SKELETON_SKULL, Nome: '&4Matou'}
+    GAMEMODE: {Material: GRASS_BLOCK, Nome: '&aTrocou o modo de jogo'}
+    VOO: {Material: FEATHER, Nome: '&fTrocou o voo'}
+    LIMPAR_CHAT: {Material: PAPER, Nome: '&fLimpou o chat'}
+    MUTAR_CHAT: {Material: OAK_SIGN, Nome: '&fSilenciou o chat'}
+    LIMPAR_ITENS: {Material: HOPPER, Nome: '&fLimpou os itens do chão'}
+    MATAR_MOBS: {Material: ROTTEN_FLESH, Nome: '&cMatou os monstros'}
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Página anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&7Próxima página'
+  Voltar:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&cVoltar'
+  Vazio:
+    Slot: 22
+    Material: BOOK
+    Nome: '&7Nada registrado ainda'
+
+Staff online:
+  Titulo: '&8Staff online'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: PLAYER_HEAD
+    Nome: '&b{jogador}'
+    Lore:
+      - '&7Vanish: {vanish} &8| &7Modo staff: {modo_staff}'
+      - '&7Espectando: {espectando}'
+      - '&7Mundo: &f{mundo} &8| &7Modo: &f{modo}'
+      - '&7Ping: &f{ping} ms'
+      - ''
+      - '&eClique para teleportar'
+      - '&eDireito: o que ele fez'
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Página anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&7Próxima página'
+  Voltar:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&cVoltar'
+
+Mineracao:
+  Titulo: '&8Mineração de {jogador} ({horas}h)'
+  Linhas: 6
+  Slots: [19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Fundo:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: STONE
+    Nome: '{minerio}'
+    Lore:
+      - '&7Na última hora: &f{hora}'
+      - '&7No período: &f{total}'
+      - '&7Proporção contra a pedra: &f{proporcao}%'
+      - '&7Alerta: &f{alerta}'
+      - '&7Situação: {situacao}'
+  Pedras:
+    Slot: 4
+    Material: STONE
+    Nome: '&7Pedra quebrada: &f{pedras}'
+    Lore:
+      - '&7Quem minera de verdade quebra muita'
+      - '&7pedra para cada minério. Com xray a'
+      - '&7proporção de minério fica alta.'
+  Isca:
+    Slot: 50
+    Material: DIAMOND_ORE
+    Nome: '&bTestar xray com isca'
+    Lore:
+      - '&7Minérios falsos que só ele vê.'
+  Anterior:
+    Slot: 45
+    Material: ARROW
+    Nome: '&7Página anterior'
+  Proxima:
+    Slot: 53
+    Material: ARROW
+    Nome: '&7Próxima página'
+  Voltar:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&cVoltar'
