@@ -176,14 +176,27 @@ XP:
     Desarmado: UNARMED
 
 Tempo:
-  # Tempo que um jogador novo ja ganha para experimentar. 0 desliga.
+  # Como escrever um tempo aqui: 30s, 10m, 2h, 1d, 1h30m.
+  #   0          = NENHUM tempo (nao e infinito!)
+  #   infinito   = sem fim (tambem aceita ilimitado, permanente ou -1)
+
+  # Todo mundo usa o auto-click sem gastar tempo, sem precisar de
+  # permissao. Para dar so a alguns, use a permissao
+  # starautoclick.tempo.infinito ou /starautoclick tempo definir <jogador> infinito.
+  Infinito para todos: false
+
+  # Presente de boas-vindas: entregue UMA vez, so para quem nunca usou o
+  # auto-click. Mudar este valor nao mexe no tempo de quem ja jogou; para
+  # isso use /starautoclick tempo definir <jogador> <tempo>.
   Inicial: 10m
-  # Maximo que da para acumular comprando. 0 = sem limite.
+  # Maximo que da para acumular. 0 (ou infinito) = sem limite.
   Maximo acumulado: 0
 
-  # Tempo gratis todo dia, entregue no primeiro login do dia. O jogador
-  # recebe o MAIOR entre o padrao e os que tem por permissao
-  # (starautoclick.diario.<id>).
+  # Tempo gratis todo dia, entregue no primeiro login do dia (e a
+  # mensagem "voce recebeu ... gratis por hoje"). O jogador recebe o MAIOR
+  # entre o padrao e os que tem por permissao (starautoclick.diario.<id>).
+  # Padrao: 0 tira o presente de quem nao tem permissao; Ativar: false
+  # desliga o diario inteiro.
   Diario:
     Ativar: true
     Padrao: 5m
@@ -194,6 +207,7 @@ Tempo:
     Fuso: America/Sao_Paulo
 
   # Pacotes a venda no menu de tempo. Ordem = posicao na tela.
+  # 'Tempo: infinito' vende o auto-click sem fim.
   Pacotes:
     1min:
       Ordem: 1
