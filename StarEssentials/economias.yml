@@ -6,6 +6,9 @@
 #    stareconomia-<id>  - moeda do StarEconomia (ex: stareconomia-cash, stareconomia-money)
 #    vault              - economia registrada via Vault
 #    playerpoints       - PlayerPoints via comandos de console
+#    yeconomias-<moeda> - uma moeda do yEconomias (ex: yeconomias-coins)
+#    yeconomy           - o yEconomy
+#    (os dois ultimos precisam do loader StarPlugins 2.0.82 ou mais novo)
 #
 #  Os custos de cada comando (kit, /back, /reparar, /randomtp etc.) ficam no
 #  config.yml, junto da propria funcao - aqui so ficam definidas as moedas
@@ -22,7 +25,7 @@ economies:
   #  StarEconomia
   # -------------------------
   cash:
-    # Provider no formato stareconomia-<id-da-moeda> | vault | playerpoints
+    # Provider no formato stareconomia-<id-da-moeda> | vault | playerpoints | yeconomias-<moeda> | yeconomy
     provider: 'stareconomia-cash'
     # Nome completo da moeda (exibido nas mensagens)
     display: 'Cash'
