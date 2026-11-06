@@ -1,0 +1,182 @@
+# ------------------------------------------------------------------------
+#  StarMercado - mercado e leilao entre jogadores
+#  Compativel da 1.8 ate a 1.21.
+# ------------------------------------------------------------------------
+
+Geral:
+  # Liga mensagens extras no console para achar problema de configuracao.
+  Debug: false
+
+Menu:
+  # ----------------------------------------------------------------------
+  #  A opcao principal do menu.
+  #
+  #  false (padrao): o /mercado abre JA COM OS ITENS a venda. A ultima linha
+  #  tem os botoes e o item de filtro, que a cada clique passa para a proxima
+  #  categoria -- comecando em "Todas".
+  #
+  #  true: o /mercado abre uma tela de categorias (um item por categoria) e
+  #  cada uma abre a sua propria grade de itens.
+  # ----------------------------------------------------------------------
+  Categorias separadas: false
+
+  # Pergunta "tem certeza?" antes de tirar o dinheiro.
+  Confirmar compra: true
+
+  # Ao clicar numa shulker box a venda, mostra o conteudo dela antes de
+  # comprar, com os botoes de voltar e de comprar.
+  Preview de shulker: true
+
+  # Clicar no proprio anuncio pergunta se quer tirar ele do mercado.
+  Cancelar clicando no proprio anuncio: true
+
+  # Ordem inicial da grade: RECENTES, ANTIGOS, PRECO_MENOR, PRECO_MAIOR, TERMINANDO.
+  Ordem padrao: RECENTES
+
+Mercado:
+  # Quanto tempo um anuncio fica no ar. 0 = nunca vence.
+  Duracao em horas: 48
+
+  # Quantos anuncios cada jogador pode ter ao mesmo tempo. 0 = sem limite.
+  # A permissao starmercado.limite.<numero> manda neste valor.
+  Limite de anuncios: 5
+
+  Preco minimo: 1
+  # 0 tira o teto.
+  Preco maximo: 10000000
+
+  # Taxa cobrada na hora de anunciar (em % do preco) e taxa fixa por anuncio.
+  Taxa de anuncio: 0
+  Taxa fixa de anuncio: 0
+
+  # Porcentagem descontada do vendedor quando o item e vendido.
+  Taxa de venda: 5
+
+  # Avisa o vendedor no chat quando alguem compra o item dele.
+  Avisar o vendedor: true
+
+  # Anuncia no chat do servidor cada item novo colocado a venda.
+  Anunciar novos no chat: false
+
+  # Avisa na entrada quem tem item esperando no armazem.
+  Avisar pendencias ao entrar: true
+
+  # Barra itens gastos (picareta usada, armadura danificada).
+  Bloquear itens danificados: false
+
+  # Itens que nao podem ser anunciados. Aceita curinga: *_SPAWN_EGG, *SHULKER*.
+  Itens bloqueados:
+    - BEDROCK
+    - COMMAND_BLOCK
+    - BARRIER
+    - STRUCTURE_BLOCK
+    - SPAWNER
+
+Leilao:
+  Ativar: true
+
+  # Duracao de fabrica e limites do que o jogador pode escolher no
+  # /leilao criar <inicial> [incremento] [duracao].
+  Duracao em minutos: 60
+  Duracao minima em minutos: 5
+  Duracao maxima em minutos: 1440
+
+  # Quantos leiloes cada jogador pode ter no ar. 0 = sem limite.
+  # A permissao starmercado.leiloes.<numero> manda neste valor.
+  Limite de leiloes: 2
+
+  Lance inicial minimo: 10
+  Incremento padrao: 100
+  Incremento minimo: 1
+
+  # Deixa o dono definir um preco de "levar agora" (o 4o valor do /leilao criar).
+  Permitir compra imediata: true
+
+  # Porcentagem descontada do dono quando o leilao fecha.
+  Taxa de leilao: 5
+
+  Prorrogacao:
+    # Lance dado no fim empurra o prazo para frente, para ninguem ganhar
+    # aparecendo no ultimo segundo.
+    Ativar: true
+    # Em segundos.
+    Quando faltar: 30
+    Adicionar: 30
+
+  Anunciar novos no chat: true
+  Anunciar lances no chat: false
+
+Armazem:
+  # Quantos itens cabem no armazem de cada jogador. 0 = sem limite.
+  Limite: 0
+
+NPC:
+  # Bonecos que abrem o mercado (ou o leilao) ao serem clicados. Voce cria no
+  # jogo, onde estiver: /starmercado setnpc [mercado|leilao], e tira com
+  # /starmercado delnpc. Da para ter quantos quiser, em qualquer mundo.
+  #
+  # Quem desenha o boneco e o proprio StarPlugins: com Citizens ou FancyNpcs
+  # instalado ele usa o seu (escolha em 'npc' no config do loader); sem nenhum
+  # dos dois, nasce um mob parado e invulneravel. Nao precisa instalar nada.
+  Ativar: true
+
+  Mercado:
+    # Um tipo de mob (VILLAGER, ZOMBIE, WANDERING_TRADER...) ou JOGADOR para um
+    # boneco com cara de gente.
+    Tipo: VILLAGER
+    # Nick de quem empresta a skin; so vale com Tipo: JOGADOR.
+    Skin: ''
+    # Nome em cima do boneco. Vazio esconde a plaquinha.
+    Nome: '&6&lMERCADO'
+    Olhar para jogadores: true
+    Alcance do olhar: 6
+
+  Leilao:
+    Tipo: VILLAGER
+    Skin: ''
+    Nome: '&e&lLEILAO'
+    Olhar para jogadores: true
+    Alcance do olhar: 6
+
+Economia:
+  # VAULT   = qualquer economia registrada no Vault.
+  # COMANDO = saldo lido por placeholder e dinheiro movido por comando de
+  #           console (para as economias que nao usam Vault).
+  # Tambem aceita o id da moeda:
+  #   vault                 a economia do Vault
+  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+  #   yeconomy              o yEconomy
+  # Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+  Tipo: VAULT
+
+  Simbolo: '$'
+
+  # So usados no modo COMANDO.
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Sons:
+  # Formato: SOM;volume;tom. Deixe vazio para nao tocar nada.
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Compra: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Venda: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+  Lance: 'BLOCK_NOTE_BLOCK_PLING;1;1.6'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+
+Banco de dados:
+  # SQLITE ou MYSQL. Use MYSQL para o mesmo mercado valer em varios servidores.
+  Tipo: SQLITE
+
+  IP: localhost
+  Porta: 3306
+  Banco: starmercado
+  Usuario: root
+  Senha: ''
+  Prefixo: 'starmercado_'
+
+  # De quantos em quantos segundos o cache e comparado com o banco. Em rede
+  # com MySQL, e isto que faz o anuncio de um servidor aparecer no outro.
+  # 0 desliga (so faz sentido em servidor sozinho).
+  Sincronizar a cada: 30
