@@ -1,0 +1,848 @@
+# ==========================================================================
+#  StarDuelos - menus
+#
+#  Cada botao: Slot, Material, Nome, Lore (e Brilho, Textura, Ativar).
+#  {variaveis} de cada botao estao nos exemplos. Linhas com {variavel} de
+#  varias linhas (descricao, regras...) viram varias linhas na lore.
+# ==========================================================================
+Versao do modelo: 1
+
+Geral:
+  Fundo: GRAY_STAINED_GLASS_PANE
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+  Fechar:
+    Material: RED_DYE
+    Nome: '&cFechar'
+  Voltar:
+    Material: ARROW
+    Nome: '&7Voltar'
+  Anterior:
+    Material: ARROW
+    Nome: '&ePagina anterior'
+    Lore: ['&7Ir para a pagina {pagina}']
+  Proxima:
+    Material: ARROW
+    Nome: '&eProxima pagina'
+    Lore: ['&7Ir para a pagina {pagina}']
+  Vazio:
+    Material: COBWEB
+    Nome: '&7Nada por aqui'
+
+# ------------------------------------------------------------------ jogador
+
+Principal:
+  Titulo: '&8Duelos'
+  Linhas: 5
+  Ranks:
+    Slot: 4
+    Material: NETHER_STAR
+    Nome: '&bSeu rank: {rank}'
+    Lore: ['&7Elo geral: &f{elo}', '', '&eClique para ver as patentes']
+  Fila:
+    Slot: 11
+    Material: IRON_SWORD
+    Nome: '&a&lFila normal'
+    Lore: ['&7Duelos que nao valem elo.', '', '&7Na fila: &f{na_fila}', '&7Jogando: &f{jogando}', '', '&eClique para escolher o kit']
+  Ranqueada:
+    Slot: 13
+    Material: DIAMOND_SWORD
+    Nome: '&6&lFila ranqueada'
+    Lore: ['&7Vale elo e patente.', '', '&7Seu elo: &f{elo}', '&7Seu rank: {rank}', '', '&eClique para escolher o kit']
+  Rapido:
+    Slot: 15
+    Material: FEATHER
+    Nome: '&b&lJogo rapido'
+    Lore: ['&7Entra em todas as filas 1v1', '&7e joga a primeira que achar.', '', '&eClique para entrar']
+  Desafiar:
+    Slot: 20
+    Material: NAME_TAG
+    Nome: '&e&lDesafiar jogador'
+    Lore: ['&7Escolha o oponente, o kit, o mapa,', '&7as rodadas e a aposta.', '', '&eClique para escolher']
+  Grupo:
+    Slot: 22
+    Material: NETHER_STAR
+    Nome: '&d&lGrupo'
+    Lore: ['&7FFA, grupo dividido, grupo contra', '&7grupo e fila em equipe.', '', '&eClique para abrir']
+  Assistir:
+    Slot: 24
+    Material: ENDER_EYE
+    Nome: '&3&lAssistir'
+    Lore: ['&7Duelos acontecendo agora: &f{assistiveis}', '', '&eClique para escolher']
+  Kits:
+    Slot: 29
+    Material: BOOK
+    Nome: '&f&lEditar kits'
+    Lore: ['&7Arrume os itens de cada kit', '&7do seu jeito.', '', '&eClique para abrir']
+  Estatisticas:
+    Slot: 31
+    Material: PAPER
+    Nome: '&a&lEstatisticas'
+    Lore: ['&7Vitorias: &f{vitorias}', '&7Derrotas: &f{derrotas}', '&7Winstreak: &f{winstreak}', '', '&eClique para ver por kit']
+  Tops:
+    Slot: 33
+    Material: GOLD_INGOT
+    Nome: '&6&lTops'
+    Lore: ['&7Os melhores de cada kit.', '', '&eClique para ver']
+  Historico:
+    Slot: 38
+    Material: CLOCK
+    Nome: '&7&lHistorico'
+    Lore: ['&7Seus ultimos duelos.', '', '&eClique para ver']
+  Configuracoes:
+    Slot: 40
+    Material: COMPARATOR
+    Nome: '&7&lConfiguracoes'
+    Lore: ['&7Desafios, placar, efeito de abate...', '', '&eClique para abrir']
+  Itens:
+    Slot: 42
+    Material: CHEST
+    Nome: '&6&lItens guardados'
+    Lore: ['&7Premios de aposta e itens que', '&7nao couberam no inventario.', '', '&eClique para retirar']
+  Sair da fila:
+    Slot: 49
+    Material: RED_DYE
+    Nome: '&c&lSair da fila'
+    Lore: ['&7Fila atual: {fila}']
+  Admin:
+    Slot: 44
+    Material: COMMAND_BLOCK
+    Nome: '&c&lPainel da staff'
+    Lore: ['&7Kits, mapas, regras e configuracoes.']
+
+Fila:
+  Titulo: '&8Fila normal &7({pagina}/{paginas})'
+  Kit:
+    Nome: '{kit}'
+    Lore: ['{descricao}', '', '&7Na fila: &f{na_fila}', '&7Jogando: &f{jogando}', '&7Times: {tamanhos}', '&7Suas vitorias: &f{vitorias}', '',
+           '&eEsquerdo: entrar na fila', '&eDireito: escolher o tamanho', '&eShift: ver os itens']
+  Rapido:
+    Material: FEATHER
+    Nome: '&b&lJogo rapido'
+    Lore: ['&7Todas as filas 1v1 de uma vez.']
+  Sair da fila:
+    Material: RED_DYE
+    Nome: '&c&lSair da fila'
+    Lore: ['&7Fila atual: {fila}']
+  Ir para ranqueada:
+    Material: DIAMOND
+    Nome: '&6Ir para a ranqueada'
+  Ir para normal:
+    Material: IRON_INGOT
+    Nome: '&aIr para a fila normal'
+
+Fila ranqueada:
+  Titulo: '&8Fila ranqueada &7({pagina}/{paginas})'
+  Kit:
+    Nome: '{kit}'
+    Lore: ['{descricao}', '', '&7Seu elo: &b{elo} {rank}', '&7Na fila: &f{na_fila}', '&7Jogando: &f{jogando}', '&7Times: {tamanhos}', '',
+           '&eEsquerdo: entrar na fila', '&eDireito: escolher o tamanho', '&eShift: ver os itens']
+
+Tamanho:
+  Titulo: '&8Tamanho do time'
+  Opcao:
+    Material: PLAYER_HEAD
+    Nome: '&a{tamanho}'
+    Lore: ['&7{kit}', '', '&eClique para entrar na fila']
+
+Previa:
+  Titulo: '&8Itens de {kit}'
+  Regras:
+    Material: WRITABLE_BOOK
+    Nome: '&eRegras deste kit'
+    Lore: ['{regras}']
+
+Escolher kit:
+  Titulo: '&8Escolha o kit &7({pagina}/{paginas})'
+  Kit:
+    Nome: '{kit}'
+    Lore: ['{descricao}', '', '&eEsquerdo: escolher', '&eDireito: ver os itens']
+  Geral:
+    Material: NETHER_STAR
+    Nome: '&bGeral (todos os kits)'
+
+Escolher mapa:
+  Titulo: '&8Escolha o mapa'
+  Aleatorio:
+    Material: ENDER_PEARL
+    Nome: '&dMapa aleatorio'
+    Lore: ['&7Sorteia entre os mapas do kit.']
+  Mapa:
+    Nome: '{mapa}'
+    Lore: ['&7Categorias: &f{categorias}', '&7Copias coladas: &f{copias}', '', '&eClique para escolher']
+
+Jogadores:
+  Titulo: '&8Desafiar &7({pagina}/{paginas})'
+  Em duelo: '&cEm duelo'
+  Na fila: '&eNa fila'
+  Livre: '&aLivre'
+  Jogador:
+    Nome: '&f{jogador}'
+    Lore: ['&7Estado: {estado}', '&7Vitorias: &f{vitorias}', '&7Elo: &f{elo}', '', '&eEsquerdo: desafiar', '&eDireito: estatisticas']
+
+Desafio:
+  Titulo: '&8Desafiar {jogador}'
+  Linhas: 5
+  Em grupo: '&dGrupo contra grupo'
+  Alvo:
+    Nome: '&eDesafiando &f{jogador}'
+    Lore: ['{grupo}']
+  Kit:
+    Slot: 19
+    Material: IRON_SWORD
+    Nome: '&aKit: {kit}'
+    Lore: ['&eClique para escolher']
+  Mapa:
+    Slot: 21
+    Material: FILLED_MAP
+    Nome: '&bMapa: &f{mapa}'
+    Lore: ['&eClique para escolher']
+  Rodadas:
+    Slot: 23
+    Material: PAPER
+    Nome: '&fRodadas para vencer: &e{rodadas}'
+    Lore: ['&7Melhor de &f{melhor_de}', '', '&eEsquerdo: +1  &7|  &eDireito: -1']
+  Aposta:
+    Slot: 25
+    Material: GOLD_INGOT
+    Nome: '&6Aposta em dinheiro: &f{valor}'
+    Lore: ['&7Cada lado aposta esse valor;', '&7quem vencer leva tudo.', '', '&eEsquerdo: digitar valor', '&eDireito: tirar a aposta']
+  Itens:
+    Slot: 37
+    Material: CHEST
+    Nome: '&6Aposta de itens: {estado}'
+    Lore: ['&7Depois do aceite, os dois poem', '&7itens numa mesa e confirmam.', '', '&eClique para alternar']
+  Inventario:
+    Slot: 39
+    Material: ENDER_CHEST
+    Nome: '&cInventario proprio: {estado}'
+    Lore: ['&7Cada um luta com os proprios itens.', '&cQuem perde, perde os itens!', '', '&eClique para alternar']
+  Enviar:
+    Slot: 41
+    Material: LIME_DYE
+    Nome: '&a&lEnviar desafio'
+    Lore: ['&7Para &f{jogador}']
+  Cancelar:
+    Slot: 43
+    Material: RED_DYE
+    Nome: '&cCancelar'
+
+Editar kits:
+  Titulo: '&8Editar kits &7({pagina}/{paginas})'
+  Personalizado: '&aPersonalizado'
+  Padrao: '&7Padrao'
+  Kit:
+    Nome: '{kit}'
+    Lore: ['&7Layout: {estado}', '', '&eEsquerdo: editar', '&eDireito: ver os itens']
+
+Editor de layout:
+  Titulo: '&8Editando {kit}'
+  Salvar:
+    Slot: 2
+    Material: LIME_DYE
+    Nome: '&a&lSalvar layout'
+    Lore: ['&7Arrume o seu inventario e clique.', '&7Fechar com ESC tambem salva.']
+  Resetar:
+    Slot: 4
+    Material: YELLOW_DYE
+    Nome: '&e&lVoltar ao padrao'
+  Cancelar:
+    Slot: 6
+    Material: RED_DYE
+    Nome: '&c&lCancelar'
+
+Estatisticas:
+  Titulo: '&8Estatisticas de {jogador}'
+  Geral:
+    Nome: '&b&lGeral'
+    Lore: ['&7Vitorias: &a{vitorias}', '&7Derrotas: &c{derrotas}', '&7Aproveitamento: &f{aproveitamento}', '&7Abates: &f{abates}',
+           '&7Mortes: &f{mortes}', '&7KDR: &f{kdr}', '&7Winstreak: &6{winstreak} &8(melhor {melhor_winstreak})', '&7Elo geral: &b{elo} {rank}']
+  Kit:
+    Nome: '{kit}'
+    Lore: ['&7Vitorias: &a{vitorias}', '&7Derrotas: &c{derrotas}', '&7Aproveitamento: &f{aproveitamento}', '&7Abates: &f{abates} &8| &7KDR: &f{kdr}',
+           '&7Winstreak: &6{winstreak} &8(melhor {melhor_winstreak})', '&7Elo: &b{elo} {rank} &8({ranqueadas} ranqueadas)', '', '&eClique para ver o top']
+
+Tops:
+  Titulo: '&8Top {tipo} - {kit}'
+  Posicao:
+    Nome: '&e#{posicao} &f{nome}'
+    Lore: ['&7{tipo}: &b{valor}', '', '&eClique para ver as estatisticas']
+  Trocar tipo:
+    Material: HOPPER
+    Nome: '&eTipo: &f{tipo}'
+    Lore: ['&7Esquerdo: proximo', '&7Direito: anterior']
+  Trocar kit:
+    Material: IRON_SWORD
+    Nome: '&eKit: &f{kit}'
+    Lore: ['&7Clique para trocar']
+
+Historico:
+  Titulo: '&8Historico de {jogador}'
+  Vitoria: '&a&lVITORIA'
+  Derrota: '&c&lDERROTA'
+  Empate: '&e&lEMPATE'
+  Ranqueada: '&6Ranqueada'
+  Material da derrota: RED_DYE
+  Linha do jogador: '&7{nome}: &f{abates}K {mortes}D &8| &f{golpes} golpes &8| &fcombo {combo}'
+  Registro:
+    Nome: '{resultado} &7- {kit}'
+    Lore: ['&7{data} &8| &7{duracao} &8| &7{mapa} {ranqueada}', '', '&aVencedores: &f{vencedores}', '&cPerdedores: &f{perdedores}', '', '{detalhes}']
+
+Assistir:
+  Titulo: '&8Assistir &7({pagina}/{paginas})'
+  Duelo:
+    Nome: '{lados}'
+    Lore: ['&7Kit: {kit}', '&7Mapa: &f{mapa}', '&7Tipo: &f{tipo}', '&7Tempo: &f{tempo}', '&7Rodadas: {placar}', '&7Espectadores: &f{espectadores}', '', '&eClique para assistir']
+
+Teleporte:
+  Titulo: '&8Ir ate...'
+  Jogador:
+    Nome: '{jogador}'
+    Lore: ['&7Vida: &c{vida}❤', '&7Abates: &f{abates}', '', '&eClique para ir']
+
+Configuracoes:
+  Titulo: '&8Configuracoes'
+  Linhas: 6
+  Nenhum: '&7Nenhum'
+  Desafios:
+    Slot: 10
+    Material: NAME_TAG
+    Nome: '&fReceber desafios: {estado}'
+  Placar:
+    Slot: 12
+    Material: OAK_SIGN
+    Nome: '&fPlacar lateral: {estado}'
+  Resumo:
+    Slot: 14
+    Material: BOOK
+    Nome: '&fResumo no fim do duelo: {estado}'
+  Espectadores:
+    Slot: 16
+    Material: ENDER_EYE
+    Nome: '&fVer outros espectadores: {estado}'
+  Anuncios:
+    Slot: 28
+    Material: BELL
+    Nome: '&fAnuncios de duelos: {estado}'
+  Aviso de espectador:
+    Slot: 30
+    Material: SPYGLASS
+    Nome: '&fAvisar quando alguem assistir: {estado}'
+  Efeito:
+    Slot: 32
+    Material: BLAZE_POWDER
+    Nome: '&fEfeito de abate: {efeito}'
+    Lore: ['&eClique para escolher']
+  Pedidos:
+    Slot: 34
+    Material: PAPER
+    Nome: '&fDesafios recebidos: &e{quantidade}'
+    Lore: ['&eClique para ver']
+
+Efeitos:
+  Titulo: '&8Efeito de abate'
+  Selecionado: '&aSelecionado'
+  Clique: '&eClique para usar &7| &eDireito: testar'
+  Bloqueado: '&cBloqueado'
+  Nenhum:
+    Material: BARRIER
+    Nome: '&7Nenhum'
+    Lore: ['{estado}']
+  Efeito:
+    Nome: '{efeito}'
+    Lore: ['{estado}']
+
+Pedidos:
+  Titulo: '&8Desafios recebidos'
+  Pedido:
+    Nome: '&f{jogador}'
+    Lore: ['&7Kit: {kit}', '&7Rodadas: &f{rodadas}', '&7Aposta: &f{aposta}', '', '&aEsquerdo: aceitar', '&cDireito: recusar']
+
+Itens guardados:
+  Titulo: '&8Itens guardados'
+  Lore extra: ['', '&7Origem: &f{origem}', '&7Desde: &f{data}', '&eClique para retirar']
+
+Recap:
+  Titulo: '&8Inventario de {jogador}'
+  Vida:
+    Material: GOLDEN_APPLE
+    Nome: '&cVida: &f{vida}&7/&f{maxima} ❤'
+    Lore: ['&7Fome: &f{fome}/20']
+  Numeros:
+    Material: DIAMOND_SWORD
+    Nome: '&eNumeros do duelo'
+    Lore: ['&7Golpes: &f{golpes}', '&7Maior combo: &f{combo}', '&7Dano causado: &f{dano}❤', '&7Flechas: &f{acertos}/{flechas} &8({precisao})']
+  Pocoes:
+    Material: SPLASH_POTION
+    Nome: '&dPocoes e sopas'
+    Lore: ['&7Restantes: &f{restantes}', '&7Usadas: &f{usadas}']
+  Efeitos:
+    Material: BREWING_STAND
+    Nome: '&bEfeitos ativos'
+    Lore: ['{efeitos}']
+
+Ranks:
+  Titulo: '&8Patentes'
+  Atual: '&aSeu rank'
+  Alcancado: '&7Alcancado'
+  Falta: '&cFaltam {falta} de elo'
+  Rank:
+    Nome: '{rank}'
+    Lore: ['&7Elo minimo: &f{elo}', '', '{estado}']
+
+Grupo:
+  Titulo: '&8Grupo'
+  Linhas: 6
+  Criar:
+    Slot: 22
+    Material: NETHER_STAR
+    Nome: '&a&lCriar grupo'
+  Info:
+    Slot: 4
+    Material: PLAYER_HEAD
+    Nome: '&dGrupo de {lider} &7({quantidade}/{maximo})'
+    Lore: ['{membros}']
+  Convidar:
+    Slot: 19
+    Material: NAME_TAG
+    Nome: '&aConvidar jogador'
+  FFA:
+    Slot: 21
+    Material: BLAZE_ROD
+    Nome: '&cFFA do grupo'
+    Lore: ['&7Todos contra todos.']
+  Dividir:
+    Slot: 23
+    Material: SHIELD
+    Nome: '&eDividir em dois times'
+    Lore: ['&7Times sorteados.']
+  Desafiar grupo:
+    Slot: 25
+    Material: DIAMOND_SWORD
+    Nome: '&bDesafiar outro grupo'
+  Fila:
+    Slot: 31
+    Material: COMPASS
+    Nome: '&aFila em equipe'
+    Lore: ['&7O grupo entra junto na fila', '&7(2v2, 3v3... conforme o tamanho).']
+  Desfazer:
+    Slot: 40
+    Material: RED_DYE
+    Nome: '&cDesfazer grupo'
+  Sair:
+    Slot: 40
+    Material: RED_DYE
+    Nome: '&cSair do grupo'
+
+Lideres:
+  Titulo: '&8Grupos online'
+  Lider:
+    Nome: '&fGrupo de {jogador}'
+    Lore: ['&7Membros online: &f{quantidade}', '', '&eClique para desafiar']
+
+Mesa:
+  Titulo: '&8Aposta com {jogador}'
+  Divisoria:
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: '&7<- Seus itens | Itens dele ->'
+  Cancelar:
+    Material: RED_DYE
+    Nome: '&cDesfazer a aposta'
+  Confirmar:
+    Material: LIME_DYE
+    Nome: '&aConfirmar'
+    Lore: ['&7Clique nos itens do seu inventario', '&7para por na mesa; clique na mesa', '&7para tirar.', '', '&7Dinheiro: &f{valor}']
+  Confirmado:
+    Material: LIME_STAINED_GLASS_PANE
+    Nome: '&a&lVoce confirmou'
+    Lore: ['&7Clique para desconfirmar']
+  Dinheiro:
+    Material: GOLD_INGOT
+    Nome: '&6Dinheiro apostado: &f{valor}'
+  Oponente confirmou:
+    Material: LIME_STAINED_GLASS_PANE
+    Nome: '&aO oponente confirmou'
+  Oponente esperando:
+    Material: ORANGE_STAINED_GLASS_PANE
+    Nome: '&eO oponente ainda nao confirmou'
+
+# ------------------------------------------------------------------ staff
+
+Admin:
+  Titulo: '&8Painel do StarDuelos'
+  Linhas: 6
+  Kits:
+    Slot: 11
+    Material: IRON_SWORD
+    Nome: '&a&lKits &7({quantidade})'
+    Lore: ['&7Itens, regras dos modos, filas,', '&7categorias de mapa e permissao.']
+  Mapas:
+    Slot: 13
+    Material: FILLED_MAP
+    Nome: '&b&lMapas &7({quantidade})'
+    Lore: ['&7Criar, importar schematic, editar', '&7no jogo, copias e categorias.']
+  Configuracoes:
+    Slot: 15
+    Material: COMPARATOR
+    Nome: '&e&lConfiguracoes gerais'
+  Arenas:
+    Slot: 29
+    Material: GRASS_BLOCK
+    Nome: '&2&lArenas agora'
+    Lore: ['&7Copias coladas: &f{copias}', '&7Livres: &a{livres} &8| &7Em uso: &c{em_uso}', '&7Montando: &f{obras}', '&7Esperando mapa: &f{esperando}',
+           '&7Duelos: &f{duelos} &8| &7Na fila: &f{na_fila}']
+  Varinha:
+    Slot: 31
+    Material: BLAZE_ROD
+    Nome: '&6Pegar a varinha'
+    Lore: ['&7Seleciona regioes para mapas e gols.']
+  Lobby:
+    Slot: 33
+    Material: RED_BED
+    Nome: '&fDefinir o lobby aqui'
+  Duelos:
+    Slot: 38
+    Material: ENDER_EYE
+    Nome: '&3Duelos em andamento &7({quantidade})'
+  Recarregar:
+    Slot: 40
+    Material: CLOCK
+    Nome: '&eRecarregar'
+    Lore: ['&7Duelos abertos terminam empatados.']
+  Restaurar:
+    Slot: 42
+    Material: CHEST
+    Nome: '&dRestaurar kits/mapas prontos'
+    Lore: ['&7Recria os que foram apagados.']
+
+Confirmar:
+  Titulo: '&8Confirmar: {acao}'
+  Sim:
+    Material: LIME_DYE
+    Nome: '&a&lSim, {acao}'
+  Nao:
+    Material: RED_DYE
+    Nome: '&c&lNao'
+
+Admin kits:
+  Titulo: '&8Kits &7({pagina}/{paginas})'
+  Kit:
+    Nome: '{kit} &8({id})'
+    Lore: ['&7Estado: {estado}', '&7Itens: &f{itens}', '&7Mapas: &f{categorias}', '&7Filas: &f{filas}', '&7Ordem: &f{ordem}', '', '&eClique para editar']
+  Criar:
+    Material: LIME_DYE
+    Nome: '&a&lCriar kit'
+    Lore: ['&7Os itens do seu inventario viram o kit.']
+
+Admin kit:
+  Titulo: '&8Kit {kit}'
+  Linhas: 5
+  Info:
+    Nome: '{kit} &8({id})'
+    Lore: ['{descricao}']
+  Icone:
+    Slot: 10
+    Material: ITEM_FRAME
+    Nome: '&fIcone'
+    Lore: ['&7Clique segurando o item novo.']
+  Nome:
+    Slot: 11
+    Material: NAME_TAG
+    Nome: '&fNome: {nome}'
+  Itens:
+    Slot: 12
+    Material: CHEST
+    Nome: '&fItens &7({quantidade})'
+    Lore: ['&eEsquerdo: salvar o SEU inventario como o kit', '&eDireito: pegar os itens do kit para editar']
+  Previa:
+    Slot: 13
+    Material: ARMOR_STAND
+    Nome: '&fVer os itens e as regras'
+  Regras:
+    Slot: 14
+    Material: WRITABLE_BOOK
+    Nome: '&e&lRegras do modo'
+    Lore: ['&7Mais de 60 regras: construir, sumo,', '&7boxe, gols, camas, lava, vidas...']
+  Categorias:
+    Slot: 15
+    Material: FILLED_MAP
+    Nome: '&fMapas: &7{categorias}'
+    Lore: ['&7Categorias de mapa em que o kit joga.']
+  Filas:
+    Slot: 16
+    Material: PLAYER_HEAD
+    Nome: '&fFilas: &7{filas}'
+  Ativo:
+    Slot: 19
+    Material: LEVER
+    Nome: '&fAtivo: {estado}'
+  Ordem:
+    Slot: 20
+    Material: HOPPER
+    Nome: '&fOrdem nos menus: &e{ordem}'
+    Lore: ['&eEsquerdo +1 | Direito -1 | Shift x10']
+  Descricao:
+    Slot: 21
+    Material: BOOK
+    Nome: '&fDescricao'
+  Permissao:
+    Slot: 22
+    Material: TRIPWIRE_HOOK
+    Nome: '&fPermissao: &7{permissao}'
+    Lore: ['&eEsquerdo: digitar | Direito: tirar']
+  Restaurar:
+    Slot: 24
+    Material: CHEST
+    Nome: '&dRestaurar o kit pronto'
+  Excluir:
+    Slot: 25
+    Material: LAVA_BUCKET
+    Nome: '&c&lExcluir kit'
+
+Tamanhos:
+  Titulo: '&8Tamanhos de fila'
+  Opcao:
+    Material: PLAYER_HEAD
+    Nome: '&f{tamanho}: {estado}'
+    Lore: ['&eClique para alternar']
+
+Regras:
+  Titulo: '&8Regras de {kit} &7({pagina}/{paginas})'
+  Controles:
+    SIM_NAO: '&eClique: alternar'
+    NUMERO: '&eEsquerdo +{passo} | Direito -{passo} | Shift x10'
+    LISTA: '&eEsquerdo: digitar | Direito: limpar'
+  Regra:
+    Nome: '&f{regra}: &e{valor}'
+    Lore: ['&7{descricao}', '', '&7Padrao: &f{padrao}', '&8{chave}', '', '{controles}', '&7Q (dropar): voltar ao padrao']
+
+Categorias:
+  Titulo: '&8Categorias de mapa'
+  Ligada:
+    Material: LIME_STAINED_GLASS_PANE
+    Nome: '&a{categoria}'
+    Lore: ['&7Mapas: &f{mapas}', '&eClique para desligar']
+  Desligada:
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: '&7{categoria}'
+    Lore: ['&7Mapas: &f{mapas}', '&eClique para ligar']
+  Nova:
+    Material: LIME_DYE
+    Nome: '&aNova categoria'
+
+Admin mapas:
+  Titulo: '&8Mapas &7({pagina}/{paginas})'
+  Pendente: '&cFaltam spawns de 2 times'
+  Mapa:
+    Nome: '{mapa} &8({id})'
+    Lore: ['&7Estado: {estado} &8| &7Tipo: &f{tipo}', '&7Categorias: &f{categorias}', '&7Times: &f{times} &8| &7Vagas por time: &f{vagas}',
+           '&7Copias: &f{copias} &8(&a{livres} livres&8)', '{pendencias}', '', '&eEsquerdo: configurar', '&eDireito: editar no jogo']
+  Criar:
+    Material: LIME_DYE
+    Nome: '&a&lCriar mapa'
+    Lore: ['&7Do zero, de uma regiao do mundo,', '&7importando schematic ou um pronto.']
+
+Admin mapa:
+  Titulo: '&8Mapa {mapa}'
+  Linhas: 5
+  Info:
+    Nome: '{mapa} &8({id})'
+    Lore: ['&7Times: &f{times} &8| &7Vagas: &f{vagas} &8| &7FFA: &f{ffa}', '&7Gols: &f{gols} &8| &7Camas: &f{camas} &8| &7Baus: &f{baus}', '&7Categorias: &f{categorias}']
+  Nome:
+    Slot: 10
+    Material: NAME_TAG
+    Nome: '&fNome: {nome}'
+  Icone:
+    Slot: 11
+    Material: ITEM_FRAME
+    Nome: '&fIcone'
+    Lore: ['&7Clique segurando o item novo.']
+  Categorias:
+    Slot: 12
+    Material: FILLED_MAP
+    Nome: '&fCategorias: &7{categorias}'
+  Ativo:
+    Slot: 13
+    Material: LEVER
+    Nome: '&fAtivo: {estado}'
+  Copias:
+    Slot: 14
+    Material: REPEATER
+    Nome: '&fMaximo de copias: &e{copias}'
+    Lore: ['&7Coladas agora: &f{existentes}', '&eEsquerdo +1 | Direito -1 (0 = padrao)']
+  Hora:
+    Slot: 15
+    Material: CLOCK
+    Nome: '&fHora do dia: &e{hora}'
+    Lore: ['&eClique: -, manha, dia, tarde, noite, meia-noite']
+  Morte:
+    Slot: 16
+    Material: BLACK_WOOL
+    Nome: '&fMorre abaixo do Y: &e{y}'
+    Lore: ['&7Relativo ao fundo do mapa.', '&eEsquerdo +1 | Direito -1']
+  Limite:
+    Slot: 19
+    Material: LADDER
+    Nome: '&fLimite de construcao: &e{limite}'
+    Lore: ['&7Altura maxima (relativa) para por bloco.', '&eEsquerdo +1 | Direito -1 | Shift x5']
+  Editar:
+    Slot: 21
+    Material: GOLDEN_AXE
+    Nome: '&a&lEditar no jogo'
+    Lore: ['&7Entra numa copia em criativo com as', '&7ferramentas: spawns, gols, camas, baus.', '&7Ao salvar, os blocos viram o novo mapa.']
+  Salvar selecao:
+    Slot: 22
+    Material: BLAZE_ROD
+    Nome: '&6Salvar usando a selecao como caixa'
+    Lore: ['&7Aumenta/diminui a area do mapa.']
+  Recolar:
+    Slot: 23
+    Material: SLIME_BALL
+    Nome: '&eRecolar as copias'
+    Lore: ['&7Confere e repara todas as copias livres.']
+  Duplicar:
+    Slot: 24
+    Material: PAPER
+    Nome: '&fDuplicar mapa'
+  Excluir:
+    Slot: 25
+    Material: LAVA_BUCKET
+    Nome: '&c&lExcluir mapa'
+
+Criar mapa:
+  Titulo: '&8Criar mapa'
+  Linhas: 5
+  Do zero:
+    Slot: 10
+    Material: GRASS_BLOCK
+    Nome: '&a&lDo zero'
+    Lore: ['&7Plataforma 41x41 para construir em cima.']
+  Selecao grade:
+    Slot: 12
+    Material: BLAZE_ROD
+    Nome: '&6&lDa selecao (copias)'
+    Lore: ['&7Copia a regiao da varinha; o mapa', '&7e colado quantas vezes precisar.']
+  Selecao fixo:
+    Slot: 14
+    Material: BEACON
+    Nome: '&b&lDa selecao (fixo no lugar)'
+    Lore: ['&7Usa a regiao onde ela esta, sem copias.', '&7Ela volta ao normal depois de cada duelo.']
+  Importar:
+    Slot: 16
+    Material: STRUCTURE_BLOCK
+    Nome: '&d&lImportar schematic'
+    Lore: ['&7Coloque .schem/.schematic/.sdm em', '&f{pasta}', '&7StarFAWE/WorldEdit/FAWE: {worldedit}']
+  Prontos:
+    Slot: 22
+    Material: CHEST
+    Nome: '&e&lMapas prontos'
+    Lore: ['&7Recria um dos 13 mapas que vem no plugin.']
+
+Importar:
+  Titulo: '&8Importar schematic'
+  Arquivo:
+    Material: PAPER
+    Nome: '&f{arquivo}'
+    Lore: ['&7{tamanho}', '', '&eClique para importar']
+
+Prontos:
+  Titulo: '&8Mapas prontos'
+  Existe: '&cClique para recriar (apaga as mudancas)'
+  Nao existe: '&eClique para criar'
+  Mapa:
+    Material: FILLED_MAP
+    Nome: '&f{mapa}'
+    Lore: ['{estado}']
+
+Admin config:
+  Titulo: '&8Configuracoes gerais'
+  Linhas: 6
+  Practice:
+    Slot: 10
+    Material: DIAMOND_SWORD
+    Nome: '&fServidor de practice: {estado}'
+    Lore: ['&7Itens do lobby, placar e lobby ao entrar.']
+  Ao terminar:
+    Slot: 11
+    Material: ENDER_PEARL
+    Nome: '&fAo terminar: &e{valor}'
+    Lore: ['&7VOLTAR = onde estava | LOBBY = /duelos setlobby']
+  Anunciar:
+    Slot: 12
+    Material: BELL
+    Nome: '&fAnunciar partidas: &e{valor}'
+  Apostas dinheiro:
+    Slot: 13
+    Material: GOLD_INGOT
+    Nome: '&fApostas em dinheiro: {estado}'
+  Apostas itens:
+    Slot: 14
+    Material: CHEST
+    Nome: '&fApostas de itens: {estado}'
+  Taxa:
+    Slot: 15
+    Material: GOLD_NUGGET
+    Nome: '&fTaxa da casa: &e{valor}%'
+    Lore: ['&eEsquerdo +1 | Direito -1']
+  Placar:
+    Slot: 16
+    Material: OAK_SIGN
+    Nome: '&fPlacar: {estado}'
+  Placar fora:
+    Slot: 19
+    Material: OAK_SIGN
+    Nome: '&fPlacar fora do duelo: {estado}'
+  Vitorias ranqueada:
+    Slot: 20
+    Material: DIAMOND
+    Nome: '&fVitorias para a ranqueada: &e{valor}'
+    Lore: ['&eEsquerdo +1 | Direito -1']
+  Fator K:
+    Slot: 21
+    Material: EXPERIENCE_BOTTLE
+    Nome: '&fFator K do elo: &e{valor}'
+  Elo inicial:
+    Slot: 22
+    Material: EMERALD
+    Nome: '&fElo inicial: &e{valor}'
+  Copias:
+    Slot: 23
+    Material: REPEATER
+    Nome: '&fCopias por mapa: &e{valor}'
+  Operacoes:
+    Slot: 24
+    Material: HOPPER
+    Nome: '&fBlocos por tique: &e{valor}'
+  Fim:
+    Slot: 25
+    Material: CLOCK
+    Nome: '&fSegundos no fim: &e{valor}'
+  Discord:
+    Slot: 28
+    Material: PAPER
+    Nome: '&fWebhook do Discord: {estado}'
+    Lore: ['&7A URL fica no config.yml (Discord.Webhook).']
+  Teleportar lobby:
+    Slot: 29
+    Material: COMPASS
+    Nome: '&fIr ao lobby ao entrar: {estado}'
+  Itens do lobby:
+    Slot: 30
+    Material: NETHER_STAR
+    Nome: '&fItens do lobby: {estado}'
+  Desafio expira:
+    Slot: 31
+    Material: NAME_TAG
+    Nome: '&fDesafio expira em: &e{valor}s'
+  Inventario proprio:
+    Slot: 32
+    Material: ENDER_CHEST
+    Nome: '&fPermitir inventario proprio: {estado}'
+  Winstreak:
+    Slot: 33
+    Material: BLAZE_POWDER
+    Nome: '&fAnunciar winstreak a cada: &e{valor}'
+  Estatisticas grupo:
+    Slot: 34
+    Material: PLAYER_HEAD
+    Nome: '&fContar estatisticas em grupo: {estado}'

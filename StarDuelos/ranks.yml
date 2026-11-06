@@ -1,0 +1,47 @@
+# ==========================================================================
+#  StarDuelos - patentes por elo
+#
+#  O rank de cada kit sai do elo daquele kit; o rank "geral" (placeholder
+#  %starduelos_rank%) sai da media dos kits em que o jogador ja jogou
+#  ranqueada. Comandos ao alcancar rodam na primeira subida para a patente.
+#  Acoes: 'console: lp user {jogador} parent add ouro', 'mensagem: ...'
+# ==========================================================================
+Ativar: true
+
+Ranks:
+  bronze:
+    Nome: '&6Bronze'
+    Elo minimo: 0
+    Icone: BRICK
+    Comandos ao alcancar: []
+  prata:
+    Nome: '&7Prata'
+    Elo minimo: 1100
+    Icone: IRON_INGOT
+    Comandos ao alcancar: []
+  ouro:
+    Nome: '&eOuro'
+    Elo minimo: 1250
+    Icone: GOLD_INGOT
+    Comandos ao alcancar: []
+  platina:
+    Nome: '&bPlatina'
+    Elo minimo: 1400
+    Icone: PRISMARINE_SHARD
+    Comandos ao alcancar: []
+  diamante:
+    Nome: '&3Diamante'
+    Elo minimo: 1600
+    Icone: DIAMOND
+    Comandos ao alcancar: []
+  mestre:
+    Nome: '&5Mestre'
+    Elo minimo: 1800
+    Icone: AMETHYST_SHARD
+    Comandos ao alcancar: []
+  lenda:
+    Nome: '&c&lLenda'
+    Elo minimo: 2000
+    Icone: NETHER_STAR
+    Comandos ao alcancar:
+      - 'anuncio: &c&l{jogador} &fchegou a &c&lLENDA &fnos duelos!'

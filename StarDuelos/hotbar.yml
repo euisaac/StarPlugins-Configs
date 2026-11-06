@@ -1,0 +1,113 @@
+# ==========================================================================
+#  StarDuelos - itens de barra
+#
+#  Acao: menu, fila, ranqueada, rapido, desafiar, grupo, kits, estatisticas,
+#  tops, historico, assistir, configuracoes, sair_fila, sair, jogadores,
+#  revanche, jogar_novamente ou 'comando: <comando>'.
+#  Slot -1 ou Ativar: false desliga o item.
+# ==========================================================================
+Versao do modelo: 1
+
+# Itens do lobby: so no servidor de practice (Geral.Servidor de practice) ou
+# com Ativar: true.
+Lobby:
+  Ativar: false
+  Slot selecionado: 0
+  Itens:
+    fila:
+      Slot: 0
+      Material: IRON_SWORD
+      Nome: '&a&lFila normal &7(clique)'
+      Lore: ['&7Duelos sem valer elo.']
+      Acao: fila
+    ranqueada:
+      Slot: 1
+      Material: DIAMOND_SWORD
+      Nome: '&6&lFila ranqueada &7(clique)'
+      Lore: ['&7Vale elo e patente.']
+      Acao: ranqueada
+    rapido:
+      Slot: 2
+      Material: FEATHER
+      Nome: '&b&lJogo rapido &7(clique)'
+      Lore: ['&7Entra em todas as filas 1v1 de uma vez.']
+      Acao: rapido
+    desafiar:
+      Slot: 4
+      Material: NAME_TAG
+      Nome: '&e&lDesafiar jogador &7(clique)'
+      Acao: desafiar
+    grupo:
+      Slot: 5
+      Material: NETHER_STAR
+      Nome: '&d&lGrupo &7(clique)'
+      Acao: grupo
+    kits:
+      Slot: 6
+      Material: BOOK
+      Nome: '&f&lEditar kits &7(clique)'
+      Acao: kits
+    perfil:
+      Slot: 7
+      Material: PAPER
+      Nome: '&a&lEstatisticas &7(clique)'
+      Acao: estatisticas
+    menu:
+      Slot: 8
+      Material: COMPARATOR
+      Nome: '&7&lMenu &7(clique)'
+      Acao: menu
+
+# Na fila (so com os itens do lobby ligados).
+Fila:
+  Itens:
+    sair:
+      Slot: 8
+      Material: RED_DYE
+      Nome: '&c&lSair da fila &7(clique)'
+      Acao: sair_fila
+
+# Quem assiste um duelo de fora.
+Espectador:
+  Itens:
+    jogadores:
+      Slot: 0
+      Material: COMPASS
+      Nome: '&a&lJogadores &7(clique)'
+      Lore: ['&7Teleporta ate quem esta lutando.']
+      Acao: jogadores
+    sair:
+      Slot: 8
+      Material: RED_DYE
+      Nome: '&c&lParar de assistir &7(clique)'
+      Acao: sair
+
+# Quem foi eliminado e espera o fim do duelo.
+Eliminado:
+  Itens:
+    jogadores:
+      Slot: 0
+      Material: COMPASS
+      Nome: '&a&lJogadores &7(clique)'
+      Acao: jogadores
+    sair:
+      Slot: 8
+      Material: RED_DYE
+      Nome: '&c&lSair &7(clique)'
+      Lore: ['&7Volta agora, sem esperar o fim.']
+      Acao: sair
+
+# Barra do fim do duelo (os segundos de comemoracao).
+Fim:
+  Itens:
+    revanche:
+      Slot: 3
+      Material: PAPER
+      Nome: '&e&lRevanche &7(clique)'
+      Acao: revanche
+    novamente:
+      Slot: 5
+      Material: FEATHER
+      Nome: '&a&lJogar de novo &7(clique)'
+      Lore: ['&7Volta para a mesma fila.']
+      Acao: jogar_novamente

@@ -1,0 +1,353 @@
+# ==========================================================================
+#  StarDuelos - configuracao principal
+#
+#  Quase tudo aqui tambem muda pelo menu: /duelos admin > Configuracoes.
+#  Kits ficam em kits/<id>.yml e mapas em mapas/<id>.yml (+ moldes/<id>.sdm),
+#  e os dois tem menu proprio no /duelos admin.
+# ==========================================================================
+Versao do modelo: 1
+
+Banco de dados:
+  # SQLITE (arquivo na pasta do plugin) ou MYSQL (para varios servidores
+  # dividirem estatisticas, elo e historico).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starduelos_'
+  MySQL:
+    Host: 'localhost'
+    Porta: 3306
+    Banco: 'minecraft'
+    Usuario: 'root'
+    Senha: ''
+
+Geral:
+  # true = servidor so de duelos (practice): itens do lobby na barra,
+  # placar fora do duelo e teleporte ao lobby ao entrar.
+  # false = duelos dentro de um survival/rankup: nada muda fora do duelo.
+  Servidor de practice: false
+  # VOLTAR = cada um volta para onde estava antes do duelo
+  # LOBBY  = todos vao para o /duelos setlobby
+  Ao terminar: VOLTAR
+  Teleportar ao lobby ao entrar: false
+  # Segundos que todo mundo fica na arena depois do fim (fogos, revanche).
+  Segundos no fim: 4
+  # Anuncia o inicio e o resultado no chat: NENHUMA, RANQUEADAS ou TODAS.
+  Anunciar partidas: RANQUEADAS
+  # Ninguem duela a partir destes mundos (ex.: um mundo de evento).
+  Mundos bloqueados: []
+  # Milissegundos entre dois cliques nos menus (anti clique duplo).
+  Intervalo entre cliques: 150
+
+Arenas:
+  # Mundo vazio onde os mapas sao colados. E criado sozinho.
+  Mundo: 'starduelos_arenas'
+  Altura: 80
+  # Distancia entre uma copia e outra (maior que o maior mapa).
+  Espacamento: 300
+  Colunas da grade: 40
+  # Quantas copias cada mapa pode ter (cada uma = um duelo ao mesmo tempo).
+  # Cada mapa pode mudar isso no proprio menu.
+  Copias por mapa: 8
+  # Copias ja coladas ao ligar o servidor (as outras nascem quando a fila pede).
+  Copias prontas ao ligar: 1
+  # Blocos conferidos por tique ao colar/limpar mapas. Mais = mais rapido,
+  # menos = mais leve.
+  Operacoes por tique: 6000
+
+Ranqueada:
+  Elo inicial: 1000
+  Elo minimo: 0
+  # Quanto o elo mexe por partida (formula de elo padrao).
+  Fator K: 32
+  # A faixa de elo aceita na busca comeca aqui e cresce com a espera.
+  Faixa de elo inicial: 100
+  Faixa cresce por segundo: 10
+  Faixa maxima: 1000
+  # Vitorias normais (no total) para liberar a ranqueada.
+  Vitorias normais exigidas: 5
+  # Permissao extra para a ranqueada ('' = qualquer um).
+  Permissao: ''
+
+Desafios:
+  Expira em: 60
+  # 0 = sem limite de distancia entre quem desafia e o desafiado.
+  Distancia maxima: 0
+  # /duelo <jogador> <kit> manda direto; true abre o menu mesmo assim.
+  Abrir menu mesmo com kit: false
+  # "Inventario proprio": cada um luta com o que tem; quem perde, perde os itens.
+  Permitir inventario proprio: true
+  # false = so kits com a regra INVENTARIO_PROPRIO ligada aceitam.
+  Inventario proprio em qualquer kit: false
+  # Segundos que o botao de revanche fica valendo.
+  Revanche disponivel por: 60
+
+Apostas:
+  Dinheiro: true
+  Itens: true
+  # Economia do economias.yml ('' = a padrao).
+  Moeda: ''
+  # Porcentagem que fica com a casa.
+  Taxa: 0
+  Minimo: 10
+  Maximo: 1000000
+  Itens proibidos: []
+
+Recompensas:
+  # So para duelos de fila (normal e ranqueada).
+  Dinheiro por vitoria: 0
+  Dinheiro por vitoria ranqueada: 0
+  Moeda: ''
+  # Acoes: 'console: comando', 'jogador: comando', 'mensagem: texto'...
+  # Variaveis: {jogador} {oponente} {kit} {mapa}
+  Comandos ao vencer: []
+  Comandos ao perder: []
+  Comandos ao comecar: []
+
+Estatisticas:
+  # Duelos de grupo (FFA, grupo dividido) contam nas estatisticas?
+  Contar em grupo: true
+  # Anuncia winstreak a cada N vitorias seguidas (0 = nunca).
+  Anunciar winstreak a partir de: 5
+
+Grupo:
+  # true = o mesmo grupo vale em todos os minigames StarPlugins.
+  Compartilhado: true
+  Maximo: 8
+  Convite expira em: 60
+
+Comandos na partida:
+  # PERMITIR_SO_A_LISTA = so os da lista funcionam no duelo.
+  # BLOQUEAR_A_LISTA    = so os da lista ficam bloqueados.
+  # Os comandos do proprio StarDuelos sempre funcionam.
+  Modo: PERMITIR_SO_A_LISTA
+  Lista:
+    - msg
+    - tell
+    - r
+    - reply
+    - ping
+
+Chat:
+  # Mensagem que comeca com isso vai so para o seu time.
+  Prefixo da equipe: '@'
+
+Cabeca de ouro:
+  Nome: '&6Cabeca de Ouro'
+
+Vitoria:
+  Fogos: true
+
+# Efeitos de abate: o jogador escolhe em /duelos config.
+# Tipos: RAIO, EXPLOSAO, FOGOS, SANGUE, CORACOES, CHAMAS, NOTAS, NUVEM, FANTASMA, BRUXA
+Efeitos de abate:
+  raio:
+    Nome: '&eRaio'
+    Icone: BLAZE_ROD
+    Tipo: RAIO
+    Permissao: ''
+  sangue:
+    Nome: '&cSangue'
+    Icone: REDSTONE
+    Tipo: SANGUE
+    Permissao: ''
+  coracoes:
+    Nome: '&dCoracoes'
+    Icone: POPPY
+    Tipo: CORACOES
+    Permissao: 'starduelos.efeito.coracoes'
+  explosao:
+    Nome: '&6Explosao'
+    Icone: TNT
+    Tipo: EXPLOSAO
+    Permissao: 'starduelos.efeito.explosao'
+  fogos:
+    Nome: '&bFogos'
+    Icone: FIREWORK_ROCKET
+    Tipo: FOGOS
+    Permissao: 'starduelos.efeito.fogos'
+  chamas:
+    Nome: '&6Chamas'
+    Icone: BLAZE_POWDER
+    Tipo: CHAMAS
+    Permissao: 'starduelos.efeito.chamas'
+  notas:
+    Nome: '&aNotas'
+    Icone: NOTE_BLOCK
+    Tipo: NOTAS
+    Permissao: 'starduelos.efeito.notas'
+  nuvem:
+    Nome: '&fNuvem'
+    Icone: WHITE_WOOL
+    Tipo: NUVEM
+    Permissao: 'starduelos.efeito.nuvem'
+  fantasma:
+    Nome: '&8Fantasma'
+    Icone: PHANTOM_MEMBRANE
+    Tipo: FANTASMA
+    Permissao: 'starduelos.efeito.fantasma'
+  bruxa:
+    Nome: '&5Bruxa'
+    Icone: BREWING_STAND
+    Tipo: BRUXA
+    Permissao: 'starduelos.efeito.bruxa'
+
+Placar:
+  Ativar: true
+  # Fora do duelo (lobby/fila). Padrao: so no servidor de practice.
+  Mostrar fora do duelo: false
+  Titulo: '&b&lDUELOS'
+  Vida embaixo do nome: '&c❤'
+  Lobby:
+    - '&7&m----------------'
+    - '&fOnline: &a{online}'
+    - '&fJogando: &a{jogando}'
+    - '&fNa fila: &e{na_fila}'
+    - ''
+    - '&fVitorias: &a{vitorias}'
+    - '&fWinstreak: &6{winstreak}'
+    - '&fElo: &b{elo} {rank}'
+    - '&7&m----------------'
+  Fila:
+    - '&7&m----------------'
+    - '&fNa fila:'
+    - ' {fila}'
+    - '&fTempo: &e{tempo_fila}'
+    - ''
+    - '&fElo: &b{elo}'
+    - '&7&m----------------'
+  Duelo:
+    - '&7&m----------------'
+    - '&fOponente: &c{oponente}'
+    - '&fVida dele: &c{oponente_vida}❤'
+    - ''
+    - '&fSeu ping: &a{ping}ms'
+    - '&fPing dele: &c{oponente_ping}ms'
+    - ''
+    - '&fKit: {kit}'
+    - '&fTempo: &e{tempo}'
+    - '&fRodadas: {placar_rodadas}'
+    - '&7&m----------------'
+  Times:
+    - '&7&m----------------'
+    - '&fSeu time: {cor}{time}'
+    - '&fVivos: &a{vivos}'
+    - ''
+    - '&fKit: {kit}'
+    - '&fMapa: &7{mapa}'
+    - '&fTempo: &e{tempo}'
+    - '&fRodadas: {placar_rodadas}'
+    - '&7&m----------------'
+  FFA:
+    - '&7&m----------------'
+    - '&fVivos: &a{vivos}'
+    - '&fKit: {kit}'
+    - '&fMapa: &7{mapa}'
+    - '&fTempo: &e{tempo}'
+    - '&7&m----------------'
+  Boxe:
+    - '&7&m----------------'
+    - '&fOponente: &c{oponente}'
+    - ''
+    - '&fGolpes do time: &a{golpes_time}&7/&f{golpes_meta}'
+    - '&fSeus golpes: &e{meus_golpes}'
+    - '&fCombo: &6{combo}'
+    - ''
+    - '&fTempo: &e{tempo}'
+    - '&7&m----------------'
+  Ponte:
+    - '&7&m----------------'
+    - '&fPlacar: {pontos}'
+    - '&fSeu time: {cor}{time}'
+    - ''
+    - '&fKit: {kit}'
+    - '&fTempo: &e{tempo}'
+    - '&fRodadas: {placar_rodadas}'
+    - '&7&m----------------'
+  Camas:
+    - '&7&m----------------'
+    - '&fSeu time: {cor}{time}'
+    - '&fSua cama: {cama}'
+    - '&fVivos: &a{vivos}'
+    - ''
+    - '&fTempo: &e{tempo}'
+    - '&7&m----------------'
+  Espectador:
+    - '&7&m----------------'
+    - '&7Assistindo'
+    - '&fKit: {kit}'
+    - '&fMapa: &7{mapa}'
+    - '&fVivos: &a{vivos}'
+    - '&fTempo: &e{tempo}'
+    - '&fRodadas: {placar_rodadas}'
+    - '&7&m----------------'
+
+Tops:
+  # Segundos entre as leituras do ranking no banco.
+  Atualizar a cada: 120
+  Posicoes: 10
+  Holograma:
+    Posicoes: 10
+    Cabecalho:
+      - '&b&lTOP {tipo}'
+      - '&7{kit}'
+    Linha: '&e{posicao}. &f{nome} &7- &b{valor}'
+    Vazio: '&7{posicao}. ---'
+    Rodape: []
+
+# Placas de fila: escreva [duelo] / <kit> / normal|ranqueada / 1v1
+Placas:
+  Normal:
+    - '&b&l[Duelo]'
+    - '{kit}'
+    - '&a{na_fila} na fila'
+    - '&7{jogando} jogando'
+  Ranqueada:
+    - '&6&l[Ranqueada]'
+    - '{kit}'
+    - '&a{na_fila} na fila'
+    - '&7{jogando} jogando'
+
+# Linhas do holograma dos NPCs (/duelos npc criar <acao>).
+Npcs:
+  Linhas:
+    padrao:
+      - '&b&lDUELOS'
+      - '&7{jogando} jogando'
+      - '&eClique para abrir'
+    fila:
+      - '&a&lFILA NORMAL'
+      - '&7{na_fila} na fila &8| &7{jogando} jogando'
+      - '&eClique para entrar'
+    ranqueada:
+      - '&6&lRANQUEADA'
+      - '&7{na_fila} na fila &8| &7{jogando} jogando'
+      - '&eClique para entrar'
+    rapido:
+      - '&b&lJOGO RAPIDO'
+      - '&7{na_fila} na fila'
+      - '&eClique para entrar'
+    kit:
+      - '{kit}'
+      - '&7{na_fila} na fila &8| &7{jogando} jogando'
+      - '&eClique para entrar na fila'
+
+Discord:
+  Ativar: false
+  # URL do webhook do canal (Configuracoes do canal > Integracoes > Webhooks).
+  Webhook: ''
+  So ranqueadas: false
+  Nome do bot: 'StarDuelos'
+  Cor: 3447003
+  Titulo: 'Duelo de {kit}'
+  Descricao:
+    - ':trophy: **Vencedor:** {vencedores}'
+    - ':skull: **Perdedor:** {perdedores}'
+    - ':map: {mapa} | :stopwatch: {duracao} | Rodadas: {placar}'
+
+Sons:
+  Sucesso: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+  Erro: 'ENTITY_VILLAGER_NO'
+  Clique: 'UI_BUTTON_CLICK'
+  Inicio: 'ENTITY_ENDER_DRAGON_GROWL'
+  Morte: 'ENTITY_PLAYER_HURT'
+  Abate: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+  Desafio: 'BLOCK_NOTE_BLOCK_PLING'

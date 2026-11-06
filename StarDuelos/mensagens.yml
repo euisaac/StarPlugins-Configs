@@ -1,0 +1,389 @@
+# ==========================================================================
+#  StarDuelos - mensagens
+#
+#  Deixe uma mensagem vazia ('') para desligar o aviso.
+#  {prefixo} = o prefixo abaixo. <nl> = quebra de linha (em titulos separa
+#  titulo e subtitulo). Botoes clicaveis: [texto](/comando|dica do mouse).
+#  Cores: &a, &l... e hex &#RRGGBB (1.16+). Aceita PlaceholderAPI.
+# ==========================================================================
+Versao do modelo: 1
+
+Prefixo: '&8[&b&lDuelos&8] &7'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'm'
+  Segundo: 's'
+
+Geral:
+  Sim: '&aSim'
+  Nao: '&cNao'
+  E: ' e '
+  Gratis: '&aGratis'
+  So jogador: 'Esse comando e so para jogadores.'
+  Inativo: '&cO StarDuelos esta inativo (veja o console).'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Jogador offline: '&cEsse jogador nao esta online.'
+  Ocupado: '&cVoce ja esta em um duelo, fila de espera, editor ou assistindo.'
+  Mundo bloqueado: '&cNao da para duelar a partir deste mundo.'
+  Nada para sair: '&cVoce nao esta em duelo, fila nem assistindo.'
+  Nunca jogou: '&c{jogador} nunca duelou aqui.'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&cCancelado.'
+  Tempo esgotado: '&cO tempo para responder acabou.'
+
+Kit:
+  Nao existe: '&cO kit &f{kit} &cnao existe.'
+  Desativado: '&cO kit {kit} &cesta desativado.'
+  Sem permissao: '&cVoce nao tem acesso ao kit {kit}&c.'
+  Espera: '&cAguarde &f{tempo} &cpara jogar {kit} &cde novo.'
+  Sem FFA: '&cO kit {kit} &cnao pode ser usado no FFA.'
+
+Fila:
+  Entrou: '&aVoce entrou na fila de {kit} &7({tamanho})&a. Procurando oponente...'
+  Entrou ranqueada: '&6Voce entrou na fila RANQUEADA de {kit} &7({tamanho}, elo {elo})&6.'
+  Entrou rapido: '&aJogo rapido: procurando partida em &f{kits} &akits ao mesmo tempo.'
+  Saiu: '&eVoce saiu da fila.'
+  Achou: '&a&lPartida encontrada! &7Preparando a arena de {kit}&7...'
+  Sem kits: '&cNenhum kit disponivel na fila agora.'
+  Kit fora: '&cO kit {kit} &cnao esta disponivel nessa fila.'
+  Grupo grande: '&cSeu grupo nao cabe numa fila de {tamanho}.'
+  Ranqueada bloqueada: '&cVoce precisa de mais &f{faltam} &cvitorias (total {exigidas}) para jogar a ranqueada.'
+  Ranqueada sem permissao: '&cVoce nao tem acesso a fila ranqueada.'
+  Sem ultima: '&cVoce ainda nao entrou em nenhuma fila.'
+  Voltara para a fila: '&aVoce volta para a fila assim que o duelo fechar.'
+  Jogo rapido nome: '&bJogo rapido'
+  Procurando: '&eProcurando oponente &7| &f{fila} &7| &f{tempo}'
+  Procurando ranqueada: '&6Ranqueada &7| &f{fila} &7| &f{tempo} &7| faixa &f+-{faixa}'
+
+Desafio:
+  A si mesmo: '&cVoce nao pode se desafiar.'
+  Alvo ocupado: '&c{jogador} esta ocupado agora.'
+  Alvo nao aceita: '&c{jogador} nao esta aceitando desafios.'
+  Longe: '&cVoces precisam estar a menos de {distancia} blocos.'
+  Escolha o kit: '&cEscolha um kit antes de enviar.'
+  Kit fora: '&cO kit {kit} &cnao pode ser usado em desafios.'
+  Enviado: '&aDesafio de {kit} &aenviado para &f{jogador}&a.'
+  Mapa aleatorio: '&7Aleatorio'
+  Extra aposta: '&6Aposta: &f{valor}  '
+  Extra itens: '&6+ aposta de itens  '
+  Extra inventario: '&c+ inventario proprio  '
+  Recebido: |-
+    &8&m-----------------------------------
+    &b&l  DESAFIO! &f{jogador} &7te chamou para um duelo
+    &7  Kit: {kit} &7| Mapa: &f{mapa} &7| Rodadas: &f{rodadas}
+    &7  {extras}
+    &a  [&a&l[ACEITAR]](/duelo aceitar {jogador}|&aClique para aceitar)  [&c&l[RECUSAR]](/duelo recusar {jogador}|&cClique para recusar)
+    &7  Expira em {segundos} segundos.
+    &8&m-----------------------------------
+  Recebido grupo: |-
+    &8&m-----------------------------------
+    &d&l  DESAFIO DE GRUPO! &fO grupo de {jogador} &7chamou o seu grupo
+    &7  Kit: {kit} &7| Mapa: &f{mapa} &7| Rodadas: &f{rodadas}
+    &7  {extras}
+    &a  [&a&l[ACEITAR]](/duelo aceitar {jogador}|&aClique para aceitar)  [&c&l[RECUSAR]](/duelo recusar {jogador}|&cClique para recusar)
+    &8&m-----------------------------------
+  Aceito: '&a{jogador} aceitou o desafio!'
+  Recusou: '&eVoce recusou o desafio de {jogador}.'
+  Recusado: '&c{jogador} recusou o seu desafio.'
+  Nenhum: '&cVoce nao tem desafios pendentes.'
+  Expirou para: '&7Seu desafio para {jogador} expirou.'
+  Expirou de: '&7O desafio de {jogador} expirou.'
+  Alguem ocupado agora: '&cAlguem entrou em outra coisa; o desafio foi desfeito.'
+  Sem revanche: '&cNao ha revanche disponivel.'
+  Revanche agendada: '&aRevanche contra {jogador} enviada assim que o duelo fechar.'
+  Ligou pedidos: '&aVoce voltou a aceitar desafios.'
+  Desligou pedidos: '&eVoce nao recebe mais desafios. Use &f/duelo toggle &epara voltar.'
+
+Aposta:
+  Digite o valor: '&eDigite no chat o valor da aposta (cada lado aposta esse valor).'
+  Fora do limite: '&cA aposta precisa ficar entre {minimo} e {maximo}.'
+  Sem saldo: '&cVoce nao tem {valor} para apostar.'
+  Oponente sem saldo: '&c{jogador} nao tem saldo para a aposta.'
+  Sem economia: '&cNenhuma economia configurada para apostas.'
+  Cobrada: '&6A aposta de {valor} foi separada. Quem vencer leva tudo!'
+  Ganhou dinheiro: '&a&l+{valor} &ada aposta!'
+  Ganhou itens: '&aVoce ganhou &f{quantidade} &aitens da aposta!'
+  Devolvida: '&eA aposta foi devolvida.'
+  Mesa cheia: '&cA mesa ja tem o maximo de itens do seu lado.'
+  Mesa vazia: '&cColoque algo na mesa antes de confirmar.'
+  Mesa desfeita: '&cA mesa de aposta foi desfeita; tudo voltou para o dono.'
+  Item proibido: '&cEsse item nao pode ser apostado.'
+
+Duelo:
+  Preparando: '&7Preparando o mapa {mapa}&7...'
+  Cancelado saiu: '&c{jogador} saiu; o duelo foi cancelado.'
+  Alguem ocupado: '&c{jogador} esta ocupado; o duelo nao comecou.'
+  Sem mapa: '&cNenhum mapa pronto para o kit {kit}&c. Avise a staff.'
+  Contagem titulo: '&e&l{segundos}<nl>&7Rodada {rodada}'
+  Lutem titulo: '&c&lLUTEM!'
+  Morte subita titulo: '&4&lMORTE SUBITA<nl>&71 coracao e veneno para todos'
+  Morte subita: '&4&lMORTE SUBITA! &cO tempo acabou: todos com 1 coracao.'
+  Tempo esgotado: '&eO tempo acabou! Empate.'
+  Renascendo titulo: '&c&lVOCE MORREU<nl>&7Renascendo em {segundos}s'
+  Renasceu titulo: '&a&lDE VOLTA!'
+  Eliminado titulo: '&c&lELIMINADO<nl>&7por {assassino}'
+  Vitoria titulo: '&6&lVITORIA!<nl>&7Parabens!'
+  Derrota titulo: '&c&lDERROTA<nl>&7{time} venceu'
+  Empate titulo: '&e&lEMPATE'
+  Rodada titulo: '<nl>{time} &7venceu a rodada &8({rodadas}&8)'
+  Rodada vencida: '{time} &7venceu a rodada {rodada}! &8Placar: {rodadas}'
+  Gol: '{jogador} &7marcou! &8({placar}&8)'
+  Gol titulo: '{jogador} &fmarcou!<nl>{placar}'
+  Cama quebrada: '&c&lCAMA DESTRUIDA! &7A cama do time {time} &7foi quebrada por {jogador}&7.'
+  Sua cama titulo: '&c&lSUA CAMA FOI DESTRUIDA<nl>&7Voce nao renasce mais'
+  Propria cama: '&cVoce nao pode quebrar a propria cama.'
+  Batata com: '&6&lBATATA QUENTE! &f{jogador} &7esta com a TNT ({segundos}s). Bata em alguem para passar!'
+  Batata titulo: '&c&lVOCE ESTA COM A TNT!<nl>&7Bata em alguem para passar'
+  Batata actionbar: '&c&lTNT &7estoura em &f{segundos}s'
+  Lava subiu: '&6A lava subiu! &7(camada {camada})'
+  Golpes: '&eGolpes: &f{golpes}&7/&f{total}'
+  Vida do alvo: '&c{jogador} &7esta com &c{vida} ❤'
+  Limite de altura: '&cLimite de altura!'
+  Espera perola: '&cPerola em {segundos}s'
+  Espera maca: '&cMaca em {segundos}s'
+  Espera bola: '&cBola de fogo em {segundos}s'
+  Comando bloqueado: '&cEsse comando nao pode ser usado durante o duelo.'
+  Chat da equipe: '{cor}[EQUIPE] &f{jogador}&7: &f{mensagem}'
+  Saiu: '{jogador} &7saiu do duelo.'
+  Voce saiu: '&eVoce desistiu do duelo (conta como derrota).'
+  Encerrado pela staff: '&cO duelo foi encerrado pela staff. Ninguem perde nada.'
+  Itens devolvidos: '&aSeus itens de antes do duelo foram devolvidos.'
+  Recompensa: '&a+{valor} &7pela vitoria!'
+  Espolio: '&aVoce levou &f{quantidade} &aitens dos derrotados!'
+  Winstreak: '&6&l{jogador} &eesta com &6{winstreak} &evitorias seguidas no {kit}&e!'
+  Anuncio de inicio: '&7Duelo: &f{time1} &7vs &f{time2} &7({kit}&7, {tipo}) [&e[ASSISTIR]](/espectar {alvo}|&eAssistir este duelo)'
+  Anuncio de resultado: '&f{vencedor} &7venceu &f{perdedor} &7no {kit} &8({placar}&8)'
+  Morte:
+    Morte: '{vitima} &7morreu.'
+    Morte com assassino: '{vitima} &7foi morto por {assassino} &8({vida}❤)'
+    Flecha: '{vitima} &7levou uma flechada.'
+    Flecha com assassino: '{vitima} &7foi flechado por {assassino} &8({vida}❤)'
+    Queda: '{vitima} &7caiu de muito alto.'
+    Queda com assassino: '{vitima} &7caiu fugindo de {assassino}&7.'
+    Fogo: '{vitima} &7virou churrasco.'
+    Fogo com assassino: '{vitima} &7queimou lutando com {assassino}&7.'
+    Explosao: '{vitima} &7explodiu.'
+    Explosao com assassino: '{vitima} &7foi explodido por {assassino}&7.'
+    Vazio: '{vitima} &7caiu no vazio.'
+    Vazio com assassino: '{vitima} &7foi jogado no vazio por {assassino}&7.'
+    Agua: '{vitima} &7caiu na agua.'
+    Agua com assassino: '{vitima} &7foi derrubado na agua por {assassino}&7.'
+    Lava: '{vitima} &7caiu na lava.'
+    Lava com assassino: '{vitima} &7foi jogado na lava por {assassino}&7.'
+    Batata: '{vitima} &7explodiu com a batata quente!'
+    Batata com assassino: '{vitima} &7explodiu com a batata quente!'
+    Saiu: '{vitima} &7desistiu.'
+    Saiu com assassino: '{vitima} &7fugiu de {assassino}&7.'
+
+Ranqueada:
+  Ganhou elo: '&a+{diferenca} elo &7(agora &f{elo}&7) {rank}'
+  Perdeu elo: '&c-{diferenca} elo &7(agora &f{elo}&7) {rank}'
+
+Rank:
+  Subiu: '&a&lSUBIU DE RANK! &7Agora voce e {rank}&7!'
+  Subiu titulo: '&a&lNOVO RANK<nl>{rank}'
+  Caiu: '&cVoce caiu para {rank}&c.'
+
+Resumo:
+  Dica: '&eVer o inventario final de {jogador}'
+  Mensagem: |-
+    &8&m-----------------------------------
+    &6&l  RESULTADO &7- {kit} &8| &7{mapa} &8| &7{duracao}
+    &a  Vencedor: {vencedores}
+    &c  Perdedor: {perdedores}
+    &7  Rodadas: {rodadas} &8(clique nos nomes para ver o inventario)
+    &8&m-----------------------------------
+  Empate: |-
+    &8&m-----------------------------------
+    &e&l  EMPATE &7- {kit} &8| &7{mapa} &8| &7{duracao}
+    &7  {perdedores}
+    &8&m-----------------------------------
+  Botoes fila: '  [&a&l[JOGAR DE NOVO]](/duelos jogarnovamente|&aVolta para a mesma fila)  [&e&l[REVANCHE]](/duelo revanche|&eDesafia o mesmo oponente)'
+  Botoes desafio: '  [&e&l[REVANCHE]](/duelo revanche|&eDesafia o mesmo oponente de novo)'
+  Expirou: '&cEsse resumo nao esta mais disponivel.'
+
+Espectador:
+  Assistindo: '&7Assistindo &f{time1} &7vs &f{time2} &7({kit}&7). Use &f/espectar &7para sair.'
+  Entrou: '&7{jogador} esta assistindo.'
+  Nao esta em duelo: '&c{jogador} nao esta em um duelo.'
+  Nao pode: '&cNao da para assistir esse duelo agora.'
+
+Itens:
+  Guardados: '&e{quantidade} item(s) nao couberam e foram guardados. Retire com &f/duelo itens&e.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+  Retirado: '&aItem retirado.'
+
+Layout:
+  Editando: '&eArrume os itens do kit {kit} &eno seu inventario. &7Feche (ESC) ou clique em Salvar.'
+  Salvo: '&aLayout de {kit} &asalvo!'
+  Resetado: '&eLayout de {kit} &evoltou ao padrao.'
+
+Efeitos:
+  Bloqueado: '&cVoce nao tem esse efeito.'
+
+Tops:
+  Geral: 'Geral'
+  Ninguem: '---'
+  Tipos:
+    vitorias: 'Vitorias'
+    elo: 'Elo'
+    winstreak: 'Winstreak'
+    melhor_winstreak: 'Melhor winstreak'
+    abates: 'Abates'
+    partidas: 'Partidas'
+
+Grupo:
+  Criado: '&aGrupo criado! Convide com &f/party convidar <jogador>&a.'
+  Ja tem: '&cVoce ja esta em um grupo.'
+  Nao tem: '&cVoce nao esta em um grupo.'
+  So lider: '&cSo o lider do grupo pode fazer isso.'
+  Convidar a si: '&cVoce nao pode se convidar.'
+  Ja no grupo: '&cEsse jogador ja esta no grupo.'
+  Em outro grupo: '&cEsse jogador ja esta em outro grupo.'
+  Cheio: '&cO grupo esta cheio (maximo {maximo}).'
+  Convite pendente: '&cJa existe um convite pendente para esse jogador.'
+  Convite enviado: '&aConvite enviado para {jogador}.'
+  Convite recebido: '&e{jogador} te convidou para o grupo dele. Use &f/party aceitar {jogador}&e.'
+  Aceitou: '&aVoce entrou no grupo de {jogador}.'
+  Entrou: '&a{jogador} entrou no grupo.'
+  Negou: '&eVoce recusou o convite de {jogador}.'
+  Recusado: '&c{jogador} recusou o convite.'
+  Sem convites: '&cVoce nao tem convites de grupo.'
+  Voce saiu: '&eVoce saiu do grupo.'
+  Saiu: '&e{jogador} saiu do grupo.'
+  Desfeito: '&cO grupo foi desfeito.'
+  Expulso: '&cVoce foi expulso do grupo.'
+  Expulsou: '&e{jogador} foi expulso do grupo.'
+  Membro nao esta: '&cEsse jogador nao esta no grupo.'
+  Novo lider: '&e{jogador} agora e o lider do grupo.'
+  Poucos membros: '&cO grupo precisa de pelo menos 2 jogadores online.'
+  Digite o nick: '&eDigite no chat o nick de quem voce quer convidar.'
+  Lista: '&7Grupo de &f{lider} &7({membros}/{maximo}): &f{lista}'
+
+Editor:
+  Varinha:
+    Nome: '&6Varinha do StarDuelos'
+    Lore:
+      - '&7Esquerdo no bloco: ponto 1'
+      - '&7Direito no bloco: ponto 2'
+  Ferramentas:
+    spawn1:
+      Nome: '&cSpawn do time 1 &7(direito)'
+      Lore: ['&7Direito: adiciona onde voce esta', '&7Agachado + direito: time 4', '&7Esquerdo: limpa os spawns do time 1']
+    spawn2:
+      Nome: '&9Spawn do time 2 &7(direito)'
+      Lore: ['&7Direito: adiciona onde voce esta', '&7Agachado + direito: time 5', '&7Esquerdo: limpa os spawns do time 2']
+    spawn3:
+      Nome: '&aSpawn do time 3 &7(direito)'
+      Lore: ['&7Direito: adiciona onde voce esta', '&7Agachado + direito: time 6', '&7Esquerdo: limpa']
+    spawnffa:
+      Nome: '&eSpawn do FFA &7(direito)'
+      Lore: ['&7Direito: adiciona onde voce esta', '&7Esquerdo: limpa todos']
+    espectador:
+      Nome: '&bPonto do espectador'
+      Lore: ['&7Clique: define onde voce esta']
+    gol:
+      Nome: '&5Gol (ponte)'
+      Lore: ['&7Selecione a area com a varinha', '&7Direito: gol do time 1', '&7Agachado + direito: gol do time 2', '&7Esquerdo: remove']
+    cama:
+      Nome: '&dCama do time'
+      Lore: ['&7Direito num bloco: cama do time 1 em cima dele', '&7Agachado + direito: time 2', '&7A cabeceira aponta para onde voce olha', '&7Esquerdo: remove']
+    bau:
+      Nome: '&6Bau de itens (skywars)'
+      Lore: ['&7Direito num bloco: bau em cima dele', '&7Esquerdo: limpa todos']
+    salvar:
+      Nome: '&a&lSalvar e sair'
+      Lore: ['&7Direito: salva (os blocos viram o novo mapa)', '&7Esquerdo: abre o menu do mapa', '&7Agachado + direito: sai sem salvar']
+  Preparando: '&7Preparando uma copia de {mapa}&7 para editar...'
+  Entrou: '&aEditando {mapa}&a. Construa a vontade e use as ferramentas. A caixa do mapa aparece em particulas.'
+  Salvo: '&aMapa {mapa} &asalvo ({blocos} blocos). As copias livres estao sendo refeitas.'
+  Descartado: '&eEdicao descartada.'
+  Sem molde: '&cEsse mapa nao tem molde.'
+  Sem selecao: '&cSelecione dois pontos com a varinha (&f/duelos varinha&c).'
+  Nao esta editando: '&cVoce nao esta editando um mapa.'
+  Erro ao salvar: '&cErro ao salvar: {erro}'
+  Ponto 1: '&dPonto 1: &f{x}, {y}, {z}'
+  Ponto 2: '&dPonto 2: &f{x}, {y}, {z}'
+  Spawn adicionado: '&aSpawn do time {time} adicionado ({total}).'
+  Spawns limpos: '&eSpawns do time {time} apagados.'
+  FFA adicionado: '&aSpawn de FFA adicionado ({total}).'
+  FFA limpo: '&eSpawns de FFA apagados.'
+  Espectador definido: '&aPonto do espectador definido.'
+  Gol definido: '&aGol do time {time} definido pela selecao.'
+  Gol removido: '&eGol do time {time} removido.'
+  Cama definida: '&aCama do time {time} definida.'
+  Cama removida: '&eCama do time {time} removida.'
+  Bau adicionado: '&aBau adicionado ({total}).'
+  Baus limpos: '&eBaus apagados.'
+
+Admin:
+  Recarregado: '&aStarDuelos recarregado.'
+  Lobby definido: '&aLobby dos duelos definido aqui.'
+  Varinha: '&aVarinha entregue. Esquerdo = ponto 1, direito = ponto 2.'
+  Digite o id do kit: '&eDigite o id do kit novo (letras e numeros). Os itens do seu inventario viram o kit.'
+  Digite o id do mapa: '&eDigite o id do mapa novo (letras e numeros).'
+  Digite o nome: '&eDigite o nome (aceita cores com &).'
+  Digite a descricao: '&eDigite a descricao; separe as linhas com |.'
+  Digite a permissao: '&eDigite a permissao (ou "nenhuma").'
+  Digite a lista: '&eDigite os valores de {regra} separados por virgula.'
+  Digite a categoria: '&eDigite o nome da categoria.'
+  Id invalido: '&cId invalido ou ja existe.'
+  Kit criado: '&aKit {kit} criado com os itens do seu inventario.'
+  Kit excluido: '&eKit excluido.'
+  Itens salvos: '&aOs {quantidade} itens do seu inventario viraram os itens do kit.'
+  Itens carregados: '&eItens do kit colocados no seu inventario. Mexa e clique em "Itens" para salvar.'
+  Segure um item: '&cSegure o item do icone na mao.'
+  Erro ao salvar: '&cErro ao salvar: {erro}'
+  Mapa criado: '&aMapa {mapa} criado.'
+  Mapa excluido: '&eMapa excluido; as copias estao sendo apagadas.'
+  Mapa nao existe: '&cO mapa {mapa} nao existe.'
+  Marque os spawns: '&eAgora marque os spawns dos times com as ferramentas e salve.'
+  Recolando: '&eAs copias livres de {mapa} &eestao sendo refeitas.'
+  Restaurados: '&aKits e mapas prontos que faltavam foram restaurados.'
+  Selecao grande: '&cA area tem {blocos} blocos; o limite e 4 milhoes.'
+  Fixo no mundo das arenas: '&cMapa fixo precisa estar em outro mundo (o das arenas e da grade).'
+  Importando: '&7Importando {arquivo}...'
+  Importacao vazia: '&cO schematic veio vazio (o WorldEdit ainda estava colando?). Tente de novo.'
+  Erro ao importar: '&cNao foi possivel importar: {erro}'
+  Placa criada: '&aPlaca de fila de {kit} &acriada.'
+  Placa removida: '&ePlaca de fila removida.'
+  Placa sem kit: '&cKit da segunda linha nao existe.'
+  Npc criado: '&aNPC criado (acao {acao}).'
+  Npc removido: '&eNPC removido.'
+  Top criado: '&aHolograma de top criado.'
+  Top removido: '&eHolograma de top removido.'
+  Nada perto: '&cNada perto de voce.'
+  Duelo parado: '&eDuelo encerrado.'
+  Arenas: '&7Mapas: &f{mapas} &7| Copias: &f{copias} &7| Montando: &f{obras} &7| Esperando mapa: &f{esperando} &7| Duelos: &f{duelos}'
+
+Ajuda:
+  Jogador: |-
+    &b&lStarDuelos
+    &f/duelos &7- menu principal
+    &f/duelo <jogador> [kit] &7- desafiar
+    &f/duelos fila <kit> [2v2] &7- entrar na fila
+    &f/duelos ranqueada <kit> &7- fila ranqueada
+    &f/duelos rapido &7- jogo rapido
+    &f/duelos sair &7- sair da fila/duelo
+    &f/espectar <jogador> &7- assistir
+    &f/duelos stats [jogador] &8| &f/duelos top &8| &f/duelos historico
+    &f/duelos kits &7- montar o layout dos kits
+    &f/party &7- grupos
+  Admin: |-
+    &b&lStarDuelos &7(staff)
+    &f/duelos admin &7- painel (kits, mapas, regras, configuracoes)
+    &f/duelos varinha &7- varinha de selecao
+    &f/duelos mapa editar <id> &8| &fsalvar &8| &fselecao &8| &fcancelar
+    &f/duelos kit [id] &7- editar kits
+    &f/duelos npc criar <acao> [skin] &8| &fremover
+    &f/duelos holograma criar <tipo> <kit> &8| &fremover
+    &f/duelos forcar <j1> <j2> <kit> [mapa] &8| &fparar <jogador>
+    &f/duelos setlobby &8| &farenas &8| &frecarregar
+  Npc: '&7Use &f/duelos npc criar <menu|fila|ranqueada|rapido|kit:<id>> [skin] &7ou &f/duelos npc remover'
+  Holograma: '&7Use &f/duelos holograma criar <tipo> <kit|geral> &7(tipos: {tipos}) ou &fremover'
+  Forcar: '&7Use &f/duelos forcar <jogador1> <jogador2> <kit> [mapa]'
+  Grupo: '&7Use &f/party <criar|convidar|aceitar|recusar|sair|expulsar|lider|lista|desfazer|ffa <kit>|dividir <kit>>'
