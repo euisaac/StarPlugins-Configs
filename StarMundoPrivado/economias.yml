@@ -1,0 +1,57 @@
+
+#  Providers disponiveis:
+#
+#    stareconomia-<id>  - moeda do StarEconomia (ex: stareconomia-cash, stareconomia-money)
+#    vault              - economia registrada via Vault
+#    playerpoints       - PlayerPoints via comandos de console
+#    yeconomias-<moeda> - uma moeda do yEconomias (ex: yeconomias-coins)
+#    yeconomy           - o yEconomy
+#    (o yEconomias e o yEconomy precisam do loader StarPlugins 2.0.82 ou mais novo)
+#
+
+# Economia padrao usada quando uma opcao do config.yml nao especifica economia
+padrao: 'cash'
+
+economies:
+
+  # -------------------------
+  #  StarEconomia
+  # -------------------------
+  cash:
+    # Provider no formato stareconomia-<id-da-moeda> | vault | playerpoints
+    provider: 'stareconomia-cash'
+    # Nome completo da moeda (exibido nas mensagens)
+    display: 'Cash'
+    # Nome abreviado (exibido em itens de menu e precos)
+    abbreviated: 'Cash'
+    # Permite transacoes com jogador offline (apenas informativo -- depende do provider)
+    allow-offline: false
+    # Permissao para uso desta economia (reservado para uso futuro)
+    permission: 'starmundoprivado.economia.cash'
+
+  money:
+    provider: 'stareconomia-money'
+    display: 'Coins'
+    abbreviated: 'Coin'
+    allow-offline: false
+    permission: 'starmundoprivado.economia.money'
+
+  # -------------------------
+  #  Vault
+  # -------------------------
+  # vault_money:
+  #   provider: 'vault'
+  #   display: 'Dinheiro'
+  #   abbreviated: 'Din'
+  #   allow-offline: true
+  #   permission: 'starmundoprivado.economia.vault'
+
+  # -------------------------
+  #  PlayerPoints
+  # -------------------------
+  # points:
+  #   provider: 'playerpoints'
+  #   display: 'Points'
+  #   abbreviated: 'Pts'
+  #   allow-offline: false
+  #   permission: 'starmundoprivado.economia.points'
