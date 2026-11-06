@@ -1,0 +1,109 @@
+# ==========================================================================
+#  StarCabecasPerdidos - configuracao geral
+#
+#  As cacadas (onde as cabecas estao escondidas) ficam em cacas/*.yml, os
+#  textos no mensagens.yml e a aparencia dos menus no menus.yml.
+#
+#  Como funciona: o administrador cria uma cacada (/starcabecasperdidos criar),
+#  segura uma cabeca de jogador com a skin desejada e roda
+#  /starcabecasperdidos cabeca adicionar <cacada> <raridade>. Isso cria o
+#  modelo e devolve o item -- e so colocar no mundo, do jeito vanilla, quantas
+#  vezes quiser (peca mais copias com /starcabecasperdidos cabeca dar). Os
+#  jogadores clicam nelas para coletar, ganhando a recompensa da raridade (ou
+#  uma propria, se a cabeca tiver uma). Ao encontrar todas as cabecas de uma
+#  cacada, ganham tambem a recompensa final dela.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console o caminho de cada acao. Ligue so para achar problema.
+  Debug: false
+
+Coleta:
+  # Segundos de espera entre uma coleta e a proxima do mesmo jogador. 0 desliga.
+  # Nao e preciso para evitar clique duplicado (isso ja e tratado sozinho) --
+  # serve so para segurar quem sai correndo clicando em tudo.
+  Cooldown entre coletas: 0
+
+Efeitos:
+  # Som tocado em quem encontra uma cabeca. Formato: SOM;volume;tom. Vazio ('') desliga.
+  Som ao encontrar: 'ENTITY_PLAYER_LEVELUP;1.0;1.4'
+  Som ao completar: 'UI_TOTEM_USE;1.0;1.0'
+
+  # Particula desenhada em volta de quem encontrou.
+  Particula ao encontrar: 'VILLAGER_HAPPY'
+
+  # Titulo mostrado ao encontrar. '<nl>' separa o titulo do subtitulo.
+  Titulo ao encontrar: '&e&lCabeca encontrada!<nl>&7{cacada} &8({achadas}/{total})'
+
+  # Actionbar mostrada ao encontrar.
+  Actionbar ao encontrar: '{cor}Cabeca {raridade} &8- &a+{recompensa}'
+
+# Nome e lore aplicados por cima do item entregue por
+# /starcabecasperdidos cabeca adicionar|dar -- a textura da cabeca em si vem
+# do modelo, isto aqui e so identificacao visual para o administrador nao
+# confundir com uma cabeca comum. Deixe "Nome" vazio para nao renomear nada.
+Item entregue:
+  Nome: '{cor}&lCabeca Escondida &8- &f{cacada}'
+  Lore:
+    - '&7Raridade: {cor}{raridade}'
+    - ''
+    - '&aColoque num bloco para esconder.'
+    - '&7Quebrar (como admin) remove e devolve o item.'
+
+# Recompensa padrao de cada raridade -- vale quando a cabeca em si nao tem uma
+# recompensa propria (isso e definido pelo editor no jogo, nao por aqui).
+Raridades:
+  COMUM:
+    Cor: '&f'
+    Dinheiro: 5
+    Comandos: []
+  RARA:
+    Cor: '&9'
+    Dinheiro: 15
+    Comandos: []
+  EPICA:
+    Cor: '&5'
+    Dinheiro: 40
+    Comandos: []
+  LENDARIA:
+    Cor: '&6&l'
+    Dinheiro: 100
+    Comandos:
+      - 'broadcast &6&l☆ &e{jogador} &7encontrou uma cabeca &6&lLENDARIA&7!'
+
+Menu:
+  # Mostra tambem as cabecas ainda nao encontradas (sem a textura real).
+  # Desligado, o menu de progresso so mostra o que ja foi achado.
+  Mostrar cabecas nao encontradas: true
+
+Economia:
+  # STARECONOMIA (produto do loader), VAULT ou COMANDO.
+  # Ou o id de uma moeda (precisa do loader StarPlugins 2.0.82 ou mais novo):
+  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+  #   yeconomy              o yEconomy
+  Tipo: STARECONOMIA
+
+  # Id da moeda no StarEconomia. Vazio usa a moeda principal do servidor.
+  Moeda do StarEconomia: ''
+
+  Simbolo da moeda: '$'
+
+  # Comando de console rodado no modo COMANDO. {jogador}, {uuid} e {valor}.
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Dados:
+  # SQLITE (arquivo local) ou MYSQL (banco compartilhado pela rede -- e o que
+  # faz o ranking valer para todos os servidores, e impede o mesmo jogador de
+  # coletar a mesma cabeca em dois servidores diferentes).
+  Tipo: SQLITE
+
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: starcabecasperdidos
+    Usuario: root
+    Senha: ''
+    Prefixo: starcp_
