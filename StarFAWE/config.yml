@@ -58,6 +58,18 @@ Esquemas:
 Varinha:
   Material: WOODEN_AXE
 
+# Junto com o WorldEdit ou o FastAsyncWorldEdit (ex.: para usar o WorldGuard,
+# que precisa de um deles). Os comandos do StarFAWE passam todos para dentro
+# de um so -- //sf set pedra, //sf copy, //sf undo, //sf wand -- e o WorldEdit
+# continua com os //set, //copy... de sempre. A varinha do StarFAWE passa a ser
+# so a entregue pelo //sf wand; o machado comum fica para o WorldEdit.
+# Os plugins da StarPlugins continuam usando o StarFAWE para colar esquemas.
+WorldEdit junto:
+  # automatico = so quando o WorldEdit/FAWE estiver no servidor | sempre | nunca
+  Modo: automatico
+  # O comando que guarda os outros (sf = //sf).
+  Comando: sf
+
 Pincel:
   # Distancia maxima que o pincel alcanca.
   Alcance: 200
