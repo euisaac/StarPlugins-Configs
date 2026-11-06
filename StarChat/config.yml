@@ -20,6 +20,14 @@ Versao do modelo: 1
 # Nome deste servidor. Aparece em {servidor}, no historico e na rede.
 Servidor: 'servidor'
 
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
 Banco de dados:
   # SQLITE (arquivo local) ou MYSQL (compartilhado pela rede: preferencias,
   # ignorados, silenciamentos e historico valem em todos os servidores).
