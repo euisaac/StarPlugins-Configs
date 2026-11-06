@@ -22,6 +22,14 @@
 # Nao mexa: e por este numero que o plugin sabe que o modelo do arquivo mudou.
 Versao do modelo: 1
 
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
 Geral:
   # Escreve no console o que cada ferramenta fez (blocos, precos, alvos).
   # Ligue apenas para investigar um problema: enche o log rapido.
@@ -193,6 +201,11 @@ Arvores:
   Ligada por padrao: true
   # Teto de blocos por arvore.
   Maximo de blocos: 250
+  # Deixa o tronco mais duro enquanto o jogador mira uma arvore que vai cair
+  # inteira: e o nivel de Fadiga de Mineracao aplicado so nesse momento (sem
+  # particulas, e some assim que ele olha para outro lado).
+  # 0 desliga; 1 = uns 3x mais devagar; 2 = bem mais; ate 5.
+  Dificuldade: 1
   # Quebra tambem as folhas ligadas ao tronco.
   Quebrar folhas: false
   # Quantas folhas, no maximo, saem junto.
