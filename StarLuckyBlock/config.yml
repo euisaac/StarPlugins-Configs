@@ -1,0 +1,227 @@
+# ---------------------------------------------------------------------------
+#  StarLuckyBlock - configuração geral
+#
+#  Quase tudo se edita pelo menu: /starluckyblock
+#  Os tipos de lucky block ficam na pasta luckyblocks/ (um arquivo por tipo),
+#  os prêmios no premios.yml, as raridades no raridades.yml, as estruturas no
+#  estruturas.yml e a espada/arco/poção da sorte no itens.yml.
+# ---------------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Debug: false
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+Geral:
+  # Mundos onde lucky blocks não funcionam (nem colocar, nem abrir).
+  Mundos bloqueados: []
+
+  # Regiões do WorldGuard ou do StarMundoSeguro onde lucky blocks não funcionam.
+  # Formato: 'regiao' (em qualquer mundo) ou 'mundo:regiao'.
+  Regioes bloqueadas: []
+
+  # Lucky block abre no modo criativo? (Staff agachada no criativo remove sem abrir.)
+  Abrir no criativo: false
+
+  # Além de quebrar, o clique direito também abre.
+  Abrir com clique direito: false
+
+  # Quem tem starluckyblock.abrir.automatico (pelo nome inteiro) abre o lucky block
+  # na hora em que coloca.
+  Abrir ao colocar: true
+
+  # Explosão perto de um lucky block: true = ele abre; false = ele resiste.
+  Explosao abre: false
+
+  # Lucky block energizado por redstone abre sozinho (como no mod).
+  Redstone abre: true
+
+  # TNT e explosões que saem dos prêmios quebram blocos do mapa?
+  # false = só o estrondo e o dano.
+  Explosoes de premio quebram blocos: false
+
+  # Quantos lucky blocks cada jogador pode ter no chão ao mesmo tempo.
+  # 0 = sem limite. A permissão starluckyblock.limite.N (o maior N) passa por cima.
+  Limite no chao: 0
+
+  # Partículas em volta dos lucky blocks só aparecem com alguém a essa distância.
+  Distancia das particulas: 24
+
+  # Teto de mobs que uma única ação [MOB] pode criar.
+  Limite de mobs por acao: 40
+
+  # Armadilhas (jaula, buraco de lava...) e blocos que caem por prêmio somem
+  # sozinhos depois desses segundos, devolvendo o mapa como estava.
+  Armadilhas somem depois: 45
+
+  # Prêmio que não cabe no inventário vai para a /lb coleta (false = cai no chão).
+  Coleta: true
+
+Sorte:
+  Minima: -100
+  Maxima: 100
+  # Quanto a sorte puxa o sorteio (0 a 0.99). Com 0.77 e sorte 100, um prêmio
+  # ótimo fica umas 350 vezes mais provável que um terrível.
+  Forca: 0.77
+
+# A barra do lucky block físico na barra de ação.
+Barra de usos:
+  Tamanho: 10
+  Simbolo: ':'
+  Cor usada: '&a'
+  Cor restante: '&7'
+
+Animado:
+  # Shift ao colocar um lucky block animado abre vários de uma vez.
+  Varios com shift: true
+  Maximo de uma vez: 16
+  # Distância entre as animações quando abre vários.
+  Raio: 2.0
+
+# A mesa da sorte (/lb mesa): ingredientes somam ou tiram sorte.
+# Com uma pilha de lucky blocks, a soma é dividida entre eles.
+Mesa da sorte:
+  Ativar: true
+  Itens:
+    DIAMOND: 12
+    DIAMOND_BLOCK: 100
+    EMERALD: 8
+    EMERALD_BLOCK: 80
+    GOLD_INGOT: 6
+    GOLD_BLOCK: 60
+    IRON_INGOT: 3
+    IRON_BLOCK: 30
+    GOLDEN_CARROT: 30
+    GOLDEN_APPLE: 40
+    ENCHANTED_GOLDEN_APPLE: 100
+    NETHER_STAR: 100
+    ROTTEN_FLESH: -5
+    SPIDER_EYE: -10
+    POISONOUS_POTATO: -10
+    FERMENTED_SPIDER_EYE: -20
+    PUFFERFISH: -20
+
+# O abridor: abre os lucky blocks físicos marcados com "Precisa de abridor".
+Abridor:
+  Material: LEAD|LEASH
+  Nome: '&6&lABRIDOR DE LUCKY BLOCK'
+  Lore:
+    - '&7Clique direito num lucky block'
+    - '&7físico para abri-lo.'
+    - ''
+    - '&fUsos restantes: &e{usos}'
+  Brilho: true
+
+# Lucky blocks nascendo sozinhos em chunks recém-gerados (terreno que já
+# existia nunca é tocado). Chance em % por chunk novo; um por chunk no máximo.
+#   Mundos: [] = qualquer mundo do "Ambiente" (NORMAL, NETHER, THE_END ou '').
+#   Sorte: aceita intervalo '-20,40'.
+#   Estrutura: id do estruturas.yml construída em volta ('' = nenhuma).
+Geracao natural:
+  Ativar: false
+  Entradas:
+    solto:
+      Ativar: true
+      Mundos: []
+      Ambiente: NORMAL
+      Chance: 0.17
+      Tipo: classico
+      Sorte: '0'
+      Estrutura: ''
+    acropole:
+      Ativar: true
+      Mundos: []
+      Ambiente: NORMAL
+      Chance: 0.17
+      Tipo: classico
+      Sorte: '75'
+      Estrutura: acropole
+      Altura do bloco: 1
+    ruinas:
+      Ativar: true
+      Mundos: []
+      Ambiente: NORMAL
+      Chance: 0.17
+      Tipo: classico
+      Sorte: '-75'
+      Estrutura: ruinas
+      Altura do bloco: 1
+    nether:
+      Ativar: true
+      Mundos: []
+      Ambiente: NETHER
+      Chance: 3.0
+      Tipo: classico
+      Sorte: '-20,20'
+      Estrutura: ''
+    end:
+      Ativar: true
+      Mundos: []
+      Ambiente: THE_END
+      Chance: 4.0
+      Tipo: classico
+      Sorte: '0,40'
+      Estrutura: ''
+
+# Chuva de lucky blocks: de tempos em tempos, blocos caem do céu em volta de
+# cada jogador e viram lucky blocks onde pousam. Também pelo menu e pelo
+# /slb chuva.
+Chuva:
+  Ativar: false
+  # Minutos entre uma chuva e outra.
+  Intervalo: 60
+  # Aviso no chat antes de começar (segundos). 0 desliga.
+  Aviso antes: 60
+  Minimo de jogadores: 3
+  Por jogador: 3
+  Raio: 10
+  Altura: 25
+  # Tipo:peso. Vazio = todos (menos os animados) com o mesmo peso.
+  Tipos:
+    - 'classico:80'
+    - 'fisico:20'
+  Sorte: '-20,40'
+  # Vazio = todos os mundos (menos os bloqueados).
+  Mundos: []
+
+# Outras fontes de lucky block. Tipo: BLOCO (minerar), MOB (matar) ou PESCA.
+#   Alvos: materiais ou mobs (vazio = qualquer). Chance em %.
+#   Bloco posto por jogador não conta (não dá para fabricar quebrando e pondo).
+Fontes:
+  mineracao:
+    Ativar: false
+    Tipo: BLOCO
+    Alvos: [STONE, DEEPSLATE, COAL_ORE, IRON_ORE, GOLD_ORE, DIAMOND_ORE, EMERALD_ORE, REDSTONE_ORE, LAPIS_ORE]
+    Chance: 0.2
+    Lucky block: classico
+    Sorte: '-10,10'
+    Mundos: []
+    Permissao: ''
+    Avisar: true
+  monstros:
+    Ativar: false
+    Tipo: MOB
+    Alvos: [ZOMBIE, SKELETON, CREEPER, SPIDER, ENDERMAN, WITCH]
+    Chance: 1.0
+    Lucky block: classico
+    Sorte: '-30,30'
+    Mundos: []
+    Permissao: ''
+    Avisar: true
+  pescaria:
+    Ativar: false
+    Tipo: PESCA
+    Alvos: []
+    Chance: 3.0
+    Lucky block: classico
+    Sorte: '0,50'
+    Mundos: []
+    Permissao: ''
+    Avisar: true
