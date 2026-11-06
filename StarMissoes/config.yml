@@ -1,0 +1,102 @@
+# =====================================================
+#                     StarMissoes
+#                  Configuracao geral
+# =====================================================
+#
+#  As missoes ficam na pasta missoes/, um arquivo por categoria.
+#  Os menus ficam na pasta menus/.
+#  As frases ficam no mensagens.yml.
+#
+Versao do modelo: 1
+
+Banco de dados:
+  # SQLITE guarda tudo num arquivo dentro da pasta do plugin e nao precisa de
+  # nada instalado. MYSQL e o caminho de quem tem mais de um servidor e quer o
+  # mesmo progresso nos dois.
+  Tipo: SQLITE
+  Prefixo das tabelas: 'starmissoes_'
+  Host: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+  # De quantos em quantos segundos o progresso de quem esta online vai para o
+  # banco. Quem sai do servidor e gravado na hora, independente disto.
+  Salvar a cada: 60
+
+Missoes:
+  # Quantas missoes o jogador pode ter em andamento ao mesmo tempo. 0 = sem
+  # limite.
+  Maximo iniciadas: 5
+  # O jogador pode largar uma missao comecada (clique direito na lista)?
+  Pode abandonar: true
+  # true = ao bater a quantidade, a recompensa sai sozinha.
+  # false = a missao fica "pronta" e o jogador clica nela para receber.
+  Resgate automatico: false
+  # Ao concluir, comecar sozinho a proxima missao da cadeia.
+  Iniciar a proxima automaticamente: false
+  # Recusar o resgate quando nao ha espaco no inventario para os itens do
+  # premio. Desligado, o que nao cabe cai no chao.
+  Exigir espaco no inventario: true
+
+  # Bloco que o proprio jogador colocou nao conta quando ele quebra de novo --
+  # senao toda missao de quebrar viraria colocar e quebrar no mesmo lugar.
+  # A colheita nao entra nesta regra: plantar faz parte de colher.
+  Ignorar blocos colocados: true
+  # Quantos blocos colocados o plugin lembra. O mais antigo sai quando passa
+  # disto; nao vale a pena subir muito.
+  Blocos colocados lembrados: 40000
+
+  # Aviso de progresso na actionbar. "Avisar a cada" evita encher a tela numa
+  # missao de 300 blocos: o aviso sai a cada tantos pontos de progresso.
+  Avisar progresso: true
+  Avisar a cada: 5
+
+  # Vazio = todos os mundos contam. Preenchido, so os daqui contam.
+  Mundos permitidos: []
+  # Estes nunca contam, mesmo estando na lista acima.
+  Mundos bloqueados:
+    - lobby
+
+Economia:
+  # VAULT fala com qualquer economia registrada no Vault.
+  # COMANDO e para as economias que nao se registram la: o pagamento sai pelo
+  # comando de console abaixo.
+  # Ou o id de uma moeda:
+  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+  #   yeconomy              o yEconomy
+  #   (esses precisam do loader StarPlugins 2.0.82 ou mais novo)
+  Tipo: VAULT
+  Simbolo: '$'
+  # So usado no modo COMANDO, para o menu conseguir mostrar o saldo.
+  Placeholder de saldo: '%vault_eco_balance%'
+  # {jogador}, {uuid} e {valor} sao trocados na hora.
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Npc:
+  # O NPC que abre o menu. Crie com /starmissoes setnpc, tire com /starmissoes delnpc.
+  Ativar: true
+  # Com o Citizens instalado o NPC e dele, e pode ter skin de jogador.
+  Usar Citizens: true
+  Tipo: VILLAGER
+  Nome: '&6&lMissoes'
+  Profissao: LIBRARIAN
+  # Nick de quem empresta a skin. So funciona com o Citizens.
+  Skin: ''
+  Bebe: false
+
+  Holograma:
+    Ativar: true
+    Altura: 2.1
+    Linhas:
+      - '&6&lMISSOES'
+      - '&7Clique para abrir'
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Iniciar: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.4'
+  Missao pronta: 'ENTITY_PLAYER_LEVELUP;1;1.8'
+  Missao concluida: 'ENTITY_PLAYER_LEVELUP;1;1.2'
