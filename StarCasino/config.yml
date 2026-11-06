@@ -1,0 +1,271 @@
+#  _____ _             _____           _
+# / ____| |           / ____|         (_)
+#| (___ | |_ __ _ _ __| |     __ _ ___ _ _ __   ___
+# \___ \| __/ _` | '__| |    / _` / __| | '_ \ / _ \
+# ____) | || (_| | |  | |___| (_| \__ \ | | | | (_) |
+#|_____/ \__\__,_|_|   \_____\__,_|___/_|_| |_|\___/
+#
+# StarCasino - por Eulsaac
+
+settings:
+  # Idioma padrao. Deve corresponder a um arquivo em lang/ (ex.: BR, EN).
+  language: BR
+
+  # Verifica se ha uma nova versao do plugin ao iniciar.
+  check-updates: true
+
+  # Envia estatisticas de uso anonimas via bStats. Por favor, mantenha ativado.
+  enable-metrics: true
+
+  # Preenche os slots vazios do inventario com o item "fill-empty-slots" do items.yml.
+  fill-empty-slots: true
+
+  # Registra todas as apostas (vitorias/derrotas) no storage para estatisticas.
+  log-bets: false
+
+storage:
+  # Tipos: SQLITE ou MYSQL.
+  type: SQLITE
+
+  mysql:
+    host: localhost
+    port: 3306
+    database: StarCasino
+    table: starcasino
+    user: root
+    password: "password"
+    properties: "autoReconnect=true&useSSL=false"
+
+  sqlite:
+    database: starcasino
+    table: starcasino
+
+economy:
+  # Tipos: VAULT, STARECONOMIA, PLAYER_POINTS ou CUSTOM (integrado via StarCasinoAPI).
+  #
+  # VAULT so funciona com o plugin Vault instalado. Sem ele, e havendo
+  # StarEconomia no servidor, o casino usa a economia do StarEconomia sozinho.
+  #
+  # Tambem aceita o id da moeda:
+  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+  #   yeconomy              o yEconomy
+  # (yeconomias/yeconomy precisam do loader StarPlugins 2.0.82 ou mais novo)
+  type: VAULT
+  # Moeda do StarEconomia (money, cash...). Em branco usa a moeda principal.
+  currency: ''
+
+roulette:
+  # Raio padrao (em blocos) usado ao criar uma station sem especificar um valor.
+  default-radius: 4.0
+
+  # Lucros acima deste valor serao anunciados para todos os jogadores online.
+  broadcast-win-amount: 250000
+
+  # Tempo (em segundos) de contagem regressiva antes do sorteio comecar.
+  starting-time: 40
+
+  # Empurra jogadores que tentarem ficar em cima da mesa/roleta.
+  knockback-when-too-close: true
+
+  # Colore o texto do numero exibido em cada cabeca do anel.
+  color-numbers:
+    enable: true
+    white: "&f"
+    red: "&c"
+    black: "&7"
+
+  # Limites para combater vicio em jogos de azar.
+  max-bets-per-day: 50
+  max-bets-per-round: 5
+  min-bet-amount-per-entry: 10
+  max-bet-amount-per-round: 500000
+
+  multipliers:
+    color: 1.5
+    # Cada coluna cobre 4 numeros (1 em 9 colunas de 36), nao 12 como numa
+    # roleta tradicional - a chance de acertar e bem menor, entao o
+    # multiplicador e mais proximo do de uma aposta "quadra" (4 numeros).
+    column: 8.0
+    number: 35.0
+    # Apostar no branco (0) e uma aposta de casa unica (1/37), igual a um
+    # numero - por isso tem multiplicador proprio, diferente do de cor.
+    white: 35.0
+
+  wheel:
+    # Particulas que sobem do centro enquanto a mesa espera jogadores.
+    # De longe uma roleta parada e uma em jogo sao iguais; o brilho no meio
+    # mostra que a mesa esta viva.
+    particulas-espera:
+      ativar: true
+
+      # Onde as particulas saem:
+      #   centro    - sobem do meio da roleta
+      #   holograma - em volta do texto que fica acima da mesa
+      #   anel      - pontos sorteados no corredor onde as casas giram
+      modo: centro
+
+      # Nome do Particle do Bukkit. Nome que nao existir cai no END_ROD (a
+      # branca do End), que aparece bem em qualquer fundo.
+      tipo: END_ROD
+
+      quantidade: 3
+      # Altura acima do centro (ignorada no modo holograma).
+      altura: 1.0
+      espalhamento: 0.35
+      # De quantos em quantos ticks o efeito aparece (20 ticks = 1 segundo).
+      intervalo-ticks: 10
+
+    # Velocidade de rotacao (em graus por tick) enquanto aguarda jogadores/conta regressiva.
+    idle-speed: 1.2
+
+    # Velocidade de rotacao (em graus por tick) durante o sorteio.
+    # ATENCAO: o giro e feito reposicionando (teleport) as entidades a cada
+    # tick, entao valores muito altos fazem a roda "pular" de posicao rapido
+    # demais para o cliente interpolar direito, dando uma sensacao de
+    # tremedeira/oscilacao de tamanho. Se isso acontecer no seu servidor,
+    # diminua este valor. 24 era agressivo demais; comece testando por aqui.
+    spin-speed: 8.0
+
+    # Duracao (em segundos) da fase de giro rapido, antes de comecar a desacelerar.
+    spin-duration: 4
+
+    # Duracao (em segundos) da desaceleracao ate parar exatamente no numero sorteado.
+    slowdown-duration: 6
+
+    # Quantas voltas completas extras a roleta da durante a desaceleracao (efeito visual).
+    extra-spins: 4
+
+    # Quanto tempo (em segundos) o resultado fica exibido antes de reiniciar a rodada.
+    ending-display-duration: 8
+
+    # Altura (em blocos) da etiqueta do numero acima da cabeca. Ajuste este
+    # valor e use /casino reload (a roda e recriada automaticamente com o
+    # novo valor, sem precisar remover/recriar a station).
+    altura-etiqueta: 0.1
+
+    # Como o indicador que fica em cima do numero sorteado deve aparecer:
+    # ARROW = so o item de flecha na mao; HOLOGRAM = so o texto "▼"; ALL = os dois.
+    #
+    # HOLOGRAM e o padrao por ser o unico 100% confiavel: o texto sempre fica
+    # centralizado e sempre aponta para baixo, em qualquer versao e de
+    # qualquer angulo de camera. O item de flecha (ARROW) e renderizado preso
+    # ao BRACO do armor stand, entao nasce deslocado para o lado e inclinado;
+    # da para tentar corrigir com angulo-braco-flecha + deslocamento-lateral-
+    # -flecha abaixo, mas e ajuste manual, testado por tentativa e erro, e o
+    # resultado pode variar entre versoes do servidor/cliente.
+    estilo-seta: HOLOGRAM
+
+    # Altura (em blocos) do texto "▼" acima do ANEL (nao do centro), quando
+    # estilo-seta e HOLOGRAM ou ALL. Independente de altura-seta-flecha
+    # abaixo - sao duas entidades separadas, entao mudar uma nao afeta a
+    # outra, mesmo com estilo-seta: ALL. Ele fica parado, fixo, sempre no
+    # mesmo ponto da borda onde a roda sempre termina de girar.
+    altura-seta-holograma: 0.7
+
+    # Altura (em blocos) da flecha acima do ANEL, quando estilo-seta e ARROW
+    # ou ALL. Mesmo comportamento fixo descrito acima, entidade separada do
+    # holograma.
+    altura-seta-flecha: 1.8
+
+    # (So para estilo-seta ARROW/ALL) Se a flecha deve ser a espectral
+    # (Material.SPECTRAL_ARROW, com brilho) em vez da flecha normal.
+    flecha-espectral: false
+
+    # (So para estilo-seta ARROW/ALL) Angulo do braco que segura a flecha, nos
+    # 3 eixos (em graus): pitch (x), yaw (y) e roll (z). Ajuste e rode
+    # /casino reload ate a flecha ficar o mais proxima possivel de apontar
+    # para baixo.
+    angulo-braco-flecha: 0.0
+    angulo-braco-flecha-y: 0.0
+    angulo-braco-flecha-z: 0.0
+
+    # (So para estilo-seta ARROW/ALL) Correcao lateral em blocos, para
+    # compensar o fato de o item ser renderizado no braco (deslocado do
+    # centro) e nao no meio da entidade. Valores negativos empurram para um
+    # lado, positivos para o outro. Ajuste e rode /casino reload ate a flecha
+    # ficar exatamente em cima do numero.
+    deslocamento-lateral-flecha: -0.3
+
+    # Altura (em blocos) do holograma de STATUS (aguardando/contagem/girando/
+    # resultado) acima do centro da station. Nao confundir com
+    # altura-seta-holograma acima, que e so do indicador do numero sorteado.
+    # Ajuste e rode /casino reload.
+    altura-holograma-status: 3.5
+
+    # Texturas (base64 de textures.minecraft.net) usadas nas cabecas do anel giratorio.
+    heads:
+      red: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDA1MWI1OTA4NWQyYzQyNDk1Nzc4MjNmNjNlMWUyZWI5ZjdjZjY0YjdjNzg3ODVhMjE4MDVmYWQzZWYxNCJ9fX0="
+      black: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTc0ZmU5Y2I4MDAyOWQ2NjM0NTI3N2FhNTYwZDQxZWYxMDMwOTYyYjdmMjlhYmYyMzk2MWQ5ZWJhODQyNTBhMyJ9fX0="
+      white: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGUwZThhY2FiYWQyN2Q0NjE2ZmFlOWU0NzJjMGRlNjA4NTNkMjAzYzFjNmYzMTM2N2M5MzliNjE5ZjNlMzgzMSJ9fX0="
+
+age-confirmation:
+  enable: false
+  inventory:
+    size: 27
+
+# ---------------------------------------------------------------------------
+# Cashback por aposta
+# ---------------------------------------------------------------------------
+# Uma parte do que a pessoa aposta volta como saldo da roleta.
+#
+# Quem recebe e quanto sai da permissao: e o prefixo abaixo mais a porcentagem
+# do nivel. Com "prefixo-permissao: starcasino.cashback." e "porcentagem: 10",
+# a permissao e starcasino.cashback.10.
+#
+# Com mais de um nivel, vale o MAIOR que a pessoa tiver - quem subiu de vip
+# para mvp nao recebe menos por ainda carregar a permissao antiga.
+#
+# O saldo so vive dentro da roleta: da para apostar com ele (o girassol no menu
+# troca a moeda), e o premio de uma aposta feita com cashback volta para o
+# cashback. Ele nunca vira dinheiro do servidor.
+cashback:
+  ativar: true
+  prefixo-permissao: "starcasino.cashback."
+
+  # Apostar usando o proprio cashback tambem gera cashback? Ligado, o saldo so
+  # cresceria sozinho a cada rodada.
+  gera-sobre-cashback: false
+
+  # Ganhou apostando com cashback: o premio sai em dinheiro do servidor?
+  # true  - o premio e dinheiro de verdade (a cortesia e para jogar, e o que se
+  #         ganha jogando vale)
+  # false - o premio volta para o saldo de cashback e nunca sai da roleta
+  premio-em-dinheiro: true
+
+  niveis:
+    vip:
+      nome: "VIP"
+      porcentagem: 1
+    # mvp:
+    #   nome: "MVP"
+    #   porcentagem: 15
+
+# ---------------------------------------------------------------------------
+# Fogos quando alguem ganha
+# ---------------------------------------------------------------------------
+# Uma salva por rodada com ganhador, nao uma por ganhador: com dez apostas
+# certeiras a mesa viraria fogo de artificio sem parar.
+fogos:
+  ativar: true
+  # centro    - todos saem do meio da roleta
+  # arredores - espalhados em volta, em pontos sorteados
+  modo: centro
+  quantidade: 3
+  # BALL, BALL_LARGE, STAR, BURST ou CREEPER. Nome errado vira BALL_LARGE.
+  tipo: BALL_LARGE
+  # 0 a 3: quanto maior, mais alto o foguete sobe antes de estourar.
+  potencia: 1
+  # Distancia do centro no modo arredores.
+  raio: 5.0
+  # Nomes de cor do Bukkit: WHITE, SILVER, GRAY, BLACK, RED, MAROON, YELLOW,
+  # OLIVE, LIME, GREEN, AQUA, TEAL, BLUE, NAVY, FUCHSIA, PURPLE, ORANGE.
+  cores:
+    - RED
+    - YELLOW
+    - WHITE
+  rastro: true
+  cintilar: false
+
+# Nao edite isto!
+config-version: 2
