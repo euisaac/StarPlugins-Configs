@@ -1,0 +1,45 @@
+#   _____                                 _
+#  | ____|___ ___  _ __   ___  _ __ ___ (_) __ _ ___
+#  |  _| / __/ _ \| '_ \ / _ \| '_ ` _ \| |/ _` / __|
+#  | |__| (_| (_) | | | | (_) | | | | | | | (_| \__ \
+#  |_____\___\___/|_| |_|\___/|_| |_| |_|_|\__,_|___/
+#
+#  Economias que a Area AFK pode cobrar (withdrawals) e depositar (deposits).
+#
+#  Provedores disponiveis:
+#
+#    VAULT        - economia principal do servidor via Vault
+#    PLAYERPOINTS - plugin PlayerPoints
+#    STARECONOMIA - moedas do StarEconomia (use Moeda: <id>)
+#    COMANDO      - qualquer plugin: usa comandos para dar/tirar e um
+#                   placeholder do PlaceholderAPI para ler o saldo
+#
+#  Tambem aceita o id da moeda direto no Provedor:
+#    stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#    yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#    yeconomy              o yEconomy
+#  (yeconomias/yeconomy precisam do loader StarPlugins 2.0.82 ou mais novo)
+#
+
+economias:
+  money:
+    Provedor: 'VAULT'
+    # Nome por extenso, usado nas mensagens.
+    Nome: 'Dinheiro'
+    # Nome curto, usado nos menus.
+    Curto: 'coins'
+    # Permissao para o jogador poder usar esta economia (vazio = liberado).
+    Permissao: 'starafk.area.provedor.money'
+
+  tokens:
+    Provedor: 'COMANDO'
+    Nome: 'Tokens'
+    Curto: 'tokens'
+    Permissao: 'starafk.area.provedor.tokens'
+    # Placeholder que devolve o saldo do jogador (PlaceholderAPI).
+    Saldo: '%tokens_balance%'
+    # {jogador} vira o nick e {quantia} a quantidade.
+    Dar:
+      - 'tokens give {jogador} {quantia}'
+    Tirar:
+      - 'tokens take {jogador} {quantia}'
