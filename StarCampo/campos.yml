@@ -1,0 +1,148 @@
+# ==========================================================================
+#  StarCampo - campos de fazenda
+#
+#  Cada campo aparece no /campo. A chave (ex.: 'inicial') é o id usado nos
+#  comandos (/campo ir inicial, /campoadmin reconstruir inicial).
+#
+#  Modelo
+#    GERADO     o plugin monta o campo sozinho no mundo dos campos, com as
+#               faixas de 'Gerado.Faixas' (plantação:largura).
+#    SCHEMATIC  cola o arquivo 'Schematic' da pasta schematics/ no mundo dos
+#               campos. Aceita .starcampo (gravado com /campoadmin schematic
+#               salvar), .schem (WorldEdit 7 / FAWE) e .schematic (antigo).
+#               As plantas do plantacoes.yml que estiverem no schematic
+#               viram as plantas do campo. 'Spawn no schematic' = x,y,z,yaw
+#               a partir do canto do schematic (vazio = no meio, em cima).
+#               Se o arquivo sumir, o campo é montado pelas 'Gerado.Faixas'.
+#
+#  O plugin já vem com 4 fazendas prontas em schematics/ (celeiro, poço,
+#  espantalho, lago, coreto...): fazenda-inicial, fazenda-pomar,
+#  fazenda-nether e fazenda-vip. Todas têm 39 x 12 x 45 blocos.
+#    MANUAL     uma área que você já construiu em qualquer mundo: marque com
+#               a varinha (/campoadmin varinha) e use /campoadmin definir.
+#
+#  Os campos GERADO e SCHEMATIC são montados sozinhos no primeiro boot.
+#  Mudou o modelo? /campoadmin reconstruir <campo>.
+#
+#  Rank necessario   id do rank do ranks.yml (os níveis do campo); vazio = livre
+#  Permissao         permissão extra para entrar (vazio = nenhuma)
+#  Multiplicador de venda / de graos   multiplica o que o campo rende
+#  Limite de jogadores                  0 = sem limite
+#  Slot                                  posição no /campo (-1 = automática)
+#  Icone             Material, Nome, Lore, Textura (cabeça) e Brilho
+# ==========================================================================
+
+Versao do modelo: 1
+
+Campos:
+  inicial:
+    Nome: '&aCampo Inicial'
+    Descricao:
+      - '&7Trigo, cenoura e batata para'
+      - '&7começar a sua fazenda.'
+    Slot: 11
+    Rank necessario: ''
+    Permissao: ''
+    Multiplicador de venda: 1.0
+    Multiplicador de graos: 1.0
+    Limite de jogadores: 0
+    Titulo ao entrar: '&a&lCampo Inicial<nl>&7Boa colheita!'
+    Icone:
+      Material: WHEAT
+    Modelo: SCHEMATIC
+    Schematic: 'fazenda-inicial.starcampo'
+    Spawn no schematic: '19.5,2,14.5,0'
+    # Usadas se o schematic nao existir:
+    Gerado:
+      Faixas:
+        - 'trigo:5'
+        - 'cenoura:5'
+        - 'batata:5'
+      Comprimento: 20
+      Caminho: 'DIRT_PATH|GRASS_PATH|GRAVEL'
+      Borda: 'OAK_FENCE'
+      Base: 'DIRT'
+
+  pomar:
+    Nome: '&6Campo das Abóboras'
+    Descricao:
+      - '&7Melancias, abóboras e cana:'
+      - '&7rendem mais e dão mais grãos.'
+    Slot: 13
+    Rank necessario: 'broto'
+    Permissao: ''
+    Multiplicador de venda: 1.25
+    Multiplicador de graos: 1.1
+    Limite de jogadores: 0
+    Titulo ao entrar: '&6&lCampo das Abóboras<nl>&7Boa colheita!'
+    Icone:
+      Material: PUMPKIN
+    Modelo: SCHEMATIC
+    Schematic: 'fazenda-pomar.starcampo'
+    Spawn no schematic: '19.5,2,14.5,0'
+    # Usadas se o schematic nao existir:
+    Gerado:
+      Faixas:
+        - 'melancia:4'
+        - 'abobora:4'
+        - 'cana:6'
+      Comprimento: 20
+      Caminho: 'DIRT_PATH|GRASS_PATH|GRAVEL'
+      Borda: 'OAK_FENCE'
+      Base: 'DIRT'
+
+  nether:
+    Nome: '&cCampo do Nether'
+    Descricao:
+      - '&7Fungo do Nether e cacto.'
+      - '&7O campo que mais rende.'
+    Slot: 15
+    Rank necessario: 'colhedor'
+    Permissao: ''
+    Multiplicador de venda: 1.6
+    Multiplicador de graos: 1.3
+    Limite de jogadores: 0
+    Titulo ao entrar: '&c&lCampo do Nether<nl>&7Boa colheita!'
+    Icone:
+      Material: NETHER_WART
+    Modelo: SCHEMATIC
+    Schematic: 'fazenda-nether.starcampo'
+    Spawn no schematic: '19.5,2,14.5,0'
+    # Usadas se o schematic nao existir:
+    Gerado:
+      Faixas:
+        - 'fungo:6'
+        - 'cacto:5'
+        - 'fungo:6'
+      Comprimento: 20
+      Caminho: 'NETHER_BRICKS|NETHER_BRICK'
+      Borda: 'NETHER_BRICK_FENCE'
+      Base: 'NETHERRACK'
+
+  vip:
+    Nome: '&b&lCampo VIP'
+    Descricao:
+      - '&7Exclusivo para VIPs: rende o dobro.'
+    Slot: 22
+    Rank necessario: ''
+    Permissao: 'starcampo.campo.vip'
+    Multiplicador de venda: 2.0
+    Multiplicador de graos: 2.0
+    Limite de jogadores: 0
+    Titulo ao entrar: '&b&lCampo VIP<nl>&7Boa colheita!'
+    Icone:
+      Material: DIAMOND_HOE
+      Brilho: true
+    Modelo: SCHEMATIC
+    Schematic: 'fazenda-vip.starcampo'
+    Spawn no schematic: '19.5,2,14.5,0'
+    # Usadas se o schematic nao existir:
+    Gerado:
+      Faixas:
+        - 'trigo:6'
+        - 'cenoura:6'
+        - 'fungo:6'
+      Comprimento: 24
+      Caminho: 'QUARTZ_BLOCK'
+      Borda: 'BIRCH_FENCE|OAK_FENCE'
+      Base: 'DIRT'

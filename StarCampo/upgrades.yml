@@ -1,0 +1,154 @@
+# ==========================================================================
+#  StarCampo - upgrades
+#
+#  Os upgrades são do jogador (valem em todos os campos, com qualquer
+#  ferramenta) e são comprados no /campo upgrades.
+#
+#  Efeito         o que o nível faz:
+#    FORTUNA      % a mais de itens por planta
+#    VENDA        % a mais no dinheiro da venda
+#    GRAOS        % a mais de grãos (e de chance de cair grão)
+#    AREA         colhe em volta: cada nível soma 'Bonus por nivel' ao raio
+#                 (raio 1 = 3x3, 2 = 5x5...; teto em config.yml)
+#    CRESCIMENTO  % a menos no tempo para a planta colhida crescer de novo
+#                 (máximo 90%)
+#    SORTE        pontos de chance (%) de uma colheita rara (config.yml)
+#    VELOCIDADE   nível do efeito de velocidade dentro dos campos
+#    EXPERIENCIA  % a mais de experiência
+#  Bonus por nivel   quanto cada nível soma
+#  Custo             Moeda ('graos' ou uma economia do economias.yml),
+#                    Inicial (preço do 1º nível) e Aumento (% a cada nível)
+#  Rank minimo       rank do ranks.yml para comprar (vazio = livre)
+#  Slot              posição no menu (-1 = nos 'Slots' do menus.yml)
+# ==========================================================================
+
+Versao do modelo: 1
+
+Upgrades:
+  fortuna:
+    Efeito: FORTUNA
+    Nome: '&6Fortuna'
+    Descricao:
+      - '&7Colhe mais itens de cada planta.'
+    Icone:
+      Material: GOLDEN_HOE
+    Slot: 10
+    Nivel maximo: 50
+    Bonus por nivel: 4
+    Custo:
+      Moeda: graos
+      Inicial: 20
+      Aumento: 12
+    Rank minimo: ''
+
+  venda:
+    Efeito: VENDA
+    Nome: '&aComerciante'
+    Descricao:
+      - '&7Vende as colheitas mais caro.'
+    Icone:
+      Material: EMERALD
+    Slot: 11
+    Nivel maximo: 50
+    Bonus por nivel: 3
+    Custo:
+      Moeda: graos
+      Inicial: 25
+      Aumento: 12
+    Rank minimo: ''
+
+  graos:
+    Efeito: GRAOS
+    Nome: '&eSemeador'
+    Descricao:
+      - '&7Mais grãos em cada colheita.'
+    Icone:
+      Material: WHEAT_SEEDS
+    Slot: 12
+    Nivel maximo: 40
+    Bonus por nivel: 5
+    Custo:
+      Moeda: dinheiro
+      Inicial: 5000
+      Aumento: 15
+    Rank minimo: ''
+
+  area:
+    Efeito: AREA
+    Nome: '&bColheita em Área'
+    Descricao:
+      - '&7Colhe as plantas maduras em volta.'
+    Icone:
+      Material: DIAMOND_HOE
+    Slot: 13
+    Nivel maximo: 3
+    Bonus por nivel: 1
+    Custo:
+      Moeda: graos
+      Inicial: 500
+      Aumento: 200
+    Rank minimo: 'broto'
+
+  crescimento:
+    Efeito: CRESCIMENTO
+    Nome: '&2Adubo'
+    Descricao:
+      - '&7O que você colhe cresce mais rápido.'
+    Icone:
+      Material: BONE_MEAL
+    Slot: 14
+    Nivel maximo: 30
+    Bonus por nivel: 2
+    Custo:
+      Moeda: graos
+      Inicial: 40
+      Aumento: 14
+    Rank minimo: ''
+
+  sorte:
+    Efeito: SORTE
+    Nome: '&dSorte do Campo'
+    Descricao:
+      - '&7Mais chance de uma colheita rara.'
+    Icone:
+      Material: RABBIT_FOOT
+    Slot: 15
+    Nivel maximo: 20
+    Bonus por nivel: 0.1
+    Custo:
+      Moeda: graos
+      Inicial: 60
+      Aumento: 18
+    Rank minimo: ''
+
+  velocidade:
+    Efeito: VELOCIDADE
+    Nome: '&fBotas do Fazendeiro'
+    Descricao:
+      - '&7Velocidade dentro dos campos.'
+    Icone:
+      Material: LEATHER_BOOTS
+    Slot: 16
+    Nivel maximo: 2
+    Bonus por nivel: 1
+    Custo:
+      Moeda: dinheiro
+      Inicial: 20000
+      Aumento: 150
+    Rank minimo: ''
+
+  experiencia:
+    Efeito: EXPERIENCIA
+    Nome: '&aSabedoria'
+    Descricao:
+      - '&7Mais experiência por planta.'
+    Icone:
+      Material: EXPERIENCE_BOTTLE
+    Slot: 22
+    Nivel maximo: 20
+    Bonus por nivel: 10
+    Custo:
+      Moeda: graos
+      Inicial: 30
+      Aumento: 12
+    Rank minimo: ''

@@ -1,0 +1,107 @@
+# ==========================================================================
+#  StarCampo - ranks do campo
+#
+#  São os níveis do próprio StarCampo, sem relação com o rank do servidor
+#  (StarRankup ou outro): liberam campos ('Rank necessario' no campos.yml)
+#  e upgrades ('Rank minimo') e dão bônus de venda e de grãos.
+#
+#  A ordem do arquivo é a ordem dos ranks; o primeiro é o de quem começa.
+#  Custo            lista 'moeda:valor' (graos ou uma economia do
+#                   economias.yml). Aceita 5K, 1.5M...
+#  Requisitos       Colheitas (plantas colhidas no total) e Vendido (total
+#                   vendido) que o jogador precisa ter
+#  Bonus de venda / de graos   % a mais enquanto estiver neste rank
+#  Comandos         rodam no console ao chegar no rank ({jogador})
+#  Anunciar         avisa o servidor quando alguém chega (config.yml)
+# ==========================================================================
+
+Versao do modelo: 1
+
+Ranks:
+  semente:
+    Nome: '&7Semente'
+    Tag: '&7[Semente]'
+    Descricao:
+      - '&7O começo de todo fazendeiro.'
+    Icone:
+      Material: WHEAT_SEEDS
+    Custo: []
+    Bonus de venda: 0
+    Bonus de graos: 0
+    Comandos: []
+    Anunciar: false
+
+  broto:
+    Nome: '&aBroto'
+    Tag: '&a[Broto]'
+    Descricao:
+      - '&7Libera o Campo das Abóboras.'
+    Icone:
+      Material: OAK_SAPLING
+    Custo:
+      - 'dinheiro:10K'
+      - 'graos:100'
+    Requisitos:
+      Colheitas: 500
+    Bonus de venda: 5
+    Bonus de graos: 5
+    Comandos: []
+
+  colhedor:
+    Nome: '&eColhedor'
+    Tag: '&e[Colhedor]'
+    Descricao:
+      - '&7Libera o Campo do Nether.'
+    Icone:
+      Material: GOLDEN_HOE
+    Custo:
+      - 'dinheiro:50K'
+      - 'graos:400'
+    Requisitos:
+      Colheitas: 3000
+    Bonus de venda: 10
+    Bonus de graos: 10
+    Comandos: []
+
+  fazendeiro:
+    Nome: '&6Fazendeiro'
+    Tag: '&6[Fazendeiro]'
+    Icone:
+      Material: HAY_BLOCK
+    Custo:
+      - 'dinheiro:250K'
+      - 'graos:1.5K'
+    Requisitos:
+      Colheitas: 12000
+    Bonus de venda: 20
+    Bonus de graos: 15
+    Comandos: []
+
+  agronomo:
+    Nome: '&bAgrônomo'
+    Tag: '&b[Agrônomo]'
+    Icone:
+      Material: DIAMOND_HOE
+    Custo:
+      - 'dinheiro:1M'
+      - 'graos:5K'
+    Requisitos:
+      Colheitas: 40000
+    Bonus de venda: 35
+    Bonus de graos: 25
+    Comandos: []
+
+  barao:
+    Nome: '&5&lBarão do Campo'
+    Tag: '&5&l[Barão]'
+    Icone:
+      Material: GOLDEN_APPLE
+      Brilho: true
+    Custo:
+      - 'dinheiro:5M'
+      - 'graos:20K'
+    Requisitos:
+      Colheitas: 150000
+    Bonus de venda: 60
+    Bonus de graos: 40
+    Comandos: []

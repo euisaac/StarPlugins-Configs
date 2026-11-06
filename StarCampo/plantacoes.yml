@@ -1,0 +1,173 @@
+# ==========================================================================
+#  StarCampo - plantações
+#
+#  Cada plantação é um bloco que, dentro de um campo, o jogador colhe.
+#
+#  Bloco               nome moderno do bloco no mundo (WHEAT, CARROTS,
+#                      POTATOES, BEETROOTS, NETHER_WART, MELON, PUMPKIN,
+#                      SUGAR_CANE, CACTUS, COCOA, HAY_BLOCK...). Vale em
+#                      qualquer versão: na 1.8 o plugin traduz sozinho.
+#  Tipo                IDADE  - cresce por estágios no mesmo bloco
+#                      BLOCO  - o bloco some e volta inteiro
+#                      COLUNA - pilha que cresce para cima (colhe o que está
+#                               acima da base; 'Altura' = altura madura)
+#  Drop                item entregue quando a venda automática está
+#                      desligada; é também o item que o /campo vender compra
+#  Quantidade          itens por planta: '1' ou '1-3'
+#  Preco               valor de cada item na venda (moeda da venda)
+#  Graos               Chance (%) e Quantidade ('1' ou '1-2') por planta
+#  Tempo para crescer  segundos até a planta colhida ficar madura de novo
+#  Experiencia         experiência por planta
+#  Solo                o bloco de baixo no modelo GERADO (FARMLAND, SOUL_SAND,
+#                      SAND, GRASS_BLOCK...)
+#  Agua ao lado        GERADO: põe água entre as fileiras (cana)
+#  Espacado            GERADO: uma planta sim, outra não (cacto)
+#
+#  Cacau precisa de tronco ao lado: só entra por schematic ou campo MANUAL.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Plantacoes:
+  trigo:
+    Nome: '&eTrigo'
+    Bloco: WHEAT
+    Tipo: IDADE
+    Drop: WHEAT
+    Quantidade: '1-2'
+    Preco: 4
+    Graos:
+      Chance: 8
+      Quantidade: '1'
+    Tempo para crescer: 20
+    Experiencia: 1
+    Solo: FARMLAND
+
+  cenoura:
+    Nome: '&6Cenoura'
+    Bloco: CARROTS
+    Tipo: IDADE
+    Drop: CARROT
+    Quantidade: '1-3'
+    Preco: 3
+    Graos:
+      Chance: 8
+      Quantidade: '1'
+    Tempo para crescer: 25
+    Experiencia: 1
+    Solo: FARMLAND
+
+  batata:
+    Nome: '&6Batata'
+    Bloco: POTATOES
+    Tipo: IDADE
+    Drop: POTATO
+    Quantidade: '1-3'
+    Preco: 3
+    Graos:
+      Chance: 8
+      Quantidade: '1'
+    Tempo para crescer: 25
+    Experiencia: 1
+    Solo: FARMLAND
+
+  beterraba:
+    Nome: '&cBeterraba'
+    Bloco: BEETROOTS
+    Tipo: IDADE
+    Drop: BEETROOT
+    Quantidade: '1-2'
+    Preco: 6
+    Graos:
+      Chance: 10
+      Quantidade: '1'
+    Tempo para crescer: 30
+    Experiencia: 2
+    Solo: FARMLAND
+
+  fungo:
+    Nome: '&4Fungo do Nether'
+    Bloco: NETHER_WART
+    Tipo: IDADE
+    Drop: NETHER_WART
+    Quantidade: '1-3'
+    Preco: 10
+    Graos:
+      Chance: 12
+      Quantidade: '1-2'
+    Tempo para crescer: 40
+    Experiencia: 3
+    Solo: SOUL_SAND
+
+  melancia:
+    Nome: '&aMelancia'
+    Bloco: MELON
+    Tipo: BLOCO
+    Drop: MELON_SLICE
+    Quantidade: '3-7'
+    Preco: 2
+    Graos:
+      Chance: 15
+      Quantidade: '1-2'
+    Tempo para crescer: 45
+    Experiencia: 2
+    Solo: GRASS_BLOCK
+
+  abobora:
+    Nome: '&6Abóbora'
+    Bloco: PUMPKIN
+    Tipo: BLOCO
+    Drop: PUMPKIN
+    Quantidade: '1'
+    Preco: 15
+    Graos:
+      Chance: 15
+      Quantidade: '1-2'
+    Tempo para crescer: 45
+    Experiencia: 2
+    Solo: GRASS_BLOCK
+
+  cana:
+    Nome: '&aCana-de-açúcar'
+    Bloco: SUGAR_CANE
+    Tipo: COLUNA
+    Altura: 3
+    Drop: SUGAR_CANE
+    Quantidade: '1'
+    Preco: 5
+    Graos:
+      Chance: 6
+      Quantidade: '1'
+    Tempo para crescer: 30
+    Experiencia: 1
+    Solo: SAND
+    Agua ao lado: true
+
+  cacto:
+    Nome: '&2Cacto'
+    Bloco: CACTUS
+    Tipo: COLUNA
+    Altura: 3
+    Drop: CACTUS
+    Quantidade: '1'
+    Preco: 6
+    Graos:
+      Chance: 6
+      Quantidade: '1'
+    Tempo para crescer: 35
+    Experiencia: 1
+    Solo: SAND
+    Espacado: true
+
+  cacau:
+    Nome: '&6Cacau'
+    Bloco: COCOA
+    Tipo: IDADE
+    Drop: COCOA_BEANS
+    Quantidade: '1-3'
+    Preco: 5
+    Graos:
+      Chance: 10
+      Quantidade: '1'
+    Tempo para crescer: 35
+    Experiencia: 1

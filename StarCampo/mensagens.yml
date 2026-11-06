@@ -1,0 +1,153 @@
+# ==========================================================================
+#  StarCampo - mensagens
+#
+#  Deixe uma mensagem vazia ('') para ela não ser enviada.
+#  {prefixo} põe o prefixo onde você quiser; sem ele, o prefixo vai na
+#  frente das mensagens de uma linha só. Aceita &cores e &#RRGGBB (1.16+).
+#  Títulos: 'Título<nl>Subtítulo'.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&8[&aCampo&8] &r'
+
+Geral:
+  Sem permissao: '&cVocê não tem permissão para isso.'
+  So jogador: '&cSó jogadores dentro do jogo podem usar isso.'
+  Carregando: '&eSeus dados ainda estão carregando, tente em alguns segundos.'
+  Inativo: '&cO StarCampo está inativo (veja o console).'
+  Jogador nao encontrado: '&cJogador &f{jogador} &cnão encontrado.'
+  Recarregado: '&aArquivos do StarCampo recarregados.'
+
+Uso:
+  Ir: '&cUse &f/{rotulo} ir <campo>&c.'
+  Enviar: '&cUse &f/{rotulo} enviar <jogador> <quantidade>&c.'
+
+Ajuda:
+  Jogador: |
+    &a&lCampo &8- &7comandos
+    &e/{rotulo} &8- &7abre os campos de fazenda
+    &e/{rotulo} ir <campo> &8- &7vai direto para um campo
+    &e/{rotulo} sair &8- &7sai do campo
+    &e/{rotulo} upgrades &8- &7melhora a sua colheita
+    &e/{rotulo} ranks &8- &7os ranks do campo
+    &e/{rotulo} rankup &8- &7sobe para o próximo rank
+    &e/{rotulo} vender &8- &7vende as plantações do inventário
+    &e/{rotulo} top [colheitas|vendido|graos] &8- &7os maiores fazendeiros
+    &e/{rotulo} graos &8- &7seus grãos
+    &e/{rotulo} enviar <jogador> <quantidade> &8- &7envia grãos
+    &e/{rotulo} autovenda &8- &7liga/desliga a sua venda automática
+  Admin: |
+    &a&lCampo &8- &7administração
+    &e/{rotulo} lista &8- &7os campos e a situação de cada um
+    &e/{rotulo} criar <id> [schematic|manual] &8- &7cria e monta um campo
+    &e/{rotulo} construir <campo> &8- &7monta um campo que ainda não existe
+    &e/{rotulo} reconstruir <campo> &8- &7refaz o campo do zero
+    &e/{rotulo} varinha &8- &7a varinha de seleção (esquerdo/direito)
+    &e/{rotulo} pos1 | pos2 &8- &7marca um ponto onde você está
+    &e/{rotulo} definir <campo> &8- &7a seleção vira a área do campo (MANUAL)
+    &e/{rotulo} escanear <campo> &8- &7procura as plantas de novo
+    &e/{rotulo} amadurecer <campo> &8- &7deixa todas as plantas maduras
+    &e/{rotulo} schematic <lista|salvar <nome>> &8- &7schematics dos campos
+    &e/{rotulo} setspawn <campo> &8- &7o spawn do campo onde você está
+    &e/{rotulo} setsaida &8- &7para onde o /campo sair leva
+    &e/{rotulo} tp <campo> &8- &7vai para o campo (sem conferir rank)
+    &e/{rotulo} remover <campo> &8- &7apaga o campo
+    &e/{rotulo} graos <dar|tirar|definir> <jogador> <qtd> &8- &7grãos
+    &e/{rotulo} rank <jogador> <rank> &8- &7define o rank (sistema próprio)
+    &e/{rotulo} upgrade <jogador> <upgrade> <nível> &8- &7define um upgrade
+    &e/{rotulo} resetar <jogador> &8- &7zera o perfil do jogador
+    &e/{rotulo} recarregar &8- &7relê os arquivos
+    &e/{rotulo} info &8- &7situação do plugin
+
+Campo:
+  Entrou: '&aVocê entrou no {campo}&a. Boa colheita!'
+  Titulo: '{campo}<nl>&7Boa colheita!'
+  Saiu: '&7Você saiu do campo.'
+  Fora: '&cVocê não está em um campo.'
+  Nao existe: '&cO campo &f{campo} &cnão existe.'
+  Em obras: '&eO {campo} &eestá sendo montado. Tente daqui a pouco.'
+  Sem permissao: '&cO {campo} &cé exclusivo.'
+  Sem rank: '&cVocê precisa do rank &f{rank} &cpara entrar no {campo}&c.'
+  Cheio: '&cO {campo} &cestá cheio.'
+  Mundo descarregado: '&cO mundo do {campo} &cnão está carregado. Avise a staff.'
+  Teleporte falhou: '&cNão foi possível te levar até lá.'
+  Sem dropar: '&cVocê não pode dropar itens nos campos.'
+  Comando bloqueado: '&cO comando &f{comando} &cnão funciona nos campos.'
+
+Colheita:
+  # Actionbar com o resumo do que entrou (a cada 'Intervalo de pagamento').
+  Actionbar venda e graos: '&a+{dinheiro} &8| {graos} &8| &7{plantas} planta(s)'
+  Actionbar venda: '&a+{dinheiro} &8| &7{plantas} planta(s)'
+  Actionbar graos: '&7+{itens} item(ns) &8| {graos}'
+  Actionbar itens: '&7+{itens} item(ns) &8| &7{plantas} planta(s)'
+  Crescendo: '&e{planta} &7crescendo: &f{segundos}s'
+  Nao madura: '&e{planta} &7ainda não está madura.'
+  Sem acesso: '&cVocê não pode colher neste campo.'
+  Ferramenta: '&cUse uma ferramenta permitida para colher.'
+  Inventario cheio: '&cSeu inventário está cheio!'
+  Campo em obras: '&eO campo está sendo montado...'
+  Rara: '&d&lCOLHEITA RARA! &7Você encontrou &f{recompensa}&7!'
+  Rara titulo: '&d&lCOLHEITA RARA!<nl>{recompensa}'
+  Rara anuncio: '&d{jogador} &7encontrou &f{recompensa} &7nos campos!'
+
+Vender:
+  Vendeu: '&aVocê vendeu as suas colheitas por &f{valor}&a.'
+  Nada: '&cVocê não tem plantações para vender no inventário.'
+  Sem economia: '&cA economia não está disponível agora. Avise a staff.'
+
+Autovenda:
+  Ligou: '&aVenda automática ligada.'
+  Desligou: '&eVenda automática desligada: as colheitas vão para o inventário.'
+  Desligada no servidor: '&cA venda automática está desligada neste servidor. Use &f/campo vender&c.'
+  Sempre ligada: '&eA venda automática está sempre ligada neste servidor.'
+
+Graos:
+  Saldo: '&7Seus grãos: {graos}'
+  Saldo de outro: '&7Grãos de &f{jogador}&7: {graos}'
+  Enviou: '&aVocê enviou {graos} &apara &f{jogador}&a.'
+  Recebeu: '&aVocê recebeu {graos} &ade &f{jogador}&a.'
+  Sem saldo: '&cVocê não tem grãos suficientes.'
+  Valor invalido: '&cQuantidade inválida (mínimo {minimo}&c).'
+  Envio desligado: '&cO envio de grãos está desligado.'
+
+Upgrades:
+  Comprou: '&aUpgrade &f{upgrade} &amelhorado para o nível &f{nivel}&a!'
+  Maximo: '&eO upgrade {upgrade} &ejá está no nível máximo.'
+  Sem saldo: '&cVocê precisa de &f{custo} &cpara melhorar {upgrade}&c.'
+  Rank: '&cVocê precisa do rank &f{rank} &cpara melhorar {upgrade}&c.'
+
+Ranks:
+  Evoluiu: '&aParabéns! Você agora é {rank}&a!'
+  Evoluiu titulo: '&a&lRANK UP!<nl>{rank}'
+  Anuncio: '&e{jogador} &7subiu para o rank {rank}&7!'
+  Ultimo: '&eVocê já está no último rank.'
+  Falta requisito: '&cPara {rank} &cvocê precisa de &f{colheitas} &ccolheitas (e &f{vendido} &cvendido).'
+  Sem saldo: '&cPara {rank} &cvocê precisa de &f{custo}&c.'
+
+Varinha:
+  Nome: '&6&lVarinha do Campo'
+  Lore:
+    - '&7Esquerdo: ponto 1'
+    - '&7Direito: ponto 2'
+  Recebeu: '&aVocê recebeu a varinha do campo.'
+  Ponto 1: '&aPonto 1: &f{x}, {y}, {z} &7(área: {volume} blocos)'
+  Ponto 2: '&aPonto 2: &f{x}, {y}, {z} &7(área: {volume} blocos)'
+
+Etiquetas:
+  Gratis: '&aGrátis'
+  Juntar precos: ' &7+ '
+  Nenhum: 'Nenhum'
+  Sem rank: 'Sem rank'
+  Rank maximo: 'Rank máximo'
+  Fora do campo: 'Fora do campo'
+  Ligado: '&aligada'
+  Desligado: '&cdesligada'
+  Sem area: 'só a planta'
+  Top colheitas: 'Colheitas'
+  Top vendido: 'Vendido'
+  Top graos: 'Grãos ganhos'
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'm'
+  Segundo: 's'

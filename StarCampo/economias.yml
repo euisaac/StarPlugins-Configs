@@ -1,0 +1,57 @@
+# ==========================================================================
+#  StarCampo - economias
+#
+#  As economias que recebem a venda das colheitas (config.yml -> Venda
+#  automatica.Moeda) e que podem aparecer nos precos de upgrades e ranks.
+#  A moeda do proprio StarCampo e 'graos': ela nao entra aqui, ja existe
+#  sempre. Crie quantas quiser; a chave (ex.: 'dinheiro') e o que os outros
+#  arquivos citam.
+#
+#  Provedor:
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' e o id dela (vazio =
+#                  a principal)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro entra e sai por comando de console
+#                  ({jogador} {uuid} {valor})
+#    ou o id de uma moeda:
+#    stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#    yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#    yeconomy              o yEconomy
+#    (yeconomias/yeconomy precisam do loader StarPlugins 2.0.82 ou mais novo)
+#
+#  Valores inteiros  arredonda para baixo (pontos, cash).
+#  Permitir offline  credita a venda automatica com o dono offline. Economia
+#                    por COMANDO em geral so funciona com o jogador online.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Economias:
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Simbolo: '$'
+    Permitir offline: true
+
+  # Exemplo com PlayerPoints. Tire o # e use 'pontos' num preco
+  # (ex.: Moeda: pontos num upgrade).
+  # pontos:
+  #   Provedor: PLAYERPOINTS
+  #   Nome: 'Pontos'
+  #   Simbolo: ''
+  #   Abreviacao: ' pontos'
+  #   Permitir offline: true
+
+  # Exemplo por COMANDO, para economias sem API. Tire o # para usar.
+  # cash:
+  #   Provedor: COMANDO
+  #   Nome: 'Cash'
+  #   Simbolo: ''
+  #   Abreviacao: ' cash'
+  #   Permitir offline: false
+  #   Valores inteiros: true
+  #   Placeholder de saldo: '%meucash_saldo%'
+  #   Comando de retirar: 'cash remover {jogador} {valor}'
+  #   Comando de dar: 'cash adicionar {jogador} {valor}'

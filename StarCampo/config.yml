@@ -1,0 +1,157 @@
+# ==========================================================================
+#  StarCampo - configuração geral
+#
+#  O /campo abre o menu com os campos de fazenda. Cada campo fica no mundo
+#  dos campos (criado pelo plugin, vazio) ou numa área que a staff marcou.
+#  Os campos ficam no campos.yml, as plantações no plantacoes.yml, os
+#  upgrades no upgrades.yml e os ranks no ranks.yml.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Banco de dados:
+  # SQLITE (arquivo na pasta do plugin) ou MYSQL.
+  Tipo: SQLITE
+  Host: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+  Prefixo: 'starcampo_'
+  # Segundos entre uma gravação e outra (só o que mudou).
+  Salvar a cada: 60
+
+Mundo:
+  # O mundo dos campos (vazio, criado pelo plugin). Os campos GERADO e
+  # SCHEMATIC são montados nele, um ao lado do outro.
+  Nome: 'starcampo'
+  # Altura do chão dos campos.
+  Altura: 64
+  # Blocos de distância entre um campo e outro.
+  Distancia entre campos: 400
+  # Horário fixo do mundo (6000 = meio-dia). -1 deixa o ciclo normal.
+  Horario fixo: 6000
+  Sem chuva: true
+
+Venda automatica:
+  # true: quebrar a planta já vende (o dinheiro cai na conta).
+  # false: a planta vira item no inventário e o jogador vende com /campo vender.
+  Ativar: true
+  # O jogador pode desligar a venda automática só para ele (/campo autovenda).
+  Jogador pode desligar: false
+  # A economia do economias.yml que recebe a venda.
+  Moeda: dinheiro
+  # De quantos em quantos ticks o dinheiro juntado é pago (20 = 1 segundo).
+  Intervalo de pagamento: 20
+  # Mostra o resumo do que entrou na actionbar.
+  Mostrar na actionbar: true
+
+# Quando a venda automática está desligada (ou a economia está fora do ar):
+Drops:
+  # true: os itens vão direto para o inventário. false: caem no chão.
+  Direto no inventario: true
+  # Inventário cheio: DROPAR (cai aos pés), PERDER ou NAO_COLHER (a planta
+  # não é colhida enquanto não houver espaço).
+  Inventario cheio: DROPAR
+
+Graos:
+  # A moeda do plugin: cai nas colheitas e compra upgrades e ranks.
+  Nome: 'Grãos'
+  Nome no singular: 'Grão'
+  # {valor} abreviado (1,5K), {valor_completo} (1.500) e {nome}.
+  Formato: '&e{valor} &6{nome}'
+  # /campo enviar <jogador> <quantidade>
+  Permitir enviar: true
+  Minimo para enviar: 1
+
+Colheita:
+  # Avisa na actionbar quando a planta ainda está crescendo.
+  Avisar planta crescendo: true
+  # Teto do raio do upgrade de área (1 = 3x3, 2 = 5x5...). Máximo 10.
+  Raio maximo da area: 4
+  # Só colhe com estes itens na mão (vazio = qualquer um, até a mão).
+  # Aceita * no começo ou no fim: '*_HOE' = qualquer enxada. MAO = mão vazia.
+  Ferramentas permitidas: []
+  # A staff (starcampo.admin) no criativo quebra e coloca blocos nos campos
+  # como num mundo normal (para editar). Depois use /campoadmin escanear.
+  Admin no criativo quebra normal: true
+  # Dá a experiência das plantações (plantacoes.yml).
+  Dar experiencia: true
+
+# Uma chance por golpe de cair uma recompensa extra. A chance base soma com
+# o upgrade de Sorte. Peso = chance relativa entre as recompensas.
+Colheita rara:
+  Chance base: 0.2
+  Recompensas:
+    graos:
+      Nome: '&eSaco de Grãos'
+      Peso: 70
+      Graos: 25
+    dinheiro:
+      Nome: '&aBolsa de moedas'
+      Peso: 25
+      Dinheiro: 5000
+    diamante:
+      Nome: '&bDiamante enterrado'
+      Peso: 5
+      Comandos:
+        - 'give {jogador} diamond 1'
+      Anunciar: true
+
+# Bônus (%) por permissão. Vale o MAIOR que o jogador tiver de cada lista.
+# Crie as suas: a permissão nasce sozinha (padrão: ninguém tem).
+Bonus por permissao:
+  Venda:
+    starcampo.bonus.vip: 10
+    starcampo.bonus.mvp: 25
+  Graos:
+    starcampo.graos.vip: 10
+
+Ranks:
+  # Avisa o servidor quando alguém sobe de rank do campo.
+  Anunciar rankup: true
+
+Protecao:
+  # Dentro dos campos (e no mundo dos campos):
+  Fome: false
+  Dano: false
+  PvP: false
+  # Quem cai no vazio do mundo dos campos volta para o spawn do campo.
+  Resgatar da queda no void: true
+  Dropar itens: true
+  # Campos MANUAL (em outros mundos): ninguém quebra nem coloca blocos na
+  # área do campo. false = só as plantas são do plugin.
+  Proteger campos fora do mundo: true
+  # Comandos que não funcionam dentro dos campos (a staff passa).
+  Comandos bloqueados: []
+
+Teleporte:
+  # Título ao entrar num campo (o "Titulo ao entrar" do campo, ou o padrão).
+  Titulo ao entrar: true
+
+Construcao:
+  # Blocos postos por tique ao montar um campo. Menos = mais leve, mais lento.
+  Blocos por tique: 3000
+
+Schematic:
+  # Tamanho máximo (em blocos) de um schematic ou de uma área de campo.
+  Volume maximo: 2000000
+
+Ranking:
+  # Segundos entre uma atualização do top e outra.
+  Atualizar a cada: 300
+  Tamanho: 10
+
+Sons:
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Clique: 'UI_BUTTON_CLICK;0.6;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Compra: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
+  Rankup: 'ENTITY_PLAYER_LEVELUP;1;1'
+  Teleporte: 'ENTITY_ENDERMAN_TELEPORT;0.7;1.2'
+  Colheita: 'BLOCK_CROP_BREAK;0.4;1.3'
+  Colheita rara: 'ENTITY_PLAYER_LEVELUP;1;1.6'
+
+# Milissegundos mínimos entre dois cliques num menu.
+Intervalo entre cliques: 150
+Debug: false
