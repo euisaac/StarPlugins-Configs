@@ -12,6 +12,10 @@
 #    STARMINAS              uma moeda do StarMinas (pepitas); a moeda vai
 #                           em 'Moeda' -- sem ela, pepitas
 #    starminas-<moeda>      atalho: 'starminas-pepitas'
+#    STARCAMPO              os grãos do StarCampo (campos de fazenda)
+#    starcampo-<moeda>      atalho: 'starcampo-graos'
+#    STARFLORESTA           a lenha do StarFloresta (/floresta)
+#                           (também 'starfloresta-lenha')
 #    PLAYERPOINTS           pontos do PlayerPoints
 #    EXP                    experiência do jogador (níveis ou pontos)
 #    ITEM                   um item do inventario (diamantes, por exemplo)
@@ -101,6 +105,33 @@ Economias:
     Abreviacao: 'pepitas'
     Simbolo: ''
     Sufixo: ' pepitas'
+    Formato: PADRAO
+    Consumir: true
+    Permissao: ''
+
+  # Os grãos do StarCampo. Só funciona com o StarCampo instalado; sem ele
+  # a economia fica indisponível (o /starrankup info mostra) e os ranks
+  # que a cobram ficam esperando. Apague se não for usar.
+  graos:
+    Provedor: STARCAMPO
+    Moeda: 'graos'
+    Nome: 'Grãos'
+    Abreviacao: 'grãos'
+    Simbolo: ''
+    Sufixo: ' grãos'
+    Formato: PADRAO
+    Consumir: true
+    Permissao: ''
+
+  # A lenha do StarFloresta. Só funciona com o StarFloresta instalado; sem
+  # ele a economia fica indisponível (o /starrankup info mostra) e os ranks
+  # que a cobram ficam esperando. Apague se não for usar.
+  lenha:
+    Provedor: STARFLORESTA
+    Nome: 'Lenha'
+    Abreviacao: 'lenha'
+    Simbolo: ''
+    Sufixo: ' lenha'
     Formato: PADRAO
     Consumir: true
     Permissao: ''
