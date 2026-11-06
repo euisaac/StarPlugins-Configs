@@ -1,0 +1,26 @@
+# =====================================================
+#  StarAtivador - configuracoes gerais
+#  (todas as mensagens do plugin ficam em mensagens.yml)
+# =====================================================
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+# Tipo de ativador criado automaticamente na primeira vez que o plugin liga,
+# caso ainda nao exista nenhum tipo cadastrado no banco de dados. Depois disso
+# a staff pode criar/editar outros tipos com /ativador criar.
+tipo-padrao:
+  id: padrao
+  nome: "Padrão"
+  tempo-segundos: 30
+  valor-coins: 10.0
+
+# Efeitos visuais/sonoros ao colocar ou ativar um ativador.
+efeitos:
+  som: true
+  particulas: true
