@@ -1,0 +1,23 @@
+name: StarFarm
+version: 1.0.11
+main: com.starplugins.starfarm.StarFarm
+author: StarPlugins
+api-version: 1.21
+authors: [EuIsaac]
+description: Plugin de AutoFarm pra 1.21+
+softdepend:
+  - StarPlugins
+website: https://starplugins.com.br
+
+commands:
+  starfarm:
+    description: Comando principal do StarFarm
+    usage: /<command> reload | funil [nick] | cleanup [pistoes|funis|tudo]
+
+permissions:
+  starfarm.funil:
+    description: Permissao para criar funis
+    default: op
+  starfarm.admin:
+    description: Permissao para comandos administrativos (cleanup, quebrar funil de outro jogador)
+    default: op
