@@ -1,0 +1,45 @@
+# ------------------------------------------------------------------
+#  Moedas em que as plantacoes podem ser vendidas
+#
+#  O id (money, cash...) e o que vai no 'Precos:' do plantacoes.yml.
+#  A PRIMEIRA moeda da lista e a principal: e nela que o top de
+#  vendedores e as placeholders de ganho contam.
+#
+#  Tipos:
+#    VAULT        - o dinheiro de qualquer plugin de economia do Vault.
+#    STARECONOMIA - uma moeda do StarEconomia ('Moeda:' = id la).
+#    COMANDO      - para economias que nao usam o Vault: o pagamento
+#                   sai por comando de console. {jogador} e {valor}.
+#                   'Placeholder do saldo' e 'Comando para tirar' so
+#                   sao usados se esta moeda pagar melhorias.
+#
+#  O 'Tipo:' tambem aceita o id da moeda:
+#    vault                 a economia do Vault
+#    stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#    yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#    yeconomy              o yEconomy
+#  O yEconomias e o yEconomy precisam do loader StarPlugins 2.0.82 ou mais novo.
+#
+#  Formato: como o valor aparece. {valor} = 1.500 | {abreviado} = 1,5K
+# ------------------------------------------------------------------
+
+Moedas:
+  money:
+    Tipo: VAULT
+    Nome: 'Coins'
+    Formato: '&2$&a{valor}'
+
+  # Uma moeda do StarEconomia. Tire os # para usar.
+  # cash:
+  #   Tipo: STARECONOMIA
+  #   Moeda: 'cash'
+  #   Nome: 'Cash'
+  #   Formato: '&6{valor} cash'
+
+  # pontos:
+  #   Tipo: COMANDO
+  #   Nome: 'Pontos'
+  #   Formato: '&b{valor} pontos'
+  #   Comando para dar: 'points give {jogador} {valor}'
+  #   Comando para tirar: 'points take {jogador} {valor}'
+  #   Placeholder do saldo: '%playerpoints_points%'
