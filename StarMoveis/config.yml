@@ -4,6 +4,14 @@
 
 debug: false
 
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
 # Quem fornece os móveis:
 #   AUTO       - ItemsAdder; se ele não estiver no servidor, RPEngine
 #   ITEMSADDER - só ItemsAdder
@@ -47,6 +55,14 @@ menu:
     - "&7Preço: &6{preco}"
     - "&cFaltam {falta}"
   missing_item: "&cItem não encontrado: {id}"
+  # Só admins veem itens que o ItemsAdder/RPEngine não tem; jogadores não.
+  missing_item_lore:
+    - "&7O {plugin} não tem este item."
+    - "&7Jogadores não o veem na loja."
+    - ""
+    - "&eInstale: &f/moveis instalar {pacote}"
+    - "&eDepois: &f{recarregar}"
+    - "&7Ou desligue-o no packages.yml."
   no_packages: "&cNenhum pacote disponível!"
   no_packages_lore:
     - "&7Admins: /moveis instalar e /moveis carregar"
