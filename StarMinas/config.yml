@@ -1,0 +1,208 @@
+# ============================================================
+#   StarMinas - configuracao geral
+#   Minas, picareta, encantamentos e recompensas: quase tudo
+#   pode ser editado DENTRO do jogo com /minaadmin.
+# ============================================================
+Versao do modelo: 1
+
+# Banco dos jogadores (nivel da picareta, encantamentos, pepitas,
+# blocos quebrados, armazem de recompensas...).
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL (MariaDB tambem serve).
+  Tipo: SQLITE
+  Host: localhost
+  Porta: 3306
+  Banco: starminas
+  Usuario: root
+  Senha: ''
+  # Varios servidores podem dividir o mesmo banco com prefixos diferentes.
+  Prefixo: 'starminas_'
+  # De quantos em quantos segundos os perfis online sao gravados.
+  Salvar a cada: 120
+
+# Dinheiro do servidor (o que a venda automatica paga).
+Economia:
+  # VAULT: qualquer economia registrada no Vault.
+  # COMANDO: para economias que nao usam Vault (saldo por placeholder).
+  # Ou o id de uma moeda (precisa do loader StarPlugins 2.0.82 ou mais novo):
+  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+  #   yeconomy              o yEconomy
+  Tipo: VAULT
+  Comando dar: 'eco give {jogador} {valor}'
+  Comando retirar: 'eco take {jogador} {valor}'
+  Placeholder do saldo: '%vault_eco_balance%'
+  Simbolo: '&2$&a'
+
+# Moeda propria das minas, ganha quebrando blocos e usada para evoluir
+# a picareta. Fica no banco do plugin: nao precisa de outro plugin.
+Pepitas:
+  Nome: 'Pepitas'
+  Singular: 'Pepita'
+  Simbolo: '&e✦'
+  # Quanto cada bloco quebrado da (antes dos bonus). Cada bloco da mina
+  # pode sobrescrever isso no editor.
+  Por bloco: 1.0
+
+# Nivel da picareta: cada bloco da energia; ao completar a meta ela sobe.
+Energia:
+  Por bloco: 1.0
+  # Meta do nivel N = Base + Por nivel x (N - 1)
+  Meta base: 1000
+  Meta por nivel: 500
+  # 0 = sem limite.
+  Nivel maximo: 0
+  Ao evoluir:
+    # Sorteia +1 nivel num encantamento (peso "Sorteio ao evoluir" de
+    # cada encantamento; os que ja estao no maximo ficam de fora).
+    Dar encantamento: true
+    # Rodados pelo console. {jogador} {nivel}
+    Comandos: []
+
+# A picareta das minas. Os dados (nivel, encantamentos) moram no perfil
+# do jogador, e nao no item: o item e so uma "janela". Por isso nao da
+# para duplicar, vender ou perder a picareta.
+Picareta:
+  Material: DIAMOND_PICKAXE
+  Nome: '&b&lPicareta &8[&f{quebrados}&8]'
+  Lore:
+    - '&7Nivel: &f{nivel} &8({porcentagem}%)'
+    - '{barra}'
+    - ''
+    - '{encantamentos}'
+    - ''
+    - '&eClique direito &7para evoluir.'
+  # Linha de cada encantamento no {encantamentos}.
+  Linha do encantamento: '&8▪ &7{nome} &f{nivel}'
+  Linha do encantamento desativado: '&8▪ &8&m{nome} {nivel}'
+  Esconder desativados: false
+  Barra:
+    Tamanho: 20
+    Simbolo: '|'
+    Cor cheia: '&a'
+    Cor vazia: '&8'
+  # Slot da barra de itens (0 a 8). -1 = primeiro slot livre.
+  Slot: 0
+  Inquebravel: true
+  Custom model data: 0
+  # Clique direito com a picareta abre o menu de evolucao.
+  Clique direito abre evolucao: true
+  # So abre agachado (evita abrir sem querer enquanto minera).
+  Exigir agachar: false
+
+# Reset das minas.
+Reset:
+  # Reseta todas as minas quando o servidor liga.
+  Resetar ao ligar: true
+  # Tempo maximo por tique (ms) gasto repondo blocos. O reset de uma
+  # mina grande e espalhado por varios tiques para o servidor nao travar.
+  Tempo por tique: 8
+  # Avisos para quem esta na mina (segundos antes do reset por tempo).
+  Avisos: [30, 10, 5, 3, 2, 1]
+  # Mina sem ninguem por perto (chunks descarregados) espera alguem
+  # chegar para resetar, em vez de carregar o terreno a toa.
+  Adiar sem jogadores: true
+
+# Regras dentro das minas.
+Minas:
+  # /mina ir sem nome leva para a melhor mina liberada. Com varias minas
+  # da mesma prioridade, escolhe a menos lotada.
+  Balancear: true
+  # Espera antes do teleporte (segundos). 0 = na hora.
+  Atraso do teleporte: 3
+  Cancelar ao mover: true
+  # Quantos blocos ao redor da mina ainda contam como "dentro" dela.
+  Margem: 6
+  # Cair abaixo da mina (mais que isso) leva de volta ao spawn dela.
+  Distancia do void: 12
+  # Com a lista preenchida, SO esses comandos funcionam dentro da mina.
+  Comandos permitidos: []
+  # Usada quando a lista acima esta vazia.
+  Comandos bloqueados:
+    - 'sethome'
+    - 'enderchest'
+    - 'ec'
+    - 'trade'
+  # Comandos que tiram o jogador da mina.
+  Comandos de saida:
+    - 'sair'
+    - 'spawn'
+  # Quem esta sem espaco nao recebe blocos (so vale em mina sem venda automatica).
+  Bloquear inventario cheio: true
+
+# Actionbar da venda: os ganhos sao somados e mostrados de tempos em
+# tempos, em vez de uma mensagem por bloco.
+Venda:
+  Mostrar: true
+  # Em tiques (20 = 1 segundo).
+  Intervalo: 20
+
+# Bonus por permissao. Com "Acumular: false" vale so o maior.
+Bonus:
+  Acumular: false
+  Lista:
+    vip:
+      Permissao: 'starminas.bonus.vip'
+      Nome: '&aVIP'
+      Dinheiro: 10
+      Pepitas: 10
+      Energia: 0
+    mvp:
+      Permissao: 'starminas.bonus.mvp'
+      Nome: '&bMVP'
+      Dinheiro: 25
+      Pepitas: 20
+      Energia: 10
+
+# Placar (scoreboard) para quem esta numa mina.
+Placar:
+  Ativado: true
+  Titulo: '&b&lMINAS'
+  Linhas:
+    - ''
+    - '&fMina: &b{mina}'
+    - '&fRestante: &a{restante}%'
+    - '&fReset: &e{reset}'
+    - ''
+    - '&fNivel: &b{nivel} &8({porcentagem}%)'
+    - '&fQuebrados: &a{quebrados}'
+    - '&f{moeda}: &e{pepitas}'
+    - ''
+    - '&fBonus: &a+{bonus}%'
+    - ''
+    - '&7starplugins.com.br'
+
+# Holograma em cima da mina (defina o lugar no editor).
+Holograma:
+  Linhas:
+    - '&b&l{mina}'
+    - '&7Restante: &f{restante}%'
+    - '&7Reset em: &f{reset}'
+  Espacamento: 0.28
+  # Some quando nao ha ninguem nesse raio (economiza entidades).
+  Distancia: 48
+
+# Guarda as recompensas encontradas num menu (/mina armazem) em vez de
+# entregar na hora. Cada recompensa tambem pode decidir isso sozinha.
+Armazem:
+  Ativado: true
+  # Resumo das recompensas encontradas, de tempos em tempos (segundos).
+  Resumo a cada: 60
+
+# Ranking.
+Top:
+  # De quantos em quantos segundos o ranking e recalculado.
+  Atualizar a cada: 300
+  Tamanho: 10
+
+# Encantamentos de area (explosao, laser, camada...).
+Efeitos:
+  # Teto de blocos quebrados de uma vez por um efeito (protege o TPS).
+  Limite de blocos: 30000
+  # Teto de cada recompensa (e de LuckyBlocks) por efeito de area. O golpe
+  # normal sorteia bloco a bloco; o Nuclear quebra a mina inteira de uma vez.
+  Recompensas maximas por efeito: 5
+  LuckyBlocks maximos por efeito: 3
+
+# Depuracao no console.
+Depuracao: false
