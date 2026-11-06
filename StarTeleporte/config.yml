@@ -1,0 +1,60 @@
+# StarTeleporte Configuration
+
+debug: false
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+# Item da pedra de teletransporte
+teleportStoneItem:
+  material: "FIREWORK_STAR"
+  name: "&5&lPedra do Teletransporte"
+  lore:
+    - ""
+    - "&dDono: &f{owner}"
+    - "&dDistancia Maxima: &f{distancia}"
+    - ""
+    - "&7 Clique para abrir o menu"
+
+# Blocos da estrutura da pedra de teletransporte
+structureBlocks: 
+   bloco1: "CHISELED_STONE_BRICKS" #Bloco da base
+   bloco2: "STONE_BRICK_WALL" #Bloco a cima do bloco1
+   bloco3: "SOUL_LANTERN" #Bloco a cima do bloco2
+
+# Default maximum distance for linking stones (in blocks)
+defaultMaxDistance: 100
+
+# Default status for new stones: Publica, Privada, Amigos
+defaultStatus: "Privada"
+
+# Hologramas nas pedras. Usam o plugin de holograma escolhido em "hologram" no
+# config do StarPlugins (StarHologramas, outro instalado ou suportes invisiveis).
+enableHolograms: true
+
+# Hologram height offset from the stone block
+hologramHeight: 4.0
+
+# Hologram lines (supports color codes)
+hologramLines:
+  - "&5&l{nome}"
+  - "&dDono: &f{dono}"
+  - "&dDistancia Maxima: &f{distancia}"
+  - "&dStatus: &f{status}"
+
+# Maximum upgrade distance allowed
+maxUpgradeDistance: 1000
+
+# Cost to upgrade distance (in Money)
+upgradeCost: 5000
+
+# Enable or disable WorldGuard build DENY flag check on stone placement
+checkWorldGuardBuildDeny: true
+
+# Enable or disable GriefDefender claim check on stone placement
+checkGriefDefenderClaim: true

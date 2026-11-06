@@ -1,0 +1,44 @@
+name: StarTeleporte
+version: 1.0.10
+main: com.starplugins.startteleporte.StarTeleporte
+api-version: 1.21
+description: A Waystones-like teleportation plugin for Minecraft Spigot 1.21.8
+author: EuIsaac
+softdepend: [DecentHolograms, StarPlugins]
+website: https://github.com/EuIsaac/StarTeleporte
+
+commands:
+  starteleporte:
+    description: Give a Teleport Stone to a player
+    usage: /<command> dar <player> <amount>
+    permission: starteleporte.dar
+  starteleporteamigo:
+    description: Manage friends for teleport stones
+    usage: /<command> amigo <add|remover|lista> <player>
+    permission: starteleporte.amigo
+  starteleporteremover:
+    description: Force remove a teleport stone (staff only)
+    usage: /<command> <stoneId>
+    permission: starteleporte.remover
+  starteleporteinfo:
+    description: Get info about a teleport stone you're looking at
+    usage: /<command>
+    permission: starteleporte.info
+  starteleportereload:
+    description: Reload the plugin configuration
+    usage: /<command>
+    permission: starteleporte.reload
+
+permissions:
+  starteleporte.give:
+    description: Allows giving teleport stones
+    default: op
+  starteleporte.amigo:
+    description: Allows managing friends
+    default: true
+  starteleporte.remover:
+    description: Allows force removing teleport stones
+    default: op
+  starteleporte.info:
+    description: Allows getting info about teleport stones
+    default: true
