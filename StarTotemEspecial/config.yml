@@ -1,0 +1,206 @@
+# ==========================================================================
+#  StarTotemEspecial - configuração geral
+#
+#  O jogador guarda totens e escolhe um ATIVO. Quando um golpe o mataria,
+#  o totem ativo é gasto: o jogador volta com um pouco de vida e o efeito do
+#  totem dispara (raios, buraco negro, lobos guardiões...).
+#
+#  Os totens ficam no totens.yml. Quase tudo daqui e de lá também pode ser
+#  mudado no jogo: /totemadmin editor
+# ==========================================================================
+
+Versao do modelo: 1
+
+Banco de dados:
+  # SQLITE (arquivo na pasta do plugin) ou MYSQL.
+  Tipo: SQLITE
+  Host: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+  Prefixo: 'startotem_'
+  # Segundos entre um salvamento e outro (quem sai do servidor é salvo na hora).
+  Salvar a cada: 60
+
+# --------------------------------------------------------------------------
+#  Uso do totem
+# --------------------------------------------------------------------------
+Uso:
+  # Recarga (em segundos) entre um totem e outro. Impede que o jogador use
+  # totens em sequência para vencer um chefe ou um evento na força bruta.
+  # Cada totem pode ter a sua no totens.yml (Recarga: -1 = usa esta).
+  Recarga: 60
+  # Recarga menor por permissão: 'permissao:segundos' (a menor que o jogador
+  # tiver vale). A permissão precisa ser dada por extenso: o '*' da staff
+  # não conta.
+  Cooldown por permissao:
+    - 'startotemespecial.cooldown.vip:45'
+    - 'startotemespecial.cooldown.mvp:30'
+  # Quantos de cada totem o jogador pode guardar (cada totem pode ter o seu).
+  Maximo por totem: 10
+  # Quando o totem ativo acaba, ativa sozinho o próximo que o jogador tiver.
+  # O jogador pode desligar isso para ele no /totens.
+  Trocar sozinho por padrao: true
+  # Quem segura um Totem da Imortalidade comum (1.11+) usa ele primeiro, e o
+  # totem especial fica guardado.
+  Totem comum tem prioridade: true
+  # Mundos onde os totens especiais não funcionam.
+  Mundos bloqueados:
+    - 'exemplo_mundo_pvp'
+  # Causas de morte que nenhum totem salva (nomes do Bukkit: VOID, SUICIDE,
+  # KILL, LAVA, FALL...). O vazio e o /kill ficam de fora por padrão.
+  Causas ignoradas:
+    - VOID
+    - SUICIDE
+    - KILL
+  # Avisar o jogador quando a recarga acabar (cada um pode desligar no /totens).
+  Avisar quando recarregar: true
+
+# --------------------------------------------------------------------------
+#  O que acontece com o jogador salvo pelo totem
+# --------------------------------------------------------------------------
+Ao reviver:
+  # Vida com que ele volta (2 = um coração). Cada totem pode ter a sua.
+  Vida: 2.0
+  # Tira os efeitos de poção que ele tinha antes de aplicar os de baixo.
+  Limpar efeitos: true
+  # Efeitos de poção: NOME:nível:segundos (nível 0 = I).
+  Efeitos:
+    - 'REGENERATION:1:45'
+    - 'ABSORPTION:1:5'
+    - 'FIRE_RESISTANCE:0:40'
+  # Apaga o fogo e zera a queda (quem cai de muito alto não morre de novo).
+  Apagar fogo: true
+  # Segundos sem levar dano logo depois de reviver.
+  Invencivel por: 1.0
+  # A animação do totem na tela (1.11+). Antes disso sai só o brilho.
+  Animacao: true
+  Particula: 'TOTEM_OF_UNDYING'
+  Som: 'ITEM_TOTEM_USE;1.0;1.0'
+  # Avisar o servidor inteiro quando alguém usar um totem.
+  Anunciar para todos: false
+
+# --------------------------------------------------------------------------
+#  Fichas (a moeda dos totens)
+# --------------------------------------------------------------------------
+Fichas:
+  # Nome da moeda (aparece nas mensagens e na loja).
+  Nome: 'Fichas'
+  Nome no singular: 'Ficha'
+  # Ganhar fichas ao gastar um Totem da Imortalidade comum (1.11+).
+  Consumir totem comum:
+    Ativar: true
+    Minimo: 1
+    Maximo: 2
+  # Ganhar fichas matando mobs. Formato: 'chance%:quantidade' (quantidade
+  # pode ser um intervalo, como 1-3). '*' vale para qualquer mob da lista.
+  Mobs:
+    Ativar: true
+    # Mobs que nasceram de spawner não dão fichas (evita fazenda).
+    Ignorar spawner: true
+    Lista:
+      EVOKER: '100%:1-2'
+      WITHER: '100%:5'
+      ENDER_DRAGON: '100%:10'
+      ELDER_GUARDIAN: '100%:3'
+      WARDEN: '100%:4'
+      RAVAGER: '25%:1'
+  # Ganhar fichas por tempo jogado.
+  Tempo online:
+    Ativar: false
+    Minutos: 30
+    Quantidade: 1
+    # Só conta para quem se mexeu nesse tempo (anti-AFK).
+    Exigir movimento: true
+  # Enviar fichas para outro jogador (/fichas enviar).
+  Enviar:
+    Ativar: true
+    Minimo: 1
+  # Pacotes de fichas vendidos por dinheiro no menu de fichas (/fichas loja).
+  # Preco: 'economia:valor' (economias.yml). Apague a seção para não vender.
+  Pacotes:
+    pequeno:
+      Fichas: 1
+      Preco: 'dinheiro:5000'
+      Material: 'GOLD_NUGGET'
+      Slot: 11
+    medio:
+      Fichas: 5
+      Preco: 'dinheiro:22500'
+      Material: 'GOLD_INGOT'
+      Slot: 13
+    grande:
+      Fichas: 12
+      Preco: 'dinheiro:50000'
+      Material: 'GOLD_BLOCK'
+      Slot: 15
+
+# --------------------------------------------------------------------------
+#  Totens comuns (Totem da Imortalidade do jogo, 1.11+)
+# --------------------------------------------------------------------------
+Controle:
+  # Tira o Totem da Imortalidade comum do inventário ao entrar, ao clicar e ao
+  # pegar do chão. Use quando os totens especiais forem os únicos do servidor.
+  Remover totens comuns: false
+  # Cada totem comum removido vira esta quantidade de fichas (0 = só some).
+  Fichas por totem removido: 1
+  # O Evocador não deixa cair o Totem da Imortalidade.
+  Bloquear drop do evocador: false
+
+# --------------------------------------------------------------------------
+#  Itens físicos
+# --------------------------------------------------------------------------
+Itens:
+  # O jogador pode transformar um totem guardado em item (para trocar ou
+  # vender) no /totens, com shift + clique direito.
+  Permitir retirar: true
+  # O item do totem é uma cabeça/material com a marca do plugin; clique
+  # direito com ele na mão guarda de volta.
+  Lore do item:
+    - ''
+    - '&7Clique com o &fdireito &7para guardar'
+    - '&7este totem no seu &f/totens&7.'
+  Ficha:
+    Material: 'SUNFLOWER'
+    Nome: '&e&l{quantidade} {moeda}'
+    Lore:
+      - ''
+      - '&7Clique com o &fdireito &7para resgatar.'
+    Brilho: true
+
+# --------------------------------------------------------------------------
+#  Demonstração (o jogador vê o efeito sem dano antes de comprar)
+# --------------------------------------------------------------------------
+Previa:
+  Ativar: true
+  # Segundos entre uma demonstração e outra.
+  Recarga: 20
+
+# --------------------------------------------------------------------------
+#  Compatibilidade
+# --------------------------------------------------------------------------
+Compatibilidade:
+  # StarReviver (cair sangrando antes de morrer).
+  #   TOTEM_PRIMEIRO  quem tem totem pronto não cai: o totem salva na hora.
+  #   QUEDA_PRIMEIRO  o jogador cai normalmente e o totem fica guardado.
+  StarReviver: TOTEM_PRIMEIRO
+  # ReviveMe (mesma ideia, plugin de terceiros).
+  #   TOTEM_PRIMEIRO  o totem salva antes e o jogador nem fica caído.
+  #   QUEDA_PRIMEIRO  o jogador cai primeiro; se for morrer caído, o totem
+  #                   salva e o tira do estado de caído.
+  ReviveMe: TOTEM_PRIMEIRO
+
+Menus:
+  # Milissegundos entre dois cliques (evita comprar duas vezes sem querer).
+  Intervalo entre cliques: 250
+  Som do clique: 'UI_BUTTON_CLICK;0.6;1.2'
+  Som de erro: 'ENTITY_VILLAGER_NO;1.0;1.0'
+  Som de sucesso: 'ENTITY_VILLAGER_YES;1.0;1.0'
+  Som da pagina: 'ITEM_BOOK_PAGE_TURN;1.0;1.0'
+  Som de compra: 'ENTITY_PLAYER_LEVELUP;1.0;1.6'
+  Som das fichas: 'BLOCK_RESPAWN_ANCHOR_CHARGE;1.0;0.8'
+
+# Mostra no console o que cada golpe letal decidiu (para achar conflito com
+# outro plugin).
+Debug: false

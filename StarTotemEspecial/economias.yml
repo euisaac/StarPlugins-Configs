@@ -1,0 +1,47 @@
+# ==========================================================================
+#  StarTotemEspecial - economias
+#
+#  As moedas que podem aparecer no preço dos totens (totens.yml) e dos
+#  pacotes de fichas (config.yml). A chave (ex.: 'fichas') é o que o preço
+#  cita: 'fichas:3', 'dinheiro:10K'. Um totem pode pedir várias ao mesmo
+#  tempo (ex.: 3 fichas + 5 mil de dinheiro).
+#
+#  Provedor:
+#    FICHAS        as fichas deste plugin
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' é o id dela (vazio =
+#                  a principal)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro sai por comando de console ({jogador} {uuid} {valor})
+#    ou o id de uma moeda do loader:
+#    stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#
+#  Valores inteiros  arredonda para baixo (pontos, cash).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# A economia que vale quando o preço não diz qual (ex.: 'Preco: 3').
+Padrao: fichas
+
+Economias:
+  fichas:
+    Provedor: FICHAS
+    Nome: 'Fichas'
+    Simbolo: ''
+    Abreviacao: ' Fichas'
+    Valores inteiros: true
+
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Simbolo: '$'
+
+  # Exemplo com PlayerPoints. Tire o # e use 'pontos' num preço
+  # (ex.: - 'pontos:10').
+  # pontos:
+  #   Provedor: PLAYERPOINTS
+  #   Nome: 'Pontos'
+  #   Simbolo: ''
+  #   Abreviacao: ' pontos'

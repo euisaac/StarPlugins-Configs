@@ -1,0 +1,652 @@
+# ==========================================================================
+#  StarTotemEspecial - totens
+#
+#  Tudo daqui pode ser editado no jogo: /totemadmin editor
+#
+#  Cada totem:
+#    Ativado            false = some da loja e não age
+#    Nome, Descricao    textos (aceitam & e <#RRGGBB>)
+#    Icone              Material (e Textura, para cabeça: base64, URL ou hash)
+#    Preco              lista 'economia:valor' (economias.yml). Ex.:
+#                         - 'fichas:3'
+#                         - 'dinheiro:5000'   (cobra os dois)
+#    Na loja            false = só por comando, item ou caixa
+#    Ordem              posição na loja e nos menus
+#    Permissao          '' = todos; senão só quem tiver compra e usa
+#    Reviver            false = o efeito dispara e o jogador morre (vingança)
+#    Atingir jogadores  os efeitos de ataque também ferem jogadores
+#                       (as proteções de PvP/região continuam valendo)
+#    Ativar contra      TUDO, JOGADORES (morte por jogador), MOBS ou
+#                       AMBIENTE (queda, fogo, afogamento...)
+#    Recarga            segundos; -1 = a do config.yml
+#    Maximo             quantos o jogador guarda; -1 = o do config.yml
+#    Vida ao reviver    -1 = a do config.yml
+#    Efeitos            lista; um totem pode ter VÁRIOS efeitos juntos
+#
+#  Tipos de efeito (e os ajustes de cada um; o que faltar fica no padrão):
+#   ATAQUE
+#    RAIO               Raio, Dano, Alvos
+#    ONDA_VENENOSA      Raio, Disparos, Intervalo, Dano
+#    EXPLOSAO           Raio, Dano, Forca           (não quebra blocos)
+#    CHUVA_DE_ESTRELAS  Raio, Alvos, Intervalo, Dano
+#    TRIDENTES          Quantidade, Forca, Dano     (flechas antes da 1.13)
+#    PRESAS             Raio, Alvos, Intervalo, Dano
+#    BOLAS_DE_FOGO      Raio, Quantidade, Intervalo, Dano
+#    CHUVA_DE_METEOROS  Raio, Quantidade, Intervalo, Dano, Area
+#    CORRENTE_ELETRICA  Raio, Saltos, Dano, Perda
+#    ONDA_DE_CHOQUE     Raio, Dano, Forca, Velocidade
+#    VAMPIRISMO         Raio, Alvos, Dano, Porcentagem
+#   CONTROLE
+#    LENTIDAO           Raio, Duracao, Nivel
+#    FOGO               Raio, Duracao
+#    TERREMOTO          Raio, Altura
+#    REPULSAO           Raio, Forca
+#    BURACO_NEGRO       Raio, Duracao, Forca, Dano
+#    REDEMOINHO         Raio, Tamanho, Quantidade, Duracao, Intervalo, Dano
+#    CONGELAMENTO       Raio, Duracao, Dano
+#    FUMACA             Raio, Duracao
+#    CALDEIRAO          Raio, Quantidade, Duracao, Intervalo, Dano, Area
+#   SUPORTE
+#    VELOCIDADE         Raio, Duracao, Nivel, Aliados
+#    FORCA              Raio, Duracao, Nivel, Aliados
+#    CURA               Raio, Vida, Aliados
+#    ESCUDO             Duracao, Nivel, Absorcao, Raio, Aliados
+#    VEU_SOMBRIO        Duracao
+#    FUGA               Distancia, Duracao
+#    FENIX              Raio, Dano, Duracao
+#    ESPINHOS           Duracao, Porcentagem
+#    POCAO              Pocao, Nivel, Duracao, Raio, Alvo (DONO, ALIADOS,
+#                       DONO_E_ALIADOS, INIMIGOS, TODOS)
+#   INVOCAÇÃO
+#    BONECOS_DE_NEVE    Raio, Duracao, Quantidade, Dano
+#    MATILHA            Quantidade, Duracao, Dano
+#    GOLEM              Duracao, Dano, Raio
+#   EXTRAS
+#    FOGOS              Quantidade, Intervalo
+#    PARTICULAS         Particula, Quantidade, Espalhar
+#    SOM                Som, Volume, Tom
+#    ANUNCIO            Texto, Onde (CHAT, TITULO, ACTIONBAR), Raio (0 = todos)
+#    COMANDOS           Comandos (lista; {jogador} {uuid} {mundo} {x} {y} {z})
+#
+#  Duracao e Intervalo são em segundos. Dano 2 = um coração.
+# ==========================================================================
+
+Totens:
+
+  # ------------------------------------------------------------------------
+  #  Os clássicos
+  # ------------------------------------------------------------------------
+  solar:
+    Ativado: true
+    Nome: '&e&lTotem Solar'
+    Descricao:
+      - '&7Raios caem sobre os inimigos'
+      - '&7que estiverem perto de você.'
+    Icone:
+      Material: 'SUNFLOWER'
+    Preco:
+      - 'fichas:3'
+    Na loja: true
+    Ordem: 1
+    Reviver: true
+    Atingir jogadores: false
+    Ativar contra: TUDO
+    Efeitos:
+      - Tipo: RAIO
+        Raio: 18.0
+        Dano: 12.5
+        Alvos: 10
+
+  venenoso:
+    Nome: '&a&lTotem Venenoso'
+    Descricao:
+      - '&7Uma onda de &aveneno&7 se espalha e'
+      - '&7fere os inimigos aos poucos.'
+    Icone:
+      Material: 'SPIDER_EYE'
+    Preco:
+      - 'fichas:2'
+    Ordem: 2
+    Efeitos:
+      - Tipo: ONDA_VENENOSA
+        Raio: 12.5
+        Disparos: 4
+        Intervalo: 1.0
+        Dano: 2.0
+
+  lentidao:
+    Nome: '&8&lTotem da Lentidão'
+    Descricao:
+      - '&7Os inimigos por perto ficam'
+      - '&8&llentos&7 por alguns segundos.'
+    Icone:
+      Material: 'SOUL_SAND'
+    Preco:
+      - 'fichas:2'
+    Ordem: 3
+    Efeitos:
+      - Tipo: LENTIDAO
+        Raio: 7.5
+        Duracao: 6.0
+        Nivel: 5
+
+  flamejante:
+    Nome: '&c&lTotem Flamejante'
+    Descricao:
+      - '&7Põe &cfogo&7 em todos os inimigos'
+      - '&7que estiverem perto.'
+    Icone:
+      Material: 'BLAZE_POWDER'
+    Preco:
+      - 'fichas:1'
+    Ordem: 4
+    Efeitos:
+      - Tipo: FOGO
+        Raio: 7.5
+        Duracao: 5.0
+
+  velocidade:
+    Nome: '&b&lTotem da Velocidade'
+    Descricao:
+      - '&7Você e os jogadores por perto'
+      - '&7ficam muito mais &brápidos&7.'
+    Icone:
+      Material: 'SUGAR'
+    Preco:
+      - 'fichas:1'
+    Ordem: 5
+    Efeitos:
+      - Tipo: VELOCIDADE
+        Raio: 17.5
+        Duracao: 4.0
+        Nivel: 5
+        Aliados: true
+
+  terremoto:
+    Nome: '&2&lTotem do Terremoto'
+    Descricao:
+      - '&7O chão treme e joga os inimigos'
+      - '&7para o &2alto&7.'
+    Icone:
+      Material: 'GRASS_BLOCK'
+    Preco:
+      - 'fichas:2'
+    Ordem: 6
+    Efeitos:
+      - Tipo: TERREMOTO
+        Raio: 12.5
+        Altura: 1.46
+
+  empurrao:
+    Nome: '&c&lTotem do Empurrão'
+    Descricao:
+      - '&7Empurra os inimigos para &clonge'
+      - '&7e te dá tempo de respirar.'
+    Icone:
+      Material: 'PISTON'
+    Preco:
+      - 'fichas:1'
+    Ordem: 7
+    Efeitos:
+      - Tipo: REPULSAO
+        Raio: 5.25
+        Forca: 2.24
+
+  explosivo:
+    Nome: '&4&lTotem Explosivo'
+    Descricao:
+      - '&7Você &4explode&7 levando os inimigos'
+      - '&7junto. &cNão revive!'
+    Icone:
+      Material: 'TNT'
+    Preco:
+      - 'fichas:4'
+    Ordem: 8
+    Reviver: false
+    Efeitos:
+      - Tipo: EXPLOSAO
+        Raio: 4.75
+        Dano: 20.0
+        Forca: 1.2
+
+  estrelas:
+    Nome: '&f&lTotem das Estrelas'
+    Descricao:
+      - '&7Uma chuva de &festrelas&7 cai sobre'
+      - '&7cada inimigo por perto.'
+    Icone:
+      Material: 'NETHER_STAR'
+    Preco:
+      - 'fichas:6'
+    Ordem: 9
+    Efeitos:
+      - Tipo: CHUVA_DE_ESTRELAS
+        Raio: 12.5
+        Alvos: 8
+        Intervalo: 0.64
+        Dano: 12.0
+
+  veu_sombrio:
+    Nome: '&8&lTotem do Véu Sombrio'
+    Descricao:
+      - '&7Finge a sua morte: os mobs te esquecem'
+      - '&7e você fica &8invisível&7 por um tempo.'
+    Icone:
+      Material: 'ENDER_EYE'
+    Preco:
+      - 'fichas:4'
+    Ordem: 10
+    Atingir jogadores: true
+    Efeitos:
+      - Tipo: VEU_SOMBRIO
+        Duracao: 3.5
+
+  buraco_negro:
+    Nome: '&5&lTotem do Buraco Negro'
+    Descricao:
+      - '&7Um &5buraco negro&7 suga todos os'
+      - '&7inimigos para o centro.'
+    Icone:
+      Material: 'COAL_BLOCK'
+    Preco:
+      - 'fichas:3'
+    Ordem: 11
+    Efeitos:
+      - Tipo: BURACO_NEGRO
+        Raio: 8.5
+        Duracao: 3.75
+        Forca: 0.35
+        Dano: 0.0
+
+  mares:
+    Nome: '&3&lTotem dos Mares'
+    Descricao:
+      - '&7A força dos mares: &3tridentes&7 saem'
+      - '&7voando para todos os lados.'
+    Icone:
+      Material: 'PRISMARINE_SHARD'
+    Preco:
+      - 'fichas:2'
+    Ordem: 12
+    Efeitos:
+      - Tipo: TRIDENTES
+        Quantidade: 32
+        Forca: 1.65
+        Dano: 12.5
+
+  inverno:
+    Nome: '&f&lTotem do Inverno'
+    Descricao:
+      - '&7Bonecos de neve aparecem e jogam'
+      - '&7&fbolas de gelo&7 nos inimigos.'
+    Icone:
+      Material: 'SNOWBALL'
+    Preco:
+      - 'fichas:2'
+    Ordem: 13
+    Efeitos:
+      - Tipo: BONECOS_DE_NEVE
+        Raio: 7.0
+        Duracao: 3.75
+        Quantidade: 3
+        Dano: 2.5
+
+  presas:
+    Nome: '&c&lTotem das Presas'
+    Descricao:
+      - '&7Presas mágicas saem do chão e'
+      - '&cmordem&7 os inimigos.'
+    Icone:
+      Material: 'FLINT'
+    Preco:
+      - 'fichas:2'
+    Ordem: 14
+    Efeitos:
+      - Tipo: PRESAS
+        Raio: 7.75
+        Alvos: 6
+        Intervalo: 0.64
+        Dano: 4.5
+
+  redemoinho:
+    Nome: '&f&lTotem do Redemoinho'
+    Descricao:
+      - '&7Redemoinhos sugam e ferem'
+      - '&7os inimigos por perto.'
+    Icone:
+      Material: 'FEATHER'
+    Preco:
+      - 'fichas:3'
+    Ordem: 15
+    Efeitos:
+      - Tipo: REDEMOINHO
+        Raio: 6.0
+        Tamanho: 1.65
+        Quantidade: 4
+        Duracao: 2.25
+        Intervalo: 0.54
+        Dano: 3.0
+
+  sacrificio:
+    Nome: '&c&lTotem do Sacrifício'
+    Descricao:
+      - '&7Você se &csacrifica&7 e deixa os'
+      - '&7aliados por perto muito mais fortes.'
+      - '&cNão revive!'
+    Icone:
+      Material: 'IRON_SWORD'
+    Preco:
+      - 'fichas:4'
+    Ordem: 16
+    Reviver: false
+    Atingir jogadores: true
+    Efeitos:
+      - Tipo: FORCA
+        Raio: 15.25
+        Duracao: 12.0
+        Nivel: 5
+        Aliados: true
+
+  alquimico:
+    Nome: '<#EB00FF>&lTotem <#9D55F5>&lAlquí<#4EAAEA>&lmico'
+    Descricao:
+      - '&7Poças de &dpoção&7 cobrem o chão e'
+      - '&7ferem quem pisar nelas.'
+    Icone:
+      Material: 'BREWING_STAND'
+    Preco:
+      - 'fichas:6'
+    Ordem: 17
+    Efeitos:
+      - Tipo: CALDEIRAO
+        Raio: 5.0
+        Quantidade: 6
+        Duracao: 12.0
+        Intervalo: 0.64
+        Dano: 3.0
+        Area: 1.6
+
+  bolas_de_fogo:
+    Nome: '&6&lTotem das Bolas de Fogo'
+    Descricao:
+      - '&7Atira &6bolas de fogo&7 nos'
+      - '&7inimigos por perto.'
+    Icone:
+      Material: 'FIRE_CHARGE'
+    Preco:
+      - 'fichas:1'
+    Ordem: 18
+    Efeitos:
+      - Tipo: BOLAS_DE_FOGO
+        Raio: 12.0
+        Quantidade: 8
+        Intervalo: 0.25
+        Dano: 2.0
+
+  # ------------------------------------------------------------------------
+  #  Os novos
+  # ------------------------------------------------------------------------
+  cura:
+    Nome: '&d&lTotem da Cura'
+    Descricao:
+      - '&7Cura você e os aliados por perto'
+      - '&7e dá um &dcoração extra&7.'
+    Icone:
+      Material: 'GOLDEN_APPLE'
+    Preco:
+      - 'fichas:3'
+    Ordem: 19
+    Efeitos:
+      - Tipo: CURA
+        Raio: 10.0
+        Vida: 10.0
+        Aliados: true
+      - Tipo: ESCUDO
+        Duracao: 6.0
+        Nivel: 1
+        Absorcao: 2
+        Raio: 10.0
+        Aliados: true
+
+  vampiro:
+    Nome: '&4&lTotem do Vampiro'
+    Descricao:
+      - '&7Suga a &4vida&7 dos inimigos e'
+      - '&7devolve para você.'
+    Icone:
+      Material: 'REDSTONE'
+    Preco:
+      - 'fichas:4'
+    Ordem: 20
+    Efeitos:
+      - Tipo: VAMPIRISMO
+        Raio: 8.0
+        Alvos: 5
+        Dano: 4.0
+        Porcentagem: 60.0
+
+  glacial:
+    Nome: '&b&lTotem Glacial'
+    Descricao:
+      - '&bCongela&7 os inimigos no lugar'
+      - '&7por alguns segundos.'
+    Icone:
+      Material: 'PACKED_ICE'
+    Preco:
+      - 'fichas:3'
+    Ordem: 21
+    Efeitos:
+      - Tipo: CONGELAMENTO
+        Raio: 7.0
+        Duracao: 4.0
+        Dano: 1.0
+
+  fumaca:
+    Nome: '&7&lTotem da Fumaça'
+    Descricao:
+      - '&7Uma nuvem de &8fumaça&7 cega os'
+      - '&7inimigos e você &7foge para longe.'
+    Icone:
+      Material: 'GUNPOWDER'
+    Preco:
+      - 'fichas:3'
+    Ordem: 22
+    Efeitos:
+      - Tipo: FUMACA
+        Raio: 8.0
+        Duracao: 5.0
+      - Tipo: FUGA
+        Distancia: 10.0
+        Duracao: 3.0
+
+  matilha:
+    Nome: '&f&lTotem da Matilha'
+    Descricao:
+      - '&7Uma &fmatilha de lobos&7 aparece e'
+      - '&7ataca quem tentou te matar.'
+    Icone:
+      Material: 'BONE'
+    Preco:
+      - 'fichas:4'
+    Ordem: 23
+    Efeitos:
+      - Tipo: MATILHA
+        Quantidade: 3
+        Duracao: 15.0
+        Dano: 4.0
+
+  guardiao:
+    Nome: '&7&lTotem do Guardião'
+    Descricao:
+      - '&7Um &fgolem de ferro&7 surge para'
+      - '&7proteger você.'
+    Icone:
+      Material: 'IRON_BLOCK'
+    Preco:
+      - 'fichas:5'
+    Ordem: 24
+    Efeitos:
+      - Tipo: GOLEM
+        Duracao: 20.0
+        Dano: 10.0
+        Raio: 12.0
+
+  meteoros:
+    Nome: '&6&lTotem dos Meteoros'
+    Descricao:
+      - '&7Uma chuva de &6meteoros&7 em chamas'
+      - '&7cai em volta de você.'
+    Icone:
+      Material: 'MAGMA_CREAM'
+    Preco:
+      - 'fichas:5'
+    Ordem: 25
+    Efeitos:
+      - Tipo: CHUVA_DE_METEOROS
+        Raio: 10.0
+        Quantidade: 6
+        Intervalo: 0.4
+        Dano: 7.0
+        Area: 2.5
+
+  tempestade:
+    Nome: '&9&lTotem da Tempestade'
+    Descricao:
+      - '&7Uma &9corrente elétrica&7 salta de'
+      - '&7inimigo em inimigo.'
+    Icone:
+      Material: 'BLAZE_ROD'
+    Preco:
+      - 'fichas:4'
+    Ordem: 26
+    Efeitos:
+      - Tipo: CORRENTE_ELETRICA
+        Raio: 10.0
+        Saltos: 5
+        Dano: 6.0
+        Perda: 15.0
+
+  impacto:
+    Nome: '&e&lTotem do Impacto'
+    Descricao:
+      - '&7Uma &eonda de choque&7 se espalha,'
+      - '&7empurrando e ferindo.'
+    Icone:
+      Material: 'ANVIL'
+    Preco:
+      - 'fichas:3'
+    Ordem: 27
+    Efeitos:
+      - Tipo: ONDA_DE_CHOQUE
+        Raio: 9.0
+        Dano: 5.0
+        Forca: 1.4
+        Velocidade: 0.6
+
+  fenix:
+    Nome: '<#FF8C00>&lTotem da <#FF3D00>&lFênix'
+    Descricao:
+      - '&7Você &6renasce das cinzas&7: sobe em'
+      - '&7chamas, queima quem estiver perto'
+      - '&7e se regenera.'
+    Icone:
+      Material: 'FLINT_AND_STEEL'
+    Preco:
+      - 'fichas:6'
+    Ordem: 28
+    Efeitos:
+      - Tipo: FENIX
+        Raio: 6.0
+        Dano: 4.0
+        Duracao: 6.0
+
+  espinhos:
+    Nome: '&2&lTotem dos Espinhos'
+    Descricao:
+      - '&7Por um tempo, metade do dano que'
+      - '&7você levar &2volta&7 para quem bateu.'
+    Icone:
+      Material: 'CACTUS'
+    Preco:
+      - 'fichas:3'
+    Ordem: 29
+    Efeitos:
+      - Tipo: ESPINHOS
+        Duracao: 10.0
+        Porcentagem: 50.0
+      - Tipo: ESCUDO
+        Duracao: 10.0
+        Nivel: 1
+        Absorcao: 0
+        Raio: 8.0
+        Aliados: false
+
+  fuga:
+    Nome: '&5&lTotem da Fuga'
+    Descricao:
+      - '&7Te &5teleporta&7 para longe do perigo'
+      - '&7e te deixa invisível por um instante.'
+    Icone:
+      Material: 'ENDER_PEARL'
+    Preco:
+      - 'fichas:2'
+    Ordem: 30
+    Efeitos:
+      - Tipo: FUGA
+        Distancia: 14.0
+        Duracao: 3.0
+      - Tipo: VEU_SOMBRIO
+        Duracao: 2.0
+
+  celestial:
+    Nome: '<#FFE259>&lTotem <#FFA751>&lCelestial'
+    Descricao:
+      - '&7O mais poderoso: cura, escudo, onda'
+      - '&7de choque, raios e uma festa no céu.'
+      - '&7O servidor inteiro fica sabendo.'
+    Icone:
+      Material: 'BEACON'
+    Preco:
+      - 'fichas:12'
+    Ordem: 31
+    Recarga: 180
+    Maximo: 3
+    Efeitos:
+      - Tipo: CURA
+        Raio: 12.0
+        Vida: 20.0
+        Aliados: true
+      - Tipo: ESCUDO
+        Duracao: 10.0
+        Nivel: 2
+        Absorcao: 4
+        Raio: 12.0
+        Aliados: true
+      - Tipo: ONDA_DE_CHOQUE
+        Raio: 10.0
+        Dano: 6.0
+        Forca: 1.6
+        Velocidade: 0.7
+      - Tipo: RAIO
+        Raio: 14.0
+        Dano: 10.0
+        Alvos: 6
+      - Tipo: FOGOS
+        Quantidade: 6
+        Intervalo: 0.3
+      - Tipo: ANUNCIO
+        Texto: '&6&l{jogador} &eescapou da morte com o {totem}&e!'
+        Onde: CHAT
+        Raio: 0.0
+
+  simples:
+    Nome: '&f&lTotem Simples'
+    Descricao:
+      - '&7Só salva da morte, sem efeito.'
+      - '&7Barato e confiável.'
+    Icone:
+      Material: 'TOTEM_OF_UNDYING|NETHER_STAR'
+    Preco:
+      - 'fichas:1'
+    Ordem: 0
+    Efeitos: []

@@ -1,0 +1,282 @@
+# ==========================================================================
+#  StarTotemEspecial - menus
+#
+#  Cada tela tem Titulo, Linhas (1 a 6), Slots (onde entram os totens),
+#  Enfeite (vidro de fundo), Item (como cada totem é desenhado) e Itens
+#  (botões). Botão:
+#    Slot / Slots    onde aparece
+#    Material        item (cabeça: Material PLAYER_HEAD + Textura ou Dono)
+#    Nome, Lore      textos (aceitam as variáveis abaixo e o PlaceholderAPI)
+#    Brilho          true/false
+#    Permissao       só aparece para quem tiver ('' = todos)
+#    Condicao        só aparece quando vale ('!' nega): tem_totens, ativo,
+#                    trocar, avisos, loja, admin
+#    Acoes           o que o clique faz, uma por linha:
+#                      totens / loja / fichas   abre a tela
+#                      trocar                   liga/desliga a troca automática
+#                      avisos                   liga/desliga o aviso de recarga
+#                      desativar                fica sem totem ativo
+#                      editor                   abre o editor (só staff)
+#                      voltar / fechar / anterior / proxima
+#                      jogador: <comando>   console: <comando>
+#                      mensagem: <texto>    som: <SOM>
+#                    Com o clique na frente só roda nesse clique:
+#                      '[esquerdo] ...', '[direito] ...', '[shift] ...'
+#
+#  Variáveis do jogador (em todas as telas):
+#    {jogador} {fichas} {fichas_numero} {moeda} {ativo} {ativo_quantidade}
+#    {recarga} {totens} {usos} {trocar} {avisos} {pagina} {paginas}
+#
+#  No desenho de cada totem (Item):
+#    {nome} {id} {quantidade} {maximo} {preco} {preco_5} {revive}
+#    {jogadores} {contra} {recarga_totem}
+#    Linhas que viram várias: {descricao} {efeitos} {status}
+#    'Linha do efeito' é o formato de cada linha de {efeitos}.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# --------------------------------------------------------------------------
+#  /totens
+# --------------------------------------------------------------------------
+Totens:
+  Titulo: '&8Seus totens &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+    So fora do conteudo: true
+  Item:
+    Nome: '{nome}'
+    Linha do efeito: '&8• &f{efeito} &8({resumo}&8)'
+    Brilho no ativo: true
+    Lore:
+      - '{descricao}'
+      - ''
+      - '{efeitos}'
+      - ''
+      - '&7Guardados: &f{quantidade}&7/&f{maximo}'
+      - '&7Revive: {revive} &8| &7Recarga: &f{recarga_totem}'
+      - '{status}'
+    Status:
+      Ativo:
+        - ''
+        - '&a&l✔ ATIVO'
+        - ''
+        - '&eEsquerdo &7desativa'
+        - '&eDireito &7demonstração'
+        - '&eShift + direito &7vira item'
+      Guardado:
+        - ''
+        - '&eEsquerdo &7deixa ativo'
+        - '&eDireito &7demonstração'
+        - '&eShift + direito &7vira item'
+  Vazio:
+    Slot: 22
+    Material: 'GLASS_BOTTLE'
+    Nome: '&cVocê não tem nenhum totem'
+    Lore:
+      - ''
+      - '&7Compre o seu primeiro na loja!'
+  Itens:
+    Ativo:
+      Slot: 4
+      Material: 'TOTEM_OF_UNDYING|NETHER_STAR'
+      Nome: '&6&lTotem ativo'
+      Lore:
+        - ''
+        - '&7Ativo: {ativo} &8({ativo_quantidade})'
+        - '&7Recarga: {recarga}'
+        - '&7Vezes que te salvou: &f{usos}'
+        - ''
+        - '&7O totem ativo age sozinho no'
+        - '&7golpe que te mataria.'
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&ePágina anterior'
+      Acoes:
+        - 'anterior'
+    Trocar:
+      Slot: 46
+      Material: 'HOPPER'
+      Nome: '&fTroca automática: {trocar}'
+      Lore:
+        - ''
+        - '&7Quando o ativo acabar, o próximo'
+        - '&7totem guardado vira o ativo.'
+        - ''
+        - '&eClique para trocar'
+      Acoes:
+        - 'trocar'
+    Loja:
+      Slot: 48
+      Material: 'EMERALD'
+      Nome: '&a&lLoja de totens'
+      Lore:
+        - ''
+        - '&7Compre totens com fichas.'
+        - ''
+        - '&eClique para abrir'
+      Condicao: 'loja'
+      Acoes:
+        - 'loja'
+    Fechar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&c&lFechar'
+      Acoes:
+        - 'fechar'
+    Fichas:
+      Slot: 50
+      Material: 'SUNFLOWER'
+      Nome: '&e&l{fichas}'
+      Lore:
+        - ''
+        - '&7Ganhe fichas matando chefes, gastando'
+        - '&7totens comuns e jogando.'
+        - ''
+        - '&eClique para comprar mais'
+      Acoes:
+        - 'fichas'
+    Avisos:
+      Slot: 52
+      Material: 'BELL|NOTE_BLOCK'
+      Nome: '&fAviso de recarga: {avisos}'
+      Lore:
+        - ''
+        - '&7Avisa quando o totem ficar pronto.'
+        - ''
+        - '&eClique para trocar'
+      Acoes:
+        - 'avisos'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&ePróxima página'
+      Acoes:
+        - 'proxima'
+    Editor:
+      Slot: 0
+      Material: 'COMMAND_BLOCK'
+      Nome: '&c&lEditor (staff)'
+      Lore:
+        - ''
+        - '&7Só a staff vê este botão.'
+      Condicao: 'admin'
+      Acoes:
+        - 'editor'
+
+# --------------------------------------------------------------------------
+#  /totens loja
+# --------------------------------------------------------------------------
+Loja:
+  Titulo: '&8Loja de totens &7({pagina}/{paginas})'
+  Linhas: 6
+  # Esconde da loja o totem com permissão que o jogador não tem.
+  Esconder sem permissao: false
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+    Nome: ' '
+    So fora do conteudo: true
+  Item:
+    Nome: '{nome}'
+    Linha do efeito: '&8• &f{efeito} &8({resumo}&8)'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '{efeitos}'
+      - ''
+      - '&7Revive: {revive} &8| &7Age contra: &f{contra}'
+      - '&7Você tem: &f{quantidade}&7/&f{maximo}'
+      - '&7Preço: &e{preco}'
+      - '{status}'
+    Status:
+      Comprar:
+        - ''
+        - '&eEsquerdo &7compra 1'
+        - '&eShift + esquerdo &7compra 5 &8({preco_5})'
+        - '&eDireito &7demonstração'
+      Sem saldo:
+        - ''
+        - '&cVocê não tem {preco}'
+        - '&eDireito &7demonstração'
+      No maximo:
+        - ''
+        - '&cVocê já tem o máximo'
+        - '&eDireito &7demonstração'
+      Sem permissao:
+        - ''
+        - '&cVocê não pode comprar este totem'
+        - '&eDireito &7demonstração'
+  Vazio:
+    Slot: 22
+    Material: 'GLASS_BOTTLE'
+    Nome: '&cA loja está vazia'
+  Itens:
+    Saldo:
+      Slot: 4
+      Material: 'SUNFLOWER'
+      Nome: '&e&l{fichas}'
+      Lore:
+        - ''
+        - '&eClique para comprar mais fichas'
+      Acoes:
+        - 'fichas'
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&ePágina anterior'
+      Acoes:
+        - 'anterior'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&c&lVoltar'
+      Acoes:
+        - 'voltar'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&ePróxima página'
+      Acoes:
+        - 'proxima'
+
+# --------------------------------------------------------------------------
+#  /fichas loja (os pacotes ficam no config.yml, Fichas.Pacotes)
+# --------------------------------------------------------------------------
+Fichas:
+  Titulo: '&8Fichas'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: 'YELLOW_STAINED_GLASS_PANE'
+    Nome: ' '
+  # Desenho padrão de cada pacote (o pacote pode ter Nome/Lore próprios).
+  Pacote:
+    Nome: '&e&l{fichas_pacote}'
+    Lore:
+      - ''
+      - '&7Preço: &f{preco}'
+      - ''
+      - '&eClique para comprar'
+  Itens:
+    Saldo:
+      Slot: 4
+      Material: 'SUNFLOWER'
+      Nome: '&e&lVocê tem {fichas}'
+      Lore:
+        - ''
+        - '&7Fichas compram totens na loja.'
+        - '&7Também caem de chefes e de totens'
+        - '&7comuns gastos.'
+    Voltar:
+      Slot: 31
+      Material: 'RED_DYE'
+      Nome: '&c&lVoltar'
+      Acoes:
+        - 'voltar'
