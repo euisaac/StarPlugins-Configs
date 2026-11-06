@@ -1,0 +1,31 @@
+name: StarSinalizador
+version: 1.1.8
+main: com.starplugins.starsinalizador.StarSinalizador
+api-version: 1.21
+authors: [EuIsaac]
+description: Plugin para sinalizadores personalizados no Minecraft
+website: https://github.com/EuIsaac/StarSinalizador
+softdepend:
+  - StarPlugins
+  - WorldGuard
+
+depend: [Vault]
+
+commands:
+  sinalizador:
+    description: Comando principal do StarSinalizador
+    usage: /<command> [reload|ver|lista]
+    permission: starsinalizador.use
+
+permissions:
+  starsinalizador.use:
+    description: Permite usar o comando sinalizador
+    default: 'true'
+  starsinalizador.admin:
+    description: Permite administrar o plugin
+    default: 'op'
+
+# O dono renomeia, apaga e cria efeitos a vontade: nao e "configuracao incompleta"
+starplugins:
+  config-livre:
+    - "efeitos.yml efeitos"

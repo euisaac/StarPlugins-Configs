@@ -1,11 +1,36 @@
 # Configuração geral do StarSinalizador
 
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
 # Configurações gerais
 general:
   default_distance: 20
   max_distance: 100
   bypass_duration: 3600  # em segundos
   autosave_seconds: 300  # de quanto em quanto tempo os sinalizadores sao gravados no disco
+  # Duracao de cada efeito dado pelo sinalizador. Ele renova sozinho enquanto o
+  # jogador esta no alcance e tira quando ele sai.
+  effect_duration_seconds: 120
+  # Particulas dos efeitos em volta do jogador
+  effect_particles: false
+  # O nivel do efeito acompanha a piramide de agora: tirar os blocos de
+  # netherite baixa o nivel que pedia netherite (false = vale o nivel comprado)
+  pyramid_limits_level: true
+  # Botao "Mostrar alcance"
+  range_preview_seconds: 10
+  range_preview_particle: END_ROD
+
+# Nomes de "Quem recebe os efeitos"
+target_names:
+  TODOS: "Todos"
+  MEMBROS: "Membros do terreno"
+  DONO: "Só o dono"
 
 # Quem mexe no sinalizador alem do dono e da staff (starsinalizador.admin).
 # Vale para StarTerrenos, StarSkyBlock, StarOneBlock, StarPlots, StarFactions,
@@ -60,6 +85,19 @@ messages:
   break_disabled: "&cVocê não pode quebrar este sinalizador! Use o menu para removê-lo."
   break_confirm: "&eEste sinalizador tem melhorias compradas que serão perdidas. Quebre de novo em %segundos%s para confirmar."
   beacon_broken: "&aSinalizador removido!"
+  beacon_removed: "&aSinalizador removido! Item dropado na localização."
+  remove_confirm: "&eClique de novo em remover para confirmar."
+  effect_upgraded: "&aEfeito atualizado: %effect% nível %level%"
+  effect_max_level: "&eEste efeito já está no nível máximo!"
+  effect_no_permission: "&cVocê não tem permissão para comprar este efeito."
+  effects_all_disabled: "&cEfeitos desligados: %quantidade%"
+  target_changed: "&aAgora recebem os efeitos: &f%alvo%"
+  no_target_permission: "&cSó quem pode remover o sinalizador escolhe quem recebe os efeitos."
+  range_preview: "&aMostrando o alcance (&f%distance% blocos&a) por %segundos%s."
+  distance_max: "&eA distância máxima já foi alcançada!"
+  list_header: "&bSeus sinalizadores (&f%quantidade%&b):"
+  list_line: "&e%x%, %y%, %z% &7(%mundo%) &8| %status% &8| &f%efeitos% efeitos &8| &f%alcance% blocos"
+  list_empty: "&cVocê não tem sinalizadores."
 
 # Visualização da pirâmide do beacon
 pyramid_visualization:
