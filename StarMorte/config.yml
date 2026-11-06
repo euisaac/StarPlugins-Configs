@@ -1,0 +1,149 @@
+# Configuração do StarMorte
+
+Database:
+  Tipo: SQLite # MySQL ou SQLite
+  IP: localhost:3306
+  DB: test
+  User: admin
+  Pass: ''
+  Debug: true
+
+# Prefixo para mensagens
+prefix: "&c&lStarMorte&r "
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+# IGNORADA: quem desenha os hologramas agora é o loader, pela chave "hologram"
+# do config do StarPlugins (StarHologramas, DecentHolograms ou suportes).
+# A chave fica aqui só para não quebrar configs antigos ("false" continua
+# desligando). Para desligar os hologramas dos túmulos prefira
+# "hologram.enabled: false" logo abaixo.
+hologram-plugin: StarHolograma
+
+# Mundos onde baús de morte não são gerados
+blacklisted-worlds:
+  - "world_nether"
+  - "world_the_end"
+
+# Permissões que impedem o sistema de baú de morte de funcionar para o jogador
+permission-blacklist:
+  - "yessentials.keepinventory"
+
+# Itens que impedem a geração do túmulo se o jogador possuir no inventário (incluindo armadura e mão secundária)
+item-blacklist:
+  - "COMMAND_BLOCK"
+
+# Encantamentos que fazem o item ser dropado no chão ao invés de ir para o túmulo
+# Use o nome completo do encantamento (ex: enchantment.minecraft.soulbound, mcmmo:acrobatics, etc.)
+enchantment-blacklist:
+  - "enchantment.minecraft.soulbound"
+  - "ecoenchants:soulbound"
+  - "souldbound"
+  - "minecraft:soulbound"
+
+# Se verdadeiro, explosões (creepers, TNT, camas, âncoras, etc.) não destroem o baú de morte.
+# Se falso, o baú é destruído e os itens restantes são dropados no chão.
+protect-from-explosion: true
+
+# Custo para teleportar para uma tumba
+teleport-cost: 15000.0
+
+# Custo para recuperar itens de um túmulo (vai para o inventário + túmulo é quebrado)
+recover-cost: 50000.0
+
+# Mensagens configuráveis
+messages:
+  death-message: "&cVocê morreu em &e%world%&c, &e%x%, %y%, %z%&c. Seu Tumulo foi criado! &7Use &f/tumulo &7para recuperar seus itens."
+  no-permission: "&cVocê não tem permissão para isso."
+  no-money: "&cVocê não tem dinheiro suficiente. Custo: &e%cost%"
+  teleport-confirm: "&aClique novamente para confirmar o teleporte. Custo: &e%cost%"
+  teleport-success: "&aTeleportado com sucesso!"
+  recover-confirm: "&aClique novamente para confirmar a recuperação. Custo: &e%cost%"
+  recover-success: "&aItens recuperados e túmulo destruído!"
+  no-money-recover: "&cVocê não tem dinheiro suficiente. Custo: &e%cost%"
+  destroy-success: "&cTúmulo destruído e itens dropados no chão!"
+  chest-removed: "&cSeu baú foi removido após %time% minutos."
+  tomb-removed-empty: "&cSeu túmulo foi removido por estar vazio."
+  no-tombs: "&cVocê não tem tumbas ativas."
+  tomb-menu-title: "Suas Tumbas de Morte"
+  tomb-already-opened: "&c%player% está com seu túmulo aberto e você não pode recuperar seus itens pelo menu enquanto seu túmulo está aberto!"
+  tomb-already-looted: "&cEste túmulo já foi esvaziado."
+
+# (Não usado mais - mantido apenas por compatibilidade) A remoção automática do túmulo
+# agora usa exclusivamente "chest-duration" abaixo, para não haver dois tempos conflitantes.
+auto-remove-time: 60
+
+# Se deve tentar colocar o baú em um lugar seguro
+safe-placement: true
+
+# Raio para procurar lugar seguro
+safe-radius: 30
+
+# Duração do baú de morte em segundos (0 para nunca remover)
+chest-duration: 86400
+
+# Duração do tempo que o baú de morte ficara trancado antes de ser liberado para outros players (segundos)
+chest-duration-secure: 30
+
+# Tipo de bloco para baú de morte normal
+chest-type-normal: CHEST
+
+# Tipo de bloco para baú de morte seguro
+chest-type-secure: ENDER_CHEST
+
+# Permissão para ter baú seguro (trancado para outros)
+secure-chest-permission: "starmorte.secure-chest"
+
+# Configurações do holograma
+hologram:
+  enabled: true
+  # IGNORADA: o espaçamento entre as linhas agora é definido pelo holograma
+  # do loader StarPlugins. Fica aqui só para não quebrar configs antigos.
+  line-height: 0.3
+  text:
+    - "&c&lBaú de Morte"
+    - "&b%player%"
+    - "&f%time% &7Restantes."
+height: 2.5
+
+# Configurações do mapa
+map:
+  display-name: "&aMapa do Baú de Morte de %player%"
+  lore:
+    - "&7Localização: %world% %x%, %y%, %z%"
+    - "&7Causa da Morte: %cause%"
+
+# Tempo em segundos para evitar geração de bau de morte em morte rápida
+# Se o jogador morrer novamente dentro deste tempo após uma morte, o bau não será gerado
+# 0 para desabilitar
+quick-death-cooldown: 60
+
+# Intervalo em segundos para verificar túmulos vazios automaticamente
+# Se um túmulo estiver sem itens, ele será automaticamente removido e quebrado
+# 0 para desabilitar
+empty-tomb-check-interval: 60
+
+# Mensagem quando o bau não é gerado por morte rápida
+quick-death-message: "&cVocê morreu muito rápido! Aguarde &e%time% &csegundos para gerar um novo baú de morte."
+
+# Se deve gerar bau de morte ao morrer no void (abaixo do y=0)
+# true = gera bau normalmente, false = não gera bau
+generate-chest-in-void: true
+
+# Permitir abrir túmulos em terrenos sem permissão (sem proteção do WorldGuard)
+# Quando true, o jogador pode abrir o túmulo virtual mesmo em terreno de outro jogador
+# Quando false, segue as regras normais de proteção do WorldGuard
+allow-open-without-permission: false
+
+# Opções do menu de túmulos (true = mostrar no menu, false =隐藏)
+tumble-menu-teleport: true
+tumble-menu-recover: true
+tumble-menu-destroy: true
+
+void-search-radius: 20

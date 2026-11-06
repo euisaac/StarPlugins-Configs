@@ -1,0 +1,45 @@
+name: StarMorte
+version: 4.7.13
+main: com.starmorte.StarMorte
+api-version: 1.21
+author: EuIsaac
+description: Plugin de Tumulos de Morte.
+website: https://github.com/EuIsaac/StarMorte
+softdepend: [StarPlugins, DecentHolograms, FancyHolograms]
+
+commands:
+  tumulos:
+    description: Abre o menu de tumbas de morte
+    usage: /tumulos
+    permission: starmorte.tumulos
+    aliases: [tumulo]
+  starmorte:
+    description: Comandos administrativos do StarMorte
+    usage: /starmorte reload
+    permission: starmorte.reload
+
+permissions:
+  starmorte.tumulos:
+    description: Permite usar o comando /tumulos
+    default: true
+  starmorte.tumulos.other:
+    description: Permite abrir o menu de túmulos de outros jogadores e teletransportar para eles
+    default: op
+  starmorte.secure-chest:
+    description: Permite ter baús seguros com hologramas e tempo de lock
+    default: false
+  starmorte.teleport:
+    description: Permite teleportar para tumbas
+    default: true
+  starmorte.bypass:
+    description: Ignora restrições de geração de baú
+    default: op
+  starmorte.bypass.lock:
+    description: Permite abrir baús trancados mesmo sem ser dono
+    default: op
+  starmorte.reload:
+    description: Permite recarregar as configurações
+    default: op
+  starmorte.admin:
+    description: Permite visualizar histórico de mortes de outros jogadores
+    default: op
