@@ -1,0 +1,173 @@
+# ------------------------------------------------------------------
+#  StarTemplos - configuracao geral
+#
+#  Templos surgem pelo mapa (sozinhos ou pela staff), sempre fora do
+#  terreno de qualquer jogador. Cada templo e um arquivo da pasta
+#  templos/: desenho, tema, ritual, hordas, chefe e recompensas.
+#
+#  Os desenhos (as "schematics") sao internos do plugin: voce escolhe
+#  o desenho, a variacao e o tema pelo nome, e o templo some deixando
+#  o terreno exatamente como era.
+#
+#  Staff: /startemplos abre o painel. Jogadores: /templos.
+# ------------------------------------------------------------------
+
+# Nao mexa: e por este numero que o plugin sabe se o arquivo e antigo.
+Versao do modelo: 1
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+Banco de dados:
+  # SQLITE (arquivo local, nao precisa configurar nada) ou MYSQL.
+  # Se o MySQL nao responder, o plugin cai para o SQLite sozinho.
+  Tipo: SQLITE
+  Host: 'localhost'
+  Porta: 3306
+  Banco: 'minecraft'
+  Usuario: 'root'
+  Senha: ''
+  Prefixo das tabelas: 'startemplos_'
+
+# Mundos onde os templos podem nascer no sorteio. '*' = todos os mundos
+# normais (sem Nether e End). Cada templo pode ter a propria lista.
+Mundos:
+  - 'world'
+
+Geracao:
+  # O templo e sorteado num anel em volta de um jogador online: nunca
+  # longe de todo mundo (o mapa ali nem foi gerado).
+  Distancia minima dos jogadores: 60
+  Distancia maxima dos jogadores: 220
+  # Distancia minima do spawn do mundo.
+  Distancia minima do spawn: 150
+  # Distancia minima entre dois templos de pe.
+  Distancia entre templos: 200
+  # Nenhum jogador pode estar a menos disto da area do templo quando
+  # ele surge (ninguem acorda dentro de uma parede).
+  Longe de qualquer jogador: 12
+  # Quantos pontos o sorteio testa antes de desistir.
+  Tentativas: 40
+  # Folga em volta do templo que tambem precisa estar fora de terrenos.
+  Margem dos terrenos: 8
+  # Diferenca maxima de altura do chao dentro da area (terreno plano).
+  Desnivel maximo: 5
+  # Porcentagem maxima da area que pode ser agua.
+  Agua maxima: 10
+  Y minimo: 50
+  Y maximo: 200
+  # Blocos colocados por tique enquanto o templo sobe (mais = mais
+  # rapido, menos = mais leve para o servidor).
+  Blocos por tique: 350
+  # Poeira e som de pedra enquanto o templo sobe da terra.
+  Animacao de surgir: true
+
+Automatico:
+  # Templos nascendo sozinhos pelo mapa.
+  Ativar: true
+  # Tempo entre um templo e outro, e quanto pode variar para mais ou
+  # para menos (o horario nao fica previsivel).
+  Intervalo: '40m'
+  Variacao: '10m'
+  # Jogadores online necessarios para um templo automatico.
+  Jogadores minimos: 2
+  # Maximo de templos de pe ao mesmo tempo (os automaticos respeitam).
+  Maximo de templos ativos: 2
+  # Horarios fixos do dia (HH:mm). Com algum horario aqui, o intervalo
+  # acima deixa de valer. Ex.: ['12:00', '18:30', '21:00']
+  Horarios: []
+
+Terrenos:
+  # Quais plugins de terreno sao consultados, NESTA ordem. Os que nao
+  # estiverem instalados sao pulados sozinhos. O templo nunca nasce
+  # onde qualquer um deles disser "isto e de alguem".
+  #   STARTERRENOS, STARPLOTS, STARONEBLOCK, STARSKYBLOCK, STARMUNDOSEGURO,
+  #   STARFACTIONS, PLOTSQUARED, GRIEFDEFENDER, GRIEFPREVENTION,
+  #   WORLDGUARD, TOWNY, LANDS, RESIDENCE, FACTIONS
+  Ordem:
+    - STARTERRENOS
+    - STARPLOTS
+    - STARONEBLOCK
+    - STARSKYBLOCK
+    - STARMUNDOSEGURO
+    - STARFACTIONS
+    - PLOTSQUARED
+    - GRIEFDEFENDER
+    - GRIEFPREVENTION
+    - WORLDGUARD
+    - TOWNY
+    - LANDS
+    - RESIDENCE
+    - FACTIONS
+  # Regioes do WorldGuard que NAO contam como terreno (ex.: uma regiao
+  # de evento onde a staff quer templos). A __global__ ja e ignorada.
+  Regioes ignoradas: []
+
+Anuncio:
+  # Como as coordenadas aparecem no anuncio do templo:
+  #   EXATAS, APROXIMADAS (arredondadas) ou NAO (so o nome do mundo).
+  Coordenadas: APROXIMADAS
+  Arredondar: 50
+
+Combate:
+  Mobs nao queimam no sol: true
+  # Mobs do templo nao derrubam os drops comuns (o premio e o saque).
+  Mobs sem drop comum: true
+  Mobs sem XP: false
+  # Mobs e chefe miram sozinhos no jogador mais perto da arena.
+  Alvo automatico: true
+  Bloquear comandos:
+    # Bloqueia comandos de quem esta na arena durante ritual, hordas e
+    # chefe (a staff com startemplos.admin passa).
+    Ativar: false
+    Liberados:
+      - 'tell'
+      - 'msg'
+      - 'r'
+      - 'g'
+      - 'templos'
+
+Restauracao:
+  # Quando o templo some, o terreno volta como era antes.
+  Restaurar terreno: true
+  # Fumaca e som de pedra caindo enquanto o templo desmorona.
+  Animacao de desmoronar: true
+  Blocos por tique: 500
+
+Rastreador:
+  # De quanto em quanto tempo a seta da actionbar e atualizada.
+  Atualizar a cada: '1s'
+
+Economia:
+  # Recompensas em dinheiro usam o Vault. Se preferir um comando,
+  # escreva aqui ({jogador} e {valor}). Ex.: 'eco give {jogador} {valor}'
+  Comando: ''
+
+# Raridades dos templos: nome no anuncio, multiplicador do dinheiro/XP
+# das recompensas, sorteios extras de premio e som do anuncio.
+Raridades:
+  COMUM:
+    Nome: '&fComum'
+    Multiplicador: 1.0
+    Sorteios extras: 0
+    Som: 'BLOCK_NOTE_BLOCK_BELL|NOTE_PLING;1;1'
+  RARO:
+    Nome: '&9Raro'
+    Multiplicador: 1.25
+    Sorteios extras: 1
+    Som: 'BLOCK_NOTE_BLOCK_BELL|NOTE_PLING;1;1.2'
+  EPICO:
+    Nome: '&5Épico'
+    Multiplicador: 1.5
+    Sorteios extras: 1
+    Som: 'ENTITY_WITHER_AMBIENT|WITHER_IDLE;0.6;1.4'
+  LENDARIO:
+    Nome: '&6&lLendário'
+    Multiplicador: 2.0
+    Sorteios extras: 2
+    Som: 'UI_TOAST_CHALLENGE_COMPLETE|ENDERDRAGON_GROWL;1;1'
