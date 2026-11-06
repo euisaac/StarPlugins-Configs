@@ -1,0 +1,57 @@
+# =====================================================
+#  StarTamanho - configuracao principal
+#  Autor: Eulsaac
+# =====================================================
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+General:
+  language: pt_br
+
+Size:
+  # Se true, o tamanho muda gradualmente (passo a passo) em vez de instantaneamente.
+  Transition: true
+  # Quantidade de passos usados para ir do tamanho atual ate o tamanho alvo.
+  TransitionSteps: 30
+
+  # Cada "IsXMultiplier" liga/desliga o efeito daquele atributo quando o tamanho muda.
+  IsReachMultiplier: false
+  IsStepHeightMultiplier: false
+  IsSpeedMultiplier: false
+  IsJumpMultiplier: false
+  IsSaveFallDistanceMultiplier: false
+
+  # Cada "IsXReverted" inverte a logica: normalmente "maior tamanho = maior efeito".
+  # Quando revertido, "maior tamanho = menor efeito" (e vice-versa).
+  IsReachReverted: false
+  IsStepHeightReverted: false
+  IsSpeedReverted: false
+  IsJumpReverted: false
+  IsSaveFallDistanceReverted: false
+
+  # Forca de cada multiplicador: 0 = sem efeito nenhum, 1 = efeito completo
+  # proporcional ao tamanho, valores acima de 1 exageram o efeito.
+  ReachMultiplier: 1
+  StepHeightMultiplier: 1
+  SpeedMultiplier: 1
+  JumpMultiplier: 1
+  SaveFallDistanceMultiplier: 1
+
+  # Tamanho minimo e maximo permitido (limite da atribute generic.scale do Minecraft).
+  MinSize: 0.0625
+  MaxSize: 16.0
+
+  # Tamanho padrao (normal) de qualquer entidade.
+  DefaultSize: 1.0
+
+Persistencia:
+  # Salva o tamanho dos jogadores em disco e reaplica quando eles entram no servidor.
+  SalvarTamanhoJogadores: true
+  # A cada quantos segundos o arquivo de dados e salvo automaticamente.
+  IntervaloAutoSalvar: 300
