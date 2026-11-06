@@ -1,0 +1,121 @@
+# ============================================================
+#                         StarNpc
+#      NPCs com skin, rotas, cidadaos, dialogos e falas
+# ============================================================
+# Quase tudo aqui tambem da para mexer em jogo: /npc editar
+# (ou agache e clique no NPC segurando o item de edicao).
+Versao do modelo: 1
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+# ------------------------------------------------------------
+# Corpo do NPC
+# ------------------------------------------------------------
+Corpo:
+  # NPC de jogador (com skin) usa o PacketEvents quando ele esta
+  # instalado: nao aparece no TAB, nao conta como online e nao pesa.
+  # Sem o PacketEvents ele vira manequim (1.21.9+) ou estatua.
+  Usar PacketEvents: true
+  # Na 1.21.9+ sem PacketEvents: manequim com skin (true) ou estatua (false).
+  Usar manequim: true
+  # Ate quantos blocos o jogador ve o NPC de jogador.
+  Distancia de exibicao: 48
+  # Antes da 1.19.3 o NPC entra no TAB por um instante para o jogo
+  # baixar a skin; depois de quantos tiques ele sai (20 = 1 segundo).
+  Tempo no TAB: 60
+  # Altura do nome em cima da cabeca (em blocos).
+  Altura do nome: 0.3
+  # Ajuste da altura da pose SENTADO (negativo = mais baixo).
+  Altura sentado: -0.45
+  # Item que a staff segura (agachada) para abrir o editor clicando no NPC.
+  Item de edicao: BLAZE_ROD
+
+# ------------------------------------------------------------
+# Andar (rota, cidadao, seguir e guia)
+# ------------------------------------------------------------
+Andar:
+  # Quantos blocos a busca de caminho olha (mais = acha caminhos
+  # mais longos, mas custa mais).
+  Limite da busca: 1500
+  # Portas e portoes contam como passagem livre?
+  Atravessar portas: false
+  # Sem caminho 5 vezes seguidas, o NPC teleporta para o destino.
+  Teleportar quando travar: true
+  # No modo SEGUIR, longe mais que isto o NPC teleporta atras do jogador.
+  Teleportar ao seguir de longe: 24
+  # O guia espera quem fica mais longe que isto.
+  Guia espera a partir de: 8
+  # O guia desiste depois deste tempo (segundos), mesmo sem chegar.
+  Tempo maximo do guia: 300
+  # O guia desiste depois deste tempo (segundos), mesmo sem chegar.
+  Tempo maximo do guia: 300
+
+# ------------------------------------------------------------
+# Modo cidadao
+# ------------------------------------------------------------
+Cidadao:
+  Conversas entre NPCs:
+    # Chance (0 a 1) de puxar papo com outro cidadao a cada 5 s.
+    Chance: 0.15
+    # Distancia maxima entre os dois.
+    Raio: 8
+    # Tempo de descanso entre um papo e outro (segundos).
+    Espera: 90
+    # Os jogadores perto tambem leem o papo no chat?
+    Mostrar no chat: false
+    Raio do chat: 10
+  Puxar assunto:
+    # Chance (0 a 1) de puxar assunto com quem chega perto.
+    Chance: 0.35
+    # Quao perto o jogador precisa estar.
+    Raio: 4.5
+    # Depois de falar com um jogador, so volta a puxar assunto com ele depois de (segundos):
+    Espera por jogador: 300
+    # Depois de puxar assunto com alguem, o NPC espera (segundos):
+    Espera do NPC: 20
+  # Jogador no criativo passa despercebido (nao recebe assunto nem olhar).
+  Ignorar criativo: false
+
+# ------------------------------------------------------------
+# Falas e baloes
+# ------------------------------------------------------------
+Falas:
+  # Formato das falas no chat. {npc} = nome do NPC, {texto} = a fala.
+  Formato do chat: '&e{npc}&8: &f{texto}'
+  # Cor do texto dentro do balao.
+  Cor do balao: '&f'
+  # Letras por linha do balao antes de quebrar.
+  Largura do balao: 32
+  # Multiplica o tempo que o balao fica na tela.
+  Tempo do balao: 1.0
+
+# ------------------------------------------------------------
+# Dialogos
+# ------------------------------------------------------------
+Dialogos:
+  # Formato da fala do NPC no chat.
+  Formato da fala: '&e{npc} &8» &f{texto}'
+  # Formato de cada opcao clicavel. {numero} e {texto}.
+  Formato da opcao: '  &8[&e{numero}&8] &f{texto}'
+  # Como a opcao aparece dentro do balao (modo HOLOGRAMA).
+  Formato da opcao no balao: '&e{numero}) &7{texto}'
+  # Como a escolha do jogador aparece no chat (vazio = nao mostra).
+  Formato da resposta: '&7Voce: &f{texto}'
+  # Tempo minimo entre uma fala e outra (tiques; 20 = 1 segundo).
+  Tempo entre falas: 30
+  # Efeito de digitacao do modo HOLOGRAMA: letras por tique.
+  Letras por tique: 2
+  # No modo HOLOGRAMA, a fala tambem vai para o chat?
+  Holograma tambem no chat: false
+  # Sem escolher nada por este tempo (segundos), a conversa acaba.
+  Tempo maximo parado: 60
+  # Sons (SOM;volume;tom). Vazio = sem som.
+  Som da fala: 'UI_BUTTON_CLICK;0.4;1.6'
+  Som ao terminar de digitar: ''
+  Som da escolha: 'ENTITY_EXPERIENCE_ORB_PICKUP;0.6;1.2'
