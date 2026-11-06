@@ -1,0 +1,267 @@
+# ==========================================================================
+#  StarFloresta - menus
+#
+#  Cada tela tem Titulo, Linhas (1 a 6), Enfeite (vidro de fundo) e Itens
+#  (botões). Botão:
+#    Slot / Slots    onde aparece
+#    Material        item (aceita variáveis: '{machado_material}')
+#    Nome, Lore      textos (aceitam as variáveis abaixo e placeholders do PAPI)
+#    Brilho          true/false
+#    Permissao       só aparece para quem tiver ('' = todos)
+#    Acoes           o que o clique faz, uma por linha:
+#                      ir                   leva para a floresta (ou abre a escolha)
+#                      ir <floresta>        leva para essa floresta
+#                      machado              abre a evolução do machado
+#                      evoluir              evolui para o próximo machado
+#                      florestas            abre a escolha de floresta
+#                      top                  abre o ranking
+#                      menu                 abre o menu principal
+#                      sair                 sai da floresta
+#                      voltar               volta à tela anterior (ou fecha)
+#                      anterior / proxima   vira a página
+#                      fechar
+#                      jogador: <comando>   o jogador roda o comando
+#                      console: <comando>   o console roda ({jogador})
+#                      mensagem: <texto>    som: <SOM>
+#                    Com o clique na frente só roda nesse clique:
+#                      '[esquerdo] ...', '[direito] ...', '[shift] ...'
+#
+#  Variáveis do jogador (em todas as telas):
+#    {jogador} {lenha} {lenha_total} {cortes} {machado} {machado_nivel}
+#    {machado_niveis} {machado_material} {proximo_machado} {proximo_custo}
+#    {booster} {floresta}
+# ==========================================================================
+
+Versao do modelo: 1
+
+# --------------------------------------------------------------------------
+#  /floresta menu
+# --------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Floresta'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  Itens:
+    Perfil:
+      Slot: 4
+      Material: 'BOOK'
+      Nome: '&aSuas estatísticas'
+      Lore:
+        - ''
+        - '&7Lenha: &f{lenha}'
+        - '&7Lenha já ganha: &f{lenha_total}'
+        - '&7Madeiras cortadas: &f{cortes}'
+        - '&7Machado: {machado} &8({machado_nivel}/{machado_niveis})'
+    Ir:
+      Slot: 11
+      Material: 'OAK_SAPLING'
+      Nome: '&aIr para a floresta'
+      Lore:
+        - ''
+        - '&7Corte madeiras com o seu machado'
+        - '&7e ganhe &fLenha&7.'
+        - ''
+        - '&eClique para ir!'
+      Acoes:
+        - 'ir'
+    Machado:
+      Slot: 13
+      Material: '{machado_material}'
+      Nome: '&eEvolua seu machado'
+      Lore:
+        - ''
+        - '&7Atual: {machado}'
+        - '&7Próximo: {proximo_machado}'
+        - '&7Custo: &f{proximo_custo}'
+        - ''
+        - '&eClique para ver!'
+      Acoes:
+        - 'machado'
+    Top:
+      Slot: 15
+      Material: 'GOLD_INGOT'
+      Nome: '&6Ranking da floresta'
+      Lore:
+        - ''
+        - '&7Quem mais juntou lenha.'
+        - ''
+        - '&eClique para ver!'
+      Acoes:
+        - 'top'
+    Fechar:
+      Slot: 22
+      Material: 'RED_DYE'
+      Nome: '&cFechar'
+      Acoes:
+        - 'fechar'
+
+# --------------------------------------------------------------------------
+#  /machado - "Evolua seu machado"
+#  Os níveis do machados.yml entram nos 'Slots', em ordem.
+# --------------------------------------------------------------------------
+Machado:
+  Titulo: '&8Evolua seu machado'
+  Linhas: 3
+  Slots: [11, 12, 13, 14, 15]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  # O que entra embaixo da lore de cada machado, conforme a situação.
+  #   {custos}  uma linha por moeda do custo ('Linha do custo')
+  Situacao:
+    Atual:
+      Brilho: true
+      Lore:
+        - ''
+        - '&a✔ Este é o seu machado atual.'
+    Liberado:
+      Brilho: false
+      Lore:
+        - ''
+        - '&7✔ Você já passou deste machado.'
+    Proximo:
+      Brilho: false
+      Lore:
+        - ''
+        - '&7Custo para evoluir:'
+        - '{custos}'
+        - ''
+        - '&eClique para evoluir!'
+    Bloqueado:
+      Brilho: false
+      Lore:
+        - ''
+        - '&7Custo para evoluir:'
+        - '{custos}'
+        - ''
+        - '&cEvolua o machado anterior primeiro.'
+    Sem permissao:
+      Brilho: false
+      Lore:
+        - ''
+        - '&cEste machado não está liberado para você.'
+  # {cor} = cor de 'Tem'/'Falta' do config.yml; {valor} o preço; {moeda} o
+  # nome da moeda; {tem} quanto o jogador tem dela
+  Linha do custo: '&8 • {cor}{valor} &8(você tem {tem}&8)'
+  Sem custo: '&8 • &aDe graça'
+  Itens:
+    Lenha:
+      Slot: 4
+      Material: 'OAK_LOG'
+      Nome: '&fSua lenha: &a{lenha}'
+      Lore:
+        - ''
+        - '&7Corte madeiras na floresta para'
+        - '&7juntar lenha e evoluir o machado.'
+    Voltar:
+      Slot: 22
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Escolha de floresta (/floresta com várias florestas)
+# --------------------------------------------------------------------------
+Florestas:
+  Titulo: '&8Florestas'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  # Item de cada floresta: Icone/Nome/Descricao vêm do florestas.yml.
+  # Variáveis: {floresta} {jogadores} {multiplicador} {machado_minimo}
+  Floresta:
+    Lore:
+      - ''
+      - '{descricao}'
+      - ''
+      - '&7Jogadores aqui: &f{jogadores}'
+      - '&7Lenha: &a{multiplicador}x'
+    Liberada:
+      - ''
+      - '&eClique para ir!'
+    Bloqueada:
+      - ''
+      - '&cPrecisa do {machado_minimo}&c.'
+    Sem permissao:
+      - ''
+      - '&cVocê não tem acesso a esta floresta.'
+  Itens:
+    Anterior:
+      Slot: 27
+      Material: 'ARROW'
+      Nome: '&ePágina anterior'
+      Acoes:
+        - 'anterior'
+    Proxima:
+      Slot: 35
+      Material: 'ARROW'
+      Nome: '&ePróxima página'
+      Acoes:
+        - 'proxima'
+    Voltar:
+      Slot: 31
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Ranking (/floresta top)
+# --------------------------------------------------------------------------
+Top:
+  Titulo: '&8Ranking - {tipo}'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16, 21, 22, 23]
+  Enfeite:
+    Ativar: true
+    Material: 'GRAY_STAINED_GLASS_PANE'
+  # Nomes dos tipos de ranking ({tipo})
+  Tipos:
+    lenha: 'Lenha'
+    total: 'Lenha já ganha'
+    cortes: 'Madeiras cortadas'
+  # Cada posição: {posicao} {jogador} {valor}
+  Posicao:
+    Nome: '&e{posicao}º &f{jogador}'
+    Lore:
+      - ''
+      - '&7{tipo}: &a{valor}'
+  Vazio:
+    Material: 'GRAY_DYE'
+    Nome: '&8{posicao}º &7ninguém ainda'
+  Itens:
+    Lenha:
+      Slot: 30
+      Material: 'OAK_LOG'
+      Nome: '&aLenha'
+      Lore:
+        - '&7Quem tem mais lenha agora.'
+      Acoes:
+        - 'tipo lenha'
+    Total:
+      Slot: 31
+      Material: 'CHEST'
+      Nome: '&aLenha já ganha'
+      Lore:
+        - '&7Quem mais juntou desde sempre.'
+      Acoes:
+        - 'tipo total'
+    Cortes:
+      Slot: 32
+      Material: 'IRON_AXE'
+      Nome: '&aMadeiras cortadas'
+      Lore:
+        - '&7Quem mais cortou madeira.'
+      Acoes:
+        - 'tipo cortes'
+    Voltar:
+      Slot: 27
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'

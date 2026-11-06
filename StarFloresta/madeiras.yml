@@ -1,0 +1,81 @@
+# ==========================================================================
+#  StarFloresta - madeiras
+#
+#  Cada madeira que pode ser cortada na floresta. A chave (ex.: 'carvalho')
+#  é o que o machados.yml cita em 'Madeiras'.
+#
+#  Blocos         os blocos que contam como esta madeira. Use os nomes
+#                 modernos (OAK_LOG): o plugin entende também na 1.8, onde
+#                 o carvalho é LOG:0, o pinheiro LOG:1 e assim por diante.
+#                 Madeira que não existe na versão do servidor (mangue na
+#                 1.18, por exemplo) é pulada sem erro.
+#  Lenha          quanto cada bloco dá (antes dos bônus).
+#  Tempo para voltar  segundos até o bloco voltar ao normal ('' ou ausente
+#                 = o 'Tempo para voltar' do config.yml).
+#  Queimada       bloco que fica no lugar enquanto ela não volta (ausente =
+#                 o 'Bloco queimado' do config.yml). Aceita lista.
+#  Icone          item que representa a madeira nas telas.
+#  Comandos       comandos de console ao cortar ({jogador}, {lenha}),
+#                 com chance: '50%:give {jogador} apple 1'. Opcional.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Madeiras:
+  carvalho:
+    Nome: 'Madeira de Carvalho'
+    Blocos: ['OAK_LOG', 'OAK_WOOD']
+    Lenha: 1
+    Tempo para voltar: 20
+    Icone: 'OAK_LOG'
+
+  pinheiro:
+    Nome: 'Madeira de Pinheiro'
+    Blocos: ['SPRUCE_LOG', 'SPRUCE_WOOD']
+    Lenha: 2
+    Tempo para voltar: 25
+    Icone: 'SPRUCE_LOG'
+
+  eucalipto:
+    Nome: 'Madeira de Eucalipto'
+    Blocos: ['BIRCH_LOG', 'BIRCH_WOOD']
+    Lenha: 3
+    Tempo para voltar: 30
+    Icone: 'BIRCH_LOG'
+
+  acacia:
+    Nome: 'Madeira de Acácia'
+    Blocos: ['ACACIA_LOG', 'ACACIA_WOOD']
+    Lenha: 4
+    Tempo para voltar: 35
+    Icone: 'ACACIA_LOG'
+
+  selva:
+    Nome: 'Madeira da Selva'
+    Blocos: ['JUNGLE_LOG', 'JUNGLE_WOOD']
+    Lenha: 5
+    Tempo para voltar: 40
+    Icone: 'JUNGLE_LOG'
+
+  escura:
+    Nome: 'Madeira Escura'
+    Blocos: ['DARK_OAK_LOG', 'DARK_OAK_WOOD']
+    Lenha: 6
+    Tempo para voltar: 45
+    Icone: 'DARK_OAK_LOG'
+
+  # Só existem da 1.19 (mangue) e da 1.20 (cerejeira) em diante. Em servidor
+  # mais antigo ficam de fora sozinhas.
+  mangue:
+    Nome: 'Madeira de Mangue'
+    Blocos: ['MANGROVE_LOG', 'MANGROVE_WOOD']
+    Lenha: 7
+    Tempo para voltar: 50
+    Icone: 'MANGROVE_LOG'
+
+  cerejeira:
+    Nome: 'Madeira de Cerejeira'
+    Blocos: ['CHERRY_LOG', 'CHERRY_WOOD']
+    Lenha: 8
+    Tempo para voltar: 55
+    Icone: 'CHERRY_LOG'

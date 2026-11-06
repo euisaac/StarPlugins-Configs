@@ -1,0 +1,41 @@
+# ==========================================================================
+#  StarFloresta - economias
+#
+#  As moedas que podem aparecer no custo dos machados (machados.yml). A
+#  chave (ex.: 'lenha') é o que o custo cita: 'lenha:500', 'dinheiro:10K'.
+#
+#  Provedor:
+#    LENHA         a lenha deste plugin
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' é o id dela (vazio =
+#                  a principal)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro sai por comando de console ({jogador} {uuid} {valor})
+#    ou o id de uma moeda:
+#    stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#
+#  Valores inteiros  arredonda para baixo (pontos, cash).
+# ==========================================================================
+
+Versao do modelo: 1
+
+Economias:
+  lenha:
+    Provedor: LENHA
+    Nome: 'Lenha'
+    Simbolo: ''
+    Abreviacao: ' Lenha'
+
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Simbolo: '$'
+
+  # Exemplo com PlayerPoints. Tire o # e use 'pontos' num custo
+  # (ex.: - 'pontos:10').
+  # pontos:
+  #   Provedor: PLAYERPOINTS
+  #   Nome: 'Pontos'
+  #   Simbolo: ''
+  #   Abreviacao: ' pontos'

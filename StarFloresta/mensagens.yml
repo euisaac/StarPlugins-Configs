@@ -1,0 +1,218 @@
+# ==========================================================================
+#  StarFloresta - mensagens
+#
+#  Mensagem vazia ('') não é enviada: é assim que se desliga um aviso.
+#  {prefixo} põe o prefixo no meio do texto. Blocos com | são várias linhas.
+#  Títulos: 'Título<nl>Subtítulo'.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&2&lFLORESTA &8» &7'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+
+Geral:
+  Sem permissao: '&cVocê não tem permissão para isso.'
+  So jogador: '&cSó jogadores podem usar este comando.'
+  Desligado: '&cA floresta está desligada (sem banco de dados). Avise a staff.'
+  Carregando: '&7Seus dados ainda estão carregando, tente de novo em instantes.'
+  Subcomando desconhecido: '&cComando desconhecido. Use &f/{comando} ajuda&c.'
+  Jogador nunca jogou: '&cO jogador &f{jogador} &cnunca passou pela floresta.'
+  Numero invalido: '&c"{valor}" não é uma quantidade válida.'
+
+Floresta:
+  Titulo ao entrar: '{floresta}<nl>&7Corte madeira e junte lenha!'
+  Entrou: '&aVocê entrou na {floresta}&a. &7Seu machado está na mão!'
+  Saiu: '&7Você saiu da {floresta}&7. Seu machado foi guardado.'
+  Teleportado: ''
+  Inventario cheio: '&cSeu inventário está cheio: libere um espaço para receber o machado.'
+  Sem permissao: '&cVocê não tem acesso à {floresta}&c.'
+  Machado minimo: '&cA {floresta} &cexige o {machado}&c. Evolua em &f/machado&c.'
+  Indisponivel: '&cA {floresta} &cainda não está pronta. Avise a staff.'
+  Nao esta: '&cVocê não está numa floresta.'
+  Sem saida: ''
+  Nao existe: '&cA floresta &f{floresta} &cnão existe.'
+  Nenhuma: '&cA floresta ainda não foi aberta. Volte mais tarde!'
+  Nenhuma staff: '&cNenhuma floresta criada. Use &f/florestaadmin gerar principal 25 &cpara gerar uma pronta.'
+  Protegido: '&cAqui só se corta madeira.'
+  Comando bloqueado: '&cEste comando não pode ser usado na floresta.'
+
+Corte:
+  Sem machado: '&cUse o seu &fmachado da floresta &cpara cortar.'
+  Machado fraco: '&cSeu machado não corta &f{madeira}&c. Precisa do {machado}&c: &f/machado'
+  Ninguem corta: '&cNenhum machado corta &f{madeira}&c.'
+  Fora da floresta: '&cO machado da floresta só corta dentro da floresta.'
+  Queimada: '&7Esta madeira está queimada. Volta em &f{tempo}&7.'
+  # Barra de ação a cada corte. {lenha} (somada nos cortes seguidos)
+  # {blocos} {madeira} {total} {booster}
+  Ganho: '&a+{lenha} Lenha &8| &7{madeira} &8| &fTotal: {total}'
+  Ganho com booster: '&a+{lenha} Lenha &6(Booster {booster}x) &8| &fTotal: {total}'
+
+Machado:
+  De graca: 'grátis'
+  Maximo: '&aNível máximo!'
+  No maximo: '&aSeu machado já está no nível máximo!'
+  Sem permissao: '&cO {machado} &cnão está liberado para você.'
+  Moeda indisponivel: '&cEste machado não pode ser comprado agora (economia &f{moeda}&c fora do ar). Avise a staff.'
+  Sem saldo: '&cFalta &f{falta} &cpara evoluir. Custo: &f{custo}&c.'
+  Falhou: '&cNão foi possível cobrar a evolução; nada foi tirado de você.'
+  Evoluiu: '&aSeu machado evoluiu para {machado}&a!'
+  Titulo ao evoluir: '&a&lMACHADO EVOLUÍDO<nl>{machado}'
+  # Anunciado para todos quando alguém chega no ÚLTIMO machado ('' desliga).
+  Anuncio: '{prefixo}&f{jogador} &7chegou ao {machado}&7!'
+  Ja tem: '&7Você já tem este machado.'
+  Evolua o anterior: '&cEvolua o machado anterior primeiro.'
+  Nao solta: '&cO machado da floresta não pode ser jogado fora.'
+  Nao guarda: '&cO machado da floresta não pode ser guardado aqui.'
+
+Booster:
+  Ligou: '{prefixo}&6&lBOOSTER! &eLenha &f{multiplicador}x &epor &f{tempo}&e. Corra para a &f/floresta&e!'
+  Acabou: '&7O booster de lenha acabou.'
+  Lembrete: '&6Booster de lenha &f{multiplicador}x &8| &7acaba em &f{tempo}'
+
+Lenha:
+  Saldo: '&7Sua lenha: &a{lenha} &8(já juntou {total})'
+  Saldo de outro: '&7Lenha de &f{jogador}&7: &a{lenha} &8(já juntou {total})'
+  Envio desligado: '&cO envio de lenha está desligado.'
+  Uso enviar: '&cUse: &f/lenha enviar <jogador> <quantidade>'
+  Abaixo do minimo: '&cO mínimo para enviar é &f{minimo}&c.'
+  Para si mesmo: '&cVocê não pode enviar lenha para si mesmo.'
+  Sem saldo: '&cVocê só tem &f{lenha} &clenha.'
+  Falhou: '&cNão foi possível enviar agora; sua lenha foi devolvida.'
+  Enviou: '&aVocê enviou &f{lenha} &alenha para &f{jogador}&a.'
+  Recebeu: '&aVocê recebeu &f{lenha} &alenha de &f{jogador}&a.'
+
+# /floresta info (variáveis do jogador: {lenha} {lenha_total} {cortes}
+# {machado} {machado_nivel} {machado_niveis} {proximo_machado} {proximo_custo})
+Info:
+  Cabecalho: |-
+    &8&m
+    &2&lSUA FLORESTA
+    &7Lenha: &a{lenha} &8(já juntou {lenha_total})
+    &7Machado: {machado} &8({machado_nivel}/{machado_niveis})
+    &7Madeiras cortadas: &f{cortes}
+  # Uma linha por madeira. {madeira} {cortes} {lenha} (por bloco) {corta}
+  Madeira: '&8▸ &f{madeira}&7: {cortes} &8({lenha} lenha) {corta}'
+  Corta: '&a✔'
+  Nao corta: '&c✘'
+  Rodape: |-
+    &7Próximo: {proximo_machado} &8- &f{proximo_custo}
+    &8&m
+  Rodape maximo: |-
+    &aSeu machado está no nível máximo!
+    &8&m
+
+Ajuda:
+  Cabecalho: '&8&m          &r &2&lFLORESTA &8&m          '
+  # {comando} {uso} {descricao}
+  Linha: '&a/{comando} {uso} &8- &7{descricao}'
+  Rodape: ''
+
+# Descrição de cada subcomando na ajuda (a lista vem do próprio plugin).
+Ajuda do jogador:
+  ir: 'Vai para a floresta'
+  menu: 'Abre o menu da floresta'
+  machado: 'Evolui o seu machado'
+  info: 'Sua lenha, seu machado e as madeiras que você já cortou'
+  top: 'Ranking de quem mais juntou lenha'
+  sair: 'Sai da floresta'
+  ajuda: 'Mostra esta ajuda'
+
+Ajuda da lenha:
+  ver: 'Mostra a sua lenha (ou a de outro jogador)'
+  enviar: 'Envia lenha para outro jogador'
+  top: 'Ranking da lenha'
+  ajuda: 'Mostra esta ajuda'
+
+Ajuda de admin:
+  gerar: 'Gera uma floresta pronta em volta de você (raio padrão 25)'
+  varinha: 'Varinha para marcar os cantos da área (esquerdo/direito)'
+  pos1: 'Marca o canto 1 onde você está'
+  pos2: 'Marca o canto 2 onde você está'
+  criar: 'Cria uma floresta na área marcada'
+  area: 'Troca a área da floresta pela marcada'
+  spawn: 'Onde o /floresta leva (onde você está)'
+  mundointeiro: 'Liga/desliga: a floresta vale no mundo inteiro'
+  deletar: 'Apaga a floresta (as árvores ficam)'
+  lista: 'Lista as florestas'
+  info: 'Detalhes de uma floresta'
+  ir: 'Vai para a floresta (sem as regras de entrada)'
+  regenerar: 'Devolve agora todas as madeiras queimadas'
+  lenha: 'Dá, tira ou define a lenha de um jogador'
+  machado: 'Define o machado de um jogador'
+  booster: 'Booster global de lenha'
+  construir: 'Liga/desliga o modo construção (editar a floresta)'
+  verificar: 'Confere os arquivos de configuração'
+  recarregar: 'Recarrega os arquivos'
+  ajuda: 'Mostra esta ajuda'
+
+Admin:
+  Uso: '&cUse: &f/florestaadmin {uso}'
+  Id invalido: '&cO nome da floresta só pode ter letras, números, - e _ (até 32).'
+  Ja existe: '&cJá existe uma floresta &f{floresta}&c.'
+  Recarregado: '&aArquivos recarregados.'
+  Banco nao respondeu: '&cO banco de dados não respondeu. Tente de novo.'
+
+  Varinha nome: '&6&lVarinha da Floresta'
+  Varinha lore:
+    - '&7Clique &fesquerdo &7num bloco: canto 1'
+    - '&7Clique &fdireito &7num bloco: canto 2'
+    - ''
+    - '&7Depois: &f/florestaadmin criar <nome>'
+  Varinha recebida: '&aVarinha entregue. Marque os dois cantos da floresta.'
+  Canto marcado: '&aCanto {canto} marcado em &f{x}, {y}, {z}&a.'
+  Marque os cantos: '&cMarque os dois cantos primeiro (/florestaadmin varinha, ou pos1 e pos2), no mesmo mundo.'
+
+  Criada: '&aFloresta &f{floresta} &acriada ({blocos} blocos de área). As madeiras dela já podem ser cortadas!'
+  Area trocada: '&aÁrea da floresta &f{floresta} &atrocada ({blocos} blocos).'
+  Falta spawn: '&eDica: fique onde os jogadores devem chegar e use &f/florestaadmin spawn {floresta}&e.'
+  Spawn marcado: '&aChegada da floresta &f{floresta} &amarcada onde você está.'
+  Spawn fora: '&eAtenção: esse ponto fica FORA da área da floresta {floresta}.'
+  Mundo inteiro ligado: '&aA floresta &f{floresta} &aagora vale no mundo inteiro &f{mundo}&a.'
+  Mundo inteiro desligado: '&aA floresta &f{floresta} &avolta a valer só na área marcada.'
+  Deletada: '&aFloresta &f{floresta} &aapagada. As madeiras queimadas dela voltaram ao normal.'
+  Regenerado: '&a{quantidade} madeira(s) voltaram ao normal.'
+
+  Gerar comecou: '&aGerando a floresta &f{floresta} &a(raio {raio})... aguarde alguns segundos.'
+  Gerar pronto: '&aFloresta &f{floresta} &apronta: {arvores} árvores de {madeiras} madeiras. Use &f/floresta&a!'
+  Gerar ocupado: '&cJá tem uma floresta sendo gerada. Espere terminar.'
+  Gerar sem madeiras: '&cNenhuma madeira do madeiras.yml tem árvore nesta versão para gerar.'
+  # Nome dado à floresta gerada ({id})
+  Gerar nome: '&aFloresta'
+
+  Lista vazia: '&7Nenhuma floresta. Use &f/florestaadmin gerar principal 25&7.'
+  Lista cabecalho: '&7Florestas:'
+  # {floresta} {nome} {mundo} {jogadores} {situacao}
+  Lista linha: '&8▸ &f{floresta} &7({nome}&7) &8- &7{mundo} &8- &f{jogadores} &7jogador(es) {situacao}'
+  Pronta: '&a✔'
+  Incompleta: '&c(incompleta)'
+  Info: |-
+    &8&m
+    &2&lFLORESTA &f{floresta} &7({nome}&7)
+    &7Mundo: &f{mundo}  &7Área: &f{area}
+    &7Chegada: &f{spawn}
+    &7Permissão: &f{permissao}  &7Machado mínimo: {machado_minimo}
+    &7Lenha: &f{multiplicador}x  &7Madeiras: &f{madeiras}
+    &7Jogadores agora: &f{jogadores}  &7Queimadas: &f{queimadas}
+    &8&m
+  Mundo todo: 'mundo inteiro'
+  Sem area: 'sem área'
+  Spawn automatico: '(automática, no meio da área)'
+  Todas: 'todas'
+
+  Lenha alterada: '&aLenha de &f{jogador}&a: {antes} &7-> &a{agora}'
+  Machado inexistente: '&cO machado &f{machado} &cnão existe no machados.yml.'
+  Machado definido: '&aMachado de &f{jogador} &adefinido como {machado}&a.'
+  Booster parado: '&aBooster desligado.'
+  Booster ativo: '&7Booster ativo: &f{multiplicador}x&7, acaba em &f{tempo}&7.'
+  Construir ligado: '&aModo construção LIGADO: você quebra e coloca qualquer bloco na floresta.'
+  Construir desligado: '&7Modo construção desligado.'
+
+  Verificar ok: '&aTudo certo: {madeiras} madeira(s), {machados} machado(s), {florestas} floresta(s).'
+  Verificar problemas: '&c{quantidade} problema(s) na configuração:'
+  Verificar linha: '&8▸ &7{problema}'

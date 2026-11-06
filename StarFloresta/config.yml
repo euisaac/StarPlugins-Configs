@@ -1,0 +1,179 @@
+# ==========================================================================
+#  StarFloresta - configuração geral
+#
+#  Arquivos do plugin:
+#    config.yml     este arquivo (regras da floresta, corte, lenha, banco)
+#    madeiras.yml   as madeiras: blocos, lenha que cada uma dá e o tempo para voltar
+#    machados.yml   os níveis do machado: madeiras liberadas, bônus e custo
+#    florestas.yml  as florestas criadas em jogo (/florestaadmin criar ou gerar)
+#    economias.yml  as moedas usadas no custo dos machados (lenha, dinheiro...)
+#    menus.yml      as telas (/floresta menu, /machado, top, escolha de floresta)
+#    mensagens.yml  todos os textos
+#
+#  Montar a floresta em 1 minuto (em jogo):
+#    /florestaadmin gerar principal 25   gera uma floresta pronta onde você está
+#  ou, numa construção/schematic sua:
+#    /florestaadmin varinha              clique esquerdo = canto 1, direito = canto 2
+#    /florestaadmin criar principal      cria a floresta na área marcada
+#    /florestaadmin spawn principal      onde o /floresta leva o jogador
+# ==========================================================================
+
+Versao do modelo: 1
+
+# --------------------------------------------------------------------------
+#  Banco de dados (lenha, nível do machado e estatísticas dos jogadores)
+#  Tipo: SQLITE (arquivo na pasta do plugin) ou MYSQL (vale para MariaDB).
+#  Trocar de banco exige reiniciar o servidor.
+# --------------------------------------------------------------------------
+Banco de dados:
+  Tipo: SQLITE
+  Host: 'localhost'
+  Porta: 3306
+  Banco: 'starfloresta'
+  Usuario: 'root'
+  Senha: ''
+  Prefixo: 'starfloresta_'
+  # De quanto em quanto tempo (segundos) o que mudou é gravado.
+  Salvar a cada: 60
+
+# --------------------------------------------------------------------------
+#  Regras dentro da floresta
+# --------------------------------------------------------------------------
+Floresta:
+  # /floresta com uma floresta só leva direto para ela (true) ou abre a
+  # tela de escolha mesmo assim (false). Com várias florestas a tela abre.
+  Teleportar direto: true
+  # O jogador recebe o machado ao entrar na floresta (pelo /floresta ou
+  # andando para dentro da área).
+  Dar machado ao entrar: true
+  # Slot da barra (0 a 8) onde o machado entra. Ocupado = primeiro livre.
+  Slot do machado: 0
+  # O machado é guardado ao sair (andando, teleporte, troca de mundo, saída
+  # do servidor). Ele nunca se perde: mora no perfil do jogador.
+  Guardar machado ao sair: true
+  # Dentro da floresta o jogador não passa fome.
+  Sem fome: true
+  # Dentro da floresta o jogador não toma dano (queda, mobs, fogo...).
+  Sem dano: true
+  # Jogador pode bater em jogador dentro da floresta?
+  PvP: false
+  # Ninguém quebra nem coloca outro bloco além das madeiras. A staff usa
+  # /florestaadmin construir para editar a floresta.
+  Proteger blocos: true
+  # As folhas não caem quando o tronco vira madeira queimada.
+  Segurar folhas: true
+  # Mobs não nascem dentro da floresta.
+  Bloquear mobs: true
+  # Comandos que não podem ser usados dentro da floresta (sem a barra).
+  # Exemplo: ['sethome', 'tpa']
+  Comandos bloqueados: []
+  # Título e mensagem ao entrar e sair (mensagens.yml Floresta.Entrou/Saiu).
+  Avisar ao entrar e sair: true
+  # Agachar + clique direito com o machado abre a tela de evolução.
+  Abrir evolucao com o machado: true
+  # /floresta sair: comando que o jogador roda (ex.: 'spawn'). Vazio = volta
+  # para onde ele estava antes do /floresta.
+  Comando ao sair: ''
+
+# --------------------------------------------------------------------------
+#  Corte das madeiras
+# --------------------------------------------------------------------------
+Corte:
+  # Bloco que fica no lugar da madeira cortada até ela voltar. Vale o
+  # primeiro da lista que existir na versão do servidor: CRIMSON_STEM (a
+  # madeira queimada do Nether) nasceu na 1.16; antes dela, COAL_BLOCK.
+  # Cada madeira pode ter o seu no madeiras.yml (chave 'Queimada').
+  Bloco queimado:
+    - 'CRIMSON_STEM'
+    - 'COAL_BLOCK'
+  # Segundos até a madeira voltar ao normal (cada madeira pode ter o seu).
+  Tempo para voltar: 30
+  # Quebrar madeira sem o machado da floresta não vale (mostra um aviso).
+  Exigir o machado: true
+  # Intervalo mínimo (segundos) entre dois avisos iguais para o mesmo jogador.
+  Intervalo dos avisos: 2
+  # Mostra o ganho na barra de ação. Cortes seguidos são somados numa linha só.
+  Ganho na actionbar: true
+  # Por quanto tempo (milissegundos) os cortes seguidos são somados.
+  Somar ganhos por: 2000
+  # Som ao cortar e ao ser negado ('SOM;volume;tom', '' desliga).
+  Som ao cortar: 'BLOCK_WOOD_BREAK;1.0;1.0'
+  Som ao negar: 'ENTITY_VILLAGER_NO;0.6;1.0'
+  # Partículas ao cortar e quando a madeira volta ('' desliga).
+  Particula ao cortar: 'SMOKE_NORMAL'
+  Particula ao voltar: 'VILLAGER_HAPPY'
+  # Bolinhas de experiência (vanilla) por madeira cortada. 0 desliga.
+  Experiencia vanilla: 0
+  # Teto do corte em cadeia (o machado diz quantas madeiras extras corta
+  # de uma vez; este é o limite geral, para nenhum nível travar o servidor).
+  Cadeia maxima: 12
+
+# --------------------------------------------------------------------------
+#  Lenha (a moeda do plugin)
+#
+#  Outros plugins usam a lenha pelo id 'starfloresta-lenha' (ou só
+#  'starfloresta'). No StarRankup, no economias.yml dele:
+#    lenha:
+#      Provedor: starfloresta-lenha
+#      Nome: 'Lenha'
+# --------------------------------------------------------------------------
+Lenha:
+  Nome: 'Lenha'
+  # Casas decimais guardadas (0 = só números inteiros).
+  Casas decimais: 0
+  # Bônus de lenha por permissão. Vale o MAIOR que o jogador tiver. As
+  # permissões são criadas valendo para ninguém: dê a quem quiser.
+  Bonus por permissao:
+    vip:
+      Permissao: 'starfloresta.bonus.vip'
+      Nome: 'VIP'
+      Bonus: 10
+    mvp:
+      Permissao: 'starfloresta.bonus.mvp'
+      Nome: 'MVP'
+      Bonus: 25
+  # /lenha enviar <jogador> <quantidade>
+  Enviar:
+    Ativar: true
+    Minimo: 10
+    # Porcentagem que some no envio (0 = nada).
+    Taxa: 0
+
+# --------------------------------------------------------------------------
+#  Boosters globais (/florestaadmin booster <multiplicador> <minutos>)
+# --------------------------------------------------------------------------
+Booster:
+  # Lembra todo mundo do booster na barra de ação a cada X segundos (0 desliga).
+  Lembrar a cada: 60
+
+# --------------------------------------------------------------------------
+#  Ranking (/floresta top e /lenha top)
+# --------------------------------------------------------------------------
+Ranking:
+  # Segundos entre uma leitura e outra do banco.
+  Atualizar a cada: 300
+  Tamanho: 10
+
+# --------------------------------------------------------------------------
+#  Textos curtos usados em vários lugares
+# --------------------------------------------------------------------------
+Formatos:
+  Sim: '&aSim'
+  Nao: '&cNão'
+  Nenhum: '&7Nenhum'
+  # Cor do custo no menu: tem o suficiente / não tem.
+  Tem: '&a'
+  Falta: '&c'
+
+Sons:
+  Erro: 'ENTITY_VILLAGER_NO;0.7;1.0'
+  Clique: 'UI_BUTTON_CLICK;0.6;1.0'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;0.8;1.0'
+  Evoluir: 'ENTITY_PLAYER_LEVELUP;1.0;1.2'
+  Teleporte: 'ENTITY_ENDERMAN_TELEPORT;0.8;1.0'
+  Booster: 'ENTITY_FIREWORK_ROCKET_LAUNCH;1.0;1.0'
+
+# Intervalo mínimo entre dois cliques num menu (milissegundos).
+Intervalo entre cliques: 150
+
+Debug: false

@@ -1,0 +1,101 @@
+# ==========================================================================
+#  StarFloresta - machados
+#
+#  Os níveis do machado, NA ORDEM em que o jogador evolui. Todo jogador
+#  começa no primeiro. A chave (ex.: 'madeira') é o id do nível
+#  (/florestaadmin machado <jogador> <id>).
+#
+#  Nome            nome do item
+#  Material        item do machado. Aceita lista: vale o primeiro que
+#                  existir na versão (NETHERITE_AXE só existe da 1.16 em diante).
+#  Madeiras        ids do madeiras.yml que este machado corta
+#  Multiplicador   multiplica a lenha de cada corte (1.5 = +50%)
+#  Corte em cadeia quantas madeiras ligadas a esta caem junto no mesmo corte
+#  Eficiencia      nível do encantamento Eficiência (corta mais rápido); 0 = sem
+#  Brilho          o item brilha (true/false)
+#  Custo           o que o jogador paga para chegar NESTE nível. Uma linha
+#                  por moeda do economias.yml: 'lenha:500', 'dinheiro:10K'.
+#                  (Sempre entre aspas: a 1.8 não aceita 'a:b' solto em lista.)
+#  Permissao       só quem tiver evolui para este nível ('' = todos)
+#  Lore            (opcional) lore própria deste nível; sem ela vale a
+#                  'Lore padrao' lá de baixo
+#  Ao evoluir      (opcional) comandos de console ao chegar neste nível
+#                  ({jogador}, {machado})
+# ==========================================================================
+
+Versao do modelo: 1
+
+Machados:
+  madeira:
+    Nome: '&fMachado de Madeira'
+    Material: 'WOODEN_AXE'
+    Madeiras: ['carvalho']
+    Multiplicador: 1.0
+    Corte em cadeia: 0
+    Eficiencia: 0
+    Brilho: false
+    Custo: []
+
+  pedra:
+    Nome: '&7Machado de Pedra'
+    Material: 'STONE_AXE'
+    Madeiras: ['carvalho', 'pinheiro']
+    Multiplicador: 1.1
+    Corte em cadeia: 0
+    Eficiencia: 1
+    Brilho: false
+    Custo:
+      - 'lenha:150'
+
+  ferro:
+    Nome: '&fMachado de Ferro'
+    Material: 'IRON_AXE'
+    Madeiras: ['carvalho', 'pinheiro', 'eucalipto']
+    Multiplicador: 1.25
+    Corte em cadeia: 1
+    Eficiencia: 2
+    Brilho: false
+    Custo:
+      - 'lenha:1K'
+
+  ouro:
+    Nome: '&eMachado de Ouro'
+    Material: 'GOLDEN_AXE'
+    Madeiras: ['carvalho', 'pinheiro', 'eucalipto', 'acacia']
+    Multiplicador: 1.5
+    Corte em cadeia: 2
+    Eficiencia: 3
+    Brilho: false
+    Custo:
+      - 'lenha:5K'
+
+  diamante:
+    Nome: '&bMachado de Diamante'
+    Material: 'DIAMOND_AXE'
+    Madeiras: ['carvalho', 'pinheiro', 'eucalipto', 'acacia', 'selva', 'escura', 'mangue', 'cerejeira']
+    Multiplicador: 2.0
+    Corte em cadeia: 3
+    Eficiencia: 5
+    Brilho: true
+    Custo:
+      - 'lenha:20K'
+
+# Lore do machado (no item e na tela de evolução). Variáveis:
+#   {madeiras}       uma linha por madeira liberada ('Linha da madeira')
+#   {multiplicador}  1.5    {cadeia} 2    {eficiencia} 3
+#   {nivel} 3   {niveis} 5   {machado} nome do nível
+#   A linha com {cadeia} some quando o nível não tem corte em cadeia.
+Lore padrao:
+  - '&7Essa skin lhe permite quebrar'
+  - '&7os seguintes tipos de madeiras:'
+  - ''
+  - '{madeiras}'
+  - ''
+  - '&7Lenha por corte: &a{multiplicador}x'
+  - '&7Corte em cadeia: &a+{cadeia}'
+Linha da madeira: '&8▸ &f{madeira}'
+
+# Linhas que entram só no ITEM (não na tela de evolução).
+Lore do item:
+  - ''
+  - '&8Agache e clique com o direito para evoluir.'
