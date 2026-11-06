@@ -1,0 +1,58 @@
+# ==========================================================================
+#  StarMineradora - economias
+#
+#  A loja de combustivel e a loja de mineradoras (/mineradora loja) usam a
+#  moeda escolhida em config.yml (Loja.Moeda: 'padrao' usa a marcada como
+#  Padrao aqui embaixo).
+#
+#  Provedor:
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' e o id dela (vazio =
+#                  a principal)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro entra e sai por comando de console
+#                  ({jogador} {uuid} {valor})
+#    Ou o id de uma moeda (precisa do loader StarPlugins 2.0.82 ou mais novo):
+#      stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#      yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#      yeconomy              o yEconomy
+#
+#  Permitir offline   cobra mesmo com o jogador offline (nao se aplica as
+#                     duas lojas, que so agem com o comprador online).
+#  Permissao          quem pode usar esta moeda (vazio = todos).
+# ==========================================================================
+
+Versao do modelo: 1
+
+# A economia usada quando config.yml tem "Loja.Moeda: padrao".
+Padrao: dinheiro
+
+Economias:
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Simbolo: '$'
+    Permitir offline: true
+    Permissao: ''
+
+  # Exemplo com PlayerPoints. Apague se nao usar.
+  pontos:
+    Provedor: PLAYERPOINTS
+    Nome: 'Pontos'
+    Simbolo: ''
+    Valores inteiros: true
+    Permitir offline: true
+    Permissao: 'starmineradora.economia.pontos'
+
+  # Exemplo por COMANDO, para economias sem API. Tire o # para usar.
+  # cash:
+  #   Provedor: COMANDO
+  #   Nome: 'Cash'
+  #   Simbolo: ''
+  #   Permitir offline: false
+  #   Valores inteiros: true
+  #   Placeholder de saldo: '%meucash_saldo%'
+  #   Comando de retirar: 'cash remover {jogador} {valor}'
+  #   Comando de dar: 'cash adicionar {jogador} {valor}'
+  #   Permissao: 'starmineradora.economia.cash'
