@@ -1,0 +1,115 @@
+# =====================================================
+#                    StarSequência
+#                 Configuração Geral
+# =====================================================
+
+prefix: "&8[&5&lStarSequência&8]&7 "
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+# Exige que o jogador fique um tempo mínimo online para o dia ser validado
+# (aumentar a sequência). Se desativado, o dia é validado assim que o jogador entra.
+validacao-dia:
+  tempo-minimo-ativo: false
+  minutos-necessarios: 120
+
+# Permite ao jogador pagar em dinheiro (via Vault) para recuperar uma sequência
+# perdida, dentro do prazo abaixo. Passado o prazo, a oferta expira e não pode
+# mais ser resgatada (a sequência já reiniciou normalmente nesse momento).
+retomar-sequencia:
+  ativo: true
+  dias-disponivel: 3
+  valor: 500.0
+
+# Guarda um histórico das últimas sequências que o jogador perdeu.
+historico:
+  ativo: true
+  maximo-entradas: 15
+
+# Ranking dos jogadores com a maior sequência (recorde) já alcançada. Usado em /sequencia top.
+rank:
+  ativo: true
+  quantidade: 10
+
+# Faz o menu abrir sozinho para o jogador ao entrar no servidor, nas situações abaixo.
+abrir-automatico:
+  ao-atingir-marco: true
+  ao-perder-sequencia: true
+  # Atraso (em ticks, 20 = 1 segundo) antes de abrir o menu automaticamente após entrar.
+  atraso-ticks: 40
+
+# Configurações da placeholder %starsequencia_sequencia%
+placeholder:
+  # A partir de quantos dias consecutivos a placeholder passa a exibir o número.
+  # Enquanto o jogador não atingir esse valor, o texto abaixo é exibido no lugar.
+  minimo-dias-para-exibir: 5
+  # Texto exibido quando o jogador ainda não atingiu o mínimo configurado acima.
+  texto-abaixo-minimo: ""
+
+  # Como o número da sequência é exibido. Use {sequencia} no lugar onde o número deve
+  # aparecer - coloque texto, cores (&) ou emojis antes e/ou depois dele, como quiser.
+  # Exemplos:
+  #   "{sequencia} 🚀"      -> "12 🚀"
+  #   "🚀 {sequencia}"      -> "🚀 12"
+  #   "{sequencia} dias"    -> "12 dias"
+  formato: " {sequencia} 🚀"
+
+  # Degradê de cor do número da sequência: quanto mais dias consecutivos, mais bonita
+  # a cor fica, até atingir o roxo final por volta de 1 ano (365 dias).
+  cor:
+    ativo: true
+    # A cor exibida é interpolada suavemente entre os pontos abaixo, de acordo com a
+    # sequência atual do jogador. Adicione, remova ou mova os pontos como quiser -
+    # eles só precisam estar em ordem crescente de "dias". Use hexadecimal (#RRGGBB).
+    degrade:
+      - dias: 5
+        cor: "#AAAAAA"
+      - dias: 15
+        cor: "#55FF55"
+      - dias: 30
+        cor: "#55FFFF"
+      - dias: 60
+        cor: "#FFD700"
+      - dias: 100
+        cor: "#FF8C00"
+      - dias: 180
+        cor: "#C77DFF"
+      - dias: 365
+        cor: "#6A0DAD"
+
+# Mensagens gerais do plugin (aceitam código de cor com &)
+mensagens:
+  sem-permissao: "&cVocê não tem permissão para usar esse comando!"
+  apenas-jogadores: "&cApenas jogadores podem executar esse comando!"
+  comando-invalido: "&cComando inválido! Use &f/sequencia ajuda"
+  config-recarregada: "&aConfigurações recarregadas com sucesso!"
+
+  sequencia-aumentou: "&aParabéns, você validou seu dia e recebeu &e&l+1 &ana sua sequência! &f&n/sequencia"
+  sequencia-novo-recorde: "&6&l✦ &6Novo recorde pessoal! &e{sequencia} &6dias consecutivos!"
+  sequencia-perdida: "&cVocê perdeu sua sequência de &e{sequencia-anterior} &cdias por não entrar todos os dias. Use &f/sequencia &cpara ver se ainda dá para recuperá-la!"
+  marco-disponivel: "&e&l✦ &eVocê atingiu &f{dias} dias &ede sequência! Use &f/sequencia &epara resgatar sua recompensa!"
+
+  recompensa-resgatada: "&aVocê resgatou a recompensa do marco de &e{dias} &adias!"
+  recompensa-ja-resgatada: "&cVocê já resgatou a recompensa desse marco!"
+  recompensa-bloqueada: "&cVocê ainda não atingiu esse marco de sequência!"
+  inventario-cheio: "&eSeu inventário está cheio! Um item foi jogado no chão."
+  recurso-desativado: "&cEsse recurso está desativado no servidor."
+
+  retomar-sucesso: "&aVocê recuperou sua sequência de &e{dias} &adias!"
+  retomar-indisponivel: "&cNão há nenhuma sequência para recuperar no momento."
+  retomar-dinheiro-insuficiente: "&cVocê não tem dinheiro suficiente! É necessário &e{valor}&c."
+  sem-vault: "&cA economia (Vault) não está disponível no servidor. Avise um administrador!"
+
+  historico-titulo: "&6&lHistórico de Sequências:"
+  historico-linha: "&7- &f{dias} dias &7(perdida em &f{data}&7)"
+  historico-vazio: "&7Você ainda não tem nenhum histórico de sequências perdidas."
+
+  rank-titulo: "&6&lTop {quantidade} Sequências:"
+  rank-linha: "&7{posicao}. &f{jogador} &7- &e{dias} dias"
+  rank-vazio: "&7Ainda não há jogadores no ranking."
