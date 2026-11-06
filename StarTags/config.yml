@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 11
+Versao do modelo: 12
 
 Geral:
   Debug: false
@@ -125,111 +125,68 @@ Sufixos:
   Palavras bloqueadas: []
 
 Texto no nome:
-  # As linhas de "Acima do nome" e "Abaixo do nome" das tags.
-  # Sao suportes invisiveis de verdade: desligue se o seu servidor conta
-  # entidades com rigor.
+  # O nome que flutua acima do jogador: o nick, as linhas do grupo
+  # (nametags.yml) e o texto que a tag equipada pedir.
   Ativar: true
 
-  # SUBSTITUIR O NOME DO JOGADOR
+  # Esconde o nome que o JOGO desenha e passa a desenhar o nick aqui.
   #
-  # Ligado, o nome que o JOGO desenha e escondido e o nick passa a ser mais uma
-  # destas linhas -- com a altura e o espacamento que voce definir aqui embaixo.
+  # E o que destrava o nametags.yml: sem isto o nick continua sendo do jogo e os
+  # grupos de nome nao tem o que desenhar.
   #
-  # E o que destrava o "Montar o nome no jogador" logo abaixo, que e onde o
-  # atraso do nome acaba de verdade. Sem substituir, o nick continua sendo
-  # desenhado pelo jogo e nao ha linha nenhuma para montar.
-  #
-  # Precisa de "Nome.Ativar: true": e o time do placar que esconde o nome.
-  #
-  # Vem LIGADO porque e o unico caminho em que o nome nao fica para tras quando
-  # o jogador corre. Desligue se voce preferir o nome do jogo (que some atras de
-  # blocos, como todo nametag) e nao se incomodar com o atraso.
+  # Precisa de "Nome.Ativar: true" -- e o time do placar que esconde o original.
   Substituir o nome do jogador: true
+
+  # O que a linha do nick mostra quando nenhum grupo do nametags.yml serve.
   Formato do nome: '{tag}&f{nome}{sufixo}'
 
-  # VISOR DE TEXTO -- o melhor caminho, quando o servidor tem.
+  # ALTURA e a LINHA MAIS BAIXA de todas, em blocos a partir dos pes.
   #
-  # Da 1.19.4 em diante existe o TextDisplay, e ele resolve o problema inteiro:
-  # TODAS as linhas vao montadas no jogador (montado nao atrasa) e cada uma se
-  # desenha na altura que voce pediu, porque o visor tem deslocamento proprio.
-  # E ele nao tem caixa de colisao, entao nao come flecha na frente da cabeca.
+  # Tudo empilha para cima a partir dela, nesta ordem:
+  #   "Abaixo do nome" da tag  ->  linhas do grupo  ->  "Acima do nome" da tag
   #
-  # Abaixo da 1.19.4 a classe nem existe e o produto cai sozinho nos suportes de
-  # armadura -- onde so a linha do nome pode ir montada (veja abaixo).
-  Usar visor de texto: true
-
-  # A que altura o visor se encaixa no jogador, contando dos pes.
-  #
-  # Montado, ele nasce no ponto de encaixe que o JOGO escolhe, e esse ponto
-  # mudou entre versoes. As alturas deste arquivo sao contadas dos pes, entao e
-  # daqui que sai a conversao. Se o texto ficar alto ou baixo demais no seu
-  # servidor, ajuste este numero uma vez e todas as linhas acompanham.
-  Encaixe do visor: 1.8
-
-  # Quantos tiques o visor leva para chegar na posicao nova.
-  #
-  # Entidade comum tem a interpolacao de tres tiques CRAVADA no cliente -- e
-  # dai que vem o rastro do texto quando o jogador corre. O visor de texto
-  # deixa escolher: 0 cola na posicao nova no mesmo quadro, e e por isso que o
-  # nome acompanha o jogador sem precisar ir montado nele.
-  #
-  # Suba para 1 ou 2 se preferir o movimento mais macio, em troca de um rastro
-  # curto. Precisa da 1.20.2 em diante.
-  Suavizar: 0
-
-  # MONTAR NO JOGADOR -- leia inteiro antes de ligar.
-  #
-  # Ligado, as linhas viajam MONTADAS no jogador, como passageiro. Acompanha
-  # sem atraso nenhum... e QUEBRA TODO TELEPORTE DO SERVIDOR.
-  #
-  # Jogador com passageiro nao pode ser teleportado: o servidor comeca o
-  # teleporte com "se tem passageiro, recusa", e essa recusa acontece ANTES de
-  # o evento de teleporte existir -- nem o plugin de teleporte fica sabendo.
-  # /tp, /spawn, /warp, portais e menus de teleporte anunciam sucesso e o
-  # jogador nao sai do lugar, sem nenhum erro no console.
-  #
-  # Da 1.20.2 em diante voce NAO PRECISA disto: com "Suavizar: 0" o
-  # reposicionamento alcanca o mesmo resultado sem quebrar nada. Ligue so num
-  # servidor antigo, que nao teleporte ninguem.
-  Montar no jogador: false
-
-  # A altura da LINHA MAIS BAIXA de todas, em blocos a partir dos pes.
-  #
-  # E o piso do conjunto inteiro: tudo empilha para cima a partir daqui, na
-  # ordem "Abaixo do nome" -> linhas do grupo -> "Acima do nome". Acrescentar
-  # uma linha nunca empurra nada para dentro do jogador -- o bloco sobe junto.
-  #
-  # Cada grupo do nametags.yml ainda pode subir ou descer o proprio bloco com
-  # "Altura extra".
+  # Acrescentar uma linha sobe o bloco inteiro; nunca empurra nada para dentro
+  # do jogador.
   Altura: 2.05
-
-  # Ticks entre as REESCRITAS do texto (para placeholders que mudam sozinhos).
-  # A posicao e refeita a cada tique sempre, e nao passa por aqui: e ela que
-  # decide o atraso, e baixar essa frequencia so pioraria.
-  Atualizar a cada: 1
-
-  # Quantos tiques A FRENTE do jogador o texto e posicionado.
-  #
-  # O cliente espalha cada reposicionamento de entidade por tres tiques de
-  # interpolacao. Mirando onde o jogador esta agora, o texto chega la depois de
-  # ele ja ter saido -- e o rastro que aparece quando alguem corre. Mirando onde
-  # ele VAI estar, a interpolacao termina no lugar certo.
-  #
-  # O quanto o jogador andou e medido na mao, comparando duas posicoes. Nao da
-  # para usar a velocidade que o servidor guarda: movimento de jogador vem do
-  # cliente, e ali so fica a inercia da fisica (pulo, empurrao, queda) -- quem
-  # corre no plano tem velocidade horizontal zero por aquele caminho.
-  #
-  # 3 cancela quase todo o rastro. Aumente se ainda ficar para tras; diminua se
-  # o texto passar do jogador quando ele para de repente. 0 desliga a previsao.
-  #
-  # OLHANDO PARA VOCE MESMO (F5) sempre sobra alguma diferenca: o seu proprio
-  # corpo o cliente desenha na hora, adivinhando o movimento, e o texto vem do
-  # servidor. Para os outros jogadores os dois vem do servidor e andam juntos.
-  Mirar a frente: 3
-
-  # A distancia entre uma linha e outra.
   Espaco entre linhas: 0.28
+
+  # -------------------------------------------------------------------------
+  #  AVANCADO -- voce nao precisa mexer aqui.
+  #
+  #  COMO o texto acompanha o jogador nao e opcao: quem decide e o produto, pela
+  #  versao do servidor. Isso depende de quantos tiques o CLIENTE leva para
+  #  desenhar a entidade na posicao nova, e so o servidor sabe o que oferece:
+  #
+  #    1.20.2 em diante   visor de texto com interpolacao zerada -- sem atraso
+  #    1.19.4 a 1.20.1    visor de texto; o cliente interpola e o produto compensa
+  #    abaixo da 1.19.4   suporte de armadura; o cliente interpola e o produto compensa
+  #
+  #  Ja foram duas opcoes separadas, e elas se contradiziam: com a interpolacao
+  #  zerada, a compensacao deixava de compensar e desenhava a tag NA FRENTE de
+  #  quem andava. Agora e uma decisao so.
+  #
+  #  O /startags info mostra qual esta valendo no seu servidor.
+  # -------------------------------------------------------------------------
+  Avancado:
+    # Derruba para o suporte de armadura mesmo onde o visor existe. Serve para
+    # isolar um problema ("sera que e o visor?"), nao para uso normal: o suporte
+    # nao tem fundo, nem tamanho de letra, e o texto atrasa.
+    Forcar suporte de armadura: false
+
+    # Faz as linhas viajarem MONTADAS no jogador. Acompanha sem atraso nenhum...
+    # e QUEBRA TODO TELEPORTE DO SERVIDOR.
+    #
+    # Jogador com passageiro nao pode ser teleportado, e a recusa acontece ANTES
+    # de o evento de teleporte existir -- /tp, /spawn, /warp, portais e menus
+    # anunciam sucesso e o jogador nao sai do lugar, sem erro no console.
+    #
+    # Da 1.20.2 em diante voce NAO precisa disto: o visor ja acompanha sem
+    # atraso. Existe so para servidor antigo que nao teleporte ninguem.
+    Montar no jogador: false
+
+    # So vale com "Montar no jogador: true": a que altura o visor se encaixa no
+    # jogador, contando dos pes. Mexa se o texto montado ficar alto ou baixo.
+    Encaixe do visor: 1.8
 
 Animacoes:
   Ativar: true
@@ -252,6 +209,11 @@ Economia:
   # VAULT fala com qualquer economia registrada no Vault.
   # COMANDO serve para as economias que nao se registram: o saldo e lido pelo
   # placeholder e a cobranca sai por comando de console.
+  # Ou o id de uma moeda:
+  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+  #   yeconomy              o yEconomy
+  #   (esses precisam do loader StarPlugins 2.0.82 ou mais novo)
   Tipo: VAULT
   Simbolo: '$'
   Placeholder de saldo: '%vault_eco_balance%'
