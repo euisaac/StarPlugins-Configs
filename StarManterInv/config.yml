@@ -1,0 +1,160 @@
+#   ____  _              __  __             _              ___
+#  / ___|| |_ __ _ _ __ |  \/  | __ _ _ __ | |_ ___ _ __  |_ _|_ ____   __
+#  \___ \| __/ _` | '__|| |\/| |/ _` | '_ \| __/ _ \ '__|  | || '_ \ \ / /
+#   ___) | || (_| | |   | |  | | (_| | | | | ||  __/ |     | || | | \ V /
+#  |____/ \__\__,_|_|   |_|  |_|\__,_|_| |_|\__\___|_|    |___|_| |_|\_/
+#
+#  O item que salva o inventario e a experiencia do jogador depois da morte.
+#  Site: https://starplugins.com.br
+#
+#  Os textos ficam em mensagens.yml
+#  O menu de compra fica em loja.yml
+#  Os nomes dos comandos ficam em comandos.yml
+#
+#  Cores: &a, &c, ... , hex &#RRGGBB (1.16+) e degrade
+#  <GRADIENTE:17FFD5:17AEFF>texto</GRADIENTE>. Tem tambem <NEGRITO>, <ITALICO>,
+#  <SUBLINHADO>, <RISCADO> e <MAGICO>.
+#
+#  "Versao do modelo" e o numero deste arquivo dentro do jar. Quando ele sobe
+#  numa atualizacao, o plugin guarda o seu arquivo como config-antigo-vX.yml e
+#  escreve o modelo novo no lugar -- e assim que as opcoes novas chegam.
+Versao do modelo: 1
+
+# Liga mensagens extras no console para investigar problemas.
+Debug: false
+
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrão)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
+#
+# ────────────────────────────────  Item  ───────────────────────────────
+#
+# O item que o jogador precisa ter para nao perder nada ao morrer.
+#
+# O material vale para todas as versoes: escreva o nome moderno
+# (PRISMARINE_SHARD, TOTEM_OF_UNDYING...) que o plugin converte sozinho para o
+# nome antigo quando o servidor for 1.8 a 1.12.
+#
+Item:
+  Material: PRISMARINE_SHARD
+  Quantidade: 1
+  Nome: '<NEGRITO><GRADIENTE:17FFD5:00FF93>MANTER INVENTARIO</GRADIENTE>'
+
+  # Quantas linhas voce quiser.
+  Lore:
+    - ' '
+    - '&b- &7Voce pode morrer comigo!'
+    - '&b- &7Eu salvo os seus itens e o seu XP.'
+    - ' '
+
+  # Brilho de encantamento, sem encantamento nenhum aparecendo na lore.
+  Brilho: false
+
+  # Encantamentos de verdade, no formato NOME:NIVEL.
+  # Exemplo: [ 'DURABILITY:1', 'unbreaking:3' ]
+  Encantamentos: []
+
+  # Textura de resource pack (1.14+). Deixe 0 para nao usar.
+  CustomModelData: 0
+
+  # Todo item criado pelo plugin leva uma marca invisivel na lore, e e por ela
+  # que o item e reconhecido -- entao mudar o nome aqui nao quebra os itens que
+  # os jogadores ja tem.
+  #
+  # Com esta opcao ligada, um item de mesmo material e mesmo nome tambem conta
+  # como valido. Serve para quem ja distribuia o item por outro plugin; desligue
+  # se alguem no servidor puder renomear um item na bigorna para copiar o seu.
+  Identificar pelo nome: true
+
+#
+# ──────────────────────────────  Protecao  ─────────────────────────────
+#
+Protecao:
+  Ativar: true
+
+  # Salva os itens do inventario.
+  Manter inventario: true
+
+  # Salva o nivel e a experiencia.
+  Manter experiencia: true
+
+  # Salva tambem o que estava vestido. Desligue para a armadura sempre cair.
+  Manter armadura: true
+
+  # Quanto do que seria salvo volta para o jogador, de 0 a 100.
+  # Com 50, metade das pilhas e sorteada e o resto cai no chao normalmente.
+  Porcentagem dos itens: 100
+
+  # true = o item so funciona se estiver na mao (principal ou secundaria) na
+  # hora da morte. false = basta estar em qualquer lugar do inventario.
+  Somente na mao: false
+
+  # true = o item some depois de salvar o inventario uma vez.
+  # A permissao starmanterinv.infinito ignora isto e nunca gasta o item.
+  Consumir ao morrer: true
+
+  # Materiais que nunca sao salvos: eles caem no chao mesmo com o item.
+  # Exemplo: [ 'DIAMOND_BLOCK', 'NETHERITE_INGOT' ]
+  Materiais ignorados: []
+
+  # Mundos onde o item nao funciona (arenas, eventos...).
+  Mundos bloqueados: []
+
+  # Aviso na hora da morte. Deixe '' para nao mostrar.
+  # No titulo, <nl> separa o titulo do subtitulo.
+  Aviso:
+    Titulo: ''
+    Actionbar: '&bO seu inventario foi salvo!'
+    Som: 'LEVEL_UP;1;1'
+
+#
+# ────────────────────────────────  Loja  ───────────────────────────────
+#
+# Venda do item por /manterinv comprar e pelo menu /manterinv loja.
+# Precisa de Vault com um plugin de economia instalado.
+#
+Loja:
+  Ativar: false
+
+  # Preco de uma unidade.
+  Preco: 500.0
+
+  # Teto de itens por compra, para ninguem zerar a conta num clique errado.
+  Limite por compra: 64
+
+  Som da compra: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1'
+
+#
+# ───────────────────────────────  Receita  ─────────────────────────────
+#
+# Receita de bancada do item.
+#
+# O formato e a bancada 3x3 lida de cima para baixo:
+#
+#     A B C
+#     D E F
+#     G H I
+#
+# Use AR para deixar o espaco vazio.
+#
+Receita:
+  Ativar: true
+
+  # Quantos itens saem de uma receita.
+  Quantidade: 1
+
+  Formato:
+    A: AR
+    B: PRISMARINE_CRYSTALS
+    C: AR
+    D: DIAMOND
+    E: PRISMARINE_SHARD
+    F: DIAMOND
+    G: AR
+    H: PRISMARINE_CRYSTALS
+    I: AR
