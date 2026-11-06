@@ -19,6 +19,14 @@ banco-de-dados:
   usuario: root
   senha: ''
 
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrÃ£o)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
 geral:
   # Idioma não é selecionável, o plugin é 100% em português.
   verificar-atualizacoes: true
@@ -410,10 +418,13 @@ particulas-spawner:
 # ---------------------------------------------------------
 holograma:
   ativado: true
+  # Altura da linha de baixo; as outras sobem a partir dela.
   altura-acima-do-spawner: 1.6
+  # Não é mais usado: o espaçamento entre linhas é do provedor de hologramas
+  # escolhido no config do StarPlugins.
   distancia-entre-linhas: 0.25
   intervalo-atualizacao-ticks: 20
-  # Linhas do holograma (uma entidade por linha, empilhadas de baixo pra cima).
+  # Linhas do holograma (empilhadas de baixo pra cima).
   # Placeholders: %mob%, %quantidade%. Use "&" para cores.
   formato:
     - "&b%mob%"
