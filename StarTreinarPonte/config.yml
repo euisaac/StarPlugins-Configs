@@ -1,0 +1,248 @@
+# ---------------------------------------------------------------------------
+# StarTreinarPonte
+#
+# Area de treino de ponte e de fireball, com dois jeitos de montar a area:
+# construida de verdade num mundo so do treino (o padrao) ou desenhada apenas
+# na tela de cada jogador. A escolha esta na secao 'Area', logo abaixo.
+#
+# Permissoes:
+# - startreinarponte.usar ................. entrar na area de treino
+# - startreinarponte.assistir ............. /treinarver <jogador>
+# - startreinarponte.admin ................ /startreinarponte
+# - startreinarponte.comandos.bypass ...... usar qualquer comando no treino
+# - startreinarponte.bloco.* .............. libera todos os blocos de construcao
+#
+# Os locais sao marcados no jogo com /startreinarponte setar e ficam no
+# locais.yml. Os treinos em si (distancias, hotbar, placar) ficam na pasta
+# treinos/.
+# ---------------------------------------------------------------------------
+
+# Nao mexa: e por este numero que o plugin sabe que o modelo do arquivo mudou.
+Versao do modelo: 1
+
+# Como a area de treino e montada.
+Area:
+  # false (padrao) - a area e construida com bloco de verdade, num mundo so do
+  #                  treino. Nao precisa de voo liberado, entao nao ha atrito
+  #                  com anticheat, e o jogador coloca e quebra bloco do jeito
+  #                  normal do jogo. O plugin cria o mundo e limpa tudo sozinho
+  #                  quando o treino acaba.
+  #
+  # true           - plataforma e ponte existem so no cliente de quem treina. O
+  #                  mundo do servidor nunca muda e a area pode ficar dentro do
+  #                  proprio lobby, mas o plugin precisa ligar o voo enquanto o
+  #                  treino dura (o servidor tem que aceitar o jogador de pe em
+  #                  bloco que so o cliente dele conhece), e e ai que anticheat
+  #                  de terceiro costuma reclamar.
+  #
+  # No modo pacote a ilha de cada treino e marcada com /startreinarponte setar;
+  # no modo mundo ninguem marca nada, as ilhas ja nascem prontas.
+  Pacote: false
+
+  # Vale so com 'Pacote: false'.
+  Mundo:
+    # Criado na primeira vez que o plugin liga: vazio, sempre de dia, sem bicho
+    # e sem chuva. Se ja existir um mundo com este nome, ele e usado como esta.
+    Nome: 'Treinos'
+
+    # Altura em que o chao das ilhas e construido.
+    Altura: 100
+
+    # Blocos entre a ilha de um treino e a do treino seguinte. Precisa ser maior
+    # que 'Faixas.Maximo' x 'Faixas.Separacao', senao a ultima faixa de um treino
+    # encosta na ilha do outro.
+    Distancia entre ilhas: 2048
+
+# Banco de dados dos recordes e dos cosmeticos desbloqueados.
+Banco:
+  # SQLITE guarda tudo em dados/startreinarponte.db, dentro da pasta do produto.
+  # MYSQL serve para compartilhar os recordes entre servidores da mesma rede.
+  Tipo: SQLITE
+  Host: localhost
+  Porta: 3306
+  Banco: minecraft
+  Usuario: root
+  Senha: ''
+  # Prefixo das tabelas; troque se dois plugins dividem o mesmo banco.
+  Prefixo: 'startreinar_'
+
+Geral:
+  # Para onde o jogador volta ao sair do treino:
+  # ANTERIOR - o lugar onde ele estava quando entrou
+  # SPAWN    - o spawn do mundo em que ele estava
+  Voltar para: ANTERIOR
+  # Quantos blocos abaixo da plataforma contam como queda; ao cair o treino
+  # e reiniciado sozinho.
+  Altura da queda: 6
+  # Bloqueia teleportes de outros plugins enquanto o jogador treina (/spawn,
+  # /tp e afins). Sem isto ele sairia da area sem o plugin saber.
+  Bloquear teleporte: true
+  # Com o bloqueio ligado: true tira o jogador do treino quando algo tenta
+  # teleporta-lo, false apenas ignora o teleporte.
+  Sair ao teleportar: true
+  # Distancia, em blocos, que o jogador pode ser teleportado dentro da propria
+  # faixa sem que o teleporte seja tratado como saida. Nao passe de 10.
+  Distancia de teleporte: 7
+  Bloquear comandos:
+    Ativado: true
+    Permitidos:
+      - /treinar
+      - /treino
+      - /treinos
+      - /ponte
+      - /g
+      - /global
+      - /l
+      - /local
+      - /tell
+      - /msg
+      - /r
+      - /responder
+      - /sc
+      - /staffchat
+      - /money
+      - /coins
+      - /cash
+      - /pontos
+      - /admin
+      - /vanish
+      - /v
+
+# Cada jogador treina na sua propria faixa: o local marcado no locais.yml e a
+# faixa 0 e as outras nascem ao lado, uma a cada "Separacao" blocos. Como a
+# plataforma e a ponte sao blocos falsos, a faixa nao precisa de nada
+# construido -- so de espaco vazio ao lado da area.
+# Treino aberto: todo mundo lado a lado, cada um na sua ponte, vendo a corrida
+# do vizinho. As faixas dele ficam do outro lado da ilha e nunca caem em cima
+# das faixas do treino solo.
+Aberto:
+  # Deixe false para o menu do treino mostrar so o Solo.
+  Ativado: true
+
+  # Blocos entre a ponte de um jogador e a do vizinho.
+  Separacao: 5
+
+  # Quanto o jogador pode fugir da linha reta ate a ilha de chegada dele, em
+  # blocos. Com 0 vale so a linha, que e o que impede um invadir a ponte do
+  # outro -- com as faixas tao proximas, folga aqui vira bagunca.
+  #
+  # O menu do treino aberto mostra so as distancias RETO: a diagonal anda de
+  # lado a cada passo e terminaria dentro do corredor do vizinho.
+  Desvio: 0
+
+Faixas:
+  # Distancia entre uma faixa e a seguinte, em blocos.
+  Separacao: 64
+  # Quantos jogadores podem treinar ao mesmo tempo.
+  Maximo: 24
+
+# A plataforma de partida, desenhada em blocos falsos na faixa do jogador.
+Plataforma:
+  Ativada: true
+  # Material da plataforma; aceita nomes de qualquer versao (o XSeries traduz).
+  Material: QUARTZ_BLOCK
+  # Tamanho da plataforma de partida, em blocos, para cada lado do centro.
+  Raio: 3
+  # Tamanho da plataforma de chegada (nas distancias que tem fim).
+  Raio da chegada: 3
+  # Material da plataforma de chegada.
+  Material da chegada: EMERALD_BLOCK
+
+# O treino de fireball e a mesma ponte do outro treino, com bolas de fogo vindo
+# pela frente para tentar derrubar o jogador. Elas nao machucam ninguem e nao
+# quebram nada: o empurrao e dado pelo plugin, para o treino ser sempre igual.
+#
+# O bombardeio comeca junto com o cronometro, no primeiro bloco.
+Fireball:
+  # Segundos entre uma rodada de bolas e a proxima.
+  Intervalo: 2.5
+
+  # Quantas bolas por rodada (ate 10). Vindo do mesmo lado, elas saem
+  # afastadas uma da outra para nao virem em fila.
+  Quantidade: 1
+
+  # De onde elas vem, sempre em relacao ao rumo da ponte -- entao a mesma
+  # configuracao vale para qualquer area, em qualquer sentido:
+  #
+  # FRENTE   - de frente, contra o jogador
+  # ATRAS    - pelas costas
+  # ESQUERDA - so pela esquerda de quem atravessa
+  # DIREITA  - so pela direita
+  # LADOS    - alternando os dois lados a cada bola
+  # SORTEIO  - sorteia entre frente, esquerda e direita
+  De onde vem: FRENTE
+
+  # De quantos blocos a frente do jogador a bola nasce. Junto com a velocidade,
+  # e o que da o tempo de reacao: mais longe, mais tempo para desviar.
+  Distancia: 16.0
+
+  # Quanto acima da cabeca do jogador ela vem. Zero manda na altura do peito.
+  Altura: 0.5
+
+  # Velocidade da bola. Acima de 2.0 fica quase impossivel reagir.
+  Velocidade: 1.1
+
+  # Forca do empurrao da explosao.
+  Multiplicador horizontal: 1.15
+  Multiplicador vertical: 0.85
+
+  # Alcance do empurrao, em blocos, a partir do ponto da explosao.
+  Alcance: 4.0
+
+  # A bola derruba o bloco da ponte em que bate.
+  Quebrar bloco: false
+
+  # Vida tirada por bola que acerta (2.0 = um coracao). Zero deixa so o
+  # empurrao. A bola nunca mata: a vida para em meio coracao, e a vida de antes
+  # do treino volta na saida e a cada reinicio.
+  Dano: 2.0
+
+Placar:
+  Ativado: true
+  # Ticks entre um quadro e outro da animacao do titulo (20 ticks = 1 segundo).
+  Tempo da animacao: 4
+  # Ticks entre duas atualizacoes das linhas.
+  Tempo de atualizacao: 2
+
+Cosmeticos:
+  # Nome e cor de cada raridade dos blocos de construcao.
+  Raridades:
+    COMUM:
+      Nome: Comum
+      Cor: '&a'
+    RARO:
+      Nome: Raro
+      Cor: '&9'
+    EPICO:
+      Nome: Epico
+      Cor: '&5'
+    LENDARIO:
+      Nome: Lendario
+      Cor: '&6'
+  Categorias:
+    blocos:
+      Ativado: true
+      Nome: Blocos de construcao
+  # Texto do "%encontrado%" na lore de um bloco que o jogador ainda nao tem.
+  Encontrado:
+    Todos: ''
+    Permissao: '&bDesbloqueado apenas para VIPs'
+
+# De onde saem as moedas dos cosmeticos.
+Economias:
+  Coins:
+    # VAULT     - a economia do servidor (StarEconomia, Essentials, ...)
+    # PLAYERPOINTS - o PlayerPoints, quando instalado
+    # COMANDO   - roda um comando no console e nunca recusa a compra
+    # NENHUMA   - desliga a cobranca de coins
+    # Ou o id de uma moeda (vale tambem no Cash):
+    #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+    #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+    #   yeconomy              o yEconomy
+    #   (esses precisam do loader StarPlugins 2.0.82 ou mais novo)
+    Tipo: VAULT
+    # Usado apenas no tipo COMANDO. Placeholders: %jogador% e %valor%.
+    Comando: 'money take %jogador% %valor%'
+  Cash:
+    Tipo: NENHUMA
+    Comando: 'cash retirar %jogador% %valor%'
