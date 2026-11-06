@@ -1,0 +1,109 @@
+# =========================================================================
+#  Cadeia de exemplo - ja vem pronta com blocos, precos e mensagens.
+#  Para comecar a usar, va ate a entrada da sua prisao e rode:
+#    /definirentrada exemplo
+#  E, na saida (fora das celas), rode:
+#    /definirsaida exemplo
+#  So isso! Pode renomear este arquivo (e o "id" usado nos comandos muda junto),
+#  duplicar para criar outras cadeias, e editar qualquer campo abaixo.
+# =========================================================================
+
+# Nome de exibicao (aceita cores com '&').
+name: '&5Prisao de Obsidian'
+
+# Preenchidos automaticamente por /definirentrada e /definirsaida - nao precisa mexer aqui.
+location: ''
+exit: ''
+
+# Raio (em blocos) de confinamento a partir da entrada - recurso proprio do StarPunicoes.
+radius: 25
+
+# Blocos que o preso pode quebrar para reduzir a propria pena, cada um com seu tempo (em segundos).
+blocks:
+  block1:
+    type: OBSIDIAN
+    time-reduce: 10
+
+# Se definido, so reduz a pena quebrando o bloco com esta ferramenta na mao. Deixe em branco
+# (material: '') para aceitar qualquer ferramenta.
+tool:
+  material: DIAMOND_PICKAXE
+
+# Comandos que o preso PODE usar normalmente (sem a barra "/").
+allowed-commands:
+  - prisao
+  - presos
+  - prisaoajuda
+  - fianca
+  - maistempo
+
+# Comandos executados pelo console quando alguem e preso/solto nesta cadeia.
+# Placeholder: {player}
+arrested-commands: []
+released-commands: []
+
+# Fianca: paga com /fianca para sair antes do tempo.
+release:
+  enabled: true
+  # Permissao necessaria para poder pagar fianca (deixe em branco para liberar a todos).
+  permission: ''
+  # provider: money (o dinheiro do Vault) ou o id de uma moeda:
+  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+  #   yeconomy              o yEconomy
+  #   (esses precisam do loader StarPlugins 2.0.82 ou mais novo)
+  prices:
+    price1:
+      provider: money
+      amount: 2200.0
+
+# Aumento de pena: usado com /maistempo <jogador>.
+increase:
+  enabled: true
+  # Permissao necessaria para poder aumentar a pena de alguem (deixe em branco para liberar a todos).
+  permission: ''
+  # Tempo adicionado, em segundos.
+  time: 600
+  # Espera minima entre usos do mesmo jogador nesse preso, em segundos.
+  delay: 1600
+  prices:
+    price1:
+      provider: money
+      amount: 500000.0
+
+# Taxa extra (em %) cobrada em cima dos precos acima, por provedor.
+tax:
+  enabled: false
+  taxes:
+    tax1:
+      provider: money
+      amount: 10.0
+
+# Mensagens desta cadeia. Placeholders: {staff} {time} {reason} {time_left}
+messages:
+  arrested: |2
+
+    &cVoce foi preso por &f{staff}
+    &cTempo: &f{time}&c.
+    &cMotivo: &f{reason}&c.
+  stuck: |2
+
+    &cVoce esta preso por &f{time_left}&c.
+    &cMotivo: &f{reason}&c.
+  reduce: '&aPena reduzida em &f{time}&a.'
+  actionbar: '&cVoce ainda ficara preso por {time_left}&c.'
+  released: '&aSua pena acabou. Voce esta livre.'
+
+# Aviso publico quando alguem e preso nesta cadeia. Placeholders: {player} {staff} {time} {reason}
+broadcast:
+  arrested:
+    chat: |2
+
+      &4&lCADEIA
+      &c Preso: &7{player} &cfoi preso por &7{staff}
+      &c Tempo: &7{time}
+      &c Motivo: &7{reason}
+      &7Solte ou aumente o tempo em &7/prisao
+    actionbar: ''
+    title: ''
+    subtitle: ''
