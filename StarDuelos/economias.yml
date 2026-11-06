@@ -1,0 +1,60 @@
+# ==========================================================================
+#  StarDuelos - economias
+#
+#  Usadas nas apostas dos desafios e nas recompensas em dinheiro.
+#  'Padrao' e a usada quando config.yml nao diz outra (Apostas.Moeda e
+#  Recompensas.Moeda).
+#
+#  Provedor:
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' e o id dela (vazio =
+#                  a principal)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro entra e sai por comando de console
+#                  ({jogador} {uuid} {valor})
+#
+#  Tambem aceita o id da moeda direto no Provedor:
+#    stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#    yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#    yeconomy              o yEconomy
+#  (yeconomias/yeconomy precisam do loader StarPlugins 2.0.82 ou mais novo)
+# ==========================================================================
+
+Versao do modelo: 1
+
+Padrao: dinheiro
+
+Economias:
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Abreviacao: 'coins'
+    Simbolo: '$'
+    Valores inteiros: false
+  cash:
+    Provedor: PLAYERPOINTS
+    Nome: 'Cash'
+    Abreviacao: 'cash'
+    Simbolo: ''
+    Valores inteiros: true
+
+  # Exemplo com o StarEconomia:
+  # gemas:
+  #   Provedor: STARECONOMIA
+  #   Moeda: 'gemas'
+  #   Nome: 'Gemas'
+  #   Abreviacao: 'gemas'
+  #   Simbolo: ''
+  #   Valores inteiros: true
+
+  # Exemplo por COMANDO, para economias sem API:
+  # cash:
+  #   Provedor: COMANDO
+  #   Nome: 'Cash'
+  #   Abreviacao: 'cash'
+  #   Simbolo: ''
+  #   Valores inteiros: true
+  #   Placeholder de saldo: '%meucash_saldo%'
+  #   Comando de retirar: 'cash remover {jogador} {valor}'
+  #   Comando de dar: 'cash adicionar {jogador} {valor}'
