@@ -176,6 +176,84 @@ Historico:
     Maximo por clique: 2304
 
 #
+# ════════════════════════════════  LEILAO  ══════════════════════════════════
+#
+# O que a limpeza recolheu hoje pode ir a leilao em vez de virar po. Quem quiser
+# um item do lixeiro da o lance inicial, e a partir dai ele fica 24 horas de pe
+# para quem quiser cobrir.
+#
+# O item leiloado SAI do historico na hora em que o leilao comeca -- ele nao
+# pode estar em dois lugares, senao a staff resgataria pelo /starlixeiro
+# historicoadmin o mesmo item que alguem esta comprando.
+Leilao:
+  Ativar: true
+
+  # Quanto tempo um leilao fica de pe depois do lance inicial, em horas.
+  Duracao: 24
+
+  # O menor lance que abre um leilao.
+  Lance minimo: 100.0
+
+  # Quanto o proximo lance precisa subir em relacao ao atual.
+  Incremento minimo: 50.0
+
+  # Quantos leiloes um jogador pode ter abertos ao mesmo tempo. 0 = sem limite.
+  Maximo por jogador: 3
+
+  # So os itens limpos HOJE (da meia-noite para ca) podem ir a leilao.
+  # Desligue para aceitar qualquer item que ainda esteja no historico.
+  Somente itens de hoje: true
+
+  # Avisa o servidor quando um leilao comeca e quando termina.
+  Anunciar no chat: true
+
+  # De quantos em quantos segundos o servidor e lembrado de que existe coisa a
+  # venda. O aviso so sai quando ha pelo menos um leilao de pe -- servidor sem
+  # leilao nenhum nao ganha mensagem nenhuma. 0 desliga.
+  Lembrar a cada: 900
+
+  # Quantos dias o item ganho espera no armazem antes de ser descartado.
+  # 0 = espera para sempre.
+  Guardar ganhos por dias: 30
+
+  # Onde o dinheiro do lance fica preso ate o leilao acabar:
+  #
+  # O valor sai da conta de quem deu o lance NA HORA. Quem e coberto recebe de
+  # volta na mesma hora. O dinheiro do vencedor some do servidor -- o item era
+  # lixo do chao, nao tinha dono para receber. Isso faz do leilao um sumidouro
+  # de dinheiro, que e o que segura a inflacao num servidor de sobrevivencia.
+
+  Economia:
+    # Qual carteira paga os lances:
+    #
+    #   STARECONOMIA - fala direto com o StarEconomia. Serve para QUALQUER moeda
+    #                  cadastrada la (cash, dinheiro, cristais...) -- e so por o
+    #                  id dela em "Moeda".
+    #   VAULT        - qualquer economia registrada no Vault.
+    #   PLAYERPOINTS - os pontos do PlayerPoints (so numero inteiro).
+    #   COMANDO      - para o que nao se encaixa em nenhum dos de cima: o saldo e
+    #                  lido por placeholder e o dinheiro entra e sai por comando
+    #                  de console.
+    #
+    # Ou o id de uma moeda (precisa do loader StarPlugins 2.0.82 ou mais novo):
+    #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+    #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+    #   yeconomy              o yEconomy
+    Tipo: STARECONOMIA
+
+    # So no STARECONOMIA: o id da moeda cadastrada la.
+    Moeda: 'cash'
+
+    # Como o valor aparece nas mensagens e nos menus.
+    # {valor} e o numero ja formatado (1.234,5).
+    Formato: '{valor} cash'
+
+    # So no modo COMANDO. Marcadores: {jogador} {uuid} {valor}
+    Placeholder do saldo: ''
+    Comando para dar: ''
+    Comando para retirar: ''
+
+#
 # ════════════════════════════════  DISCORD  ═════════════════════════════════
 #
 # Avisa num canal do Discord a cada limpeza, por webhook.
