@@ -219,6 +219,11 @@ Economia:
     # VAULT  -> qualquer plugin de economia registrado no Vault.
     # COMANDO -> le o saldo por placeholder e cobra por comando; use quando
     #            a sua economia nao registra no Vault.
+    # Ou o id de uma moeda:
+    #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+    #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+    #   yeconomy              o yEconomy
+    #   (esses precisam do loader StarPlugins 2.0.82 ou mais novo)
     Tipo: VAULT
     # So usado no modo COMANDO.
     Placeholder: '%vault_eco_balance%'
