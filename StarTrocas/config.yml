@@ -1,0 +1,124 @@
+# ==========================================================================
+#  StarTrocas - configuracao geral
+#
+#  Como funciona: um jogador convida outro para trocar. Se aceitar, os dois
+#  abrem a mesma mesa de troca: cada um poe do seu lado os itens e o dinheiro
+#  que quer oferecer, e confirma quando estiver pronto. Só quando os DOIS
+#  confirmam a troca acontece, de uma vez, sem chance de um lado sair no
+#  prejuizo.
+#
+#  Os textos ficam no mensagens.yml e a aparencia das telas no menus.yml.
+# ==========================================================================
+
+# Numero do modelo deste arquivo. Nao mexa: e por ele que uma atualizacao do
+# plugin sabe que precisa trocar o arquivo e guardar o seu como copia.
+Versao do modelo: 1
+
+Geral:
+  # Escreve no console cada troca concluida e cancelada. Ligue so para achar problema.
+  Debug: false
+
+  # Tranca convites novos (trocas em andamento continuam). O painel admin
+  # (/startrocas) liga e desliga isto tambem.
+  Trocas trancadas: false
+
+  # Milissegundos entre dois cliques na mesma tela (evita spam e dupe).
+  Intervalo entre cliques: 100
+
+Convite:
+  # Segundos que o convidado tem para aceitar ou recusar antes de expirar.
+  Expira em: 30
+
+  # Segundos que um jogador precisa esperar entre um convite e outro.
+  Cooldown: 5
+
+Confirmar:
+  # Depois que os dois lados confirmam, a troca so acontece apos esta
+  # contagem (em segundos) -- tempo suficiente para alguem cancelar se
+  # confirmou por engano.
+  Segundos: 3
+
+Seguranca:
+  # Distancia maxima (em blocos) entre os dois jogadores para o convite e
+  # para a mesa continuar aberta. -1 desliga o limite.
+  Distancia maxima: 10
+
+  # Os dois precisam estar no mesmo mundo para trocar.
+  Exigir mesmo mundo: true
+
+  # Cancela a troca se um dos lados se mover, tomar dano ou se teleportar
+  # enquanto a mesa esta aberta.
+  Cancelar ao mover: true
+  Cancelar ao tomar dano: true
+
+  # Maior valor em dinheiro que um lado pode oferecer numa unica troca.
+  # -1 desliga o limite.
+  Valor maximo por lado: -1.0
+
+Banco de dados:
+  # SQLITE (arquivo, nao precisa de nada) ou MYSQL (compartilhado entre
+  # servidores; so vale para o historico, a troca em si e sempre local).
+  Tipo: SQLITE
+  Prefixo das tabelas: 'startrocas_'
+  MySQL:
+    Host: localhost
+    Porta: 3306
+    Banco: minecraft
+    Usuario: root
+    Senha: ''
+
+Economia:
+  # VAULT   = qualquer economia registrada no Vault.
+  # COMANDO = saldo lido por placeholder e dinheiro movido por comando de
+  #           console (para as economias que nao usam Vault).
+  # Tambem aceita o id da moeda:
+  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+  #   yeconomy              o yEconomy
+  # (os ids precisam do loader StarPlugins 2.0.82 ou mais novo)
+  Tipo: VAULT
+
+  Simbolo: '$'
+
+  # So usados no modo COMANDO. {jogador}, {uuid} e {valor} sao trocados.
+  Placeholder de saldo: '%vault_eco_balance%'
+  Comando de retirar: 'eco take {jogador} {valor}'
+  Comando de dar: 'eco give {jogador} {valor}'
+
+Notificacoes:
+  # Avisa quando alguem tenta trocar com um jogador que esta offline ou fora
+  # de alcance, e no aceite/recusa do convite.
+  Ativar: true
+
+  # Deixa o jogador desligar o recebimento de convites (/trocar notificacoes).
+  Permitir desligar: true
+
+# Materiais que ninguem pode colocar na mesa de troca. Aceita curinga:
+# *SPAWN_EGG*, BEDROCK.
+Itens bloqueados:
+  - BEDROCK
+  - COMMAND_BLOCK
+  - BARRIER
+  - '*SPAWN_EGG*'
+  - '*COMMAND_BLOCK*'
+  - STRUCTURE_BLOCK
+  - STRUCTURE_VOID
+  - JIGSAW
+  - LIGHT
+  - DEBUG_STICK
+  - KNOWLEDGE_BOOK
+
+Terrenos:
+  # Quando o StarTerrenos esta instalado, confere se o terreno onde o
+  # convite foi enviado permite trocas antes de abrir a mesa. Sem o
+  # StarTerrenos instalado esta opcao nao faz nada.
+  Respeitar StarTerrenos: true
+
+Sons:
+  # Formato: SOM;volume;tom. Deixe vazio ('') para nao tocar nada.
+  Convite: 'BLOCK_NOTE_BLOCK_PLING;1;1.4'
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN;1;1'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Dinheiro: 'ENTITY_EXPERIENCE_ORB_PICKUP;1;1.2'
