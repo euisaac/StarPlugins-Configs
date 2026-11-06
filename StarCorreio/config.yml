@@ -15,6 +15,14 @@ redis:
   username: ''
   password: ''
 
+# Economia usada para cobrar e pagar. Use o id da moeda:
+#   vault                 a economia do Vault (padrÃ£o)
+#   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
+#   yeconomy              o yEconomy
+# Fora o vault, precisa do loader StarPlugins 2.0.82 ou mais novo.
+economia: vault
+
 # Comando e aliases (definidos no plugin.yml: correio, correios, encomendas, courier)
 Comando:
   Correio:
@@ -120,7 +128,7 @@ InventarioCheio:
 CaixaCorreio:
   Ativar: true
   # Preco da primeira caixa do jogador (0 = gratis) e das proximas (quando ela some do
-  # chao e do inventario e ele precisa de outra). Cobrado pelo Vault.
+  # chao e do inventario e ele precisa de outra). Cobrado na "economia" la do topo.
   Preco primeira: 0
   Preco: 15000
   # Caixas no chao por jogador (mais por comando: /correio caixa limite <player> <quantia>)
@@ -145,7 +153,9 @@ CaixaCorreio:
       - ''
       - '&7Para tirar: agache (SHIFT) e quebre.'
   Holograma:
-    # Altura da primeira linha acima da cerca e o espaco entre as linhas
+    # Altura da primeira linha acima da cerca. O Espacamento so serve para achar
+    # onde as linhas comecam; o espaco real entre elas vem do holograma do
+    # StarPlugins (chave "hologram" do config dele).
     Altura: 2.05
     Espacamento: 0.27
     Linhas:
