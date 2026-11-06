@@ -96,3 +96,25 @@ Grupos:
 Placeholders:
   # Texto de %starmundoseguro_regiao% fora de qualquer regiao.
   Sem regiao: 'Nenhuma'
+
+Integracoes:
+  WorldGuard:
+    # Com o WorldGuard 7 no servidor, o StarMundoSeguro vira uma expansao dele:
+    # as bandeiras que o WorldGuard nao tem (efeitos-dar, efeitos-bloquear,
+    # voar, elytra, foguete-elytra, velocidade-andar, dano-periodico,
+    # comandos-entrada, esconder-jogadores...) entram como flags no /rg flag e
+    # passam a valer dentro das regioes dele. As que ele ja tem (construir,
+    # pvp, entrada, modo de jogo, hora, clima...) continuam com ele.
+    # Exemplo: /rg flag spawn efeitos-dar VELOCIDADE:2, VISAO_NOTURNA
+    # As regioes do StarMundoSeguro continuam valendo e, no mesmo ponto,
+    # decidem antes das do WorldGuard.
+    # Desligar vale no /ms recarregar. Ligar exige reiniciar o servidor: o
+    # WorldGuard so aceita flag nova enquanto esta subindo.
+    Expansao: true
+    # true: todas as flags entram com o prefixo ms- (ms-efeitos-dar).
+    # false: o prefixo so e usado quando outro plugin ja usa o mesmo nome.
+    Prefixo nas flags: false
+    # true: com o WorldGuard no servidor, o /rg e dele (o /rg flag e por onde as
+    # flags novas sao mexidas). O StarMundoSeguro segue em /ms, /regiao e
+    # /mundoseguro. false: o /rg continua abrindo o StarMundoSeguro.
+    Devolver o /rg: true
