@@ -1,0 +1,213 @@
+# Mensagens do StarPinata.
+# Deixe uma mensagem vazia ('') para ela nao ser enviada.
+# Cores: &a, &l... e &#RRGGBB (1.16+). <arco-iris> pinta o resto do texto.
+# Titulos: 'Titulo<nl>Subtitulo'.
+
+Versao do modelo: 1
+
+Prefixo: '&d&lPINATA &8» &7'
+
+Etiquetas:
+  Dia: d
+  Hora: h
+  Minuto: min
+  Segundo: s
+  Sim: '&aSim'
+  Nao: '&cNao'
+  Nunca votou: '&7nunca votou'
+  Pode votar: '&aJa pode votar!'
+  Pronta: '&aPronta'
+  Top:
+    votos: 'Votos'
+    mes: 'Votos do mes'
+    golpes: 'Golpes'
+    quebradas: 'Pinatas estouradas'
+    vaquinha: 'Vaquinha'
+    sequencia: 'Sequencia de votos'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo jogadores podem usar isso.'
+  Inativo: '&cO StarPinata esta inativo (veja o console).'
+  Carregando: '&cSeus dados ainda estao carregando, tente de novo.'
+  Numero invalido: '&c"{valor}" nao e um numero valido.'
+  Jogador desconhecido: '&cJogador {jogador} nao encontrado.'
+  Subcomando desconhecido: '&cNao conheco esse comando. Use &f/{comando} ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+
+Ajuda:
+  Cabecalho: |-
+    &8&m------&r &d&lStarPinata &8&m------
+  Linha: ' &d{uso} &8- &7{descricao}'
+  Rodape: '&8&m------------------------------'
+  # Descricao de cada subcomando na ajuda.
+  pinata:
+    menu: 'Abre o menu da pinata.'
+    ir: 'Vai ate a pinata ativa.'
+    ativas: 'Lista as pinatas vivas agora.'
+    info: 'Progresso dos votos e da vaquinha.'
+    top: 'Os melhores do servidor.'
+    vaquinha: 'Poe dinheiro na vaquinha da pinata.'
+    avisos: 'Liga/desliga os avisos de pinata.'
+    lembrete: 'Liga/desliga o lembrete de votar.'
+    ajuda: 'Mostra esta ajuda.'
+  votar:
+    links: 'Mostra os sites para votar.'
+    top: 'Quem mais votou (total ou no mes).'
+    info: 'Seus votos, sequencia e proximo voto.'
+    ajuda: 'Mostra esta ajuda.'
+  admin:
+    painel: 'Abre o painel do staff (editor completo).'
+    invocar: 'Invoca uma pinata agora (onde voce esta, num local ou num jogador).'
+    contagem: 'Contagem regressiva e pinata nos locais dos votos.'
+    lista: 'Lista as pinatas vivas.'
+    estourar: 'Estoura com premios.'
+    removertodas: 'Remove todas sem premio.'
+    testarvoto: 'Simula votos (recompensas, acumuladas e contador).'
+    addvoto: 'Igual ao testarvoto: use em outro plugin de votos.'
+    votos: 'Mexe no total de votos (sem recompensa).'
+    contador: 'Mexe nos votos juntados para a pinata.'
+    vaquinha: 'Mexe no dinheiro da vaquinha.'
+    setlocal: 'Salva um local de nascimento onde voce esta.'
+    dellocal: 'Apaga um local de nascimento.'
+    locais: 'Lista os locais de nascimento.'
+    modelos: 'Lista os modelos de pinata.'
+    recarregar: 'Le de novo os arquivos.'
+    ajuda: 'Mostra esta ajuda.'
+
+Info: |-
+  &8&m------&r &d&lPINATA &8&m------
+  &7Votos para a proxima: &f{votos_atuais}&7/&f{votos_necessarios} &8(&e{votos_faltam} faltam&8)
+  {votos_barra}
+  &7Vaquinha: &f{vaquinha_atual}&7/&f{vaquinha_necessario}
+  {vaquinha_barra}
+  &7Pinatas ativas agora: &f{ativas}
+  &8&m------------------------
+
+Pinata:
+  # O nome em cima da criatura. {nome} = Nome do modelo, {vida}, {vida_maxima}
+  Nome da criatura: '{nome} &8[&c{vida}&8]'
+  Nasceu: '&fUma {nome} &fapareceu em &e{x}&7, &e{y}&7, &e{z} &7({mundo})&f! Bata nela para ganhar premios.'
+  Botao ir: '&a&l[CLIQUE PARA IR ATE ELA]'
+  Botao ir dica: '&7Vai ate a pinata #{id}'
+  Titulo nasceu: '<arco-iris>&lPINATA!<nl>&fCorra e bata nela!'
+  Som nasceu: ENTITY_PLAYER_LEVELUP:1:0.8
+  Ativa ao entrar: '&fTem &e{quantidade} &fpinata(s) ativa(s) agora! Use &d/pinata ir&f.'
+  Barra: '{nome} &f- &c{vida} &fgolpes restantes'
+  Barra antiga: '{nome} {barra} &c{vida}'
+  Rastreador: '&d{seta} &f{nome} &7a &e{distancia}m &8| &c{vida} golpes'
+  Golpes faltando: '&c&l{vida} &cgolpes restantes &8| &7seus golpes: &f{golpes}'
+  Escudo: '&b&lESCUDO! &7A pinata esta protegida por alguns segundos.'
+  Isca: '&7Era uma &disca&7! A pinata de verdade esta por perto.'
+  Sem permissao para bater: '&cVoce nao pode bater na pinata.'
+  Item errado: '&cVoce precisa de um item certo para bater na pinata!'
+  Precisa votar: '&cSo quem votou recentemente pode bater! Use &f/votar&c.'
+  Poucos golpes: '&7Voce bateu pouco ({minimo} golpes no minimo) e ficou sem o premio final.'
+  Estourou: '&fA {nome} &festourou! &e{jogador} &fdeu o ultimo golpe. &7({participantes} participantes)'
+  Estourou sem jogador: '&fA {nome} &festourou! &7({participantes} participantes)'
+  Top cabecalho: '&6&lQuem mais bateu:'
+  Top linha: ' &e#{posicao} &f{jogador} &8- &c{golpes} golpes'
+  Foi embora: '&7A {nome_curto} &7cansou de esperar e foi embora...'
+  Removida: '&7A {nome_curto} &7foi removida pela staff.'
+
+Habilidades:
+  Teleporte: '&d&lPUF! &7A pinata se teletransportou!'
+  Empurrao: '&c&lEMPURRAO! &7A pinata afastou todo mundo!'
+  Pulo: '&e&lBOING! &7A pinata saltou!'
+  Filhote: '&a&lENCOLHEU! &7Acerte o filhote!'
+  Velocidade: '&b&lVELOCIDADE! &7Todo mundo ficou mais rapido!'
+  Escudo: '&b&lESCUDO! &7Imune por {segundos}s.'
+  Iscas: '&5&lISCAS! &7Qual e a pinata de verdade?'
+  Chuva de doces: '&6&lCHUVA DE DOCES! &7Pegue do chao!'
+  Fuga: '&f&lFUGA! &7Corre atras dela!'
+  Cura: '&a&lCURA! &7A pinata recuperou {golpes} golpes.'
+  Congelar: '&3&lCONGELOU! &7Quem estava perto ficou lento.'
+
+Contagem:
+  Iniciou: '&fUma pinata vai aparecer em &e{segundos} segundos&f! Fique de olho.'
+  Barra: '<arco-iris>&lPINATA EM {segundos}s'
+  Titulo: '<arco-iris>&l{segundos}<nl>&fA pinata esta chegando!'
+
+Votos:
+  Anuncio: '&a{jogador} &fvotou! &7(&e{votos}&7/&e{necessarios} &7para a pinata) &f/votar'
+  Meta atingida: '&a&lMETA DE {necessarios} VOTOS! &fA pinata esta a caminho!'
+  Fila entregue: '&aVoce recebeu as recompensas de &f{quantidade} &avoto(s) feitos enquanto estava fora!'
+  Lembrete: |-
+    &2Ei &2&l{jogador}&2!
+    &aVoce ainda nao votou hoje. Use &a&l/votar &ae ganhe recompensas! &7(sequencia: {sequencia} dias)
+
+Votar:
+  Cabecalho: |-
+    &8&m------&r &a&lVOTE NO SERVIDOR &8&m------
+    &7Cada voto da recompensas e enche a pinata!
+  Link: ' &a» {nome}'
+  Dica do link: '&7Clique para abrir:<nl>&f{url}'
+  Rodape: |-
+    &7Pinata: &f{votos_atuais}&7/&f{votos_necessarios} {votos_barra}
+    &7Seus votos: &f{meus_votos} &8| &7sequencia: &f{sequencia} dias &8| &7proximo: {proximo_voto}
+  Sem links: '&cA staff ainda nao configurou os sites de voto.'
+  Info: |-
+    &8&m------&r &a&lSEUS VOTOS &8&m------
+    &7Total: &f{meus_votos} &8| &7No mes: &f{votos_mes}
+    &7Sequencia: &f{sequencia} dias &8(melhor: {melhor_sequencia})
+    &7Ultimo voto: &f{ultimo_voto}
+    &7Proximo voto: {proximo_voto}
+    &7Guardados para entregar: &f{fila}
+
+Vaquinha:
+  Desligada: '&cA vaquinha esta desligada.'
+  Sem economia: '&cO servidor nao tem um plugin de economia ligado ao Vault.'
+  Descansando: '&eA vaquinha esta descansando. Volta em &f{tempo}&e.'
+  Espera: '&eEspere &f{tempo} &epara depositar de novo.'
+  Fora do limite: '&cDeposite entre &f{minimo} &ce &f{maximo}&c.'
+  Sem dinheiro: '&cVoce nao tem dinheiro suficiente (faltam &f{falta}&c).'
+  Depositou: '&aVoce colocou &f{valor} &ana vaquinha. Obrigado!'
+  Anuncio: '&6{jogador} &fpos &a{valor} &fna vaquinha! &7({atual}/{necessario}, faltam {falta}) &f/vaquinha'
+  Encheu: '&6&lA VAQUINHA ENCHEU! &fA pinata esta a caminho!'
+  Digite: '&eDigite no chat quanto quer depositar (ex.: &f500&e, &f1.5k&e) ou &fcancelar&e.'
+  Linha contribuinte: '&8- &f{jogador} &7{valor}'
+  Ninguem ainda: '&7Ninguem contribuiu ainda.'
+
+Teleporte:
+  Desligado: '&cO teleporte ate a pinata esta desligado.'
+  Nenhuma: '&cNao ha nenhuma pinata ativa agora.'
+  Sumiu: '&cA pinata ja nao existe mais.'
+  Mundo bloqueado: '&cVoce nao pode ir ate a pinata a partir deste mundo.'
+  Recarga: '&cEspere &f{tempo} &cpara usar de novo.'
+  Aguarde: '&eFique parado por &f{segundos}s&e...'
+  Cancelado: '&cTeleporte cancelado: voce se mexeu.'
+  Foi: '&aVoce chegou na {nome}&a! Bata nela!'
+
+Preferencias:
+  Avisos ligado: '&aAvisos de pinata ligados.'
+  Avisos desligado: '&7Avisos de pinata desligados (a seta e os anuncios somem).'
+  Lembrete ligado: '&aLembrete de votar ligado.'
+  Lembrete desligado: '&7Lembrete de votar desligado.'
+
+Admin:
+  Recarregado: '&aArquivos recarregados.'
+  Invocada: '&aPinata &f{modelo} &ainvocada.'
+  Nao invocou: '&cA pinata nao nasceu (limite atingido ou outro plugin cancelou).'
+  Modelo nao existe: '&cO modelo &f{modelo} &cnao existe.'
+  Contagem iniciada: '&aContagem iniciada.'
+  Nenhuma ativa: '&7Nenhuma pinata ativa.'
+  Linha da lista: '&8#{id} &f{modelo} &7- &c{vida}&7/&c{vida_maxima} &7- {mundo} {x}, {y}, {z} &8({participantes} jogadores)'
+  Estouradas: '&a{quantidade} pinata(s) estourada(s).'
+  Removidas: '&a{quantidade} pinata(s) removida(s).'
+  Votos simulados: '&a{quantidade} voto(s) simulado(s) para &f{jogador}&a.'
+  Votos do jogador: '&f{jogador} &aagora tem &f{votos} &avotos.'
+  Contador: '&aVotos juntados: &f{votos}&a/&f{necessarios}'
+  Vaquinha: '&aVaquinha agora em &f{atual}&a.'
+  Local salvo: '&aLocal &f{local} &asalvo onde voce esta.'
+  Local apagado: '&aLocal &f{local} &aapagado.'
+  Local nao existe: '&cO local &f{local} &cnao existe.'
+  Locais: '&7Locais: &f{locais}'
+  Modelos: '&7Modelos: &f{modelos}'
+
+Editor:
+  Cancelado: '&7Cancelado.'
+  Id invalido: '&c"{id}" nao serve (use letras, numeros e _, sem repetir).'
+  Modelo criado: '&aModelo &f{modelo} &acriado.'
+  Modelo apagado: '&aModelo &f{modelo} &aapagado.'
+  Itens gravados: '&aItens da recompensa gravados (&f{quantidade}&a).'
+  Sem pinata do modelo: '&cNao ha nenhuma pinata &f{modelo} &cativa para testar. Invoque uma antes.'

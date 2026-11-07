@@ -1,0 +1,310 @@
+# Menus do jogador (/pinata). O painel do staff (/pinataadmin) e fixo.
+#
+# Cada botao: Slot (ou Slots), Material, Nome, Lore, Brilho, Dono/Textura
+# (cabeca), Permissao, Condicao e Acoes.
+# Acoes: ir [id], ativas, votar, vaquinha [valor], vaquinha_digitar,
+#        top [votos|mes|golpes|quebradas|vaquinha|sequencia], avisos, lembrete,
+#        admin, menu, voltar, anterior, proxima, fechar,
+#        'comando: ...', 'console: ...', 'mensagem: ...', 'som: ...'
+#   Prefixe com [esquerdo], [direito], [shift] para valer so naquele clique.
+# Condicao: ativa (tem pinata viva), vaquinha (vaquinha ligada), admin
+#   ('!' na frente nega). No Top: tipo_votos, tipo_mes, tipo_golpes...
+#
+# Variaveis: {votos_atuais} {votos_necessarios} {votos_faltam} {votos_barra}
+#   {ativas} {vaquinha_atual} {vaquinha_necessario} {vaquinha_falta}
+#   {vaquinha_barra} {meus_votos} {votos_mes} {fila} {sequencia}
+#   {melhor_sequencia} {golpes} {quebradas} {participacoes} {contribuido}
+#   {ultimo_voto} {proximo_voto} {avisos} {lembrete} {golpe_extra} {jogador}
+
+Versao do modelo: 1
+
+Principal:
+  Titulo: '&5&lPinata'
+  Linhas: 5
+  Enfeite:
+    Material: PURPLE_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Ativa:
+      Slot: 13
+      Condicao: ativa
+      Material: CAKE
+      Brilho: true
+      Nome: '<arco-iris>&lTEM PINATA AGORA!'
+      Lore:
+        - '&7Pinatas vivas: &f{ativas}'
+        - ''
+        - '&eEsquerdo &7ir ate a mais perto'
+        - '&eDireito &7ver todas'
+      Acoes:
+        - '[esquerdo] ir'
+        - '[direito] ativas'
+    Nenhuma:
+      Slot: 13
+      Condicao: '!ativa'
+      Material: LEAD
+      Nome: '&7Nenhuma pinata agora'
+      Lore:
+        - '&7Ela aparece quando o servidor'
+        - '&7juntar &f{votos_necessarios} &7votos ou quando'
+        - '&7a vaquinha encher.'
+        - ''
+        - '&7Faltam &e{votos_faltam} &7votos!'
+    Votar:
+      Slot: 20
+      Material: PAPER
+      Nome: '&a&lVotar'
+      Lore:
+        - '&7Cada voto da recompensas e'
+        - '&7ajuda a pinata a nascer.'
+        - ''
+        - '&7Pinata: &f{votos_atuais}&7/&f{votos_necessarios}'
+        - '{votos_barra}'
+        - ''
+        - '&7Seus votos: &f{meus_votos}'
+        - '&7Sequencia: &f{sequencia} dias'
+        - '&7Proximo voto: {proximo_voto}'
+        - ''
+        - '&eClique para ver os links!'
+      Acoes:
+        - votar
+    Vaquinha:
+      Slot: 22
+      Condicao: vaquinha
+      Material: GOLD_INGOT
+      Nome: '&6&lVaquinha'
+      Lore:
+        - '&7Junte dinheiro com o servidor'
+        - '&7para chamar a pinata.'
+        - ''
+        - '&7Juntado: &f{vaquinha_atual}&7/&f{vaquinha_necessario}'
+        - '{vaquinha_barra}'
+        - '&7Voce ja colocou: &f{contribuido}'
+        - ''
+        - '&eClique para contribuir!'
+      Acoes:
+        - vaquinha
+    Estatisticas:
+      Slot: 24
+      Material: PLAYER_HEAD
+      Dono: '{jogador}'
+      Nome: '&b&lSuas estatisticas'
+      Lore:
+        - '&7Golpes em pinatas: &f{golpes}'
+        - '&7Pinatas estouradas: &f{quebradas}'
+        - '&7Participacoes: &f{participacoes}'
+        - '&7Dano por golpe: &f{golpe_extra}'
+        - ''
+        - '&7Votos: &f{meus_votos} &8(mes: {votos_mes})'
+        - '&7Melhor sequencia: &f{melhor_sequencia} dias'
+    TopVotos:
+      Slot: 29
+      Material: EMERALD
+      Nome: '&a&lTop votos'
+      Lore:
+        - '&7Quem mais votou.'
+        - ''
+        - '&eClique para ver.'
+      Acoes:
+        - top votos
+    TopGolpes:
+      Slot: 31
+      Material: DIAMOND_SWORD
+      Nome: '&c&lTop golpes'
+      Lore:
+        - '&7Quem mais bateu em pinatas.'
+        - ''
+        - '&eClique para ver.'
+      Acoes:
+        - top golpes
+    TopQuebradas:
+      Slot: 33
+      Material: FIREWORK_ROCKET
+      Nome: '&d&lTop estouradas'
+      Lore:
+        - '&7Quem mais deu o ultimo golpe.'
+        - ''
+        - '&eClique para ver.'
+      Acoes:
+        - top quebradas
+    Avisos:
+      Slot: 38
+      Material: BELL
+      Nome: '&e&lAvisos de pinata: {avisos}'
+      Lore:
+        - '&7Anuncios, titulo e a seta'
+        - '&7que aponta para a pinata.'
+        - ''
+        - '&eClique para trocar.'
+      Acoes:
+        - avisos
+    Lembrete:
+      Slot: 39
+      Material: CLOCK
+      Nome: '&e&lLembrete de votar: {lembrete}'
+      Lore:
+        - '&7Aviso de que voce ainda'
+        - '&7nao votou hoje.'
+        - ''
+        - '&eClique para trocar.'
+      Acoes:
+        - lembrete
+    Admin:
+      Slot: 42
+      Condicao: admin
+      Material: COMMAND_BLOCK
+      Nome: '&5&lPainel do staff'
+      Lore:
+        - '&7Editor completo do StarPinata.'
+      Acoes:
+        - admin
+    Fechar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cFechar'
+      Acoes:
+        - fechar
+
+Ativas:
+  Titulo: '&5Pinatas ativas'
+  Linhas: 4
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25]
+  Enfeite:
+    Material: PURPLE_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '{nome}'
+    Lore:
+      - '&7Vida: &c{vida}&7/&c{vida_maxima}'
+      - '&7Participantes: &f{participantes}'
+      - '&7Local: &f{mundo} {x}, {y}, {z}'
+      - '&7Distancia: &f{distancia}m'
+      - ''
+      - '&eClique para ir ate ela!'
+  Vazio:
+    Slot: 13
+    Material: GRAY_DYE
+    Nome: '&7Nenhuma pinata ativa'
+    Lore:
+      - '&7Faltam &e{votos_faltam} &7votos para a proxima.'
+  Itens:
+    Anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes: [anterior]
+    Proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes: [proxima]
+    Voltar:
+      Slot: 31
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [voltar]
+
+Top:
+  Titulo: '&5Top: {tipo}'
+  Linhas: 6
+  Slots: [11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 29, 30, 31, 32, 33]
+  Enfeite:
+    Material: PURPLE_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Material: PLAYER_HEAD
+    Nome: '&e#{posicao} &f{nome}'
+    Lore:
+      - '&7{tipo}: &a{valor}'
+  Vazio:
+    Slot: 22
+    Material: GRAY_DYE
+    Nome: '&7Ninguem no top ainda'
+    Lore:
+      - '&7O top atualiza a cada poucos minutos.'
+  Itens:
+    Votos:
+      Slot: 45
+      Material: EMERALD
+      Nome: '&aVotos'
+      Acoes: ['tipo votos']
+    Mes:
+      Slot: 46
+      Material: CLOCK
+      Nome: '&aVotos do mes'
+      Acoes: ['tipo mes']
+    Golpes:
+      Slot: 47
+      Material: DIAMOND_SWORD
+      Nome: '&cGolpes'
+      Acoes: ['tipo golpes']
+    Quebradas:
+      Slot: 48
+      Material: FIREWORK_ROCKET
+      Nome: '&dEstouradas'
+      Acoes: ['tipo quebradas']
+    Voltar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [voltar]
+    Vaquinha:
+      Slot: 50
+      Material: GOLD_INGOT
+      Nome: '&6Vaquinha'
+      Acoes: ['tipo vaquinha']
+    Sequencia:
+      Slot: 51
+      Material: BLAZE_POWDER
+      Nome: '&eSequencia'
+      Acoes: ['tipo sequencia']
+    Anterior:
+      Slot: 36
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes: [anterior]
+    Proxima:
+      Slot: 44
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes: [proxima]
+
+Vaquinha:
+  Titulo: '&6Vaquinha da pinata'
+  Linhas: 4
+  Slots: [20, 21, 22, 23, 24]
+  Enfeite:
+    Material: ORANGE_STAINED_GLASS_PANE
+    Nome: ' '
+  Deposito:
+    Material: GOLD_NUGGET
+    Nome: '&6Colocar &f{valor}'
+    Lore:
+      - '&7Seu saldo: &f{saldo}'
+      - ''
+      - '&eClique para depositar.'
+  Itens:
+    Info:
+      Slot: 4
+      Material: GOLD_BLOCK
+      Nome: '&6&lVaquinha'
+      Lore:
+        - '&7Juntado: &f{vaquinha_atual}&7/&f{vaquinha_necessario}'
+        - '{vaquinha_barra}'
+        - '&7Faltam: &e{vaquinha_falta}'
+        - '&7Situacao: {descanso}'
+        - ''
+        - '&7Quem ajudou:'
+        - '{contribuintes}'
+    Digitar:
+      Slot: 31
+      Material: OAK_SIGN
+      Nome: '&eOutro valor'
+      Lore:
+        - '&7Digite o valor no chat.'
+      Acoes: [vaquinha_digitar]
+    Voltar:
+      Slot: 27
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [voltar]

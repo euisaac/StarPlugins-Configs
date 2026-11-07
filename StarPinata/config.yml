@@ -1,0 +1,290 @@
+# ==========================================================
+#                       StarPinata
+#   Pinata interativa + sistema de votos completo
+#   Desenvolvido por EuIsaac  -  StarPlugins
+# ==========================================================
+#
+# Quase tudo daqui tambem pode ser mudado DENTRO do jogo pelo
+# /pinataadmin (menu do staff). Mexeu no arquivo? /pinataadmin recarregar
+#
+# Sons:       SOM:volume:tom          (NENHUM desliga)
+# Particulas: NOME:quantidade:espalhar-x:espalhar-y:espalhar-z:velocidade
+# Os nomes de sons e materiais podem ser os da 1.8 ou os da 1.21: o
+# plugin traduz sozinho para a versao do seu servidor.
+#
+# Os modelos de pinata (aparencia, vida, habilidades e recompensas)
+# ficam no pinatas.yml. Os locais de nascimento, no locais.yml.
+
+# Nao mexa: e por ele que o plugin sabe completar o arquivo nas atualizacoes.
+Versao do modelo: 1
+
+# Mostra no console os detalhes de erros.
+Debug: false
+
+Banco:
+  # SQLITE (arquivo local) ou MYSQL (para a rede inteira dividir os votos).
+  Tipo: SQLITE
+  Host: localhost
+  Porta: 3306
+  Banco: starpinata
+  Usuario: root
+  Senha: ''
+  Prefixo das tabelas: starpinata_
+  # De quantos em quantos segundos os perfis sao gravados.
+  Salvar a cada: 300
+
+# ----------------------------------------------------------
+# Pinata (regras que valem para todos os modelos)
+# ----------------------------------------------------------
+Pinata:
+  # Quantas pinatas podem existir ao mesmo tempo (0 = sem limite).
+  Maximo ao mesmo tempo: 5
+
+  # Quem pode bater:
+  Permissao para bater:
+    Ativar: false
+    Permissao: starpinata.bater
+
+  # So aceitar golpes com estes itens (aceita curinga: *_SWORD).
+  Itens permitidos:
+    Ativar: false
+    # Escreva AR para aceitar a mao vazia.
+    Lista:
+      - STICK
+      - FISHING_ROD
+      - CARROT_ON_A_STICK
+      - BLAZE_ROD
+      - BAMBOO
+
+  # So quem votou nos ultimos X minutos pode bater (acaba com quem
+  # so aparece na hora da pinata).
+  Apenas quem votou:
+    Ativar: false
+    Minutos: 1440
+
+  # Golpe a mais por permissao: starpinata.golpe.2, starpinata.golpe.3 ...
+  # Escreva aqui o MAIOR numero que voce vai dar (1 = desligado).
+  Golpe maximo por permissao: 1
+
+  # Flechas, bolas de neve e tridentes atirados por jogadores contam como golpe?
+  Aceitar projeteis: false
+
+  # Barra no topo da tela (1.9+) com a vida da pinata.
+  Barra:
+    Ativar: true
+    # true = todos os mundos | false = so quem esta no mundo da pinata
+    Global: true
+    # SOLID, SEGMENTED_6, SEGMENTED_10, SEGMENTED_12, SEGMENTED_20
+    Estilo: SEGMENTED_20
+    # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE ou ARCO_IRIS
+    Cor: ARCO_IRIS
+    # De quantos em quantos ticks o texto e a cor mudam.
+    Atualizar texto: 2
+    Atualizar cor: 4
+    # Na 1.8 nao existe barra: a vida aparece na barra de acao de quem esta perto.
+    Barra de acao na versao antiga: true
+
+  # Seta na barra de acao apontando para a pinata mais perto.
+  Rastreador:
+    Ativar: true
+    # So aparece para quem esta mais longe que isso...
+    Distancia minima: 12
+    # ...e mais perto que isso (0 = qualquer distancia no mesmo mundo).
+    Distancia maxima: 250
+
+  # Protecao contra pinata presa: volta para onde nasceu.
+  Anti-travar:
+    # Sem apanhar por X segundos, volta para o local de nascimento (0 desliga).
+    Voltar sem apanhar: 45
+    # Passou desta distancia do local de nascimento, volta (0 desliga).
+    Raio maximo: 40
+
+  # Carregar o chunk do local sem travar o servidor (Paper). Em Spigot
+  # o plugin cai sozinho no jeito normal.
+  Chunk assincrono: true
+
+  # Quando uma pinata nasce, o anuncio no chat ganha um botao clicavel
+  # para ir ate ela.
+  Anuncio clicavel: true
+
+# ----------------------------------------------------------
+# Contagem regressiva antes da pinata nascer
+# ----------------------------------------------------------
+Contagem:
+  Ativar: true
+  # Duracao em segundos.
+  Duracao: 5
+  # Toca o som de contagem a cada X segundos.
+  Intervalo do som: 1
+  Barra:
+    Global: true
+    Estilo: SEGMENTED_20
+    Cor: ARCO_IRIS
+  # Titulo grande no centro da tela nos ultimos segundos (0 desliga).
+  Titulo nos ultimos: 3
+  Sons:
+    Inicio: BLOCK_NOTE_BLOCK_BIT:0.5:1
+    Contagem: BLOCK_NOTE_BLOCK_BIT:0.5:0.8
+    Fim: BLOCK_NOTE_BLOCK_PLING:1:0.8
+
+# ----------------------------------------------------------
+# Votos (NuVotifier / VotifierPlus)
+# ----------------------------------------------------------
+Votos:
+  # Escutar os votos. Desligue se outro plugin cuida dos votos e voce so
+  # quer a pinata (ele pode chamar /pinataadmin addvoto <jogador>).
+  Ativar: true
+
+  # Votos do servidor para a pinata nascer sozinha (0 desliga).
+  Votos para a pinata: 20
+  # Modelo do pinatas.yml, quantas e onde (nomes do locais.yml; sorteado).
+  Modelo: padrao
+  Quantidade: 1
+  Locais:
+    - spawn
+
+  # De quantas em quantas horas o jogador pode votar de novo (so para as
+  # placeholders de "proximo voto" e para o lembrete).
+  Intervalo entre votos: 24
+
+  Offline:
+    # Guardar o voto de quem estava offline e entregar quando entrar.
+    Ativar: true
+    # O voto offline tambem conta para a pinata nascer?
+    Somar na pinata: false
+    # Maximo de votos guardados por jogador (0 ou menos = sem limite).
+    Maximo na fila: -1
+
+  # Efeito no jogador a cada voto (so uma vez no login, para votos offline).
+  Efeitos:
+    Particula: HAPPY_VILLAGER:50:0.5:0.9:0.5:0.05
+    Som: ENTITY_PLAYER_LEVELUP:1:1.25
+
+  # Lembrar quem ainda nao votou hoje.
+  Lembrete:
+    Ativar: true
+    # Em segundos.
+    Intervalo: 10800
+    Som: ENTITY_PLAYER_LEVELUP:1.15:1.35
+
+  # O /votar mostra estes links (clicaveis no chat).
+  Links:
+    '1':
+      Nome: '&aSite de votos 1'
+      Url: https://www.exemplo.com/meu-servidor
+    '2':
+      Nome: '&2Site de votos 2'
+      Url: https://www.exemplo.com/meu-servidor
+
+  # Recompensas a CADA voto. Sorteadas de cima para baixo.
+  #   Chance: 0 a 100
+  #   Parar: se ganhou esta, nao sorteia as de baixo
+  #   Permissao: so quem tem (deixe vazio para todos)
+  #   Linha aleatoria: roda UMA linha sorteada dos comandos
+  #   Ignorar invisivel: nao roda para quem esta em vanish
+  #   Ignorar voto offline: nao roda para o voto guardado offline
+  #   Mensagem: enviada ao jogador quando ganha
+  # Variaveis: {jogador} {site} {votos} {sequencia}
+  Recompensas:
+    '1':
+      Chance: 100.0
+      Ignorar invisivel: true
+      Ignorar voto offline: true
+      Comandos:
+        - 'console: broadcast &a{jogador} votou no servidor e ajudou a encher a pinata!'
+    '2':
+      Chance: 75.0
+      Comandos:
+        - 'console: give {jogador} iron_ingot 1'
+    '3':
+      Chance: 37.5
+      Comandos:
+        - 'console: give {jogador} diamond 1'
+    '4':
+      Chance: 12.5
+      Mensagem: '&a&lSORTE! &aVoce ganhou uma esmeralda pelo voto.'
+      Comandos:
+        - 'console: give {jogador} emerald 1'
+
+  # Recompensas acumuladas.
+  #   Tipo TOTAL     = quando chegar a X votos no total
+  #   Tipo REPETIR   = a cada X votos
+  #   Tipo SEQUENCIA = quando votar X dias seguidos
+  Acumuladas:
+    '1':
+      Tipo: TOTAL
+      Quantidade: 25
+      Comandos:
+        - 'console: broadcast &e{jogador} chegou a 25 votos!'
+        - 'console: give {jogador} diamond 16'
+    '2':
+      Tipo: REPETIR
+      Quantidade: 4
+      Mensagem: '&aVoce votou mais 4 vezes e ganhou um presente!'
+      Comandos:
+        - 'console: give {jogador} emerald 2'
+        - 'console: give {jogador} cookie 1'
+    '3':
+      Tipo: SEQUENCIA
+      Quantidade: 7
+      Mensagem: '&6&l7 DIAS SEGUIDOS! &eObrigado por votar toda semana.'
+      Comandos:
+        - 'console: give {jogador} golden_apple 3'
+
+# ----------------------------------------------------------
+# Vaquinha: os jogadores juntam dinheiro (Vault) para a pinata
+# ----------------------------------------------------------
+Vaquinha:
+  Ativar: true
+  Valor necessario: 10000
+  Minimo por vez: 10
+  Maximo por vez: 10000
+  # Segundos entre um deposito e outro do mesmo jogador.
+  Espera entre depositos: 240
+  # Segundos de descanso depois de uma pinata da vaquinha nascer.
+  Descanso apos invocar: 600
+  Modelo: padrao
+  Quantidade: 1
+  Locais:
+    - spawn
+  # Valores dos botoes do menu do jogador.
+  Botoes:
+    - 100
+    - 1000
+    - 5000
+
+# ----------------------------------------------------------
+# Ir ate a pinata (/pinata ir e o botao clicavel do anuncio)
+# ----------------------------------------------------------
+Teleporte:
+  Ativar: true
+  # Segundos parado antes de ir (0 = na hora). Andou, cancela.
+  Espera: 3
+  # Segundos entre um uso e outro.
+  Recarga: 30
+  # Mundos onde o /pinata ir nao funciona (o jogador esta neles).
+  Mundos bloqueados: []
+
+# ----------------------------------------------------------
+# Comandos rodados pelo console em cada momento.
+# Variaveis: {modelo} {mundo} {x} {y} {z} {quantidade}
+# ----------------------------------------------------------
+Comandos:
+  Votos atingidos: []
+  Vaquinha atingida: []
+  Contagem iniciou: []
+  Contagem terminou: []
+
+Ranking:
+  # Segundos entre uma atualizacao e outra dos tops.
+  Atualizar a cada: 300
+  Tamanho: 10
+
+Menus:
+  # Milissegundos minimos entre dois cliques (evita clique duplo).
+  Intervalo entre cliques: 200
+  Sons:
+    Clique: UI_BUTTON_CLICK:0.6:1
+    Erro: ENTITY_VILLAGER_NO:0.8:1
+    Sucesso: ENTITY_EXPERIENCE_ORB_PICKUP:0.8:1.2
+    Pagina: ITEM_BOOK_PAGE_TURN:0.8:1

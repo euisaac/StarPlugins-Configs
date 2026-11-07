@@ -1,0 +1,345 @@
+# ==========================================================
+#  Modelos de pinata
+# ==========================================================
+# Crie quantos modelos quiser (copie um bloco e troque o nome). Cada
+# modelo tem aparencia, vida, habilidades e recompensas proprias.
+# O jeito mais facil de editar e pelo jogo: /pinataadmin > Modelos.
+#
+# Nome aceita cores (&a, &#RRGGBB na 1.16+) e a marca <arco-iris>, que
+# pinta o texto com as cores do arco-iris andando (degrade suave na 1.16+).
+#
+# Recompensas (em Golpe, Ultimo golpe, Morte e Top):
+#   Chance: 0 a 100           Parar: nao sorteia as de baixo se ganhar esta
+#   Permissao: so quem tem    Linha aleatoria: roda UMA linha sorteada
+#   Uma vez (so na Morte): roda uma vez so, nao uma por jogador
+#   Mensagem: enviada ao jogador
+#   Comandos: 'console: ...', 'jogador: ...', 'mensagem: ...', 'anuncio: ...',
+#             'titulo: Titulo<nl>Sub', 'actionbar: ...', 'som: ...'
+#             (sem prefixo = console)
+#   Itens: colocados pelo menu (/pinataadmin > Modelos > Recompensas)
+# Variaveis: {jogador} {modelo} {golpes} {posicao} {participantes}
+
+Versao do modelo: 1
+
+Pinatas:
+  padrao:
+    Nome: '&7» <arco-iris>&lPINATA! &7«'
+    # Nome curto usado nos menus e mensagens.
+    Nome curto: '&dPinata'
+    Icone: PINK_WOOL
+
+    # Qualquer criatura viva. A lhama so existe da 1.11 em diante: na 1.8
+    # a pinata vira a "Entidade antiga".
+    Entidade: LLAMA
+    Entidade antiga: SHEEP
+
+    Aparencia:
+      # Lhama: BRANCA, CREME, MARROM, CINZA ou ALEATORIA
+      # Ovelha: ARCO_IRIS ou uma cor (RED, LIME...). Cavalo: BRANCO, PRETO...
+      Cor: BRANCA
+      # Tapete da lhama: CICLO (vai trocando), ALEATORIO ou uma cor (RED, LIME...)
+      Tapete: CICLO
+      Bau: false
+      # Contorno brilhante (1.9+). Cor (1.12+): CICLO, ALEATORIA ou RED, GOLD, AQUA...
+      Brilho: true
+      Cor do brilho: CICLO
+      # FAISCAS, SALGADO, TEMPESTADE, AGUAS, ECLIPSE, CORACOES, NOTAS, CONFETE,
+      # ALEATORIO ou NENHUMA
+      Particulas: FAISCAS
+      Bebe: false
+
+    Vida:
+      # Golpes para estourar.
+      Golpes: 25
+      # Soma esse valor de novo para cada jogador online (mais gente, mais vida).
+      Somar por jogador online: true
+      # Teto da vida somada (-1 = sem teto).
+      Maximo: 400
+      # Segundos ate ela ir embora sozinha (-1 = fica ate estourar).
+      Tempo de vida: 600
+
+    Golpes:
+      # Segundos entre um golpe e outro.
+      Recarga: 0.6
+      # true = a recarga e de cada jogador | false = vale para todos
+      Recarga por jogador: true
+      Som: BLOCK_WOOL_BREAK:1:1.2
+      # Quanto a pinata e empurrada a cada golpe (0 = nada).
+      Empurrao: 0.35
+      # Golpes minimos para ganhar as recompensas da Morte (evita quem so
+      # chega no fim). 0 = qualquer um que bateu.
+      Minimo para premio final: 1
+
+    Movimento:
+      Andar: true
+      # Multiplica a velocidade normal da criatura.
+      Velocidade: 1.6
+      # Anda o tempo todo procurando lugar novo (no Paper usa o caminho
+      # inteligente da criatura; no Spigot vai em saltinhos).
+      Ativo:
+        Ativar: true
+        # Ticks entre um destino e outro.
+        Intervalo: 30
+        Alcance: 12
+        Altura maxima: 4
+        # Blocos onde ela pode ir (vazio = qualquer um).
+        Blocos:
+          - GRASS_BLOCK
+          - DIRT
+          - DIRT_PATH
+          - GRASS_PATH
+          - STONE
+          - SAND
+          - '*_PLANKS'
+
+    Habilidades:
+      # Some e aparece alguns blocos longe.
+      Teleporte:
+        Ativar: true
+        Chance: 8.0
+        Raio: 8.0
+        Altura maxima: 6
+        Som: ENTITY_ENDERMAN_TELEPORT:1:1
+      # Empurra quem esta perto.
+      Empurrao:
+        Ativar: true
+        Chance: 8.0
+        Raio: 6.0
+        Forca: 1.35
+        Som: ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR:1:1
+      # Salta para o alto.
+      Pulo:
+        Ativar: true
+        Chance: 6.0
+        Forca: 1.4
+        Som: ENTITY_ARROW_SHOOT:1:1
+      # Vira filhote por alguns segundos (menor = mais dificil acertar).
+      Filhote:
+        Ativar: true
+        Chance: 6.0
+        Minimo: 2.0
+        Maximo: 7.0
+        Som entrar: ENTITY_CHICKEN_EGG:1:1.1
+        Som sair: ENTITY_LLAMA_SWAG:1:0.9
+      # Da velocidade para quem esta perto (fica todo mundo correndo atras).
+      Velocidade:
+        Ativar: true
+        Chance: 5.0
+        Nivel: 2
+        Raio: 12.0
+        Minimo: 2.5
+        Maximo: 5.0
+        Som: ITEM_TRIDENT_RIPTIDE_1:1:1.25
+      # Fica imune por alguns segundos, com um escudo de particulas.
+      Escudo:
+        Ativar: true
+        Chance: 4.0
+        Duracao: 3.0
+        Som: ITEM_SHIELD_BLOCK:1:1
+      # Solta pinatas falsas iguaizinhas; acertar uma falsa estoura confete.
+      Iscas:
+        Ativar: true
+        Chance: 4.0
+        Quantidade: 3
+        Duracao: 8.0
+        Som: ENTITY_EVOKER_CAST_SPELL:1:1.4
+      # Deixa cair doces no chao a cada golpe de sorte.
+      Chuva de doces:
+        Ativar: true
+        Chance: 7.0
+        Quantidade: 4
+        Itens:
+          - COOKIE
+          - SUGAR
+          - PUMPKIN_PIE
+        Som: ENTITY_CHICKEN_EGG:1:1.6
+      # Dispara correndo por alguns segundos.
+      Fuga:
+        Ativar: true
+        Chance: 5.0
+        Duracao: 4.0
+        Velocidade: 2.2
+        Som: ENTITY_HORSE_GALLOP:1:1.4
+      # Recupera alguns golpes.
+      Cura:
+        Ativar: false
+        Chance: 2.0
+        Golpes: 5
+        Som: ENTITY_PLAYER_LEVELUP:1:1.8
+      # Deixa quem esta perto lento por alguns segundos.
+      Congelar:
+        Ativar: true
+        Chance: 3.0
+        Raio: 6.0
+        Duracao: 3.0
+        Som: BLOCK_GLASS_BREAK:1:1.4
+
+    Ao estourar:
+      # Fogos de artificio (0 = nenhum).
+      Fogos: 10
+      # A pinata estoura e espalha itens de verdade pelo chao.
+      Explosao de doces:
+        Ativar: true
+        Quantidade: 16
+        # So quem bateu na pinata consegue pegar os itens.
+        So participantes pegam: true
+        Itens:
+          - COOKIE
+          - CAKE
+          - GOLDEN_APPLE
+          - SUGAR
+          - EMERALD
+
+    # Comandos (console) quando ESTE modelo nasce. {x} {y} {z} {mundo}
+    Ao nascer: []
+
+    Recompensas:
+      Golpe:
+        '1':
+          Chance: 30.0
+          Parar: true
+          Comandos:
+            - 'console: give {jogador} cookie 1'
+        '2':
+          Chance: 15.0
+          Comandos:
+            - 'console: give {jogador} iron_ingot 1'
+        '3':
+          Chance: 5.0
+          Permissao: starpinata.recompensas.extra
+          Comandos:
+            - 'console: give {jogador} diamond 1'
+            - 'anuncio: &d{jogador} &fganhou um premio especial da pinata!'
+        '4':
+          Chance: 2.0
+          Linha aleatoria: true
+          Comandos:
+            - 'console: give {jogador} emerald 2'
+            - 'console: give {jogador} gold_ingot 4'
+      Ultimo golpe:
+        '1':
+          Chance: 100.0
+          Mensagem: '&6&lULTIMO GOLPE! &eVoce estourou a pinata!'
+          Comandos:
+            - 'console: give {jogador} diamond 3'
+      Morte:
+        '1':
+          Chance: 100.0
+          Uma vez: true
+          Comandos:
+            - 'anuncio: &dA pinata estourou! &f{participantes} &djogadores ajudaram.'
+        '2':
+          Chance: 100.0
+          Comandos:
+            - 'console: give {jogador} diamond 2'
+        '3':
+          Chance: 33.3
+          Comandos:
+            - 'console: give {jogador} emerald 4'
+      # Premio para quem mais bateu: 1 = primeiro lugar, 2 = segundo...
+      Top:
+        '1':
+          Chance: 100.0
+          Mensagem: '&6&l1º LUGAR! &eVoce foi quem mais bateu ({golpes} golpes).'
+          Comandos:
+            - 'console: give {jogador} diamond 8'
+        '2':
+          Chance: 100.0
+          Comandos:
+            - 'console: give {jogador} diamond 5'
+        '3':
+          Chance: 100.0
+          Comandos:
+            - 'console: give {jogador} diamond 3'
+
+  dourada:
+    Nome: '&6&l✦ PINATA DOURADA ✦'
+    Nome curto: '&6Pinata Dourada'
+    Icone: GOLD_BLOCK
+    Entidade: LLAMA
+    Entidade antiga: SHEEP
+    Aparencia:
+      Cor: CREME
+      Tapete: YELLOW
+      Bau: true
+      Brilho: true
+      Cor do brilho: GOLD
+      Particulas: TEMPESTADE
+      Bebe: false
+    Vida:
+      Golpes: 50
+      Somar por jogador online: true
+      Maximo: 800
+      Tempo de vida: 900
+    Golpes:
+      Recarga: 0.6
+      Recarga por jogador: true
+      Som: BLOCK_ANVIL_LAND:0.4:1.8
+      Empurrao: 0.25
+      Minimo para premio final: 5
+    Movimento:
+      Andar: true
+      Velocidade: 1.9
+      Ativo:
+        Ativar: true
+        Intervalo: 25
+        Alcance: 14
+        Altura maxima: 4
+        Blocos: []
+    Habilidades:
+      Teleporte:
+        Ativar: true
+        Chance: 10.0
+        Raio: 10.0
+        Altura maxima: 6
+        Som: ENTITY_ENDERMAN_TELEPORT:1:1
+      Escudo:
+        Ativar: true
+        Chance: 6.0
+        Duracao: 4.0
+        Som: ITEM_SHIELD_BLOCK:1:1
+      Iscas:
+        Ativar: true
+        Chance: 6.0
+        Quantidade: 4
+        Duracao: 10.0
+        Som: ENTITY_EVOKER_CAST_SPELL:1:1.4
+      Cura:
+        Ativar: true
+        Chance: 3.0
+        Golpes: 8
+        Som: ENTITY_PLAYER_LEVELUP:1:1.8
+    Ao estourar:
+      Fogos: 20
+      Explosao de doces:
+        Ativar: true
+        Quantidade: 24
+        So participantes pegam: true
+        Itens:
+          - GOLD_INGOT
+          - GOLDEN_APPLE
+          - GOLDEN_CARROT
+          - DIAMOND
+    Ao nascer:
+      - 'broadcast &6&lUma PINATA DOURADA apareceu! &eCorra para ganhar premios raros.'
+    Recompensas:
+      Golpe:
+        '1':
+          Chance: 20.0
+          Comandos:
+            - 'console: give {jogador} gold_ingot 1'
+      Ultimo golpe:
+        '1':
+          Chance: 100.0
+          Comandos:
+            - 'console: give {jogador} diamond_block 1'
+      Morte:
+        '1':
+          Chance: 100.0
+          Comandos:
+            - 'console: give {jogador} diamond 4'
+      Top:
+        '1':
+          Chance: 100.0
+          Comandos:
+            - 'console: give {jogador} diamond_block 2'
