@@ -6,7 +6,7 @@
 #  sem prefixo. Titulos usam <nl> para separar titulo e subtitulo.
 # ==========================================================================
 
-Versao do modelo: 13
+Versao do modelo: 14
 
 Prefixo: '&6&lEggWars &8» &7'
 
@@ -241,6 +241,12 @@ Partida:
     - ' &fOs dragoes foram soltos! Nao ha mais para onde correr.'
     - ''
   Nao pode construir: '&cVoce nao pode construir aqui.'
+  # So para a staff (permissao de admin), junto do "Nao pode construir".
+  Motivo fora da regiao:
+    - '&e[Staff] &7O bloco em &f{x}, {y}, {z} &7esta &cfora da regiao &7da arena &f{arena}&7.'
+    - '&7Regiao: &f{pos1} &7ate &f{pos2} &7(altura Y &f{y_min} &7a &f{y_max}&7, &f{altura} &7blocos).'
+    - '&7Ajuste em &f/ew editor {arena} &7> Varinha da regiao: um canto no FUNDO do mapa e o outro bem no ALTO.'
+  Motivo perto de protegido: '&e[Staff] &7O bloco em &f{x}, {y}, {z} &7esta a menos de &f{distancia} &7blocos de um gerador/NPC (ou &f{distancia_spawn} &7do spawn de uma equipe). Ajuste em config.yml > Partida > Distancia protegida.'
   Nao pode deitar: '&cA cama aqui nao e para dormir.'
   Bau guardado: '&aGuardado: &f{quantidade}x {item}&a.'
   Bau cheio: '&cO bau esta cheio.'
@@ -517,6 +523,7 @@ Configurador:
   Tipo de gerador invalido: '&cTipo de gerador invalido. Disponiveis: {tipos}.'
   Pos1: '&aPos1 definida em &f{x}, {y}, {z}&a.'
   Pos2: '&aPos2 definida em &f{x}, {y}, {z}&a.'
+  Regiao baixa: '&cAtencao: a regiao tem so &f{altura} &cbloco(s) de altura. Na partida ninguem constroi fora dela: marque um canto no FUNDO do mapa e o outro bem no ALTO.'
   Digite altura da jaula: '&eDigite no chat quantos blocos acima do spawn a jaula fica (0 = no proprio spawn).'
   Digite minimo: '&eDigite no chat o minimo de jogadores para a partida comecar.'
   Digite nome: '&eDigite no chat o nome da nova arena e o modo (ex.: &fcastelo solo&e).'
