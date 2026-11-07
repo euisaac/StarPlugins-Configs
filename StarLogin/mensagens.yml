@@ -1,0 +1,449 @@
+# ==========================================================================
+#  StarLogin - mensagens
+#
+#  Cores: &a, &b... e RGB &#00ffaa. Linha com várias linhas: use |- (bloco).
+#  Mensagem de uma linha ganha o prefixo sozinha; em bloco, use {prefixo}.
+#  Mensagem vazia ('') não é enviada.
+#
+#  Botões clicáveis no chat:  {botao:Texto|tipo|valor|dica}
+#    tipo: comando (roda ao clicar), sugerir (escreve na barra do chat),
+#          link (abre o site) ou copiar (copia o valor; 1.15+)
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&b&lStarLogin &7'
+
+Geral:
+  Sem permissao: '&cVocê não tem permissão para isso.'
+  So jogador: '&cSó jogadores podem usar este comando.'
+  Aguarde: '&7Aguarde um instante...'
+  Devagar: '&cCalma! Espere um segundo antes de tentar de novo.'
+  Logue primeiro: '&cEntre na sua conta primeiro.'
+  Erro no banco: '&cNão foi possível acessar as contas agora. Tente de novo em instantes.'
+  Recarregando: |-
+    &b&lStarLogin
+    &7O sistema de login está sendo recarregado.
+    &fEntre de novo em alguns segundos.
+
+Entrada:
+  Nick invalido: |-
+    &b&lStarLogin
+    &cSeu nick tem caracteres não permitidos.
+    &7Use só letras, números e _ (de 3 a 16 caracteres).
+  Ja online: |-
+    &b&lStarLogin
+    &cJá existe alguém online com este nick.
+  Maiusculas: |-
+    &b&lStarLogin
+    &cEsta conta está registrada como &f{nick}&c.
+    &7Entre com o nick exatamente assim (maiúsculas e minúsculas).
+  Muitos no IP: |-
+    &b&lStarLogin
+    &cJá existem {limite} jogadores online pela sua conexão.
+
+Login:
+  Pedir: |-
+    {prefixo}&fBem-vindo de volta! Entre com &b/logar <senha>&f.
+    {prefixo}&7Você tem &f{tempo}s&7.
+  Pedir chat: |-
+    {prefixo}&fBem-vindo de volta! &bDigite sua senha no chat&f (ninguém vê).
+    {prefixo}&7Ou use &f/logar <senha>&7. Você tem &f{tempo}s&7.
+  Esqueceu: '&7Esqueceu a senha? {botao:&e&n[Recuperar conta]|comando|/recuperar|&fRecebe um código no e-mail ou no Discord}'
+  Uso: '&cUse: &f/logar <senha>'
+  Sucesso: '&aLogin feito! Bom jogo.'
+  Sessao: '&aSessão retomada: você entrou sem digitar a senha.'
+  Original: '&aConta original reconhecida: entrada automática.'
+  Bedrock: '&aConta Bedrock reconhecida: entrada automática.'
+  Pela staff: '&aA staff liberou a sua entrada.'
+  Ja logado: '&cVocê já está logado.'
+  Nao registrado: '&cVocê ainda não tem conta. Use &f/registrar <senha> <senha>&c.'
+  Senha errada: '&cSenha errada! Restam &f{restam} &ctentativa(s).'
+  Tentativas esgotadas: |-
+    &b&lStarLogin
+    &cVocê errou a senha muitas vezes.
+  Bloqueado: |-
+    &b&lStarLogin
+    &cMuitas senhas erradas pela sua conexão.
+    &7Tente de novo em &f{tempo}&7.
+  Tempo esgotado: |-
+    &b&lStarLogin
+    &cO tempo para entrar na conta acabou.
+    &7Entre de novo e digite a senha mais rápido.
+  Ultimo acesso: '&7Seu último acesso foi há &f{tempo}&7.'
+  Ultimo acesso outro IP: '&eAtenção: &7seu último acesso foi há &f{tempo}&7 por outra conexão (&f{ip}&7). Não foi você? Troque a senha no {botao:&b&n/conta|comando|/conta|&fAbrir o menu da conta}&7.'
+  Proteja: '&7Dica: proteja sua conta com o celular ou e-mail no {botao:&b&n/conta|comando|/conta|&fAbrir o menu da conta}&7.'
+  Deslogado sem senha: |-
+    &b&lStarLogin
+    &7Sua conta não tem senha (entrada automática).
+    &fEntre de novo para jogar.
+
+Registro:
+  Pedir: |-
+    {prefixo}&fBem-vindo! Crie sua conta com &b/registrar <senha> <senha>&f.
+    {prefixo}&7Você tem &f{tempo}s&7.
+  Pedir chat: |-
+    {prefixo}&fBem-vindo! &bDigite no chat a senha que você quer usar&f (ninguém vê).
+    {prefixo}&7Ou use &f/registrar <senha> <senha>&7. Você tem &f{tempo}s&7.
+  Oferta: '&7Sem ideia? {botao:&a&n[Gerar uma senha forte para mim]|comando|/registrar gerar|&fA senha aparece no chat para você anotar}'
+  Repita: '&fAgora digite a mesma senha de novo para confirmar.'
+  Uso: '&cUse: &f/registrar <senha> <senha>'
+  Uso simples: '&cUse: &f/registrar <senha>'
+  Diferentes: '&cAs duas senhas não são iguais. Tente de novo.'
+  Ja registrado: '&cEste nick já tem conta. Use &f/logar <senha>&c.'
+  Limite do IP: '&cA sua conexão já criou {limite} conta(s), o máximo permitido.'
+  Senha gerada: |-
+    {prefixo}&fSua senha é: &a&l{senha} {botao:&e&n[copiar]|copiar|{senha}|&fCopiar a senha}
+    {prefixo}&7Anote em um lugar seguro: ela não aparece de novo.
+  Sucesso: '&aConta criada! Bom jogo.'
+
+Senha:
+  Vazia: '&cDigite uma senha.'
+  Curta: '&cA senha precisa ter pelo menos &f{minimo} &ccaracteres.'
+  Longa: '&cA senha pode ter no máximo &f{maximo} &ccaracteres.'
+  Com espaco: '&cA senha não pode ter espaço.'
+  Igual ao nick: '&cA senha não pode conter o seu nick.'
+  Comum: '&cEssa senha é muito fácil de adivinhar. Escolha outra.'
+  Fraca: '&cUse letra maiúscula, minúscula e número na senha.'
+
+Trocar senha:
+  Uso: '&cUse: &f/trocarsenha <senha atual> <nova senha>'
+  Sucesso: '&aSenha trocada com sucesso!'
+  Atual errada: '&cA senha atual está errada.'
+
+Codigo:
+  Uso: '&cUse: &f/codigo <código>'
+  Errado: '&cCódigo errado ou vencido. &7(restam {restam})'
+  Nada pendente: '&cNão há nenhum código esperado agora.'
+
+Original:
+  Desligado: '&cA entrada automática de contas originais está desligada neste servidor.'
+  Precisa do proxy: '&cA entrada automática de original precisa do proxy da rede. Fale com a staff.'
+  Ja e: '&aSua conta já entra automaticamente como original.'
+  Ja e pirata: '&cSua conta não está como original.'
+  Conferindo: '&7Conferindo o seu nick na Mojang...'
+  Nao e original: '&cO nick &f{jogador} &cnão é de uma conta original (Minecraft comprado).'
+  Mojang fora: '&cNão foi possível falar com a Mojang agora. Tente de novo em alguns minutos.'
+  Reconecte: |-
+    &b&lStarLogin
+    &aQuase lá! &fEntre de novo pelo &bMinecraft original&f.
+    &7Se a conta for mesmo sua, você entra sem senha daqui para frente.
+    &8(Se não conseguir entrar, nada muda: a senha continua valendo.)
+  Confirmado: '&aConta original confirmada! A partir de agora você entra sem senha.'
+  Falhou: '&cA confirmação de conta original não deu certo. Sua conta continua com senha.'
+  Sem senha: |-
+    &b&lStarLogin
+    &cEsta conta é original e entra sem senha.
+    &7Entre pelo Minecraft original (launcher oficial).
+  Sugestao: '&7Seu nick existe como conta original. {botao:&a&n[Entrar sem senha daqui para frente]|comando|/original|&fSó se você tiver o Minecraft original deste nick}'
+  Pirata precisa senha: '&cSua conta não tem senha. Use &f/pirata <nova senha>&c.'
+  Agora pirata: '&aPronto: a entrada automática foi desligada e sua conta passa a pedir senha.'
+
+Bedrock:
+  Sem senha: |-
+    &b&lStarLogin
+    &cEsta conta é do Bedrock e entra sem senha.
+    &7Entre pelo Minecraft Bedrock.
+
+Autenticador:
+  Desligado: '&cO autenticador está desligado neste servidor.'
+  Ajuda: |-
+    {prefixo}&b&lAutenticador no celular &8- &7{status}
+    {prefixo}&7Um código de 6 dígitos do app (Google Authenticator, Authy...) a cada login.
+    {prefixo}{botao:&a&n[Ligar]|comando|/autenticador ativar|&fLigar o autenticador}  {botao:&c&n[Desligar]|sugerir|/autenticador desativar |&fPrecisa de um código do app}
+  Como ligar: |-
+    {prefixo}&b&lLigar o autenticador
+    {prefixo}&f1. &7Abra o app no celular e adicione uma conta com a chave:
+    {prefixo}    &e&l{segredo} {botao:&8[&ecopiar&8]|copiar|{segredo_puro}|&fCopiar a chave}
+    {prefixo}&f2. &7Digite o código que aparecer: {botao:&a&n/autenticador confirmar <código>|sugerir|/autenticador confirmar |&fClique e complete com o código}
+  Obrigatorio: |-
+    {prefixo}&e&lSua conta precisa do autenticador no celular.
+    {prefixo}&f1. &7No app (Google Authenticator, Authy...), adicione a chave:
+    {prefixo}    &e&l{segredo} {botao:&8[&ecopiar&8]|copiar|{segredo_puro}|&fCopiar a chave}
+    {prefixo}&f2. &7Digite no chat o código de 6 dígitos que aparecer.
+  Pedir: '&fDigite o &bcódigo de 6 dígitos&f do seu app autenticador (no chat ou &b/codigo <código>&f).'
+  Uso: '&cUse: &f/autenticador ativar&c e depois &f/autenticador confirmar <código>'
+  Uso desligar: '&cUse: &f/autenticador desativar <código do app>'
+  Ja ligado: '&cO autenticador já está ligado.'
+  Nao ligado: '&cO autenticador não está ligado.'
+  Ligado: '&aAutenticador ligado! Sua conta agora pede o código do celular a cada login.'
+  Desligado pelo jogador: '&eAutenticador desligado.'
+  Obrigatorio para voce: '&cSua conta é obrigada a usar o autenticador.'
+
+Email:
+  Desligado: '&cO e-mail está desligado neste servidor.'
+  Ajuda: |-
+    {prefixo}&b&lE-mail da conta &8- &f{email}
+    {prefixo}&7Serve para recuperar a senha se você esquecer.
+    {prefixo}{botao:&a&n[Vincular]|sugerir|/email adicionar |&fClique e escreva o seu e-mail}  {botao:&c&n[Remover]|sugerir|/email remover |&fPrecisa da sua senha}
+  Uso: '&cUse: &f/email adicionar <e-mail>&c e depois &f/email confirmar <código>'
+  Uso remover: '&cUse: &f/email remover <sua senha>'
+  Invalido: '&cEsse e-mail não parece válido.'
+  Dominio recusado: '&cEste servidor não aceita e-mails desse provedor.'
+  Limite: '&cEsse e-mail já está em {limite} conta(s), o máximo.'
+  Espere: '&cEspere um minuto antes de pedir outro código.'
+  Enviando: '&7Enviando um código para &f{email}&7...'
+  Enviado: '&aCódigo enviado para &f{email}&a! Use {botao:&f&n/email confirmar <código>|sugerir|/email confirmar |&fClique e complete com o código}&a.'
+  Falhou: '&cNão foi possível enviar o e-mail agora. Tente de novo mais tarde.'
+  Confirmado: '&aE-mail &f{email} &avinculado à sua conta!'
+  Removido: '&eE-mail removido da conta.'
+  Sem email: '&cSua conta não tem e-mail.'
+  Pedir codigo: '&fVocê entrou por uma conexão nova. &bDigite o código enviado ao seu e-mail&f (no chat ou &b/codigo <código>&f).'
+  Mensagens:
+    Confirmar:
+      Assunto: 'Confirme o seu e-mail - {jogador}'
+      Corpo: |-
+        <h2>Olá, {jogador}!</h2>
+        Para vincular este e-mail à sua conta no {servidor}, use o código:
+        <h1 style="letter-spacing:6px">{codigo}</h1>
+        No jogo: <b>/email confirmar {codigo}</b>
+        Não foi você? É só ignorar este e-mail.
+    Recuperar:
+      Assunto: 'Recuperação de conta - {jogador}'
+      Corpo: |-
+        <h2>Olá, {jogador}!</h2>
+        Alguém pediu para recuperar a sua conta no {servidor}. O código é:
+        <h1 style="letter-spacing:6px">{codigo}</h1>
+        No jogo: <b>/recuperar {codigo} &lt;nova senha&gt;</b>
+        Não foi você? Ignore este e-mail: a sua senha continua a mesma.
+    IP novo:
+      Assunto: 'Novo acesso à sua conta - {jogador}'
+      Corpo: |-
+        <h2>Olá, {jogador}!</h2>
+        A sua conta no {servidor} está entrando por uma conexão nova. Para liberar, use o código:
+        <h1 style="letter-spacing:6px">{codigo}</h1>
+        Não foi você? Troque a sua senha assim que puder.
+
+Discord:
+  Desligado: '&cO Discord está desligado neste servidor.'
+  Ajuda: |-
+    {prefixo}&b&lDiscord da conta &8- &7vinculado: {status}
+    {prefixo}&7Aprove cada login com um botão e recupere a senha pelo Discord.
+    {prefixo}{botao:&a&n[Vincular]|comando|/discord vincular|&fGerar o código}  {botao:&e&n[Aprovação de login]|comando|/discord aprovacao|&fLiga/desliga o botão de aprovar a cada login}  {botao:&c&n[Desvincular]|comando|/discord desvincular|&fTirar o Discord da conta}
+  Como vincular: |-
+    {prefixo}&b&lVincular o Discord
+    {prefixo}&f1. &7Entre no nosso Discord: {botao:&9&n{convite}|link|{convite}|&fAbrir o convite}
+    {prefixo}&f2. &7Mande uma mensagem direta para o bot &b{bot}&7 com o código:
+    {prefixo}    &e&l{codigo} {botao:&8[&ecopiar&8]|copiar|{codigo}|&fCopiar o código}
+    {prefixo}&8O código vale por 10 minutos.
+  Vinculado: '&aDiscord &f{discord} &avinculado à sua conta!'
+  Desvinculado: '&eDiscord desvinculado.'
+  Sem discord: '&cSua conta não tem Discord vinculado. Use &f/discord vincular&c.'
+  Aprovacao ligada: '&aAprovação pelo Discord ligada: cada login vai pedir o seu clique no Discord.'
+  Aprovacao desligada: '&eAprovação pelo Discord desligada.'
+  Aguardando: '&fSenha certa! &bConfirme o login na mensagem que o bot mandou no seu Discord.'
+  Negado: |-
+    &b&lStarLogin
+    &cO login foi negado pelo dono da conta no Discord.
+  Sem DM: '&cNão foi possível mandar mensagem no seu Discord. Libere mensagens diretas do servidor.'
+  Bot:
+    Ajuda: 'Olá! Para vincular sua conta do jogo, use **/discord vincular** no servidor e me mande o código de 6 dígitos aqui.'
+    Vinculado: 'Pronto! A conta **{jogador}** está vinculada a este Discord.'
+    Aprovar titulo: 'Login na conta {jogador}'
+    Aprovar texto: "Alguém digitou a senha certa da conta **{jogador}** (conexão {ip}).\nFoi você?"
+    Botao liberar: 'Sou eu, liberar'
+    Botao negar: 'Não fui eu, bloquear'
+    Liberado: 'Login liberado. Bom jogo!'
+    Negado: 'Login bloqueado. Recomendo trocar a senha da conta.'
+    Codigo: "O código para recuperar a conta **{jogador}** é: **{codigo}**\nNo jogo: `/recuperar {codigo} <nova senha>`"
+
+Recuperar:
+  Ja logado: '&cVocê já está logado. Para trocar a senha use &f/trocarsenha&c.'
+  Nada a recuperar: '&cNão há conta para recuperar.'
+  Sem meios: '&cSua conta não tem e-mail nem Discord vinculado. Fale com a staff.'
+  Opcoes: |-
+    {prefixo}&b&lRecuperar a conta
+    {prefixo}&7E-mail: {email}   &7Discord: {discord}
+    {prefixo}{botao:&a&n[Receber no e-mail]|comando|/recuperar email|&fManda um código ao seu e-mail}  {botao:&9&n[Receber no Discord]|comando|/recuperar discord|&fManda um código no seu Discord}
+  Enviado email: '&aCódigo enviado para &f{email}&a. Use {botao:&f&n/recuperar <código> <nova senha>|sugerir|/recuperar |&fClique e complete}&a.'
+  Enviado discord: '&aCódigo enviado no seu Discord. Use {botao:&f&n/recuperar <código> <nova senha>|sugerir|/recuperar |&fClique e complete}&a.'
+  Uso: '&cUse: &f/recuperar <código> <nova senha>'
+  Sucesso: '&aSenha nova definida! Você já está dentro.'
+
+Entrada chat:
+  Como cancelar: '&8(digite &7cancelar &8para desistir)'
+  Cancelado: '&7Cancelado.'
+  Senha atual: '&fDigite no chat a sua &bsenha atual&f:'
+  Nova senha: '&fAgora digite a &bnova senha&f:'
+  Digite o email: '&fDigite no chat o seu &be-mail&f:'
+  Procurar: '&fDigite no chat o &bnick&f (ou parte dele) que quer procurar:'
+  Senha para o jogador: '&fDigite a &bnova senha&f de &e{jogador}&f:'
+
+Staff:
+  Ajuda: |-
+    {prefixo}&b&lStarLogin &8- &7comandos da staff
+    &b/{rotulo} &8- &7painel com tudo por menu
+    &b/{rotulo} info <jogador> &8- &7dados da conta
+    &b/{rotulo} forcarlogin <jogador> &8- &7libera quem está esperando
+    &b/{rotulo} deslogar <jogador> &8- &7tira da conta (pede senha de novo)
+    &b/{rotulo} trocarsenha <jogador> <senha>
+    &b/{rotulo} senhatemporaria <jogador> &8- &7sorteia uma senha para passar ao jogador
+    &b/{rotulo} original <jogador> &8- &7liga/desliga a entrada automática
+    &b/{rotulo} remover2fa | removeremail | removerdiscord <jogador>
+    &b/{rotulo} apagar <jogador> confirmar
+    &b/{rotulo} alts <jogador|ip> &8- &7contas da mesma conexão
+    &b/{rotulo} desbloquearip <ip>
+    &b/{rotulo} setspawn &8- &7ponto onde quem não logou espera
+    &b/{rotulo} importar &8- &7traz as contas de outro plugin de login
+    &b/{rotulo} recarregar
+  Uso: '&cUse: &f{uso}'
+  Conta nao existe: '&cNão existe conta com o nick &f{jogador}&c.'
+  Offline: '&c{jogador} não está online (ou não logou).'
+  Ja logado: '&c{jogador} já está logado.'
+  Sem conta para forcar: '&c{jogador} ainda não tem conta: ele precisa se registrar.'
+  Login forcado: '&aLogin de &f{jogador} &aliberado.'
+  Deslogado: '&a{jogador} foi tirado da conta.'
+  Senha trocada: '&aSenha de &f{jogador} &atrocada.'
+  Senha temporaria: |-
+    {prefixo}&aSenha temporária de &f{jogador}&a: &e&l{senha} {botao:&8[&ecopiar&8]|copiar|{senha}|&fCopiar a senha}
+    {prefixo}&7Passe para o jogador e peça para trocar com &f/trocarsenha&7.
+  Agora original: '&a{jogador} agora entra automaticamente como original.'
+  Agora pirata: '&e{jogador} agora entra com senha.'
+  Pirata sem senha: '&eAtenção: {jogador} não tem senha. Defina uma com &f/starlogin trocarsenha {jogador} <senha>&e.'
+  2FA removido: '&aAutenticador de &f{jogador} &aremovido.'
+  Email removido: '&aE-mail de &f{jogador} &aremovido.'
+  Discord removido: '&aDiscord de &f{jogador} &aremovido.'
+  Confirme apagar: '&cIsto apaga a conta de &f{jogador}&c para sempre. Confirme com &f/starlogin apagar {jogador} confirmar&c.'
+  Confirme com shift: '&eSegure &fShift &ee clique para confirmar.'
+  Conta apagada: '&aConta de &f{jogador} &aapagada.'
+  Expulso conta apagada: |-
+    &b&lStarLogin
+    &cSua conta foi apagada pela staff.
+  IP desbloqueado: '&aIP &f{ip} &adesbloqueado.'
+  IP nao bloqueado: '&cO IP &f{ip} &cnão está bloqueado.'
+  Spawn definido: '&aSpawn de login definido aqui. Ligue em Ajustes > Spawn de login.'
+  Recarregado: '&aStarLogin recarregado.'
+  Nada encontrado: '&cNada encontrado para &f{busca}&c.'
+  Alts: '&7Contas ligadas a &f{alvo} &7({quantidade}): &f{contas}'
+  Info: |-
+    {prefixo}&b&l{jogador} &8- &7{tipo}
+    &7Criada: &f{criada}  &7Último login: &f{ultimo}
+    &7IP: &f{ip}
+    &7E-mail: &f{email}  &7Discord: &f{discord}
+    &7Autenticador: {dois_fatores}
+
+Importar:
+  Procurando: '&7Procurando contas de outros plugins de login...'
+  Nada: '&cNenhuma tabela de outro plugin de login foi encontrada (nem no MySQL configurado, nem em arquivos .db na pasta plugins).'
+  Encontradas: '&aEncontrei {quantidade} fonte(s). Clique em uma para importar:'
+  Linha: ' {botao:&e&n[{numero}]|comando|/starlogin importar {numero}|&fImportar esta} &f{fonte} &7({contas} linhas)'
+  Liste antes: '&cUse &f/starlogin importar&c para listar as fontes e depois o número.'
+  Rodando: '&cJá existe uma importação em andamento.'
+  Comecou: '&7Importando de &f{fonte}&7... (pode levar alguns segundos)'
+  Terminou: '&aImportação concluída em {tempo}: &f{importadas} &aconta(s) nova(s), &f{existiam} &ajá existiam, &f{ignoradas} &aignoradas (sem senha ou nick inválido). As senhas continuam as mesmas.'
+  Falhou: '&cA importação falhou. Veja o console.'
+
+Alertas:
+  Senhas erradas: '&c[Alerta] &f{jogador} &7errou a senha &f{erros}x &7seguidas (&f{ip}&7).'
+  Contas no IP: '&e[Alerta] &f{jogador} &7entrou de um IP com &f{contas} &7contas (&f{ip}&7). {botao:&b&n[ver]|comando|/starlogin alts {jogador}|&fListar as contas}'
+
+Conta:
+  Linha do historico: '&8• &7{quando} &f{tipo} &8({ip})'
+
+# Texto grande no meio da tela. Título e subtítulo separados por <nl>.
+Titulos:
+  Login: '&b&lENTRAR<nl>&fDigite sua senha no chat'
+  Registro: '&b&lBEM-VINDO<nl>&fCrie a sua senha no chat'
+  Codigo: '&b&lCÓDIGO<nl>&fDigite o código do seu app'
+  Codigo email: '&b&lCÓDIGO<nl>&fVeja o código no seu e-mail'
+  Discord: '&9&lDISCORD<nl>&fConfirme o login no Discord'
+  Configurar 2FA: '&e&lAUTENTICADOR<nl>&fConfigure o app do celular'
+  Logado: '&a&lBEM-VINDO<nl>&7Bom jogo!'
+  Registrado: '&a&lCONTA CRIADA<nl>&7Bom jogo!'
+
+Actionbar:
+  Login: '&7Digite sua senha &8• &f{tempo}s'
+  Registro: '&7Crie a sua senha &8• &f{tempo}s'
+  Codigo: '&7Digite o código &8• &f{tempo}s'
+  Discord: '&7Confirme no Discord &8• &f{tempo}s'
+
+Bossbar:
+  Login: '&bEntre na sua conta &8- &f{tempo}s'
+  Registro: '&bCrie a sua conta &8- &f{tempo}s'
+  Codigo: '&bDigite o código &8- &f{tempo}s'
+  Discord: '&9Confirme no Discord &8- &f{tempo}s'
+
+# Como cada evento aparece no histórico.
+Historico:
+  login: '&aEntrou'
+  registro: '&aCriou a conta'
+  senha_errada: '&cSenha errada'
+  codigo_errado: '&cCódigo errado'
+  ip_bloqueado: '&4IP bloqueado'
+  tempo_esgotado: '&7Tempo esgotado'
+  recusado: '&cEntrada recusada'
+  deslogou: '&7Saiu da conta'
+  senha_trocada: '&eTrocou a senha'
+  senha_recuperada: '&eRecuperou a senha'
+  recuperacao_pedida: '&ePediu recuperação'
+  original_pedido: '&bPediu original'
+  virou_pirata: '&7Desligou original'
+  2fa_ligado: '&aLigou o autenticador'
+  2fa_desligado: '&eDesligou o autenticador'
+  email_vinculado: '&aVinculou e-mail'
+  email_removido: '&eRemoveu e-mail'
+  discord_vinculado: '&aVinculou Discord'
+  discord_removido: '&eRemoveu Discord'
+  discord_negou: '&cNegado no Discord'
+  importacao: '&bImportação'
+  staff_ajuste: '&dAjuste da staff'
+  staff_forcou_login: '&dStaff liberou o login'
+  staff_trocou_senha: '&dStaff trocou a senha'
+  staff_senha_temporaria: '&dStaff gerou senha temporária'
+  staff_marcou_original: '&dStaff marcou original'
+  staff_marcou_pirata: '&dStaff marcou pirata'
+  staff_removeu_2fa: '&dStaff removeu o autenticador'
+  staff_removeu_email: '&dStaff removeu o e-mail'
+  staff_removeu_discord: '&dStaff removeu o Discord'
+  staff_apagou_conta: '&4Staff apagou a conta'
+
+Etiquetas:
+  Sim: '&aSim'
+  Nao: '&cNão'
+  Ligado: '&aLigado'
+  Desligado: '&cDesligado'
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  Original: '&bOriginal'
+  Bedrock: '&aBedrock'
+  Pirata: '&7Pirata'
+  Pendente: '&eOriginal (confirmando)'
+  Nenhum: '&8nenhum'
+  Disponivel: '&adisponível'
+  Indisponivel: '&cnão vinculado'
+  Seguranca alta: '&a&lALTA'
+  Seguranca media: '&e&lMÉDIA'
+  Seguranca baixa: '&c&lBAIXA'
+  Conectada: '&aconectada ao proxy'
+  Sem proxy: '&cproxy não encontrado'
+  Desligada: '&7desligada'
+  Esperando: 'esperando login'
+  Todos: 'todos'
+  Carregando: '&7carregando'
+  Logado: '&aLogado'
+  Offline: '&8offline'
+  Sem conta: '&eSem conta'
+  Sem limite: 'sem limite'
+  Etapa carregando: '&7carregando'
+  Etapa aguardando_proxy: '&7esperando o proxy'
+  Etapa registro: '&eRegistrando'
+  Etapa login: '&eDigitando a senha'
+  Etapa codigo_app: '&eCódigo do app'
+  Etapa codigo_email: '&eCódigo do e-mail'
+  Etapa aprovacao_discord: '&9Aprovação no Discord'
+  Etapa configurar_2fa: '&eLigando o autenticador'
+  Etapa logado: '&aLogado'
+  Tipos:
+    senha: 'senha'
+    registro: 'registro'
+    sessao: 'sessão'
+    original: 'original'
+    bedrock: 'Bedrock'
+    rede: 'rede'
+    staff: 'staff'
+    recuperacao: 'recuperação'
+    senha 2fa: 'senha + app'
+    senha email: 'senha + e-mail'
+    senha discord: 'senha + Discord'

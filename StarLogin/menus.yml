@@ -1,0 +1,523 @@
+# ==========================================================================
+#  StarLogin - menus
+#
+#  Cada menu: Titulo, Linhas (1 a 6), Enfeite (vidro de fundo) e Itens.
+#  Botão: Slot (-1 esconde), Material, Nome, Lore, Brilho, e para cabeça
+#  Material PLAYER_HEAD + Dono (nick) ou Textura.
+#  O que cada botão FAZ é fixo; aqui muda só como ele aparece e onde fica.
+#  Menus de lista (Jogadores, Contas, Historico) têm Slots: onde entra cada item.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# --------------------------------------------------------------------------
+#  /conta  (jogador)
+# --------------------------------------------------------------------------
+Conta:
+  Titulo: '&8Minha conta'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+  Itens:
+    Info:
+      Slot: 4
+      Material: 'PLAYER_HEAD'
+      Dono: '{jogador}'
+      Nome: '&b&l{jogador}'
+      Lore:
+        - '&7Tipo: {tipo}'
+        - '&7Criada em: &f{criada}'
+        - '&7Conexão: &f{ip}'
+        - ''
+        - '&7Segurança da conta: {seguranca}'
+    Trocar senha:
+      Slot: 19
+      Material: 'TRIPWIRE_HOOK'
+      Nome: '&e&lTrocar senha'
+      Lore:
+        - '&7Escolha uma senha nova.'
+        - '&7Você digita no chat e ninguém vê.'
+        - ''
+        - '&eClique para trocar'
+    Sessao:
+      Slot: 20
+      Material: 'CLOCK'
+      Nome: '&b&lSessão'
+      Lore:
+        - '&7Voltando em até &f{minutos} min &7pela'
+        - '&7mesma conexão, entra sem senha.'
+        - ''
+        - '&7Estado: {estado}'
+        - '&eClique para ligar/desligar'
+    Autenticador:
+      Slot: 21
+      Material: 'ENDER_EYE'
+      Nome: '&a&lAutenticador no celular'
+      Lore:
+        - '&7Pede um código do app (Google'
+        - '&7Authenticator, Authy...) a cada login.'
+        - '&7Mesmo com a senha, ninguém entra.'
+        - ''
+        - '&7Estado: {estado}'
+        - '&eClique para configurar'
+    Email:
+      Slot: 22
+      Material: 'WRITABLE_BOOK'
+      Nome: '&6&lE-mail'
+      Lore:
+        - '&7Recupere a senha se esquecer.'
+        - ''
+        - '&7Atual: &f{email}'
+        - '&eClique para vincular'
+    Discord:
+      Slot: 23
+      Material: 'LAPIS_LAZULI'
+      Nome: '&9&lDiscord'
+      Lore:
+        - '&7Aprove cada login com um botão'
+        - '&7e recupere a senha pelo Discord.'
+        - ''
+        - '&7Vinculado: {estado}'
+        - '&7Aprovação de login: {aprovacao}'
+        - '&eEsquerdo &7vincular / aprovação'
+        - '&eDireito &7desvincular'
+    Original:
+      Slot: 24
+      Material: 'GOLDEN_APPLE'
+      Nome: '&6&lConta original'
+      Lore:
+        - '&7Tem o Minecraft original deste nick?'
+        - '&7Entre sem digitar senha.'
+        - ''
+        - '&7Estado: {estado}'
+        - '&eClique para ligar/desligar'
+    Historico:
+      Slot: 25
+      Material: 'BOOK'
+      Nome: '&f&lÚltimos acessos'
+      Lore:
+        - '{historico}'
+    Deslogar:
+      Slot: 31
+      Material: 'OAK_DOOR'
+      Nome: '&c&lSair da conta'
+      Lore:
+        - '&7Fica no servidor, mas precisa'
+        - '&7da senha para voltar a jogar.'
+    Fechar:
+      Slot: 35
+      Material: 'RED_DYE'
+      Nome: '&cFechar'
+
+# --------------------------------------------------------------------------
+#  /starlogin  (staff)
+# --------------------------------------------------------------------------
+Staff:
+  Titulo: '&8StarLogin &7- painel'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+  Itens:
+    Estatisticas:
+      Slot: 4
+      Material: 'BEACON'
+      Nome: '&b&lStarLogin'
+      Lore:
+        - '&7Contas: &f{total} &8(&b{originais} &7originais&8, &a{bedrock} &7Bedrock&8)'
+        - '&7Com autenticador: &f{dois_fatores}'
+        - '&7Com e-mail: &f{email}  &7Discord: &f{discord}'
+        - ''
+        - '&7Últimas 24h:'
+        - '&8• &7Contas novas: &f{novos}'
+        - '&8• &7Entraram: &f{ativos}'
+        - '&8• &7Senhas erradas: &c{falhas}'
+        - ''
+        - '&7Online: &f{online}  &7Esperando login: &e{esperando}'
+        - '&7Banco: &f{banco}  &7Rede: {rede}'
+        - ''
+        - '&eClique para atualizar'
+    Online:
+      Slot: 19
+      Material: 'PLAYER_HEAD'
+      Dono: '{jogador}'
+      Nome: '&a&lJogadores online'
+      Lore:
+        - '&7{online} online agora.'
+        - '&7Veja como cada um entrou e'
+        - '&7gerencie a conta com um clique.'
+    Esperando:
+      Slot: 20
+      Material: 'CLOCK'
+      Nome: '&e&lEsperando login'
+      Lore:
+        - '&7{esperando} jogador(es) ainda'
+        - '&7não entraram na conta.'
+        - '&7Libere quem precisar de ajuda.'
+    Procurar:
+      Slot: 21
+      Material: 'COMPASS'
+      Nome: '&b&lProcurar conta'
+      Lore:
+        - '&7Digite o nick (ou parte dele)'
+        - '&7no chat, mesmo offline.'
+    Ajustes:
+      Slot: 22
+      Material: 'COMPARATOR'
+      Nome: '&d&lAjustes rápidos'
+      Lore:
+        - '&7Sessão, tempo, tentativas,'
+        - '&7limites por IP, cegueira...'
+        - '&7Tudo num clique, vale na hora.'
+    Historico:
+      Slot: 23
+      Material: 'WRITABLE_BOOK'
+      Nome: '&f&lHistórico'
+      Lore:
+        - '&7Logins, senhas erradas, bloqueios'
+        - '&7e tudo o que a staff fez.'
+    Importar:
+      Slot: 24
+      Material: 'HOPPER'
+      Nome: '&6&lImportar contas'
+      Lore:
+        - '&7Traz as contas de outro plugin'
+        - '&7de login. As senhas continuam'
+        - '&7as mesmas para os jogadores.'
+    Spawn:
+      Slot: 25
+      Material: 'ENDER_PEARL'
+      Nome: '&5&lSpawn de login'
+      Lore:
+        - '&7Marca onde você está como o'
+        - '&7lugar de quem ainda não logou.'
+    Recarregar:
+      Slot: 40
+      Material: 'EMERALD'
+      Nome: '&a&lRecarregar'
+      Lore:
+        - '&7Relê config, mensagens e menus.'
+    Fechar:
+      Slot: 44
+      Material: 'RED_DYE'
+      Nome: '&cFechar'
+
+Jogadores:
+  Titulo: '&8Jogadores &7({filtro}) &8- {pagina}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Item:
+    Nome: '&f&l{nome}'
+    Lore:
+      - '&7Estado: {status}'
+      - '&7Conta: {conta}'
+      - '&7Autenticador: {dois_fatores}'
+      - '&7IP: &f{ip}'
+      - ''
+      - '&eClique para gerenciar'
+  Itens:
+    Vazio:
+      Slot: 22
+      Material: 'GLASS_BOTTLE'
+      Nome: '&7Ninguém aqui'
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&fPágina anterior'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&fPróxima página'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+
+Gerenciar:
+  Titulo: '&8Conta: {alvo}'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+  Itens:
+    Info:
+      Slot: 4
+      Material: 'PLAYER_HEAD'
+      Dono: '{alvo}'
+      Nome: '&b&l{alvo}'
+      Lore:
+        - '&7Agora: {status}'
+        - '&7Tipo: {tipo}'
+        - '&7Criada: &f{criada}'
+        - '&7Último login: &f{ultimo}'
+        - '&7IP: &f{ip} &8(cadastro: {ip_cadastro})'
+        - '&7E-mail: &f{email}'
+        - '&7Discord: &f{discord}'
+        - '&7Autenticador: {dois_fatores}  &7Sessão: {sessao}'
+        - '&7IP bloqueado: &f{bloqueado}'
+        - '&8{uuid}'
+    Sem conta:
+      Slot: 22
+      Material: 'BARRIER'
+      Nome: '&e{alvo} ainda não tem conta'
+      Lore:
+        - '&7Ele precisa se registrar.'
+    Forcar login:
+      Slot: 19
+      Material: 'LIME_DYE'
+      Nome: '&a&lLiberar entrada'
+      Lore:
+        - '&7Entra na conta sem a senha.'
+        - '&7Para quem está com problema.'
+    Deslogar:
+      Slot: 19
+      Material: 'OAK_DOOR'
+      Nome: '&c&lTirar da conta'
+      Lore:
+        - '&7Ele continua online, mas precisa'
+        - '&7digitar a senha para jogar.'
+    Trocar senha:
+      Slot: 20
+      Material: 'TRIPWIRE_HOOK'
+      Nome: '&e&lTrocar senha'
+      Lore:
+        - '&7Você digita a nova senha no chat.'
+    Senha temporaria:
+      Slot: 21
+      Material: 'PAPER'
+      Nome: '&e&lSenha temporária'
+      Lore:
+        - '&7Sorteia uma senha para você'
+        - '&7passar ao jogador que esqueceu.'
+    Original:
+      Slot: 22
+      Material: 'GOLDEN_APPLE'
+      Nome: '&6&lConta original'
+      Lore:
+        - '&7Entrada automática: {estado}'
+        - '&eClique para trocar'
+    Remover 2FA:
+      Slot: 23
+      Material: 'ENDER_EYE'
+      Nome: '&c&lRemover autenticador'
+      Lore:
+        - '&7Para quem perdeu o celular.'
+        - '&eShift + clique para confirmar'
+    Remover email:
+      Slot: 24
+      Material: 'WRITABLE_BOOK'
+      Nome: '&c&lRemover e-mail'
+      Lore:
+        - '&7{email}'
+        - '&eShift + clique para confirmar'
+    Remover discord:
+      Slot: 25
+      Material: 'LAPIS_LAZULI'
+      Nome: '&c&lRemover Discord'
+      Lore:
+        - '&eShift + clique para confirmar'
+    Mesmo IP:
+      Slot: 29
+      Material: 'COMPASS'
+      Nome: '&b&lContas da mesma conexão'
+      Lore:
+        - '&7IP: &f{ip}'
+        - '&7Descubra contas alternativas.'
+    Historico:
+      Slot: 30
+      Material: 'BOOK'
+      Nome: '&f&lHistórico da conta'
+    Desbloquear IP:
+      Slot: 31
+      Material: 'IRON_DOOR'
+      Nome: '&a&lDesbloquear IP'
+      Lore:
+        - '&7Tira o bloqueio por senhas erradas.'
+    Apagar:
+      Slot: 33
+      Material: 'TNT'
+      Nome: '&4&lApagar conta'
+      Lore:
+        - '&7Apaga a conta para sempre.'
+        - '&eShift + clique para confirmar'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+
+Contas:
+  Titulo: '&8Contas: {busca} &7({quantidade})'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Item:
+    Nome: '&f&l{nome}'
+    Lore:
+      - '&7Tipo: {tipo}'
+      - '&7Último login: &f{ultimo}'
+      - '&7IP: &f{ip}'
+      - ''
+      - '&eClique para gerenciar'
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+
+Historico:
+  Titulo: '&8Histórico: {alvo}'
+  Linhas: 6
+  Enfeite:
+    Ativar: false
+  Slots: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+  Item:
+    Material: 'PAPER'
+    Nome: '{tipo}'
+    Lore:
+      - '&7Conta: &f{nome}'
+      - '&7Quando: &f{quando}'
+      - '&7IP: &f{ip}'
+      - '&7Detalhe: &f{detalhe}'
+  Item staff:
+    Material: 'NAME_TAG'
+    Nome: '{tipo}'
+    Lore:
+      - '&7Conta: &f{nome}'
+      - '&7Por: &d{autor}'
+      - '&7Quando: &f{quando}'
+      - '&7Detalhe: &f{detalhe}'
+  Item alerta:
+    Material: 'REDSTONE'
+    Nome: '{tipo}'
+    Lore:
+      - '&7Conta: &f{nome}'
+      - '&7Quando: &f{quando}'
+      - '&7IP: &f{ip}'
+      - '&7Detalhe: &f{detalhe}'
+  Itens:
+    Vazio:
+      Slot: 22
+      Material: 'GLASS_BOTTLE'
+      Nome: '&7Nada registrado ainda'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'
+
+Ajustes:
+  Titulo: '&8Ajustes rápidos'
+  Linhas: 6
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+  Itens:
+    Sessao:
+      Slot: 10
+      Material: 'CLOCK'
+      Nome: '&b&lSessão'
+      Lore: ['&7Volta pelo mesmo IP sem senha.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Minutos de sessao:
+      Slot: 11
+      Material: 'REPEATER'
+      Nome: '&b&lDuração da sessão'
+      Lore: ['&7Minutos: &f{valor}', '', '&eEsquerdo &7aumenta  &eDireito &7diminui']
+    Senha pelo chat:
+      Slot: 12
+      Material: 'PAPER'
+      Nome: '&a&lSenha pelo chat'
+      Lore: ['&7O jogador só digita a senha,', '&7sem /logar. Ninguém vê.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Confirmar senha:
+      Slot: 13
+      Material: 'BOOK'
+      Nome: '&a&lConfirmar senha no registro'
+      Lore: ['&7Pede a senha duas vezes.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Senha gerada:
+      Slot: 14
+      Material: 'NAME_TAG'
+      Nome: '&a&lOferecer senha gerada'
+      Lore: ['&7Botão "gerar uma senha forte".', '', '&7Estado: {estado}', '&eClique para trocar']
+    Senha forte:
+      Slot: 15
+      Material: 'IRON_BARS'
+      Nome: '&e&lExigir senha forte'
+      Lore: ['&7Maiúscula, minúscula e número.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Ultimo acesso:
+      Slot: 16
+      Material: 'MAP'
+      Nome: '&f&lMostrar último acesso'
+      Lore: ['&7Depois do login: quando e de', '&7onde foi o acesso anterior.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Tempo para logar:
+      Slot: 19
+      Material: 'CLOCK'
+      Nome: '&e&lTempo para logar'
+      Lore: ['&7Segundos: &f{valor}', '', '&eEsquerdo &7aumenta  &eDireito &7diminui']
+    Tentativas:
+      Slot: 20
+      Material: 'REDSTONE'
+      Nome: '&c&lTentativas de senha'
+      Lore: ['&7Erros antes de expulsar: &f{valor}', '', '&eEsquerdo &7aumenta  &eDireito &7diminui']
+    Punicao:
+      Slot: 21
+      Material: 'IRON_DOOR'
+      Nome: '&c&lBloquear IP após errar'
+      Lore: ['&7Bloqueio temporário da conexão', '&7depois de gastar as tentativas.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Contas por IP:
+      Slot: 22
+      Material: 'PLAYER_HEAD'
+      Nome: '&6&lContas por IP'
+      Lore: ['&7Quantas contas uma conexão cria: &f{valor}', '', '&eEsquerdo &7aumenta  &eDireito &7diminui']
+    Online por IP:
+      Slot: 23
+      Material: 'PLAYER_HEAD'
+      Nome: '&6&lOnline por IP'
+      Lore: ['&7Jogadores ao mesmo tempo por', '&7conexão: &f{valor}', '', '&eEsquerdo &7aumenta  &eDireito &7diminui']
+    Maiusculas:
+      Slot: 24
+      Material: 'OAK_SIGN'
+      Nome: '&f&lProteger maiúsculas'
+      Lore: ['&7"Fulano" bloqueia "fulano".', '', '&7Estado: {estado}', '&eClique para trocar']
+    Exigir 2FA:
+      Slot: 25
+      Material: 'ENDER_EYE'
+      Nome: '&a&lExigir autenticador da staff'
+      Lore: ['&7Quem tem a permissão', '&fstarlogin.exigir2fa &7só joga', '&7com o app do celular ligado.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Cegueira:
+      Slot: 28
+      Material: 'INK_SAC'
+      Nome: '&8&lCegueira'
+      Lore: ['&7Tela escura até logar.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Esconder:
+      Slot: 29
+      Material: 'GLASS'
+      Nome: '&7&lEsconder jogadores'
+      Lore: ['&7Quem não logou não vê nem é visto.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Movimento:
+      Slot: 30
+      Material: 'LEATHER_BOOTS'
+      Nome: '&7&lTravar movimento'
+      Lore: ['&7Parado até logar.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Spawn de login:
+      Slot: 31
+      Material: 'ENDER_PEARL'
+      Nome: '&5&lUsar spawn de login'
+      Lore: ['&7Espera no ponto marcado e volta', '&7para onde estava depois do login.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Bossbar:
+      Slot: 32
+      Material: 'DRAGON_HEAD'
+      Nome: '&b&lBarra de tempo'
+      Lore: ['&7Barra no topo da tela (1.9+).', '', '&7Estado: {estado}', '&eClique para trocar']
+    Titulo:
+      Slot: 33
+      Material: 'OAK_SIGN'
+      Nome: '&b&lTítulo na tela'
+      Lore: ['&7Texto grande pedindo a senha.', '', '&7Estado: {estado}', '&eClique para trocar']
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE'
+      Nome: '&cVoltar'

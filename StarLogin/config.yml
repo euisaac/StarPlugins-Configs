@@ -1,0 +1,244 @@
+# ==========================================================================
+#  StarLogin - configuração
+#
+#  Quase tudo daqui também muda pelo menu da staff (/starlogin -> Ajustes
+#  rápidos), sem abrir o arquivo. Depois de editar à mão: /starlogin recarregar
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Mostra no console o passo a passo de cada entrada (para investigar problema).
+Debug: false
+
+# --------------------------------------------------------------------------
+#  Banco de dados
+#  SQLite: um arquivo na pasta do plugin, nada para configurar.
+#  MySQL: obrigatório numa rede com proxy (o proxy e os servidores leem as
+#  mesmas contas) ou para dividir as contas entre vários servidores.
+# --------------------------------------------------------------------------
+Banco de dados:
+  Tipo: 'SQLite'
+  Host: 'localhost'
+  Porta: 3306
+  Banco: 'starlogin'
+  Usuario: 'root'
+  Senha: ''
+  Prefixo: 'starlogin_'
+
+# --------------------------------------------------------------------------
+#  Rede com proxy (Velocity)
+#  Ligue nos servidores que ficam atrás do proxy com o StarLogin instalado.
+#  O proxy cuida do login automático das contas originais e manda o jogador
+#  para os servidores certos; aqui fica o login em si (senha, 2FA, menus).
+#  Use o MESMO MySQL do proxy. Nenhuma chave para copiar: o proxy grava a
+#  chave da rede no banco e os servidores leem de lá.
+# --------------------------------------------------------------------------
+Rede:
+  Ativar: false
+  # Quanto esperar o aviso do proxy (login automático) antes de pedir a senha.
+  Aguardar proxy por: 2
+
+# --------------------------------------------------------------------------
+#  Segurança
+# --------------------------------------------------------------------------
+Seguranca:
+  # Segundos para logar ou se registrar antes de ser expulso.
+  Tempo para logar: 90
+  # Senhas erradas seguidas antes da expulsão.
+  Tentativas: 3
+  # Bloqueio temporário do IP depois de gastar as tentativas.
+  Punicao:
+    Ativar: true
+    Minutos: 15
+  # Algoritmo das senhas novas: PBKDF2, BCRYPT, ARGON2ID ou SHA256.
+  # Contas antigas (ou importadas) continuam entrando e são convertidas
+  # sozinhas no primeiro login certo.
+  Criptografia: 'PBKDF2'
+  Nick:
+    # Formato aceito para o nick.
+    Formato: '[a-zA-Z0-9_]{3,16}'
+    # Prefixo que o Floodgate põe no nick do Bedrock. Só é aceito quando o
+    # Floodgate (aqui ou no proxy da rede) confirma que o jogador é Bedrock.
+    Prefixo do Bedrock: '.'
+    # 'Fulano' registrado bloqueia 'fulano' e 'FULANO' (evita contas clone).
+    Proteger maiusculas: true
+  # Alguém entrando com um nick que já está online:
+  #   BLOQUEAR  quem chega é recusado (o que está dentro fica)
+  #   MESMO_IP  quem chega do mesmo IP substitui; de outro IP é recusado
+  Nick ja online: 'MESMO_IP'
+  Senha:
+    Minimo: 5
+    Maximo: 32
+    # Exige letra maiúscula, minúscula e número.
+    Exigir forte: false
+    Recusar senha igual ao nick: true
+    Recusar senhas comuns: true
+    Senhas comuns:
+      - '123456'
+      - '1234567'
+      - '12345678'
+      - '123456789'
+      - '1234567890'
+      - '12345'
+      - '123123'
+      - '111111'
+      - '000000'
+      - '654321'
+      - 'senha'
+      - 'senha123'
+      - 'password'
+      - 'qwerty'
+      - 'abc123'
+      - 'minecraft'
+      - 'asdasd'
+      - 'asdfgh'
+  # Contas que um mesmo IP pode CADASTRAR (0 = sem limite).
+  Contas por IP: 3
+  # Jogadores online ao mesmo tempo pelo mesmo IP (0 = sem limite).
+  Online por IP: 3
+  # IPs fora dos dois limites acima (LAN house, a sua casa...).
+  IPs liberados:
+    - '127.0.0.1'
+  # Com a permissão starlogin.exigir2fa o jogador (ex.: staff) só joga
+  # depois de ligar o autenticador no celular.
+  Exigir 2FA da staff: true
+
+# --------------------------------------------------------------------------
+#  Login automático
+# --------------------------------------------------------------------------
+Sessao:
+  # Quem saiu há pouco e volta pelo mesmo IP entra sem digitar a senha.
+  # Cada jogador pode desligar a dele no /conta.
+  Ativar: true
+  Minutos: 30
+
+Originais:
+  # Conta original (Minecraft comprado) entra sem senha. Precisa do proxy
+  # Velocity com o StarLogin: é ele que confere a conta com a Mojang.
+  Ativar: true
+  # Original novo nem passa pelo /registrar.
+  Pular registro: true
+  # Logo depois do registro, sugere ligar o login automático para quem usa
+  # um nick que existe na Mojang.
+  Sugerir: true
+
+Bedrock:
+  # Jogador do Bedrock (Geyser + Floodgate) entra sem senha.
+  Ativar: true
+  Pular registro: true
+
+# --------------------------------------------------------------------------
+#  Enquanto não loga
+# --------------------------------------------------------------------------
+Limbo:
+  Bloquear movimento: true
+  Cegueira: true
+  # Ninguém vê quem não logou, e quem não logou não vê ninguém.
+  Esconder jogadores: true
+  # Não toma dano nem fome.
+  Protegido: true
+  # Leva para o ponto marcado com /starlogin setspawn enquanto não loga e
+  # devolve para onde estava depois do login.
+  Usar spawn de login: false
+  # Comandos liberados antes do login (além dos do próprio StarLogin).
+  Comandos liberados: []
+
+# --------------------------------------------------------------------------
+#  Praticidade para o jogador
+# --------------------------------------------------------------------------
+Entrada:
+  # O jogador só digita a senha no chat (sem /logar). A mensagem não aparece
+  # para ninguém, nem no console.
+  Senha pelo chat: true
+  # Pede a senha duas vezes no /registrar.
+  Confirmar senha no registro: true
+  # Oferece "gerar uma senha forte para mim" no registro.
+  Oferecer senha gerada: true
+  # Mostra, depois do login, de quando e de onde foi o acesso anterior.
+  Mostrar ultimo acesso: true
+
+Avisos:
+  Titulo: true
+  Actionbar: true
+  # Barra do tempo restante (1.9+).
+  Bossbar: true
+  Bossbar cor: 'BLUE'
+  Sons: true
+  # De quantos em quantos segundos repete o "use /logar".
+  Repetir a cada: 10
+
+# --------------------------------------------------------------------------
+#  Depois de entrar
+# --------------------------------------------------------------------------
+Apos login:
+  # Comandos (console: ... / jogador: ...), {jogador} vira o nick.
+  Comandos: []
+
+Apos registro:
+  Comandos: []
+  # Leva quem acabou de se registrar para o spawn do mundo principal.
+  Ir para o spawn: false
+
+# --------------------------------------------------------------------------
+#  E-mail (código de recuperação e confirmação de IP novo)
+# --------------------------------------------------------------------------
+Email:
+  Ativar: false
+  # Gmail: smtp.gmail.com, porta 587, usuário = o e-mail, senha = "senha de app".
+  Host: 'smtp.gmail.com'
+  Porta: 587
+  Usuario: ''
+  Senha: ''
+  Remetente: ''
+  Nome do remetente: 'Meu Servidor'
+  # Login de um IP diferente do último pede o código enviado ao e-mail.
+  Confirmar IP novo: false
+  # Domínios aceitos (vazio = qualquer um).
+  Dominios aceitos: []
+  # Contas que podem usar o mesmo e-mail.
+  Contas por email: 2
+
+# --------------------------------------------------------------------------
+#  Discord (vincular a conta, aprovar login por botão e recuperar a senha)
+#  Crie um bot em https://discord.com/developers/applications, copie o token
+#  e coloque abaixo. Nenhuma permissão especial é necessária: o bot fala com
+#  o jogador por mensagem direta.
+# --------------------------------------------------------------------------
+Discord:
+  Ativar: false
+  Token: ''
+  # Convite do seu Discord, mostrado ao vincular (o jogador precisa estar num
+  # servidor em comum com o bot para receber a mensagem direta).
+  Convite: 'https://discord.gg/seu-convite'
+  # Status do bot.
+  Atividade: 'Protegendo as contas'
+
+# --------------------------------------------------------------------------
+#  Autenticador (Google Authenticator, Authy...)
+# --------------------------------------------------------------------------
+Autenticador:
+  Ativar: true
+  # Nome que aparece no app do celular.
+  Nome no app: 'Meu Servidor'
+
+# --------------------------------------------------------------------------
+#  Avisos para a staff (permissão starlogin.alertas)
+# --------------------------------------------------------------------------
+Alertas:
+  # Senhas erradas seguidas na mesma conta para avisar.
+  Senhas erradas: 3
+  # Um IP com tantas contas cadastradas avisa quando entra.
+  Contas no mesmo IP: 4
+
+# Histórico (logins, senhas erradas, ações da staff) guardado por:
+Historico dias: 30
+
+Menus:
+  Intervalo entre cliques: 150
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK'
+  Erro: 'ENTITY_VILLAGER_NO'
+  Sucesso: 'ENTITY_PLAYER_LEVELUP'
+  Pagina: 'ITEM_BOOK_PAGE_TURN'
+  Pedir: 'BLOCK_NOTE_BLOCK_PLING'

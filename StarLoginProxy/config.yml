@@ -1,0 +1,71 @@
+# ==========================================================================
+#  StarLogin (proxy Velocity)
+#
+#  O proxy confere as contas originais com a Mojang, manda quem não logou para
+#  os servidores de login e, depois do login, para o lobby. O login em si
+#  (senha, 2FA, menus) acontece no StarLogin dos servidores, com
+#  "Rede.Ativar: true" e o MESMO MySQL daqui.
+#
+#  O proxy precisa estar com online-mode = false (o próprio StarLogin liga a
+#  autenticação da Mojang só para quem é original).
+#  Depois de editar: /starloginproxy reload
+# ==========================================================================
+
+Versao do modelo: 1
+
+# O mesmo MySQL dos servidores. Obrigatório: é por ele que proxy e servidores
+# enxergam as mesmas contas (e a chave que assina as mensagens da rede).
+Banco de dados:
+  Host: 'localhost'
+  Porta: 3306
+  Banco: ''
+  Usuario: ''
+  Senha: ''
+  Prefixo: 'starlogin_'
+
+# Servidores (nomes do velocity.toml) com o StarLogin, onde quem ainda não
+# logou espera. Enquanto não logar, o jogador não sai deles.
+Servidores de login:
+  - 'login'
+
+Depois do login:
+  # Para onde vai quem acabou de logar (o primeiro que estiver no ar).
+  # Vazio = continua no servidor de login.
+  Enviar para:
+    - 'lobby'
+  # Volta para o último servidor onde estava (se ainda existir).
+  Voltar ao ultimo servidor: false
+
+Originais:
+  # Conta marcada como original (/original no jogo) entra autenticada pela
+  # Mojang e sem senha. Ninguém consegue usar o nick dela pirata.
+  Ativar: true
+  # UUID do jogador original nos servidores:
+  #   OFFLINE   o mesmo de quando era pirata (inventário e dados continuam)
+  #   ORIGINAL  o UUID da Mojang
+  UUID dos originais: 'OFFLINE'
+  # Nick que existe na Mojang e ainda não tem conta só entra pelo Minecraft
+  # original (ninguém registra o nick de um original antes dele).
+  Proteger nicks originais: false
+  # Segundos esperando a Mojang responder.
+  Tempo limite: 5
+
+Nick:
+  Formato: '[a-zA-Z0-9_]{3,16}'
+  # Prefixo do Floodgate no nick do Bedrock. Nick com ele só entra quando o
+  # Floodgate do proxy confirma que é Bedrock.
+  Prefixo do Bedrock: '.'
+  # 'Fulano' registrado bloqueia 'fulano' e 'FULANO'.
+  Proteger maiusculas: true
+
+# Comandos do PROXY que quem não logou pode usar (os do servidor de login
+# são controlados pelo StarLogin de lá).
+Comandos liberados: []
+
+Mensagens:
+  Nick invalido: "&b&lStarLogin\n&cSeu nick tem caracteres não permitidos."
+  Maiusculas: "&b&lStarLogin\n&cEsta conta está registrada como &f{nick}&c.\n&7Entre com o nick exatamente assim."
+  Bloqueado: "&b&lStarLogin\n&cMuitas senhas erradas pela sua conexão.\n&7Tente de novo mais tarde."
+  Sem servidor de login: "&b&lStarLogin\n&cNenhum servidor de login está no ar agora. Tente em instantes."
+  Logue primeiro: "&b&lStarLogin &cEntre na sua conta primeiro."
+  Recarregado: "&b&lStarLogin &aRecarregado."
