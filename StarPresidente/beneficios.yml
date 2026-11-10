@@ -1,0 +1,140 @@
+# ==========================================================================
+#  StarPresidente - benefícios
+#
+#  O que o presidente pode comprar com a verba do cofre público.
+#
+#  Alvo:
+#    TODOS        cada jogador online recebe o "Para cada jogador"
+#    PRESIDENTE   só o presidente recebe
+#    NENHUM       só roda o "Uma vez" (eventos, drops, comandos globais)
+#
+#  Custo: valor tirado do cofre.
+#  Estoque: quantas vezes pode ser comprado (-1 = sem limite). Volta 1 a
+#    cada "Repor a cada" (0 = só volta no próximo mandato).
+#  Recarga: tempo entre uma compra e outra do mesmo benefício.
+#  Minimo online: jogadores online necessários (para não gastar à toa).
+#
+#  Para cada jogador:
+#    Itens: lista com Material, Quantidade, Nome, Lore
+#    Comandos: pelo console ({jogador})
+#    Efeitos: 'EFEITO:nivel:segundos' (nível 0 = I)
+#    Dinheiro: valor dado a cada um (sai do cofre junto do custo)
+#  Uma vez:
+#    Comandos: pelo console, uma vez só ({presidente})
+#  Anuncio: mensagem no chat ({presidente} {beneficio} {custo} {jogadores}).
+#    Vazio = usa a padrão do mensagens.yml.
+#  Icone: Material, Nome, Lore, Slot. Variáveis: {nome} {custo} {estoque}
+#    {estoque_maximo} {recarga} {alvo} {compras} {descricao}
+# ==========================================================================
+
+Versao do modelo: 1
+
+Beneficios:
+  diamantes:
+    Ativado: true
+    Nome: '&bDiamantes para todos'
+    Descricao: '&7Cada jogador online ganha 3 diamantes.'
+    Alvo: TODOS
+    Custo: 150000
+    Estoque: 5
+    Repor a cada: 6h
+    Recarga: 30m
+    Minimo online: 3
+    Para cada jogador:
+      Itens:
+        - Material: DIAMOND
+          Quantidade: 3
+    Anuncio: ''
+    Icone:
+      Material: DIAMOND
+      Slot: 10
+  velocidade:
+    Ativado: true
+    Nome: '&eMineração acelerada'
+    Descricao: '&7Pressa II por 15 minutos para todos.'
+    Alvo: TODOS
+    Custo: 80000
+    Estoque: 10
+    Repor a cada: 2h
+    Recarga: 20m
+    Minimo online: 3
+    Para cada jogador:
+      Efeitos:
+        - 'HASTE:1:900'
+        - 'SPEED:0:900'
+    Icone:
+      Material: GOLDEN_PICKAXE
+      Slot: 11
+  bolsa:
+    Ativado: true
+    Nome: '&aBolsa família'
+    Descricao: '&7Cada jogador online recebe 2.000 do cofre.'
+    Alvo: TODOS
+    Custo: 0
+    Estoque: -1
+    Repor a cada: 0
+    Recarga: 1h
+    Minimo online: 2
+    Para cada jogador:
+      Dinheiro: 2000
+    Icone:
+      Material: EMERALD
+      Slot: 12
+  banquete:
+    Ativado: true
+    Nome: '&6Banquete presidencial'
+    Descricao: '&7Comida e vida cheia para todos.'
+    Alvo: TODOS
+    Custo: 30000
+    Estoque: 10
+    Repor a cada: 1h
+    Recarga: 10m
+    Minimo online: 2
+    Para cada jogador:
+      Itens:
+        - Material: COOKED_BEEF
+          Quantidade: 16
+        - Material: GOLDEN_APPLE
+          Quantidade: 2
+      Efeitos:
+        - 'REGENERATION:1:20'
+        - 'SATURATION:0:10'
+    Icone:
+      Material: COOKED_BEEF
+      Slot: 13
+  festa:
+    Ativado: true
+    Nome: '&dFesta no spawn'
+    Descricao: '&7Fogos e um anúncio especial para o servidor.'
+    Alvo: NENHUM
+    Custo: 20000
+    Estoque: 3
+    Repor a cada: 12h
+    Recarga: 1h
+    Minimo online: 0
+    Uma vez:
+      Comandos:
+        - 'say O presidente {presidente} convida todos para a festa no spawn!'
+    Icone:
+      Material: FIREWORK_ROCKET|FIREWORK
+      Slot: 14
+  limousine:
+    Ativado: true
+    Nome: '&5Carro oficial'
+    Descricao: '&7Um presente para o próprio presidente.'
+    Alvo: PRESIDENTE
+    Custo: 50000
+    Estoque: 1
+    Repor a cada: 0
+    Recarga: 0
+    Minimo online: 0
+    Para cada jogador:
+      Itens:
+        - Material: SADDLE
+          Quantidade: 1
+          Nome: '&5Sela presidencial'
+          Lore:
+            - '&7Presente do cofre público.'
+    Icone:
+      Material: SADDLE
+      Slot: 16

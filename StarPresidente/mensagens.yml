@@ -1,0 +1,440 @@
+# ==========================================================================
+#  StarPresidente - mensagens
+#
+#  Cores: & e <#RRGGBB>. Mensagem vazia ('') não é enviada: é assim que se
+#  desliga um aviso. Blocos com | saem uma linha por mensagem.
+#  {prefixo} coloca o prefixo onde você quiser numa mensagem de várias linhas.
+#
+#  Variáveis que valem em quase tudo (menus, anúncios, holograma):
+#    {presidente} {tag} {tempo_mandato} {mandato_tempo_no_cargo} {cofre}
+#    {fase} {tempo_fase} {situacao} {proxima_eleicao} {candidatos}
+#    {eleitores} {votos_total} {eleicao} {auxilio} {auxilio_intervalo}
+#    {impeachment} {impeachment_necessarias} {mandatos} {lider}
+#    {mandato_votos} {mandato_percentual} {mandato_arrecadado}
+#    {mandato_gasto} {mandato_beneficios} {taxa_inscricao}
+#  Do jogador (menus): {jogador} {eh_presidente} {votou} {meu_voto}
+#    {sou_candidato} {assinou} {tempo_jogado} {saldo}
+#
+#  PlaceholderAPI (%starpresidente_<nome>%):
+#    presidente, tem_presidente, tag, eh_presidente, eh_presidente_raw,
+#    mandato_restante, mandato_restante_segundos, mandato_tempo, fase,
+#    fase_raw, fase_restante, situacao, proxima_eleicao, cofre, cofre_raw,
+#    candidatos, eleitores, lider, auxilio, impeachment,
+#    impeachment_necessarias, mandatos, votou, meu_voto, candidato, assinou,
+#    imposto_<id>, votos_<nick> (só com voto aberto),
+#    top_<posição>_nome, top_<posição>_tempo (mais tempo no cargo)
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&6&lPRESIDÊNCIA &8» &7'
+
+Geral:
+  Sem permissao: '&cVocê não tem permissão para isso.'
+  So jogador: '&cSó jogadores podem usar isso.'
+  So presidente: '&cSó o presidente pode fazer isso.'
+  Sem presidente: '&cO servidor está sem presidente agora.'
+  Numero invalido: '&c"&f{texto}&c" não é um valor válido.'
+  Tempo invalido: '&c"&f{texto}&c" não é um tempo válido. Use 30s, 10m, 2h, 7d...'
+  Subcomando desconhecido: '&cNão conheço &f/{comando} {sub}&c. Use &f/{comando} ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  Sim: '&aSim'
+  Nao: '&cNão'
+  Ninguem: '&7Ninguém'
+  Sem mandato: '&7cargo vago'
+  Sem previsao: '&7sem previsão'
+  Sem slogan: '&8(sem slogan)'
+  Secreto: '&8???'
+  Staff: 'a Staff'
+  Subiu: '&c▲'
+  Desceu: '&a▼'
+  Nunca: '&7nunca'
+  Sem limite: '&7∞'
+  Nenhuma: '&7nenhuma'
+  Proximo mandato: '&7só no próximo mandato'
+  Cofre depositar: 'colocar no cofre'
+  Cofre retirar: 'tirar do cofre'
+  Cofre definir: 'definir o saldo do cofre'
+
+Fases:
+  NENHUMA: '&7Sem eleição'
+  INSCRICOES: '&eInscrições abertas'
+  VOTACAO: '&aVotação aberta'
+  SEGUNDO_TURNO: '&6Segundo turno'
+
+Situacao:
+  Inscricoes: 'Inscrições terminam em {tempo}'
+  Votacao: 'Votação termina em {tempo}'
+  Segundo turno: 'Segundo turno termina em {tempo}'
+  Proxima: 'Próxima eleição em {tempo}'
+  Manual: 'Aguardando a staff abrir a eleição'
+
+Saidas:
+  FIM: '&7Fim do mandato'
+  SUCESSOR: '&7Passou o cargo ao sucessor'
+  RENUNCIA: '&eRenunciou'
+  IMPEACHMENT: '&cSofreu impeachment'
+  REMOVIDO: '&cRemovido pela staff'
+
+Alvos:
+  TODOS: 'todos os jogadores online'
+  PRESIDENTE: 'o presidente'
+  NENHUM: 'o servidor'
+
+Tipos de imposto:
+  GANHOS: 'sobre os ganhos'
+  PATRIMONIO: 'sobre o saldo'
+  COMANDO: 'sobre transferências'
+  API: 'sobre o comércio'
+
+Formatos:
+  # Cada linha do {ranking} no anúncio do resultado.
+  Linha do resultado: '   &e{posicao}º &f{candidato} &8- &a{votos} votos &7({percentual}%)'
+  Linhas no resultado: 5
+  # Cada linha do {impostos} no /presidente info.
+  Linha do imposto: '  &8• &f{imposto}&7: &e{taxa}%'
+
+# --------------------------------------------------------------------------
+#  Anúncios para o servidor inteiro (vazio = não anuncia)
+# --------------------------------------------------------------------------
+Anuncios:
+  Inscricoes abertas: |-
+    &r
+    &6&l   ELEIÇÕES PRESIDENCIAIS &8- &f#{numero}
+    &7   As inscrições estão abertas por &f{tempo}&7!
+    &7   Quer governar o servidor? &e/presidente candidatar
+    &7   Taxa de inscrição: &a{taxa}
+    &r
+  Eleicao aberta: |-
+    &r
+    &6&l   ELEIÇÕES PRESIDENCIAIS &8- &f#{numero}
+    &7   Candidaturas e votação abertas por &f{tempo}&7!
+    &7   &e/presidente candidatar &7ou &e/presidente candidatos
+    &r
+  Votacao aberta: |-
+    &r
+    &6&l   A URNA ESTÁ ABERTA!
+    &7   &f{candidatos} &7candidato(s) na disputa. Votação por &f{tempo}&7.
+    &7   Vote em &e/presidente candidatos
+    &r
+  Segundo turno: |-
+    &r
+    &6&l   SEGUNDO TURNO!
+    &7   &f{primeiro} &8({percentual_primeiro}%) &7x &f{segundo} &8({percentual_segundo}%)
+    &7   Ninguém passou da metade. Vote de novo por &f{tempo}&7!
+    &r
+  Resultado: |-
+    &r
+    &6&l   RESULTADO DAS ELEIÇÕES
+    &7   Novo presidente: &f&l{presidente} &7com &a{votos} &7votos (&f{percentual}%&7)
+    {ranking}
+    &7   Total: &f{total} &7votos de &f{eleitores} &7eleitores.
+    &r
+  Sem candidatos: |-
+    &r
+    &6&l   RESULTADO DAS ELEIÇÕES
+    &c   Ninguém se candidatou.
+    &7   {situacao}
+    &r
+  Sem votos: |-
+    &r
+    &6&l   RESULTADO DAS ELEIÇÕES
+    &c   Não houve votos suficientes.
+    &7   {situacao}
+    &r
+  Eleicao cancelada: '&cA eleição foi cancelada pela staff. &7{situacao}'
+  Novo candidato: '&e{candidato} &7se candidatou à presidência! &8"&f{slogan}&8" &7({candidatos} na disputa)'
+  Desistencia: '&e{candidato} &7desistiu da candidatura.'
+  Posse: |-
+    &r
+    &6&l   POSSE PRESIDENCIAL
+    &7   &f&l{presidente} &7é o novo presidente do servidor!
+    &7   Mandato de &f{duracao}&7. Eleito com &a{votos} &7votos (&f{percentual}%&7).
+    &r
+  Posse pela staff: '&f{presidente} &7foi nomeado presidente pela staff. Mandato de &f{duracao}&7.'
+  Fim do mandato: |-
+    &r
+    &6&l   FIM DE MANDATO
+    &7   &f{presidente} &7deixou o cargo depois de &f{tempo}&7.
+    &7   Arrecadou &a{arrecadado} &7e gastou &c{gasto} &7em &f{beneficios} &7benefício(s).
+    &7   {situacao}
+    &r
+  Renuncia: '&e{presidente} &crenunciou à presidência! &7{situacao}'
+  Removido: '&e{presidente} &cfoi removido da presidência pela staff. &7{situacao}'
+  Impeachment: |-
+    &r
+    &4&l   IMPEACHMENT!
+    &c   &f{presidente} &cfoi tirado do cargo pelo abaixo-assinado dos jogadores.
+    &7   {situacao}
+    &r
+  Impeachment andamento: '&cImpeachment de &f{presidente}&c: &f{assinaturas}&c/&f{necessarias} &cassinaturas. &7(/presidente impeachment)'
+  Imposto alterado: '&f{presidente} &7mudou o &f{imposto}&7: &f{antiga}% &8→ &f{taxa}% {seta}'
+  Beneficio comprado: '&f{presidente} &7comprou &f{beneficio} &7para &f{jogadores} &7jogador(es) por &a{custo}&7!'
+  Beneficio para o servidor: '&f{presidente} &7liberou &f{beneficio} &7para o servidor por &a{custo}&7!'
+  Auxilio definido: '&f{presidente} &7definiu o auxílio em &a{valor} &7a cada &f{intervalo}&7.'
+  Auxilio desligado: '&f{presidente} &7suspendeu o auxílio.'
+  Auxilio pago: '&7Auxílio de &a{valor} &7pago a &f{jogadores} &7jogadores (&a{total}&7).'
+  Auxilio sem verba: '&cO cofre não tem &f{total} &cpara o auxílio. Ninguém recebeu.'
+  Pronunciamento: |-
+    &r
+    &6&l   PRONUNCIAMENTO OFICIAL &8- &f{presidente}
+    &f   {mensagem}
+    &r
+  Doacao: '&a{jogador} &7doou &a{valor} &7ao cofre público!'
+  Presidente entrou: '&6O presidente &f{presidente} &6entrou no servidor!'
+
+Titulos:
+  Inscricoes: |-
+    &6&lELEIÇÕES
+    &7Inscrições abertas
+  Votacao: |-
+    &6&lELEIÇÕES
+    &7A urna está aberta!
+  Segundo turno: |-
+    &6&lSEGUNDO TURNO
+    &7Vote de novo!
+  Posse: |-
+    &6&lPRESIDENTE
+    &7Parabéns, {presidente}!
+  Pronunciamento: |-
+    &6&lPRONUNCIAMENTO
+    &7do presidente {presidente}
+
+Avisos:
+  Inscricoes: '&eAs inscrições para presidente terminam em &f{tempo}&e! &7({candidatos} candidato(s))'
+  Votacao: '&eA votação termina em &f{tempo}&e! &7Ainda não votou? &f/presidente candidatos'
+  Segundo turno: '&eO segundo turno termina em &f{tempo}&e!'
+  Proxima eleicao: '&eA próxima eleição para presidente começa em &f{tempo}&e.'
+
+Lembretes:
+  Votar: '&eHá uma eleição em andamento e você ainda não votou! &f/presidente candidatos &7(termina em {tempo})'
+  Inscricoes: '&eAs inscrições para presidente estão abertas! &f/presidente candidatar &7(terminam em {tempo})'
+
+# --------------------------------------------------------------------------
+#  Respostas ao jogador
+# --------------------------------------------------------------------------
+Candidatura:
+  Sucesso: '&aVocê agora é candidato a presidente! Boa campanha.'
+  Fechada: '&cAs inscrições não estão abertas agora.'
+  Sem permissao: '&cVocê não tem permissão para se candidatar.'
+  Ja candidato: '&cVocê já é candidato nesta eleição.'
+  Lotada: '&cA eleição já tem o máximo de &f{maximo_candidatos} &ccandidatos.'
+  Barrado: '&cVocê sofreu impeachment e não pode se candidatar nesta eleição.'
+  Limite de mandatos: '&cVocê já governou &f{mandatos_seguidos} &cmandato(s) seguido(s). Dê a vez!'
+  Pouco tempo: '&cVocê precisa ter jogado &f{tempo_minimo_candidatar} &cpara se candidatar &7(você tem {tempo_jogado}).'
+  Sem dinheiro: '&cA inscrição custa &f{taxa_inscricao}&c e você não tem esse valor.'
+  Slogan longo: '&cO slogan pode ter no máximo &f{tamanho_slogan} &cletras.'
+  Slogan trocado: '&aSlogan atualizado.'
+  Cancelada: '&cSua candidatura foi recusada.'
+  Desistiu: '&7Você desistiu da candidatura.'
+  Nao e candidato: '&cVocê não é candidato.'
+  Nao pode desistir: '&cNão dá para desistir agora.'
+
+Votacao:
+  Votou: '&aVoto registrado em &f{candidato}&a!'
+  Trocou: '&aVoto trocado para &f{candidato}&a.'
+  Fechada: '&cA votação não está aberta agora.'
+  Sem permissao: '&cVocê não tem permissão para votar.'
+  Candidato invalido: '&c&f{candidato} &cnão é candidato nesta eleição.'
+  Em si mesmo: '&cVocê não pode votar em si mesmo.'
+  Mesmo candidato: '&7Você já votou em &f{candidato}&7.'
+  Ja votou: '&cVocê já votou nesta eleição.'
+  Pouco tempo: '&cVocê precisa ter jogado &f{tempo_minimo_votar} &cpara votar &7(você tem {tempo_jogado}).'
+  Mesmo IP: '&cAlguém da sua conexão já votou nesta eleição.'
+  Cancelado: '&cSeu voto foi recusado.'
+  Candidato desistiu: '&e{candidato} &7desistiu: o seu voto foi anulado e você pode votar de novo.'
+
+Impostos:
+  # Vazio: o anúncio do governo já confirma a mudança.
+  Sucesso: ''
+  Inexistente: '&cEsse imposto não existe ou está desligado.'
+  Abaixo do minimo: '&cA taxa mínima do &f{imposto} &cé &f{minimo}%&c.'
+  Acima do maximo: '&cA taxa máxima do &f{imposto} &cé &f{maximo}%&c.'
+  Mesma taxa: '&7O &f{imposto} &7já está em &f{taxa}%&7.'
+  Aguarde: '&cO &f{imposto} &cfoi mudado há pouco. Espere &f{tempo}&c.'
+  Cancelado: '&cA mudança foi recusada.'
+  Pagou ganhos: '&8[Imposto] &7Você pagou &c{valor} &7de {imposto} &8({taxa}% de {ganho})'
+  Pagou patrimonio: '&8[Imposto] &7Você pagou &c{valor} &7de {imposto} &8({taxa}%)'
+  Pagou transferencia: '&8[Imposto] &7Você pagou &c{valor} &7de {imposto} &8({taxa}% de {base})'
+  Sem saldo para o imposto: '&cVocê precisa de &f{total} &c({valor} + {taxa} de {imposto}&c).'
+
+Beneficios:
+  Sucesso: ''
+  Recebeu: '&aVocê recebeu: &f{beneficio}&a, presente do governo!'
+  Inexistente: '&cEsse benefício não existe ou está desligado.'
+  Sem estoque: '&cEsse benefício está sem estoque.'
+  Recarga: '&cEsse benefício foi comprado há pouco. Espere &f{tempo}&c.'
+  Poucos online: '&cPrecisa de pelo menos &f{minimo} &cjogadores online.'
+  Presidente offline: '&cO presidente precisa estar online para receber.'
+  Sem verba: '&cO cofre não tem verba para isso &7(tem {cofre}, custa {custo}).'
+  Cancelado: '&cA compra foi recusada.'
+
+Governo:
+  Auxilio sucesso: ''
+  Auxilio desligado: '&cO auxílio está desligado neste servidor.'
+  Auxilio fora: '&cO auxílio precisa ficar entre &f{auxilio_minimo} &ce &f{auxilio_maximo}&c.'
+  Auxilio igual: '&7O auxílio já está nesse valor.'
+  Auxilio recebido: '&a+{valor} &7de auxílio do governo.'
+  Salario: '&a+{valor} &7de salário presidencial.'
+  Salario sem verba: '&cO cofre não tem &f{valor} &cpara o seu salário.'
+  Pronunciamento desligado: '&cOs pronunciamentos estão desligados.'
+  Pronunciamento aguarde: '&cEspere &f{espera_pronunciamento} &cpara outro pronunciamento.'
+  Pronunciamento vazio: '&cEscreva o que quer dizer.'
+  Pronunciamento longo: '&cO pronunciamento pode ter no máximo &f{tamanho_pronunciamento} &cletras.'
+  Nao pode renunciar: '&cRenunciar está desligado neste servidor.'
+  Renunciou: '&7Você renunciou à presidência.'
+
+Cofre:
+  Doou: '&aVocê doou &f{valor} &aao cofre público. Obrigado!'
+  Doacao pequena: '&cA doação mínima é &f{minimo}&c.'
+  Doacoes desligadas: '&cAs doações estão desligadas.'
+  Sem dinheiro: '&cVocê não tem &f{valor}&c.'
+
+Impeachment:
+  Assinou: '&7Você assinou o impeachment de &f{presidente}&7. &8({assinaturas}/{necessarias})'
+  Retirou: '&7Você retirou a sua assinatura do impeachment.'
+  Concluido: '&7O impeachment foi aprovado!'
+  Desligado: '&cO impeachment está desligado neste servidor.'
+  Proprio: '&cVocê não pode assinar o seu próprio impeachment.'
+  Carencia: '&cO mandato é muito novo. O impeachment só abre em &f{carencia}&c.'
+
+Info:
+  Com presidente: |-
+    &r
+    &6&l   PRESIDÊNCIA
+    &7   Presidente: &f{presidente} &8(&7faltam {tempo_mandato}&8)
+    &7   Cofre público: &a{cofre}
+    &7   Auxílio: &a{auxilio} &7a cada {auxilio_intervalo}
+    &7   Impostos:
+    {impostos}
+    &7   {situacao}
+    &r
+  Sem presidente: |-
+    &r
+    &6&l   PRESIDÊNCIA
+    &7   Cargo vago. Cofre público: &a{cofre}
+    &7   {situacao}
+    &r
+
+# --------------------------------------------------------------------------
+#  Staff
+# --------------------------------------------------------------------------
+Admin:
+  Eleicao iniciada: '&aEleição aberta.'
+  Ja tem eleicao: '&cJá existe uma eleição em andamento.'
+  Fase pulada: '&aFase avançada.'
+  Sem eleicao: '&cNão há eleição em andamento.'
+  Apurado: '&aVotos apurados.'
+  Eleicao cancelada: '&aEleição cancelada.'
+  Presidente definido: '&f{jogador} &aagora é o presidente.'
+  Presidente removido: '&aPresidente removido.'
+  Jogador nao encontrado: '&cO jogador &f{jogador} &cnunca entrou no servidor.'
+  Candidato removido: '&aCandidatura de &f{candidato} &aremovida.'
+  Cofre alterado: '&7Cofre público: &a{cofre}'
+  Cofre insuficiente: '&cO cofre só tem &f{cofre}&c.'
+  NPC criado: '&aNPC do presidente colocado aqui.'
+  NPC removido: '&aNPC do presidente removido.'
+  Recarregado: '&aStarPresidente recarregado: &f{impostos} &aimposto(s), &f{beneficios} &abenefício(s).'
+  Problema: '&e⚠ {problema}'
+  Gravado: '&a{chave} &7agora é &f{valor}&7.'
+  Ajuste gravado: '&a{ajuste}&7: &f{valor}'
+  Nao gravou: '&cNão encontrei a chave &f{caminho} &cno arquivo. Mude pelo arquivo e use /presidenteadmin recarregar.'
+
+Confirmacao:
+  Beneficio: '&7Comprar &f{beneficio} &7por &a{custo} &7(&f{jogadores} &7recebem)'
+  Renunciar: '&cRenunciar à presidência'
+  Desistir: '&cDesistir da candidatura (a taxa não volta)'
+  Remover presidente: '&cTirar &f{presidente} &cda presidência'
+  Cancelar eleicao: '&cCancelar a eleição em andamento'
+
+# --------------------------------------------------------------------------
+#  Texto digitado no chat
+# --------------------------------------------------------------------------
+Entrada:
+  Como cancelar: '&8Digite &fcancelar &8para desistir.'
+  Cancelado: '&7Cancelado.'
+  Tempo esgotado: '&7O tempo para digitar acabou.'
+  Palavra para pular: 'pular'
+  Slogan: '&eDigite o seu slogan de campanha &7(até {tamanho} letras, ou &fpular&7). A inscrição custa &a{taxa}&7.'
+  Novo slogan: '&eDigite o novo slogan &7(até {tamanho} letras).'
+  Doacao: '&eQuanto você quer doar ao cofre público? &7(mínimo {minimo}; aceita 10k, 1.5m...)'
+  Taxa: '&eDigite a nova taxa do {imposto} &7(entre {minimo}% e {maximo}%; hoje {taxa}%).'
+  Auxilio: '&eDigite o valor do auxílio por jogador &7(entre {minimo} e {maximo}, a cada {intervalo}; 0 desliga). Hoje há {online} online.'
+  Pronunciamento: '&eDigite o pronunciamento &7(até {tamanho} letras).'
+  Nick do presidente: '&eDigite o nick do novo presidente.'
+  Cofre: '&eDigite o valor para {acao} &7(cofre: {cofre}).'
+  Limite do imposto: '&eDigite o novo {limite} do {imposto} &7(0 a 100).'
+  Custo do beneficio: '&eDigite o novo custo de {beneficio}&7.'
+  Estoque do beneficio: '&eDigite o novo estoque de {beneficio} &7(-1 = sem limite).'
+  Ajuste tempo: '&eDigite o novo valor de {ajuste} &7(hoje {valor}; use 30s, 10m, 2h, 7d).'
+  Ajuste numero: '&eDigite o novo valor de {ajuste} &7(hoje {valor}).'
+
+# --------------------------------------------------------------------------
+#  Extrato do cofre (portal da transparência)
+# --------------------------------------------------------------------------
+Extrato:
+  Imposto: '&7{imposto} &8({jogador})'
+  Doacao: '&7Doação de &f{jogador}'
+  Inscricao: '&7Inscrição de &f{jogador}'
+  Beneficio: '&7Benefício {beneficio} &8({jogadores} jogadores)'
+  Auxilio: '&7Auxílio &8({jogadores} jogadores)'
+  Salario: '&7Salário de &f{presidente}'
+  Staff: '&7Ajuste da staff &8({staff})'
+  Zerado: '&7Cofre zerado no fim do mandato'
+
+# --------------------------------------------------------------------------
+#  Ajuda (montada da lista de comandos; aqui só o formato e as descrições.
+#  Descrição vazia esconde o comando da ajuda.)
+# --------------------------------------------------------------------------
+Ajuda:
+  Linha: '&e/{comando} {uso} &8- &7{descricao}'
+  Presidente:
+    Topo: |-
+      &r
+      &6&l   PRESIDÊNCIA &8- &7comandos
+      &e/{comando} &8- &7abre o menu
+    Rodape: '&r'
+    candidatos: 'lista os candidatos e vota'
+    votar: 'vota num candidato'
+    candidatar: 'se candidata à presidência'
+    desistir: 'desiste da candidatura'
+    slogan: 'troca o seu slogan de campanha'
+    impostos: 'vê os impostos'
+    beneficios: 'vê os benefícios do governo'
+    cofre: 'extrato do cofre público'
+    doar: 'doa para o cofre público'
+    historico: 'presidentes anteriores'
+    impeachment: 'assina (ou retira) o impeachment'
+    info: 'resumo da presidência no chat'
+    gabinete: '(presidente) abre o gabinete'
+    pronunciamento: '(presidente) faz um pronunciamento oficial'
+    auxilio: '(presidente) define o auxílio'
+    taxa: '(presidente) muda a taxa de um imposto'
+    renunciar: '(presidente) renuncia ao cargo'
+    ajuda: 'esta lista'
+  Admin:
+    Topo: |-
+      &r
+      &6&l   PRESIDÊNCIA &8- &7staff
+    Rodape: '&r'
+    painel: 'abre o painel da staff'
+    iniciar: 'abre uma eleição agora'
+    pular: 'passa para a próxima fase'
+    apurar: 'conta os votos e dá posse agora'
+    cancelar: 'cancela a eleição sem resultado'
+    definir: 'nomeia um presidente'
+    remover: 'tira o presidente do cargo'
+    candidato: 'tira um candidato da eleição'
+    cofre: 'mexe no cofre público'
+    imposto: 'muda a taxa de um imposto'
+    beneficio: 'compra um benefício com o cofre'
+    npc: 'coloca ou tira o NPC do presidente'
+    ajustes: 'muda as regras do config.yml no jogo'
+    recarregar: 'recarrega os arquivos'
+    ajuda: 'esta lista'

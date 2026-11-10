@@ -1,0 +1,829 @@
+# ==========================================================================
+#  StarPresidente - menus
+#
+#  Cada tela tem Titulo, Linhas (1 a 6), Enfeite (vidro de fundo) e Itens
+#  (botões). As telas de lista também têm Slots (onde a lista entra), Item
+#  (como cada linha é desenhada) e Vazio (quando não há nada).
+#
+#  Botão:
+#    Slot / Slots    onde aparece
+#    Material        item (modernos servem em todas as versões; 'A|B' = o
+#                    primeiro que existir). Cabeça: PLAYER_HEAD + Dono ou Textura
+#    Nome, Lore      textos (variáveis do mensagens.yml e PlaceholderAPI)
+#    Brilho          true/false
+#    Permissao       só aparece para quem tiver ('' = todos)
+#    Condicao        só aparece quando vale ('!' nega; várias separadas por
+#                    vírgula): tem_presidente, presidente (você é), eleicao,
+#                    sem_eleicao, inscricoes, fase_inscricoes, votacao,
+#                    segundo_turno, candidato, votou, assinou, admin,
+#                    impeachment, doacoes, auxilio, pronunciamento, renunciar,
+#                    desistir, automatico, voto_secreto, npc, historico
+#    Acoes           o que o clique faz, uma por linha:
+#                      principal / candidatos / impostos / beneficios /
+#                      extrato / historico / gabinete      abre a tela
+#                      candidatar / desistir / slogan / impeachment / doar
+#                      auxilio / pronunciamento / renunciar  (presidente)
+#                      admin / admin_ajustes / admin_impostos /
+#                      admin_beneficios / admin_candidatos / admin_iniciar /
+#                      admin_pular / admin_apurar / admin_cancelar /
+#                      admin_definir / admin_remover / admin_recarregar /
+#                      'admin_cofre depositar|retirar|definir' /
+#                      'admin_npc criar|remover'              (staff)
+#                      voltar / fechar / anterior / proxima / atualizar
+#                      jogador: <comando>   console: <comando>
+#                      mensagem: <texto>    som: <SOM>
+#                    Com o clique na frente só roda nesse clique:
+#                      '[esquerdo] ...', '[direito] ...', '[shift] ...'
+# ==========================================================================
+
+Versao do modelo: 1
+
+# --------------------------------------------------------------------------
+#  /presidente
+# --------------------------------------------------------------------------
+Principal:
+  Titulo: '&8Presidência'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+  Itens:
+    Presidente:
+      Slot: 13
+      Condicao: tem_presidente
+      Material: 'PLAYER_HEAD'
+      Dono: '{presidente}'
+      Nome: '&6&lPresidente &f{presidente}'
+      Lore:
+        - '&8{tag}'
+        - ''
+        - '&7Mandato termina em: &f{tempo_mandato}'
+        - '&7No cargo há: &f{mandato_tempo_no_cargo}'
+        - '&7Eleito com: &a{mandato_votos} votos &8({mandato_percentual}%)'
+        - ''
+        - '&7Arrecadado no mandato: &a{mandato_arrecadado}'
+        - '&7Gasto em benefícios: &c{mandato_gasto} &8({mandato_beneficios})'
+        - '&7Auxílio atual: &a{auxilio}'
+        - ''
+        - '&7{situacao}'
+    Sem presidente:
+      Slot: 13
+      Condicao: '!tem_presidente'
+      Material: 'SKELETON_SKULL|SKULL_ITEM'
+      Nome: '&7&lCargo vago'
+      Lore:
+        - '&7O servidor está sem presidente.'
+        - ''
+        - '&7{situacao}'
+    Inscricoes:
+      Slot: 20
+      Condicao: 'inscricoes,!candidato'
+      Material: 'WRITABLE_BOOK|BOOK_AND_QUILL'
+      Nome: '&e&lCandidatar-se'
+      Lore:
+        - '&7Quer governar o servidor?'
+        - ''
+        - '&7Taxa de inscrição: &a{taxa_inscricao}'
+        - '&7Candidatos: &f{candidatos}'
+        - '&7{situacao}'
+        - ''
+        - '&eClique para se candidatar'
+      Acoes:
+        - 'candidatar'
+    Sou candidato:
+      Slot: 20
+      Condicao: candidato
+      Material: 'NAME_TAG'
+      Nome: '&a&lVocê é candidato'
+      Lore:
+        - '&7{situacao}'
+        - ''
+        - '&eEsquerdo &7troca o slogan'
+        - '&eDireito &7desiste da candidatura'
+      Acoes:
+        - '[esquerdo] slogan'
+        - '[direito] desistir'
+    Votacao:
+      Slot: 20
+      Condicao: 'votacao,!candidato,!inscricoes'
+      Material: 'PAPER'
+      Brilho: true
+      Nome: '&a&lA urna está aberta!'
+      Lore:
+        - '&7{fase}&7: termina em &f{tempo_fase}'
+        - '&7Candidatos: &f{candidatos}'
+        - '&7Seu voto: &f{meu_voto}'
+        - ''
+        - '&eClique para votar'
+      Acoes:
+        - 'candidatos'
+    Sem eleicao:
+      Slot: 20
+      Condicao: sem_eleicao
+      Material: 'CLOCK|WATCH'
+      Nome: '&7&lEleições'
+      Lore:
+        - '&7{situacao}'
+        - '&7Eleições já realizadas: &f{eleicao}'
+    Candidatos:
+      Slot: 21
+      Material: 'ARMOR_STAND'
+      Nome: '&e&lCandidatos'
+      Lore:
+        - '&7{candidatos} candidato(s) &8| &7{eleitores} eleitor(es)'
+        - '&7Liderando: &f{lider}'
+        - ''
+        - '&eClique para ver (e votar)'
+      Acoes:
+        - 'candidatos'
+    Impostos:
+      Slot: 22
+      Material: 'GOLD_INGOT'
+      Nome: '&6&lImpostos'
+      Lore:
+        - '&7As taxas que o presidente definiu.'
+        - ''
+        - '&eClique para ver'
+      Acoes:
+        - 'impostos'
+    Beneficios:
+      Slot: 23
+      Material: 'CHEST'
+      Nome: '&b&lBenefícios'
+      Lore:
+        - '&7O que o governo pode comprar'
+        - '&7com a verba pública.'
+        - ''
+        - '&eClique para ver'
+      Acoes:
+        - 'beneficios'
+    Cofre:
+      Slot: 24
+      Material: 'EMERALD'
+      Nome: '&a&lCofre público'
+      Lore:
+        - '&7Saldo: &a{cofre}'
+        - ''
+        - '&eEsquerdo &7extrato (transparência)'
+        - '&eDireito &7doar ao cofre'
+      Acoes:
+        - '[esquerdo] extrato'
+        - '[direito] doar'
+    Historico:
+      Slot: 30
+      Material: 'BOOK'
+      Nome: '&f&lPresidentes anteriores'
+      Lore:
+        - '&7{mandatos} mandato(s) no histórico.'
+        - ''
+        - '&eClique para ver'
+      Acoes:
+        - 'historico'
+    Impeachment:
+      Slot: 31
+      Condicao: 'impeachment,!presidente'
+      Material: 'IRON_AXE'
+      Nome: '&c&lImpeachment'
+      Lore:
+        - '&7Abaixo-assinado para tirar o presidente.'
+        - ''
+        - '&7Assinaturas: &f{impeachment}&7/&f{impeachment_necessarias}'
+        - '&7Você assinou: {assinou}'
+        - ''
+        - '&eClique para assinar (ou retirar)'
+      Acoes:
+        - 'impeachment'
+    Gabinete:
+      Slot: 32
+      Condicao: presidente
+      Material: 'GOLDEN_HELMET|GOLD_HELMET'
+      Brilho: true
+      Nome: '&6&lGabinete presidencial'
+      Lore:
+        - '&7Impostos, benefícios, auxílio'
+        - '&7e pronunciamentos.'
+        - ''
+        - '&eClique para governar'
+      Acoes:
+        - 'gabinete'
+    Fechar:
+      Slot: 40
+      Material: 'RED_DYE|INK_SACK:1'
+      Nome: '&cFechar'
+      Acoes:
+        - 'fechar'
+    Staff:
+      Slot: 44
+      Permissao: 'starpresidente.admin'
+      Material: 'COMMAND_BLOCK'
+      Nome: '&c&lPainel da staff'
+      Lore:
+        - '&7Eleições, presidente, cofre,'
+        - '&7impostos, benefícios e regras.'
+      Acoes:
+        - 'admin'
+
+# --------------------------------------------------------------------------
+#  Gabinete (só o presidente)
+# --------------------------------------------------------------------------
+Gabinete:
+  Titulo: '&8Gabinete presidencial'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: 'YELLOW_STAINED_GLASS_PANE'
+    Nome: ' '
+  Itens:
+    Resumo:
+      Slot: 4
+      Material: 'PLAYER_HEAD'
+      Dono: '{presidente}'
+      Nome: '&6&lPresidente {presidente}'
+      Lore:
+        - '&7Mandato termina em: &f{tempo_mandato}'
+        - '&7Cofre público: &a{cofre}'
+        - '&7Impeachment: &f{impeachment}&7/&f{impeachment_necessarias}'
+    Impostos:
+      Slot: 19
+      Material: 'GOLD_INGOT'
+      Nome: '&6&lImpostos'
+      Lore:
+        - '&7Ajuste as taxas dentro dos'
+        - '&7limites definidos pela staff.'
+        - ''
+        - '&eClique para ajustar'
+      Acoes:
+        - 'impostos'
+    Beneficios:
+      Slot: 21
+      Material: 'CHEST'
+      Nome: '&b&lComprar benefícios'
+      Lore:
+        - '&7Gaste a verba pública com'
+        - '&7presentes para o servidor.'
+        - '&7Cofre: &a{cofre}'
+        - ''
+        - '&eClique para comprar'
+      Acoes:
+        - 'beneficios'
+    Auxilio:
+      Slot: 23
+      Condicao: auxilio
+      Material: 'BREAD'
+      Nome: '&a&lAuxílio'
+      Lore:
+        - '&7Valor pago pelo cofre a cada'
+        - '&7jogador online, a cada {auxilio_intervalo}.'
+        - ''
+        - '&7Atual: &a{auxilio}'
+        - ''
+        - '&eClique para mudar (0 desliga)'
+      Acoes:
+        - 'auxilio'
+    Pronunciamento:
+      Slot: 25
+      Condicao: pronunciamento
+      Material: 'BELL|NOTE_BLOCK'
+      Nome: '&e&lPronunciamento oficial'
+      Lore:
+        - '&7Fale com o servidor inteiro.'
+        - ''
+        - '&eClique para escrever'
+      Acoes:
+        - 'pronunciamento'
+    Extrato:
+      Slot: 30
+      Material: 'EMERALD'
+      Nome: '&a&lExtrato do cofre'
+      Acoes:
+        - 'extrato'
+    Renunciar:
+      Slot: 32
+      Condicao: renunciar
+      Material: 'BARRIER'
+      Nome: '&c&lRenunciar'
+      Lore:
+        - '&7Deixa o cargo agora.'
+      Acoes:
+        - 'renunciar'
+    Voltar:
+      Slot: 27
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Painel da staff (/presidenteadmin)
+# --------------------------------------------------------------------------
+Admin:
+  Titulo: '&8Presidência - staff'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: 'RED_STAINED_GLASS_PANE'
+    Nome: ' '
+  Itens:
+    Situacao:
+      Slot: 4
+      Material: 'CLOCK|WATCH'
+      Nome: '&6&lSituação'
+      Lore:
+        - '&7Presidente: &f{presidente} &8({tempo_mandato})'
+        - '&7Fase: {fase} &8({tempo_fase})'
+        - '&7{situacao}'
+        - '&7Candidatos: &f{candidatos} &8| &7Eleitores: &f{eleitores} &8| &7Votos: &f{votos_total}'
+        - '&7Cofre: &a{cofre}'
+    Iniciar:
+      Slot: 19
+      Condicao: sem_eleicao
+      Material: 'LIME_DYE|INK_SACK:10'
+      Nome: '&a&lAbrir eleição'
+      Lore:
+        - '&7Abre uma eleição agora.'
+      Acoes:
+        - 'admin_iniciar'
+    Pular:
+      Slot: 19
+      Condicao: eleicao
+      Material: 'FEATHER'
+      Nome: '&e&lPular fase'
+      Lore:
+        - '&7Fase atual: {fase}'
+        - '&7Inscrições viram votação;'
+        - '&7votação vira apuração.'
+      Acoes:
+        - 'admin_pular'
+    Apurar:
+      Slot: 20
+      Condicao: eleicao
+      Material: 'HOPPER'
+      Nome: '&6&lApurar agora'
+      Lore:
+        - '&7Conta os votos e dá posse.'
+      Acoes:
+        - 'admin_apurar'
+    Cancelar:
+      Slot: 21
+      Condicao: eleicao
+      Material: 'BARRIER'
+      Nome: '&c&lCancelar eleição'
+      Acoes:
+        - 'admin_cancelar'
+    Candidatos:
+      Slot: 22
+      Material: 'ARMOR_STAND'
+      Nome: '&e&lCandidatos'
+      Lore:
+        - '&7Vê a contagem (mesmo secreta).'
+        - '&eShift + direito &7num candidato o remove.'
+      Acoes:
+        - 'admin_candidatos'
+    Definir:
+      Slot: 24
+      Material: 'GOLDEN_HELMET|GOLD_HELMET'
+      Nome: '&6&lNomear presidente'
+      Lore:
+        - '&7Dá posse a um jogador agora.'
+      Acoes:
+        - 'admin_definir'
+    Remover:
+      Slot: 25
+      Condicao: tem_presidente
+      Material: 'IRON_AXE'
+      Nome: '&c&lTirar o presidente'
+      Lore:
+        - '&7Presidente: &f{presidente}'
+      Acoes:
+        - 'admin_remover'
+    Cofre:
+      Slot: 28
+      Material: 'EMERALD'
+      Nome: '&a&lCofre público'
+      Lore:
+        - '&7Saldo: &a{cofre}'
+        - ''
+        - '&eEsquerdo &7colocar'
+        - '&eDireito &7tirar'
+        - '&eShift &7definir o saldo'
+      Acoes:
+        - '[esquerdo] admin_cofre depositar'
+        - '[direito] admin_cofre retirar'
+        - '[shift] admin_cofre definir'
+    Impostos:
+      Slot: 29
+      Material: 'GOLD_INGOT'
+      Nome: '&6&lImpostos (staff)'
+      Lore:
+        - '&7Taxa, liga/desliga e limites.'
+      Acoes:
+        - 'admin_impostos'
+    Beneficios:
+      Slot: 30
+      Material: 'CHEST'
+      Nome: '&b&lBenefícios (staff)'
+      Lore:
+        - '&7Compra, liga/desliga, custo e estoque.'
+      Acoes:
+        - 'admin_beneficios'
+    Ajustes:
+      Slot: 31
+      Material: 'COMPARATOR|REDSTONE_COMPARATOR'
+      Nome: '&d&lRegras'
+      Lore:
+        - '&7Mandato, eleição, candidatura,'
+        - '&7votação, salário, auxílio,'
+        - '&7impeachment... sem abrir arquivo.'
+      Acoes:
+        - 'admin_ajustes'
+    NPC:
+      Slot: 33
+      Material: 'VILLAGER_SPAWN_EGG|MONSTER_EGG'
+      Nome: '&e&lNPC do presidente'
+      Lore:
+        - '&eEsquerdo &7coloca onde você está'
+        - '&eDireito &7remove'
+      Acoes:
+        - '[esquerdo] admin_npc criar'
+        - '[direito] admin_npc remover'
+    Recarregar:
+      Slot: 34
+      Material: 'SUNFLOWER|DOUBLE_PLANT'
+      Nome: '&a&lRecarregar arquivos'
+      Acoes:
+        - 'admin_recarregar'
+    Voltar:
+      Slot: 36
+      Material: 'ARROW'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Candidatos
+# --------------------------------------------------------------------------
+Candidatos:
+  Titulo: '&8Candidatos &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+  Item:
+    Material: 'PLAYER_HEAD'
+    Dono: '{candidato}'
+    Nome: '&e{candidato}'
+    Lore:
+      - '&f"{slogan}&f"'
+      - ''
+      - '&7Votos: &a{votos} &8({percentual}%)'
+      - '&7Inscrito há: &f{inscrito_ha}'
+      - '{status}'
+  Status:
+    Votar:
+      - ''
+      - '&eClique para votar'
+    Trocar voto:
+      - ''
+      - '&eClique para trocar o seu voto'
+    Seu voto:
+      - ''
+      - '&a&l✔ SEU VOTO'
+    Ja votou:
+      - ''
+      - '&7Você já votou nesta eleição.'
+    Aguardando votacao:
+      - ''
+      - '&7A votação ainda não começou.'
+    Staff:
+      - '&cShift + direito &7remove o candidato'
+  Vazio:
+    Slot: 22
+    Material: 'GLASS_BOTTLE'
+    Nome: '&7Ninguém se candidatou'
+    Lore:
+      - '&7{situacao}'
+  Itens:
+    Candidatar:
+      Slot: 49
+      Condicao: 'inscricoes,!candidato'
+      Material: 'WRITABLE_BOOK|BOOK_AND_QUILL'
+      Nome: '&e&lCandidatar-se'
+      Lore:
+        - '&7Taxa: &a{taxa_inscricao}'
+      Acoes:
+        - 'candidatar'
+    Info:
+      Slot: 4
+      Material: 'PAPER'
+      Nome: '{fase}'
+      Lore:
+        - '&7{situacao}'
+        - '&7Seu voto: &f{meu_voto}'
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&ePágina anterior'
+      Acoes:
+        - 'anterior'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&ePróxima página'
+      Acoes:
+        - 'proxima'
+    Voltar:
+      Slot: 48
+      Material: 'RED_DYE|INK_SACK:1'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Impostos (os ícones e slots ficam no impostos.yml)
+# --------------------------------------------------------------------------
+Impostos:
+  Titulo: '&8Impostos'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+  Item:
+    Nome: '{nome}'
+    Material desligado: 'GRAY_DYE|INK_SACK:8'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&7Taxa atual: &e{taxa}%'
+      - '&7Limites: &f{minimo}% &7a &f{maximo}%'
+      - '&7Cobrado {tipo}'
+      - '&7Arrecadado no mandato: &a{arrecadado}'
+      - '&8Alterado há {alterado}'
+      - '{status}'
+  Status:
+    Publico: []
+    Presidente:
+      - ''
+      - '&eClique para mudar a taxa'
+    Aguarde:
+      - ''
+      - '&7Pode mudar de novo em &f{espera}'
+    Staff:
+      - ''
+      - '&eEsquerdo &7muda a taxa'
+      - '&eDireito &7desliga'
+      - '&eShift + esquerdo &7taxa mínima'
+      - '&eShift + direito &7taxa máxima'
+    Staff desligado:
+      - ''
+      - '&c&lDESLIGADO'
+      - '&eDireito &7liga'
+  Itens:
+    Voltar:
+      Slot: 31
+      Material: 'RED_DYE|INK_SACK:1'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Benefícios (os ícones e slots ficam no beneficios.yml)
+# --------------------------------------------------------------------------
+Beneficios:
+  Titulo: '&8Benefícios do governo'
+  Linhas: 4
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+  Item:
+    Nome: '{nome}'
+    Material desligado: 'GRAY_DYE|INK_SACK:8'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '&7Custo: &a{custo}'
+      - '&7Recebe: &f{alvo}'
+      - '&7Estoque: &f{estoque}&7/&f{estoque_maximo} &8(repõe: {reposicao})'
+      - '&7Recarga: &f{recarga}'
+      - '&7Comprado neste mandato: &f{compras}x'
+      - '{status}'
+  Status:
+    Publico: []
+    Comprar:
+      - ''
+      - '&eClique para comprar'
+    Sem verba:
+      - ''
+      - '&cO cofre não tem verba ({cofre})'
+    Sem estoque:
+      - ''
+      - '&cSem estoque'
+    Recarga:
+      - ''
+      - '&cDisponível em {falta_recarga}'
+    Staff:
+      - ''
+      - '&eEsquerdo &7compra (com o cofre)'
+      - '&eDireito &7desliga'
+      - '&eShift + esquerdo &7custo'
+      - '&eShift + direito &7estoque'
+    Staff desligado:
+      - ''
+      - '&c&lDESLIGADO'
+      - '&eDireito &7liga'
+  Itens:
+    Cofre:
+      Slot: 4
+      Material: 'EMERALD'
+      Nome: '&a&lCofre público'
+      Lore:
+        - '&7Saldo: &a{cofre}'
+    Voltar:
+      Slot: 31
+      Material: 'RED_DYE|INK_SACK:1'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Extrato do cofre
+# --------------------------------------------------------------------------
+Extrato:
+  Titulo: '&8Cofre público &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+  Entrada:
+    Material: 'LIME_DYE|INK_SACK:10'
+    Nome: '&a+ {valor}'
+    Lore:
+      - '{motivo}'
+      - '&8{quando} (há {ha})'
+  Saida:
+    Material: 'RED_DYE|INK_SACK:1'
+    Nome: '&c- {valor}'
+    Lore:
+      - '{motivo}'
+      - '&8{quando} (há {ha})'
+  Vazio:
+    Slot: 22
+    Material: 'GLASS_BOTTLE'
+    Nome: '&7Nenhuma movimentação ainda'
+  Itens:
+    Saldo:
+      Slot: 4
+      Material: 'EMERALD'
+      Nome: '&a&lSaldo: {cofre}'
+      Lore:
+        - '&eClique para doar'
+      Acoes:
+        - 'doar'
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&ePágina anterior'
+      Acoes:
+        - 'anterior'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&ePróxima página'
+      Acoes:
+        - 'proxima'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE|INK_SACK:1'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Presidentes anteriores
+# --------------------------------------------------------------------------
+Historico:
+  Titulo: '&8Presidentes anteriores &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34]
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+  Item:
+    Material: 'PLAYER_HEAD'
+    Dono: '{presidente}'
+    Nome: '&6{presidente}'
+    Lore:
+      - '&7Eleição &f#{eleicao}'
+      - '&7De &f{inicio} &7a &f{fim}'
+      - '&7Ficou: &f{duracao} &8- {motivo}'
+      - '&7Votos: &a{votos} &8({percentual}%)'
+      - ''
+      - '&7Arrecadou: &a{arrecadado}'
+      - '&7Gastou: &c{gasto} &8({beneficios} benefícios)'
+      - ''
+      - '&7Tempo total no cargo: &f{tempo_total} &8({mandatos_dele} mandato(s))'
+  Vazio:
+    Slot: 22
+    Material: 'GLASS_BOTTLE'
+    Nome: '&7Ninguém governou ainda'
+  Itens:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&ePágina anterior'
+      Acoes:
+        - 'anterior'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&ePróxima página'
+      Acoes:
+        - 'proxima'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE|INK_SACK:1'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Regras (staff): cada linha é uma chave do config.yml
+# --------------------------------------------------------------------------
+Ajustes:
+  Titulo: '&8Regras &7({pagina}/{paginas})'
+  Linhas: 6
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+  Item:
+    Material: '{material}'
+    Nome: '&e{ajuste}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - '&7Agora: &f{valor}'
+      - '&8config.yml: {chave}'
+      - '{status}'
+  Status:
+    Alternar:
+      - ''
+      - '&eClique para trocar'
+    Digitar:
+      - ''
+      - '&eClique para digitar o valor'
+  Itens:
+    Anterior:
+      Slot: 45
+      Material: 'ARROW'
+      Nome: '&ePágina anterior'
+      Acoes:
+        - 'anterior'
+    Proxima:
+      Slot: 53
+      Material: 'ARROW'
+      Nome: '&ePróxima página'
+      Acoes:
+        - 'proxima'
+    Voltar:
+      Slot: 49
+      Material: 'RED_DYE|INK_SACK:1'
+      Nome: '&cVoltar'
+      Acoes:
+        - 'voltar'
+
+# --------------------------------------------------------------------------
+#  Confirmação
+# --------------------------------------------------------------------------
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: 'BLACK_STAINED_GLASS_PANE'
+    Nome: ' '
+  Informacao:
+    Slot: 13
+    Material: 'PAPER'
+    Nome: '{acao}'
+  Itens:
+    Sim:
+      Slots: [10, 11]
+      Material: 'LIME_STAINED_GLASS_PANE'
+      Nome: '&a&lConfirmar'
+      Acoes:
+        - 'confirmar'
+    Nao:
+      Slots: [15, 16]
+      Material: 'RED_STAINED_GLASS_PANE'
+      Nome: '&c&lCancelar'
+      Acoes:
+        - 'cancelar'

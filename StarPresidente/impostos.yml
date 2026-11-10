@@ -1,0 +1,91 @@
+# ==========================================================================
+#  StarPresidente - impostos
+#
+#  O presidente escolhe a taxa (%) de cada imposto, sempre entre o Minimo e
+#  o Maximo daqui. Tudo que é cobrado vai para o cofre público.
+#
+#  Tipos:
+#    GANHOS       cobra uma parte do que o saldo do jogador AUMENTOU desde a
+#                 última checagem (vendas, trabalhos, recompensas... serve
+#                 com qualquer plugin de economia).
+#    PATRIMONIO   cobra uma parte do saldo, de tempos em tempos, de quem
+#                 tem mais que o valor isento.
+#    COMANDO      cobra por cima do valor de um comando de dinheiro
+#                 (ex.: /pay). Quem não tiver o valor + imposto é barrado.
+#    API          cobrado por outros plugins (lojas, leilões, mercado) pela
+#                 StarPresidenteAPI.cobrarImposto("<id>", jogador, valor).
+#
+#  Isenção: a permissão starpresidente.isento (todos) ou
+#  starpresidente.isento.<id> (só aquele imposto).
+#
+#  Icone: Material, Nome, Lore. Variáveis: {nome} {taxa} {minimo} {maximo}
+#  {arrecadado} {alterado} {descricao}
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Tempo mínimo entre duas mudanças do MESMO imposto pelo presidente (evita
+# o sobe-e-desce). A staff muda quando quiser.
+Intervalo entre mudancas: 1h
+
+Impostos:
+  renda:
+    Ativado: true
+    Nome: '&aImposto de Renda'
+    Descricao: '&7Parte de tudo que o seu saldo ganha.'
+    Tipo: GANHOS
+    Minimo: 0
+    Maximo: 25
+    Padrao: 5
+    # De quanto em quanto tempo os saldos são conferidos.
+    Checar a cada: 1m
+    # Ganhos menores que isto (numa checagem) não pagam.
+    Ganho minimo: 100
+    Icone:
+      Material: GOLD_INGOT
+      Slot: 10
+  fortunas:
+    Ativado: true
+    Nome: '&6Imposto sobre Fortunas'
+    Descricao: '&7Cobrado de quem tem saldo alto.'
+    Tipo: PATRIMONIO
+    Minimo: 0
+    Maximo: 3
+    Padrao: 0.5
+    A cada: 6h
+    # Só o que passar deste valor é taxado.
+    Saldo isento: 1000000
+    # Teto por cobrança (0 = sem teto).
+    Teto por cobranca: 250000
+    # true: só quem está online na hora.
+    Apenas online: true
+    Icone:
+      Material: DIAMOND
+      Slot: 12
+  transferencias:
+    Ativado: true
+    Nome: '&bTaxa de Transferência'
+    Descricao: '&7Cobrada por cima de cada /pay.'
+    Tipo: COMANDO
+    Minimo: 0
+    Maximo: 15
+    Padrao: 2
+    # O comando e onde está o valor: {valor} marca o argumento.
+    Comandos:
+      - 'pay * {valor}'
+      - 'money pay * {valor}'
+      - 'eco pay * {valor}'
+    Icone:
+      Material: PAPER
+      Slot: 14
+  comercio:
+    Ativado: true
+    Nome: '&dImposto sobre Comércio'
+    Descricao: '&7Lojas, mercado e leilões que usam a API.'
+    Tipo: API
+    Minimo: 0
+    Maximo: 20
+    Padrao: 3
+    Icone:
+      Material: EMERALD
+      Slot: 16

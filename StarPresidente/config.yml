@@ -1,0 +1,205 @@
+# ==========================================================================
+#  StarPresidente - configuração geral
+#
+#  Os jogadores elegem um presidente. Ele ajusta os impostos (dentro dos
+#  limites que a staff definir), administra o cofre público e gasta a verba
+#  em benefícios para o servidor. Tudo que ele faz sai anunciado no chat.
+#
+#  Tempos aceitam: 30s, 10m, 2h, 7d, 1d12h (s=segundos, m=minutos, h=horas,
+#  d=dias). Quase tudo daqui também pode ser mudado no jogo:
+#  /presidenteadmin  (painel da staff)
+# ==========================================================================
+
+Versao do modelo: 1
+
+# Economia usada no cofre, nos impostos, nas doações e nos benefícios:
+#   vault                  a economia do Vault (padrão)
+#   stareconomia           a moeda principal do StarEconomia
+#   stareconomia-<moeda>   uma moeda do StarEconomia
+Economia: vault
+
+# Mostra no console o passo a passo de eleições e cobranças.
+Debug: false
+
+# --------------------------------------------------------------------------
+#  Ciclo (mandato e eleições)
+# --------------------------------------------------------------------------
+Ciclo:
+  # true: as eleições acontecem sozinhas, no fim de cada mandato.
+  # false: só quando a staff mandar (/presidenteadmin iniciar).
+  Automatico: true
+  # Quanto dura um mandato.
+  Duracao do mandato: 7d
+  # Inscrições: os jogadores se candidatam. 0 = sem fase de inscrição
+  # (candidatura e votação acontecem juntas).
+  Inscricoes: 1h
+  # Votação: quem tem direito escolhe o seu candidato.
+  Votacao: 2h
+  # true: a eleição acontece nos últimos dias do mandato e o novo
+  # presidente toma posse assim que o atual sai, sem o servidor ficar sem
+  # presidente. false: a eleição só começa depois que o mandato acaba.
+  Eleicao antes do fim do mandato: true
+  # Sem presidente (primeira vez, eleição sem candidatos, impeachment...):
+  # quanto esperar até abrir uma nova eleição.
+  Espera sem presidente: 10m
+  # Avisos no chat antes do fim de cada fase e antes da próxima eleição.
+  Avisos: ['1d', '1h', '30m', '10m', '5m', '1m', '30s', '10s']
+
+# --------------------------------------------------------------------------
+#  Candidatura
+# --------------------------------------------------------------------------
+Candidatura:
+  # Tempo de jogo mínimo para se candidatar (estatística do próprio jogo,
+  # não precisa de outro plugin). 0 = sem exigência.
+  Tempo jogado minimo: 5h
+  # Valor cobrado para se inscrever. Vai para o cofre público. 0 = grátis.
+  Taxa de inscricao: 5000
+  # Quantos candidatos no máximo por eleição. 0 = sem limite.
+  Maximo de candidatos: 28
+  # Pede um slogan (frase de campanha) ao se candidatar. Aparece no menu.
+  Pedir slogan: true
+  Tamanho maximo do slogan: 60
+  # Quantos mandatos SEGUIDOS a mesma pessoa pode ter. 0 = sem limite.
+  Mandatos seguidos: 2
+  # O candidato pode desistir (a taxa de inscrição não volta).
+  Pode desistir: true
+
+# --------------------------------------------------------------------------
+#  Votação
+# --------------------------------------------------------------------------
+Votacao:
+  # Tempo de jogo mínimo para votar. 0 = sem exigência.
+  Tempo jogado minimo: 30m
+  # Só um voto por endereço de IP (contra contas fake).
+  Um voto por IP: true
+  # O jogador pode trocar o voto enquanto a votação estiver aberta.
+  Pode trocar o voto: true
+  # Pode votar em si mesmo (sendo candidato).
+  Pode votar em si mesmo: false
+  # Voto secreto: ninguém vê a contagem até o resultado (a staff vê).
+  Voto secreto: true
+  # Votos mínimos para a eleição valer. Abaixo disso ninguém é eleito.
+  Votos minimos: 1
+  # Empate: PRIMEIRO_INSCRITO (quem se candidatou antes) ou SORTEIO.
+  Desempate: PRIMEIRO_INSCRITO
+  # Peso do voto por permissão: 'permissao:peso' (vale o maior que o
+  # jogador tiver). Precisa ser dada por extenso: o '*' da staff não conta.
+  Peso por permissao:
+    - 'starpresidente.voto.vip:2'
+  # Comandos para quem vota ({jogador}, {candidato}). Rodam pelo console.
+  Recompensa por votar:
+    - 'give {jogador} paper 1'
+  # Segundo turno: se ninguém passar do percentual, os dois mais votados
+  # disputam de novo.
+  Segundo turno:
+    Ativado: false
+    Percentual para vencer: 50
+    Duracao: 1h
+
+# --------------------------------------------------------------------------
+#  O presidente
+# --------------------------------------------------------------------------
+Presidente:
+  # Tag do presidente (%starpresidente_tag% no chat/tab/placar).
+  Tag: '&6&l[PRESIDENTE] &r'
+  # Coloca a tag sozinho na frente do nome no chat. Deixe false se o seu
+  # plugin de chat já usa a %starpresidente_tag%.
+  Tag no chat: false
+  # Comandos pelo console na posse e quando ele sai ({jogador}).
+  # Dica: dê e tire um grupo de permissões aqui.
+  Comandos na posse: []
+  Comandos na saida: []
+  # Salário pago pelo cofre público enquanto ele estiver online.
+  # 0 = sem salário.
+  Salario:
+    Valor: 2000
+    A cada: 1h
+  # Pronunciamento oficial no chat: /presidente pronunciamento <texto>
+  Pronunciamento:
+    Ativado: true
+    Intervalo: 10m
+    Tamanho maximo: 120
+  # Pode renunciar ao cargo (/presidente renunciar).
+  Pode renunciar: true
+  # O presidente também paga os impostos.
+  Paga impostos: true
+  # Na posse de um novo presidente as taxas voltam ao padrão do impostos.yml
+  # (false: ele herda as taxas do anterior).
+  Impostos voltam ao padrao na posse: true
+
+# --------------------------------------------------------------------------
+#  Cofre público
+# --------------------------------------------------------------------------
+Cofre:
+  # Quando um mandato acaba: MANTER (o próximo herda) ou ZERAR.
+  Ao fim do mandato: MANTER
+  # Os jogadores podem doar para o cofre (/presidente doar <valor>).
+  Doacoes: true
+  Doacao minima: 100
+  # Doações a partir deste valor saem anunciadas no chat.
+  Anunciar doacoes a partir de: 10000
+  # Quantas movimentações o extrato (transparência) guarda.
+  Tamanho do extrato: 100
+
+# --------------------------------------------------------------------------
+#  Auxílio: o presidente define um valor pago pelo cofre a cada jogador
+#  online, de tempos em tempos. Se o cofre não cobrir todos, ninguém
+#  recebe e o servidor é avisado.
+# --------------------------------------------------------------------------
+Auxilio:
+  Ativado: true
+  A cada: 30m
+  Minimo: 0
+  Maximo: 1000
+  # O presidente também recebe.
+  Presidente recebe: false
+  # Só quem jogou pelo menos isto desde o último pagamento (contra AFK
+  # que entra só para receber). 0 = todos os online.
+  Tempo online minimo: 10m
+
+# --------------------------------------------------------------------------
+#  Impeachment: abaixo-assinado dos jogadores para tirar o presidente.
+# --------------------------------------------------------------------------
+Impeachment:
+  Ativado: true
+  # Só pode começar depois deste tempo de mandato.
+  Carencia: 1d
+  # Assinaturas necessárias: o MAIOR entre o mínimo e o percentual dos
+  # eleitores que votaram na eleição dele.
+  Assinaturas minimas: 10
+  Percentual dos eleitores: 60
+  # Quem sofre impeachment não pode se candidatar na eleição seguinte.
+  Barrar na proxima eleicao: true
+
+# --------------------------------------------------------------------------
+#  NPC do presidente (/presidenteadmin npc criar). Usa o NPC e o holograma
+#  configurados no StarPlugins (Citizens, FancyNpcs, StarNpc...).
+# --------------------------------------------------------------------------
+NPC:
+  # Skin quando não há presidente ('' = padrão).
+  Skin sem presidente: ''
+  Brilho: true
+  Cor do brilho: GOLD
+  Olhar jogadores: true
+  Holograma:
+    - '&6&lPRESIDENTE'
+    - '&f{presidente}'
+    - '&7Mandato: &f{tempo_mandato}'
+    - '&7Cofre: &a{cofre}'
+    - '&eClique para abrir'
+  Holograma sem presidente:
+    - '&6&lPRESIDÊNCIA'
+    - '&7Cargo vago'
+    - '&7{situacao}'
+    - '&eClique para abrir'
+
+# --------------------------------------------------------------------------
+#  Menus
+# --------------------------------------------------------------------------
+Menus:
+  # Milissegundos mínimos entre dois cliques (anti-spam).
+  Intervalo entre cliques: 150
+  Som do clique: 'UI_BUTTON_CLICK;0.6;1.2'
+  Som de erro: 'ENTITY_VILLAGER_NO;0.8;1.0'
+  Som de pagina: 'ITEM_BOOK_PAGE_TURN;0.8;1.0'
+  Som de sucesso: 'ENTITY_PLAYER_LEVELUP;0.7;1.4'
