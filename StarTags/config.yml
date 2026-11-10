@@ -8,7 +8,7 @@
 #    mensagens.yml  tudo que o jogador le
 #    comandos.yml   os nomes dos comandos e subcomandos
 # ---------------------------------------------------------------------------
-Versao do modelo: 12
+Versao do modelo: 13
 
 Geral:
   Debug: false
@@ -127,12 +127,24 @@ Sufixos:
 Texto no nome:
   # O nome que flutua acima do jogador: o nick, as linhas do grupo
   # (nametags.yml) e o texto que a tag equipada pedir.
+  #
+  # COMO o nome e desenhado depende da versao do servidor -- nao e opcao, o
+  # produto escolhe sozinho o sistema de cada uma:
+  #
+  #   1.19.4 em diante   linhas de texto PRESAS no jogador. Acompanham o corpo
+  #                      sem atraso nenhum e nao atrapalham teleporte.
+  #                      Varias linhas, fundo, tamanho de letra, nametags.yml.
+  #   abaixo da 1.19.4   o nome do PROPRIO JOGO, com a tag e o sufixo dentro
+  #                      dele. Uma linha so, colada no jogador por natureza.
+  #                      As opcoes abaixo nao se aplicam nessas versoes.
+  #
+  # O /startags info mostra qual esta valendo no seu servidor.
   Ativar: true
 
   # Esconde o nome que o JOGO desenha e passa a desenhar o nick aqui.
   #
-  # E o que destrava o nametags.yml: sem isto o nick continua sendo do jogo e os
-  # grupos de nome nao tem o que desenhar.
+  # E o que destrava o nametags.yml: sem isto o nick continua sendo do jogo e
+  # so o texto "acima/abaixo do nome" das tags e desenhado em volta dele.
   #
   # Precisa de "Nome.Ativar: true" -- e o time do placar que esconde o original.
   Substituir o nome do jogador: true
@@ -140,53 +152,19 @@ Texto no nome:
   # O que a linha do nick mostra quando nenhum grupo do nametags.yml serve.
   Formato do nome: '{tag}&f{nome}{sufixo}'
 
+  # O jogador ve o proprio nome em terceira pessoa (F5)?
+  # O nome do jogo nao aparece para o proprio dono; desligado imita isso.
+  Mostrar o proprio nome: false
+
   # ALTURA e a LINHA MAIS BAIXA de todas, em blocos a partir dos pes.
   #
   # Tudo empilha para cima a partir dela, nesta ordem:
   #   "Abaixo do nome" da tag  ->  linhas do grupo  ->  "Acima do nome" da tag
   #
   # Acrescentar uma linha sobe o bloco inteiro; nunca empurra nada para dentro
-  # do jogador.
+  # do jogador. Cada grupo do nametags.yml ainda pode somar a "Altura extra".
   Altura: 2.05
   Espaco entre linhas: 0.28
-
-  # -------------------------------------------------------------------------
-  #  AVANCADO -- voce nao precisa mexer aqui.
-  #
-  #  COMO o texto acompanha o jogador nao e opcao: quem decide e o produto, pela
-  #  versao do servidor. Isso depende de quantos tiques o CLIENTE leva para
-  #  desenhar a entidade na posicao nova, e so o servidor sabe o que oferece:
-  #
-  #    1.20.2 em diante   visor de texto com interpolacao zerada -- sem atraso
-  #    1.19.4 a 1.20.1    visor de texto; o cliente interpola e o produto compensa
-  #    abaixo da 1.19.4   suporte de armadura; o cliente interpola e o produto compensa
-  #
-  #  Ja foram duas opcoes separadas, e elas se contradiziam: com a interpolacao
-  #  zerada, a compensacao deixava de compensar e desenhava a tag NA FRENTE de
-  #  quem andava. Agora e uma decisao so.
-  #
-  #  O /startags info mostra qual esta valendo no seu servidor.
-  # -------------------------------------------------------------------------
-  Avancado:
-    # Derruba para o suporte de armadura mesmo onde o visor existe. Serve para
-    # isolar um problema ("sera que e o visor?"), nao para uso normal: o suporte
-    # nao tem fundo, nem tamanho de letra, e o texto atrasa.
-    Forcar suporte de armadura: false
-
-    # Faz as linhas viajarem MONTADAS no jogador. Acompanha sem atraso nenhum...
-    # e QUEBRA TODO TELEPORTE DO SERVIDOR.
-    #
-    # Jogador com passageiro nao pode ser teleportado, e a recusa acontece ANTES
-    # de o evento de teleporte existir -- /tp, /spawn, /warp, portais e menus
-    # anunciam sucesso e o jogador nao sai do lugar, sem erro no console.
-    #
-    # Da 1.20.2 em diante voce NAO precisa disto: o visor ja acompanha sem
-    # atraso. Existe so para servidor antigo que nao teleporte ninguem.
-    Montar no jogador: false
-
-    # So vale com "Montar no jogador: true": a que altura o visor se encaixa no
-    # jogador, contando dos pes. Mexa se o texto montado ficar alto ou baixo.
-    Encaixe do visor: 1.8
 
 Animacoes:
   Ativar: true
