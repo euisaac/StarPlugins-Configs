@@ -436,7 +436,7 @@ Confirmar:
         - '&aClique para confirmar'
     Cancelar:
       Slot: 15
-      material: 'BARRIER'
+      material: 'RED_DYE'
       name: '&cCancelar'
       lore:
         - '&7Clique para voltar sem comprar.'
@@ -452,4 +452,39 @@ Upgrade:
   Slot anterior: 9
   Slot proximo: 17
   Slot voltar: 22
+  Decoracao: {}
+
+# ====================================================================
+# Confirmacao do item de VIP (clique direito com o item na mao)
+# ====================================================================
+# Placeholders: {vip} {vip_id} {duracao} {duracao_extenso} {quantidade} {player}
+# Ao confirmar, UMA unidade do item da mao e consumida e o vip e ativado.
+Item vip:
+  Nome: '&8Ativar VIP'
+  Tamanho: 27
+  Itens:
+    Informacao:
+      Slot: 13
+      material: 'PAPER'
+      name: '&b{vip}'
+      lore:
+        - ''
+        - ' &7Duracao: &f{duracao}'
+        - ' &7Itens na mao: &f{quantidade}'
+        - ''
+        - '&7Ao confirmar, 1 item sera usado.'
+    Confirmar:
+      Slot: 11
+      material: 'LIME_DYE'
+      name: '&aConfirmar ativacao'
+      lore:
+        - '&7Ativa o {vip}&7 por &f{duracao}&7.'
+        - ''
+        - '&aClique para ativar'
+    Cancelar:
+      Slot: 15
+      material: 'RED_DYE'
+      name: '&cCancelar'
+      lore:
+        - '&7Fecha sem usar o item.'
   Decoracao: {}

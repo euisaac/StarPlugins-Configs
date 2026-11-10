@@ -170,3 +170,31 @@ Sons:
   Pagina: 'UI_BUTTON_CLICK:1:1.2'
   Voltar: 'UI_BUTTON_CLICK:1:0.8'
   Erro: 'ENTITY_VILLAGER_NO:1:1'
+
+# Item de VIP (/itemvip criar <vip> <duracao> [quantidade])
+#
+# A staff segura um item e da o comando: ele vira um vale daquele vip. O
+# jogador segura o vale, clica com o botao direito e confirma no menu
+# (menus.yml -> Item vip). A ativacao e a mesma do /darvip, inclusive somando
+# o tempo quando ele ja tem aquele vip.
+#
+# O que liga o item ao vip e uma marca escondida, nao o nome: renomear o item
+# nao muda o que ele vale. Se o vip for apagado da pasta vips/, o item passa a
+# ser recusado com um aviso.
+Item vip:
+  # Material usado quando quem da o comando esta com a mao vazia.
+  Material padrao: 'PAPER'
+  # Nome e lore que o item ganha. Use {vip}, {vip_id}, {duracao} e {duracao_extenso}.
+  # Deixe o nome vazio ('') ou a lore vazia ([]) para manter os do item segurado.
+  Nome: '&b&lVIP {vip} &7({duracao})'
+  Lore:
+    - ''
+    - '&7Vale um VIP {vip}&7.'
+    - '&7Duracao: &f{duracao}'
+    - ''
+    - '&eClique com o botao direito'
+    - '&esegurando este item para ativar.'
+  # Brilho de encantamento no item.
+  Brilho: true
+  # Recusa a ativacao no modo criativo, onde o jogador consegue copiar itens.
+  Bloquear no criativo: true

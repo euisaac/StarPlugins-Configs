@@ -294,6 +294,7 @@ Ajuda:
   - ' &b- &f/comprarvip &7<id> &8-&7 compra uma chave'
   - ' &b- &f/vendasvip &8-&7 lista as chaves a venda'
   - ' &b- &f/partyvip &8-&7 progresso da meta coletiva'
+  - ' &b- &fItem de VIP &8-&7 segure e clique com o direito para ativar'
   - ''
 
 Ajuda admin:
@@ -314,6 +315,7 @@ Ajuda admin:
   - ' &b- &f/infovip &7<id>'
   - ' &b- &f/congelarvip &8-&7 pausa o tempo de todos'
   - ' &b- &f/creditovip dar|remover|setar &7<jogador> <quantia>'
+  - ' &b- &f/itemvip criar &7<vip> <duracao> [quantidade] &8-&7 vira item de VIP o que esta na mao'
   - ' &b- &f/starvips recarregar|importar|versao'
   - ''
 
@@ -349,3 +351,39 @@ GG Falha:
   - '&c&lQUE PENA! &fA meta de &e{alvo} &fGGs nao foi batida.'
   - '&7Chegaram &f{total}&7. Fica para a proxima ativacao.'
   - ''
+
+# --- Item de VIP ----------------------------------------------------
+# /itemvip criar <vip> <duracao> [quantidade] e o clique direito com o item.
+# {vip} {vip_id} {duracao} {duracao_extenso} {amount} {id}
+Item vip:
+  Criado: '&aVoce criou &f{amount}x &aitem de VIP do {vip}&a. &7({duracao})'
+  Inventario cheio: '&eSeu inventario encheu: o que nao coube caiu no chao.'
+  Quantidade invalida: '&cQuantidade invalida: &f{amount}&c. Use um numero de 1 a {max}.'
+  Ativado: |
+
+    &aVoce ativou um item de VIP:
+
+    &7VIP: &r{vip}
+    &7Duracao: &f{duracao}
+    &7Id do vip: &f{id}
+
+  Cancelado: '&7Ativacao cancelada. O item continua com voce.'
+  Item sumiu: '&cO item de VIP precisa continuar na sua mao para ser ativado. Nada foi usado.'
+  Vip removido: '&cEste item e do vip &f{vip_id}&c, que nao existe mais neste servidor. Fale com a staff.'
+  Item invalido: '&cEste item de VIP esta danificado e nao pode ser ativado. Fale com a staff.'
+  Criativo: '&cItens de VIP nao podem ser ativados no modo criativo.'
+  Aguarde: '&cSeus dados de VIP ainda estao carregando. Tente de novo em instantes.'
+  Ajuda comando:
+    - ''
+    - '&b&lITEM DE VIP'
+    - ' &f/itemvip criar &7<vip> <duracao> [quantidade]'
+    - '   &7Segure um item e de o comando: ele vira um vale do vip.'
+    - '   &7Com a mao vazia, o item sai do material do config.yml.'
+    - '   &7Duracao: &f1d&7, &f12h&7, &f30d&7, &f1o &7(mes) ou &fpermanente&7.'
+    - ' &7O jogador segura o item, clica com o direito e confirma.'
+    - ''
+  # Linhas acrescentadas a ajuda do /vip ajuda (deixe [] para esconder).
+  Ajuda admin:
+    - ' &b- &f/itemvip criar &7<vip> <duracao> [quantidade] &8-&7 vira item de VIP o que esta na mao'
+  Ajuda:
+    - ' &b- &fItem de VIP &8-&7 segure e clique com o direito para ativar'
