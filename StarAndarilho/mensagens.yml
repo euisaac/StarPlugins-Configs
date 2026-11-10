@@ -1,0 +1,199 @@
+# Mensagens do StarAndarilho.
+# Deixe uma mensagem vazia ('') para ela nao ser enviada.
+# Cores: &a, &l... e &#RRGGBB (1.16+). Titulos: 'Titulo<nl>Subtitulo'.
+# Mensagem de varias linhas (|) sai linha a linha, sem prefixo: use {prefixo}
+# onde quiser o prefixo.
+#
+# Variaveis de andarilho (anuncios): {andarilho} {ponto} {tempo} {ofertas}
+# {mundo} {x} {y} {z}
+
+Versao do modelo: 1
+
+Prefixo: '&6&lANDARILHO &8» &7'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+
+Geral:
+  Sem permissao: '&cVocê não tem permissão para isso.'
+  Somente jogador: '&cSó jogadores podem usar isso.'
+  Inativo: '&cO StarAndarilho está desligado (veja o console).'
+  Andarilho inexistente: '&cNão existe andarilho &f{id}&c.'
+  Desconhecido: '???'
+  Ponto da staff: 'Lugar secreto'
+  Sim: '&aSim'
+  Nao: '&cNão'
+
+Anuncios:
+  Chegada: |-
+
+    {prefixo}{andarilho} &7chegou em &e{ponto}&7!
+    &7  Ele trouxe &f{ofertas} &7mercadorias e vai embora em &f{tempo}&7.
+  # Clicavel: leva ate ele (quem tem starandarilho.ir). Vazio desliga.
+  Botao ir: '&a&l[CLIQUE PARA IR ATÉ ELE]'
+  Botao ir dica: '&7Te leva até {andarilho}'
+  Titulo na chegada: '{andarilho}<nl>&fchegou em &e{ponto}&f!'
+  Actionbar na chegada: ''
+  Partida: '{prefixo}{andarilho} &7arrumou a banca e seguiu viagem. Até a próxima!'
+  Chega em: '{prefixo}{andarilho} &7chega em &f{tempo}&7{onde}.'
+  Onde: ' em &e{ponto}'
+  Nao veio: '{prefixo}{andarilho} &7não apareceu desta vez... dizem que pegou outra estrada.'
+  Item raro: '{prefixo}{andarilho} &7trouxe {raridade} &f{item}&7!'
+  Relampago: '{prefixo}&e&lRELÂMPAGO! &f{item} &ecom &f{desconto}% &ede desconto por &f{duracao}&e!'
+  Desejo: '{prefixo}&d{andarilho} &dtrouxe &f{item}&d, que você marcou! Corra até &e{ponto}&d!'
+  Aviso de afinidade: '{prefixo}&d(Só pra você) {andarilho} &dme contou que chega em &f{tempo}&d, em &e{ponto}&d.'
+  Ao entrar: '{prefixo}{andarilho} &7está em &e{ponto}&7 por mais &f{tempo}&7. &8(/andarilho)'
+
+Falas:
+  # Como as falas do andarilho (andarilhos.yml -> Falas) aparecem no chat.
+  Formato: '{andarilho}&8: &f{fala}'
+
+Loja:
+  Gratis: '&aGrátis'
+  Extra item: '&f{quantidade}x {item}'
+  Extra xp: '&f{quantidade} níveis de XP'
+  Extra moeda: '&f{valor}'
+  Recusado curto: '&cRecusado'
+  Comprou: '{prefixo}&aVocê comprou &f{quantidade}x {item} &apor &f{preco}&a.'
+  Caiu no chao: '{prefixo}&eSeu inventário encheu: o resto caiu no chão.'
+  Ele ja foi: '{prefixo}&cO andarilho já foi embora.'
+  Item indisponivel: '{prefixo}&cEsse item não está mais na banca.'
+  Muito longe: '{prefixo}&cChegue mais perto de {andarilho} &cpara negociar. &7(/andarilho ir)'
+  Sem permissao do item: '{prefixo}&cVocê não pode comprar &f{item}&c.'
+  Afinidade baixa: '{prefixo}&c{andarilho} &cvende &f{item} &csó para quem tem afinidade {nivel}&c.'
+  Esgotado: '{prefixo}&c{item} &cesgotou.'
+  Esgotou agora: '{prefixo}&7Acabou o estoque de &f{item}&7.'
+  Sem estoque: '{prefixo}&cSó sobraram &f{estoque} &cdesse item.'
+  Limite: '{prefixo}&cVocê só pode comprar &f{limite} &cdesse item por visita (restam &f{restante}&c).'
+  Recusado: '{prefixo}&c{andarilho} &cse recusa a vender &f{item} &cpara você desta vez.'
+  Economia indisponivel: '{prefixo}&cA economia &f{moeda} &cnão está disponível agora.'
+  Sem dinheiro: '{prefixo}&cVocê precisa de &f{preco}&c.'
+  Sem extras: '{prefixo}&cFalta: &f{falta}&c.'
+  Inventario cheio: '{prefixo}&cAbra espaço no inventário antes de comprar.'
+
+Venda:
+  Vendeu: '{prefixo}&aVocê vendeu &f{quantidade}x {item} &apor &f{valor}&a.'
+  Nao quer mais: '{prefixo}&cEle não quer mais esse item.'
+  Ja tem o bastante: '{prefixo}&c{andarilho} &cjá tem &f{item} &co bastante.'
+  Voce nao tem: '{prefixo}&cVocê não tem &f{item} &cno inventário.'
+  Limite: '{prefixo}&cVocê já vendeu o máximo (&f{limite}&c) desse item nesta visita.'
+
+Barganha:
+  Desligada: '{prefixo}&cA barganha está desligada.'
+  Nao aceita: '{prefixo}&c{andarilho} &cnão aceita barganha em &f{item}&c.'
+  Ja tentou: '{prefixo}&cVocê já barganhou &f{item} &cnesta visita.'
+  Deu certo: '{prefixo}&aNegócio! &f{item} &asaiu &f{desconto}% &amais barato para você.'
+  Deu errado: '{prefixo}&cEle não gostou da proposta: &f{item} &cficou &f{aumento}% &cmais caro para você.'
+  Recusou: '{prefixo}&cEle se ofendeu e não vende mais &f{item} &cpara você nesta visita.'
+
+Afinidade:
+  Desligada: '{prefixo}&cA afinidade está desligada.'
+  Subiu: '{prefixo}&dSua afinidade com {andarilho} &dsubiu para {nivel}&d! &7(desconto de &f{desconto}%&7)'
+  Titulo: '{nivel}<nl>&fafinidade com {andarilho}'
+  Maximo: '&6máximo'
+  Cabecalho: '{prefixo}&fSua afinidade:'
+  Linha: '&7 - {andarilho}&7: {nivel} &8(&f{pontos} &8pts, faltam &f{faltam} &8para {proximo}&8) &7desconto &a{desconto}%'
+  Linha maxima: '&7 - {andarilho}&7: {nivel} &8(&f{pontos} &8pts) &7desconto &a{desconto}%'
+
+Catalogo:
+  Vai avisar: '{prefixo}&dCombinado: quando {andarilho} &dtrouxer &f{item}&d, eu te aviso.'
+  Nao vai avisar: '{prefixo}&7Você não será mais avisado sobre &f{item}&7.'
+
+Ir:
+  Desligado: '{prefixo}&cIr até o andarilho está desligado.'
+  Nao esta aqui: '{prefixo}{andarilho} &cnão está no servidor agora.'
+  Sem dinheiro: '{prefixo}&cA viagem custa &f{preco}&c.'
+  Aquecendo: '{prefixo}&7Indo até {andarilho} &7em &f{segundos}s&7... não se mexa.'
+  Contagem: '&eIndo até o andarilho em &f{segundos}s'
+  Cancelado: '{prefixo}&cVocê se mexeu: viagem cancelada.'
+  Chegou: '{prefixo}&aVocê chegou à banca de {andarilho}&a.'
+
+Placeholders:
+  Presente: '&aNo servidor'
+  Viajando: '&7Viajando'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&7Cancelado.'
+  Tempo esgotado: '&7O tempo para responder acabou.'
+
+Editor:
+  Digite: '{prefixo}&eDigite o novo valor de &f{campo}&e no chat. &7(atual: &f{atual}&7; &f- &7limpa)'
+  Digite id: '{prefixo}&eDigite o id do novo andarilho (sem espaço, ex.: &fferreiro&e).'
+  Digite nome do ponto: '{prefixo}&eDigite o nome deste ponto (ex.: &fPraça central&e).'
+  Id invalido: '{prefixo}&cUse só letras, números, _ e - (até 32).'
+
+Admin:
+  Uso: '{prefixo}&cUse: &f{uso}'
+  Recarregado: '{prefixo}&aArquivos recarregados: &f{andarilhos} &aandarilho(s).'
+  Chamou: '{prefixo}&a{andarilho} &achegou em &e{ponto}&a e fica &f{tempo}&a.'
+  Chamou curto: '{prefixo}&a{andarilho} &achegou.'
+  Ja presente: '{prefixo}&e{andarilho} &ejá está no servidor.'
+  Nao esta presente: '{prefixo}&e{andarilho} &enão está no servidor.'
+  Sem pontos: '{prefixo}&c{andarilho} &cnão tem ponto de parada. Use &f/andarilhoadmin ponto adicionar {id} <nome>&c.'
+  Mundo fora: '{prefixo}&cO mundo do ponto não está carregado.'
+  Cancelado: '{prefixo}&cA chegada foi cancelada (por outro plugin ou pelo ponto).'
+  Dispensou: '{prefixo}&a{andarilho} &afoi embora.'
+  Reabasteceu: '{prefixo}&a{andarilho} &asorteou de novo a banca.'
+  Proxima definida: '{prefixo}&a{andarilho} &achega em &f{tempo}&a.'
+  Info viajando: |-
+    {prefixo}{andarilho} &8({id})
+    &7  Ativo: {ativo} &8| &7Viajando, chega em &f{chega}&7 em &e{ponto}
+    &7  Pontos de parada: &f{pontos_parada} &8| &7Mercadorias: &f{mercadorias}
+  Info presente: |-
+    {prefixo}{andarilho} &8({id})
+    &7  Em &e{ponto} &8({mundo} {x} {y} {z}) &7- vai embora em &f{tempo}
+    &7  Pontos de parada: &f{pontos_parada} &8| &7Mercadorias: &f{mercadorias} &8| &7Na banca:
+  Info oferta: '&8   - &f{item} &7{estoque}/{estoque_total} &8| &a{preco} {relampago}'
+  Marca relampago: '&e(relâmpago)'
+  Nome de ponto padrao: 'Parada {numero}'
+  Ponto adicionado: '{prefixo}&aPonto &f#{numero} {ponto} &aadicionado para {andarilho}&a.'
+  Ponto removido: '{prefixo}&aPonto &f{ponto} &aremovido.'
+  Ponto invalido: '{prefixo}&cNúmero de ponto inválido. Veja com &f/andarilhoadmin ponto lista {id}&c.'
+  Pontos cabecalho: '{prefixo}&fPontos de {andarilho}&f (&e{total}&f):'
+  Pontos linha: '&7  #{numero} &f{ponto} &8({mundo} {x} {y} {z})'
+  Item adicionado: '{prefixo}&aItem &f{item} &aadicionado em {andarilho} &acomo &f{chave}&a. Ajuste no editor ou no andarilhos.yml.'
+  Procura adicionada: '{prefixo}&a{andarilho} &aagora compra &f{item} &a(&f{chave}&a).'
+  Segure um item: '{prefixo}&cSegure o item na mão.'
+  Numero invalido: '{prefixo}&cNúmero inválido: &f{valor}'
+  Economia invalida: '{prefixo}&cNão existe a economia &f{economia} &cno economias.yml.'
+  Ja existe: '{prefixo}&cJá existe o andarilho &f{id}&c.'
+  Criado: '{prefixo}&aAndarilho &f{id} &acriado com um modelo pronto. Adicione pontos com &f/andarilhoadmin ponto adicionar {id} <nome>&a.'
+  Apagado: '{prefixo}&aAndarilho &f{id} &aapagado.'
+  Jogador offline: '{prefixo}&cJogador &f{jogador} &cnão encontrado (adicionar só com ele online).'
+  Afinidade definida: '{prefixo}&aAfinidade de &f{jogador} &acom {andarilho}&a: &f{pontos} &apontos.'
+  Historico vazio: '{prefixo}&7Nenhum negócio registrado.'
+  Historico cabecalho: '{prefixo}&fÚltimos negócios &7({jogador})&f:'
+  Historico compra: '&8 {data} &f{jogador} &acomprou &f{quantidade}x {item} &7de {andarilho} &8- &f{total}'
+  Historico venda: '&8 {data} &f{jogador} &evendeu &f{quantidade}x {item} &7para {andarilho} &8- &f{total}'
+
+Ajuda:
+  Cabecalho: '{prefixo}&fComandos:'
+  Formato: '&e {comando} &8- &7{descricao}'
+  lista: 'Todos os andarilhos: quem está aqui e quando chega'
+  loja: 'Abre a banca do andarilho'
+  vender: 'Vende para ele os itens que ele procura'
+  catalogo: 'Tudo que ele pode trazer (e "me avise")'
+  ir: 'Vai até a banca dele'
+  afinidade: 'Sua afinidade com cada andarilho'
+  ajuda: 'Esta ajuda'
+
+Ajuda de admin:
+  Cabecalho: '{prefixo}&fComandos da staff:'
+  Formato: '&e {comando} &8- &7{descricao}'
+  chamar: 'Faz ele chegar agora (num ponto, "aqui", e por quanto tempo)'
+  dispensar: 'Manda ele embora agora'
+  reabastecer: 'Sorteia de novo o que ele trouxe'
+  proxima: 'Muda quando ele chega (ex.: 10m)'
+  ponto: 'Pontos de parada: adicionar onde você está, remover, lista, ir'
+  item: 'Adiciona o item da mão: à venda (adicionar) ou que ele compra (procura)'
+  criar: 'Cria um andarilho novo com um modelo pronto'
+  info: 'Situação do andarilho e o que tem na banca'
+  afinidade: 'Define ou soma a afinidade de um jogador'
+  historico: 'Últimas compras e vendas (de todos ou de um jogador)'
+  editor: 'Editor completo em menu'
+  recarregar: 'Relê os arquivos'
+  ajuda: 'Esta ajuda'

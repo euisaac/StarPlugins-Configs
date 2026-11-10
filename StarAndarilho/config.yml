@@ -1,0 +1,200 @@
+# ==========================================================
+#                      StarAndarilho
+#   Um mercador que viaja pelo servidor, chega com itens
+#   sorteados, vai embora... e volta.
+#   Desenvolvido por EuIsaac  -  StarPlugins
+# ==========================================================
+#
+# Os andarilhos (quem sao, quando aparecem, o que vendem e o que compram)
+# ficam no andarilhos.yml. Os pontos onde cada um monta a banca ficam no
+# locais.yml e sao gravados pelo /andarilhoadmin ponto adicionar.
+#
+# Quase tudo do andarilhos.yml tambem se edita DENTRO do jogo:
+#   /andarilhoadmin editor
+# Mexeu no arquivo? /andarilhoadmin recarregar
+#
+# Tempos: 30s, 10m, 2h, 1h30m, 1d  (numero sozinho = minutos)
+# Sons:   SOM:volume:tom  (vazio desliga). Nomes da 1.8 ou da 1.21: o plugin
+#         traduz sozinho para a versao do seu servidor.
+
+# Nao mexa: e por ele que o plugin sabe completar o arquivo nas atualizacoes.
+Versao do modelo: 1
+
+# Mostra no console os detalhes de erros.
+Debug: false
+
+# Fuso dos horarios da agenda (modo HORARIOS). Vazio = o do servidor.
+# Ex.: 'America/Sao_Paulo'
+Fuso horario: 'America/Sao_Paulo'
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL (para a rede inteira dividir a afinidade).
+  Tipo: SQLITE
+  Host: localhost
+  Porta: 3306
+  Banco: starandarilho
+  Usuario: root
+  Senha: ''
+  Prefixo: starandarilho_
+  # De quantos em quantos segundos a afinidade e os desejos sao gravados.
+  Salvar a cada: 120
+
+# ----------------------------------------------------------
+# Negociar
+# ----------------------------------------------------------
+Negociar:
+  # Distancia maxima do andarilho (em blocos) para comprar e vender.
+  Distancia: 8
+  # true: compra de qualquer lugar (sem precisar ir ate ele).
+  # Quem tem starandarilho.delonge compra de longe mesmo com false.
+  Comprar de longe: false
+  # Abre a banca de longe so para OLHAR (comprar continua pedindo a distancia).
+  Ver a loja de longe: true
+  # Inventario cheio na compra: CANCELAR (nao deixa comprar) ou CHAO (o que
+  # nao couber cai no chao).
+  Inventario cheio: CANCELAR
+  # Maximo de lotes numa compra so.
+  Maximo por compra: 64
+  # Compra com total igual ou acima disso pede confirmacao (0 = nunca).
+  # A raridade tambem pode pedir (Raridades -> Pedir confirmacao).
+  Confirmar acima de: 0
+  # Descontos por permissao: 'permissao:porcentagem'. Vale o maior (ou a soma,
+  # com 'Somar descontos'). O desconto de afinidade entra na mesma regra.
+  Descontos por permissao:
+    - 'starandarilho.desconto.vip:5'
+    - 'starandarilho.desconto.mvp:10'
+  Somar descontos: false
+
+# ----------------------------------------------------------
+# Ir ate o andarilho (/andarilho ir, botao no anuncio e no menu)
+# ----------------------------------------------------------
+Ir ate o andarilho:
+  Ativar: true
+  # Segundos parado antes do teleporte (andar cancela). 0 = na hora.
+  Aquecimento: 3
+  # Custo da viagem (0 = gratis) e a economia do economias.yml.
+  Custo: 0
+  Economia: dinheiro
+
+# ----------------------------------------------------------
+# Anuncios
+# ----------------------------------------------------------
+Anuncios:
+  # "Chega em X" antes da chegada, em minutos. So para andarilho com
+  # 'Mostrar quando volta: true'. Lista vazia ([]) desliga.
+  Avisar antes da chegada: [ 10, 5, 1 ]
+  Titulo na chegada: true
+  # Avisa quando chegou a hora mas ele nao veio (Chance de aparecer).
+  Avisar quando ele nao vier: true
+  # Anuncia para o servidor os itens de raridade com 'Anunciar chegada'.
+  Anunciar itens raros: true
+
+# ----------------------------------------------------------
+# Barganha: shift + clique direito num item da loja
+# ----------------------------------------------------------
+# Uma tentativa por item a cada visita. A afinidade aumenta a chance.
+Barganha:
+  Ativar: true
+  # Chance base de dar certo (%).
+  Chance: 35
+  # Desconto que o jogador consegue (%): numero ou faixa.
+  Desconto se der certo: '10-25'
+  # Se der errado: AUMENTAR (o preco sobe para ele nesta visita) ou
+  # RECUSAR (ele se recusa a vender aquele item para ele nesta visita).
+  Se der errado: AUMENTAR
+  Aumento se der errado: '5-15'
+
+# ----------------------------------------------------------
+# Afinidade: quanto mais o jogador negocia com um andarilho,
+# mais o andarilho confia nele. Cada andarilho tem a sua.
+# ----------------------------------------------------------
+Afinidade:
+  Ativar: true
+  Pontos por item comprado: 1
+  Pontos por item vendido: 0.05
+  Pontos por barganha: 1
+  # Niveis (em ordem de pontos):
+  #   Desconto               % de desconto em tudo dele
+  #   Bonus de barganha      + % de chance na barganha
+  #   Aviso antecipado       minutos antes da chegada em que ele te avisa
+  #                          em particular (com o lugar) - 0 = nao avisa
+  #   Revela o proximo ponto mostra no /andarilho onde ele vai parar
+  # Mercadorias podem pedir um nivel minimo ('Afinidade minima').
+  Niveis:
+    '1':
+      Nome: '&7Desconhecido'
+      Pontos: 0
+    '2':
+      Nome: '&aConhecido'
+      Pontos: 15
+      Desconto: 2
+      Bonus de barganha: 5
+    '3':
+      Nome: '&bFregues'
+      Pontos: 40
+      Desconto: 4
+      Bonus de barganha: 10
+      Aviso antecipado: 5
+    '4':
+      Nome: '&dAmigo de estrada'
+      Pontos: 100
+      Desconto: 7
+      Bonus de barganha: 15
+      Aviso antecipado: 10
+      Revela o proximo ponto: true
+    '5':
+      Nome: '&6&lConfidente'
+      Pontos: 250
+      Desconto: 10
+      Bonus de barganha: 25
+      Aviso antecipado: 15
+      Revela o proximo ponto: true
+
+# ----------------------------------------------------------
+# Raridades dos itens (a ordem aqui e a ordem na banca: a ultima
+# aparece primeiro).
+# ----------------------------------------------------------
+Raridades:
+  comum:
+    Nome: '&7Comum'
+  incomum:
+    Nome: '&aIncomum'
+  raro:
+    Nome: '&9Raro'
+    Brilho na loja: true
+  epico:
+    Nome: '&5&lÉpico'
+    Brilho na loja: true
+    Anunciar chegada: true
+    Som ao chegar: 'ENTITY_PLAYER_LEVELUP:1:1.2'
+  lendario:
+    Nome: '&6&lLendário'
+    Brilho na loja: true
+    Anunciar chegada: true
+    Pedir confirmacao: true
+    Som ao chegar: 'UI_TOAST_CHALLENGE_COMPLETE:1:1'
+
+# ----------------------------------------------------------
+# Menus e sons
+# ----------------------------------------------------------
+Menus:
+  # Milissegundos minimos entre dois cliques (evita compra dupla).
+  Intervalo entre cliques: 200
+  # Com um andarilho so, o /andarilho abre direto a banca dele quando
+  # ele estiver no servidor.
+  Abrir a loja direto se so houver um: true
+
+Sons:
+  Clique: 'UI_BUTTON_CLICK:0.6:1'
+  Erro: 'ENTITY_VILLAGER_NO:1:1'
+  Pagina: 'ITEM_BOOK_PAGE_TURN:1:1'
+  Compra: 'ENTITY_VILLAGER_YES:1:1'
+  Venda: 'ENTITY_EXPERIENCE_ORB_PICKUP:1:1'
+  Barganha certa: 'ENTITY_VILLAGER_CELEBRATE:1:1'
+  Barganha errada: 'ENTITY_VILLAGER_NO:1:0.8'
+  Chegada: 'BLOCK_NOTE_BLOCK_BELL:1:1'
+  Partida: 'BLOCK_NOTE_BLOCK_BASS:1:0.8'
+  Aviso: 'BLOCK_NOTE_BLOCK_PLING:1:1.5'
+  Desejo: 'ENTITY_PLAYER_LEVELUP:1:1.4'
+  Afinidade: 'UI_TOAST_CHALLENGE_COMPLETE:1:1'
+  Teleporte: 'ENTITY_ENDERMAN_TELEPORT:1:1'

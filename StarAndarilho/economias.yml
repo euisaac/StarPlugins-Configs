@@ -1,0 +1,53 @@
+# ==========================================================================
+#  StarAndarilho - economias
+#
+#  As economias que aparecem nos precos do andarilho (o que ele vende e o
+#  que ele paga). Crie quantas quiser; a chave (ex.: 'dinheiro') e o que o
+#  andarilhos.yml cita em 'Moeda'. Sem 'Moeda', vale a do 'Padrao'.
+#
+#  Provedor:
+#    VAULT         qualquer plugin de economia registrado no Vault
+#    PLAYERPOINTS  os pontos do PlayerPoints (valores inteiros)
+#    STARECONOMIA  uma moeda do StarEconomia; 'Moeda' e o id dela (vazio =
+#                  a principal)
+#    COMANDO       economia sem API: o saldo vem de um placeholder e o
+#                  dinheiro entra e sai por comando de console
+#                  ({jogador} {uuid} {valor})
+#    ou o id de uma moeda:
+#    stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+#    (ou outro id de moeda registrado no loader StarPlugins)
+#
+#  Valores inteiros  arredonda para baixo (pontos, cash).
+#  Desconto          false = os descontos (afinidade, permissao) nao valem
+#                    nos precos nesta economia.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# A economia dos precos sem 'Moeda'.
+Padrao: dinheiro
+
+Economias:
+  dinheiro:
+    Provedor: VAULT
+    Nome: 'Dinheiro'
+    Simbolo: '$'
+
+  # Exemplo com PlayerPoints. Tire o # e use 'pontos' num preco
+  # (ex.: Moeda: pontos).
+  # pontos:
+  #   Provedor: PLAYERPOINTS
+  #   Nome: 'Pontos'
+  #   Simbolo: ''
+  #   Abreviacao: ' pontos'
+
+  # Exemplo por COMANDO, para economias sem API. Tire o # para usar.
+  # cash:
+  #   Provedor: COMANDO
+  #   Nome: 'Cash'
+  #   Simbolo: ''
+  #   Abreviacao: ' cash'
+  #   Valores inteiros: true
+  #   Placeholder de saldo: '%meucash_saldo%'
+  #   Comando de retirar: 'cash remover {jogador} {valor}'
+  #   Comando de dar: 'cash adicionar {jogador} {valor}'

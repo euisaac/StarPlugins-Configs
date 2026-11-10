@@ -1,0 +1,363 @@
+# ==========================================================
+#  StarAndarilho - menus
+# ==========================================================
+# Cada tela tem Titulo, Linhas (1-6), Slots (onde entra a lista paginada),
+# Enfeite (vidro de fundo) e Itens (botoes fixos).
+#
+# Botao: Slot ou Slots, Material, Nome, Lore, Brilho, Quantidade,
+#   Textura (cabeca: Value base64, URL ou hash do minecraft-heads) ou Dono (nick),
+#   Permissao, Esconder sem permissao, Condicao, Acoes.
+#
+# Acoes (uma por linha; '[esquerdo]', '[direito]', '[shift]' na frente
+# limitam ao clique):
+#   voltar | fechar | anterior | proxima | atualizar
+#   lista | loja | venda | catalogo | ir | afinidade   (do andarilho da tela)
+#   quantidade +N / -N | maximo | confirmar          (telas de compra)
+#   comando: ... | console: ... | mensagem: ... | som: ...
+#
+# Condicao: presente, compra (ele compra itens nesta visita), afinidade
+# (afinidade ligada), ir (ir ate ele ligado). '!' na frente nega.
+#
+# Linhas de lore que sao SO uma variavel entre chaves ({extras}, {limite}...)
+# viram varias linhas ou somem quando nao se aplicam. O texto delas fica em
+# 'Textos' de cada tela.
+
+Versao do modelo: 1
+
+# ----------------------------------------------------------
+# /andarilho: todos os andarilhos
+# ----------------------------------------------------------
+Andarilhos:
+  Titulo: '&8Andarilhos &7({presentes} aqui)'
+  Linhas: 4
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Presente:
+    Nome: '{andarilho} &a&l(AQUI)'
+    Lore:
+      - '&7Está em &e{ponto}&7.'
+      - '&7Vai embora em &f{tempo}&7.'
+      - '&7Mercadorias na banca: &f{ofertas}'
+      - ''
+      - '{afinidade_linha}'
+      - ''
+      - '&aEsquerdo &7abrir a banca'
+      - '&eDireito &7ir até ele'
+      - '&bShift &7ver o catálogo'
+  Viajando:
+    Nome: '{andarilho} &8(viajando)'
+    Lore:
+      - '{quando}'
+      - '{onde}'
+      - ''
+      - '{afinidade_linha}'
+      - ''
+      - '&bClique &7para ver o catálogo'
+  Textos:
+    Quando: '&7Chega em &f{tempo}&7.'
+    Segredo: '&7Ninguém sabe quando ele volta...'
+    Onde: '&7Vai parar em &e{proximo_ponto}&7.'
+    Afinidade: '&7Sua afinidade: {afinidade} &8({pontos} pts)'
+  Vazio:
+    Slot: 13
+    Material: PAPER
+    Nome: '&7Nenhum andarilho por aqui.'
+  Itens:
+    Afinidade:
+      Slot: 30
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&dSua afinidade'
+      Lore:
+        - '&7Negocie com os andarilhos para'
+        - '&7ganhar desconto, aviso antes de todos'
+        - '&7e saber onde eles vão parar.'
+        - ''
+        - '&eClique para ver'
+      Condicao: afinidade
+      Acoes: [ afinidade ]
+    Fechar:
+      Slot: 31
+      Material: RED_DYE
+      Nome: '&cFechar'
+      Acoes: [ fechar ]
+    Anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&aPágina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&aPróxima página'
+      Acoes: [ proxima ]
+
+# ----------------------------------------------------------
+# A banca do andarilho
+# ----------------------------------------------------------
+Loja:
+  Titulo: '{andarilho} &8- banca'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Oferta:
+    Nome: '{item}'
+    # A lore do proprio item (encantamentos escritos, descricao) fica em cima.
+    Manter lore do item: true
+    # Material no lugar do item quando esgota (vazio = o proprio item).
+    Material esgotado: 'BARRIER'
+    Lore:
+      - ''
+      - '&7Raridade: {raridade}'
+      - '&7Preço: &a{preco} &8(lote de {lote})'
+      - '{preco_antigo}'
+      - '{extras}'
+      - '&7Estoque: &f{estoque}&7/&f{estoque_total}'
+      - '{limite}'
+      - '{relampago}'
+      - '{barganha}'
+      - '{afinidade_minima}'
+      - '{esgotado}'
+      - ''
+      - '{acoes}'
+    Acoes:
+      - '&aEsquerdo &7compra 1'
+      - '&aDireito &7escolhe a quantidade'
+      - '&eShift + direito &7barganhar'
+  Textos:
+    Preco antigo: '&8De &m{preco_original}&r &a(-{desconto_total}%)'
+    Extra: '&7+ {extra}'
+    Limite: '&7Você comprou: &f{comprados}&7/&f{limite_total} &8(por visita)'
+    Relampago: '&e&lRELÂMPAGO! &f-{relampago_desconto}% &7por mais &f{relampago_tempo}'
+    Pode barganhar: '&8Aceita barganha'
+    Barganha boa: '&aVocê barganhou: -{barganha_valor}%'
+    Barganha ruim: '&cPreço subiu para você: +{barganha_valor}%'
+    Recusado: '&cEle não vende isso para você nesta visita.'
+    Afinidade minima: '&cPrecisa de afinidade {nivel}'
+    Esgotado: '&c&lESGOTADO'
+  Vazio:
+    Slot: 22
+    Material: PAPER
+    Nome: '&7A banca está vazia...'
+  Itens:
+    Informacao:
+      Slot: 4
+      Material: OAK_SIGN
+      Nome: '{andarilho}'
+      Lore:
+        - '&7Em &e{ponto}&7, vai embora em &f{tempo}&7.'
+        - ''
+        - '&7Sua afinidade: {afinidade} &8({pontos} pts)'
+        - '&7Próximo nível: {proximo_nivel} &8(faltam {faltam})'
+        - '&7Seu desconto aqui: &a{desconto}%'
+    Vender:
+      Slot: 48
+      Material: EMERALD
+      Nome: '&aEle também compra!'
+      Lore:
+        - '&7Veja o que ele procura nesta'
+        - '&7visita e venda do seu inventário.'
+        - ''
+        - '&eClique para vender'
+      Condicao: compra
+      Acoes: [ venda ]
+    Voltar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cFechar'
+      Acoes: [ voltar ]
+    Catalogo:
+      Slot: 50
+      Material: BOOK
+      Nome: '&eCatálogo'
+      Lore:
+        - '&7Tudo o que ele pode trazer.'
+        - '&7Marque um item e eu te aviso'
+        - '&7quando ele vier.'
+      Acoes: [ catalogo ]
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPágina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aPróxima página'
+      Acoes: [ proxima ]
+
+# ----------------------------------------------------------
+# Escolher a quantidade
+# ----------------------------------------------------------
+Quantidade:
+  Titulo: '&8Quantos? {item}'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Slot: 13
+  Itens:
+    Menos10:
+      Slot: 10
+      Material: RED_STAINED_GLASS_PANE
+      Nome: '&c-10'
+      Acoes: [ 'quantidade -10' ]
+    Menos1:
+      Slot: 11
+      Material: PINK_STAINED_GLASS_PANE
+      Nome: '&c-1'
+      Acoes: [ 'quantidade -1' ]
+    Mais1:
+      Slot: 15
+      Material: LIME_STAINED_GLASS_PANE
+      Nome: '&a+1'
+      Acoes: [ 'quantidade +1' ]
+    Mais10:
+      Slot: 16
+      Material: GREEN_STAINED_GLASS_PANE
+      Nome: '&a+10'
+      Acoes: [ 'quantidade +10' ]
+    Maximo:
+      Slot: 17
+      Material: HOPPER
+      Nome: '&eMáximo &7({maximo})'
+      Acoes: [ maximo ]
+    Confirmar:
+      Slot: 22
+      Material: EMERALD
+      Nome: '&aComprar &f{quantidade}x &apor &f{total}'
+      Lore:
+        - '&7Preço de cada lote: &f{unidade}'
+      Acoes: [ confirmar ]
+    Voltar:
+      Slot: 18
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# ----------------------------------------------------------
+# Confirmar compra (item raro ou caro)
+# ----------------------------------------------------------
+Confirmar:
+  Titulo: '&8Confirmar compra'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Slot: 13
+  Itens:
+    Confirmar:
+      Slot: 11
+      Material: LIME_DYE
+      Nome: '&aConfirmar'
+      Lore:
+        - '&7Comprar &f{quantidade}x {item}'
+        - '&7por &f{total}&7.'
+      Acoes: [ confirmar ]
+    Cancelar:
+      Slot: 15
+      Material: RED_DYE
+      Nome: '&cCancelar'
+      Acoes: [ voltar ]
+
+# ----------------------------------------------------------
+# Vender para o andarilho
+# ----------------------------------------------------------
+Venda:
+  Titulo: '{andarilho} &8- compra'
+  Linhas: 4
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Pedido:
+    Nome: '{item}'
+    Lore:
+      - ''
+      - '&7Ele paga: &a{preco} &7cada'
+      - '&7Ainda quer: &f{restante}&7/&f{total}'
+      - '&7Você tem: &f{tem} &8(vale {valor_tudo})'
+      - '{limite}'
+      - '{satisfeito}'
+      - ''
+      - '&aEsquerdo &7vende 1'
+      - '&aDireito &7vende 16'
+      - '&eShift &7vende tudo que puder'
+  Textos:
+    Limite: '&7Você vendeu: &f{vendidos}&7/&f{limite_total} &8(por visita)'
+    Satisfeito: '&cEle já tem o bastante.'
+  Vazio:
+    Slot: 13
+    Material: PAPER
+    Nome: '&7Ele não quer comprar nada agora.'
+  Itens:
+    Voltar:
+      Slot: 31
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+    Anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&aPágina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&aPróxima página'
+      Acoes: [ proxima ]
+
+# ----------------------------------------------------------
+# Catalogo: tudo que ele pode trazer
+# ----------------------------------------------------------
+Catalogo:
+  Titulo: '&8Catálogo - {andarilho}'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  # Mostra a chance aproximada de cada item vir numa visita.
+  Mostrar chance: true
+  Enfeite:
+    Ativar: true
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '{item}'
+    Lore:
+      - ''
+      - '&7Raridade: {raridade}'
+      - '&7Preço de costume: &f{preco}'
+      - '{chance}'
+      - '{trouxe}'
+      - ''
+      - '{desejo}'
+  Textos:
+    Chance: '&7Chance de vir: &f~{chance_valor}%'
+    Trouxe agora: '&a&lEle trouxe este agora!'
+    Desejando: '&dVocê será avisado quando ele trouxer. &7(clique para desmarcar)'
+    Nao desejando: '&eClique &7para ser avisado quando ele trouxer.'
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&aPágina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&aPróxima página'
+      Acoes: [ proxima ]

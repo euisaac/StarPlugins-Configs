@@ -1,0 +1,313 @@
+# ==========================================================
+#  StarAndarilho - andarilhos
+# ==========================================================
+# Crie quantos quiser. A chave (ex.: 'mercador') e o id usado nos comandos
+# e placeholders. Tudo daqui tambem se edita no jogo: /andarilhoadmin editor
+#
+# Depois de criar, diga ONDE ele monta a banca (pode ter varios pontos):
+#   /andarilhoadmin ponto adicionar <id> <nome do lugar>
+#
+# Tempos: 30s, 10m, 2h, 1h30m, 1d (numero sozinho = minutos).
+# Faixas: '1-3' sorteia de 1 a 3 a cada visita; 5 e sempre 5.
+#
+# ---------------------------------------------------------- AGENDA
+#   Modo: INTERVALO  volta 'Intervalo' depois de ir embora (+- 'Variacao')
+#         HORARIOS   chega em cada horario da lista e fica 'Duracao'
+#                    ('todos 18:00', 'sabado,domingo 14:30', 'sexta 21:00')
+#   Chance de aparecer: % de ele vir quando chega a hora (senao, pula)
+#   Minimo de jogadores online: so vem com essa gente no servidor
+#   Mostrar quando volta: false = ninguem sabe quando ele chega (so quem
+#                         tem afinidade com aviso antecipado)
+#
+# ---------------------------------------------------------- PONTOS
+#   Escolha: ALEATORIO | SEQUENCIA (um depois do outro) | MAIS_JOGADORES
+#            (para onde tem mais gente perto na hora)
+#   Revelar o proximo ponto: todos veem onde ele vai parar
+#
+# ---------------------------------------------------------- MERCADORIAS
+#   Item: Material, Quantidade (o lote), Nome, Lore, Encantamentos
+#         ['SHARPNESS:5'], Brilho, Textura, Inquebravel, Modelo
+#     ou Item serializado (o item exato; o editor e o '/andarilhoadmin item
+#     adicionar' gravam assim, com tudo que o item tem)
+#   Entregar item: false = so roda os Comandos ({jogador} {uuid})
+#   Raridade: comum, incomum, raro, epico, lendario (config.yml)
+#   Peso: chance relativa de vir numa visita (0 = nunca)
+#   Garantido: vem em TODA visita
+#   Preco + Moeda (economias.yml) + Custos extras:
+#     'item: EMERALD 16' | 'xp: 5' | '<economia>: 100'  (sem desconto)
+#   Estoque: lotes que ele traz na visita (dividido entre todos!)
+#   Limite por jogador: lotes por jogador na visita (0 = sem limite)
+#   Afinidade minima: nivel de afinidade para comprar (0 = qualquer um)
+#   Permissao, Pode barganhar, Pode ser relampago, Nome na loja
+#
+# ---------------------------------------------------------- ELE COMPRA
+#   Compra dos jogadores: os itens que ele procura (sorteados por visita)
+#     Paga por unidade, Moeda, Quantidade (total que ele quer na visita),
+#     Peso, Limite por jogador, Item exato (false = basta o material)
+
+Versao do modelo: 1
+
+Andarilhos:
+
+  # ========================================================
+  # O mercador classico: aparece a cada ~3h, fica 30 min.
+  # ========================================================
+  mercador:
+    Nome: '&6&lMercador Andarilho'
+    Ativo: true
+    Aparencia:
+      # JOGADOR (com Skin) ou um mob: VILLAGER, WANDERING_TRADER, WITCH...
+      # (o que nao existir na versao do servidor vira aldeao)
+      Tipo: JOGADOR
+      Skin: 'Notch'
+      Olhar para jogadores: true
+      # Contorno colorido (GOLD, AQUA, RED...). Vazio = sem.
+      Brilho: 'GOLD'
+      Particulas: 'HAPPY_VILLAGER'
+      # NADA, ou PLACA: holograma no proximo ponto contando quanto falta.
+      Quando ausente: PLACA
+      Holograma:
+        Ativar: true
+        Altura: 2.3
+        Linhas:
+          - '&6&lMERCADOR ANDARILHO'
+          - '&7Vai embora em &f{tempo}'
+          - '&e&lCLIQUE PARA NEGOCIAR'
+        Linhas da placa:
+          - '&6&lMERCADOR ANDARILHO'
+          - '&7Chega aqui em &f{tempo}'
+      Icone:
+        Material: ''
+        Textura: ''
+    Agenda:
+      Modo: INTERVALO
+      Intervalo: '3h'
+      Duracao: '30m'
+      Variacao: '20m'
+      Chance de aparecer: 100
+      Minimo de jogadores online: 0
+      Mostrar quando volta: true
+      Horarios:
+        - 'todos 18:00'
+    Pontos:
+      Escolha: ALEATORIO
+      Revelar o proximo ponto: false
+    Estoque:
+      Ofertas por visita: '4-6'
+      # O preco muda ate essa % (para mais ou para menos) a cada visita.
+      Variacao de preco: 15
+      Relampago:
+        Quantidade: 1
+        Desconto: '25-40'
+        Duracao: '5m'
+    Falas:
+      Saudacao:
+        - 'Ora, ora, um viajante! Veja o que eu trouxe de longe.'
+        - 'Chegue mais, {jogador}! Preço bom para quem chega primeiro.'
+      Compra:
+        - 'Ótima escolha!'
+        - 'Isso aí veio de muito longe, cuide bem.'
+      Venda:
+        - 'Hmm, isso me serve. Negócio fechado!'
+      Barganha aceita:
+        - 'Tá bom, tá bom... só porque fui com a sua cara.'
+      Barganha recusada:
+        - 'Está querendo me roubar? Agora sai mais caro!'
+      Recusa:
+        - 'Para você? Hoje não.'
+      Afinidade:
+        - 'Você é dos bons, {jogador}. Vou lembrar de você na próxima.'
+    Comandos:
+      # Console, quando ele chega e quando ele vai. {andarilho} {ponto} {mundo} {x} {y} {z}
+      Ao chegar: [ ]
+      Ao partir: [ ]
+    Mercadorias:
+      macas_douradas:
+        Item:
+          Material: GOLDEN_APPLE
+          Quantidade: 4
+        Raridade: incomum
+        Peso: 20
+        Preco: 1500
+        Estoque: '3-6'
+        Limite por jogador: 2
+      perolas:
+        Item:
+          Material: ENDER_PEARL
+          Quantidade: 8
+        Raridade: comum
+        Peso: 30
+        Preco: 600
+        Estoque: '5-10'
+      xp:
+        Nome na loja: '&aFrasco de experiência'
+        Item:
+          Material: EXPERIENCE_BOTTLE
+          Quantidade: 32
+        Raridade: comum
+        Peso: 25
+        Preco: 900
+        Estoque: '4-8'
+      livro_afiada:
+        Nome na loja: '&bLivro: Afiação V'
+        Item:
+          Material: ENCHANTED_BOOK
+          Nome: '&bLivro Encantado'
+          Encantamentos: [ 'SHARPNESS:5' ]
+        Raridade: raro
+        Peso: 10
+        Preco: 5000
+        Estoque: '1-2'
+        Limite por jogador: 1
+      picareta_estelar:
+        Item:
+          Material: DIAMOND_PICKAXE
+          Nome: '&b&lPicareta Estelar'
+          Lore:
+            - '&7Forjada numa terra distante.'
+          Encantamentos: [ 'EFFICIENCY:6', 'UNBREAKING:4', 'FORTUNE:3' ]
+        Raridade: epico
+        Peso: 4
+        Preco: 25000
+        Custos extras:
+          - 'item: EMERALD 16'
+        Estoque: 1
+        Limite por jogador: 1
+        Afinidade minima: 2
+      espada_do_viajante:
+        Item:
+          Material: NETHERITE_SWORD|DIAMOND_SWORD
+          Nome: '&6&lEspada do Viajante'
+          Lore:
+            - '&7Dizem que nunca perdeu um duelo.'
+          Encantamentos: [ 'SHARPNESS:6', 'UNBREAKING:5', 'LOOTING:3' ]
+          Inquebravel: true
+        Raridade: lendario
+        Peso: 1
+        Preco: 80000
+        Custos extras:
+          - 'xp: 30'
+        Estoque: 1
+        Limite por jogador: 1
+        Afinidade minima: 3
+        Pode ser relampago: false
+      bau_misterioso:
+        Nome na loja: '&dBaú misterioso'
+        Item:
+          Material: CHEST
+          Nome: '&dBaú misterioso'
+          Lore:
+            - '&7Ninguém sabe o que tem dentro.'
+            - '&7(entrega por comando)'
+          Brilho: true
+        Entregar item: false
+        Comandos:
+          - 'give {jogador} diamond 3'
+          - 'xp 200 {jogador}'
+        Raridade: raro
+        Peso: 8
+        Preco: 3000
+        Estoque: '2-4'
+        Limite por jogador: 1
+    Compra dos jogadores:
+      Ativar: true
+      Itens por visita: '1-2'
+      Itens:
+        diamantes:
+          Item: DIAMOND
+          Paga por unidade: 120
+          Quantidade: '32-64'
+          Peso: 10
+        couro:
+          Item: LEATHER
+          Paga por unidade: 15
+          Quantidade: '64-128'
+          Peso: 15
+        ossos:
+          Item: BONE
+          Paga por unidade: 8
+          Quantidade: '64-192'
+          Peso: 15
+          Limite por jogador: 64
+
+  # ========================================================
+  # O contrabandista: so a noite (nos horarios), misterioso,
+  # nao avisa quando volta e so vende para quem confia.
+  # Vem desligado: ligue (Ativo: true) e adicione os pontos.
+  # ========================================================
+  contrabandista:
+    Nome: '&8&lContrabandista'
+    Ativo: false
+    Aparencia:
+      Tipo: WITCH
+      Olhar para jogadores: true
+      Brilho: 'DARK_PURPLE'
+      Particulas: 'LARGE_SMOKE'
+      Quando ausente: NADA
+      Holograma:
+        Ativar: true
+        Altura: 2.4
+        Linhas:
+          - '&8&lCONTRABANDISTA'
+          - '&7Some em &f{tempo}'
+      Icone:
+        Material: 'CAULDRON'
+    Agenda:
+      Modo: HORARIOS
+      Duracao: '20m'
+      Chance de aparecer: 60
+      Minimo de jogadores online: 5
+      Mostrar quando volta: false
+      Horarios:
+        - 'sexta,sabado 22:00'
+        - 'todos 03:00'
+    Pontos:
+      Escolha: MAIS_JOGADORES
+      Revelar o proximo ponto: false
+    Estoque:
+      Ofertas por visita: '2-3'
+      Variacao de preco: 30
+      Relampago:
+        Quantidade: 0
+    Falas:
+      Saudacao:
+        - 'Psiu... não fui eu que te vendi nada, entendeu?'
+      Compra:
+        - 'Some daqui antes que alguém veja.'
+      Barganha recusada:
+        - 'Acha que eu tô de brincadeira?'
+    Mercadorias:
+      totem:
+        Item:
+          Material: TOTEM_OF_UNDYING|NETHER_STAR
+        Raridade: epico
+        Peso: 5
+        Preco: 40000
+        Estoque: 1
+        Limite por jogador: 1
+        Afinidade minima: 2
+      tnt:
+        Item:
+          Material: TNT
+          Quantidade: 16
+        Raridade: incomum
+        Peso: 10
+        Preco: 4000
+        Estoque: '2-4'
+      cabeca_de_wither:
+        Item:
+          Material: WITHER_SKELETON_SKULL
+        Raridade: raro
+        Peso: 6
+        Preco: 12000
+        Estoque: '1-3'
+        Garantido: true
+    Compra dos jogadores:
+      Ativar: true
+      Itens por visita: 1
+      Itens:
+        polvora:
+          Item: GUNPOWDER
+          Paga por unidade: 25
+          Quantidade: '64-256'
+          Peso: 10
