@@ -1,6 +1,16 @@
 # =========================================================
 #  StarEssentials - boas-vindas na entrada do jogador
 #  Placeholder disponivel em qualquer texto: %player_name%
+#  (e os do PlaceholderAPI, se ele estiver no servidor)
+#
+#  Trechos clicaveis nas mensagens (mensagens, anuncio e festa):
+#   <click:run_command:/comando>texto</click>      roda o comando ao clicar
+#   <click:suggest_command:/comando >texto</click> escreve o comando no chat
+#   <click:open_url:https://site.com>texto</click> abre o link
+#   <hover:show_text:&aTexto do mouse>texto</hover> mostra ao passar o mouse
+#  Clique e mouse podem ser juntados no mesmo trecho; <nl> quebra a linha
+#  do texto do mouse. Ex.:
+#   - "&fLeia as regras: <click:run_command:/regras><hover:show_text:&eClique para ler>&b&l[REGRAS]</hover></click>"
 # =========================================================
 
 # Boas-vindas normal, mostrada em toda entrada de quem ja jogou antes.
@@ -25,9 +35,11 @@ primeira-vez:
     - ""
 
   # Anuncio mandado a TODOS os jogadores online quando alguem entra pela
-  # primeira vez. Lista vazia = sem anuncio.
+  # primeira vez. Lista vazia = sem anuncio. O botao do exemplo usa o /sbv
+  # (dar-boas-vindas, no fim do arquivo): quem clica da as boas-vindas no chat.
   anuncio: []
   #  - "&e&lNOVO! &fO jogador &6%player_name% &fentrou pela primeira vez no servidor!"
+  #  - "<click:run_command:/sbv %player_name%><hover:show_text:&aClique para dar as boas-vindas>&a&l[DAR BOAS-VINDAS]</hover></click>"
 
   # Comandos rodados uma unica vez, so nessa primeira entrada (mesmo com
   # "ativado: false" acima). Cada linha pode comecar com [console] (padrao)
@@ -36,6 +48,16 @@ primeira-vez:
   #  - "[console] kit inicial %player_name%"
   #  - "[jogador] spawn"
   comandos: []
+
+  # Protecao de PvP para quem acabou de entrar pela primeira vez: ninguem
+  # bate nele, e ele tambem nao bate em ninguem, ate o tempo acabar.
+  # 0 = desligado. Placeholders: {minutos}, {tempo} (o que falta).
+  protecao-pvp:
+    minutos: 0
+    mensagem-inicio: "&aVoce esta protegido do PvP por &f{minutos} &aminuto(s) por ser novo no servidor."
+    mensagem-fim: "&eSua protecao de novato acabou: a partir de agora o PvP vale para voce."
+    mensagem-atacante: "&cEsse jogador e novo no servidor e esta protegido do PvP por mais &f{tempo}&c."
+    mensagem-novato-atacando: "&cVoce e novo no servidor e esta protegido do PvP: nao pode atacar jogadores por mais &f{tempo}&c."
 
   # "BemVindo premiado": chance de comecar uma festa de boas-vindas na
   # primeira entrada. Quem der as boas-vindas no chat (ou no /g) dentro do
@@ -89,3 +111,21 @@ comandos-toda-entrada: []
 # Espera antes de rodar os comandos de entrada, em ticks (20 = 1 segundo):
 # da tempo do jogador terminar de entrar (e ir pro spawn) antes de receber kit etc.
 comandos-atraso-ticks: 20
+
+# /sbv <jogador> (ou /darboasvindas): quem usa FALA no chat a mensagem abaixo,
+# como se tivesse digitado - passa pelo plugin de chat do servidor e conta no
+# BemVindo premiado. Feito para ir num trecho clicavel do anuncio acima:
+#   <click:run_command:/sbv %player_name%>&a&l[DAR BOAS-VINDAS]</click>
+# So aceita quem entrou pela primeira vez ha pouco, e cada jogador da as
+# boas-vindas uma vez so a cada novato.
+dar-boas-vindas:
+  ativado: true
+  # O que o jogador fala. %player_name% = o novato, %jogador% = quem clicou.
+  # Comecando com "/" vira comando do jogador, ex.: "/g Seja bem-vindo(a), %player_name%!"
+  mensagem: "Seja bem-vindo(a), %player_name%!"
+  # Por quanto tempo depois da primeira entrada o novato pode receber o /sbv.
+  valido-por-segundos: 300
+  mensagem-nao-novato: "&cO jogador &f%player_name% &cnao entrou pela primeira vez agora."
+  mensagem-ja-deu: "&7Voce ja deu as boas-vindas a &f%player_name%&7."
+  mensagem-proprio: "&cVoce nao pode dar as boas-vindas a si mesmo."
+  mensagem-desativado: "&cEsse recurso esta desativado."
