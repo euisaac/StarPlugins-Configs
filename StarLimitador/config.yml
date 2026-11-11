@@ -1,0 +1,86 @@
+# ============================================================
+#  StarLimitador - configuracao geral
+#  Os limites em si ficam no limites.yml (ou no menu /limites,
+#  com o modo edicao ligado pela staff).
+# ============================================================
+Versao do modelo: 1
+
+# Mundos onde o StarLimitador nao faz nada (nem conta, nem barra).
+Mundos ignorados: []
+
+# Mostra no console as linhas do limites.yml que nao existem nesta
+# versao do servidor (ex.: observador numa 1.8). Elas ficam de fora do menu.
+Avisar linhas ausentes: false
+
+Avisos:
+  # Onde o jogador ve que foi barrado: CHAT, ACTIONBAR ou AMBOS.
+  Onde: CHAT
+  # Tempo minimo entre dois avisos para o mesmo jogador (evita spam
+  # quando ele tenta colocar varias vezes seguidas).
+  Intervalo entre avisos: 2s
+
+Mobs:
+  # Motivos de nascimento que o limitador NAO controla.
+  #  CUSTOM / COMMAND: mobs criados por plugins (bosses, pets, NPCs) e /summon.
+  #  As transformacoes (cura de aldeao, raio no porco, vaca que vira cogumelo...)
+  #  ficam de fora porque barrar a transformacao faria o mob sumir.
+  # Outros motivos que voce pode por aqui: SPAWNER, SPAWNER_EGG, BREEDING,
+  # NATURAL, CHUNK_GEN, BUILD_IRONGOLEM, BUILD_SNOWMAN, BUILD_WITHER, SLIME_SPLIT,
+  # JOCKEY, MOUNT, REINFORCEMENTS, VILLAGE_DEFENSE, PATROL, RAID, TRIAL_SPAWNER...
+  Motivos ignorados:
+    - CUSTOM
+    - COMMAND
+    - SHOULDER_ENTITY
+    - CURED
+    - INFECTION
+    - DROWNED
+    - PIGLIN_ZOMBIFIED
+    - FROZEN
+    - METAMORPHOSIS
+    - LIGHTNING
+    - SHEARED
+    - DUPLICATION
+    - ENCHANTMENT
+  # Mobs com nome (plaquinha) entram na contagem?
+  Contar mobs com nome: true
+
+Blocos:
+  # A contagem de blocos de cada chunk e guardada e ajustada a cada bloco
+  # colocado/quebrado. Depois deste tempo ela e refeita do zero.
+  Recontar depois de: 5m
+  # Antes de BARRAR um bloco, uma contagem mais velha que isto e refeita
+  # (assim ninguem fica barrado por uma conta velha depois de uma explosao).
+  Conferir antes de negar: 5s
+
+# Remove do mundo, de tempos em tempos, os mobs que nao deviam estar ali.
+# So mobs: suportes de armadura, molduras e carrinhos fazem parte de
+# construcoes e nunca sao apagados automaticamente.
+Limpeza automatica:
+  Ativar: true
+  Intervalo: 2m
+  # Mobs de tipo bloqueado (ex.: phantom bloqueado no limites.yml).
+  Remover bloqueados: true
+  # Mobs que passam do limite da area (os mais novos saem primeiro).
+  Remover excesso: false
+  # Mobs com nome, domesticados, presos na corda, montados e NPCs ficam sempre.
+  Poupar com nome: true
+  Poupar domesticados: true
+  Avisar no console: true
+
+Menu:
+  # Tempo minimo entre dois cliques no menu (milissegundos).
+  Intervalo entre cliques: 150
+  # Mostra na lore de cada item quantos ja existem na area de quem abriu.
+  Mostrar contagem do chunk: true
+  # Limite de uma linha nova criada no modo edicao (clique num item do
+  # seu inventario). Na categoria de mobs vale o "Padrao" dela.
+  Limite inicial: 8
+
+Sons:
+  Clique: UI_BUTTON_CLICK;0.6
+  Erro: ENTITY_VILLAGER_NO;0.8
+  Pagina: ITEM_BOOK_PAGE_TURN;0.8
+  Negado: BLOCK_NOTE_BLOCK_BASS;0.8;0.6
+  Editar: ENTITY_EXPERIENCE_ORB_PICKUP;0.6;1.4
+
+Debug: false

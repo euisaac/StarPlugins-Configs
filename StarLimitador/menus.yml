@@ -1,0 +1,127 @@
+# ============================================================
+#  StarLimitador - menus
+#  Os itens de cada categoria e as proprias categorias vem do limites.yml;
+#  aqui ficam titulos, textos, slots e botoes das telas.
+# ============================================================
+Versao do modelo: 1
+
+# /limites
+Principal:
+  Titulo: '&8Limites do servidor'
+  Linhas: 3
+  Enfeite:
+    Ativar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  # Cada categoria do limites.yml (no Slot dela).
+  # {nome} {quantidade} {bloqueados} {area}; {descricao} vira a Descricao da categoria.
+  Categoria:
+    Nome: 'Limite {nome}'
+    Lore:
+      - ''
+      - '{descricao}'
+  Fechar:
+    Ativar: false
+    Slot: 22
+    Material: BARRIER
+    Nome: '&cFechar'
+
+# Uma categoria aberta.
+Categoria:
+  Titulo: '&8Limites - {categoria}'
+  Linhas: 6
+  # Onde os itens limitados aparecem (o resto vai para a proxima pagina).
+  Slots: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  Enfeite:
+    Ativar: false
+    Material: GRAY_STAINED_GLASS_PANE
+    Nome: ' '
+  # {nome} {limite} {area} {aqui} {mundos} {id}; {lore} vira a Lore da linha no limites.yml.
+  # A quantidade do item mostra o limite (ate 64).
+  Item:
+    Nome: '{nome}'
+    Lore:
+      - '&fLimite:'
+      - '&f{limite} {area}'
+      - '{lore}'
+    # So aparece quando o config.yml manda mostrar a contagem.
+    Lore da contagem:
+      - ''
+      - '&7Na sua area agora: &f{aqui}&7/{limite}'
+    Lore de mundos:
+      - '&8So em: {mundos}'
+  Item bloqueado:
+    Nome: '{nome} &c(bloqueado)'
+    Lore:
+      - '&cBloqueado no servidor.'
+      - '&7Ninguem pode {acao} isto aqui.'
+      - '{lore}'
+  # Acrescentado em cada item quando a staff liga o modo edicao.
+  Lore de edicao:
+    - ''
+    - '&bEsquerdo &f+1  &bDireito &f-1'
+    - '&bShift+Esquerdo &f+10  &bShift+Direito &f-10'
+    - '&bQ &fbloquear/liberar  &bCtrl+Q &fremover'
+  Vazio:
+    Slot: 22
+    Material: BARRIER
+    Nome: '&7Nada limitado aqui ainda.'
+  Voltar:
+    Slot: 45
+    Material: ARROW
+    Nome: '&cVoltar'
+  # Usado no lugar do Voltar quando a categoria foi aberta direto (/limites mobs).
+  Fechar:
+    Slot: 45
+    Material: BARRIER
+    Nome: '&cFechar'
+  Anterior:
+    Slot: 48
+    Material: ARROW
+    Nome: '&ePagina anterior'
+  Proxima:
+    Slot: 50
+    Material: ARROW
+    Nome: '&eProxima pagina'
+  # {linhas} vira as linhas abaixo que valem para a categoria.
+  Info:
+    Slot: 53
+    Material: SUNFLOWER
+    Nome: '&6INFO'
+    Lore:
+      - '{linhas}'
+    Lore padrao:
+      - '&eDemais mobs nao listados'
+      - '&epor padrao x{padrao} {area}'
+    Lore total:
+      - '&eTeto somando tudo da categoria:'
+      - '&e{total} {area}'
+    Lore comum:
+      - '&7O limite de cada item aparece'
+      - '&7nele e na quantidade dele.'
+    Lore edicao:
+      BLOCOS:
+        - ''
+        - '&bClique num bloco do seu inventario'
+        - '&bpara limita-lo aqui.'
+      MOBS:
+        - ''
+        - '&bClique num ovo de mob do seu'
+        - '&binventario para limita-lo aqui.'
+      ENTIDADES:
+        - ''
+        - '&bClique num suporte de armadura, moldura,'
+        - '&bquadro, carrinho, barco ou cristal do'
+        - '&bseu inventario para limita-lo aqui.'
+  # So para quem tem starlimitador.admin.
+  Edicao:
+    Slot: 49
+    Material: '{material}'
+    Material ligado: LIME_DYE
+    Material desligado: GRAY_DYE
+    Nome: '&bModo edicao: {estado}'
+    Lore:
+      - '&7Ligado, os cliques nos itens mudam'
+      - '&7os limites na hora.'
+      - ''
+      - '&eClique para alternar.'

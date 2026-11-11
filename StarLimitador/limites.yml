@@ -1,0 +1,451 @@
+# ============================================================
+#  StarLimitador - limites.yml
+#
+#  Cada CATEGORIA vira uma aba do /limites. Crie quantas quiser.
+#    Tipo: BLOCOS    -> blocos colocados (redstone, spawners, baus...)
+#          MOBS      -> criaturas que nascem (ovo, spawner, cria, natural)
+#          ENTIDADES -> suportes de armadura, molduras, carrinhos, barcos...
+#    Area: 1 = o limite vale POR CHUNK; 2 = a cada 2x2 chunks; 3 = 3x3...
+#    Padrao (so MOBS): limite de cada mob que NAO esta listado (0 = sem).
+#    Limite total: teto somando tudo da categoria na area (0 = sem teto).
+#    Mundos: [] = todos; ou a lista dos mundos onde a categoria vale.
+#    Slot: onde a categoria aparece no menu principal.
+#
+#  Cada LINHA (dentro de Limites):
+#    Alvos: os blocos/mobs/entidades que ela conta. Pode usar o nome
+#           moderno em qualquer versao (REPEATER vale tambem na 1.8) e
+#           curinga (*_BUTTON = todos os botoes).
+#    Limite: quantos cabem na area.   Bloqueado: true = nao pode de jeito nenhum.
+#    Area / Mundos / Icone / Lore: opcionais (sem eles vale o da categoria).
+#
+#  Nao precisa mexer aqui: a staff edita tudo pelo /limites (botao de
+#  modo edicao) ou pelo /limitador.
+# ============================================================
+Versao do modelo: 1
+
+Categorias:
+  redstone:
+    Tipo: BLOCOS
+    Nome: '&cRedstone'
+    Icone: REDSTONE
+    Slot: 10
+    Area: 1
+    Limite total: 0
+    Mundos: []
+    Descricao:
+      - '&7Clique para ver os limites de'
+      - '&7redstone do servidor.'
+    Limites:
+      po-de-redstone:
+        Nome: '&ePó de Redstone'
+        Icone: REDSTONE
+        Alvos: [REDSTONE_WIRE]
+        Limite: 64
+      repetidor:
+        Nome: '&eRepetidor'
+        Icone: REPEATER
+        Alvos: [REPEATER]
+        Limite: 16
+      comparador:
+        Nome: '&eComparador'
+        Icone: COMPARATOR
+        Alvos: [COMPARATOR]
+        Limite: 16
+      pistao:
+        Nome: '&ePistão'
+        Icone: PISTON
+        Alvos: [PISTON]
+        Limite: 16
+      pistao-grudento:
+        Nome: '&ePistão Grudento'
+        Icone: STICKY_PISTON
+        Alvos: [STICKY_PISTON]
+        Limite: 16
+      observador:
+        Nome: '&eObservador'
+        Icone: OBSERVER
+        Alvos: [OBSERVER]
+        Limite: 8
+      funil:
+        Nome: '&eFunil'
+        Icone: HOPPER
+        Alvos: [HOPPER]
+        Limite: 10
+      liberador:
+        Nome: '&eLiberador'
+        Icone: DROPPER
+        Alvos: [DROPPER]
+        Limite: 8
+      ejetor:
+        Nome: '&eEjetor'
+        Icone: DISPENSER
+        Alvos: [DISPENSER]
+        Limite: 8
+      tocha-de-redstone:
+        Nome: '&eTocha de Redstone'
+        Icone: REDSTONE_TORCH
+        Alvos: [REDSTONE_TORCH]
+        Limite: 16
+      lampada:
+        Nome: '&eLâmpada de Redstone'
+        Icone: REDSTONE_LAMP
+        Alvos: [REDSTONE_LAMP]
+        Limite: 32
+      bloco-de-redstone:
+        Nome: '&eBloco de Redstone'
+        Icone: REDSTONE_BLOCK
+        Alvos: [REDSTONE_BLOCK]
+        Limite: 16
+      sensor-de-luz:
+        Nome: '&eSensor de Luz Solar'
+        Icone: DAYLIGHT_DETECTOR
+        Alvos: [DAYLIGHT_DETECTOR]
+        Limite: 8
+      bloco-musical:
+        Nome: '&eBloco Musical'
+        Icone: NOTE_BLOCK
+        Alvos: [NOTE_BLOCK]
+        Limite: 16
+      bloco-de-slime:
+        Nome: '&eBloco de Slime'
+        Icone: SLIME_BLOCK
+        Alvos: [SLIME_BLOCK]
+        Limite: 32
+      bloco-de-mel:
+        Nome: '&eBloco de Mel'
+        Icone: HONEY_BLOCK
+        Alvos: [HONEY_BLOCK]
+        Limite: 32
+      trilho-energizado:
+        Nome: '&eTrilho Energizado'
+        Icone: POWERED_RAIL
+        Alvos: [POWERED_RAIL]
+        Limite: 32
+      trilho-detector:
+        Nome: '&eTrilho Detector'
+        Icone: DETECTOR_RAIL
+        Alvos: [DETECTOR_RAIL]
+        Limite: 16
+      trilho-ativador:
+        Nome: '&eTrilho Ativador'
+        Icone: ACTIVATOR_RAIL
+        Alvos: [ACTIVATOR_RAIL]
+        Limite: 16
+      alvo:
+        Nome: '&eAlvo'
+        Icone: TARGET
+        Alvos: [TARGET]
+        Limite: 8
+      sensor-sculk:
+        Nome: '&eSensor de Sculk'
+        Icone: SCULK_SENSOR
+        Alvos: [SCULK_SENSOR, CALIBRATED_SCULK_SENSOR]
+        Limite: 4
+      fabricador:
+        Nome: '&eFabricador'
+        Icone: CRAFTER
+        Alvos: [CRAFTER]
+        Limite: 4
+      bau-armadilha:
+        Nome: '&eBaú Armadilha'
+        Icone: TRAPPED_CHEST
+        Alvos: [TRAPPED_CHEST]
+        Limite: 16
+      alavanca:
+        Nome: '&eAlavanca'
+        Icone: LEVER
+        Alvos: [LEVER]
+        Limite: 32
+      botoes:
+        Nome: '&eBotões'
+        Icone: STONE_BUTTON
+        Alvos: ['*_BUTTON']
+        Limite: 32
+      placas-de-pressao:
+        Nome: '&ePlacas de Pressão'
+        Icone: STONE_PRESSURE_PLATE
+        Alvos: ['*_PRESSURE_PLATE', STONE_PLATE, WOOD_PLATE, GOLD_PLATE, IRON_PLATE]
+        Limite: 32
+      gancho:
+        Nome: '&eGancho de Armadilha'
+        Icone: TRIPWIRE_HOOK
+        Alvos: [TRIPWIRE_HOOK]
+        Limite: 16
+      tnt:
+        Nome: '&eTNT'
+        Icone: TNT
+        Alvos: [TNT]
+        Limite: 16
+
+  mobs:
+    Tipo: MOBS
+    Nome: '&eMobs'
+    Icone: ZOMBIE_SPAWN_EGG
+    Slot: 12
+    Area: 2
+    # Demais mobs nao listados: 8 de cada tipo a cada 2x2 chunks.
+    Padrao: 8
+    Limite total: 0
+    Mundos: []
+    Descricao:
+      - '&7Clique para ver os limites de'
+      - '&7mobs do servidor.'
+    Limites:
+      vaca:
+        Nome: '&eVaca'
+        Alvos: [COW]
+        Limite: 8
+      porco:
+        Nome: '&ePorco'
+        Alvos: [PIG]
+        Limite: 8
+      ovelha:
+        Nome: '&eOvelha'
+        Alvos: [SHEEP]
+        Limite: 8
+      galinha:
+        Nome: '&eGalinha'
+        Alvos: [CHICKEN]
+        Limite: 8
+      coelho:
+        Nome: '&eCoelho'
+        Alvos: [RABBIT]
+        Limite: 8
+      cogumelo:
+        Nome: '&eVaca de Cogumelo'
+        Alvos: [MOOSHROOM]
+        Limite: 8
+      cavalo:
+        Nome: '&eCavalo'
+        Alvos: [HORSE]
+        Limite: 8
+      lhama:
+        Nome: '&eLhama'
+        Alvos: [LLAMA]
+        Limite: 8
+      aldeao:
+        Nome: '&eAldeão'
+        Alvos: [VILLAGER]
+        Limite: 10
+      golem-de-ferro:
+        Nome: '&eGolem de Ferro'
+        Alvos: [IRON_GOLEM]
+        Limite: 4
+      lobo:
+        Nome: '&eLobo'
+        Alvos: [WOLF]
+        Limite: 8
+      gato:
+        Nome: '&eGato'
+        Alvos: [CAT]
+        Limite: 8
+      papagaio:
+        Nome: '&ePapagaio'
+        Alvos: [PARROT]
+        Limite: 8
+      abelha:
+        Nome: '&eAbelha'
+        Alvos: [BEE]
+        Limite: 10
+      raposa:
+        Nome: '&eRaposa'
+        Alvos: [FOX]
+        Limite: 8
+      cabra:
+        Nome: '&eCabra'
+        Alvos: [GOAT]
+        Limite: 8
+      axolote:
+        Nome: '&eAxolote'
+        Alvos: [AXOLOTL]
+        Limite: 8
+      sapo:
+        Nome: '&eSapo'
+        Alvos: [FROG]
+        Limite: 8
+      zumbi:
+        Nome: '&eZumbi'
+        Alvos: [ZOMBIE]
+        Limite: 8
+      esqueleto:
+        Nome: '&eEsqueleto'
+        Alvos: [SKELETON]
+        Limite: 8
+      creeper:
+        Nome: '&eCreeper'
+        Alvos: [CREEPER]
+        Limite: 8
+      aranha:
+        Nome: '&eAranha'
+        Alvos: [SPIDER]
+        Limite: 8
+      slime:
+        Nome: '&eSlime'
+        Alvos: [SLIME]
+        Limite: 8
+      enderman:
+        Nome: '&eEnderman'
+        Alvos: [ENDERMAN]
+        Limite: 8
+      blaze:
+        Nome: '&eBlaze'
+        Alvos: [BLAZE]
+        Limite: 8
+      cubo-de-magma:
+        Nome: '&eCubo de Magma'
+        Alvos: [MAGMA_CUBE]
+        Limite: 8
+      piglin-zumbificado:
+        Nome: '&ePiglin Zumbificado'
+        Alvos: [ZOMBIFIED_PIGLIN]
+        Limite: 8
+      bruxa:
+        Nome: '&eBruxa'
+        Alvos: [WITCH]
+        Limite: 8
+
+  entidades:
+    Tipo: ENTIDADES
+    Nome: '&bEntidades'
+    Icone: ARMOR_STAND
+    Slot: 14
+    Area: 1
+    Limite total: 0
+    Mundos: []
+    Descricao:
+      - '&7Suportes de armadura, molduras,'
+      - '&7carrinhos, barcos e cristais.'
+    Limites:
+      suporte-de-armadura:
+        Nome: '&eSuporte de Armadura'
+        Icone: ARMOR_STAND
+        Alvos: [ARMOR_STAND]
+        Limite: 16
+      moldura:
+        Nome: '&eMoldura'
+        Icone: ITEM_FRAME
+        Alvos: [ITEM_FRAME]
+        Limite: 32
+      moldura-brilhante:
+        Nome: '&eMoldura Brilhante'
+        Icone: GLOW_ITEM_FRAME
+        Alvos: [GLOW_ITEM_FRAME]
+        Limite: 16
+      quadro:
+        Nome: '&eQuadro'
+        Icone: PAINTING
+        Alvos: [PAINTING]
+        Limite: 16
+      carrinho:
+        Nome: '&eCarrinho'
+        Icone: MINECART
+        Alvos: [MINECART]
+        Limite: 8
+      carrinho-com-funil:
+        Nome: '&eCarrinho com Funil'
+        Icone: HOPPER_MINECART
+        Alvos: [HOPPER_MINECART]
+        Limite: 4
+      carrinho-com-bau:
+        Nome: '&eCarrinho com Baú'
+        Icone: CHEST_MINECART
+        Alvos: [CHEST_MINECART]
+        Limite: 4
+      carrinho-com-fornalha:
+        Nome: '&eCarrinho com Fornalha'
+        Icone: FURNACE_MINECART
+        Alvos: [FURNACE_MINECART]
+        Limite: 4
+      carrinho-com-tnt:
+        Nome: '&eCarrinho com TNT'
+        Icone: TNT_MINECART
+        Alvos: [TNT_MINECART]
+        Limite: 2
+      barco:
+        Nome: '&eBarco'
+        Icone: OAK_BOAT
+        Alvos: [BOAT, '*_BOAT', '*_RAFT']
+        Limite: 4
+      cristal-do-end:
+        Nome: '&eCristal do End'
+        Icone: END_CRYSTAL
+        Alvos: [END_CRYSTAL]
+        Limite: 2
+
+  blocos:
+    Tipo: BLOCOS
+    Nome: '&aBlocos'
+    Icone: BRICKS
+    Slot: 16
+    Area: 1
+    Limite total: 0
+    Mundos: []
+    Descricao:
+      - '&7Clique para ver os limites de'
+      - '&7blocos do servidor.'
+    Limites:
+      spawner:
+        Nome: '&eGerador de Monstros'
+        Icone: SPAWNER
+        Alvos: [SPAWNER]
+        Limite: 4
+      sinalizador:
+        Nome: '&eSinalizador'
+        Icone: BEACON
+        Alvos: [BEACON]
+        Limite: 2
+      bau:
+        Nome: '&eBaú'
+        Icone: CHEST
+        Alvos: [CHEST]
+        Limite: 64
+      fornalhas:
+        Nome: '&eFornalhas'
+        Icone: FURNACE
+        Alvos: [FURNACE, BLAST_FURNACE, SMOKER]
+        Limite: 16
+      mesa-de-encantamento:
+        Nome: '&eMesa de Encantamento'
+        Icone: ENCHANTING_TABLE
+        Alvos: [ENCHANTING_TABLE]
+        Limite: 2
+      bigorna:
+        Nome: '&eBigorna'
+        Icone: ANVIL
+        Alvos: [ANVIL]
+        Limite: 4
+      suporte-de-pocoes:
+        Nome: '&eSuporte de Poções'
+        Icone: BREWING_STAND
+        Alvos: [BREWING_STAND]
+        Limite: 8
+      bau-do-end:
+        Nome: '&eBaú do End'
+        Icone: ENDER_CHEST
+        Alvos: [ENDER_CHEST]
+        Limite: 4
+      caixas-de-shulker:
+        Nome: '&eCaixas de Shulker'
+        Icone: SHULKER_BOX
+        Alvos: ['*SHULKER_BOX']
+        Limite: 16
+      cabecas:
+        Nome: '&eCabeças'
+        Icone: PLAYER_HEAD
+        Alvos: [PLAYER_HEAD, '*_HEAD', '*_SKULL']
+        Limite: 16
+      estandartes:
+        Nome: '&eEstandartes'
+        Icone: WHITE_BANNER
+        Alvos: ['*_BANNER', STANDING_BANNER, WALL_BANNER]
+        Limite: 16
+      placas:
+        Nome: '&ePlacas'
+        Icone: OAK_SIGN
+        Alvos: ['*_SIGN', SIGN_POST, WALL_SIGN]
+        Limite: 32
+      teia:
+        Nome: '&eTeia'
+        Icone: COBWEB
+        Alvos: [COBWEB]
+        Limite: 16

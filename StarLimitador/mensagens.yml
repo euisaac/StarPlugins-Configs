@@ -1,0 +1,187 @@
+# ============================================================
+#  StarLimitador - mensagens
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso.
+#  Cores: &a, &c... e hex &#RRGGBB (1.16+).
+# ============================================================
+Versao do modelo: 1
+
+Prefixo: '&8[&cLimitador&8] &r'
+
+Geral:
+  So jogador: '&cEste comando so pode ser usado dentro do jogo.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Inativo: '&cO StarLimitador ainda esta iniciando. Tente de novo em instantes.'
+  Categoria inexistente: '&cA categoria &f{categoria}&c nao existe. Categorias: &f{categorias}'
+  Subcomando inexistente: '&cSubcomando desconhecido. Use &f/{comando} ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+
+# Como a area aparece nos textos ("10 por chunk", "8 a cada 2x2 chunks").
+Area:
+  Um chunk: 'por chunk'
+  Varios chunks: 'a cada {area}x{area} chunks'
+
+# O {acao} das mensagens e do menu.
+Acoes:
+  colocar: 'colocar'
+  nascer: 'criar'
+
+# Quando o jogador e barrado (ver Avisos no config.yml).
+Negado:
+  Bloqueado: '&f{alvo}&c esta bloqueado neste servidor.'
+  Limite: '&cLimite atingido: &f{alvo}&c ({atual}/{limite} {area}).'
+  Limite padrao: '&cLimite de &f{alvo}&c atingido ({atual}/{limite} {area}).'
+  Teto da categoria: '&cA categoria {categoria}&c ja chegou ao teto ({atual}/{limite} {area}).'
+
+Etiquetas:
+  Ligado: '&aLIGADO'
+  Desligado: '&cDESLIGADO'
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+
+# Edicao pelo menu (modo edicao) e pelos comandos.
+Edicao:
+  Adicionado: '&aAdicionado: &f{nome}&a em {categoria}&a com limite &f{limite}&a.'
+  Ja existe: '&e{nome}&e ja esta na lista de {categoria}&e. Use os cliques nele para mudar o limite.'
+  Bloqueado: '&f{nome}&c foi BLOQUEADO em {categoria}&c.'
+  Liberado: '&f{nome}&a foi liberado em {categoria}&a (vale o limite de novo).'
+  Removido: '&f{nome}&e saiu de {categoria}&e.'
+  Item nao serve:
+    BLOCOS: '&cEsse item nao e um bloco que se coloca.'
+    MOBS: '&cUse um ovo de mob para adicionar um mob.'
+    ENTIDADES: '&cEsse item nao cria entidade (use suporte de armadura, moldura, quadro, carrinho, barco ou cristal).'
+
+Admin:
+  Bypass ligado: '&aBypass LIGADO: voce passa por cima dos limites ate desligar ou sair.'
+  Bypass desligado: '&eBypass desligado: os limites valem para voce de novo.'
+  Recarregado: '&aRecarregado: &f{categorias}&a categoria(s), &f{limites}&a limite(s).'
+  Editor: '&bModo edicao ligado. &7Abra uma categoria e use os cliques nos itens.'
+  Alvo invalido:
+    BLOCOS: '&c{alvo}&c nao e um bloco desta versao do servidor.'
+    MOBS: '&c{alvo}&c nao e um mob desta versao do servidor.'
+    ENTIDADES: '&c{alvo}&c nao e uma entidade desta versao do servidor.'
+  Numero invalido: '&c{valor}&c nao e um numero valido.'
+  Definido: '&aLimite de &f{nome}&a em {categoria}&a: &f{limite} {area}&a.'
+  Sem linha: '&c{alvo}&c nao esta na lista de {categoria}&c.'
+  Area invalida: '&cA area vai de 1 a 16 chunks (recebi {valor}).'
+  Area: '&aArea de {categoria}&a agora e &f{area}&a.'
+  Area da linha: '&aArea de &f{nome}&a agora e &f{area}&a.'
+  Padrao so de mobs: '&cO limite padrao so existe em categoria de MOBS.'
+  Padrao: '&aDemais mobs de {categoria}&a: &f{limite} {area}&a.'
+  Padrao desligado: '&eDemais mobs de {categoria}&e ficaram sem limite.'
+  Total: '&aTeto de {categoria}&a: &f{limite} {area}&a.'
+  Total desligado: '&eTeto de {categoria}&e desligado.'
+  Limpar so tudo: '&cNo console use: &f/limitador limpar tudo [excesso]'
+  Raio invalido: '&cO raio vai de 0 a 32 chunks (recebi {valor}).'
+  Limpeza: '&aLimpeza feita em &f{chunks}&a chunk(s): &f{bloqueados}&a mob(s) bloqueado(s) e &f{excesso}&a acima do limite removido(s).'
+
+# A ajuda do /limitador e montada da lista real de subcomandos. Cada um
+# tem a descricao numa chave propria (vazia = descricao padrao).
+Ajuda de admin:
+  Cabecalho: '&8&m-----------&r &cStarLimitador &8&m-----------'
+  Linha: '&c/{comando} {sub}&7{uso} &8- &f{descricao}'
+  Rodape: '&7Categorias: &f{categorias}  &8|  &7alvo "mao" = o item da sua mao'
+  ajuda: 'Mostra esta lista.'
+  editor: 'Abre o /limites ja no modo edicao.'
+  definir: 'Cria ou muda o limite de um bloco/mob/entidade.'
+  bloquear: 'Bloqueia de vez no servidor (nao coloca / nao nasce).'
+  desbloquear: 'Tira o bloqueio (volta a valer o limite).'
+  remover: 'Apaga a linha de limite.'
+  area: 'Tamanho da area: 1 = por chunk, 2 = a cada 2x2 chunks...'
+  padrao: 'Limite dos mobs nao listados (0 desliga).'
+  total: 'Teto somando tudo da categoria na area (0 desliga).'
+  verificar: 'Mostra quanto tem de cada coisa na area onde voce esta.'
+  limpar: 'Remove os mobs bloqueados (e o excesso, se pedir).'
+  bypass: 'Liga/desliga passar por cima dos limites (so voce).'
+  recarregar: 'Recarrega os arquivos.'
+
+# /limites aqui e /limitador verificar
+Verificar:
+  Cabecalho: '&7Contagem no chunk &f{x}, {z}&7 ({mundo}):'
+  Mundo ignorado: '&eO mundo {mundo} esta na lista de ignorados: nada e limitado aqui.'
+  Categoria: '&8» {categoria} &8({area})'
+  Linha: '  &7{nome}&7: {cor}{atual}&7/{limite}'
+  Linha bloqueada: '  &7{nome}&7: &c{atual} &4(bloqueado)'
+  Linha padrao: '  &7{nome}&7: {cor}{atual}&7/{limite} &8(padrao)'
+  Total: '  &7Total: {cor}{atual}&7/{limite}'
+  Nada: '&7Nada limitado nesta area.'
+
+# Nome dos mobs que nao estao listados (limite padrao). Os listados usam o
+# "Nome" da linha no limites.yml.
+Nomes dos mobs:
+  ZOMBIE: 'Zumbi'
+  SKELETON: 'Esqueleto'
+  CREEPER: 'Creeper'
+  SPIDER: 'Aranha'
+  CAVE_SPIDER: 'Aranha das Cavernas'
+  ENDERMAN: 'Enderman'
+  WITCH: 'Bruxa'
+  SLIME: 'Slime'
+  MAGMA_CUBE: 'Cubo de Magma'
+  BLAZE: 'Blaze'
+  GHAST: 'Ghast'
+  ZOMBIFIED_PIGLIN: 'Piglin Zumbificado'
+  PIGLIN: 'Piglin'
+  PIGLIN_BRUTE: 'Piglin Bruto'
+  HOGLIN: 'Hoglin'
+  ZOGLIN: 'Zoglin'
+  WITHER_SKELETON: 'Esqueleto Wither'
+  WITHER: 'Wither'
+  ENDER_DRAGON: 'Dragao do End'
+  GUARDIAN: 'Guardiao'
+  ELDER_GUARDIAN: 'Guardiao Ancestral'
+  SHULKER: 'Shulker'
+  PHANTOM: 'Phantom'
+  DROWNED: 'Afogado'
+  HUSK: 'Zumbi do Deserto'
+  STRAY: 'Esqueleto Errante'
+  SILVERFISH: 'Traça'
+  ENDERMITE: 'Endermite'
+  PILLAGER: 'Saqueador'
+  VINDICATOR: 'Vingador'
+  EVOKER: 'Invocador'
+  VEX: 'Vex'
+  RAVAGER: 'Devastador'
+  COW: 'Vaca'
+  PIG: 'Porco'
+  SHEEP: 'Ovelha'
+  CHICKEN: 'Galinha'
+  RABBIT: 'Coelho'
+  MOOSHROOM: 'Vaca de Cogumelo'
+  HORSE: 'Cavalo'
+  DONKEY: 'Burro'
+  MULE: 'Mula'
+  LLAMA: 'Lhama'
+  VILLAGER: 'Aldeao'
+  WANDERING_TRADER: 'Vendedor Ambulante'
+  IRON_GOLEM: 'Golem de Ferro'
+  SNOW_GOLEM: 'Golem de Neve'
+  WOLF: 'Lobo'
+  CAT: 'Gato'
+  OCELOT: 'Jaguatirica'
+  PARROT: 'Papagaio'
+  BEE: 'Abelha'
+  FOX: 'Raposa'
+  PANDA: 'Panda'
+  POLAR_BEAR: 'Urso Polar'
+  TURTLE: 'Tartaruga'
+  DOLPHIN: 'Golfinho'
+  SQUID: 'Lula'
+  GLOW_SQUID: 'Lula Brilhante'
+  COD: 'Bacalhau'
+  SALMON: 'Salmao'
+  TROPICAL_FISH: 'Peixe Tropical'
+  PUFFERFISH: 'Baiacu'
+  BAT: 'Morcego'
+  GOAT: 'Cabra'
+  AXOLOTL: 'Axolote'
+  FROG: 'Sapo'
+  TADPOLE: 'Girino'
+  ALLAY: 'Allay'
+  CAMEL: 'Camelo'
+  SNIFFER: 'Farejador'
+  ARMADILLO: 'Tatu'
+  STRIDER: 'Lavagante'
+  BREEZE: 'Breeze'
+  WARDEN: 'Warden'
