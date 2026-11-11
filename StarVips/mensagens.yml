@@ -315,7 +315,7 @@ Ajuda admin:
   - ' &b- &f/infovip &7<id>'
   - ' &b- &f/congelarvip &8-&7 pausa o tempo de todos'
   - ' &b- &f/creditovip dar|remover|setar &7<jogador> <quantia>'
-  - ' &b- &f/itemvip criar &7<vip> <duracao> [quantidade] &8-&7 vira item de VIP o que esta na mao'
+  - ' &b- &f/itemvip dar &7<jogador> <vip> <duracao> [quantidade] &8-&7 da itens de VIP ao jogador'
   - ' &b- &f/starvips recarregar|importar|versao'
   - ''
 
@@ -353,11 +353,13 @@ GG Falha:
   - ''
 
 # --- Item de VIP ----------------------------------------------------
-# /itemvip criar <vip> <duracao> [quantidade] e o clique direito com o item.
-# {vip} {vip_id} {duracao} {duracao_extenso} {amount} {id}
+# /itemvip dar <jogador> <vip> <duracao> [quantidade] e o clique direito com o item.
+# {vip} {vip_id} {duracao} {duracao_extenso} {amount} {player} {id}
 Item vip:
-  Criado: '&aVoce criou &f{amount}x &aitem de VIP do {vip}&a. &7({duracao})'
-  Inventario cheio: '&eSeu inventario encheu: o que nao coube caiu no chao.'
+  Dado: '&aVoce deu &f{amount}x &aitem de VIP do {vip} &apara &f{player}&a. &7({duracao})'
+  Recebido: '&aVoce recebeu &f{amount}x &aitem de VIP do {vip}&a. &7({duracao}) &eSegure e clique com o direito para ativar.'
+  Jogador offline: '&cO jogador &f{player}&c precisa estar online para receber o item de VIP.'
+  Inventario cheio: '&eSeu inventario encheu: o item de VIP que nao coube caiu no chao.'
   Quantidade invalida: '&cQuantidade invalida: &f{amount}&c. Use um numero de 1 a {max}.'
   Ativado: |
 
@@ -376,14 +378,14 @@ Item vip:
   Ajuda comando:
     - ''
     - '&b&lITEM DE VIP'
-    - ' &f/itemvip criar &7<vip> <duracao> [quantidade]'
-    - '   &7Segure um item e de o comando: ele vira um vale do vip.'
-    - '   &7Com a mao vazia, o item sai do material do config.yml.'
+    - ' &f/itemvip dar &7<jogador> <vip> <duracao> [quantidade]'
+    - '   &7Entrega ao jogador (online) itens de VIP. Funciona pelo console.'
+    - '   &7O material, o nome e a lore do item ficam no config.yml.'
     - '   &7Duracao: &f1d&7, &f12h&7, &f30d&7, &f1o &7(mes) ou &fpermanente&7.'
     - ' &7O jogador segura o item, clica com o direito e confirma.'
     - ''
   # Linhas acrescentadas a ajuda do /vip ajuda (deixe [] para esconder).
   Ajuda admin:
-    - ' &b- &f/itemvip criar &7<vip> <duracao> [quantidade] &8-&7 vira item de VIP o que esta na mao'
+    - ' &b- &f/itemvip dar &7<jogador> <vip> <duracao> [quantidade] &8-&7 da itens de VIP ao jogador'
   Ajuda:
     - ' &b- &fItem de VIP &8-&7 segure e clique com o direito para ativar'
