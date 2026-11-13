@@ -116,22 +116,34 @@ scale:
   enabled: false
   combat-size: 1.0
 
-# Sistema de barreiras: cria um cercado temporario ao redor da luta para
-# impedir que outros jogadores entrem no meio do combate (anti-invasao).
+# Sistema de barreiras: cercado em volta de cada luta entre dois jogadores,
+# para ninguem de fora entrar no meio (anti-invasao) e ninguem fugir.
+# NAO coloca bloco de verdade no mundo: a parede e o teto sao so visuais
+# (aparecem para quem esta perto) e quem segura a luta e o servidor, no
+# movimento. Nada fica no mapa se o servidor cair, ninguem fica preso dentro
+# de bloco e o terreno nao muda. A parede acompanha o relevo e so ocupa
+# espaco vazio. Tambem da para ajustar tudo isso pelo /starcombate menu.
 barriers:
   enabled: true
+  # Bloco da parede e do teto. 'BARRIER' deixa a parede invisivel.
   material: 'RED_STAINED_GLASS'
-  # Raio (blocos) do cercado ao redor do ponto medio entre os dois jogadores
+  # Raio (blocos) do cercado ao redor do ponto medio entre os dois jogadores.
+  # Se o golpe veio de mais longe, o cercado cresce para caber os dois.
   radius: 4
-  # Altura (blocos) do cercado
+  # Golpe de mais longe que isso (arco, tridente) fica sem cercado.
+  raio-maximo: 10
+  # Altura (blocos) da parede
   height: 3
-  # Fecha o topo do cercado (evita escapar pulando, com elytra ou ender pearl)
+  # Fecha o topo do cercado (evita escapar pulando)
   fechar-topo: true
-  # Desenha o "chao" do cercado como um efeito visual de particulas, no
-  # material configurado acima - NAO usa blocos reais, entao nao altera nem
-  # corre o risco de "quebrar" o terreno embaixo dos jogadores (buracos,
-  # placas de pressao, agua, redstone, etc.). Some sozinho quando a
-  # barreira e removida, sem precisar restaurar nada.
+  # Quem esta lutando nao consegue sair do cercado (nem de ender pearl).
+  prender-lutadores: true
+  # Quem esta de fora nao consegue entrar. Passa quem esta no criativo,
+  # no espectador ou tem a permissao starcombate.barreira.bypass.
+  bloquear-invasores: true
+  # Alem dos dois lutadores, quem esta perto tambem ve a parede.
+  visivel-para-proximos: true
+  # Desenha o "chao" do cercado com particulas, no material acima.
   chao-visual: true
 
 # Sistema anti-2v1: impede que um terceiro jogador ataque quem ja esta em combate
@@ -165,6 +177,8 @@ Mensagens:
   Mundo-pvp-forcado: '&cO PVP e sempre ativo neste mundo. Nao e possivel altera-lo aqui.'
   Anti-boring-target: '&cO jogador {player} ja esta em combate com {target}.'
   Anti-boring-self: '&cVoce ja esta em combate com {target}.'
+  Barreira-sair: '&cVoce nao pode sair da luta.'
+  Barreira-entrar: '&cTem uma luta acontecendo aqui. Voce nao pode entrar.'
   Help:
     - '&cComandos disponiveis:'
     - '&7-> /pvp [jogador]'
