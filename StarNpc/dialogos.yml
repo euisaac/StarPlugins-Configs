@@ -1,0 +1,133 @@
+# ============================================================
+#                   StarNpc - dialogos
+# ============================================================
+# Um dialogo e uma conversa em "nos". Em cada no o NPC diz as
+# Falas, roda as Acoes e mostra as Opcoes. A opcao escolhida
+# roda as Acoes dela e vai para o no do "Ir para".
+#
+# Modo: CHAT (opcoes clicaveis no chat), MENU (tela com a fala e
+#       as opcoes como itens), HOLOGRAMA (balao em cima do NPC
+#       que so o jogador ve, com efeito de digitacao) ou TITULO.
+#
+# Em cada no:
+#   Falas:        o que o NPC diz, uma por vez
+#   Acoes:        rodam depois das falas ([ir] no, [fechar], ...)
+#   Opcoes:       Texto, Ir para, Acoes, Condicao, Material
+#   Seguir para:  sem opcoes, vai sozinho para este no
+#   Primeira vez: quem nunca falou com o NPC vai para este no
+#   Condicao:     se nao passar, vai para o "Senao" (ou acaba)
+#
+# Condicoes (junte com ; e use ! para inverter):
+#   permissao:vip  primeira-vez  vezes>=3  memoria:chave=valor
+#   dinheiro>=100  item:DIAMOND:2  dia  noite  chance:50
+#   placeholder:%player_level%>=10
+#
+# Ligue um dialogo a um NPC com /npc dialogo <nome> (ou pelo menu).
+Dialogos:
+  ferreiro:
+    Modo: CHAT
+    Inicio: oi
+    Distancia maxima: 8
+    Nos:
+      oi:
+        Primeira vez: apresentacao
+        Falas:
+          - 'Voce de novo, {jogador}! O fogo da forja nao para.'
+          - 'Em que posso ajudar hoje?'
+        Opcoes:
+          - Texto: '&aQuero ver as ferramentas'
+            Ir para: loja
+          - Texto: '&eMe leva ate a mina?'
+            Ir para: guia
+          - Texto: '&7Nada, so passando.'
+            Ir para: tchau
+      apresentacao:
+        Falas:
+          - 'Ora, um rosto novo! Eu sou o ferreiro desta vila.'
+          - 'Forjo picaretas, espadas e armaduras para quem precisa.'
+        Seguir para: oi_novato
+      oi_novato:
+        Falas:
+          - 'Quer dar uma olhada?'
+        Opcoes:
+          - Texto: '&aClaro!'
+            Ir para: loja
+          - Texto: '&7Talvez depois.'
+            Ir para: tchau
+      loja:
+        Falas:
+          - 'Uma picareta de ferro sai por 150 moedas.'
+        Opcoes:
+          - Texto: '&aComprar (150)'
+            Material: IRON_PICKAXE
+            Acoes:
+              - '[cobrar] 150'
+              - '[dar-item] IRON_PICKAXE:1'
+              - '[som] ENTITY_VILLAGER_YES'
+            Ir para: obrigado
+          - Texto: '&cEsta caro...'
+            Ir para: tchau
+      obrigado:
+        Falas:
+          - 'Bom trabalho na mina, {jogador}!'
+        Acoes:
+          - '[memoria] cliente=sim'
+      guia:
+        Falas:
+          - 'Claro! Me acompanhe.'
+        Acoes:
+          # Troque pelo lugar da sua mina (mundo;x;y;z) ou use "ponto 1" da rota do NPC.
+          - '[guiar] ponto 1'
+      tchau:
+        Falas:
+          - 'Ate mais!'
+
+  guarda:
+    Modo: HOLOGRAMA
+    Inicio: inicio
+    Nos:
+      inicio:
+        Condicao: 'dia'
+        Senao: noite
+        Falas:
+          - 'Alto la! Bem-vindo a vila, {jogador}.'
+          - 'Respeite as regras e todos vivem em paz.'
+        Opcoes:
+          - Texto: 'Quais sao as regras?'
+            Ir para: regras
+          - Texto: 'Obrigado!'
+      regras:
+        Falas:
+          - 'Nada de brigas, nada de roubos e nada de fogo nas casas.'
+      noite:
+        Falas:
+          - 'Ja e noite... volte para casa, e perigoso aqui fora.'
+
+  sabio:
+    Modo: MENU
+    Inicio: inicio
+    Nos:
+      inicio:
+        Falas:
+          - 'Ah... um viajante.'
+          - 'Escolha um caminho e eu lhe darei uma bencao.'
+        Opcoes:
+          - Texto: 'Bencao da velocidade'
+            Material: SUGAR
+            Acoes:
+              - '[efeito] SPEED:60:2'
+              - '[fechar]'
+          - Texto: 'Bencao do salto'
+            Material: RABBIT_FOOT
+            Acoes:
+              - '[efeito] JUMP:60:2'
+              - '[fechar]'
+
+  anunciante:
+    Modo: TITULO
+    Inicio: inicio
+    Nos:
+      inicio:
+        Falas:
+          - '&6Evento hoje as 20h!'
+          - '&7Premios para os tres primeiros.'
