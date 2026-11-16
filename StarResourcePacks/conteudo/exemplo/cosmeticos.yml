@@ -1,0 +1,371 @@
+# ============================================================
+#  Cosmeticos que os jogadores vestem pelo /cosmeticos.
+#
+#  Tipo          CHAPEU, COSTAS (mochila, asas, capa) ou BALAO. Um de cada por vez.
+#  Categoria     aba do guarda-roupa (nome bonito em menus.yml).
+#  Livre         true = todo mundo tem. Senao: starresourcepacks.cosmetico.<id>
+#                (ou a "Permissao" que voce escrever).
+#  Raridade      comum, raro, epico, lendario ou mitico (cor e ordem no guarda-roupa).
+#  Preco         em moedas; 0 = nao esta a venda (so por permissao ou "Livre").
+#  Modelo        modelo 3D em resource_pack/assets/exemplo/models/ (sem .json; outro namespace: ns:caminho).
+#  Ajuste        COSTAS e BALAO: posicao (blocos) a partir do pe do jogador,
+#                Z positivo = para a frente; mais Rotacao (graus) e Escala.
+#                Muda na hora pelo editor.
+#                CHAPEU animado: posicao a partir do centro da cabeca.
+#  Exibicao      CHAPEU parado: ajuste do modelo na cabeca (pixels), pelo editor + "Testar".
+#  Animacao      Tipo GIRAR (graus por tique), BATER (vai e volta), FLUTUAR,
+#                BALANCAR ou PULSAR; Eixo X/Y/Z; Velocidade; Amplitude (graus,
+#                ou blocos no FLUTUAR). A peca gira em volta do centro do modelo.
+#                Chapeu com Animacao ou Pecas vira uma peca que segue a cabeca.
+#  Pecas         modelo em varias partes, cada uma com Modelo, Ajuste e Animacao
+#                (as duas asas batendo, por exemplo). No lugar de "Modelo".
+#  Particulas    Tipo, "A cada" (tiques), Quantidade, Posicao (a partir dos pes do jogador) e Espalhar.
+#  Corda         BALAO: desenha a cordinha ate a mao do jogador.
+#  Esconder do dono  o proprio jogador nao ve (bom para pecas grandes).
+#  Alternativo   o que aparece em servidor 1.8 a 1.13.
+#  Receita       igual a dos itens (veja o cabecalho do itens.yml).
+#
+#  Costas: o modelo e lido com o NORTE encostado nas costas do jogador.
+# ============================================================
+Cosmeticos:
+  # ------------------------------------------------------------ chapeus
+  coroa_flores:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&aCoroa de Flores'
+    Lore: ['&7Primavera o ano inteiro.', '&7Gratis para todos!']
+    Modelo: chapeus/coroa_flores
+    Livre: true
+    Raridade: comum
+    Preco: 0
+    Alternativo:
+      Material: POPPY
+
+  orelhas_gato:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&dOrelhas de Gato'
+    Lore: ['&7Miau.']
+    Modelo: chapeus/orelhas_gato
+    Raridade: comum
+    Preco: 500
+    Alternativo:
+      Material: BLACK_CARPET
+
+  cartola:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&fCartola'
+    Lore: ['&7Elegancia em primeiro lugar.']
+    Modelo: chapeus/cartola
+    Raridade: raro
+    Preco: 1500
+    Alternativo:
+      Material: BLACK_CARPET
+
+  chapeu_bruxa:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&5Chapeu de Bruxa'
+    Lore: ['&7A ponta torta e de proposito.']
+    Modelo: chapeus/chapeu_bruxa
+    Raridade: raro
+    Preco: 1800
+    Alternativo:
+      Material: PURPLE_CARPET
+
+  chapeu_pirata:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&8Chapeu de Pirata'
+    Lore: ['&7Com caveira e pluma vermelha.']
+    Modelo: chapeus/chapeu_pirata
+    Raridade: raro
+    Preco: 2000
+    Alternativo:
+      Material: BLACK_CARPET
+
+  capacete_viking:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&7Capacete Viking'
+    Lore: ['&7Chifres de marfim e ferro batido.']
+    Modelo: chapeus/capacete_viking
+    Raridade: epico
+    Preco: 3500
+    Alternativo:
+      Material: IRON_HELMET
+
+  chifres_demonio:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&4Chifres de Demonio'
+    Lore: ['&7As pontas brilham em brasa.']
+    Modelo: chapeus/chifres_demonio
+    Raridade: epico
+    Preco: 4000
+    Particulas:
+      Tipo: FLAME
+      A cada: 15
+      Quantidade: 1
+      Posicao: '0, 2.1, 0'
+      Espalhar: 0.2
+    Alternativo:
+      Material: NETHER_BRICK
+
+  coroa:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&6&lCoroa Real'
+    Lore: ['&7Para quem manda no servidor.']
+    Modelo: chapeus/coroa
+    Raridade: lendario
+    Preco: 9000
+    Alternativo:
+      Material: GOLDEN_HELMET
+
+  aureola:
+    Tipo: CHAPEU
+    Categoria: chapeus
+    Nome: '&e&lAureola'
+    Lore: ['&7Gira devagar sobre a cabeca.']
+    Modelo: chapeus/aureola
+    Raridade: epico
+    Preco: 5000
+    Ajuste:
+      Posicao: '0, 0, 0'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Animacao:
+      Tipo: GIRAR
+      Eixo: Y
+      Velocidade: 3
+    Particulas:
+      Tipo: END_ROD
+      A cada: 20
+      Quantidade: 1
+      Posicao: '0, 2.3, 0'
+      Espalhar: 0.25
+    Alternativo:
+      Material: GOLD_NUGGET
+
+  # ------------------------------------------------------------ costas
+  mochila:
+    Tipo: COSTAS
+    Categoria: costas
+    Nome: '&6Mochila de Aventureiro'
+    Lore: ['&7So enfeite: nao guarda itens.']
+    Modelo: costas/mochila
+    Raridade: comum
+    Preco: 800
+    Ajuste:
+      Posicao: '0, 1.05, -0.28'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Alternativo:
+      Material: CHEST
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['LSL', 'LCL', 'LLL']
+      Ingredientes: {L: LEATHER, S: STRING, C: CHEST}
+
+  aljava:
+    Tipo: COSTAS
+    Categoria: costas
+    Nome: '&6Aljava de Cacador'
+    Lore: ['&7Tres flechas sempre a mao.']
+    Modelo: costas/aljava
+    Raridade: raro
+    Preco: 1600
+    Ajuste:
+      Posicao: '0, 1.05, -0.3'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Alternativo:
+      Material: ARROW
+
+  capa:
+    Tipo: COSTAS
+    Categoria: costas
+    Nome: '&cCapa Real'
+    Lore: ['&7Balanca enquanto voce anda.']
+    Modelo: costas/capa
+    Raridade: raro
+    Preco: 2500
+    Ajuste:
+      Posicao: '0, 1.45, -0.18'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Animacao:
+      Tipo: BALANCAR
+      Eixo: X
+      Amplitude: 8
+      Velocidade: 0.8
+    Alternativo:
+      Material: RED_BANNER
+
+  espada_costas:
+    Tipo: COSTAS
+    Categoria: costas
+    Nome: '&bEspadao nas Costas'
+    Lore: ['&7Grande demais para a bainha.']
+    Modelo: costas/espada_costas
+    Raridade: epico
+    Preco: 4500
+    Ajuste:
+      Posicao: '0, 1.1, -0.2'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Alternativo:
+      Material: IRON_SWORD
+
+  asas_anjo:
+    Tipo: COSTAS
+    Categoria: costas
+    Nome: '&f&lAsas de Anjo'
+    Lore: ['&7Duas asas que batem de verdade.']
+    Raridade: lendario
+    Preco: 8000
+    Esconder do dono: false
+    Pecas:
+      esquerda:
+        Modelo: asas/anjo_esquerda
+        Ajuste: {Posicao: '0.08, 1.2, -0.25', Rotacao: '0, -15, 0', Escala: 0.9}
+        Animacao: {Tipo: BATER, Eixo: Y, Amplitude: 22, Velocidade: 1.2}
+      direita:
+        Modelo: asas/anjo_direita
+        Ajuste: {Posicao: '-0.08, 1.2, -0.25', Rotacao: '0, 15, 0', Escala: 0.9}
+        Animacao: {Tipo: BATER, Eixo: Y, Amplitude: -22, Velocidade: 1.2}
+    Particulas: {Tipo: END_ROD, A cada: 12, Quantidade: 1, Posicao: '0, 1.3, -0.5', Espalhar: 0.3}
+    Alternativo:
+      Material: FEATHER
+
+  asas_demonio:
+    Tipo: COSTAS
+    Categoria: costas
+    Nome: '&4&lAsas de Demonio'
+    Lore: ['&7Membrana, ossos e uma garra na ponta.']
+    Raridade: lendario
+    Preco: 8000
+    Pecas:
+      esquerda:
+        Modelo: asas/demonio_esquerda
+        Ajuste: {Posicao: '0.08, 1.2, -0.25', Rotacao: '0, -15, 0', Escala: 0.9}
+        Animacao: {Tipo: BATER, Eixo: Y, Amplitude: 18, Velocidade: 0.9}
+      direita:
+        Modelo: asas/demonio_direita
+        Ajuste: {Posicao: '-0.08, 1.2, -0.25', Rotacao: '0, 15, 0', Escala: 0.9}
+        Animacao: {Tipo: BATER, Eixo: Y, Amplitude: -18, Velocidade: 0.9}
+    Particulas: {Tipo: SMOKE, A cada: 10, Quantidade: 1, Posicao: '0, 1.3, -0.5', Espalhar: 0.3}
+    Alternativo:
+      Material: LEATHER
+
+  asas_borboleta:
+    Tipo: COSTAS
+    Categoria: costas
+    Nome: '&d&lAsas de Borboleta'
+    Lore: ['&7Batem rapidinho e soltam brilho.']
+    Raridade: mitico
+    Preco: 15000
+    Pecas:
+      esquerda:
+        Modelo: asas/borboleta_esquerda
+        Ajuste: {Posicao: '0.06, 1.15, -0.22', Rotacao: '0, -20, 0', Escala: 0.9}
+        Animacao: {Tipo: BATER, Eixo: Y, Amplitude: 30, Velocidade: 2.4}
+      direita:
+        Modelo: asas/borboleta_direita
+        Ajuste: {Posicao: '-0.06, 1.15, -0.22', Rotacao: '0, 20, 0', Escala: 0.9}
+        Animacao: {Tipo: BATER, Eixo: Y, Amplitude: -30, Velocidade: 2.4}
+    Particulas: {Tipo: WITCH, A cada: 8, Quantidade: 1, Posicao: '0, 1.2, -0.5', Espalhar: 0.4}
+    Alternativo:
+      Material: PINK_DYE
+
+  # ------------------------------------------------------------ baloes
+  balao_vermelho:
+    Tipo: BALAO
+    Categoria: baloes
+    Nome: '&cBalao Vermelho'
+    Lore: ['&7O classico.']
+    Modelo: baloes/vermelho
+    Raridade: comum
+    Preco: 600
+    Corda: true
+    Ajuste:
+      Posicao: '0.8, 2.6, -0.6'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Animacao:
+      Tipo: BALANCAR
+      Eixo: Z
+      Amplitude: 6
+      Velocidade: 0.6
+    Alternativo:
+      Material: RED_WOOL
+
+  balao_coracao:
+    Tipo: BALAO
+    Categoria: baloes
+    Nome: '&dBalao de Coracao'
+    Lore: ['&7Para quem esta apaixonado.']
+    Modelo: baloes/coracao
+    Raridade: raro
+    Preco: 1800
+    Corda: true
+    Ajuste:
+      Posicao: '0.8, 2.6, -0.6'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Animacao:
+      Tipo: BALANCAR
+      Eixo: Z
+      Amplitude: 8
+      Velocidade: 0.7
+    Particulas:
+      Tipo: HEART
+      A cada: 40
+      Quantidade: 1
+      Posicao: '0.8, 3.4, -0.6'
+      Espalhar: 0.2
+    Alternativo:
+      Material: PINK_WOOL
+
+  balao_estrela:
+    Tipo: BALAO
+    Categoria: baloes
+    Nome: '&eBalao de Estrela'
+    Lore: ['&7Gira e brilha.']
+    Modelo: baloes/estrela
+    Raridade: epico
+    Preco: 3800
+    Corda: true
+    Ajuste:
+      Posicao: '0.8, 2.6, -0.6'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Animacao:
+      Tipo: GIRAR
+      Eixo: Y
+      Velocidade: 2
+    Alternativo:
+      Material: YELLOW_WOOL
+
+  balao_pato:
+    Tipo: BALAO
+    Categoria: baloes
+    Nome: '&6&lPatinho Flutuante'
+    Lore: ['&7Quack.']
+    Modelo: baloes/pato
+    Raridade: lendario
+    Preco: 7000
+    Corda: true
+    Ajuste:
+      Posicao: '0.8, 2.5, -0.6'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Animacao:
+      Tipo: FLUTUAR
+      Eixo: Y
+      Amplitude: 0.15
+      Velocidade: 0.8
+    Alternativo:
+      Material: YELLOW_WOOL

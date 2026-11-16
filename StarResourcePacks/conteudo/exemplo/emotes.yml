@@ -1,0 +1,146 @@
+# ============================================================
+#  Emotes: animacoes de corpo que o jogador solta pelo menu de emotes.
+#
+#  O plugin mostra um boneco (com a cabeca e a armadura do jogador) fazendo
+#  a animacao no lugar dele.
+#
+#  Nome          nome no menu.
+#  Icone         item do menu: um id deste pacote (exemplo:emoji_sorriso) ou
+#                um material do jogo (DIAMOND).
+#  Raridade      comum, raro, epico, lendario ou mitico.
+#  Livre         true = todo mundo tem; false = precisa ser liberado ao jogador.
+#  Duracao       tamanho da animacao em tiques (20 = 1 segundo).
+#  Repetir       true = fica repetindo ate o jogador se mexer.
+#  Quadros       tique -> pose. Cada parte recebe 'X, Y, Z' em graus e o plugin
+#                faz a passagem suave de um quadro para o outro. Parte que nao
+#                aparece num quadro continua como estava.
+#                Partes: Cabeca, Corpo, BracoDireito, BracoEsquerdo,
+#                PernaDireita, PernaEsquerda.
+#                Dica: braco para cima = X -170; para a frente = X -90;
+#                perna para a frente (sentado) = X -90.
+# ============================================================
+Emotes:
+  acenar:
+    Nome: '&eAcenar'
+    Icone: exemplo:emoji_sorriso
+    Raridade: comum
+    Livre: true
+    Duracao: 40
+    Repetir: false
+    Quadros:
+      '0': {Cabeca: '0, 0, 0', BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10'}
+      '8': {BracoDireito: '-170, 0, 20', Cabeca: '0, 0, 5'}
+      '16': {BracoDireito: '-170, 0, -20'}
+      '24': {BracoDireito: '-170, 0, 20'}
+      '32': {BracoDireito: '-170, 0, -20'}
+      '40': {BracoDireito: '-10, 0, 10', Cabeca: '0, 0, 0'}
+
+  aplaudir:
+    Nome: '&eAplaudir'
+    Icone: exemplo:emoji_joinha
+    Raridade: comum
+    Livre: true
+    Duracao: 40
+    Repetir: false
+    Quadros:
+      '0': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', Cabeca: '0, 0, 0'}
+      '6': {BracoDireito: '-75, -20, 0', BracoEsquerdo: '-75, 20, 0', Cabeca: '-5, 0, 0'}
+      '10': {BracoDireito: '-75, -42, 0', BracoEsquerdo: '-75, 42, 0'}
+      '14': {BracoDireito: '-75, -20, 0', BracoEsquerdo: '-75, 20, 0'}
+      '18': {BracoDireito: '-75, -42, 0', BracoEsquerdo: '-75, 42, 0'}
+      '22': {BracoDireito: '-75, -20, 0', BracoEsquerdo: '-75, 20, 0'}
+      '26': {BracoDireito: '-75, -42, 0', BracoEsquerdo: '-75, 42, 0'}
+      '30': {BracoDireito: '-75, -20, 0', BracoEsquerdo: '-75, 20, 0'}
+      '40': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', Cabeca: '0, 0, 0'}
+
+  apontar:
+    Nome: '&bApontar'
+    Icone: exemplo:emoji_piscada
+    Raridade: comum
+    Livre: false
+    Duracao: 50
+    Repetir: false
+    Quadros:
+      '0': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', Corpo: '0, 0, 0', Cabeca: '0, 0, 0'}
+      '8': {BracoDireito: '-95, 0, 0', Corpo: '0, -8, 0', Cabeca: '-4, 0, 0'}
+      '14': {BracoDireito: '-88, 0, 0'}
+      '20': {BracoDireito: '-95, 0, 0'}
+      '40': {BracoDireito: '-95, 0, 0', Corpo: '0, -8, 0', Cabeca: '-4, 0, 0'}
+      '50': {BracoDireito: '-10, 0, 10', Corpo: '0, 0, 0', Cabeca: '0, 0, 0'}
+
+  pensar:
+    Nome: '&7Pensar'
+    Icone: exemplo:emoji_surpreso
+    Raridade: raro
+    Livre: false
+    Duracao: 60
+    Repetir: false
+    Quadros:
+      '0': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', Cabeca: '0, 0, 0'}
+      '10': {BracoDireito: '-125, -28, 0', BracoEsquerdo: '-40, 35, 0', Cabeca: '12, 0, 8'}
+      '25': {Cabeca: '12, 0, -6'}
+      '40': {Cabeca: '12, 0, 8'}
+      '50': {BracoDireito: '-125, -28, 0', BracoEsquerdo: '-40, 35, 0', Cabeca: '-10, 0, 0'}
+      '60': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', Cabeca: '0, 0, 0'}
+
+  sentar_chao:
+    Nome: '&aSentar no Chao'
+    Icone: exemplo:emoji_estrela
+    Raridade: raro
+    Livre: false
+    Duracao: 80
+    Repetir: true
+    Quadros:
+      '0': {PernaDireita: '-90, 12, 0', PernaEsquerda: '-90, -12, 0', BracoDireito: '-35, 0, 12', BracoEsquerdo: '-35, 0, -12', Corpo: '0, 0, 0', Cabeca: '0, 0, 0'}
+      '20': {Cabeca: '-8, 10, 0'}
+      '40': {Cabeca: '0, 0, 0', Corpo: '2, 0, 0'}
+      '60': {Cabeca: '-8, -10, 0'}
+      '80': {Cabeca: '0, 0, 0', Corpo: '0, 0, 0'}
+
+  flexionar:
+    Nome: '&cFlexionar'
+    Icone: exemplo:emoji_fogo
+    Raridade: epico
+    Livre: false
+    Duracao: 50
+    Repetir: false
+    Quadros:
+      '0': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', Corpo: '0, 0, 0', Cabeca: '0, 0, 0'}
+      '8': {BracoDireito: '-20, 0, 100', BracoEsquerdo: '-20, 0, -100', Cabeca: '-6, 0, 0'}
+      '14': {BracoDireito: '-150, 0, 55', BracoEsquerdo: '-150, 0, -55'}
+      '20': {BracoDireito: '-130, 0, 70', BracoEsquerdo: '-130, 0, -70', Corpo: '0, 10, 0'}
+      '26': {BracoDireito: '-150, 0, 55', BracoEsquerdo: '-150, 0, -55', Corpo: '0, -10, 0'}
+      '32': {BracoDireito: '-130, 0, 70', BracoEsquerdo: '-130, 0, -70', Corpo: '0, 10, 0'}
+      '40': {BracoDireito: '-150, 0, 55', BracoEsquerdo: '-150, 0, -55', Corpo: '0, 0, 0'}
+      '50': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', Cabeca: '0, 0, 0'}
+
+  comemorar:
+    Nome: '&6Comemorar'
+    Icone: exemplo:emoji_trofeu
+    Raridade: epico
+    Livre: false
+    Duracao: 48
+    Repetir: false
+    Quadros:
+      '0': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', PernaDireita: '0, 0, 0', PernaEsquerda: '0, 0, 0', Cabeca: '0, 0, 0'}
+      '6': {BracoDireito: '-170, 0, 25', BracoEsquerdo: '-170, 0, -25', Cabeca: '-18, 0, 0'}
+      '12': {BracoDireito: '-170, 0, -10', BracoEsquerdo: '-170, 0, 10', PernaDireita: '-20, 0, 0', PernaEsquerda: '10, 0, 0'}
+      '18': {BracoDireito: '-170, 0, 25', BracoEsquerdo: '-170, 0, -25', PernaDireita: '10, 0, 0', PernaEsquerda: '-20, 0, 0'}
+      '24': {BracoDireito: '-170, 0, -10', BracoEsquerdo: '-170, 0, 10', PernaDireita: '-20, 0, 0', PernaEsquerda: '10, 0, 0'}
+      '30': {BracoDireito: '-170, 0, 25', BracoEsquerdo: '-170, 0, -25', PernaDireita: '10, 0, 0', PernaEsquerda: '-20, 0, 0'}
+      '38': {BracoDireito: '-170, 0, 0', BracoEsquerdo: '-170, 0, 0', PernaDireita: '0, 0, 0', PernaEsquerda: '0, 0, 0'}
+      '48': {BracoDireito: '-10, 0, 10', BracoEsquerdo: '-10, 0, -10', Cabeca: '0, 0, 0'}
+
+  dancar:
+    Nome: '&d&lDancar'
+    Icone: exemplo:emoji_legal
+    Raridade: lendario
+    Livre: false
+    Duracao: 40
+    Repetir: true
+    Quadros:
+      '0': {Corpo: '0, 0, 6', Cabeca: '0, 0, -8', BracoDireito: '-150, 0, 30', BracoEsquerdo: '-30, 0, -40', PernaDireita: '0, 0, 8', PernaEsquerda: '-12, 0, -4'}
+      '10': {Corpo: '0, 12, 0', Cabeca: '0, -10, 0', BracoDireito: '-90, -30, 10', BracoEsquerdo: '-90, 30, -10', PernaDireita: '-8, 0, 4', PernaEsquerda: '-8, 0, -4'}
+      '20': {Corpo: '0, 0, -6', Cabeca: '0, 0, 8', BracoDireito: '-30, 0, 40', BracoEsquerdo: '-150, 0, -30', PernaDireita: '-12, 0, 4', PernaEsquerda: '0, 0, -8'}
+      '30': {Corpo: '0, -12, 0', Cabeca: '0, 10, 0', BracoDireito: '-90, -30, 10', BracoEsquerdo: '-90, 30, -10', PernaDireita: '-8, 0, 4', PernaEsquerda: '-8, 0, -4'}
+      '40': {Corpo: '0, 0, 6', Cabeca: '0, 0, -8', BracoDireito: '-150, 0, 30', BracoEsquerdo: '-30, 0, -40', PernaDireita: '0, 0, 8', PernaEsquerda: '-12, 0, -4'}

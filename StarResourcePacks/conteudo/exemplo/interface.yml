@@ -1,0 +1,32 @@
+# ============================================================
+#  Imagens grandes de interface: telas cheias e o logo do menu do ESC.
+#
+#  Telas cheias (telas.yml -> "Fundo"): a imagem e centralizada na tela.
+#    Altura = altura da imagem (ate 256). Subida = 13 + (Altura - 222) / 2
+#    deixa a imagem centralizada na altura do bau de 6 linhas (256 -> 30).
+#    Imagem mais larga que 256 e cortada em fatias pelo proprio plugin.
+#  Logo do ESC (config.yml -> "Menu ESC.Logo"): aparece no lugar do titulo
+#    "Menu do jogo". Aumente a Subida para o logo subir, diminua para descer.
+# ============================================================
+Glifos:
+  tela_boas_vindas:
+    Textura: telas/boas_vindas
+    Altura: 256
+    Subida: 30
+  tela_anuncio_evento:
+    Textura: telas/anuncio_evento
+    Altura: 256
+    Subida: 30
+  logo_servidor:
+    Textura: interface/logo_servidor
+    Altura: 40
+    Subida: 30
+  # Fundos dos paineis do HUD (hud.yml). A altura da imagem e a do painel.
+  hud_painel_jogador:
+    Textura: hud/hud_painel_jogador
+    Altura: 42
+    Subida: 8
+  hud_painel_servidor:
+    Textura: hud/hud_painel_servidor
+    Altura: 42
+    Subida: 8

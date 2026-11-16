@@ -1,0 +1,119 @@
+# ============================================================
+#  StarResourcePacks - HUD em paineis (servidor 1.20.2+)
+#
+#  Paineis com imagens, textos, barras e a cabeca do jogador em qualquer ponto
+#  do TOPO da tela, presos na ESQUERDA, no CENTRO ou na DIREITA.
+#
+#  Largura da tela: o servidor nao enxerga a tela do jogador. Ela e calculada
+#  como "Largura da janela" / "escala da interface" do jogo. O padrao vale para
+#  todos; cada jogador acerta a dele com /pacote escala <1 a 6> (o numero de
+#  Opcoes > Video > Escala da interface). Painel no CENTRO nao depende disso.
+#
+#  Painel:   Ancora, X (distancia da borda; no CENTRO, deslocamento do meio),
+#            Y (distancia do topo), Largura (do painel, para a ancora DIREITA/CENTRO),
+#            Permissao, Mundos, Intervalo (tiques entre atualizacoes).
+#  Elementos (X e Y a partir do canto de cima-esquerda do painel):
+#    IMAGEM   Glifo: pacote:id (um glifo de glifos.yml)
+#    TEXTO    Texto com cores e variaveis, Alinhar: ESQUERDA/CENTRO/DIREITA
+#             Variaveis do plugin: {jogador}, {online}, {maximo}, {mundo}, {nivel} e
+#             {saldo} (a moeda de "Loja.economia" do config.yml). Tambem aceita
+#             PlaceholderAPI (%...%); se a expansao nao estiver instalada sai um traco.
+#             (so letras sem acento, numeros e sinais comuns; Y minimo 2)
+#    BARRA    Valor e Maximo: VIDA, VIDA_MAXIMA, FOME, ARMADURA, AR, AR_MAXIMO, XP,
+#             NIVEL, um numero ou um %placeholder%; Icones; Cheio/Meio/Vazio (glifos);
+#             Espaco (pixels entre os icones)
+#    CABECA   rosto do jogador (skin), Tamanho = pixels de cada ponto (3 = 24x24)
+#
+#  Mudou algo aqui: /srp recarregar (o pacote e montado de novo).
+#  A barra de chefe da cor abaixo fica invisivel para carregar o HUD: outros
+#  plugins nao devem usar essa cor. O jogador liga/desliga com /pacote hud.
+# ============================================================
+Ativo: true
+Largura da janela: 1920
+Escala padrao: 3
+Cor da barra: YELLOW
+
+Paineis:
+  jogador:
+    Ativo: true
+    Ancora: ESQUERDA
+    X: 6
+    Y: 6
+    Largura: 128
+    Permissao: ''
+    Mundos: []
+    Intervalo: 10
+    Elementos:
+      fundo:
+        Tipo: IMAGEM
+        Glifo: 'exemplo:hud_painel_jogador'
+        X: 0
+        Y: 0
+      cabeca:
+        Tipo: CABECA
+        X: 6
+        Y: 9
+        Tamanho: 3
+      nome:
+        Tipo: TEXTO
+        Texto: '&f{jogador}'
+        X: 36
+        Y: 6
+      vida:
+        Tipo: BARRA
+        X: 36
+        Y: 17
+        Valor: VIDA
+        Maximo: VIDA_MAXIMA
+        Icones: 10
+        Espaco: -2
+        Cheio: 'exemplo:hud_coracao_cheio'
+        Meio: 'exemplo:hud_coracao_meio'
+        Vazio: 'exemplo:hud_coracao_vazio'
+      fome:
+        Tipo: BARRA
+        X: 36
+        Y: 28
+        Valor: FOME
+        Maximo: 20
+        Icones: 10
+        Espaco: -2
+        Cheio: 'exemplo:hud_fome_cheio'
+        Meio: 'exemplo:hud_fome_meio'
+        Vazio: 'exemplo:hud_fome_vazio'
+  servidor:
+    Ativo: true
+    Ancora: DIREITA
+    X: 6
+    Y: 6
+    Largura: 116
+    Permissao: ''
+    Mundos: []
+    Intervalo: 20
+    Elementos:
+      fundo:
+        Tipo: IMAGEM
+        Glifo: 'exemplo:hud_painel_servidor'
+        X: 0
+        Y: 0
+      titulo:
+        Tipo: TEXTO
+        Texto: '&b&lMEU SERVIDOR'
+        Alinhar: CENTRO
+        X: 58
+        Y: 6
+      online:
+        Tipo: TEXTO
+        Texto: '&7Online: &a{online}&7/{maximo}'
+        X: 8
+        Y: 17
+      moeda:
+        Tipo: IMAGEM
+        Glifo: 'exemplo:hud_moeda'
+        X: 8
+        Y: 28
+      saldo:
+        Tipo: TEXTO
+        Texto: '&e{saldo}'
+        X: 20
+        Y: 28

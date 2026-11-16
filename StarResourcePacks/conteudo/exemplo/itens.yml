@@ -1,0 +1,228 @@
+# ============================================================
+#  Itens com visual proprio.
+#
+#  Material      item base do jogo (comportamento: dano, comida, armadura...).
+#                PAPER e o mais seguro quando o item so precisa de visual.
+#  Textura       imagem em resource_pack/assets/exemplo/textures/ (sem .png): vira um item chapado.
+#  Modelo        modelo 3D em resource_pack/assets/exemplo/models/ (JSON do Blockbench, formato Java). Vence a textura.
+#                De outro namespace ou de um pacote pronto: ns:caminho (ex.: joias:item/anel).
+#  Brilho        true = brilho de encantado.   Permissao: quem pode usar (vazio = todos).
+#  Exibicao      ajuste de como o item aparece em cada lugar (cabeca, mao_direita,
+#                mao_esquerda, primeira_pessoa_direita, chao, moldura, menu).
+#                Mais facil pelo editor: /srp editar exemplo:espada_rubi
+#  Acoes         gatilhos: clique_direito, clique_esquerdo, shift_clique_direito,
+#                shift_clique_esquerdo, comer, bater. Linhas:
+#                comando:, console:, mensagem:, actionbar:, titulo: a|b,
+#                som: SOM;volume;tom, efeito: EFEITO;segundos;nivel, curar: n,
+#                alimentar: n, particula: TIPO;quantidade
+#  Recarga       segundos entre usos.  Gastar ao usar: consome 1 por uso.
+#  Inquebravel   true = nao perde durabilidade.
+#  Armadura      (1.21.2+) texturas armadura/<nome>_camada1.png (corpo) e _camada2.png (calca).
+#  Cor           cor da armadura de couro em qualquer versao.
+#  Alternativo   o que aparece em servidor 1.8 a 1.13 (sem modelo proprio).
+#
+#  Receita       (opcional, em qualquer item, bloco, movel ou cosmetico)
+#    Tipo          MOLDADA, SEM_FORMA, FORNALHA, FUMEIRO, ALTO_FORNO ou MESA
+#    Formato       MOLDADA/MESA: ate 3 linhas de ate 3 letras (espaco = vazio)
+#    Ingredientes  letra -> material do jogo ou id deste pacote (exemplo:rubi)
+#    Lista         SEM_FORMA: os ingredientes, em qualquer ordem
+#    Entrada       FORNALHA/FUMEIRO/ALTO_FORNO: o que entra para assar
+#    Quantidade    quantos saem.   Tempo: segundos.   Experiencia: xp por item.
+#    Estacao       tipo MESA: so da para fazer na bancada personalizada indicada
+#
+#  Os botoes de menu e os icones dos emotes ficam em botoes.yml (mesma secao "Itens").
+# ============================================================
+Itens:
+  rubi:
+    Material: PAPER
+    Nome: '&cRubi'
+    Lore: ['&7Uma pedra rara e brilhante.', '&8Asse o minerio de rubi na fornalha.']
+    Textura: item/rubi
+    Alternativo:
+      Material: REDSTONE
+    Receita:
+      Tipo: FORNALHA
+      Entrada: exemplo:minerio_rubi
+      Quantidade: 1
+      Tempo: 10
+      Experiencia: 0.7
+
+  safira:
+    Material: PAPER
+    Nome: '&9Safira'
+    Lore: ['&7Fria como o ceu da noite.', '&8Sai do alto-forno, de um bloco de lapis.']
+    Textura: item/safira
+    Alternativo:
+      Material: LAPIS_LAZULI
+    Receita:
+      Tipo: ALTO_FORNO
+      Entrada: LAPIS_BLOCK
+      Quantidade: 1
+      Tempo: 8
+      Experiencia: 1.0
+
+  espada_rubi:
+    Material: DIAMOND_SWORD
+    Nome: '&c&lEspada de Rubi'
+    Lore:
+      - '&7Forjada com rubis lapidados.'
+      - ''
+      - '&eShift + direito: &ffuria (forca por 6s)'
+    Textura: item/espada_rubi
+    Inquebravel: true
+    Recarga: 20
+    Acoes:
+      shift_clique_direito:
+        - 'som: ENTITY_BLAZE_SHOOT;0.8;1.4'
+        - 'efeito: STRENGTH;6;1'
+        - 'particula: FLAME;20'
+        - 'actionbar: &c&lFuria!'
+      bater:
+        - 'som: ENTITY_PLAYER_ATTACK_CRIT;0.6;1.3'
+    Receita:
+      Tipo: MOLDADA
+      Formato: [' R ', ' R ', ' S ']
+      Ingredientes: {R: 'exemplo:rubi', S: STICK}
+
+  picareta_rubi:
+    Material: DIAMOND_PICKAXE
+    Nome: '&cPicareta de Rubi'
+    Lore: ['&7Leve, afiada e teimosa.', '', '&eDireito: &fpressa por 10s']
+    Textura: item/picareta_rubi
+    Recarga: 30
+    Acoes:
+      clique_direito:
+        - 'som: BLOCK_ANVIL_USE;0.4;1.8'
+        - 'efeito: HASTE;10;2'
+        - 'actionbar: &cOs rubis vibram nas suas maos!'
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['RRR', ' S ', ' S ']
+      Ingredientes: {R: 'exemplo:rubi', S: STICK}
+
+  machado_rubi:
+    Material: DIAMOND_AXE
+    Nome: '&cMachado de Rubi'
+    Lore: ['&7Derruba a arvore antes de ela perceber.']
+    Textura: item/machado_rubi
+    Alternativo:
+      Material: DIAMOND_AXE
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['RR', 'RS', ' S']
+      Ingredientes: {R: 'exemplo:rubi', S: STICK}
+
+  pa_rubi:
+    Material: DIAMOND_SHOVEL
+    Nome: '&cPa de Rubi'
+    Lore: ['&7Cava fundo sem perder o brilho.']
+    Textura: item/pa_rubi
+    Alternativo:
+      Material: DIAMOND_SHOVEL
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['R', 'S', 'S']
+      Ingredientes: {R: 'exemplo:rubi', S: STICK}
+
+  enxada_rubi:
+    Material: DIAMOND_HOE
+    Nome: '&cEnxada de Rubi'
+    Lore: ['&7Para a horta mais chique do servidor.']
+    Textura: item/enxada_rubi
+    Alternativo:
+      Material: DIAMOND_HOE
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['RR', ' S', ' S']
+      Ingredientes: {R: 'exemplo:rubi', S: STICK}
+
+  varinha_estelar:
+    Material: STICK
+    Nome: '&d&lVarinha Estelar'
+    Lore: ['&7Direito: &fvelocidade por 8s', '&8So pode ser feita na Bancada de Rubi.']
+    Textura: item/varinha_estelar
+    Brilho: true
+    Recarga: 10
+    Acoes:
+      clique_direito:
+        - 'som: ENTITY_PLAYER_LEVELUP;0.6;1.8'
+        - 'particula: END_ROD;25'
+        - 'efeito: SPEED;8;2'
+        - 'actionbar: &dVoce se sente leve como uma estrela!'
+    Receita:
+      Tipo: MESA
+      Estacao: exemplo:bancada_rubi
+      Formato: [' E ', ' S ', ' R ']
+      Ingredientes: {E: 'exemplo:safira', S: STICK, R: 'exemplo:rubi'}
+
+  maca_estelar:
+    Material: APPLE
+    Nome: '&5Maca Estelar'
+    Lore: ['&7Regenera e alimenta.']
+    Textura: item/maca_estelar
+    Acoes:
+      comer:
+        - 'efeito: REGENERATION;6;2'
+        - 'alimentar: 4'
+        - 'curar: 2'
+        - 'particula: HEART;5'
+        - 'mensagem: &dQue sabor de galaxia!'
+    Alternativo:
+      Material: GOLDEN_APPLE
+    Receita:
+      Tipo: SEM_FORMA
+      Lista: [APPLE, 'exemplo:safira']
+
+  # ---------------------------------------------------------- armadura de rubi
+  # No corpo ela aparece com a textura propria (1.21.2+); antes disso, couro tingido.
+  capacete_rubi:
+    Material: LEATHER_HELMET
+    Nome: '&cCapacete de Rubi'
+    Lore: ['&7Parte do conjunto de rubi.']
+    Textura: item/capacete_rubi
+    Cor: '#c8283c'
+    Armadura:
+      Textura: armadura/rubi
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['RRR', 'R R']
+      Ingredientes: {R: 'exemplo:rubi'}
+
+  peitoral_rubi:
+    Material: LEATHER_CHESTPLATE
+    Nome: '&cPeitoral de Rubi'
+    Lore: ['&7Parte do conjunto de rubi.']
+    Textura: item/peitoral_rubi
+    Cor: '#c8283c'
+    Armadura:
+      Textura: armadura/rubi
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['R R', 'RRR', 'RRR']
+      Ingredientes: {R: 'exemplo:rubi'}
+
+  calca_rubi:
+    Material: LEATHER_LEGGINGS
+    Nome: '&cCalca de Rubi'
+    Lore: ['&7Parte do conjunto de rubi.']
+    Textura: item/calca_rubi
+    Cor: '#c8283c'
+    Armadura:
+      Textura: armadura/rubi
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['RRR', 'R R', 'R R']
+      Ingredientes: {R: 'exemplo:rubi'}
+
+  botas_rubi:
+    Material: LEATHER_BOOTS
+    Nome: '&cBotas de Rubi'
+    Lore: ['&7Parte do conjunto de rubi.']
+    Textura: item/botas_rubi
+    Cor: '#c8283c'
+    Armadura:
+      Textura: armadura/rubi
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['R R', 'R R']
+      Ingredientes: {R: 'exemplo:rubi'}

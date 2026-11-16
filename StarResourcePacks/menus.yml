@@ -1,0 +1,247 @@
+# ============================================================
+#  StarResourcePacks - menus
+#  "Titulo com pacote" vale para quem carregou os recursos (servidor 1.19+):
+#  {fundo:pacote:id} desenha uma imagem por tras do inventario.
+#  Material aceita item do conteudo com reserva: 'exemplo:botao_fechar|RED_DYE'.
+# ============================================================
+Versao do modelo: 2
+
+Guarda-roupa:
+  Titulo: '&8Guarda-roupa &7({pagina}/{paginas})'
+  Titulo com pacote: '{fundo:exemplo:guarda_roupa}&8Guarda-roupa'
+  Som do clique: 'UI_BUTTON_CLICK;0.6;1.4'
+  Som negado: 'ENTITY_VILLAGER_NO;0.7;1'
+  Som da compra: 'ENTITY_PLAYER_LEVELUP;0.7;1.4'
+  Todos: '&fTodos'
+  # Nome bonito de cada categoria (a chave e o "Categoria:" do cosmetico).
+  Categorias:
+    chapeus: '&eChapeus'
+    costas: '&bCostas'
+    baloes: '&dBaloes'
+  Encaixes:
+    CHAPEU: 'Chapeu'
+    COSTAS: 'Costas'
+    BALAO: 'Balao'
+  Filtros:
+    Todos: '&fTodos'
+    Meus: '&aSo os meus'
+    Favoritos: '&eFavoritos'
+  Lore:
+    Cabecalho:
+      - ''
+      - '{raridade} &8| &7{encaixe}'
+    Vestido:
+      - '&a&lVESTIDO'
+      - '&7Esquerdo: &ftirar'
+    Disponivel:
+      - '&aVoce tem este cosmetico'
+      - '&7Esquerdo: &fvestir'
+    A venda:
+      - '&7Preco: &e{preco}'
+      - '&7Esquerdo: &fcomprar'
+    Confirmar:
+      - '&7Preco: &e{preco}'
+      - '&e&lClique de novo para confirmar'
+    Bloqueado:
+      - '&c&lBLOQUEADO'
+    Favorito:
+      - '&e★ Favorito'
+    Rodape:
+      - '&7Direito: &fprovador &8| &7Q: &ffavoritar'
+  Botoes:
+    Aba:
+      Material: BOOK
+      Nome: '{categoria}'
+      Lore: ['&7Clique para ver']
+    Aba selecionada:
+      Material: ENCHANTED_BOOK
+      Nome: '{categoria}'
+      Lore: ['&aMostrando']
+    Anterior:
+      Material: 'exemplo:botao_voltar|ARROW'
+      Nome: '&fPagina anterior'
+    Proxima:
+      Material: 'exemplo:botao_avancar|ARROW'
+      Nome: '&fProxima pagina'
+    Filtro:
+      Material: HOPPER
+      Nome: '&fMostrar: {filtro}'
+      Lore: ['&7Clique para trocar']
+    Conjuntos:
+      Material: 'exemplo:botao_conjunto|ARMOR_STAND'
+      Nome: '&bConjuntos'
+      Lore: ['&7Guarde o que esta vestindo e', '&7troque tudo num clique.', '&7Salvos: &f{total}']
+    Tirar tudo:
+      Material: 'exemplo:botao_lixeira|SHEARS'
+      Nome: '&eTirar tudo'
+      Lore: ['&7Vestidos agora: &f{vestidos}']
+    Fechar:
+      Material: 'exemplo:botao_fechar|RED_DYE'
+      Nome: '&cFechar'
+    Colecao:
+      Material: 'exemplo:botao_moeda|GOLD_INGOT'
+      Nome: '&6Sua colecao'
+      Lore: ['&7Voce tem &f{meus}&7 de &f{total}&7 (&f{porcento}%&7)', '&7Saldo: &e{saldo}']
+    Emotes:
+      Material: ARMOR_STAND
+      Nome: '&dEmotes'
+      Lore: ['&7Acene, dance, comemore...']
+    Ajuda:
+      Material: OAK_SIGN
+      Nome: '&bComo funciona'
+      Lore:
+        - '&7Esquerdo veste, tira ou compra.'
+        - '&7Direito abre o &fprovador&7: um manequim'
+        - '&7com a sua cara aparece na sua frente.'
+        - '&7Q marca como favorito.'
+        - '&7Um de cada tipo: chapeu, costas e balao.'
+
+Conjuntos:
+  Titulo: '&8Conjuntos'
+  Titulo com pacote: ''
+  Linha da peca: '&8- &f{peca}'
+  Sem pecas: '&8(sem nada vestido)'
+  Lore do salvo:
+    - ''
+    - '&7Esquerdo: &fvestir'
+    - '&7Shift+esquerdo: &fgravar por cima'
+    - '&7Direito: &fapagar'
+  Botoes:
+    Vazio:
+      Material: GRAY_DYE
+      Nome: '&7Conjunto {numero} &8(vazio)'
+      Lore: ['&7Clique para gravar o que', '&7voce esta vestindo agora.']
+    Salvo:
+      Material: LEATHER_CHESTPLATE
+      Nome: '&bConjunto {numero}'
+    Voltar:
+      Material: 'exemplo:botao_voltar|RED_DYE'
+      Nome: '&cVoltar'
+
+Emotes:
+  Titulo: '&8Emotes'
+  Titulo com pacote: '{fundo:exemplo:emotes}&8Emotes'
+  Lore:
+    Cabecalho:
+      - ''
+      - '{raridade} &8| &7{segundos}s'
+    Disponivel:
+      - '&7Clique: &ftocar'
+    A venda:
+      - '&7Preco: &e{preco}'
+      - '&7Clique: &fcomprar'
+    Confirmar:
+      - '&7Preco: &e{preco}'
+      - '&e&lClique de novo para confirmar'
+    Bloqueado:
+      - '&c&lBLOQUEADO'
+  Botoes:
+    Anterior:
+      Material: 'exemplo:botao_voltar|ARROW'
+      Nome: '&fPagina anterior'
+    Proxima:
+      Material: 'exemplo:botao_avancar|ARROW'
+      Nome: '&fProxima pagina'
+    Fechar:
+      Material: 'exemplo:botao_fechar|RED_DYE'
+      Nome: '&cFechar'
+    Voltar:
+      Material: 'exemplo:botao_voltar|RED_DYE'
+      Nome: '&cVoltar'
+
+Bancada:
+  Titulo: '&8{estacao}'
+  Titulo com pacote: '{fundo:exemplo:bancada}&8{estacao}'
+  Lore:
+    Cabecalho: ['', '&7Ingredientes:']
+    Tem: '&a + &f{quantidade}x {item} &8({tem})'
+    Falta: '&c - &f{quantidade}x {item} &8({tem})'
+    Pode: ['', '&eClique: &ffazer 1', '&eShift: &ffazer o maximo']
+    Nao pode: ['', '&cFaltam ingredientes.']
+  Botoes:
+    Vazia:
+      Material: BARRIER
+      Nome: '&7Nenhuma receita nesta bancada'
+    Anterior:
+      Material: 'exemplo:botao_voltar|ARROW'
+      Nome: '&fPagina anterior'
+    Proxima:
+      Material: 'exemplo:botao_avancar|ARROW'
+      Nome: '&fProxima pagina'
+    Fechar:
+      Material: 'exemplo:botao_fechar|RED_DYE'
+      Nome: '&cFechar'
+
+Conteudo:
+  Titulo: '&8Conteudo: {aba} &7({pagina}/{paginas})'
+  Titulo com pacote: ''
+  Abas:
+    ITEM: 'Itens'
+    MOVEL: 'Moveis'
+    COSMETICO: 'Cosmeticos'
+    BLOCO: 'Blocos'
+  Com arte: '&atem arte propria'
+  Sem arte: '&eusa so o material'
+  Com assento: 'com assento'
+  Lore do item:
+    - ''
+    - '&8{id}'
+    - '&7Base: &f{material} &8| {arte}'
+    - '&7{detalhe}'
+    - '&7Esquerdo: &fpegar 1 &8| &7Shift: &fpilha'
+    - '&7Direito: &feditor visual'
+  Botoes:
+    Aba ITEM:
+      Material: DIAMOND_SWORD
+      Nome: '&bItens &7({total})'
+    Aba MOVEL:
+      Material: OAK_STAIRS
+      Nome: '&6Moveis &7({total})'
+    Aba COSMETICO:
+      Material: LEATHER_HELMET
+      Nome: '&dCosmeticos &7({total})'
+    Aba BLOCO:
+      Material: NOTE_BLOCK
+      Nome: '&aBlocos &7({total})'
+    Anterior:
+      Material: ARROW
+      Nome: '&fPagina anterior'
+    Proxima:
+      Material: ARROW
+      Nome: '&fProxima pagina'
+    Construir:
+      Material: ANVIL
+      Nome: '&eMontar o pacote de novo'
+      Lore: ['&7So monta e reenvia.', '&7Para reler os arquivos: &f/srp recarregar']
+    Fechar:
+      Material: RED_DYE
+      Nome: '&cFechar'
+    Info:
+      Material: BOOK
+      Nome: '&bResumo'
+      Lore:
+        - '&7Itens/moveis/cosmeticos/blocos: &f{itens}'
+        - '&7Glifos e emojis: &f{glifos}'
+        - '&7Moveis colocados: &f{moveis}'
+
+Emojis:
+  Titulo: '&8Emojis'
+  Titulo com pacote: ''
+  Material: PAPER
+  Material bloqueado: GRAY_DYE
+  Nome: '{emoji} &f{nome}'
+  Lore:
+    - '&7Escreva no chat:'
+    - '&f{atalhos}'
+  Lore bloqueado:
+    - '&cVoce nao tem este emoji.'
+  Botoes:
+    Anterior:
+      Material: ARROW
+      Nome: '&fPagina anterior'
+    Proxima:
+      Material: ARROW
+      Nome: '&fProxima pagina'
+    Fechar:
+      Material: RED_DYE
+      Nome: '&cFechar'

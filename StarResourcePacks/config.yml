@@ -1,0 +1,209 @@
+# ============================================================
+#  StarResourcePacks - configuracao
+#
+#  O conteudo (itens, moveis, cosmeticos, blocos, emojis, glifos) mora na
+#  pasta conteudo/. Cada subpasta e um pacote e o nome dela vira o namespace:
+#  conteudo/exemplo/  ->  exemplo:cartola, exemplo:cadeira...
+#  Depois de mexer: /srp recarregar (le tudo e monta o pacote de novo).
+# ============================================================
+Versao do modelo: 8
+
+Debug: false
+
+Pacote:
+  # Texto que aparece na lista de pacotes do jogador.
+  Descricao: '&bRecursos do servidor &7- StarResourcePacks'
+  # 0 = automatico pela versao do servidor. So mude se o jogo reclamar de
+  # "pacote incompativel" numa versao muito nova.
+  Formato: 0
+  # Monta o pacote ao ligar o servidor (leva menos de um segundo).
+  Construir ao iniciar: true
+  # Quando o pacote muda (/srp textura construir, /srp recarregar, editor), reenvia a
+  # todos que estao online.
+  Reenviar ao reconstruir: true
+  # Idiomas do jogo que recebem os textos trocados pelo pacote (menu do ESC e o
+  # texto "Inventario" abaixo). O idioma do jogador precisa estar na lista.
+  Idiomas: [ pt_br, en_us, pt_pt, es_es, es_mx, es_ar ]
+
+Hospedagem:
+  # De onde o jogador baixa o pacote:
+  #   AUTO     escolhe sozinho, nesta ordem: o link de "Url externa" (se voce
+  #            preencher); a hospedagem da StarPlugins (conta Premium: o pacote
+  #            sobe sozinho assim que e montado, sem abrir porta nenhuma); e,
+  #            sem nenhum dos dois, a porta deste servidor.
+  #   INTERNA  sempre a porta deste servidor (abaixo).
+  #   EXTERNA  sempre o link de "Url externa": voce sobe o pacote/pacote.zip num
+  #            site seu e reenvia o arquivo a cada mudanca.
+  #   PREMIUM  sempre a StarPlugins (conta Premium): o plugin sobe o pacote sozinho
+  #            a cada mudanca. Enquanto sobe, ou se o Premium vencer, sai pela porta.
+  Modo: AUTO
+  # Conta Premium no modo AUTO: false = o pacote so vai para a StarPlugins quando
+  # voce mandar (/srp textura upar).
+  Subir sozinho no Premium: true
+  # Porta liberada no seu host para o download (TCP). Precisa estar aberta para
+  # a internet, igual a porta do servidor.
+  Porta: 8163
+  # Se a porta acima ja estiver em uso (outro servidor na mesma maquina), o
+  # plugin usa a proxima livre e avisa qual foi no console e no /srp info.
+  # Em hospedagem com portas contadas deixe false e ponha a porta que ela te deu.
+  Trocar de porta se ocupada: true
+  # Em qual IP da maquina escutar. Vazio = todos.
+  Ip de escuta: ''
+  # Endereco que vai no link para o jogador: IP publico ou dominio (ex.:
+  # jogar.meuservidor.com). Vazio = descobre sozinho. Pode ser uma URL completa
+  # (https://cdn.meuservidor.com) se voce tiver um proxy na frente.
+  Endereco publico: ''
+  Url externa: ''
+
+Envio:
+  Ativo: true
+  # Espera (em tiques) depois da entrada antes de mandar o pacote.
+  Atraso ao entrar: 20
+  # 1.17+: o jogador nao consegue recusar (recusar = sair do servidor).
+  Obrigatorio: false
+  Mensagem do pedido: '&bEste servidor tem itens, moveis e cosmeticos com visual proprio. &fAceite para ver tudo!'
+  # O que fazer quando o jogador recusa / o download falha: NADA, AVISAR ou EXPULSAR.
+  # A staff (starresourcepacks.admin) nunca e expulsa.
+  Ao recusar: AVISAR
+  Ao falhar: AVISAR
+  # Enquanto o pacote carrega o jogador nao leva dano (o jogo trava a tela).
+  Protecao durante o carregamento: true
+  Tempo limite: 90
+  # Escreve no console o que aconteceu com o pacote de cada jogador: carregou
+  # (em quantos segundos e em que versao joga), recusou, falhou ou nao respondeu,
+  # com a explicacao do motivo quando da para saber.
+  Registrar no console: true
+  # Quando alguem nao consegue carregar, avisa a staff que esta online
+  # (starresourcepacks.admin). O resumo de todos fica em /srp textura jogadores.
+  Avisar a staff: true
+  Titulo durante o carregamento: true
+
+Moveis:
+  # Pergunta aos plugins de protecao (terrenos, regioes) antes de colocar e de
+  # quebrar, como se fosse um bloco comum.
+  Respeitar protecao: true
+  # Bau de movel (Clique: BAU): false = so o dono e a staff abrem.
+  Bau aberto para todos: false
+  # Como o movel e desenhado no mundo:
+  #   SUPORTE   suporte de armadura invisivel com o modelo na cabeca. Aparece certo
+  #             em qualquer versao de cliente, inclusive em quem entra por tradutor
+  #             de versao. Inclinacao e escala do ajuste entram no pacote.
+  #   EXIBICAO  entidade de exibicao (1.19.4+): ajuste todo ao vivo e animacao
+  #             mais suave, mas clientes antigos nao enxergam.
+  # Trocar aqui converte os moveis ja colocados sozinho.
+  Entidade: SUPORTE
+
+Cosmeticos:
+  # PACOTE: o chapeu e mostrado como capacete aos outros (nao toca no inventario).
+  # ENTIDADE: uma entidade segue a cabeca (use se outro plugin mexer no capacete).
+  Modo do chapeu: PACOTE
+  # O dono ve o proprio chapeu na terceira pessoa (F5).
+  Mostrar chapeu para o dono: true
+  # De quantos em quantos tiques o chapeu e reenviado aos jogadores por perto.
+  Reenviar chapeu a cada: 20
+  Alcance do chapeu: 48
+  # Costas e chapeu por entidade andam presos ao jogador pelo proprio jogo (1.19.4+):
+  # nao atrasam nem para quem veste. false = o servidor reposiciona a cada tique.
+  Prender ao jogador: true
+  # Tiques de transicao das pecas do corpo (0 = cola na hora; 2 a 3 = suave).
+  Suavidade: 2
+  Esconder com invisibilidade: true
+  Corda do balao: true
+
+# Loja do guarda-roupa: cosmeticos e emotes com "Preco" podem ser comprados.
+Loja:
+  Ativa: true
+  # Qual economia cobra. vault (padrao) ou o id de uma moeda, ex.: stareconomia-cash
+  economia: vault
+
+# Raridades dos cosmeticos e emotes (o "Raridade:" de cada um). A Ordem decide
+# quem aparece primeiro no guarda-roupa. Crie as suas a vontade.
+Raridades:
+  comum:
+    Nome: '&7Comum'
+    Ordem: 1
+  raro:
+    Nome: '&9Raro'
+    Ordem: 2
+  epico:
+    Nome: '&5Epico'
+    Ordem: 3
+  lendario:
+    Nome: '&6Lendario'
+    Ordem: 4
+  mitico:
+    Nome: '&d&lMitico'
+    Ordem: 5
+
+# Menu do ESC (tela de pausa): logo do servidor no lugar do titulo, textos e
+# botoes proprios. Vai dentro do pacote: mudou aqui, /srp textura construir.
+Menu ESC:
+  Ativo: true
+  # Glifo com o logo/nome do servidor (em glifos.yml). Vazio = usa o texto "Titulo".
+  Logo: 'exemplo:logo_servidor'
+  # Texto vazio = fica o do jogo.
+  Textos:
+    Titulo: '&b&lMEU SERVIDOR'
+    Voltar ao jogo: '&aVoltar ao jogo'
+    Progressos: ''
+    Estatisticas: ''
+    Opcoes: ''
+    Desconectar: '&cSair do servidor'
+    Denunciar jogador: ''
+    Feedback: ''
+    Reportar erros: ''
+    Links do servidor: ''
+    Abrir para LAN: ''
+  # Texturas dos botoes do jogo (1.20.2+), 200x20: 'pacote:caminho/da/textura'. Vazio = botao do jogo.
+  # Vale para todos os botoes das telas do jogo, nao so os do ESC.
+  Botoes:
+    Normal: 'exemplo:interface/esc/botao'
+    Destacado: 'exemplo:interface/esc/botao_destacado'
+    Desativado: 'exemplo:interface/esc/botao_desativado'
+
+# Painel do site (starplugins.com.br/paineis): edite as telas e as tags pelo
+# navegador. O servidor conversa com o site a cada 30 segundos; vale a versao
+# mais nova entre o jogo e o painel. Acao "console:" de botao so nasce no jogo.
+Painel do site:
+  Sincronizar: true
+
+Provador:
+  # Quanto tempo o manequim fica na frente do jogador (segundos).
+  Duracao: 30
+  # true = o provador mostra um NPC com a skin do proprio jogador, feito pelo plugin
+  # de NPC do servidor (StarNpc, Citizens ou FancyNpcs, o que estiver no "npc" do
+  # config do loader). Sem plugin de NPC, ou com false, aparece o manequim de
+  # suporte de armadura com a cabeca do jogador.
+  Usar NPC: true
+  Som: 'ENTITY_ITEM_PICKUP;0.6;1.2'
+
+Editor:
+  # No modo Escala com o eixo Y selecionado, os tres eixos mudam juntos.
+  Escala por igual: true
+
+Emojis:
+  Chat: true
+  Placas: true
+
+Menus:
+  # Milissegundos minimos entre dois cliques (defesa contra clique duplo).
+  Intervalo entre cliques: 150
+  # Tira o quadrado claro que o jogo desenha na casa embaixo do mouse (1.21.2+).
+  # Vale para TODOS os inventarios do servidor (baus, fornalhas...): e o preco de
+  # telas e menus com imagem ficarem limpos. false devolve o destaque do jogo.
+  Esconder destaque do mouse: true
+  # Tira o texto "Inventario" que o jogo escreve acima dos itens do jogador em
+  # todo bau: ele cairia em cima das imagens das telas e dos fundos de menu.
+  Esconder texto Inventario: true
+
+# HUD na barra de acao: {glifo:pacote:id}, {espaco:N} (1.19+) e placeholders do
+# PlaceholderAPI. O primeiro HUD ativo que o jogador pode ver e o dele.
+# O jogador liga/desliga com /pacote hud.
+Huds:
+  status:
+    Ativo: false
+    Permissao: ''
+    Mundos: []
+    Intervalo: 10
+    So com o pacote carregado: true
+    Texto: '{glifo:exemplo:hud_coracao_cheio} &c%player_health_rounded%  {glifo:exemplo:hud_moeda} &e%vault_eco_balance_formatted%'

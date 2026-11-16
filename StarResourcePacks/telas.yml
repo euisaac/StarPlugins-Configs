@@ -1,0 +1,68 @@
+# ============================================================
+#  StarResourcePacks - telas cheias (boas-vindas, anuncios, regras)
+#  Edite pelo jogo: /srp tela editar <id>   |   ou pelo painel do site.
+#  Fundo: glifo da imagem (pacote:id). Cor de fundo: #RRGGBB cobre a tela toda.
+#  Casas de baixo (inventario do jogador, escondido): 54-80 as tres linhas, 81-89 a barra.
+#  Botoes: Casas (0 a 53), Item (id do conteudo, MATERIAL ou INVISIVEL), Acoes:
+#    fechar | tela: <id> | fade: #000000;10;10;10 | comando: | console: | mensagem: | som: ...
+# ============================================================
+Telas:
+  boas_vindas:
+    Titulo: ''
+    Fundo: 'exemplo:tela_boas_vindas'
+    Cor de fundo: '#141026'
+    Linhas: 6
+    Ao entrar: true
+    Uma vez: false
+    Obrigatoria: false
+    Esconder inventario: true
+    Permissao: ''
+    Som: 'ENTITY_PLAYER_LEVELUP;0.5;1.6'
+    Fade: ''
+    Botoes:
+      jogar:
+        Casas: [85]
+        Item: 'exemplo:tela_botao_jogar'
+        Nome: '&a&lJOGAR'
+        Lore: ['&7Clique para entrar no servidor.']
+        Acoes: ['fade: #141026;0;5;15', 'fechar', 'som: UI_BUTTON_CLICK;0.8;1.2']
+      jogar_area:
+        Casas: [84, 86]
+        Item: INVISIVEL
+        Nome: '&a&lJOGAR'
+        Acoes: ['fade: #141026;0;5;15', 'fechar', 'som: UI_BUTTON_CLICK;0.8;1.2']
+      regras:
+        Casas: [82]
+        Item: 'exemplo:tela_botao_regras'
+        Nome: '&eRegras'
+        Lore: ['&7Leia antes de jogar.']
+        Acoes: ['fechar', 'mensagem: &eRegras: &frespeite todo mundo e divirta-se!']
+      discord:
+        Casas: [88]
+        Item: 'exemplo:tela_botao_discord'
+        Nome: '&9Discord'
+        Lore: ['&7Entre na comunidade.']
+        Acoes: ['fechar', 'mensagem: &9Discord: &fdiscord.gg/seuservidor']
+  anuncio_evento:
+    Titulo: ''
+    Fundo: 'exemplo:tela_anuncio_evento'
+    Cor de fundo: '#141026'
+    Linhas: 6
+    Ao entrar: false
+    Uma vez: false
+    Obrigatoria: false
+    Esconder inventario: true
+    Permissao: ''
+    Som: 'BLOCK_NOTE_BLOCK_PLING;0.8;1.4'
+    Fade: ''
+    Botoes:
+      participar:
+        Casas: [85]
+        Item: 'exemplo:tela_botao_jogar'
+        Nome: '&6&lPARTICIPAR'
+        Acoes: ['fechar', 'mensagem: &6Evento: &fuse /evento para participar!']
+      participar_area:
+        Casas: [84, 86]
+        Item: INVISIVEL
+        Nome: '&6&lPARTICIPAR'
+        Acoes: ['fechar', 'mensagem: &6Evento: &fuse /evento para participar!']

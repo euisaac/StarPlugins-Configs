@@ -1,0 +1,257 @@
+# ============================================================
+#  Moveis: modelos colocados no mundo com clique direito.
+#
+#  Modelo        modelo 3D em modelos/ (sem .json).
+#  Assento       Ativo; Altura = altura do estofado em blocos, medida do chao do
+#                bloco (16 pixels do modelo = 1): o plugin poe o jogador sentado
+#                nela em qualquer versao. Quem senta fica virado para a frente do
+#                movel (Giro: graus a mais, se o seu modelo pedir).
+#                Lugares: um por linha, 'lado, frente' em blocos a partir do centro
+#                (lado positivo = direita de quem senta). Sem a lista: um lugar no centro.
+#  Barreira      bloco invisivel solido no lugar (colisao e clique). Sem ela o
+#                clique vem de uma caixa invisivel (1.19.4+) do tamanho abaixo.
+#  Tamanho       Largura e Altura da caixa de clique/colisao em blocos.
+#  Luz           0 a 15 (1.17+).
+#  Rotacoes      4, 8 ou 16 direcoes ao colocar.
+#  Ajuste        posicao (blocos), rotacao (graus) e escala do modelo no bloco.
+#                Ajuste ao vivo: /srp editar exemplo:cadeira
+#  Exibicao do modelo  true = o modelo ja veio pronto para suporte de armadura
+#                (exibicao "head" feita no editor de modelos): o plugin usa a dele
+#                em vez de calcular. So vale com "Moveis.Entidade: SUPORTE" no config.yml.
+#  Sons          Colocar e Quebrar.
+#  Clique        o que o clique direito faz:
+#                SENTAR, ESTADO (troca de estado), BAU (abre um bau),
+#                RECEITAS (bancada: mostra as receitas com "Estacao" igual a este
+#                movel), COMANDO (roda a lista "Comandos") ou NADA.
+#  Estados       (Clique: ESTADO) cada estado troca Modelo, Luz e toca um Som.
+#                "Estado inicial" diz em qual ele nasce.
+#  Bau           Linhas (1 a 6) e Titulo do bau guardado no movel.
+#  Comandos      linhas como 'console: say oi'.
+#  Animacao      Tipo GIRAR (graus por tique), BATER (vai e volta), FLUTUAR,
+#                BALANCAR ou PULSAR; Eixo X/Y/Z; Velocidade; Amplitude (graus,
+#                ou blocos no FLUTUAR). O modelo gira em volta do proprio centro.
+#  Particulas    Tipo, "A cada" (tiques), Quantidade, Posicao (a partir do
+#                bloco) e Espalhar.
+#  Receita       igual a dos itens (veja o cabecalho do itens.yml).
+#  O modelo e lido com a frente para o NORTE: ela fica virada para quem colocou.
+# ============================================================
+Moveis:
+  cadeira:
+    Nome: '&6Cadeira Estofada'
+    Lore: ['&7Clique direito para sentar.']
+    Modelo: cadeira
+    Clique: SENTAR
+    Assento:
+      Ativo: true
+      Altura: 0.7
+      Lugares: ['0, 0.04']
+    Barreira: true
+    Rotacoes: 8
+    Ajuste:
+      Posicao: '0, 0.5, 0'
+      Rotacao: '0, 0, 0'
+      Escala: 1
+    Sons:
+      Colocar: 'BLOCK_WOOD_PLACE'
+      Quebrar: 'BLOCK_WOOD_BREAK'
+    Alternativo:
+      Material: OAK_STAIRS
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['P  ', 'PLP', 'S S']
+      Ingredientes: {P: OAK_PLANKS, L: RED_WOOL, S: STICK}
+
+  sofa:
+    Nome: '&5Sofa de Veludo'
+    Lore: ['&7Dois lugares de puro conforto.', '&7Clique direito para sentar.']
+    Modelo: sofa
+    Clique: SENTAR
+    Assento:
+      Ativo: true
+      Altura: 0.54
+      Lugares: ['-0.41, 0.1', '0.41, 0.1']
+    Barreira: true
+    Rotacoes: 4
+    Tamanho:
+      Largura: 2
+      Altura: 1
+    Sons:
+      Colocar: 'BLOCK_WOOL_PLACE'
+      Quebrar: 'BLOCK_WOOL_BREAK'
+    Alternativo:
+      Material: PURPLE_BED
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['L L', 'LLL', 'PPP']
+      Ingredientes: {L: PURPLE_WOOL, P: OAK_PLANKS}
+
+  mesa:
+    Nome: '&6Mesa de Jantar'
+    Lore: ['&7Com toalha e vela.']
+    Modelo: mesa
+    Clique: NADA
+    Barreira: true
+    Rotacoes: 4
+    Sons:
+      Colocar: 'BLOCK_WOOD_PLACE'
+      Quebrar: 'BLOCK_WOOD_BREAK'
+    Alternativo:
+      Material: OAK_PRESSURE_PLATE
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['PPP', 'S S', 'S S']
+      Ingredientes: {P: OAK_PLANKS, S: STICK}
+
+  luminaria:
+    Nome: '&eLuminaria de Chao'
+    Lore: ['&7Clique direito para ligar e desligar.']
+    Modelo: luminaria_desligada
+    Clique: ESTADO
+    Estados:
+      desligada: {Modelo: luminaria_desligada, Luz: 0, Som: 'BLOCK_LEVER_CLICK'}
+      ligada: {Modelo: luminaria_ligada, Luz: 14, Som: 'BLOCK_LEVER_CLICK'}
+    Estado inicial: desligada
+    Barreira: true
+    Rotacoes: 4
+    Tamanho:
+      Largura: 0.7
+      Altura: 1.8
+    Sons:
+      Colocar: 'BLOCK_LANTERN_PLACE'
+      Quebrar: 'BLOCK_LANTERN_BREAK'
+    Alternativo:
+      Material: GLOWSTONE
+    Receita:
+      Tipo: MOLDADA
+      Formato: [' L ', ' T ', ' G ']
+      Ingredientes: {L: WHITE_WOOL, T: TORCH, G: GOLD_INGOT}
+
+  estante:
+    Nome: '&6Estante de Livros'
+    Lore: ['&7Livros, pocao e historia para contar.']
+    Modelo: estante
+    Clique: NADA
+    Barreira: true
+    Rotacoes: 4
+    Sons:
+      Colocar: 'BLOCK_WOOD_PLACE'
+      Quebrar: 'BLOCK_WOOD_BREAK'
+    Alternativo:
+      Material: BOOKSHELF
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['PPP', 'BBB', 'PPP']
+      Ingredientes: {P: DARK_OAK_PLANKS, B: BOOK}
+
+  vaso_planta:
+    Nome: '&aVaso de Planta'
+    Lore: ['&7Um verde para alegrar a sala.']
+    Modelo: vaso_planta
+    Clique: NADA
+    Barreira: false
+    Rotacoes: 8
+    Tamanho:
+      Largura: 0.6
+      Altura: 1.4
+    Sons:
+      Colocar: 'BLOCK_GRASS_PLACE'
+      Quebrar: 'BLOCK_GRASS_BREAK'
+    Alternativo:
+      Material: FLOWER_POT
+    Receita:
+      Tipo: SEM_FORMA
+      Lista: [FLOWER_POT, FERN]
+
+  bau_decorado:
+    Nome: '&5Bau Estelar'
+    Lore: ['&7Guarda itens de verdade.', '&7Clique direito para abrir.']
+    Modelo: bau_decorado
+    Clique: BAU
+    Bau:
+      Linhas: 3
+      Titulo: '&8Bau Estelar'
+    Barreira: true
+    Rotacoes: 4
+    Sons:
+      Colocar: 'BLOCK_WOOD_PLACE'
+      Quebrar: 'BLOCK_WOOD_BREAK'
+    Alternativo:
+      Material: CHEST
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['GSG', 'MCM', 'GMG']
+      Ingredientes: {G: GOLD_INGOT, S: 'exemplo:safira', M: 'exemplo:madeira_estelar', C: CHEST}
+
+  bancada_rubi:
+    Nome: '&cBancada de Rubi'
+    Lore:
+      - '&7Estacao de trabalho: algumas receitas'
+      - '&7so saem daqui (receita do tipo MESA).'
+      - '&7Clique direito para ver as receitas.'
+    Modelo: bancada_rubi
+    Clique: RECEITAS
+    Barreira: true
+    Rotacoes: 4
+    Sons:
+      Colocar: 'BLOCK_WOOD_PLACE'
+      Quebrar: 'BLOCK_WOOD_BREAK'
+    Particulas:
+      Tipo: ENCHANT
+      A cada: 20
+      Quantidade: 2
+      Posicao: '0.2, 1.3, 0.2'
+      Espalhar: 0.15
+    Alternativo:
+      Material: CRAFTING_TABLE
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['RR', 'CC']
+      Ingredientes: {R: 'exemplo:rubi', C: CRAFTING_TABLE}
+
+  globo:
+    Nome: '&bGlobo Terrestre'
+    Lore: ['&7Fica girando sem parar.']
+    Modelo: globo
+    Clique: NADA
+    Barreira: true
+    Rotacoes: 4
+    Tamanho:
+      Largura: 0.9
+      Altura: 1.2
+    Animacao:
+      Tipo: GIRAR
+      Eixo: Y
+      Velocidade: 2
+    Particulas:
+      Tipo: END_ROD
+      A cada: 30
+      Quantidade: 1
+      Posicao: '0, 1.2, 0'
+      Espalhar: 0.2
+    Alternativo:
+      Material: BLUE_GLAZED_TERRACOTTA
+    Receita:
+      Tipo: MOLDADA
+      Formato: [' G ', 'GMG', ' P ']
+      Ingredientes: {G: GOLD_INGOT, M: FILLED_MAP, P: DARK_OAK_PLANKS}
+
+  relogio_parede:
+    Nome: '&eRelogio de Parede'
+    Lore:
+      - '&7O relogio fica no fundo do bloco:'
+      - '&7coloque olhando para a parede.'
+      - '&7Clique direito roda um comando.'
+    Modelo: relogio_parede
+    Clique: COMANDO
+    Comandos: ['console: time query daytime']
+    Barreira: false
+    Rotacoes: 4
+    Tamanho:
+      Largura: 0.8
+      Altura: 0.9
+    Alternativo:
+      Material: CLOCK
+    Receita:
+      Tipo: MOLDADA
+      Formato: [' G ', 'GCG', ' G ']
+      Ingredientes: {G: GOLD_INGOT, C: CLOCK}

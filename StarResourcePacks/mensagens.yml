@@ -1,0 +1,264 @@
+# ============================================================
+#  StarResourcePacks - mensagens
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso.
+#  Cores: &a, &c... e hex &#RRGGBB (1.16+). Imagens: {glifo:exemplo:hud_coracao}.
+# ============================================================
+Versao do modelo: 6
+
+Prefixo: '&8[&bRecursos&8] &r'
+
+Geral:
+  So jogador: '&cEste comando so pode ser usado dentro do jogo.'
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Inativo: '&cO StarResourcePacks ainda esta iniciando. Tente de novo em instantes.'
+  Subcomando inexistente: '&cSubcomando desconhecido. Use &f/{comando} ajuda&c.'
+  Uso: '&cUse: &f{uso}'
+  Jogador offline: '&cO jogador &f{jogador}&c nao esta online.'
+  Id inexistente: '&cNao existe nada com o id &f{id}&c. Veja a lista em &f/srp menu&c.'
+
+Pacote:
+  Construindo: '&7Montando o pacote de recursos...'
+  Ja construindo: '&eO pacote ja esta sendo montado; sai outra versao logo depois desta.'
+  Construido: '&aPacote pronto: &f{arquivos}&a arquivos, &f{tamanho}&a em &f{tempo} ms&a. Avisos no console: &f{avisos}&a.'
+  Falhou: '&cA montagem do pacote falhou: &f{erro}&c. Veja o console.'
+  Carregado: '&aRecursos carregados! Use &f/cosmeticos&a para se vestir.'
+  Recusou: '&eVoce recusou os recursos do servidor: itens, moveis e cosmeticos vao aparecer sem o visual. Use &f/pacote baixar&e para aceitar.'
+  Expulso por recusar: "&cEste servidor precisa do pacote de recursos.\n&7Entre de novo e clique em &fSim&7 (ou ative em Servidores > Editar > Pacotes de recursos: Ativado)."
+  Falhou no jogador: '&eNao foi possivel baixar os recursos agora. Tente &f/pacote baixar&e.'
+  Expulso por falha: "&cNao foi possivel baixar o pacote de recursos.\n&7Tente entrar de novo."
+  Staff falhou: '&e[Pacote] &f{jogador}&e nao carregou o pacote: &f{motivo}&e. Detalhes no console e em &f/srp textura jogadores&e.'
+  Sem url: '&cO pacote ainda nao tem um endereco para download. A staff precisa conferir a Hospedagem no config.yml (&f/srp info&c).'
+  Url vazia: '&cnenhuma (confira Hospedagem no config.yml)'
+  Reenviado: '&7Pacote enviado de novo. Aceite o pedido na tela.'
+  Estado do jogador: '&7Seu pacote de recursos: {estado}&7. Use &f/pacote baixar&7 para baixar de novo.'
+  # Titulo enquanto o jogador baixa o pacote (linha de baixo = subtitulo).
+  Titulo carregando: '&b&lCarregando recursos<nl>&7so um instante...'
+
+Estados do pacote:
+  Nenhum: '&8nao enviado'
+  Esperando: '&ebaixando'
+  Carregado: '&acarregado'
+  Recusado: '&crecusado'
+  Falhou: '&cfalhou'
+
+Moveis:
+  Sem espaco: '&cNao ha espaco livre aqui para o movel.'
+  Protegido: '&cVoce nao pode mexer aqui.'
+  Ocupado: '&eAlguem ja esta sentado ai.'
+
+Blocos:
+  Indisponivel: '&cBlocos personalizados precisam de um servidor 1.13 ou mais novo.'
+
+Bancada:
+  Falta: '&cFaltam ingredientes para esta receita.'
+  Fabricou: '&aVoce fez &f{quantidade}x {nome}&a.'
+
+Itens:
+  Recarga: '&cAguarde &f{tempo}s&c para usar de novo.'
+
+Cosmeticos:
+  Bloqueado: '&cVoce ainda nao tem o cosmetico {nome}&c.'
+  Vestiu: '&aVoce vestiu {nome}&a.'
+  Tirou: '&7Voce tirou {nome}&7.'
+  Tirou tudo: '&7Cosmeticos removidos: &f{total}&7.'
+
+Loja:
+  Nao vende: '&cEste item nao esta a venda.'
+  Sem economia: '&cA loja esta sem economia configurada. Avise a staff.'
+  Sem saldo: '&cVoce nao tem &f{preco}&c para comprar.'
+  Comprou: '&aVoce comprou {nome}&a por &f{preco}&a!'
+
+Conjuntos:
+  Salvou: '&aConjunto &f{numero}&a gravado com o que voce esta vestindo.'
+  Vestiu: '&aConjunto &f{numero}&a vestido (&f{total}&a pecas).'
+  Apagou: '&7Conjunto &f{numero}&7 apagado.'
+
+Emotes:
+  Tocando: '&b{nome} &8| &7ande ou agache para parar &8| &7F5 para se ver'
+
+Telas:
+  Lista: '&7Telas (&averde&7 = abre ao entrar): {telas}'
+  Ja existe: '&cJa existe uma tela &f{id}&c.'
+  Inexistente: '&cNao existe a tela &f{id}&c. Veja &f/srp tela lista&c.'
+  Criada: '&aTela &f{id}&a criada. Defina a imagem: &f/srp tela definir {id} fundo <glifo>'
+  Apagada: '&7Tela &f{id}&7 apagada.'
+  Aberta: '&aTela &f{id}&a aberta para &f{total}&a jogador(es).'
+  Definido: '&aTela &f{id}&a: &f{campo}&a = &f{valor}'
+  Campos: '&cCampos: &f{campos}'
+  Casa invalida: '&cCasa invalida. De cima: 0 a 53. De baixo (inventario escondido): 54 a 80 e a barra 81 a 89.'
+  Editando: '&bEditando a tela &f{id}&b: clique num item do SEU inventario e depois numa casa para criar o botao. &fDireito&7 no botao = acoes, &fShift&7 = remover.'
+  Item escolhido: '&7Item escolhido. Agora clique na casa onde o botao deve ficar.'
+  Digite as acoes: '&bDigite no chat as acoes do botao, separadas por &f|&b. Ex.: &ffechar &7| &fcomando: spawn &7| &ftela: regras&b. (&fcancelar&b desiste)'
+  Acoes gravadas: '&aAcoes gravadas: &f{acoes}'
+
+Criar:
+  Pacote inexistente: '&cNao existe o pacote &f{pacote}&c em conteudo/.'
+  Ja existe: '&cJa existe &f{id}&c.'
+  Arquivo inexistente: '&cNao achei &f{arquivo}&c em &f{pasta}&c. Coloque o modelo (.json do Blockbench) em resource_pack/assets/<namespace>/models/ ou a imagem em .../textures/ e use o Tab para escolher.'
+  Criado: '&aCriado &f{id}&a em &f{arquivo}&a.'
+
+Tags:
+  Cabecalho: '&7Tags por imagem (&f{total}&7). Use &f{tag:<id>}&7 ou &f%starresourcepacks_tag_<id>%&7:'
+  Linha: '&8- &f{id} &7= {tag} &8({texto})'
+  Criada: '&aTag &f{id}&a criada. O pacote esta sendo montado de novo.'
+  Removida: '&7Tag &f{id}&7 removida.'
+
+Provador:
+  Inicio: '&bProvador: &f{nome}&b. &fClique esquerdo&7 veste, &fagache&7 para sair.'
+  Fim: '&7Provador fechado.'
+  Barra: '&b{nome} &8| &fEsquerdo: vestir &8| &fAgachar: sair &8| &7{segundos}s'
+
+Hud:
+  Ligado: '&aHUD ligado.'
+  Desligado: '&7HUD desligado.'
+  Escala uso: '&cUse &f/pacote escala <1 a 6>&c: o mesmo numero de &fOpcoes > Video > Escala da interface&c do seu jogo. Isso alinha os paineis nos cantos da SUA tela.'
+  Escala definida: '&aEscala da interface: &f{escala}&a. Se os paineis nao encostarem no canto, tente o numero vizinho.'
+
+Editor:
+  Inicio ao vivo: '&bEditando &f{nome} &8({id})&b. As mudancas aparecem na hora. &fEsmeralda&7 salva, &fcorante vermelho&7 sai sem salvar.'
+  Inicio pelo pacote: '&bEditando &f{nome} &8({id})&b. Mexa os valores e use a &fEstrela&b para testar (o pacote e reenviado so para voce). &fEsmeralda&7 salva.'
+  Testando: '&7Montando um pacote de teste so para voce...'
+  Salvo: '&aAjustes de {nome}&a gravados em &f{arquivo}&a.'
+  Moveis reajustados: '&7{total} movel(is) ja colocado(s) foram atualizados.'
+  Cancelado: '&7Edicao descartada; tudo voltou como estava.'
+  Sem arquivo: '&cEste item nao veio de um arquivo da pasta conteudo/ e nao pode ser gravado.'
+  Falhou ao salvar: '&cNao foi possivel gravar: &f{erro}'
+  Bloco sem editor: '&eBlocos nao tem ajuste de posicao: mude as texturas em conteudo/ e use /srp recarregar.'
+  Hotbar devolvida: '&7Sua hotbar de antes da edicao foi devolvida.'
+  Barra: '&f{nome} &8| &e{modo} {eixo} &7({passo}) {contexto} &8| &7pos &f{posicao} &7rot &f{rotacao} &7esc &f{escala}'
+  Modos:
+    POSICAO: 'Posicao'
+    ROTACAO: 'Giro'
+    ESCALA: 'Escala'
+  Contextos:
+    cabeca: '&dna cabeca'
+    mao_direita: '&dna mao direita'
+    mao_esquerda: '&dna mao esquerda'
+    primeira_pessoa_direita: '&dprimeira pessoa'
+    primeira_pessoa_esquerda: '&dprimeira pessoa (esq.)'
+    chao: '&dno chao'
+    moldura: '&dna moldura'
+    menu: '&dno inventario'
+  Ferramentas:
+    F1:
+      Nome: '&fEixo: &l{eixo}'
+      Lore: ['&7Clique para trocar o eixo (X, Y, Z).', '&8X = lados, Y = altura, Z = frente/tras']
+    F2:
+      Nome: '&fModo: &e{modo}'
+      Lore: ['&7Clique para alternar entre posicao, giro e escala.']
+    F3:
+      Nome: '&c- Diminuir'
+      Lore: ['&7Clique: -{passo}', '&7Agachado: 5x mais']
+    F4:
+      Nome: '&a+ Aumentar'
+      Lore: ['&7Clique: +{passo}', '&7Agachado: 5x mais']
+    F5:
+      Nome: '&fPasso: &e{passo}'
+      Lore: ['&7Clique para mudar o tamanho do passo.', '&7Agachado: volta um passo.']
+    F6:
+      Nome: '&fOnde: {contexto}'
+      Lore: ['&7Clique para editar outro lugar onde o item aparece', '&7(cabeca, mao, chao, moldura...).']
+    F6 ao vivo:
+      Nome: '&fGirar o modelo: {girar}'
+      Lore: ['&7Gira devagar para ver de todos os lados.']
+    F7:
+      Nome: '&b&lTestar no jogo'
+      Lore: ['&7Monta o pacote com os valores atuais e', '&7envia so para voce (leva alguns segundos).']
+    F7 ao vivo:
+      Nome: '&eVoltar ao padrao'
+      Lore: ['&7Zera posicao, giro e escala.']
+    F8:
+      Nome: '&a&lSalvar'
+      Lore: ['&7Grava no arquivo do conteudo e sai.']
+    F9:
+      Nome: '&c&lSair sem salvar'
+      Lore: ['&7Descarta tudo e devolve sua hotbar.']
+
+Admin:
+  Deu: '&aEntregue: &f{quantidade}x {nome}&a para &f{jogador}&a.'
+  Vestiu: '&a{jogador}&a agora veste {nome}&a.'
+  Enviado: '&aPacote enviado para &f{total}&a jogador(es).'
+  Enviado forcado: '&aPacote enviado para &f{total}&a jogador(es), mandando o jogo baixar de novo mesmo que ja tenha o arquivo guardado.'
+  Jogadores cabecalho: '&b&lPacote por jogador &7(&f{total}&7 online)'
+  Jogadores linha: '&f{jogador} &8- {estado} &8| &7{tempo} s &8| &7cliente &f{cliente}{motivo}'
+  Jogadores motivo: ' &8| &e{motivo}'
+  Exemplo: '&aPacote de exemplo reposto: &f{total}&a arquivo(s). Use &f/srp recarregar&a.'
+  Importar uso: |-
+    &b&lImportar pacote
+    &71) &fPonha o arquivo .zip na pasta &b{pasta}
+    &72) &fRode &b/srp importar <arquivo.zip>
+    &7Aceita pacote deste plugin (.yml com a pasta resource_pack/), pacotes prontos de outros formatos e pacote de recursos comum (pasta assets/): cada modelo vira um item, que depois voce transforma em movel ou cosmetico. Com &fmesclar&7 no fim, o resto do pacote de recursos (sons, fontes) entra junto no pacote final.
+    &7Arquivos na pasta agora: &f{arquivos}
+  Importar nenhum: 'nenhum'
+  Importar nao achou: '&cNao achei &f{arquivo}&c na pasta &f{pasta}&c.'
+  Importando: '&7Importando &f{arquivo}&7...'
+  Importado: '&a{resultado}'
+  Importar aviso: '&e{aviso}'
+  Importar falhou: '&cNao foi importado: &f{motivo}'
+  Recarregado: '&aRecarregado: &f{elementos}&a itens/moveis/cosmeticos/blocos e &f{glifos}&a glifos. Avisos no console: &f{avisos}&a. Montando o pacote...'
+  Moveis total: '&7Moveis colocados no servidor: &f{total}'
+  Moveis perto: '&7Moveis num raio de &f{raio}&7 blocos: &f{total}&7 (no servidor: &f{geral}&7). Use &f/srp moveis {raio} remover&7 para apagar.'
+  Moveis linha: '&8- &f{id} &7em &f{local}'
+  Moveis removidos: '&aMoveis removidos: &f{total}&a.'
+
+Ajuda de admin:
+  Cabecalho: '&b&lStarResourcePacks &7- comandos da staff'
+  Linha: '&f/{comando} &8- &7{descricao}'
+  menu: 'catalogo com tudo do conteudo (pegar e editar)'
+  dar: 'entrega um item, movel, cosmetico ou bloco'
+  editar: 'editor visual: posicao, giro e escala no jogo'
+  criar: 'cria item/movel/cosmetico/bloco de um modelo ou textura da pasta'
+  vestir: 'veste (ou tira) um cosmetico de um jogador'
+  construir: 'monta o pacote de novo e reenvia'
+  textura: 'pacote de recursos: montar, reenviar (forcar = baixa de novo), ver cada jogador e hospedar na StarPlugins (Premium)'
+  enviar: 'reenvia o pacote (todos = todo mundo; forcar = baixa de novo mesmo ja tendo)'
+  jogadores: 'pacote de cada jogador: carregou, recusou, falhou e por que'
+  moveis: 'lista ou remove moveis por perto'
+  tela: 'telas cheias de boas-vindas/anuncio (criar, editar, abrir)'
+  fade: 'escurece/colore a tela inteira por um instante'
+  tag: 'tags por imagem: cria a plaquinha a partir de um texto e cores'
+  info: 'versao, pacote, hospedagem e contagens'
+  exemplo: 'repoe os arquivos do pacote de exemplo'
+  importar: 'instala um pacote (.zip) posto na pasta importar/'
+  recarregar: 'rele configs e conteudo e monta o pacote'
+  ajuda: 'esta lista'
+
+Hospedagem:
+  Subindo: '&7Subindo o pacote (&f{tamanho}&7) para a hospedagem da StarPlugins...'
+  Upado: '&aPacote hospedado na StarPlugins (&f{tamanho}&a). Os jogadores passam a baixar de: &f{url}'
+  Ja subindo: '&eO pacote ja esta subindo; aguarde terminar.'
+  Sem pacote: '&cAinda nao ha pacote montado. Use &f/srp textura construir&c.'
+  Sem premium: '&cHospedar o pacote na StarPlugins e um beneficio do &6Premium&c (starplugins.com.br). Sem ele o pacote sai pela porta deste servidor ou por um link seu em &fUrl externa&c.'
+  Sem licenca: '&cO site nao reconheceu este servidor: o IP e a porta precisam ser os da licenca.'
+  Grande: '&cO pacote passa do limite da hospedagem: &f{erro}&c Reduza as texturas ou use um link seu em &fUrl externa&c.'
+  Falhou: '&cNao foi possivel subir o pacote: &f{erro}&c. Ele continua saindo pela hospedagem deste servidor.'
+  Modo nao usa: '&eO pacote subiu, mas &fHospedagem.Modo&e esta em &f{modo}&e: troque para &fAUTO&e ou &fPREMIUM&e no config.yml para os jogadores baixarem de la.'
+  Externa em uso: '&eO pacote subiu, mas este servidor usa o link de &fUrl externa&e, que tem prioridade: apague-o do config.yml para os jogadores baixarem da StarPlugins.'
+  Porta trocada: |-
+    &eA porta &f{pedida}&e ja esta em uso nesta maquina (outro servidor?). O pacote esta saindo pela &f{porta}&e.
+    &7Para quem entra de fora conseguir baixar:
+    &f1) &7Servidor no seu PC ou numa maquina so sua: libere a &f{porta}&7 (TCP) no firewall/roteador.
+    &f2) &7Hospedagem com portas contadas: crie uma porta extra no painel dela e ponha em &fHospedagem.Porta&7.
+    &f3) &7Sem porta extra: suba o &fpacote/pacote.zip&7 num site seu e use &fHospedagem.Modo: EXTERNA&7.
+  Sem porta: |-
+    &cNenhuma porta livre de &f{pedida}&c a &f{ultima}&c: o pacote esta montado, mas ninguem consegue baixar.
+    &f1) &7Feche o que estiver usando essas portas, ou troque &fHospedagem.Porta&7 no config.yml.
+    &f2) &7Hospedagem com portas contadas: crie uma porta extra no painel dela e ponha em &fHospedagem.Porta&7.
+    &f3) &7Sem porta extra: suba o &fpacote/pacote.zip&7 num site seu e use &fHospedagem.Modo: EXTERNA&7.
+
+Info: |-
+  &b&lStarResourcePacks &7- servidor &f{versao}&7 (formato do pacote &f{formato}&7)
+  &7Conteudo: &f{pacotes}&7 pacote(s), &f{elementos}&7 itens/moveis/cosmeticos/blocos, &f{glifos}&7 glifos, &f{blocos}&7 bloco(s) ativos
+  &7Pacote: &f{arquivos}&7 arquivos, &f{tamanho}&7, sha1 &f{sha1}
+  &7Hospedagem: &f{hospedagem}&7 - &f{url}
+  &7Downloads: &f{downloads}&7 | carregaram &a{carregados}&7, recusaram &c{recusaram}&7, falharam &c{falharam}
+  &7Moveis colocados: &f{moveis}&7 | cosmeticos vestidos agora: &f{vestindo}&7 | avisos de conteudo: &f{avisos}
+  &7Painel do site: &f{painel}
+
+Etiquetas:
+  Ligado: '&aLIGADO'
+  Desligado: '&cDESLIGADO'
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'

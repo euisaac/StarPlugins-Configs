@@ -1,0 +1,64 @@
+# ============================================================
+#  Blocos de verdade no mundo (servidor 1.13+).
+#
+#  Cada bloco usa um estado sem uso do bloco de nota. Com pelo menos um bloco
+#  aqui, o bloco de nota comum vira so decoracao (nao muda de som nem toca).
+#  Textura       a mesma em todas as faces; ou Texturas: todas/cima/baixo/lados/
+#                norte/sul/leste/oeste.
+#                Textura animada: PNG em tira vertical + <nome>.png.mcmeta ao lado
+#                (veja resource_pack/assets/exemplo/textures/bloco/minerio_rubi.png).
+#  Drop          'proprio', 'exemplo:rubi:2', 'DIAMOND:1' ou 'nada' (pode ser lista).
+#  Sons          Colocar e Quebrar.
+#  Receita       igual a dos itens (veja o cabecalho do itens.yml).
+# ============================================================
+Blocos:
+  bloco_rubi:
+    Nome: '&cBloco de Rubi'
+    Lore: ['&7Nove rubis bem apertados.']
+    Textura: bloco/rubi
+    Drop: proprio
+    Sons:
+      Colocar: 'BLOCK_AMETHYST_BLOCK_PLACE'
+      Quebrar: 'BLOCK_AMETHYST_BLOCK_BREAK'
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['RRR', 'RRR', 'RRR']
+      Ingredientes: {R: 'exemplo:rubi'}
+
+  minerio_rubi:
+    Nome: '&cMinerio de Rubi'
+    Lore: ['&7Brilha no escuro da caverna.', '&8Asse na fornalha para tirar o rubi.']
+    Textura: bloco/minerio_rubi
+    Drop: 'exemplo:rubi:1'
+    Sons:
+      Colocar: 'BLOCK_STONE_PLACE'
+      Quebrar: 'BLOCK_STONE_BREAK'
+
+  tijolo_lunar:
+    Nome: '&bTijolo Lunar'
+    Texturas:
+      todas: bloco/tijolo_lunar
+      cima: bloco/tijolo_lunar_topo
+      baixo: bloco/tijolo_lunar_topo
+    Drop: proprio
+    Receita:
+      Tipo: MOLDADA
+      Formato: ['PP', 'PP']
+      Ingredientes: {P: END_STONE}
+      Quantidade: 4
+
+  madeira_estelar:
+    Nome: '&dMadeira Estelar'
+    Lore: ['&7Tronco de uma arvore que cresceu olhando as estrelas.']
+    Texturas:
+      lados: bloco/madeira_estelar
+      cima: bloco/madeira_estelar_topo
+      baixo: bloco/madeira_estelar_topo
+    Drop: proprio
+    Sons:
+      Colocar: 'BLOCK_WOOD_PLACE'
+      Quebrar: 'BLOCK_WOOD_BREAK'
+    Receita:
+      Tipo: SEM_FORMA
+      Lista: [OAK_LOG, 'exemplo:safira']
+      Quantidade: 4
