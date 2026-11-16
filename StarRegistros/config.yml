@@ -1,0 +1,345 @@
+#  ____  _              ____            _     _
+# / ___|| |_ __ _ _ __|  _ \ ___  __ _(_)___| |_ _ __ ___  ___
+# \___ \| __/ _` | '__| |_) / _ \/ _` | / __| __| '__/ _ \/ __|
+#  ___) | || (_| | |  |  _ <  __/ (_| | \__ \ |_| | | (_) \__ \
+# |____/ \__\__,_|_|  |_| \_\___|\__, |_|___/\__|_|  \___/|___/
+#                                |___/
+# Registros das ações dos jogadores para a staff.
+#
+# Os registros ficam em .txt, um arquivo por jogador por mês:
+#   plugins/StarRegistros/registros/2026/11/Steve.txt
+#   plugins/StarRegistros/registros/2026/11/Console.txt   (comandos do console)
+# Cada linha começa com [data hora] [TIPO] e depois o texto do "Formato" do tipo.
+#
+# Comandos: /registros (menu), /registros ver <jogador>, /registros buscar <texto>,
+# /registros perto, /registros lupa, /registros seguir <jogador>, /registros mortes <jogador>...
+# Painel no site: https://starplugins.com.br/paineis/registros
+
+Versao do modelo: 1
+
+# Mostra no console detalhes de erros (deixe false no dia a dia).
+Debug: false
+
+Data:
+  Formato da data: 'dd/MM/yyyy'
+  Formato da hora: 'HH:mm:ss'
+  # Vazio = fuso do servidor. Exemplo: 'America/Sao_Paulo'
+  Fuso horario: 'America/Sao_Paulo'
+
+Registrar:
+  # todos     = registra todo mundo.
+  # permissao = registra só quem tiver a permissão abaixo (ou starregistros.registrar.<tipo>).
+  Quem: todos
+  Permissao: 'starregistros.registrar'
+  # Nicks que nunca são registrados (bots, contas de teste...).
+  Jogadores ignorados: []
+  # Mundos onde nada é registrado.
+  Mundos ignorados: []
+  # Mostra o IP como 189.12.*.* nos registros de entrada.
+  Mascarar IP: true
+  # Guarda também um índice por chunk (só blocos e baús) para a /registros lupa
+  # e a /registros perto. Ocupa pouco e é o que responde "quem quebrou isto aqui?".
+  Indice de locais: true
+
+Guardar:
+  # Meses de registros mantidos. Os mais velhos são apagados sozinhos. 0 = nunca apagar.
+  Meses: 6
+  # Meses que já terminaram viram um .zip (ocupa umas 10x menos espaço).
+  # A busca, o menu e o painel continuam lendo de dentro do .zip.
+  Compactar meses fechados: true
+  # Dias guardados no índice de locais (lupa / perto). 0 = mesmo prazo dos meses.
+  Dias do indice de locais: 60
+
+# Tipos de registro. Em cada um:
+#   Ativado: liga/desliga o tipo.
+#   Nome / Cor / Icone: como ele aparece no chat, no menu e no painel.
+#   Formato: texto da linha no .txt (depois de "[data hora] [TIPO] ").
+#   Discord: '' = não envia | 'padrao' = webhook padrão (seção Discord) | ou o link de um webhook.
+#   Juntar repetidos (segundos): junta ações iguais seguidas numa linha só ("coletou 64x Pedra").
+# Placeholders de todos: {jogador} {mundo} {x} {y} {z} {local}
+Tipos:
+  entrada:
+    Ativado: true
+    Nome: 'Entrada'
+    Cor: '&a'
+    Icone: 'OAK_DOOR'
+    Formato: '{jogador} entrou no servidor (IP {ip}) em {local}'
+    Discord: ''
+  saida:
+    Ativado: true
+    Nome: 'Saída'
+    Cor: '&c'
+    Icone: 'IRON_DOOR'
+    # {sessao} = quanto tempo ficou online.
+    Formato: '{jogador} saiu do servidor em {local} depois de {sessao} online'
+    Discord: ''
+  chat:
+    Ativado: true
+    Nome: 'Chat'
+    Cor: '&f'
+    Icone: 'PAPER'
+    # {mensagem}; {bloqueada} vira " (bloqueada)" quando outro plugin cancelou a mensagem (mute...).
+    Formato: '{jogador} disse: {mensagem}{bloqueada} em {local}'
+    Discord: ''
+  comando:
+    Ativado: true
+    Nome: 'Comando'
+    Cor: '&e'
+    Icone: 'COMMAND_BLOCK'
+    Formato: '{jogador} usou o comando {comando} em {local}'
+    Discord: ''
+  console:
+    Ativado: true
+    Nome: 'Console'
+    Cor: '&6'
+    Icone: 'REPEATING_COMMAND_BLOCK'
+    # Vai para registros/<ano>/<mes>/Console.txt. {jogador} = Console (ou o bloco de comando).
+    Formato: '{jogador} executou o comando {comando}'
+    Discord: ''
+  morte:
+    Ativado: true
+    Nome: 'Morte'
+    Cor: '&4'
+    Icone: 'SKELETON_SKULL'
+    # {causa} {assassino} {itens} (quantos itens tinha) {nivel} (nível de XP)
+    Formato: '{jogador} morreu ({causa}) para {assassino} em {local} com {itens} item(ns) e nível {nivel}'
+    Discord: ''
+  matar:
+    Ativado: true
+    Nome: 'Matou jogador'
+    Cor: '&c'
+    Icone: 'IRON_SWORD'
+    # {vitima} {arma}
+    Formato: '{jogador} matou {vitima} usando {arma} em {local}'
+    Discord: ''
+  matar-mob:
+    Ativado: false
+    Nome: 'Matou mob'
+    Cor: '&7'
+    Icone: 'BONE'
+    Formato: '{jogador} matou {quantidade}x {mob} usando {arma} em {local}'
+    Discord: ''
+    Juntar repetidos (segundos): 5
+  colocar:
+    Ativado: true
+    Nome: 'Colocou bloco'
+    Cor: '&2'
+    Icone: 'GRASS_BLOCK'
+    # {bloco} {quantidade}
+    Formato: '{jogador} colocou {quantidade}x {bloco} em {local}'
+    Discord: ''
+    Juntar repetidos (segundos): 0
+  quebrar:
+    Ativado: true
+    Nome: 'Quebrou bloco'
+    Cor: '&6'
+    Icone: 'IRON_PICKAXE'
+    Formato: '{jogador} quebrou {quantidade}x {bloco} em {local}'
+    Discord: ''
+    Juntar repetidos (segundos): 0
+  dropar:
+    Ativado: true
+    Nome: 'Dropou item'
+    Cor: '&d'
+    Icone: 'DROPPER'
+    # {item} (tipo) {nome_item} (nome dado ao item) {quantidade}
+    Formato: '{jogador} dropou {quantidade}x {item}{nome_item} em {local}'
+    Discord: ''
+    Juntar repetidos (segundos): 2
+  coletar:
+    Ativado: true
+    Nome: 'Coletou item'
+    Cor: '&b'
+    Icone: 'HOPPER'
+    Formato: '{jogador} coletou {quantidade}x {item}{nome_item} em {local}'
+    Discord: ''
+    Juntar repetidos (segundos): 3
+  clonar:
+    Ativado: true
+    Nome: 'Clonou item'
+    Cor: '&5'
+    Icone: 'ENDER_EYE'
+    # Item pego do inventário do criativo ou clonado com o botão do meio.
+    Formato: '{jogador} pegou no criativo {quantidade}x {item}{nome_item} em {local}'
+    Discord: ''
+    Juntar repetidos (segundos): 2
+  abrir-bau:
+    Ativado: true
+    Nome: 'Abriu baú'
+    Cor: '&e'
+    Icone: 'CHEST'
+    # {bau} = tipo do recipiente (Baú, Funil, Fornalha...)
+    Formato: '{jogador} abriu {bau} em {local}'
+    Discord: ''
+  tirar-bau:
+    Ativado: true
+    Nome: 'Tirou do baú'
+    Cor: '&c'
+    Icone: 'CHEST_MINECART'
+    # Conferido quando o jogador fecha o baú: o que sumiu de dentro.
+    Formato: '{jogador} tirou {quantidade}x {item}{nome_item} de {bau} em {local}'
+    Discord: ''
+  por-bau:
+    Ativado: true
+    Nome: 'Pôs no baú'
+    Cor: '&a'
+    Icone: 'HOPPER_MINECART'
+    Formato: '{jogador} pôs {quantidade}x {item}{nome_item} em {bau} em {local}'
+    Discord: ''
+  teleporte:
+    Ativado: true
+    Nome: 'Teleporte'
+    Cor: '&3'
+    Icone: 'ENDER_PEARL'
+    # {de} {para} {motivo} (comando, pérola, portal...). Teleportes curtos (< 8 blocos) não entram.
+    Formato: '{jogador} teleportou de {de} para {para} ({motivo})'
+    Discord: ''
+  mundo:
+    Ativado: true
+    Nome: 'Trocou de mundo'
+    Cor: '&9'
+    Icone: 'END_PORTAL_FRAME'
+    Formato: '{jogador} foi do mundo {de} para {para}'
+    Discord: ''
+  modo-de-jogo:
+    Ativado: true
+    Nome: 'Modo de jogo'
+    Cor: '&5'
+    Icone: 'DIAMOND'
+    Formato: '{jogador} mudou o modo de jogo de {de} para {para} em {local}'
+    Discord: ''
+  placa:
+    Ativado: true
+    Nome: 'Placa'
+    Cor: '&f'
+    Icone: 'OAK_SIGN'
+    # {linhas} = as 4 linhas separadas por " | "
+    Formato: '{jogador} escreveu numa placa em {local}: {linhas}'
+    Discord: ''
+  renomear:
+    Ativado: true
+    Nome: 'Renomeou'
+    Cor: '&b'
+    Icone: 'NAME_TAG'
+    Formato: '{jogador} renomeou {item} para "{nome}" na bigorna em {local}'
+    Discord: ''
+  livro:
+    Ativado: true
+    Nome: 'Livro'
+    Cor: '&6'
+    Icone: 'WRITABLE_BOOK'
+    # {titulo} (vazio se só editou) {paginas} {texto} (começo do texto)
+    Formato: '{jogador} escreveu um livro "{titulo}" ({paginas} página(s)): {texto}'
+    Discord: ''
+  devolucao:
+    Ativado: true
+    Nome: 'Devolução'
+    Cor: '&a'
+    Icone: 'TOTEM_OF_UNDYING'
+    # Registrado no .txt do JOGADOR que recebeu. {staff} {itens} {quando}
+    Formato: '{staff} devolveu {itens} item(ns) da morte de {quando} para {jogador}'
+    Discord: 'padrao'
+  alerta:
+    Ativado: true
+    Nome: 'Alerta'
+    Cor: '&c'
+    Icone: 'BELL'
+    # Os alertas de suspeita também entram no .txt do jogador.
+    Formato: '{alerta} - {jogador} {texto} em {local}'
+    Discord: ''
+
+Ignorar:
+  # Comandos que NÃO entram nos registros (sem a barra também vale).
+  Comandos: [ ]
+  # Comandos registrados SEM os argumentos (a senha vira ****).
+  Esconder argumentos de: [ '/login', '/logar', '/l', '/register', '/registrar', '/reg', '/changepassword',
+                            '/trocarsenha', '/mudarsenha', '/loginstaff', '/stafflogin', '/ls', '/sl', '/senha' ]
+  # Blocos que não são registrados ao colocar/quebrar.
+  Blocos: [ 'BEDROCK' ]
+  # Itens que não são registrados ao dropar/coletar.
+  Itens: [ ]
+  # Teleportes com menos blocos que isso (no mesmo mundo) não entram.
+  Teleporte minimo (blocos): 8
+
+# Alertas de suspeita: avisam a staff online (com a permissão), o Discord e o painel do site.
+Alertas:
+  Ativado: true
+  # VAZIO = todo mundo. A staff com * recebe normalmente.
+  Permissao para receber: 'starregistros.alertas'
+  Som: 'BLOCK_NOTE_BLOCK_PLING'
+  # '' = não envia | 'padrao' = webhook padrão | ou o link de um webhook só para alertas.
+  Discord: 'padrao'
+  # O mesmo alerta do mesmo jogador não se repete antes disso.
+  Intervalo entre alertas iguais (segundos): 60
+  Xray:
+    Ativado: true
+    Minerios: [ 'DIAMOND_ORE', 'DEEPSLATE_DIAMOND_ORE', 'ANCIENT_DEBRIS', 'EMERALD_ORE', 'DEEPSLATE_EMERALD_ORE' ]
+    Quantidade: 12
+    Minutos: 5
+  Drop em massa:
+    Ativado: true
+    # Soma de itens dropados dentro do tempo.
+    Itens: 320
+    Segundos: 15
+  Clonar:
+    # Avisa quando alguém pega itens no criativo.
+    Ativado: true
+    Quantidade minima: 16
+  Muitos baus:
+    Ativado: true
+    Baus diferentes: 20
+    Minutos: 2
+  Comandos vigiados:
+    Ativado: true
+    Comandos: [ '/op', '/deop', '/gamemode', '/gm', '/give', '/i', '/item', '/eco', '/lp', '/luckperms',
+                '/pex', '/whitelist', '/stop', '/plugman', '/sudo', '/minecraft:give', '/minecraft:op' ]
+  Palavras vigiadas:
+    Ativado: true
+    Palavras: [ 'hack', 'xray', 'dupe', 'killaura', 'vendo conta', 'compro conta', 'pix' ]
+
+Mortes:
+  # Guarda o inventário de cada morte para ver, coletar e devolver (/registros mortes <jogador>).
+  Ativado: true
+  # Quantas mortes ficam guardadas por jogador (as mais velhas saem).
+  Guardar por jogador: 5
+  # Deixa devolver a mesma morte mais de uma vez (cuidado: duplica itens).
+  Devolver mais de uma vez: false
+  # Devolução para quem está offline fica guardada e é entregue quando ele entrar.
+  Entregar ao entrar: true
+  # Devolve também o nível de XP que ele tinha.
+  Devolver nivel de XP: false
+
+Lupa:
+  # Com a lupa ligada (/registros lupa), clicar num bloco mostra quem colocou, quebrou e mexeu nele.
+  # A ação do clique é cancelada enquanto a lupa estiver ligada.
+  Horas: 168
+  Linhas: 8
+
+Ver:
+  # /registros ver e buscar: linhas por página no chat.
+  Linhas por pagina: 10
+  # Dias olhados quando o comando não diz.
+  Dias padrao: 7
+  # Clicar numa linha com local teleporta a staff (precisa de starregistros.teleportar).
+  Teleporte ao clicar: true
+
+Discord:
+  # Link do webhook (Configurações do canal > Integrações > Webhooks).
+  Webhook padrao: ''
+  Nome: 'StarRegistros'
+  Avatar: ''
+  # Junta as linhas de alguns segundos numa mensagem só (o Discord limita mensagens por minuto).
+  Juntar (segundos): 3
+  Cor: '#E0A526'
+
+Painel:
+  # Painel no site (busca, jogadores, mortes, alertas). O servidor é reconhecido pelo IP e
+  # porta da licença do StarPlugins: não precisa de senha.
+  Ativado: true
+  Site: 'https://starplugins.com.br'
+  # Deixa o dono da licença devolver itens de morte pelo site.
+  Permitir devolver pelo site: true
+
+Menu:
+  # Tempo mínimo entre dois cliques nos menus (ms).
+  Intervalo entre cliques: 150
