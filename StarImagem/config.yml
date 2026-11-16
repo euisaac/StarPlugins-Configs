@@ -1,0 +1,59 @@
+# ==========================================================
+#  StarImagem - telas interativas em molduras de mapa
+#  As telas ficam em telas/<id>.json (mesmo formato do painel
+#  do site: https://starplugins.com.br/paineis/imagem).
+#  Imagens em imagens/, fontes .ttf em fontes/.
+# ==========================================================
+Versao do modelo: 1
+Debug: false
+
+Telas:
+  # Maior largura/altura de uma tela, em mapas (cada mapa = 128x128 pixels).
+  Tamanho maximo: 16
+  # De quantos em quantos ticks as placeholders do PlaceholderAPI sao lidas de novo (20 = 1 segundo).
+  Intervalo das placeholders: 10
+  # O cursor nao "atravessa" blocos entre o jogador e a tela.
+  Bloquear atraves de paredes: true
+  # Molduras invisiveis (1.16+) nas telas novas. Use -visivel no /imagem colocar para trocar uma.
+  Molduras invisiveis: true
+  # Repoe sozinho moldura de tela que sumiu (WorldEdit, rollback...).
+  Reparar molduras: true
+  # Mostra a "dica" do componente na actionbar quando o cursor passa por cima.
+  Dica na actionbar: true
+  # Som ao clicar num componente com acao (vazio = sem som). Formato SOM;volume;tom
+  Som do clique: 'UI_BUTTON_CLICK;0.6;1.4'
+  # Som quando o clique e negado (sem permissao, cooldown).
+  Som negado: 'ENTITY_VILLAGER_NO;0.6;1'
+
+Criar:
+  # /imagem criar <id> <imagem|pasta>: limite do tamanho calculado pela imagem (em mapas).
+  Largura maxima: 6
+  Altura maxima: 4
+
+Tablet:
+  # Quantos pixels o cursor anda por grau que o jogador vira a cabeca segurando o tablet.
+  Sensibilidade: 3.0
+
+Imagens:
+  # Limite das imagens baixadas pela internet (imagem_remota e cabeca).
+  Tamanho maximo do download (KB): 4096
+  Tempo limite (segundos): 8
+  Quadros maximos de GIF: 300
+  # Cabeca do jogador (componente "cabeca"): {uuid}, {jogador} e {tamanho}.
+  # Pode ter mais de um endereco separado por " | ": se o primeiro nao responder,
+  # o plugin tenta o seguinte. Em servidor pirata use {jogador} (o uuid nao existe la fora).
+  URL da cabeca: 'https://minotar.net/helm/{jogador}/{tamanho}.png | https://mc-heads.net/avatar/{jogador}/{tamanho} | https://starplugins.com.br/cabeca/avatar/{jogador}/{tamanho}'
+
+# Economia da acao "cobrar" e da condicao "dinheiro": vault, stareconomia, stareconomia-<moeda>...
+Economia: vault
+
+Painel:
+  # Sincroniza as telas com o painel do site (editor visual). O servidor e reconhecido
+  # pelo IP e porta da licenca do StarPlugins: nao precisa de senha.
+  Ativado: true
+  Site: 'https://starplugins.com.br'
+  Intervalo (segundos): 30
+  # Comandos de CONSOLE/OP criados pelo site viram comando do jogador, por seguranca
+  # (uma conta do site invadida nao vira console no jogo). Comandos que ja existiam
+  # na tela continuam valendo. true = aceitar tudo que vier do site.
+  Aceitar comandos de console do site: false

@@ -1,0 +1,114 @@
+Versao do modelo: 1
+Prefixo: '&8[&bStarImagem&8] &7'
+Sem permissao: '&cVoce nao tem permissao.'
+
+Ajuda:
+  Titulo: '&8&m          &r &b&lStarImagem &8&m          '
+  Linha: ' &b/{comando} {sub} &7{uso} &8- &f{descricao}'
+  Menu: ' &a/{comando} &7sozinho abre o menu: tudo daqui em botoes, sem decorar comando.'
+  criar: 'Cria uma tela. Com uma pasta de imagens: uma pagina por imagem, com setas.'
+  colocar: 'Coloca a tela: depois clique com o direito na parede (canto superior esquerdo).'
+  cancelar: 'Desiste do /imagem colocar.'
+  remover: 'Tira a tela que voce esta olhando (ou pelo numero).'
+  trocar: 'Troca a tela que voce esta olhando por outra.'
+  info: 'Dados da tela olhada (ou de uma tela pelo id): paginas, avisos, imagens faltando.'
+  lista: 'Telas criadas e telas colocadas.'
+  tablet: 'Da o tablet de uma tela (mapa na mao, cursor pelo olhar).'
+  editar: 'Modo edicao: marque dois cantos e escolha no menu o que colocar; direito edita, agachado+clique apaga.'
+  pagina: 'Muda a pagina de uma tela colocada (otimo para apresentacao com tela compartilhada).'
+  imagens: 'Lista os arquivos da pasta imagens/.'
+  sincronizar: 'Sincroniza agora com o painel do site.'
+  recarregar: 'Rele config, mensagens, telas e imagens.'
+  ajuda: 'Esta lista.'
+
+Etiquetas:
+  Centro: 'no meio da tela'
+  Canto: 'no canto superior esquerdo da tela'
+  Sim: '&asim'
+  Nao: '&cnao'
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'm'
+  Segundo: 's'
+
+Admin:
+  Iniciando: '&eO StarImagem ainda esta preparando a paleta de cores. Tente em alguns segundos.'
+  Desconhecido: '&cSubcomando desconhecido. Use &f/{comando} ajuda&c.'
+  Erro: '&cAlgo deu errado: &f{erro}'
+  So jogador: '&cEste comando so pode ser usado por um jogador.'
+  Uso: '&7Uso: &f/{comando} {sub} {uso}'
+  Tela inexistente: '&cA tela &f{tela} &cnao existe. Veja &f/imagem lista&c.'
+  Ja existe: '&cJa existe uma tela chamada &f{tela}&c.'
+  Clique na parede: '&aClique com o &fdireito &ana parede onde a tela &f{tela} &a({tamanho} mapas) vai ficar. O bloco clicado fica {canto}. &7(/imagem cancelar para desistir)'
+  Cancelado: '&7Cancelado.'
+  Colocar so parede: '&cA tela vai em paredes: clique na lateral de um bloco (chao e teto ainda nao).'
+  Nao cabe: '&cA tela &f{tela} &c({tamanho} mapas) nao cabe ai:'
+  Problema: ' &8- &7{problema}'
+  Colocada: '&aTela &f{tela} &acolocada (&f#{id}&a, {tamanho} mapas). Olhe para ela e clique!'
+  Removida: '&aTela &f#{id} &a({tela}) removida.'
+  Trocada: '&aA tela &f#{id} &aagora mostra &f{tela}&a.'
+  Colocada inexistente: '&cNao existe tela colocada &f#{id}&c.'
+  Olhe para a tela: '&cOlhe para uma tela colocada (ou informe o numero dela).'
+  Jogador offline: '&cJogador &f{jogador} &cnao esta online.'
+  Tablet dado: '&aTablet da tela &f{tela} &aentregue para &f{jogador}&a. Segure e mexa a cabeca para mover o cursor.'
+  Pagina trocada: '&aTela &f#{id}&a: pagina &f{pagina}&a.'
+  Imagens: '&7Arquivos em &fimagens/ &7({quantidade}):'
+  Imagem linha: ' &8- &f{arquivo}'
+  Imagem nao encontrada: '&cNao achei &fimagens/{arquivo}&c.'
+  Pasta vazia: '&cA pasta &fimagens/{arquivo} &cnao tem imagens (png, jpg, gif, bmp).'
+  Imagem invalida: '&cNao consegui ler a imagem &f{arquivo}&c.'
+  Criada: '&aTela &f{tela} &acriada: {tamanho} mapas, {paginas} pagina(s). Agora use &f/imagem colocar {tela}&a.'
+  Info colocada: |-
+    &bTela colocada #{id} &8- &f{tela}
+    &7Local: &f{local}
+    &7Jogadores usando: &f{sessoes} &8| &7sua pagina: &f{pagina} &8| &7cursor: &f{cursor}
+  Info tela: |-
+    &bTela {tela} &8- &f{nome}
+    &7Tamanho: &f{tamanho} mapas ({pixels} px) &8| &7paginas: &f{paginas} &8| &7componentes: &f{componentes}
+    &7FPS: &f{fps} &8| &7raio: &f{raio} &8| &7alcance: &f{alcance} &8| &7compartilhada: {compartilhada}
+  Imagem faltando: ' &c! imagem faltando: &fimagens/{arquivo}'
+  Aviso: ' &e! &7{aviso}'
+  Lista telas: '&bTelas ({quantidade}):'
+  Lista tela: ' &8- &f{tela} &7({nome}) &8{tamanho}, {paginas} pagina(s)'
+  Lista colocadas: '&bColocadas ({quantidade}):'
+  Lista colocada: ' &8- &f#{id} &7{local} &8({sessoes} usando)'
+  Recarregado: '&aRecarregado: {telas} tela(s), {avisos} aviso(s) no console.'
+
+Editor:
+  Ligado: |-
+    &aModo edicao LIGADO. &7Olhe para a tela:
+    &f  esquerdo &7em dois cantos: escolher o que colocar ali (area, botao, texto, imagem...)
+    &f  direito &7em cima de algo: editar (acoes, dica, mover, apagar) &8| &fdireito &7no vazio: menu da pagina
+    &f  agachado + clique&7: apagar &8| &f/imagem editar desfazer &7volta &8| &f/imagem editar &7desliga
+  Desligado: '&7Modo edicao desligado.'
+  Pequena: '&cPedaco pequeno demais. Marque dois cantos mais afastados.'
+  Digite a acao: '&aPedaco marcado &7(x {x}, y {y}, {largura}x{altura}). &fEscolha no menu o que colocar &7(ou feche e digite a acao no chat, ex.: &fcomando: warp loja&7).'
+  Nada aqui: '&7Nao ha nada para apagar embaixo do cursor.'
+  Movido: '&f{id} &amudou de lugar. &7(/imagem editar desfazer)'
+  Criada: '&aArea &f{id} &acriada na tela &f{tela} &a({acoes} acao(oes)).'
+  Apagada: '&f{id} &eapagado. &7(/imagem editar desfazer)'
+  Desfeito: '&aDesfeito.'
+  Nada para desfazer: '&7Nada para desfazer.'
+  So areas: '&7Agachado + clique apaga so areas criadas no modo edicao (o resto se edita no arquivo ou no painel).'
+  Cancelado: '&7Cancelado.'
+  Componente: '&b{tipo} &f{id} &7em x {x}, y {y} ({largura}x{altura}), {acoes} acao(oes).'
+
+Tela:
+  Sem permissao: '&cVoce nao pode usar esta tela.'
+  Aguarde: '&eAguarde {tempo}s.'
+  Digite no chat: '&aDigite no chat (ate {maximo} caracteres) ou &fcancelar&a.'
+  Entrada cancelada: '&7Cancelado.'
+  Sem dinheiro: '&cVoce precisa de &f{valor}&c.'
+  Sem economia: '&cA economia do servidor nao esta disponivel.'
+
+Tablet:
+  Nome: '&bTablet &8- &f{tela}'
+  Descricao:
+    - '&7Segure e mexa a cabeca para'
+    - '&7mover o cursor. Clique para usar.'
+
+Painel:
+  Desligado: '&cO painel esta desligado no config (Painel.Ativado).'
+  Sincronizando: '&7Sincronizando com o painel... &8({painel})'
+  Sincronizado: '&aPainel sincronizado: &f{recebidas} &atela(s) recebida(s), &f{enviadas} &aenviada(s), &f{imagens} &aimagem(ns), &f{apagadas} &aapagada(s).'
+  Erro: '&cNao foi possivel falar com o painel: &f{erro}'
