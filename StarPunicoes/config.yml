@@ -1,0 +1,77 @@
+# =========================================================
+#  StarPunicoes - configuracoes gerais
+#  Plugin de punicoes e prisao, compativel de 1.8 ate 1.21+
+# =========================================================
+
+# Banco de dados usado para os dados por jogador: cache de nicks (base do tab-complete),
+# punicoes e presos. Outros sistemas (as cadeias em si) continuam em YAML de proposito -
+# sao configuracao administrativa, nao dado por jogador.
+database:
+  # SQLITE (padrao, sem configuracao extra, cria um arquivo starpunicoes.db na pasta do plugin)
+  # ou MYSQL.
+  storage-type: SQLITE
+  data:
+    host: localhost
+    port: 3306
+    database: ''
+    username: ''
+    password: ''
+    # prefixo aplicado as tabelas quando storage-type = MYSQL, util para dividir o banco com
+    # outros plugins.
+    prefix: 'starpunicoes_'
+    # parametros extras adicionados a URL de conexao do MySQL.
+    parametros: 'useSSL=false&autoReconnect=true&characterEncoding=utf8'
+
+# Integracao com o StarDiscord. Quando ele esta instalado, mutar alguem no jogo
+# tambem silencia a conta do Discord vinculada - no chat e na call. Quem sai do
+# servidor do Discord e volta continua mutado: o cargo e recolocado na entrada.
+# Como o Discord silencia (qual cargo, avisos por DM) se configura la, em
+# plugins/StarDiscord/config.yml, na secao Mute.
+discord:
+  espelhar-mute: true
+
+punicoes:
+  # Punir por menu: com true, usar /ban, /mute, /warn ou /kick passando SO o nick
+  # (ex: /ban Fulano) abre um menu com os presets de presets.yml - um clique aplica a
+  # punicao com motivo e tempo prontos, e da para criar presets novos pelo proprio menu.
+  # O comando completo (/ban Fulano 7d motivo) continua funcionando normalmente.
+  punir-por-menu: true
+  # Comandos que um jogador NAO pode usar enquanto estiver mutado (sem a barra "/").
+  comandos-bloqueados-mutado:
+    - "msg"
+    - "tell"
+    - "w"
+    - "reply"
+    - "r"
+
+# Configuracoes da prisao que valem para TODAS as cadeias (nao sao individuais por cadeia -
+# as configuracoes especificas de cada cadeia ficam nos arquivos dentro da pasta "cadeias/").
+prisao:
+  # Se true, ao prender alguem o IP dele tambem fica marcado: qualquer outra conta que
+  # conectar do mesmo IP enquanto a pena estiver ativa sera presa automaticamente na mesma
+  # cadeia (evita fuga por conta alternativa).
+  arrest-ip: true
+  # Tag exibida para jogadores presos. E uma placeholder RELACIONAL do PlaceholderAPI:
+  # Placeholder: %rel_starpunicoes_tag%
+  # (use em plugins de nametag/tablist, como o TAB, que suportam placeholders relacionais)
+  tag: ' &c[PRESO]'
+  # Enquanto estiver preso, o inventario, a armadura e o item da mao secundaria sao guardados
+  # e o jogador fica sem itens - tudo e devolvido automaticamente quando ele for solto (mesmo
+  # que a soltura aconteca enquanto ele estiver offline, a devolucao ocorre no proximo login).
+  guardar-inventario: true
+  # Tempo (em segundos) adicionado quando a staff aumenta a pena de alguem pelo menu /presos
+  # (clique direito). Diferente do /maistempo, essa acao nao tem preco/permissao configurada
+  # por cadeia - e um ajuste administrativo direto.
+  incremento-manual-segundos: 600
+
+# Painel do site (https://starplugins.com.br/paineis/punicoes): o DONO da licenca acompanha
+# a staff pelo navegador - quem puniu quem, revogacoes, presos, infracoes em votacao e o
+# historico de cada jogador. So leitura: o painel nao pune nem revoga. O servidor e
+# reconhecido pelo IP:porta da licenca (sem senha) e o IP dos jogadores NUNCA sai daqui.
+painel:
+  ativado: true
+  site: 'https://starplugins.com.br'
+  # Mesma staff aplicando tantas punicoes nesse tempo vira ALERTA no painel.
+  alerta-em-massa:
+    punicoes: 10
+    minutos: 10

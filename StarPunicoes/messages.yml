@@ -1,0 +1,180 @@
+# =========================================================
+#  StarPunicoes - mensagens (100% em portugues, edite a vontade)
+#  Placeholders sao escritos entre chaves, ex: {jogador}
+#  Cores usam o padrao '&' do Minecraft.
+# =========================================================
+
+prefixo: "&c&lSTARPUNICOES&f "
+
+geral:
+  sem-permissao: "&cVoce nao tem permissao para usar este comando."
+  jogador-desconhecido: "&cO jogador &e{jogador} &cnunca entrou neste servidor."
+  jogador-offline: "&cO jogador &e{jogador} &cprecisa estar online."
+  alvo-bypass: "&cO jogador &e{jogador} &cpossui permissao de bypass e nao pode ser punido."
+  tempo-invalido: "&cTempo invalido: &e{tempo}&c. Use algo como 1d2h30m ou 'perm' para permanente."
+  numero-invalido: "&cValor numerico invalido: &e{valor}"
+  somente-jogador: "&cEste comando so pode ser usado por um jogador."
+  recarregado: "&aConfiguracoes e mensagens recarregadas com sucesso."
+  ajuda-titulo: "&8&m----&r &cStarPunicoes &8&m----"
+  ajuda-linha: "&7Use &e/starpunicoes reload &7para recarregar as configuracoes."
+
+punicoes:
+  uso-banir: "&cUso correto: &e/banir <jogador> <tempo|perm> [motivo]"
+  uso-desbanir: "&cUso correto: &e/desbanir <jogador>"
+  uso-mutar: "&cUso correto: &e/mutar <jogador> <tempo|perm> [motivo]"
+  uso-desmutar: "&cUso correto: &e/desmutar <jogador>"
+  uso-kick: "&cUso correto: &e/kick <jogador> [motivo]"
+  uso-avisar: "&cUso correto: &e/avisar <jogador> [motivo]"
+  uso-avisos: "&cUso correto: &e/avisos <jogador>"
+  uso-historico: "&cUso correto: &e/historico <jogador>"
+
+  ban-tela: |-
+    &4&lVoce foi banido!
+    &7Motivo: &f{motivo}
+    &7Punido por: &f{autor}
+    &7Duracao: &f{duracao}
+  ban-ip-tela: |-
+    &4&lSeu IP foi banido!
+    &7Motivo: &f{motivo}
+    &7Punido por: &f{autor}
+    &7Duracao: &f{duracao}
+  banido-executor: "&aVoce baniu &e{jogador} &apor &e{duracao}&a."
+  banido-broadcast: |-
+    &c{jogador} &ffoi banido!
+    &7Motivo: &f{motivo}
+    &7Punido por: &f{autor}
+    &7Duracao: &f{duracao}
+  desbanido: "&aO banimento de &e{jogador} &afoi removido."
+  nao-estava-banido: "&e{jogador} &cnao possui um banimento ativo."
+
+  mutado-aviso: "&cVoce esta mutado. Motivo: &e{motivo}&c. Tempo restante: &e{duracao}"
+  mutado-executor: "&aVoce mutou &e{jogador} &apor &e{duracao}&a."
+  desmutado: "&aO mute de &e{jogador} &afoi removido."
+  nao-estava-mutado: "&e{jogador} &cnao possui um mute ativo."
+
+  kick-tela: |-
+    &4&lVoce foi expulso do servidor!
+    &7Motivo: &f{motivo}
+    &7Expulso por: &f{autor}
+  kick-executor: "&aVoce expulsou &e{jogador}&a."
+
+  avisado-aviso: "&eVoce recebeu um aviso! &7Motivo: &f{motivo} &7- Por: &f{autor}"
+  avisado-executor: "&aVoce avisou &e{jogador}&a."
+  avisos-cabecalho: "&7Avisos de &e{jogador}&7: &f{quantidade}"
+  avisos-linha: "&8 - &7[&f{data}&7] &f{autor}&7: &f{motivo}"
+
+  historico-cabecalho: "&7Historico de &e{jogador}&7 (&f{quantidade} &7registros):"
+  historico-linha: "&8 #{id} &7[&f{tipo}&7] &f{autor} &7- &f{motivo} &7(&f{data}&7) &7- &f{status}"
+  historico-truncado: "&7... e mais &f{restante} &7registro(s). Use um plugin de logs para o historico completo."
+
+  uso-banip: "&cUso correto: &e/banip <jogador> <tempo|perm> [motivo]"
+  uso-unbanip: "&cUso correto: &e/unbanip <ip|jogador>"
+  uso-tempban: "&cUso correto: &e/tempban <jogador> <tempo> [motivo]"
+  uso-tempmute: "&cUso correto: &e/tempmute <jogador> <tempo> [motivo]"
+  uso-checkban: "&cUso correto: &e/checkban <jogador>"
+  uso-checkmute: "&cUso correto: &e/checkmute <jogador>"
+  uso-checkbanip: "&cUso correto: &e/checkbanip <ip|jogador>"
+  uso-iphistory: "&cUso correto: &e/iphistory <jogador>"
+  uso-alts: "&cUso correto: &e/alts <jogador>"
+  uso-staffhistory: "&cUso correto: &e/staffhistory <staff>"
+  uso-verify: "&cUso correto: &e/verify <jogador>"
+  tempo-deve-ser-temporario: "&cTempo invalido: &e{tempo}&c. Este comando exige uma duracao temporaria (nao aceita 'perm')."
+  punicao-escopo: "&7Escopo da punicao: apenas o servidor &e{servidor}&7 (fiscalizado pelo proxy)."
+  ip-desconhecido: "&cNao foi possivel descobrir o IP de &e{jogador}&c (ele nunca entrou online)."
+
+  banip-executor: "&aVoce baniu &e{jogador} &ae o IP &e{ip} &apor &e{duracao}&a."
+  unbanip-sucesso: "&aO banimento do IP &e{ip} &afoi removido."
+  unbanip-nao-banido: "&eO IP &f{ip} &cnao possui um banimento ativo."
+
+  checkban-resultado: "&e{jogador} &7esta banido por &f{autor}&7. Motivo: &f{motivo}&7. Data: &f{data}&7. Duracao: &f{duracao}"
+  checkmute-resultado: "&e{jogador} &7esta mutado por &f{autor}&7. Motivo: &f{motivo}&7. Data: &f{data}&7. Duracao: &f{duracao}"
+  checkbanip-resultado: "&eIP {ip} &7banido por &f{autor}&7. Motivo: &f{motivo}&7. Duracao: &f{duracao}"
+  checkbanip-nao-banido: "&eO IP &f{ip} &7nao possui um banimento ativo."
+
+  iphistory-cabecalho: "&7IPs vistos para &e{jogador}&7: &f{quantidade}"
+  iphistory-linha: "&8 - &f{ip} &7(primeira vez: &f{primeira}&7, ultima vez: &f{ultima}&7)"
+
+  alts-cabecalho: "&7Contas com o mesmo IP de &e{jogador}&7: &f{quantidade}"
+  alts-linha: "&8 - &f{jogador}"
+
+  staffhistory-cabecalho: "&7Punicoes aplicadas por &e{staff}&7: &f{quantidade}"
+  staffhistory-linha: "&8 - &7[&f{tipo}&7] &f{jogador} &7- &f{motivo} &7(&f{data}&7)"
+
+  verify-resultado: |-
+    &7Situacao de &e{jogador}&7:
+    &8 - &7Banido: &f{banido}
+    &8 - &7Mutado: &f{mutado}
+    &8 - &7Preso: &f{preso}
+    &8 - &7Avisos: &f{avisos}
+    &8 - &7Total de punicoes: &f{punicoes}
+
+  chat-limpo: "&7O chat foi limpo por &f{autor}&7."
+  chat-mutado-global: "&cO chat esta mutado no momento."
+  chat-mutado-ativado: "&c{autor} mutou o chat global."
+  chat-mutado-desativado: "&a{autor} desmutou o chat global."
+  comando-bloqueado-mutado: "&cVoce nao pode usar este comando enquanto estiver mutado."
+
+presets:
+  wizard-nome: "&ePasso 1/3: digite no chat o &fNOME&e do preset (ou &c'cancelar'&e para sair)."
+  wizard-motivo: "&ePasso 2/3: digite o &fMOTIVO&e da punicao."
+  wizard-tempo: "&ePasso 3/3: digite o &fTEMPO&e (ex: 30m, 7d, perm)."
+  wizard-cancelado: "&cCriacao de preset cancelada."
+  wizard-salvo: "&aPreset &f{nome}&a criado e salvo em presets.yml!"
+
+prisao:
+  menu-titulo: "&8&m----&r &cSistema de Prisao &8&m----"
+  menu-sem-celulas: "&7Nenhuma celula de prisao foi definida ainda."
+  menu-celula: "&8 - &7Celula &f{nome} &7(raio: &f{raio}&7)"
+  menu-presos-titulo: "&7Presos ativos: &f{quantidade}"
+  menu-preso-linha: "&8 - &f{jogador} &7na celula &f{celula} &7- restante: &f{restante}"
+  lista-linha: "&8 - &f{id} &7(&f{nome}&7) - raio: &f{raio} &7- entrada: &f{entrada} &7- saida: &f{saida}"
+
+  uso-prender: "&cUso correto: &e/prender <jogador> <celula> <tempo|perm> [motivo]"
+  uso-soltar: "&cUso correto: &e/soltar <jogador>"
+  uso-cadeia: "&cUso correto: &e/cadeia <definirentrada|definirsaida|remover|lista|reload|ajuda>"
+  uso-definirentrada: "&cUso correto: &e/cadeia definirentrada <nome> [raio]"
+  uso-definirsaida: "&cUso correto: &e/cadeia definirsaida <nome>"
+  uso-removercelula: "&cUso correto: &e/cadeia remover <nome>"
+  uso-maistempo: "&cUso correto: &e/maistempo <jogador>"
+  uso-prisaotempo: "&cUso correto: &e/prisaotempo <jogador> <+tempo|-tempo>"
+
+  celula-desconhecida: "&cA celula &e{celula} &cnao existe."
+  celula-removida: "&aCelula &e{celula} &aremovida."
+  entrada-definida: "&aCelula &e{celula} &adefinida na sua posicao (raio: &e{raio}&a)."
+  saida-definida: "&aSaida da celula &e{celula} &adefinida na sua posicao."
+
+  preso-executor: "&aVoce prendeu &e{jogador} &ana celula &e{celula} &apor &e{duracao}&a."
+  solto-executor: "&aVoce soltou &e{jogador} &ada prisao."
+  nao-estava-preso: "&e{jogador} &cnao esta preso."
+  comando-bloqueado: "&cVoce nao pode usar comandos enquanto estiver preso."
+
+  ajuda-titulo: "&8&m----&r &cComandos da Prisao &8&m----"
+  ajuda-prisao: "&e/prisao &7- Mostra as celulas e presos atuais."
+  ajuda-fianca: "&e/fianca &7- Paga sua fianca para ser solto (se disponivel)."
+  ajuda-maistempo: "&e/maistempo <jogador> &7- Aumenta a pena de um preso (uma vez)."
+  ajuda-prender: "&e/prender <jogador> <celula> <tempo|perm> [motivo] &7- Prende um jogador."
+  ajuda-soltar: "&e/soltar <jogador> &7- Solta um jogador."
+  ajuda-prisaotempo: "&e/prisaotempo <jogador> <+tempo|-tempo> &7- Ajusta a pena de um preso."
+  ajuda-cadeia: "&e/cadeia ajuda &7- Comandos de administracao das cadeias (criar, remover, etc)."
+
+  cadeia-ajuda-titulo: "&8&m----&r &cAdministracao de Cadeias &8&m----"
+  cadeia-ajuda-lista: "&e/cadeia lista &7- Lista todas as cadeias cadastradas."
+  cadeia-ajuda-definirentrada: "&e/cadeia definirentrada <nome> [raio] &7- Cria/atualiza uma cadeia."
+  cadeia-ajuda-definirsaida: "&e/cadeia definirsaida <nome> &7- Define para onde o preso vai ao ser solto."
+  cadeia-ajuda-remover: "&e/cadeia remover <nome> &7- Remove uma cadeia."
+  cadeia-ajuda-reload: "&e/cadeia reload &7- Recarrega as configuracoes da prisao."
+
+  fianca-indisponivel: "&cA fianca esta desativada nesta cadeia."
+  fianca-nao-preso: "&cVoce nao esta preso."
+  fianca-cadeia-invalida: "&cA cadeia onde voce esta preso nao existe mais. Fale com a staff."
+  fianca-sem-permissao: "&cVoce nao tem permissao para pagar fianca."
+  fianca-paga: "&aFianca paga! Voce foi solto."
+  fianca-falha: "&cNao foi possivel pagar a fianca: &e{detalhe}"
+
+  maistempo-proprio: "&cVoce nao pode usar isso em si mesmo."
+  maistempo-sucesso: "&aVoce aumentou a pena de &e{jogador}&a."
+  maistempo-falhou: "&c{jogador} nao esta preso."
+  maistempo-desabilitado: "&cAumentar a pena esta desativado nesta cadeia."
+  maistempo-espera: "&cAguarde um pouco antes de aumentar a pena deste preso de novo."
+  maistempo-sem-saldo: "&cNao foi possivel aumentar a pena: &e{detalhe}"
+  tempo-ajustado: "&aPena de &e{jogador} &aajustada. Tempo restante: &e{restante}"

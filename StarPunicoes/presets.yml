@@ -1,0 +1,53 @@
+# =========================================================================
+#  StarPunicoes - presets do menu de punir.
+#
+#  Com "punir-por-menu: true" no config.yml, usar /ban, /mute, /warn ou /kick
+#  passando SO o nick (ex: /ban Fulano) abre um menu com estes presets - um
+#  clique aplica a punicao com o motivo e o tempo ja definidos. O botao
+#  "Criar preset" do menu adiciona novos aqui sem precisar editar o arquivo.
+#
+#  tempo: 'perm' para permanente, ou uma duracao (ex: 30m, 1d, 7d).
+#  WARN e KICK nao usam tempo.
+# =========================================================================
+
+presets:
+  ban:
+    divulgacao:
+      nome: '&cDivulgacao'
+      motivo: 'Divulgacao de outro servidor'
+      tempo: 'perm'
+    hack:
+      nome: '&4Uso de hack/cheat'
+      motivo: 'Uso de hack ou cheat'
+      tempo: '30d'
+    abuso-de-bug:
+      nome: '&6Abuso de bug'
+      motivo: 'Abuso intencional de bug'
+      tempo: '7d'
+  mute:
+    ofensas:
+      nome: '&eOfensas no chat'
+      motivo: 'Ofensas a outros jogadores'
+      tempo: '30m'
+    spam:
+      nome: '&7Spam/flood'
+      motivo: 'Spam ou flood no chat'
+      tempo: '15m'
+    comercio-ilegal:
+      nome: '&6Comercio fora do servidor'
+      motivo: 'Venda/troca fora dos canais permitidos'
+      tempo: '1d'
+  warn:
+    comportamento:
+      nome: '&eComportamento inadequado'
+      motivo: 'Comportamento inadequado'
+    linguagem:
+      nome: '&7Linguagem inapropriada'
+      motivo: 'Linguagem inapropriada no chat'
+  kick:
+    afk:
+      nome: '&7AFK por muito tempo'
+      motivo: 'AFK por tempo excessivo'
+    aviso-final:
+      nome: '&cAviso final'
+      motivo: 'Ultimo aviso antes de punicao maior'

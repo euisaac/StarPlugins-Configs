@@ -1,0 +1,262 @@
+# =========================================================================
+#  StarPunicoes - sistema de infracoes de chat (denuncia + votacao da comunidade)
+#
+#  Voce pode ter QUANTOS TIPOS quiser dentro de "tipos:" - cada um e independente, com sua
+#  propria deteccao, votacao e punicao. Os dois abaixo sao exemplos prontos para usar:
+#    - "ofensa": detecta palavras configuradas e muta o autor.
+#    - "divulgacao": detecta dominios/links que NAO estao na lista de permitidos e bane
+#      permanentemente o autor.
+# =========================================================================
+
+# Permissao "staff": usada quando um tipo tem "votacao.tipo: STAFF" (so quem tem isso ve o
+# aviso e pode votar naquele tipo) e TAMBEM controla quem enxerga a palavra/dominio flagrado
+# por inteiro - quem nao tem essa permissao sempre ve a versao ofuscada (ver "ofuscar-porcentagem"
+# de cada tipo), mesmo em tipos com votacao PUBLICO.
+permissao-staff: 'starpunicoes.infracoes.staff'
+
+# Comandos de mensagem privada monitorados (validos para qualquer tipo com monitorar-tell: true).
+comandos-tell-com-alvo:
+  - "tell"
+  - "msg"
+  - "w"
+  - "whisper"
+  - "m"
+  - "pm"
+comandos-tell-sem-alvo:
+  - "r"
+  - "reply"
+
+tipos:
+
+  ofensa:
+    enabled: true
+    # PALAVRAS: compara o chat com a lista "palavras" abaixo.
+    deteccao: PALAVRAS
+    monitorar-tell: true
+    ignorar-caixa: true
+    # Lista ampla de palavroes/ofensas em portugues (edite a vontade - remova o que for
+    # tolerado no seu servidor, adicione girias/variacoes regionais que faltarem). O filtro
+    # ja ignora acentos, maiusculas e letras repetidas (ex: "escrottttto" vira "escroto"),
+    # entao nao precisa listar toda variacao de acentuacao ou "spam de letra".
+    palavras:
+      # xingamentos gerais / baixo calao
+      - "merda"
+      - "bosta"
+      - "porra"
+      - "caralho"
+      - "cacete"
+      - "fodase"
+      - "foda-se"
+      - "vsf"
+      - "vtnc"
+      - "vtmnc"
+      - "pqp"
+      - "fdp"
+      - "tnc"
+      - "desgraca"
+      - "maldito"
+      - "diabo"
+      - "inferno"
+      - "cruz credo"
+      # ofensas sexuais / baixarias
+      - "puta"
+      - "putaria"
+      - "putona"
+      - "piranha"
+      - "vadia"
+      - "vagabunda"
+      - "prostituta"
+      - "safada"
+      - "safado"
+      - "cu"
+      - "cuzao"
+      - "arrombado"
+      - "arrombada"
+      - "rola"
+      - "pau no cu"
+      - "piroca"
+      - "pica"
+      - "xoxota"
+      - "boceta"
+      - "chupador"
+      - "chupa rola"
+      - "gozar"
+      - "corno"
+      - "cornao"
+      - "cornuda"
+      # insultos de burrice/carater
+      - "idiota"
+      - "imbecil"
+      - "estupido"
+      - "retardado"
+      - "retardada"
+      - "mongoloide"
+      - "mongol"
+      - "debilóide"
+      - "burro"
+      - "otario"
+      - "otaria"
+      - "trouxa"
+      - "babaca"
+      - "panaca"
+      - "escroto"
+      - "escrota"
+      - "verme"
+      - "lixo humano"
+      - "energumeno"
+      - "cretino"
+      - "canalha"
+      - "safado sem carater"
+      - "vagabundo"
+      - "vagabunda"
+      - "sem vergonha"
+      - "desgracado"
+      # ofensas a familia
+      - "filho da puta"
+      - "filha da puta"
+      - "sua mae"
+      - "sua mae na favela"
+      - "vai pra puta que pariu"
+      - "bastardo"
+      # homofobicas / lgbtfobicas (ofensivas quando usadas como xingamento)
+      - "viado"
+      - "viadinho"
+      - "bicha"
+      - "bichinha"
+      - "sapatao"
+      - "traveco"
+      - "boiola"
+      # racistas / capacitistas
+      - "macaco"
+      - "crioulo"
+      - "tapado"
+      - "aleijado"
+      - "deficiente mental"
+      # ameacas / agressividade
+      - "vou te matar"
+      - "vou te bater"
+      - "morra"
+      - "va morrer"
+      - "se mata"
+      - "se enforca"
+      - "quero te ver morto"
+      # nazismo/extremismo (ofensa grave)
+      - "hitler tinha razao"
+      - "heil hitler"
+      - "nazista"
+
+    # Palavras/expressoes que NUNCA disparam infracao, mesmo contendo uma palavra da lista
+    # acima (elas sao removidas da mensagem antes da comparacao). Existem porque o filtro
+    # busca a palavra em qualquer parte do texto - por exemplo "picareta" contem "pica", e
+    # sem essa lista seria detectado por engano. Adicione aqui qualquer outra palavra legitima
+    # que o filtro pegar errado no seu servidor.
+    lista-branca:
+      - "picareta"
+      - "picaretagem"
+      - "picape"
+      - "picada"
+      - "picadinho"
+      - "picadeiro"
+      - "cubo"
+      - "cultura"
+      - "custo"
+      - "custar"
+      - "cuidado"
+      - "curioso"
+      - "recurso"
+      - "documento"
+      - "ocupado"
+      - "cumprir"
+      - "acusado"
+      - "escuro"
+      - "procurar"
+      - "executar"
+      - "executivo"
+      - "curso"
+      - "excursao"
+      - "recuar"
+      - "discutir"
+      - "curriculo"
+      - "pausa"
+      - "paulista"
+      - "paulo"
+      - "controlar"
+      - "controle"
+      - "rolamento"
+      - "enrolar"
+      - "rolar"
+
+    votacao:
+      # PUBLICO: qualquer jogador ve o aviso e pode votar. STAFF: so quem tem "permissao-staff".
+      tipo: PUBLICO
+      duracao-segundos: 300
+      votos-minimos: 3
+      # Se enabled: true, assim que "punir" OU "relevar" atingir "votos", a votacao encerra
+      # na hora (nao espera os "duracao-segundos"). Se false, sempre espera o tempo cheio.
+      forcar-conclusao:
+        enabled: false
+        votos: 10
+
+    punicao:
+      # MUTE, KICK, WARN ou BAN.
+      tipo: MUTE
+      duracao: '30m'
+
+    # % da palavra flagrada que fica com "*" para quem nao tem "permissao-staff".
+    ofuscar-porcentagem: 50
+
+    # Se true e a votacao aprovar a punicao, limpa o chat de todo mundo e so DEPOIS manda a
+    # mensagem de "concluida-punido" (pra ela ficar visivel no topo do chat limpo). Se a
+    # votacao relevar, o chat NAO e limpo.
+    limpar-chat-ao-punir: false
+
+  divulgacao:
+    enabled: true
+    # DOMINIOS: extrai links/dominios da mensagem e verifica contra "allowed-domains".
+    # Qualquer dominio que NAO estiver nessa lista (nem for subdominio de um deles) dispara a infracao.
+    deteccao: DOMINIOS
+    monitorar-tell: true
+    allowed-domains:
+      - 'redestars.com'
+      - 'tiktok.com'
+      - 'youtube.com'
+      - 'youtu.be'
+      - 'discord.com'
+      - 'discord.gg'
+      - 'nickuc.com'
+      - 'hastebin.com'
+      - 'imgur.com'
+      - 'prntscr.com'
+      - 'prnt.scr'
+      - 'redestars.com'
+      - 'loja.redestars.com'
+
+    votacao:
+      tipo: PUBLICO
+      duracao-segundos: 300
+      votos-minimos: 3
+      forcar-conclusao:
+        enabled: false
+        votos: 10
+
+    punicao:
+      tipo: BAN
+      duracao: 'perm'
+
+    ofuscar-porcentagem: 50
+    limpar-chat-ao-punir: false
+
+mensagens:
+  # Placeholders: {jogador} {mensagem} {canal} {tipo}
+  aviso-publico: |-
+    &c&l! &cAVISO DE INFRACAO &c&l!
+    &7O jogador &f{jogador} &7pode ter cometido uma infracao (&f{tipo}&7) no chat (&f{canal}&7):
+    &f"{mensagem}"
+    &7Vote em &e/infracoes &7para punir ou relevar!
+  aviso-staff: |-
+    &c&l! &cAVISO DE INFRACAO (STAFF) &c&l!
+    &7O jogador &f{jogador} &7pode ter cometido uma infracao (&f{tipo}&7) no chat (&f{canal}&7):
+    &f"{mensagem}"
+    &7Vote em &e/infracoes &7para punir ou relevar!
+  concluida-punido: "&c{jogador} foi punido pela votacao de infracoes ({tipo})."
+  concluida-relevada: "&7A infracao de &f{jogador} &7(&f{tipo}&7) foi relevada pela votacao."
