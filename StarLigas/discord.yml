@@ -82,3 +82,205 @@ Mensagens:
   Desligado: '&cA integracao com o Discord esta desligada. Ligue em &fdiscord.yml &c(Ativar: true).'
   Sem webhook: '&cNenhum webhook valido para a liga {liga}&c. Confira a URL no &fdiscord.yml&c.'
   Falhou: '&cO Discord recusou o placar da liga {liga}&c: &f{erro}'
+
+# ======================================================================
+#  AVISOS -- uma mensagem no canal a cada acontecimento das ligas
+# ======================================================================
+#
+#  Cada aviso tem:
+#    Ativar      true/false
+#    Webhook     '' = o canal da liga (ou o Webhook geral la de cima);
+#                uma URL = um canal so para este aviso (ex.: #pontuacoes-liga)
+#    Cor         cor da barra lateral
+#    Mencionar   '@everyone', '@here', '<@&ID_DO_CARGO>' ou ''
+#    Miniatura   a imagem do canto: '{cabeca_jogador}', '{cabeca_lider}',
+#                o link de uma imagem (ex.: o logo do servidor) ou ''
+#    Titulo, Descricao, Rodape   o texto (aceita **negrito**, *italico*,
+#                emojis e varias linhas)
+#
+#  Variaveis em todos: {liga} {clan} (tag) {nome} (nome do clan)
+#  {lider} (lider do clan) {total} (pontos acumulados do clan)
+#  Cada aviso lista as suas proprias logo acima dele.
+Avisos:
+
+  #  Pontos que um clan ganhou. {jogador} quem pontuou, {pontos} quantos,
+  #  {ligas} em que liga(s) contou, {motivo} por que (textos em Motivos),
+  #  {quantidade} quantas vezes no agrupamento, {posicao} posicao do clan.
+  #  "Descricao sem jogador" e quando os pontos vieram direto para o clan
+  #  (plugin pela API ou /starligas pontuar <clan>).
+  Pontos ganhos:
+    Ativar: true
+    Webhook: ''
+    Cor: '#2ecc71'
+    Mencionar: ''
+    Miniatura: '{cabeca_jogador}'
+    Titulo: '⬆️ Pontos adicionados'
+    Descricao: |-
+      **{jogador}** deu **{pontos}** pontos para o clã **{clan}**!
+
+      🏆 **Liga:** {ligas}
+      📝 **Motivo:** {motivo}
+    Descricao sem jogador: |-
+      O clã **{clan}** ganhou **{pontos}** pontos!
+
+      🏆 **Liga:** {ligas}
+      📝 **Motivo:** {motivo}
+    Rodape: ''
+
+  #  Pontos que um clan perdeu (morte, pontos negativos de mob/bloco...).
+  #  Mesmas variaveis do de cima.
+  Pontos perdidos:
+    Ativar: false
+    Webhook: ''
+    Cor: '#e74c3c'
+    Mencionar: ''
+    Miniatura: '{cabeca_jogador}'
+    Titulo: '⬇️ Pontos perdidos'
+    Descricao: |-
+      **{jogador}** fez o clã **{clan}** perder **{pontos}** pontos.
+
+      🏆 **Liga:** {ligas}
+      📝 **Motivo:** {motivo}
+    Descricao sem jogador: |-
+      O clã **{clan}** perdeu **{pontos}** pontos.
+
+      🏆 **Liga:** {ligas}
+      📝 **Motivo:** {motivo}
+    Rodape: ''
+
+  #  Um clan passou o outro e assumiu o 1o lugar de uma liga.
+  #  {clan} quem assumiu, {anterior} quem era o lider, {pontos} pontos do
+  #  novo lider, {diferenca} quanto ele tem a mais que o segundo.
+  #  "Pausa" segura o aviso de uma mesma liga por um tempo, para dois clans
+  #  trocando de lugar a cada minuto nao encherem o canal.
+  Novo lider:
+    Ativar: true
+    Webhook: ''
+    Cor: '#f1c40f'
+    Mencionar: ''
+    Miniatura: '{cabeca_lider}'
+    Titulo: '👑 Novo líder na {liga}'
+    Descricao: 'O clã **{clan}** passou o **{anterior}** e assumiu o 1º lugar com **{pontos}** pontos!'
+    Rodape: ''
+    Pausa: '10m'
+
+  #  O clan subiu de rank (ranks.yml) pelos pontos acumulados.
+  #  {rank} nome do rank, {rank_tag} a tag dele.
+  Subiu de rank:
+    Ativar: true
+    Webhook: ''
+    Cor: '#3498db'
+    Mencionar: ''
+    Miniatura: '{cabeca_lider}'
+    Titulo: '⭐ {clan} subiu de rank'
+    Descricao: 'O clã **{clan}** chegou ao rank **{rank}** com **{total}** pontos acumulados!'
+    Rodape: ''
+
+  #  Um clan entrou numa liga. {jogador} quem inscreveu (vazio quando foi a
+  #  staff), {inscritos} quantos clans a liga tem agora.
+  Clan inscrito:
+    Ativar: true
+    Webhook: ''
+    Cor: '#1abc9c'
+    Mencionar: ''
+    Miniatura: '{cabeca_lider}'
+    Titulo: '📋 Novo clã na {liga}'
+    Descricao: 'O clã **{clan}** entrou na disputa! Agora são **{inscritos}** clãs.'
+    Rodape: ''
+
+  #  A liga comecou. {encerra} contagem regressiva do Discord, {inscritos}
+  #  clans ja inscritos, {meta} pontos para vencer (- se nao tiver).
+  Liga iniciada:
+    Ativar: true
+    Webhook: ''
+    Cor: '#9b59b6'
+    Mencionar: ''
+    Miniatura: ''
+    Titulo: '🚀 A {liga} começou!'
+    Descricao: |-
+      Os pontos já estão valendo. A temporada encerra {encerra}.
+
+      📋 **Clãs inscritos:** {inscritos}
+    Rodape: ''
+
+  #  Compra no mercado da liga (gasta pontos do placar). {jogador} quem
+  #  comprou, {item} o nome do item, {preco} quanto custou, {pontos} quantos
+  #  pontos o clan ficou na liga.
+  Compra no mercado:
+    Ativar: false
+    Webhook: ''
+    Cor: '#e67e22'
+    Mencionar: ''
+    Miniatura: '{cabeca_jogador}'
+    Titulo: '🛒 Compra no mercado da {liga}'
+    Descricao: '**{jogador}** gastou **{preco}** pontos do clã **{clan}** em **{item}**. O clã ficou com **{pontos}** pontos.'
+    Rodape: ''
+
+  #  Pontos do mesmo jogador, pelo mesmo motivo, dentro deste tempo saem
+  #  numa mensagem so, com a soma (quebrar 40 blocos = 1 aviso, nao 40).
+  #  '0' = um aviso por pontuacao (cuidado: o Discord limita os envios).
+  Agrupar: '1m'
+  #  O aviso de pontos so sai se a soma chegar a isto.
+  Minimo de pontos: 1
+  #  Pontos de clan que nao esta em nenhuma liga valendo (so o acumulado)
+  #  tambem viram aviso?
+  Clan sem liga: false
+
+  #  Como o {ligas} aparece.
+  Todas as ligas: 'Todas as ligas'
+  Sem liga: 'Só no acumulado'
+  Separador de ligas: ', '
+
+  #  A imagem de {cabeca_jogador}. {jogador} = nick, {uuid} = UUID.
+  Cabeca do jogador: 'https://mc-heads.net/avatar/{jogador}/64'
+
+  #  O {motivo} de cada tipo de ponto. "Texto" e para um acontecimento so;
+  #  "Agrupado" para quando o agrupamento juntou varios ({quantidade}).
+  #  {alvo} = quem morreu, o mob, o bloco, ou o texto livre do comando.
+  Motivos:
+    matar-jogador:
+      Texto: 'Matou {alvo}'
+      Agrupado: 'Matou {quantidade} jogadores'
+    matar-rival:
+      Texto: 'Matou {alvo}, de um clã rival'
+      Agrupado: 'Matou {quantidade} jogadores de clãs rivais'
+    morrer:
+      Texto: 'Morreu'
+      Agrupado: 'Morreu {quantidade} vezes'
+    matar-mob:
+      Texto: 'Matou {alvo}'
+      Agrupado: 'Matou {quantidade} mobs'
+    quebrar-bloco:
+      Texto: 'Quebrou {alvo}'
+      Agrupado: 'Quebrou {quantidade} blocos'
+    pescar:
+      Texto: 'Pescou um peixe'
+      Agrupado: 'Pescou {quantidade} peixes'
+    # /starligas pontuar <jogador|clan> <pontos> [motivo]: o {alvo} e o
+    # motivo escrito no comando (ex.: "Votou no servidor").
+    comando:
+      Texto: '{alvo}'
+      Agrupado: '{alvo} ({quantidade}x)'
+      Sem texto: 'Adicionado pela staff'
+    # Outro plugin pela StarLigasAPI.
+    api:
+      Texto: '{alvo}'
+      Agrupado: '{alvo} ({quantidade}x)'
+      Sem texto: 'Evento do servidor'
+
+  #  Como mobs e blocos aparecem no {alvo}. O que nao estiver aqui sai com o
+  #  nome do jogo arrumado (ZOMBIE -> Zombie, DIAMOND_ORE -> Diamond ore).
+  Nomes:
+    ENDER_DRAGON: 'o Dragão do End'
+    WITHER: 'o Wither'
+    WARDEN: 'o Warden'
+    ELDER_GUARDIAN: 'um Guardião Ancião'
+    ZOMBIE: 'um Zumbi'
+    SKELETON: 'um Esqueleto'
+    CREEPER: 'um Creeper'
+    SPIDER: 'uma Aranha'
+    ENDERMAN: 'um Enderman'
+    BLAZE: 'um Blaze'
+    DIAMOND_ORE: 'minério de diamante'
+    DEEPSLATE_DIAMOND_ORE: 'minério de diamante'
+    ANCIENT_DEBRIS: 'detrito ancestral'

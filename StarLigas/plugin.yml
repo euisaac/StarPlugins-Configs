@@ -1,0 +1,51 @@
+name: StarLigas
+version: '${project.version}'
+main: com.starlabs.starligas.StarLigas
+api-version: '1.13'
+authors: [ EuIsaac ]
+description: '${project.description}'
+website: https://starplugins.com.br
+
+# Baixadas pelo loader a partir do Maven Central: sao os drivers do banco de
+# dados, que os servidores modernos nao trazem mais embutidos.
+libraries:
+  - org.xerial:sqlite-jdbc:3.45.3.0
+  - com.mysql:mysql-connector-j:8.4.0
+
+softdepend:
+  - PlaceholderAPI
+
+# As ligas, as recompensas e os ranks sao escritos pelo dono do servidor:
+# apagar, renomear ou criar um deles nao pode virar "configuracao incompleta".
+starplugins:
+  config-livre:
+    - "ligas.yml Ligas"
+    - "recompensas.yml Recompensas"
+    - "ranks.yml Ranks"
+    - "config.yml Pontos.Quebrar blocos"
+    - "config.yml Pontos.Matar mobs"
+
+commands:
+  ligas:
+    aliases: [ liga, league, leagues, ligaclan, ligasclan ]
+    description: Abre o menu das ligas de clans
+    usage: /<command> [placar | recompensas | mercado | historico]
+  starligas:
+    aliases: [ sligas, admligas, admliga ]
+    description: Comandos administrativos do StarLigas
+    usage: /<command> [recarregar | pontos ... | iniciar <liga> | encerrar <liga>]
+
+permissions:
+  starligas.usar:
+    description: Permite abrir o menu das ligas
+    default: 'true'
+
+  starligas.admin:
+    description: Acesso aos comandos administrativos
+    default: 'op'
+
+  # Quem tem esta permissao nao gera pontos para o clan -- serve para o staff
+  # em modo de teste nao sujar a liga.
+  starligas.ignorar:
+    description: Nao pontua em liga nenhuma
+    default: 'false'
