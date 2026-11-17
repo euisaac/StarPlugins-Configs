@@ -1,0 +1,84 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                       StarLigas -- Discord                           ║
+#  ║   Manda o placar das ligas e o campeao de cada temporada para um     ║
+#  ║   canal do Discord, por webhook. Nao precisa de bot.                 ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Como criar o webhook: no Discord, Editar canal -> Integracoes -> Webhooks
+#  -> Novo webhook -> Copiar URL do webhook. Cole a URL abaixo e use
+#  /starligas recarregar.
+#
+#  Cada liga pode ir para um canal proprio, ou ficar fora do Discord, com uma
+#  secao "Discord" dela no ligas.yml:
+#
+#    temporada-1:
+#      ...
+#      Discord:
+#        Ativar: true        # false = esta liga nao vai para o Discord
+#        Webhook: ''         # '' = usa o webhook daqui
+
+Ativar: false
+Webhook: ''
+
+# Nome e foto com que as mensagens aparecem no canal. Foto: link de uma
+# imagem (png/jpg). '' = o nome e a foto definidos no proprio webhook.
+Nome: 'Ligas'
+Avatar: ''
+
+# Cor da barra lateral das mensagens.
+Cor: '#9b59b6'
+
+# Quantos clans aparecem no placar (de 1 a 25).
+Top: 10
+
+Placar ao vivo:
+  Ativar: true
+  # De quanto em quanto tempo o placar vai para o canal: 10m, 30m, 1h, 6h, 1d...
+  A cada: '30m'
+  #  EDITAR: cada liga tem UMA mensagem no canal, que vai sendo atualizada
+  #          no lugar -- o canal nao enche.
+  #  NOVA:   uma mensagem nova a cada envio.
+  Modo: EDITAR
+  # Nao manda o placar enquanto nenhum clan pontuou.
+  Pular placar vazio: true
+
+Resultado:
+  # Quando uma liga encerra, manda o campeao e a classificacao final numa
+  # mensagem nova.
+  Ativar: true
+  # Mencao junto do resultado: '@everyone', '@here', '<@&ID_DO_CARGO>' ou ''.
+  Mencionar: ''
+
+# Miniatura da cabeca do lider do clan em primeiro. {lider} = nick do lider,
+# {uuid} = UUID dele. '' para nao mostrar.
+Cabeca do lider: 'https://mc-heads.net/avatar/{lider}/64'
+
+#  Textos das mensagens. O Discord aceita **negrito**, *italico* e emojis.
+#  Variaveis: {liga} {clans} {restante} {encerra}
+#  ({encerra} vira a contagem regressiva do proprio Discord: "em 3 dias").
+#  Na linha: {medalha} {posicao} {clan} (a tag) {nome} (nome do clan)
+#  {lider} {pontos}. No resultado tambem: {clan} e {pontos} do campeao.
+Textos:
+  Titulo do placar: '⚔️ {liga}'
+  Descricao do placar: 'Classificacao da temporada · encerra {encerra}'
+  Descricao sem fim: 'Classificacao da temporada'
+  Linha: '{medalha} **[{clan}]** {nome} — {pontos} pontos'
+  Placar vazio: '*Nenhum clan pontuou ainda.*'
+  Rodape do placar: '{clans} clan(s) pontuando · atualizado'
+
+  Titulo do resultado: '🏆 {liga} — fim da temporada'
+  Descricao do resultado: 'O clan **[{clan}]** e o campeao com **{pontos}** pontos!'
+  Resultado vazio: '*A liga encerrou sem nenhum clan pontuar.*'
+  Rodape do resultado: '{clans} clan(s) disputaram'
+
+  Medalhas: [ '🥇', '🥈', '🥉' ]
+  # Da 4a posicao em diante.
+  Medalha padrao: '`#{posicao}`'
+
+# Respostas do comando /starligas discord.
+Mensagens:
+  Enviado: '&aPlacar da liga {liga} &aenviado para o Discord.'
+  Enviando: '&7Mandando o placar de &f{quantidade} &7liga(s) para o Discord...'
+  Desligado: '&cA integracao com o Discord esta desligada. Ligue em &fdiscord.yml &c(Ativar: true).'
+  Sem webhook: '&cNenhum webhook valido para a liga {liga}&c. Confira a URL no &fdiscord.yml&c.'
+  Falhou: '&cO Discord recusou o placar da liga {liga}&c: &f{erro}'
