@@ -87,6 +87,20 @@ fila-vip-permissao: "starproxy.filavip"
 # remover automaticamente por falhas).
 fila-max-tentativas: 10
 
+# Quem CAIR (internet caiu, jogo travou ou foi fechado à força, conexão
+# expirou) e entrar de novo dentro do prazo vai direto para o servidor em que
+# estava, em vez de começar pelo spawn. Quem sai normalmente (botão
+# "Desconectar"), ou volta depois do prazo, começa pelo spawn como sempre.
+# Se o servidor estiver fora quando a pessoa voltar, ela vai pro lobby e já
+# entra na fila dele.
+voltar-apos-queda:
+  ativado: true
+  # Até quantos segundos depois da queda a volta direta vale.
+  prazo-segundos: 300
+  # true: só quedas contam. false: qualquer saída dentro do prazo leva de
+  # volta para o servidor em que a pessoa estava.
+  so-quedas: true
+
 # Linha no CONSOLE do proxy a cada vez que alguém troca de servidor (nada é
 # enviado ao jogador). Deixe em branco ("") para desligar.
 #
@@ -151,6 +165,8 @@ mensagens:
   autoreconectar-desativado: "&eAuto-reconectar para &6{servidor}&e desativado."
   autoreconectar-servidor-invalido: "&cServidor inválido. Use /autoreconectar para ver as opções disponíveis."
   autoreconectar-sem-gui: "&cO servidor atual não tem suporte a menu visual. Use &6/autoreconectar <servidor>&c diretamente."
+  # Ao voltar direto para o servidor de onde caiu. Deixe vazia ("") para não mandar.
+  voltou-apos-queda: "&aVocê caiu e voltou para &6{servidor}&a, onde estava."
   fila-falha-removido: "&cNão foi possível conectar você ao servidor {servidor}&c depois de várias tentativas. Você foi removido da fila."
   # ---- Fila de auto-reconectar (chat e actionbar) ----
   # Placeholders (valem em todas as mensagens de fila):
