@@ -203,6 +203,20 @@ bancadas:
   grindstone: "Rebolo"
   loom: "Tear"
 
+# /lixo e /lixohistorico. O que o jogador joga no /lixo some do jogo, mas fica
+# guardado no historico pra ele ver (/lixohistorico) e a staff recuperar
+# (/lixohistorico <jogador>, permissao staressentials.lixohistorico.outros).
+lixo:
+  historico:
+    ativado: true
+    # Por quantos dias cada item fica guardado. 0 = sem prazo.
+    dias: 7
+    # Maximo de itens guardados por jogador (os mais velhos saem primeiro). 0 = sem limite.
+    maximo-itens: 270
+    # true = o proprio jogador tambem pode pegar de volta o que jogou fora.
+    # Com false, so a staff pega (ou quem tiver staressentials.lixohistorico.pegar).
+    jogador-pode-pegar: false
+
 # Comportamento do spawn ao entrar no servidor.
 spawn:
   # Manda pro spawn em TODA entrada no servidor.
