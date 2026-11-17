@@ -79,6 +79,16 @@ log:
 #   - 'AdvancedChests:Baus'
 origens: []
 
+# Painel da economia no site (starplugins.com.br/paineis/economia, so o dono da licenca ve):
+# dinheiro em circulacao, ricos, transacoes, o que a staff deu/tirou/setou, vendas e os
+# indicios da analise. O servidor e reconhecido pelo IP:porta da licenca, sem senha, e so
+# ENVIA dados (nao precisa abrir porta). O painel so le: nao muda saldo de ninguem.
+painel:
+  ativado: true
+  site: 'https://starplugins.com.br'
+  # Operacao da staff (/money adicionar|remover|setar) a partir deste valor vira ALERTA no painel.
+  alerta-staff-valor: 1000000
+
 # =============================================================================
 # API para outros plugins (nao e uma configuracao -- e so documentacao de como
 # integrar com o StarEconomia a partir de codigo Java)
