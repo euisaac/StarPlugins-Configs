@@ -1,0 +1,82 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                     StarTorneios -- Discord                          ║
+#  ║   Manda o placar dos torneios e o resultado de cada ciclo para um    ║
+#  ║   canal do Discord, por webhook. Nao precisa de bot.                 ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Como criar o webhook: no Discord, Editar canal -> Integracoes -> Webhooks
+#  -> Novo webhook -> Copiar URL do webhook. Cole a URL abaixo e use
+#  /startorneios recarregar.
+#
+#  Cada torneio pode ir para um canal proprio, ou ficar fora do Discord, com
+#  uma secao "Discord" dele no torneios.yml:
+#
+#    viciado:
+#      ...
+#      Discord:
+#        Ativar: true        # false = este torneio nao vai para o Discord
+#        Webhook: ''         # '' = usa o webhook daqui
+
+Ativar: false
+Webhook: ''
+
+# Nome e foto com que as mensagens aparecem no canal. Foto: link de uma
+# imagem (png/jpg). '' = o nome e a foto definidos no proprio webhook.
+Nome: 'Torneios'
+Avatar: ''
+
+# Cor da barra lateral das mensagens.
+Cor: '#f1c40f'
+
+# Quantos jogadores aparecem no placar (de 1 a 25).
+Top: 10
+
+Placar ao vivo:
+  Ativar: true
+  # De quanto em quanto tempo o placar vai para o canal: 10m, 30m, 1h, 6h, 1d...
+  A cada: '30m'
+  #  EDITAR: cada torneio tem UMA mensagem no canal, que vai sendo
+  #          atualizada no lugar -- o canal nao enche.
+  #  NOVA:   uma mensagem nova a cada envio.
+  Modo: EDITAR
+  # Nao manda o placar enquanto ninguem pontuou no ciclo.
+  Pular placar vazio: true
+
+Resultado:
+  # Quando um ciclo encerra, manda o resultado final numa mensagem nova.
+  Ativar: true
+  # Mencao junto do resultado: '@everyone', '@here', '<@&ID_DO_CARGO>' ou ''.
+  Mencionar: ''
+
+# Miniatura da cabeca do lider no canto da mensagem. {jogador} = nick,
+# {uuid} = UUID do jogador. '' para nao mostrar.
+Cabeca do lider: 'https://mc-heads.net/avatar/{jogador}/64'
+
+#  Textos das mensagens. O Discord aceita **negrito**, *italico* e emojis.
+#  Variaveis: {torneio} {ciclo} {participantes} {restante} {encerra}
+#  ({encerra} vira a contagem regressiva do proprio Discord: "em 3 dias").
+#  Na linha: {medalha} {posicao} {jogador} {pontos} {pontuacao} {tempo}.
+Textos:
+  Titulo do placar: '🏆 {torneio}'
+  Descricao do placar: 'Placar do ciclo **#{ciclo}** · encerra {encerra}'
+  Descricao sem fim: 'Placar do ciclo **#{ciclo}**'
+  Linha: '{medalha} **{jogador}** — {pontuacao} pontos'
+  Placar vazio: '*Ninguem pontuou ainda neste ciclo.*'
+  Rodape do placar: '{participantes} participante(s) · atualizado'
+
+  Titulo do resultado: '🏁 {torneio} — fim do ciclo #{ciclo}'
+  Descricao do resultado: 'Parabens aos vencedores! {participantes} participante(s) disputaram este ciclo.'
+  Resultado vazio: '*Ninguem pontuou neste ciclo.*'
+  Rodape do resultado: 'Um novo ciclo ja comecou'
+
+  Medalhas: [ '🥇', '🥈', '🥉' ]
+  # Da 4a posicao em diante.
+  Medalha padrao: '`#{posicao}`'
+
+# Respostas do comando /startorneios discord.
+Mensagens:
+  Enviado: '&aPlacar do torneio {torneio} &aenviado para o Discord.'
+  Enviando: '&7Mandando o placar de &f{quantidade} &7torneio(s) para o Discord...'
+  Desligado: '&cA integracao com o Discord esta desligada. Ligue em &fdiscord.yml &c(Ativar: true).'
+  Sem webhook: '&cNenhum webhook valido para o torneio {torneio}&c. Confira a URL no &fdiscord.yml&c.'
+  Falhou: '&cO Discord recusou o placar do torneio {torneio}&c: &f{erro}'
