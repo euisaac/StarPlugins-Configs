@@ -31,6 +31,7 @@ Ajuda:
   alertas: 'Alertas de suspeita (xray, dupe, comandos...)'
   painel: 'Link do painel no site'
   limpar: 'Roda a manutenção agora (apaga/compacta meses velhos)'
+  migrar: 'Traz os registros (.txt) de outro plugin de logs para cá'
   recarregar: 'Recarrega as configurações'
   ajuda: 'Mostra esta lista'
 
@@ -145,6 +146,42 @@ Painel:
   Erro: '&cSem contato com o site: &f{erro}'
   Conectado: '&aConectado ao site &7(última batida {quando}).'
   Conectando: '&7Conectando ao site...'
+
+# /registros migrar: copia os registros de outro plugin de logs (lidos direto dos
+# arquivos; o outro plugin não precisa estar instalado). A pasta original não é alterada.
+Migrar:
+  Procurando: '&7Procurando registros de outros plugins em &fplugins/&7...'
+  Analisando: '&7Olhando os arquivos de &f{pasta}&7...'
+  Nada: '&cNão achei registros de outro plugin em plugins/. &7Aponte a pasta: &f/{comando} migrar <pasta> &7(ex.: &fplugins/OutroPlugin/logs&7).'
+  Achou: '&6&l» &eRegistros encontrados:'
+  # {pasta} {arquivos} {jogadores} {mb} {periodo} {reconhecido} (% das linhas com o tipo reconhecido)
+  Origem: ' &f{pasta} &8- &7{arquivos} arquivo(s), {jogadores} jogador(es), {mb} MB{periodo}'
+  Periodo: ', de {de} a {ate}'
+  Botao: '&a&l[Migrar]'
+  Dica botao: '&7Copia os registros dessa pasta para o StarRegistros. A pasta original não é alterada.'
+  Confirmar: '&7Clique em &a[Migrar] &7ou use &f/{comando} migrar {pasta} confirmar&7.'
+  Pasta nao existe: '&cA pasta &f{pasta} &cnão existe. &7Use o caminho a partir da pasta do servidor (ex.: plugins/OutroPlugin/logs).'
+  Pasta propria: '&cEssa é a pasta do próprio StarRegistros.'
+  Sem arquivos: '&cNenhum arquivo de registro (.txt, .log, .zip ou .gz) em &f{pasta}&c.'
+  Comecou: '&aMigrando &f{pasta} &a({arquivos} arquivo(s))... &7O andamento chega por aqui. A pasta original não é alterada.'
+  Ja rodando: '&eJá tem uma migração rodando: &f{feitos}/{total} &earquivo(s) ({porcento}%), &f{linhas} &elinha(s). &7(/registros migrar cancelar para parar)'
+  Andamento: '&7Migrando... &f{feitos}/{total} &7arquivo(s) ({porcento}%), &f{linhas} &7linha(s).'
+  Nada para cancelar: '&7Nenhuma migração rodando.'
+  Feita: '&a&lMigração concluída! &f{linhas} &alinha(s) de &f{arquivos} &aarquivo(s), &f{jogadores} &ajogador(es), em {segundos}s.'
+  Nada novo: '&7Nada novo para migrar: os &f{pulados} &7arquivo(s) dessa pasta já tinham sido migrados &8(apague dados/migrados.txt para migrar de novo).'
+  Cancelada: '&cMigração cancelada. &7Ficou o que já tinha sido copiado: &f{linhas} &7linha(s) de &f{arquivos} &7arquivo(s).'
+  Erro: '&cErro na migração: &f{erro}'
+  Tipos: '&7Por tipo: &f{tipos}'
+  Separador: '&7, &f'
+  Pulados: '&7{pulados} arquivo(s) já migrado(s) antes foram pulados &8(apague dados/migrados.txt para migrar de novo).'
+  Repetidas: '&7{repetidas} linha(s) que já estavam aqui não foram repetidas.'
+  Ignoradas: '&7{ignoradas} linha(s) sem data reconhecível ficaram de fora.'
+  Velhas: '&e{velhas} linha(s) de meses mais velhos que {meses} mês(es) ficaram de fora &7(Guardar.Meses no config.yml: aumente e migre de novo para trazer).'
+  Erros: '&c{erros} arquivo(s) não puderam ser lidos &7(veja o console).'
+  # Nome das linhas que não são de nenhum tipo do StarRegistros.
+  Etiquetas:
+    LOJA: 'Loja'
+    OUTRO: 'Outros'
 
 Limpeza:
   Rodando: '&7Rodando a manutenção dos registros...'
