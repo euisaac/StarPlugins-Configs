@@ -21,12 +21,31 @@
 #  Fontes prontas dos StarPlugins (detectadas sozinho, so instalando o
 #  produto -- nada a configurar alem disto):
 #
-#    STARECONOMIA_<MOEDA>       uma por moeda que o StarEconomia tiver
-#                                (ex: STARECONOMIA_DINHEIRO, STARECONOMIA_GEMAS)
+#    STARECONOMIA_<MOEDA>       uma por moeda que o StarEconomia tiver, pelo id
+#                                dela em maiusculas (ex: STARECONOMIA_MONEY,
+#                                STARECONOMIA_GEMAS)
 #    STARBANCO_<MOEDA>          idem, se o servidor usar StarBanco no lugar
+#                                (ex: STARBANCO_MONEY)
 #    STARRANKMORTES_KILLS       kills do StarRankMortes
 #    STARRANKMORTES_KILLSTREAK  sequencia recorde de kills do StarRankMortes
 #    STARTEMPOJOGADO_TEMPOONLINE  tempo jogado total do StarTempoJogado
+#
+#  Minigames (uma fonte por estatistica; "/startops listar" mostra se estao
+#  disponiveis). Troque STARBEDWARS por STAREGGWARS para o mesmo catalogo la:
+#
+#    STARBEDWARS_VITORIAS / _ABATES / _ELIMINACOES / _CAMAS / _EQUIPES_ELIMINADAS
+#    STARBEDWARS_ASSISTENCIAS / _PARTIDAS / _MORTES / _WINSTREAK / _MAIOR_WINSTREAK
+#    STAREGGWARS_...  (igual ao BedWars, so _CAMAS vira _OVOS)
+#    STARSKYWARS_VITORIAS / _ABATES / _ELIMINACOES / _JOGOS / _MORTES / _WINSTREAK
+#    STARSKYWARS_MAIOR_WINSTREAK / _TEMPO_JOGADO / _PONTOS_RANQUEADO / _FIRST_BLOOD
+#    STARTHEBRIDGE_VITORIAS / _ABATES / _ELIMINACOES / _PONTOS / _PARTIDAS / _MORTES
+#    STARTHEBRIDGE_WINSTREAK / _MAIOR_WINSTREAK / _PONTOS_RANQUEADO / _BLOCOS_COLOCADOS
+#    STARMURDER_VITORIAS / _ABATES / _PARTIDAS / _MORTES / _PONTUACAO / _HEROIS
+#    STARMURDER_VITORIAS_ASSASSINO / _SOBREVIVENCIAS / _WINSTREAK / _MAIOR_WINSTREAK
+#    STARREVIVER_QUEDAS / _REANIMOU / _REANIMADO / _SANGROU / _LEVANTOU / _EXECUTADO
+#
+#  (O StarGuerra nao tem uma fonte pronta: as estatisticas dele so saem por
+#  consulta assincrona ao banco, sem leitura instantanea.)
 #
 #  O id ja diz de onde o valor vem -- "/startops listar" mostra, pra cada
 #  top, a fonte configurada e a fonte real por baixo dela. Pra nao precisar
@@ -82,4 +101,15 @@ Tops:
     Nome: '&bTempo jogado'
     Periodo: GERAL
     Formato: TEMPO
+    Posicoes premiadas: 0
+
+  # Exemplo de fonte de minigame (so aparece se o StarBedWars estiver
+  # instalado); "Visivel no menu: false" porque nem todo servidor tem esse
+  # minigame -- ligue manualmente se for o seu caso.
+  bedwars_vitorias:
+    Fonte: STARBEDWARS_VITORIAS
+    Nome: '&6Vitorias no BedWars'
+    Periodo: GERAL
+    Formato: NUMERO
+    Visivel no menu: false
     Posicoes premiadas: 0
