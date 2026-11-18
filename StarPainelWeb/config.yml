@@ -1,0 +1,97 @@
+# =======================================================================
+# StarPainelWeb — Configuration
+# =======================================================================
+
+web:
+  # Host address to bind the web server to.
+  # Use "0.0.0.0" to listen on all network interfaces (default).
+  # Use "127.0.0.1" or "localhost" to accept local connections only.
+  host: "0.0.0.0"
+
+  # TCP port for the web server.
+  # Default: 30036.
+  port: 30036
+
+  # Session timeout in minutes. After this period of inactivity,
+  # the session expires and the user must login again.
+  # Minimum: 1 minute. Default: 5 minutes.
+  session-timeout: 5
+
+  # Controls external (public) network access.
+  # When true (default): binds to the host address configured above.
+  # When false: forces binding to 127.0.0.1 only.
+  allow-external: true
+
+# =======================================================================
+# Alert messages shown to players when they are kicked or banned.
+# =======================================================================
+alerts:
+  # Message displayed when a player is kicked via the web admin panel.
+  kick: "Você foi kickado pelo Painel Web."
+
+  # Ban reason logged in the server ban list.
+  ban_reason: "Banido pelo Painel Web"
+
+  # Kick message shown to the player when they are banned.
+  ban_kick: "Você foi banido pelo Painel Web."
+
+# =======================================================================
+# StarPainel (painel.redestars.com) — painel central da RedeStars.
+# Conecta este plugin ao painel central.
+# O link do servidor fica em: https://painel.redestars.com/starpainelweb/<server-id>
+# Use /spweb acessar no jogo para receber o link.
+#
+# Só liga/desliga a integração — o resto (endereço do túnel, chave de
+# registro, token e identificador deste servidor) mora em
+# plugins/StarPainel/servidor.yml, COMPARTILHADO entre todos os plugins
+# StarPainel deste servidor (StarValores, StarPainelWeb, StarVoice etc.).
+# Esse arquivo é criado sozinho com os valores padrão na primeira vez que
+# qualquer um desses plugins liga, se ainda não existir — edite ele, não este
+# aqui. Preencha "chave-registro" nele só se quiser escolher o nome do
+# servidor (server-id) e protegê-lo contra colisão, ou recuperar um token
+# perdido.
+# =======================================================================
+painel:
+  # Ativa a conexão com o painel central
+  enabled: true
+
+# =======================================================================
+# Staff do painel — quem pode cadastrar gente nele pelo jogo.
+# =======================================================================
+staff:
+  # Nicks (do jogo) autorizados a usar /spweb addstaff, editstaff,
+  # removestaff e staff. O console do servidor SEMPRE pode, mesmo sem nick
+  # aqui. Dá pra mexer nessa lista sem editar o arquivo: no console,
+  # /spweb dono add <nick>.
+  # ATENÇÃO: é por nick — em servidor "offline-mode" (pirata) sem plugin de
+  # login, qualquer um pode entrar com o nick de outra pessoa. Nesse caso
+  # deixe a lista vazia e use só o console.
+  donos: []
+
+# =======================================================================
+# Backups automáticos de arquivos — criados sozinhos toda vez que um arquivo
+# é editado (guarda a versão anterior) ou excluído/uma pasta é excluída
+# (via solicitação aprovada) pelo painel. Ficam em
+# plugins/StarPainelWeb/backups/.
+# =======================================================================
+backups:
+  # Depois de quantos dias um backup é apagado automaticamente (a limpeza
+  # roda sozinha, cerca de uma vez por hora).
+  # Use 0 (ou um número negativo) para NUNCA apagar backups automaticamente.
+  # Default: 30.
+  retention-days: 30
+
+# =======================================================================
+# Painel no site da StarPlugins (starplugins.com.br/paineis/painelweb) —
+# as mesmas funções deste painel web, com os convidados e as permissões
+# configurados no site. O servidor é reconhecido pelo IP:porta da licença,
+# sem senha, e só ENVIA dados (não precisa abrir porta). Tudo o que alguém
+# faz pelo site entra nas atividades como "<nome> (site)".
+# =======================================================================
+site:
+  ativado: true
+  url: 'https://starplugins.com.br'
+  # Deixa o site ver o console e mandar comandos.
+  permitir-console: true
+  # Deixa o site mexer em arquivos, backups e solicitações.
+  permitir-arquivos: true
