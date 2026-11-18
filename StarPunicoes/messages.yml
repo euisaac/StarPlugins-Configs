@@ -19,9 +19,9 @@ geral:
   ajuda-linha: "&7Use &e/starpunicoes reload &7para recarregar as configuracoes."
 
 punicoes:
-  uso-banir: "&cUso correto: &e/banir <jogador> <tempo|perm> [motivo]"
+  uso-banir: "&cUso correto: &e/banir <jogador> [tempo|perm] [motivo] &7(sem tempo = permanente)"
   uso-desbanir: "&cUso correto: &e/desbanir <jogador>"
-  uso-mutar: "&cUso correto: &e/mutar <jogador> <tempo|perm> [motivo]"
+  uso-mutar: "&cUso correto: &e/mutar <jogador> [tempo|perm] [motivo] &7(sem tempo = permanente)"
   uso-desmutar: "&cUso correto: &e/desmutar <jogador>"
   uso-kick: "&cUso correto: &e/kick <jogador> [motivo]"
   uso-avisar: "&cUso correto: &e/avisar <jogador> [motivo]"
@@ -33,6 +33,7 @@ punicoes:
     &7Motivo: &f{motivo}
     &7Punido por: &f{autor}
     &7Duracao: &f{duracao}
+    &7Punicao e provas: &f{link}
   ban-ip-tela: |-
     &4&lSeu IP foi banido!
     &7Motivo: &f{motivo}
@@ -56,6 +57,7 @@ punicoes:
     &4&lVoce foi expulso do servidor!
     &7Motivo: &f{motivo}
     &7Expulso por: &f{autor}
+    &7Punicao e provas: &f{link}
   kick-executor: "&aVoce expulsou &e{jogador}&a."
 
   avisado-aviso: "&eVoce recebeu um aviso! &7Motivo: &f{motivo} &7- Por: &f{autor}"
@@ -178,3 +180,61 @@ prisao:
   maistempo-espera: "&cAguarde um pouco antes de aumentar a pena deste preso de novo."
   maistempo-sem-saldo: "&cNao foi possivel aumentar a pena: &e{detalhe}"
   tempo-ajustado: "&aPena de &e{jogador} &aajustada. Tempo restante: &e{restante}"
+
+# =========================================================
+#  Provas e link publico das punicoes
+#  {link} = {painel.site}/punicao/<codigo>: o jogador punido abre no navegador e ve a
+#  punicao e as provas (so com painel.ativado e link-publico.ativado no config.yml).
+#  {link} funciona em punicoes.ban-tela, kick-tela, mutado-aviso, avisado-aviso,
+#  checkban-resultado e checkmute-resultado. Texto sem {link} ganha a linha link-tela
+#  (telas de ban/kick) ou link-chat (chat) logo depois. Linha com {link} some quando
+#  a punicao nao tem link. Mensagem vazia ("") nao e enviada.
+# =========================================================
+provas:
+  link-tela: "&7Punicao e provas: &f{link}"
+  link-chat: "&7Veja a punicao e as provas: &f{link}"
+  executor: "&7Punicao &f#{id}&7 - provas: &f{quantidade}&7 - link: &f{link}"
+  executor-sem-link: "&7Punicao &f#{id}&7 - provas: &f{quantidade}&7. Anexe com &e/prova {id} <link ou texto>"
+  uso-provas: "&cUso correto: &e/provas <id da punicao|jogador>"
+  uso-prova: "&cUso correto: &e/prova <id> <link ou texto>&c, &e/prova <id> remover <pv>&c ou &e/prova <id> replay"
+  punicao-nao-existe: "&cNao achei a punicao &e{id}&c (use o numero do /historico ou o nick)."
+  cabecalho: "&7Provas da punicao &f#{id} &7({tipo} de &e{jogador}&7): &f{quantidade}"
+  nenhuma: "&8 - &7Nenhuma prova. Anexe com &e/prova {id} <link ou texto>&7."
+  linha: "&8 - &f{pv} &7[&f{tipo}&7] &f{resumo} &8({autor}, {data})"
+  link: "&7Link publico: &f{link}"
+  adicionada: "&aProva &f{pv} &a({tipo}) anexada a punicao &f#{id}&a."
+  removida: "&aProva &f{pv} &aremovida da punicao &f#{id}&a."
+  prova-nao-existe: "&cA punicao &f#{id} &cnao tem a prova &e{pv}&c."
+  limite: "&cA punicao &f#{id} &cja tem o maximo de &e{max} &cprovas."
+  conteudo-invalido: "&cProva invalida: mande um link http/https (sem espacos, ate 400 letras) ou um texto."
+  replay-sem-starreplay: "&cPara gravar o replay como prova o StarReplay precisa estar ligado."
+  replay-offline: "&e{jogador} &cprecisa estar online para gravar o recorte."
+  replay-falhou: "&cO StarReplay nao conseguiu gravar o recorte agora."
+  replay-gravando: "&aRecorte &f{replay} &aanexado como &f{pv}&a na punicao &f#{id}&a. Ele sobe para o site em ~{segundos}s, quando a gravacao terminar."
+  historico: "&8   &7Provas: &f{quantidade} &8(/provas {id})"
+  ajuda-provas: "&e/provas <id|jogador> &7- Lista as provas e o link publico da punicao."
+  ajuda-prova: "&e/prova <id> <link ou texto> &7- Anexa uma prova (imagem/video pelo link)."
+  ajuda-remover: "&e/prova <id> remover <pv> &7- Remove uma prova."
+  ajuda-replay: "&e/prova <id> replay &7- Recorte do StarReplay agora em volta do punido."
+  ajuda-motivo: "&7Link no fim do motivo vira prova: &e/ban Steve 7d hack https://i.imgur.com/x.png"
+
+# =========================================================
+#  Webhooks do Discord (webhooks.yml) - /starpunicoes webhook
+# =========================================================
+webhooks:
+  ajuda-lista: "&e/starpunicoes webhook lista &7- Mostra os webhooks do Discord e os eventos de cada um."
+  ajuda-testar: "&e/starpunicoes webhook testar <nome> [evento] &7- Manda uma mensagem de teste para o webhook."
+  uso: "&cUso correto: &e/starpunicoes webhook <lista|testar <nome> [evento]>"
+  desligado: "&cOs webhooks estao desligados em &fwebhooks.yml &c(Ativar: false)."
+  nenhum: "&7Nenhum webhook em &fwebhooks.yml&7."
+  cabecalho: "&7Webhooks do Discord (&fwebhooks.yml&7):"
+  linha: "&8 - &f{nome} &7[{estado}&7] eventos: &f{eventos}"
+  estado-ligado: "&aligado"
+  estado-sem-url: "&esem URL"
+  estado-desligado: "&cdesligado"
+  nao-existe: "&cNao existe o webhook &e{nome}&c. Veja os nomes com &e/starpunicoes webhook lista&c."
+  sem-url: "&cO webhook &e{nome} &cnao tem URL (Webhook: '') ou ela nao comeca com https://."
+  evento-nao-existe: "&cEvento desconhecido: &e{evento}&c. Eventos: &f{eventos}"
+  enviando: "&7Mandando o evento &f{evento} &7de teste para o webhook &f{nome}&7..."
+  enviado: "&aO Discord recebeu o teste do webhook &f{nome}&a."
+  falhou: "&cO Discord recusou o teste do webhook &f{nome}&c: &f{erro}"

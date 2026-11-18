@@ -27,6 +27,9 @@ database:
 # servidor do Discord e volta continua mutado: o cargo e recolocado na entrada.
 # Como o Discord silencia (qual cargo, avisos por DM) se configura la, em
 # plugins/StarDiscord/config.yml, na secao Mute.
+#
+# Webhooks do Discord (cada punicao, prisao, ban de IP... num canal, com as provas e o
+# link publico): ficam no arquivo webhooks.yml, com quantos canais quiser.
 discord:
   espelhar-mute: true
 
@@ -75,3 +78,27 @@ painel:
   alerta-em-massa:
     punicoes: 10
     minutos: 10
+
+# Link publico da punicao: cada ban/mute/kick/warn novo ganha um codigo e o jogador punido abre
+# {painel.site}/punicao/<codigo> no navegador para ver a punicao e as provas ({link} nas
+# mensagens, ver messages.yml). E o painel que leva a punicao para o site: sem painel.ativado
+# nao ha link.
+link-publico:
+  ativado: true
+  # Mostrar o nome da staff (quem puniu/revogou) na pagina publica.
+  mostrar-staff: true
+  # Tipos que ganham link.
+  tipos: [ban, mute, kick, warn]
+
+# Provas anexadas as punicoes: /provas <id>, /prova <id> <link ou texto>, /prova <id> remover <pv>,
+# /prova <id> replay. StarAntiCheat e StarReportar anexam as deles sozinhos (deteccoes, reporte e o
+# replay do momento da infracao).
+provas:
+  # Link (http/https) no FIM do motivo vira prova: /ban Steve 7d hack https://i.imgur.com/x.png
+  link-no-motivo: true
+  # Maximo de provas por punicao.
+  maximo: 20
+  # Trecho do replay (StarReplay) que sobe para o site, em segundos antes/depois do momento marcado.
+  replay:
+    antes: 20
+    depois: 10

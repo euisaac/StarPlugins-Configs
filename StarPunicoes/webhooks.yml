@@ -1,0 +1,533 @@
+#  ╔══════════════════════════════════════════════════════════════════════╗
+#  ║                    StarPunicoes -- Webhooks do Discord               ║
+#  ║   Cada punicao (e cada prisao, ban de IP, infracao...) vira uma      ║
+#  ║   mensagem num canal do Discord, por webhook. Nao precisa de bot.    ║
+#  ╚══════════════════════════════════════════════════════════════════════╝
+#
+#  Como criar o webhook: no Discord, Editar canal -> Integracoes -> Webhooks
+#  -> Novo webhook -> Copiar URL do webhook. Cole a URL em um dos webhooks
+#  abaixo e use /starpunicoes reload. Para conferir: /starpunicoes webhook testar <nome>
+#
+#  Pode ter quantos webhooks quiser (um canal para a staff com tudo, outro
+#  publico so com os bans, outro so para a prisao...). Cada um escolhe os
+#  eventos que recebe e pode mudar o visual de qualquer evento so para ele.
+#
+#  A mensagem de uma punicao e EDITADA no canal quando o replay sobe para o
+#  site, quando entra ou sai prova (/prova) e quando ela e revogada.
+
+# false = nenhum webhook manda nada.
+Ativar: true
+
+# Nome e foto com que as mensagens aparecem no canal. Foto: link de uma
+# imagem (png/jpg). '' = o nome e a foto definidos no proprio webhook.
+Nome: 'StarPunicoes'
+Avatar: ''
+
+# Nome deste servidor (a variavel {este_servidor}). Util numa rede com
+# varios servidores mandando para o mesmo canal.
+Nome do servidor: ''
+
+# A imagem de {cabeca_jogador} e {cabeca_staff}. {nick} = o nick, {uuid} = o UUID,
+# {site} = o site do painel (config.yml, painel.site).
+Cabeca: '{site}/cabeca/avatar/{nick}/64'
+
+# ======================================================================
+#  OS WEBHOOKS
+# ======================================================================
+#
+#  Cada webhook tem:
+#    Ativar             true/false
+#    Webhook            a URL do webhook ('' = desligado)
+#    Eventos            os eventos que vao para este canal; '*' = todos.
+#                       Os nomes estao em Mensagens, mais abaixo.
+#    Nome, Avatar       '' = os de cima
+#    Mostrar staff      false = esconde quem puniu (campo some, {staff}
+#                       vira o texto "Staff oculta" de Textos)
+#    Mostrar provas     false = sem a lista de provas e sem a imagem
+#    Editar ao revogar  true  = a mensagem da punicao e editada ("Revogada por X")
+#                       false = sai uma mensagem nova (eventos desban,
+#                       desmute, aviso-removido, se estiverem na lista)
+#    Mensagens          muda o visual de um evento SO neste webhook: copie o
+#                       bloco do evento de Mensagens (mais abaixo) e troque o
+#                       que quiser. O que nao estiver aqui vem de la.
+Webhooks:
+
+  # Canal da staff: tudo, com quem puniu e as provas.
+  punicoes:
+    Ativar: true
+    Webhook: ''
+    Eventos: ['*']
+    Nome: ''
+    Avatar: ''
+    Mostrar staff: true
+    Mostrar provas: true
+    Editar ao revogar: true
+
+  # Canal publico (ex.: #banidos): so bans e mutes, sem a staff e sem as provas.
+  publico:
+    Ativar: false
+    Webhook: ''
+    Eventos: [ban, ban-temporario, mute, mute-temporario]
+    Nome: ''
+    Avatar: ''
+    Mostrar staff: false
+    Mostrar provas: false
+    Editar ao revogar: true
+    Mensagens:
+      ban:
+        Titulo: '⛔ {jogador} foi banido do servidor'
+        Descricao: '**Motivo:** {motivo}'
+        Campos: []
+      ban-temporario:
+        Titulo: '⏳ {jogador} foi banido por {duracao}'
+        Descricao: |-
+          **Motivo:** {motivo}
+          Volta {expira}.
+        Campos: []
+
+# ======================================================================
+#  AVISO DE EXPIRACAO
+# ======================================================================
+#
+#  Manda os eventos ban-expirou, mute-expirou e ban-ip-expirou quando um ban
+#  ou mute temporario acaba sozinho. Desligado de fabrica.
+#  ATENCAO: numa rede com varios servidores no mesmo MySQL, ligue em UM
+#  servidor so -- cada servidor ligado manda o seu aviso. Punicao que venceu
+#  com o servidor desligado nao gera aviso.
+Expiracao:
+  Ativar: false
+
+# ======================================================================
+#  TEXTOS
+# ======================================================================
+Textos:
+  # O {tipo} de cada punicao.
+  Ban: 'Banimento'
+  Mute: 'Mute'
+  Kick: 'Expulsao'
+  Aviso: 'Aviso'
+  Ban de IP: 'Ban de IP'
+  Prisao: 'Prisao'
+  Infracao: 'Infracao'
+  Permanente: 'Permanente'
+  Nunca: 'Nunca'
+  Sem motivo: 'Nao especificado'
+  Staff oculta: 'Staff'
+  # {servidor} quando a punicao vale na rede inteira.
+  Todos os servidores: 'todos'
+  # {jogador} do ban de IP quando nenhuma conta conhecida usou o IP.
+  IP sem conta: 'um IP'
+  # No fim da linha de uma prova com replay.
+  Replay processando: 'Replay sendo processado...'
+  Replay disponivel: 'Replay disponivel'
+  Replay disponivel sem link: 'Replay disponivel no site'
+  # Quando a lista de provas nao cabe.
+  Mais provas: '... e mais {quantidade}'
+
+# Como a mensagem de uma punicao fica quando ela e revogada (Editar ao revogar).
+# O Texto entra no comeco da descricao. {revogou} = quem revogou.
+Revogada:
+  Cor: '#95A5A6'
+  Texto: '~~{tipo}~~ **Revogada por {revogou}**'
+
+# ======================================================================
+#  MENSAGENS (o visual de cada evento)
+# ======================================================================
+#
+#  Cada evento tem:
+#    Cor             cor da barra lateral ('#E74C3C')
+#    Mencionar       '@everyone', '@here', '<@&ID_DO_CARGO>', '<@ID>' ou ''
+#    Autor           texto pequeno no topo; Icone do autor = imagem dele
+#    Titulo          o titulo; Link do titulo = para onde ele leva
+#    Descricao       o texto (aceita **negrito**, *italico*, emojis e varias linhas)
+#    Campos          os quadros: {Nome: 'x', Valor: 'y', Em linha: true}.
+#                    Campo com o valor vazio nao aparece. [] = nenhum.
+#    Miniatura       a imagem do canto: '{cabeca_jogador}', '{cabeca_staff}',
+#                    o link de uma imagem ou ''
+#    Imagem          a imagem grande: '{imagem_prova}' (1a imagem das provas),
+#                    um link ou ''
+#    Rodape          texto do rodape (a data e hora saem sozinhas)
+#    Botao           texto do botao que abre o link publico da punicao ('' = sem)
+#
+#  Variaveis em todos:
+#    {jogador} {uuid} {staff} {motivo} {tipo} {data} (data e hora no fuso de
+#    cada um) {este_servidor} {cabeca_jogador} {cabeca_staff} {site}
+#  Punicoes (ban, mute, kick, aviso, revogacoes e expiracoes):
+#    {id} {servidor} (onde vale: "todos" ou o servidor da rede) {duracao}
+#    {expira} (contagem do Discord: "em 3 dias") {expira_data} {link} (link
+#    publico, com as provas e o replay) {codigo} {provas} (quantas)
+#    {lista_provas} {imagem_prova} {revogou}
+#  Ban de IP: {jogador} (a conta mais recente do IP) {contas} (quantas contas
+#    usaram o IP) {duracao} {expira} {expira_data} {revogou}. O IP nunca vai.
+#  Prisao: {cadeia} {duracao} {expira} {expira_data}
+#  Infracao: {infracao} (o tipo, de infracoes.yml) {mensagem} {canal}
+#    {votos_punir} {votos_perdoar}
+Mensagens:
+
+  # ---------------------------------------------------------------- punicoes
+  ban:
+    Cor: '#E74C3C'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**Motivo:** {motivo}'
+    Campos:
+      - {Nome: 'Jogador', Valor: '{jogador}', Em linha: true}
+      - {Nome: 'Tipo', Valor: '{tipo}', Em linha: true}
+      - {Nome: 'Duracao', Valor: '{duracao}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+      - {Nome: 'Servidor', Valor: '{servidor}', Em linha: true}
+      - {Nome: 'Provas ({provas})', Valor: '{lista_provas}', Em linha: false}
+      - {Nome: 'Punicao, provas e replay', Valor: '{link}', Em linha: false}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: '{imagem_prova}'
+    Rodape: 'Punicao #{id}'
+    Botao: 'Ver punicao e replay'
+
+  ban-temporario:
+    Cor: '#E67E22'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**Motivo:** {motivo}'
+    Campos:
+      - {Nome: 'Jogador', Valor: '{jogador}', Em linha: true}
+      - {Nome: 'Tipo', Valor: '{tipo}', Em linha: true}
+      - {Nome: 'Duracao', Valor: '{duracao}', Em linha: true}
+      - {Nome: 'Expira', Valor: '{expira}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+      - {Nome: 'Servidor', Valor: '{servidor}', Em linha: true}
+      - {Nome: 'Provas ({provas})', Valor: '{lista_provas}', Em linha: false}
+      - {Nome: 'Punicao, provas e replay', Valor: '{link}', Em linha: false}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: '{imagem_prova}'
+    Rodape: 'Punicao #{id}'
+    Botao: 'Ver punicao e replay'
+
+  mute:
+    Cor: '#F39C12'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**Motivo:** {motivo}'
+    Campos:
+      - {Nome: 'Jogador', Valor: '{jogador}', Em linha: true}
+      - {Nome: 'Tipo', Valor: '{tipo}', Em linha: true}
+      - {Nome: 'Duracao', Valor: '{duracao}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+      - {Nome: 'Servidor', Valor: '{servidor}', Em linha: true}
+      - {Nome: 'Provas ({provas})', Valor: '{lista_provas}', Em linha: false}
+      - {Nome: 'Punicao, provas e replay', Valor: '{link}', Em linha: false}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: '{imagem_prova}'
+    Rodape: 'Punicao #{id}'
+    Botao: 'Ver punicao e replay'
+
+  mute-temporario:
+    Cor: '#F1A90F'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**Motivo:** {motivo}'
+    Campos:
+      - {Nome: 'Jogador', Valor: '{jogador}', Em linha: true}
+      - {Nome: 'Tipo', Valor: '{tipo}', Em linha: true}
+      - {Nome: 'Duracao', Valor: '{duracao}', Em linha: true}
+      - {Nome: 'Expira', Valor: '{expira}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+      - {Nome: 'Servidor', Valor: '{servidor}', Em linha: true}
+      - {Nome: 'Provas ({provas})', Valor: '{lista_provas}', Em linha: false}
+      - {Nome: 'Punicao, provas e replay', Valor: '{link}', Em linha: false}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: '{imagem_prova}'
+    Rodape: 'Punicao #{id}'
+    Botao: 'Ver punicao e replay'
+
+  kick:
+    Cor: '#3498DB'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**Motivo:** {motivo}'
+    Campos:
+      - {Nome: 'Jogador', Valor: '{jogador}', Em linha: true}
+      - {Nome: 'Tipo', Valor: '{tipo}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+      - {Nome: 'Provas ({provas})', Valor: '{lista_provas}', Em linha: false}
+      - {Nome: 'Punicao, provas e replay', Valor: '{link}', Em linha: false}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: '{imagem_prova}'
+    Rodape: 'Punicao #{id}'
+    Botao: 'Ver punicao e replay'
+
+  aviso:
+    Cor: '#F1C40F'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**Motivo:** {motivo}'
+    Campos:
+      - {Nome: 'Jogador', Valor: '{jogador}', Em linha: true}
+      - {Nome: 'Tipo', Valor: '{tipo}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+      - {Nome: 'Provas ({provas})', Valor: '{lista_provas}', Em linha: false}
+      - {Nome: 'Punicao, provas e replay', Valor: '{link}', Em linha: false}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: '{imagem_prova}'
+    Rodape: 'Punicao #{id}'
+    Botao: 'Ver punicao e replay'
+
+  # ------------------------------------------------------------- revogacoes
+  # So saem como mensagem NOVA: quando o webhook tem "Editar ao revogar: false"
+  # ou quando a punicao nao tinha mensagem nele (ex.: aplicada antes do webhook).
+  desban:
+    Cor: '#2ECC71'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} revogado - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**{revogou}** revogou o banimento de **{jogador}**.'
+    Campos:
+      - {Nome: 'Motivo do ban', Valor: '{motivo}', Em linha: false}
+      - {Nome: 'Aplicado por', Valor: '{staff}', Em linha: true}
+      - {Nome: 'Punicao', Valor: '#{id}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: 'Punicao #{id}'
+    Botao: ''
+
+  desmute:
+    Cor: '#2ECC71'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} revogado - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**{revogou}** devolveu a voz de **{jogador}**.'
+    Campos:
+      - {Nome: 'Motivo do mute', Valor: '{motivo}', Em linha: false}
+      - {Nome: 'Aplicado por', Valor: '{staff}', Em linha: true}
+      - {Nome: 'Punicao', Valor: '#{id}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: 'Punicao #{id}'
+    Botao: ''
+
+  aviso-removido:
+    Cor: '#2ECC71'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} removido - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: '**{revogou}** removeu um aviso de **{jogador}**.'
+    Campos:
+      - {Nome: 'Motivo do aviso', Valor: '{motivo}', Em linha: false}
+      - {Nome: 'Aplicado por', Valor: '{staff}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: 'Punicao #{id}'
+    Botao: ''
+
+  # ------------------------------------------------------------- ban de IP
+  ban-ip:
+    Cor: '#992D22'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: ''
+    Descricao: '**Motivo:** {motivo}'
+    Campos:
+      - {Nome: 'Conta', Valor: '{jogador}', Em linha: true}
+      - {Nome: 'Contas no IP', Valor: '{contas}', Em linha: true}
+      - {Nome: 'Duracao', Valor: '{duracao}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
+
+  ban-ip-temporario:
+    Cor: '#C0392B'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: ''
+    Descricao: '**Motivo:** {motivo}'
+    Campos:
+      - {Nome: 'Conta', Valor: '{jogador}', Em linha: true}
+      - {Nome: 'Contas no IP', Valor: '{contas}', Em linha: true}
+      - {Nome: 'Duracao', Valor: '{duracao}', Em linha: true}
+      - {Nome: 'Expira', Valor: '{expira}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
+
+  desban-ip:
+    Cor: '#2ECC71'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} revogado - {jogador}'
+    Link do titulo: ''
+    Descricao: '**{revogou}** revogou o ban de IP de **{jogador}**.'
+    Campos:
+      - {Nome: 'Motivo do ban', Valor: '{motivo}', Em linha: false}
+      - {Nome: 'Aplicado por', Valor: '{staff}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
+
+  # ------------------------------------------------------------- expiracao
+  # So com Expiracao.Ativar: true (veja acima).
+  ban-expirou:
+    Cor: '#95A5A6'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} terminou - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: 'O banimento de **{jogador}** ({duracao}) acabou.'
+    Campos:
+      - {Nome: 'Motivo', Valor: '{motivo}', Em linha: false}
+      - {Nome: 'Aplicado por', Valor: '{staff}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: 'Punicao #{id}'
+    Botao: ''
+
+  mute-expirou:
+    Cor: '#95A5A6'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} terminou - {jogador}'
+    Link do titulo: '{link}'
+    Descricao: 'O mute de **{jogador}** ({duracao}) acabou.'
+    Campos:
+      - {Nome: 'Motivo', Valor: '{motivo}', Em linha: false}
+      - {Nome: 'Aplicado por', Valor: '{staff}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: 'Punicao #{id}'
+    Botao: ''
+
+  ban-ip-expirou:
+    Cor: '#95A5A6'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} terminou - {jogador}'
+    Link do titulo: ''
+    Descricao: 'O ban de IP de **{jogador}** ({duracao}) acabou.'
+    Campos:
+      - {Nome: 'Motivo', Valor: '{motivo}', Em linha: false}
+      - {Nome: 'Aplicado por', Valor: '{staff}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
+
+  # ------------------------------------------------------------- prisao
+  prisao:
+    Cor: '#7F8C8D'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: '{tipo} - {jogador}'
+    Link do titulo: ''
+    Descricao: '**{jogador}** foi preso na cadeia **{cadeia}**.'
+    Campos:
+      - {Nome: 'Motivo', Valor: '{motivo}', Em linha: false}
+      - {Nome: 'Tempo', Valor: '{duracao}', Em linha: true}
+      - {Nome: 'Sai', Valor: '{expira}', Em linha: true}
+      - {Nome: 'Staff', Valor: '{staff}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
+
+  soltura:
+    Cor: '#2ECC71'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: 'Solto - {jogador}'
+    Link do titulo: ''
+    Descricao: '**{staff}** soltou **{jogador}** da cadeia **{cadeia}**.'
+    Campos:
+      - {Nome: 'Motivo da prisao', Valor: '{motivo}', Em linha: false}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
+
+  # Saiu sozinho: o tempo acabou (ou a pena foi reduzida a zero).
+  pena-cumprida:
+    Cor: '#95A5A6'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: 'Pena cumprida - {jogador}'
+    Link do titulo: ''
+    Descricao: '**{jogador}** cumpriu a pena e saiu da cadeia **{cadeia}**.'
+    Campos:
+      - {Nome: 'Motivo da prisao', Valor: '{motivo}', Em linha: false}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
+
+  # ------------------------------------------------------------- infracoes de chat
+  # Votacao de infracao (infracoes.yml) encerrada.
+  infracao-punida:
+    Cor: '#E74C3C'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: 'Infracao punida - {jogador}'
+    Link do titulo: ''
+    Descricao: 'A votacao decidiu punir **{jogador}** ({infracao}).'
+    Campos:
+      - {Nome: 'Mensagem', Valor: '{mensagem}', Em linha: false}
+      - {Nome: 'Punir', Valor: '{votos_punir}', Em linha: true}
+      - {Nome: 'Perdoar', Valor: '{votos_perdoar}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
+
+  infracao-relevada:
+    Cor: '#95A5A6'
+    Mencionar: ''
+    Autor: ''
+    Icone do autor: ''
+    Titulo: 'Infracao relevada - {jogador}'
+    Link do titulo: ''
+    Descricao: 'A votacao decidiu perdoar **{jogador}** ({infracao}).'
+    Campos:
+      - {Nome: 'Mensagem', Valor: '{mensagem}', Em linha: false}
+      - {Nome: 'Punir', Valor: '{votos_punir}', Em linha: true}
+      - {Nome: 'Perdoar', Valor: '{votos_perdoar}', Em linha: true}
+    Miniatura: '{cabeca_jogador}'
+    Imagem: ''
+    Rodape: ''
+    Botao: ''
