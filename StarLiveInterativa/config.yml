@@ -79,18 +79,26 @@ padrao-do-streamer:
   # Compartilhar é de graça e dá para repetir sem parar: a mesma pessoa só
   # dispara a ação uma vez a cada X segundos (0 = sem limite). Seguir conta
   # uma vez só por pessoa (contra seguir e deixar de seguir em sequência).
+  # gatilhos: quais o antispam segura (COMPARTILHAR, CURTIDAS, SEGUIR, INSCREVER, PRESENTE);
+  # compartilhar-segundos vale para todos os marcados.
   antispam:
     ligado: true
     compartilhar-segundos: 120
     seguir-uma-vez: true
+    gatilhos: [COMPARTILHAR]
+  # Combo de presentes (rosa x10): AO_VIVO = cada rosa já faz nascer;
+  # NO_FIM = tudo de uma vez quando o combo acaba.
+  combo: AO_VIVO
   # GATILHOS: PRESENTE (precisa do nome do presente), SEGUIR, COMPARTILHAR,
   #           CURTIDAS (precisa de "cada": a cada quantas curtidas), INSCREVER e
   #           VALOR (precisa de "minimo": presente que vale tantas moedas ou mais;
   #           com várias faixas, só a de maior mínimo que o presente alcança acontece).
-  # ACOES:    MOB (alvo = mob), TNT, ITEM (alvo = material), RAIO,
+  # ACOES:    MOB (alvo = mob), ESPECIAL (alvo = id do especiais.yml), TNT, ITEM (alvo = material), RAIO,
   #           EFEITO (alvo = efeito, ex.: speed), FOGOS, CURAR, COMANDO (alvo = comando).
   # quantidade: quantos por presente. multiplicar: combo x5 = 5 vezes a quantidade.
   # armadura (só MOB): NENHUMA, COURO, FERRO, OURO, DIAMANTE, NETHERITA.
+  # so-capacete: true = só o capacete daquele material (zumbi não queima de dia).
+  # para: STREAMER (padrão), PERTO (quem está a 30 blocos) ou TODOS (todo o servidor).
   interacoes:
     - gatilho: SEGUIR
       acao: MOB
@@ -156,6 +164,33 @@ padrao-do-streamer:
     - gatilho: CURTIDAS
       cada: 1000
       acao: TNT
+      quantidade: 1
+    # Presentes caros (qualquer um, pelo valor em moedas) chamam os mobs especiais.
+    # Com várias faixas, só a maior que o presente alcança acontece.
+    - gatilho: VALOR
+      minimo: 300
+      acao: ESPECIAL
+      alvo: aranha-rainha
+      quantidade: 1
+    - gatilho: VALOR
+      minimo: 1000
+      acao: ESPECIAL
+      alvo: rei-zumbi
+      quantidade: 1
+    - gatilho: VALOR
+      minimo: 5000
+      acao: ESPECIAL
+      alvo: cavaleiro-wither
+      quantidade: 1
+    - gatilho: VALOR
+      minimo: 10000
+      acao: ESPECIAL
+      alvo: golem-colossal
+      quantidade: 1
+    - gatilho: VALOR
+      minimo: 20000
+      acao: ESPECIAL
+      alvo: senhor-do-fogo
       quantidade: 1
 
 # Nome em português dos presentes (o TikTok manda em inglês).

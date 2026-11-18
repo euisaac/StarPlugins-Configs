@@ -1,0 +1,165 @@
+# ============================================================
+#  StarLiveInterativa - mobs especiais
+#
+#  A ação "Mob especial" (ESPECIAL) faz nascer um destes, pelo id
+#  (o nome antes dos dois pontos). Por padrão os presentes caros
+#  (gatilho "Presente de valor" no config.yml) chamam os especiais.
+#
+#  Campos:
+#    nome           nome em cima do mob (cores com & e &#rrggbb)
+#    mob            tipo do mob (ZOMBIE, SPIDER, WITHER_SKELETON...)
+#    vida           vida máxima (corações x2)
+#    tamanho        1.0 = normal (precisa da 1.20.5+ para mudar)
+#    velocidade     1.0 = normal
+#    dano           dano do golpe (vazio = o do mob)
+#    armadura       NENHUMA, COURO, FERRO, OURO, DIAMANTE, NETHERITA
+#    so-capacete    true = só o capacete (não queima de dia)
+#    brilho         contorno brilhante
+#    cor-da-barra   PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+#    lacaio         mob que ele chama (Invocar Lacaios / Divisão)
+#    poderes        id: { recarga: segundos, dano: valor }  (os dois são opcionais)
+#
+#  Poderes que ele usa no alvo:
+#    RELAMPAGO, BOLA_DE_FOGO, SALTO_ESMAGADOR, INVOCAR_LACAIOS, TELEPORTE,
+#    PUXAR, EMPURRAR, CONGELAR, VENENO, WITHER, LEVITACAO, CEGUEIRA,
+#    CHUVA_DE_FLECHAS, TERREMOTO, METEORO, DRENAR_VIDA
+#  Nele mesmo: REGENERACAO, ESCUDO
+#  Passivos (sempre ligados): FURIA, VAMPIRISMO, ESPINHOS, AURA_DE_FOGO,
+#    EXPLODIR_AO_MORRER, DIVIDIR_AO_MORRER
+#
+#  Nenhum poder quebra bloco nem põe fogo no mapa.
+# ============================================================
+
+geral:
+  # Quantos especiais podem estar vivos ao mesmo tempo por streamer (o resto é ignorado).
+  maximo-vivos-por-streamer: 6
+  # Quantos um mesmo presente faz nascer, no máximo (combo incluído).
+  maximo-por-presente: 3
+  # Some sozinho depois de tantos segundos (0 = só sai quando morrer).
+  some-depois-de-segundos: 300
+  # Barra de vida no topo da tela de quem está perto.
+  barra-de-vida: true
+  # Multiplica o dano de todos os poderes (0.5 = metade).
+  dano-dos-poderes: 1.0
+  # Segundos mínimos entre dois poderes do mesmo mob.
+  intervalo-entre-poderes: 2.5
+  # Especiais não pegam fogo no sol.
+  queimar-no-sol: false
+  # Nome em cima do mob. {nome} = nome do especial, {doador} = quem mandou o presente.
+  formato-do-nome: "{nome} &8• &e{doador}"
+
+especiais:
+  aranha-rainha:
+    nome: "&5&lAranha Rainha"
+    mob: SPIDER
+    vida: 60
+    tamanho: 1.8
+    velocidade: 1.1
+    cor-da-barra: PURPLE
+    lacaio: CAVE_SPIDER
+    poderes:
+      VENENO: { recarga: 7 }
+      PUXAR: { recarga: 10 }
+      DIVIDIR_AO_MORRER: {}
+
+  rei-zumbi:
+    nome: "&6&lRei Zumbi"
+    mob: ZOMBIE
+    vida: 120
+    tamanho: 1.6
+    dano: 7
+    armadura: OURO
+    so-capacete: true
+    cor-da-barra: YELLOW
+    lacaio: ZOMBIE
+    poderes:
+      SALTO_ESMAGADOR: { recarga: 9, dano: 6 }
+      INVOCAR_LACAIOS: { recarga: 18 }
+      FURIA: {}
+
+  cavaleiro-wither:
+    nome: "&8&lCavaleiro Sombrio"
+    mob: WITHER_SKELETON
+    vida: 200
+    tamanho: 1.4
+    dano: 9
+    armadura: NETHERITA
+    brilho: true
+    cor-da-barra: WHITE
+    poderes:
+      TELEPORTE: { recarga: 8 }
+      WITHER: { recarga: 9 }
+      CEGUEIRA: { recarga: 14 }
+      VAMPIRISMO: {}
+
+  golem-colossal:
+    nome: "&f&lGolem Colossal"
+    mob: IRON_GOLEM
+    vida: 300
+    tamanho: 2.0
+    dano: 12
+    cor-da-barra: GREEN
+    poderes:
+      TERREMOTO: { recarga: 10, dano: 7 }
+      EMPURRAR: { recarga: 8 }
+      ESCUDO: { recarga: 20 }
+      ESPINHOS: {}
+
+  senhor-do-fogo:
+    nome: "&c&lSenhor do Fogo"
+    mob: BLAZE
+    vida: 400
+    tamanho: 2.2
+    brilho: true
+    cor-da-barra: RED
+    poderes:
+      BOLA_DE_FOGO: { recarga: 4 }
+      METEORO: { recarga: 12, dano: 8 }
+      RELAMPAGO: { recarga: 15 }
+      AURA_DE_FOGO: {}
+      EXPLODIR_AO_MORRER: {}
+
+  # --- prontos para usar, mas fora do padrão ---
+  esqueleto-atirador:
+    nome: "&b&lEsqueleto Atirador"
+    mob: SKELETON
+    vida: 70
+    tamanho: 1.3
+    armadura: FERRO
+    so-capacete: true
+    cor-da-barra: BLUE
+    poderes:
+      CHUVA_DE_FLECHAS: { recarga: 10 }
+      CONGELAR: { recarga: 8 }
+
+  bruxa-ancia:
+    nome: "&d&lBruxa Anciã"
+    mob: WITCH
+    vida: 90
+    tamanho: 1.3
+    cor-da-barra: PINK
+    poderes:
+      LEVITACAO: { recarga: 10 }
+      DRENAR_VIDA: { recarga: 8 }
+      TELEPORTE: { recarga: 12 }
+      REGENERACAO: { recarga: 15 }
+
+  creeper-trovao:
+    nome: "&e&lCreeper Trovão"
+    mob: CREEPER
+    vida: 40
+    tamanho: 1.5
+    brilho: true
+    cor-da-barra: YELLOW
+    poderes:
+      TELEPORTE: { recarga: 10 }
+      RELAMPAGO: { recarga: 9 }
+
+  guardiao-abismo:
+    nome: "&3&lGuardião do Abismo"
+    mob: WARDEN
+    vida: 500
+    cor-da-barra: BLUE
+    poderes:
+      EMPURRAR: { recarga: 10 }
+      TERREMOTO: { recarga: 14 }
