@@ -330,6 +330,9 @@ Loja:
   Nome: '&8VIPs > Loja'
   Tamanho: 27
   Slot voltar: 22
+  # Abre a tela 'Confirmar loja' antes de gastar os creditos. Para tirar de um
+  # item so, coloque 'Confirmar: false' dentro dele.
+  Confirmar compra: true
   Perfil:
     Slot: 4
     material: '{player}'
@@ -432,6 +435,32 @@ Confirmar:
       name: '&aConfirmar compra'
       lore:
         - '&7Voce vai pagar &f{price} &7em &f{provider_display}&7.'
+        - ''
+        - '&aClique para confirmar'
+    Cancelar:
+      Slot: 15
+      material: 'RED_DYE'
+      name: '&cCancelar'
+      lore:
+        - '&7Clique para voltar sem comprar.'
+  Decoracao: {}
+
+# ====================================================================
+# Confirmacao de compra na Loja de creditos
+# (desligue em 'Loja.Confirmar compra: false' ou no item com 'Confirmar: false')
+# ====================================================================
+Confirmar loja:
+  Nome: '&8VIPs > Confirmar compra'
+  Tamanho: 27
+  Slot item: 13
+  Itens:
+    Confirmar:
+      Slot: 11
+      material: 'LIME_DYE'
+      name: '&aConfirmar compra'
+      lore:
+        - '&7Voce vai pagar &f{price} &7creditos VIP.'
+        - '&7Seu saldo: &f{credit}'
         - ''
         - '&aClique para confirmar'
     Cancelar:
