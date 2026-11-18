@@ -8,7 +8,7 @@
 #  {tempo} {total} {limite} {tamanho} {novo} {origem} {destino} {comando}
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 3
+Versao do modelo: 4
 
 Prefixo: '&d&lPORTAL &8» &7'
 
@@ -152,12 +152,17 @@ Pedido:
   Nome do portal: 'ate {jogador}'
   Enviado: '&aPedido enviado para &f{jogador}&a. Ele tem &f{tempo} &apara aceitar.'
   Enviado chamando: '&aVoce pediu que &f{jogador} &avenha ate voce. Ele tem &f{tempo} &apara aceitar.'
+  # Os botoes sao clicaveis: <click:run_command:...> manda o comando, e
+  # <hover:show_text:...> e o balao que aparece ao passar o mouse. O {aceitar}
+  # e o {negar} viram o comando que ESTE servidor tem (/portal aceitar no
+  # plugin solto, /tpaccept no addon). Quem preferir texto puro e so tirar as
+  # tags e escrever o comando na mao.
   Recebido: |
-    &f{jogador} &7quer abrir um portal ate voce.
-    &aDigite &f/portal aceitar {jogador} &apara abrir, ou &c/portal negar {jogador}&a. Vale por &f{tempo}&a.
+    &f{jogador} &7quer abrir um portal ate voce. &8(&7vale por &f{tempo}&8)
+    <click:run_command:{aceitar}><hover:show_text:&aAbrir o portal>&a&l[ACEITAR]</hover></click> &8| <click:run_command:{negar}><hover:show_text:&cRecusar o pedido>&c&l[NEGAR]</hover></click>
   Recebido chamando: |
-    &f{jogador} &7quer que voce va ate ele por um portal.
-    &aDigite &f/portal aceitar {jogador} &apara abrir, ou &c/portal negar {jogador}&a. Vale por &f{tempo}&a.
+    &f{jogador} &7quer que voce va ate ele por um portal. &8(&7vale por &f{tempo}&8)
+    <click:run_command:{aceitar}><hover:show_text:&aAbrir o portal>&a&l[ACEITAR]</hover></click> &8| <click:run_command:{negar}><hover:show_text:&cRecusar o pedido>&c&l[NEGAR]</hover></click>
   Aceito viajante: '&aO portal ate &f{jogador} &aesta aberto por &f{tempo}&a.'
   Aceito anfitriao: '&aVoce aceitou o pedido de &f{jogador}&a.'
   Negado: '&7Voce negou o pedido de &f{jogador}&7.'
