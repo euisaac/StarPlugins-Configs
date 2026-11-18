@@ -146,3 +146,24 @@ Sons:
 
 Menus:
   Intervalo entre cliques: 150
+
+# Com o StarPunicoes, a punicao aplicada pelo reporte (menu Punir) leva os
+# reportes abertos do jogador como PROVA: quem reportou, motivo, link de prova
+# e o replay do momento. Aparece no historico e no link publico da punicao.
+Provas na punicao:
+  Ativar: true
+  # Quantos reportes entram como prova em cada punicao (1 a 5).
+  Maximo de reportes: 5
+  # Acao automatica que pune (ban, mute, kick, warn) tambem leva os reportes.
+  Acoes automaticas: true
+
+# Painel do site (/paineis/reportes): o dono da licenca acompanha os reportes,
+# as decisoes da staff e o historico de cada jogador. O servidor so envia
+# (nao abre porta nenhuma) e nunca manda IP.
+painel:
+  ativado: true
+  site: 'https://starplugins.com.br'
+  # O mesmo jogador com tantos reportes nesse tempo vira ALERTA no painel.
+  alerta-reportes:
+    reportes: 3
+    minutos: 10
