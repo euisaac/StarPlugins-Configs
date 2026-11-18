@@ -5,7 +5,7 @@
 #  precisar de uma opcao no config.yml para cada um.
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Prefixo: '&a&lLIXEIRO &8» &7'
 
@@ -23,6 +23,7 @@ Ajuda:
     &a&lLIXEIRO
     &e/lixeiro &8- &7tempo da proxima limpeza
     &e/lixeiro menu &8- &7os lixeiros em tela
+    &e/lixeiro leilao &8- &7o leilao dos itens de hoje
     &e/lixeiro listar &8- &7todos os lixeiros
     &e/lixeiro historico &8- &7o que ja foi limpo
     &8&m----------------------------------------
@@ -66,6 +67,45 @@ Historico:
   Resgatado parcial: '&aVoce resgatou &f{quantidade}x {item}&a; o resto ficou no historico.'
   Nada para resgatar: '&cNao sobrou nada desse item para resgatar.'
   Item perdido: '&cNao foi possivel reconstruir esse item nesta versao do servidor.'
+
+Leilao:
+  Desligado: '&cO leilao esta desligado neste servidor.'
+  Sem economia: '&cA economia do leilao nao esta respondendo. Avise a staff.'
+  Sem saldo: '&cVoce nao tem esse valor.'
+  Lance baixo: '&cO lance precisa ser de pelo menos &f{minimo}&c.'
+  Fora do dia: '&cEsse item nao e da limpeza de hoje.'
+  Item ja saiu: '&cAlguem foi mais rapido: esse item nao esta mais no historico.'
+  Limite: '&cVoce ja tem &f{maximo} &cleiloes abertos. Espere um acabar.'
+  Encerrado: '&cEsse leilao ja acabou.'
+  Coberto: '&cAlguem cobriu o seu lance antes de voce. O valor foi devolvido.'
+  Ja e seu: '&cVoce ja esta ganhando esse leilao.'
+  Falhou: '&cNao foi possivel completar o lance. O valor foi devolvido.'
+
+  Digite o lance inicial: |
+    &eDigite o lance inicial para &f{quantidade}x {item}&e.
+    &7Minimo: &f{minimo}&7. O leilao vai durar &f{duracao}h&7.
+  Digite o lance: |
+    &eDigite o seu lance para &f{item}&e.
+    &7Lance atual: &f{lance} &7de &f{quem}&7. Minimo: &f{minimo}&7.
+
+  Aberto: '&aVoce abriu o leilao de &f{quantidade}x {item} &apor &f{valor}&a.'
+  Lance dado: '&aLance de &f{valor} &aem &f{item}&a.'
+  Voce foi coberto: '&cCobriram o seu lance em &f{item}&c. Devolvemos &f{valor}&c.'
+  Voce ganhou: '&aVoce arrematou &f{quantidade}x {item} &apor &f{valor}&a! Pegue em &f/lixeiro leilao&a.'
+
+  Anuncio de abertura: '&e{jogador} &7abriu leilao de &f{quantidade}x {item} &7por &f{valor}&7. &8(&7/lixeiro leilao&8)'
+  Anuncio de fim: '&e{jogador} &7arrematou &f{quantidade}x {item} &7por &f{valor}&7.'
+  Lembrete: |
+    &8&m----------------------------------------
+    &e&lLEILAO DO LIXEIRO
+    &7Tem &f{total} &7item(ns) esperando lance agora.
+    &7Use &e/lixeiro leilao &7para ver.
+    &8&m----------------------------------------
+
+  Nada hoje: '&7A limpeza ainda nao recolheu nada hoje para leiloar.'
+  Armazem vazio: '&7Voce nao tem nenhum item do leilao para retirar.'
+  Nada para retirar: '&cNao sobrou nada desse lote.'
+  Retirado: '&aVoce retirou &f{quantidade}x {item}&a.'
 
 Editor:
   Nome do lixeiro: '&eDigite o nome do novo lixeiro no chat.'

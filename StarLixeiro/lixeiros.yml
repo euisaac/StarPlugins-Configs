@@ -12,13 +12,18 @@
 #  Avisos:    a chave e quantos SEGUNDOS faltam. 0 e o aviso do fim da limpeza.
 #  Sons:      mesma ideia. Aceita 'SOM', 'SOM;volume' e 'SOM;volume;tom'.
 #
+#  Ativar:    cada canal (Chat, Actionbar, Titulo, Sons) tem o proprio
+#             liga/desliga. Desligar NAO apaga as linhas -- elas ficam aqui
+#             esperando voce religar. Sem a chave, o canal conta como ligado.
+#             No jogo: /starlixeiro editor, clique direito no canal.
+#
 #  Marcadores que valem nos avisos:
 #    {lixeiro} {tempo} {segundos} {itens} {entidades} {total}
 #
 #  Use <nl> para quebrar linha (no titulo, separa titulo de subtitulo).
 # ---------------------------------------------------------------------------
 
-Versao do modelo: 1
+Versao do modelo: 2
 
 Lixeiros:
 
@@ -38,6 +43,7 @@ Lixeiros:
 
     Avisos:
       Chat:
+        Ativar: true
         '120': '&eOs itens no chao serao removidos em &f2 minutos&e.<nl>&8» &7Veja o tempo com &f/lixeiro&7.'
         '60': '&eOs itens no chao serao removidos em &f1 minuto&e.'
         '10': '&eOs itens no chao serao removidos em &f10 segundos&e.'
@@ -47,6 +53,7 @@ Lixeiros:
         '1': '&eOs itens no chao serao removidos em &f1 segundo&e.'
         '0': '&aForam removidos &f{itens} &aitens do chao. &8(&7/lixeiro historico&8)'
       Actionbar:
+        Ativar: true
         '30': '&eLimpeza de itens em &f30 segundos'
         '10': '&eLimpeza de itens em &f10 segundos'
         '5': '&eLimpeza de itens em &f5 segundos'
@@ -55,10 +62,12 @@ Lixeiros:
         '1': '&eLimpeza de itens em &f1 segundo'
         '0': '&a{itens} itens removidos do chao'
       Titulo:
+        Ativar: true
         '10': '&e&lLIXEIRO<nl>&7Limpando em &f10 segundos'
         '0': '&a&lLIXEIRO<nl>&7{itens} itens limpos'
 
     Sons:
+      Ativar: true
       '10': 'BLOCK_NOTE_BLOCK_HAT;1;1'
       '5': 'BLOCK_NOTE_BLOCK_HAT;1;1'
       '3': 'BLOCK_NOTE_BLOCK_HAT;1;1'
@@ -81,15 +90,18 @@ Lixeiros:
 
     Avisos:
       Chat:
+        Ativar: true
         '60': '&dAs criaturas soltas serao removidas em &f1 minuto&d.'
         '10': '&dAs criaturas soltas serao removidas em &f10 segundos&d.'
         '0': '&aForam removidas &f{entidades} &acriaturas do mundo.'
       Actionbar:
+        Ativar: true
         '30': '&dLimpeza de criaturas em &f30 segundos'
         '10': '&dLimpeza de criaturas em &f10 segundos'
         '0': '&a{entidades} criaturas removidas'
       Titulo: {}
 
     Sons:
+      Ativar: true
       '10': 'BLOCK_NOTE_BLOCK_HAT;1;1'
       '0': 'BLOCK_NOTE_BLOCK_PLING;1;1'
