@@ -156,6 +156,20 @@ Provas:
   # suspeitas e recuos) em gravacoes/. E a prova para revisar um banimento.
   Salvar caixa-preta ao punir: true
 
+  # Prova automatica no banimento (StarPunicoes 1.0.10+): antes de rodar os
+  # comandos de punicao, o anti-cheat entrega ao StarPunicoes a prova -- a
+  # verificacao, as violacoes, o cliente e as deteccoes recentes -- e, com o
+  # StarReplay ligado, o MOMENTO DA INFRACAO gravado (o replay vai junto na
+  # punicao e aparece no link publico dela). Sem esses plugins, nada muda.
+  Ativado: true
+  # Pede ao StarReplay o trecho do momento da infracao (recorte ou marca na partida).
+  Replay: true
+  # Leva as ultimas deteccoes (ate 30) na prova e marca cada uma no replay.
+  Deteccoes: true
+  # Toda deteccao de quem esta numa partida gravada vira marca no replay da
+  # partida, mesmo sem punicao (a staff ve onde suspeitar ao assistir).
+  Marcar alertas no replay da partida: false
+
 Congelar:
   # Comandos que o jogador congelado ainda pode usar (sem a barra).
   Comandos liberados:
@@ -304,3 +318,14 @@ Menu:
 
   # De quantos em quantos tiques o menu aberto se redesenha.
   Atualizar a cada tiques: 20
+
+# ---------------------------------------------------------------------
+# Painel do site (https://starplugins.com.br/paineis/anticheat): o DONO
+# da licenca acompanha pelo navegador as deteccoes, as punicoes, os
+# jogadores mais suspeitos e os clientes usados. So leitura. O servidor e
+# reconhecido pelo IP:porta da licenca (sem senha) e o IP dos jogadores
+# NUNCA sai daqui.
+# ---------------------------------------------------------------------
+Painel:
+  Ativado: true
+  Site: 'https://starplugins.com.br'
