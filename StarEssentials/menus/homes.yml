@@ -1,8 +1,150 @@
 # =========================================================
-#  StarEssentials - menu do /homes
+#  StarEssentials - menus do /homes
+#
+#  Lista (6 linhas): as homes ficam no meio, com uma linha/coluna
+#  livre em volta. Embaixo ficam a informacao, o botao que troca
+#  entre "suas homes" e "homes publicas" e as setas de pagina.
+#
+#  Na lista das suas homes:
+#    botao esquerdo         -> vai ate a home
+#    Q (dropar) ou direito  -> abre as opcoes da home
+#
+#  Cores: & e hex (&#rrggbb). Materiais: nomes novos ou antigos
+#  (RED_BED ou BED, LIME_DYE ou INK_SACK etc.), em qualquer versao.
 # =========================================================
 
-titulo: '&8&lSuas homes'
+titulo: '&8Suas homes'
+titulo-publicas: '&8Homes publicas'
+# {home} vira o nome da home.
+titulo-opcoes: '&8Home: {home}'
 
-# Menu que abre ao clicar numa home da lista acima. {home} vira o nome da home.
-titulo-opcoes: '&8&lHome: {home}'
+# Texto do {limite} para quem nao tem limite de homes.
+texto-ilimitado: 'sem limite'
+# Texto do {visibilidade}.
+texto-publica: '&aPublica'
+texto-privada: '&cPrivada'
+
+# Placeholders das homes: {home} {mundo} {x} {y} {z} {visibilidade} {dono}
+itens:
+  home:
+    material: RED_BED
+    nome: '&b{home}'
+    lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Local: &f{x}&7, &f{y}&7, &f{z}'
+      - '&7Visibilidade: {visibilidade}'
+      - ''
+      - '&aBotao esquerdo &7para ir ate ela'
+      - '&eQ &7ou &ebotao direito &7para as opcoes'
+  # PLAYER_HEAD mostra a cabeca do dono da home.
+  home-publica:
+    material: PLAYER_HEAD
+    nome: '&b{home}'
+    lore:
+      - '&7Dono: &f{dono}'
+      - '&7Mundo: &f{mundo}'
+      - '&7Local: &f{x}&7, &f{y}&7, &f{z}'
+      - ''
+      - '&aClique para ir ate ela'
+  sem-homes:
+    material: BARRIER
+    nome: '&cVoce ainda nao tem homes'
+    lore:
+      - '&7Use &f/sethome <nome> &7para marcar'
+      - '&7o lugar onde voce esta.'
+  sem-publicas:
+    material: BARRIER
+    nome: '&cNenhuma home publica'
+    lore:
+      - '&7Ninguem deixou uma home aberta ainda.'
+  # {quantidade} {limite} {publicas} {pagina} {paginas}
+  info:
+    material: BOOK
+    nome: '&bSuas homes'
+    lore:
+      - '&7Homes: &f{quantidade}&7/&f{limite}'
+      - '&7Publicas: &f{publicas}'
+      - '&7Pagina: &f{pagina}&7/&f{paginas}'
+  info-publicas:
+    material: BOOK
+    nome: '&bHomes publicas'
+    lore:
+      - '&7Total: &f{quantidade}'
+      - '&7Pagina: &f{pagina}&7/&f{paginas}'
+      - ''
+      - '&7Para abrir uma home sua, use o'
+      - '&7menu de opcoes dela.'
+  ver-publicas:
+    material: COMPASS
+    nome: '&aHomes publicas'
+    lore:
+      - '&7Veja as homes que os outros'
+      - '&7jogadores deixaram abertas.'
+      - ''
+      - '&eClique para ver'
+  ver-suas:
+    material: RED_BED
+    nome: '&aSuas homes'
+    lore:
+      - '&7Volta para a lista das suas homes.'
+      - ''
+      - '&eClique para ver'
+  pagina-anterior:
+    material: ARROW
+    nome: '&fPagina anterior'
+    lore:
+      - '&7Vai para a pagina &f{pagina}&7.'
+  proxima-pagina:
+    material: ARROW
+    nome: '&fProxima pagina'
+    lore:
+      - '&7Vai para a pagina &f{pagina}&7.'
+
+# Menu de opcoes de uma home (3 linhas).
+opcoes:
+  info:
+    material: RED_BED
+    nome: '&b{home}'
+    lore:
+      - '&7Mundo: &f{mundo}'
+      - '&7Local: &f{x}&7, &f{y}&7, &f{z}'
+      - '&7Visibilidade: {visibilidade}'
+  teleportar:
+    material: ENDER_PEARL
+    nome: '&aTeleportar'
+    lore:
+      - '&7Vai direto para a home.'
+  tornar-publica:
+    material: LIME_DYE
+    nome: '&aTornar publica'
+    lore:
+      - '&7Qualquer jogador vai poder visitar'
+      - '&7pelo menu de homes publicas ou com'
+      - '&f/home {home} {jogador}&7.'
+  tornar-privada:
+    material: GRAY_DYE
+    nome: '&cTornar privada'
+    lore:
+      - '&7So voce vai poder visitar.'
+  mover:
+    material: COMPASS
+    nome: '&eMudar para ca'
+    lore:
+      - '&7Move a home para o lugar'
+      - '&7onde voce esta agora.'
+  deletar:
+    material: BARRIER
+    nome: '&cDeletar'
+    lore:
+      - '&7Remove a home.'
+  confirmar-deletar:
+    material: TNT
+    nome: '&4&lConfirmar'
+    lore:
+      - '&7Clique de novo para deletar'
+      - '&7a home &f{home}&7. Nao tem volta.'
+  voltar:
+    material: ARROW
+    nome: '&fVoltar'
+    lore:
+      - '&7Volta para a lista de homes.'
