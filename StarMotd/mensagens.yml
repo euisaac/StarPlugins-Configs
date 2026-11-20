@@ -1,0 +1,125 @@
+# StarMotd - mensagens. Aceita &a, &#ff00aa, <degrade:#a:#b>...</degrade> e o resto.
+# Mensagem vazia ("") não é enviada.
+
+Prefixo: "<degrade:#ff7eb3:#7a5cff>&lStarMotd</degrade> &8» &7"
+
+Sem permissao: "{prefixo}&cVocê não tem permissão para isso."
+So jogador: "{prefixo}&cSó um jogador pode usar isso."
+So no servidor: "{prefixo}&cO editor por menu é só no servidor. No proxy use os comandos: &f/{comando} ajuda"
+Comando desconhecido: "{prefixo}&cNão conheço esse comando. Veja &f/{comando} ajuda"
+Uso: "{prefixo}&cUse: &f/{comando} {sub} {uso}"
+Nao existe: "{prefixo}&cNão existe MOTD &f{nome}&c. Veja &f/{comando} lista"
+Ja existe: "{prefixo}&cJá existe um MOTD &f{nome}&c."
+Nome invalido: "{prefixo}&cNome inválido: use só letras minúsculas, números, - e _ (até 32)."
+Numero invalido: "{prefixo}&cNúmero inválido: escolha de &f1 &ca &f{maximo}&c."
+Erro ao gravar: "{prefixo}&cNão consegui gravar: &f{erro}"
+Aviso: "&8 - &e{aviso}"
+
+Criado: "{prefixo}&aMOTD &f{nome} &acriado! Edite com &f/{comando} editar {nome} &aou &f/{comando} linha {nome} 1 <texto>"
+Apagado: "{prefixo}&aMOTD &f{nome} &aapagado. &7(guardado em &f{arquivo}&7)"
+Apagar confirmar: "{prefixo}&eTem certeza? Use &f/{comando} apagar {nome} confirmar"
+Ativado: "{prefixo}&aMOTD &f{nome} &aativado."
+Desativado: "{prefixo}&eMOTD &f{nome} &edesativado."
+Linha definida: "{prefixo}&aLinha {linha} do MOTD &f{nome} &aatualizada."
+Quadro adicionado: "{prefixo}&aQuadro adicionado na linha {linha} de &f{nome}&a. Agora são &f{total}&a."
+Quadro removido: "{prefixo}&eQuadro removido da linha {linha} de &f{nome}&e. Sobraram &f{total}&e."
+Quadros limpos: "{prefixo}&eA linha {linha} de &f{nome} &eficou vazia."
+Quadros:
+  Cabecalho: "{prefixo}&fLinha {linha} de &b{nome}&f: &7{total} quadro(s)"
+  Item: "&8 {numero}. &r{texto}"
+Centralizar ligado: "{prefixo}&aAs linhas de &f{nome} &aagora ficam centralizadas."
+Centralizar desligado: "{prefixo}&eAs linhas de &f{nome} &enão são mais centralizadas."
+Prioridade definida: "{prefixo}&aPrioridade de &f{nome}&a: &f{valor}"
+Versao definida: "{prefixo}&aTexto da versão de &f{nome}&a: &r{texto}"
+Versao removida: "{prefixo}&eTexto da versão de &f{nome} &eremovido."
+Hover definido: "{prefixo}&aLista do mouse de &f{nome}&a: &f{total} &alinha(s)."
+Uso definido: "{prefixo}&aO MOTD &f{nome} &aagora é de uso &f{uso}&a."
+Modo atual: "{prefixo}&7Modo atual: &f{modo} &7(fixo: &f{fixo}&7)"
+Modo definido: "{prefixo}&aModo de revezamento: &f{modo}&a. &7(fixo: &f{fixo}&7)"
+Recarregado: "{prefixo}&aTudo recarregado: &f{total} &aMOTD(s)."
+Recarregado com avisos: "{prefixo}&eRecarregado: &f{total} &eMOTD(s), com &f{avisos} &eaviso(s):"
+
+Foto baixando: "{prefixo}&7Buscando a imagem..."
+Foto definida: "{prefixo}&aÍcone de &f{nome} &adefinido: &f{arquivo}&a. &7(atualize a lista de servidores para ver)"
+Foto removida: "{prefixo}&eÍcone de &f{nome} &eremovido."
+Foto nao achada: "{prefixo}&cNão achei &f{arquivo} &cna pasta icones/. Use um link, &fjogador:Nick &cou veja &f/{comando} icones"
+Foto erro: "{prefixo}&cNão deu para usar essa imagem: &f{erro}"
+
+Icones:
+  Cabecalho: "{prefixo}&fImagens na pasta icones/ &7({total}):"
+  Item: "&8 - &f{arquivo}"
+  Vazio: "{prefixo}&7A pasta icones/ está vazia. Use &f/motd foto <motd> <link> &7ou coloque png/jpg/gif lá."
+
+Lista:
+  Cabecalho: "{prefixo}&fMOTDs &7({total}):"
+  Item: "&8 - &f{nome} {estado}{extras}"
+  Ativado: "&a(ativo)"
+  Desativado: "&c(desativado)"
+  Da manutencao: "&6(manutenção)"
+  Nenhum: "&cnenhum (o servidor usa o MOTD dele)"
+  Manutencao ligada: " &c&l[MANUTENÇÃO LIGADA]"
+  Rodape: "&7Modo &f{modo}&7, valendo agora: &b{vale}{manutencao}"
+
+Ver:
+  Cabecalho: "{prefixo}&fPrévia de &b{nome} &7(quadro {quadro}/{quadros}):"
+  Versao: "&8 Versão: &r{versao}"
+  Hover: "&8 Mouse: &r{linhas}"
+  Icone: "&8 Ícone: &f{icone}"
+  Rodape: "&8 Use &7/{comando} ver {nome} &8de novo para ver o próximo quadro."
+
+Manutencao:
+  Ligada: "{prefixo}&cManutenção LIGADA. &7Termina: &f{tempo}&7. Motivo: &f{motivo}"
+  Atualizada: "{prefixo}&cManutenção atualizada. &7Termina: &f{tempo}&7. Motivo: &f{motivo}"
+  Desligada: "{prefixo}&aManutenção desligada: o servidor está aberto."
+  Ja desligada: "{prefixo}&7A manutenção já está desligada."
+  Liberado: "{prefixo}&a{nick} pode entrar durante a manutenção."
+  Ja liberado: "{prefixo}&7{nick} já estava liberado."
+  Bloqueado: "{prefixo}&e{nick} saiu da lista de liberados."
+  Nao estava: "{prefixo}&7{nick} não estava na lista de liberados."
+  Lista: "{prefixo}&fLiberados na manutenção &7({total})&f: &f{nicks}"
+  Status ligada: "{prefixo}&cManutenção LIGADA &7por &f{quem}&7. Termina: &f{tempo}&7. Motivo: &f{motivo}&7. Liberados: &f{liberados}&7. Desligue com &f/{comando} manutencao desligar"
+  Status desligada: "{prefixo}&aManutenção desligada. &7Ligue com &f/{comando} manutencao ligar [tempo] [motivo] &7(liberados: &f{liberados}&7)"
+  # Tela de quem é barrado ou expulso. {motivo} {tempo}
+  Expulsao: |-
+    <degrade:#00c6ff:#0072ff>&lREDE STAR</degrade>
+
+    &c&lSERVIDOR EM MANUTENÇÃO
+    &7Motivo: &f{motivo}
+    &7Previsão de volta: &f{tempo}
+
+    &7Acompanhe as novidades no nosso Discord!
+
+Placeholders:
+  Sem previsao: "em breve"
+  Sem motivo: "melhorias no servidor"
+  Contagem acabou: "agora!"
+
+Entrada:
+  Pedir: "{prefixo}&fDigite no chat {o_que}&f. &7(escreva &ccancelar &7para desistir)"
+  Cancelada: "{prefixo}&7Cancelado."
+  Expirou: "{prefixo}&7O tempo para digitar acabou."
+
+Ajuda:
+  Cabecalho: "{prefixo}&fComandos:"
+  Linha: "&b/{comando} {sub}&7{uso} &8- &f{descricao}"
+  Rodape: "&7Cores: &aclássicas&7, &#ff7eb3RGB&7, <degrade:#00c6ff:#0072ff>degradê</degrade>&7, <arcoiris>arco-íris</arcoiris>&7 e efeitos animados. Exemplos no topo de cada arquivo em motds/."
+  menu: "Abre o editor por menu"
+  lista: "Lista os MOTDs e mostra qual está valendo"
+  ver: "Mostra no chat como o MOTD fica (repita para ver a animação)"
+  criar: "Cria um MOTD novo (ou uma cópia de outro)"
+  editar: "Abre o editor de um MOTD"
+  linha: "Troca a linha inteira (fica um quadro só)"
+  quadro: "Quadros da animação de uma linha"
+  foto: "Ícone do MOTD (png, jpg, gif animado ou rosto de jogador)"
+  ativar: "Coloca o MOTD no revezamento"
+  desativar: "Tira o MOTD do revezamento"
+  centralizar: "Centraliza as duas linhas sozinho"
+  prioridade: "Maior prioridade ganha dos outros quando as condições batem"
+  versao: "Texto no lugar das barrinhas de sinal"
+  hover: "Linhas ao passar o mouse no número de jogadores"
+  uso: "Se o MOTD é do servidor aberto ou da manutenção"
+  modo: "Como os MOTDs se revezam"
+  apagar: "Apaga o MOTD (vai para a pasta apagados/)"
+  icones: "Lista as imagens da pasta icones/"
+  manutencao: "Liga, desliga e libera nicks na manutenção"
+  recarregar: "Lê de novo o config, as mensagens, os MOTDs e os ícones"

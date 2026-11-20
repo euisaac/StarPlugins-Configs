@@ -1,0 +1,57 @@
+# ==========================================================================
+#  StarMotd - configuracao geral
+#  Os MOTDs ficam um por arquivo na pasta motds/ (e da para editar tudo no
+#  jogo com /motd). Os icones ficam na pasta icones/.
+# ==========================================================================
+
+# Como os MOTDs ativos se revezam:
+#   FIXO      - sempre o MOTD de "Fixo" (os outros so aparecem se tiverem prioridade maior e a condicao bater)
+#   SEQUENCIA - um de cada vez, trocando a cada "Trocar a cada"
+#   ALTERNAR  - cada vez que o jogador atualiza a lista de servidores ele ve o proximo
+#   ALEATORIO - sorteio a cada atualizacao (o "Peso" de cada MOTD e a chance dele)
+Selecao:
+  Modo: ALTERNAR
+  Fixo: principal
+  Trocar a cada: 30s
+
+# Quando a linha (ou o icone) e uma lista de quadros, como a animacao anda:
+#   ATUALIZACAO - cada vez que o jogador atualiza a lista, ele ve o quadro seguinte
+#   TEMPO       - o quadro depende do relogio (usa o "Intervalo" de cada MOTD)
+# Obs.: o Minecraft so pergunta o MOTD quando a lista e aberta ou atualizada; nenhum
+# plugin consegue animar com a lista parada na tela.
+Animacao:
+  Avancar: ATUALIZACAO
+
+# Largura da area do MOTD em pixels, usada para centralizar as linhas.
+# 270 e a do cliente padrao; aumente/diminua se achar o texto torto.
+Centralizar:
+  Largura da linha: 270
+
+# Lembra o nick de quem ja entrou (pelo IP, guardado so como resumo que nao
+# volta a ser IP) para o {jogador} e a condicao "Jogador: CONHECIDO/NOVO".
+Jogadores conhecidos:
+  Ativado: true
+  Esquecer depois de: 60d
+  Nome para quem nunca entrou: "visitante"
+
+# Texto do {versao_servidor}. Vazio = automatico (versao do servidor, ou a faixa
+# de versoes aceitas no proxy).
+Versao do servidor: ""
+
+Fuso horario: "America/Sao_Paulo"
+Formato de data: "dd/MM/yyyy"
+Formato de hora: "HH:mm"
+
+# {saudacao}
+Saudacoes:
+  Madrugada: "Boa madrugada"
+  Manha: "Bom dia"
+  Tarde: "Boa tarde"
+  Noite: "Boa noite"
+
+Manutencao:
+  # Ao ligar, tira do servidor quem nao pode ficar (sem starmotd.manutencao.entrar
+  # e fora da lista de liberados).
+  Expulsar ao ligar: true
+
+Debug: false

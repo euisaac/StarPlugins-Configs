@@ -1,0 +1,56 @@
+# StarMotd - um MOTD por arquivo. Tudo aqui tambem da para mudar no jogo: /motd editar <nome>
+#
+# Linha 1 / Linha 2: um texto, ou uma LISTA de textos = animacao (cada atualizacao mostra o proximo).
+#   Cores: &a &l  |  RGB: &#ff00aa  <#ff00aa>  {#ff00aa}
+#   Degrade: <degrade:#00c6ff:#0072ff>texto</degrade>   (com :animado no fim ele corre)
+#   Arco-iris: <arcoiris>texto</arcoiris>   <arcoiris:animado>   <arcoiris:pastel>
+#   Efeitos: <rolar:20>texto comprido</rolar>  <digitar>texto</digitar>  <piscar>texto</piscar>
+#   <centro> no comeco centraliza so aquela linha (ou Centralizar: true para as duas).
+#   Placeholders: {online} {max} {jogador} {saudacao} {data} {hora} {versao_cliente} {versao_servidor}
+#     {manutencao_tempo} {manutencao_motivo} {contagem:25/12/2026 00:00}  (+ PlaceholderAPI no Bukkit,
+#     {online:lobby} no proxy)
+# Uso: NORMAL (servidor aberto) ou MANUTENCAO (so aparece com a manutencao ligada).
+# Prioridade: entre os MOTDs que passam nas condicoes, so os de MAIOR prioridade entram no sorteio.
+# Peso: chance no modo ALEATORIO.
+# Intervalo: tempo de cada quadro quando o config usa Animacao.Avancar: TEMPO.
+# Icone: arquivo da pasta icones/ (png, jpg ou gif animado). Lista de arquivos = icone animado.
+#   Pelo jogo: /motd foto <nome> <link | jogador:Nick | arquivo>
+# Versao.Texto: aparece no lugar das barrinhas de sinal (precisa de Paper ou proxy).
+#   Sempre mostrar: true deixa o texto sempre visivel (o cliente mostra em vermelho).
+# Jogadores.Maximo: vazio = o do servidor; um numero; ou {online}+1.
+# Jogadores.Lista: linhas que aparecem ao passar o mouse no numero de jogadores (Paper ou proxy).
+# Condicoes (todas opcionais):
+#   Datas: ["20/12-26/12"]   Horarios: ["18:00-23:59"]   Dias: [sabado, domingo]
+#   Versao minima / Versao maxima: "1.20"  (versao do cliente; precisa de Paper ou proxy)
+#   Jogador: TODOS, CONHECIDO (ja entrou antes) ou NOVO
+
+# Só aparece com a manutenção ligada (/motd manutencao ligar [tempo] [motivo]).
+Ativado: true
+Uso: MANUTENCAO
+Prioridade: 0
+Peso: 1
+Centralizar: true
+Linha 1:
+  - "<degrade:#ff512f:#dd2476>&lEM MANUTENÇÃO</degrade>"
+Linha 2:
+  - "&7Voltamos em &f{manutencao_tempo}"
+  - "&7Motivo: &f{manutencao_motivo}"
+Intervalo: 2s
+Icone: ""
+Versao:
+  Texto: "&c&lMANUTENÇÃO"
+  Sempre mostrar: true
+Jogadores:
+  Maximo: ""
+  Esconder: false
+  Lista:
+    - "&c&lEM MANUTENÇÃO"
+    - "&7Motivo: &f{manutencao_motivo}"
+    - "&7Volta em: &f{manutencao_tempo}"
+Condicoes:
+  Datas: []
+  Horarios: []
+  Dias: []
+  Versao minima: ""
+  Versao maxima: ""
+  Jogador: TODOS
