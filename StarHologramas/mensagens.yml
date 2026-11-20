@@ -40,6 +40,7 @@ Uso:
   acao: '/holo acao <adicionar|lista|limpar> <nome> <pagina> [clique] [TIPO:valor]'
   modelo: '/holo modelo <lista|salvar <nome> [modelo]|usar <modelo> <novo>>'
   temporario: '/holo temporario <segundos> <linha 1 | linha 2 ...>'
+  ajustar: '/holo ajustar [nome|sair]'
 
 Holograma:
   # Texto da primeira linha de um holograma criado sem texto.
@@ -98,6 +99,23 @@ Modelo:
   Usado: '&aHolograma &f{nome} &acriado com o modelo &f{modelo}&a.'
   Nao existe: '&cNão existe o modelo &f{modelo}&c.'
 
+Ajuste:
+  Entrou: |-
+    &aAjustando &f{nome}&a pela hotbar. &7Clique direito aumenta, esquerdo diminui.
+    &7O relogio troca o passo (fino, medio, grosso); o corante vermelho devolve a sua hotbar.
+    &7Mudou algo sem querer? &f/holo desfazer {nome} &7volta o ajuste inteiro.
+  Saiu: '&aAjuste de &f{nome} &asalvo. Sua hotbar voltou.'
+  # Barra de acao a cada clique. {ferramenta}, {valor}, {passo}, {nome}, {aviso}.
+  Barra: '&e{ferramenta}: &f{valor} &8| &7passo &f{passo}{aviso}'
+  # Vai no {aviso} do Girar quando o texto ainda vira sozinho para quem olha.
+  Gira sozinho: ' &8| &7texto vira para quem olha: use o &fModo de rotacao'
+  # Vai no {aviso} de Rotacao e Tamanho quando o texto e o nome flutuante classico.
+  Sem visor: ' &8| &cso no visor de texto (1.19.4+)'
+  Ferramenta perdida: '&cEsta ferramenta de ajuste nao vale mais e foi removida.'
+  Restaurado: '&aSua hotbar, guardada durante um ajuste, foi devolvida.'
+  Nenhum perto: '&cNenhum holograma na mira nem a ate 8 blocos. Use &f/holo ajustar <nome>&c.'
+  Fora: '&7Voce nao esta ajustando nenhum holograma.'
+
 Varinha:
   Recebida: '&aVocê recebeu a &6varinha de hologramas&a. Clique com o direito num holograma para editar.'
   Nada na mira: '&cNenhum holograma na sua mira.'
@@ -152,6 +170,7 @@ Ajuda:
     &e/holo clonar <nome> <novo> &8| &erenomear <nome> <novo>
     &e/holo desfazer <nome> &8- &7volta a última mudança
     &e/holo varinha &8- &7edita e move pela mira
+    &e/holo ajustar [nome] &8- &7ajusta pela hotbar, olhando para ele
     &7Mais: &f/holo ajuda 2
     &8&m----------------------------------------
   Pagina 2: |
