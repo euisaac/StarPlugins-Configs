@@ -1,0 +1,203 @@
+# StarElevador Config - Por euisaac
+# Versão 1.2 (com quebra de elevador, lore e display individual de mensagens)
+
+enabled: true  # Desativa o plugin inteiro se false
+debug: false  # Logs extras
+
+# Configurações principais
+elevator-material: IRON_BLOCK  # Material do bloco de elevador
+elevator-sound: ENTITY_ENDERMAN_TELEPORT  # Som do teleporte
+max-search-distance: 400  # Distância máxima para buscar elevadores na vertical
+elevator-item-name: "&5&lStarElevador"  # Nome do item (use & para cores)
+elevator-item-lore:  # Lore do item (lista de linhas, use & para cores)
+  - "&7Use este bloco para criar elevadores verticais"
+  - ""
+  - "&a§lFuncionalidades:"
+  - "&7• Pule para subir ao próximo elevador"
+  - "&7• Agache para descer ao anterior"
+  - "&7• Agache + Right-Click: Menu do Elevador"
+  - "&7• Right-Click: Menu de Andares"
+prevent-break: false  # Se true, só OP ou com perm 'starelevador.break' pode quebrar elevadores
+search-radius: 0  # 0 = exato X,Z; 1 = raio 1 bloco ao redor (para desalinhamentos leves)
+drop-camouflaged: false  # Se true, dropa material camuflado mas com meta de elevador
+
+# Configurações da GUI de Andares
+andares-gui-title: "&7Menu de Andares"
+andares-gui-size: 36 # Tamanho: 9,18,27,36,45,54
+andares-itens:
+  andares:
+    material: "PAPER"
+    name: "&aAndar: &f{andar}"
+    lore:
+      - ""
+      - "&7 Clique apara ir"
+  andar:
+    material: "LIME_DYE"
+    name: "&aAndar: &e{andar}"
+    lore:
+      - ""
+      - "&a Voce já esta aqui."
+
+# Configurações da GUI de Camuflagem
+camouflage-gui-title: "&7Menu do Elevador"
+camouflage-gui-size: 36  # Tamanho: 9,18,27,36,45,54
+camouflage-custom-enabled: true  # Novo: Ativa bigorna para input custom (ANVIL na última slot)
+camouflage-blocks:  # Materiais fixos com slots (ex: "STONE:1" = slot 1; sem : usa sequencial)
+  - "STONE:12"
+  - "GRASS_BLOCK:2"
+  - "COBBLESTONE:3"  # Slot sequencial 2
+  - "OAK_PLANKS:4"
+  - "IRON_BLOCK:5"
+  - "NETHERRACK:6"
+  - "DIRT:11"
+  - "ANDESITE:15"
+  - "DIORITE:14"
+  - "GRANITE:13"
+camouflage-custom-enabled: true  # Permite camuflagem custom via chat
+camouflage-blacklist:  # Blocos com gravidade que não podem ser usados para camuflagem
+  - "SAND"
+  - "RED_SAND"
+  - "GRAVEL"
+  - "ANVIL"
+  - "CHIPPED_ANVIL"
+  - "DAMAGED_ANVIL"
+  - "WHITE_CONCRETE_POWDER"
+  - "ORANGE_CONCRETE_POWDER"
+  - "MAGENTA_CONCRETE_POWDER"
+  - "LIGHT_BLUE_CONCRETE_POWDER"
+  - "YELLOW_CONCRETE_POWDER"
+  - "LIME_CONCRETE_POWDER"
+  - "PINK_CONCRETE_POWDER"
+  - "GRAY_CONCRETE_POWDER"
+  - "LIGHT_GRAY_CONCRETE_POWDER"
+  - "CYAN_CONCRETE_POWDER"
+  - "PURPLE_CONCRETE_POWDER"
+  - "BLUE_CONCRETE_POWDER"
+  - "BROWN_CONCRETE_POWDER"
+  - "GREEN_CONCRETE_POWDER"
+  - "RED_CONCRETE_POWDER"
+  - "BLACK_CONCRETE_POWDER"
+  - "DRAGON_EGG"
+  - "POINTED_DRIPSTONE"
+  - "SCULK"
+  - "SCULK_CATALYST"
+  - "SCULK_SENSOR"
+  - "SCULK_SHRIEKER"
+  - "WATER"
+  - "LAVA"
+  - "AIR"
+camouflage-function-slots:  # Slots para funções especiais (separados dos blocos)
+  custom_block: "34:COMMAND_BLOCK"  # Slot para bloco customizado
+  floor_title: "35:BEACON"  # Slot para definir título do andar
+  hologram_toggle: "33:ARMOR_STAND"  # Slot para ligar/desligar holograma
+  camuflagem_atual: "27" # Slot que mostra a atual camuflagem (material dinâmico)
+  quebrar_elevador: "28:TNT" # Slot do item que remove o elevador
+  link_elevators: "31:REPEATER"  # Slot para vincular elevadores juntos
+  toggle_floor_public: "29:ENDER_CHEST"  # Slot para toggle privacidade do menu de andares
+
+# Configurações de Holograma
+hologram-enabled-by-default: false  # Holograma ativado por padrão em novos elevadores
+hologram-offset-y: 1.5  # Offset Y acima do bloco do elevador
+
+# Configurações de Display (toggles individuais para mensagens de teleporte)
+display:
+  teleport-chat-up: false  # Mostra mensagem no chat ao subir (true/false)
+  teleport-actionbar-up: true  # Mostra na actionbar ao subir (true/false)
+  teleport-chat-down: false  # Mostra no chat ao descer
+  teleport-actionbar-down: true  # Mostra na actionbar ao descer
+
+# Comandos
+commands:
+  - '&6StarElevador {plugin-version} {plugin-owner}'
+  - ''
+  - '&c /elevador dar <jogador> <quantidade>'
+  - '&c /elevador reload (OP apenas)'
+  - '&c /elevador remove [x y z] (OP apenas)'
+  - '&e /elevador amigo add <jogador> (adiciona amigo ao elevador atual)'
+  - '&e /elevador amigo remove <jogador> (remove amigo do elevador atual)'
+  - '&e /elevador amigo lista (lista amigos do elevador atual)'
+  - '&e /elevador amigo addall <jogador> (adiciona amigo a todos os seus elevadores)'
+  - '&e /elevador amigo removeall <jogador> (remove amigo de todos os seus elevadores)'
+
+# Mensagens (use %player%, %material%, %location%)
+messages:
+  prefix: "&5&lStarElevador&f"
+  no-permission: "&cVocê não tem permissão!"
+  reload-success: "&aConfig recarregada!"
+  item-given: "&aVocê recebeu %quantity% Elevador(es)!"
+  item-given-other: "&aItem dado para %player% (%quantity%)!"
+  invalid-player: "&cJogador não encontrado!"
+  invalid-amount: "&cQuantidade inválida! Use 1-64."
+  invalid-command: "&cComando inválido! Use /elevador."
+  teleport-up: "&aSubindo para o andar superior!"
+  teleport-down: "&aDescendo para o andar inferior!"
+  no-elevator-found: "&cNenhum elevador encontrado!"
+  camouflage-success: "&aBloco camuflado como &f%material%!"
+  camouflage-already: "&cEste bloco já está camuflado!"
+  camouflage-blacklisted: "&cEste material está na lista negra de camuflagem!"
+  break-prevented: "&cVocê não pode quebrar elevadores! (Use /gamemode creative)"
+  break-dropped: "&eElevador quebrado! Item dropado (%material%)."
+  actionbar-floor: "&5Andar &f%floor%&d/&f%total%"
+  actionbar-no-elevator: "&7Sem elevador detectado."
+  debug-marked: "&e[Debug] Bloco marcado em %location%"
+  debug-broken: "&e[Debug] Elevador quebrado em %location%"
+  camouflage-custom-prompt: "&eDigite o material desejado (ex: STONE_BRICKS):"
+  camouflage-custom-invalid: "&cMaterial inválido! Tente novamente (ex: STONE)."
+  camouflage-custom-timeout: "&cTempo esgotado para input custom."
+  camouflage-custom-no-perm: "&cSem permissão para camuflagem custom!"
+  camouflage-custom-gui-hint: "&eClique em um bloco do seu inventário para camuflar. Clique no bloco no centro para pegá-lo de volta."
+  camouflage-custom-need-block: "&cClique em um &fbloco &cdo seu inventário para usar como camuflagem."
+  camouflage-reset: "&aCamuflagem removida! O bloco voltou ao padrão e o item foi devolvido a você."
+  hologram-enabled: "&aHolograma ativado para este elevador!"
+  hologram-disabled: "&cHolograma desativado para este elevador!"
+  remove-success: "&aElevador removido com sucesso!"
+  remove-no-target: "&cVocê não está olhando para um elevador!"
+  settitle-no-perm: "&cVocê não tem permissão para definir títulos."
+  togglehologram-no-perm: "&cVocê não tem permissão para toggle hologramas."
+  break-no-perm: "&cVocê não tem permissão para quebrar elevadores."
+  break-menu-message: "&cVocê não pode quebrar elevadores! Use a GUI para remover."
+  title-removed: "&aTítulo removido."
+  title-set: "&aTítulo definido: %title%"
+  invalid-material: "&cMaterial inválido: %input%"
+  floor-title-prompt: "&aDigite o título do andar no chat:"
+  camouflage-custom-disabled: "&cCamuflagem customizada desabilitada."
+  no-build-permission: "&cVocê não pode acessar o menu de camuflagem neste terreno!"
+  no-access: "&cVocê não tem acesso a este elevador!"
+  only-players: "&cEste comando só pode ser usado por jogadores!"
+  invalid-coordinates: "&cCoordenadas inválidas!"
+  link-no-perm: "&cVocê não tem permissão para vincular elevadores."
+  elevators-linked: "&a%count% elevadores vinculados com sucesso!"
+  elevators-unlinked: "&c%count% elevadores desvinculados com sucesso!"
+  friend-added: "&aAmigo adicionado: %player%"
+  friend-removed: "&cAmigo removido: %player%"
+  friend-added-all: "&aAmigo adicionado a %count% elevadores!"
+  friend-removed-all: "&cAmigo removido de %count% elevadores!"
+  friend-added-notify: "&aVocê foi adicionado como amigo no elevador de %owner%"
+  friend-removed-notify: "&cVocê foi removido como amigo no elevador de %owner%"
+  friend-list-empty: "&eEste elevador não tem amigos adicionados."
+  friend-list-header: "&aAmigos deste elevador:"
+  not-owner: "&cVocê não é o dono deste elevador!"
+  not-on-elevator: "&cVocê deve estar em cima de um elevador para gerenciar amigos!"
+  self-add: "&cVocê não pode adicionar/remover a si mesmo!"
+  amigo-usage: "&cUso: /elevador amigo add <jogador>, /elevador amigo remove <jogador>, /elevador amigo addall <jogador>, /elevador amigo removeall <jogador> ou /elevador amigo lista"
+  amigo-usage-short: "&cUso: /elevador amigo add <jogador> ou /elevador amigo remove <jogador>"
+  remove-usage: "&cUso: /elevador remove ou /elevador remove <x> <y> <z>"
+  floor-public-enabled: "&aMenu de andares definido como público para todos!"
+  floor-public-disabled: "&cMenu de andares definido como privado para dono e amigos!"
+  toggle-floor-public-no-perm: "&cVocê não tem permissão para alterar a privacidade do menu de andares."
+
+# Onde os elevadores ficam guardados.
+# SQLITE: arquivo plugins/StarElevador/elevadores.db, nao precisa configurar nada.
+# MYSQL: preencha os dados abaixo. Ao trocar de SQLITE para MYSQL, os elevadores
+# do elevadores.db vao sozinhos para o MySQL na primeira subida.
+# O elevators.yml antigo e migrado sozinho e fica guardado como elevators.yml.migrado.
+database:
+  type: SQLITE
+  host: 'localhost'
+  port: 3306
+  database: 'minecraft'
+  username: 'root'
+  password: ''
+  # Varios servidores no mesmo MySQL: use um prefixo diferente em cada um,
+  # senao os elevadores de um aparecem no outro.
+  table-prefix: 'starelevador_'
