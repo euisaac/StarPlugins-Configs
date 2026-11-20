@@ -1,0 +1,118 @@
+# ==========================================================================
+#  StarFlutuantes - mensagens
+#
+#  Mensagem vazia ('') nao e enviada: e assim que voce desliga um aviso
+#  sem precisar de uma opcao separada para cada um.
+#  Cores: &a, &e, &c... e tambem &#FF00AA nos servidores 1.16+.
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 4
+
+Prefixo: '&d&lFLUTUANTES &8» &7'
+
+Ajuda: |-
+  &8&m-----------------------------------------
+  &d&lStarFlutuantes
+  &7Itens, cabecas e particulas flutuando no ar.
+
+  &f/{comando} criar <nome> &8- &7monta um flutuante novo
+  &f/{comando} editor &8- &7lista todos num menu
+  &f/{comando} editar <nome> &8- &7abre o editor de um
+  &f/{comando} ajustar [nome] &8- &7ajusta pela hotbar: altura, inclinacao, giro e tamanho
+  &f/{comando} listar &8- &7lista no chat
+  &f/{comando} ir <nome> &8- &7teleporta ate ele
+  &f/{comando} trazer <nome> &8- &7traz ele ate voce
+  &f/{comando} remover <nome> &8- &7apaga o flutuante
+  &f/{comando} texto <valor> &8- &7responde ao "Digitar" sem usar o chat
+  &f/{comando} cancelar &8- &7desiste da criacao em andamento
+  &f/{comando} recarregar &8- &7recarrega os arquivos
+  &8&m-----------------------------------------
+
+Recarregado: '&aArquivos recarregados.'
+
+Erros:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So no jogo: '&cEste comando so funciona dentro do jogo.'
+  Falta o nome: '&cFalta o nome. Use: &f/{comando} <nome>'
+  Nao existe: '&cNao existe nenhum flutuante chamado &f{nome}&c.'
+  Ja existe: '&cJa existe um flutuante chamado &f{nome}&c.'
+  Nome invalido: '&cO nome &f{nome} &cnao serve: use so letras, numeros, - e _.'
+  Limite: '&cO servidor chegou ao limite de &f{limite} &cflutuantes.'
+  Sem mundo: '&cO mundo do flutuante &f{nome} &cnao esta carregado.'
+  Particula invalida: '&cA particula &f{particula} &cnao existe nesta versao.'
+  Item invalido: '&cO item &f{item} &cnao existe nesta versao.'
+  Mao vazia: '&cVoce precisa estar segurando um item.'
+  Mao sem bloco: '&cVoce precisa estar segurando um bloco.'
+  Bloco invalido: '&cO bloco &f{bloco} &cnao existe nesta versao (ou nao e um bloco).'
+
+Entrada:
+  Como cancelar: |-
+    &7Digite &fcancelar &7para desistir.
+    &8(se o chat do servidor engolir a sua resposta, use &7/starflutuantes texto <o que voce quer>&8)
+  Nada pendente: '&cO plugin nao esta esperando nenhuma resposta sua agora.'
+  Sem texto: '&cEscreva o texto depois do comando: &f/starflutuantes texto <valor>'
+  Cancelado: '&7Beleza, deixei como estava.'
+  Tempo esgotado: '&7O tempo para responder acabou.'
+  Particula: '&eEscreva no chat o nome da particula. Ex.: &fFLAME'
+  Item: '&eEscreva no chat o nome do item. Ex.: &fCHEST'
+  Bloco: '&eEscreva no chat o nome do bloco. Ex.: &fEMERALD_BLOCK'
+  Cabeca: |-
+    &eEscreva no chat a cabeca que voce quer:
+    &7- o nick de um jogador &8(ex.: &fEuIsaac&8)
+    &7- o hash da textura, o link dela ou o base64
+
+  Linha: '&eEscreva o novo texto desta linha. &7Use &fvazio &7para deixar em branco.'
+  Linha nova: '&eEscreva o texto da linha nova. &7Use &fvazio &7para deixar em branco.'
+  Comando: |-
+    &eEscreva o comando, sem a barra.
+    &7Prefixos: &fconsole:&7, &fjogador:&7, &fop:&7, &fmensagem:&7,
+    &ftitulo:&7, &factionbar:&7, &fsom:&7, &flink:&7. Use &f{jogador} &7para o nick.
+  Permissao: '&eEscreva a permissao exigida. Ex.: &fservidor.vip'
+  Link: |-
+    &eEscreva o endereco que o clique deve abrir. Ex.: &fdiscord.gg/seuservidor
+    &7Para dar um nome ao clique, escreva | e o texto depois do endereco:
+    &fdiscord.gg/seuservidor|Entrar no Discord
+
+Criacao:
+  Varinha entregue: '&aPronto! Use a varinha para colocar &f{nome} &aonde quiser.'
+  Inventario cheio: '&eSeu inventario estava cheio: a varinha caiu no chao.'
+  Criado: '&aFlutuante &f{nome} &a({tipo}) criado!'
+  Cancelada: '&7Criacao cancelada.'
+  Nada para cancelar: '&cVoce nao esta criando nenhum flutuante.'
+  Varinha perdida: '&cEsta varinha e de uma criacao antiga e nao vale mais.'
+
+Editor:
+  Removido: '&aO flutuante &f{nome} &afoi removido.'
+  Teleportado: '&aVoce foi para o flutuante &f{nome}&a.'
+  Trazido: '&aO flutuante &f{nome} &aveio para onde voce esta.'
+
+Interacao:
+  Sem permissao: '&cVoce nao tem permissao para usar isso.'
+  Espere: '&cEspere &f{segundos}s &cpara usar de novo.'
+
+  # A linha clicavel do link: no Java, clicar nela abre o navegador.
+  # Deixe vazia para nao enviar.
+  Link: '&aClique aqui para abrir: &b&n{link}'
+  Link dica: '&7Abrir &f{link}'
+
+  # O endereco em texto puro, para copiar. E esta linha que atende o Bedrock,
+  # onde o clique nem sempre funciona. Deixe vazia para nao enviar.
+  Link no chat: '&7Se o clique nao abrir, copie: &f{link}'
+
+Ajuste:
+  Entrou: |-
+    &aAjustando &f{nome}&a pela hotbar. &7Clique direito aumenta, esquerdo diminui.
+    &7O relogio troca o passo (fino, medio, grosso); o corante vermelho devolve a sua hotbar.
+  Saiu: '&aAjuste de &f{nome} &asalvo. Sua hotbar voltou.'
+  # Barra de acao a cada clique. {ferramenta}, {valor}, {passo}, {nome}.
+  Barra: '&e{ferramenta}: &f{valor} &8| &7passo &f{passo}'
+  Nao se aplica: '&cEssa ferramenta nao serve para este tipo de flutuante.'
+  Ferramenta perdida: '&cEsta ferramenta de ajuste nao vale mais e foi removida.'
+  Restaurado: '&aSua hotbar, guardada durante um ajuste, foi devolvida.'
+  Nenhum perto: '&cNenhum flutuante a ate 8 blocos. Use &f/starflutuantes ajustar <nome>&c.'
+
+Lista:
+  Vazia: '&7Nenhum flutuante criado ainda.'
+  Cabecalho: '&8&m----- &dFlutuantes &7({quantidade}) &8&m-----'
+  Linha: '&f{nome} &8- &7{tipo} &8| &7{mundo} &f{x} {y} {z} &8| &7{estado}'

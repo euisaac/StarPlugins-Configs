@@ -1,0 +1,244 @@
+# ==========================================================================
+#  StarFlutuantes - configuracao
+#
+#  Os flutuantes em si NAO ficam aqui: eles sao criados no jogo, com
+#  /starflutuantes criar <nome>, e guardados no flutuantes.yml ao lado.
+#  Este arquivo cuida de como eles se mexem e do que aparece nos menus.
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+Geral:
+  # Mostra detalhes a mais no console.
+  Debug: false
+
+  # Quantos flutuantes o servidor aceita ao todo. 0 = sem limite.
+  Limite de flutuantes: 0
+
+Animacao:
+  # De quantos em quantos ticks a animacao anda. 2 e suave e barato;
+  # 1 fica mais liso e custa o dobro de pacotes.
+  Ticks: 2
+
+  # Quantos graus o flutuante gira a cada passo (animacao Girando).
+  Graus por passo: 6.0
+
+  # Quanto ele sobe e desce, em blocos (animacao Flutuando).
+  Altura da subida: 0.18
+
+  # O tamanho do passo da subida. Quanto maior, mais rapido o vai e vem.
+  Passo da subida: 0.12
+
+Suporte:
+  # Distancia entre o suporte invisivel e o item que ele segura na cabeca.
+  # So mexa se o item aparecer acima ou abaixo de onde voce colocou.
+  Altura do item pequeno: 0.7
+  Altura do item normal: 1.4
+
+Holograma:
+  # Distancia entre uma linha e a de baixo.
+  Espacamento das linhas: 0.27
+
+  # Altura do texto em relacao ao suporte que o segura. So mexa se o texto
+  # aparecer deslocado na sua versao de servidor.
+  Deslocamento do texto: 0.5
+
+  # O texto sobe e desce junto com o item na animacao "Flutuando". Desligue
+  # se o seu servidor tem centenas de hologramas e voce quer economizar
+  # pacotes: o texto fica parado e so o item se mexe.
+  Acompanhar a animacao: true
+
+  # Reescreve as linhas de tempos em tempos para atualizar placeholders
+  # do PlaceholderAPI. Linhas sem '%' nunca sao reescritas.
+  Atualizar placeholders: true
+  Intervalo dos placeholders: 40
+
+# A varinha que voce recebe para colocar o flutuante no mundo. Para item e
+# cabeca ela vira o proprio item escolhido; o Material abaixo vale para as
+# particulas.
+Varinha:
+  Material: STICK
+  Nome: '&e&lVarinha do StarFlutuantes'
+  Lore:
+    - '&7Flutuante: &f{nome}'
+    - '&7Tipo: &f{tipo}'
+    - ''
+    - '&fClique direito num bloco&7: cola no ar,'
+    - '&7do lado que voce clicou.'
+    - '&fBatendo num bloco&7: cola em cima dele.'
+    - '&fClique direito no ar&7: cola tres blocos'
+    - '&7a frente de voce.'
+    - ''
+    - '&7Para desistir: &f/starflutuantes cancelar'
+
+# Formato: SOM, SOM;volume ou SOM;volume;tom. Deixe vazio para nao tocar.
+Sons:
+  Clique: 'UI_BUTTON_CLICK;1;1'
+  Criado: 'ENTITY_PLAYER_LEVELUP;1;1.4'
+  Erro: 'ENTITY_VILLAGER_NO;1;1'
+
+# --------------------------------------------------------------------------
+#  Sugestoes dos menus
+#
+#  Sao atalhos: em toda tela existe o botao "Digitar", que aceita qualquer
+#  particula, material ou cabeca, mesmo que nao esteja listada aqui.
+#
+#  Os dois formatos abaixo valem:
+#    - Lista simples:      - FLAME
+#    - Secao com detalhes: Fogo: { Valor: FLAME, Nome: '&cFogo', Material: BLAZE_POWDER }
+# --------------------------------------------------------------------------
+
+Particulas sugeridas:
+  Fogo:
+    Valor: FLAME
+    Nome: '&cFogo'
+    Material: BLAZE_POWDER
+  Coracao:
+    Valor: HEART
+    Nome: '&dCoracao'
+    Material: RED_DYE
+  Feliz:
+    Valor: VILLAGER_HAPPY
+    Nome: '&aParticula feliz'
+    Material: EMERALD
+  Magia:
+    Valor: SPELL_WITCH
+    Nome: '&5Magia'
+    Material: BREWING_STAND
+  Encantamento:
+    Valor: ENCHANTMENT_TABLE
+    Nome: '&bEncantamento'
+    Material: ENCHANTING_TABLE
+  Nota:
+    Valor: NOTE
+    Nome: '&eNota musical'
+    Material: NOTE_BLOCK
+  Fumaca:
+    Valor: SMOKE_LARGE
+    Nome: '&8Fumaca'
+    Material: COAL
+  Agua:
+    Valor: WATER_SPLASH
+    Nome: '&9Agua'
+    Material: WATER_BUCKET
+  Neve:
+    Valor: SNOW_SHOVEL
+    Nome: '&fNeve'
+    Material: SNOWBALL
+  Lava:
+    Valor: DRIP_LAVA
+    Nome: '&6Pingo de lava'
+    Material: LAVA_BUCKET
+  Fogos:
+    Valor: FIREWORKS_SPARK
+    Nome: '&eFogos'
+    Material: FIREWORK_ROCKET
+  Redstone:
+    Valor: REDSTONE
+    Nome: '&cPo de redstone'
+    Material: REDSTONE
+  Portal:
+    Valor: PORTAL
+    Nome: '&5Portal'
+    Material: ENDER_PEARL
+  Slime:
+    Valor: SLIME
+    Nome: '&aSlime'
+    Material: SLIME_BALL
+  Critico:
+    Valor: CRIT
+    Nome: '&fCritico'
+    Material: IRON_SWORD
+
+Itens sugeridos:
+  - CHEST
+  - ENDER_CHEST
+  - DIAMOND
+  - EMERALD
+  - GOLD_INGOT
+  - IRON_INGOT
+  - DIAMOND_SWORD
+  - DIAMOND_PICKAXE
+  - BOW
+  - GOLDEN_APPLE
+  - ENCHANTED_GOLDEN_APPLE
+  - NETHER_STAR
+  - ENDER_PEARL
+  - BLAZE_ROD
+  - CAKE
+  - BOOK
+  - PAPER
+  - GOLD_BLOCK
+  - DIAMOND_BLOCK
+  - EMERALD_BLOCK
+  - BEACON
+  - TNT
+  - CLOCK
+  - COMPASS
+  - EXPERIENCE_BOTTLE
+
+# Blocos do menu de criacao do tipo Bloco. Lista simples ou secao com detalhes,
+# como as outras. Bau, placa, cama e afins aparecem desenhados como item.
+Blocos sugeridos:
+  - EMERALD_BLOCK
+  - DIAMOND_BLOCK
+  - GOLD_BLOCK
+  - IRON_BLOCK
+  - REDSTONE_BLOCK
+  - LAPIS_BLOCK
+  - COAL_BLOCK
+  - QUARTZ_BLOCK
+  - BEACON
+  - GLOWSTONE
+  - SEA_LANTERN
+  - GLASS
+  - OBSIDIAN
+  - SLIME_BLOCK
+  - HAY_BLOCK
+  - TNT
+  - BOOKSHELF
+  - CRAFTING_TABLE
+  - FURNACE
+  - CHEST
+  - ENDER_CHEST
+  - ENCHANTING_TABLE
+  - MELON
+  - PUMPKIN
+  - JACK_O_LANTERN
+  - GRASS_BLOCK
+  - DIRT
+  - STONE
+  - COBBLESTONE
+  - OAK_LOG
+  - OAK_PLANKS
+  - SPONGE
+  - ICE
+  - SNOW_BLOCK
+  - NETHERRACK
+  - END_STONE
+
+Cabecas sugeridas:
+  Creeper:
+    Nome: '&aCreeper'
+    Material: CREEPER_HEAD
+  Esqueleto:
+    Nome: '&fEsqueleto'
+    Material: SKELETON_SKULL
+  Wither:
+    Nome: '&8Wither'
+    Material: WITHER_SKELETON_SKULL
+  Zumbi:
+    Nome: '&2Zumbi'
+    Material: ZOMBIE_HEAD
+  Dragao:
+    Nome: '&5Dragao'
+    Material: DRAGON_HEAD
+  Steve:
+    Nome: '&eSteve'
+    Material: PLAYER_HEAD
+    Textura: Steve
+  Alex:
+    Nome: '&6Alex'
+    Material: PLAYER_HEAD
+    Textura: Alex
