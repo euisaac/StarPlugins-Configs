@@ -1,0 +1,181 @@
+# ============================================================================
+#  Radiacao e zonas toxicas
+#
+#  As zonas sao regioes do WorldGuard: crie a area com o machadinho (//wand) e
+#  o /rg define <nome>. Depois, o jeito mais facil (WorldGuard 7):
+#      /rg flag <nome> radiacao 5        (5 de radiacao por segundo)
+#      /rg flag <nome> radiacao          (tira)
+#  Ou coloque o nome da regiao em Zonas, abaixo (vale tambem no WorldGuard 6).
+#  Area cubica ou poligonal, tanto faz. Sem o WorldGuard instalado, ninguem
+#  pega radiacao (os comandos e as curas continuam funcionando).
+#
+#  A radiacao fica acumulada no jogador (sobrevive ao logout) e vai de 0 ate o
+#  Maximo. Quanto mais alta, piores os sintomas e mais rapido o contador Geiger.
+#
+#  Placeholders (PlaceholderAPI) para a scoreboard:
+#    %starapocalipsez_radiacao%            radiacao acumulada (numero)
+#    %starapocalipsez_radiacao_porcentagem% em % do maximo
+#    %starapocalipsez_radiacao_status%     Limpo / Baixa / Media / Alta / Critica
+#    %starapocalipsez_radiacao_barra%      a barra colorida
+#    %starapocalipsez_radiacao_zona%       radiacao por segundo onde o jogador esta
+#    %starapocalipsez_radiacao_protecao%   % de protecao do que ele esta vestindo
+# ============================================================================
+Ativado: true
+
+Maximo: 100
+
+# De quanto em quanto tempo a radiacao e somada e os sintomas aplicados.
+Pulsar-A-Cada: '1s'
+
+# Quanto a radiacao cai por segundo FORA das zonas. 0 = so baixa com cura.
+Decaimento-Fora-Por-Segundo: 0.0
+
+# Zerar a radiacao quando o jogador morre.
+Limpar-Na-Morte: true
+
+# Regiao do WorldGuard: radiacao por segundo. 'mundo:regiao' vale so naquele
+# mundo; so o nome vale em qualquer mundo. Em regioes sobrepostas, vale a maior.
+# Tambem da para mexer pelo jogo: /sapoc radiacao zona <regiao> <por segundo>
+# Vem vazia de proposito: uma regiao que ja existe no servidor com o mesmo nome
+# nao pode virar zona radioativa sozinha na atualizacao. Exemplo:
+#   Zonas:
+#     zona_bunker: 5.0
+#     base_militar: 2.0
+Zonas: {}
+
+# ----------------------------------------------------------------------------
+#  Onde mostrar a medicao
+#  ACTIONBAR (junto da sede na barra de estado), BOSSBAR (1.9+; no 1.8 cai na
+#  actionbar) ou NENHUM (so pelo PlaceholderAPI, por exemplo na scoreboard).
+# ----------------------------------------------------------------------------
+Exibir:
+  Modo: ACTIONBAR
+  # Mostra so quando o jogador esta numa zona ou tem radiacao acumulada.
+  So-Quando-Contaminado: true
+  # Marcadores: {barra} {radiacao} {maximo} {porcentagem} {status} {zona}
+  Texto: '&aRAD {barra} &f{porcentagem}%'
+  Bossbar:
+    Titulo: '&aRAD Radiacao: {status} &7({porcentagem}%) &8| &7zona: &f{zona}/s'
+    Estilo: SEGMENTED_10
+    # Cor por status (PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE)
+    Cores:
+      Limpo: GREEN
+      Baixa: GREEN
+      Media: YELLOW
+      Alta: RED
+      Critica: PURPLE
+
+# Nome de cada faixa (em % do maximo). Vale para o {status} e o placeholder.
+Status:
+  Limpo: '&aLimpo'
+  Baixa: '&aBaixa'
+  Media: '&eMedia'
+  Alta: '&6Alta'
+  Critica: '&4Critica'
+Faixas:
+  Baixa: 1
+  Media: 30
+  Alta: 60
+  Critica: 85
+
+# ----------------------------------------------------------------------------
+#  Contador Geiger: toca sozinho assim que o jogador entra numa zona, sem item
+#  na mao. Estalos lentos com pouca radiacao, rapidos e agudos perto do maximo.
+#  Som: SOM;volume;tom (o tom daqui e o do inicio; ele sobe ate Tom-Maximo).
+# ----------------------------------------------------------------------------
+Som:
+  Ativado: true
+  Som: 'BLOCK_NOTE_BLOCK_HAT;0.7;1.4'
+  Tom-Maximo: 2.0
+  # Intervalo entre estalos, em milissegundos: com radiacao zero e no maximo.
+  Intervalo-Lento-Ms: 1200
+  Intervalo-Rapido-Ms: 100
+  # Continua estalando fora da zona enquanto houver radiacao acumulada.
+  Tocar-Fora-Da-Zona: false
+
+# ----------------------------------------------------------------------------
+#  Protecao: pecas vestidas (capacete, peitoral, calca, botas) que cortam a
+#  radiacao recebida. As porcentagens somam (no maximo 100 = imune).
+#  Cada peca: Material, Nome-Contem, Custom-Model-Data e/ou ItemsAdder -- tudo
+#  o que for informado precisa bater.
+# ----------------------------------------------------------------------------
+Protecao:
+  mascara:
+    Material: 'LEATHER_HELMET,IRON_HELMET'
+    Nome-Contem: 'Mascara de Gas'
+    Reducao: 50
+  traje-peito:
+    Material: 'LEATHER_CHESTPLATE'
+    Nome-Contem: 'Traje Hazmat'
+    Reducao: 25
+  traje-calca:
+    Material: 'LEATHER_LEGGINGS'
+    Nome-Contem: 'Traje Hazmat'
+    Reducao: 15
+  traje-botas:
+    Material: 'LEATHER_BOOTS'
+    Nome-Contem: 'Traje Hazmat'
+    Reducao: 10
+  # Exemplo com ItemsAdder:
+  # mascara-ia:
+  #   ItemsAdder: 'meupack:mascara_gas'
+  #   Reducao: 50
+
+# ----------------------------------------------------------------------------
+#  Sintomas: valem a partir da % indicada (o pior estagio alcancado manda).
+#  Efeitos: EFEITO;nivel;segundos  (nivel 0 = I)
+# ----------------------------------------------------------------------------
+Estagios:
+  1:
+    A-Partir-De: 25
+    Efeitos:
+      - 'HUNGER;0;3'
+    Dano: 0.0
+    Aviso: '&aVoce sente um gosto metalico na boca.'
+  2:
+    A-Partir-De: 50
+    Efeitos:
+      - 'HUNGER;1;3'
+      - 'CONFUSION;0;6'
+      - 'SLOW;0;3'
+    Dano: 0.0
+    Aviso: '&eNausea... a radiacao esta fazendo efeito.'
+  3:
+    A-Partir-De: 75
+    Efeitos:
+      - 'HUNGER;1;3'
+      - 'CONFUSION;0;6'
+      - 'SLOW;1;3'
+      - 'WEAKNESS;0;3'
+    Dano: 0.5
+    Aviso: '&6Sua pele esta queimando. Saia da zona!'
+  4:
+    A-Partir-De: 95
+    Efeitos:
+      - 'CONFUSION;0;6'
+      - 'SLOW;2;3'
+      - 'WEAKNESS;1;3'
+    Dano: 1.5
+    Aviso: '&4Envenenamento por radiacao!'
+
+# ----------------------------------------------------------------------------
+#  Curas: itens que baixam a radiacao acumulada.
+#  Uso: CLIQUE (clique direito com o item, gasta 1) ou CONSUMIR (comer/beber).
+#  Reduz: quanto tira (no numero da radiacao). Zerar: true tira tudo.
+# ----------------------------------------------------------------------------
+Curas:
+  pilula:
+    Material: 'PAPER'
+    Nome-Contem: 'Pilula de Iodo'
+    Uso: CLIQUE
+    Reduz: 25
+  seringa:
+    Material: 'BLAZE_ROD'
+    Nome-Contem: 'Seringa Anti-Rad'
+    Uso: CLIQUE
+    Zerar: true
+  bebida:
+    Material: 'POTION'
+    Nome-Contem: 'Bebida Anti-Rad'
+    Uso: CONSUMIR
+    Reduz: 40

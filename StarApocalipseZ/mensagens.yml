@@ -51,6 +51,11 @@ Ajuda:
     &7/sapoc limpar [mundo] &8- &fremove os zumbis do plugin
     &7/sapoc status &8- &fresumo do que esta acontecendo
     &8&m
+  Admin-Radiacao: |-
+    &7/sapoc radiacao ver [jogador] &8- &fradiacao, zona e protecao
+    &7/sapoc radiacao definir|limpar <jogador> [valor] &8- &fmexe na radiacao
+    &7/sapoc radiacao zona <regiao> <por segundo> &8- &fzona do WorldGuard (0 tira)
+    &7/sapoc radiacao zonas &8- &flista as zonas
 
 # ----------------------------------------------------------------------------
 #  Nivel
@@ -172,6 +177,18 @@ Entrada:
 # ----------------------------------------------------------------------------
 #  Sede
 # ----------------------------------------------------------------------------
+Radiacao:
+  Curou: '&aRadiacao reduzida em &f{tirou}&a. Agora: &f{porcentagem}%&a.'
+  Sem-Radiacao: '&7Voce nao esta contaminado.'
+  Desligada: '&cA radiacao esta desligada no radiacao.yml.'
+  Ver: '&aRAD &f{jogador}&a: &f{radiacao}/{maximo} &7({status}&7) &8| &7zona: &f{zona}/s &8| &7protecao: &f{protecao}%'
+  Definida: '&aRadiacao de &f{jogador} &adefinida em &f{valor}&a.'
+  Dica-Flag: '&7Com o WorldGuard 7 tambem da para usar &f/rg flag <regiao> radiacao <por segundo>&7.'
+  Sem-Zonas: '&7Nenhuma zona na lista do radiacao.yml.'
+  Zona-Linha: ' &8- &f{regiao}&7: &a{valor}/s'
+  Zona-Definida: '&aZona &f{regiao} &aagora tem &f{valor}/s &ade radiacao.'
+  Zona-Removida: '&eZona &f{regiao} &esaiu da lista.'
+
 Sede:
   Bebeu: '&bVoce bebeu. &7(+{quantidade})'
   Agua-Suja: '&2A agua estava suja.'
