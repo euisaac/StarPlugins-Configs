@@ -1,0 +1,181 @@
+Database:
+  Tipo: SQLite # SQLite (padrão) ou MySQL. Se o MySQL não conectar, o plugin avisa e usa SQLite.
+  IP: localhost:3306
+  DB: test
+  User: admin
+  Pass: ''
+  # Prefixo da tabela no MySQL (permite dividir o banco com outros plugins).
+  Prefixo: 'starportas_'
+  Debug: false
+
+# Configuração Global para StarPortas (em Português)
+# Materiais suportados (adicione mais ou remova)
+portas:
+  - OAK_DOOR
+  - SPRUCE_DOOR
+  - BIRCH_DOOR
+  - JUNGLE_DOOR
+  - ACACIA_DOOR
+  - DARK_OAK_DOOR
+  - MANGROVE_DOOR
+  - CHERRY_DOOR
+  - CRIMSON_DOOR
+  - WARPED_DOOR
+  - IRON_DOOR
+# Opcional: Incluir trapdoors ou fence gates? Descomente e adicione se quiser.
+# trapdoors:
+#   - OAK_TRAPDOOR
+#   - SPRUCE_TRAPDOOR
+#   - BIRCH_TRAPDOOR
+#   - JUNGLE_TRAPDOOR
+#   - ACACIA_TRAPDOOR
+#   - DARK_OAK_TRAPDOOR
+#   - MANGROVE_TRAPDOOR
+#   - CHERRY_TRAPDOOR
+#   - CRIMSON_TRAPDOOR
+#   - WARPED_TRAPDOOR
+#   - IRON_TRAPDOOR
+#
+# fence-gates:
+#   - OAK_FENCE_GATE
+#   - SPRUCE_FENCE_GATE
+#   - BIRCH_FENCE_GATE
+#   - JUNGLE_FENCE_GATE
+#   - ACACIA_FENCE_GATE
+#   - DARK_OAK_FENCE_GATE
+#   - MANGROVE_FENCE_GATE
+#   - CHERRY_FENCE_GATE
+#   - CRIMSON_FENCE_GATE
+#   - WARPED_FENCE_GATE
+#   - NETHER_BRICK_FENCE_GATE  # Vanilla, mas raro
+
+# Mundos onde o StarPortas NÃO deve funcionar (blacklist).
+# Nenhuma feature roda nesses mundos: sync de portas, anti-bug Bedrock, redstone, auto-abrir/auto-fechar.
+# Use o nome exato da pasta/mundo (case-insensitive).
+mundos-bloqueados:
+  - Dungeon
+
+# Opções Booleanas
+sincronizar-redstone: true  # Sync via redstone/alavancas
+prevenir-bug-bedrock: true  # Bloqueia sync e joga para trás se sem permissão
+prevenir-bug-bedrock-movimento: true  # Knockback ao tentar atravessar porta fechada sem perm (anti-Bedrock visual bug)
+knockback-strength: 0.8  # Força do knockback (multiplicador da direção, 0.1-2.0 recomendado)
+ativar-sons: true  # Sons globais (override por player via menu)
+
+# Auto-Abrir ao se Aproximar (global, override por player no menu)
+auto-abrir: false  # Liga/desliga auto-abrir portas fechadas ao se aproximar (requer starportas.autoopen)
+raio-auto-abrir: 2  # Blocos de distância para detectar aproximação (1-5)
+
+# Debug: Liga logs detalhados no console (abrir/fechar portas, menu, etc.)
+debug: false  # true = logs verbose; false = só essenciais
+
+# Auto-Fechar Global (override por player no menu)
+auto-fechar: false  # Liga/desliga auto-fechar após passar pela porta
+tempo-auto-fechar: 3  # Segundos para auto-fechar (1-10)
+
+# Sons Globais (exemplos vanilla 1.21 - override via menu)
+sons:
+  som-abrir-porta: BLOCK_WOODEN_DOOR_OPEN
+  volume-abrir: 1.0
+  pitch-abrir: 1.0
+  som-fechar-porta: BLOCK_WOODEN_DOOR_CLOSE
+  volume-fechar: 1.0
+  pitch-fechar: 1.0
+
+# Raio de busca adjacentes
+raio-busca: 1
+
+# Configuração do Menu GUI (customizável, agora com páginas e navegação)
+menu:
+  # Título do inventário (todas as páginas usam o mesmo título)
+  titulo: "&6StarPortas - Menu Principal"
+
+  # Número de linhas do menu (3=27 slots, 6=54 max). Mínimo 3 (necessário para caber navegação).
+  linhas: 3
+
+  # Som tocado para o jogador a cada clique em um item do menu
+  som-clique: "UI_BUTTON_CLICK"
+
+  # Item de informações: mostra as configurações atuais do jogador (não clicável)
+  info-slot: 4
+  info-nome: "&e&lSuas Configurações"
+
+  # Botão que abre a página de escolha de som de ABRIR (paginada automaticamente)
+  sons-abrir-slot: 10
+  sons-abrir-material: "OAK_DOOR"
+  sons-abrir-nome: "&aEscolher Som de Abrir »"
+
+  # Botão que abre a página de escolha de som de FECHAR (paginada automaticamente)
+  sons-fechar-slot: 14
+  sons-fechar-material: "CRIMSON_DOOR"
+  sons-fechar-nome: "&cEscolher Som de Fechar »"
+
+  # Botão que abre a página de ajuste fino de volume/pitch
+  volume-slot: 12
+  volume-material: "NOTE_BLOCK"
+  volume-nome: "&bAjustar Volume/Pitch »"
+
+  # Slot de Auto-Fechar (toggle ligado/desligado)
+  auto-fechar:
+    slot: 20
+    material-ligado: "GREEN_WOOL"
+    nome-ligado: "&aAuto-Fechar: Ligado"
+    material-desligado: "RED_WOOL"
+    nome-desligado: "&cAuto-Fechar: Desligado"
+
+  # Slot de Auto-Abrir (toggle ligado/desligado)
+  auto-abrir:
+    slot: 24
+    material-ligado: "BLUE_WOOL"
+    nome-ligado: "&bAuto-Abrir: Ligado"
+    material-desligado: "ORANGE_WOOL"
+    nome-desligado: "&6Auto-Abrir: Desligado"
+
+  # Slot de Saída (fecha o menu)
+  saida:
+    slot: 26
+    material: "BARRIER"
+    nome: "&cFechar Menu"
+
+  # Botões de navegação usados nas páginas de escolha de som (posição é calculada automaticamente)
+  voltar:
+    material: "ARROW"
+    nome: "&e« Voltar"
+  pagina-anterior:
+    material: "ARROW"
+    nome: "&7« Página Anterior"
+  proxima-pagina:
+    material: "ARROW"
+    nome: "&7Próxima Página »"
+
+  # Sons para Abrir: adicione quantos quiser, o menu pagina automaticamente (não precisa mais definir slot)
+  sons-abrir:
+    - som: "BLOCK_WOODEN_DOOR_OPEN"
+      nome-item: "&aPorta de Madeira"
+      material: "OAK_DOOR"
+    - som: "BLOCK_IRON_DOOR_OPEN"
+      nome-item: "&7Porta de Ferro"
+      material: "IRON_DOOR"
+    - som: "BLOCK_NETHER_BRICKS_BREAK"
+      nome-item: "&cPorta Nether"
+      material: "CRIMSON_DOOR"
+    - som: "BLOCK_NOTE_BLOCK_PLING"
+      nome-item: "&eSem Som (Pling)"
+      material: "NOTE_BLOCK"
+    # Adicione mais entradas aqui - a lista pagina sozinha quando não cabe mais na tela
+
+  # Sons para Fechar: mesma estrutura
+  sons-fechar:
+    - som: "BLOCK_WOODEN_DOOR_CLOSE"
+      nome-item: "&aFechar Madeira"
+      material: "OAK_DOOR"
+    - som: "BLOCK_IRON_DOOR_CLOSE"
+      nome-item: "&7Fechar Ferro"
+      material: "IRON_DOOR"
+    - som: "BLOCK_NETHER_BRICKS_HIT"
+      nome-item: "&cFechar Nether"
+      material: "CRIMSON_DOOR"
+    - som: "BLOCK_NOTE_BLOCK_BASS"
+      nome-item: "&eSem Som (Baixo)"
+      material: "NOTE_BLOCK"
+    # Adicione mais entradas aqui
