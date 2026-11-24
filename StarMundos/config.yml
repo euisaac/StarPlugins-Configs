@@ -148,6 +148,18 @@ mundos:
 # 20 ticks = 1 segundo | Padrão: 100 ticks = 5 segundos
 efeitos-intervalo: 100
 
+# ============================================================
+#  Intervalo do teleporte
+# ============================================================
+# Ao escolher um mundo no /mundos (e no /rtp, se 'usar-no-rtp' for true), o
+# jogador espera parado estes segundos antes de ser teleportado.
+# Quem tem a permissao 'starmundos.teleporte.semintervalo' vai na hora.
+teleporte:
+  intervalo: 3                  # segundos (0 = teleporta na hora)
+  cancelar-ao-mover: true       # sair do bloco cancela (virar a camera nao)
+  cancelar-ao-levar-dano: true  # levar dano cancela
+  usar-no-rtp: true             # o /rtp tambem espera o intervalo
+
 # Configurações do GUI
 gui:
   titulo: "&8✦ &b&lMundos &8✦"
@@ -202,6 +214,10 @@ mensagens:
   rtp-falha-local: "&cNão foi possível encontrar um local seguro. Tente novamente."
   rtp-mundo-invalido: "&cO mundo &e{mundo} &cnão existe ou não está carregado."
   rtp-ja-buscando: "&cVocê já está esperando um teleporte aleatório. Aguarde..."
+  teleporte-aguarde: "&aVocê será teleportado para &e{mundo} &aem &e{segundos}s&a. Não se mexa!"
+  teleporte-contagem: "&eTeleportando em &f{segundos}s&e..."
+  teleporte-cancelado-movimento: "&cTeleporte cancelado: você se mexeu."
+  teleporte-cancelado-dano: "&cTeleporte cancelado: você levou dano."
 
 # ============================================================
 #  Sistema /mina — Recursos automáticos ao minerar
@@ -346,7 +362,7 @@ mina:
         - CRYING_OBSIDIAN
 
 # ============================================================
-#  Sistema de RTP (Teleporte Aleatório) — inspirado no BetterRTP
+#  Sistema de RTP (Teleporte Aleatório)
 # ============================================================
 rtp:
 
