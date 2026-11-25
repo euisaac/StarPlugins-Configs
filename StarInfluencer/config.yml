@@ -31,17 +31,16 @@ discord:
   guild_id: ""  # ID do servidor Discord (para comandos aparecerem instantaneamente)
   bonus_channel_id: ""  # Canal dos pedidos de bonificação por visualização (vazio = o mesmo das validações)
 
-# Banco de dados
-# SQLITE guarda tudo num arquivo dentro da pasta do plugin e nao precisa de
-# mais nada. Use MYSQL para os mesmos influenciadores valerem em varios
-# servidores; ai preencha os campos abaixo.
-database:
-  type: SQLITE
-  host: "Vazio"
-  port: 3306
-  name: "Vazio"
-  username: "Vazio"
-  password: "Vazio"
+Banco de dados:
+  # SQLITE (arquivo na pasta do plugin) ou MYSQL (os mesmos influenciadores
+  # valendo em varios servidores). Com o banco global do StarPlugins ligado,
+  # o loader preenche estes campos sozinho.
+  Tipo: SQLITE
+  Host: 'localhost'
+  Porta: 3306
+  Banco: 'minecraft'
+  Usuario: 'root'
+  Senha: ''
 
 max-validacoes:
   max_lives_per_day: 1 # Maximo de Lives para validar no dia
