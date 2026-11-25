@@ -317,16 +317,25 @@ Loja:
   Ativar: true
 
 Economia:
-  # VAULT: qualquer economia registrada no Vault.
-  # STARECONOMIA: fala direto com o produto irmao.
-  # COMANDO: le o saldo por placeholder e mexe no dinheiro por comando.
-  # Ou o id de uma moeda (precisa do loader StarPlugins 2.0.82 ou mais novo):
-  #   stareconomia-<moeda>  uma moeda do StarEconomia (ex.: stareconomia-cash)
+  # De onde sai o dinheiro do banco da ilha, da loja e das cobrancas.
+  # Por padrao usa a moeda principal do servidor, sem precisar mexer em nada.
+  #
+  # Opcoes do Tipo:
+  #   VAULT                 a economia principal do servidor (padrao)
+  #   STARECONOMIA          a moeda do StarEconomia escolhida em "Moeda do StarEconomia"
+  #   stareconomia-<moeda>  uma moeda do StarEconomia pelo id (ex.: stareconomia-cash)
   #   yeconomias-<moeda>    uma moeda do yEconomias (ex.: yeconomias-coins)
   #   yeconomy              o yEconomy
+  #   COMANDO               economia que nao fala com o Vault: le o saldo pelo
+  #                         placeholder e mexe no dinheiro pelos comandos abaixo
+  # (os ids com "-" e o yeconomy precisam do loader StarPlugins 2.0.82 ou mais novo)
   Tipo: VAULT
+  # Simbolo que aparece antes dos valores nas mensagens.
   Simbolo: '$'
-  Moeda do StarEconomia: dinheiro
+  # So no Tipo STARECONOMIA: o id da moeda (ex.: money, cash, almas).
+  # Vazio = a moeda principal do StarEconomia.
+  Moeda do StarEconomia: ''
+  # So no Tipo COMANDO:
   Placeholder de saldo: '%vault_eco_balance%'
   Comando de retirar: 'eco take {jogador} {valor}'
   Comando de dar: 'eco give {jogador} {valor}'
