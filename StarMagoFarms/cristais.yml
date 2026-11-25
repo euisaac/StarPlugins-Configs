@@ -1,0 +1,62 @@
+# ==========================================================================
+#  StarMagoFarms - cristais de mana
+# --------------------------------------------------------------------------
+#  O item que recarrega os magos. O jogador clica no mago com o cristal na
+#  mao (shift = usa quantos precisar) ou usa "Recarregar" no painel.
+#  Item: Material, Nome, Lore, Brilho, Textura (cabeca), Modelo (1.14+).
+#  {mana} na lore vira a mana do cristal.
+#  Loja: Ativar, Preco (por cristal), Moeda (vazio = a do config), Slot, Permissao.
+#  Cada mago escolhe quais aceita em "Mana.Cristais aceitos" (vazio = todos).
+#  Tambem se edita em jogo: /magosadmin editor > Cristais de mana
+# ==========================================================================
+
+Cristais:
+
+  pequeno:
+    Item:
+      Material: PRISMARINE_CRYSTALS
+      Nome: '&bCristal de Mana &7(pequeno)'
+      Lore:
+        - '&7Recarrega &b{mana} &7de mana de um mago.'
+        - ''
+        - '&eClique no mago com ele na mao.'
+        - '&8Shift: usa quantos precisar.'
+      Brilho: true
+    Mana: 25
+    Loja:
+      Ativar: true
+      Preco: 150
+      Slot: 37
+
+  medio:
+    Item:
+      Material: PLAYER_HEAD
+      Textura: '1d7620b2e4934963bb12508310d05494c067dc33e008cecf2cd7b4549654fab3'
+      Nome: '&3Cristal de Mana &7(medio)'
+      Lore:
+        - '&7Recarrega &b{mana} &7de mana de um mago.'
+        - ''
+        - '&eClique no mago com ele na mao.'
+        - '&8Shift: usa quantos precisar.'
+    Mana: 100
+    Loja:
+      Ativar: true
+      Preco: 550
+      Slot: 38
+
+  grande:
+    Item:
+      Material: PLAYER_HEAD
+      Textura: '958b0861f337ed75d1fe6badfc35d2f3aa5b24d42607f81fc86abe53855870f7'
+      Nome: '&a&lCristal de Mana &7(grande)'
+      Lore:
+        - '&7Recarrega &b{mana} &7de mana de um mago.'
+        - ''
+        - '&eClique no mago com ele na mao.'
+        - '&8Shift: usa quantos precisar.'
+      Brilho: true
+    Mana: 500
+    Loja:
+      Ativar: true
+      Preco: 2500
+      Slot: 39

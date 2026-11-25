@@ -1,0 +1,256 @@
+# ==========================================================================
+#  StarMagoFarms - mensagens
+# --------------------------------------------------------------------------
+#  Cores: &a, &l... e hex &#RRGGBB (1.16+). {prefixo} poe o prefixo onde voce
+#  quiser; sem ele, a mensagem de uma linha ja sai com o prefixo na frente.
+#  Mensagem vazia ('') nao e enviada: e assim que se desliga um aviso.
+#  Mensagem de varias linhas: use o bloco | do YAML (cada linha sai sozinha).
+#  Aceita placeholders do PlaceholderAPI, quando ele esta instalado.
+# ==========================================================================
+
+Versao do modelo: 1
+
+Prefixo: '&#9C27B0&lMAGOS &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  So jogador: '&cSo um jogador pode usar isso.'
+  Carregando: '&eOs magos ainda estao sendo carregados, tente de novo em instantes.'
+  Nao e seu: '&cEsse mago nao e seu.'
+  Sem dinheiro: '&cVoce precisa de &f{preco}&c para isso.'
+  Sem economia: '&cA economia do servidor nao esta disponivel agora.'
+  Inventario cheio: '&cSeu inventario esta cheio.'
+  Jogador offline: '&cO jogador &f{jogador} &cnao esta online.'
+
+Colocar:
+  Colocado: '&aVoce colocou {nome}&a! &7({magos}/{limite}) &8- &7Clique nele para abrir o painel.'
+  Tipo sumiu: '&cEsse mago (&f{tipo}&c) nao existe mais no servidor. Fale com a staff.'
+  Sem permissao do tipo: '&cVoce nao tem permissao para colocar {nome}&c.'
+  Mundo bloqueado: '&cNao da para colocar magos neste mundo.'
+  Limite: '&cVoce ja tem o maximo de magos colocados (&f{limite}&c).'
+  Limite do tipo: '&cVoce ja tem o maximo de {nome} &c(&f{limite}&c).'
+  Sem espaco: '&cNao ha espaco em cima desse bloco.'
+  Perto demais: '&cJa existe um mago a menos de &f{distancia} &cblocos daqui.'
+  Area ocupada: '&cA area desse mago ficaria em cima da area de outro.'
+  Protegido: '&cVoce nao pode colocar magos aqui.'
+
+Guardar:
+  Guardado: '&a{nome} &avoltou para o seu inventario, com nivel, XP e mana.'
+  Bolsa cheia: '&cA bolsa do mago ainda tem &f{bolsa} &citens e nao cabe no seu inventario. Venda ou libere espaco antes.'
+  Tipo sumiu: '&eEsse mago era de um tipo que nao existe mais e foi removido.'
+
+Mago:
+  Info: '{nome} &8| &7Nv. &f{nivel} &8| &bMana {mana}/{mana_max} &8| &7Dono: &f{dono} &8| &7{estado}'
+  Sem mana: '{nome} &cesta sem mana! &7Recarregue com cristais ou pelo painel.'
+  Area: '&7Mostrando a area do mago por alguns segundos.'
+
+Mana:
+  Recarregada: '&b+{mana} de mana &7({total}/{maximo}).'
+  Comprada: '&b+{mana} de mana &7por &f{preco}&7.'
+  Cheia: '&eA mana desse mago ja esta cheia.'
+  Infinita: '&eEsse mago tem mana infinita.'
+  Sem cristais: '&cVoce nao tem cristais de mana que esse mago aceite.'
+  Cristal recusado: '&c{nome} &cnao aceita esse cristal.'
+  Compra desligada: '&cA compra de mana esta desligada neste servidor.'
+
+Bolsa:
+  Coletado: '&aVoce coletou &f{quantidade} &aitens.'
+  Nada para coletar: '&eNada para coletar (ou seu inventario esta cheio).'
+  Vendido: '&aVoce vendeu &f{quantidade} &aitens por &f{valor}&a.'
+  Nada para vender: '&eNada na bolsa tem preco de venda.'
+  Xp coletada: '&aVoce recebeu &f{xp} &ade XP guardada pelo mago.'
+  Sem xp: '&eO mago nao tem XP guardada.'
+  Autovenda ligada: '&aVenda automatica ligada: o que entrar na bolsa e vendido na hora.'
+  Autovenda desligada: '&eVenda automatica desligada.'
+  Autovenda sem permissao: '&cVoce nao tem permissao para a venda automatica.'
+
+Venda:
+  Resumo automatico: '&7Seus magos venderam &f{itens} &7itens por &a{valor}&7.'
+
+Evoluir:
+  Pronto: '{nome} &ajuntou XP suficiente e pode evoluir! &7Abra o painel dele.'
+  Evoluiu: '{nome} &asubiu para o nivel &f{nivel}&a!'
+  Falta xp: '&cFalta XP: &f{xp}/{xp_max}&c.'
+  Maximo: '&eEsse mago ja esta no nivel maximo.'
+
+Magias:
+  Bloqueada: '&cEssa magia so libera no nivel &f{nivel}&c.'
+
+Bau:
+  Clique: '&eClique com o direito no bau (ou barril) que vai receber os itens. &7Esquerdo cancela.'
+  Ligado: '&aBau ligado! As magias com destino BAU vao guardar nele.'
+  Desligado: '&eBau desligado do mago.'
+  Cancelado: '&eLigacao do bau cancelada.'
+  Nao e bau: '&cEsse bloco nao guarda itens.'
+  Longe: '&cO bau precisa estar a ate &f{distancia} &cblocos do mago.'
+
+Renomear:
+  Digite: '&eDigite no chat o nome do mago (cores so com permissao). &7"-" volta ao nome original.'
+  Feito: '&aNome do mago trocado.'
+
+Amigos:
+  Digite: '&eDigite no chat o nick do amigo (precisa estar online).'
+  Adicionado: '&a{amigo} &aagora pode mexer nos seus magos.'
+  Voce foi adicionado: '&a{dono} &ate adicionou como amigo nos magos dele.'
+  Removido: '&e{amigo} &enao e mais seu amigo nos magos.'
+  Offline: '&cO jogador &f{amigo} &cnao esta online.'
+  Voce mesmo: '&cVoce nao pode se adicionar.'
+  Ja e: '&e{amigo} &eja e seu amigo.'
+  Nao e: '&c{amigo} &cnao esta na sua lista de amigos.'
+  Maximo: '&cVoce ja tem o maximo de amigos (&f{maximo}&c).'
+
+Loja:
+  Comprado: '&aVoce comprou &f{quantidade}x {nome} &apor &f{preco}&a.'
+  Sem permissao: '&cVoce nao tem permissao para comprar isso.'
+
+Menu:
+  Longe: '&cChegue perto do mago para abrir o painel.'
+  Teleportado: '&aTeleportado para o seu mago.'
+
+Lista:
+  Cabecalho: '&7Seus magos &8(&f{magos}&8/&f{limite}&8):'
+  Linha: '&8- {nome} &7Nv.{nivel} &8| &bmana {mana}/{mana_max} &8| &7bolsa {bolsa}/{bolsa_max} &8| &7{mundo} {x} {y} {z}'
+
+Boas vindas:
+  Resumo: '&7Seus magos: &c{sem_mana} sem mana&7, &e{bolsas_cheias} com a bolsa cheia&7, &a{prontos} prontos para evoluir&7. &8(/magos)'
+
+Entrada:
+  Como cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&eCancelado.'
+  Tempo esgotado: '&eO tempo acabou; nada foi alterado.'
+
+Editor:
+  Digite: '&eDigite no chat o novo valor de &f{campo}&e. &7Atual: &f{atual}&7. "-" limpa.'
+  Texto livre: '&e{texto}'
+
+Admin:
+  Uso: '&cUso: &f{uso}'
+  Recarregado: '&aArquivos recarregados.'
+  Mago inexistente: '&cO mago &f{mago} &cnao existe. &7Tipos: &f{lista}'
+  Cristal inexistente: '&cO cristal &f{cristal} &cnao existe. &7Cristais: &f{lista}'
+  Dado: '&aEntregue &f{quantidade}x {nome} &apara &f{jogador}&a.'
+  Recebido: '&aVoce recebeu &f{quantidade}x {nome}&a.'
+  Total: '&7Magos no servidor: &f{magos} &8| &7tipos: &f{tipos}'
+  Linha: '&8- &7{id} {nome} &7Nv.{nivel} &8| &7{dono} &8| &7{mundo} {x} {y} {z}'
+  Info: |-
+    {prefixo}{nome} &8({id})
+    &7Dono: &f{dono} &8| &7Nivel: &f{nivel}/{nivel_max} &8| &7XP: &f{xp}/{xp_max}
+    &7Mana: &b{mana}/{mana_max} &8| &7Bolsa: &f{bolsa}/{bolsa_max} &8| &7Estado: {estado}
+    &7Local: &f{mundo} {x} {y} {z}
+  Sem magos: '&e{jogador} nao tem magos.'
+  Nenhum perto: '&cNenhum mago a menos de 10 blocos.'
+  Id inexistente: '&cNenhum mago com o id &f{id}&c.'
+  Removido: '&aMago &f{id} &ade &f{dono} &aremovido.'
+  Mana: '&aMana definida para &f{mana}&a.'
+  Nivel: '&aNivel definido para &f{nivel}&a.'
+
+# A ajuda sai da lista de subcomandos do proprio plugin: uma linha vazia
+# esconde o subcomando da ajuda.
+Ajuda:
+  Cabecalho: '&#9C27B0&lMAGOS &8- &7comandos'
+  Linha: '&8» &f{comando} &8- &7{descricao}'
+  Abrir: 'abre o painel com todos os seus magos'
+  loja: 'loja de magos e cristais de mana'
+  lista: 'lista seus magos no chat'
+  amigos: 'quem pode mexer nos seus magos'
+  coletar: 'coleta a bolsa de todos os seus magos'
+  vender: 'vende a bolsa de todos os seus magos'
+  ajuda: 'mostra esta ajuda'
+
+Ajuda de admin:
+  Cabecalho: '&#9C27B0&lMAGOS &8- &7administracao'
+  dar: 'entrega magos a um jogador'
+  cristal: 'entrega cristais de mana'
+  editor: 'abre o editor em jogo (magos, magias, niveis, cristais)'
+  lista: 'lista os magos do servidor ou de um jogador'
+  info: 'painel do mago pelo id (ou o mais perto)'
+  tp: 'teleporta ate um mago'
+  remover: 'remove um mago (sem devolver o item)'
+  mana: 'define a mana de um mago'
+  nivel: 'define o nivel de um mago'
+  recarregar: 'recarrega os arquivos'
+  ajuda: 'mostra esta ajuda'
+
+Etiquetas:
+  Dia: 'd'
+  Hora: 'h'
+  Minuto: 'min'
+  Segundo: 's'
+  Infinita: '∞'
+  Sem limite: 'sem limite'
+  Maximo: 'MAX'
+  Gratis: 'gratis'
+  Nao vende: '&8nao vende'
+  Todos: 'todos'
+  Ligada: '&aligada'
+  Desligada: '&cdesligada'
+  Ligado: '&aligado'
+  Desligado: '&cdesligado'
+  Sem bau: '&8nenhum'
+  Mago: 'Mago'
+  Orbe: 'Orbe'
+  Online: '&aonline'
+  Offline: '&8offline'
+  Estado trabalhando: '&aTrabalhando'
+  Estado sem mana: '&cSem mana &7(zzz)'
+  Estado bolsa cheia: '&eBolsa cheia'
+  Estado dono offline: '&7Dono offline'
+  Magia ligada: '&aLigada'
+  Magia desligada: '&cDesligada'
+  Magia bloqueada: '&8Bloqueada'
+  Acao guardar: 'guardar o mago no inventario'
+
+# Nome dos itens da bolsa e das magias (o que nao estiver aqui aparece com o
+# nome do material arrumado: GOLDEN_CARROT vira "Golden Carrot").
+Nomes de itens:
+  WHEAT: 'Trigo'
+  WHEAT_SEEDS: 'Sementes de trigo'
+  CARROT: 'Cenoura'
+  CARROTS: 'Cenoura'
+  POTATO: 'Batata'
+  POTATOES: 'Batata'
+  POISONOUS_POTATO: 'Batata venenosa'
+  BEETROOT: 'Beterraba'
+  BEETROOTS: 'Beterraba'
+  BEETROOT_SEEDS: 'Sementes de beterraba'
+  NETHER_WART: 'Fungo do Nether'
+  COCOA: 'Cacau'
+  COCOA_BEANS: 'Semente de cacau'
+  SUGAR_CANE: 'Cana-de-acucar'
+  CACTUS: 'Cacto'
+  BAMBOO: 'Bambu'
+  MELON: 'Melancia'
+  MELON_SLICE: 'Fatia de melancia'
+  MELON_STEM: 'Caule de melancia'
+  PUMPKIN: 'Abobora'
+  PUMPKIN_STEM: 'Caule de abobora'
+  SWEET_BERRIES: 'Bagas doces'
+  SWEET_BERRY_BUSH: 'Arbusto de bagas'
+  ROTTEN_FLESH: 'Carne podre'
+  BONE: 'Osso'
+  ARROW: 'Flecha'
+  STRING: 'Linha'
+  SPIDER_EYE: 'Olho de aranha'
+  GUNPOWDER: 'Polvora'
+  ENDER_PEARL: 'Perola do fim'
+  IRON_INGOT: 'Barra de ferro'
+  GOLD_NUGGET: 'Pepita de ouro'
+  GOLD_INGOT: 'Barra de ouro'
+  BLAZE_ROD: 'Vara de blaze'
+  MAGMA_CREAM: 'Creme de magma'
+  SLIME_BALL: 'Bola de slime'
+  LEATHER: 'Couro'
+  BEEF: 'Carne crua'
+  PORKCHOP: 'Costeleta crua'
+  CHICKEN: 'Frango cru'
+  FEATHER: 'Pena'
+  EGG: 'Ovo'
+  WHITE_WOOL: 'La'
+  MUTTON: 'Carneiro cru'
+  ZOMBIE: 'Zumbi'
+  SKELETON: 'Esqueleto'
+  SPIDER: 'Aranha'
+  CREEPER: 'Creeper'
+  COW: 'Vaca'
+  SHEEP: 'Ovelha'
+  PIG: 'Porco'

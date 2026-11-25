@@ -1,0 +1,509 @@
+# ==========================================================================
+#  StarMagoFarms - menus
+# --------------------------------------------------------------------------
+#  Cada tela: Titulo, Linhas (1 a 6), Enfeite (vidro de fundo), Slots (onde
+#  entra o conteudo da lista, quando a tela tem lista) e Itens (botoes).
+#
+#  Botao: Material, Slot ou Slots, Nome, Lore, Brilho, Quantidade,
+#         Textura (hash/URL/base64 de cabeca) ou Dono (nick),
+#         Permissao (+ "Esconder sem permissao"), Condicao e Acoes.
+#  Condicao: nome da condicao da tela; '!' na frente nega. Ex.: '!maximo'.
+#  Acoes (uma por linha; [esquerdo] [direito] [shift] [shift_direito] [meio]
+#  [q] na frente = so nesse clique):
+#    proprias da tela (abaixo), voltar, fechar, loja, amigos, meus_magos,
+#    anterior, proxima, atualizar,
+#    comando: <cmd>, console: <cmd>, mensagem: <texto>, som: <SOM>,
+#    titulo: <titulo<nl>subtitulo>, actionbar: <texto>
+#
+#  Botao de fechar/voltar e RED_DYE (corante vermelho) em todas as telas.
+# ==========================================================================
+
+Versao do modelo: 1
+
+# --------------------------------------------------------------------------
+# /magos - os magos do jogador
+#  Conteudo: um item por mago (secao "Mago"). Esquerdo abre o painel,
+#  direito teleporta (permissao starmagofarms.teleportar).
+#  Acoes proprias: coletar_tudo, vender_tudo
+#  Condicoes: sem_magos, teleportar
+# --------------------------------------------------------------------------
+Meus magos:
+  Titulo: '&8Seus magos &7({magos}/{limite})'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Mago:
+    Nome: '{nome} &7Nv.{nivel}'
+    Lore:
+      - '&8{modo} {id}'
+      - ''
+      - ' &7Estado: {estado}'
+      - ' &7Mana: {barra} &b{mana}&7/&b{mana_max}'
+      - ' &7XP: {barra_xp} &f{xp}&7/&f{xp_max}'
+      - ' &7Bolsa: &f{bolsa}&7/&f{bolsa_max}'
+      - ' &7Proxima onda: &f{proxima}'
+      - ' &7Local: &f{mundo} {x} {y} {z}'
+      - ''
+      - '&aEsquerdo &7abrir o painel'
+      - '&eDireito &7teleportar'
+  Itens:
+    Vazio:
+      Slot: 22
+      Material: ARMOR_STAND
+      Nome: '&7Voce ainda nao tem magos'
+      Lore:
+        - '&7Compre um na loja e clique com'
+        - '&7o direito no chao para colocar.'
+      Condicao: sem_magos
+      Acoes:
+        - loja
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes: [ proxima ]
+    Loja:
+      Slot: 47
+      Material: EMERALD
+      Nome: '&aLoja de magos'
+      Lore:
+        - '&7Magos, orbes e cristais de mana.'
+      Acoes: [ loja ]
+    Coletar:
+      Slot: 48
+      Material: CHEST
+      Nome: '&eColetar tudo'
+      Lore:
+        - '&7Passa a bolsa de todos os seus'
+        - '&7magos para o seu inventario.'
+      Acoes: [ coletar_tudo ]
+    Fechar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cFechar'
+      Acoes: [ fechar ]
+    Vender:
+      Slot: 50
+      Material: GOLD_INGOT
+      Nome: '&6Vender tudo'
+      Lore:
+        - '&7Vende o que tem preco nas bolsas'
+        - '&7de todos os seus magos.'
+      Acoes: [ vender_tudo ]
+    Amigos:
+      Slot: 51
+      Material: PLAYER_HEAD
+      Nome: '&bAmigos'
+      Lore:
+        - '&7Quem pode mexer nos seus magos.'
+      Acoes: [ amigos ]
+
+# --------------------------------------------------------------------------
+# Painel de um mago
+#  Acoes proprias: recarregar, comprar_mana [pontos], bolsa, magias, evoluir,
+#    coletar_xp, coletar, vender, holograma, autovenda, area, ligar_bau,
+#    desligar_bau, renomear, guardar
+#  Condicoes: dono, gerenciar, pode_evoluir, maximo, infinita, tem_bau,
+#    autovenda, autovenda_permissao, holograma, compra_mana, tem_xp
+#  Variaveis: {nome} {tipo} {id} {dono} {nivel} {nivel_max} {xp} {xp_max}
+#    {barra_xp} {mana} {mana_max} {barra} {regeneracao} {proxima} {estado}
+#    {raio} {altura} {intervalo} {forca} {bolsa} {bolsa_max} {xp_guardado}
+#    {plantas} {colheitas} {mobs} {vendido} {magias} {magias_total} {mundo}
+#    {x} {y} {z} {autovenda} {holograma} {bau} {modo} {prox_raio}
+#    {prox_nivel} {prox_intervalo} {prox_mana} {prox_bolsa} {prox_forca} {custo_evoluir}
+#    {preco_mana} {preco_ponto} {falta_mana}
+# --------------------------------------------------------------------------
+Mago:
+  Titulo: '&8{nome}'
+  Linhas: 5
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Informacao:
+    Ativar: true
+    Slot: 4
+    Nome: '{nome} &7Nv.{nivel}&8/&7{nivel_max}'
+    Lore:
+      - '&8{modo} {id} &8- dono: {dono}'
+      - ''
+      - ' &7Estado: {estado}'
+      - ' &7Proxima onda: &f{proxima}'
+      - ' &7Raio: &f{raio} &7| Altura: &f{altura} &7| Intervalo: &f{intervalo}s'
+      - ' &7Forca: &fx{forca} &7| Magias ligadas: &f{magias}&7/&f{magias_total}'
+      - ''
+      - ' &7Plantas cresceram: &f{plantas}'
+      - ' &7Colheitas: &f{colheitas}'
+      - ' &7Mobs: &f{mobs}'
+      - ' &7Ja vendeu: &a{vendido}'
+  Itens:
+    Mana:
+      Slot: 19
+      Material: LAPIS_LAZULI
+      Nome: '&bMana &7({mana}/{mana_max})'
+      Lore:
+        - '{barra}'
+        - ''
+        - ' &7Regenera &f{regeneracao}&7/min sozinha.'
+        - ''
+        - '&aEsquerdo &7usar cristais do inventario'
+        - '&eDireito &7comprar o que falta (&f{preco_mana}&7)'
+      Condicao: '!infinita'
+      Acoes:
+        - '[esquerdo] recarregar'
+        - '[direito] comprar_mana'
+    Mana infinita:
+      Slot: 19
+      Material: NETHER_STAR
+      Nome: '&bMana infinita'
+      Lore:
+        - '&7Este mago nunca precisa recarregar.'
+      Condicao: infinita
+    Bolsa:
+      Slot: 20
+      Material: CHEST
+      Nome: '&eBolsa &7({bolsa}/{bolsa_max})'
+      Lore:
+        - '&7O que o mago colheu e juntou.'
+        - ''
+        - ' &7Venda automatica: {autovenda}'
+        - ' &7Bau ligado: &f{bau}'
+        - ''
+        - '&eClique para abrir'
+      Acoes: [ bolsa ]
+    Magias:
+      Slot: 21
+      Material: ENCHANTED_BOOK
+      Nome: '&dMagias &7({magias}/{magias_total})'
+      Lore:
+        - '&7Ligue e desligue o que o mago faz.'
+        - ''
+        - '&eClique para abrir'
+      Acoes: [ magias ]
+    Evoluir:
+      Slot: 22
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&aEvoluir para o nivel {prox_nivel}'
+      Lore:
+        - ' &7XP: {barra_xp} &f{xp}&7/&f{xp_max}'
+        - ''
+        - '&7No proximo nivel:'
+        - ' &7Raio: &f{raio} &8-> &a{prox_raio}'
+        - ' &7Intervalo: &f{intervalo}s &8-> &a{prox_intervalo}s'
+        - ' &7Mana: &f{mana_max} &8-> &a{prox_mana}'
+        - ' &7Bolsa: &f{bolsa_max} &8-> &a{prox_bolsa}'
+        - ' &7Forca: &fx{forca} &8-> &ax{prox_forca}'
+        - ''
+        - ' &7Custo: &f{custo_evoluir}'
+        - ''
+        - '&eClique para evoluir'
+      Condicao: '!maximo'
+      Acoes: [ evoluir ]
+    Nivel maximo:
+      Slot: 22
+      Material: NETHER_STAR
+      Nome: '&6Nivel maximo!'
+      Lore:
+        - '&7Este mago ja chegou ao topo.'
+      Brilho: true
+      Condicao: maximo
+    Xp:
+      Slot: 23
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&aXP guardada: &f{xp_guardado}'
+      Lore:
+        - '&7XP dos mobs que o mago ceifou.'
+        - ''
+        - '&eClique para coletar'
+      Condicao: tem_xp
+      Acoes: [ coletar_xp ]
+    Area:
+      Slot: 24
+      Material: COMPASS
+      Nome: '&bMostrar area'
+      Lore:
+        - '&7Desenha a area do mago com'
+        - '&7particulas por alguns segundos.'
+      Acoes: [ area ]
+    Holograma:
+      Slot: 25
+      Material: OAK_SIGN
+      Nome: '&fHolograma: {holograma}'
+      Lore:
+        - '&eClique para alternar'
+      Condicao: gerenciar
+      Acoes: [ holograma ]
+    Autovenda:
+      Slot: 28
+      Material: GOLD_INGOT
+      Nome: '&6Venda automatica: {autovenda}'
+      Lore:
+        - '&7O que entra na bolsa e vendido'
+        - '&7na hora (so o que tem preco).'
+        - ''
+        - '&eClique para alternar'
+      Condicao: [ gerenciar, autovenda_permissao ]
+      Acoes: [ autovenda ]
+    Ligar bau:
+      Slot: 29
+      Material: BARREL
+      Nome: '&eLigar um bau'
+      Lore:
+        - '&7As magias com destino BAU passam'
+        - '&7a guardar nele. Clique e depois'
+        - '&7clique no bau.'
+      Condicao: [ gerenciar, '!tem_bau' ]
+      Acoes: [ ligar_bau ]
+    Desligar bau:
+      Slot: 29
+      Material: BARREL
+      Nome: '&eBau ligado: &f{bau}'
+      Lore:
+        - '&aEsquerdo &7trocar de bau'
+        - '&cDireito &7desligar'
+      Condicao: [ gerenciar, tem_bau ]
+      Acoes:
+        - '[esquerdo] ligar_bau'
+        - '[direito] desligar_bau'
+    Renomear:
+      Slot: 30
+      Material: NAME_TAG
+      Nome: '&fDar um nome'
+      Lore:
+        - '&7O nome aparece no holograma.'
+      Condicao: gerenciar
+      Acoes: [ renomear ]
+    Coletar:
+      Slot: 32
+      Material: HOPPER
+      Nome: '&eColetar a bolsa'
+      Lore:
+        - '&7Passa tudo para o seu inventario.'
+      Acoes: [ coletar ]
+    Vender:
+      Slot: 33
+      Material: EMERALD
+      Nome: '&aVender a bolsa'
+      Lore:
+        - '&7Vende o que tem preco.'
+      Acoes: [ vender ]
+    Guardar:
+      Slot: 34
+      Material: ARMOR_STAND
+      Nome: '&cGuardar o mago'
+      Lore:
+        - '&7Volta para o inventario com nivel,'
+        - '&7XP e mana. A bolsa vem junto.'
+        - '&8(ou shift + direito no mago)'
+      Condicao: gerenciar
+      Acoes: [ guardar ]
+    Voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+# Bolsa de um mago
+#  Conteudo: um item por material (secao "Item"): esquerdo coleta, direito vende.
+#  Acoes proprias: coletar_tudo, vender_tudo, coletar_xp
+#  Condicoes: autovenda, vazia, tem_xp
+#  {item} {material} {quantidade} {preco} {total} {valor_total} + as do mago
+# --------------------------------------------------------------------------
+Bolsa:
+  Titulo: '&8Bolsa &7({bolsa}/{bolsa_max})'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34 ]
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Item:
+    Nome: '&f{item}'
+    Lore:
+      - ' &7Quantidade: &f{quantidade}'
+      - ' &7Preco: &a{preco} &7cada'
+      - ' &7Total: &a{total}'
+      - ''
+      - '&aEsquerdo &7coletar'
+      - '&6Direito &7vender'
+  Itens:
+    Vazia:
+      Slot: 22
+      Material: BUCKET
+      Nome: '&7A bolsa esta vazia'
+      Condicao: vazia
+    Anterior:
+      Slot: 45
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 53
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes: [ proxima ]
+    Coletar:
+      Slot: 47
+      Material: HOPPER
+      Nome: '&eColetar tudo'
+      Acoes: [ coletar_tudo ]
+    Voltar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+    Vender:
+      Slot: 51
+      Material: GOLD_INGOT
+      Nome: '&6Vender tudo &7({valor_total})'
+      Acoes: [ vender_tudo ]
+    Xp:
+      Slot: 48
+      Material: EXPERIENCE_BOTTLE
+      Nome: '&aColetar XP &7({xp_guardado})'
+      Condicao: tem_xp
+      Acoes: [ coletar_xp ]
+
+# --------------------------------------------------------------------------
+# Magias de um mago (o jogador liga e desliga)
+#  {magia} {tipo_magia} {descricao} {estado} {custo} {nivel_minimo} {alvos}
+# --------------------------------------------------------------------------
+Magias:
+  Titulo: '&8Magias de {nome}'
+  Linhas: 4
+  Slots: [ 10, 11, 12, 13, 14, 15, 16 ]
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Magia:
+    Nome: '{magia}'
+    Lore:
+      - '&7{descricao}'
+      - ''
+      - ' &7Estado: {estado}'
+      - ' &7Custo de mana: &b{custo} &7por onda'
+      - ' &7Alvos: &f{alvos}'
+      - ' &7A partir do nivel: &f{nivel_minimo}'
+      - ''
+      - '&eClique para ligar/desligar'
+  Itens:
+    Anterior:
+      Slot: 27
+      Material: ARROW
+      Nome: '&ePagina anterior'
+      Acoes: [ anterior ]
+    Proxima:
+      Slot: 35
+      Material: ARROW
+      Nome: '&eProxima pagina'
+      Acoes: [ proxima ]
+    Voltar:
+      Slot: 31
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+# Loja (/magos loja): magos e cristais com "Loja.Ativar: true".
+#  Cada um vai no Loja.Slot dele, ou no proximo da lista Slots.
+#  Cristais: esquerdo compra 1, shift compra 10.
+#  "Lore extra" e acrescentada ao item do mago/cristal.
+# --------------------------------------------------------------------------
+Loja:
+  Titulo: '&8Loja de magos'
+  Linhas: 6
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Mago:
+    Lore extra:
+      - ''
+      - ' &7Preco: &a{preco}'
+      - ''
+      - '&eClique para comprar'
+  Cristal:
+    Lore extra:
+      - ''
+      - ' &7Preco: &a{preco} &8(10 por {preco_10})'
+      - ''
+      - '&eEsquerdo &7compra 1  &eShift &7compra 10'
+  Itens:
+    Voltar:
+      Slot: 49
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+    Meus magos:
+      Slot: 48
+      Material: ARMOR_STAND
+      Nome: '&bSeus magos'
+      Acoes: [ meus_magos ]
+
+# --------------------------------------------------------------------------
+# Amigos: clique num amigo para tirar; "adicionar_amigo" pede o nick no chat.
+#  {amigo} {status} {amigos} {maximo}
+# --------------------------------------------------------------------------
+Amigos:
+  Titulo: '&8Amigos &7({amigos}/{maximo})'
+  Linhas: 4
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25 ]
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Amigo:
+    Nome: '&f{amigo}'
+    Lore:
+      - ' &7{status}'
+      - ''
+      - '&cClique para tirar'
+  Itens:
+    Adicionar:
+      Slot: 30
+      Material: EMERALD
+      Nome: '&aAdicionar amigo'
+      Lore:
+        - '&7Digite o nick no chat.'
+        - '&7O amigo precisa estar online.'
+      Acoes: [ adicionar_amigo ]
+    Voltar:
+      Slot: 32
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acoes: [ voltar ]
+
+# --------------------------------------------------------------------------
+# Confirmacao (guardar o mago...). Acoes: confirmar, cancelar. {acao}
+# --------------------------------------------------------------------------
+Confirmar:
+  Titulo: '&8Tem certeza?'
+  Linhas: 3
+  Enfeite:
+    Ativar: true
+    Material: BLACK_STAINED_GLASS_PANE
+    Nome: ' '
+  Itens:
+    Sim:
+      Slot: 11
+      Material: LIME_WOOL
+      Nome: '&aConfirmar'
+      Lore:
+        - '&7{acao}'
+      Acoes: [ confirmar ]
+    Nao:
+      Slot: 15
+      Material: RED_DYE
+      Nome: '&cCancelar'
+      Acoes: [ cancelar ]

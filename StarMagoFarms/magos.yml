@@ -1,0 +1,608 @@
+# ==========================================================================
+#  StarMagoFarms - magos
+# --------------------------------------------------------------------------
+#  Cada mago fica num lugar so: aparencia, mana, magias, niveis e loja.
+#  Tudo aqui tambem se edita em jogo: /magosadmin editor
+#
+#  APARENCIA
+#    Modo: MAGO (corpo pequeno com roupa e varinha) ou ORBE (so a cabeca
+#          flutuando).
+#    Cabeca.Textura: hash, URL ou base64 da textura (sites de cabecas).
+#    Cabeca.Item serializado: preenchido pelo editor ("Cabeca da mao") -
+#          serve qualquer item, ate com textura do seu pacote.
+#    Roupa.Cor: '#RRGGBB' (armadura de couro pintada).
+#    Varinha: Material + Modelo (CustomModelData do pacote, 1.14+) + Brilho,
+#          ou "Item serializado" (editor: "Varinha da mao").
+#    Bracos / Corpo visivel / Pequeno / Flutuar / Altura
+#    Girar: OLHAR (vira para o jogador perto), GIRAR ou PARADO
+#    Particula: em volta do mago (WITCH, HAPPY_VILLAGER, FLAME, END_ROD...)
+#    Contorno brilhante: brilho em volta (1.9+)
+#
+#  MANA
+#    Infinita: nunca acaba. Regeneracao por minuto: enche sozinha.
+#    Sem regeneracao = funciona por "cargas": recarregue com cristais
+#    (cristais.yml) ou comprando no painel. Cristais aceitos: lista de ids
+#    (vazia = aceita todos).
+#
+#  MAGIAS (quantas quiser, de tipos iguais ou diferentes)
+#    Tipo: CRESCER | COLHER | ARVORES | CEIFAR | INVOCAR | SPAWNERS | ANIMAIS | ASPIRAR
+#    Comuns: Nome, Alvos, Custo de mana (so gasta se a magia fez algo),
+#            XP por acao, Chance, Limite por onda (0 = todos), Raio extra,
+#            Nivel minimo, Ligada de fabrica (false = o jogador liga no menu),
+#            Particula, Som
+#    CRESCER: Estagios, Altura maxima (cana/cacto/bambu)
+#    COLHER:  Replantar, Destino (BOLSA | CHAO | BAU), Altura maxima (cana/
+#             cacto/bambu so sao colhidos com essa altura; a base fica)
+#    CEIFAR:  Dano (0 = mata), Ignorar nomeados, Guardar XP, XP por mob, Destino
+#    INVOCAR: Virtual (sem mob: so os Drops), Quantidade, Limite na area,
+#             Drops ('MATERIAL quantidade chance'), XP por mob, Sem IA, Destino
+#    SPAWNERS: Reducao (segundos tirados da espera a cada onda)
+#    ANIMAIS: Crescer filhotes, Reproduzir, Quantidade, Limite na area
+#    ASPIRAR: Destino
+#    Alvos das plantas: WHEAT, CARROTS, POTATOES, BEETROOTS, NETHER_WART, COCOA,
+#      SUGAR_CANE, CACTUS, BAMBOO, MELON_STEM, PUMPKIN_STEM, MELON, PUMPKIN,
+#      SWEET_BERRY_BUSH, TORCHFLOWER_CROP. '*' = todas.
+#    Alvos de mob: nome do mob (ZOMBIE, COW...), aceita curinga (*_ZOMBIE).
+#      No CEIFAR, '*' pega so os hostis.
+#
+#  NIVEIS (1, 2, 3...: o que faltar herda do nivel de baixo)
+#    Raio, Altura, Intervalo (segundos), Mana maxima, Bolsa (0 = sem limite),
+#    Forca (multiplica estagios, dano, mobs e colheita), XP para evoluir,
+#    Custo para evoluir.
+#
+#  LOJA: Ativar, Preco, Moeda (vazio = a do config), Slot (-1 = proximo),
+#    Permissao. Permissao (fora da loja) = para COLOCAR. Limite por jogador
+#    deste tipo (0 = so o limite geral). Mundos: onde pode (vazio = todos).
+#  Holograma.Linhas: vazio = o "Holograma padrao" do config.yml.
+# ==========================================================================
+
+Magos:
+
+  # ------------------------------------------------------------------------
+  aprendiz:
+    Nome: '&b&lMago Aprendiz'
+    Descricao:
+      - '&7Um jovem mago que acabou de aprender'
+      - '&7a fazer as plantacoes crescerem.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: 'baf818b04d6ae98a69ad8d9463d8d0379921d3eb79222e1c6272f65372d80775'
+      Roupa:
+        Cor: '#1E88E5'
+      Varinha:
+        Material: STICK
+        Modelo: 0
+        Brilho: true
+      Bracos: true
+      Flutuar: true
+      Girar: OLHAR
+      Particula: ENCHANT
+    Mana:
+      Infinita: false
+      Regeneracao por minuto: 2
+    Multiplicador de venda: 1.0
+    Magias:
+      crescer:
+        Tipo: CRESCER
+        Nome: '&aCrescer plantacoes'
+        Alvos: [ WHEAT, CARROTS, POTATOES, BEETROOTS ]
+        Estagios: 1
+        Custo de mana: 1
+        XP por acao: 1
+    Niveis:
+      1: { Raio: 3, Altura: 2, Intervalo: 30, Mana maxima: 100, Bolsa: 0, Forca: 1.0, XP para evoluir: 600, Custo para evoluir: 3000 }
+      2: { Raio: 4, Intervalo: 25, Mana maxima: 150, Forca: 1.0, XP para evoluir: 1500, Custo para evoluir: 8000 }
+      3: { Raio: 5, Intervalo: 20, Mana maxima: 200, Forca: 1.5 }
+    Loja:
+      Ativar: true
+      Preco: 5000
+      Slot: 10
+
+  # ------------------------------------------------------------------------
+  druida:
+    Nome: '&2&lMago Druida'
+    Descricao:
+      - '&7Cuida da plantacao inteira: faz crescer,'
+      - '&7colhe o que esta maduro e replanta.'
+      - '&7No nivel 3 aprende a crescer arvores.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: 'baf818b04d6ae98a69ad8d9463d8d0379921d3eb79222e1c6272f65372d80775'
+      Roupa:
+        Cor: '#2E7D32'
+      Varinha:
+        Material: STICK
+        Brilho: true
+      Particula: HAPPY_VILLAGER
+    Mana:
+      Regeneracao por minuto: 3
+    Magias:
+      crescer:
+        Tipo: CRESCER
+        Nome: '&aCrescer plantacoes'
+        Alvos: [ WHEAT, CARROTS, POTATOES, BEETROOTS, COCOA, MELON_STEM, PUMPKIN_STEM, SWEET_BERRY_BUSH ]
+        Estagios: 1
+        Custo de mana: 1
+        XP por acao: 1
+      colher:
+        Tipo: COLHER
+        Nome: '&eColher e replantar'
+        Alvos: [ WHEAT, CARROTS, POTATOES, BEETROOTS, COCOA, MELON, PUMPKIN, SWEET_BERRY_BUSH ]
+        Replantar: true
+        Destino: BOLSA
+        Custo de mana: 1
+        XP por acao: 2
+      arvores:
+        Tipo: ARVORES
+        Nome: '&2Crescer arvores'
+        Alvos: [ '*' ]
+        Chance: 30
+        Nivel minimo: 3
+        Custo de mana: 3
+        XP por acao: 5
+    Niveis:
+      1: { Raio: 4, Altura: 2, Intervalo: 30, Mana maxima: 150, Bolsa: 1280, Forca: 1.0, XP para evoluir: 1500, Custo para evoluir: 10000 }
+      2: { Raio: 5, Intervalo: 26, Mana maxima: 200, Bolsa: 2560, XP para evoluir: 3500, Custo para evoluir: 25000 }
+      3: { Raio: 6, Intervalo: 22, Mana maxima: 300, Bolsa: 5120, Forca: 1.25, XP para evoluir: 8000, Custo para evoluir: 60000 }
+      4: { Raio: 7, Intervalo: 18, Mana maxima: 400, Bolsa: 10240, Forca: 1.5, XP para evoluir: 16000, Custo para evoluir: 120000 }
+      5: { Raio: 8, Intervalo: 15, Mana maxima: 500, Bolsa: 20480, Forca: 2.0 }
+    Loja:
+      Ativar: true
+      Preco: 25000
+      Slot: 11
+
+  # ------------------------------------------------------------------------
+  jardineiro:
+    Nome: '&a&lMago Jardineiro'
+    Descricao:
+      - '&7Planta florestas: faz as mudas da area'
+      - '&7virarem arvores e cuida das plantacoes.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: '5bf5d36dcf3c539ab474f7f4b588cfc49fa1bfe489e58b8f233bf25480ec3df'
+      Roupa:
+        Cor: '#8BC34A'
+      Varinha:
+        Material: OAK_SAPLING
+        Brilho: false
+      Particula: HAPPY_VILLAGER
+    Mana:
+      Regeneracao por minuto: 3
+    Magias:
+      arvores:
+        Tipo: ARVORES
+        Nome: '&2Crescer arvores'
+        Alvos: [ '*' ]
+        Chance: 40
+        Custo de mana: 2
+        XP por acao: 5
+      crescer:
+        Tipo: CRESCER
+        Nome: '&aCrescer plantacoes'
+        Alvos: [ '*' ]
+        Estagios: 1
+        Custo de mana: 1
+        XP por acao: 1
+    Niveis:
+      1: { Raio: 5, Altura: 3, Intervalo: 35, Mana maxima: 150, Bolsa: 0, XP para evoluir: 1000, Custo para evoluir: 8000 }
+      2: { Raio: 6, Intervalo: 30, Mana maxima: 200, XP para evoluir: 2500, Custo para evoluir: 20000 }
+      3: { Raio: 8, Intervalo: 25, Mana maxima: 300, Forca: 1.5 }
+    Loja:
+      Ativar: true
+      Preco: 15000
+      Slot: 12
+
+  # ------------------------------------------------------------------------
+  deserto:
+    Nome: '&6&lMago do Deserto'
+    Descricao:
+      - '&7Faz cana, cacto e bambu crescerem'
+      - '&7e colhe tudo, deixando a base plantada.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: 'baf818b04d6ae98a69ad8d9463d8d0379921d3eb79222e1c6272f65372d80775'
+      Roupa:
+        Cor: '#E0C068'
+      Varinha:
+        Material: BLAZE_ROD
+        Brilho: true
+      Particula: CRIT
+    Mana:
+      Regeneracao por minuto: 3
+    Magias:
+      crescer:
+        Tipo: CRESCER
+        Nome: '&aCrescer cana, cacto e bambu'
+        Alvos: [ SUGAR_CANE, CACTUS, BAMBOO ]
+        Estagios: 1
+        Altura maxima: 3
+        Custo de mana: 1
+        XP por acao: 1
+      colher:
+        Tipo: COLHER
+        Nome: '&eColher cana, cacto e bambu'
+        Alvos: [ SUGAR_CANE, CACTUS, BAMBOO ]
+        # Colhe quando a coluna chega nessa altura (a base fica plantada).
+        Altura maxima: 3
+        Destino: BOLSA
+        Custo de mana: 1
+        XP por acao: 2
+    Niveis:
+      1: { Raio: 4, Altura: 2, Intervalo: 30, Mana maxima: 150, Bolsa: 1280, XP para evoluir: 1500, Custo para evoluir: 10000 }
+      2: { Raio: 5, Intervalo: 25, Mana maxima: 200, Bolsa: 2560, XP para evoluir: 3500, Custo para evoluir: 25000 }
+      3: { Raio: 6, Intervalo: 20, Mana maxima: 300, Bolsa: 5120, Forca: 1.5 }
+    Loja:
+      Ativar: true
+      Preco: 20000
+      Slot: 13
+
+  # ------------------------------------------------------------------------
+  infernal:
+    Nome: '&c&lMago Infernal'
+    Descricao:
+      - '&7Mestre do Nether: faz o fungo do'
+      - '&7Nether crescer e colhe sozinho.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: 'baf818b04d6ae98a69ad8d9463d8d0379921d3eb79222e1c6272f65372d80775'
+      Roupa:
+        Cor: '#B71C1C'
+      Varinha:
+        Material: BLAZE_ROD
+        Brilho: true
+      Particula: FLAME
+    Mana:
+      Regeneracao por minuto: 3
+    Magias:
+      crescer:
+        Tipo: CRESCER
+        Nome: '&cCrescer fungo do Nether'
+        Alvos: [ NETHER_WART ]
+        Estagios: 1
+        Custo de mana: 1
+        XP por acao: 1
+        Particula: FLAME
+      colher:
+        Tipo: COLHER
+        Nome: '&6Colher fungo do Nether'
+        Alvos: [ NETHER_WART ]
+        Replantar: true
+        Destino: BOLSA
+        Custo de mana: 1
+        XP por acao: 2
+        Particula: FLAME
+    Niveis:
+      1: { Raio: 4, Altura: 2, Intervalo: 30, Mana maxima: 150, Bolsa: 1280, XP para evoluir: 1500, Custo para evoluir: 12000 }
+      2: { Raio: 5, Intervalo: 25, Mana maxima: 200, Bolsa: 2560, XP para evoluir: 3500, Custo para evoluir: 30000 }
+      3: { Raio: 6, Intervalo: 20, Mana maxima: 300, Bolsa: 5120, Forca: 1.5 }
+    Loja:
+      Ativar: true
+      Preco: 22000
+      Slot: 14
+
+  # ------------------------------------------------------------------------
+  necromante:
+    Nome: '&8&lNecromante'
+    Descricao:
+      - '&7Ceifa os monstros da area, guarda os'
+      - '&7drops na bolsa e a XP para voce coletar.'
+      - '&7Tambem aspira os itens largados.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: '301268e9c492da1f0d88271cb492a4b302395f515a7bbf77f4a20b95fc02eb2'
+      Roupa:
+        Cor: '#212121'
+      Varinha:
+        Material: BONE
+        Brilho: true
+      Particula: SMOKE
+    Mana:
+      Regeneracao por minuto: 4
+    Magias:
+      ceifar:
+        Tipo: CEIFAR
+        Nome: '&cCeifar monstros'
+        Alvos: [ ZOMBIE, SKELETON, SPIDER, CAVE_SPIDER, CREEPER, ZOMBIE_VILLAGER, HUSK, STRAY, DROWNED, WITCH, SLIME, ENDERMAN ]
+        Dano: 0
+        Limite por onda: 3
+        Ignorar nomeados: true
+        Guardar XP: true
+        XP por mob: 5
+        Destino: BOLSA
+        Custo de mana: 2
+        XP por acao: 4
+      aspirar:
+        Tipo: ASPIRAR
+        Nome: '&bAspirar itens'
+        Alvos: [ '*' ]
+        Limite por onda: 16
+        Destino: BOLSA
+        Custo de mana: 1
+        XP por acao: 1
+    Niveis:
+      1: { Raio: 5, Altura: 3, Intervalo: 15, Mana maxima: 200, Bolsa: 2560, XP para evoluir: 2000, Custo para evoluir: 20000 }
+      2: { Raio: 6, Intervalo: 12, Mana maxima: 300, Bolsa: 5120, XP para evoluir: 5000, Custo para evoluir: 50000 }
+      3: { Raio: 8, Intervalo: 10, Mana maxima: 400, Bolsa: 10240, Forca: 1.5 }
+    Loja:
+      Ativar: true
+      Preco: 35000
+      Slot: 19
+
+  # ------------------------------------------------------------------------
+  invocador:
+    Nome: '&5&lMago Invocador'
+    Descricao:
+      - '&7Invoca almas de monstros que deixam'
+      - '&7os drops direto na bolsa, sem nenhum mob'
+      - '&7de verdade no mundo: zero lag.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: 'baf818b04d6ae98a69ad8d9463d8d0379921d3eb79222e1c6272f65372d80775'
+      Roupa:
+        Cor: '#6A1B9A'
+      Varinha:
+        Material: BLAZE_ROD
+        Brilho: true
+      Particula: PORTAL
+      Contorno brilhante: false
+    Mana:
+      Regeneracao por minuto: 2
+    Magias:
+      zumbis:
+        Tipo: INVOCAR
+        Nome: '&2Almas de zumbi'
+        Virtual: true
+        Quantidade: 2
+        Drops:
+          - 'ROTTEN_FLESH 0-2'
+          - 'IRON_INGOT 1 2.5'
+          - 'CARROT 1 2.5'
+          - 'POTATO 1 2.5'
+        XP por mob: 5
+        Destino: BOLSA
+        Custo de mana: 2
+        XP por acao: 2
+      esqueletos:
+        Tipo: INVOCAR
+        Nome: '&fAlmas de esqueleto'
+        Virtual: true
+        Quantidade: 2
+        Drops:
+          - 'BONE 0-2'
+          - 'ARROW 0-2'
+        XP por mob: 5
+        Destino: BOLSA
+        Nivel minimo: 2
+        Custo de mana: 2
+        XP por acao: 2
+      aranhas:
+        Tipo: INVOCAR
+        Nome: '&8Almas de aranha'
+        Virtual: true
+        Quantidade: 2
+        Drops:
+          - 'STRING 0-2'
+          - 'SPIDER_EYE 1 33'
+        XP por mob: 5
+        Destino: BOLSA
+        Nivel minimo: 3
+        Custo de mana: 2
+        XP por acao: 2
+    Niveis:
+      1: { Raio: 3, Altura: 2, Intervalo: 30, Mana maxima: 200, Bolsa: 2560, XP para evoluir: 2000, Custo para evoluir: 30000 }
+      2: { Intervalo: 25, Mana maxima: 300, Bolsa: 5120, Forca: 1.25, XP para evoluir: 5000, Custo para evoluir: 75000 }
+      3: { Intervalo: 20, Mana maxima: 400, Bolsa: 10240, Forca: 1.5, XP para evoluir: 12000, Custo para evoluir: 150000 }
+      4: { Intervalo: 15, Mana maxima: 600, Bolsa: 20480, Forca: 2.0 }
+    Loja:
+      Ativar: true
+      Preco: 50000
+      Slot: 20
+
+  # ------------------------------------------------------------------------
+  pastor:
+    Nome: '&e&lMago Pastor'
+    Descricao:
+      - '&7Faz os filhotes crescerem, os animais'
+      - '&7se reproduzirem e recolhe ovos, penas'
+      - '&7e la que cairem pelo chao.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: '5bf5d36dcf3c539ab474f7f4b588cfc49fa1bfe489e58b8f233bf25480ec3df'
+      Roupa:
+        Cor: '#795548'
+      Varinha:
+        Material: WHEAT
+        Brilho: false
+      Particula: HEART
+    Mana:
+      Regeneracao por minuto: 3
+    Magias:
+      animais:
+        Tipo: ANIMAIS
+        Nome: '&dCuidar dos animais'
+        Alvos: [ COW, SHEEP, PIG, CHICKEN, RABBIT, GOAT ]
+        Crescer filhotes: true
+        Reproduzir: true
+        Quantidade: 1
+        Limite na area: 12
+        Custo de mana: 2
+        XP por acao: 3
+      aspirar:
+        Tipo: ASPIRAR
+        Nome: '&bRecolher do chao'
+        Alvos: [ EGG, FEATHER, '*_WOOL', LEATHER, BEEF, PORKCHOP, CHICKEN, MUTTON, RABBIT_HIDE ]
+        Limite por onda: 16
+        Destino: BOLSA
+        Custo de mana: 1
+        XP por acao: 1
+    Niveis:
+      1: { Raio: 5, Altura: 2, Intervalo: 40, Mana maxima: 150, Bolsa: 1280, XP para evoluir: 1000, Custo para evoluir: 10000 }
+      2: { Raio: 6, Intervalo: 35, Mana maxima: 200, Bolsa: 2560, XP para evoluir: 2500, Custo para evoluir: 25000 }
+      3: { Raio: 8, Intervalo: 30, Mana maxima: 300, Bolsa: 5120, Forca: 2.0 }
+    Loja:
+      Ativar: true
+      Preco: 18000
+      Slot: 21
+
+  # ------------------------------------------------------------------------
+  arquimago:
+    Nome: '&6&l✦ Arquimago ✦'
+    Descricao:
+      - '&7O mais poderoso: acelera os spawners'
+      - '&7da area, ceifa o que nasce e recolhe'
+      - '&7tudo na bolsa. Mana infinita.'
+    Aparencia:
+      Modo: MAGO
+      Cabeca:
+        Textura: 'baf818b04d6ae98a69ad8d9463d8d0379921d3eb79222e1c6272f65372d80775'
+      Roupa:
+        Cor: '#FFD54F'
+      Varinha:
+        Material: BLAZE_ROD
+        Brilho: true
+      Particula: END_ROD
+      Contorno brilhante: true
+    Mana:
+      Infinita: true
+    Multiplicador de venda: 1.2
+    Magias:
+      spawners:
+        Tipo: SPAWNERS
+        Nome: '&6Acelerar spawners'
+        Alvos: [ '*' ]
+        Reducao: 5
+        Custo de mana: 0
+        XP por acao: 2
+      ceifar:
+        Tipo: CEIFAR
+        Nome: '&cCeifar o que nasce'
+        Alvos: [ '*' ]
+        Dano: 0
+        Limite por onda: 6
+        Guardar XP: true
+        XP por mob: 5
+        Destino: BOLSA
+        Custo de mana: 0
+        XP por acao: 3
+      aspirar:
+        Tipo: ASPIRAR
+        Nome: '&bAspirar itens'
+        Alvos: [ '*' ]
+        Limite por onda: 32
+        Destino: BOLSA
+        Custo de mana: 0
+        XP por acao: 1
+    Niveis:
+      1: { Raio: 6, Altura: 3, Intervalo: 10, Mana maxima: 100, Bolsa: 10240, Forca: 1.0, XP para evoluir: 5000, Custo para evoluir: 100000 }
+      2: { Raio: 8, Intervalo: 8, Bolsa: 20480, Forca: 1.5, XP para evoluir: 12000, Custo para evoluir: 250000 }
+      3: { Raio: 10, Intervalo: 6, Bolsa: 0, Forca: 2.0 }
+    Loja:
+      Ativar: true
+      Preco: 150000
+      Slot: 22
+
+  # ------------------------------------------------------------------------
+  orbe_colheita:
+    Nome: '&a&lOrbe da Colheita'
+    Descricao:
+      - '&7Um orbe flutuante que acelera as'
+      - '&7plantacoes em volta. Funciona por'
+      - '&7cargas: recarregue com cristais.'
+    Aparencia:
+      Modo: ORBE
+      Cabeca:
+        Textura: '958b0861f337ed75d1fe6badfc35d2f3aa5b24d42607f81fc86abe53855870f7'
+      Girar: GIRAR
+      Flutuar: true
+      Particula: HAPPY_VILLAGER
+    Mana:
+      Infinita: false
+      Regeneracao por minuto: 0
+    Magias:
+      crescer:
+        Tipo: CRESCER
+        Nome: '&aCrescer plantacoes'
+        Alvos: [ '*' ]
+        Estagios: 1
+        Custo de mana: 1
+        XP por acao: 1
+    Niveis:
+      1: { Raio: 8, Altura: 3, Intervalo: 10, Mana maxima: 60, Bolsa: 0, XP para evoluir: 3000, Custo para evoluir: 15000 }
+      2: { Raio: 10, Intervalo: 8, Mana maxima: 100, Forca: 1.5 }
+    Loja:
+      Ativar: true
+      Preco: 8000
+      Slot: 28
+
+  # ------------------------------------------------------------------------
+  orbe_almas:
+    Nome: '&b&lOrbe das Almas'
+    Descricao:
+      - '&7Um orbe que suga a vida dos monstros'
+      - '&7em volta e guarda a XP deles.'
+    Aparencia:
+      Modo: ORBE
+      Cabeca:
+        Textura: '1d7620b2e4934963bb12508310d05494c067dc33e008cecf2cd7b4549654fab3'
+      Girar: GIRAR
+      Particula: WITCH
+    Mana:
+      Regeneracao por minuto: 2
+    Magias:
+      ceifar:
+        Tipo: CEIFAR
+        Nome: '&cSugar almas'
+        Alvos: [ '*' ]
+        Dano: 6
+        Limite por onda: 4
+        Guardar XP: true
+        XP por mob: 5
+        Destino: BOLSA
+        Custo de mana: 1
+        XP por acao: 2
+    Niveis:
+      1: { Raio: 4, Altura: 3, Intervalo: 6, Mana maxima: 150, Bolsa: 1280, XP para evoluir: 2000, Custo para evoluir: 20000 }
+      2: { Raio: 5, Intervalo: 5, Mana maxima: 250, Bolsa: 2560, Forca: 1.5 }
+    Loja:
+      Ativar: true
+      Preco: 25000
+      Slot: 29
+
+  # ------------------------------------------------------------------------
+  orbe_infernal:
+    Nome: '&6&lOrbe Infernal'
+    Descricao:
+      - '&7Um orbe de lava que aquece o fungo'
+      - '&7do Nether ate ele crescer.'
+    Aparencia:
+      Modo: ORBE
+      Cabeca:
+        Textura: 'ae41fd21b551f949e34d4525fca7f9ed906f1bc69d259fd851514a8fa26602a9'
+      Girar: GIRAR
+      Particula: FLAME
+    Mana:
+      Regeneracao por minuto: 0
+    Magias:
+      crescer:
+        Tipo: CRESCER
+        Nome: '&cCrescer fungo do Nether'
+        Alvos: [ NETHER_WART ]
+        Estagios: 1
+        Custo de mana: 1
+        XP por acao: 1
+        Particula: FLAME
+    Niveis:
+      1: { Raio: 6, Altura: 2, Intervalo: 10, Mana maxima: 60, Bolsa: 0, XP para evoluir: 3000, Custo para evoluir: 15000 }
+      2: { Raio: 8, Intervalo: 8, Mana maxima: 100, Forca: 1.5 }
+    Loja:
+      Ativar: true
+      Preco: 10000
+      Slot: 30
