@@ -517,3 +517,142 @@ Item vip:
       lore:
         - '&7Fecha sem usar o item.'
   Decoracao: {}
+
+# ====================================================================
+# Historico de VIPs: /vip historico <jogador> ou /historicovip <jogador> (staff)
+# e /vip historico (o proprio jogador)
+# Lore do evento: {data} {vip} {id} {duracao} {autor} {origem} {detalhe} {player}
+# Linha com um campo vazio nao aparece (evento geral nao tem vip, etc.).
+# ====================================================================
+Historico staff:
+  Nome: '&8Historico de VIPs'
+  # /vip historico do proprio jogador: titulo, e como aparece a acao da staff.
+  Nome do jogador: '&8Meu historico de VIPs'
+  Autor equipe: 'Equipe'
+  Tamanho: 54
+  Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+  Slot anterior: 45
+  Slot proximo: 53
+  Slot resumo: 4
+  Slot filtro: 48
+  Slot fechar: 50
+  Slot por vip: 46
+  # Seta de voltar no historico de um VIP so (volta para a lista "Por VIP").
+  Slot voltar: 49
+  Nome do vip: '&8Historico do VIP #{id}'
+  Botao por vip:
+    material: 'BOOK'
+    name: '&6Por VIP'
+    lore:
+      - '&7Cada VIP que &f{player} &7ja teve,'
+      - '&7com quando foi ativado e quando expirou.'
+      - ''
+      - '&eClique para ver.'
+  Lore do evento:
+    - '&7Data: &f{data}'
+    - '&7VIP: {vip}'
+    - '&7ID: &f#{id}'
+    - '&7Duracao: &f{duracao}'
+    - '&7Quem fez: &f{autor}'
+    - '&7Por onde: &f{origem}'
+    - '&7Detalhe: &f{detalhe}'
+  Linha geral: '&8(vale para todos os jogadores)'
+  Linha clique: '&eClique para ver o vip (/infovip).'
+  Eventos:
+    RECEBEU:
+      material: 'CHEST'
+      name: '&bRecebeu uma chave'
+    ATIVOU:
+      material: 'LIME_DYE'
+      name: '&aAtivou'
+    SOMOU:
+      material: 'LIME_DYE'
+      name: '&aAtivou (tempo somado)'
+    TROCOU:
+      material: 'COMPARATOR'
+      name: '&eTrocou de VIP'
+    PROMOVIDO:
+      material: 'COMPARATOR'
+      name: '&eEquipado sozinho'
+    EXPIROU:
+      material: 'GRAY_DYE'
+      name: '&7Expirou'
+    REMOVIDO:
+      material: 'RED_DYE'
+      name: '&cRemovido'
+    TEMPO_ADICIONADO:
+      material: 'CLOCK'
+      name: '&aTempo adicionado'
+    TEMPO_REMOVIDO:
+      material: 'CLOCK'
+      name: '&cTempo removido'
+    CONGELADO:
+      material: 'ICE'
+      name: '&bTempo congelado (geral)'
+    DESCONGELADO:
+      material: 'WATER_BUCKET'
+      name: '&bTempo descongelado (geral)'
+    A_VENDA:
+      material: 'GOLD_INGOT'
+      name: '&6Colocou a venda'
+    VENDA_CANCELADA:
+      material: 'IRON_INGOT'
+      name: '&7Tirou da venda'
+    COMPROU:
+      material: 'EMERALD'
+      name: '&aComprou no mercado'
+    VENDEU:
+      material: 'GOLD_NUGGET'
+      name: '&6Vendeu no mercado'
+    ENVIOU:
+      material: 'PAPER'
+      name: '&eEnviou para outro jogador'
+    RECEBEU_ENVIO:
+      material: 'PAPER'
+      name: '&bRecebeu de outro jogador'
+    UPGRADE:
+      material: 'EXPERIENCE_BOTTLE'
+      name: '&dUpgrade'
+    ITEM_VIP:
+      material: 'NAME_TAG'
+      name: '&bRecebeu item de VIP'
+  Decoracao: {}
+  # Lista "Por VIP". Lore: {estado} {recebido} {ativado} {expira} {expirou} {saiu}
+  # {duracao} {restante} {eventos} {id} {vip}. Linha com campo vazio nao aparece.
+  Vips:
+    Nome: '&8VIPs do jogador'
+    Tamanho: 54
+    Slots: [ 10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43 ]
+    Slot anterior: 45
+    Slot proximo: 53
+    Slot voltar: 49
+    Nome do item: '{vip} &8#{id}'
+    Lore do vip:
+      - '&7Estado: {estado}'
+      - '&7Recebido em: &f{recebido}'
+      - '&7Ativado em: &f{ativado}'
+      - '&7Expira em: &f{expira}'
+      - '&7Expirou em: &f{expirou}'
+      - '&7Saiu da conta: &f{saiu}'
+      - '&7Duracao: &f{duracao}'
+      - '&7Restante: &f{restante}'
+      - '&7Eventos: &f{eventos}'
+      - ''
+      - '&eClique para ver o historico deste VIP.'
+    Estados:
+      ATIVO:
+        material: 'EMERALD'
+        name: '&aequipado'
+      PENDENTE:
+        material: 'GOLD_INGOT'
+        name: '&eaguardando a vez'
+      GUARDADO:
+        material: 'CHEST'
+        name: '&bguardado (nao ativado)'
+      EXPIRADO:
+        material: 'GRAY_DYE'
+        name: '&7expirado'
+      FORA_DA_CONTA:
+        material: 'RED_DYE'
+        name: '&cfora da conta'
+    Decoracao: {}
