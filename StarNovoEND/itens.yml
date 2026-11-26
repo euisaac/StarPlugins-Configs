@@ -1,0 +1,465 @@
+# ============================================================
+#  StarNovoEND - itens
+#
+#  Nome e Lore aceitam & e hex (&#RRGGBB). Os efeitos de cada item ficam
+#  em "Efeitos" (numeros); o que o item faz esta descrito na propria lore.
+#  Atributos: Dano e Velocidade sao o que aparece na dica do item
+#  (o jogo soma 1 de dano da mao). Armadura: Armadura, Resistencia e
+#  Repulsao (resistencia a empurrao, 0.1 = 10%).
+#  Mudou algo? /novoend admin recarregar (itens novos saem com o texto novo).
+# ============================================================
+Itens:
+  poeira_nebulosa:
+    Nome: '&#f2b8ffPoeira de Nebulosa'
+    Lore:
+      - '&7Poeira rosada que brilha sozinha.'
+      - '&8Cai dos Lumes e dos Andarilhos.'
+  fragmento_cometario:
+    Nome: '&#ff9a4dFragmento Cometário'
+    Lore:
+      - '&7Ainda morno do impacto.'
+      - '&8Quebre a Rocha Cometária nos Destroços de Cometa.'
+  lasca_cobre_celeste:
+    Nome: '&#4fd1a5Lasca de Cobre Celeste'
+    Lore:
+      - '&7Metal do coração da estrela caída.'
+      - '&8Raspe um Autômato de Cobre com um machado.'
+  essencia_umbral:
+    Nome: '&#8b6cffEssência Umbral'
+    Lore:
+      - '&7Fria como a sombra de um eclipse.'
+      - '&8Cai das criaturas da Fossa do Eclipse.'
+  disco_eclipse:
+    Nome: '&#ffd36bDisco do Eclipse'
+    Lore:
+      - '&7O halo do Arauto, ainda girando.'
+      - '&6Drop do Arauto do Eclipse.'
+  nucleo_orbital:
+    Nome: '&#7ff0ffNúcleo Orbital'
+    Lore:
+      - '&7Três luas presas numa esfera.'
+      - '&bDrop da Tecelã de Órbitas.'
+      - '&8Use no altar da Forja Cometária para chamar o Colosso.'
+  coracao_cometario:
+    Nome: '&#ff5a3cCoração Cometário'
+    Lore:
+      - '&7Pulsa como um motor.'
+      - '&cDrop do Colosso Cometário.'
+  vela_eclipse:
+    Nome: '&#ffcf5cVela do Eclipse'
+    Lore:
+      - '&7Acenda no altar do Santuário do Eclipse'
+      - '&7para chamar o &6Arauto do Eclipse&7.'
+  chave_orbital:
+    Nome: '&#a8f7ffChave Orbital'
+    Lore:
+      - '&7Use no altar do topo do Planetário Suspenso'
+      - '&7para chamar a &bTecelã de Órbitas&7.'
+  gladio_umbral:
+    Nome: '&#9d7bffGládio Umbral'
+    Lore:
+      - '&7Todo &f3º golpe seguido&7 no mesmo alvo'
+      - '&7causa &8cegueira&7 e &c+%extra% de dano&7.'
+    Atributos: { Dano: 8.0, Velocidade: -2.4 }
+    Efeitos: { Dano extra: 6.0, Cegueira (segundos): 2, Janela (segundos): 3 }
+  arco_sextante:
+    Nome: '&#7ff0ffArco Sextante'
+    Lore:
+      - '&7A flecha que acerta &fricocheteia&7 uma vez'
+      - '&7para outro alvo a até %alcance% blocos.'
+    Efeitos: { Alcance do ricochete: 8.0 }
+  martelo_cometario:
+    Nome: '&#ff7a3cMartelo Cometário'
+    Lore:
+      - '&7Agache e clique com o botão direito:'
+      - '&7&finvestida&7 que causa &c%dano% de dano&7 e &fatordoa&7.'
+      - '&8Recarga: %recarga%s'
+    Atributos: { Dano: 11.0, Velocidade: -3.0 }
+    Efeitos: { Dano da investida: 8.0, Raio: 3.5, Atordoar (segundos): 2, Recarga (segundos): 8 }
+  picareta_celeste:
+    Nome: '&#4fd1a5Picareta Celeste'
+    Lore:
+      - '&7No End, quebra pedra em &f3x3&7.'
+      - '&8Respeita terrenos e proteções.'
+    Atributos: { Dano: 5.0, Velocidade: -2.8 }
+  astrolabio:
+    Nome: '&#ffe6a3Astrolábio'
+    Lore:
+      - '&7Clique: aponta a estrutura escolhida mais perto.'
+      - '&7Agachado + clique: troca a estrutura.'
+      - '&8Recarga: %recarga%s'
+    Efeitos: { Recarga (segundos): 10, Alcance (blocos): 6000 }
+  cetro_cometario:
+    Nome: '&#ff5a3cCetro Cometário'
+    Lore:
+      - '&7Clique direito: dispara um &cmini-cometa&7.'
+      - '&7Gasta &f1 Poeira de Nebulosa&7 por disparo.'
+      - '&8Recarga: %recarga%s'
+    Efeitos: { Forca da explosao: 2.2, Recarga (segundos): 3 }
+  elmo_nebuloso:
+    Nome: '&#f2b8ffElmo Nebuloso'
+    Lore: [ '&7Conjunto Nebuloso &8(1/4)', '%conjunto%' ]
+    Atributos: { Armadura: 3.0, Resistencia: 2.5, Repulsao: 0.0 }
+  peitoral_nebuloso:
+    Nome: '&#f2b8ffPeitoral Nebuloso'
+    Lore: [ '&7Conjunto Nebuloso &8(2/4)', '%conjunto%' ]
+    Atributos: { Armadura: 8.0, Resistencia: 2.5, Repulsao: 0.0 }
+  calcas_nebulosas:
+    Nome: '&#f2b8ffCalças Nebulosas'
+    Lore: [ '&7Conjunto Nebuloso &8(3/4)', '%conjunto%' ]
+    Atributos: { Armadura: 6.0, Resistencia: 2.5, Repulsao: 0.0 }
+  botas_nebulosas:
+    Nome: '&#f2b8ffBotas Nebulosas'
+    Lore: [ '&7Conjunto Nebuloso &8(4/4)', '%conjunto%' ]
+    Atributos: { Armadura: 3.0, Resistencia: 2.5, Repulsao: 0.0 }
+  elmo_cometario:
+    Nome: '&#ff7a3cElmo Cometário'
+    Lore: [ '&7Conjunto Cometário &8(1/4)', '%conjunto%' ]
+    Atributos: { Armadura: 3.0, Resistencia: 3.5, Repulsao: 0.1 }
+  peitoral_cometario:
+    Nome: '&#ff7a3cPeitoral Cometário'
+    Lore: [ '&7Conjunto Cometário &8(2/4)', '%conjunto%' ]
+    Atributos: { Armadura: 8.0, Resistencia: 3.5, Repulsao: 0.1 }
+  calcas_cometarias:
+    Nome: '&#ff7a3cCalças Cometárias'
+    Lore: [ '&7Conjunto Cometário &8(3/4)', '%conjunto%' ]
+    Atributos: { Armadura: 6.0, Resistencia: 3.5, Repulsao: 0.1 }
+  botas_cometarias:
+    Nome: '&#ff7a3cBotas Cometárias'
+    Lore: [ '&7Conjunto Cometário &8(4/4)', '%conjunto%' ]
+    Atributos: { Armadura: 3.0, Resistencia: 3.5, Repulsao: 0.1 }
+  ancora_gravitacional:
+    Nome: '&#b9a6ffÂncora Gravitacional'
+    Lore:
+      - '&7Se você cair no vazio do End, ela'
+      - '&7te leva ao chão firme mais perto.'
+      - '&8Some depois de usada.'
+  asas_orbitais:
+    Nome: '&#7ff0ffAsas Orbitais'
+    Lore:
+      - '&7Élitro com o &fdobro&7 de durabilidade.'
+    Efeitos: { Durabilidade: 864 }
+  lanterna_lume:
+    Nome: '&#fff1a8Lanterna de Lume'
+    Lore:
+      - '&7Clique num bloco para colocar.'
+      - '&7Bata nela para recolher.'
+  fruto_orbita:
+    Nome: '&#a8ffd9Fruto-Órbita'
+    Lore:
+      - '&7Dá saciedade e &f%segundos%s de queda lenta&7.'
+      - '&8Colha nas árvores orbitais do Jardim Orbital.'
+    Efeitos: { Queda lenta (segundos): 10, Fome: 6, Saturacao: 9.6 }
+  diario_de_bordo:
+    Nome: '&#c9c9c9Diário de Bordo'
+    Lore:
+      - '&7Achado numa Sonda Abandonada.'
+
+  # ---------------------------------------------------------- segunda leva
+  # Materiais: "Chance (%)", "Minimo" e "Maximo" valem para o bloco da regiao
+  # (sem Toque Suave; bloco posto por jogador nao conta).
+  gelo_eterno:
+    Nome: '&#bfe6ffGelo Eterno'
+    Lore:
+      - '&7Não derrete nem no Nether.'
+      - '&8Quebre gelo azul na Geleira Silenciosa.'
+    Efeitos: { Chance (%): 100, Minimo: 1, Maximo: 2 }
+  eco_condensado:
+    Nome: '&#5ff5e6Eco Condensado'
+    Lore:
+      - '&7Um som que ficou preso numa gota.'
+      - '&8Quebre catalisadores de sculk no Ermo do Eco.'
+    Efeitos: { Chance (%): 100, Minimo: 1, Maximo: 2 }
+  perola_da_mare:
+    Nome: '&#f0c8d8Pérola da Maré'
+    Lore:
+      - '&7Brilha mais quando a maré sobe.'
+      - '&8Pesque nas Lagoas da Maré Lunar.'
+    Efeitos: { Chance (%): 25 }
+  esporo_fungico:
+    Nome: '&#3fd1c0Esporo Fúngico'
+    Lore:
+      - '&7Ainda solta brilho quando sacode.'
+      - '&8Quebre luzes de fungo no Bosque Fúngico do Vazio.'
+    Efeitos: { Chance (%): 100, Minimo: 1, Maximo: 2 }
+  cristal_ressonante:
+    Nome: '&#b48cf0Cristal Ressonante'
+    Lore:
+      - '&7Vibra quando alguém fala perto.'
+      - '&8Quebre cachos de ametista nos Picos de Ametista.'
+    Efeitos: { Chance (%): 35, Minimo: 1, Maximo: 1 }
+  foice_do_eco:
+    Nome: '&#1fb7b0Foice do Eco'
+    Lore:
+      - '&7Cada golpe &fceifa&7 os inimigos à frente'
+      - '&7com &c%ceifa%%&7 do dano.'
+      - '&7Abate cura &c%cura% de vida&7.'
+    Atributos: { Dano: 9.0, Velocidade: -2.8 }
+    Efeitos: { Ceifa (%): 60, Alcance da ceifa: 3.0, Cura por abate: 3.0 }
+  lanca_da_mare:
+    Nome: '&#5fb8e0Lança da Maré'
+    Lore:
+      - '&7Arremessada, solta uma &fmaré&7 que puxa'
+      - '&7inimigos em %raio% blocos e causa &c%dano% de dano&7.'
+      - '&7Volta para a sua mão.'
+    Atributos: { Dano: 9.0, Velocidade: -2.9 }
+    Efeitos: { Raio da mare: 5.0, Dano da mare: 4.0, Lentidao (segundos): 3 }
+  besta_glacial:
+    Nome: '&#8fc4f0Besta Glacial'
+    Lore:
+      - '&7A flecha &fcongela&7 o alvo por %segundos%s.'
+      - '&7Acertar um alvo já congelado &fquebra o gelo&7:'
+      - '&c%dano% de dano&7 nele e em quem estiver perto.'
+    Efeitos: { Congelar (segundos): 5, Dano do estilhaco: 6.0, Raio do estilhaco: 3.0 }
+  adaga_fungica:
+    Nome: '&#3fd1c0Adaga Fúngica'
+    Lore:
+      - '&7Rápida. Cada golpe solta &2esporos&7 que ferem'
+      - '&7por %segundos%s (até morto-vivo).'
+      - '&7%chance%% de chance de soltar uma'
+      - '&7nuvem de esporos em volta do alvo.'
+    Atributos: { Dano: 5.0, Velocidade: -1.6 }
+    Efeitos: { Esporos (segundos): 4, Dano por segundo: 1.0, Chance da nuvem (%): 20, Raio da nuvem: 3.0 }
+  tomo_estilhacos:
+    Nome: '&#b48cf0Tomo dos Estilhaços'
+    Lore:
+      - '&7Clique direito: dispara &f%qtd% estilhaços&7'
+      - '&7de ametista (&c%dano%&7 de dano cada).'
+      - '&8Gasta %custo% Poeira de Nebulosa. Recarga: %recarga%s'
+    Efeitos: { Estilhacos: 5, Dano por estilhaco: 4.0, Recarga (segundos): 4, Custo (poeira): 1 }
+  tomo_nevasca:
+    Nome: '&#8fc4f0Tomo da Nevasca'
+    Lore:
+      - '&7Clique direito: um cone de neve de %alcance% blocos'
+      - '&7que causa &c%dano% de dano&7 e &fcongela&7.'
+      - '&8Gasta %custo% Poeira de Nebulosa. Recarga: %recarga%s'
+    Efeitos: { Alcance: 8.0, Dano: 5.0, Congelar (segundos): 4, Recarga (segundos): 8, Custo (poeira): 1 }
+  tomo_mare:
+    Nome: '&#7fd8e0Tomo da Maré'
+    Lore:
+      - '&7Clique direito: cura &c%cura% de vida&7 de todos'
+      - '&7os jogadores em %raio% blocos, com regeneração.'
+      - '&8Gasta %custo% Poeira de Nebulosa. Recarga: %recarga%s'
+    Efeitos: { Raio: 6.0, Cura: 6.0, Regeneracao (segundos): 4, Recarga (segundos): 20, Custo (poeira): 2 }
+  sino_ressonante:
+    Nome: '&#ffd36bSino Ressonante'
+    Lore:
+      - '&7Clique direito: revela as criaturas'
+      - '&7em %raio% blocos por %segundos%s.'
+      - '&8Recarga: %recarga%s'
+    Efeitos: { Raio: 32, Brilho (segundos): 8, Recarga (segundos): 30 }
+  totem_do_vazio:
+    Nome: '&#b48cf0Totem do Vazio'
+    Lore:
+      - '&7Em qualquer lugar do inventário: segura'
+      - '&7um golpe que te mataria e dá &c+%vida% de vida&7.'
+      - '&8Não salva da queda no vazio (para isso, a Âncora).'
+      - '&8Some depois de usado.'
+    Efeitos: { Vida ao salvar: 8, Absorcao (segundos): 10 }
+  ensopado_estelar:
+    Nome: '&#ff9a4dEnsopado Estelar'
+    Lore:
+      - '&7Regeneração, resistência e visão noturna.'
+    Efeitos: { Regeneracao (segundos): 8, Resistencia (segundos): 30, Visao noturna (segundos): 60 }
+  # terceira leva: mecanicas (o resto da config fica no mecanicas.yml)
+  marco_estelar:
+    Nome: '&#c89bffMarco Estelar'
+    Lore:
+      - '&7Ponha no End para criar um ponto de viagem.'
+      - '&7Clique num marco para descobri-lo e, depois,'
+      - '&7para viajar até outro marco que você conhece.'
+      - '&8Renomeie na bigorna para dar nome ao marco.'
+  vara_abissal:
+    Nome: '&#7fd8ffVara Abissal'
+    Lore:
+      - '&7Pesca no vazio do End: jogue a boia para fora da ilha.'
+      - '&7Mordidas &f%espera%% &7mais rápidas.'
+      - '&7&f+%raro%% &7de chance de captura rara e &f+%epico%% &7de épica.'
+    Efeitos: { Espera menor (%): 25, Bonus de raro (%): 10, Bonus de epico (%): 2 }
+  enguia_do_vazio:
+    Nome: '&#9d7bffEnguia do Vazio'
+    Lore:
+      - '&7Pescada no vazio do End.'
+      - '&7Ao comer: &fqueda lenta &7por %segundos%s.'
+    Efeitos: { Queda lenta (segundos): 12, Visao noturna (segundos): 30 }
+  elmo_glacial:
+    Nome: '&#bfe6ffElmo Glacial'
+    Lore: [ '&7Conjunto Glacial &8(1/4)', '%conjunto%' ]
+    Atributos: { Armadura: 3.0, Resistencia: 2.0, Repulsao: 0.05 }
+  peitoral_glacial:
+    Nome: '&#bfe6ffPeitoral Glacial'
+    Lore: [ '&7Conjunto Glacial &8(2/4)', '%conjunto%' ]
+    Atributos: { Armadura: 8.0, Resistencia: 2.0, Repulsao: 0.05 }
+  calcas_glaciais:
+    Nome: '&#bfe6ffCalças Glaciais'
+    Lore: [ '&7Conjunto Glacial &8(3/4)', '%conjunto%' ]
+    Atributos: { Armadura: 6.0, Resistencia: 2.0, Repulsao: 0.05 }
+  botas_glaciais:
+    Nome: '&#bfe6ffBotas Glaciais'
+    Lore: [ '&7Conjunto Glacial &8(4/4)', '%conjunto%' ]
+    Atributos: { Armadura: 3.0, Resistencia: 2.0, Repulsao: 0.05 }
+  # --- quarta leva: bosses novos
+  diapasao_estelar:
+    Nome: '&#d9b8ffDiapasão Estelar'
+    Lore:
+      - '&7Vibra numa nota que só o cristal ouve.'
+      - '&7Use no altar da &fCatedral de Cristal&7'
+      - '&7(Picos de Ametista) para chamar o &dMonarca&7.'
+  esporo_ancestral:
+    Nome: '&#7cff6bEsporo Ancestral'
+    Lore:
+      - '&7Ainda respira.'
+      - '&7Use no altar da &fClareira Micélica&7'
+      - '&7(Bosque Fúngico) para chamar a &2Matriarca&7.'
+  geodo_pulsante:
+    Nome: '&#b48cf0Geodo Pulsante'
+    Lore:
+      - '&7Bate como um coração de pedra.'
+      - '&dDrop do Monarca de Ametista.'
+  coracao_micelico:
+    Nome: '&#3fd1a0Coração Micélico'
+    Lore:
+      - '&7Uma rede viva de fios verdes.'
+      - '&2Drop da Matriarca Fúngica.'
+  maca_ressonante:
+    Nome: '&#d9b8ffMaça Ressonante'
+    Lore:
+      - '&7O golpe de queda solta uma &donda de cristal&7:'
+      - '&7quem estiver a %raio% blocos do alvo leva'
+      - '&c%onda%%&7 do dano.'
+    Efeitos: { Onda (%): 50, Raio da onda: 4.0 }
+  cajado_micelico:
+    Nome: '&#3fd1a0Cajado Micélico'
+    Lore:
+      - '&7Clique direito: planta um círculo de esporos'
+      - '&7(raio %raio%) por %segundos%s. Cura os jogadores'
+      - '&7e fere os monstros (&c%dano%&7/s).'
+      - '&8Recarga: %recarga%s'
+    Efeitos: { Alcance: 20, Raio: 4.0, Duracao (segundos): 6, Dano por segundo: 3.0, Regeneracao (nivel): 2, Recarga (segundos): 18 }
+  # --- quinta leva: End City
+  selo_purpur:
+    Nome: '&#e0a3ffSelo de Purpur'
+    Lore:
+      - '&7Abre uma &fArca Selada&7 das End Cities.'
+      - '&7Cada jogador abre cada Arca uma vez.'
+      - '&8Vem dos baús, dos guardas e do Capitão Etéreo.'
+  timao_etereo:
+    Nome: '&#c8b8ffTimão Etéreo'
+    Lore:
+      - '&7Ainda gira sozinho, sem vento.'
+      - '&dDrop do Capitão Etéreo.'
+  sabre_etereo:
+    Nome: '&#c8b8ffSabre Etéreo'
+    Lore:
+      - '&7Golpe em alvo &fno ar&7 causa &c+%bonus%%&7 de dano.'
+      - '&7Matar dá queda lenta e velocidade por %segundos%s.'
+    Atributos: { Dano: 9.0, Velocidade: -2.2 }
+    Efeitos: { Dano em alvo no ar (%): 50, Bonus ao matar (segundos): 4 }
+
+  # ---------------------------------------------------------- sexta leva: o Trono
+  chave_do_trono:
+    Nome: '&#ffd36bChave do Trono'
+    Lore:
+      - '&7Abre o cofre de um &fSantuário&7 das Catacumbas'
+      - '&7depois que os guardiões caem.'
+      - '&8Cai dos guardiões e do dragão. A Forja também faz.'
+  escama_draconica:
+    Nome: '&#c04bffEscama Dracônica'
+    Lore:
+      - '&7Ainda quente da luta no Trono.'
+      - '&8Recompensa do dragão.'
+  prisma_do_trono:
+    Nome: '&#d58bffPrisma do Trono'
+    Lore:
+      - '&7O núcleo de uma Torre Ressonante.'
+      - '&8Para quem ajuda a derrubar uma torre na luta do dragão.'
+  elitro_do_trono:
+    Nome: '&#c04bffÉlitro do Trono'
+    Lore:
+      - '&7Élitro com armadura e &f%durabilidade%&7 de durabilidade.'
+      - '&7Não gasta durabilidade voando no End.'
+      - '&8Só a Forja Estelar faz.'
+    Atributos: { Armadura: 4, Resistencia: 2 }
+    Efeitos: { Durabilidade: 1600 }
+  coroa_do_trono:
+    Nome: '&#ffd36bCoroa do Trono'
+    Lore:
+      - '&7Imune ao sopro do dragão (e ao das armadilhas).'
+      - '&7Leva &f%reducao%%&7 menos dano do dragão.'
+      - '&8Só a Forja Estelar faz.'
+    Atributos: { Armadura: 3, Resistencia: 3, Repulsao: 0.1 }
+    Efeitos: { Menos dano do dragao (%): 30 }
+  lamina_draconica:
+    Nome: '&#c04bffLâmina Dracônica'
+    Lore:
+      - '&7Causa &c+%bonus%%&7 de dano no dragão e nos bosses.'
+      - '&8Só a Forja Estelar faz.'
+    Atributos: { Dano: 10.0, Velocidade: -2.4 }
+    Efeitos: { Dano no dragao e bosses (%): 40 }
+
+  # ---------------------------------------------------------- setima leva: o Herdeiro
+  fragmento_do_selo:
+    Nome: '&#b48cffFragmento do Selo'
+    Lore:
+      - '&7Um pedaço do selo que prende o Herdeiro.'
+      - '&7Junte &f5&7 na Forja Estelar.'
+      - '&8Sai dos cofres dos Santuários.'
+  selo_do_herdeiro:
+    Nome: '&#c04bffSelo do Herdeiro'
+    Lore:
+      - '&7Abre o &fPortão Selado&7 embaixo do portal'
+      - '&7e acorda o &#c04bffHerdeiro do Trono&7.'
+      - '&8Clique no portão com ele na mão.'
+  coracao_do_herdeiro:
+    Nome: '&#ff5ad8Coração do Herdeiro'
+    Lore:
+      - '&7Ainda bate, devagar.'
+      - '&dDrop do Herdeiro do Trono.'
+  orbe_do_herdeiro:
+    Nome: '&#c04bffOrbe do Herdeiro'
+    Lore:
+      - '&7Clique direito: um impulso para onde você olha'
+      - '&7e &f%segundos%s&7 de queda lenta.'
+      - '&7Recarga: &f%recarga%s&7.'
+      - '&8Só a Forja Estelar faz.'
+    Efeitos: { Recarga (segundos): 12, Forca do impulso: 1.8, Queda lenta (segundos): 4 }
+
+  # ---------------------------------------------------------- oitava leva: montaria
+  sino_da_raia:
+    Nome: '&#b48cffSino da Raia'
+    Lore:
+      - '&7Clique direito no End: chama a sua &fRaia Etérea&7,'
+      - '&7uma montaria voadora (cabem 4).'
+      - '&7Clique de novo para guardá-la.'
+      - '&8Só a Forja Estelar faz.'
+
+# Bonus de conjunto (as 4 pecas vestidas). %conjunto% na lore vira estas linhas.
+Conjuntos:
+  nebulosa:
+    Lore:
+      - ''
+      - '&#f2b8ffBônus do conjunto completo:'
+      - '&7- Resgate do vazio do End a cada %recarga% min'
+      - '&7  (com queda lenta ao voltar)'
+      - '&7- &f+%dano%% &7de dano no End'
+    Recarga do resgate (minutos): 5
+    Dano extra no End (%): 10
+  cometaria:
+    Lore:
+      - ''
+      - '&#ff7a3cBônus do conjunto completo:'
+      - '&7- Imune a raio, &f-%explosao%% &7de dano de explosão'
+      - '&7- &f%chance%% &7de soltar um pulso estático ao apanhar'
+      - '&7  (%dano% de dano em até 3 inimigos)'
+    Reducao de explosao (%): 50
+    Chance do pulso (%): 20
+    Dano do pulso: 6.0
+  glacial:
+    Lore:
+      - ''
+      - '&#bfe6ffBônus do conjunto completo:'
+      - '&7- Quem te ataca fica &flento&7 (%lentidao%s)'
+      - '&7  e &fcongelado&7 (%congelar%s)'
+      - '&7- Imune ao frio do pó de neve'
+    Lentidao no atacante (segundos): 2
+    Congelar atacante (segundos): 3

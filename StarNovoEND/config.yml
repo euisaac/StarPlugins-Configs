@@ -1,0 +1,800 @@
+# ============================================================
+#  StarNovoEND - configuracao
+#
+#  Expansao original do End: 12 regioes, 22 estruturas, End Cities reformadas,
+#  6 bosses com fases e 1 miniboss, 18 mobs, 59 itens com textura propria,
+#  6 encantamentos e o Trono Partido (dragao em 4 fases, Catacumbas, Forja
+#  Estelar e gateways novos). Tudo por evento: sem tarefa global por tique.
+#  Quase tudo daqui tambem muda no jogo: /novoend admin painel Nomes e textos dos itens ficam no
+#  itens.yml; o conteudo dos baus no loot.yml; altares, pesca no vazio,
+#  caldeirao e marcos no mecanicas.yml; as mensagens no mensagens.yml.
+#  Mudou algo? /novoend admin recarregar
+# ============================================================
+
+# Mensagens extras no console para investigar problemas.
+Debug: false
+
+Banco de dados:
+  # SQLITE (arquivo local) ou MYSQL
+  Tipo: SQLITE
+  IP: localhost
+  Porta: 3306
+  Banco: starnovoend
+  Usuario: root
+  Senha: ''
+  Prefixo: 'novoend_'
+
+Comandos:
+  # Primeiro = nome do comando; os outros = apelidos.
+  Principal: [novoend, firmamento]
+
+# Mundos do tipo End que recebem a expansao. Vazio = todos os Ends.
+Mundos: []
+
+# ------------------------------------------------------------------ mundo
+Regioes:
+  # Ate esta distancia do centro fica tudo vanilla (ilha do dragao e o vazio em volta).
+  Raio da ilha central: 1000
+  # Tamanho medio de cada regiao (em blocos).
+  Tamanho das regioes: 640
+  # A partir destas distancias as regioes perigosas (Fossa, Campos de Cobre, Ermo do Eco...) ficam mais comuns.
+  Distancia media: 3000
+  Distancia longe: 6000
+
+Estruturas:
+  # false = so a decoracao e os biomas, sem estruturas novas.
+  Gerar: true
+  # Espacamento: em media 1 estrutura a cada N x N chunks (do tipo e da regiao certa).
+  forja_cometaria: { Ativa: true, Espacamento (chunks): 30 }
+  planetario_suspenso: { Ativa: true, Espacamento (chunks): 30 }
+  santuario_do_eclipse: { Ativa: true, Espacamento (chunks): 20 }
+  estacao_do_cartografo: { Ativa: true, Espacamento (chunks): 22 }
+  observatorio_tombado: { Ativa: true, Espacamento (chunks): 12 }
+  sonda_abandonada: { Ativa: true, Espacamento (chunks): 16 }
+  destrocos_de_cometa: { Ativa: true, Espacamento (chunks): 7 }
+  # segunda leva
+  ossuario_do_eco: { Ativa: true, Espacamento (chunks): 18 }
+  navio_celeste_encalhado: { Ativa: true, Espacamento (chunks): 26 }
+  camara_ressonante: { Ativa: true, Espacamento (chunks): 16 }
+  mirante_congelado: { Ativa: true, Espacamento (chunks): 16 }
+  cogumelo_habitado: { Ativa: true, Espacamento (chunks): 14 }
+  oasis_perdido: { Ativa: true, Espacamento (chunks): 16 }
+  ruinas_da_mare: { Ativa: true, Espacamento (chunks): 16 }
+  ermida_estelar: { Ativa: true, Espacamento (chunks): 18 }
+  palafita_do_pescador: { Ativa: true, Espacamento (chunks): 12 }
+  relicario_flutuante: { Ativa: true, Espacamento (chunks): 18 }
+  jaula_do_vazio: { Ativa: true, Espacamento (chunks): 13 }
+  fossil_colossal: { Ativa: true, Espacamento (chunks): 12 }
+  acampamento_errante: { Ativa: true, Espacamento (chunks): 13 }
+  # quarta leva: arenas dos bosses novos
+  catedral_de_cristal: { Ativa: true, Espacamento (chunks): 26 }
+  clareira_micelica: { Ativa: true, Espacamento (chunks): 26 }
+
+# ------------------------------------------------------------------- mobs
+Mobs:
+  # Chance de um enderman que ia nascer nas regioes novas virar o mob da regiao.
+  Substituir endermen (%): 45
+  # Nao troca se ja houver tantos mobs do StarNovoEND num raio de 24 blocos.
+  Maximo por area: 6
+  # Drops: "<item> <chance>% <min>-<max>" (item do StarNovoEND ou material vanilla).
+  Tipos:
+    lume:
+      Nome: '&#fff1a8Lume'
+      Vida: 8
+      Dano: 0
+      Escala: 1.0
+      Peso: 40
+      Experiencia: 3
+      Drops: [ 'poeira_nebulosa 100% 1-2' ]
+    andarilho_nebuloso:
+      Nome: '&#e9b7f0Andarilho Nebuloso'
+      Vida: 30
+      Dano: 6
+      Escala: 1.0
+      Peso: 60
+      Experiencia: 8
+      Drops: [ 'poeira_nebulosa 70% 1-2', 'ENDER_PEARL 25% 1' ]
+      Habilidade: { Chance de teleporte (%): 30 }
+    sextante:
+      Nome: '&#7ff0ffSextante'
+      Vida: 32
+      Dano: 5
+      Escala: 1.0
+      Peso: 45
+      Experiencia: 10
+      Drops: [ 'poeira_nebulosa 60% 1-3', 'fragmento_cometario 20% 1' ]
+      Habilidade: { Feixe a cada (segundos): 3, Dano do feixe: 5 }
+    satelite_partido:
+      Nome: '&#bfc7d6Satélite Partido'
+      Vida: 36
+      Dano: 5
+      Escala: 1.0
+      Peso: 55
+      Experiencia: 8
+      Drops: [ 'fragmento_cometario 50% 1-2', 'poeira_nebulosa 40% 1' ]
+    penitente_eclipse:
+      Nome: '&#9d7bffPenitente do Eclipse'
+      Vida: 40
+      Dano: 6
+      Escala: 1.05
+      Peso: 55
+      Experiencia: 12
+      Drops: [ 'essencia_umbral 65% 1-2', 'ARROW 50% 2-5' ]
+      Habilidade: { Cegueira (segundos): 2 }
+    rastro_umbral:
+      Nome: '&#5b4b7aRastro Umbral'
+      Vida: 26
+      Dano: 7
+      Escala: 1.3
+      Peso: 45
+      Experiencia: 12
+      Drops: [ 'essencia_umbral 60% 1-2' ]
+      Habilidade: { Revelar a (blocos): 4 }
+    automato_cobre:
+      Nome: '&#4fd1a5Autômato de Cobre'
+      Vida: 60
+      Dano: 9
+      Escala: 1.15
+      Peso: 60
+      Experiencia: 18
+      Drops: [ 'lasca_cobre_celeste 60% 1-2', 'RAW_COPPER 50% 2-4' ]
+      Habilidade: { Minutos por estagio: 4 }
+    faisca_errante:
+      Nome: '&#a8fff0Faísca Errante'
+      Vida: 14
+      Dano: 4
+      Escala: 1.0
+      Peso: 40
+      Experiencia: 6
+      Drops: [ 'lasca_cobre_celeste 35% 1' ]
+      Habilidade: { Forca da explosao: 1.6 }
+    # --- um mob para cada regiao nova (elas tambem recebem os mobs da regiao de origem)
+    medusa_lunar:          # Lagoas da Mare Lunar
+      Nome: '&#7fc8e8Medusa Lunar'
+      Vida: 22
+      Dano: 3
+      Escala: 1.0
+      Peso: 70
+      Experiencia: 8
+      Drops: [ 'perola_da_mare 20% 1', 'PRISMARINE_CRYSTALS 50% 1-3', 'GLOW_INK_SAC 40% 1' ]
+      Habilidade: { Velocidade da deriva: 0.22, Dano da ferroada: 3, Veneno (segundos): 3, Levitacao (tiques): 20 }
+    esporeiro:             # Bosque Fungico
+      Nome: '&#3fd1a0Esporeiro'
+      Vida: 34
+      Dano: 5
+      Escala: 1.05
+      Peso: 70
+      Experiencia: 10
+      Drops: [ 'esporo_fungico 40% 1', 'WARPED_FUNGUS 40% 1-2', 'SHROOMLIGHT 10% 1' ]
+      Habilidade: { Veneno no golpe (segundos): 3, Raio da nuvem: 2.5, Recarga da nuvem (segundos): 4 }
+    escaravelho_estelar:   # Dunas de Poeira Estelar
+      Nome: '&#e8c46aEscaravelho Estelar'
+      Vida: 28
+      Dano: 5
+      Escala: 1.0
+      Peso: 70
+      Experiencia: 9
+      Drops: [ 'poeira_nebulosa 60% 1-2', 'GOLD_NUGGET 50% 2-5', 'fragmento_cometario 15% 1' ]
+      Habilidade: { Salto a cada (segundos): 3, Armadura: 6, Reducao contra projeteis (%): 50 }
+    golem_geodo:           # Picos de Ametista
+      Nome: '&#b48cf0Golem de Geodo'
+      Vida: 55
+      Dano: 8
+      Escala: 1.3
+      Peso: 65
+      Experiencia: 14
+      Drops: [ 'cristal_ressonante 40% 1', 'AMETHYST_SHARD 70% 2-4' ]
+      Habilidade: { Velocidade: 0.17, Armadura: 10, Chance dos estilhacos (%): 30, Dano dos estilhacos: 3 }
+    espectro_glacial:      # Geleira Silenciosa
+      Nome: '&#cfe8ffEspectro Glacial'
+      Vida: 30
+      Dano: 5
+      Escala: 1.05
+      Peso: 70
+      Experiencia: 10
+      Drops: [ 'gelo_eterno 20% 1', 'ARROW 50% 2-5', 'SNOWBALL 50% 2-6' ]
+      Habilidade: { Congelar (segundos): 5 }
+    vigia_do_eco:          # Ermo do Eco
+      Nome: '&#1fa3a8Vigia do Eco'
+      Vida: 50
+      Dano: 9
+      Escala: 1.15
+      Peso: 65
+      Experiencia: 16
+      Drops: [ 'eco_condensado 25% 1', 'SCULK 50% 1-3', 'ECHO_SHARD 5% 1' ]
+      # Cego: so persegue quem nao esta agachado (agachado, ele so ouve de bem perto).
+      Habilidade: { Velocidade: 0.3, Alcance da escuta: 16, Ouve agachado a (blocos): 3, Grito a cada (segundos): 10, Raio do grito: 10, Escuridao (segundos): 5 }
+    saltador_coro:         # Floresta de Coro Ancestral
+      Nome: '&#c79bf0Saltador de Coro'
+      Vida: 16
+      Dano: 3
+      Escala: 1.5
+      Peso: 70
+      Experiencia: 6
+      Drops: [ 'CHORUS_FRUIT 80% 1-3', 'poeira_nebulosa 30% 1', 'POPPED_CHORUS_FRUIT 20% 1' ]
+      Habilidade: { Chance de teleporte (%): 50, Chance de teleportar o jogador (%): 12 }
+    atirador_coral:        # Recife Petrificado
+      Nome: '&#d9a08aAtirador de Coral'
+      Vida: 32
+      Dano: 5
+      Escala: 1.05
+      Peso: 65
+      Experiencia: 11
+      Drops: [ 'fragmento_cometario 25% 1', 'ARROW 50% 2-5', 'DEAD_BRAIN_CORAL_BLOCK 30% 1-2' ]
+      Habilidade: { Petrificar (segundos): 3 }
+    # --- End City (nascem dos geradores que a reforma poe nas cidades e na tripulacao do Capitao)
+    guarda_purpur:
+      Nome: '&#e0a3ffGuarda de Purpur'
+      Vida: 45
+      Dano: 8
+      Escala: 1.05
+      Peso: 0
+      Experiencia: 14
+      Drops: [ 'selo_purpur 8% 1', 'poeira_nebulosa 50% 1-2', 'SHULKER_SHELL 5% 1' ]
+      # Apara golpes que vem pela frente (cone de 60 graus).
+      Habilidade: { Armadura: 12, Chance de aparar (%): 35 }
+    besteiro_cidadela:
+      Nome: '&#c8b8ffBesteiro da Cidadela'
+      Vida: 30
+      Dano: 5
+      Escala: 1.0
+      Peso: 0
+      Experiencia: 12
+      Drops: [ 'selo_purpur 8% 1', 'ARROW 50% 2-5', 'fragmento_cometario 20% 1' ]
+      # O virote deixa o alvo brilhando e o levanta um pouco.
+      Habilidade: { Marcado (segundos): 4, Levitacao (tiques): 15 }
+
+# ------------------------------------------------------- ilha principal
+# O Trono Partido: a ilha do dragao refeita (so em chunks gerados depois de
+# instalar; para ver numa ilha que ja existe, o End precisa ser resetado).
+Ilha principal:
+  Ativa: true
+  # Anel de agulhas de pedra do End e obsidiana na borda da ilha.
+  Coroa: true
+  # Ilhotas flutuantes em volta (algumas com ruinas e bau).
+  Arquipelago: true
+  # Pontas de pedra penduradas embaixo da ilha.
+  Estalactites: true
+  # Veios de obsidiana chorona saindo do portal.
+  Veios: true
+  # Tabela do loot.yml dos baus das ruinas ('' = sem bau).
+  Bau das ruinas: trono
+  # Coroa orbital sobre o portal, halos nos pilares, espiral e estrelas cadentes.
+  # Uma tarefa leve que so existe enquanto ha alguem no End.
+  Animacoes: true
+  # Catacumbas do Trono: tuneis dentro da ilha (anel, 3 entradas, 5 santuarios e
+  # armadilhas). So em chunk novo; num End ja gerado: /novoend admin ilha catacumbas
+  Catacumbas: true
+  # Praca do Trono (Forja Estelar + Mercador do Vazio) 56 blocos ao norte do portal.
+  # So em chunk novo; num End ja gerado: /novoend admin ilha forja
+  Forja: true
+  # Ponte Estelar: mirante na plataforma de chegada (100, 48, 0) e ponte ate a ilha.
+  # Feita sozinha quando alguem entra no End; refazer: /novoend admin ilha ponte
+  Ponte de chegada: true
+
+# ----------------------------------------------------------------- catacumbas
+Catacumbas:
+  Armadilhas:
+    Ativas: true
+    Dano das flechas: 4
+    Flechas por parede: 3
+    Dano das chamas: 2
+    Dano do sopro: 2
+    Dano do desabamento: 6
+    Recarga (segundos): 4
+  # Santuario: chegou perto, os guardioes acordam. Todos mortos = o cofre abre
+  # (com a Chave do Trono, uma vez por jogador por ciclo). Depois sela e espera
+  # a recarga para os guardioes voltarem.
+  Santuarios:
+    Ativos: true
+    Guardioes: [ guarda_purpur, besteiro_cidadela, penitente_eclipse, vigia_do_eco ]
+    Guardioes por onda: 4
+    Guardioes por jogador extra: 1
+    Maximo de guardioes: 8
+    Chance da chave (%): 20
+    Garantir uma chave por onda: true
+    Tempo aberto (minutos): 10
+    Recarga (minutos): 30
+    # Sem ninguem perto por 1 minuto ou passado este tempo, a onda some.
+    Tempo limite (segundos): 300
+  # Camara do Herdeiro: embaixo do portal, no fim da escadaria a oeste do anel.
+  # O Portao Selado abre com o Selo do Herdeiro (5 Fragmentos do Selo na Forja)
+  # e acorda o boss Herdeiro do Trono (Bosses.herdeiro).
+  Camara:
+    Ativa: true
+
+# ----------------------------------------------------------------- mercador
+# Mercador do Vazio: nasce ao lado da Forja da ilha (ou /novoend admin ilha mercador).
+# '<item> <qtd> [+ <item> <qtd>] -> <item> <qtd>' (ids do StarNovoEND ou materiais).
+Mercador:
+  Ativo: true
+  Trocas:
+    - 'escama_draconica 2 -> ENDER_PEARL 16'
+    - 'escama_draconica 3 -> EXPERIENCE_BOTTLE 16'
+    - 'escama_draconica 4 -> SHULKER_SHELL 1'
+    - 'escama_draconica 6 + prisma_do_trono 1 -> chave_do_trono 1'
+    - 'prisma_do_trono 2 -> fragmento_do_selo 1'
+    - 'escama_draconica 8 -> DRAGON_BREATH 4'
+    - 'fragmento_cometario 16 -> escama_draconica 1'
+    - 'poeira_nebulosa 32 -> escama_draconica 1'
+
+# ----------------------------------------------------------------- raia eterea
+# Montaria voadora do End: um ghast feliz com arreio, chamado e guardado pelo
+# Sino da Raia (feito na Forja Estelar). Uma por jogador; some quando o dono sai
+# do End ou do servidor. O voo e o controle sao do proprio jogo.
+Raia:
+  Ativa: true
+  Somente no End: true
+  # Ghast feliz vanilla = 0.05.
+  Velocidade de voo: 0.09
+  Vida: 40
+  Escala: 0.85
+  Invulneravel: true
+  Arreio: PURPLE_HARNESS
+  Recarga (segundos): 5
+
+# ----------------------------------------------------------------- eventos
+Eventos:
+  # Invasao do Vazio: fendas se abrem no chao da ilha principal e soltam mobs em
+  # ondas. Cada fenda fecha quando a cota de invasores dela morre. Todas seladas =
+  # vitoria, com premio por participacao. Na hora: /novoend admin evento invasao
+  Invasao do vazio:
+    Ativa: true
+    A cada (minutos): 90
+    # Jogadores (sobrevivencia) a ate 150 blocos do portal para comecar sozinha.
+    Minimo de jogadores na ilha: 2
+    Fendas: 4
+    Abates por fenda: 12
+    Mobs vivos por fenda: 4
+    Segundos entre reforcos: 3
+    Duracao maxima (minutos): 8
+    Mobs: [ guarda_purpur, besteiro_cidadela, penitente_eclipse, andarilho_nebuloso, sextante, rastro_umbral ]
+    Abates minimos para premio: 3
+    Recompensa: [ 'escama_draconica 100% 1-2', 'poeira_nebulosa 100% 6-10', 'fragmento_do_selo 25% 1', 'EXPERIENCE_BOTTLE 100% 4-8' ]
+    Recompensa do melhor: [ 'prisma_do_trono 100% 1', 'chave_do_trono 50% 1' ]
+
+  # Chuva de Meteoros: caem perto de quem esta nas ilhas de fora. A cratera troca a
+  # pedra do End por Rocha Cometaria e obsidiana (nada e quebrado) e solta a tabela
+  # 'meteoro' do loot.yml. Comeca na hora: /novoend admin evento meteoros
+  Chuva de meteoros:
+    Ativa: true
+    A cada (minutos): 60
+    Duracao (segundos): 120
+    Segundos entre quedas: 12
+    Minimo de jogadores no End: 2
+    Longe do centro (blocos): 250
+    Distancia minima: 8
+    Distancia maxima: 24
+    Raio da cratera: 2
+    Dano do impacto: 8
+    Experiencia: 60
+
+# ----------------------------------------------------------------- forja
+Forja:
+  Ativa: true
+  # true = a bancada e a mesa de ferraria nao fazem os itens do StarNovoEND
+  # (so a Forja). As receitas continuam as mesmas.
+  Receitas so na forja: false
+  # O item base (espada, elitro, armadura vanilla) passa os encantamentos para o novo.
+  Manter encantamentos: true
+  # Receitas que so a Forja faz: <item>: [ '<ingrediente> <quantidade>', ... ]
+  Receitas exclusivas:
+    elitro_do_trono: [ 'ELYTRA 1', 'escama_draconica 8', 'prisma_do_trono 2', 'NETHERITE_INGOT 1' ]
+    coroa_do_trono: [ 'NETHERITE_HELMET 1', 'escama_draconica 6', 'prisma_do_trono 2', 'DRAGON_BREATH 4' ]
+    lamina_draconica: [ 'NETHERITE_SWORD 1', 'escama_draconica 6', 'prisma_do_trono 3', 'DRAGON_BREATH 2' ]
+    chave_do_trono: [ 'escama_draconica 3', 'prisma_do_trono 1', 'ECHO_SHARD 1' ]
+    selo_do_herdeiro: [ 'fragmento_do_selo 5', 'escama_draconica 2' ]
+    orbe_do_herdeiro: [ 'coracao_do_herdeiro 1', 'prisma_do_trono 2', 'ENDER_EYE 4' ]
+    sino_da_raia: [ 'BELL 1', 'GHAST_TEAR 2', 'escama_draconica 4', 'prisma_do_trono 1' ]
+
+# ----------------------------------------------------------------- gateways
+Gateways:
+  # Anel orbital, varetas e plataforma nos gateways que aparecem a cada dragao morto.
+  Decorar: true
+  # Gateway de saida (ilhas de fora): escada em espiral do chao ate ele.
+  Escada nas saidas: true
+
+# ----------------------------------------------------------------- dragao
+Dragao:
+  # false = dragao vanilla (sem fases, ataques novos nem recompensa).
+  Ativo: true
+  # Vida do dragao (vanilla = 200, maximo 1024).
+  Vida: 350
+  Fase 2 (%): 66
+  Fase 3 (%): 33
+  # Fase 4: a Furia do Trono (Furia.Ativa: false = so 3 fases).
+  Fase 4 (%): 15
+  # Estilhacos caem do ceu nos jogadores (aviso vermelho no chao antes).
+  Chuva de estilhacos:
+    Ativa: true
+    Intervalo (segundos): 24
+    Intervalo na fase 3 (segundos): 14
+    Maximo de estilhacos: 6
+    Dano: 7
+    Raio: 3.2
+  # Na fase 2 o dragao reacende cristais em pilares vazios.
+  Renascer dos cristais:
+    Ativo: true
+    Quantidade: 3
+  # Ao pousar no portal: anel que se expande pelo chao. Quem pular escapa.
+  Pulso do vazio:
+    Ativo: true
+    A partir da fase: 2
+    Alcance: 34
+    Dano: 8
+  # Na fase 3, ao pousar, chama mobs do StarNovoEND para ajudar.
+  Sentinelas:
+    Ativas: true
+    Mobs: [ sextante, penitente_eclipse ]
+    Por pouso: 2
+    Maximo vivas: 4
+  # Fase 2: Torres Ressonantes. Enquanto houver torre de pe o dragao leva menos
+  # dano e se cura. Fique na base (circulo no chao) para derrubar a torre.
+  Torres:
+    Ativas: true
+    Na fase: 2
+    Quantidade: 3
+    Altura: 14
+    Raio da captura: 3.5
+    Segundos para capturar: 10
+    Reducao de dano (%): 75
+    Cura por torre (por segundo): 0.5
+    # Para quem ajudou a derrubar cada torre.
+    Recompensa: [ 'prisma_do_trono 100% 1', 'poeira_nebulosa 60% 2-4' ]
+  # Fase 3: Eclipse. Raios marcados no chao e Fendas do Vazio que puxam.
+  Eclipse:
+    Ativo: true
+    Raios a cada (segundos): 8
+    Raios por vez: 3
+    Dano do raio: 6
+    Fendas a cada (segundos): 16
+    Duracao da fenda (segundos): 5
+    Forca da fenda: 0.35
+    Dano da fenda: 2
+  # Fase 4: Furia do Trono. O dragao absorve os cristais que sobraram, solta
+  # bolas de fogo e o chao explode em zonas marcadas.
+  Furia:
+    Ativa: true
+    Cura por cristal absorvido: 12
+    Rajada a cada (segundos): 6
+    Bolas por rajada: 3
+    Chao instavel a cada (segundos): 10
+    Zonas por vez: 5
+    Dano da zona: 7
+  # Recompensa por dano (como os bosses). O vanilla continua dando o XP dele.
+  Minimo de dano (%): 5
+  Experiencia extra: 1500
+  Drops participantes: [ 'fragmento_cometario 100% 2-4', 'poeira_nebulosa 100% 4-8', 'escama_draconica 100% 2-4', 'DIAMOND 60% 1-3', 'chave_do_trono 25% 1' ]
+  Drops do melhor: [ 'NETHERITE_SCRAP 100% 1-2', 'escama_draconica 100% 2' ]
+  Comandos participantes: []
+  # O vanilla so poe o ovo na primeira morte; true = ovo novo a cada morte.
+  Ovo a cada morte: true
+
+# ----------------------------------------------------------------- desafio semanal
+# A cada semana (segunda a domingo) a luta do dragao ganha um modificador, em
+# rodizio. "Ajustes" usa as MESMAS chaves da secao Dragao (aninhadas como la) e
+# vale so naquela semana; "Recompensa extra" vai para quem ganha premio do dragao.
+# Forcar: id de um modificador para fixar ('' = rodizio). /novoend desafio mostra a semana.
+Desafios:
+  Ativo: true
+  Forcar: ''
+  Modificadores:
+    tempestade:
+      Nome: '&#ffe25cSemana da Tempestade'
+      Descricao: 'O Eclipse começa desde o início: raios e fendas a luta toda.'
+      Ajustes:
+        Fase 3 (%): 100
+        Eclipse:
+          Raios a cada (segundos): 6
+      Recompensa extra: [ 'escama_draconica 100% 2', 'fragmento_cometario 100% 4' ]
+    blindado:
+      Nome: '&#d58bffSemana Blindada'
+      Descricao: '5 Torres Ressonantes, escudo de 85%.'
+      Ajustes:
+        Torres:
+          Quantidade: 5
+          Reducao de dano (%): 85
+          Segundos para capturar: 8
+      Recompensa extra: [ 'prisma_do_trono 100% 1', 'escama_draconica 100% 1' ]
+    furia:
+      Nome: '&#ff3b2fSemana da Fúria'
+      Descricao: 'A Fúria do Trono começa em 35% da vida, com rajadas mais rápidas.'
+      Ajustes:
+        Fase 4 (%): 35
+        Furia:
+          Rajada a cada (segundos): 4
+      Recompensa extra: [ 'escama_draconica 100% 3' ]
+    estilhacos:
+      Nome: '&#ff9a4dSemana dos Estilhaços'
+      Descricao: 'A Chuva de Estilhaços cai no dobro, o tempo todo.'
+      Ajustes:
+        Chuva de estilhacos:
+          Intervalo (segundos): 10
+          Intervalo na fase 3 (segundos): 6
+          Maximo de estilhacos: 12
+      Recompensa extra: [ 'DIAMOND 100% 3', 'escama_draconica 100% 1' ]
+    tita:
+      Nome: '&#7ff0ffSemana do Titã'
+      Descricao: 'O dragão nasce com 600 de vida.'
+      Ajustes:
+        Vida: 600
+      Recompensa extra: [ 'NETHERITE_SCRAP 100% 1', 'escama_draconica 100% 2' ]
+    sentinelas:
+      Nome: '&#9d7bffSemana das Sentinelas'
+      Descricao: 'O dobro de Sentinelas e o Pulso do Vazio desde a fase 1.'
+      Ajustes:
+        Sentinelas:
+          Por pouso: 4
+          Maximo vivas: 8
+        Pulso do vazio:
+          A partir da fase: 1
+      Recompensa extra: [ 'chave_do_trono 50% 1', 'escama_draconica 100% 1' ]
+
+# ----------------------------------------------------------------- bosses
+#  Drops participantes: para quem fez pelo menos "Minimo de dano (%)" do dano.
+#  Drops do melhor: so para quem mais causou dano (alem dos de participante).
+#  Comandos participantes: rodados pelo console, %jogador% = nome.
+Bosses:
+  arauto:
+    Nome: '&#ffd36b&lArauto do Eclipse'
+    Vida: 600
+    Dano: 10
+    Armadura: 8
+    Escala: 1.6
+    Raio da arena: 13
+    Recarga da arena (minutos): 30
+    Desistir apos (segundos): 60
+    Minimo de dano (%): 5
+    Experiencia: 400
+    Fase 2 (%): 60
+    Fase 3 (%): 25
+    Dano do feixe: 9
+    Dano do golpe em area: 8
+    Dano do anel: 7
+    Penitentes no eclipse: 3
+    Velocidade na fase 3: 1.4
+    Drops participantes: [ 'disco_eclipse 100% 1', 'essencia_umbral 100% 2-4', 'poeira_nebulosa 100% 3-6' ]
+    Drops do melhor: [ 'disco_eclipse 100% 1' ]
+    Comandos participantes: []
+  tecela:
+    Nome: '&#7ff0ff&lTecelã de Órbitas'
+    Vida: 1200
+    Dano: 11
+    Armadura: 10
+    Escala: 2.0
+    Raio da arena: 10
+    Recarga da arena (minutos): 45
+    Desistir apos (segundos): 60
+    Minimo de dano (%): 5
+    Experiencia: 800
+    Fase 2 (%): 66
+    Fase 3 (%): 33
+    Luas por ataque: 3
+    Dano da lua: 7
+    Dano dos aneis: 6
+    Forca do colapso: 0.35
+    Drops participantes: [ 'nucleo_orbital 100% 1', 'fragmento_cometario 100% 3-6', 'poeira_nebulosa 100% 4-8' ]
+    Drops do melhor: [ 'nucleo_orbital 100% 1' ]
+    Comandos participantes: []
+  colosso:
+    Nome: '&#ff5a3c&lColosso Cometário'
+    Vida: 2500
+    Dano: 16
+    Armadura: 14
+    Escala: 3.0
+    Raio da arena: 13
+    Recarga da arena (minutos): 60
+    Desistir apos (segundos): 90
+    Minimo de dano (%): 5
+    Experiencia: 1500
+    Fase 2 (%): 60
+    Fase 3 (%): 25
+    Raio da pisada: 6
+    Dano da pisada: 12
+    Dano do raio: 9
+    Dano do raio nele (%): 4
+    Atordoado (segundos): 3
+    Dano do meteoro: 8
+    Multiplicador nas costas: 3
+    Drops participantes: [ 'coracao_cometario 100% 1', 'lasca_cobre_celeste 100% 4-8', 'NETHERITE_SCRAP 40% 1' ]
+    Drops do melhor: [ 'coracao_cometario 100% 1' ]
+    Comandos participantes: []
+  # --- quarta leva: Picos de Ametista e Bosque Fungico (chave usada no altar da arena)
+  monarca:
+    Nome: '&#d9b8ff&lMonarca de Ametista'
+    Vida: 1600
+    Dano: 12
+    Armadura: 12
+    Escala: 2.2
+    Raio da arena: 12
+    Recarga da arena (minutos): 45
+    Desistir apos (segundos): 60
+    Minimo de dano (%): 5
+    Experiencia: 900
+    Fase 2 (%): 60
+    Fase 3 (%): 25
+    Dano do espinho: 8
+    Pilares: 4
+    Vida do pilar: 40
+    Reducao com pilares (%): 75
+    Estilhacos por leque: 7
+    Dano do estilhaco: 6
+    Drops participantes: [ 'geodo_pulsante 100% 1', 'cristal_ressonante 100% 2-4', 'livro:flagelo_do_vazio:3 25% 1', 'AMETHYST_BLOCK 100% 4-8' ]
+    Drops do melhor: [ 'geodo_pulsante 100% 1', 'livro:sifao_estelar:2 50% 1' ]
+    Comandos participantes: []
+  matriarca:
+    Nome: '&#7cff6b&lMatriarca Fúngica'
+    Vida: 1400
+    Dano: 13
+    Armadura: 10
+    Escala: 1.5
+    Raio da arena: 12
+    Recarga da arena (minutos): 45
+    Desistir apos (segundos): 60
+    Minimo de dano (%): 5
+    Experiencia: 900
+    Fase 2 (%): 60
+    Fase 3 (%): 25
+    Raio da nuvem: 2.5
+    Duracao da nuvem (segundos): 4
+    Dano dos esporos: 4
+    Raizes (segundos): 1.5
+    Dano das raizes: 5
+    Esporeiros na colonia: 4
+    Esporeiros na florada: 2
+    Cura por esporeiro (%): 0.4
+    Raio da queda: 5
+    Dano da queda: 11
+    Dano do anel: 6
+    Drops participantes: [ 'coracao_micelico 100% 1', 'esporo_fungico 100% 3-6', 'livro:isca_do_vazio:3 25% 1', 'SHROOMLIGHT 100% 2-4' ]
+    Drops do melhor: [ 'coracao_micelico 100% 1', 'livro:veu_umbral:2 50% 1' ]
+    Comandos participantes: []
+  # End City: acorda quando alguem tenta tirar o elitro do navio (ver Cidades > Navio).
+  capitao:
+    Nome: '&#c8b8ff&lCapitão Etéreo'
+    Vida: 900
+    Dano: 11
+    Armadura: 10
+    Escala: 1.5
+    Raio da arena: 14
+    Desistir apos (segundos): 45
+    Minimo de dano (%): 5
+    Experiencia: 600
+    Fase 2 (%): 60
+    Fase 3 (%): 25
+    Dano da ancora: 6
+    Tripulacao: 3
+    Esquiva (%): 25
+    Dano do canhao: 9
+    Drops participantes: [ 'timao_etereo 100% 1', 'selo_purpur 100% 1-2', 'SHULKER_SHELL 60% 1-2' ]
+    Drops do melhor: [ 'timao_etereo 100% 1', 'livro:veu_umbral:2 30% 1' ]
+    Comandos participantes: []
+  # Camara do Herdeiro (embaixo do portal): acorda quando o Portao Selado e aberto.
+  herdeiro:
+    Nome: '&#c04bff&lHerdeiro do Trono'
+    Vida: 1600
+    Dano: 13
+    Armadura: 14
+    Escala: 1.7
+    Raio da arena: 14
+    Desistir apos (segundos): 60
+    Minimo de dano (%): 5
+    Experiencia: 1200
+    Fase 2 (%): 66
+    Fase 3 (%): 33
+    Alcance do sopro: 9
+    Dano do sopro: 8
+    Dano do passo sombrio: 7
+    Ecos na fase 2: 3
+    Dano da coroa partida: 6
+    Dano do estilhaco: 7
+    Drops participantes: [ 'coracao_do_herdeiro 100% 1', 'escama_draconica 100% 3-6', 'prisma_do_trono 50% 1' ]
+    Drops do melhor: [ 'NETHERITE_INGOT 100% 1', 'livro:sifao_estelar:3 40% 1' ]
+    Comandos participantes: []
+  # Miniboss: sem altar. Um Espectro Glacial que ia nascer tem esta chance de virar ele.
+  nevasca:
+    Nome: '&#e8f6ff&lEspírito da Nevasca'
+    Chance (%): 3
+    Distancia entre eles: 256
+    Maximo vivos: 3
+    Vida: 320
+    Dano: 8
+    Armadura: 6
+    Escala: 1.8
+    Raio da arena: 16
+    Desistir apos (segundos): 45
+    Minimo de dano (%): 10
+    Experiencia: 250
+    Fase 2 (%): 50
+    Fase 3 (%): 20
+    Raio da aura: 7
+    Frio da aura (tiques): 30
+    Dano da estaca: 7
+    Espectros na fase 2: 2
+    Drops participantes: [ 'gelo_eterno 100% 2-4', 'livro:flecha_gelida:2 30% 1', 'BLUE_ICE 60% 2-4' ]
+    Drops do melhor: [ 'gelo_eterno 100% 1-2', 'tomo_nevasca 10% 1' ]
+    Comandos participantes: []
+
+# -------------------------------------------------------------- End Cities
+# A estrutura vanilla continua igual; a reforma acontece quando um chunk NOVO
+# com End City carrega (uma vez por chunk). Num mundo ja explorado, use
+# /novoend admin cidade dentro de uma cidade para reformar aquele chunk.
+Cidades:
+  Ativa: true
+  # true = tambem reforma chunks de cidade ja gerados e quase nao visitados.
+  Reformar cidades ja geradas: false
+  Decoracao:
+    Chance na parede (%): 12
+    Chance de tapete (%): 6
+    Chance de lanterna no teto (%): 4
+  # Gerador de Guardas de Purpur ou Besteiros num comodo alto.
+  Gerador:
+    Chance por chunk (%): 30
+  # Cofre ao lado dos baus da cidade: abre com o Selo de Purpur, uma vez por jogador.
+  Arca selada:
+    Chance por bau (%): 40
+  # Itens da tabela "cidade" do loot.yml somados aos baus vanilla da End City.
+  Loot extra nos baus: true
+  Navio:
+    # O elitro fica preso na moldura ate o Capitao Etereo cair (criativo ignora).
+    Capitao guarda o elitro: true
+  Shulkers:
+    # A bala de shulker levita por no maximo isto; depois vem queda lenta. 0 = vanilla.
+    Levitacao maxima (segundos): 3
+    Queda lenta depois (segundos): 3
+
+# ---------------------------------------------------------------- receitas
+# Coloque "<id do item>: false" para tirar uma receita (ex.: cetro_cometario: false).
+Receitas: {}
+# false = as receitas nao aparecem no livro de receitas (o jogador precisa descobrir sozinho).
+Mostrar receitas no livro: true
+
+# ------------------------------------------------------------- cartografo
+# Trocas do Cartografo Celeste (NPC das Estacoes): "<item qtd> [+ <item qtd>] -> <item qtd>".
+Cartografo:
+  Trocas:
+    - 'poeira_nebulosa 12 -> EMERALD 2'
+    - 'fragmento_cometario 6 -> EMERALD 3'
+    - 'EMERALD 8 + COMPASS 1 -> astrolabio 1'
+    - 'EMERALD 6 + fragmento_cometario 2 -> ancora_gravitacional 1'
+    - 'EMERALD 3 -> fruto_orbita 4'
+    - 'essencia_umbral 8 + EMERALD 4 -> vela_eclipse 1'
+
+# Textos que aparecem no Diario de Bordo (um sorteado por livro).
+Diario de bordo:
+  Paginas:
+    - "&0Dia 211.\n\nA sonda caiu perto de um campo rosado. Os instrumentos giram sozinhos. Achei pedras mornas numa cratera: ainda pulsam."
+    - "&0Dia 214.\n\nOuvi um sino na Fossa. Alguém acende velas num altar de pedra negra. Quando o halo dourado gira, tudo escurece."
+    - "&0Dia 219.\n\nVi luas presas em anéis de luz, no alto de uma torre branca. A chave deve abrir o caminho até a Tecelã."
+    - "&0Dia 230.\n\nO coração da estrela é de cobre. Os autômatos guardam a Forja. Dizem que o raio é o único que o Colosso teme."
+
+# ---------------------------------------------------------------- textura
+Textura:
+  # Ao ligar, exporta o pacote de textura:
+  #   AUTO               zip em plugins/StarNovoEND/pacote/ + ItemsAdder e StarResourcePacks se estiverem instalados.
+  #                      Com o StarResourcePacks o pacote e reconstruido e reenviado sozinho.
+  #   ITEMSADDER / STARRESOURCEPACKS / TODOS / NENHUM (so o zip)
+  Exportar para: AUTO
+  Exportar ao ligar: true
+  # Versao Bedrock (Geyser): StarNovoEND-bedrock.mcpack + StarNovoEND-geyser.json sempre em
+  # plugins/StarNovoEND/pacote/ (instrucoes no LEIA-ME-BEDROCK.txt de la). Alem disso:
+  #   AUTO         copia o mapeamento para plugins/Geyser-*/custom_mappings e o .mcpack para o
+  #                StarTextura (texturas/) ou, sem ele, para plugins/Geyser-*/packs
+  #   GEYSER / STARTEXTURA / NENHUM (so a pasta pacote/)
+  # Geyser no proxy? Copie os dois arquivos de pacote/ para la (o Geyser precisa reiniciar).
+  Bedrock: AUTO
+
+# Bosses com modelo animado (ossos + animacoes por keyframe feitas no Blockbench, estilo
+# ModelEngine, sem plugin extra): um item_display por osso, montado no boss. O servidor
+# so manda a pose de cada osso a cada "Quadro" e o cliente interpola o resto. Sem
+# jogador a menos de 64 blocos, nada e calculado. Boss sem arquivo em animacao/ (no jar
+# ou em plugins/StarNovoEND/animacao/<boss>.json) fica com o modelo parado, como antes.
+# Jogadores Bedrock (Geyser) nao veem item_display: desligue aqui se for o caso.
+Animacao dos bosses:
+  Ativa: true
+  # tiques entre atualizacoes dos ossos (2 = mais suave; 4 = metade dos pacotes)
+  Quadro (tiques): 2
+  # tiques de transicao ao trocar de animacao (andar -> ataque...)
+  Mistura (tiques): 4
+  # desligar so um boss: <id>: false (arauto, tecela, colosso, monarca, matriarca, nevasca, capitao, herdeiro)
+  herdeiro: true

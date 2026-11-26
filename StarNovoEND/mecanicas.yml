@@ -1,0 +1,199 @@
+# ============================================================
+#  StarNovoEND - mecânicas
+#
+#  Altares de bênção, pesca no vazio, caldeirão estelar e marcos estelares.
+#  Os 6 encantamentos novos vêm no datapack que o plugin instala (veja o README).
+#  Tudo por evento: nada roda a cada tique para o servidor inteiro.
+#  Mudou algo? /novoend admin recarregar
+#
+#  Efeito de poção: '<EFEITO> <nível> [segundos]' (nomes do jogo em inglês:
+#  SPEED, HASTE, STRENGTH, RESISTANCE, FIRE_RESISTANCE, NIGHT_VISION...).
+#  Item: id do StarNovoEND (poeira_nebulosa) ou material vanilla (CHORUS_FRUIT).
+# ============================================================
+
+# ------------------------------------------------------------------ altares
+Altar:
+  Ativo: true
+  # O altar é um cacho de ametista em cima de tijolos de pedra do End, com uma
+  # vareta do End de cada lado (o da Ermida Estelar é assim). O jogador também
+  # pode montar um. Clique com a oferenda na mão para receber a bênção.
+  Somente no End: true
+  # Uma bênção por vez: uma nova troca a anterior. O tempo corre mesmo offline.
+  Duracao (minutos): 20
+  Recarga por jogador (segundos): 30
+  # Extra (opcional): sem_queda, sem_congelar, experiencia, cura_abate, veu
+  Bencaos:
+    nevoa:
+      Nome: '&#f2b8ffBênção da Névoa'
+      Cor: '#f2b8ff'
+      Oferenda: 'poeira_nebulosa 8'
+      Efeitos: [ 'SPEED 1' ]
+      Extra: sem_queda
+      Descricao: 'Velocidade e nenhum dano de queda.'
+    mare:
+      Nome: '&#7fd8ffBênção da Maré'
+      Cor: '#7fd8ff'
+      Oferenda: 'perola_da_mare 2'
+      Efeitos: [ 'WATER_BREATHING 1', 'DOLPHINS_GRACE 1', 'CONDUIT_POWER 1' ]
+      Descricao: 'Respira, nada e enxerga debaixo d''água.'
+    inverno:
+      Nome: '&#bfe9ffBênção do Inverno'
+      Cor: '#bfe9ff'
+      Oferenda: 'gelo_eterno 3'
+      Efeitos: [ 'FIRE_RESISTANCE 1' ]
+      Extra: sem_congelar
+      Descricao: 'Imune a fogo e ao frio do pó de neve.'
+    eco:
+      Nome: '&#3fd0c9Bênção do Eco'
+      Cor: '#3fd0c9'
+      Oferenda: 'eco_condensado 2'
+      Efeitos: [ 'NIGHT_VISION 1' ]
+      Extra: experiencia
+      Multiplicador de experiencia: 1.5
+      Descricao: 'Visão noturna e 50% a mais de experiência dos mobs.'
+    fungica:
+      Nome: '&#4fe0a0Bênção Fúngica'
+      Cor: '#4fe0a0'
+      Oferenda: 'esporo_fungico 4'
+      Efeitos: [ 'HEALTH_BOOST 1' ]
+      Extra: cura_abate
+      Cura por abate: 2
+      Descricao: '2 corações a mais e cura ao abater um mob.'
+    ressonante:
+      Nome: '&#c89bffBênção Ressonante'
+      Cor: '#c89bff'
+      Oferenda: 'cristal_ressonante 3'
+      Efeitos: [ 'HASTE 2', 'LUCK 1' ]
+      Descricao: 'Pressa II e sorte.'
+    cometa:
+      Nome: '&#ff9a5aBênção Cometária'
+      Cor: '#ff9a5a'
+      Oferenda: 'fragmento_cometario 6'
+      Efeitos: [ 'STRENGTH 1' ]
+      Descricao: 'Força I.'
+    umbral:
+      Nome: '&#9d7bffBênção Umbral'
+      Cor: '#9d7bff'
+      Oferenda: 'essencia_umbral 6'
+      Efeitos: [ 'RESISTANCE 1' ]
+      Extra: veu
+      Chance do veu (%): 15
+      Descricao: 'Resistência I; ao apanhar, chance de sumir por 3 segundos.'
+
+# ------------------------------------------------------------ pesca no vazio
+Pesca no vazio:
+  Ativa: true
+  # Jogue a boia para fora da ilha: quando ela cair estes blocos abaixo de você,
+  # sem chão embaixo, ela para no ar e espera a mordida.
+  Profundidade minima: 4
+  Espera (segundos):
+    Minimo: 8
+    Maximo: 22
+  # Cada nível de Isca do Vazio corta a espera nesta porcentagem.
+  Reducao por nivel da isca (%): 15
+  # Tempo para puxar depois da mordida.
+  Janela para puxar (ticks): 30
+  Experiencia: '2-6'
+  # Qual grupo sai em cada captura. Cada nível de Isca do Vazio soma o bônus.
+  Chance de raro (%): 15
+  Chance de epico (%): 2
+  Bonus de raro por nivel (%): 5
+  Bonus de epico por nivel (%): 1
+  # '<item> <peso>% <min>-<max>': aqui o % é o PESO dentro do grupo (sai um item só).
+  # Livro encantado: 'livro:<encantamento>[:nivel]'.
+  Comuns:
+    - 'ENDER_PEARL 25% 1-2'
+    - 'CHORUS_FRUIT 25% 2-4'
+    - 'poeira_nebulosa 25% 1-3'
+    - 'enguia_do_vazio 30% 1'
+    - 'END_STONE 10% 2-6'
+    - 'PHANTOM_MEMBRANE 8% 1'
+    - 'POPPED_CHORUS_FRUIT 10% 1-3'
+  Raros:
+    - 'fragmento_cometario 20% 1-2'
+    - 'perola_da_mare 12% 1'
+    - 'SHULKER_SHELL 8% 1'
+    - 'EXPERIENCE_BOTTLE 15% 2-4'
+    - 'livro:isca_do_vazio:1 8%'
+    - 'livro:passo_lunar:1 6%'
+    - 'NAME_TAG 6% 1'
+    - 'marco_estelar 5% 1'
+  Epicos:
+    - 'totem_do_vazio 20% 1'
+    - 'livro:sifao_estelar:1 20%'
+    - 'livro:veu_umbral:1 20%'
+    - 'vara_abissal 15% 1'
+    - 'ENCHANTED_GOLDEN_APPLE 10% 1'
+    - 'NETHERITE_SCRAP 15% 1'
+
+# --------------------------------------------------------- caldeirão estelar
+Caldeirao:
+  Ativo: true
+  # O caldeirão estelar é um caldeirão com água em cima de uma fogueira de alma acesa.
+  # Clique com os ingredientes (até o máximo) e depois com um frasco de vidro:
+  # cada caldeirão cheio rende 3 elixires. Mistura errada desanda e perde a água.
+  Somente no End: false
+  Maximo de ingredientes: 3
+  # Elixir: Ingredientes (a ordem não importa), Efeitos '<EFEITO> <nível> <segundos>'.
+  # Especial (opcional): retorno (volta para a cama ou o spawn) ou revelar (mobs brilham).
+  Elixires:
+    nevoa:
+      Nome: '&#f2b8ffElixir da Névoa'
+      Cor: '#f2b8ff'
+      Ingredientes: [ poeira_nebulosa, CHORUS_FRUIT ]
+      Efeitos: [ 'SLOW_FALLING 1 180', 'SPEED 1 180' ]
+    glacial:
+      Nome: '&#bfe9ffElixir Glacial'
+      Cor: '#bfe9ff'
+      Ingredientes: [ gelo_eterno, poeira_nebulosa ]
+      Efeitos: [ 'FIRE_RESISTANCE 1 300', 'RESISTANCE 1 120' ]
+    mare:
+      Nome: '&#7fd8ffElixir da Maré'
+      Cor: '#7fd8ff'
+      Ingredientes: [ perola_da_mare, KELP ]
+      Efeitos: [ 'WATER_BREATHING 1 360', 'DOLPHINS_GRACE 1 180', 'CONDUIT_POWER 1 180' ]
+    fungico:
+      Nome: '&#4fe0a0Elixir Fúngico'
+      Cor: '#4fe0a0'
+      Ingredientes: [ esporo_fungico, GLOW_BERRIES ]
+      Efeitos: [ 'REGENERATION 2 45', 'SATURATION 1 2' ]
+    ressonante:
+      Nome: '&#c89bffElixir Ressonante'
+      Cor: '#c89bff'
+      Ingredientes: [ cristal_ressonante, GLOWSTONE_DUST ]
+      Efeitos: [ 'HASTE 2 240', 'NIGHT_VISION 1 240' ]
+    cometario:
+      Nome: '&#ff9a5aElixir Cometário'
+      Cor: '#ff9a5a'
+      Ingredientes: [ fragmento_cometario, BLAZE_POWDER ]
+      Efeitos: [ 'STRENGTH 2 90' ]
+    eco:
+      Nome: '&#3fd0c9Elixir do Eco'
+      Cor: '#3fd0c9'
+      Ingredientes: [ eco_condensado, ECHO_SHARD ]
+      Efeitos: [ 'NIGHT_VISION 1 60' ]
+      Especial: revelar
+      Raio: 48
+      Brilho (segundos): 20
+      Descricao: 'Revela as criaturas a 48 blocos.'
+    retorno:
+      Nome: '&#b98cffElixir do Retorno'
+      Cor: '#b98cff'
+      Ingredientes: [ ENDER_PEARL, poeira_nebulosa, fragmento_cometario ]
+      Efeitos: []
+      Especial: retorno
+      Espera (segundos): 3
+      Descricao: 'Depois de 3 segundos, volta para a sua cama (ou o spawn).'
+
+# -------------------------------------------------------- marcos estelares
+Marcos:
+  Ativos: true
+  # Marco Estelar: um bloco que você põe e que liga uma rede de viagem.
+  # Clique num marco para descobri-lo; clique de novo para viajar a outro marco
+  # que você já descobriu. Só o dono (ou admin) quebra.
+  Somente no End: true
+  Maximo por jogador: 5
+  # Custo de cada viagem ('' = grátis). Ex.: 'poeira_nebulosa 1' ou 'ENDER_PEARL 1'.
+  Custo: 'poeira_nebulosa 1'
+  Custo em niveis de XP: 0
+  Recarga (segundos): 10

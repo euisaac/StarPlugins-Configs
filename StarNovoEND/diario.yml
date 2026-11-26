@@ -1,0 +1,305 @@
+# ============================================================
+#  StarNovoEND - Diário do Viajante
+#
+#  Missões que o jogador vê em /novoend diario. Cada uma conta um tipo de coisa
+#  e dá recompensa quando completa. Mudou algo? /novoend admin recarregar
+#
+#  Tipo (o que conta):
+#    MOB         matar um mob do StarNovoEND (Alvo = id do mob, opcional)
+#    BOSS        derrotar um boss, com pelo menos o dano mínimo (Alvo = id do boss)
+#    DRAGAO      derrotar o dragão (com dano mínimo)
+#    TORRE       ajudar a derrubar uma Torre Ressonante
+#    ONDA        vencer uma onda de guardiões de Santuário
+#    COFRE       abrir o cofre de um Santuário
+#    ARMADILHA   disparar uma armadilha das Catacumbas
+#    ARCA        abrir uma Arca Selada de End City
+#    BENCAO      receber uma bênção de altar (Alvo = id da bênção, opcional)
+#    ELIXIR      tirar um elixir do caldeirão
+#    PESCA       pescar no vazio
+#    MARCO       descobrir um Marco Estelar
+#    FORJA       forjar um item na Forja Estelar (Alvo = id do item, opcional)
+#    REGIAO      entrar numa região do End (Alvo = id da região, opcional)
+#    BAU         abrir pela primeira vez o baú de uma estrutura
+#  Distintos: true = conta alvos diferentes (ex.: 12 regiões diferentes).
+#  Recompensas: '<item> <chance>% <min>-<max>' (como no loot.yml).
+#  Comandos: rodados pelo console, %jogador% = nome.
+# ============================================================
+
+Ativo: true
+
+# Ordem e nome das categorias no menu.
+Categorias:
+  exploracao: '&#7ff0ffExploração'
+  combate: '&#ff7a7aCombate'
+  bosses: '&#ffd36bBosses'
+  trono: '&#c04bffO Trono'
+  mecanicas: '&#7cff6bMecânicas'
+
+# Ao completar todas as missões.
+Recompensa final:
+  Itens: [ 'NETHERITE_INGOT 100% 2', 'escama_draconica 100% 8', 'elitro_do_trono 100% 1' ]
+  Comandos: []
+
+Missoes:
+  # ------------------------------------------------------------------ exploracao
+  primeiros_passos:
+    Nome: 'Além do Portal'
+    Descricao: 'Entre em 3 regiões diferentes do End.'
+    Categoria: exploracao
+    Icone: ENDER_EYE
+    Tipo: REGIAO
+    Distintos: true
+    Quantidade: 3
+    Recompensas: [ 'poeira_nebulosa 100% 8', 'ancora_gravitacional 100% 1' ]
+  cartografo:
+    Nome: 'Cartógrafo do Firmamento'
+    Descricao: 'Entre nas 12 regiões do End.'
+    Categoria: exploracao
+    Icone: astrolabio
+    Tipo: REGIAO
+    Distintos: true
+    Quantidade: 12
+    Recompensas: [ 'marco_estelar 100% 2', 'fragmento_cometario 100% 12', 'DIAMOND 100% 4' ]
+  saqueador:
+    Nome: 'Saqueador de Ruínas'
+    Descricao: 'Abra 10 baús de estruturas pela primeira vez.'
+    Categoria: exploracao
+    Icone: CHEST
+    Tipo: BAU
+    Quantidade: 10
+    Recompensas: [ 'fragmento_cometario 100% 6', 'EXPERIENCE_BOTTLE 100% 8' ]
+  tesoureiro:
+    Nome: 'Tesoureiro do Vazio'
+    Descricao: 'Abra 50 baús de estruturas pela primeira vez.'
+    Categoria: exploracao
+    Icone: TRAPPED_CHEST
+    Tipo: BAU
+    Quantidade: 50
+    Recompensas: [ 'DIAMOND 100% 6', 'escama_draconica 100% 3' ]
+  arcas:
+    Nome: 'Selos Rompidos'
+    Descricao: 'Abra 3 Arcas Seladas das End Cities.'
+    Categoria: exploracao
+    Icone: selo_purpur
+    Tipo: ARCA
+    Quantidade: 3
+    Recompensas: [ 'selo_purpur 100% 2', 'SHULKER_SHELL 100% 2' ]
+  viajante:
+    Nome: 'Viajante Estelar'
+    Descricao: 'Descubra 3 Marcos Estelares.'
+    Categoria: exploracao
+    Icone: marco_estelar
+    Tipo: MARCO
+    Quantidade: 3
+    Recompensas: [ 'poeira_nebulosa 100% 16' ]
+
+  # ------------------------------------------------------------------ combate
+  cacador_1:
+    Nome: 'Caçador Iniciante'
+    Descricao: 'Derrote 25 criaturas do StarNovoEND.'
+    Categoria: combate
+    Icone: IRON_SWORD
+    Tipo: MOB
+    Quantidade: 25
+    Recompensas: [ 'poeira_nebulosa 100% 8', 'EXPERIENCE_BOTTLE 100% 4' ]
+  cacador_2:
+    Nome: 'Caçador do Firmamento'
+    Descricao: 'Derrote 150 criaturas do StarNovoEND.'
+    Categoria: combate
+    Icone: DIAMOND_SWORD
+    Tipo: MOB
+    Quantidade: 150
+    Recompensas: [ 'fragmento_cometario 100% 10', 'totem_do_vazio 100% 1' ]
+  cacador_3:
+    Nome: 'Flagelo das Ilhas'
+    Descricao: 'Derrote 600 criaturas do StarNovoEND.'
+    Categoria: combate
+    Icone: NETHERITE_SWORD
+    Tipo: MOB
+    Quantidade: 600
+    Recompensas: [ 'escama_draconica 100% 4', 'livro:flagelo_do_vazio:4 100% 1' ]
+  silencio:
+    Nome: 'Pés de Pluma'
+    Descricao: 'Derrote 10 Vigias do Eco.'
+    Categoria: combate
+    Icone: SCULK_SHRIEKER
+    Tipo: MOB
+    Alvo: vigia_do_eco
+    Quantidade: 10
+    Recompensas: [ 'eco_condensado 100% 4' ]
+  cidadela:
+    Nome: 'Cerco à Cidadela'
+    Descricao: 'Derrote 20 Guardas de Purpur.'
+    Categoria: combate
+    Icone: PURPUR_BLOCK
+    Tipo: MOB
+    Alvo: guarda_purpur
+    Quantidade: 20
+    Recompensas: [ 'selo_purpur 100% 1', 'SHULKER_SHELL 100% 1' ]
+
+  # ------------------------------------------------------------------ bosses
+  boss_arauto:
+    Nome: 'Fim do Eclipse'
+    Descricao: 'Derrote o Arauto do Eclipse.'
+    Categoria: bosses
+    Icone: disco_eclipse
+    Tipo: BOSS
+    Alvo: arauto
+    Quantidade: 1
+    Recompensas: [ 'essencia_umbral 100% 4' ]
+  boss_tecela:
+    Nome: 'Órbitas Partidas'
+    Descricao: 'Derrote a Tecelã de Órbitas.'
+    Categoria: bosses
+    Icone: nucleo_orbital
+    Tipo: BOSS
+    Alvo: tecela
+    Quantidade: 1
+    Recompensas: [ 'poeira_nebulosa 100% 12' ]
+  boss_colosso:
+    Nome: 'Coração de Cometa'
+    Descricao: 'Derrote o Colosso Cometário.'
+    Categoria: bosses
+    Icone: coracao_cometario
+    Tipo: BOSS
+    Alvo: colosso
+    Quantidade: 1
+    Recompensas: [ 'lasca_cobre_celeste 100% 6', 'NETHERITE_SCRAP 100% 1' ]
+  boss_monarca:
+    Nome: 'Coroa de Ametista'
+    Descricao: 'Derrote o Monarca de Ametista.'
+    Categoria: bosses
+    Icone: geodo_pulsante
+    Tipo: BOSS
+    Alvo: monarca
+    Quantidade: 1
+    Recompensas: [ 'cristal_ressonante 100% 6' ]
+  boss_matriarca:
+    Nome: 'Fim da Colônia'
+    Descricao: 'Derrote a Matriarca Fúngica.'
+    Categoria: bosses
+    Icone: coracao_micelico
+    Tipo: BOSS
+    Alvo: matriarca
+    Quantidade: 1
+    Recompensas: [ 'esporo_fungico 100% 8' ]
+  boss_capitao:
+    Nome: 'Motim no Navio'
+    Descricao: 'Derrote o Capitão Etéreo.'
+    Categoria: bosses
+    Icone: timao_etereo
+    Tipo: BOSS
+    Alvo: capitao
+    Quantidade: 1
+    Recompensas: [ 'selo_purpur 100% 2' ]
+  boss_nevasca:
+    Nome: 'Degelo'
+    Descricao: 'Derrote o Espírito da Nevasca.'
+    Categoria: bosses
+    Icone: gelo_eterno
+    Tipo: BOSS
+    Alvo: nevasca
+    Quantidade: 1
+    Recompensas: [ 'gelo_eterno 100% 6' ]
+  boss_herdeiro:
+    Nome: 'O Herdeiro Caído'
+    Descricao: 'Derrote o Herdeiro do Trono.'
+    Categoria: bosses
+    Icone: coracao_do_herdeiro
+    Tipo: BOSS
+    Alvo: herdeiro
+    Quantidade: 1
+    Recompensas: [ 'escama_draconica 100% 6', 'prisma_do_trono 100% 1' ]
+
+  # ------------------------------------------------------------------ trono
+  dragao_1:
+    Nome: 'Matador de Dragões'
+    Descricao: 'Ajude a derrotar o dragão.'
+    Categoria: trono
+    Icone: DRAGON_HEAD
+    Tipo: DRAGAO
+    Quantidade: 1
+    Recompensas: [ 'escama_draconica 100% 2' ]
+  dragao_5:
+    Nome: 'Senhor do Trono'
+    Descricao: 'Ajude a derrotar o dragão 5 vezes.'
+    Categoria: trono
+    Icone: DRAGON_EGG
+    Tipo: DRAGAO
+    Quantidade: 5
+    Recompensas: [ 'escama_draconica 100% 6', 'prisma_do_trono 100% 2' ]
+  torres:
+    Nome: 'Derruba-Torres'
+    Descricao: 'Ajude a derrubar 3 Torres Ressonantes.'
+    Categoria: trono
+    Icone: AMETHYST_BLOCK
+    Tipo: TORRE
+    Quantidade: 3
+    Recompensas: [ 'prisma_do_trono 100% 1' ]
+  ondas:
+    Nome: 'Guardião dos Guardiões'
+    Descricao: 'Vença 3 ondas de guardiões nos Santuários.'
+    Categoria: trono
+    Icone: VAULT
+    Tipo: ONDA
+    Quantidade: 3
+    Recompensas: [ 'chave_do_trono 100% 1' ]
+  cofres:
+    Nome: 'Relicário Aberto'
+    Descricao: 'Abra 5 cofres de Santuário.'
+    Categoria: trono
+    Icone: chave_do_trono
+    Tipo: COFRE
+    Quantidade: 5
+    Recompensas: [ 'fragmento_do_selo 100% 2', 'escama_draconica 100% 2' ]
+  armadilhas:
+    Nome: 'Pé Descuidado'
+    Descricao: 'Dispare 10 armadilhas das Catacumbas.'
+    Categoria: trono
+    Icone: POLISHED_BLACKSTONE_PRESSURE_PLATE
+    Tipo: ARMADILHA
+    Quantidade: 10
+    Recompensas: [ 'GOLDEN_APPLE 100% 2' ]
+
+  # ------------------------------------------------------------------ mecanicas
+  bencaos:
+    Nome: 'Abençoado'
+    Descricao: 'Receba 4 bênçãos diferentes nos altares.'
+    Categoria: mecanicas
+    Icone: AMETHYST_CLUSTER
+    Tipo: BENCAO
+    Distintos: true
+    Quantidade: 4
+    Recompensas: [ 'poeira_nebulosa 100% 12' ]
+  alquimista:
+    Nome: 'Alquimista Estelar'
+    Descricao: 'Tire 10 elixires do caldeirão.'
+    Categoria: mecanicas
+    Icone: CAULDRON
+    Tipo: ELIXIR
+    Quantidade: 10
+    Recompensas: [ 'fragmento_cometario 100% 6' ]
+  pescador:
+    Nome: 'Pescador do Vazio'
+    Descricao: 'Pesque 20 vezes no vazio.'
+    Categoria: mecanicas
+    Icone: vara_abissal
+    Tipo: PESCA
+    Quantidade: 20
+    Recompensas: [ 'enguia_do_vazio 100% 4', 'livro:isca_do_vazio:2 100% 1' ]
+  ferreiro:
+    Nome: 'Ferreiro Estelar'
+    Descricao: 'Forje 5 itens na Forja Estelar.'
+    Categoria: mecanicas
+    Icone: RESPAWN_ANCHOR
+    Tipo: FORJA
+    Quantidade: 5
+    Recompensas: [ 'escama_draconica 100% 2' ]
+  defensor:
+    Nome: 'Defensor do Trono'
+    Descricao: 'Ajude a vencer 3 Invasões do Vazio.'
+    Categoria: trono
+    Icone: CRYING_OBSIDIAN
+    Tipo: INVASAO
+    Quantidade: 3
+    Recompensas: [ 'escama_draconica 100% 4', 'prisma_do_trono 100% 1' ]
