@@ -250,6 +250,19 @@ randomtp:
     valor: 0.0
     economia: ''
 
+  # Efeitos quando o jogador chega no destino do RTP (pelo /rtp ou mandado
+  # pela staff). Deixe "" para desligar cada um. Aceita & e hex (&#rrggbb).
+  # Placeholders: {jogador} {mundo} {x} {y} {z} e os do PlaceholderAPI.
+  ao-teleportar:
+    titulo: "&a&lRTP"
+    subtitulo: "&7Voce caiu em &f{x}&7, &f{y}&7, &f{z}"
+    actionbar: "&7Mundo: &f{mundo}"
+    som: "ENTITY_PLAYER_LEVELUP"
+    # Tempos do titulo, em ticks (20 = 1 segundo).
+    titulo-entrada: 10
+    titulo-duracao: 50
+    titulo-saida: 10
+
   # Executa o RTP em outro mundo quando o comando acontece a partir do mundo
   # listado. Formato: "mundo-de-origem": "mundo-de-destino".
   overrides:
