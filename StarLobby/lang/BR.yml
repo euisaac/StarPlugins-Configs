@@ -107,6 +107,13 @@ chat:
   fila-servidor-invalido: '&cServidor ou lobby não encontrado.'
   fila-ja-conectado: '&cVocê já está conectado a este servidor/lobby.'
   fila-origem-invalida: '&cEste servidor não está disponível pelo proxy que você usou para entrar.'
+  # Status do servidor (servers.yml / comandos /manutencao, /deployment e
+  # /beta-vip): quem não tem a permissão de bypass nem entra na fila.
+  # Bypass em config.yml -> modes.bypass-permission-*; o beta-vip aceita
+  # também a permissão própria do servidor (options.beta-vip-permission).
+  fila-servidor-manutencao: '&cO servidor {servidor} &cestá em manutenção.'
+  fila-servidor-deployment: '&cO servidor {servidor} &cestá em desenvolvimento.'
+  fila-servidor-betavip: '&cO servidor {servidor} &cestá aberto só para Beta-VIP.'
   # ---- Fila para conectar a um servidor ----
   # Placeholders (valem em TODAS as mensagens de fila, chat e actionbar):
   #   {servidor}     nome de exibição do servidor (o display-name do
@@ -120,6 +127,10 @@ chat:
   # Texto que aparece ao passar o mouse na linha de cima.
   fila-entrou-sair-hover: '&7Sair da fila do {servidor}&7.'
   fila-saiu: '&cVocê saiu da fila do {servidor}&c.'
+  # Servidor desligado ao tentar entrar (fila.entrar-se-desligado no config.yml
+  # decide se a pessoa entra na fila mesmo assim). Vazia ('') = não manda.
+  fila-servidor-desligado: '&cO servidor {servidor} &cestá desligado no momento. Tente novamente mais tarde.'
+  fila-servidor-desligado-fila: '&eO servidor {servidor} &eestá desligado. Você será conectado assim que ele voltar.'
   fila-falha-removido: '&cNão foi possível conectar você ao servidor {servidor}&c depois de várias tentativas. Você foi removido da fila.'
   fila-actionbar-conectando: '&aConectando ao servidor {servidor}&a... &7(posição {posicao})'
   fila-actionbar-reiniciando: '&cServidor {servidor} &creiniciando... &7(posição {posicao})'

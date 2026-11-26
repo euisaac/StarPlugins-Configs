@@ -557,6 +557,10 @@ fila:
   # fila inteira pra sempre, já que só o primeiro é tentado a cada ciclo.
   # Use -1 para desativar (nunca remover automaticamente por falhas).
   max-tentativas: 10
+  # Servidor desligado: o jogador sempre é avisado. Com true, ele entra na
+  # fila mesmo assim e é conectado sozinho quando o servidor voltar. Com
+  # false, só recebe o aviso e não entra na fila.
+  entrar-se-desligado: true
   # Sons da fila. Deixe em '' (vazio) para nao tocar nada. Aceita nomes de som
   # antigos e novos (o plugin converte para a versao do servidor).
   som:
@@ -564,6 +568,18 @@ fila:
     entrar: 'BLOCK_NOTE_BLOCK_PLING'
     # Toda vez que o jogador SOBE de posicao na fila (anda pra frente).
     avancar: 'BLOCK_NOTE_BLOCK_HAT'
+
+# Vida no lobby. Todo mundo fica com a mesma quantidade de corações, seja qual
+# for a vida que outro servidor ou plugin deixou gravada no jogador.
+vida:
+  # false = o StarLobby não mexe na vida de ninguém.
+  enabled: true
+  # Quantos corações cada um tem (1 coração = 2 de vida). 10 é o normal do
+  # Minecraft.
+  coracoes: 10
+  # Encher a vida ao entrar no lobby, ao ligar e ao desligar o PvP e ao
+  # começar uma arena.
+  encher: true
 
 # Sistema de entrar no lobby
 join:

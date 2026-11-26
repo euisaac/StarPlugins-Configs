@@ -107,6 +107,13 @@ chat:
   fila-servidor-invalido: '&cServer or lobby not found.'
   fila-ja-conectado: '&cYou are already connected to this server/lobby.'
   fila-origem-invalida: '&cThis server is not available through the proxy you connected from.'
+  # Server status (servers.yml / commands /manutencao, /deployment, /beta-vip):
+  # without the bypass permission the player cannot even join the queue.
+  # Bypass in config.yml -> modes.bypass-permission-*; beta-vip also accepts
+  # the server's own permission (options.beta-vip-permission).
+  fila-servidor-manutencao: '&cServer {servidor} &cis under maintenance.'
+  fila-servidor-deployment: '&cServer {servidor} &cis under development.'
+  fila-servidor-betavip: '&cServer {servidor} &cis open to Beta-VIP only.'
   # ---- Server connection queue ----
   # Placeholders (available in EVERY queue message, chat and actionbar):
   #   {servidor}     server display name (the display-name from
@@ -120,6 +127,10 @@ chat:
   # Hover text for the line above.
   fila-entrou-sair-hover: '&7Leave the {servidor} &7queue.'
   fila-saiu: '&cYou left the {servidor} &cqueue.'
+  # Servidor desligado ao tentar entrar (fila.entrar-se-desligado no config.yml
+  # decide se a pessoa entra na fila mesmo assim). Vazia ('') = não manda.
+  fila-servidor-desligado: '&cThe server {servidor} &cis offline right now. Try again later.'
+  fila-servidor-desligado-fila: '&eThe server {servidor} &eis offline. You will be connected as soon as it is back.'
   fila-falha-removido: '&cCould not connect you to server {servidor}&c after several attempts. You have been removed from the queue.'
   fila-actionbar-conectando: '&aConnecting to server {servidor}&a... &7(position {posicao})'
   fila-actionbar-reiniciando: '&cServer {servidor} &crestarting... &7(position {posicao})'
