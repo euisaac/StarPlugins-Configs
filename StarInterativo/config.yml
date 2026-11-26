@@ -1,0 +1,47 @@
+# ==========================================================================
+#  StarInterativo - configuracao
+#
+#  Liga o servidor ao jogo da live (a mina do TikTok). O jogo e o plugin
+#  conversam pelo TikBooster, usando a mesma chave de API.
+#  As mensagens ficam em mensagens.yml
+#  Site: https://starplugins.com.br
+# ==========================================================================
+
+# Nao mexa: e por este numero que o plugin sabe atualizar o arquivo.
+Versao do modelo: 1
+
+TikBooster:
+  # Endereco do TikBooster (sem barra no fim).
+  Endereco: 'https://tikbooster.starplugins.com.br'
+  # A mesma chave de API colada no painel do jogo.
+  Chave: ''
+
+Geral:
+  # Mostra detalhes a mais no console.
+  Debug: false
+
+  # Envia a skin do jogador para o jogo quando ele entra no servidor
+  # (a skin vem do perfil, entao funciona com o StarSkins e com skins originais).
+  Enviar skin: true
+
+  # Segundos depois de entrar para ler a skin (da tempo do StarSkins aplicar).
+  Atraso da skin: 3
+
+  # O jogo pode mandar comandos para o console (premios do tipo "Comando" nas
+  # caixas). Desligue se nao quiser que o jogo rode comandos no servidor.
+  Permitir comandos do jogo: true
+
+  # So comandos que comecam com uma destas palavras sao aceitos. Vazio = todos.
+  Comandos permitidos:
+    - 'give'
+    - 'eco'
+    - 'crate'
+    - 'caixa'
+    - 'lp'
+
+  # Som ao receber o resumo da mineracao (vazio desliga).
+  Som da mineracao: 'ENTITY_EXPERIENCE_ORB_PICKUP'
+  Som da caixa: 'ENTITY_PLAYER_LEVELUP'
+
+Menu:
+  Titulo: '&8Mina da Live'
