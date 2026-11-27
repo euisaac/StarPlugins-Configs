@@ -154,6 +154,24 @@ starlobby:
     setnpc: '&e/{command} setnpc <servidor> &7- define a posição do NPC/teleporter olhando o local'
     delnpc: '&e/{command} delnpc <servidor> &7- remove o NPC/teleporter de um servidor'
     livro: '&e/{command} livro <criar|editar|remover|on|off> &7- livro de boas-vindas'
+    tempo: '&e/{command} tempo <dia|noite|ticks|travar|destravar> &7- hora do mundo e travar o tempo'
+
+# Mensagens de morte no chat (trocam as do Minecraft). Deixe vazia ('') para
+# não mostrar nada. Placeholders: {morto}, {matador}, {coracoes} (vida que
+# sobrou no matador). Desligue tudo em "mensagem-morte.enabled" no config.yml.
+morte:
+  matou: '&c{morto} &7foi morto por &a{matador} &7(&c{coracoes}❤&7).'
+  matou-flecha: '&c{morto} &7foi flechado por &a{matador} &7(&c{coracoes}❤&7).'
+  morreu: '&c{morto} &7morreu.'
+
+tempo:
+  definido: '&aHora dos mundos mudada para &f{ticks}&a. O tempo está passando; use &f/{command} tempo travar &apara parar nessa hora.'
+  definido-travado: '&aHora dos mundos travada em &f{ticks}&a.'
+  travado: '&aTempo travado em &f{ticks}&a.'
+  destravado: '&aTempo destravado: o dia volta a passar normalmente.'
+  estado-travado: '&7Agora: tempo &ctravado &7em &f{ticks}&7.'
+  estado-livre: '&7Agora: tempo &apassando normalmente&7.'
+  nao-gravou: '&eAplicado, mas não consegui gravar no config.yml (veja se day-cycle existe nele).'
 
 perola:
   cooldown: '&cAguarde &e{segundos}s &cpara usar a pérola de novo.'

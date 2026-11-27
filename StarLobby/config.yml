@@ -146,9 +146,18 @@ npcs:
 # 1.9 em diante (no 1.8 é ignorado, sem erro).
 
 # Sistema de day-cycle: mantém o horário fixo no lobby.
+# Também pelo jogo: /starlobby tempo <dia|meio-dia|tarde|noite|meia-noite|ticks>
+# e /starlobby tempo travar|destravar (permissão starlobby.admin.tempo).
+#   enabled: true = tempo travado na hora abaixo; false = o dia passa normal.
+#   time: 0-24000 (1000 dia, 6000 meio-dia, 12000 tarde, 13000 noite, 18000 meia-noite).
 day-cycle:
   enabled: true
   time: 6000
+
+# Mensagem de morte no chat: troca a do Minecraft ("X foi morto por Y") pelas
+# de "morte" no lang (matou, matou-flecha, morreu). false = deixa a original.
+mensagem-morte:
+  enabled: true
 
 # Sistema de scoreboard do lobby (item 6), com suporte a PlaceholderAPI.
 scoreboard:

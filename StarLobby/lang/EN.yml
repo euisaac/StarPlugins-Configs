@@ -153,6 +153,7 @@ starlobby:
     editor: '&e/{command} editor &7- in-game menu editor (features, hotbar, servers)'
     setnpc: '&e/{command} setnpc <server> &7- sets the NPC/teleporter position where you stand'
     delnpc: '&e/{command} delnpc <server> &7- removes a server''s NPC/teleporter'
+    tempo: '&e/{command} tempo <day|night|ticks|travar|destravar> &7- world time and lock time'
     livro: '&e/{command} livro <criar|editar|remover|on|off> &7- welcome book'
 
 perola:
@@ -168,3 +169,20 @@ livro:
   ligado: '&aThe welcome book is now on. It will open again for players joining.'
   desligado: '&aThe welcome book is now off. The content is still saved — use /{command} livro on to turn it back on.'
   ligar-vazio: '&cThere is no saved book to turn on. Use /{command} livro criar first.'
+
+# Death messages in chat (replace Minecraft's). Leave empty ('') to show
+# nothing. Placeholders: {morto} (victim), {matador} (killer), {coracoes}
+# (killer's remaining hearts). Turn all off in "mensagem-morte.enabled".
+morte:
+  matou: '&c{morto} &7was slain by &a{matador} &7(&c{coracoes}❤&7).'
+  matou-flecha: '&c{morto} &7was shot by &a{matador} &7(&c{coracoes}❤&7).'
+  morreu: '&c{morto} &7died.'
+
+tempo:
+  definido: '&aWorld time set to &f{ticks}&a. Time is passing; use &f/{command} tempo travar &ato stop at this time.'
+  definido-travado: '&aWorld time locked at &f{ticks}&a.'
+  travado: '&aTime locked at &f{ticks}&a.'
+  destravado: '&aTime unlocked: the day passes normally again.'
+  estado-travado: '&7Now: time &clocked &7at &f{ticks}&7.'
+  estado-livre: '&7Now: time &apassing normally&7.'
+  nao-gravou: '&eApplied, but could not save config.yml (check that day-cycle exists in it).'
