@@ -32,6 +32,15 @@ menu-updater: true
 #       right-command: ''          # clique direito
 #       close-on-click: true       # fechar o menu ao rodar o comando
 #
+# CABECA CUSTOMIZADA: para o item ser uma cabeca, use material 'PLAYER_HEAD'
+# (ou 'SKULL_ITEM:3' na 1.8) e um destes dois campos:
+#       material: 'PLAYER_HEAD'
+#       # Cabeca do minecraft-heads: cole aqui o "Value" (base64) do site.
+#       # Vale tambem a URL da textura ou so o hash dela.
+#       textura: 'ewogICJ0ZXh0dXJlcyIgOiB7ICJTS0lOIiA6IHsgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8uLi4iIH0gfSB9'
+#       # ...ou a cabeca de um jogador, pelo nick (em vez de "textura"):
+#       dono: 'Notch'
+#
 # Deixando os DOIS comandos vazios, o item é só informativo: clicar nele não
 # faz nada e o menu continua aberto. É o caso do exemplo da loja abaixo — um
 # cartaz, não um botão.
@@ -70,6 +79,7 @@ preferences:
   name: '&8Preferências'
   size: 27
   items:
+    pvp-slot: 22
     visibility-slot: 10
     chat-slot: 12
     tell-slot: 14
@@ -120,6 +130,20 @@ preferences:
       lore:
         - '&fEstado: &cIndisponível'
         - '&7Você não tem permissão para voar.'
+    pvp-off:
+      material: 'INK_SACK:8'
+      name: '&aVer Jogadores no PvP'
+      lore:
+        - '&fEstado: &cOFF'
+        - '&7Quem está no PvP fica invisível'
+        - '&7até você entrar no PvP.'
+    pvp-on:
+      material: 'INK_SACK:10'
+      name: '&aVer Jogadores no PvP'
+      lore:
+        - '&fEstado: &aON'
+        - '&7Com OFF, quem está no PvP fica'
+        - '&7invisível até você entrar no PvP.'
 
 # Menu de batalha (item 8/9/10 — aberto pelo item "battle" da hotbar ou
 # /battle menu). "queue" é quantos jogadores estão na fila de batalha

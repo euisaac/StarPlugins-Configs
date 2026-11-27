@@ -60,6 +60,7 @@ commands:
   servers: 'servidores|servers'
   lobbies: 'lobbies'
   sudo: 'sudo'
+  global: 'g|global'
 
 # Sistema de modos do servidor (item 14). O modo "reiniciando" não tem
 # comando manual: é ativado programaticamente pelo sistema de fila de
@@ -158,6 +159,9 @@ day-cycle:
 # de "morte" no lang (matou, matou-flecha, morreu). false = deixa a original.
 mensagem-morte:
   enabled: true
+  # true: morte no PvP (espada ligada ou arena FFA) aparece só para quem está
+  # no PvP; quem está no lobby não vê. O x1 tem as mensagens próprias.
+  so-pvp: true
 
 # Sistema de scoreboard do lobby (item 6), com suporte a PlaceholderAPI.
 scoreboard:
@@ -381,6 +385,9 @@ preferences:
   visibility-default: true
   chat-default: true
   tell-default: true
+  # "Ver Jogadores no PvP": com OFF, quem está no PvP (espada ligada ou arena)
+  # fica invisível para você até você mesmo entrar no PvP.
+  ver-pvp-default: true
   # Voo nunca é persistido nem tem "default": sempre começa desligado a cada
   # login, mesmo para quem tem a permissão abaixo.
   fly-permission: 'starlobby.fly'
@@ -395,6 +402,17 @@ chat:
   enabled: true
   format: '&7[Chat] &f%vault_prefix% {player}&7: {msg}'
   delay: 1
+
+# Chat do PvP: quem está no PvP (espada ligada ou arena) fala só com quem
+# também está no PvP. Para falar com todo mundo: /g <mensagem>.
+# Staff com starlobby.chat.pvp.espiar vê o chat do PvP mesmo fora dele.
+chat-pvp:
+  enabled: true
+  # Vai na frente do chat.format.
+  prefixo: '&c[PvP] '
+  prefixo-global: '&e[G] '
+  # true: quem está no PvP continua vendo o chat de quem está no lobby.
+  ver-chat-do-lobby: true
 
 # Textos de status usados no seletor de servidores/lobbies (item 11/12).
 # O status real de jogadores online por servidor (via ping) chega na Fase G,
