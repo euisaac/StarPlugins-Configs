@@ -1,0 +1,104 @@
+# ============================================================
+#   Classes de mineracao (/mina classes)
+#   O jogador compra, equipa uma por vez e ganha bonus e efeitos
+#   enquanto estiver numa mina. A armadura da classe e vestida so
+#   nos espacos VAZIOS (a armadura do jogador nunca e trocada) e
+#   sai ao deixar a mina.
+#
+#   Preco: ['money:10K', 'pepitas:100'] (sempre entre aspas)
+#   Bonus: porcentagem (10 = +10%) de Dinheiro, Pepitas, Energia, Xp, Sorte
+#   Efeitos: ['SPEED:1', 'HASTE:2'] enquanto estiver na mina
+#   Armadura.Cor: 'R,G,B' para pecas de couro
+#   Armadura.<Capacete|Peitoral|Calca|Botas>: Material/Nome/Lore/Brilho
+#     (sem a secao, vira couro na cor da classe)
+# ============================================================
+Opcoes:
+  Ativado: true
+  # Precisa ter a classe anterior (na Ordem) para comprar a proxima.
+  Em ordem: true
+  Equipar ao comprar: true
+  # Veste a armadura da classe dentro da mina.
+  Vestir armadura: true
+  # Minas onde a classe nao vale (ids).
+  Minas sem classes: []
+
+Classes:
+  aprendiz:
+    Nome: '&7Aprendiz'
+    Ordem: 1
+    Icone:
+      Material: LEATHER_HELMET
+    Preco: ['money:5K']
+    Bonus:
+      Dinheiro: 5
+      Pepitas: 5
+    Efeitos: []
+    Armadura:
+      Cor: '160,160,160'
+  minerador:
+    Nome: '&aMinerador'
+    Ordem: 2
+    Icone:
+      Material: LEATHER_CHESTPLATE
+    Preco: ['money:50K', 'pepitas:200']
+    Bonus:
+      Dinheiro: 10
+      Pepitas: 10
+      Energia: 5
+    Efeitos: ['SPEED:1']
+    Armadura:
+      Cor: '85,255,85'
+  escavador:
+    Nome: '&bEscavador'
+    Ordem: 3
+    Icone:
+      Material: IRON_PICKAXE
+    Preco: ['money:250K', 'pepitas:1K']
+    Bonus:
+      Dinheiro: 20
+      Pepitas: 15
+      Energia: 10
+      Sorte: 5
+    Efeitos: ['SPEED:1', 'HASTE:1']
+    Armadura:
+      Cor: '85,255,255'
+  mestre:
+    Nome: '&6Mestre Minerador'
+    Ordem: 4
+    Icone:
+      Material: GOLDEN_PICKAXE
+    Preco: ['money:1M', 'pepitas:5K']
+    Bonus:
+      Dinheiro: 35
+      Pepitas: 25
+      Energia: 20
+      Xp: 10
+      Sorte: 10
+    Efeitos: ['SPEED:2', 'HASTE:2']
+    Armadura:
+      Cor: '255,170,0'
+      Capacete:
+        Material: GOLDEN_HELMET
+        Nome: '&6Elmo do Mestre'
+        Brilho: true
+  lendario:
+    Nome: '&d&lMinerador Lendario'
+    Ordem: 5
+    Permissao: ''
+    Icone:
+      Material: DIAMOND_PICKAXE
+      Brilho: true
+    Preco: ['money:5M', 'pepitas:25K']
+    Bonus:
+      Dinheiro: 60
+      Pepitas: 40
+      Energia: 30
+      Xp: 20
+      Sorte: 20
+    Efeitos: ['SPEED:2', 'HASTE:3', 'NIGHT_VISION:1']
+    Armadura:
+      Cor: '255,85,255'
+      Capacete:
+        Material: DIAMOND_HELMET
+        Nome: '&d&lCoroa Lendaria'
+        Brilho: true

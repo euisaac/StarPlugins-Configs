@@ -1,0 +1,57 @@
+# Encantamento da picareta. Copie o arquivo e troque os numeros para
+# criar outro do mesmo tipo. Tudo aqui tambem se edita em /minaadmin.
+Nome: '&6Chaveiro'
+Tipo: COMANDO
+Descricao:
+  - '&7Chance de encontrar uma chave.'
+  - '&7Chance: &6{chance}%'
+Icone: TRIPWIRE_HOOK
+Ordem: 15
+Ativado: true
+Mostrar: true
+Pode comprar: true
+Nivel:
+  Inicial: 0
+  # 0 = sem limite.
+  Maximo: 10
+# Nivel minimo da picareta para comprar.
+Nivel da picareta: 5
+# Peso no sorteio quando a picareta sobe de nivel (0 = nunca sorteado).
+Sorteio ao evoluir: 3
+# Permissao para o efeito funcionar ('' = todos).
+Permissao: ''
+Custo:
+  # Custo do nivel N para N+1 = (Base + Por nivel x N) x Multiplicador
+  # (com Exponencial: x Multiplicador elevado a N). Moedas: money e pepitas.
+  Base: ['money:30000', 'pepitas:300']
+  Por nivel: ['money:30000', 'pepitas:500']
+  Multiplicador: 1.0
+  Exponencial: false
+# Quanto do que foi pago volta ao desencantar (%).
+Reembolso: 50
+# Chance (%) de disparar a cada bloco = Base + Por nivel x nivel.
+Chance:
+  Base: 0.0
+  Por nivel: 0.05
+  Maxima: 100
+# Espera (segundos) entre um disparo e outro do mesmo jogador.
+Espera: 0
+# O que os blocos quebrados pelo efeito rendem.
+Ganhos:
+  Dinheiro: true
+  Pepitas: true
+  Energia: true
+  Recompensas: true
+  LuckyBlock: false
+  # Escala o dinheiro e as pepitas desses blocos (0.5 = metade).
+  Fator: 1.0
+Efeito:
+  # Rodados pelo console. {jogador} {mina} {nivel}
+  Comandos:
+    - 'give {jogador} tripwire_hook 1'
+Mensagem:
+  Actionbar: '&6Você encontrou uma &fchave&6!'
+  Titulo: ''
+  Chat: ''
+  Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;1.0;1.0'
+  Particula: 'VILLAGER_HAPPY'

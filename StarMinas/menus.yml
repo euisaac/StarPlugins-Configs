@@ -1,0 +1,451 @@
+# ============================================================
+#   Menus dos jogadores
+#   Cada item: Slot (ou Slots: [10, 11, '19-25']), Material, Nome, Lore,
+#   Brilho, Textura (cabeca por textura), Custom model data.
+#   Acao do item: MINAS, EVOLUIR, TOP, ARMAZEM, IR_SAIR, FILTRO,
+#   DESENCANTAR, FECHAR, VOLTAR, COMANDO:<comando sem />, NADA.
+#   "Requer produto: StarMinasSkins" esconde o item quando o addon nao
+#   esta instalado.
+#   Botao de fechar/voltar: RED_DYE (padrao de todos os StarPlugins).
+# ============================================================
+Versao do modelo: 2
+
+Principal:
+  Titulo: '&8Minas'
+  Linhas: 3
+  Itens:
+    perfil:
+      Slot: 4
+      Material: PLAYER_HEAD
+      Cabeca do jogador: true
+      Nome: '&b{jogador}'
+      Lore:
+        - '&7Nivel da picareta: &f{nivel} &8({porcentagem}%)'
+        - '&7Blocos quebrados: &f{quebrados}'
+        - '&7{moeda}: &e{pepitas}'
+        - '&7Tempo minerando: &f{tempo}'
+        - '&7Bonus: &a+{bonus}%'
+      Acao: NADA
+    evoluir:
+      Slot: 11
+      Material: DIAMOND_PICKAXE
+      Nome: '&b&lEvoluir picareta'
+      Lore:
+        - '&7Compre niveis dos encantamentos'
+        - '&7da sua picareta.'
+        - ''
+        - '&eClique para abrir.'
+      Acao: EVOLUIR
+    minas:
+      Slot: 12
+      Material: STONE_BRICKS
+      Nome: '&a&lMinas'
+      Lore:
+        - '&7Veja todas as minas e'
+        - '&7teleporte para uma delas.'
+        - ''
+        - '&eClique para abrir.'
+      Acao: MINAS
+    ir:
+      Slot: 13
+      Material: ENDER_PEARL
+      Nome: '&d&lIr minerar'
+      Lore:
+        - '&7Leva voce para a melhor'
+        - '&7mina liberada.'
+        - ''
+        - '&eClique para ir.'
+      # Quando o jogador ja esta numa mina, o item vira este:
+      Dentro:
+        Material: OAK_DOOR
+        Nome: '&c&lSair da mina'
+        Lore:
+          - '&7Voce esta em: &f{mina}'
+          - ''
+          - '&eClique para sair.'
+      Acao: IR_SAIR
+    top:
+      Slot: 14
+      Material: GOLD_BLOCK
+      Nome: '&6&lRanking'
+      Lore:
+        - '&7Os melhores mineradores.'
+        - ''
+        - '&eClique para abrir.'
+      Acao: TOP
+    armazem:
+      Slot: 15
+      Material: CHEST
+      Nome: '&e&lArmazem'
+      Lore:
+        - '&7Recompensas que voce'
+        - '&7encontrou nas minas.'
+        - '&7Guardadas: &f{armazem}'
+        - ''
+        - '&eClique para abrir.'
+      Acao: ARMAZEM
+    skins:
+      Slot: 10
+      Material: LEATHER_CHESTPLATE
+      Nome: '&d&lSkins'
+      Lore:
+        - '&7Skins para a sua picareta.'
+        - ''
+        - '&eClique para abrir.'
+      Acao: 'COMANDO:skins'
+      Requer produto: StarMinasSkins
+    bombas:
+      Slot: 16
+      Material: TNT
+      Nome: '&c&lBombas'
+      Lore:
+        - '&7Compre bombas para abrir'
+        - '&7a mina de uma vez.'
+        - ''
+        - '&eClique para abrir.'
+      Acao: 'COMANDO:bombas'
+      Requer produto: StarMinasBombas
+    booster:
+      Slot: 22
+      Material: GLASS_BOTTLE
+      Nome: '&6&lBoosters'
+      Lore:
+        - '&7Voce nao tem nenhum booster ativo.'
+        - ''
+        - '&eClique para ver os boosters.'
+      # Quando ha algum booster valendo (pessoal ou global), o item vira este:
+      Ativo:
+        Material: BLAZE_POWDER
+        Nome: '&6&lBoosters &7({boosters} ativo(s))'
+        Brilho: true
+        Lore:
+          - '{booster}'
+          - ''
+          - '&eClique para ver os boosters.'
+      Acao: BOOSTERS
+    classes:
+      Slot: 20
+      Material: IRON_CHESTPLATE
+      Nome: '&9&lClasses'
+      Lore:
+        - '&7Bonus e armadura para minerar.'
+        - '&7Sua classe: &f{classe}'
+        - ''
+        - '&eClique para abrir.'
+      Acao: CLASSES
+    fechar:
+      Slot: 26
+      Material: RED_DYE
+      Nome: '&cFechar'
+      Acao: FECHAR
+
+Minas:
+  Titulo: '&8Minas'
+  Linhas: 5
+  Slots: ['10-16', '19-25', '28-34']
+  Mina:
+    Nome: '{mina}'
+    Lore:
+      - '&7Nivel minimo: &f{nivel_minimo}'
+      - '&7Restante: &a{restante}%'
+      - '&7Reset em: &e{reset}'
+      - '&7Jogadores: &f{jogadores}'
+      - ''
+      - '{estado}'
+  Estados:
+    Liberada: '&aClique para ir!'
+    Bloqueada: '&cVoce precisa do nivel {nivel_minimo}.'
+    Sem permissao: '&cVoce nao tem acesso a esta mina.'
+    Manutencao: '&6Em manutencao.'
+    Aqui: '&bVoce esta aqui.'
+  Itens:
+    voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: VOLTAR
+    anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&ePagina anterior'
+    proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&eProxima pagina'
+
+Evoluir:
+  Titulo: '&8Evoluir picareta'
+  Linhas: 6
+  Slots: ['10-16', '19-25', '28-34']
+  Encantamento:
+    Nome: '{nome} &7[&f{nivel}&7/&f{maximo}&7]'
+    Lore:
+      - '{descricao}'
+      - ''
+      - '{efeito}'
+      - '&7Proximo nivel: {custo}'
+      - '&7Voce consegue comprar: &f{pode} nivel(is)'
+      - ''
+      - '{estado}'
+  Estados:
+    Comprar: '&aEsquerdo: &f+1  &aShift: &f+10\n&aDireito: &fescolher  &aQ: &fmaximo'
+    Maximo: '&6&lNIVEL MAXIMO'
+    Bloqueado: '&cPrecisa da picareta no nivel {nivel_picareta}.'
+    Nao vende: '&7Este encantamento nao e vendido.\n&7Chega pela evolucao da picareta.'
+  Itens:
+    picareta:
+      Slot: 49
+      Acao: NADA
+    filtro:
+      Slot: 47
+      Material: HOPPER
+      Nome: '&e&lFiltro'
+      Lore:
+        - '&7Desligue encantamentos que'
+        - '&7voce nao quer usar agora.'
+      Acao: FILTRO
+    desencantar:
+      Slot: 51
+      Material: GRINDSTONE
+      Nome: '&c&lDesencantar'
+      Lore:
+        - '&7Tire niveis de um encantamento'
+        - '&7e receba parte do valor de volta.'
+      Acao: DESENCANTAR
+    voltar:
+      Slot: 45
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: VOLTAR
+    anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&ePagina anterior'
+    proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&eProxima pagina'
+
+Filtro:
+  Titulo: '&8Filtro de encantamentos'
+  Linhas: 5
+  Slots: ['10-16', '19-25', '28-34']
+  Encantamento:
+    Nome: '{nome} &7[&f{nivel}&7]'
+    Lore:
+      - '&7Situacao: {situacao}'
+      - ''
+      - '&eClique para alternar.'
+  Ligado: '&aLIGADO'
+  Desligado: '&cDESLIGADO'
+  Itens:
+    voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: VOLTAR
+    anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&ePagina anterior'
+    proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&eProxima pagina'
+
+Desencantar:
+  Titulo: '&8Desencantar'
+  Linhas: 5
+  Slots: ['10-16', '19-25', '28-34']
+  Encantamento:
+    Nome: '{nome} &7[&f{nivel}&7]'
+    Lore:
+      - '&7Devolve &f{reembolso}% &7do que custou.'
+      - '&7Tirar 1 nivel devolve: {valor1}'
+      - ''
+      - '&cEsquerdo: &f-1 nivel'
+      - '&cShift + esquerdo: &ftirar tudo'
+  Itens:
+    voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: VOLTAR
+    anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&ePagina anterior'
+    proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&eProxima pagina'
+
+Armazem:
+  Titulo: '&8Armazem de recompensas'
+  Linhas: 6
+  Slots: ['10-16', '19-25', '28-34', '37-43']
+  Recompensa:
+    Lore extra:
+      - ''
+      - '&7Quantidade: &f{quantidade}'
+      - '&eClique para coletar.'
+  Itens:
+    coletar:
+      Slot: 49
+      Material: HOPPER
+      Nome: '&a&lColetar tudo'
+      Acao: NADA
+    vazio:
+      Slot: 22
+      Material: GLASS_BOTTLE
+      Nome: '&7Nada guardado'
+      Lore:
+        - '&7Recompensas encontradas nas'
+        - '&7minas aparecem aqui.'
+    voltar:
+      Slot: 45
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: VOLTAR
+    anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&ePagina anterior'
+    proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&eProxima pagina'
+
+Top:
+  Titulo: '&8Ranking: {categoria}'
+  Linhas: 5
+  Slots: ['10-16', '19-25', '29-31']
+  Posicao:
+    Nome: '&e#{posicao} &f{nome}'
+    Lore:
+      - '&7{categoria}: &f{valor}'
+  Categorias:
+    quebrados: 'Blocos quebrados'
+    pepitas: 'Pepitas'
+    tempo: 'Tempo minerando'
+  Itens:
+    categoria:
+      Slot: 4
+      Material: COMPASS
+      Nome: '&e&lTrocar ranking'
+      Lore:
+        - '&7Mostrando: &f{categoria}'
+        - ''
+        - '&eClique para trocar.'
+    voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: VOLTAR
+
+# Placeholders do Encantamento (Evoluir): {nome} {nivel} {maximo} {descricao}
+# {custo} {pode} {estado} {nivel_picareta} {chance} {chance_proxima} {valor}
+# {valor_proximo} {efeito} (linha pronta: chance para os ativos, bonus para os passivos).
+
+Boosters:
+  Titulo: '&8Boosters ativos ({quantidade})'
+  Linhas: 3
+  Itens:
+    pessoal:
+      Slot: 11
+      Material: BLAZE_POWDER
+      Brilho: true
+      Nome: '&6&lSeu booster'
+      Lore:
+        - '&7Booster: &f{pessoal_nome}'
+        - '&7Dinheiro: &a+{pessoal_dinheiro}%'
+        - '&7Pepitas: &e+{pessoal_pepitas}%'
+        - '&7Termina em: &f{pessoal_tempo}'
+      Inativo:
+        Material: GLASS_BOTTLE
+        Nome: '&7Seu booster'
+        Lore:
+          - '&7Nenhum booster pessoal ativo.'
+          - '&7Use um item de booster para ativar.'
+    global:
+      Slot: 13
+      Material: BEACON
+      Brilho: true
+      Nome: '&d&lBooster global'
+      Lore:
+        - '&7Vale para todos do servidor.'
+        - '&7Dinheiro: &a+{global_dinheiro}%'
+        - '&7Pepitas: &e+{global_pepitas}%'
+        - '&7Termina em: &f{global_tempo}'
+      Inativo:
+        Material: GLASS
+        Nome: '&7Booster global'
+        Lore:
+          - '&7Nenhum booster global agora.'
+    permissao:
+      Slot: 15
+      Material: NAME_TAG
+      Nome: '&a&lBonus de rank'
+      Lore:
+        - '&7Rank: &f{bonus_nome}'
+      Inativo:
+        Material: PAPER
+        Nome: '&7Bonus de rank'
+        Lore:
+          - '&7Voce nao tem bonus de rank.'
+    total:
+      Slot: 4
+      Material: EMERALD
+      Nome: '&a&lTotal de bonus'
+      Lore:
+        - '&7Somando tudo (boosters, rank, classe,'
+        - '&7encantamentos, skins e pets):'
+        - '&7Dinheiro: &a+{total_dinheiro}%'
+        - '&7Pepitas: &e+{total_pepitas}%'
+        - '&7Energia: &d+{total_energia}%'
+    voltar:
+      Slot: 22
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: VOLTAR
+
+Classes:
+  Titulo: '&8Classes'
+  Linhas: 5
+  Slots: ['10-16', '19-25', '28-34']
+  Classe:
+    Nome: '{nome}'
+    Lore:
+      - '{bonus}'
+      - '&7Efeitos na mina: &f{efeitos}'
+      - '&7Preco: {preco}'
+      - ''
+      - '{estado}'
+  Estados:
+    Equipada: '&a&lEQUIPADA &7(clique para tirar)'
+    Possui: '&eClique para equipar.'
+    Comprar: '&aClique para comprar.'
+    Anterior: '&cCompre antes: {anterior}'
+    Sem permissao: '&cVoce nao tem acesso a esta classe.'
+  Itens:
+    info:
+      Slot: 4
+      Material: BOOK
+      Nome: '&9&lClasses'
+      Lore:
+        - '&7Sua classe: &f{classe}'
+        - '&7A classe da bonus e efeitos e'
+        - '&7veste uma armadura dentro das minas.'
+    voltar:
+      Slot: 40
+      Material: RED_DYE
+      Nome: '&cVoltar'
+      Acao: VOLTAR
+    anterior:
+      Slot: 18
+      Material: ARROW
+      Nome: '&ePagina anterior'
+    proxima:
+      Slot: 26
+      Material: ARROW
+      Nome: '&eProxima pagina'

@@ -1,0 +1,57 @@
+# Encantamento da picareta. Copie o arquivo e troque os numeros para
+# criar outro do mesmo tipo. Tudo aqui tambem se edita em /minaadmin.
+Nome: '&5Sobrecarga'
+Tipo: SOBRECARGA
+Descricao:
+  - '&7Chance de encher parte da'
+  - '&7energia da picareta.'
+  - '&7Chance: &5{chance}%'
+Icone: BEACON
+Ordem: 20
+Ativado: true
+Mostrar: true
+Pode comprar: true
+Nivel:
+  Inicial: 0
+  # 0 = sem limite.
+  Maximo: 50
+# Nivel minimo da picareta para comprar.
+Nivel da picareta: 15
+# Peso no sorteio quando a picareta sobe de nivel (0 = nunca sorteado).
+Sorteio ao evoluir: 4
+# Permissao para o efeito funcionar ('' = todos).
+Permissao: ''
+Custo:
+  # Custo do nivel N para N+1 = (Base + Por nivel x N) x Multiplicador
+  # (com Exponencial: x Multiplicador elevado a N). Moedas: money e pepitas.
+  Base: ['money:30000', 'pepitas:300']
+  Por nivel: ['money:30000', 'pepitas:500']
+  Multiplicador: 1.0
+  Exponencial: false
+# Quanto do que foi pago volta ao desencantar (%).
+Reembolso: 50
+# Chance (%) de disparar a cada bloco = Base + Por nivel x nivel.
+Chance:
+  Base: 0.0
+  Por nivel: 0.02
+  Maxima: 100
+# Espera (segundos) entre um disparo e outro do mesmo jogador.
+Espera: 0
+# O que os blocos quebrados pelo efeito rendem.
+Ganhos:
+  Dinheiro: true
+  Pepitas: true
+  Energia: true
+  Recompensas: true
+  LuckyBlock: false
+  # Escala o dinheiro e as pepitas desses blocos (0.5 = metade).
+  Fator: 1.0
+Efeito:
+  # Porcentagem da meta do nivel atual entregue de uma vez.
+  Porcentagem da meta: 5
+Mensagem:
+  Actionbar: '&5&lSOBRECARGA! &7+{valor} energia'
+  Titulo: ''
+  Chat: ''
+  Som: 'BLOCK_BEACON_POWER_SELECT;0.8;1.5'
+  Particula: 'SPELL'

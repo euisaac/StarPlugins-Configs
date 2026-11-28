@@ -1,0 +1,34 @@
+# Encantamento da picareta. Copie o arquivo e troque os numeros para
+# criar outro do mesmo tipo. Tudo aqui tambem se edita em /minaadmin.
+Nome: '&9Visão Noturna'
+Tipo: POCAO
+Descricao:
+  - '&7Efeito enquanto estiver na mina.'
+Icone: GOLDEN_CARROT
+Ordem: 9
+Ativado: true
+Mostrar: true
+Pode comprar: true
+Nivel:
+  Inicial: 0
+  # 0 = sem limite.
+  Maximo: 1
+# Nivel minimo da picareta para comprar.
+Nivel da picareta: 5
+# Peso no sorteio quando a picareta sobe de nivel (0 = nunca sorteado).
+Sorteio ao evoluir: 4
+# Permissao para o efeito funcionar ('' = todos).
+Permissao: ''
+Custo:
+  # Custo do nivel N para N+1 = (Base + Por nivel x N) x Multiplicador
+  # (com Exponencial: x Multiplicador elevado a N). Moedas: money e pepitas.
+  Base: ['money:20000', 'pepitas:200']
+  Por nivel: ['money:40000', 'pepitas:400']
+  Multiplicador: 1.0
+  Exponencial: false
+# Quanto do que foi pago volta ao desencantar (%).
+Reembolso: 50
+Efeito:
+  Pocao: NIGHT_VISION
+  # Nivel da pocao = nivel do encantamento - 1 + este extra.
+  Amplificador extra: 0

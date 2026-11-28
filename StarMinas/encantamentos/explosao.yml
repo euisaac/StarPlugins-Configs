@@ -1,0 +1,61 @@
+# Encantamento da picareta. Copie o arquivo e troque os numeros para
+# criar outro do mesmo tipo. Tudo aqui tambem se edita em /minaadmin.
+Nome: '&cExplosão'
+Tipo: EXPLOSAO
+Descricao:
+  - '&7Chance de abrir um buraco'
+  - '&7em volta do bloco.'
+  - '&7Chance: &c{chance}%'
+Icone: TNT
+Ordem: 10
+Ativado: true
+Mostrar: true
+Pode comprar: true
+Nivel:
+  Inicial: 0
+  # 0 = sem limite.
+  Maximo: 100
+# Nivel minimo da picareta para comprar.
+Nivel da picareta: 5
+# Peso no sorteio quando a picareta sobe de nivel (0 = nunca sorteado).
+Sorteio ao evoluir: 8
+# Permissao para o efeito funcionar ('' = todos).
+Permissao: ''
+Custo:
+  # Custo do nivel N para N+1 = (Base + Por nivel x N) x Multiplicador
+  # (com Exponencial: x Multiplicador elevado a N). Moedas: money e pepitas.
+  Base: ['money:10000', 'pepitas:100']
+  Por nivel: ['money:10000', 'pepitas:200']
+  Multiplicador: 1.0
+  Exponencial: false
+# Quanto do que foi pago volta ao desencantar (%).
+Reembolso: 50
+# Chance (%) de disparar a cada bloco = Base + Por nivel x nivel.
+Chance:
+  Base: 0.0
+  Por nivel: 0.02
+  Maxima: 100
+# Espera (segundos) entre um disparo e outro do mesmo jogador.
+Espera: 0
+# O que os blocos quebrados pelo efeito rendem.
+Ganhos:
+  Dinheiro: true
+  Pepitas: true
+  Energia: true
+  Recompensas: true
+  LuckyBlock: false
+  # Escala o dinheiro e as pepitas desses blocos (0.5 = metade).
+  Fator: 1.0
+Efeito:
+  # ESFERA ou CUBO.
+  Formato: ESFERA
+  Raio: 2
+  # +1 no raio a cada X niveis (0 = raio fixo).
+  Raio por niveis: 25
+  Raio maximo: 5
+Mensagem:
+  Actionbar: '&c&lEXPLOSÃO! &7+{blocos} blocos'
+  Titulo: ''
+  Chat: ''
+  Som: 'ENTITY_GENERIC_EXPLODE;0.6;1.0'
+  Particula: 'EXPLOSION_LARGE'

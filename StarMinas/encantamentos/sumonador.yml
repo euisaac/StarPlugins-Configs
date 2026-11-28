@@ -1,0 +1,55 @@
+# Encantamento da picareta. Copie o arquivo e troque os numeros para
+# criar outro do mesmo tipo. Tudo aqui tambem se edita em /minaadmin.
+Nome: '&dSumonador'
+Tipo: SUMONADOR
+Descricao:
+  - '&7Chance de o bloco virar'
+  - '&7um LuckyBlock.'
+  - '&7Chance: &d{chance}%'
+Icone: ENDER_EYE
+Ordem: 18
+Ativado: true
+Mostrar: true
+Pode comprar: true
+Nivel:
+  Inicial: 0
+  # 0 = sem limite.
+  Maximo: 100
+# Nivel minimo da picareta para comprar.
+Nivel da picareta: 10
+# Peso no sorteio quando a picareta sobe de nivel (0 = nunca sorteado).
+Sorteio ao evoluir: 5
+# Permissao para o efeito funcionar ('' = todos).
+Permissao: ''
+Custo:
+  # Custo do nivel N para N+1 = (Base + Por nivel x N) x Multiplicador
+  # (com Exponencial: x Multiplicador elevado a N). Moedas: money e pepitas.
+  Base: ['money:20000', 'pepitas:250']
+  Por nivel: ['money:20000', 'pepitas:350']
+  Multiplicador: 1.0
+  Exponencial: false
+# Quanto do que foi pago volta ao desencantar (%).
+Reembolso: 50
+# Chance (%) de disparar a cada bloco = Base + Por nivel x nivel.
+Chance:
+  Base: 0.0
+  Por nivel: 0.01
+  Maxima: 100
+# Espera (segundos) entre um disparo e outro do mesmo jogador.
+Espera: 0
+# O que os blocos quebrados pelo efeito rendem.
+Ganhos:
+  Dinheiro: true
+  Pepitas: true
+  Energia: true
+  Recompensas: true
+  LuckyBlock: false
+  # Escala o dinheiro e as pepitas desses blocos (0.5 = metade).
+  Fator: 1.0
+Efeito: {}
+Mensagem:
+  Actionbar: '&d&lSUMONADOR! &7um LuckyBlock apareceu'
+  Titulo: ''
+  Chat: ''
+  Som: 'BLOCK_NOTE_BLOCK_PLING;1.0;2.0'
+  Particula: 'SPELL_WITCH'

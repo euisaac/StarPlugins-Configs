@@ -1,0 +1,61 @@
+# ============================================================
+#   Recompensas das minas
+#   Usadas pelo LuckyBlock e pelas "Recompensas" de cada mina
+#   (chance por bloco). Crie tambem pelo jogo: /minaadmin recompensas
+#   (segure um item e crie a recompensa a partir dele).
+#
+#   Icone: como aparece nos menus.
+#   Comandos: rodados pelo console. {jogador} {quantidade}
+#   Item: item entregue (opcional). Pode ser uma secao simples
+#         (Material/Nome/Lore) ou um item salvo pelo editor.
+#   Armazenar: vai para o /mina armazem em vez de entregar na hora
+#              (so vale com o Armazem ligado no config.yml).
+# ============================================================
+Recompensas:
+  dinheiro_pequeno:
+    Nome: '&aSaco de dinheiro'
+    Icone:
+      Material: GOLD_NUGGET
+      Nome: '&aSaco de dinheiro'
+      Lore:
+        - '&7+$5.000'
+    Comandos:
+      - 'eco give {jogador} 5000'
+    Armazenar: false
+    Mensagem: '&aVocê achou um &fSaco de dinheiro&a!'
+  pepitas:
+    Nome: '&ePunhado de pepitas'
+    Icone:
+      Material: GLOWSTONE_DUST
+      Nome: '&ePunhado de pepitas'
+      Lore:
+        - '&7+100 pepitas'
+    Comandos:
+      - 'pepitas dar {jogador} 100'
+    Armazenar: false
+    Mensagem: '&eVocê achou um &fPunhado de pepitas&e!'
+  diamantes:
+    Nome: '&bDiamantes'
+    Icone:
+      Material: DIAMOND
+      Nome: '&bDiamantes'
+      Lore:
+        - '&7x3 Diamantes'
+    Item:
+      Material: DIAMOND
+      Quantidade: 3
+    Armazenar: true
+    Mensagem: '&bVocê achou &f3 diamantes&b! &7(/mina armazem)'
+  chave_rara:
+    Nome: '&dChave Rara'
+    Icone:
+      Material: TRIPWIRE_HOOK
+      Nome: '&dChave Rara'
+      Brilho: true
+      Lore:
+        - '&7Abre a caixa rara.'
+    Comandos:
+      - 'give {jogador} tripwire_hook {quantidade}'
+    Armazenar: true
+    Mensagem: '&d&lRARO! &dVocê achou uma &fChave Rara&d!'
+    Anunciar: '&d&lMINAS &7» &f{jogador} &dachou uma &fChave Rara &dna mina!'

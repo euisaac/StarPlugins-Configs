@@ -195,6 +195,34 @@ Top:
   Atualizar a cada: 300
   Tamanho: 10
 
+# Itens da hotbar dados ao entrar numa mina (e tirados ao sair). Clicar
+# roda os comandos. Ficam presos como a picareta: nao caem nem vao para bau.
+#   Slot: 0 a 8 (-1 = primeiro livre)   Minas: [] = todas (ou ids)
+#   Clique: DIREITO, ESQUERDO ou QUALQUER   Executor: JOGADOR ou CONSOLE
+#   Comandos: sem /, com {jogador} e {mina}
+# Os exemplos vem desligados (Ativado: false): ligue e ajuste.
+Itens da mina:
+  menu:
+    Ativado: false
+    Slot: 8
+    Material: NETHER_STAR
+    Nome: '&b&lMenu das minas &7(clique direito)'
+    Lore:
+      - '&7Abre o menu das minas.'
+    Clique: DIREITO
+    Executor: JOGADOR
+    Comandos:
+      - 'mina'
+  sair:
+    Ativado: false
+    Slot: 7
+    Material: OAK_DOOR
+    Nome: '&c&lSair da mina &7(clique direito)'
+    Clique: DIREITO
+    Executor: JOGADOR
+    Comandos:
+      - 'mina sair'
+
 # Encantamentos de area (explosao, laser, camada...).
 Efeitos:
   # Teto de blocos quebrados de uma vez por um efeito (protege o TPS).

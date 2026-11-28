@@ -1,0 +1,206 @@
+# ============================================================
+#   Mensagens do StarMinas
+#   Deixe uma mensagem vazia ('') para ela nao ser enviada.
+#   Avisos com secao (Chat/Actionbar/Titulo/Som) aceitam as quatro
+#   formas juntas; no Titulo, <nl> separa titulo de subtitulo.
+# ============================================================
+Versao do modelo: 1
+Prefixo: '&b&lMINAS &8» &7'
+
+Geral:
+  Sem permissao: '&cVoce nao tem permissao para isso.'
+  Somente jogador: '&cSo jogadores podem usar este comando.'
+  Carregando: '&7Carregando seus dados, aguarde um instante...'
+  Digite cancelar: '&7Digite &fcancelar &7para desistir.'
+  Cancelado: '&7Cancelado.'
+  Numero invalido: '&cNumero invalido.'
+  Recarregado: '&aStarMinas recarregado.'
+  Jogador offline: '&cJogador &f{jogador} &cnao esta online.'
+  Uso: '&cUso: &f{uso}'
+
+Mina:
+  Nao existe: '&cA mina &f{mina} &cnao existe.'
+  Nenhuma: '&7Nenhuma'
+  Nenhuma liberada: '&cNenhuma mina liberada para voce ainda.'
+  Nao configurada: '&cA mina {mina} &cainda nao foi configurada.'
+  Em manutencao: '&6A mina {mina} &6esta em manutencao.'
+  Sem permissao: '&cVoce nao tem acesso a mina {mina}&c.'
+  Nivel baixo: '&cSua picareta precisa do nivel &f{nivel} &cpara entrar em {mina}&c.'
+  Inventario cheio: '&cEsvazie o inventario para entrar em {mina}&c.'
+  Teleportando: '&7Indo para {mina} &7em &f{tempo}s&7... nao se mova!'
+  Teleporte cancelado: '&cTeleporte cancelado: voce se moveu.'
+  Comando bloqueado: '&cEste comando nao pode ser usado dentro da mina.'
+  Resetando: '&eResetando...'
+  Sem reset por tempo: '&7-'
+  Entrou:
+    Chat: ''
+    Actionbar: '&aVoce entrou em {mina}&a!'
+    Titulo: '{mina}<nl>&7Boa mineracao!'
+    Som: 'ENTITY_EXPERIENCE_ORB_PICKUP;0.6;1.2'
+  Saiu:
+    Chat: ''
+    Actionbar: '&7Voce saiu de {mina}&7.'
+    Titulo: ''
+    Som: ''
+  Resetada:
+    Chat: '&aA mina {mina} &afoi resetada!'
+    Actionbar: ''
+    Titulo: ''
+    Som: 'BLOCK_NOTE_BLOCK_PLING;0.6;1.6'
+  Aviso de reset:
+    Chat: ''
+    Actionbar: '&e{mina} &ereseta em &f{tempo}&e!'
+    Titulo: ''
+    Som: 'BLOCK_NOTE_BLOCK_HAT;0.5;1.0'
+
+Picareta:
+  Sem encantamentos: '&8Nenhum encantamento ainda.'
+  Sem espaco: '&cSem espaco no inventario para a picareta das minas!'
+  Use a picareta: '&cUse a &fpicareta das minas &cneste lugar.'
+  Evoluiu:
+    Chat: '&aSua picareta subiu para o nivel &f{nivel}&a!'
+    Actionbar: ''
+    Titulo: '&b&lNIVEL {nivel}<nl>&7Sua picareta evoluiu!'
+    Som: 'ENTITY_PLAYER_LEVELUP;0.8;1.0'
+  Evoluiu com encantamento:
+    Chat: '&aSua picareta subiu para o nivel &f{nivel}&a e ganhou &f+1 {encantamento}&a!'
+    Actionbar: ''
+    Titulo: '&b&lNIVEL {nivel}<nl>&f+1 {encantamento}'
+    Som: 'ENTITY_PLAYER_LEVELUP;0.8;1.0'
+
+Evoluir:
+  Comprou: '&aVoce comprou &f{niveis} &anivel(is) de {encantamento} &7(agora {nivel}) &8- {custo}'
+  Desencantou: '&7Voce tirou &f{niveis} &7nivel(is) de {encantamento} &7e recebeu {valor}&7.'
+  Maximo: '{encantamento} &cja esta no nivel maximo.'
+  Nivel da picareta: '&cSua picareta precisa do nivel &f{nivel} &cpara comprar {encantamento}&c.'
+  Sem saldo: '&cVoce nao tem saldo para evoluir {encantamento}&c.'
+  Nao vende: '{encantamento} &cnao e vendido; ele chega pela evolucao da picareta.'
+  Digite a quantidade: '&eQuantos niveis voce quer comprar? &7(ex.: 10, 1K)'
+  Som comprou: 'ENTITY_PLAYER_LEVELUP;0.5;1.8'
+  Som falhou: 'ENTITY_VILLAGER_NO;0.6;1.0'
+  # Linha {efeito} do menu Evoluir.
+  Efeito chance: '&7Chance: &f{atual}% &8-> &a{proxima}%'
+  Efeito chance maximo: '&7Chance: &f{atual}%'
+  Efeito bonus: '&7Bonus: &f+{atual}% &8-> &a+{proxima}%'
+  Efeito bonus maximo: '&7Bonus: &f+{atual}%'
+
+LuckyBlock:
+  Encontrou:
+    Chat: ''
+    Actionbar: '&d&lLUCKY BLOCK! &7Voce achou uma recompensa.'
+    Titulo: ''
+    Som: 'ENTITY_PLAYER_LEVELUP;0.6;2.0'
+  Vazio:
+    Chat: ''
+    Actionbar: '&7LuckyBlock vazio... mais sorte na proxima!'
+    Titulo: ''
+    Som: ''
+
+Recompensas:
+  # {lista} e montada com uma "Resumo linha" por recompensa.
+  Resumo: "&8&m-----&r &e&lRECOMPENSAS &8&m-----\n{lista}\n&8&m---------------------"
+  Resumo linha: '&8▪ &f{quantidade}x {recompensa}'
+  Coletou: '&aRecompensa coletada!'
+  Coletou tudo: '&aTodas as recompensas foram coletadas!'
+  Nada para coletar: '&7Nada para coletar.'
+
+Venda:
+  Actionbar: '&a+{dinheiro} &8┃ &e+{pepitas} &8┃ &7{blocos} blocos &8┃ &a+{bonus}%'
+  Inventario cheio: '&cInventario cheio!'
+
+Booster:
+  Nenhum: '&7Nenhum booster ativo.'
+  Ativo: "&aBooster ativo: &f+{dinheiro}% &7dinheiro, &f+{pepitas}% &7pepitas\n&7Termina em &f{tempo}"
+  Global: '&dBooster GLOBAL: &f+{dinheiro}% &7dinheiro, &f+{pepitas}% &7pepitas (&f{tempo}&7)'
+  Ja tem outro: '&cVoce ja tem um booster diferente ativo.'
+  Ativou:
+    Chat: '&aBooster ativado por &f{tempo}&a! &7(+{dinheiro}% dinheiro, +{pepitas}% pepitas)'
+    Actionbar: ''
+    Titulo: '&6&lBOOSTER<nl>&f{tempo}'
+    Som: 'BLOCK_BEACON_ACTIVATE;0.8;1.2'
+  Global ativado: '&d&lBOOSTER GLOBAL! &f+{dinheiro}% &7dinheiro e &f+{pepitas}% &7pepitas nas minas por &f{tempo}&7!'
+  Dado: '&aVoce deu &f{quantidade}x {booster} &apara &f{jogador}&a.'
+
+Pepitas:
+  Saldo: '&7Voce tem {valor}&7.'
+  Saldo de outro: '&f{jogador} &7tem {valor}&7.'
+  Enviou: '&aVoce enviou {valor} &apara &f{jogador}&a.'
+  Recebeu: '&aVoce recebeu {valor} &ade &f{jogador}&a.'
+  Sem saldo: '&cVoce nao tem pepitas suficientes.'
+  Alterado: '&aPepitas de &f{jogador}&a: {valor}&a.'
+  Offline alterado: '&aPepitas de &f{jogador} &aalteradas no banco (offline).'
+  Offline nao achado: '&cNenhum jogador &f{jogador} &cno banco.'
+  Ajuda: |-
+    &b&lPEPITAS
+    &f/pepitas &7- seu saldo
+    &f/pepitas <jogador> &7- saldo de alguem
+    &f/pepitas enviar <jogador> <valor> &7- envia pepitas
+    &f/pepitas top &7- ranking
+
+Editor:
+  Salvo: '&aSalvo.'
+  Varinha: '&aVarinha entregue: &fesquerdo &a= ponto 1, &fdireito &a= ponto 2.'
+  Ponto definido: '&aPonto {ponto}: &f{x}, {y}, {z} &7(selecao: {tamanho})'
+  Saida definida: '&aSaida das minas definida aqui.'
+  Nome da mina: '&eDigite o id da nova mina &7(letras, numeros, _ e -):'
+  Mina ja existe: '&cJa existe uma mina com esse id (ou o id e invalido).'
+  Mina criada: '&aMina &f{mina} &acriada! Agora defina regiao e blocos.'
+  Mina deletada: '&cMina &f{mina} &cdeletada.'
+  Erro ao salvar: '&cNao foi possivel salvar o arquivo da mina (veja o console).'
+  Segure um item: '&cSegure um item na mao.'
+  Sem selecao: '&cMarque os dois pontos com a varinha primeiro.'
+  Sem regiao: '&cDefina a regiao da mina primeiro.'
+  Regiao definida: '&aRegiao definida!'
+  Resetando: '&aResetando a mina &f{mina}&a...'
+  Lendo regiao: '&7Lendo os blocos da regiao...'
+  Regiao vazia: '&cA regiao esta vazia.'
+  Regiao lida: '&aComposicao montada: &f{tipos} &atipos de bloco em &f{blocos} &ablocos.'
+  Nao e bloco: '&cEsse item nao e um bloco.'
+  Bloco repetido: '&cEsse bloco ja esta na mina.'
+  Bloco adicionado: '&aBloco &f{bloco} &aadicionado com chance 10. Ajuste no menu.'
+  Digite o peso: '&eDigite o peso no sorteio &7(quanto maior, mais comum):'
+  Digite a chance: '&eDigite a chance em % &7(ex.: 0.05):'
+  Id da recompensa: '&eDigite o id da recompensa &7(letras, numeros, _ e -):'
+  Recompensa criada: '&aRecompensa &f{recompensa} &acriada.'
+  Digite o comando: '&eDigite o comando &7(sem /, use {jogador} e {quantidade}):'
+  Encantamento de addon: '&7Este encantamento e do addon &f{addon}&7: edite no arquivo dele.'
+
+Ajuda:
+  Mina: |-
+    &b&lMINAS
+    &f/mina &7- menu das minas
+    &f/mina ir [mina] &7- ir minerar
+    &f/mina sair &7- sair da mina
+    &f/mina lista &7- lista de minas
+    &f/mina evoluir &7- evoluir a picareta
+    &f/mina armazem &7- recompensas guardadas
+    &f/mina classes &7- classes de mineracao
+    &f/mina boosters &7- seus boosters ativos
+    &f/mina top &7- ranking
+  Admin: |-
+    &b&lMINAS &7(admin)
+    &f/minaadmin &7- editor (menu)
+    &f/minaadmin criar <id> &7| &fdeletar <id> &7| &feditar <id>
+    &f/minaadmin resetar <id|todas> &7| &flista &7| &fvarinha
+    &f/minaadmin setsaida &7| &fmanutencao <id> &7| &fexpulsar <id>
+    &f/minaadmin nivel <dar|tirar|definir> <jogador> <n>
+    &f/minaadmin energia <dar|tirar> <jogador> <n>
+    &f/minaadmin encantamento <jogador> <encantamento> <nivel>
+    &f/minaadmin resetarpicareta <jogador>
+    &f/minaadmin booster dar <jogador> <id> [qtd]
+    &f/minaadmin booster global <dinheiro%> <pepitas%> <tempo> &7| &fparar
+    &f/minaadmin recompensa <jogador> <id> [qtd]
+    &f/minaadmin pepitas <dar|tirar|definir> <jogador> <valor>
+    &f/minaadmin classe <jogador> <dar|tirar|equipar> <classe>
+    &f/minaadmin info &7| &frecarregar
+
+Classes:
+  Nenhuma: '&7Nenhuma'
+  Desativadas: '&cAs classes estao desligadas neste servidor.'
+  Comprou: '&aVoce comprou a classe {classe} &apor {preco}&a!'
+  Equipou: '&aClasse {classe} &aequipada.'
+  Desequipou: '&7Voce tirou a sua classe.'
+  Anterior: '&cCompre antes a classe {anterior}&c.'
+  Sem saldo: '&cVoce nao tem saldo para esta classe ({preco}&c).'
+  Sem bonus: '&7Sem bonus.'
+  Linha de bonus: '&7{tipo}: &a+{valor}%'

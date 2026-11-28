@@ -1,0 +1,33 @@
+# Encantamento da picareta. Copie o arquivo e troque os numeros para
+# criar outro do mesmo tipo. Tudo aqui tambem se edita em /minaadmin.
+Nome: '&2Sabedoria'
+Tipo: SABEDORIA
+Descricao:
+  - '&7Mais experiência do jogo'
+  - '&7por bloco quebrado.'
+  - '&7Bônus atual: &2+{valor}%'
+Icone: EXPERIENCE_BOTTLE
+Ordem: 5
+Ativado: true
+Mostrar: true
+Pode comprar: true
+Nivel:
+  Inicial: 0
+  # 0 = sem limite.
+  Maximo: 50
+# Nivel minimo da picareta para comprar.
+Nivel da picareta: 5
+# Peso no sorteio quando a picareta sobe de nivel (0 = nunca sorteado).
+Sorteio ao evoluir: 6
+# Permissao para o efeito funcionar ('' = todos).
+Permissao: ''
+Custo:
+  # Custo do nivel N para N+1 = (Base + Por nivel x N) x Multiplicador
+  # (com Exponencial: x Multiplicador elevado a N). Moedas: money e pepitas.
+  Base: ['money:8000', 'pepitas:80']
+  Por nivel: ['money:8000', 'pepitas:150']
+  Multiplicador: 1.0
+  Exponencial: false
+# Quanto do que foi pago volta ao desencantar (%).
+Reembolso: 50
+Valor por nivel: 0.10

@@ -1,0 +1,60 @@
+# Encantamento da picareta. Copie o arquivo e troque os numeros para
+# criar outro do mesmo tipo. Tudo aqui tambem se edita em /minaadmin.
+Nome: '&a&lNuclear'
+Tipo: NUCLEAR
+Descricao:
+  - '&7Chance mínima de quebrar'
+  - '&7a mina INTEIRA.'
+  - '&7Chance: &a{chance}%'
+Icone: NETHER_STAR
+Ordem: 14
+Ativado: true
+Mostrar: true
+Pode comprar: true
+Nivel:
+  Inicial: 0
+  # 0 = sem limite.
+  Maximo: 100
+# Nivel minimo da picareta para comprar.
+Nivel da picareta: 30
+# Peso no sorteio quando a picareta sobe de nivel (0 = nunca sorteado).
+Sorteio ao evoluir: 2
+# Permissao para o efeito funcionar ('' = todos).
+Permissao: ''
+Custo:
+  # Custo do nivel N para N+1 = (Base + Por nivel x N) x Multiplicador
+  # (com Exponencial: x Multiplicador elevado a N). Moedas: money e pepitas.
+  Base: ['money:100000', 'pepitas:1000']
+  Por nivel: ['money:100000', 'pepitas:1500']
+  Multiplicador: 1.0
+  Exponencial: false
+# Quanto do que foi pago volta ao desencantar (%).
+Reembolso: 50
+# Chance (%) de disparar a cada bloco = Base + Por nivel x nivel.
+Chance:
+  Base: 0.0
+  Por nivel: 0.00015
+  Maxima: 5
+# Espera (segundos) entre um disparo e outro do mesmo jogador.
+Espera: 60
+# O que os blocos quebrados pelo efeito rendem.
+Ganhos:
+  Dinheiro: true
+  Pepitas: true
+  Energia: true
+  Recompensas: true
+  LuckyBlock: false
+  # Escala o dinheiro e as pepitas desses blocos (0.5 = metade).
+  Fator: 1.0
+Efeito:
+  # A mina inteira e paga pelo valor medio dos blocos que restam e reseta
+  # na hora (rapido e sem travar, por maior que ela seja).
+  Resetar na hora: true
+  # Segundos ate a MESMA mina poder ir pelos ares de novo (qualquer jogador).
+  Espera da mina: 60
+Mensagem:
+  Actionbar: '&a&lNUCLEAR! &7+{blocos} blocos'
+  Titulo: '&a&lNUCLEAR<nl>&fA mina inteira foi pelos ares!'
+  Chat: ''
+  Som: 'ENTITY_GENERIC_EXPLODE;1.0;0.5'
+  Particula: 'EXPLOSION_HUGE'
