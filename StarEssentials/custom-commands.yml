@@ -1,19 +1,66 @@
 # =========================================================
-#  StarEssentials - comandos de texto personalizados
-#  Cada chave abaixo de "comandos" vira um comando novo que
-#  apenas envia as mensagens configuradas. Exemplo: /regras
+#  StarEssentials - comandos personalizados
+#
+#  Cada chave em "comandos" vira um comando novo. Ex.: "regras" cria /regras.
+#  Pode criar, renomear ou apagar a vontade. Depois de mexer, use
+#  /staressentials reload (nao precisa reiniciar).
+#
+#  Placeholders: {jogador} quem usou o comando, {args} o que veio depois do
+#  comando, e os do PlaceholderAPI (de quem usou).
+#  Cores: & e hex (&#rrggbb). Links no chat ja ficam clicaveis.
+#  No chat: <click:open_url:'https://...'>texto</click>,
+#  <click:run_command:'/spawn'>texto</click> e
+#  <hover:show_text:texto>...</hover> (passar o mouse).
+#  No titulo, <nl> separa o titulo do subtitulo.
+#  Para nao usar algum campo, deixe '' (vazio) ou [] (lista vazia).
 # =========================================================
 
 comandos:
   regras:
-    permissao: ""
+    # Outros nomes para o mesmo comando
+    aliases: ['regra']
+    # Permissao para usar ('' = todos podem)
+    permissao: ''
+    # Linhas enviadas no chat de quem usou
     mensagens:
       - "&8&m----------------------------------------"
       - "&f1. &7Respeite os outros jogadores."
       - "&f2. &7Proibido hacks, cheats ou exploits."
       - "&f3. &7Divirta-se!"
       - "&8&m----------------------------------------"
+    titulo: ''
+    actionbar: ''
+    som: ''
+    # Espera, em segundos, para usar de novo (0 = sem espera)
+    cooldown: 0
+    # Comandos executados ao usar. [console] roda pelo console,
+    # [jogador] roda como quem usou. Ex.: "[console] give {jogador} bread 1"
+    executar: []
+
   discord:
-    permissao: ""
+    aliases: ['dc']
+    permissao: ''
     mensagens:
-      - "&9&lEntre no nosso Discord: &fhttps://discord.gg/K9snUJmmwP"
+      - ""
+      - "&9&lDISCORD"
+      - "&fEntre no nosso Discord: <click:open_url:'https://discord.gg/seu-convite'><hover:show_text:&7Clique para abrir>&b&nclique aqui</hover></click>"
+      - ""
+    titulo: ''
+    actionbar: ''
+    som: 'BLOCK_NOTE_BLOCK_PLING'
+    cooldown: 0
+    executar: []
+
+  site:
+    aliases: ['vips']
+    permissao: ''
+    mensagens:
+      - ""
+      - "&6&lLOJA"
+      - "&fCompre VIPs e cash em: <click:open_url:'https://seu-site.com.br'>&e&nseu-site.com.br</click>"
+      - ""
+    titulo: ''
+    actionbar: '&eConfira a loja do servidor!'
+    som: ''
+    cooldown: 0
+    executar: []

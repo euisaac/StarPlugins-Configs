@@ -22,6 +22,25 @@ scoreboard:
   # 0 = usar o "atualizar-a-cada" la de cima. Use 2 a 5 pra animacoes fluidas.
   delay-ticks: 0
 
+  # Scoreboard da staff em vanish: enquanto estiver invisivel, ela aparece no
+  # lugar da do grupo. ativado: false = a staff continua vendo a do grupo.
+  # Placeholders extras (aqui e nos grupos):
+  #   %online%        online que o jogador enxerga (sem quem esta em vanish,
+  #                   para quem nao tem staressentials.vanish.ver)
+  #   %online_total%  todos os online, contando quem esta em vanish
+  #   %vanish%        quantos estao em vanish agora
+  vanish:
+    ativado: true
+    titulo: "&8&l» &c&lVANISH &8&l«"
+    linhas:
+      - "&7"
+      - "&fVoce esta &cinvisivel"
+      - "&7 "
+      - "&fOnline: &b%online_total%"
+      - "&fEm vanish: &c%vanish%"
+      - "&7  "
+      - "&7Use &f/vanish &7para aparecer"
+
   grupos:
     vip:
       ordem: 10
