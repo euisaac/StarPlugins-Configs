@@ -1,0 +1,132 @@
+# =========================================================
+#  StarEssentials - mensagens de morte
+#
+#  Substitui a mensagem de morte do Minecraft pela sua, de acordo com o
+#  que matou o jogador: outro jogador (pvp), um mob ou uma causa (queda,
+#  lava, afogado...). Uma mensagem vazia ("") nao mostra nada naquela morte.
+#  Se um mob ou causa nao estiver na lista, vale o "padrao" da secao.
+#
+#  Placeholders:
+#    {jogador}  quem morreu          {matador}  jogador que matou
+#    {mob}      nome do mob          {arma}     item na mao de quem matou
+#    {mundo} {x} {y} {z}             e os do PlaceholderAPI (de quem morreu)
+#  Cores: & e hex (&#rrggbb).
+#
+#  Obs.: se broadcasts.morte.mensagem (config.yml) estiver preenchida, ela
+#  continua valendo no lugar destas, como antes.
+# =========================================================
+
+ativado: true
+
+# Quem ve a mensagem: "todos" (servidor inteiro) ou "mundo" (so quem esta
+# no mesmo mundo de quem morreu).
+mostrar-para: todos
+
+# Morte para outro jogador.
+pvp:
+  com-arma: "&c{jogador} &7foi morto por &c{matador} &7usando &f{arma}&7."
+  sem-arma: "&c{jogador} &7foi morto por &c{matador} &7no soco."
+  # Morte por flecha/tridente de outro jogador.
+  projetil: "&c{jogador} &7foi alvejado por &c{matador}&7."
+
+# Morte para um mob. A chave e o tipo do mob (nome do Minecraft, em
+# maiusculas). Os nomes que aparecem no {mob} ficam em nomes-mobs, la embaixo.
+mobs:
+  padrao: "&c{jogador} &7foi morto por &f{mob}&7."
+  ZOMBIE: "&c{jogador} &7virou comida de &2{mob}&7."
+  HUSK: "&c{jogador} &7virou comida de &e{mob}&7."
+  DROWNED: "&c{jogador} &7foi puxado para o fundo por um &3{mob}&7."
+  SKELETON: "&c{jogador} &7levou uma flechada de um &f{mob}&7."
+  STRAY: "&c{jogador} &7levou uma flechada gelada de um &b{mob}&7."
+  CREEPER: "&c{jogador} &7explodiu junto com um &a{mob}&7."
+  SPIDER: "&c{jogador} &7foi picado por uma &8{mob}&7."
+  CAVE_SPIDER: "&c{jogador} &7foi envenenado por uma &8{mob}&7."
+  ENDERMAN: "&c{jogador} &7olhou nos olhos de um &5{mob}&7."
+  WITCH: "&c{jogador} &7tomou uma pocao de uma &5{mob}&7."
+  BLAZE: "&c{jogador} &7foi torrado por um &6{mob}&7."
+  GHAST: "&c{jogador} &7levou uma bola de fogo de um &f{mob}&7."
+  WITHER: "&c{jogador} &7foi destruido pelo &8{mob}&7."
+  ENDER_DRAGON: "&c{jogador} &7foi derrotado pelo &5{mob}&7."
+  WARDEN: "&c{jogador} &7acordou o &3{mob}&7."
+  SLIME: "&c{jogador} &7foi esmagado por um &a{mob}&7."
+  PILLAGER: "&c{jogador} &7foi abatido por um &7{mob}&7."
+  VINDICATOR: "&c{jogador} &7levou uma machadada de um &7{mob}&7."
+  WOLF: "&c{jogador} &7foi mordido por um &f{mob}&7."
+  BEE: "&c{jogador} &7foi picado ate a morte por uma &e{mob}&7."
+
+# Mortes sem jogador nem mob. A chave e a causa do Minecraft.
+causas:
+  padrao: "&c{jogador} &7morreu."
+  FALL: "&c{jogador} &7caiu de muito alto."
+  LAVA: "&c{jogador} &7tentou nadar na lava."
+  FIRE: "&c{jogador} &7virou churrasco."
+  FIRE_TICK: "&c{jogador} &7queimou ate a morte."
+  HOT_FLOOR: "&c{jogador} &7pisou no magma."
+  DROWNING: "&c{jogador} &7se afogou."
+  SUFFOCATION: "&c{jogador} &7ficou preso dentro de um bloco."
+  VOID: "&c{jogador} &7caiu no void."
+  STARVATION: "&c{jogador} &7morreu de fome."
+  POISON: "&c{jogador} &7morreu envenenado."
+  MAGIC: "&c{jogador} &7foi morto por magia."
+  WITHER: "&c{jogador} &7definhou ate a morte."
+  LIGHTNING: "&c{jogador} &7foi atingido por um raio."
+  BLOCK_EXPLOSION: "&c{jogador} &7explodiu."
+  ENTITY_EXPLOSION: "&c{jogador} &7explodiu."
+  CONTACT: "&c{jogador} &7abracou um cacto."
+  FALLING_BLOCK: "&c{jogador} &7foi esmagado por um bloco."
+  FREEZE: "&c{jogador} &7morreu congelado."
+  FLY_INTO_WALL: "&c{jogador} &7bateu de cara na parede."
+  CRAMMING: "&c{jogador} &7foi esmagado na multidao."
+  DRAGON_BREATH: "&c{jogador} &7respirou o bafo do dragao."
+  SONIC_BOOM: "&c{jogador} &7foi atingido por um grito do Warden."
+  SUICIDE: "&c{jogador} &7desistiu da vida."
+  KILL: "&c{jogador} &7foi eliminado."
+
+# Nomes dos mobs usados no {mob}. Mob com nome (etiqueta) usa o nome dele.
+# Mob que nao estiver aqui aparece com o nome do Minecraft (ex.: Iron Golem).
+nomes-mobs:
+  ZOMBIE: Zumbi
+  ZOMBIE_VILLAGER: Aldeao Zumbi
+  HUSK: Zumbi do Deserto
+  DROWNED: Afogado
+  SKELETON: Esqueleto
+  STRAY: Esqueleto Errante
+  WITHER_SKELETON: Esqueleto Wither
+  CREEPER: Creeper
+  SPIDER: Aranha
+  CAVE_SPIDER: Aranha da Caverna
+  ENDERMAN: Enderman
+  ENDERMITE: Endermite
+  SILVERFISH: Traca
+  WITCH: Bruxa
+  BLAZE: Blaze
+  GHAST: Ghast
+  MAGMA_CUBE: Cubo de Magma
+  SLIME: Slime
+  WITHER: Wither
+  ENDER_DRAGON: Dragao do Fim
+  GUARDIAN: Guardiao
+  ELDER_GUARDIAN: Guardiao Ancestral
+  SHULKER: Shulker
+  PHANTOM: Phantom
+  PILLAGER: Saqueador
+  VINDICATOR: Vingador
+  EVOKER: Invocador
+  VEX: Vex
+  RAVAGER: Devastador
+  WARDEN: Warden
+  PIGLIN: Piglin
+  PIGLIN_BRUTE: Piglin Bruto
+  ZOMBIFIED_PIGLIN: Piglin Zumbi
+  PIG_ZOMBIE: Homem-Porco Zumbi
+  HOGLIN: Hoglin
+  ZOGLIN: Zoglin
+  IRON_GOLEM: Golem de Ferro
+  WOLF: Lobo
+  POLAR_BEAR: Urso Polar
+  BEE: Abelha
+  LLAMA: Lhama
+  PUFFERFISH: Baiacu
+  BREEZE: Breeze
+  BOGGED: Esqueleto do Pantano
+  CREAKING: Rangedor
