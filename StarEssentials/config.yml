@@ -243,6 +243,11 @@ entrada:
 
 # Configuracoes do /randomtp - teleporte aleatorio dentro de um raio.
 randomtp:
+  # false = desliga o RTP do StarEssentials por completo: /randomtp e /rtp
+  # deixam de existir aqui e ficam livres para outro plugin de RTP.
+  # Depois de mudar, reinicie o servidor (o reload tambem aplica, mas o
+  # reinicio garante que o outro plugin fique com o comando).
+  ativado: true
   raio-minimo: 100
   raio-maximo: 5000
   tentativas-maximas: 20
