@@ -1,0 +1,317 @@
+# ------------------------------------------------------------------
+#  StarTemplos - mensagens
+#
+#  Deixe uma mensagem vazia ('') para ela nao ser enviada.
+#  Mensagens com secao aceitam ate quatro partes: Chat, Titulo (use <nl>
+#  para o subtitulo), Actionbar e Som.
+#
+#  Valem em quase todas as mensagens de templo: {nome} {raridade} {tipo}
+#  {id} {mundo} {coordenadas} {pressagio}
+# ------------------------------------------------------------------
+
+Versao do modelo: 1
+
+Prefixo: '&8[&6Templos&8] &7'
+
+Sem-permissao: '&cVocê não tem permissão para isso.'
+So-jogador: '&cSó jogadores podem usar este comando.'
+Coordenadas-ocultas: '&8(local secreto)'
+Sem-pressagio: '&8nenhum'
+Sem-previsao: '&8sem previsão'
+
+Fases:
+  SURGINDO: '&eSurgindo'
+  ADORMECIDO: '&bAdormecido'
+  RITUAL: '&dRitual'
+  HORDAS: '&cHordas'
+  CHEFE: '&4&lChefe'
+  CONCLUIDO: '&aVencido'
+  DESMORONANDO: '&8Desmoronando'
+  ENCERRADO: '&8Encerrado'
+
+Ativacao:
+  ITEM: '&7Desperte com {itens}'
+  PROXIMIDADE: '&7Reúna &f{jogadores} &7aventureiro(s) perto do altar'
+  LIVRE: '&7Clique no altar para despertar'
+
+Holograma:
+  ADORMECIDO:
+    - '{nome}'
+    - '{raridade} &8| &7{pressagio}'
+    - '{ativacao}'
+    - '&8Some em {tempo}'
+  RITUAL:
+    - '{nome}'
+    - '&dRitual em andamento'
+    - '{progresso}'
+  HORDAS:
+    - '{nome}'
+    - '{progresso}'
+  CHEFE:
+    - '{nome}'
+    - '{progresso}'
+  CONCLUIDO:
+    - '{nome}'
+    - '&a&lVENCIDO'
+    - '&7Abra o baú do templo para pegar o seu saque'
+    - '&8Desmorona em {tempo}'
+  Progresso-ritual: '&fEtapa {etapa}/{total}: {descricao} &7({progresso}) &8- {tempo}'
+  Progresso-hordas: '&cOnda {onda}/{total} &8- &f{restantes} &7inimigo(s)'
+  Progresso-chefe: '&4Chefe: &c{vida}%'
+
+Templo:
+  Surgiu:
+    Chat:
+      - ''
+      - '&6&l ✦ UM TEMPLO EMERGIU! ✦'
+      - '&7 {nome} &8(&r{raridade}&8)'
+      - '&7 Mundo: &f{mundo} &8| &7Local: &f{coordenadas}'
+      - '&7 Use &e/templos &7para rastrear.'
+      - ''
+    Titulo: '{nome}<nl>&7emergiu em &f{coordenadas}'
+  Pressagio: '&5Presságio do templo: {pressagio}'
+  Ativado:
+    Chat: '&e{jogador} &7despertou o {nome}&7!'
+    Titulo: '&c&lO TEMPLO DESPERTOU<nl>&7prepare-se'
+  Despertando: '&bO templo desperta em &f{tempo}s&b... fiquem perto do altar!'
+  Ainda-surgindo: '&eO templo ainda está surgindo...'
+  Precisa-item: '&cEste altar só desperta com {itens}&c. Segure a relíquia e clique no altar.'
+  Precisa-proximidade: '&7Este templo desperta sozinho com &f{jogadores} &7aventureiro(s) a até &f{raio} &7blocos do altar.'
+  Modo-de-jogo: '&cSó é possível despertar o templo no modo sobrevivência ou aventura.'
+  Altar-RITUAL: '&dO ritual está em andamento.'
+  Altar-HORDAS: '&cAs hordas guardam o templo!'
+  Altar-CHEFE: '&4O guardião do templo está desperto!'
+  Altar-CONCLUIDO: '&aO templo foi vencido. O saque está no baú.'
+  Quase-expirando: '&eO {nome} &evai se desfazer em &f{tempo}&e!'
+  Expirou: '&7O {nome} &7voltou para debaixo da terra...'
+  Fim-do-saque: '&7O {nome} &7está desmoronando.'
+  Removido: '&7O {nome} &7foi desfeito pela staff.'
+  Evacuado: '&eVocê foi levado para fora antes do templo desmoronar.'
+  Concluido:
+    Chat:
+      - ''
+      - '&a&l ✦ TEMPLO VENCIDO! ✦'
+      - '&7 {nome} &7foi conquistado em &f{tempo}&7.'
+      - '&6 1º &f{top1}  &e2º &f{top2}  &c3º &f{top3}'
+      - '&7 Recompensados: &f{participantes}'
+      - ''
+
+Ritual:
+  Etapa:
+    Chat: '&dRitual &7- etapa &f{etapa}/{total}&7: {descricao}&7. {instrucao}'
+    Titulo: '&d{descricao}<nl>&7{instrucao}'
+  Etapa-concluida: '&aEtapa concluída: {descricao}&a!'
+  Concluido:
+    Chat: '&d&lO ritual foi completado! &7O templo reage...'
+    Titulo: '&d&lRITUAL COMPLETO<nl>&7defendam o templo'
+  Falhou-reiniciar: '&cO ritual falhou! Tudo precisa ser feito de novo.'
+  Falhou-encerrar: '&cO ritual falhou e o templo afundou na terra!'
+  Falhou-maldicao:
+    Chat: '&4O ritual falhou! &cO templo está &4AMALDIÇOADO&c: inimigos mais fortes, saque maior.'
+    Titulo: '&4&lAMALDIÇOADO<nl>&cinimigos mais fortes'
+  Nome:
+    OFERENDA: '&6Oferenda'
+    PILARES: '&ePilares'
+    CANALIZAR: '&bCanalização'
+    SEQUENCIA: '&dSequência das runas'
+    ALMAS: '&5Colheita de almas'
+  Instrucao:
+    OFERENDA: 'Clique no altar com os itens pedidos no inventário.'
+    PILARES: 'Clique no topo dos pilares que soltam faíscas.'
+    CANALIZAR: 'Fiquem no círculo em volta do altar.'
+    SEQUENCIA: 'Observe as runas e repita a ordem clicando nelas.'
+    ALMAS: 'Abata as almas que surgem em volta do altar.'
+  Oferenda-entregue: '&aVocê ofereceu &f{itens}&a. &7({progresso})'
+  Oferenda-falta: '&cO altar ainda pede: &f{itens}'
+  Pilar-aceso: '&e{jogador} &7acendeu um pilar &8({progresso})'
+  Pilar-errado: '&c{jogador} acendeu o pilar errado! Os pilares se apagaram.'
+  Canalizando: '&bCanalizando... &f{progresso}'
+  Perturbacao: '&cCriaturas vêm interromper o ritual!'
+  Sequencia-sua-vez: '&dAgora vocês! Repitam a ordem das runas.'
+  Sequencia-espere: '&7Observe as runas primeiro...'
+  Sequencia-certo: '&a✔ &f{progresso}'
+  Sequencia-errou: '&c{jogador} errou a sequência! &7Tentativas restantes: &f{restam}'
+  Sequencia-falhou: '&4{jogador} errou demais. A sequência se perdeu!'
+
+Hordas:
+  Comecou:
+    Titulo: '&c&lHORDAS<nl>&7protejam o templo'
+  Onda:
+    Chat: '&cOnda &f{onda}/{total}&c: &f{mobs} &cinimigo(s) se aproximam!'
+    Actionbar: '&c⚔ Onda {onda}/{total}'
+  Onda-vencida: '&aOnda &f{onda}/{total} &avencida!'
+  Vencidas:
+    Chat: '&aAs hordas foram derrotadas!'
+
+Chefe:
+  Barra: '{chefe} &8- &c{vida}%{escudo}'
+  Barra-escudo: ' &b[ESCUDO]'
+  Recuando: '&7{chefe} &7recua para o centro do templo!'
+  Resetou: '&7{chefe} &7voltou ao centro e recuperou as forças.'
+  Golpe-de-fora: '&cVocê precisa estar dentro da arena para ferir {chefe}&c!'
+  Escudo-ativo: '&b{chefe} &bestá protegido por um escudo!'
+  Escudo: '&b{chefe} &bergueu um escudo!'
+  Escudo-lacaios: '&b{chefe} &bergueu um escudo! &7Derrotem os guardiões para quebrá-lo.'
+  Escudo-caiu: '&e{chefe} &eperdeu o escudo!'
+  Furia:
+    Chat: '&4{chefe} &4entrou em FÚRIA!'
+    Titulo: '&4&lFÚRIA<nl>{chefe}'
+  Invocou: '&c{chefe} &cconvocou &f{quantos} &clacaio(s)!'
+  Meteoros: '&6{chefe} &6faz o céu cair! Saiam das marcas de fogo!'
+  Curou: '&a{chefe} &arecuperou parte da vida.'
+  Atras-de-voce: '&4{chefe} &4está atrás de você!'
+  Derrotado:
+    Chat: '&a{chefe} &afoi derrotado! &7Golpe final: &f{jogador}'
+    Titulo: '&a&lVITÓRIA<nl>&7{chefe} &7caiu'
+
+Saque:
+  Pronto:
+    Chat: '&aSeu saque (&f{itens} &aitem(ns)) está no baú do templo. Ele é só seu!'
+    Som: 'ENTITY_PLAYER_LEVELUP|LEVEL_UP;1;1.2'
+  Trancado: '&7O baú só abre quando o templo for vencido.'
+  Sem-direito: '&cVocê não ajudou o bastante para ter um saque neste templo.'
+  Inventario-cheio: '&cSeu inventário está cheio.'
+  Entregue-no-fim: '&eO saque que você não pegou foi entregue no seu inventário.'
+  Entregue-na-entrada: '&aVocê recebeu &f{quantos} &aitem(ns) de templo que estavam guardados.'
+
+Recompensas:
+  Resumo:
+    - '&8&m------------------------------'
+    - '&6&l Recompensas do templo'
+    - '&7 Sua posição no dano: &f{posicao}º &8(&7{dano}&8)'
+    - '&7 Ganhou: {premios}'
+    - '&8&m------------------------------'
+  Nada: '&8nada desta vez'
+  Dinheiro: '&a${valor}'
+  Xp: '&b{valor} XP'
+
+Protecao:
+  Bloqueado: '&cO templo não pode ser modificado.'
+  Comando-bloqueado: '&cComandos estão bloqueados durante a batalha do templo.'
+
+Itens:
+  Use-no-altar: '&7Use esta relíquia no &faltar &7de um templo adormecido.'
+  Oferenda: '&7Leve isto ao altar durante um ritual de &6oferenda&7.'
+  Amuleto: '&7Enquanto estiver no seu inventário, este amuleto reduz o dano das criaturas dos templos.'
+  Nenhum-templo: '&cNenhum templo de pé neste mundo agora.'
+  Rastreando: '&aA bússola aponta para o {nome}&a.'
+  Invocou: '&dO pergaminho se desfez... &7o {nome} &7está surgindo!'
+  Espera: '&cO pergaminho ainda está recarregando: &f{tempo}'
+  Recebeu: '&aVocê recebeu &f{quantidade}x {item}&a.'
+
+Rastreador:
+  Barra: '{nome} &8| &f{seta} &e{distancia}m'
+  Chegou: '{nome} &8| &aVocê chegou!'
+  Outro-mundo: '{nome} &8| &7fica no mundo &f{mundo}'
+  Ligado: '&aRastreando o {nome}&a. &7Siga a seta da barra (use &f/templos parar &7para desligar).'
+  Desligado: '&7Rastreador desligado.'
+
+Gerar:
+  Tipo-invalido: '&cEsse tipo de templo não existe. Veja em &f/startemplos tipos&c.'
+  Sem-mundo: '&cNenhum dos mundos configurados está carregado.'
+  Sem-jogadores: '&cNinguém online nos mundos dos templos para o templo surgir por perto.'
+  Sem-lugar: '&cNão achei um lugar válido para o templo.'
+  Chunk-fria: '&cNão achei lugar com o mapa já carregado perto dos jogadores. Tente de novo.'
+  Perto-do-spawn: '&cMuito perto do spawn.'
+  Perto-de-templo: '&cMuito perto de outro templo.'
+  Perto-de-jogador: '&cHavia jogadores em cima do lugar sorteado.'
+  Em-cima-de-templo: '&cJá existe um templo neste lugar.'
+  Sem-chao: '&cNão há chão firme aqui.'
+  Lava: '&cHá lava no lugar.'
+  Agua: '&cÁgua demais no lugar.'
+  Desnivel: '&cO terreno é irregular demais.'
+  Altura: '&cA altura do lugar não permite este templo.'
+  Bioma: '&cEste templo não nasce no bioma {detalhe}.'
+  Conteiner: '&cHá um bloco de jogador (&f{detalhe}&c) na área. O templo não nasce em cima de bases.'
+  Terreno: '&cA área (com a margem) pega um terreno: &f{detalhe}&c. Templos respeitam terrenos.'
+  Cancelado: '&cOutro plugin impediu o templo de surgir.'
+
+Lista:
+  Vazia: '&7Nenhum templo de pé agora.'
+  Cabecalho: '&6Templos de pé: &f{quantos}'
+  Linha: '&8#{id} {nome} &8- {fase} &8- &7{mundo} {coordenadas} &8- &f{distancia}m'
+
+Perfil:
+  - '&8&m------------------------------'
+  - '&6&l {jogador} &7nos templos'
+  - '&7 Templos vencidos: &f{templos}'
+  - '&7 Chefes derrotados: &f{chefes}'
+  - '&7 Rituais feitos: &f{rituais}'
+  - '&7 Criaturas abatidas: &f{mobs}'
+  - '&7 Dano em chefes: &f{dano}'
+  - '&7 Vitória mais rápida: &f{melhor}'
+  - '&8&m------------------------------'
+
+Top:
+  Categoria:
+    templos: '&6Templos vencidos'
+    chefes: '&cChefes derrotados'
+    rituais: '&dRituais feitos'
+    mobs: '&7Criaturas abatidas'
+    dano: '&4Dano em chefes'
+  Selecionada:
+    - '&aCategoria selecionada'
+  Selecionar:
+    - '&eClique para ver'
+
+Resultado:
+  VENCIDO: '&aVencido'
+  FALHOU: '&cFalhou'
+  EXPIROU: '&7Expirou'
+
+Admin:
+  Gerado: '&aTemplo &f#{id} {nome} &asurgindo em &f{mundo} {x}, {y}, {z} &8({desenho}, pressagio: {pressagio}&8)'
+  Removido: '&aTemplo &f#{id} &aremovido na hora.'
+  Removidos: '&a{quantos} templo(s) removido(s) na hora.'
+  Desmoronando: '&eTemplo &f#{id} &edesmoronando.'
+  Desmoronando-varios: '&e{quantos} templo(s) desmoronando.'
+  Fase-pulada: '&eFase do templo &f#{id} &epulada.'
+  Templo-inexistente: '&cNão existe templo com esse número. Veja em &f/startemplos lista&c.'
+  Lista-linha: '&8#{id} &f{tipo} &8- {fase} &8- &7{mundo} &f{x}, {y}, {z}'
+  Tipo-linha: '&8- &f{id} &8| {nome} &8| &7{desenho} &8| {raridade} &8| &7peso {peso}'
+  Itens: '&7Itens especiais: &f{itens}'
+  Desenhos:
+    - '&7Desenhos internos: &f{desenhos}'
+    - '&7Temas: &f{temas}'
+  Item-dado: '&aEntregue &f{quantidade}x {item} &apara &f{jogador}&a.'
+  Item-inexistente: '&cO item &f{item} &cnão existe no itens.yml.'
+  Jogador-offline: '&cO jogador &f{jogador} &cnão está online.'
+  Automatico-ligado: '&aGeração automática ligada.'
+  Automatico-desligado: '&cGeração automática desligada.'
+  Adiantado: '&aO próximo templo automático vai ser tentado agora.'
+  Sorteio-nao-gravou: '&cNão consegui gravar no arquivo do templo &f{tipo}&c (a chave não existe nele?).'
+  Edicao-ligada: '&eModo edição LIGADO: você pode mexer nos blocos dos templos.'
+  Edicao-desligada: '&7Modo edição desligado.'
+  Limpos: '&a{quantos} criatura(s)/holograma(s) sem templo removido(s).'
+  Recarregado: '&aStarTemplos recarregado.'
+  Historico-vazio: '&7Nenhum templo no histórico ainda.'
+  Historico-cabecalho: '&6Últimos templos:'
+  Historico-linha: '&8{quando} &f{nome} &8- {resultado} &8- &7{mundo} {x}, {z} &8- &f{destaque}'
+  Info:
+    - '&8&m------------------------------'
+    - '&6&l StarTemplos &f{versao}'
+    - '&7 Banco: &f{banco}'
+    - '&7 Tipos de templo: &f{tipos}'
+    - '&7 Templos de pé: &f{ativos}'
+    - '&7 Automático: &f{automatico} &8(próximo: &f{proximo}&8)'
+    - '&7 Terrenos reconhecidos: &f{terrenos}'
+    - '&8&m------------------------------'
+
+Ajuda:
+  Jogador:
+    - '&6&lTemplos'
+    - '&e/{comando} &7- templos de pé, seu histórico e o top'
+    - '&e/{comando} lista &7- templos no chat'
+    - '&e/{comando} rastrear [número] &7- seta até o templo'
+    - '&e/{comando} parar &7- desliga o rastreador'
+    - '&e/{comando} top [categoria] &7- melhores caçadores'
+    - '&e/{comando} perfil &7- suas estatísticas'
+  Admin:
+    - '&6&lStarTemplos - staff'
+    - '&e/{comando} &7- painel'
+    - '&e/{comando} gerar <tipo|aleatorio> [aqui|perto|mundo <nome>] [v1|v2|v3]'
+    - '&e/{comando} remover <número|todos> [agora]'
+    - '&e/{comando} lista &8| &eir <n> &8| &efase <n>'
+    - '&e/{comando} dar <jogador> <item> [quantidade]'
+    - '&e/{comando} tipos &8| &eitens &8| &edesenhos &8| &ehistorico &8| &einfo'
+    - '&e/{comando} automatico [on|off] &8| &eadiantar &8| &eeditar &8| &elimpar &8| &erecarregar'
