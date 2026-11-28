@@ -13,6 +13,17 @@
 #   - "&fLeia as regras: <click:run_command:/regras><hover:show_text:&eClique para ler>&b&l[REGRAS]</hover></click>"
 # =========================================================
 
+# Espera, em ticks (20 = 1 segundo), antes de mandar titulo e mensagens.
+# Mandados no instante da entrada eles se perdem: o jogador ainda esta na
+# tela de carregamento do mundo.
+atraso-ticks: 40
+
+# Com plugin de login (StarLogin, AuthMe, nLogin), as boas-vindas, a festa
+# do BemVindo premiado e os comandos de entrada so acontecem depois que o
+# jogador logar - antes disso a tela de senha cobre tudo. Sem plugin de
+# login esta opcao nao muda nada.
+esperar-login: true
+
 # Boas-vindas normal, mostrada em toda entrada de quem ja jogou antes.
 ativado: true
 titulo: "&bBem-vindo(a)!"
@@ -110,6 +121,7 @@ comandos-toda-entrada: []
 
 # Espera antes de rodar os comandos de entrada, em ticks (20 = 1 segundo):
 # da tempo do jogador terminar de entrar (e ir pro spawn) antes de receber kit etc.
+# Com esperar-login, conta a partir do login.
 comandos-atraso-ticks: 20
 
 # /sbv <jogador> (ou /darboasvindas): quem usa FALA no chat a mensagem abaixo,
